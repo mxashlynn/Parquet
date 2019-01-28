@@ -1,0 +1,72 @@
+# =============== #
+# Unity generated #
+# =============== #
+[Bb]in-[Rr]elease/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ibrary/
+[Oo]bj/
+[Tt]emp/
+[Uu]nity[Gg]enerated/
+SwitchIL2CPPCache/
+SwitchIL2CPPStats
+[Ll]ogs/
+.gradle/
+
+*.pidb.meta
+sysinfo.txt
+
+# ============= #
+# IDE generated #
+# ============= #
+[Ee]xported[Oo]bj/
+.consulo/
+.vs/
+*.booproj
+*.csproj
+*.mdb
+*.pidb
+*.pdb
+*.sln
+*.suo
+*.svd
+*.tmp
+*.unityproj
+*.user
+*.userprefs
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Icon?
+Icons?
+
+# ====== #
+# Builds #
+# ====== #
+*.apk
+*.app
+*.exe
+*.unitypackage
+
+# =================== #
+# Single seat plugins #
+# =================== #
+Assets/UnityVS.meta
+Assets/UnityVS/Editor.meta
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
+Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
+Assets/TEMP_IMPORT/**
+Assets/TEMP_IMPORT.meta
+Assets/ConsolePro/**
+Assets/ConsolePro.meta
+Reference/
+Assets/Add-Ons/TextMesh Pro/Documentation/
