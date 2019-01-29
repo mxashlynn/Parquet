@@ -71,13 +71,41 @@ namespace Queertet.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Visualizes the region as a string, intended for Console debugging.
+        /// Visualizes the region as a string with merged layers.
+        /// Intended for Console debugging.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Queertet.Sandbox.RegionMap"/>.</returns>
         public override string ToString()
         {
             // TODO: Replace mutliplication below with Magnitude method call.
-            // TODO: Merge these into a single visual representation.
+            var representation = new StringBuilder(Dimensions.x * Dimensions.y);
+            #region Compose visual represenation of contents.
+            for (var x = 0; x < Dimensions.x; x++)
+            {
+                for (var y = 0; y < Dimensions.y; y++)
+                {
+                    var tile = _floorLayer[x, y]?.ToString() ?? "@";
+                    tile = _blockLayer[x, y]?.ToString() ?? tile;
+                    tile = _furnishingsLayer[x, y]?.ToString() ?? tile;
+                    tile = _craftingMaterialsLayer[x, y]?.ToString() ?? tile;
+
+                    representation.Append(tile);
+                }
+                representation.AppendLine();
+            }
+            #endregion
+
+            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" + representation;
+        }
+
+        /// <summary>
+        /// Visualizes the region as a string, listing layers separately.
+        /// Intended for Console debugging.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Queertet.Sandbox.RegionMap"/>.</returns>
+        public string ToLayeredString()
+        {
+            // TODO: Replace mutliplication below with Magnitude method call.
             var floorRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
             var blocksRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
             var furnishingsRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
