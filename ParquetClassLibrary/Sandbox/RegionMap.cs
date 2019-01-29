@@ -55,17 +55,26 @@ namespace Queertet.Sandbox
         /// </summary>
         public void FillTextPattern()
         {
+            // TODO: Insert meaningful instantiations here, rather thn simply default constructors, i.e. new parquet().
             for (var x = 0; x < Dimensions.x; x++)
             {
                 for (var y = 0; y < Dimensions.y; y++)
                 {
-                    // TODO: Insert meaningful instantiations here.
                     _floorLayer[x,y] = new Floor();
-                    _blockLayer[x, y] = new Block();
-                    _furnishingsLayer[x, y] = new Furnishing();
-                    _craftingMaterialsLayer[x, y] = new CraftingMaterial();
                 }
             }
+            for (var x = 0; x < Dimensions.x; x++)
+            {
+                _blockLayer[x, 0] = new Block();
+                _blockLayer[x, Dimensions.y - 1] = new Block();
+            }
+            for (var y = 0; y < Dimensions.y; y++)
+            {
+                _blockLayer[0, y] = new Block();
+                _blockLayer[Dimensions.x - 1, y] = new Block();
+            }
+            _furnishingsLayer[1, 2] = new Furnishing();
+            _craftingMaterialsLayer[3, 3] = new CraftingMaterial();
         }
         #endregion
 
@@ -84,12 +93,12 @@ namespace Queertet.Sandbox
             {
                 for (var y = 0; y < Dimensions.y; y++)
                 {
-                    var tile = _floorLayer[x, y]?.ToString() ?? "@";
-                    tile = _blockLayer[x, y]?.ToString() ?? tile;
-                    tile = _furnishingsLayer[x, y]?.ToString() ?? tile;
-                    tile = _craftingMaterialsLayer[x, y]?.ToString() ?? tile;
-
-                    representation.Append(tile);
+                    representation.Append(
+                        _craftingMaterialsLayer[x, y]?.ToString()
+                        ?? _furnishingsLayer[x, y]?.ToString()
+                        ?? _blockLayer[x, y]?.ToString()
+                        ?? _floorLayer[x, y]?.ToString()
+                        ?? "@");
                 }
                 representation.AppendLine();
             }
