@@ -87,10 +87,10 @@ namespace Queertet.Sandbox
             {
                 for (var y = 0; y < Dimensions.y; y++)
                 {
-                    floorRepresentation.Append(_floorLayer[x, y].ToString());
-                    blocksRepresentation.Append(_blockLayer[x, y].ToString());
-                    furnishingsRepresentation.Append(_furnishingsLayer[x, y].ToString());
-                    craftingMaterialsRepresentation.Append(_craftingMaterialsLayer[x, y].ToString());
+                    floorRepresentation.Append(_floorLayer[x, y]?.ToString() ?? "@");
+                    blocksRepresentation.Append(_blockLayer[x, y]?.ToString() ?? " ");
+                    furnishingsRepresentation.Append(_furnishingsLayer[x, y]?.ToString() ?? " ");
+                    craftingMaterialsRepresentation.Append(_craftingMaterialsLayer[x, y]?.ToString() ?? " ");
                 }
                 floorRepresentation.AppendLine();
                 blocksRepresentation.AppendLine();
@@ -99,7 +99,7 @@ namespace Queertet.Sandbox
             }
             #endregion
 
-            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n\n" +
+            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" +
                 "Floor: \n" + floorRepresentation +
                 "Blocks: \n" + blocksRepresentation +
                 "Furnishings: \n" + furnishingsRepresentation +
