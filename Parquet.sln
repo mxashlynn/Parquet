@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParquetClassLibrary", "ParquetClassLibrary\ParquetClassLibrary.csproj", "{5D426EB2-83DD-44E3-8404-E9914CE98FE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParquetCLTester", "ParquetCLTester\ParquetCLTester.csproj", "{5412233E-A91F-41A8-AE27-EB85694EA12E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{5D426EB2-83DD-44E3-8404-E9914CE98FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D426EB2-83DD-44E3-8404-E9914CE98FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D426EB2-83DD-44E3-8404-E9914CE98FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
