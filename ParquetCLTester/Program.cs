@@ -1,4 +1,5 @@
 using System;
+using Queertet.Sandbox;
 
 namespace ParquetCLTester
 {
@@ -6,7 +7,8 @@ namespace ParquetCLTester
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var myMap = new RegionMap();
+            Console.WriteLine("Region Map ~~~ \n" + myMap);
         }
     }
 }

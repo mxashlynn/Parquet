@@ -1,4 +1,4 @@
-using System;
+using System.Text;
 using Queertet.Stubs;
 
 namespace Queertet.Sandbox
@@ -72,8 +72,34 @@ namespace Queertet.Sandbox
         #region Utility Methods
         public override string ToString()
         {
-            return "Region: " + Title +
-                   " (" + Dimensions.x + ", " + Dimensions.y +")\n\n";
+            // TODO: Replace mutliplication below with Magnitude method call.
+            // TODO: Merge these into a single visual representation.
+            var floorRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
+            var blocksRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
+            var furnishingsRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
+            var craftingMaterialsRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
+            #region Compose visual represenation of contents.
+            for (var x = 0; x < Dimensions.x; x++)
+            {
+                for (var y = 0; y < Dimensions.y; y++)
+                {
+                    floorRepresentation.Append(_floorLayer[x, y].ToString());
+                    blocksRepresentation.Append(_floorLayer[x, y].ToString());
+                    furnishingsRepresentation.Append(_floorLayer[x, y].ToString());
+                    craftingMaterialsRepresentation.Append(_floorLayer[x, y].ToString());
+                }
+                floorRepresentation.AppendLine();
+                blocksRepresentation.AppendLine();
+                furnishingsRepresentation.AppendLine();
+                craftingMaterialsRepresentation.AppendLine();
+            }
+            #endregion
+
+            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n\n" +
+                "Floor: \n" + floorRepresentation +
+                "Blocks: \n" + blocksRepresentation +
+                "Furnishings: \n" + furnishingsRepresentation +
+                "Crafting Materials: \n" + craftingMaterialsRepresentation;
         }
         #endregion
     }
