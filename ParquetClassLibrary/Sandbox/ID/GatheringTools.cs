@@ -1,9 +1,9 @@
-﻿namespace Queertet.Sandbox
+﻿namespace Queertet.Sandbox.ID
 {
     /// <summary>
     /// IDs for tools that Characters can use to gather Blocks.
     /// </summary>
-    public enum GatheringTool
+    public enum GatheringTools
     {
         None,
         Pick,

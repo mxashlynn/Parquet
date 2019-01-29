@@ -1,9 +1,9 @@
-﻿namespace Queertet.Sandbox
+﻿namespace Queertet.Sandbox.ID
 {
     /// <summary>
     /// IDs for tools that Characters can use to modify Blocks and Floors.
     /// </summary>
-    public enum ModificationTool
+    public enum ModificationTools
     {
         None,
         Shovel,

@@ -19,7 +19,7 @@
         public bool isLiquid;
 
         /// <summary>The tool used to remove the block.</summary>
-        public ID.GatheringTool toolType;
+        public ID.GatheringTools toolType;
 
         /// <summary>The block's native toughness.</summary>
         public int maxToughness;

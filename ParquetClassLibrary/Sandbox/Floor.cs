@@ -15,14 +15,14 @@
         /// <summary>The floor may be walked on.</summary>
         public bool isWalkable;
 
-        // IDEA: Add isSwimable, isFlyable
+        // IDEA: Add isFlyable
 
         /// <summary>The floor has been dug out.</summary>
         public bool isHole;
 
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         // TODO I'm not sure this is actually needed -- won't every floor respond to the shovel?
-        public ModificationTool tool;
+        public ID.ModificationTools tool;
 
         /// <summary>The floor's native toughness.</summary>
         public int maxToughness;

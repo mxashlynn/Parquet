@@ -10,25 +10,25 @@ namespace Queertet.Sandbox
         public string title;
 
         /// <summary>The region's dimensions.</summary>
-        public Vector2 dimensions;
+        public Stubs.Vector2 dimensions;
         #endregion
 
         #region Contents of the region.
         /// <summary>A color to display in any empty areas of the region.</summary>
-        private Color _background;
+        private Stubs.Color _background;
 
-        /// <summary>The region's dimensions.</summary>
-        // TODO: Probably it is a better idea to store these as IDs that reference their floor type.
+        /// <summary>Floors and walkable terrain in the region.</summary>
         private Floor[,] _floorLayer;
 
-        /// <summary>The region's dimensions.</summary>
-        // TODO: Probably it is a better idea to store these as IDs that reference their floor type.
+        /// <summary>Walls and obstructing terrain in the region.</summary>
         private Block[,] _blockLayer;
         
-        /// <summary>The region's dimensions.</summary>
-        // TODO: I'm gussing these are classes or structs, not IDs.
-        private Entity[,] _entitiesLayer;
-        
+        /// <summary>Furniture and natural items in the region.</summary>
+        private Furnishing[,] _furnishingsLayer;
+
+        /// <summary>Collectable materials in the region.</summary>
+        private CraftingMaterial[,] _craftingMaterialsLayer;
+
         // IDEA: a foreground layer?
         #endregion
 
