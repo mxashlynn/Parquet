@@ -28,7 +28,11 @@
         public int toughness;
         #endregion
 
-        #region Methods for working with Blocks
+        #region Utility Methods
+        public override string ToString()
+        {
+            return blockType.ToString("g").Substring(0, 1);
+        }
         #endregion
     }
 }

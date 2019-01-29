@@ -10,5 +10,12 @@
         // IDEA: We might be able to remove this if we move to a Scriptable Object or other Unity-derived class.
         public ID.Furnishings furnishingType;
         #endregion
+
+        #region Utility Methods
+        public override string ToString()
+        {
+            return furnishingType.ToString("g").Substring(0, 1);
+        }
+        #endregion
     }
 }

@@ -70,6 +70,10 @@ namespace Queertet.Sandbox
         #endregion
 
         #region Utility Methods
+        /// <summary>
+        /// Visualizes the region as a string, intended for Console debugging.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Queertet.Sandbox.RegionMap"/>.</returns>
         public override string ToString()
         {
             // TODO: Replace mutliplication below with Magnitude method call.
@@ -84,9 +88,9 @@ namespace Queertet.Sandbox
                 for (var y = 0; y < Dimensions.y; y++)
                 {
                     floorRepresentation.Append(_floorLayer[x, y].ToString());
-                    blocksRepresentation.Append(_floorLayer[x, y].ToString());
-                    furnishingsRepresentation.Append(_floorLayer[x, y].ToString());
-                    craftingMaterialsRepresentation.Append(_floorLayer[x, y].ToString());
+                    blocksRepresentation.Append(_blockLayer[x, y].ToString());
+                    furnishingsRepresentation.Append(_furnishingsLayer[x, y].ToString());
+                    craftingMaterialsRepresentation.Append(_craftingMaterialsLayer[x, y].ToString());
                 }
                 floorRepresentation.AppendLine();
                 blocksRepresentation.AppendLine();

@@ -8,7 +8,7 @@
         #region Identity
         /// <summary>The type of Block this instance represents.</summary>
         // IDEA: We might be able to remove this if we move to a Scriptable Object or other Unity-derived class.
-        public ID.Floors type;
+        public ID.Floors floorType;
         #endregion
 
         #region Parquet Physics
@@ -31,7 +31,11 @@
         public int toughness;
         #endregion
 
-        #region Methods for working with Floors
+        #region Utility Methods
+        public override string ToString()
+        {
+            return floorType.ToString("g").Substring(0, 1);
+        }
         #endregion
     }
 }
