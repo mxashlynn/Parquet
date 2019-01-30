@@ -9,7 +9,7 @@ namespace ParquetCLTester
         {
             var myMap = new RegionMap();
             myMap.FillTestPattern();
-            Console.WriteLine("Region Map ~~~ \n\n" + myMap);
+            Console.WriteLine(myMap);
         }
     }
 }
