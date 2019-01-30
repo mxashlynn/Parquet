@@ -1,9 +1,9 @@
 ﻿namespace Queertet.Sandbox.ID
 {
     /// <summary>
-    /// IDs for Crafting Materials.
+    /// IDs for Collectables.
     /// </summary>
-    public enum CraftingMaterials
+    public enum Collectables
     {
         Flower,
         Bones,

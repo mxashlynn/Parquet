@@ -23,12 +23,6 @@
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         // TODO I'm not sure this is actually needed -- won't every floor respond to the shovel?
         public ID.ModificationTools tool;
-
-        /// <summary>The floor's native toughness.</summary>
-        public int maxToughness;
-
-        /// <summary>The floor's current toughness.</summary>
-        public int toughness;
         #endregion
 
         #region Utility Methods

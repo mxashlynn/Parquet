@@ -8,7 +8,7 @@ namespace ParquetCLTester
         public static void Main(string[] args)
         {
             var myMap = new RegionMap();
-            myMap.FillTextPattern();
+            myMap.FillTestPattern();
             Console.WriteLine("Region Map ~~~ \n\n" + myMap);
         }
     }
