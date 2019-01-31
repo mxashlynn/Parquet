@@ -1,4 +1,4 @@
-﻿namespace Queertet.Sandbox.ID
+﻿namespace ParquetClassLibrary.Sandbox.ID
 {
     /// <summary>
     /// IDs for Collectables.

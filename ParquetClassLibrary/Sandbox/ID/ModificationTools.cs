@@ -1,4 +1,4 @@
-﻿namespace Queertet.Sandbox.ID
+﻿namespace ParquetClassLibrary.Sandbox.ID
 {
     /// <summary>
     /// IDs for tools that Characters can use to modify Blocks and Floors.

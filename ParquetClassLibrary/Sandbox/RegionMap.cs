@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using Queertet.Stubs;
+using ParquetClassLibrary.Stubs;
 
-namespace Queertet.Sandbox
+namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// Scriptable Object containing details of a playable region in sandbox-mode.
@@ -44,7 +44,7 @@ namespace Queertet.Sandbox
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:Queertet.Sandbox.RegionMap"/> class.
+        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/> class.
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
@@ -339,7 +339,7 @@ namespace Queertet.Sandbox
         /// Visualizes the region as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Queertet.Sandbox.RegionMap"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
         public override string ToString()
         {
             // TODO: Replace mutliplication below with Magnitude method call.
@@ -367,7 +367,7 @@ namespace Queertet.Sandbox
         /// Visualizes the region as a string, listing layers separately.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Queertet.Sandbox.RegionMap"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
         public string ToLayeredString()
         {
             // TODO: Replace mutliplication below with Magnitude method call.

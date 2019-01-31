@@ -1,4 +1,4 @@
-﻿namespace Queertet.Stubs
+﻿namespace ParquetClassLibrary.Stubs
 {
     /// <summary>
     /// Stand-in for Unity Color class.

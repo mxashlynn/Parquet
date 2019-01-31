@@ -1,4 +1,4 @@
-﻿namespace Queertet.Sandbox
+﻿namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// Configurations for a sandbox-mode parquet floor.
