@@ -11,5 +11,6 @@
     <Folder Include="Crafting\" />
     <Folder Include="Stubs\" />
     <Folder Include="Sandbox\ID\" />
+    <Folder Include="Sandbox\Parquets\" />
   </ItemGroup>
 </Project>

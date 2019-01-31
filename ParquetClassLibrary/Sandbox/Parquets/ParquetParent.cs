@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Sandbox.Parquets
 {
     /// <summary>
     /// Parent for a all sandbox-mode parquets.
