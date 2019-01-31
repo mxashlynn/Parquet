@@ -3,7 +3,7 @@
     /// <summary>
     /// Configurations for a sandbox-mode Characters, Furnishings, Crafting Materils, etc.
     /// </summary>
-    public class Collectable
+    public class Collectable : ParquetParent
     {
         #region Identity
         /// <summary>The type of collectable material this instance represents.</summary>

@@ -3,7 +3,7 @@
     /// <summary>
     /// Configurations for a sandbox-mode Furniture and similar items.
     /// </summary>
-    public class Furnishing
+    public class Furnishing : ParquetParent
     {
         #region Identity
         /// <summary>The type of Furnishing this instance represents.</summary>

@@ -3,7 +3,7 @@
     /// <summary>
     /// Configurations for a sandbox-mode parquet block.
     /// </summary>
-    public class Block
+    public class Block : ParquetParent
     {
         #region Identity
         /// <summary>The type of Block this instance represents.</summary>

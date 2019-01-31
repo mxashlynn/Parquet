@@ -3,7 +3,7 @@
     /// <summary>
     /// Configurations for a sandbox-mode parquet floor.
     /// </summary>
-    public class Floor
+    public class Floor : ParquetParent
     {
         #region Identity
         /// <summary>The type of Block this instance represents.</summary>
