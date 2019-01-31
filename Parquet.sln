@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParquetClassLibrary", "Parq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParquetRunner", "ParquetRunner\ParquetRunner.csproj", "{5412233E-A91F-41A8-AE27-EB85694EA12E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParquetUnitTests", "ParquetUnitTests\ParquetUnitTests.csproj", "{6F347E83-0546-4447-A0ED-73C2ED3626F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5412233E-A91F-41A8-AE27-EB85694EA12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F347E83-0546-4447-A0ED-73C2ED3626F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F347E83-0546-4447-A0ED-73C2ED3626F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F347E83-0546-4447-A0ED-73C2ED3626F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F347E83-0546-4447-A0ED-73C2ED3626F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
