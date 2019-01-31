@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Queertet.Stubs;
 
 namespace Queertet.Sandbox
@@ -14,15 +15,16 @@ namespace Queertet.Sandbox
         public static readonly Vector2Int Dimensions = new Vector2Int(5, 5);
 
         /// <summary>Default name for new regions.</summary>
-        public const string DefaultTitle = "New Region";
+        // TODO Change this test name.
+        public const string DefaultTitle = "Erdrea";
         #endregion
 
         #region Whole-Region Characteristics
         /// <summary>What the region is called in-game.</summary>
-        public string Title { get; private set; }
+        public string Title { get; private set; } = DefaultTitle;
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; private set; }
+        public Color Background { get; private set; } = Color.white;
         #endregion
 
         #region Region parquet contents.
@@ -33,10 +35,10 @@ namespace Queertet.Sandbox
         private Block[,] _blockLayer = new Block[Dimensions.x, Dimensions.y];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        private Furnishing[,] _furnishingsLayer = new Furnishing[Dimensions.x, Dimensions.y];
+        private Furnishing[,] _furnishingLayer = new Furnishing[Dimensions.x, Dimensions.y];
 
         /// <summary>Collectable materials in the region.</summary>
-        private Collectable[,] _collectablesLayer = new Collectable[Dimensions.x, Dimensions.y];
+        private Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
 
         // IDEA: a foreground layer?
         #endregion
@@ -62,8 +64,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
         public bool TrySetFloor(Floor in_floor, Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TrySetParquet(in_floor, in_position, _floorLayer);
         }
 
         /// <summary>
@@ -74,8 +75,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
         public bool TrySetBlock(Block in_block, Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TrySetParquet(in_block, in_position, _blockLayer);
         }
 
         /// <summary>
@@ -86,8 +86,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
         public bool TrySetFurnishing(Furnishing in_furnishing, Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TrySetParquet(in_furnishing, in_position, _furnishingLayer);
         }
 
         /// <summary>
@@ -98,8 +97,24 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the collectable was set, <c>false</c> otherwise.</returns>
         public bool TrySetCollectable(Collectable in_collectable, Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TrySetParquet(in_collectable, in_position, _collectableLayer);
+        }
+
+        /// <summary>
+        /// Attempts to update the parquet at the given position in the given layer.
+        /// </summary>
+        /// <param name="in_position">The position to clear.</param>
+        /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
+        private bool TrySetParquet(ParquetParent in_parquet, Vector2Int in_position, object[,] in_parquetLayer)
+        {
+            bool result = false;
+            if (IsValidPosition(in_position) && null != in_parquet)
+            {
+                // Note: This is an opportunity to introduce Object Pooling should it become neccessary.
+                in_parquetLayer[in_position.x, in_position.y] = in_parquet;
+                result = true;
+            }
+            return result;
         }
 
         /// <summary>
@@ -109,8 +124,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the floor was removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveFloor(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TryRemoveParquet(in_position, _floorLayer);
         }
 
         /// <summary>
@@ -120,8 +134,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the block was removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveBlock(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TryRemoveParquet(in_position, _blockLayer);
         }
 
         /// <summary>
@@ -131,8 +144,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the furnishing was removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveFurnishing(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TryRemoveParquet(in_position, _furnishingLayer);
         }
 
         /// <summary>
@@ -142,8 +154,7 @@ namespace Queertet.Sandbox
         /// <returns><c>true</c>, if the collectable was removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveCollectable(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TryRemoveParquet(in_position, _collectableLayer);
         }
 
         /// <summary>
@@ -151,10 +162,29 @@ namespace Queertet.Sandbox
         /// </summary>
         /// <param name="in_position">The position to clear.</param>
         /// <returns><c>true</c>, if the position was entirely cleared, <c>false</c> otherwise.</returns>
-        public bool TryRemoveAll(Vector2Int in_position)
+        private bool TryRemoveAll(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            return TryRemoveFloor(in_position)
+                && TryRemoveBlock(in_position)
+                && TryRemoveFurnishing(in_position)
+                && TryRemoveCollectable(in_position);
+        }
+
+        /// <summary>
+        /// Attempts to update the parquet at the given position in the given layer.
+        /// </summary>
+        /// <param name="in_position">The position to clear.</param>
+        /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
+        private bool TryRemoveParquet(Vector2Int in_position, object[,] in_parquetLayer)
+        {
+            bool result = false;
+            if (IsValidPosition(in_position))
+            {
+                // Note: This is an opportunity to introduce Object Pooling should it become neccessary.
+                in_parquetLayer[in_position.x, in_position.y] = null;
+                result = true;
+            }
+            return result;
         }
         #endregion
 
@@ -265,6 +295,19 @@ namespace Queertet.Sandbox
 
         #region Utility Methods
         /// <summary>
+        /// Determines if the given position corresponds to a point in the region.
+        /// </summary>
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        private bool IsValidPosition(Vector2Int in_position)
+        {
+            return in_position.x > -1
+                && in_position.y > -1
+                && in_position.x < Dimensions.x
+                && in_position.y < Dimensions.y;
+        }
+
+        /// <summary>
         /// Fills the region with a test pattern.
         /// Intended for debugging.
         /// </summary>
@@ -289,8 +332,8 @@ namespace Queertet.Sandbox
                 _blockLayer[0, y] = new Block();
                 _blockLayer[Dimensions.x - 1, y] = new Block();
             }
-            _furnishingsLayer[1, 2] = new Furnishing();
-            _collectablesLayer[3, 3] = new Collectable();
+            _furnishingLayer[1, 2] = new Furnishing();
+            _collectableLayer[3, 3] = new Collectable();
         }
 
         /// <summary>
@@ -308,8 +351,8 @@ namespace Queertet.Sandbox
                 for (var y = 0; y < Dimensions.y; y++)
                 {
                     representation.Append(
-                        _collectablesLayer[x, y]?.ToString()
-                        ?? _furnishingsLayer[x, y]?.ToString()
+                        _collectableLayer[x, y]?.ToString()
+                        ?? _furnishingLayer[x, y]?.ToString()
                         ?? _blockLayer[x, y]?.ToString()
                         ?? _floorLayer[x, y]?.ToString()
                         ?? "@");
@@ -340,8 +383,8 @@ namespace Queertet.Sandbox
                 {
                     floorRepresentation.Append(_floorLayer[x, y]?.ToString() ?? "@");
                     blocksRepresentation.Append(_blockLayer[x, y]?.ToString() ?? " ");
-                    furnishingsRepresentation.Append(_furnishingsLayer[x, y]?.ToString() ?? " ");
-                    collectablesRepresentation.Append(_collectablesLayer[x, y]?.ToString() ?? " ");
+                    furnishingsRepresentation.Append(_furnishingLayer[x, y]?.ToString() ?? " ");
+                    collectablesRepresentation.Append(_collectableLayer[x, y]?.ToString() ?? " ");
                 }
                 floorRepresentation.AppendLine();
                 blocksRepresentation.AppendLine();
