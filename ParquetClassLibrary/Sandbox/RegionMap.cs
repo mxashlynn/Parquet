@@ -190,36 +190,93 @@ namespace ParquetClassLibrary.Sandbox
         #region Parquet Adjustment Methods
         /// <summary>
         /// Tries to dig in the specified location.
+        /// 
+        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
+        /// are being violated.  Only bounds-checking and basic data validation is performed.
         /// </summary>
         /// <param name="in_position">The position at which to attempt digging.</param>
-        /// <returns><c>true</c>, if the position was diggable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
         public bool TryToDig(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _floorLayer[in_position.x, in_position.y])
+            {
+                _floorLayer[in_position.x, in_position.y].isHole = true;
+                result = true;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Tries to fill in the specified location.
+        /// 
+        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
+        /// are being violated.  Only bounds-checking and basic data validation is performed.
+        /// </summary>
+        /// <param name="in_position">The position at which to attempt filling.</param>
+        /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
+        public bool TryToFill(Vector2Int in_position)
+        {
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _floorLayer[in_position.x, in_position.y])
+            {
+                _floorLayer[in_position.x, in_position.y].isHole = false;
+                result = true;
+            }
+
+            return result;
         }
 
         /// <summary>
         /// Tries to decrese the toughness of the block or furnishing at the given position.
+        /// 
+        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
+        /// are being violated.  Only bounds-checking and basic data validation is performed.
         /// </summary>
         /// <param name="in_position">The position whose toughness should be reduced.</param>
         /// <param name="in_amount">The amount of toughness to reduce.</param>
         /// <returns><c>true</c>, if toughness was reduced, <c>false</c> otherwise.</returns>
         public bool TryToReduceToughness(Vector2Int in_position, int in_amount)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (in_amount > 0
+                && IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                _blockLayer[in_position.x, in_position.y].Toughness -= in_amount;
+                result = true;
+            }
+
+            return result;
         }
 
         /// <summary>
         /// Tries to reset the toughness of the block or furnishing at the given position.
+        /// 
+        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
+        /// are being violated.  Only bounds-checking and basic data validation is performed.
         /// </summary>
         /// <param name="in_position">The position whose toughness should be restored.</param>
         /// <returns><c>true</c>, if toughness was restored, <c>false</c> otherwise.</returns>
         public bool TryToRestoreToughness(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                _blockLayer[in_position.x, in_position.y].Toughness =
+                    _blockLayer[in_position.x, in_position.y].MaxToughness;
+                result = true;
+            }
+
+            return result;
         }
         #endregion
         #endregion
@@ -230,10 +287,17 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to check.</param>
         /// <returns><c>true</c>, if position is walkable, <c>false</c> otherwise.</returns>
-        public bool IsPositionWalkable(Vector2Int in_position)
+        public bool IsFloorWalkable(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _floorLayer[in_position.x, in_position.y])
+            {
+                result = _floorLayer[in_position.x, in_position.y].isWalkable;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -241,10 +305,17 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to check.</param>
         /// <returns><c>true</c>, if position is a hole, <c>false</c> otherwise.</returns>
-        public bool IsPositionAHole(Vector2Int in_position)
+        public bool IsFloorAHole(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _floorLayer[in_position.x, in_position.y])
+            {
+                result = _floorLayer[in_position.x, in_position.y].isHole;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -252,10 +323,17 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to check.</param>
         /// <returns><c>true</c>, if position contains a flammable item, <c>false</c> otherwise.</returns>
-        public bool IsPositionFlammable(Vector2Int in_position)
+        public bool IsBlockFlammable(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                result = _blockLayer[in_position.x, in_position.y].IsFlammable;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -263,10 +341,17 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to check.</param>
         /// <returns><c>true</c>, if position contains a liquid, <c>false</c> otherwise.</returns>
-        public bool IsPositionLiquid(Vector2Int in_position)
+        public bool IsBlockALiquid(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return false;
+            bool result = false;
+
+            if (IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                result = _blockLayer[in_position.x, in_position.y].IsLiquid;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -276,8 +361,15 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>Toughtness at the given position</returns>
         public int GetBlockToughnessAtPosition(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return 0;
+            int result = 0;
+
+            if (IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                result = _blockLayer[in_position.x, in_position.y].Toughness;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -285,10 +377,16 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position whose collectable is sought.</param>
         /// <returns>The collectable at the given position, or <c>null</c> if there is none.</returns>
-        public int GetCollectableAtPosition(Vector2Int in_position)
+        public Collectable GetCollectableAtPosition(Vector2Int in_position)
         {
-            // TODO: Implement this.
-            return 0;
+            Collectable result = null;
+
+            if (IsValidPosition(in_position))
+            {
+                result = _collectableLayer[in_position.x, in_position.y];
+            }
+
+            return result;
         }
         #endregion
 

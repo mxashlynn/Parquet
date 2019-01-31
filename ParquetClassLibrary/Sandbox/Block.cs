@@ -13,19 +13,37 @@
 
         #region Block Physics
         /// <summary>The block is flammable.</summary>
-        public bool isFlammable;
+        public bool IsFlammable { get; set; }
 
         /// <summary>The block is a liquid.</summary>
-        public bool isLiquid;
+        public bool IsLiquid { get; set; }
 
         /// <summary>The tool used to remove the block.</summary>
-        public ID.GatheringTools toolType;
+        public ID.GatheringTools ToolType { get; set; }
 
         /// <summary>The block's native toughness.</summary>
-        public int maxToughness;
+        public int MaxToughness { get; set; }
 
         /// <summary>The block's current toughness.</summary>
-        public int toughness;
+        private int _toughness;
+
+        /// <summary>The block's current toughness, from 0 to <see cref="MaxToughness"/>.</summary>
+        public int Toughness
+        {
+            get => _toughness;
+            set
+            {
+                _toughness = value;
+                if (_toughness < 0)
+                {
+                    _toughness = 0;
+                }
+                else if (_toughness > MaxToughness)
+                {
+                    _toughness = MaxToughness;
+                }
+            }
+        }
         #endregion
 
         #region Utility Methods
