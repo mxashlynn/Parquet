@@ -3,7 +3,7 @@ using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
-namespace ParquetUnitTests.Stubs
+namespace ParquetUnitTests.Sandbox
 {
     public class RegionMapUnitTest
     {
