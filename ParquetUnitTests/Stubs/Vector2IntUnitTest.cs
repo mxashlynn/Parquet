@@ -8,8 +8,8 @@ namespace ParquetUnitTests.Stubs
         [Fact]
         public void ZeroVectorTest()
         {
-            Assert.Equal(0, Vector2Int.zeroVector.x);
-            Assert.Equal(0, Vector2Int.zeroVector.y);
+            Assert.Equal(0, Vector2Int.ZeroVector.x);
+            Assert.Equal(0, Vector2Int.ZeroVector.y);
         }
 
         [Theory]

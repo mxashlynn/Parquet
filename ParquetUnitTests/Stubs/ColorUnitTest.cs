@@ -8,10 +8,10 @@ namespace ParquetUnitTests.Stubs
         [Fact]
         public void WhiteTest()
         {
-            Assert.Equal(1f, Color.white.r);
-            Assert.Equal(1f, Color.white.g);
-            Assert.Equal(1f, Color.white.b);
-            Assert.Equal(1f, Color.white.a);
+            Assert.Equal(1f, Color.White.r);
+            Assert.Equal(1f, Color.White.g);
+            Assert.Equal(1f, Color.White.b);
+            Assert.Equal(1f, Color.White.a);
         }
 
         [Theory]

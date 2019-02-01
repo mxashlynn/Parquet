@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Sandbox
         public string Title { get; private set; } = DefaultTitle;
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; private set; } = Color.white;
+        public Color Background { get; private set; } = Color.White;
         #endregion
 
         #region Region parquet contents.
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_background">Background color for the new region.</param>
         public RegionMap(string in_title = DefaultTitle, Color? in_background = null)
             // Assign defaults that cannot be specified in the argument list.
-            => Background = in_background ?? Color.white;
+            => Background = in_background ?? Color.White;
         #endregion
 
         #region State Alteration Methods

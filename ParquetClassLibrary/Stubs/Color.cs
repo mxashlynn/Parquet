@@ -5,7 +5,7 @@
     /// </summary>
     public struct Color
     {
-        public static readonly Color white = new Color(1f, 1f, 1f);
+        public static readonly Color White = new Color(1f, 1f, 1f);
 
         public float r;
         public float g;

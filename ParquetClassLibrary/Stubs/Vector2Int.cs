@@ -5,7 +5,7 @@
     /// </summary>
     public struct Vector2Int
     {
-        public static readonly Vector2Int zeroVector = new Vector2Int(0, 0);
+        public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
 
         public int x;
         public int y;
