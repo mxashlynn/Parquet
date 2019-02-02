@@ -14,4 +14,7 @@
     <Folder Include="Sandbox\Parquets\" />
     <Folder Include="Sandbox\Special Points\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Sandbox\.DS_Store" />
+  </ItemGroup>
 </Project>

@@ -388,8 +388,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
+            var point = new SpawnPoint(InvalidPosition);
 
-            var result = region.TrySetSpawnPoint(InvalidPosition);
+            var result = region.TrySetSpawnPoint(point);
 
             Assert.False(result);
         }
@@ -398,18 +399,20 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetSpawnPointSucceedsOnValidPositionTest()
         {
             var region = new RegionMap();
+            var point = new SpawnPoint(Vector2Int.ZeroVector);
 
-            var result = region.TrySetSpawnPoint(Vector2Int.ZeroVector);
+            var result = region.TrySetSpawnPoint(point);
 
-            Assert.False(result);
+            Assert.True(result);
         }
 
         [Fact]
         public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
+            var point = new SpawnPoint(InvalidPosition);
 
-            var result = region.TryRemoveSpawnPoint(InvalidPosition);
+            var result = region.TryRemoveSpawnPoint(point);
 
             Assert.False(result);
         }
@@ -418,8 +421,9 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
         {
             var region = new RegionMap();
+            var point = new SpawnPoint(Vector2Int.ZeroVector);
 
-            var result = region.TryRemoveSpawnPoint(Vector2Int.ZeroVector);
+            var result = region.TryRemoveSpawnPoint(point);
 
             Assert.True(result);
         }
@@ -428,8 +432,10 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
         {
             var region = new RegionMap();
+            var point = new SpawnPoint(Vector2Int.ZeroVector);
+            region.TrySetSpawnPoint(point);
 
-            var result = region.TryRemoveSpawnPoint(Vector2Int.ZeroVector);
+            var result = region.TryRemoveSpawnPoint(point);
 
             Assert.True(result);
         }
@@ -438,8 +444,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetExitPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
+            var point = new ExitPoint(InvalidPosition);
 
-            var result = region.TrySetExitPoint(InvalidPosition);
+            var result = region.TrySetExitPoint(point);
 
             Assert.False(result);
         }
@@ -448,18 +455,20 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var region = new RegionMap();
+            var point = new ExitPoint(Vector2Int.ZeroVector);
 
-            var result = region.TrySetExitPoint(Vector2Int.ZeroVector);
+            var result = region.TrySetExitPoint(point);
 
-            Assert.False(result);
+            Assert.True(result);
         }
 
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
+            var point = new ExitPoint(InvalidPosition);
 
-            var result = region.TryRemoveExitPoint(InvalidPosition);
+            var result = region.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -468,8 +477,9 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
         {
             var region = new RegionMap();
+            var point = new ExitPoint(Vector2Int.ZeroVector);
 
-            var result = region.TryRemoveExitPoint(Vector2Int.ZeroVector);
+            var result = region.TryRemoveExitPoint(point);
 
             Assert.True(result);
         }
@@ -478,8 +488,10 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
             var region = new RegionMap();
+            var point = new ExitPoint(Vector2Int.ZeroVector);
+            region.TrySetExitPoint(point);
 
-            var result = region.TryRemoveExitPoint(Vector2Int.ZeroVector);
+            var result = region.TryRemoveExitPoint(point);
 
             Assert.True(result);
         }
