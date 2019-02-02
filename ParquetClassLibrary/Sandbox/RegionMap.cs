@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using System.Collections.Generic;
+using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
 
@@ -25,20 +27,26 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         public Color Background { get; private set; } = Color.White;
+
+        /// <summary>Tracks how many times the data structure has been serialized.</summary>
+        public int Revision { get; private set; } = 0;
+
+        /// <summary>Floors and walkable terrain in the region.</summary>
+        private readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
         #endregion
 
-        #region Region parquet contents.
+        #region Region Parquet Contents
         /// <summary>Floors and walkable terrain in the region.</summary>
         private readonly Floor[,] _floorLayer = new Floor[Dimensions.x, Dimensions.y];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        private Block[,] _blockLayer = new Block[Dimensions.x, Dimensions.y];
+        private readonly Block[,] _blockLayer = new Block[Dimensions.x, Dimensions.y];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        private Furnishing[,] _furnishingLayer = new Furnishing[Dimensions.x, Dimensions.y];
+        private readonly Furnishing[,] _furnishingLayer = new Furnishing[Dimensions.x, Dimensions.y];
 
         /// <summary>Collectable materials in the region.</summary>
-        private Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
+        private readonly Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
 
         // IDEA: a foreground layer?
         #endregion
@@ -54,7 +62,7 @@ namespace ParquetClassLibrary.Sandbox
             => Background = in_background ?? Color.White;
         #endregion
 
-        #region State Alteration Methods
+        #region State Modification Methods
         #region Parquets Replacement Methods
         /// <summary>
         /// Attempts to update the floor parquet at the given position.
@@ -107,7 +115,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
         private bool TrySetParquet(ParquetParent in_parquet, Vector2Int in_position, object[,] in_parquetLayer)
         {
-            bool result = false;
+            var result = false;
             if (IsValidPosition(in_position) && null != in_parquet)
             {
                 // Note: This is an opportunity to introduce Object Pooling should it become neccessary.
@@ -177,7 +185,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
         private bool TryRemoveParquet(Vector2Int in_position, object[,] in_parquetLayer)
         {
-            bool result = false;
+            var result = false;
             if (IsValidPosition(in_position))
             {
                 // Note: This is an opportunity to introduce Object Pooling should it become neccessary.
@@ -188,7 +196,7 @@ namespace ParquetClassLibrary.Sandbox
         }
         #endregion
 
-        #region Parquet Adjustment Methods
+        #region Parquet Property Modifcation Methods
         /// <summary>
         /// Tries to dig in the specified location.
         /// 
@@ -197,9 +205,9 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position at which to attempt digging.</param>
         /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
-        public bool TryToDig(Vector2Int in_position)
+        public bool TryDig(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _floorLayer[in_position.x, in_position.y])
@@ -219,9 +227,9 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position at which to attempt filling.</param>
         /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
-        public bool TryToFill(Vector2Int in_position)
+        public bool TryFill(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _floorLayer[in_position.x, in_position.y])
@@ -242,9 +250,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_position">The position whose toughness should be reduced.</param>
         /// <param name="in_amount">The amount of toughness to reduce.</param>
         /// <returns><c>true</c>, if toughness was reduced, <c>false</c> otherwise.</returns>
-        public bool TryToReduceToughness(Vector2Int in_position, int in_amount)
+        public bool TryReduceToughness(Vector2Int in_position, int in_amount)
         {
-            bool result = false;
+            var result = false;
 
             if (in_amount > 0
                 && IsValidPosition(in_position)
@@ -265,9 +273,9 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position whose toughness should be restored.</param>
         /// <returns><c>true</c>, if toughness was restored, <c>false</c> otherwise.</returns>
-        public bool TryToRestoreToughness(Vector2Int in_position)
+        public bool TryRestoreToughness(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _blockLayer[in_position.x, in_position.y])
@@ -275,6 +283,91 @@ namespace ParquetClassLibrary.Sandbox
                 _blockLayer[in_position.x, in_position.y].Toughness =
                     _blockLayer[in_position.x, in_position.y].MaxToughness;
                 result = true;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Special Point Modification
+        /// <summary>
+        /// Attempts to assign an exit point to the given location.
+        /// If an exit point already exists at this location, it is replaced.
+        /// </summary>
+        /// <param name="in_point">The point to set.</param>
+        /// <returns><c>true</c>, if the exit point was set, <c>false</c> otherwise.</returns>
+        public bool TrySetExitPoint(ExitPoint in_point)
+        {
+            var result = false;
+
+            if (TryRemoveExitPoint(in_point))
+            {
+                _specialPoints.Add(in_point);
+                result = true;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Attempts to remove a point to the given location.
+        /// If an exit point already exists at this location, it is replaced.
+        /// </summary>
+        /// <param name="in_point">The point to remove.</param>
+        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
+        public bool TryRemoveExitPoint(ExitPoint in_point)
+        {
+            return TryRemoveSpecialPoint(in_point);
+        }
+
+        /// <summary>
+        /// Attempts to assign a spawn point to the given location.
+        /// If a spawn point already exists at this location, it is replaced.
+        /// </summary>
+        /// <param name="in_point">The point to set.</param>
+        /// <returns><c>true</c>, if the point was set, <c>false</c> otherwise.</returns>
+        public bool TrySetSpawnPoint(SpawnPoint in_point)
+        {
+            var result = false;
+
+            if (TryRemoveSpawnPoint(in_point))
+            {
+                _specialPoints.Add(in_point);
+                result = true;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Attempts to remove a point to the given location.
+        /// If an exit point already exists at this location, it is replaced.
+        /// </summary>
+        /// <param name="in_point">The point to remove.</param>
+        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
+        public bool TryRemoveSpawnPoint(SpawnPoint in_point)
+        {
+            return TryRemoveSpecialPoint(in_point);
+        }
+
+        /// <summary>
+        /// Attempts to remove a point to the given location.
+        /// If an exit point already exists at this location, it is replaced.
+        /// </summary>
+        /// <param name="in_point">The point to remove.</param>
+        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
+        private bool TryRemoveSpecialPoint(SpecialPoint in_point)
+        {
+            var result = false;
+
+            // Note: This is an opportunity to introduce Object Pooling should it become neccessary.
+            if (null != in_point
+                && IsValidPosition(in_point.Position))
+            {
+                // Return true if the point was removed or if the point never existed.
+                result = _specialPoints.Remove(in_point) ||
+                    !_specialPoints.Exists(foundPoint =>
+                        foundPoint.GetType() == in_point.GetType() && foundPoint == in_point);
             }
 
             return result;
@@ -290,7 +383,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if position is walkable, <c>false</c> otherwise.</returns>
         public bool IsFloorWalkable(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _floorLayer[in_position.x, in_position.y])
@@ -308,7 +401,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if position is a hole, <c>false</c> otherwise.</returns>
         public bool IsFloorAHole(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _floorLayer[in_position.x, in_position.y])
@@ -326,7 +419,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if position contains a flammable item, <c>false</c> otherwise.</returns>
         public bool IsBlockFlammable(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _blockLayer[in_position.x, in_position.y])
@@ -344,7 +437,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if position contains a liquid, <c>false</c> otherwise.</returns>
         public bool IsBlockALiquid(Vector2Int in_position)
         {
-            bool result = false;
+            var result = false;
 
             if (IsValidPosition(in_position)
                 && null != _blockLayer[in_position.x, in_position.y])
@@ -374,7 +467,58 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Gets any collectable parquets at the position.
+        /// Gets any floor parquet at the position.
+        /// </summary>
+        /// <param name="in_position">The position whose floor is sought.</param>
+        /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
+        public Floor GetFloorAtPosition(Vector2Int in_position)
+        {
+            Floor result = null;
+
+            if (IsValidPosition(in_position))
+            {
+                result = _floorLayer[in_position.x, in_position.y];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets any block parquet at the position.
+        /// </summary>
+        /// <param name="in_position">The position whose block is sought.</param>
+        /// <returns>The block at the given position, or <c>null</c> if there is none.</returns>
+        public Block GetBlockAtPosition(Vector2Int in_position)
+        {
+            Block result = null;
+
+            if (IsValidPosition(in_position))
+            {
+                result = _blockLayer[in_position.x, in_position.y];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets any furnishing parquet at the position.
+        /// </summary>
+        /// <param name="in_position">The position whose furnishing  is sought.</param>
+        /// <returns>The furnishing  at the given position, or <c>null</c> if there is none.</returns>
+        public Furnishing GetFurnishingAtPosition(Vector2Int in_position)
+        {
+            Furnishing result = null;
+
+            if (IsValidPosition(in_position))
+            {
+                result = _furnishingLayer[in_position.x, in_position.y];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets any collectable parquet at the position.
         /// </summary>
         /// <param name="in_position">The position whose collectable is sought.</param>
         /// <returns>The collectable at the given position, or <c>null</c> if there is none.</returns>
@@ -388,6 +532,20 @@ namespace ParquetClassLibrary.Sandbox
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets any parquets at the position.
+        /// </summary>
+        /// <param name="in_position">The position whose parquets are sought.</param>
+        /// <returns>The parquets at the given position, if any.</returns>
+        public (Floor floor, Block block, Furnishing furnishing, Collectable collectable)
+            GetAllParquetsAtPosition(Vector2Int in_position)
+        {
+            return (floor: GetFloorAtPosition(in_position),
+                    block: GetBlockAtPosition(in_position),
+                    furnishing: GetFurnishingAtPosition(in_position),
+                    collectable: GetCollectableAtPosition(in_position));
         }
         #endregion
 

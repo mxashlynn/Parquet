@@ -1,4 +1,5 @@
 using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
 using Xunit;
@@ -10,6 +11,7 @@ namespace ParquetUnitTests.Sandbox
         #region Values for Tests
         private readonly Color TestColor = new Color(1f, 0.5f, 0.1f, 0.9f);
         private readonly string TestTitle = "Erdrea";
+        private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
         #endregion
 
         #region Initialization
@@ -43,351 +45,441 @@ namespace ParquetUnitTests.Sandbox
 
         #region Parquets Replacement Methods
         [Fact]
-        public void TrySetFloorFailsWithNullParquetTest()
+        public void TrySetFloorFailsOnNullParquetTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TrySetFloor(null, Vector2Int.ZeroVector);
+            var result = region.TrySetFloor(null, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetFloorFailsWithOutOfBoundsPositionTest()
-        {
-            var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
-            var parquet = new Floor();
-
-            bool result = region.TrySetFloor(parquet, position);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TrySetFloorSucceedsWithDefaultParquetAndPositionTest()
+        public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
             var parquet = new Floor();
 
-            bool result = region.TrySetFloor(parquet, Vector2Int.ZeroVector);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetBlockFailsWithNullParquetTest()
-        {
-            var region = new RegionMap();
-
-            bool result = region.TrySetBlock(null, Vector2Int.ZeroVector);
+            var result = region.TrySetFloor(parquet, InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetBlockFailsWithOutOfBoundsPositionTest()
+        public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
+            var parquet = new Floor();
+
+            var result = region.TrySetFloor(parquet, Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void TrySetBlockFailsOnNullParquetTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TrySetBlock(null, Vector2Int.ZeroVector);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TrySetBlockFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
             var parquet = new Block();
 
-            bool result = region.TrySetBlock(parquet, position);
+            var result = region.TrySetBlock(parquet, InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetBlockSucceedsWithDefaultParquetAndPositionTest()
+        public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new RegionMap();
             var parquet = new Block();
 
-            bool result = region.TrySetBlock(parquet, Vector2Int.ZeroVector);
+            var result = region.TrySetBlock(parquet, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TrySetFurnishingFailsWithNullParquetTest()
+        public void TrySetFurnishingFailsOnNullParquetTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TrySetFurnishing(null, Vector2Int.ZeroVector);
+            var result = region.TrySetFurnishing(null, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetFurnishingFailsWithOutOfBoundsPositionTest()
+        public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
             var parquet = new Furnishing();
 
-            bool result = region.TrySetFurnishing(parquet, position);
+            var result = region.TrySetFurnishing(parquet, InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetFurnishingSucceedsWithDefaultParquetAndPositionTest()
+        public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new RegionMap();
             var parquet = new Furnishing();
 
-            bool result = region.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
+            var result = region.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TrySetCollectableFailsWithNullParquetTest()
+        public void TrySetCollectableFailsOnNullParquetTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TrySetCollectable(null, Vector2Int.ZeroVector);
+            var result = region.TrySetCollectable(null, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetCollectableFailsWithOutOfBoundsPositionTest()
-        {
-            var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
-            var parquet = new Collectable();
-
-            bool result = region.TrySetCollectable(parquet, position);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TrySetCollectableSucceedsWithDefaultParquetAndPositionTest()
+        public void TrySetCollectableFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
             var parquet = new Collectable();
 
-            bool result = region.TrySetCollectable(parquet, Vector2Int.ZeroVector);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveFloorFailsWithOutOfBoundsPositionTest()
-        {
-            var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
-
-            bool result = region.TryRemoveFloor(position);
+            var result = region.TrySetCollectable(parquet, InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryRemoveFloorSucceedsWithDefaultPositionTest()
+        public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new RegionMap();
+            var parquet = new Collectable();
 
-            bool result = region.TryRemoveFloor(Vector2Int.ZeroVector);
+            var result = region.TrySetCollectable(parquet, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryRemoveBlockFailsWithOutOfBoundsPositionTest()
+        public void TryRemoveFloorFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryRemoveBlock(position);
+            var result = region.TryRemoveFloor(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryRemoveBlockSucceedsWithDefaultPositionTest()
+        public void TryRemoveFloorSucceedsOnDefaultPositionTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryRemoveBlock(Vector2Int.ZeroVector);
+            var result = region.TryRemoveFloor(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryRemoveFurnishingFailsWithOutOfBoundsPositionTest()
+        public void TryRemoveBlockFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryRemoveFurnishing(position);
+            var result = region.TryRemoveBlock(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryRemoveFurnishingSucceedsWithDefaultPositionTest()
+        public void TryRemoveBlockSucceedsOnDefaultPositionTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryRemoveFurnishing(Vector2Int.ZeroVector);
+            var result = region.TryRemoveBlock(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryRemoveCollectableFailsWithOutOfBoundsPositionTest()
+        public void TryRemoveFurnishingFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryRemoveCollectable(position);
+            var result = region.TryRemoveFurnishing(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryRemoveCollectableSucceedsWithDefaultPositionTest()
+        public void TryRemoveFurnishingSucceedsOnDefaultPositionTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryRemoveCollectable(Vector2Int.ZeroVector);
+            var result = region.TryRemoveFurnishing(Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void TryRemoveCollectableFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveCollectable(InvalidPosition);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryRemoveCollectableSucceedsOnDefaultPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveCollectable(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
         #endregion
 
-        #region Parquet Adjustment Methods
+        #region Parquet Property Modification Methods
         [Fact]
-        public void TryToDigFailsWithEmptyMapTest()
+        public void TryDigFailsOnEmptyMapTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryToDig(Vector2Int.ZeroVector);
+            var result = region.TryDig(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToDigFailsWithInvalidPostionTest()
+        public void TryDigFailsOnInvalidPostionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryToDig(position);
+            var result = region.TryDig(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToDigSucceedsWithInitializedMapAndDefaultPositionTest()
+        public void TryDigSucceedsOnInitializedMapAndDefaultPositionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
 
-            bool result = region.TryToDig(Vector2Int.ZeroVector);
+            var result = region.TryDig(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryToFillFailsWithEmptyMapTest()
+        public void TryFillFailsOnEmptyMapTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryToFill(Vector2Int.ZeroVector);
+            var result = region.TryFill(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToFillFailsWithInvalidPostionTest()
+        public void TryFillFailsOnInvalidPostionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryToFill(position);
+            var result = region.TryFill(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToFillSucceedsWithInitializedMapAndDefaultPositionTest()
+        public void TryFillSucceedsOnInitializedMapAndDefaultPositionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
 
-            bool result = region.TryToFill(Vector2Int.ZeroVector);
+            var result = region.TryFill(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryToReduceToughnessFailsWithEmptyMapTest()
+        public void TryReduceToughnessFailsOnEmptyMapTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryToReduceToughness(Vector2Int.ZeroVector, 1);
+            var result = region.TryReduceToughness(Vector2Int.ZeroVector, 1);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToReduceToughnessFailsWithInvalidPostionTest()
+        public void TryReduceToughnessFailsOnInvalidPostionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryToReduceToughness(position, 1);
+            var result = region.TryReduceToughness(InvalidPosition, 1);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToReduceToughnessSucceedsWithInitializedMapAndDefaultPositionTest()
+        public void TryReduceToughnessSucceedsOnInitializedMapAndDefaultPositionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
 
-            bool result = region.TryToReduceToughness(Vector2Int.ZeroVector, 1);
+            var result = region.TryReduceToughness(Vector2Int.ZeroVector, 1);
 
             Assert.True(result);
         }
 
         [Fact]
-        public void TryToRestoreToughnessFailsWithEmptyMapTest()
+        public void TryRestoreToughnessFailsOnEmptyMapTest()
         {
             var region = new RegionMap();
 
-            bool result = region.TryToRestoreToughness(Vector2Int.ZeroVector);
+            var result = region.TryRestoreToughness(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToRestoreToughnessFailsWithInvalidPostionTest()
+        public void TryRestoreToughnessFailsOnInvalidPostionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.TryToRestoreToughness(position);
+            var result = region.TryRestoreToughness(InvalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryToRestoreToughnessSucceedsWithInitializedMapAndDefaultPositionTest()
+        public void TryRestoreToughnessSucceedsOnInitializedMapAndDefaultPositionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
 
-            bool result = region.TryToRestoreToughness(Vector2Int.ZeroVector);
+            var result = region.TryRestoreToughness(Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+        #endregion
+
+        #region Special Location Methods
+        [Fact]
+        public void TrySetSpawnPointFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TrySetSpawnPoint(InvalidPosition);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TrySetSpawnPointSucceedsOnValidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TrySetSpawnPoint(Vector2Int.ZeroVector);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveSpawnPoint(InvalidPosition);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveSpawnPoint(Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveSpawnPoint(Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void TrySetExitPointFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TrySetExitPoint(InvalidPosition);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TrySetExitPointSucceedsOnValidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TrySetExitPoint(Vector2Int.ZeroVector);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryRemoveExitPointFailsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveExitPoint(InvalidPosition);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveExitPoint(Vector2Int.ZeroVector);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.TryRemoveExitPoint(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -399,9 +491,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.IsFloorWalkable(position);
+            var result = region.IsFloorWalkable(InvalidPosition);
 
             Assert.False(result);
         }
@@ -411,7 +502,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
 
-            bool result = region.IsFloorWalkable(Vector2Int.ZeroVector);
+            var result = region.IsFloorWalkable(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -421,9 +512,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.IsFloorAHole(position);
+            var result = region.IsFloorAHole(InvalidPosition);
 
             Assert.False(result);
         }
@@ -433,7 +523,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
 
-            bool result = region.IsFloorAHole(Vector2Int.ZeroVector);
+            var result = region.IsFloorAHole(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -443,9 +533,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.IsBlockFlammable(position);
+            var result = region.IsBlockFlammable(InvalidPosition);
 
             Assert.False(result);
         }
@@ -455,7 +544,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
 
-            bool result = region.IsBlockFlammable(Vector2Int.ZeroVector);
+            var result = region.IsBlockFlammable(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -465,9 +554,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            bool result = region.IsBlockALiquid(position);
+            var result = region.IsBlockALiquid(InvalidPosition);
 
             Assert.False(result);
         }
@@ -477,7 +565,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
 
-            bool result = region.IsBlockALiquid(Vector2Int.ZeroVector);
+            var result = region.IsBlockALiquid(Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -488,9 +576,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            var result = region.GetBlockToughnessAtPosition(position);
+            var result = region.GetBlockToughnessAtPosition(InvalidPosition);
 
             Assert.Equal(0, result);
         }
@@ -506,13 +593,75 @@ namespace ParquetUnitTests.Sandbox
         }
 
         [Fact]
+        public void GetFloorReturnsNullOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+            region.FillTestPattern();
+
+            var result = region.GetFloorAtPosition(InvalidPosition);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetFloorReturnsNullOnEmptyMapTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.GetFloorAtPosition(Vector2Int.ZeroVector);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetBlockReturnsNullOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+            region.FillTestPattern();
+
+            var result = region.GetBlockAtPosition(InvalidPosition);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetBlockReturnsNullOnEmptyMapTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.GetBlockAtPosition(Vector2Int.ZeroVector);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetFurnishingReturnsNullOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+            region.FillTestPattern();
+
+            var result = region.GetFurnishingAtPosition(InvalidPosition);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetFurnishingReturnsNullOnEmptyMapTest()
+        {
+            var region = new RegionMap();
+
+            var result = region.GetFurnishingAtPosition(Vector2Int.ZeroVector);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void GetCollectableReturnsNullOnInvalidPositionTest()
         {
             var region = new RegionMap();
             region.FillTestPattern();
-            var position = new Vector2Int(-1, -1);
 
-            var result = region.GetCollectableAtPosition(position);
+            var result = region.GetCollectableAtPosition(InvalidPosition);
 
             Assert.Null(result);
         }
@@ -525,6 +674,33 @@ namespace ParquetUnitTests.Sandbox
             var result = region.GetCollectableAtPosition(Vector2Int.ZeroVector);
 
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetAllParquetsReturnsNullsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+            region.FillTestPattern();
+
+            var (floor, block, furnishing, collectable) = region.GetAllParquetsAtPosition(InvalidPosition);
+
+            Assert.Null(floor);
+            Assert.Null(block);
+            Assert.Null(furnishing);
+            Assert.Null(collectable);
+        }
+
+        [Fact]
+        public void GetAllParquetsReturnsNullsOnEmptyMapTest()
+        {
+            var region = new RegionMap();
+
+            var (floor, block, furnishing, collectable) = region.GetAllParquetsAtPosition(Vector2Int.ZeroVector);
+
+            Assert.Null(floor);
+            Assert.Null(block);
+            Assert.Null(furnishing);
+            Assert.Null(collectable);
         }
         #endregion
     }
