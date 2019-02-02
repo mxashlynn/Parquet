@@ -7,10 +7,10 @@
     {
         public static readonly Color White = new Color(1f, 1f, 1f);
 
-        public float r;
-        public float g;
-        public float b;
-        public float a;
+        public readonly float r;
+        public readonly float g;
+        public readonly float b;
+        public readonly float a;
 
         public Color(float in_r, float in_g, float in_b, float in_a = 1f)
         {

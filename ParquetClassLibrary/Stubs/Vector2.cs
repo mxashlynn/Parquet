@@ -7,8 +7,8 @@
     {
         public static readonly Vector2 zeroVector = new Vector2(0f, 0f);
 
-        public float x;
-        public float y;
+        public readonly float x;
+        public readonly float y;
 
         public Vector2(float in_x, float in_y)
         {
