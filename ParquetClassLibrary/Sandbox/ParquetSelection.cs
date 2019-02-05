@@ -69,6 +69,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to set or clear.</param>
+        /// <param name="in_state">If <c>true</c>, the flag will be set; otherwise it will be cleared.</param>
         /// <returns>The variable with the flag modified.</returns>
         public static ParquetSelection SetTo(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest, bool in_state)
         {
