@@ -11,6 +11,13 @@
         public ID.Furnishings furnishingType;
         #endregion
 
+        #region Constructor
+        public Furnishing(ID.Furnishings in_id = ID.Furnishings.Chair)
+        {
+            furnishingType = in_id;
+        }
+        #endregion
+
         #region Utility Methods
         public override string ToString()
         {

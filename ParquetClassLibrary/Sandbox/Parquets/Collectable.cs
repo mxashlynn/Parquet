@@ -11,6 +11,13 @@
         public ID.Collectables collectableType;
         #endregion
 
+        #region Constructor
+        public Collectable(ID.Collectables in_id = ID.Collectables.Flower)
+        {
+            collectableType = in_id;
+        }
+        #endregion
+
         #region Utility Methods
         public override string ToString()
         {

@@ -11,6 +11,13 @@
         public ID.Blocks blockType;
         #endregion
 
+        #region Constructor
+        public Block(ID.Blocks in_id = ID.Blocks.Tree)
+        {
+            blockType = in_id;
+        }
+        #endregion
+
         #region Block Physics
         /// <summary>The block is flammable.</summary>
         public bool IsFlammable { get; set; }

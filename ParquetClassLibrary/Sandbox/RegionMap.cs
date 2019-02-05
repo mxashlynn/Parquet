@@ -539,13 +539,22 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position whose parquets are sought.</param>
         /// <returns>The parquets at the given position, if any.</returns>
-        public (Floor floor, Block block, Furnishing furnishing, Collectable collectable)
-            GetAllParquetsAtPosition(Vector2Int in_position)
+        public ParquetStack GetAllParquetsAtPosition(Vector2Int in_position)
         {
-            return (floor: GetFloorAtPosition(in_position),
-                    block: GetBlockAtPosition(in_position),
-                    furnishing: GetFurnishingAtPosition(in_position),
-                    collectable: GetCollectableAtPosition(in_position));
+            return new ParquetStack(GetFloorAtPosition(in_position),
+                                    GetBlockAtPosition(in_position),
+                                    GetFurnishingAtPosition(in_position),
+                                    GetCollectableAtPosition(in_position));
+        }
+
+        /// <summary>
+        /// Gets all special data at the given position, if any.
+        /// </summary>
+        /// <param name="in_position">The position whose data is sought.</param>
+        /// <returns>The special points at the position.</returns>
+        public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2Int in_position)
+        {
+            return _specialPoints.FindAll(point => point.Position.Equals(in_position));
         }
         #endregion
 

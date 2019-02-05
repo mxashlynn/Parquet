@@ -495,6 +495,16 @@ namespace ParquetUnitTests.Sandbox
 
             Assert.True(result);
         }
+
+        [Fact]
+        public void GetSpecialDataReturnsNullsOnInvalidPositionTest()
+        {
+            var region = new RegionMap();
+
+            var specialData = region.GetSpecialPointsAtPosition(InvalidPosition);
+
+            Assert.Empty(specialData);
+        }
         #endregion
 
         #region State Query Methods
@@ -694,12 +704,12 @@ namespace ParquetUnitTests.Sandbox
             var region = new RegionMap();
             region.FillTestPattern();
 
-            var (floor, block, furnishing, collectable) = region.GetAllParquetsAtPosition(InvalidPosition);
+            var parquetStack = region.GetAllParquetsAtPosition(InvalidPosition);
 
-            Assert.Null(floor);
-            Assert.Null(block);
-            Assert.Null(furnishing);
-            Assert.Null(collectable);
+            Assert.Null(parquetStack.floor);
+            Assert.Null(parquetStack.block);
+            Assert.Null(parquetStack.furnishing);
+            Assert.Null(parquetStack.collectable);
         }
 
         [Fact]
@@ -707,12 +717,12 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new RegionMap();
 
-            var (floor, block, furnishing, collectable) = region.GetAllParquetsAtPosition(Vector2Int.ZeroVector);
+            var parquetStack = region.GetAllParquetsAtPosition(Vector2Int.ZeroVector);
 
-            Assert.Null(floor);
-            Assert.Null(block);
-            Assert.Null(furnishing);
-            Assert.Null(collectable);
+            Assert.Null(parquetStack.floor);
+            Assert.Null(parquetStack.block);
+            Assert.Null(parquetStack.furnishing);
+            Assert.Null(parquetStack.collectable);
         }
         #endregion
     }

@@ -11,6 +11,13 @@
         public ID.Floors floorType;
         #endregion
 
+        #region Constructor
+        public Floor(ID.Floors in_id = ID.Floors.GrassDirt)
+        {
+            floorType = in_id;
+        }
+        #endregion
+
         #region Parquet Physics
         /// <summary>The floor may be walked on.</summary>
         public bool isWalkable;
