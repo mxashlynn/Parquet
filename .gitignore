@@ -36,6 +36,16 @@ sysinfo.txt
 *.user
 *.userprefs
 
+# =============== #
+# NuGet generated #
+# =============== #
+**/[Pp]ackages/*
+*.nupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
+
 # ============ #
 # OS generated #
 # ============ #
