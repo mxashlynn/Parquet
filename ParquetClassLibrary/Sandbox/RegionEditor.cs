@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Sandbox
         private Furnishings _furnishingToPaint;
         private Collectables _collectableToPaint;
 
-        private ParquetSelection _parquetPaintPattern;
+        private ParquetSelection _parquetPaintPattern = ParquetSelection.None;
 
         #region Initialization
         #endregion
@@ -79,16 +79,8 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable floor painting, otherwise disable it.</param>
         void SetPaintFloor(bool in_enable)
         {
-            if (in_enable)
-            {
-                _parquetPaintPattern |= ParquetSelection.Floor; // Set Flag
-            }
-            else
-            {
-                _parquetPaintPattern &= ~ParquetSelection.Floor; // Clear Flag
-            }
+            _parquetPaintPattern.SetTo(ParquetSelection.Floor, in_enable);
         }
-
 
         /// <summary>
         /// Turns floor painting on or off.
@@ -96,14 +88,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable block painting, otherwise disable it.</param>
         void SetPaintBlock(bool in_enable)
         {
-            if (in_enable)
-            {
-                _parquetPaintPattern |= ParquetSelection.Block; // Set Flag
-            }
-            else
-            {
-                _parquetPaintPattern &= ~ParquetSelection.Block; // Clear Flag
-            }
+            _parquetPaintPattern.SetTo(ParquetSelection.Block, in_enable);
         }
 
         /// <summary>
@@ -112,14 +97,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable furnishing painting, otherwise disable it.</param>
         void SetPaintFurnishing(bool in_enable)
         {
-            if (in_enable)
-            {
-                _parquetPaintPattern |= ParquetSelection.Furnishing; // Set Flag
-            }
-            else
-            {
-                _parquetPaintPattern &= ~ParquetSelection.Furnishing; // Clear Flag
-            }
+            _parquetPaintPattern.SetTo(ParquetSelection.Furnishing, in_enable);
         }
 
         /// <summary>
@@ -128,14 +106,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable collectable painting, otherwise disable it.</param>
         void SetPaintCollectable(bool in_enable)
         {
-            if (in_enable)
-            {
-                _parquetPaintPattern |= ParquetSelection.Collectable; // Set Flag
-            }
-            else
-            {
-                _parquetPaintPattern &= ~ParquetSelection.Collectable; // Clear Flag
-            }
+            _parquetPaintPattern.SetTo(ParquetSelection.Collectable, in_enable);
         }
 
         /// <summary>
@@ -148,34 +119,34 @@ namespace ParquetClassLibrary.Sandbox
             var result = true;
             var error = "";
 
-            if ((_parquetPaintPattern & ParquetSelection.Floor) == ParquetSelection.Floor)
+            if (_parquetPaintPattern.IsSet(ParquetSelection.Floor))
             {
                 error += _currentRegion.TrySetFloor(new Floor(_floorToPaint), in_position)
                     ? ""
-                    : "  Could not assign floor.";
+                    : " floor ";
             }
-            if ((_parquetPaintPattern & ParquetSelection.Block) == ParquetSelection.Block)
+            if (_parquetPaintPattern.IsSet(ParquetSelection.Block))
             {
                 error += _currentRegion.TrySetBlock(new Block(_blockToPaint), in_position)
                     ? ""
-                    : "  Could not assign floor.";
+                    : " block ";
             }
-            if ((_parquetPaintPattern & ParquetSelection.Furnishing) == ParquetSelection.Furnishing)
+            if (_parquetPaintPattern.IsSet(ParquetSelection.Furnishing))
             {
                 error += _currentRegion.TrySetFurnishing(new Furnishing(_furnishingToPaint), in_position)
                     ? ""
-                    : "  Could not assign floor.";
+                    : " furnishing ";
             }
-            if ((_parquetPaintPattern & ParquetSelection.Collectable) == ParquetSelection.Collectable)
+            if (_parquetPaintPattern.IsSet(ParquetSelection.Collectable))
             {
                 error += _currentRegion.TrySetCollectable(new Collectable(_collectableToPaint), in_position)
                     ? ""
-                    : "  Could not assign floor.";
+                    : " collectable ";
             }
 
             if (!string.IsNullOrEmpty(error))
             {
-                Error.Handle("Problem painting parquet at position " + in_position + ": " + error);
+                Error.Handle("Error at position " + in_position + ".  Could not assign these parquets: " + error);
                 result = false;
              }
 
