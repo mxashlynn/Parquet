@@ -1,20 +1,24 @@
+using Newtonsoft.Json;
+using Xunit;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
-using Xunit;
 
 namespace ParquetUnitTests.Sandbox
 {
     public class RegionMapUnitTest
     {
         #region Values for Tests
-        private readonly Color TestColor = new Color(1f, 0.5f, 0.1f, 0.9f);
-        private readonly string TestTitle = "Erdrea";
         private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
+        private readonly Color TestColor = new Color(1f, 0.5f, 0.1f, 0.9f);
+        private const string TestTitle = "Erdrea";
+        private const string KnownGoodJsonString = "{\"<DataVersion>k__BackingField\":\"0.1.0\",\"<Title>k__BackingField\":\"Erdrea\",\"<Background>k__BackingField\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"<Revision>k__BackingField\":0,\"_specialPoints\":[],\"_floorLayer\":[[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}]],\"_blockLayer\":[[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}]],\"_furnishingLayer\":[[null,null,null,null,null],[null,null,{\"furnishingType\":0},null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]],\"_collectableLayer\":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,{\"collectableType\":0},null],[null,null,null,null,null]]}";
+        private const string UnsupportedVersionJsonString = "{\"<DataVersion>k__BackingField\":\"0.0.1\",\"<Title>k__BackingField\":\"Erdrea\",\"<Background>k__BackingField\":{\"r\":1.0,\"g\":1.0,\"b\":1.0,\"a\":1.0},\"<Revision>k__BackingField\":0,\"_specialPoints\":[],\"_floorLayer\":[[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}],[{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0},{\"floorType\":2,\"isWalkable\":false,\"isHole\":false,\"tool\":0}]],\"_blockLayer\":[[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},null,null,null,{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}],[{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0},{\"blockType\":5,\"IsFlammable\":false,\"IsLiquid\":false,\"ToolType\":0,\"MaxToughness\":0,\"Toughness\":0}]],\"_furnishingLayer\":[[null,null,null,null,null],[null,null,{\"furnishingType\":0},null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]],\"_collectableLayer\":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,{\"collectableType\":0},null],[null,null,null,null,null]]}";
+        private const string NonJsonString = "private-readonly-Vector2Int-InvalidPosition-private-readonly-Vector2Int-InvalidPosition";
         #endregion
 
-        #region Initialization
+        #region Region Map Initialization
         [Fact]
         public void NewDefaultRegionMapTest()
         {
@@ -267,8 +271,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryDigFailsOnInvalidPostionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryDig(InvalidPosition);
 
@@ -278,8 +281,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryDigSucceedsOnInitializedMapAndDefaultPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryDig(Vector2Int.ZeroVector);
 
@@ -299,8 +301,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryFillFailsOnInvalidPostionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryFill(InvalidPosition);
 
@@ -310,8 +311,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryFillSucceedsOnInitializedMapAndDefaultPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryFill(Vector2Int.ZeroVector);
 
@@ -331,8 +331,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryReduceToughnessFailsOnInvalidPostionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryReduceToughness(InvalidPosition, 1);
 
@@ -342,8 +341,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryReduceToughnessSucceedsOnInitializedMapAndDefaultPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryReduceToughness(Vector2Int.ZeroVector, 1);
 
@@ -363,8 +361,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRestoreToughnessFailsOnInvalidPostionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryRestoreToughness(InvalidPosition);
 
@@ -374,8 +371,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRestoreToughnessSucceedsOnInitializedMapAndDefaultPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.TryRestoreToughness(Vector2Int.ZeroVector);
 
@@ -507,12 +503,63 @@ namespace ParquetUnitTests.Sandbox
         }
         #endregion
 
+        #region Serialization Methods
+        [Fact]
+        public void SerializingKnownMapProducesKnownStringTest()
+        {
+            var region = new RegionMap().FillTestPattern();
+
+            var result = region.SerializeToString();
+
+            Assert.Equal(KnownGoodJsonString, result);
+        }
+
+        [Fact]
+        public void DeserializingNullFailsTest()
+        {
+            var result = RegionMap.TryDeserializeFromString(null, out RegionMap regionMapResults);
+
+            //Assert.Null(regionMapResults);
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void DeserializingUnsupportedVersionFailsTest()
+        {
+            var result = RegionMap.TryDeserializeFromString(UnsupportedVersionJsonString,
+                                                            out RegionMap regionMapResults);
+
+            //Assert.Null(regionMapResults);
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void DeserializingKnownBadStringFailsTest()
+        {
+            var result = RegionMap.TryDeserializeFromString(NonJsonString,
+                                                            out RegionMap regionMapResults);
+
+            //Assert.Null(regionMapResults);
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void DeserializingKnownGoodStringSucceedsTest()
+        {
+            var result = RegionMap.TryDeserializeFromString(KnownGoodJsonString,
+                                                            out RegionMap regionMapResults);
+
+            Assert.NotNull(regionMapResults);
+            Assert.True(result);
+        }
+
+        #endregion
+
         #region State Query Methods
         [Fact]
         public void IsFloorWalkableReturnsFalseOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.IsFloorWalkable(InvalidPosition);
 
@@ -532,8 +579,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void IsFloorAHoleReturnsFalseOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.IsFloorAHole(InvalidPosition);
 
@@ -553,8 +599,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void IsBlockFlammableReturnsFalseOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.IsBlockFlammable(InvalidPosition);
 
@@ -574,8 +619,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void IsBlockALiquidReturnsFalseOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.IsBlockALiquid(InvalidPosition);
 
@@ -596,8 +640,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetBlockToughnessReturnsZeroOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.GetBlockToughnessAtPosition(InvalidPosition);
 
@@ -617,8 +660,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFloorReturnsNullOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.GetFloorAtPosition(InvalidPosition);
 
@@ -638,8 +680,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetBlockReturnsNullOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.GetBlockAtPosition(InvalidPosition);
 
@@ -659,8 +700,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFurnishingReturnsNullOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.GetFurnishingAtPosition(InvalidPosition);
 
@@ -680,8 +720,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetCollectableReturnsNullOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var result = region.GetCollectableAtPosition(InvalidPosition);
 
@@ -701,8 +740,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetAllParquetsReturnsNullsOnInvalidPositionTest()
         {
-            var region = new RegionMap();
-            region.FillTestPattern();
+            var region = new RegionMap().FillTestPattern();
 
             var parquetStack = region.GetAllParquetsAtPosition(InvalidPosition);
 

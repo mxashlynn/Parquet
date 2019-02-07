@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
@@ -9,19 +12,29 @@ namespace ParquetClassLibrary.Sandbox
     /// <summary>
     /// Scriptable Object containing details of a playable region in sandbox-mode.
     /// </summary>
+    [JsonObject(MemberSerialization.Fields)]
     public class RegionMap
     {
         #region Class Defaults
+        /// <summary>Describes the version of the serialized data that this class understands.</summary>
+        public const string SupportedDataVersion = "0.1.0";
+
         /// <summary>The region's dimensions.</summary>
         // TODO Come up with actual size of regions, (and consider making this editable in Unity?  But maybe not.)
         public static readonly Vector2Int Dimensions = new Vector2Int(5, 5);
 
         /// <summary>Default name for new regions.</summary>
-        // TODO Change this test name.
+        // TODO Change this test name once debugging is done.
         public const string DefaultTitle = "Erdrea";
         #endregion
 
         #region Whole-Region Characteristics
+        /// <summary>
+        /// Describes the version of serialized data.
+        /// Allows selecting data files that can be successfully deserialized.
+        /// </summary>
+        public string DataVersion { get; private set; } = SupportedDataVersion;
+
         /// <summary>What the region is called in-game.</summary>
         public string Title { get; private set; } = DefaultTitle;
 
@@ -558,6 +571,43 @@ namespace ParquetClassLibrary.Sandbox
         }
         #endregion
 
+        #region Serialization Methods
+        /// <summary>
+        /// Serializes to the current RegionMap to a string.
+        /// </summary>
+        /// <returns>The serialized RegionMap.</returns>
+        public string SerializeToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.None);
+        }
+
+        /// <summary>
+        /// Tries to deserialize a RegionMap from the given string.
+        /// </summary>
+        /// <param name="in_serializedRegionMap">The serialized region map.</param>
+        /// <param name="out_regionMap">The deserialized region map, or null if deserialization was impossible.</param>
+        /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
+        public static bool TryDeserializeFromString(string in_serializedRegionMap,
+                                                    out RegionMap out_regionMap)
+        {
+            var result = false;
+            out_regionMap = null;
+
+            // Determine what version of region map was serialized.
+            var dataFragment = JObject.Parse(in_serializedRegionMap);
+            var version = dataFragment.Value<string>(nameof(DataVersion));
+
+            // Deserialize only if this class supports the version given.
+            if (SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+            {
+                out_regionMap = JsonConvert.DeserializeObject<RegionMap>(in_serializedRegionMap);
+                result = true;
+            }
+
+            return result;
+        }
+        #endregion
+
         #region Utility Methods
         /// <summary>
         /// Determines if the given position corresponds to a point in the region.
@@ -570,35 +620,6 @@ namespace ParquetClassLibrary.Sandbox
                 && in_position.y > -1
                 && in_position.x < Dimensions.x
                 && in_position.y < Dimensions.y;
-        }
-
-        /// <summary>
-        /// Fills the region with a test pattern.
-        /// Intended for debugging.
-        /// </summary>
-        // TODO: This method belongs in some test class, not in the actual model
-        public void FillTestPattern()
-        {
-            // TODO: Insert meaningful instantiations here, rather thn simply default constructors, i.e. new parquet().
-            for (var x = 0; x < Dimensions.x; x++)
-            {
-                for (var y = 0; y < Dimensions.y; y++)
-                {
-                    _floorLayer[x, y] = new Floor();
-                }
-            }
-            for (var x = 0; x < Dimensions.x; x++)
-            {
-                _blockLayer[x, 0] = new Block();
-                _blockLayer[x, Dimensions.y - 1] = new Block();
-            }
-            for (var y = 0; y < Dimensions.y; y++)
-            {
-                _blockLayer[0, y] = new Block();
-                _blockLayer[Dimensions.x - 1, y] = new Block();
-            }
-            _furnishingLayer[1, 2] = new Furnishing();
-            _collectableLayer[3, 3] = new Collectable();
         }
 
         /// <summary>

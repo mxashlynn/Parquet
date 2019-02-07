@@ -1,7 +1,7 @@
 ﻿using System;
 using ParquetClassLibrary.Sandbox;
 
-namespace ParquetCLTester
+namespace ParquetRunner
 {
     class MainClass
     {
@@ -10,7 +10,7 @@ namespace ParquetCLTester
             var myMap = new RegionMap();
             myMap.FillTestPattern();
             Console.WriteLine(myMap);
+            Console.WriteLine(myMap.SerializeToString());
         }
     }
 }
-
