@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Sandbox.ID;
@@ -9,8 +10,9 @@ namespace ParquetClassLibrary.Sandbox
     public class RegionEditor
     {
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
+        public static event EventHandler DisplayMap;
 
-        private RegionMap _currentRegion;
+        private RegionMap _currentRegion = null;
 
         private Floors _floorToPaint;
         private Blocks _blockToPaint;
@@ -22,11 +24,91 @@ namespace ParquetClassLibrary.Sandbox
         #region Initialization
         #endregion
 
+        #region New, Save, Load Methods
+        /// <summary>
+        /// Creates a new region with a default name.
+        /// </summary>
+        public void NewRegionMap()
+        {
+            _currentRegion = new RegionMap("New Region");
+            SetLowerStorey();
+
+            DisplayMap?.Invoke(this, null);
+        }
+
+        /// <summary>
+        /// Writes the current region to storage at the given path.
+        /// </summary>
+        /// <param name="in_path">The location in which to store the saved region.</param>
+        public void SaveRegionMap(string in_path)
+        {
+            var serialized = _currentRegion.SerializeToString();
+            // TODO Convert this to use multiplatform utils.
+            File.WriteAllText(in_path, serialized);
+        }
+
+        /// <summary>
+        /// Reads the region stored at the given location.
+        /// </summary>
+        /// <param name="in_path">The location of the region to load.</param>
+        public void LoadRegionMap(string in_path)
+        {
+            // TODO Convert this to use multiplatform utils.
+            var serialized = File.ReadAllText(in_path);
+            if (RegionMap.TryDeserializeFromString(serialized, out RegionMap result))
+            {
+                _currentRegion = result;
+            }
+            else
+            {
+                Error.Handle("Could not load region from " + in_path);
+            }
+
+        }
+        #endregion
+
+        #region Region Characteristic Editing Methods
+        /// <summary>
+        /// Indicates that the region represents an above-ground storey.
+        /// </summary>
+        public void SetUpperStorey()
+        {
+            if (null != _currentRegion)
+            {
+                _currentRegion.Background = Color.SkyBlue;
+            }
+        }
+
+        /// <summary>
+        /// Indicates that the region represents an ground-level storey.
+        /// </summary>
+        public void SetLowerStorey()
+        {
+            if (null != _currentRegion)
+            {
+                _currentRegion.Background = Color.Brown;
+            }
+        }
+
+        /// <summary>
+        /// Sets the region's title.
+        /// </summary>
+        /// <param name="in_title">A title for the region.</param>
+        public void SetRegionTitle(string in_title)
+        {
+            if (null != _currentRegion)
+            {
+                _currentRegion.Title = in_title;
+            }
+        }
+        #endregion
+
+        #region Map Painting Methods
         /// <summary>
         /// Displays information corresponging to the requested position on the current region map.
         /// </summary>
         /// <param name="in_position">The position whose information is sought.</param>
-        void DisplayInfoAtPosition(Vector2Int in_position)
+        public void DisplayInfoAtPosition(Vector2Int in_position)
         {
             DisplayPositionInfo?.Invoke(this,
                     new PositionInfoEvent(_currentRegion.GetAllParquetsAtPosition(in_position),
@@ -38,7 +120,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_floorID">The parquet ID to select.</param>
         // TODO How the ID info gets passed around will likely change when we return to Unity.
-        void SetFloorToPaint(Floors in_floorID)
+        public void SetFloorToPaint(Floors in_floorID)
         {
             _floorToPaint = in_floorID;
         }
@@ -48,7 +130,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_blockID">The parquet ID to select.</param>
         // TODO How the ID info gets passed around will likely change when we return to Unity.
-        void SetBlockToPaint(Blocks in_blockID)
+        public void SetBlockToPaint(Blocks in_blockID)
         {
             _blockToPaint = in_blockID;
         }
@@ -58,7 +140,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_furnishingID">The parquet ID to select.</param>
         // TODO How the ID info gets passed around will likely change when we return to Unity.
-        void SetFurnishingToPaint(Furnishings in_furnishingID)
+        public void SetFurnishingToPaint(Furnishings in_furnishingID)
         {
             _furnishingToPaint = in_furnishingID;
         }
@@ -68,7 +150,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_collectableID">The parquet ID to select.</param>
         // TODO How the ID info gets passed around will likely change when we return to Unity.
-        void SetCollectableToPaint(Collectables in_collectableID)
+        public void SetCollectableToPaint(Collectables in_collectableID)
         {
             _collectableToPaint = in_collectableID;
         }
@@ -77,7 +159,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable floor painting, otherwise disable it.</param>
-        void SetPaintFloor(bool in_enable)
+        public void SetPaintFloor(bool in_enable)
         {
             _parquetPaintPattern.SetTo(ParquetSelection.Floor, in_enable);
         }
@@ -86,7 +168,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable block painting, otherwise disable it.</param>
-        void SetPaintBlock(bool in_enable)
+        public void SetPaintBlock(bool in_enable)
         {
             _parquetPaintPattern.SetTo(ParquetSelection.Block, in_enable);
         }
@@ -95,7 +177,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable furnishing painting, otherwise disable it.</param>
-        void SetPaintFurnishing(bool in_enable)
+        public void SetPaintFurnishing(bool in_enable)
         {
             _parquetPaintPattern.SetTo(ParquetSelection.Furnishing, in_enable);
         }
@@ -104,7 +186,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable collectable painting, otherwise disable it.</param>
-        void SetPaintCollectable(bool in_enable)
+        public void SetPaintCollectable(bool in_enable)
         {
             _parquetPaintPattern.SetTo(ParquetSelection.Collectable, in_enable);
         }
@@ -168,19 +250,14 @@ namespace ParquetClassLibrary.Sandbox
                 }
             }
         }
+        #endregion
 
         /*
-        Needed:   
-            NewRegionMap
-            SaveRegionMap
-            LoadRegionMap
-
         Nice-To-Haves:
             Undo/Redo   
             SetParquetForLine
             SetParquetForSquare
             SetParquetForCircle
-            SetParquetForSquare
             SetParquetForFloodfillReplacement       
             ParquetSelect, ParquetCopy, ParquetPaste, ParquetClear
          */

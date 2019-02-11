@@ -36,10 +36,10 @@ namespace ParquetClassLibrary.Sandbox
         public readonly string DataVersion = SupportedDataVersion;
 
         /// <summary>What the region is called in-game.</summary>
-        public string Title { get; private set; } = DefaultTitle;
+        public string Title { get; set; } = DefaultTitle;
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; private set; } = Color.White;
+        public Color Background { get; set; } = Color.White;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; } = 0;
@@ -573,11 +573,13 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current RegionMap to a string.
+        /// Serializes to the current RegionMap to a string,
+        /// incrementing the revision number in the process.
         /// </summary>
         /// <returns>The serialized RegionMap.</returns>
         public string SerializeToString()
         {
+            Revision++;
             return JsonConvert.SerializeObject(this, Formatting.None);
         }
 

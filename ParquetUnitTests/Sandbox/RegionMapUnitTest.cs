@@ -1,5 +1,3 @@
-using System;
-using Newtonsoft.Json;
 using Xunit;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
