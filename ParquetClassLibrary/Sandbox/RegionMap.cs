@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public string DataVersion { get; private set; } = SupportedDataVersion;
+        public readonly string DataVersion = SupportedDataVersion;
 
         /// <summary>What the region is called in-game.</summary>
         public string Title { get; private set; } = DefaultTitle;
@@ -593,15 +593,29 @@ namespace ParquetClassLibrary.Sandbox
             var result = false;
             out_regionMap = null;
 
-            // Determine what version of region map was serialized.
-            var dataFragment = JObject.Parse(in_serializedRegionMap);
-            var version = dataFragment.Value<string>(nameof(DataVersion));
-
-            // Deserialize only if this class supports the version given.
-            if (SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrEmpty(in_serializedRegionMap))
             {
-                out_regionMap = JsonConvert.DeserializeObject<RegionMap>(in_serializedRegionMap);
-                result = true;
+                Error.Handle("Tried to deserialize a null string as a RegionMap.");
+            }
+            else
+            {
+                // Determine what version of region map was serialized.
+                try
+                {
+                    var document = JObject.Parse(in_serializedRegionMap);
+                    var version = document?.Value<string>(nameof(DataVersion));
+
+                    // Deserialize only if this class supports the version given.
+                    if (SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+                    {
+                        out_regionMap = JsonConvert.DeserializeObject<RegionMap>(in_serializedRegionMap);
+                        result = true;
+                    }
+                }
+                catch (JsonReaderException exception)
+                {
+                    Error.Handle("Error reading string while deserializing a RegionMap: " + exception);
+                }
             }
 
             return result;

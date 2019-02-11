@@ -10,7 +10,7 @@ namespace ParquetRunner
             var myMap = new RegionMap();
             myMap.FillTestPattern();
             Console.WriteLine(myMap);
-            Console.WriteLine(myMap.SerializeToString());
+            //Console.WriteLine(myMap.SerializeToString());
         }
     }
 }
