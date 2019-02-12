@@ -38,18 +38,7 @@
         public int Toughness
         {
             get => _toughness;
-            set
-            {
-                _toughness = value;
-                if (_toughness < 0)
-                {
-                    _toughness = 0;
-                }
-                else if (_toughness > MaxToughness)
-                {
-                    _toughness = MaxToughness;
-                }
-            }
+            set => _toughness = value.Normalize(0, MaxToughness);
         }
         #endregion
 

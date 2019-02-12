@@ -9,8 +9,10 @@ namespace ParquetRunner
         {
             var myMap = new RegionMap();
             myMap.FillTestPattern();
+
+            Console.BackgroundColor = myMap.Background;
             Console.WriteLine(myMap);
-            //Console.WriteLine(myMap.SerializeToString());
+            Console.WriteLine(myMap.SerializeToString());
         }
     }
 }
