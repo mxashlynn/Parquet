@@ -630,7 +630,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        private bool IsValidPosition(Vector2Int in_position)
+        public bool IsValidPosition(Vector2Int in_position)
         {
             return in_position.x > -1
                 && in_position.y > -1

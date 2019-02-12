@@ -12,7 +12,7 @@ namespace ParquetRunner
 
             Console.BackgroundColor = myMap.Background;
             Console.WriteLine(myMap);
-            Console.WriteLine(myMap.SerializeToString());
+            // Console.WriteLine(myMap.SerializeToString());
         }
     }
 }

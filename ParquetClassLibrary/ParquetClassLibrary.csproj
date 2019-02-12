@@ -13,6 +13,7 @@
     <Folder Include="Sandbox\ID\" />
     <Folder Include="Sandbox\Parquets\" />
     <Folder Include="Sandbox\Special Points\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Sandbox\.DS_Store" />

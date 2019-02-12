@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -20,9 +21,6 @@ namespace ParquetClassLibrary.Sandbox
         private Collectables _collectableToPaint;
 
         private ParquetSelection _parquetPaintPattern = ParquetSelection.None;
-
-        #region Initialization
-        #endregion
 
         #region New, Save, Load Methods
         /// <summary>
@@ -250,16 +248,128 @@ namespace ParquetClassLibrary.Sandbox
                 }
             }
         }
+
+        /// <summary>
+        /// Paints currently selected parquets along a line between the given positions.
+        /// </summary>
+        /// <param name="in_start">The line's start.</param>
+        /// <param name="in_end">The line's end.</param>
+        public void PaintLine(Vector2Int in_start, Vector2Int in_end)
+        {
+            PaintAtLocations(Rasterization.PlotLine(in_start, in_end, _currentRegion.IsValidPosition));
+        }
+
+        /// <summary>
+        /// Paints currently selected parquets in a rectangle between the given positions.
+        /// </summary>
+        /// <param name="in_upperLeft">The upper left corner of the rectangle.</param>
+        /// <param name="in_lowerRight">The lower right corner of the rectangle.</param>
+        /// <param name="in_filled">
+        /// If set to <c>true</c>, the rectangle will be filled in; otherwise,
+        /// only the outline will be painted.
+        /// </param>
+        public void PaintRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight, bool in_filled)
+        {
+            PaintAtLocations(in_filled
+                ? Rasterization.PlotFilledRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition)
+                : Rasterization.PlotEmptyRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition));
+        }
+
+        /// <summary>
+        /// Paints currently selected parquets in a circle of the given radius around the given position.
+        /// </summary>
+        /// <param name="in_center">The circle's center.</param>
+        /// <param name="in_radius">The circle's radius.</param>
+        /// <param name="in_filled">
+        /// If set to <c>true</c>, the circle will be filled in; otherwise,
+        /// only the outline will be painted.
+        /// </param>
+        public void PaintCircle(Vector2Int in_center, int in_radius, bool in_filled)
+        {
+            PaintAtLocations(Rasterization.PlotCircle(in_center, in_radius, in_filled, _currentRegion.IsValidPosition));
+        }
+
+        /// <summary>
+        /// Paints a contiguous selection using a four-way flood fill, overwritting only those
+        /// positions whose parquets match those initially found at the starting position.
+        /// </summary>
+        /// <param name="in_start">Where to start the fill.</param>
+        public void PaintFloodFill(Vector2Int in_start)
+        {
+            PaintAtLocations(PlotFloodFill(in_start));
+        }
+
+        /// <summary>
+        /// Plots a contiguous section of the current region using a four-way flood fill.
+        /// Plots all valid positions adjacent to the given position, provided that they match
+        /// the parquets at the given position according to the current parquet paint pattern.
+        /// </summary>
+        /// <param name="in_start">The position on which to base the fill.</param>
+        /// <returns>A selection of contiguous positions.</returns>
+        private List<Vector2Int> PlotFloodFill(Vector2Int in_start)
+        {
+            var target = _currentRegion.GetAllParquetsAtPosition(in_start);
+            var deduplicationList = new HashSet<Vector2Int>();
+            var queue = new Queue<Vector2Int>();
+            queue.Enqueue(in_start);
+
+            while (queue.Count > 0)
+            {
+                var position = queue.Dequeue();
+                if (_currentRegion.IsValidPosition(position) && Matches(position, target))
+                {
+                    deduplicationList.Add(position);
+                    queue.Enqueue(new Vector2Int(position.x - 1, position.y));
+                    queue.Enqueue(new Vector2Int(position.x, position.y - 1));
+                    queue.Enqueue(new Vector2Int(position.x + 1, position.y));
+                    queue.Enqueue(new Vector2Int(position.x, position.y + 1));
+                }
+            }
+
+            return new List<Vector2Int>(deduplicationList);
+        }
+
+        /// <summary>
+        /// Determines if the parquets at the specified position match those in the given stack,
+        /// according to the current parquet paint pattern.
+        /// </summary>
+        /// <param name="in_position">The position to check.</param>
+        /// <param name="in_matchAgainst">The stack to match against.</param>
+        /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
+        private bool Matches(Vector2Int in_position, ParquetStack in_matchAgainst)
+        {
+            var result = false;
+            if (!_parquetPaintPattern.HasFlag(ParquetSelection.None))
+            {
+                // Assume the parquets match, then attempt to prove that they do not.
+                result = true;
+                var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
+
+                if (_parquetPaintPattern.HasFlag(ParquetSelection.Floor))
+                {
+                    result &= parquets.floor == in_matchAgainst.floor;
+                }
+                if (_parquetPaintPattern.HasFlag(ParquetSelection.Block))
+                {
+                    result &= parquets.block == in_matchAgainst.block;
+                }
+                if (_parquetPaintPattern.HasFlag(ParquetSelection.Furnishing))
+                {
+                    result &= parquets.furnishing == in_matchAgainst.furnishing;
+                }
+                if (_parquetPaintPattern.HasFlag(ParquetSelection.Collectable))
+                {
+                    result &= parquets.collectable == in_matchAgainst.collectable;
+                }
+            }
+
+            return result;
+        }
         #endregion
 
-        /*
-        Nice-To-Haves:
-            Undo/Redo   
-            SetParquetForLine
-            SetParquetForSquare
-            SetParquetForCircle
-            SetParquetForFloodfillReplacement       
-            ParquetSelect, ParquetCopy, ParquetPaste, ParquetClear
-         */
+        // TODO: Undo/Redo System
+        // TODO: ParquetSelect, ParquetCopy, ParquetPaste, ParquetClear functionality
+        // IDEA: Allow painting in a match-only mode similar to the way the flood fill matches,
+        //       c.f. the mask properties in TEdit.
     }
 }
