@@ -117,7 +117,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a floor to paint with.
         /// </summary>
         /// <param name="in_floorID">The parquet ID to select.</param>
-        // TODO How the ID info gets passed around will likely change when we return to Unity.
+        // TODO Improve handling of IDs (especially in Unity version).
         public void SetFloorToPaint(Floors in_floorID)
         {
             _floorToPaint = in_floorID;
@@ -127,7 +127,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a block to paint with.
         /// </summary>
         /// <param name="in_blockID">The parquet ID to select.</param>
-        // TODO How the ID info gets passed around will likely change when we return to Unity.
+        // TODO Improve handling of IDs (especially in Unity version).
         public void SetBlockToPaint(Blocks in_blockID)
         {
             _blockToPaint = in_blockID;
@@ -137,7 +137,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a furnishing to paint with.
         /// </summary>
         /// <param name="in_furnishingID">The parquet ID to select.</param>
-        // TODO How the ID info gets passed around will likely change when we return to Unity.
+        // TODO Improve handling of IDs (especially in Unity version).
         public void SetFurnishingToPaint(Furnishings in_furnishingID)
         {
             _furnishingToPaint = in_furnishingID;
@@ -147,7 +147,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a collectable to paint with.
         /// </summary>
         /// <param name="in_collectableID">The parquet ID to select.</param>
-        // TODO How the ID info gets passed around will likely change when we return to Unity.
+        // TODO Improve handling of IDs (especially in Unity version).
         public void SetCollectableToPaint(Collectables in_collectableID)
         {
             _collectableToPaint = in_collectableID;

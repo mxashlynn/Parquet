@@ -28,7 +28,6 @@
         public bool isHole;
 
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        // TODO I'm not sure this is actually needed -- won't every floor respond to the shovel?
         public ID.ModificationTools tool;
         #endregion
 

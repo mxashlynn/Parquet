@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -20,7 +21,7 @@ namespace ParquetClassLibrary.Sandbox
         public const string SupportedDataVersion = "0.1.0";
 
         /// <summary>The region's dimensions.</summary>
-        // TODO Come up with actual size of regions, (and consider making this editable in Unity?  But maybe not.)
+        // TODO Come up with actual size of regions.
         public static readonly Vector2Int Dimensions = new Vector2Int(5, 5);
 
         /// <summary>Default name for new regions.</summary>
@@ -60,8 +61,6 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>Collectable materials in the region.</summary>
         private readonly Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
-
-        // IDEA: a foreground layer?
         #endregion
 
         #region Initialization
@@ -645,8 +644,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
         public override string ToString()
         {
-            // TODO: Replace mutliplication below with Magnitude method call.
-            var representation = new StringBuilder(Dimensions.x * Dimensions.y);
+            var representation = new StringBuilder(Dimensions.Magnitude);
             #region Compose visual represenation of contents.
             for (var x = 0; x < Dimensions.x; x++)
             {
@@ -673,11 +671,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
         public string ToLayeredString()
         {
-            // TODO: Replace mutliplication below with Magnitude method call.
-            var floorRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
-            var blocksRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
-            var furnishingsRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
-            var collectablesRepresentation = new StringBuilder(Dimensions.x * Dimensions.y);
+            var floorRepresentation = new StringBuilder(Dimensions.Magnitude);
+            var blocksRepresentation = new StringBuilder(Dimensions.Magnitude);
+            var furnishingsRepresentation = new StringBuilder(Dimensions.Magnitude);
+            var collectablesRepresentation = new StringBuilder(Dimensions.Magnitude);
             #region Compose visual represenation of contents.
             for (var x = 0; x < Dimensions.x; x++)
             {
