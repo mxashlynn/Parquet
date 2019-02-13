@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// Methods and data to assist in rasterization.
     /// </summary>
-    internal static class Rasterization
+    public static class Rasterization
     {
         /// <summary>
         /// Used to ensure we do not return duplicate positions.
@@ -16,7 +16,6 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         private static readonly HashSet<Vector2Int> _deduplicationList = new HashSet<Vector2Int>();
 
-        // TODO: Write a good test case for this
         /// <summary>
         /// Approximates a line segment between two positions.
         /// </summary>
@@ -70,10 +69,11 @@ namespace ParquetClassLibrary.Utilities
             }
             while (x != in_end.x || y != in_end.y);
 
+            result.Add(in_end);
+
             return result;
         }
 
-        // TODO: Write a good test case for this
         public static List<Vector2Int> PlotFilledRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                            Predicate<Vector2Int> in_isValid)
         {
@@ -95,7 +95,6 @@ namespace ParquetClassLibrary.Utilities
             return new List<Vector2Int>(_deduplicationList);
         }
 
-        // TODO: Write a good test case for this
         public static List<Vector2Int> PlotEmptyRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                           Predicate<Vector2Int> in_isValid)
         {
@@ -113,10 +112,11 @@ namespace ParquetClassLibrary.Utilities
             return new List<Vector2Int>(_deduplicationList);
         }
 
-        // TODO: Write a good test case for this
         public static List<Vector2Int> PlotCircle(Vector2Int in_center, int in_radius, bool in_isFilled,
                                                   Predicate<Vector2Int> in_isValid)
         {
+            _deduplicationList.Clear();
+
             // Brute force.
             var circleLimit = in_radius * in_radius + in_radius;
             var outlineLimit = in_radius * in_radius - in_radius;

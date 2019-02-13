@@ -4,7 +4,7 @@ namespace ParquetClassLibrary.Stubs
     /// <summary>
     /// Stand-in for Unity Vector2 class.
     /// </summary>
-    public struct Vector2Int
+    public struct Vector2Int : IEquatable<Vector2Int>
     {
         /// <summary>The zero vector.</summary>
         public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
@@ -52,6 +52,78 @@ namespace ParquetClassLibrary.Stubs
         public override int GetHashCode()
         {
             return x.GetHashCode() ^ (y.GetHashCode() << 2);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is equal to the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// </summary>
+        /// <param name="in_vector">The <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare with the current.</param>
+        /// <returns><c>true</c> if the <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>s are equal.</returns>
+        public bool Equals(Vector2Int in_vector)
+        {
+            return x == in_vector.x
+                   && y == in_vector.y;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var result = false;
+
+            if (obj is Vector2Int vector)
+            {
+                result = Equals(vector);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is equal to
+        /// another specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// </summary>
+        /// <param name="in_vector1">The first <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
+        /// <param name="in_vector2">The second <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
+        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(Vector2Int in_vector1, Vector2Int in_vector2)
+        {
+            if (object.ReferenceEquals(in_vector1, in_vector2)) return true;
+            if (object.ReferenceEquals(in_vector1, null)) return false;
+            if (object.ReferenceEquals(in_vector2, null)) return false;
+
+            return in_vector1.Equals(in_vector2);
+        }
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is not equal
+        /// to another specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// </summary>
+        /// <param name="in_vector1">The first <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
+        /// <param name="in_vector2">The second <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
+        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(Vector2Int in_vector1, Vector2Int in_vector2)
+        {
+            if (object.ReferenceEquals(in_vector1, in_vector2)) return false;
+            if (object.ReferenceEquals(in_vector1, null)) return true;
+            if (object.ReferenceEquals(in_vector2, null)) return true;
+
+            return !in_vector1.Equals(in_vector2);
+        }
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// </summary>
+        /// <returns>The string representation.</returns>
+        public override string ToString()
+        {
+            return $"({x}, {y})";
         }
     }
 }
