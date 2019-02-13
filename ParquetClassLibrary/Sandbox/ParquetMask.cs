@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Sandbox
     /// Models which, if any, parquet layers have been selected (for instance in the map editor).
     /// </summary>
     [Flags]
-    internal enum ParquetSelection
+    internal enum ParquetMask
     {
         None        = 0,
         Floor       = 1,
@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is set, <c>false</c> otherwise.</returns>
-        public static bool IsSet(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest)
+        public static bool IsSet(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
             return (in_enumVariable & in_flagToTest) == in_flagToTest;
         }
@@ -37,9 +37,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is unset, <c>false</c> otherwise.</returns>
-        public static bool IsNotSet(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest)
+        public static bool IsNotSet(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
-            return (in_enumVariable & (~in_flagToTest)) == ParquetSelection.None;
+            return (in_enumVariable & (~in_flagToTest)) == ParquetMask.None;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to set.</param>
         /// <returns>The variable with the flag set.</returns>
-        public static ParquetSelection Set(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest)
+        public static ParquetMask Set(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
             return in_enumVariable | in_flagToTest;
         }
@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to clear.</param>
         /// <returns>The variable with the flag cleared.</returns>
-        public static ParquetSelection Clear(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest)
+        public static ParquetMask Clear(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
             return in_enumVariable & (~in_flagToTest);
         }
@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_flagToTest">The flag to set or clear.</param>
         /// <param name="in_state">If <c>true</c>, the flag will be set; otherwise it will be cleared.</param>
         /// <returns>The variable with the flag modified.</returns>
-        public static ParquetSelection SetTo(this ParquetSelection in_enumVariable, ParquetSelection in_flagToTest, bool in_state)
+        public static ParquetMask SetTo(this ParquetMask in_enumVariable, ParquetMask in_flagToTest, bool in_state)
         {
             return in_state
                 ? in_enumVariable.Set(in_flagToTest)
