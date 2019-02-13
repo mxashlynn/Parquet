@@ -7,6 +7,7 @@ namespace ParquetClassLibrary.Utilities
     /// </summary>
     public static class Error
     {
+        /// <summary>The path and name of the log file.</summary>
         private const string _logFile = "ParquetLogFile.txt";
 
         /// <summary>

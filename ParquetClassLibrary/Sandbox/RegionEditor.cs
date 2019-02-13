@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Sandbox
         private Furnishings _furnishingToPaint;
         private Collectables _collectableToPaint;
 
-        private ParquetSelection _parquetPaintPattern = ParquetSelection.None;
+        private ParquetMask _parquetPaintPattern = ParquetMask.None;
 
         #region New, Save, Load Methods
         /// <summary>
@@ -159,7 +159,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable floor painting, otherwise disable it.</param>
         public void SetPaintFloor(bool in_enable)
         {
-            _parquetPaintPattern.SetTo(ParquetSelection.Floor, in_enable);
+            _parquetPaintPattern.SetTo(ParquetMask.Floor, in_enable);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable block painting, otherwise disable it.</param>
         public void SetPaintBlock(bool in_enable)
         {
-            _parquetPaintPattern.SetTo(ParquetSelection.Block, in_enable);
+            _parquetPaintPattern.SetTo(ParquetMask.Block, in_enable);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable furnishing painting, otherwise disable it.</param>
         public void SetPaintFurnishing(bool in_enable)
         {
-            _parquetPaintPattern.SetTo(ParquetSelection.Furnishing, in_enable);
+            _parquetPaintPattern.SetTo(ParquetMask.Furnishing, in_enable);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enable">If <c>true</c> enable collectable painting, otherwise disable it.</param>
         public void SetPaintCollectable(bool in_enable)
         {
-            _parquetPaintPattern.SetTo(ParquetSelection.Collectable, in_enable);
+            _parquetPaintPattern.SetTo(ParquetMask.Collectable, in_enable);
         }
 
         /// <summary>
@@ -199,25 +199,25 @@ namespace ParquetClassLibrary.Sandbox
             var result = true;
             var error = "";
 
-            if (_parquetPaintPattern.IsSet(ParquetSelection.Floor))
+            if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
                 error += _currentRegion.TrySetFloor(new Floor(_floorToPaint), in_position)
                     ? ""
                     : " floor ";
             }
-            if (_parquetPaintPattern.IsSet(ParquetSelection.Block))
+            if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
                 error += _currentRegion.TrySetBlock(new Block(_blockToPaint), in_position)
                     ? ""
                     : " block ";
             }
-            if (_parquetPaintPattern.IsSet(ParquetSelection.Furnishing))
+            if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
                 error += _currentRegion.TrySetFurnishing(new Furnishing(_furnishingToPaint), in_position)
                     ? ""
                     : " furnishing ";
             }
-            if (_parquetPaintPattern.IsSet(ParquetSelection.Collectable))
+            if (_parquetPaintPattern.IsSet(ParquetMask.Collectable))
             {
                 error += _currentRegion.TrySetCollectable(new Collectable(_collectableToPaint), in_position)
                     ? ""
@@ -339,25 +339,25 @@ namespace ParquetClassLibrary.Sandbox
         private bool Matches(Vector2Int in_position, ParquetStack in_matchAgainst)
         {
             var result = false;
-            if (!_parquetPaintPattern.HasFlag(ParquetSelection.None))
+            if (!_parquetPaintPattern.HasFlag(ParquetMask.None))
             {
                 // Assume the parquets match, then attempt to prove that they do not.
                 result = true;
                 var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
 
-                if (_parquetPaintPattern.HasFlag(ParquetSelection.Floor))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.Floor))
                 {
                     result &= parquets.floor == in_matchAgainst.floor;
                 }
-                if (_parquetPaintPattern.HasFlag(ParquetSelection.Block))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.Block))
                 {
                     result &= parquets.block == in_matchAgainst.block;
                 }
-                if (_parquetPaintPattern.HasFlag(ParquetSelection.Furnishing))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.Furnishing))
                 {
                     result &= parquets.furnishing == in_matchAgainst.furnishing;
                 }
-                if (_parquetPaintPattern.HasFlag(ParquetSelection.Collectable))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.Collectable))
                 {
                     result &= parquets.collectable == in_matchAgainst.collectable;
                 }

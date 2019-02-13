@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// Methods and data to assist in rasterization.
     /// </summary>
-    public static class Rasterization
+    internal static class Rasterization
     {
         /// <summary>
         /// Used to ensure we do not return duplicate positions.
