@@ -15,12 +15,27 @@ namespace ParquetClassLibrary.Sandbox
 
         private RegionMap _currentRegion = null;
 
+        public bool IsMapLoaded
+        {
+            get
+            {
+                return null != _currentRegion;
+            }
+        }
+
+        private ParquetMask _parquetPaintPattern = ParquetMask.None;
+        internal ParquetMask ParquetPaintPattern
+        {
+            get
+            {
+                return _parquetPaintPattern;
+            }
+        }
+
         private Floors _floorToPaint;
         private Blocks _blockToPaint;
         private Furnishings _furnishingToPaint;
         private Collectables _collectableToPaint;
-
-        private ParquetMask _parquetPaintPattern = ParquetMask.None;
 
         #region New, Save, Load Methods
         /// <summary>
