@@ -8,10 +8,10 @@ namespace ParquetClassLibrary.Sandbox
     [Flags]
     internal enum ParquetMask
     {
-        None        = 0,
-        Floor       = 1,
-        Block       = 2,
-        Furnishing  = 4,
+        None = 0,
+        Floor = 1,
+        Block = 2,
+        Furnishing = 4,
         Collectable = 8,
     }
 
@@ -20,6 +20,28 @@ namespace ParquetClassLibrary.Sandbox
     /// </summary>
     internal static class ParquetSelectionExtensions
     {
+        /// <summary>
+        /// Sets the given flag in the specified variable.
+        /// </summary>
+        /// <param name="in_enumVariable">The enum variable under consideration.</param>
+        /// <param name="in_flagToTest">The flag to set.</param>
+        /// <returns>The variable with the flag set.</returns>
+        public static ParquetMask Set(this ref ParquetMask in_enumVariable, ParquetMask in_flagToTest)
+        {
+            return in_enumVariable = in_enumVariable | in_flagToTest;
+        }
+
+        /// <summary>
+        /// Clears the given flag in the specified variable.
+        /// </summary>
+        /// <param name="in_enumVariable">The enum variable under consideration.</param>
+        /// <param name="in_flagToTest">The flag to clear.</param>
+        /// <returns>The variable with the flag cleared.</returns>
+        public static ParquetMask Clear(this ref ParquetMask in_enumVariable, ParquetMask in_flagToTest)
+        {
+            return in_enumVariable = in_enumVariable & (~in_flagToTest);
+        }
+
         /// <summary>
         /// Checks if the given flag is set.
         /// </summary>
@@ -43,37 +65,15 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Sets the given flag in the specified variable.
-        /// </summary>
-        /// <param name="in_enumVariable">The enum variable under consideration.</param>
-        /// <param name="in_flagToTest">The flag to set.</param>
-        /// <returns>The variable with the flag set.</returns>
-        public static ParquetMask Set(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
-        {
-            return in_enumVariable | in_flagToTest;
-        }
-
-        /// <summary>
-        /// Clears the given flag in the specified variable.
-        /// </summary>
-        /// <param name="in_enumVariable">The enum variable under consideration.</param>
-        /// <param name="in_flagToTest">The flag to clear.</param>
-        /// <returns>The variable with the flag cleared.</returns>
-        public static ParquetMask Clear(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
-        {
-            return in_enumVariable & (~in_flagToTest);
-        }
-
-        /// <summary>
         /// Sets or clears the given flag in the specified variable, depending on the given boolean.
         /// </summary>
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to set or clear.</param>
         /// <param name="in_state">If <c>true</c>, the flag will be set; otherwise it will be cleared.</param>
         /// <returns>The variable with the flag modified.</returns>
-        public static ParquetMask SetTo(this ParquetMask in_enumVariable, ParquetMask in_flagToTest, bool in_state)
+        public static ParquetMask SetTo(this ref ParquetMask in_enumVariable, ParquetMask in_flagToTest, bool in_state)
         {
-            return in_state
+            return in_enumVariable = in_state
                 ? in_enumVariable.Set(in_flagToTest)
                 : in_enumVariable.Clear(in_flagToTest);
         }
