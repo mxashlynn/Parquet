@@ -76,7 +76,6 @@ namespace ParquetClassLibrary.Sandbox
         }
         #endregion
 
-        #region State Modification Methods
         #region Parquets Replacement Methods
         /// <summary>
         /// Attempts to update the floor parquet at the given position.
@@ -210,99 +209,6 @@ namespace ParquetClassLibrary.Sandbox
         }
         #endregion
 
-        #region Parquet Property Modifcation Methods
-        /// <summary>
-        /// Tries to dig in the specified location.
-        /// 
-        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
-        /// are being violated.  Only bounds-checking and basic data validation is performed.
-        /// </summary>
-        /// <param name="in_position">The position at which to attempt digging.</param>
-        /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
-        public bool TryDig(Vector2Int in_position)
-        {
-            var result = false;
-
-            if (IsValidPosition(in_position)
-                && null != _floorLayer[in_position.x, in_position.y])
-            {
-                _floorLayer[in_position.x, in_position.y].isHole = true;
-                result = true;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Tries to fill in the specified location.
-        /// 
-        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
-        /// are being violated.  Only bounds-checking and basic data validation is performed.
-        /// </summary>
-        /// <param name="in_position">The position at which to attempt filling.</param>
-        /// <returns><c>true</c>, if the position was valid, <c>false</c> otherwise.</returns>
-        public bool TryFill(Vector2Int in_position)
-        {
-            var result = false;
-
-            if (IsValidPosition(in_position)
-                && null != _floorLayer[in_position.x, in_position.y])
-            {
-                _floorLayer[in_position.x, in_position.y].isHole = false;
-                result = true;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Tries to decrese the toughness of the block or furnishing at the given position.
-        /// 
-        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
-        /// are being violated.  Only bounds-checking and basic data validation is performed.
-        /// </summary>
-        /// <param name="in_position">The position whose toughness should be reduced.</param>
-        /// <param name="in_amount">The amount of toughness to reduce.</param>
-        /// <returns><c>true</c>, if toughness was reduced, <c>false</c> otherwise.</returns>
-        public bool TryReduceToughness(Vector2Int in_position, int in_amount)
-        {
-            var result = false;
-
-            if (in_amount > 0
-                && IsValidPosition(in_position)
-                && null != _blockLayer[in_position.x, in_position.y])
-            {
-                _blockLayer[in_position.x, in_position.y].Toughness -= in_amount;
-                result = true;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Tries to reset the toughness of the block or furnishing at the given position.
-        /// 
-        /// Note that it is not the responsibilty of the RegionMap to determine if game rules
-        /// are being violated.  Only bounds-checking and basic data validation is performed.
-        /// </summary>
-        /// <param name="in_position">The position whose toughness should be restored.</param>
-        /// <returns><c>true</c>, if toughness was restored, <c>false</c> otherwise.</returns>
-        public bool TryRestoreToughness(Vector2Int in_position)
-        {
-            var result = false;
-
-            if (IsValidPosition(in_position)
-                && null != _blockLayer[in_position.x, in_position.y])
-            {
-                _blockLayer[in_position.x, in_position.y].Toughness =
-                    _blockLayer[in_position.x, in_position.y].MaxToughness;
-                result = true;
-            }
-
-            return result;
-        }
-        #endregion
-
         #region Special Point Modification
         /// <summary>
         /// Attempts to assign an exit point to the given location.
@@ -386,7 +292,6 @@ namespace ParquetClassLibrary.Sandbox
 
             return result;
         }
-        #endregion
         #endregion
 
         #region State Query Methods
