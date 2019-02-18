@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Sandbox
         public void NewRegionMap()
         {
             _currentRegion = new RegionMap();
-            SetLowerStorey();
+            SetLowerStory();
 
             DisplayMap?.Invoke(this, null);
         }
@@ -84,7 +84,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Indicates that the region represents an above-ground storey.
         /// </summary>
-        public void SetUpperStorey()
+        public void SetUpperStory()
         {
             if (null != _currentRegion)
             {
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Indicates that the region represents an ground-level storey.
         /// </summary>
-        public void SetLowerStorey()
+        public void SetLowerStory()
         {
             if (null != _currentRegion)
             {

@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_background">Background color for the new region.</param>
         public RegionMap(string in_title = DefaultTitle, Color? in_background = null)
         {
-            Title = in_title;
+            Title = in_title ?? DefaultTitle;
             // Assign defaults that cannot be specified in the argument list.
             Background = in_background ?? Color.White;
         }
