@@ -8,6 +8,14 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox
 {
+    // TODO: Undo/Redo System
+    // TODO: ParquetSelect, ParquetCopy, ParquetPaste, ParquetClear functionality
+    // IDEA: Allow painting in a match-only mode similar to the way the flood fill matches,
+    //       c.f. the mask properties in TEdit.
+
+    /// <summary>
+    /// Controller to manage in-game RegionMap editing.
+    /// </summary>
     public class RegionEditor
     {
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
@@ -354,11 +362,17 @@ namespace ParquetClassLibrary.Sandbox
         private bool Matches(Vector2Int in_position, ParquetStack in_matchAgainst)
         {
             var result = false;
-            if (!_parquetPaintPattern.HasFlag(ParquetMask.None))
+            var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
+            if (_parquetPaintPattern.HasFlag(ParquetMask.None))
             {
-                // Assume the parquets match, then attempt to prove that they do not.
+                // Match only against completely empty map positions.
+                result = parquets.IsEmpty;
+            }
+            else
+            {
+                // For positions with at least some parquets, assume a match
+                // then attempt to disprove that assumption.
                 result = true;
-                var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
 
                 if (_parquetPaintPattern.HasFlag(ParquetMask.Floor))
                 {
@@ -381,10 +395,5 @@ namespace ParquetClassLibrary.Sandbox
             return result;
         }
         #endregion
-
-        // TODO: Undo/Redo System
-        // TODO: ParquetSelect, ParquetCopy, ParquetPaste, ParquetClear functionality
-        // IDEA: Allow painting in a match-only mode similar to the way the flood fill matches,
-        //       c.f. the mask properties in TEdit.
     }
 }

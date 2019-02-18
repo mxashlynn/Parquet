@@ -24,5 +24,20 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             furnishing = in_furnishing;
             collectable = in_collectable;
         }
+
+        /// <summary>
+        /// Indicates whether this <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> is empty.
+        /// </summary>
+        /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
+        public bool IsEmpty
+        {
+            get
+            {
+                return null == floor &&
+                       null == block &&
+                       null == furnishing &&
+                       null == collectable;
+            }
+        }
     }
 }
