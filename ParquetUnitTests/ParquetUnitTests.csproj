@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Crafting\" />
+    <Folder Include="Sandbox\" />
+    <Folder Include="Stubs\" />
+    <Folder Include="Sandbox\Parquets\" />
+    <Folder Include="Sandbox\Special Points\" />
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Stubs\ColorUnitTest %28copy%29.cs" />
+    <Compile Remove="Sandbox\Parquets\ParquetParent.cs" />
+    <Compile Remove="Stubs\Vector2UnitTest.cs" />
+    <Compile Remove="Stubs\Vector3UnitTest.cs" />
+    <Compile Remove="Utilities\Error.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove=".DS_Store" />
+  </ItemGroup>
+</Project>

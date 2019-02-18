@@ -24,11 +24,9 @@ sysinfo.txt
 .consulo/
 .vs/
 *.booproj
-*.csproj
 *.mdb
 *.pidb
 *.pdb
-*.sln
 *.suo
 *.svd
 *.tmp
