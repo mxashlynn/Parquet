@@ -10,13 +10,6 @@ namespace ParquetClassLibrary.Utilities
     internal static class Rasterization
     {
         /// <summary>
-        /// Used to ensure we do not return duplicate positions.
-        /// Used by every method EXCEPT PlotLine, insuring that PlotLine can
-        /// be called internally without compromising the contents of this list.
-        /// </summary>
-        private static readonly HashSet<Vector2Int> _deduplicationList = new HashSet<Vector2Int>();
-
-        /// <summary>
         /// Approximates a line segment between two positions.
         /// </summary>
         /// <param name="in_start">One end of the line segment.</param>
@@ -26,10 +19,10 @@ namespace ParquetClassLibrary.Utilities
         public static List<Vector2Int> PlotLine(Vector2Int in_start, Vector2Int in_end,
                                                 Predicate<Vector2Int> in_isValid)
         {
-            // Uses Bressenham's algorithm.
-            // Must not use _deduplicationList.
-            var result = new List<Vector2Int>();
+            /// <summary>Ensures we do not return duplicate positions.</summary>
+            var deduplicationList = new HashSet<Vector2Int>();
 
+            // Uses Bressenham's algorithm.
             var deltaX = Math.Abs(in_end.x - in_start.x);
             var xStep = in_start.x < in_end.x
                     ? 1
@@ -52,7 +45,7 @@ namespace ParquetClassLibrary.Utilities
                 var position = new Vector2Int(x, y);
                 if (in_isValid(position))
                 {
-                    result.Add(position);
+                    deduplicationList.Add(position);
                 }
 
                 var errorForComparison = error;
@@ -69,17 +62,18 @@ namespace ParquetClassLibrary.Utilities
             }
             while (x != in_end.x || y != in_end.y);
 
-            result.Add(in_end);
+            deduplicationList.Add(in_end);
 
-            return result;
+            return new List<Vector2Int>(deduplicationList); ;
         }
 
         public static List<Vector2Int> PlotFilledRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                            Predicate<Vector2Int> in_isValid)
         {
-            // By scanline, by position.
-            _deduplicationList.Clear();
+            /// <summary>Ensures we do not return duplicate positions.</summary>
+            var deduplicationList = new HashSet<Vector2Int>();
 
+            // By scanline, by position.
             for (int y = in_upperLeft.y; y <= in_lowerRight.y; y++)
             {
                 for (int x = in_upperLeft.x; x <= in_lowerRight.x; x++)
@@ -87,35 +81,37 @@ namespace ParquetClassLibrary.Utilities
                     var position = new Vector2Int(x, y);
                     if (in_isValid(position))
                     {
-                        _deduplicationList.Add(position);
+                        deduplicationList.Add(position);
                     }
                 }
             }
 
-            return new List<Vector2Int>(_deduplicationList);
+            return new List<Vector2Int>(deduplicationList);
         }
 
         public static List<Vector2Int> PlotEmptyRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                           Predicate<Vector2Int> in_isValid)
         {
-            // Outline the edges.
-            _deduplicationList.Clear();
+            /// <summary>Ensures we do not return duplicate positions.</summary>
+            var deduplicationList = new HashSet<Vector2Int>();
 
+            // Outline the edges.
             var upperRight = new Vector2Int(in_lowerRight.x, in_upperLeft.y);
             var lowerLeft = new Vector2Int(in_upperLeft.x, in_lowerRight.y);
 
-            _deduplicationList.UnionWith(PlotLine(in_upperLeft, upperRight, in_isValid));
-            _deduplicationList.UnionWith(PlotLine(upperRight, in_lowerRight, in_isValid));
-            _deduplicationList.UnionWith(PlotLine(in_lowerRight, lowerLeft, in_isValid));
-            _deduplicationList.UnionWith(PlotLine(lowerLeft, in_upperLeft, in_isValid));
+            deduplicationList.UnionWith(PlotLine(in_upperLeft, upperRight, in_isValid));
+            deduplicationList.UnionWith(PlotLine(upperRight, in_lowerRight, in_isValid));
+            deduplicationList.UnionWith(PlotLine(in_lowerRight, lowerLeft, in_isValid));
+            deduplicationList.UnionWith(PlotLine(lowerLeft, in_upperLeft, in_isValid));
 
-            return new List<Vector2Int>(_deduplicationList);
+            return new List<Vector2Int>(deduplicationList);
         }
 
         public static List<Vector2Int> PlotCircle(Vector2Int in_center, int in_radius, bool in_isFilled,
                                                   Predicate<Vector2Int> in_isValid)
         {
-            _deduplicationList.Clear();
+            /// <summary>Ensures we do not return duplicate positions.</summary>
+            var deduplicationList = new HashSet<Vector2Int>();
 
             // Brute force.
             var circleLimit = in_radius * in_radius + in_radius;
@@ -131,11 +127,11 @@ namespace ParquetClassLibrary.Utilities
                         var position = new Vector2Int(in_center.x + x, in_center.y + y);
                         if (in_isValid(position))
                         {
-                            _deduplicationList.Add(position);
+                            deduplicationList.Add(position);
                         }
                     }
 
-            return new List<Vector2Int>(_deduplicationList);
+            return new List<Vector2Int>(deduplicationList);
         }
     }
 }
