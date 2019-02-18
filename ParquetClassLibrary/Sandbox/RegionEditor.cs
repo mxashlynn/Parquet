@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Sandbox
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
         public static event EventHandler DisplayMap;
 
-        private RegionMap _currentRegion = null;
+        private RegionMap _currentRegion;
 
         public bool IsMapLoaded
         {
@@ -319,37 +319,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_start">Where to start the fill.</param>
         public void PaintFloodFill(Vector2Int in_start)
         {
-            PaintAtLocations(PlotFloodFill(in_start));
-        }
-
-        /// <summary>
-        /// Plots a contiguous section of the current region using a four-way flood fill.
-        /// Plots all valid positions adjacent to the given position, provided that they match
-        /// the parquets at the given position according to the current parquet paint pattern.
-        /// </summary>
-        /// <param name="in_start">The position on which to base the fill.</param>
-        /// <returns>A selection of contiguous positions.</returns>
-        private List<Vector2Int> PlotFloodFill(Vector2Int in_start)
-        {
-            var target = _currentRegion.GetAllParquetsAtPosition(in_start);
-            var deduplicationList = new HashSet<Vector2Int>();
-            var queue = new Queue<Vector2Int>();
-            queue.Enqueue(in_start);
-
-            while (queue.Count > 0)
-            {
-                var position = queue.Dequeue();
-                if (_currentRegion.IsValidPosition(position) && Matches(position, target))
-                {
-                    deduplicationList.Add(position);
-                    queue.Enqueue(new Vector2Int(position.x - 1, position.y));
-                    queue.Enqueue(new Vector2Int(position.x, position.y - 1));
-                    queue.Enqueue(new Vector2Int(position.x + 1, position.y));
-                    queue.Enqueue(new Vector2Int(position.x, position.y + 1));
-                }
-            }
-
-            return new List<Vector2Int>(deduplicationList);
+            PaintAtLocations(Rasterization.PlotFloodFill(in_start,
+                                                         _currentRegion.GetAllParquetsAtPosition(in_start),
+                                                         _currentRegion.IsValidPosition,
+                                                         Matches));
         }
 
         /// <summary>
@@ -359,10 +332,11 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_position">The position to check.</param>
         /// <param name="in_matchAgainst">The stack to match against.</param>
         /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
-        private bool Matches(Vector2Int in_position, ParquetStack in_matchAgainst)
+        private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : ParquetStackI
         {
             var result = false;
             var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
+
             if (_parquetPaintPattern.HasFlag(ParquetMask.None))
             {
                 // Match only against completely empty map positions.
@@ -376,19 +350,19 @@ namespace ParquetClassLibrary.Sandbox
 
                 if (_parquetPaintPattern.HasFlag(ParquetMask.Floor))
                 {
-                    result &= parquets.floor == in_matchAgainst.floor;
+                    result &= parquets.Floor == in_matchAgainst.Floor;
                 }
                 if (_parquetPaintPattern.HasFlag(ParquetMask.Block))
                 {
-                    result &= parquets.block == in_matchAgainst.block;
+                    result &= parquets.Block == in_matchAgainst.Block;
                 }
                 if (_parquetPaintPattern.HasFlag(ParquetMask.Furnishing))
                 {
-                    result &= parquets.furnishing == in_matchAgainst.furnishing;
+                    result &= parquets.Furnishing == in_matchAgainst.Furnishing;
                 }
                 if (_parquetPaintPattern.HasFlag(ParquetMask.Collectable))
                 {
-                    result &= parquets.collectable == in_matchAgainst.collectable;
+                    result &= parquets.Collectable == in_matchAgainst.Collectable;
                 }
             }
 

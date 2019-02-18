@@ -3,12 +3,19 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Simple container for one of each layer of parquet that can occupy the same position.
     /// </summary>
-    public struct ParquetStack
+    public struct ParquetStack : ParquetStackI
     {
-        public Floor floor;
-        public Block block;
-        public Furnishing furnishing;
-        public Collectable collectable;
+        /// <summary>The floor contained in this stack.</summary>
+        public Floor Floor { get; private set; }
+
+        /// <summary>The block contained in this stack.</summary>
+        public Block Block { get; private set; }
+
+        /// <summary>The furnishing contained in this stack.</summary>
+        public Furnishing Furnishing { get; private set; }
+
+        /// <summary>The collectable contained in this stack.</summary>
+        public Collectable Collectable { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> struct.
@@ -19,10 +26,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_collectable">The collectable-layer parquet.</param>
         public ParquetStack(Floor in_floor, Block in_block, Furnishing in_furnishing, Collectable in_collectable)
         {
-            floor = in_floor;
-            block = in_block;
-            furnishing = in_furnishing;
-            collectable = in_collectable;
+            Floor = in_floor;
+            Block = in_block;
+            Furnishing = in_furnishing;
+            Collectable = in_collectable;
         }
 
         /// <summary>
@@ -33,10 +40,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         {
             get
             {
-                return null == floor &&
-                       null == block &&
-                       null == furnishing &&
-                       null == collectable;
+                return null == Floor &&
+                       null == Block &&
+                       null == Furnishing &&
+                       null == Collectable;
             }
         }
     }

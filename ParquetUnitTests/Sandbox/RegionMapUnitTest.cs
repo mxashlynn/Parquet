@@ -621,10 +621,10 @@ namespace ParquetUnitTests.Sandbox
 
             var parquetStack = region.GetAllParquetsAtPosition(InvalidPosition);
 
-            Assert.Null(parquetStack.floor);
-            Assert.Null(parquetStack.block);
-            Assert.Null(parquetStack.furnishing);
-            Assert.Null(parquetStack.collectable);
+            Assert.Null(parquetStack.Floor);
+            Assert.Null(parquetStack.Block);
+            Assert.Null(parquetStack.Furnishing);
+            Assert.Null(parquetStack.Collectable);
         }
 
         [Fact]
@@ -634,10 +634,10 @@ namespace ParquetUnitTests.Sandbox
 
             var parquetStack = region.GetAllParquetsAtPosition(Vector2Int.ZeroVector);
 
-            Assert.Null(parquetStack.floor);
-            Assert.Null(parquetStack.block);
-            Assert.Null(parquetStack.furnishing);
-            Assert.Null(parquetStack.collectable);
+            Assert.Null(parquetStack.Floor);
+            Assert.Null(parquetStack.Block);
+            Assert.Null(parquetStack.Furnishing);
+            Assert.Null(parquetStack.Collectable);
         }
         #endregion
     }

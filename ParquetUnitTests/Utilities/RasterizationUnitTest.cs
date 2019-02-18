@@ -149,5 +149,51 @@ namespace ParquetUnitTests.Utilities
             Assert.True(vectors.Remove(belowCenter));
             Assert.Empty(vectors);
         }
+
+        [Fact]
+        public void PlotFloodFillTest()
+        {
+            const int location = 1;
+            const int target = 0;
+            var fillLayer = new int[,]
+                { { 1, 1, 1, 1, 1, 1 },
+                  { 1, 0, 0, 0, 0, 1 },
+                  { 1, 0, 2, 0, 0, 1 },
+                  { 1, 0, 0, 0, 0, 1 },
+                  { 1, 0, 0, 0, 0, 1 },
+                  { 1, 1, 1, 1, 1, 1 } };
+            var start = new Vector2Int(location, location);
+
+            bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
+            {
+                var matchAgainst = System.Convert.ToInt32(in_matchAgainst);
+                return fillLayer[in_position.x, in_position.y] == matchAgainst;
+            }
+
+            int CountAllTargets(int[,] array)
+            {
+                int count = 0;
+
+                foreach (var item in array)
+                {
+                    if (item == target)
+                    {
+                        count++;
+                    }
+                }
+
+                return count;
+            }
+
+            var vectors = Rasterization.PlotFloodFill(start, target,
+                                                      (a) => { return true; },
+                                                      Matches);
+
+            Assert.Equal(CountAllTargets(fillLayer), vectors.Count);
+            foreach (var vector in vectors)
+            {
+                Assert.Equal(target, fillLayer[vector.x, vector.y]);
+            }
+        }
     }
 }

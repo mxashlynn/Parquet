@@ -122,7 +122,7 @@ namespace ParquetClassLibrary.Utilities
                         // Plot positions within the circle only if:
                         // (1) the circle is filled, or
                         // (2) the position is on the circle proper (that is, the circle's outline).
-                        && (in_isFilled || x * x + y * y >  outlineLimit))
+                        && (in_isFilled || x * x + y * y > outlineLimit))
                     {
                         var position = new Vector2Int(in_center.x + x, in_center.y + y);
                         if (in_isValid(position))
@@ -130,6 +130,41 @@ namespace ParquetClassLibrary.Utilities
                             deduplicationList.Add(position);
                         }
                     }
+
+            return new List<Vector2Int>(deduplicationList);
+        }
+
+        /// <summary>
+        /// Plots a contiguous section of the positions using a four-way flood fill.
+        /// Plots all valid positions adjacent to the given position, provided that they match
+        /// the parquets at the given position according to the provided matching criteria.
+        /// </summary>
+        /// <param name="in_start">The position on which to base the fill.</param>
+        /// <param name="in_target">The parquet type(s) to replace.</param>
+        /// <param name="in_isValid">In rule for determining a valid position.</param>
+        /// <param name="in_matches">The rule for determining matching parquets.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        /// <returns>A selection of contiguous positions.</returns>
+        public static List<Vector2Int> PlotFloodFill<T>(Vector2Int in_start, T in_target,
+                                                        Predicate<Vector2Int> in_isValid,
+                                                        Func<Vector2Int, T, bool> in_matches)
+        {
+            var deduplicationList = new HashSet<Vector2Int>();
+            var queue = new Queue<Vector2Int>();
+            queue.Enqueue(in_start);
+
+            while (queue.Count > 0)
+            {
+                var position = queue.Dequeue();
+                if (in_isValid(position) && in_matches(position, in_target))
+                {
+                    deduplicationList.Add(position);
+                    queue.Enqueue(new Vector2Int(position.x - 1, position.y));
+                    queue.Enqueue(new Vector2Int(position.x, position.y - 1));
+                    queue.Enqueue(new Vector2Int(position.x + 1, position.y));
+                    queue.Enqueue(new Vector2Int(position.x, position.y + 1));
+                }
+            }
 
             return new List<Vector2Int>(deduplicationList);
         }
