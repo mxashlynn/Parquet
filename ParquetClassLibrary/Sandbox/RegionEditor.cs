@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         public void NewRegionMap()
         {
-            _currentRegion = new RegionMap("New Region");
+            _currentRegion = new RegionMap();
             SetLowerStorey();
 
             DisplayMap?.Invoke(this, null);

@@ -9,7 +9,7 @@ namespace ParquetRunner
     {
         public static void Main(string[] args)
         {
-            var myMap = new RegionMap();
+            var myMap = new RegionMap("Moria", Color.Grey);
             myMap.FillTestPattern();
 
             Console.BackgroundColor = myMap.Background;

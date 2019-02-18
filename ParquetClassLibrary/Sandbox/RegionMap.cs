@@ -25,8 +25,7 @@ namespace ParquetClassLibrary.Sandbox
         public static readonly Vector2Int Dimensions = new Vector2Int(5, 5);
 
         /// <summary>Default name for new regions.</summary>
-        // TODO Change this test name once debugging is done.
-        public const string DefaultTitle = "Erdrea";
+        public const string DefaultTitle = "New Region";
         #endregion
 
         #region Whole-Region Characteristics
@@ -45,7 +44,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; } = 0;
 
-        /// <summary>Floors and walkable terrain in the region.</summary>
+        /// <summary>Exit, spawn, and other special points in the region.</summary>
         private readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
         #endregion
 
@@ -70,8 +69,11 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
         public RegionMap(string in_title = DefaultTitle, Color? in_background = null)
+        {
+            Title = in_title;
             // Assign defaults that cannot be specified in the argument list.
-            => Background = in_background ?? Color.White;
+            Background = in_background ?? Color.White;
+        }
         #endregion
 
         #region State Modification Methods
