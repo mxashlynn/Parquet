@@ -265,6 +265,8 @@ namespace ParquetClassLibrary.Sandbox
             foreach (var position in in_positions)
             {
                 var errorEncountered = PaintAtLocation(position);
+                // TODO: Consider if we really want to abort on a failed position.
+                // If we don't, it would make more sense for PaintAtLocation to be void.
                 if (errorEncountered)
                 {
                     break;
