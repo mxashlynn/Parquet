@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// Methods and data to assist in rasterization.
     /// </summary>
-    internal static class Rasterization
+    public static class Rasterization
     {
         /// <summary>
         /// Approximates a line segment between two positions.
@@ -149,16 +149,18 @@ namespace ParquetClassLibrary.Utilities
                                                         Predicate<Vector2Int> in_isValid,
                                                         Func<Vector2Int, T, bool> in_matches)
         {
-            var deduplicationList = new HashSet<Vector2Int>();
+            var results = new HashSet<Vector2Int>();
             var queue = new Queue<Vector2Int>();
             queue.Enqueue(in_start);
 
             while (queue.Count > 0)
             {
                 var position = queue.Dequeue();
-                if (in_isValid(position) && in_matches(position, in_target))
+                if (!results.Contains(position)
+                    && in_isValid(position)
+                    && in_matches(position, in_target))
                 {
-                    deduplicationList.Add(position);
+                    results.Add(position);
                     queue.Enqueue(new Vector2Int(position.x - 1, position.y));
                     queue.Enqueue(new Vector2Int(position.x, position.y - 1));
                     queue.Enqueue(new Vector2Int(position.x + 1, position.y));
@@ -166,7 +168,7 @@ namespace ParquetClassLibrary.Utilities
                 }
             }
 
-            return new List<Vector2Int>(deduplicationList);
+            return new List<Vector2Int>(results);
         }
     }
 }

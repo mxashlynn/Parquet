@@ -164,6 +164,14 @@ namespace ParquetUnitTests.Utilities
                   { 1, 1, 1, 1, 1, 1 } };
             var start = new Vector2Int(location, location);
 
+            bool IsVaild(Vector2Int in_position)
+            {
+                return in_position.x >= 0
+                       && in_position.x <= fillLayer.Length
+                       && in_position.y >= 0
+                       && in_position.y <= fillLayer.Length;
+            }
+
             bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
             {
                 var matchAgainst = System.Convert.ToInt32(in_matchAgainst);
@@ -185,9 +193,7 @@ namespace ParquetUnitTests.Utilities
                 return count;
             }
 
-            var vectors = Rasterization.PlotFloodFill(start, target,
-                                                      (a) => { return true; },
-                                                      Matches);
+            var vectors = Rasterization.PlotFloodFill(start, target, IsVaild, Matches);
 
             Assert.Equal(CountAllTargets(fillLayer), vectors.Count);
             foreach (var vector in vectors)
