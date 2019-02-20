@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
@@ -317,7 +318,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetExitPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var point = new ExitPoint(InvalidPosition);
+            var point = new ExitPoint(InvalidPosition, new Guid());
 
             var result = region.TrySetExitPoint(point);
 
@@ -328,7 +329,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var region = new RegionMap();
-            var point = new ExitPoint(Vector2Int.ZeroVector);
+            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
 
             var result = region.TrySetExitPoint(point);
 
@@ -339,7 +340,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var point = new ExitPoint(InvalidPosition);
+            var point = new ExitPoint(InvalidPosition, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
 
@@ -350,7 +351,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
         {
             var region = new RegionMap();
-            var point = new ExitPoint(Vector2Int.ZeroVector);
+            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
 
@@ -361,7 +362,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
             var region = new RegionMap();
-            var point = new ExitPoint(Vector2Int.ZeroVector);
+            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
             region.TrySetExitPoint(point);
 
             var result = region.TryRemoveExitPoint(point);

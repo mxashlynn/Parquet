@@ -14,6 +14,7 @@
     <Compile Remove="Class1.cs" />
     <Compile Remove="Stubs\Vector2.cs" />
     <Compile Remove="Stubs\Vector3.cs" />
+    <Compile Remove="Database.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Crafting\" />

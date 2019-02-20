@@ -21,8 +21,10 @@ namespace ParquetClassLibrary.Sandbox
         public const string SupportedDataVersion = "0.1.0";
 
         /// <summary>The region's dimensions.</summary>
-        // TODO Come up with actual size of regions.
-        public static readonly Vector2Int Dimensions = new Vector2Int(5, 5);
+        // old DQ tiles: 64x64
+        // builders tiles: 32x32, 160x160, 384x384
+        // builders chunks: 10x10, 24x24 (where each chunk is 16x16)
+        public static readonly Vector2Int Dimensions = new Vector2Int(64, 64);
 
         /// <summary>Default name for new regions.</summary>
         public const string DefaultTitle = "New Region";
@@ -34,6 +36,9 @@ namespace ParquetClassLibrary.Sandbox
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
         public readonly string DataVersion = SupportedDataVersion;
+
+        /// <summary>The region identifier, used when referencing unloaded regions.</summary>
+        public readonly Guid RegionID = Guid.NewGuid();
 
         /// <summary>What the region is called in-game.</summary>
         public string Title { get; set; } = DefaultTitle;
@@ -211,11 +216,11 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Special Point Modification
         /// <summary>
-        /// Attempts to assign an exit point to the given location.
+        /// Attempts to assign the given exit point.
         /// If an exit point already exists at this location, it is replaced.
         /// </summary>
         /// <param name="in_point">The point to set.</param>
-        /// <returns><c>true</c>, if the exit point was set, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the point was set, <c>false</c> otherwise.</returns>
         public bool TrySetExitPoint(ExitPoint in_point)
         {
             var result = false;
@@ -230,8 +235,7 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Attempts to remove a point to the given location.
-        /// If an exit point already exists at this location, it is replaced.
+        /// Attempts to remove the given exit point.
         /// </summary>
         /// <param name="in_point">The point to remove.</param>
         /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
@@ -241,7 +245,7 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Attempts to assign a spawn point to the given location.
+        /// Attempts to assign the given spawn point.
         /// If a spawn point already exists at this location, it is replaced.
         /// </summary>
         /// <param name="in_point">The point to set.</param>
@@ -260,10 +264,9 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Attempts to remove a point to the given location.
-        /// If an exit point already exists at this location, it is replaced.
+        /// Attempts to remove a spawn point at the given location.
         /// </summary>
-        /// <param name="in_point">The point to remove.</param>
+        /// <param name="in_point">The location of the spawn point to remove.</param>
         /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveSpawnPoint(SpawnPoint in_point)
         {
@@ -271,10 +274,9 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Attempts to remove a point to the given location.
-        /// If an exit point already exists at this location, it is replaced.
+        /// Attempts to remove a special point at the given location.
         /// </summary>
-        /// <param name="in_point">The point to remove.</param>
+        /// <param name="in_point">The location of the special point to remove.</param>
         /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
         private bool TryRemoveSpecialPoint(SpecialPoint in_point)
         {
@@ -286,8 +288,8 @@ namespace ParquetClassLibrary.Sandbox
             {
                 // Return true if the point was removed or if the point never existed.
                 result = _specialPoints.Remove(in_point) ||
-                    !_specialPoints.Exists(foundPoint =>
-                        foundPoint.GetType() == in_point.GetType() && foundPoint == in_point);
+                         !_specialPoints.Exists(foundPoint =>
+                             foundPoint.GetType() == in_point.GetType() && foundPoint == in_point);
             }
 
             return result;
