@@ -261,7 +261,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var point = new SpawnPoint(InvalidPosition);
+            var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
 
             var result = region.TrySetSpawnPoint(point);
 
@@ -272,7 +272,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetSpawnPointSucceedsOnValidPositionTest()
         {
             var region = new RegionMap();
-            var point = new SpawnPoint(Vector2Int.ZeroVector);
+            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
 
             var result = region.TrySetSpawnPoint(point);
 
@@ -283,7 +283,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new RegionMap();
-            var point = new SpawnPoint(InvalidPosition);
+            var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
 
             var result = region.TryRemoveSpawnPoint(point);
 
@@ -294,7 +294,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
         {
             var region = new RegionMap();
-            var point = new SpawnPoint(Vector2Int.ZeroVector);
+            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
 
             var result = region.TryRemoveSpawnPoint(point);
 
@@ -305,7 +305,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
         {
             var region = new RegionMap();
-            var point = new SpawnPoint(Vector2Int.ZeroVector);
+            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
             region.TrySetSpawnPoint(point);
 
             var result = region.TryRemoveSpawnPoint(point);
