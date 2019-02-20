@@ -27,6 +27,7 @@
     <Folder Include="Sandbox\Parquets\" />
     <Folder Include="Sandbox\Special Points\" />
     <Folder Include="Utilities\" />
+    <Folder Include="Quests\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />

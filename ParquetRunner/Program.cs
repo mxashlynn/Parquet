@@ -12,9 +12,14 @@ namespace ParquetRunner
             var myMap = new RegionMap("Moria", Color.Grey);
             myMap.FillTestPattern();
 
-            Console.BackgroundColor = myMap.Background;
-            Console.WriteLine(myMap);
-            // Console.WriteLine(myMap.SerializeToString());
+            var region = new RegionMap(in_generateID: false).FillTestPattern();
+            var result = region.SerializeToString();
+
+            //Console.BackgroundColor = myMap.Background;
+            //Console.WriteLine(myMap);
+            //Console.WriteLine(myMap.SerializeToString());
+
+            Error.Handle(result);
         }
     }
 }

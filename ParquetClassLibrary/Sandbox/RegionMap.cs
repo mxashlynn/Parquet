@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Sandbox
         public readonly string DataVersion = SupportedDataVersion;
 
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
-        public readonly Guid RegionID = Guid.NewGuid();
+        public readonly Guid RegionID;
 
         /// <summary>What the region is called in-game.</summary>
         public string Title { get; set; } = DefaultTitle;
@@ -73,11 +73,16 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
-        public RegionMap(string in_title = DefaultTitle, Color? in_background = null)
+        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
+        public RegionMap(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
         {
             Title = in_title ?? DefaultTitle;
-            // Assign defaults that cannot be specified in the argument list.
             Background = in_background ?? Color.White;
+
+            // Overwrite default behavior for tests.
+            RegionID = in_generateID
+                ? Guid.NewGuid()
+                : Guid.Empty;
         }
         #endregion
 

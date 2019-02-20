@@ -23,6 +23,7 @@
     <Folder Include="Sandbox\Parquets\" />
     <Folder Include="Sandbox\Special Points\" />
     <Folder Include="Utilities\" />
+    <Folder Include="Quests\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Sandbox\.DS_Store" />
