@@ -11,18 +11,16 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// A playable region in sandbox-mode.
+    /// Models details of a playable chunk in sandbox-mode.
+    /// Map Chunks are composed of Parquets and Special Points.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class MapRegion
+    public class MapChunk
     {
         #region Class Defaults
-        /// <summary>The region's dimensions in parquets.</summary>
-        public static readonly Vector2Int Dimensions = new Vector2Int(Assembly.ParquetsPerRegionDimension,
-                                                                      Assembly.ParquetsPerRegionDimension);
-
-        /// <summary>Default name for new regions.</summary>
-        public const string DefaultTitle = "New Region";
+        /// <summary>The chunk's dimensions in parquets.</summary>
+        internal static readonly Vector2Int Dimensions = new Vector2Int(Assembly.ParquetsPerChunkDimension,
+                                                                        Assembly.ParquetsPerChunkDimension);
         #endregion
 
         #region Whole-Region Characteristics
@@ -31,15 +29,6 @@ namespace ParquetClassLibrary.Sandbox
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
         public readonly string DataVersion = Assembly.SupportedDataVersion;
-
-        /// <summary>The region identifier, used when referencing unloaded regions.</summary>
-        public readonly Guid RegionID;
-
-        /// <summary>What the region is called in-game.</summary>
-        public string Title { get; set; } = DefaultTitle;
-
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; } = Color.White;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; } = 0;
@@ -60,25 +49,6 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>Collectable materials in the region.</summary>
         private readonly Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
-        #endregion
-
-        #region Initialization
-        /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
-        /// </summary>
-        /// <param name="in_title">The name of the new region.</param>
-        /// <param name="in_background">Background color for the new region.</param>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
-        public MapRegion(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
-        {
-            Title = in_title ?? DefaultTitle;
-            Background = in_background ?? Color.White;
-
-            // Overwrite default behavior for tests.
-            RegionID = in_generateID
-                ? Guid.NewGuid()
-                : Guid.Empty;
-        }
         #endregion
 
         #region Parquets Replacement Methods
@@ -298,6 +268,24 @@ namespace ParquetClassLibrary.Sandbox
 
         #region State Query Methods
         /// <summary>
+        /// Gets the position toughness.
+        /// </summary>
+        /// <param name="in_position">The position whose toughness is sought.</param>
+        /// <returns>Toughtness at the given position</returns>
+        public int GetBlockToughnessAtPosition(Vector2Int in_position)
+        {
+            int result = 0;
+
+            if (IsValidPosition(in_position)
+                && null != _blockLayer[in_position.x, in_position.y])
+            {
+                result = _blockLayer[in_position.x, in_position.y].Toughness;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Gets any floor parquet at the position.
         /// </summary>
         /// <param name="in_position">The position whose floor is sought.</param>
@@ -391,10 +379,10 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current MapRegion to a string,
+        /// Serializes to the current MapChunk to a string,
         /// incrementing the revision number in the process.
         /// </summary>
-        /// <returns>The serialized MapRegion.</returns>
+        /// <returns>The serialized MapChunk.</returns>
         public string SerializeToString()
         {
             Revision++;
@@ -402,39 +390,39 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Tries to deserialize a MapRegion from the given string.
+        /// Tries to deserialize a MapChunk from the given string.
         /// </summary>
-        /// <param name="in_serializedMapRegion">The serialized region map.</param>
-        /// <param name="out_mapRegion">The deserialized region map, or null if deserialization was impossible.</param>
+        /// <param name="in_serializedMapChunk">The serialized region map.</param>
+        /// <param name="out_mapChunk">The deserialized region map, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMapRegion,
-                                                    out MapRegion out_mapRegion)
+        public static bool TryDeserializeFromString(string in_serializedMapChunk,
+                                                    out MapChunk out_mapChunk)
         {
             var result = false;
-            out_mapRegion = null;
+            out_mapChunk = null;
 
-            if (string.IsNullOrEmpty(in_serializedMapRegion))
+            if (string.IsNullOrEmpty(in_serializedMapChunk))
             {
-                Error.Handle("Tried to deserialize a null string as a MapRegion.");
+                Error.Handle("Error deserializing a MapChunk.");
             }
             else
             {
                 // Determine what version of region map was serialized.
                 try
                 {
-                    var document = JObject.Parse(in_serializedMapRegion);
+                    var document = JObject.Parse(in_serializedMapChunk);
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
                     if (Assembly.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
-                        out_mapRegion = JsonConvert.DeserializeObject<MapRegion>(in_serializedMapRegion);
+                        out_mapChunk = JsonConvert.DeserializeObject<MapChunk>(in_serializedMapChunk);
                         result = true;
                     }
                 }
                 catch (JsonReaderException exception)
                 {
-                    Error.Handle("Error reading string while deserializing a MapRegion: " + exception);
+                    Error.Handle("Error reading string while deserializing a MapChunk: " + exception);
                 }
             }
 
@@ -460,7 +448,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Visualizes the region as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>.</returns>
         public override string ToString()
         {
             var representation = new StringBuilder(Dimensions.Magnitude);
@@ -480,42 +468,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             #endregion
 
-            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" + representation;
-        }
-
-        /// <summary>
-        /// Visualizes the region as a string, listing layers separately.
-        /// Intended for Console debugging.
-        /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
-        public string ToLayeredString()
-        {
-            var floorRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var blocksRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var furnishingsRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var collectablesRepresentation = new StringBuilder(Dimensions.Magnitude);
-            #region Compose visual represenation of contents.
-            for (var x = 0; x < Dimensions.x; x++)
-            {
-                for (var y = 0; y < Dimensions.y; y++)
-                {
-                    floorRepresentation.Append(_floorLayer[x, y]?.ToString() ?? "@");
-                    blocksRepresentation.Append(_blockLayer[x, y]?.ToString() ?? " ");
-                    furnishingsRepresentation.Append(_furnishingLayer[x, y]?.ToString() ?? " ");
-                    collectablesRepresentation.Append(_collectableLayer[x, y]?.ToString() ?? " ");
-                }
-                floorRepresentation.AppendLine();
-                blocksRepresentation.AppendLine();
-                furnishingsRepresentation.AppendLine();
-                collectablesRepresentation.AppendLine();
-            }
-            #endregion
-
-            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" +
-                "Floor: \n" + floorRepresentation +
-                "Blocks: \n" + blocksRepresentation +
-                "Furnishings: \n" + furnishingsRepresentation +
-                "Collectables: \n" + collectablesRepresentation;
+            return "Chunk: \n" + representation;
         }
         #endregion
     }

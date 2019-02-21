@@ -10,8 +10,6 @@ namespace ParquetRunner
         public static void Main(string[] args)
         {
             var myMap = new MapRegion("Moria", Color.Grey);
-            myMap.FillTestPattern();
-
             //Console.BackgroundColor = myMap.Background;
             Console.WriteLine(myMap);
             //Console.WriteLine(myMap.SerializeToString());

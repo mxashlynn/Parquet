@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegionMapUnitTestExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj">

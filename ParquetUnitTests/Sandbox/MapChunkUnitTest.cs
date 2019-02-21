@@ -7,40 +7,19 @@ using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox
 {
-    public class RegionMapUnitTest
+    public class MapChunkUnitTest
     {
         #region Values for Tests
         private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
-        private readonly Color TestColor = new Color(255, 128, 26, 230);
-        private const string TestTitle = "New Region";
         #endregion
 
         #region Region Map Initialization
         [Fact]
-        public void NewDefaultMapRegionTest()
+        public void NewDefaultMapChunkTest()
         {
-            var defaultRegion = new MapRegion();
+            var defaultRegion = new MapChunk();
 
-            Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(Color.White, defaultRegion.Background);
-        }
-
-        [Fact]
-        public void NewNullMapRegionTest()
-        {
-            var defaultRegion = new MapRegion(null, null);
-
-            Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(Color.White, defaultRegion.Background);
-        }
-
-        [Fact]
-        public void NewCustomMapRegionTest()
-        {
-            var defaultRegion = new MapRegion(TestTitle, TestColor);
-
-            Assert.Equal(TestTitle, defaultRegion.Title);
-            Assert.Equal(TestColor, defaultRegion.Background);
+            Assert.Equal(0, defaultRegion.Revision);
         }
         #endregion
 
@@ -48,7 +27,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFloorFailsOnNullParquetTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TrySetFloor(null, Vector2Int.ZeroVector);
 
@@ -58,7 +37,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Floor();
 
             var result = region.TrySetFloor(parquet, InvalidPosition);
@@ -69,7 +48,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Floor();
 
             var result = region.TrySetFloor(parquet, Vector2Int.ZeroVector);
@@ -80,7 +59,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetBlockFailsOnNullParquetTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TrySetBlock(null, Vector2Int.ZeroVector);
 
@@ -90,7 +69,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Block();
 
             var result = region.TrySetBlock(parquet, InvalidPosition);
@@ -101,7 +80,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Block();
 
             var result = region.TrySetBlock(parquet, Vector2Int.ZeroVector);
@@ -112,7 +91,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFurnishingFailsOnNullParquetTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TrySetFurnishing(null, Vector2Int.ZeroVector);
 
@@ -122,7 +101,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Furnishing();
 
             var result = region.TrySetFurnishing(parquet, InvalidPosition);
@@ -133,7 +112,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Furnishing();
 
             var result = region.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
@@ -144,7 +123,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetCollectableFailsOnNullParquetTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TrySetCollectable(null, Vector2Int.ZeroVector);
 
@@ -154,7 +133,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetCollectableFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Collectable();
 
             var result = region.TrySetCollectable(parquet, InvalidPosition);
@@ -165,7 +144,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var parquet = new Collectable();
 
             var result = region.TrySetCollectable(parquet, Vector2Int.ZeroVector);
@@ -176,7 +155,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveFloorFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveFloor(InvalidPosition);
 
@@ -186,7 +165,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveFloorSucceedsOnDefaultPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveFloor(Vector2Int.ZeroVector);
 
@@ -196,7 +175,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveBlockFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveBlock(InvalidPosition);
 
@@ -206,7 +185,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveBlockSucceedsOnDefaultPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveBlock(Vector2Int.ZeroVector);
 
@@ -216,7 +195,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveFurnishingFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveFurnishing(InvalidPosition);
 
@@ -226,7 +205,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveFurnishingSucceedsOnDefaultPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveFurnishing(Vector2Int.ZeroVector);
 
@@ -236,7 +215,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveCollectableFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveCollectable(InvalidPosition);
 
@@ -246,7 +225,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveCollectableSucceedsOnDefaultPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.TryRemoveCollectable(Vector2Int.ZeroVector);
 
@@ -258,7 +237,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetSpawnPointFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
 
             var result = region.TrySetSpawnPoint(point);
@@ -269,7 +248,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetSpawnPointSucceedsOnValidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
 
             var result = region.TrySetSpawnPoint(point);
@@ -280,7 +259,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
 
             var result = region.TryRemoveSpawnPoint(point);
@@ -291,7 +270,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
 
             var result = region.TryRemoveSpawnPoint(point);
@@ -302,7 +281,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
             region.TrySetSpawnPoint(point);
 
@@ -314,7 +293,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetExitPointFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new ExitPoint(InvalidPosition, new Guid());
 
             var result = region.TrySetExitPoint(point);
@@ -325,7 +304,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
 
             var result = region.TrySetExitPoint(point);
@@ -336,7 +315,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new ExitPoint(InvalidPosition, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
@@ -347,7 +326,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
@@ -358,7 +337,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
             var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
             region.TrySetExitPoint(point);
 
@@ -370,7 +349,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetSpecialDataReturnsNullsOnInvalidPositionTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var specialData = region.GetSpecialPointsAtPosition(InvalidPosition);
 
@@ -382,49 +361,49 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void SerializingKnownMapProducesKnownStringTest()
         {
-            var region = new MapRegion(in_generateID: false).FillTestPattern();
+            var region = new MapChunk();
 
             var result = region.SerializeToString();
 
-            Assert.Equal(SerializedRegionMapsForTest.KnownGoodString, result);
+            Assert.Equal(SerializedMapChunksForTest.KnownGoodString, result);
         }
 
         [Fact]
         public void DeserializingNullFailsTest()
         {
-            var result = MapRegion.TryDeserializeFromString(null, out MapRegion mapRegionResults);
+            var result = MapChunk.TryDeserializeFromString(null, out MapChunk mapChunkResults);
 
-            Assert.Null(mapRegionResults);
+            Assert.Null(mapChunkResults);
             Assert.False(result);
         }
 
         [Fact]
         public void DeserializingUnsupportedVersionFailsTest()
         {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.UnsupportedVersionString,
-                                                            out MapRegion mapRegionResults);
+            var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.UnsupportedVersionString,
+                                                            out MapChunk mapChunkResults);
 
-            Assert.Null(mapRegionResults);
+            Assert.Null(mapChunkResults);
             Assert.False(result);
         }
 
         [Fact]
         public void DeserializingKnownBadStringFailsTest()
         {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.NonJsonString,
-                                                            out MapRegion mapRegionResults);
+            var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.NonJsonString,
+                                                            out MapChunk mapChunkResults);
 
-            Assert.Null(mapRegionResults);
+            Assert.Null(mapChunkResults);
             Assert.False(result);
         }
 
         [Fact]
         public void DeserializingKnownGoodStringSucceedsTest()
         {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.KnownGoodString,
-                                                            out MapRegion mapRegionResults);
+            var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.KnownGoodString,
+                                                            out MapChunk mapChunkResults);
 
-            Assert.NotNull(mapRegionResults);
+            Assert.NotNull(mapChunkResults);
             Assert.True(result);
         }
 
@@ -434,7 +413,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFloorReturnsNullOnInvalidPositionTest()
         {
-            var region = new MapRegion().FillTestPattern();
+            var region = new MapChunk().FillTestPattern();
 
             var result = region.GetFloorAtPosition(InvalidPosition);
 
@@ -444,7 +423,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFloorReturnsNullOnEmptyMapTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.GetFloorAtPosition(Vector2Int.ZeroVector);
 
@@ -454,7 +433,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetBlockReturnsNullOnInvalidPositionTest()
         {
-            var region = new MapRegion().FillTestPattern();
+            var region = new MapChunk().FillTestPattern();
 
             var result = region.GetBlockAtPosition(InvalidPosition);
 
@@ -464,7 +443,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetBlockReturnsNullOnEmptyMapTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.GetBlockAtPosition(Vector2Int.ZeroVector);
 
@@ -474,7 +453,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFurnishingReturnsNullOnInvalidPositionTest()
         {
-            var region = new MapRegion().FillTestPattern();
+            var region = new MapChunk().FillTestPattern();
 
             var result = region.GetFurnishingAtPosition(InvalidPosition);
 
@@ -484,7 +463,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetFurnishingReturnsNullOnEmptyMapTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.GetFurnishingAtPosition(Vector2Int.ZeroVector);
 
@@ -494,7 +473,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetCollectableReturnsNullOnInvalidPositionTest()
         {
-            var region = new MapRegion().FillTestPattern();
+            var region = new MapChunk().FillTestPattern();
 
             var result = region.GetCollectableAtPosition(InvalidPosition);
 
@@ -504,7 +483,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetCollectableReturnsNullOnEmptyMapTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var result = region.GetCollectableAtPosition(Vector2Int.ZeroVector);
 
@@ -514,7 +493,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetAllParquetsReturnsNullsOnInvalidPositionTest()
         {
-            var region = new MapRegion().FillTestPattern();
+            var region = new MapChunk().FillTestPattern();
 
             var parquetStack = region.GetAllParquetsAtPosition(InvalidPosition);
 
@@ -527,7 +506,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void GetAllParquetsReturnsNullsOnEmptyMapTest()
         {
-            var region = new MapRegion();
+            var region = new MapChunk();
 
             var parquetStack = region.GetAllParquetsAtPosition(Vector2Int.ZeroVector);
 
