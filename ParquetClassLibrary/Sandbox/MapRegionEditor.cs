@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.Parquets;
@@ -14,14 +14,14 @@ namespace ParquetClassLibrary.Sandbox
     //       c.f. the mask properties in TEdit.
 
     /// <summary>
-    /// Controller to manage in-game RegionMap editing.
+    /// Controller to manage in-game MapRegion editing.
     /// </summary>
-    public class RegionEditor
+    public class MapRegionEditor
     {
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
         public static event EventHandler DisplayMap;
 
-        private RegionMap _currentRegion;
+        private MapRegion _currentRegion;
 
         public bool IsMapLoaded
         {
@@ -49,9 +49,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Creates a new region with a default name.
         /// </summary>
-        public void NewRegionMap()
+        public void NewMapRegion()
         {
-            _currentRegion = new RegionMap();
+            _currentRegion = new MapRegion();
             SetLowerStory();
 
             DisplayMap?.Invoke(this, null);
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Writes the current region to storage at the given path.
         /// </summary>
         /// <param name="in_path">The location in which to store the saved region.</param>
-        public void SaveRegionMap(string in_path)
+        public void SaveMapRegion(string in_path)
         {
             var serialized = _currentRegion.SerializeToString();
             // TODO Convert this to use multiplatform utils.
@@ -72,11 +72,11 @@ namespace ParquetClassLibrary.Sandbox
         /// Reads the region stored at the given location.
         /// </summary>
         /// <param name="in_path">The location of the region to load.</param>
-        public void LoadRegionMap(string in_path)
+        public void LoadMapRegion(string in_path)
         {
             // TODO Convert this to use multiplatform utils.
             var serialized = File.ReadAllText(in_path);
-            if (RegionMap.TryDeserializeFromString(serialized, out RegionMap result))
+            if (MapRegion.TryDeserializeFromString(serialized, out MapRegion result))
             {
                 _currentRegion = result;
             }

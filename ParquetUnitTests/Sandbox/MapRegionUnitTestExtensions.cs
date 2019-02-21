@@ -3,7 +3,7 @@ using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetRunner
+namespace ParquetUnitTests.Sandbox
 {
     internal static class MapRegionUnitTestExtensions
     {

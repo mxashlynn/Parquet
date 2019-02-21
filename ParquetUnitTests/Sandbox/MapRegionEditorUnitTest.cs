@@ -1,15 +1,15 @@
-using Xunit;
+﻿using Xunit;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox
 {
-    public class RegionEditorUnitTest
+    public class MapRegionEditorUnitTest
     {
         [Fact]
         public void EditorInstantiatesWithNoMapLoadedTest()
         {
-            var editor = new RegionEditor();
+            var editor = new MapRegionEditor();
 
             Assert.False(editor.IsMapLoaded);
         }
@@ -17,8 +17,8 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void EditorHasLoadedMapAfterNewMapTest()
         {
-            var editor = new RegionEditor();
-            editor.NewRegionMap();
+            var editor = new MapRegionEditor();
+            editor.NewMapRegion();
 
             Assert.True(editor.IsMapLoaded);
         }
@@ -36,9 +36,9 @@ namespace ParquetUnitTests.Sandbox
                 wasEventRaised = true;
             }
 
-            var editor = new RegionEditor();
-            editor.NewRegionMap();
-            RegionEditor.DisplayPositionInfo += HandleEvent;
+            var editor = new MapRegionEditor();
+            editor.NewMapRegion();
+            MapRegionEditor.DisplayPositionInfo += HandleEvent;
 
             editor.DisplayInfoAtPosition(Vector2Int.ZeroVector);
 
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Sandbox
             Assert.Equal(editor, sender);
             Assert.NotNull(eventArgument);
 
-            RegionEditor.DisplayPositionInfo -= HandleEvent;
+            MapRegionEditor.DisplayPositionInfo -= HandleEvent;
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace ParquetUnitTests.Sandbox
         [InlineData(true, true, true, true)]
         public void EditorParquetPatternCorrespondsToSetCommandsTest(bool in_setPaintFloor, bool in_setPaintBlock, bool in_setPaintFurnishing, bool in_setPaintCollectable)
         {
-            var editor = new RegionEditor();
+            var editor = new MapRegionEditor();
 
             editor.SetPaintFloor(in_setPaintFloor);
             editor.SetPaintBlock(in_setPaintBlock);

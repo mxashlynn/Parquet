@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Sandbox
     /// Scriptable Object containing details of a playable region in sandbox-mode.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class RegionMap
+    public class MapRegion
     {
         #region Class Defaults
         /// <summary>Describes the version of the serialized data that this class understands.</summary>
@@ -69,12 +69,12 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/> class.
+        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
-        public RegionMap(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
+        public MapRegion(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
@@ -486,10 +486,10 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current RegionMap to a string,
+        /// Serializes to the current MapRegion to a string,
         /// incrementing the revision number in the process.
         /// </summary>
-        /// <returns>The serialized RegionMap.</returns>
+        /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
         {
             Revision++;
@@ -497,39 +497,39 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Tries to deserialize a RegionMap from the given string.
+        /// Tries to deserialize a MapRegion from the given string.
         /// </summary>
-        /// <param name="in_serializedRegionMap">The serialized region map.</param>
-        /// <param name="out_regionMap">The deserialized region map, or null if deserialization was impossible.</param>
+        /// <param name="in_serializedMapRegion">The serialized region map.</param>
+        /// <param name="out_mapRegion">The deserialized region map, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedRegionMap,
-                                                    out RegionMap out_regionMap)
+        public static bool TryDeserializeFromString(string in_serializedMapRegion,
+                                                    out MapRegion out_mapRegion)
         {
             var result = false;
-            out_regionMap = null;
+            out_mapRegion = null;
 
-            if (string.IsNullOrEmpty(in_serializedRegionMap))
+            if (string.IsNullOrEmpty(in_serializedMapRegion))
             {
-                Error.Handle("Tried to deserialize a null string as a RegionMap.");
+                Error.Handle("Tried to deserialize a null string as a MapRegion.");
             }
             else
             {
                 // Determine what version of region map was serialized.
                 try
                 {
-                    var document = JObject.Parse(in_serializedRegionMap);
+                    var document = JObject.Parse(in_serializedMapRegion);
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
                     if (SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
-                        out_regionMap = JsonConvert.DeserializeObject<RegionMap>(in_serializedRegionMap);
+                        out_mapRegion = JsonConvert.DeserializeObject<MapRegion>(in_serializedMapRegion);
                         result = true;
                     }
                 }
                 catch (JsonReaderException exception)
                 {
-                    Error.Handle("Error reading string while deserializing a RegionMap: " + exception);
+                    Error.Handle("Error reading string while deserializing a MapRegion: " + exception);
                 }
             }
 
@@ -555,7 +555,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Visualizes the region as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
         public override string ToString()
         {
             var representation = new StringBuilder(Dimensions.Magnitude);
@@ -582,7 +582,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Visualizes the region as a string, listing layers separately.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.RegionMap"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
         public string ToLayeredString()
         {
             var floorRepresentation = new StringBuilder(Dimensions.Magnitude);
