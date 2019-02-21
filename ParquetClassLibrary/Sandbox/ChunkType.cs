@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_chunkType">The chunk to evaluate.</param>
         /// <returns>An elevation mask.</returns>
-        public static ElevationMask ToElevation(this ref ChunkType in_chunkType)
+        public static ElevationMask ToElevation(this ChunkType in_chunkType)
         {
             var result = new ElevationMask();
 
