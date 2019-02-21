@@ -11,15 +11,13 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Scriptable Object containing details of a playable region in sandbox-mode.
+    /// Models details of a playable region in sandbox-mode.
+    /// Map Regions are composed of Map Chunks.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class MapRegion
     {
         #region Class Defaults
-        /// <summary>Describes the version of the serialized data that this class understands.</summary>
-        public const string SupportedDataVersion = "0.1.0";
-
         /// <summary>The region's dimensions.</summary>
         // old DQ tiles: 64x64
         // builders tiles: 32x32, 160x160, 384x384
@@ -35,7 +33,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public readonly string DataVersion = SupportedDataVersion;
+        public readonly string DataVersion = ParquetAssembly.SupportedDataVersion;
 
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
         public readonly Guid RegionID;
