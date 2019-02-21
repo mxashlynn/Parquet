@@ -4,7 +4,7 @@ using ParquetClassLibrary.Sandbox;
 
 namespace ParquetUnitTests.Sandbox
 {
-    public class ParquetMaskTest
+    public class ParquetMaskUnitTest
     {
         [Fact]
         internal void ParquetMaskSetsFlagsConsistentlyTest()
