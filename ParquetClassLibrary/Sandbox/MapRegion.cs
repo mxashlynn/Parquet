@@ -23,6 +23,9 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>Default name for new regions.</summary>
         public const string DefaultTitle = "New Region";
+
+        /// <summary>Default color for new regions.</summary>
+        public static readonly Color DefaultColor = Color.White;
         #endregion
 
         #region Whole-Region Characteristics
@@ -39,16 +42,19 @@ namespace ParquetClassLibrary.Sandbox
         public string Title { get; set; } = DefaultTitle;
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; } = Color.White;
+        public Color Background { get; set; } = DefaultColor;
+
+        /// <summary>The region's elevation relative to all other regions.</summary>
+        public int GlobalElevation { get; set; } = 0;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; } = 0;
-
-        /// <summary>Exit, spawn, and other special points in the region.</summary>
-        private readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
         #endregion
 
         #region Region Parquet Contents
+        /// <summary>Exit, spawn, and other special points in the region.</summary>
+        private readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
+
         /// <summary>Floors and walkable terrain in the region.</summary>
         private readonly Floor[,] _floorLayer = new Floor[Dimensions.x, Dimensions.y];
 
@@ -68,12 +74,21 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
-        public MapRegion(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
+        /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="in_ID">A RegionID derived from a MapChunk; if null, a new RegionID is generated.</param>
+        public MapRegion(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_ID = null)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
-
+            RegionID = in_ID ?? Guid.NewGuid();
+            GlobalElevation = in_globalElevation;
+        }
+        /// <summary>
+        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
+        /// </summary>
+        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
+        public MapRegion(bool in_generateID)
+        {
             // Overwrite default behavior for tests.
             RegionID = in_generateID
                 ? Guid.NewGuid()

@@ -7,12 +7,14 @@ using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox
 {
-    public class RegionMapUnitTest
+    public class MapRegionUnitTest
     {
         #region Values for Tests
         private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
         private readonly Color TestColor = new Color(255, 128, 26, 230);
         private const string TestTitle = "New Region";
+        private const int TestElevation = -3;
+        private readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
         #endregion
 
         #region Region Map Initialization
@@ -22,25 +24,27 @@ namespace ParquetUnitTests.Sandbox
             var defaultRegion = new MapRegion();
 
             Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(Color.White, defaultRegion.Background);
+            Assert.Equal(MapRegion.DefaultColor, defaultRegion.Background);
         }
 
         [Fact]
         public void NewNullMapRegionTest()
         {
-            var defaultRegion = new MapRegion(null, null);
+            var nulledRegion = new MapRegion(null, null);
 
-            Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(Color.White, defaultRegion.Background);
+            Assert.Equal(MapRegion.DefaultTitle, nulledRegion.Title);
+            Assert.Equal(MapRegion.DefaultColor, nulledRegion.Background);
         }
 
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var defaultRegion = new MapRegion(TestTitle, TestColor);
+            var customRegion = new MapRegion(TestTitle, TestColor, TestElevation, TestID);
 
-            Assert.Equal(TestTitle, defaultRegion.Title);
-            Assert.Equal(TestColor, defaultRegion.Background);
+            Assert.Equal(TestTitle, customRegion.Title);
+            Assert.Equal(TestColor, customRegion.Background);
+            Assert.Equal(TestElevation, customRegion.GlobalElevation);
+            Assert.Equal(TestID, customRegion.RegionID);
         }
         #endregion
 

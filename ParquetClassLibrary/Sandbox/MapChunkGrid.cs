@@ -12,6 +12,7 @@ namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// A pattern for generating a playable region in sandbox-mode.
+    /// Regions in the editor are stored as Chunk Grids before being fleshed out on load in-game.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class MapChunkGrid
@@ -22,6 +23,9 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>Default name for new regions.</summary>
         public const string DefaultTitle = "New Region";
+
+        /// <summary>Default color for new regions.</summary>
+        public static readonly Color DefaultColor = Color.White;
         #endregion
 
         #region Whole-Region Characteristics
@@ -38,73 +42,86 @@ namespace ParquetClassLibrary.Sandbox
         public string Title { get; set; } = DefaultTitle;
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; } = Color.White;
+        public Color Background { get; set; } = DefaultColor;
 
-        /// <summary>The region's relative global elevation.</summary>
-        public int GlobalElevation { get; private set; } = 0;
-
-        /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; private set; } = 0;
+        /// <summary>The region's elevation relative to all other regions.</summary>
+        public int GlobalElevation { get; set; } = 0;
         #endregion
 
         #region Region Contents
-        /// <summary>The chunks of which the region consists.</summary>
-        private readonly MapChunk[,] _chunks = new MapChunk[DimensionsInChunks.x, DimensionsInChunks.y];
+        /// <summary>The type of chunks which make up the region.</summary>
+        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.x, DimensionsInChunks.y];
+
+        /// <summary>The orientation of the chunks which make up the region.</summary>
+        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.x, DimensionsInChunks.y];
         #endregion
 
         #region Initialization
-        /*
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
+        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> class.
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
-        public MapChunkGrid(string in_title = DefaultTitle, Color? in_background = null, bool in_generateID = true)
+        /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="in_ID">A pre-existing RegionID; if null, a new RegionID is generated.</param>
+        public MapChunkGrid(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_ID = null)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
+            RegionID = in_ID ?? Guid.NewGuid();
+            GlobalElevation = in_globalElevation;
+        }
 
+        /// <summary>
+        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> class.
+        /// </summary>
+        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
+        public MapChunkGrid(bool in_generateID)
+        {
             // Overwrite default behavior for tests.
             RegionID = in_generateID
                 ? Guid.NewGuid()
                 : Guid.Empty;
         }
-        */
         #endregion
 
-        #region Parquets Replacement Methods
+        #region Chunk Methods
         /// <summary>
-        /// Attempts to update the floor parquet at the given position.
+        /// Places the given chunk type at the given position anbd orients it.
         /// </summary>
-        /// <param name="in_floor">The new floor to set.</param>
-        /// <param name="in_position">The position to set.</param>
-        /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
-        public bool TrySetChunk(Floor in_floor, Vector2Int in_position)
+        /// <param name="in_type">The new chunk type to set.</param>
+        /// <param name="in_orientation">The orientation to set.</param>
+        /// <param name="in_position">The position at which to set it.</param>
+        /// <returns><c>true</c> if the position was valid, <c>false</c> otherwise.</returns>
+        public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2Int in_position)
         {
-            return false;
+            var valid = IsValidPosition(in_position);
+
+            if (valid)
+            {
+                _chunkTypes[in_position.x, in_position.y] = in_type;
+                _chunkOrientations[in_position.x, in_position.y] = in_orientation;
+            }
+
+            return valid;
         }
 
         /// <summary>
-        /// Attempts to remove the floor parquet at the given position.
+        /// Gets chunk type and orientation at the given position.
         /// </summary>
-        /// <param name="in_position">The position to clear.</param>
-        /// <returns><c>true</c>, if the floor was removed, <c>false</c> otherwise.</returns>
-        public bool TryRemoveChunk(Vector2Int in_position)
+        /// <param name="in_position">The position whose chunk data is sought.</param>
+        /// <returns>
+        /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
+        /// </returns>
+        public (ChunkType type, ChunkOrientation orientation)? GetChunk(Vector2Int in_position)
         {
-            return false;
-        }
-        #endregion
-
-        #region State Query Methods
-        /// <summary>
-        /// Gets any floor parquet at the position.
-        /// </summary>
-        /// <param name="in_position">The position whose floor is sought.</param>
-        /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
-        public bool GetChunkAtPosition(Vector2Int in_position)
-        {
-            return false;
+            return IsValidPosition(in_position)
+                ? ((ChunkType type, ChunkOrientation orientation)?)
+                (
+                    _chunkTypes[in_position.x, in_position.y],
+                    _chunkOrientations[in_position.x, in_position.y]
+                )
+                : null;
         }
         #endregion
 
@@ -116,44 +133,43 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
         {
-            Revision++;
             return JsonConvert.SerializeObject(this, Formatting.None);
         }
 
         /// <summary>
         /// Tries to deserialize a MapRegion from the given string.
         /// </summary>
-        /// <param name="in_serializedMapRegion">The serialized region map.</param>
-        /// <param name="out_mapRegion">The deserialized region map, or null if deserialization was impossible.</param>
+        /// <param name="in_serializedMapChunkGrid">The serialized region map.</param>
+        /// <param name="out_mapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMapRegion,
-                                                    out MapRegion out_mapRegion)
+        public static bool TryDeserializeFromString(string in_serializedMapChunkGrid,
+                                                    out MapChunkGrid out_mapChunkGrid)
         {
             var result = false;
-            out_mapRegion = null;
+            out_mapChunkGrid = null;
 
-            if (string.IsNullOrEmpty(in_serializedMapRegion))
+            if (string.IsNullOrEmpty(in_serializedMapChunkGrid))
             {
-                Error.Handle("Tried to deserialize a null string as a MapRegion.");
+                Error.Handle("Tried to deserialize a null string as a MapChunkGrid.");
             }
             else
             {
                 // Determine what version of region map was serialized.
                 try
                 {
-                    var document = JObject.Parse(in_serializedMapRegion);
+                    var document = JObject.Parse(in_serializedMapChunkGrid);
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
                     if (Assembly.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
-                        out_mapRegion = JsonConvert.DeserializeObject<MapRegion>(in_serializedMapRegion);
+                        out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
                         result = true;
                     }
                 }
                 catch (JsonReaderException exception)
                 {
-                    Error.Handle("Error reading string while deserializing a MapRegion: " + exception);
+                    Error.Handle("Error reading string while deserializing a MapChunkGrid: " + exception);
                 }
             }
 
@@ -189,7 +205,7 @@ namespace ParquetClassLibrary.Sandbox
                 for (var y = 0; y < DimensionsInChunks.y; y++)
                 {
                     representation.Append(
-                        _chunks[x, y]?.ToString()
+                        _chunkTypes[x, y].ToString()
                         ?? "@");
                 }
                 representation.AppendLine();

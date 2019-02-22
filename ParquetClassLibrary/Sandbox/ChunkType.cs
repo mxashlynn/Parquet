@@ -3,7 +3,7 @@ namespace ParquetClassLibrary.Sandbox
     /// <summary>
     /// Indicates a the sorts of parquets to generate in a MapChunk.
     /// </summary>
-    internal enum ChunkType
+    public enum ChunkType
     {
         Empty,
         ScatteredClouds,
@@ -60,8 +60,6 @@ namespace ParquetClassLibrary.Sandbox
         SandyVolcanicLake,
 
         Handmade,
-
-        Done,
     }
 
     /// <summary>
@@ -142,10 +140,31 @@ namespace ParquetClassLibrary.Sandbox
 
                 case ChunkType.Empty:
                 case ChunkType.Handmade:
-                case ChunkType.Done:
                     result.Set(ElevationMask.AboveGround);
                     result.Set(ElevationMask.LevelGround);
                     result.Set(ElevationMask.BelowGround);
+                    break;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Indicates if this ChunkType requires loading or procedural generation.
+        /// </summary>
+        /// <param name="in_chunkType">The chunk to evaluate.</param>
+        /// <returns>An elevation mask.</returns>
+        public static bool IsLoadable(this ChunkType in_chunkType)
+        {
+            bool result;
+
+            switch (in_chunkType)
+            {
+                case ChunkType.Handmade:
+                    result = true;
+                    break;
+                default:
+                    result = false;
                     break;
             }
 
