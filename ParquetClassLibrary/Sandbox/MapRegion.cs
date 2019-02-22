@@ -399,6 +399,33 @@ namespace ParquetClassLibrary.Sandbox
                                     GetCollectableAtPosition(in_position));
         }
 
+
+        /// <summary>
+        /// Gets all the parquets in the entire region.
+        /// </summary>
+        /// <returns>A collection of parquets.</returns>
+        public IEnumerable<ParquetParent> GetAllParquets()
+        {
+            var result = new List<ParquetParent>(DimensionsInParquets.x * DimensionsInParquets.y);
+
+            for (var x = 0; x < DimensionsInParquets.x; x++)
+            {
+                for (var y = 0; y < DimensionsInParquets.y; y++)
+                {
+                    ParquetParent parquet = _floorLayer[x, y];
+                    if (null != parquet) { result.Add(parquet); }
+                    parquet = _blockLayer[x, y];
+                    if (null != parquet) { result.Add(parquet); }
+                    parquet = _furnishingLayer[x, y];
+                    if (null != parquet) { result.Add(parquet); }
+                    parquet = _collectableLayer[x, y];
+                    if (null != parquet) { result.Add(parquet); }
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Gets all special data at the given position, if any.
         /// </summary>

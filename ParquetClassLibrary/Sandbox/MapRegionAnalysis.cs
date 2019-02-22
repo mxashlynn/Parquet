@@ -1,10 +1,25 @@
-﻿namespace ParquetClassLibrary.Sandbox
+﻿using System;
+using ParquetClassLibrary.Sandbox.Parquets;
+
+namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// Convenience extension methods for concise coding when working with ParquetSelection instances.
     /// </summary>
     internal static class MapRegionAnalysis
     {
+        #region Biome Criteria
+        /// <summary>Used in computing thresholds.</summary>
+        private static readonly int ParquetsPerLayer = MapRegion.DimensionsInParquets.x * MapRegion.DimensionsInParquets.y;
+
+        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
+        private static readonly int LandThreshold = (int)Math.Floor(ParquetsPerLayer * 1.25);
+
+        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
+        private static readonly int FluidThreshold = (int)Math.Floor(ParquetsPerLayer * 0.75);
+        #endregion
+
+        #region Biome Analysis Methods
         /// <summary>
         /// Determines which <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> the 
         /// given <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> corresponds to.
@@ -24,7 +39,7 @@
                 switch (in_region.ElevationLocal)
                 {
                     case Elevation.AboveGround:
-                        if (in_region.HasClouds())
+                        if (in_region.HasHeavenlyWalkways())
                         {
                             result = Biome.Heavens;
                         }
@@ -76,23 +91,15 @@
         }
 
         /// <summary>
-        /// Determines if the region has enough buildings to qualify as a town.
+        /// Determines if the region has enough heavenly parquets to qualify as heaven.
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasBuildings(this MapRegion in_region)
+        internal static bool HasHeavenlyWalkways(this MapRegion in_region)
         {
-            return false;
-        }
-
-        /// <summary>
-        /// Determines if the region has enough walkable clouds to qualify as heaven.
-        /// </summary>
-        /// <param name="in_region">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasClouds(this MapRegion in_region)
-        {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToHeavens; },
+                                                FluidThreshold);
         }
 
         /// <summary>
@@ -100,9 +107,11 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasLavaflow(this MapRegion in_region)
+        internal static bool HasLavaflow(this MapRegion in_region)
         {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToVolcanic; },
+                                                FluidThreshold);
         }
 
         /// <summary>
@@ -110,9 +119,11 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasSea(this MapRegion in_region)
+        internal static bool HasSea(this MapRegion in_region)
         {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToSeaside; },
+                                                FluidThreshold);
         }
 
         /// <summary>
@@ -120,9 +131,11 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasSand(this MapRegion in_region)
+        internal static bool HasSand(this MapRegion in_region)
         {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToDesert; },
+                                                LandThreshold);
         }
 
         /// <summary>
@@ -130,9 +143,11 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasSnow(this MapRegion in_region)
+        internal static bool HasSnow(this MapRegion in_region)
         {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToTundra; },
+                                                LandThreshold);
         }
 
         /// <summary>
@@ -140,9 +155,11 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasSwamp(this MapRegion in_region)
+        internal static bool HasSwamp(this MapRegion in_region)
         {
-            return false;
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToSwamp; },
+                                                LandThreshold);
         }
 
         /// <summary>
@@ -150,9 +167,48 @@
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        public static bool HasForest(this MapRegion in_region)
+        internal static bool HasForest(this MapRegion in_region)
         {
+            return CountMeetsOrExceedsThreshold(in_region,
+                                                (ParquetParent p) => { return p.ContributesToForest; },
+                                                LandThreshold);
+        }
+
+        /// <summary>
+        /// Helper method determines if the region has enough parquets satisfying the given predicate
+        /// to meet or exceed the given threshold.
+        /// </summary>
+        /// <param name="in_region">The region to test.</param>
+        /// <param name="in_predicate">A predicate indicating if the parquet should be counted.</param>
+        /// <param name="in_threshold">A total number of parquets that must be met for the region to qualify.</param>
+        /// <returns><c>true</c>, if enough parquets satisfy the conditions given, <c>false</c> otherwise.</returns>
+        private static bool CountMeetsOrExceedsThreshold(MapRegion in_region, Predicate<ParquetParent> in_predicate, int in_threshold)
+        {
+            var count = 0;
+
+            foreach (var parquet in in_region.GetAllParquets())
+            {
+                if (in_predicate(parquet))
+                {
+                    count++;
+                }
+            }
+
+            return count >= in_threshold;
+        }
+        #endregion
+
+        #region Buildings Analysis Methods
+        /// <summary>
+        /// Determines if the region has enough buildings to qualify as a town.
+        /// </summary>
+        /// <param name="in_region">The region to test.</param>
+        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
+        internal static bool HasBuildings(this MapRegion in_region)
+        {
+            // TODO Implement this!
             return false;
         }
+        #endregion
     }
 }
