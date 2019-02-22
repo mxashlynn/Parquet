@@ -18,8 +18,8 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
-        public static readonly Vector2Int Dimensions = new Vector2Int(Assembly.ParquetsPerRegionDimension,
-                                                                      Assembly.ParquetsPerRegionDimension);
+        public static readonly Vector2Int DimensionsInParquets = new Vector2Int(Assembly.ParquetsPerRegionDimension,
+                                                                                Assembly.ParquetsPerRegionDimension);
 
         /// <summary>Default name for new regions.</summary>
         public const string DefaultTitle = "New Region";
@@ -56,16 +56,16 @@ namespace ParquetClassLibrary.Sandbox
         private readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        private readonly Floor[,] _floorLayer = new Floor[Dimensions.x, Dimensions.y];
+        private readonly Floor[,] _floorLayer = new Floor[DimensionsInParquets.x, DimensionsInParquets.y];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        private readonly Block[,] _blockLayer = new Block[Dimensions.x, Dimensions.y];
+        private readonly Block[,] _blockLayer = new Block[DimensionsInParquets.x, DimensionsInParquets.y];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        private readonly Furnishing[,] _furnishingLayer = new Furnishing[Dimensions.x, Dimensions.y];
+        private readonly Furnishing[,] _furnishingLayer = new Furnishing[DimensionsInParquets.x, DimensionsInParquets.y];
 
         /// <summary>Collectable materials in the region.</summary>
-        private readonly Collectable[,] _collectableLayer = new Collectable[Dimensions.x, Dimensions.y];
+        private readonly Collectable[,] _collectableLayer = new Collectable[DimensionsInParquets.x, DimensionsInParquets.y];
         #endregion
 
         #region Initialization
@@ -467,8 +467,8 @@ namespace ParquetClassLibrary.Sandbox
         {
             return in_position.x > -1
                 && in_position.y > -1
-                && in_position.x < Dimensions.x
-                && in_position.y < Dimensions.y;
+                && in_position.x < DimensionsInParquets.x
+                && in_position.y < DimensionsInParquets.y;
         }
 
         /// <summary>
@@ -478,11 +478,11 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
         public override string ToString()
         {
-            var representation = new StringBuilder(Dimensions.Magnitude);
+            var representation = new StringBuilder(DimensionsInParquets.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < Dimensions.x; x++)
+            for (var x = 0; x < DimensionsInParquets.x; x++)
             {
-                for (var y = 0; y < Dimensions.y; y++)
+                for (var y = 0; y < DimensionsInParquets.y; y++)
                 {
                     representation.Append(
                         _collectableLayer[x, y]?.ToString()
@@ -495,7 +495,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             #endregion
 
-            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" + representation;
+            return "Region " + Title + " (" + DimensionsInParquets.x + ", " + DimensionsInParquets.y + ")\n" + representation;
         }
 
         /// <summary>
@@ -505,14 +505,14 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
         public string ToLayeredString()
         {
-            var floorRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var blocksRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var furnishingsRepresentation = new StringBuilder(Dimensions.Magnitude);
-            var collectablesRepresentation = new StringBuilder(Dimensions.Magnitude);
+            var floorRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var blocksRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var furnishingsRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var collectablesRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < Dimensions.x; x++)
+            for (var x = 0; x < DimensionsInParquets.x; x++)
             {
-                for (var y = 0; y < Dimensions.y; y++)
+                for (var y = 0; y < DimensionsInParquets.y; y++)
                 {
                     floorRepresentation.Append(_floorLayer[x, y]?.ToString() ?? "@");
                     blocksRepresentation.Append(_blockLayer[x, y]?.ToString() ?? " ");
@@ -526,7 +526,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             #endregion
 
-            return "Region " + Title + " (" + Dimensions.x + ", " + Dimensions.y + ")\n" +
+            return "Region " + Title + " (" + DimensionsInParquets.x + ", " + DimensionsInParquets.y + ")\n" +
                 "Floor: \n" + floorRepresentation +
                 "Blocks: \n" + blocksRepresentation +
                 "Furnishings: \n" + furnishingsRepresentation +

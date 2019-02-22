@@ -12,9 +12,9 @@ namespace ParquetUnitTests.Sandbox
         #region Values for Tests
         private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
         private readonly Color TestColor = new Color(255, 128, 26, 230);
-        private const string TestTitle = "New Region";
+        private const string TestTitle = "Test Region";
         private const int TestElevation = 4;
-        private readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
+        private readonly Guid TestID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
         #endregion
 
         #region Initialization
@@ -28,18 +28,18 @@ namespace ParquetUnitTests.Sandbox
         }
 
         [Fact]
-        public void NewNullMapRegionTest()
+        public void NewNullMapChunkGridTest()
         {
-            var nulledGrid = new MapRegion(null, null);
+            var nulledGrid = new MapChunkGrid(null, null);
 
-            Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
+            Assert.Equal(MapChunkGrid.DefaultTitle, nulledGrid.Title);
             Assert.Equal(MapChunkGrid.DefaultColor, nulledGrid.Background);
         }
 
         [Fact]
-        public void NewCustomMapRegionTest()
+        public void NewCustomMapChunkGridTest()
         {
-            var customRegion = new MapRegion(TestTitle, TestColor);
+            var customRegion = new MapChunkGrid(TestTitle, TestColor, TestElevation, TestID);
 
             Assert.Equal(TestTitle, customRegion.Title);
             Assert.Equal(TestColor, customRegion.Background);
@@ -102,9 +102,9 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void SerializingKnownMapProducesKnownStringTest()
         {
-            var region = new MapChunkGrid(false).FillTestPattern();
+            var grid = new MapChunkGrid(false).FillTestPattern();
 
-            var result = region.SerializeToString();
+            var result = grid.SerializeToString();
 
             Assert.Equal(SerializedMapChunkGridsForTest.KnownGoodString, result);
         }

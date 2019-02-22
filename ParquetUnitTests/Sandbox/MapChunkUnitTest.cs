@@ -361,7 +361,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void SerializingKnownMapProducesKnownStringTest()
         {
-            var region = new MapChunk();
+            var region = new MapChunk().FillTestPattern();
 
             var result = region.SerializeToString();
 
@@ -381,7 +381,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingUnsupportedVersionFailsTest()
         {
             var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.UnsupportedVersionString,
-                                                            out MapChunk mapChunkResults);
+                                                           out MapChunk mapChunkResults);
 
             Assert.Null(mapChunkResults);
             Assert.False(result);
@@ -391,7 +391,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownBadStringFailsTest()
         {
             var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.NonJsonString,
-                                                            out MapChunk mapChunkResults);
+                                                           out MapChunk mapChunkResults);
 
             Assert.Null(mapChunkResults);
             Assert.False(result);
@@ -401,7 +401,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownGoodStringSucceedsTest()
         {
             var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.KnownGoodString,
-                                                            out MapChunk mapChunkResults);
+                                                           out MapChunk mapChunkResults);
 
             Assert.NotNull(mapChunkResults);
             Assert.True(result);

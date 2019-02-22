@@ -1,6 +1,9 @@
 ﻿using System;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetRunner
@@ -9,10 +12,10 @@ namespace ParquetRunner
     {
         public static void Main(string[] args)
         {
-            var myMap = new MapRegion("Moria", Color.Grey);
-            //Console.BackgroundColor = myMap.Background;
-            Console.WriteLine(myMap);
-            //Console.WriteLine(myMap.SerializeToString());
+            var region = new MapRegion();
+            //var serialized = region.SerializeToString();
+            Console.WriteLine(region);
+            //Console.WriteLine(serialized);
         }
     }
 }

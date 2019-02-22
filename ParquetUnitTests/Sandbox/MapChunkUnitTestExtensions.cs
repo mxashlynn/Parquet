@@ -8,27 +8,27 @@ namespace ParquetUnitTests.Sandbox
     internal static class MapChunkUnitTestExtensions
     {
         /// <summary>Fills the chunk with a test pattern.</summary>
-        public static MapChunk FillTestPattern(this MapChunk in_mapRegion)
+        public static MapChunk FillTestPattern(this MapChunk in_mapChunk)
         {
-            for (var x = 0; x < MapChunk.Dimensions.x; x++)
+            for (var x = 0; x < MapChunk.DimensionsInParquets.x; x++)
             {
-                for (var y = 0; y < MapChunk.Dimensions.y; y++)
+                for (var y = 0; y < MapChunk.DimensionsInParquets.y; y++)
                 {
-                    in_mapRegion.TrySetFloor(new Floor(Floors.SandSand), new Vector2Int(x, y));
+                    in_mapChunk.TrySetFloor(new Floor(Floors.SandSand), new Vector2Int(x, y));
                 }
 
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, 0));
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, MapChunk.Dimensions.y - 1));
+                in_mapChunk.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, 0));
+                in_mapChunk.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, MapChunk.DimensionsInParquets.y - 1));
             }
-            for (var y = 0; y < MapChunk.Dimensions.y; y++)
+            for (var y = 0; y < MapChunk.DimensionsInParquets.y; y++)
             {
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(0, y));
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(MapChunk.Dimensions.x - 1, y));
+                in_mapChunk.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(0, y));
+                in_mapChunk.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(MapChunk.DimensionsInParquets.x - 1, y));
             }
-            in_mapRegion.TrySetFurnishing(new Furnishing(Furnishings.Chair), new Vector2Int(1, 2));
-            in_mapRegion.TrySetCollectable(new Collectable(Collectables.Flower), new Vector2Int(3, 3));
+            in_mapChunk.TrySetFurnishing(new Furnishing(Furnishings.Chair), new Vector2Int(1, 2));
+            in_mapChunk.TrySetCollectable(new Collectable(Collectables.Flower), new Vector2Int(3, 3));
 
-            return in_mapRegion;
+            return in_mapChunk;
         }
     }
 }

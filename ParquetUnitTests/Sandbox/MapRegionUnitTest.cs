@@ -386,7 +386,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void SerializingKnownMapProducesKnownStringTest()
         {
-            var region = new MapRegion(in_generateID: false).FillTestPattern();
+            var region = new MapRegion(false).FillTestPattern();
 
             var result = region.SerializeToString();
 
