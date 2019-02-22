@@ -44,8 +44,11 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>A color to display in any empty areas of the region.</summary>
         public Color Background { get; set; } = DefaultColor;
 
+        /// <summary>The region's elevation in absolute terms.</summary>
+        public Elevation ElevationLocal { get; set; } = Elevation.LevelGround;
+
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int GlobalElevation { get; set; } = 0;
+        public int ElevationGlobal { get; set; } = 0;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; } = 0;
@@ -74,14 +77,17 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
+        /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_ID">A RegionID derived from a MapChunk; if null, a new RegionID is generated.</param>
-        public MapRegion(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_ID = null)
+        /// <param name="in_ID">A RegionID derived from a MapChunkGrid; if null, a new RegionID is generated.</param>
+        public MapRegion(string in_title = DefaultTitle, Color? in_background = null,
+                         Elevation in_localElevation = Elevation.LevelGround, int in_globalElevation = 0, Guid? in_ID = null)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
             RegionID = in_ID ?? Guid.NewGuid();
-            GlobalElevation = in_globalElevation;
+            ElevationLocal = in_localElevation;
+            ElevationGlobal = in_globalElevation;
         }
         /// <summary>
         /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.

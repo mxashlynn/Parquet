@@ -13,6 +13,7 @@ namespace ParquetUnitTests.Sandbox
         private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
         private readonly Color TestColor = new Color(255, 128, 26, 230);
         private const string TestTitle = "New Region";
+        private const Elevation TestStory = Elevation.AboveGround;
         private const int TestElevation = -3;
         private readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
         #endregion
@@ -39,11 +40,12 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestTitle, TestColor, TestElevation, TestID);
+            var customRegion = new MapRegion(TestTitle, TestColor, TestStory, TestElevation, TestID);
 
             Assert.Equal(TestTitle, customRegion.Title);
             Assert.Equal(TestColor, customRegion.Background);
-            Assert.Equal(TestElevation, customRegion.GlobalElevation);
+            Assert.Equal(TestStory, customRegion.ElevationLocal);
+            Assert.Equal(TestElevation, customRegion.ElevationGlobal);
             Assert.Equal(TestID, customRegion.RegionID);
         }
         #endregion
