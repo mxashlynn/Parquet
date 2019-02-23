@@ -5,6 +5,7 @@
     /// </summary>
     public enum Floors
     {
+        // TODO: Reconsider these names.
         GrassDirt,
         GrassMuck,
         SandSand,

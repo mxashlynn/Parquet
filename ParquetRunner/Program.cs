@@ -12,9 +12,13 @@ namespace ParquetRunner
     {
         public static void Main(string[] args)
         {
-            var region = new MapRegion();
+            Console.WriteLine(Assembly.DoTheThing());
+
+                // TODO -- ADD AS LINK from Windows!!
+
+            //var region = new MapRegion();
             //var serialized = region.SerializeToString();
-            Console.WriteLine(region);
+            //Console.WriteLine(region);
             //Console.WriteLine(serialized);
         }
     }

@@ -1,3 +1,5 @@
+using System.Configuration;
+
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ParquetUnitTests")]
 
 namespace ParquetClassLibrary
@@ -18,5 +20,14 @@ namespace ParquetClassLibrary
 
         /// <summary>The length of each region dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ParquetsPerChunkDimension;
+
+        public static string DoTheThing()
+        {
+            var temp = ConfigurationManager.AppSettings["paige"].ToString();
+            temp = string.IsNullOrEmpty(temp)
+                ? "(empty)"
+                : temp;
+            return $"paige {temp}";
+        }
     }
 }

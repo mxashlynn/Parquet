@@ -37,5 +37,12 @@ Global
 		$0.XmlFormattingPolicy = $3
 		$3.scope = application/xml
 		$0.StandardHeader = $4
+		$0.VersionControlPolicy = $5
+		$5.CommitMessageStyle = $6
+		$6.FirstFilePrefix = 
+		$6.FileSeparator = ", "
+		$6.LineAlign = 0
+		$6.InterMessageLines = 0
+		$6.Wrap = False
 	EndGlobalSection
 EndGlobal
