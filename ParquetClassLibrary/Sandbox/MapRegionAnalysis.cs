@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Sandbox
                 switch (in_region.ElevationLocal)
                 {
                     case Elevation.AboveGround:
-                        if (in_region.HasHeavenlyWalkways())
+                        if (in_region.IsHeavenly())
                         {
                             result = Biome.Heavens;
                         }
@@ -49,33 +49,33 @@ namespace ParquetClassLibrary.Sandbox
                         }
                         break;
                     case Elevation.LevelGround:
-                        if (in_region.HasLavaflow())
+                        if (in_region.IsVolcanic())
                         {
                             result = Biome.Volcano;
                         }
-                        else if (in_region.HasSea())
+                        else if (in_region.IsCoastal())
                         {
                             result = Biome.Seaside;
                         }
-                        else if (in_region.HasSand())
+                        else if (in_region.IsDeserted())
                         {
                             result = Biome.Desert;
                         }
-                        else if (in_region.HasSnow())
+                        else if (in_region.IsFrozen())
                         {
                             result = Biome.Tundra;
                         }
-                        else if (in_region.HasSwamp())
+                        else if (in_region.IsSwampy())
                         {
                             result = Biome.Swamp;
                         }
-                        else if (in_region.HasForest())
+                        else if (in_region.IsForested())
                         {
                             result = Biome.Forest;
                         }
                         break;
                     case Elevation.BelowGround:
-                        if (in_region.HasLavaflow())
+                        if (in_region.IsVolcanic())
                         {
                             result = Biome.Inferno;
                         }
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasHeavenlyWalkways(this MapRegion in_region)
+        internal static bool IsHeavenly(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToHeavens; },
@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasLavaflow(this MapRegion in_region)
+        internal static bool IsVolcanic(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToVolcanic; },
@@ -119,7 +119,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasSea(this MapRegion in_region)
+        internal static bool IsCoastal(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToSeaside; },
@@ -131,7 +131,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasSand(this MapRegion in_region)
+        internal static bool IsDeserted(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToDesert; },
@@ -143,7 +143,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasSnow(this MapRegion in_region)
+        internal static bool IsFrozen(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToTundra; },
@@ -155,7 +155,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasSwamp(this MapRegion in_region)
+        internal static bool IsSwampy(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToSwamp; },
@@ -167,7 +167,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasForest(this MapRegion in_region)
+        internal static bool IsForested(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.ContributesToForest; },
