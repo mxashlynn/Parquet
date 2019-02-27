@@ -1,28 +1,22 @@
-﻿namespace ParquetClassLibrary.Sandbox.Parquets
+﻿using ParquetClassLibrary.Sandbox.ID;
+
+namespace ParquetClassLibrary.Sandbox.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox-mode Characters, Furnishings, Crafting Materils, etc.
     /// </summary>
     public class Collectable : ParquetParent
     {
-        #region Identity
-        /// <summary>The type of collectable material this instance represents.</summary>
-        // IDEA: We might be able to remove this if we move to a Scriptable Object or other Unity-derived class.
-        public ID.Collectables collectableType;
-        #endregion
-
-        #region Constructor
-        public Collectable(ID.Collectables in_id = ID.Collectables.Flower)
-        {
-            collectableType = in_id;
-        }
-        #endregion
-
-        #region Utility Methods
-        public override string ToString()
-        {
-            return collectableType.ToString("g").Substring(0, 1);
-        }
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectable"/> class.
+        /// </summary>
+        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
+        public Collectable(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+            : base(in_ID, in_name, in_addsToBiome)
+        { }
         #endregion
     }
 }

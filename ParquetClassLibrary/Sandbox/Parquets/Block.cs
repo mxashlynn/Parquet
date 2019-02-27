@@ -1,51 +1,58 @@
-﻿namespace ParquetClassLibrary.Sandbox.Parquets
+﻿using ParquetClassLibrary.Sandbox.ID;
+
+namespace ParquetClassLibrary.Sandbox.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox-mode parquet block.
     /// </summary>
     public class Block : ParquetParent
     {
-        #region Identity
-        /// <summary>The type of Block this instance represents.</summary>
-        // IDEA: We might be able to remove this if we move to a Scriptable Object or other Unity-derived class.
-        public ID.Blocks blockType;
-        #endregion
-
-        #region Constructor
-        public Block(ID.Blocks in_id = ID.Blocks.Tree)
-        {
-            blockType = in_id;
-        }
-        #endregion
-
         #region Block Physics
+        /// <summary>The tool used to remove the block.</summary>
+        internal GatheringTools GatherTool { get; private protected set; }
+
         /// <summary>The block is flammable.</summary>
-        public bool IsFlammable { get; set; }
+        internal bool IsFlammable { get; private protected set; }
 
         /// <summary>The block is a liquid.</summary>
-        public bool IsLiquid { get; set; }
-
-        /// <summary>The tool used to remove the block.</summary>
-        public ID.GatheringTools ToolType { get; set; }
-
+        internal bool IsLiquid { get; private protected set; }
+        
         /// <summary>The block's native toughness.</summary>
-        public int MaxToughness { get; set; }
+        internal int MaxToughness { get; private protected set; }
+        #endregion
 
+        #region Block Status
         /// <summary>The block's current toughness.</summary>
         private int _toughness;
 
         /// <summary>The block's current toughness, from 0 to <see cref="MaxToughness"/>.</summary>
-        public int Toughness
+        internal int Toughness
         {
             get => _toughness;
             set => _toughness = value.Normalize(0, MaxToughness);
         }
         #endregion
 
-        #region Utility Methods
-        public override string ToString()
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/> class.
+        /// </summary>
+        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_gatherTool">The tool used to gather this block.</param>
+        /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
+        /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
+        /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
+        public Block(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None, GatheringTools in_gatherTool = GatheringTools.None,
+                     bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = 0)
+                     : base(in_ID, in_name, in_addsToBiome)
         {
-            return blockType.ToString("g").Substring(0, 1);
+            GatherTool = in_gatherTool;
+            IsFlammable = in_isFlammable;
+            IsLiquid = in_isLiquid;
+            MaxToughness = in_maxToughness;
+            Toughness = MaxToughness;
         }
         #endregion
     }

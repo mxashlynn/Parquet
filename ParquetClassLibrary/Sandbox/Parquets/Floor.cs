@@ -1,40 +1,52 @@
-﻿namespace ParquetClassLibrary.Sandbox.Parquets
+﻿using ParquetClassLibrary.Sandbox.ID;
+
+namespace ParquetClassLibrary.Sandbox.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox-mode parquet floor.
     /// </summary>
     public class Floor : ParquetParent
     {
-        #region Identity
-        /// <summary>The type of Block this instance represents.</summary>
-        // IDEA: We might be able to remove this if we move to a Scriptable Object or other Unity-derived class.
-        public ID.Floors floorType;
-        #endregion
-
-        #region Constructor
-        public Floor(ID.Floors in_id = ID.Floors.GrassDirt)
-        {
-            floorType = in_id;
-        }
+        #region Class Defaults
+        private const string DefaultTrenchAdjective = "dark";
         #endregion
 
         #region Parquet Physics
+        /// <summary>The tool used to dig out or fill in the floor.</summary>
+        internal ID.ModificationTools ModTool { get; private protected set; }
+
         /// <summary>The floor may be walked on.</summary>
-        public bool isWalkable;
+        internal string TrenchAdjective { get; private protected set; }
+
+        /// <summary>The floor may be walked on.</summary>
+        internal bool IsWalkable { get; private protected set; }
 
         // IDEA: Add isFlyable
-
-        /// <summary>The floor has been dug out.</summary>
-        public bool isHole;
-
-        /// <summary>The tool used to dig out or fill in the floor.</summary>
-        public ID.ModificationTools tool;
         #endregion
 
-        #region Utility Methods
-        public override string ToString()
+        #region Floor Status
+        /// <summary>The floor has been dug out.</summary>
+        internal bool IsHole { get; set; } = false;
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/> class.
+        /// </summary>
+        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_modTool">The tool used to gather this block.</param>
+        /// <param name="in_trenchAdjective">In trench adjective.</param>
+        /// <param name="in_isWalkable">If <c>true</c> this block may burn.</param>
+        public Floor(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+                     ModificationTools in_modTool = ModificationTools.None,
+                     string in_trenchAdjective = DefaultTrenchAdjective, bool in_isWalkable = true)
+                     : base(in_ID, in_name, in_addsToBiome)
         {
-            return floorType.ToString("g").Substring(0, 1);
+            ModTool = in_modTool;
+            TrenchAdjective = in_trenchAdjective;
+            IsWalkable = in_isWalkable;
         }
         #endregion
     }
