@@ -8,15 +8,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public static class AllParquets
     {
-        /// <summary>A collection of all defined parquets of all subtypes.</summary>
-        private static readonly Dictionary<ParquetID, ParquetParent> _table = new Dictionary<ParquetID, ParquetParent>
-        {
-            { TestFloor.ID, TestFloor },
-            { TestBlock.ID, TestBlock },
-            { TestFurnishing.ID, TestFurnishing },
-            { TestCollectable.ID, TestCollectable },
-        };
-
         /// <summary>Used in test patterns.</summary>
         public static readonly Floor TestFloor = new Floor(-1, "Floor Test Parquet");
 
@@ -28,6 +19,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>Used in test patterns.</summary>
         public static readonly Collectable TestCollectable = new Collectable(-4, "Collectable Test Parquet");
+
+        /// <summary>A collection of all defined parquets of all subtypes.</summary>
+        private static readonly Dictionary<ParquetID, ParquetParent> _table = new Dictionary<ParquetID, ParquetParent>
+        {
+            { TestFloor.ID, TestFloor },
+            { TestBlock.ID, TestBlock },
+            { TestFurnishing.ID, TestFurnishing },
+            { TestCollectable.ID, TestCollectable },
+        };
 
         /// <summary>
         /// Returns the specified parquet.
