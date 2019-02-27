@@ -141,9 +141,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ParquetParent in_parquet1, ParquetParent in_parquet2)
         {
-            if (object.ReferenceEquals(in_parquet1, in_parquet2)) return true;
-            if (object.ReferenceEquals(in_parquet1, null)) return false;
-            if (object.ReferenceEquals(in_parquet2, null)) return false;
+            if (object.ReferenceEquals(in_parquet1, in_parquet2)) return false;
+            if (object.ReferenceEquals(in_parquet1, null)) return true;
+            if (object.ReferenceEquals(in_parquet2, null)) return true;
 
             return in_parquet1.ID != in_parquet2.ID;
         }
