@@ -1,7 +1,7 @@
 ﻿namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Indicates the biome that a MapRegion may embody.
+    /// Indicates the biome that a MapRegion embodies.
     /// </summary>
     public enum Biome
     {

@@ -17,6 +17,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
             Position = in_position;
         }
 
+        #region Implements IEquatable
         /// <summary>
         /// Hash function for a <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> object.
         /// </summary>
@@ -90,5 +91,6 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
 
             return !in_point1.Equals(in_point2);
         }
+        #endregion
     }
 }

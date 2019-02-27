@@ -45,6 +45,7 @@ namespace ParquetClassLibrary.Stubs
             _magnitude = int.MinValue;
         }
 
+        #region IEquatable Implementation
         /// <summary>
         /// Serves as a hash function for a <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/> struct.
         /// </summary>
@@ -116,7 +117,9 @@ namespace ParquetClassLibrary.Stubs
 
             return !in_vector1.Equals(in_vector2);
         }
+        #endregion
 
+        #region Utility Methods
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
         /// </summary>
@@ -125,5 +128,6 @@ namespace ParquetClassLibrary.Stubs
         {
             return $"({x}, {y})";
         }
+        #endregion
     }
 }

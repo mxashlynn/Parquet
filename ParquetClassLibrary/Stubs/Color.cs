@@ -27,6 +27,7 @@ namespace ParquetClassLibrary.Stubs
             a = in_a.Normalize(0, 255);
         }
 
+        #region IEquatable Implementation
         public override int GetHashCode()
         {
             return r.GetHashCode() ^
@@ -72,7 +73,9 @@ namespace ParquetClassLibrary.Stubs
 
             return !in_color1.Equals(in_color2);
         }
+        #endregion
 
+        #region Conversion Methods
         public static implicit operator Color(ConsoleColor in_color)
         {
             Color result;
@@ -141,5 +144,6 @@ namespace ParquetClassLibrary.Stubs
 
             return result;
         }
+        #endregion
     }
 }
