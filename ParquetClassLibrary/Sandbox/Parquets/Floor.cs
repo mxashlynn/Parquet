@@ -1,4 +1,5 @@
-﻿using ParquetClassLibrary.Sandbox.ID;
+﻿using Newtonsoft.Json;
+using ParquetClassLibrary.Sandbox.ID;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -13,20 +14,23 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Parquet Physics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        internal ID.ModificationTools ModTool { get; private protected set; }
+        [JsonProperty(PropertyName = "in_modTool")]
+        public ID.ModificationTools ModTool { get; private set; }
 
         /// <summary>The floor may be walked on.</summary>
-        internal string TrenchAdjective { get; private protected set; }
+        [JsonProperty(PropertyName = "in_trenchAdjective")]
+        public string TrenchAdjective { get; private set; }
 
         /// <summary>The floor may be walked on.</summary>
-        internal bool IsWalkable { get; private protected set; }
+        [JsonProperty(PropertyName = "in_isWalkable")]
+        public bool IsWalkable { get; private set; }
 
         // IDEA: Add isFlyable
         #endregion
 
         #region Floor Status
         /// <summary>The floor has been dug out.</summary>
-        internal bool IsHole { get; set; } = false;
+        public bool IsHole { get; set; } = false;
         #endregion
 
         #region Initialization
@@ -39,6 +43,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_modTool">The tool used to gather this block.</param>
         /// <param name="in_trenchAdjective">In trench adjective.</param>
         /// <param name="in_isWalkable">If <c>true</c> this block may burn.</param>
+        [JsonConstructor]
         public Floor(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
                      string in_trenchAdjective = DefaultTrenchAdjective, bool in_isWalkable = true)

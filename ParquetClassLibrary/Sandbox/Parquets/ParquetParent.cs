@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
@@ -17,14 +18,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         private ParquetID _id;
 
         /// <summary>Unique identifier of the parquet.</summary>
-        internal ParquetID ID
+        [JsonProperty(PropertyName = "in_ID")]
+        public ParquetID ID
         {
             get
             {
                 return _id;
 
             }
-            private protected set
+            protected set
             {
                 if (KnownIDs.Contains(value))
                 {
@@ -39,13 +41,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         }
 
         /// <summary>Player-facing name of the parquet.</summary>
-        internal string Name { get; private protected set; }
+        [JsonProperty(PropertyName = "in_name")]
+        public string Name { get; private set; }
 
         /// <summary>
         /// If a <see cref="T:ParquetClassLibrary.Sandbox.BiomeMask"/> flag is set,
         /// this parquet helps generate the corresponding <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
         /// </summary>
-        internal BiomeMask AddsToBiome { get; private protected set; }
+        [JsonProperty(PropertyName = "in_addsToBiome")]
+        public BiomeMask AddsToBiome { get; private set; }
 
         #region Initialization
         /// <summary>
@@ -57,6 +61,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>
         /// this parquet helps to generate.
         /// </param>
+        [JsonConstructor]
         protected ParquetParent(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
             ID = in_ID;

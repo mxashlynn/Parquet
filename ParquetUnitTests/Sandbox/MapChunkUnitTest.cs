@@ -406,7 +406,6 @@ namespace ParquetUnitTests.Sandbox
             Assert.NotNull(mapChunkResults);
             Assert.True(result);
         }
-
         #endregion
 
         #region State Query Methods

@@ -1,4 +1,4 @@
-using System;
+using Newtonsoft.Json;
 
 namespace ParquetClassLibrary.Sandbox.ID
 {
@@ -8,6 +8,7 @@ namespace ParquetClassLibrary.Sandbox.ID
     public struct ParquetID
     {
         /// <summary>Backing type for the identifier.</summary>
+        [JsonProperty]
         private int _id;
 
         /// <summary>
