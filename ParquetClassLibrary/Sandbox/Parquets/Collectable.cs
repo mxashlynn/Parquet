@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -8,6 +9,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public class Collectable : ParquetParent
     {
+        #region Class Defaults
+        /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
+        protected override Range<ParquetID> Bounds { get { return Assembly.CollectableIDs; } }
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectable"/> class.

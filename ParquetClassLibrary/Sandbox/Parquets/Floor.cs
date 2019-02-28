@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -9,7 +10,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Floor : ParquetParent
     {
         #region Class Defaults
+        /// <summary>An adjective to employ for trenches if none is provided.</summary>
         private const string DefaultTrenchAdjective = "dark";
+
+        /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
+        protected override Range<ParquetID> Bounds { get { return Assembly.FloorIDs; } }
         #endregion
 
         #region Parquet Physics

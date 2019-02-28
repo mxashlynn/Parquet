@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox.ID;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
@@ -8,6 +9,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public class Furnishing : ParquetParent
     {
+        #region Class Defaults
+        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        protected override Range<ParquetID> Bounds { get { return Assembly.FurnishingIDs; } }
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Furnishing"/> class.

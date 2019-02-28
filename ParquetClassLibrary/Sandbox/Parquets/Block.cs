@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -8,6 +9,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public class Block : ParquetParent
     {
+        #region Class Defaults
+        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        protected override Range<ParquetID> Bounds { get { return Assembly.BlockIDs; } }
+        #endregion
+
         #region Block Physics
         /// <summary>The tool used to remove the block.</summary>
         [JsonProperty(PropertyName = "in_gatherTool")]
