@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        // TODO Add a means to typecheck that only IDs valid for the given subtype may be assigned.
+        // TODO Add bounds-checking using the ranges defined in Assembly.
         private ParquetID _floorToPaint;
         private ParquetID _blockToPaint;
         private ParquetID _furnishingToPaint;
