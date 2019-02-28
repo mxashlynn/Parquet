@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        // TODO Add bounds-checking using the ranges defined in Assembly.
+        // TODO Add bounds-checking using the ranges defined in Assembly.  Put it in TrySet*
         private ParquetID _floorToPaint;
         private ParquetID _blockToPaint;
         private ParquetID _furnishingToPaint;
