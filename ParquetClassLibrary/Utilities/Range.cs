@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Utilities
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
         public bool ContainsValue(T in_value)
         {
-            return (Minimum.CompareTo(in_value) <= 0) && (in_value.CompareTo(Maximum) <= 0);
+            return (Minimum.CompareTo(in_value) >= 0) && (in_value.CompareTo(Maximum) <= 0);
         }
 
         /// <summary>
