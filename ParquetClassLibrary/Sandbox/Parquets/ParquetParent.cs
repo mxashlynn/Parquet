@@ -12,6 +12,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public abstract class ParquetParent : IEquatable<ParquetParent>
     {
         /// <summary>Used to ensure only unique IDs are used during parquet creation.</summary>
+        // TODO: Move this functionality into AllParquets as serialization is implemented.
         private static readonly HashSet<ParquetID> KnownIDs = new HashSet<ParquetID>();
 
         /// <summary>The set of values that are allowed for specific ParquetIDs.  Defined by child classes.</summary>
@@ -67,7 +68,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonConstructor]
         protected ParquetParent(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
-            if (!CheckBounds(in_ID))
+            // Ensures that the given parquet identifier lies withint a specified range.
+            if (!Bounds.ContainsValue(in_ID))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_ID));
             }
@@ -75,26 +77,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             ID = in_ID;
             Name = in_name ?? throw new ArgumentNullException(nameof(in_name));
             AddsToBiome = in_addsToBiome;
-        }
-        #endregion
-
-        #region Bounds Checking
-        /// <summary>
-        /// Ensures that the given identifier lies withint a specified range.
-        /// </summary>
-        /// <param name="in_ID">An identifier.</param>
-        /// <returns><c>true</c>, if identifier is within bounds, <c>false</c> otherwise.</returns>
-        private bool CheckBounds(ParquetID in_ID)
-        {
-            var result = false;
-
-            var absoluteValue = Math.Abs(in_ID);
-            if (in_ID >= Bounds.Minimum || in_ID <= Bounds.Maximum)
-            {
-                result = true;
-            }
-
-            return result;
         }
         #endregion
 
