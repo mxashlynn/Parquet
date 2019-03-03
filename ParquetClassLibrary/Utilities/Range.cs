@@ -3,7 +3,7 @@ using System;
 namespace ParquetClassLibrary.Utilities
 {
     /// <summary>
-    /// Stores the endpoints for a set of values specifying a range over the given type.
+    /// Stores the endpoints for a set of values specifying an inclusive range over the given type.
     /// </summary>
     /// <typeparam name="T">The type over which the range is spread.</typeparam>
     public struct Range<T> where T : IComparable<T>
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Utilities
             return Minimum.CompareTo(Maximum) <= 0;
         }
 
-        /// <summary>Determines if the given value is within the range.</summary>
+        /// <summary>Determines if the given value is within the range, inclusive.</summary>
         /// <param name="in_value">The value to test</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
         public bool ContainsValue(T in_value)
