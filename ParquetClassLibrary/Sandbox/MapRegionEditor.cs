@@ -225,7 +225,6 @@ namespace ParquetClassLibrary.Sandbox
 
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                // TODO: Should I be using .MemberwiseClone() here to duplicate the parquet?
                 error += _currentRegion.TrySetFloor(AllParquets.Get<Floor>(_floorToPaint), in_position)
                     ? ""
                     : " floor ";
