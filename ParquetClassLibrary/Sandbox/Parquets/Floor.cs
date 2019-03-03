@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonProperty(PropertyName = "in_modTool")]
         public ID.ModificationTools ModTool { get; private set; }
 
-        /// <summary>The floor may be walked on.</summary>
+        /// <summary>An adjective to employ for trenches.</summary>
         [JsonProperty(PropertyName = "in_trenchAdjective")]
         public string TrenchAdjective { get; private set; }
 

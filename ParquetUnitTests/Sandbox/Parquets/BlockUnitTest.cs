@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         {
             var testBlock = AllParquets.TestBlock;
 
-            testBlock.Toughness = int.MaxValue;
+            testBlock.Toughness = int.MinValue;
 
             Assert.Equal(testBlock.MaxToughness, testBlock.Toughness);
         }
@@ -20,7 +20,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         {
             var testBlock = AllParquets.TestBlock;
 
-            testBlock.Toughness = int.MinValue;
+            testBlock.Toughness = int.MaxValue;
 
             Assert.Equal(0, testBlock.Toughness);
         }
