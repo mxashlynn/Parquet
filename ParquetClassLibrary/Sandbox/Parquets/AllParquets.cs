@@ -10,6 +10,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public static class AllParquets
     {
+        // TODO: Move test values into the unit test framework.
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly Floor TestFloor = new Floor(-Assembly.FloorIDs.Minimum, "Grass Floor Test Parquet");
