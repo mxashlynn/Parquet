@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox;

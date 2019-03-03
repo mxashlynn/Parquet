@@ -1,5 +1,3 @@
-using System;
-
 namespace ParquetUnitTests.Sandbox
 {
     internal struct SerializedMapChunkGridsForTest

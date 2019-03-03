@@ -40,10 +40,11 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        private Floors _floorToPaint;
-        private Blocks _blockToPaint;
-        private Furnishings _furnishingToPaint;
-        private Collectables _collectableToPaint;
+        // TODO Add bounds-checking using the ranges defined in Assembly.  Put it in TrySet*
+        private ParquetID _floorToPaint;
+        private ParquetID _blockToPaint;
+        private ParquetID _furnishingToPaint;
+        private ParquetID _collectableToPaint;
 
         #region New, Save, Load Methods
         /// <summary>
@@ -141,7 +142,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_floorID">The parquet ID to select.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetFloorToPaint(Floors in_floorID)
+        public void SetFloorToPaint(ParquetID in_floorID)
         {
             _floorToPaint = in_floorID;
         }
@@ -151,7 +152,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_blockID">The parquet ID to select.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetBlockToPaint(Blocks in_blockID)
+        public void SetBlockToPaint(ParquetID in_blockID)
         {
             _blockToPaint = in_blockID;
         }
@@ -161,7 +162,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_furnishingID">The parquet ID to select.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetFurnishingToPaint(Furnishings in_furnishingID)
+        public void SetFurnishingToPaint(ParquetID in_furnishingID)
         {
             _furnishingToPaint = in_furnishingID;
         }
@@ -171,7 +172,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_collectableID">The parquet ID to select.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetCollectableToPaint(Collectables in_collectableID)
+        public void SetCollectableToPaint(ParquetID in_collectableID)
         {
             _collectableToPaint = in_collectableID;
         }
@@ -224,25 +225,26 @@ namespace ParquetClassLibrary.Sandbox
 
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                error += _currentRegion.TrySetFloor(new Floor(_floorToPaint), in_position)
+                // TODO: Should I be using .MemberwiseClone() here to duplicate the parquet?
+                error += _currentRegion.TrySetFloor(AllParquets.Get<Floor>(_floorToPaint), in_position)
                     ? ""
                     : " floor ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
-                error += _currentRegion.TrySetBlock(new Block(_blockToPaint), in_position)
+                error += _currentRegion.TrySetBlock(AllParquets.Get<Block>(_blockToPaint), in_position)
                     ? ""
                     : " block ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
-                error += _currentRegion.TrySetFurnishing(new Furnishing(_furnishingToPaint), in_position)
+                error += _currentRegion.TrySetFurnishing(AllParquets.Get<Furnishing>(_furnishingToPaint), in_position)
                     ? ""
                     : " furnishing ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Collectable))
             {
-                error += _currentRegion.TrySetCollectable(new Collectable(_collectableToPaint), in_position)
+                error += _currentRegion.TrySetCollectable(AllParquets.Get<Collectable>(_collectableToPaint), in_position)
                     ? ""
                     : " collectable ";
             }

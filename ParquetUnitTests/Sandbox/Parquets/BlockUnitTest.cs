@@ -8,10 +8,9 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeSetBelowZeroTest()
         {
-            var testBlock = new Block();
+            var testBlock = AllParquets.TestBlock;
 
-            testBlock.MaxToughness = 10;
-            testBlock.Toughness = 30;
+            testBlock.Toughness = int.MaxValue;
 
             Assert.Equal(testBlock.MaxToughness, testBlock.Toughness);
         }
@@ -19,10 +18,9 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
-            var testBlock = new Block();
+            var testBlock = AllParquets.TestBlock;
 
-            testBlock.MaxToughness = 10;
-            testBlock.Toughness = -10;
+            testBlock.Toughness = int.MinValue;
 
             Assert.Equal(0, testBlock.Toughness);
         }

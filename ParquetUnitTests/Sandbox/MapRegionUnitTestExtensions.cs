@@ -15,19 +15,19 @@ namespace ParquetUnitTests.Sandbox
             {
                 for (var y = 0; y < Assembly.ParquetsPerRegionDimension; y++)
                 {
-                    in_mapRegion.TrySetFloor(new Floor(Floors.SandSand), new Vector2Int(x, y));
+                    in_mapRegion.TrySetFloor(AllParquets.TestFloor, new Vector2Int(x, y));
                 }
 
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, 0));
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(x, Assembly.ParquetsPerRegionDimension - 1));
+                in_mapRegion.TrySetBlock(AllParquets.TestBlock, new Vector2Int(x, 0));
+                in_mapRegion.TrySetBlock(AllParquets.TestBlock, new Vector2Int(x, Assembly.ParquetsPerRegionDimension - 1));
             }
             for (var y = 0; y < Assembly.ParquetsPerRegionDimension; y++)
             {
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(0, y));
-                in_mapRegion.TrySetBlock(new Block(Blocks.Brick), new Vector2Int(Assembly.ParquetsPerRegionDimension - 1, y));
+                in_mapRegion.TrySetBlock(AllParquets.TestBlock, new Vector2Int(0, y));
+                in_mapRegion.TrySetBlock(AllParquets.TestBlock, new Vector2Int(Assembly.ParquetsPerRegionDimension - 1, y));
             }
-            in_mapRegion.TrySetFurnishing(new Furnishing(Furnishings.Chair), new Vector2Int(1, 2));
-            in_mapRegion.TrySetCollectable(new Collectable(Collectables.Flower), new Vector2Int(3, 3));
+            in_mapRegion.TrySetFurnishing(AllParquets.TestFurnishing, new Vector2Int(1, 2));
+            in_mapRegion.TrySetCollectable(AllParquets.TestCollectable, new Vector2Int(3, 3));
 
             return in_mapRegion;
         }
