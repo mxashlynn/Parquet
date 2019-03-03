@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #endregion
 
         /// <summary>A collection of all defined parquets of all subtypes.</summary>
-        private static readonly Dictionary<ParquetID, ParquetParent> _table = new Dictionary<ParquetID, ParquetParent>
+        private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
         {
             { TestFloor.ID, TestFloor },
             { TestBlock.ID, TestBlock },
@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </exception>
         public static T Get<T>(ParquetID in_ID) where T : ParquetParent
         {
-            return (T)_table[in_ID];
+            return (T)_parquetDefinitions[in_ID];
         }
 
         /// <summary>
