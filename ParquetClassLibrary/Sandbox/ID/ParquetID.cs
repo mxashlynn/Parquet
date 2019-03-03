@@ -5,6 +5,18 @@ namespace ParquetClassLibrary.Sandbox.ID
 {
     /// <summary>
     /// Uniquely identifies every defined parquet.
+    /// 
+    /// To be clear: there are multiple parquet subtypes, and
+    /// each of these subtypes has multiple definitions.
+    /// The definitions are purely data-driven, read in from
+    /// JSON or CSV files, and not type-checked by the compiler.
+    /// 
+    /// Multiple identicle parquet IDs may be assigned to MapChunks or
+    /// MapRegions.  The IDs provide a means for the library to
+    /// look up information about the parqut definition when
+    /// other game elements interact with it.
+    /// 
+    /// TODO: Move this explanation into the Wiki and expand it.
     /// </summary>
     public struct ParquetID : IComparable<ParquetID>
     {
