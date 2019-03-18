@@ -1,4 +1,4 @@
-using Xunit;
+﻿using Xunit;
 using System;
 using ParquetClassLibrary.Utilities;
 
@@ -32,6 +32,40 @@ namespace ParquetUnitTests.Utilities
             var average = (LowerBound + UpperBound) / 2;
 
             Assert.True(range.ContainsValue(average));
+        }
+
+        [Fact]
+        public void MinimumIsWithinRangeTest()
+        {
+            var range = new Range<int>(LowerBound, UpperBound);
+
+            Assert.True(range.ContainsValue(LowerBound));
+        }
+
+        [Fact]
+        public void MaximumIsWithinRangeTest()
+        {
+            var range = new Range<int>(LowerBound, UpperBound);
+
+            Assert.True(range.ContainsValue(UpperBound));
+        }
+
+        [Fact]
+        public void GreaterThanMaximumIsNotWithinRangeTest()
+        {
+            var range = new Range<int>(LowerBound, UpperBound);
+            var greater = UpperBound + 1;
+
+            Assert.False(range.ContainsValue(greater));
+        }
+
+        [Fact]
+        public void LessThanMinimumIsNotWithinRangeTest()
+        {
+            var range = new Range<int>(LowerBound, UpperBound);
+            var lesser = LowerBound - 1;
+
+            Assert.False(range.ContainsValue(lesser));
         }
     }
 }
