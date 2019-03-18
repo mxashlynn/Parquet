@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public static class AllParquets
     {
-        /// <summary>A collection of all defined parquets of all subtypes.</summary>
+        /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
         private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>();
 
         /// <summary>
@@ -32,6 +32,17 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         public static void DeserializeAllParquets()
         {
+            /* TODO: Ensure we have no duplicate values.
+                if (KnownIDs.Contains(value))
+                {
+                    Error.Handle($"Tried to create duplicate parquet with ID {value}.");
+                }
+                else
+                {
+                    KnownIDs.Add(value);
+                    _id = value;
+                }
+             */
             // TODO Implement me!
             // IDEA Use CSV serializer.
         }
