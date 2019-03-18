@@ -1,7 +1,6 @@
 ﻿using ParquetClassLibrary.Sandbox;
-using ParquetClassLibrary.Sandbox.Parquets;
-using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
+using ParquetUnitTests.Sandbox.Parquets;
 
 namespace ParquetUnitTests.Sandbox
 {
@@ -14,19 +13,19 @@ namespace ParquetUnitTests.Sandbox
             {
                 for (var y = 0; y < MapChunk.DimensionsInParquets.y; y++)
                 {
-                    in_mapChunk.TrySetFloor(AllParquets.TestFloor, new Vector2Int(x, y));
+                    in_mapChunk.TrySetFloor(TestParquets.TestFloor, new Vector2Int(x, y));
                 }
 
-                in_mapChunk.TrySetBlock(AllParquets.TestBlock, new Vector2Int(x, 0));
-                in_mapChunk.TrySetBlock(AllParquets.TestBlock, new Vector2Int(x, MapChunk.DimensionsInParquets.y - 1));
+                in_mapChunk.TrySetBlock(TestParquets.TestBlock, new Vector2Int(x, 0));
+                in_mapChunk.TrySetBlock(TestParquets.TestBlock, new Vector2Int(x, MapChunk.DimensionsInParquets.y - 1));
             }
             for (var y = 0; y < MapChunk.DimensionsInParquets.y; y++)
             {
-                in_mapChunk.TrySetBlock(AllParquets.TestBlock, new Vector2Int(0, y));
-                in_mapChunk.TrySetBlock(AllParquets.TestBlock, new Vector2Int(MapChunk.DimensionsInParquets.x - 1, y));
+                in_mapChunk.TrySetBlock(TestParquets.TestBlock, new Vector2Int(0, y));
+                in_mapChunk.TrySetBlock(TestParquets.TestBlock, new Vector2Int(MapChunk.DimensionsInParquets.x - 1, y));
             }
-            in_mapChunk.TrySetFurnishing(AllParquets.TestFurnishing, new Vector2Int(1, 2));
-            in_mapChunk.TrySetCollectable(AllParquets.TestCollectable, new Vector2Int(3, 3));
+            in_mapChunk.TrySetFurnishing(TestParquets.TestFurnishing, new Vector2Int(1, 2));
+            in_mapChunk.TrySetCollectable(TestParquets.TestCollectable, new Vector2Int(3, 3));
 
             return in_mapChunk;
         }

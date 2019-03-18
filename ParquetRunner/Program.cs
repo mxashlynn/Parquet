@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using CsvHelper;
+using CsvHelper.Configuration;
 using Newtonsoft.Json;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
@@ -14,9 +18,7 @@ namespace ParquetRunner
         public static void Main(string[] args)
         {
             var region = new MapRegion();
-            //var serialized = region.SerializeToString();
             Console.WriteLine(region);
-            //Console.WriteLine(serialized);
         }
     }
 }

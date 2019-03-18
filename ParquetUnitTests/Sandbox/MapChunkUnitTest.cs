@@ -4,6 +4,7 @@ using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
+using ParquetUnitTests.Sandbox.Parquets;
 
 namespace ParquetUnitTests.Sandbox
 {
@@ -38,7 +39,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFloor;
+            var parquet = TestParquets.TestFloor;
 
             var result = chunk.TrySetFloor(parquet, InvalidPosition);
 
@@ -49,7 +50,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFloor;
+            var parquet = TestParquets.TestFloor;
 
             var result = chunk.TrySetFloor(parquet, Vector2Int.ZeroVector);
 
@@ -70,7 +71,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestBlock;
+            var parquet = TestParquets.TestBlock;
 
             var result = chunk.TrySetBlock(parquet, InvalidPosition);
 
@@ -81,7 +82,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestBlock;
+            var parquet = TestParquets.TestBlock;
 
             var result = chunk.TrySetBlock(parquet, Vector2Int.ZeroVector);
 
@@ -102,7 +103,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFurnishing;
+            var parquet = TestParquets.TestFurnishing;
 
             var result = chunk.TrySetFurnishing(parquet, InvalidPosition);
 
@@ -113,7 +114,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFurnishing;
+            var parquet = TestParquets.TestFurnishing;
 
             var result = chunk.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
 
@@ -134,7 +135,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestCollectable;
+            var parquet = TestParquets.TestCollectable;
 
             var result = chunk.TrySetCollectable(parquet, InvalidPosition);
 
@@ -145,7 +146,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestCollectable;
+            var parquet = TestParquets.TestCollectable;
 
             var result = chunk.TrySetCollectable(parquet, Vector2Int.ZeroVector);
 
