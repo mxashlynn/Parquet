@@ -68,8 +68,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonConstructor]
         protected ParquetParent(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
-            // Ensures that the given parquet identifier lies withint a specified range.
-            if (!Bounds.ContainsValue(in_ID))
+            // Ensures that the absolute value of the given parquet identifier lies withint a specified range.
+            var absID = Math.Abs(in_ID);
+            if (!Bounds.ContainsValue(absID))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_ID));
             }
