@@ -24,7 +24,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         public static readonly Collectable TestCollectable = new Collectable(-Assembly.CollectableIDs.Minimum, "Flowers Collectable Test Parquet");
         #endregion
 
-        /// <summary>A collection of all defined parquets of all subtypes.</summary>
+        /// <summary>A collection of all test parquets of all subtypes.</summary>
         private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
         {
             { TestFloor.ID, TestFloor },

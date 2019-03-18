@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        // TODO Add bounds-checking using the ranges defined in Assembly.  Put it in TrySet*
+        // TODO Comment these.
         private ParquetID _floorToPaint;
         private ParquetID _blockToPaint;
         private ParquetID _furnishingToPaint;
@@ -140,41 +140,70 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Select a floor to paint with.
         /// </summary>
-        /// <param name="in_floorID">The parquet ID to select.</param>
+        /// <param name="in_floorID">The parquet ID to select.  Must represent a valid Floor.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetFloorToPaint(ParquetID in_floorID)
         {
-            _floorToPaint = in_floorID;
+            //Adds bounds-checking using the Ranges defined in Assembly.
+            if (Assembly.FloorIDs.ContainsValue(in_floorID))
+            {
+                _floorToPaint = in_floorID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
+            }
         }
 
         /// <summary>
         /// Select a block to paint with.
         /// </summary>
-        /// <param name="in_blockID">The parquet ID to select.</param>
+        /// <param name="in_blockID">The parquet ID to select.  Must represent a valid Block.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetBlockToPaint(ParquetID in_blockID)
         {
-            _blockToPaint = in_blockID;
+            if (Assembly.BlockIDs.ContainsValue(in_blockID))
+            {
+                _blockToPaint = in_blockID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
+            }
         }
 
         /// <summary>
         /// Select a furnishing to paint with.
         /// </summary>
-        /// <param name="in_furnishingID">The parquet ID to select.</param>
+        /// <param name="in_furnishingID">The parquet ID to select.  Must represent a valid Furnishing.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetFurnishingToPaint(ParquetID in_furnishingID)
         {
-            _furnishingToPaint = in_furnishingID;
+            if (Assembly.FurnishingIDs.ContainsValue(in_furnishingID))
+            {
+                _furnishingToPaint = in_furnishingID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
+            }
         }
 
         /// <summary>
         /// Select a collectable to paint with.
         /// </summary>
-        /// <param name="in_collectableID">The parquet ID to select.</param>
+        /// <param name="in_collectableID">The parquet ID to select.  Must represent a valid Collectable.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetCollectableToPaint(ParquetID in_collectableID)
         {
-            _collectableToPaint = in_collectableID;
+            if (Assembly.CollectableIDs.ContainsValue(in_collectableID))
+            {
+                _collectableToPaint = in_collectableID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Collectable {in_collectableID} as if it were a Collectable.");
+            }
         }
 
         /// <summary>
