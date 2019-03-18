@@ -9,20 +9,22 @@ namespace ParquetUnitTests.Sandbox.Parquets
         public void ToughnessCannotBeSetBelowZeroTest()
         {
             var testBlock = AllParquets.TestBlock;
+            var priorToughness = testBlock.Toughness;
 
             testBlock.Toughness = int.MinValue;
 
-            Assert.Equal(testBlock.MaxToughness, testBlock.Toughness);
+            Assert.Equal(priorToughness, testBlock.Toughness);
         }
 
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
             var testBlock = AllParquets.TestBlock;
+            var priorToughness = testBlock.Toughness;
 
             testBlock.Toughness = int.MaxValue;
 
-            Assert.Equal(0, testBlock.Toughness);
+            Assert.Equal(priorToughness, testBlock.Toughness);
         }
     }
 }
