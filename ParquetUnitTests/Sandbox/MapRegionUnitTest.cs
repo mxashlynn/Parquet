@@ -2,7 +2,7 @@
 using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
 using ParquetUnitTests.Sandbox.Parquets;
 
@@ -57,7 +57,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetFloor(null, Vector2Int.ZeroVector);
+            var result = region.TrySetFloor(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -66,7 +66,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestFloor;
+            var parquet = TestParquets.TestFloor.ID;
 
             var result = region.TrySetFloor(parquet, InvalidPosition);
 
@@ -77,7 +77,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestFloor;
+            var parquet = TestParquets.TestFloor.ID;
 
             var result = region.TrySetFloor(parquet, Vector2Int.ZeroVector);
 
@@ -89,7 +89,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetBlock(null, Vector2Int.ZeroVector);
+            var result = region.TrySetBlock(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -98,7 +98,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestBlock;
+            var parquet = TestParquets.TestBlock.ID;
 
             var result = region.TrySetBlock(parquet, InvalidPosition);
 
@@ -109,7 +109,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestBlock;
+            var parquet = TestParquets.TestBlock.ID;
 
             var result = region.TrySetBlock(parquet, Vector2Int.ZeroVector);
 
@@ -121,7 +121,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetFurnishing(null, Vector2Int.ZeroVector);
+            var result = region.TrySetFurnishing(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -130,7 +130,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestFurnishing;
+            var parquet = TestParquets.TestFurnishing.ID;
 
             var result = region.TrySetFurnishing(parquet, InvalidPosition);
 
@@ -141,7 +141,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestFurnishing;
+            var parquet = TestParquets.TestFurnishing.ID;
 
             var result = region.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
 
@@ -153,7 +153,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetCollectable(null, Vector2Int.ZeroVector);
+            var result = region.TrySetCollectable(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -162,7 +162,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestCollectable;
+            var parquet = TestParquets.TestCollectable.ID;
 
             var result = region.TrySetCollectable(parquet, InvalidPosition);
 
@@ -173,7 +173,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
         {
             var region = new MapRegion();
-            var parquet = TestParquets.TestCollectable;
+            var parquet = TestParquets.TestCollectable.ID;
 
             var result = region.TrySetCollectable(parquet, Vector2Int.ZeroVector);
 

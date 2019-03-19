@@ -11,7 +11,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public static class AllParquets
     {
         /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
-        private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>();
+        private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
+        {
+            { ParquetID.None, null }
+        };
 
         /// <summary>
         /// Returns the specified parquet.

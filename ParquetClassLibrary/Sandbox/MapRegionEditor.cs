@@ -40,10 +40,16 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        // TODO Comment these.
+        /// <summary>Identifier for the selected floor.</summary>
         private ParquetID _floorToPaint;
+
+        /// <summary>Identifier for the selected block.</summary>
         private ParquetID _blockToPaint;
+
+        /// <summary>Identifier for the selected furnishing.</summary>
         private ParquetID _furnishingToPaint;
+
+        /// <summary>Identifier for the selected collectable.</summary>
         private ParquetID _collectableToPaint;
 
         #region New, Save, Load Methods
@@ -254,25 +260,25 @@ namespace ParquetClassLibrary.Sandbox
 
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                error += _currentRegion.TrySetFloor(AllParquets.Get<Floor>(_floorToPaint), in_position)
+                error += _currentRegion.TrySetFloor(_floorToPaint, in_position)
                     ? ""
                     : " floor ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
-                error += _currentRegion.TrySetBlock(AllParquets.Get<Block>(_blockToPaint), in_position)
+                error += _currentRegion.TrySetBlock(_blockToPaint, in_position)
                     ? ""
                     : " block ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
-                error += _currentRegion.TrySetFurnishing(AllParquets.Get<Furnishing>(_furnishingToPaint), in_position)
+                error += _currentRegion.TrySetFurnishing(_furnishingToPaint, in_position)
                     ? ""
                     : " furnishing ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Collectable))
             {
-                error += _currentRegion.TrySetCollectable(AllParquets.Get<Collectable>(_collectableToPaint), in_position)
+                error += _currentRegion.TrySetCollectable(_collectableToPaint, in_position)
                     ? ""
                     : " collectable ";
             }
