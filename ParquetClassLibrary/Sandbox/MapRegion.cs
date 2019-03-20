@@ -524,7 +524,7 @@ namespace ParquetClassLibrary.Sandbox
                                 ? _blockLayer[x, y].ToString()
                                 : ParquetID.None != _floorLayer[x, y]
                                     ? _floorLayer[x, y].ToString()
-                                    : "@";
+                                    : "~";
                     representation.Append(result);
                 }
                 representation.AppendLine();
@@ -552,7 +552,7 @@ namespace ParquetClassLibrary.Sandbox
                 {
                     floorRepresentation.Append(ParquetID.None != _floorLayer[x, y]
                         ? _floorLayer[x, y].ToString()
-                        : "@");
+                        : "~");
                     blocksRepresentation.Append(ParquetID.None != _blockLayer[x, y]
                         ? _blockLayer[x, y].ToString()
                         : " ");

@@ -446,7 +446,7 @@ namespace ParquetClassLibrary.Sandbox
                                     ? _blockLayer[x, y].ToString()
                                     : ParquetID.None != _floorLayer[x, y]
                                         ? _floorLayer[x, y].ToString()
-                                        : "@");
+                                        : "~");
                 }
                 representation.AppendLine();
             }

@@ -203,7 +203,7 @@ namespace ParquetClassLibrary.Sandbox
                 {
                     representation.Append(
                         _chunkTypes[x, y].ToString()
-                        ?? "@");
+                        ?? "~");
                 }
                 representation.AppendLine();
             }
