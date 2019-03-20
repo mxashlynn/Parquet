@@ -403,9 +403,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A collection of parquets.</returns>
         public IEnumerable<ParquetParent> GetAllParquets()
         {
-            // TODO: This is not optimal — it'd be nice to not generate these garbage objects full of duplicates
-            // Is there a way we can just use IDs?
-            var result = new List<ParquetParent>(DimensionsInParquets.x * DimensionsInParquets.y);
+            var result = new List<ParquetParent>();
 
             for (var x = 0; x < DimensionsInParquets.x; x++)
             {
