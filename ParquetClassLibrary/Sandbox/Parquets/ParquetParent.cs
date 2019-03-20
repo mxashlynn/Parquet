@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>Unique identifier of the parquet.</summary>
         [JsonProperty(PropertyName = "in_ID")]
-        public ParquetID ID;
+        public ParquetID ID { get; private set; }
 
         /// <summary>Player-facing name of the parquet.</summary>
         [JsonProperty(PropertyName = "in_name")]
