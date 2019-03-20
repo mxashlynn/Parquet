@@ -89,7 +89,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             else
             {
-                Error.Handle("Could not load region from " + in_path);
+                Error.Handle($"Could not load region from {in_path}");
             }
 
         }
@@ -285,7 +285,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (!string.IsNullOrEmpty(error))
             {
-                Error.Handle("Error at position " + in_position + ".  Could not assign these parquets: " + error);
+                Error.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
                 result = false;
              }
 

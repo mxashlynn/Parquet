@@ -182,11 +182,11 @@ namespace ParquetClassLibrary.Sandbox
             }
             #endregion
 
-            return "Region " + Title + " (" + DimensionsInParquets.x + ", " + DimensionsInParquets.y + ")\n" +
-                "Floor: \n" + floorRepresentation +
-                "Blocks: \n" + blocksRepresentation +
-                "Furnishings: \n" + furnishingsRepresentation +
-                "Collectables: \n" + collectablesRepresentation;
+            return $"Region {Title} ({DimensionsInParquets.x}, {DimensionsInParquets.y})\n" +
+                $"Floor:\n{floorRepresentation}\n" +
+                $"Blocks:\n{blocksRepresentation}\n" +
+                $"Furnishings:\n{furnishingsRepresentation}\n" +
+                $"Collectables:\n{collectablesRepresentation}";
         }
         #endregion
     }

@@ -166,7 +166,7 @@ namespace ParquetClassLibrary.Sandbox
                 }
                 catch (JsonReaderException exception)
                 {
-                    Error.Handle("Error reading string while deserializing a MapChunkGrid: " + exception);
+                    Error.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
                 }
             }
 
@@ -209,7 +209,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             #endregion
 
-            return "Chunk Grid:\n" + representation;
+            return $"Chunk Grid:\n{representation}";
         }
         #endregion
     }
