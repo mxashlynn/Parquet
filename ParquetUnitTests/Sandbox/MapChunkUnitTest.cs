@@ -2,8 +2,9 @@
 using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
+using ParquetUnitTests.Sandbox.Parquets;
 
 namespace ParquetUnitTests.Sandbox
 {
@@ -29,7 +30,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TrySetFloor(null, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFloor(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -38,9 +39,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFloor;
+            var parquetID = TestParquets.TestFloor.ID;
 
-            var result = chunk.TrySetFloor(parquet, InvalidPosition);
+            var result = chunk.TrySetFloor(parquetID, InvalidPosition);
 
             Assert.False(result);
         }
@@ -49,9 +50,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFloor;
+            var parquetID = TestParquets.TestFloor.ID;
 
-            var result = chunk.TrySetFloor(parquet, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFloor(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -61,7 +62,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TrySetBlock(null, Vector2Int.ZeroVector);
+            var result = chunk.TrySetBlock(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -70,9 +71,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestBlock;
+            var parquetID = TestParquets.TestBlock.ID;
 
-            var result = chunk.TrySetBlock(parquet, InvalidPosition);
+            var result = chunk.TrySetBlock(parquetID, InvalidPosition);
 
             Assert.False(result);
         }
@@ -81,9 +82,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestBlock;
+            var parquetID = TestParquets.TestBlock.ID;
 
-            var result = chunk.TrySetBlock(parquet, Vector2Int.ZeroVector);
+            var result = chunk.TrySetBlock(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -93,7 +94,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TrySetFurnishing(null, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFurnishing(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -102,9 +103,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFurnishing;
+            var parquetID = TestParquets.TestFurnishing.ID;
 
-            var result = chunk.TrySetFurnishing(parquet, InvalidPosition);
+            var result = chunk.TrySetFurnishing(parquetID, InvalidPosition);
 
             Assert.False(result);
         }
@@ -113,9 +114,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestFurnishing;
+            var parquetID = TestParquets.TestFurnishing.ID;
 
-            var result = chunk.TrySetFurnishing(parquet, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFurnishing(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -125,7 +126,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TrySetCollectable(null, Vector2Int.ZeroVector);
+            var result = chunk.TrySetCollectable(ParquetID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -134,9 +135,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestCollectable;
+            var parquetID = TestParquets.TestCollectable.ID;
 
-            var result = chunk.TrySetCollectable(parquet, InvalidPosition);
+            var result = chunk.TrySetCollectable(parquetID, InvalidPosition);
 
             Assert.False(result);
         }
@@ -145,9 +146,9 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquet = AllParquets.TestCollectable;
+            var parquetID = TestParquets.TestCollectable.ID;
 
-            var result = chunk.TrySetCollectable(parquet, Vector2Int.ZeroVector);
+            var result = chunk.TrySetCollectable(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }

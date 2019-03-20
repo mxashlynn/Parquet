@@ -10,28 +10,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public static class AllParquets
     {
-        // TODO: Move test values into the unit test framework.
-        #region Test Values
-        /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Floor TestFloor = new Floor(-Assembly.FloorIDs.Minimum, "Grass Floor Test Parquet");
-
-        /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Block TestBlock = new Block(-Assembly.BlockIDs.Minimum, "Brick Block Test Parquet");
-
-        /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Furnishing TestFurnishing = new Furnishing(-Assembly.FurnishingIDs.Minimum, "Chair Furnishing Test Parquet");
-
-        /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Collectable TestCollectable = new Collectable(-Assembly.CollectableIDs.Minimum, "Flowers Collectable Test Parquet");
-        #endregion
-
-        /// <summary>A collection of all defined parquets of all subtypes.</summary>
+        /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
         private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
         {
-            { TestFloor.ID, TestFloor },
-            { TestBlock.ID, TestBlock },
-            { TestFurnishing.ID, TestFurnishing },
-            { TestCollectable.ID, TestCollectable },
+            { ParquetID.None, null }
         };
 
         /// <summary>
@@ -53,6 +35,17 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         public static void DeserializeAllParquets()
         {
+            /* TODO: Ensure we have no duplicate values.
+                if (KnownIDs.Contains(value))
+                {
+                    Error.Handle($"Tried to create duplicate parquet with ID {value}.");
+                }
+                else
+                {
+                    KnownIDs.Add(value);
+                    _id = value;
+                }
+             */
             // TODO Implement me!
             // IDEA Use CSV serializer.
         }

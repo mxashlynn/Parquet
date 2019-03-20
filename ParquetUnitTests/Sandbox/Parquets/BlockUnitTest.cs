@@ -1,4 +1,5 @@
-﻿using ParquetClassLibrary.Sandbox.Parquets;
+﻿using ParquetClassLibrary;
+using ParquetClassLibrary.Sandbox.Parquets;
 using Xunit;
 
 namespace ParquetUnitTests.Sandbox.Parquets
@@ -8,7 +9,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeSetBelowZeroTest()
         {
-            var testBlock = AllParquets.TestBlock;
+            var testBlock = TestParquets.TestBlock;
             var priorToughness = testBlock.Toughness;
 
             testBlock.Toughness = int.MinValue;
@@ -19,7 +20,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
-            var testBlock = AllParquets.TestBlock;
+            var testBlock = TestParquets.TestBlock;
             var priorToughness = testBlock.Toughness;
 
             testBlock.Toughness = int.MaxValue;

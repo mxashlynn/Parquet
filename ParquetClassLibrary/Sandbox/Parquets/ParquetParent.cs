@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
@@ -11,38 +10,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public abstract class ParquetParent : IEquatable<ParquetParent>
     {
-        /// <summary>Used to ensure only unique IDs are used during parquet creation.</summary>
-        // TODO: Move this functionality into AllParquets as serialization is implemented.
-        private static readonly HashSet<ParquetID> KnownIDs = new HashSet<ParquetID>();
-
         /// <summary>The set of values that are allowed for specific ParquetIDs.  Defined by child classes.</summary>
         protected abstract Range<ParquetID> Bounds { get; }
 
-        /// <summary>Backing field for the ID property.</summary>
-        private ParquetID _id;
-
         /// <summary>Unique identifier of the parquet.</summary>
         [JsonProperty(PropertyName = "in_ID")]
-        public ParquetID ID
-        {
-            get
-            {
-                return _id;
-
-            }
-            protected set
-            {
-                if (KnownIDs.Contains(value))
-                {
-                    Error.Handle($"Tried to create duplicate parquet with ID {value}.");
-                }
-                else
-                {
-                    KnownIDs.Add(value);
-                    _id = value;
-                }
-            }
-        }
+        public ParquetID ID { get; private set; }
 
         /// <summary>Player-facing name of the parquet.</summary>
         [JsonProperty(PropertyName = "in_name")]

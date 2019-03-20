@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Biome Criteria
         /// <summary>Used in computing thresholds.</summary>
-        private static readonly int ParquetsPerLayer = MapRegion.DimensionsInParquets.x * MapRegion.DimensionsInParquets.y;
+        private static readonly int ParquetsPerLayer = Assembly.ParquetsPerRegionDimension * Assembly.ParquetsPerRegionDimension;
 
         /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
         private static readonly int LandThreshold = (int)Math.Floor(ParquetsPerLayer * 1.25);

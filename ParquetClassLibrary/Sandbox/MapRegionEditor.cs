@@ -40,10 +40,16 @@ namespace ParquetClassLibrary.Sandbox
             }
         }
 
-        // TODO Add bounds-checking using the ranges defined in Assembly.  Put it in TrySet*
+        /// <summary>Identifier for the selected floor.</summary>
         private ParquetID _floorToPaint;
+
+        /// <summary>Identifier for the selected block.</summary>
         private ParquetID _blockToPaint;
+
+        /// <summary>Identifier for the selected furnishing.</summary>
         private ParquetID _furnishingToPaint;
+
+        /// <summary>Identifier for the selected collectable.</summary>
         private ParquetID _collectableToPaint;
 
         #region New, Save, Load Methods
@@ -83,7 +89,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             else
             {
-                Error.Handle("Could not load region from " + in_path);
+                Error.Handle($"Could not load region from {in_path}");
             }
 
         }
@@ -140,41 +146,70 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Select a floor to paint with.
         /// </summary>
-        /// <param name="in_floorID">The parquet ID to select.</param>
+        /// <param name="in_floorID">The parquet ID to select.  Must represent a valid Floor.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetFloorToPaint(ParquetID in_floorID)
         {
-            _floorToPaint = in_floorID;
+            //Adds bounds-checking using the Ranges defined in Assembly.
+            if (Assembly.FloorIDs.ContainsValue(in_floorID))
+            {
+                _floorToPaint = in_floorID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
+            }
         }
 
         /// <summary>
         /// Select a block to paint with.
         /// </summary>
-        /// <param name="in_blockID">The parquet ID to select.</param>
+        /// <param name="in_blockID">The parquet ID to select.  Must represent a valid Block.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetBlockToPaint(ParquetID in_blockID)
         {
-            _blockToPaint = in_blockID;
+            if (Assembly.BlockIDs.ContainsValue(in_blockID))
+            {
+                _blockToPaint = in_blockID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
+            }
         }
 
         /// <summary>
         /// Select a furnishing to paint with.
         /// </summary>
-        /// <param name="in_furnishingID">The parquet ID to select.</param>
+        /// <param name="in_furnishingID">The parquet ID to select.  Must represent a valid Furnishing.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetFurnishingToPaint(ParquetID in_furnishingID)
         {
-            _furnishingToPaint = in_furnishingID;
+            if (Assembly.FurnishingIDs.ContainsValue(in_furnishingID))
+            {
+                _furnishingToPaint = in_furnishingID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
+            }
         }
 
         /// <summary>
         /// Select a collectable to paint with.
         /// </summary>
-        /// <param name="in_collectableID">The parquet ID to select.</param>
+        /// <param name="in_collectableID">The parquet ID to select.  Must represent a valid Collectable.</param>
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetCollectableToPaint(ParquetID in_collectableID)
         {
-            _collectableToPaint = in_collectableID;
+            if (Assembly.CollectableIDs.ContainsValue(in_collectableID))
+            {
+                _collectableToPaint = in_collectableID;
+            }
+            else
+            {
+                Error.Handle($"Cannot paint non-Collectable {in_collectableID} as if it were a Collectable.");
+            }
         }
 
         /// <summary>
@@ -225,32 +260,32 @@ namespace ParquetClassLibrary.Sandbox
 
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                error += _currentRegion.TrySetFloor(AllParquets.Get<Floor>(_floorToPaint), in_position)
+                error += _currentRegion.TrySetFloor(_floorToPaint, in_position)
                     ? ""
                     : " floor ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
-                error += _currentRegion.TrySetBlock(AllParquets.Get<Block>(_blockToPaint), in_position)
+                error += _currentRegion.TrySetBlock(_blockToPaint, in_position)
                     ? ""
                     : " block ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
-                error += _currentRegion.TrySetFurnishing(AllParquets.Get<Furnishing>(_furnishingToPaint), in_position)
+                error += _currentRegion.TrySetFurnishing(_furnishingToPaint, in_position)
                     ? ""
                     : " furnishing ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Collectable))
             {
-                error += _currentRegion.TrySetCollectable(AllParquets.Get<Collectable>(_collectableToPaint), in_position)
+                error += _currentRegion.TrySetCollectable(_collectableToPaint, in_position)
                     ? ""
                     : " collectable ";
             }
 
             if (!string.IsNullOrEmpty(error))
             {
-                Error.Handle("Error at position " + in_position + ".  Could not assign these parquets: " + error);
+                Error.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
                 result = false;
              }
 

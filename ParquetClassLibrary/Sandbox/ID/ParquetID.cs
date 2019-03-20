@@ -20,6 +20,9 @@ namespace ParquetClassLibrary.Sandbox.ID
     /// </summary>
     public struct ParquetID : IComparable<ParquetID>
     {
+        /// <summary>Indicates the lack of a Parquet.</summary>
+        public static readonly ParquetID None = 0;
+
         /// <summary>Backing type for the identifier.</summary>
         [JsonProperty]
         private int _id;
