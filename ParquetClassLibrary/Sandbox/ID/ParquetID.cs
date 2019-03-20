@@ -62,5 +62,14 @@ namespace ParquetClassLibrary.Sandbox.ID
         {
             return _id.CompareTo(in_identifier._id);
         }
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.ID.ParquetID"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+        {
+            return _id.ToString();
+        }
     }
 }
