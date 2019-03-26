@@ -16,8 +16,8 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         public ModificationTools ModTool;
 
-        /// <summary>An adjective to employ for trenches.</summary>
-        public string TrenchAdjective;
+        /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
+        public string NameWhenHole;
 
         /// <summary>The floor may be walked on.</summary>
         public bool IsWalkable;
@@ -36,7 +36,7 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Floor))
             {
-                result = (T)(ParquetParent)new Floor(ID, Name, AddsToBiome, ModTool, TrenchAdjective, IsWalkable);
+                result = (T)(ParquetParent)new Floor(ID, Name, AddsToBiome, ModTool, NameWhenHole, IsWalkable);
             }
             else
             {
