@@ -12,7 +12,6 @@ namespace ParquetCSVImporter
 {
     /// <summary>
     /// A program that reads in Parquet definitions from CSV files, and outputs them as JSON.
-    /// TODO Add ability to output them as JSON!
     /// </summary>
     class MainClass
     {
