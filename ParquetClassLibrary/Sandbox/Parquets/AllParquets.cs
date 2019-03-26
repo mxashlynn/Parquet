@@ -2,7 +2,6 @@
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -83,12 +82,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         }
 
         /// <summary>
-        /// Tries to deserialize a a collection of parquets from the given string.
+        /// Tries to deserialize a collection of parquets from the given string.
         /// </summary>
         /// <param name="in_serializedParquets">The serialized parquets.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedParquets)
         {
+            // TODO: Ensure this is working as intended.  See:
+            // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
+            // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
             var result = false;
 
             if (string.IsNullOrEmpty(in_serializedParquets))
@@ -99,8 +101,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             {
                 try
                 {
-                        ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<ParquetID, ParquetParent>>(in_serializedParquets);
-                        result = true;
+                    ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<ParquetID, ParquetParent>>(in_serializedParquets);
+                    result = true;
                 }
                 catch (JsonReaderException exception)
                 {
