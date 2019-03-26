@@ -1,3 +1,9 @@
 ID,Name,AddsToBiome,ModTool,TrenchAdjective,IsWalkable
--10000,Grass Floor Test Parquet,None,None,dark,TRUE
-10000,Weeds,Forested,None,weedy,TRUE
+-10000,1 Floor Test Parquet,None,None,dark hole,TRUE
+10000,grass,None,Shovel,dirty pit,TRUE
+10001,weeds,Swamp,Shovel,muddy pit,TRUE
+10002,sand,Desert,Shovel,sandy pit,TRUE
+10003,snow,Tundra,Shovel,snowy pit,TRUE
+10004,stone floor,Cavern,Hammer,stony channel,TRUE
+10005,red brick,Town,Hammer,red brick channel,TRUE
+10006,spikes,None,Hammer,spike trap,FALSE
