@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Physics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [JsonProperty(PropertyName = "in_modTool")]
-        public ID.ModificationTools ModTool { get; private set; }
+        public ModificationTools ModTool { get; private set; }
 
         /// <summary>An adjective to employ for trenches.</summary>
         [JsonProperty(PropertyName = "in_trenchAdjective")]
