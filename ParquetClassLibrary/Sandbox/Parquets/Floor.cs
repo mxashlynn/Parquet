@@ -14,6 +14,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         private const string DefaultTrenchAdjective = "dark";
 
         /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
+        [JsonIgnore]
         protected override Range<ParquetID> Bounds { get { return Assembly.FloorIDs; } }
         #endregion
 
@@ -35,6 +36,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Floor Status
         /// <summary>The floor has been dug out.</summary>
+        [JsonIgnore]
         public bool IsHole { get; set; } = false;
         #endregion
 

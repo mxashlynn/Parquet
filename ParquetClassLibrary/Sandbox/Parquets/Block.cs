@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        [JsonIgnore]
         protected override Range<ParquetID> Bounds { get { return Assembly.BlockIDs; } }
         #endregion
 
@@ -34,9 +35,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Block Status
         /// <summary>The block's current toughness.</summary>
+        [JsonIgnore]
         private int _toughness;
 
         /// <summary>The block's current toughness, from 0 to <see cref="MaxToughness"/>.</summary>
+        [JsonIgnore]
         public int Toughness
         {
             get => _toughness;

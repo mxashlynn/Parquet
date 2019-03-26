@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        [JsonIgnore]
         protected override Range<ParquetID> Bounds { get { return Assembly.FurnishingIDs; } }
         #endregion
 

@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public abstract class ParquetParent : IEquatable<ParquetParent>
     {
         /// <summary>The set of values that are allowed for specific ParquetIDs.  Defined by child classes.</summary>
+        [JsonIgnore]
         protected abstract Range<ParquetID> Bounds { get; }
 
         /// <summary>Unique identifier of the parquet.</summary>
