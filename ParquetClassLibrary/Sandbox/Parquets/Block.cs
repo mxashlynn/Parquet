@@ -10,6 +10,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Block : ParquetParent
     {
         #region Class Defaults
+        /// <summary>Maximum toughness value to use when none is specified.</summary>
+        private const int DefaultMaxToughness = 10;
+
         /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
         protected override Range<ParquetID> Bounds { get { return Assembly.BlockIDs; } }
         #endregion
@@ -57,7 +60,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None, GatheringTools in_gatherTool = GatheringTools.None,
-                     bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = 0)
+                     bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
                      : base(in_ID, in_name, in_addsToBiome)
         {
             GatherTool = in_gatherTool;
