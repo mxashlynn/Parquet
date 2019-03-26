@@ -1,2 +1,8 @@
-﻿ID,Name,AddsToBiome
--40000,Flowers Collectable Test Parquet,None
+ID,Name,AddsToBiome
+-40000,4 Collectable Test Parquet,None
+40000,Flower,None
+40001,Pinecone,Forested
+40002,Seeds,Swamp
+40003,Bones,Desert
+40004,Ice Crystal,Tundra
+40005,Copper Ore,Cavern
