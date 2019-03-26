@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
-using Newtonsoft.Json.Linq;
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_serializedMap">The serialized <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</param>
         /// <param name="out_map">The deserialized <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>, or null if deserialization was impossible.</param>
-        /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedMap,
                                                     out MapRegion out_map)
         {

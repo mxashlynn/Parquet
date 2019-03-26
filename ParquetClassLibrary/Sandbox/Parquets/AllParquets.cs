@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -11,7 +14,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public static class AllParquets
     {
         /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
-        private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
+        private static Dictionary<ParquetID, ParquetParent> ParquetDefinitions { get; set; } = new Dictionary<ParquetID, ParquetParent>
         {
             { ParquetID.None, null }
         };
@@ -27,35 +30,85 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </exception>
         public static T Get<T>(ParquetID in_ID) where T : ParquetParent
         {
-            return (T)_parquetDefinitions[in_ID];
+            return (T)ParquetDefinitions[in_ID];
         }
 
         /// <summary>
-        /// Loads all parquets definitions.
+        /// Adds the given parquet to the collection of cannonical parquets.
+        /// This allows parquets to be created at run-time.
         /// </summary>
-        public static void DeserializeAllParquets()
+        /// <param name="in_parquet">The parquet being defined.</param>
+        /// <returns><c>true</c> if the parquet was added successfully; <c>false</c> otherwise.</returns>
+        public static bool Put(ParquetParent in_parquet)
         {
-            /* TODO: Ensure we have no duplicate values.
-                if (KnownIDs.Contains(value))
-                {
-                    Error.Handle($"Tried to create duplicate parquet with ID {value}.");
-                }
-                else
-                {
-                    KnownIDs.Add(value);
-                    _id = value;
-                }
-             */
-            // TODO Implement me!
-            // IDEA Use CSV serializer.
+            var isNew = !ParquetDefinitions.ContainsKey(in_parquet.ID);
+
+            if (isNew)
+            {
+                ParquetDefinitions[in_parquet.ID] = in_parquet;
+            }
+            else
+            {
+                Error.Handle($"Tried to create duplicate parquet ID {in_parquet.ID}.");
+            }
+
+            return isNew;
         }
 
         /// <summary>
-        /// Saves all current parquets definitions.
+        /// Adds a collection of parquets to the cannonical definitions.
+        /// This supports adding parquets via alternative serialization mechanisms.
         /// </summary>
-        public static void SerializeAllParquets()
+        /// <returns><c>true</c>, if range was added, <c>false</c> otherwise.</returns>
+        /// <param name="in_parquets">In parquets.</param>
+        public static bool AddRange(IEnumerable<ParquetParent> in_parquets)
         {
-            // TODO Implement me!
+            var succeeded = true;
+
+            foreach (var parquet in in_parquets)
+            {
+                succeeded &= Put(parquet);
+            }
+
+            return succeeded;
+        }
+
+        /// <summary>
+        /// Serializes to the all defined parquets to a string.
+        /// </summary>
+        /// <returns>The serialized parquets.</returns>
+        public static string SerializeToString()
+        {
+            return JsonConvert.SerializeObject(ParquetDefinitions, Formatting.None);
+        }
+
+        /// <summary>
+        /// Tries to deserialize a a collection of parquets from the given string.
+        /// </summary>
+        /// <param name="in_serializedParquets">The serialized parquets.</param>
+        /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
+        public static bool TryDeserializeFromString(string in_serializedParquets)
+        {
+            var result = false;
+
+            if (string.IsNullOrEmpty(in_serializedParquets))
+            {
+                Error.Handle("Error deserializing a MapRegion.");
+            }
+            else
+            {
+                try
+                {
+                        ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<ParquetID, ParquetParent>>(in_serializedParquets);
+                        result = true;
+                }
+                catch (JsonReaderException exception)
+                {
+                    Error.Handle($"Error reading string while deserializing parquets: {exception}");
+                }
+            }
+
+            return result;
         }
     }
 }

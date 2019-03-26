@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     {
         #region Class Defaults
         /// <summary>An adjective to employ for trenches if none is provided.</summary>
-        private const string DefaultTrenchAdjective = "dark";
+        private const string DefaultTrenchAdjective = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
         protected override Range<ParquetID> Bounds { get { return Assembly.FloorIDs; } }
@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Physics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [JsonProperty(PropertyName = "in_modTool")]
-        public ID.ModificationTools ModTool { get; private set; }
+        public ModificationTools ModTool { get; private set; }
 
         /// <summary>An adjective to employ for trenches.</summary>
         [JsonProperty(PropertyName = "in_trenchAdjective")]

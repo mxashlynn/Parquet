@@ -1,0 +1,2 @@
+﻿ID,Name,AddsToBiome,GatherTool,IsFlammable,IsLiquid,MaxToughness
+-20000,Brick Block Test Parquet,None,None,False,False,0
