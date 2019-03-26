@@ -10,6 +10,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Block : ParquetParent
     {
         #region Class Defaults
+        /// <summary>Minimum toughness value.</summary>
+        public const int LowestPossibleToughness = 0;
+
         /// <summary>Maximum toughness value to use when none is specified.</summary>
         private const int DefaultMaxToughness = 10;
 
@@ -46,7 +49,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public int Toughness
         {
             get => _toughness;
-            set => _toughness = value.Normalize(0, MaxToughness);
+            set => _toughness = value.Normalize(LowestPossibleToughness, MaxToughness);
         }
         #endregion
 
