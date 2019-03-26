@@ -1,2 +1,4 @@
-﻿ID,Name,AddsToBiome
--30000,Chair Furnishing Test Parquet,None
+ID,Name,AddsToBiome
+-30000,3 Furnishing Test Parquet,None
+30000,Chair,Town
+30001,Table,Town

@@ -1,2 +1,11 @@
-﻿ID,Name,AddsToBiome,GatherTool,IsFlammable,IsLiquid,MaxToughness
--20000,Brick Block Test Parquet,None,None,False,False,0
+ID,Name,AddsToBiome,GatherTool,IsFlammable,IsLiquid,MaxToughness
+-20000,2 Block Test Parquet,None,None,FALSE,FALSE,10
+20000,bush,None,Axe,TRUE,FALSE,1
+20001,tree,Forested,Axe,TRUE,FALSE,4
+20002,seed pod,Swamp,Axe,TRUE,FALSE,1
+20003,sandstone boulder,Desert,Pick,FALSE,FALSE,10
+20004,ice boulder,Tundra,Pick,FALSE,FALSE,8
+20005,grey brick,Town,Pick,FALSE,FALSE,8
+20006,wooden door,Town,Key,TRUE,FALSE,1
+20007,fresh water,None,Bucket,FALSE,TRUE,1
+20008,lava,Volcanic,Bucket,FALSE,TRUE,1
