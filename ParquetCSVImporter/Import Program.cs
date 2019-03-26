@@ -1,10 +1,9 @@
-using System;
+using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetCSVImporter.ClassMaps;
@@ -40,17 +39,31 @@ namespace ParquetCSVImporter
         /// </summary>
         public static void Main()
         {
-            var records = new List<ParquetParent>();
-            records.AddRange(GetRecordsForType<Floor>());
-            records.AddRange(GetRecordsForType<Block>());
-            records.AddRange(GetRecordsForType<Furnishing>());
-            records.AddRange(GetRecordsForType<Collectable>());
+            var recordsFromCSV = new List<ParquetParent>();
+            recordsFromCSV.AddRange(GetRecordsForType<Floor>());
+            recordsFromCSV.AddRange(GetRecordsForType<Block>());
+            recordsFromCSV.AddRange(GetRecordsForType<Furnishing>());
+            recordsFromCSV.AddRange(GetRecordsForType<Collectable>());
 
-            Parquets.UnionWith(records);
+            Parquets.UnionWith(recordsFromCSV);
 
-            foreach (var p in Parquets)
+            AllParquets.AddRange(Parquets);
+
+            var recordsToJSON = AllParquets.SerializeToString();
+
+            OutputRecords(recordsToJSON);
+        }
+
+        /// <summary>
+        /// Writes all JSON records to the appropriate file.
+        /// </summary>
+        /// <param name="in_jsonRecords">In JSON records to write.</param>
+        private static void OutputRecords(string in_jsonRecords)
+        {
+            var filenameAndPath = Path.Combine(SearchPath, $"Designer/Parquets.json");
+            using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
             {
-                Console.WriteLine(p);
+                writer.Write(in_jsonRecords);
             }
         }
 
