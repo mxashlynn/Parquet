@@ -45,6 +45,7 @@ namespace ParquetCSVImporter
             recordsFromCSV.AddRange(GetRecordsForType<Furnishing>());
             recordsFromCSV.AddRange(GetRecordsForType<Collectable>());
 
+            Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);
 
             AllParquets.AddRange(Parquets);
