@@ -57,7 +57,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetFloor(ParquetID.None, Vector2Int.ZeroVector);
+            var result = region.TrySetFloor(EnitityID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -89,7 +89,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetBlock(ParquetID.None, Vector2Int.ZeroVector);
+            var result = region.TrySetBlock(EnitityID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -121,7 +121,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetFurnishing(ParquetID.None, Vector2Int.ZeroVector);
+            var result = region.TrySetFurnishing(EnitityID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
@@ -153,7 +153,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TrySetCollectable(ParquetID.None, Vector2Int.ZeroVector);
+            var result = region.TrySetCollectable(EnitityID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }

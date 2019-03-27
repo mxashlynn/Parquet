@@ -45,19 +45,19 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Map Contents
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override ParquetID[,] _floorLayer { get; } = new ParquetID[Assembly.ParquetsPerRegionDimension,
+        protected override EnitityID[,] _floorLayer { get; } = new EnitityID[Assembly.ParquetsPerRegionDimension,
                                                                              Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected override ParquetID[,] _blockLayer { get; } = new ParquetID[Assembly.ParquetsPerRegionDimension,
+        protected override EnitityID[,] _blockLayer { get; } = new EnitityID[Assembly.ParquetsPerRegionDimension,
                                                                              Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        protected override ParquetID[,] _furnishingLayer { get; } = new ParquetID[Assembly.ParquetsPerRegionDimension,
+        protected override EnitityID[,] _furnishingLayer { get; } = new EnitityID[Assembly.ParquetsPerRegionDimension,
                                                                                   Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Collectable materials in the region.</summary>
-        protected override ParquetID[,] _collectableLayer { get; } = new ParquetID[Assembly.ParquetsPerRegionDimension,
+        protected override EnitityID[,] _collectableLayer { get; } = new EnitityID[Assembly.ParquetsPerRegionDimension,
                                                                                    Assembly.ParquetsPerRegionDimension];
         #endregion
 
@@ -162,16 +162,16 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInParquets.y; y++)
                 {
-                    floorRepresentation.Append(ParquetID.None != _floorLayer[x, y]
+                    floorRepresentation.Append(EnitityID.None != _floorLayer[x, y]
                         ? _floorLayer[x, y].ToString()
                         : "~");
-                    blocksRepresentation.Append(ParquetID.None != _blockLayer[x, y]
+                    blocksRepresentation.Append(EnitityID.None != _blockLayer[x, y]
                         ? _blockLayer[x, y].ToString()
                         : " ");
-                    furnishingsRepresentation.Append(ParquetID.None != _furnishingLayer[x, y]
+                    furnishingsRepresentation.Append(EnitityID.None != _furnishingLayer[x, y]
                         ? _furnishingLayer[x, y].ToString()
                         : " ");
-                    collectablesRepresentation.Append(ParquetID.None != _collectableLayer[x, y]
+                    collectablesRepresentation.Append(EnitityID.None != _collectableLayer[x, y]
                         ? _collectableLayer[x, y].ToString()
                         : " ");
                 }

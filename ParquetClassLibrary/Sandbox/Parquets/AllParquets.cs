@@ -13,9 +13,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public static class AllParquets
     {
         /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
-        private static Dictionary<ParquetID, ParquetParent> ParquetDefinitions { get; set; } = new Dictionary<ParquetID, ParquetParent>
+        private static Dictionary<EnitityID, ParquetParent> ParquetDefinitions { get; set; } = new Dictionary<EnitityID, ParquetParent>
         {
-            { ParquetID.None, null }
+            { EnitityID.None, null }
         };
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <exception cref="System.InvalidCastException">
         /// Thrown when the specified type does not correspond to the given ID.
         /// </exception>
-        public static T Get<T>(ParquetID in_ID) where T : ParquetParent
+        public static T Get<T>(EnitityID in_ID) where T : ParquetParent
         {
             return (T)ParquetDefinitions[in_ID];
         }
@@ -101,7 +101,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             {
                 try
                 {
-                    ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<ParquetID, ParquetParent>>(in_serializedParquets);
+                    ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<EnitityID, ParquetParent>>(in_serializedParquets);
                     result = true;
                 }
                 catch (JsonReaderException exception)

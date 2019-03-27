@@ -25,7 +25,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         #endregion
 
         /// <summary>A collection of all test parquets of all subtypes.</summary>
-        private static readonly Dictionary<ParquetID, ParquetParent> _parquetDefinitions = new Dictionary<ParquetID, ParquetParent>
+        private static readonly Dictionary<EnitityID, ParquetParent> _parquetDefinitions = new Dictionary<EnitityID, ParquetParent>
         {
             { TestFloor.ID, TestFloor },
             { TestBlock.ID, TestBlock },
@@ -42,7 +42,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         /// <exception cref="System.InvalidCastException">
         /// Thrown when the specified type does not correspond to the given ID.
         /// </exception>
-        public static T Get<T>(ParquetID in_ID) where T : ParquetParent
+        public static T Get<T>(EnitityID in_ID) where T : ParquetParent
         {
             return (T)_parquetDefinitions[in_ID];
         }

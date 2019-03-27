@@ -54,7 +54,7 @@
     <Compile Include="Shims\FloorShim.cs" />
     <Compile Include="Shims\FurnishingShim.cs" />
     <Compile Include="Shims\ParquetParentShim.cs" />
-    <Compile Include="ParquetIDConverter.cs" />
+    <Compile Include="EntityIDConverter.cs" />
     <Compile Include="ClassMaps\IReaderConfigurationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

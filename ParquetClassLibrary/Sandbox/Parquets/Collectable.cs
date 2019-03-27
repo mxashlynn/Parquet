@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Class Defaults
         /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
         [JsonIgnore]
-        protected override Range<ParquetID> Bounds { get { return Assembly.CollectableIDs; } }
+        protected override Range<EnitityID> Bounds { get { return Assembly.CollectableIDs; } }
         #endregion
 
         #region Initialization
@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
         /// </param>
         [JsonConstructor]
-        public Collectable(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        public Collectable(EnitityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
             : base(in_ID, in_name, in_addsToBiome)
         { }
         #endregion

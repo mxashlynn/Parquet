@@ -15,10 +15,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
         [JsonIgnore]
-        protected override Range<ParquetID> Bounds { get { return Assembly.FloorIDs; } }
+        protected override Range<EnitityID> Bounds { get { return Assembly.FloorIDs; } }
         #endregion
 
-        #region Parquet Physics
+        #region Parquet Mechanics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [JsonProperty(PropertyName = "in_modTool")]
         public ModificationTools ModTool { get; private set; }
@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_nameWhenHole">The name to use for this tile when it has been dug out.</param>
         /// <param name="in_isWalkable">If <c>true</c> this block may burn.</param>
         [JsonConstructor]
-        public Floor(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Floor(EnitityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
                      string in_nameWhenHole = DefaultNameWhenHole, bool in_isWalkable = true)
                      : base(in_ID, in_name, in_addsToBiome)

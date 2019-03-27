@@ -4,26 +4,36 @@ using Newtonsoft.Json;
 namespace ParquetClassLibrary.Sandbox.ID
 {
     /// <summary>
-    /// Uniquely identifies every defined parquet.
+    /// Uniquely identifies every defined game entity.
     /// 
-    /// To be clear: there are multiple parquet subtypes, and
-    /// each of these subtypes has multiple definitions.
+    /// <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>
+    /// 
+    /// To be clear: there are multiple parquet and item subtypes,
+    /// and each of these subtypes has multiple definitions.
     /// The definitions are purely data-driven, read in from
     /// JSON or CSV files, and not type-checked by the compiler.
     /// 
-    /// Multiple identicle parquet IDs may be assigned to MapChunks or
-    /// MapRegions.  The IDs provide a means for the library to
-    /// look up information about the parqut definition when
-    /// other game elements interact with it.
+    /// Multiple identicle parquet IDs may be assigned to MapChunks
+    /// or MapRegions, and multiple duplicate item IDs may be spawned.
+    /// The IDs provide a means for the library to look up
+    /// the game entity definition when other game elements interact
+    /// with it.
+    /// 
+    /// Although the compiler does not provide type-checking for
+    /// IDs, within the scope of their usage the library defines
+    /// valid ranges for their use and these are checked by
+    /// library code.  <see cref="ParquetClassLibrary.Assembly"/>
     /// 
     /// TODO: Move this explanation into the Wiki and expand it.
     /// </summary>
-    public struct ParquetID : IComparable<ParquetID>
+    public struct EnitityID : IComparable<EnitityID>
     {
-        /// <summary>Indicates the lack of a Parquet.</summary>
-        public static readonly ParquetID None = 0;
+        /// <summary>Indicates the lack of a game entity associated with this identifier (e.g., parquet).</summary>
+        public static readonly EnitityID None = 0;
 
         /// <summary>Backing type for the identifier.</summary>
+        // Currently this is implemented as an int rather than a GUID in order
+        // to aid in range validation and human-readability of design documents.
         [JsonProperty]
         private int _id;
 
@@ -32,9 +42,9 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// </summary>
         /// <param name="in_value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator ParquetID(int in_value)
+        public static implicit operator EnitityID(int in_value)
         {
-            return new ParquetID { _id = in_value };
+            return new EnitityID { _id = in_value };
         }
 
         /// <summary>
@@ -42,7 +52,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// </summary>
         /// <param name="in_identifier">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator int(ParquetID in_identifier)
+        public static implicit operator int(EnitityID in_identifier)
         {
             return in_identifier._id;
         }
@@ -58,7 +68,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// Zero indicates that the current instance occurs in the same position in the sort order as the given identifier.
         /// Greater than zero indicates that the current instance follows the given identifier in the sort order.
         /// </returns>
-        public int CompareTo(ParquetID in_identifier)
+        public int CompareTo(EnitityID in_identifier)
         {
             return _id.CompareTo(in_identifier._id);
         }
