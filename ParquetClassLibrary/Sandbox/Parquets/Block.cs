@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>Maximum toughness value to use when none is specified.</summary>
         private const int DefaultMaxToughness = 10;
 
-        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        /// <summary>The set of values that are allowed for Block's allowed parquet IDs.</summary>
         [JsonIgnore]
         protected override Range<EnitityID> Bounds { get { return Assembly.BlockIDs; } }
         #endregion

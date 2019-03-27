@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Furnishing : ParquetParent
     {
         #region Class Defaults
-        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        /// <summary>The set of values that are allowed for Block's allowed parquet IDs.</summary>
         [JsonIgnore]
         protected override Range<EnitityID> Bounds { get { return Assembly.FurnishingIDs; } }
         #endregion

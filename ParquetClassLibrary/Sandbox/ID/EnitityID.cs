@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using Newtonsoft.Json;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.ID
 {
@@ -37,6 +38,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         [JsonProperty]
         private int _id;
 
+        #region IComparable Methods
         /// <summary>
         /// Enables identifiers to be treated as their backing type.
         /// </summary>
@@ -72,14 +74,29 @@ namespace ParquetClassLibrary.Sandbox.ID
         {
             return _id.CompareTo(in_identifier._id);
         }
+        #endregion
+
+        #region Utility Methods
+        /// <summary>
+        /// Validates the current ID.  An ID is valid if:
+        /// 1) it is <see cref="ParquetClassLibrary.Sandbox.ID.EnitityID.None"/>
+        /// 2) it is defined within the given range, regardless of sign.
+        /// </summary>
+        /// <returns><c>true</c>, if the identifier is valid given the range, <c>false</c> otherwise.</returns>
+        /// <param name="in_range">The range within which the absolute value of the ID must fall.</param>
+        public bool IsValidForRange(Range<EnitityID> in_range)
+        {
+            return _id == None || in_range.ContainsValue(Math.Abs(_id));
+        }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.ID.ParquetID"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
         {
             return _id.ToString();
         }
+        #endregion
     }
 }

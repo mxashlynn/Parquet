@@ -151,7 +151,7 @@ namespace ParquetClassLibrary.Sandbox
         public void SetFloorToPaint(EnitityID in_floorID)
         {
             //Adds bounds-checking using the Ranges defined in Assembly.
-            if (Assembly.FloorIDs.ContainsValue(in_floorID))
+            if (in_floorID.IsValidForRange(Assembly.FloorIDs))
             {
                 _floorToPaint = in_floorID;
             }
@@ -168,7 +168,7 @@ namespace ParquetClassLibrary.Sandbox
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetBlockToPaint(EnitityID in_blockID)
         {
-            if (Assembly.BlockIDs.ContainsValue(in_blockID))
+            if (in_blockID.IsValidForRange(Assembly.BlockIDs))
             {
                 _blockToPaint = in_blockID;
             }
@@ -185,7 +185,7 @@ namespace ParquetClassLibrary.Sandbox
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetFurnishingToPaint(EnitityID in_furnishingID)
         {
-            if (Assembly.FurnishingIDs.ContainsValue(in_furnishingID))
+            if (in_furnishingID.IsValidForRange(Assembly.FurnishingIDs))
             {
                 _furnishingToPaint = in_furnishingID;
             }
@@ -202,7 +202,7 @@ namespace ParquetClassLibrary.Sandbox
         // TODO Improve handling of IDs (especially in Unity version).
         public void SetCollectableToPaint(EnitityID in_collectableID)
         {
-            if (Assembly.CollectableIDs.ContainsValue(in_collectableID))
+            if (in_collectableID.IsValidForRange(Assembly.CollectableIDs))
             {
                 _collectableToPaint = in_collectableID;
             }

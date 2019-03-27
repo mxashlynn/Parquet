@@ -1,6 +1,7 @@
-using ParquetClassLibrary.Sandbox.ID;
+﻿using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
+// Allow unit tests to access classes and members with internal accessibility.
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ParquetUnitTests")]
 
 namespace ParquetClassLibrary
@@ -13,30 +14,36 @@ namespace ParquetClassLibrary
         /// <summary>Describes the version of the serialized data that this class understands.</summary>
         public const string SupportedDataVersion = "0.1.0";
 
-        #region Sandbox Parquet ID Ranges
+        #region Sandbox Parquet and Item ID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ParquetID"/> set aside for Floors.
+        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/> set aside for Floors.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EnitityID> FloorIDs = new Range<EnitityID>(10000, 19000);
 
         /// <summary>
-        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ParquetID"/> set aside for Blocks.
+        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/> set aside for Blocks.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EnitityID> BlockIDs = new Range<EnitityID>(20000, 29000);
 
         /// <summary>
-        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ParquetID"/> set aside for Furnishings.
+        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/> set aside for Furnishings.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EnitityID> FurnishingIDs = new Range<EnitityID>(30000, 39000);
 
         /// <summary>
-        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ParquetID"/> set aside for Collectables.
+        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/> set aside for Collectables.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EnitityID> CollectableIDs = new Range<EnitityID>(40000, 49000);
+
+        /// <summary>
+        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/> set aside for Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test items.
+        /// </summary>
+        public static readonly Range<EnitityID> ItemIDs = new Range<EnitityID>(50000, 59000);
         #endregion
 
         #region Sandbox Map Element Dimensions

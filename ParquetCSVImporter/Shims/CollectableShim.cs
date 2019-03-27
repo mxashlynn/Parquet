@@ -1,4 +1,5 @@
-﻿using ParquetClassLibrary.Sandbox.Parquets;
+﻿using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Sandbox.Parquets;
 
 namespace ParquetCSVImporter.ClassMaps
 {
@@ -12,6 +13,18 @@ namespace ParquetCSVImporter.ClassMaps
     /// </summary>
     public class CollectableShim : ParquetParentShim
     {
+        /// <summary>The effect generated when a character encounters this Collectable.</summary>
+        public CollectionEffect Effect;
+
+        /// <summary>
+        /// The scale in points of the effect.  That is, how much to alter a stat if the
+        /// <see cref="T:ParquetClassLibrary.Sandbox.ID.CollectionEffect"/> is set to alter a stat.
+        /// </summary>
+        public int EffectAmount;
+
+        /// <summary>The item spawned when a character encounters this Collectable.</summary>
+        public EnitityID ItemID;
+
         /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>
@@ -26,7 +39,7 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Collectable))
             {
-                result = (T)(ParquetParent)new Collectable(ID, Name, AddsToBiome);
+                result = (T)(ParquetParent)new Collectable(ID, Name, AddsToBiome, Effect, EffectAmount, ItemID);
             }
             else
             {
