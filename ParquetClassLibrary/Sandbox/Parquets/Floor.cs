@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>A name to employ for parquets when IsHole is set, if none is provided.</summary>
         private const string DefaultNameWhenHole = "dark hole";
 
-        /// <summary>The set of values that are allowed for Floor's allowed parquet IDs.</summary>
+        /// <summary>The set of values that are allowed for Floor IDs.</summary>
         [JsonIgnore]
         protected override Range<EnitityID> Bounds { get { return Assembly.FloorIDs; } }
         #endregion

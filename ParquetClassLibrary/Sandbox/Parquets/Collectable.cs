@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Collectable : ParquetParent
     {
         #region Class Defaults
-        /// <summary>The set of values that are allowed for Floor's allowed parquet IDs.</summary>
+        /// <summary>The set of values that are allowed for Collectable IDs.</summary>
         [JsonIgnore]
         protected override Range<EnitityID> Bounds { get { return Assembly.CollectableIDs; } }
         #endregion
