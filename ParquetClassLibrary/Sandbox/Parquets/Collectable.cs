@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectable IDs.</summary>
         [JsonIgnore]
-        protected override Range<EnitityID> Bounds { get { return Assembly.CollectableIDs; } }
+        protected override Range<EntityID> Bounds { get { return Assembly.CollectableIDs; } }
         #endregion
 
         #region Parquet Mechanics
@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>The item spawned when a character encounters this Collectable.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
-        public EnitityID ItemID { get; private set; }
+        public EntityID ItemID { get; private set; }
         #endregion
 
         #region Initialization
@@ -48,12 +48,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </param>
         /// <param name="in_itemID">The item that this collectable corresponds to, if any.</param>
         [JsonConstructor]
-        public Collectable(EnitityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Collectable(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                            CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0,
-                           EnitityID? in_itemID = null)
+                           EntityID? in_itemID = null)
             : base(in_ID, in_name, in_addsToBiome)
         {
-            var nonNullItemID = in_itemID ?? EnitityID.None;
+            var nonNullItemID = in_itemID ?? EntityID.None;
             if (!nonNullItemID.IsValidForRange(Assembly.ItemIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_itemID));

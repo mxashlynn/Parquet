@@ -41,16 +41,16 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>Identifier for the selected floor.</summary>
-        private EnitityID _floorToPaint;
+        private EntityID _floorToPaint;
 
         /// <summary>Identifier for the selected block.</summary>
-        private EnitityID _blockToPaint;
+        private EntityID _blockToPaint;
 
         /// <summary>Identifier for the selected furnishing.</summary>
-        private EnitityID _furnishingToPaint;
+        private EntityID _furnishingToPaint;
 
         /// <summary>Identifier for the selected collectable.</summary>
-        private EnitityID _collectableToPaint;
+        private EntityID _collectableToPaint;
 
         #region New, Save, Load Methods
         /// <summary>
@@ -148,7 +148,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_floorID">The parquet ID to select.  Must represent a valid Floor.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetFloorToPaint(EnitityID in_floorID)
+        public void SetFloorToPaint(EntityID in_floorID)
         {
             //Adds bounds-checking using the Ranges defined in Assembly.
             if (in_floorID.IsValidForRange(Assembly.FloorIDs))
@@ -166,7 +166,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_blockID">The parquet ID to select.  Must represent a valid Block.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetBlockToPaint(EnitityID in_blockID)
+        public void SetBlockToPaint(EntityID in_blockID)
         {
             if (in_blockID.IsValidForRange(Assembly.BlockIDs))
             {
@@ -183,7 +183,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_furnishingID">The parquet ID to select.  Must represent a valid Furnishing.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetFurnishingToPaint(EnitityID in_furnishingID)
+        public void SetFurnishingToPaint(EntityID in_furnishingID)
         {
             if (in_furnishingID.IsValidForRange(Assembly.FurnishingIDs))
             {
@@ -200,7 +200,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_collectableID">The parquet ID to select.  Must represent a valid Collectable.</param>
         // TODO Improve handling of IDs (especially in Unity version).
-        public void SetCollectableToPaint(EnitityID in_collectableID)
+        public void SetCollectableToPaint(EntityID in_collectableID)
         {
             if (in_collectableID.IsValidForRange(Assembly.CollectableIDs))
             {

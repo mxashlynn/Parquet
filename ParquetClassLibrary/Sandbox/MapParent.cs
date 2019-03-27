@@ -38,16 +38,16 @@ namespace ParquetClassLibrary.Sandbox
         protected readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected abstract EnitityID[,] _floorLayer { get; }
+        protected abstract EntityID[,] _floorLayer { get; }
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected abstract EnitityID[,] _blockLayer { get; }
+        protected abstract EntityID[,] _blockLayer { get; }
 
         /// <summary>Furniture and natural items in the region.</summary>
-        protected abstract EnitityID[,] _furnishingLayer { get; }
+        protected abstract EntityID[,] _furnishingLayer { get; }
 
         /// <summary>Collectable materials in the region.</summary>
-        protected abstract EnitityID[,] _collectableLayer { get; }
+        protected abstract EntityID[,] _collectableLayer { get; }
         #endregion
 
         #region Parquets Replacement Methods
@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_floorID">ID for the new floor to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFloor(EnitityID in_floorID, Vector2Int in_position)
+        public bool TrySetFloor(EntityID in_floorID, Vector2Int in_position)
         {
             return TrySetParquet(in_floorID, in_position, _floorLayer);
         }
@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_blockID">ID for the new block to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
-        public bool TrySetBlock(EnitityID in_blockID, Vector2Int in_position)
+        public bool TrySetBlock(EntityID in_blockID, Vector2Int in_position)
         {
             return TrySetParquet(in_blockID, in_position, _blockLayer);
         }
@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFurnishing(EnitityID in_furnishingID, Vector2Int in_position)
+        public bool TrySetFurnishing(EntityID in_furnishingID, Vector2Int in_position)
         {
             return TrySetParquet(in_furnishingID, in_position, _furnishingLayer);
         }
@@ -90,7 +90,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_collectableID">ID for the new collectable to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the collectable was set, <c>false</c> otherwise.</returns>
-        public bool TrySetCollectable(EnitityID in_collectableID, Vector2Int in_position)
+        public bool TrySetCollectable(EntityID in_collectableID, Vector2Int in_position)
         {
             return TrySetParquet(in_collectableID, in_position, _collectableLayer);
         }
@@ -100,10 +100,10 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to clear.</param>
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
-        private bool TrySetParquet(EnitityID in_parquetID, Vector2Int in_position, EnitityID[,] in_parquetLayer)
+        private bool TrySetParquet(EntityID in_parquetID, Vector2Int in_position, EntityID[,] in_parquetLayer)
         {
             var result = false;
-            if (IsValidPosition(in_position) && EnitityID.None != in_parquetID)
+            if (IsValidPosition(in_position) && EntityID.None != in_parquetID)
             {
                 in_parquetLayer[in_position.x, in_position.y] = in_parquetID;
                 result = true;
@@ -169,12 +169,12 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_position">The position to clear.</param>
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
-        private bool TryRemoveParquet(Vector2Int in_position, EnitityID[,] in_parquetLayer)
+        private bool TryRemoveParquet(Vector2Int in_position, EntityID[,] in_parquetLayer)
         {
             var result = false;
             if (IsValidPosition(in_position))
             {
-                in_parquetLayer[in_position.x, in_position.y] = EnitityID.None;
+                in_parquetLayer[in_position.x, in_position.y] = EntityID.None;
                 result = true;
             }
             return result;
@@ -356,14 +356,14 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInParquets.y; y++)
                 {
-                    EnitityID parquetID = _floorLayer[x, y];
-                    if (EnitityID.None != parquetID) { result.Add(AllParquets.Get<Floor>(parquetID)); }
+                    EntityID parquetID = _floorLayer[x, y];
+                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Floor>(parquetID)); }
                     parquetID = _blockLayer[x, y];
-                    if (EnitityID.None != parquetID) { result.Add(AllParquets.Get<Block>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Block>(parquetID)); }
                     parquetID = _furnishingLayer[x, y];
-                    if (EnitityID.None != parquetID) { result.Add(AllParquets.Get<Furnishing>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Furnishing>(parquetID)); }
                     parquetID = _collectableLayer[x, y];
-                    if (EnitityID.None != parquetID) { result.Add(AllParquets.Get<Collectable>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Collectable>(parquetID)); }
                 }
             }
 
@@ -422,13 +422,13 @@ namespace ParquetClassLibrary.Sandbox
                 for (var y = 0; y < DimensionsInParquets.y; y++)
                 {
                     // TODO: This fails with TestParquet values.  Do we want to support ToStringing test values??
-                    var parquet = EnitityID.None != _collectableLayer[x, y]
+                    var parquet = EntityID.None != _collectableLayer[x, y]
                         ? AllParquets.Get<ParquetParent>(_collectableLayer[x, y]) 
-                        : EnitityID.None != _furnishingLayer[x, y]
+                        : EntityID.None != _furnishingLayer[x, y]
                             ? AllParquets.Get<ParquetParent>(_furnishingLayer[x, y])
-                            : EnitityID.None != _blockLayer[x, y]
+                            : EntityID.None != _blockLayer[x, y]
                                 ? AllParquets.Get<ParquetParent>(_blockLayer[x, y])
-                                : EnitityID.None != _floorLayer[x, y]
+                                : EntityID.None != _floorLayer[x, y]
                                     ? AllParquets.Get<ParquetParent>(_floorLayer[x, y])
                                     : null;
 

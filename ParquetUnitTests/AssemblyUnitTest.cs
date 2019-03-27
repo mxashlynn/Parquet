@@ -37,7 +37,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidFloorTest()
         {
-            var result = EnitityID.None.IsValidForRange(Assembly.FloorIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.FloorIDs);
 
             Assert.True(result);
         }
@@ -45,7 +45,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidBlockTest()
         {
-            var result = EnitityID.None.IsValidForRange(Assembly.BlockIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.BlockIDs);
 
             Assert.True(result);
         }
@@ -53,7 +53,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidFurnishingTest()
         {
-            var result = EnitityID.None.IsValidForRange(Assembly.FurnishingIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.FurnishingIDs);
 
             Assert.True(result);
         }
@@ -61,7 +61,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidCollectableTest()
         {
-            var result = EnitityID.None.IsValidForRange(Assembly.CollectableIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.CollectableIDs);
 
             Assert.True(result);
         }
@@ -69,7 +69,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidItemTest()
         {
-            var result = EnitityID.None.IsValidForRange(Assembly.ItemIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.ItemIDs);
 
             Assert.True(result);
         }

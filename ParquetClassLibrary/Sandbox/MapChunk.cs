@@ -22,19 +22,19 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Chunk Contents
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override EnitityID[,] _floorLayer { get; } = new EnitityID[Assembly.ParquetsPerChunkDimension,
+        protected override EntityID[,] _floorLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                              Assembly.ParquetsPerChunkDimension];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected override EnitityID[,] _blockLayer { get; } = new EnitityID[Assembly.ParquetsPerChunkDimension,
+        protected override EntityID[,] _blockLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                              Assembly.ParquetsPerChunkDimension];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        protected override EnitityID[,] _furnishingLayer { get; } = new EnitityID[Assembly.ParquetsPerChunkDimension,
+        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                                   Assembly.ParquetsPerChunkDimension];
 
         /// <summary>Collectable materials in the region.</summary>
-        protected override EnitityID[,] _collectableLayer { get; } = new EnitityID[Assembly.ParquetsPerChunkDimension,
+        protected override EntityID[,] _collectableLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                                    Assembly.ParquetsPerChunkDimension];
         #endregion
 

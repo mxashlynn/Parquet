@@ -27,10 +27,10 @@ namespace ParquetClassLibrary.Sandbox.ID
     /// 
     /// TODO: Move this explanation into the Wiki and expand it.
     /// </summary>
-    public struct EnitityID : IComparable<EnitityID>
+    public struct EntityID : IComparable<EntityID>
     {
         /// <summary>Indicates the lack of a game entity associated with this identifier (e.g., parquet).</summary>
-        public static readonly EnitityID None = 0;
+        public static readonly EntityID None = 0;
 
         /// <summary>Backing type for the identifier.</summary>
         // Currently this is implemented as an int rather than a GUID in order
@@ -44,9 +44,9 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// </summary>
         /// <param name="in_value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator EnitityID(int in_value)
+        public static implicit operator EntityID(int in_value)
         {
-            return new EnitityID { _id = in_value };
+            return new EntityID { _id = in_value };
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// </summary>
         /// <param name="in_identifier">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator int(EnitityID in_identifier)
+        public static implicit operator int(EntityID in_identifier)
         {
             return in_identifier._id;
         }
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// Zero indicates that the current instance occurs in the same position in the sort order as the given identifier.
         /// Greater than zero indicates that the current instance follows the given identifier in the sort order.
         /// </returns>
-        public int CompareTo(EnitityID in_identifier)
+        public int CompareTo(EntityID in_identifier)
         {
             return _id.CompareTo(in_identifier._id);
         }
@@ -79,18 +79,19 @@ namespace ParquetClassLibrary.Sandbox.ID
         #region Utility Methods
         /// <summary>
         /// Validates the current ID.  An ID is valid if:
-        /// 1) it is <see cref="ParquetClassLibrary.Sandbox.ID.EnitityID.None"/>
+        /// 1) it is <see cref="ParquetClassLibrary.Sandbox.ID.EntityID.None"/>
         /// 2) it is defined within the given range, regardless of sign.
         /// </summary>
         /// <returns><c>true</c>, if the identifier is valid given the range, <c>false</c> otherwise.</returns>
         /// <param name="in_range">The range within which the absolute value of the ID must fall.</param>
-        public bool IsValidForRange(Range<EnitityID> in_range)
+        public bool IsValidForRange(Range<EntityID> in_range)
         {
             return _id == None || in_range.ContainsValue(Math.Abs(_id));
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.ID.EnitityID"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current
+        /// <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

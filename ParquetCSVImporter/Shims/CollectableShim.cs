@@ -23,7 +23,7 @@ namespace ParquetCSVImporter.ClassMaps
         public int EffectAmount;
 
         /// <summary>The item spawned when a character encounters this Collectable.</summary>
-        public EnitityID ItemID;
+        public EntityID ItemID;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
