@@ -27,6 +27,18 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonProperty(PropertyName = "in_gatherTool")]
         public GatheringTools GatherTool { get; private set; }
 
+        /// <summary>The effect generated when a character gathers this Block.</summary>
+        [JsonProperty(PropertyName = "in_effect")]
+        public GatherEffect Effect { get; private set; }
+
+        /// <summary>The item awarded to the player when a character gathers this Block.</summary>
+        [JsonProperty(PropertyName = "in_itemID")]
+        public EntityID ItemID { get; private set; }
+
+        /// <summary>The Collectable spawned when a character gathers this Block.</summary>
+        [JsonProperty(PropertyName = "in_collectableID")]
+        public EntityID CollectableID { get; private set; }
+
         /// <summary>The block is flammable.</summary>
         [JsonProperty(PropertyName = "in_isFlammable")]
         public bool IsFlammable { get; private set; }
@@ -38,10 +50,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The block's native toughness.</summary>
         [JsonProperty(PropertyName = "in_maxToughness")]
         public int MaxToughness { get; private set; }
-
-        /// <summary>The Collectable spawned when a character Gathers this Block.</summary>
-        [JsonProperty(PropertyName = "in_collectableID")]
-        public EntityID CollectableID { get; private set; }
         #endregion
 
         #region Block Status
@@ -66,14 +74,18 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
+        /// <param name="in_effect">Effect of this block when gathered.</param>
+        /// <param name="in_itemID">The item that this collectable corresponds to, if any.</param>
         /// <param name="in_collectableID">The Collectable to spawn, if any, when this Block is Gathered.</param>
         /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
-                     GatheringTools in_gatherTool = GatheringTools.None, EntityID? in_collectableID = null,
-                     bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
+                     GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect,
+                     EntityID? in_itemID = null, EntityID? in_collectableID = null,
+                     bool in_isFlammable = false, bool in_isLiquid = false,
+                     int in_maxToughness = DefaultMaxToughness)
                      : base(in_ID, in_name, in_addsToBiome)
         {
             var nonNullCollectableID = in_collectableID ?? EntityID.None;
@@ -81,8 +93,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             {
                 throw new ArgumentOutOfRangeException(nameof(in_collectableID));
             }
+            var nonNullItemID = in_itemID ?? EntityID.None;
+            if (!nonNullItemID.IsValidForRange(Assembly.ItemIDs))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_itemID));
+            }
 
             GatherTool = in_gatherTool;
+            Effect = in_effect;
+            ItemID = nonNullItemID;
             CollectableID = nonNullCollectableID;
             IsFlammable = in_isFlammable;
             IsLiquid = in_isLiquid;

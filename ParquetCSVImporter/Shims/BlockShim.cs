@@ -16,6 +16,15 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>The tool used to remove the block.</summary>
         public GatheringTools GatherTool;
 
+        /// <summary>The effect generated when a character gathers this Block.</summary>
+        public GatherEffect Effect;
+
+        /// <summary>The item awarded to the player when a character gathers this Block.</summary>
+        public EntityID ItemID;
+
+        /// <summary>The Collectable spawned when a character gathers this Block.</summary>
+        public EntityID CollectableID;
+
         /// <summary>The block is flammable.</summary>
         public bool IsFlammable;
 
@@ -24,9 +33,6 @@ namespace ParquetCSVImporter.ClassMaps
 
         /// <summary>The block's native toughness.</summary>
         public int MaxToughness;
-
-        /// <summary>The Collectable spawned when a character Gathers this Block.</summary>
-        public EntityID CollectableID;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
@@ -44,8 +50,8 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Block))
             {
-                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, CollectableID, IsFlammable,
-                                                     IsLiquid, MaxToughness);
+                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, Effect, ItemID, CollectableID,
+                                                     IsFlammable, IsLiquid, MaxToughness);
             }
             else
             {
