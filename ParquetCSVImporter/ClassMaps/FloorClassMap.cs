@@ -1,11 +1,12 @@
-﻿using CsvHelper.Configuration;
+using CsvHelper.Configuration;
+// ReSharper disable InconsistentNaming
 
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
     /// Maps the values in a <see cref="T:ParquetCSVImporter.Shims.FloorShim"/> to records that CSVHelper recognizes.
     /// </summary>
-    public class FloorClassMap : ClassMap<FloorShim>
+    public sealed class FloorClassMap : ClassMap<FloorShim>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetCSVImporter.ClassMaps.FloorClassMap"/> class.
