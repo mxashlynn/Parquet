@@ -25,7 +25,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         #endregion
 
         /// <summary>A collection of all test parquets of all subtypes.</summary>
-        private static readonly Dictionary<EntityID, ParquetParent> _parquetDefinitions = new Dictionary<EntityID, ParquetParent>
+        private static readonly Dictionary<EntityID, ParquetParent> parquetDefinitions = new Dictionary<EntityID, ParquetParent>
         {
             { TestFloor.ID, TestFloor },
             { TestBlock.ID, TestBlock },
@@ -44,7 +44,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         /// </exception>
         public static T Get<T>(EntityID in_ID) where T : ParquetParent
         {
-            return (T)_parquetDefinitions[in_ID];
+            return (T)parquetDefinitions[in_ID];
         }
     }
 }

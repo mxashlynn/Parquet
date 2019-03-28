@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public const int LowestPossibleToughness = 0;
 
         /// <summary>Maximum toughness value to use when none is specified.</summary>
-        private const int DefaultMaxToughness = 10;
+        private const int defaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
         [JsonIgnore]
@@ -85,7 +85,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                      GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect = GatherEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
-                     int in_maxToughness = DefaultMaxToughness)
+                     int in_maxToughness = defaultMaxToughness)
                      : base(in_ID, in_name, in_addsToBiome)
         {
             var nonNullCollectableID = in_collectableID ?? EntityID.None;

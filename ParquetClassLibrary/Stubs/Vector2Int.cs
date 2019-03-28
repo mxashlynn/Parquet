@@ -10,10 +10,10 @@ namespace ParquetClassLibrary.Stubs
         public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
 
         /// <summary>Offset from origin in x.</summary>
-        public readonly int x;
+        public readonly int X;
 
         /// <summary>Offset from origin in y.</summary>
-        public readonly int y;
+        public readonly int Y;
 
         /// <summary>The magnitude cached for future reference.</summary>
         private int _magnitude;
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Stubs
                 // If this is the first time the value has been accessed, calculate and cache it.
                 if (_magnitude == int.MinValue)
                 {
-                    _magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(x * x + y * y)));
+                    _magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
                 }
                 return _magnitude;
             }
@@ -40,8 +40,8 @@ namespace ParquetClassLibrary.Stubs
         /// <param name="in_y">Offset in y.</param>
         public Vector2Int(int in_x, int in_y)
         {
-            x = in_x;
-            y = in_y;
+            X = in_x;
+            Y = in_y;
             _magnitude = int.MinValue;
         }
 
@@ -52,7 +52,7 @@ namespace ParquetClassLibrary.Stubs
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
         {
-            return x.GetHashCode() ^ (y.GetHashCode() << 2);
+            return X.GetHashCode() ^ (Y.GetHashCode() << 2);
         }
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace ParquetClassLibrary.Stubs
         /// <returns><c>true</c> if the <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>s are equal.</returns>
         public bool Equals(Vector2Int in_vector)
         {
-            return x == in_vector.x
-                   && y == in_vector.y;
+            return X == in_vector.X
+                   && Y == in_vector.Y;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Stubs
         /// <returns>The string representation.</returns>
         public override string ToString()
         {
-            return $"({x}, {y})";
+            return $"({X}, {Y})";
         }
         #endregion
     }

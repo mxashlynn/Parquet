@@ -39,8 +39,8 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         public bool Equals(SpecialPoint in_point)
         {
             return null != in_point
-                   && Position.x == in_point.Position.x
-                   && Position.y == in_point.Position.y;
+                   && Position.X == in_point.Position.X
+                   && Position.Y == in_point.Position.Y;
         }
 
         /// <summary>

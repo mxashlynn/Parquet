@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsHole is set, if none is provided.</summary>
-        private const string DefaultNameWhenHole = "dark hole";
+        private const string defaultNameWhenHole = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
         [JsonIgnore]
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonConstructor]
         public Floor(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
-                     string in_nameWhenHole = DefaultNameWhenHole, bool in_isWalkable = true)
+                     string in_nameWhenHole = defaultNameWhenHole, bool in_isWalkable = true)
                      : base(in_ID, in_name, in_addsToBiome)
         {
             ModTool = in_modTool;

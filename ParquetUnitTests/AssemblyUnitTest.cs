@@ -8,8 +8,8 @@ namespace ParquetUnitTests
     public class AssemblyUnitTest
     {
         #region Values for Tests
-        private const string InvalidDataVersion = "0.0.0";
-        private const int UpperBound = 10;
+        private const string invalidDataVersion = "0.0.0";
+        private const int upperBound = 10;
         #endregion
 
         [Fact]
@@ -21,7 +21,7 @@ namespace ParquetUnitTests
         [Fact]
         public void SupportedDataVersionIsNotInvalidTest()
         {
-            Assert.NotEqual(InvalidDataVersion, Assembly.SupportedDataVersion);
+            Assert.NotEqual(invalidDataVersion, Assembly.SupportedDataVersion);
         }
 
         [Fact]

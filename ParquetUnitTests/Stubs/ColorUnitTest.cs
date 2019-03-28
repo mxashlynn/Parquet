@@ -8,25 +8,25 @@ namespace ParquetUnitTests.Stubs
         [Fact]
         public void WhiteTest()
         {
-            Assert.Equal(255, Color.White.r);
-            Assert.Equal(255, Color.White.g);
-            Assert.Equal(255, Color.White.b);
-            Assert.Equal(255, Color.White.a);
+            Assert.Equal(255, Color.White.R);
+            Assert.Equal(255, Color.White.G);
+            Assert.Equal(255, Color.White.B);
+            Assert.Equal(255, Color.White.A);
         }
 
         [Fact]
         public void BlackTest()
         {
-            Assert.Equal(0, Color.Black.r);
-            Assert.Equal(0, Color.Black.g);
-            Assert.Equal(0, Color.Black.b);
-            Assert.Equal(255, Color.Black.a);
+            Assert.Equal(0, Color.Black.R);
+            Assert.Equal(0, Color.Black.G);
+            Assert.Equal(0, Color.Black.B);
+            Assert.Equal(255, Color.Black.A);
         }
 
         [Fact]
         public void TransparentTest()
         {
-            Assert.Equal(0, Color.Transparent.a);
+            Assert.Equal(0, Color.Transparent.A);
         }
 
         [Theory]
@@ -38,10 +38,10 @@ namespace ParquetUnitTests.Stubs
         public void NewSolidColorTest(int in_r, int in_g, int in_b)
         {
             var testVector = new Color(in_r, in_g, in_b);
-            Assert.Equal(in_r, testVector.r);
-            Assert.Equal(in_g, testVector.g);
-            Assert.Equal(in_b, testVector.b);
-            Assert.Equal(255, testVector.a);
+            Assert.Equal(in_r, testVector.R);
+            Assert.Equal(in_g, testVector.G);
+            Assert.Equal(in_b, testVector.B);
+            Assert.Equal(255, testVector.A);
         }
 
         [Theory]
@@ -52,10 +52,10 @@ namespace ParquetUnitTests.Stubs
         public void NewTranslucentColorTest(int in_r, int in_g, int in_b, int in_a)
         {
             var testVector = new Color(in_r, in_g, in_b, in_a);
-            Assert.Equal(in_r, testVector.r);
-            Assert.Equal(in_g, testVector.g);
-            Assert.Equal(in_b, testVector.b);
-            Assert.Equal(in_a, testVector.a);
+            Assert.Equal(in_r, testVector.R);
+            Assert.Equal(in_g, testVector.G);
+            Assert.Equal(in_b, testVector.B);
+            Assert.Equal(in_a, testVector.A);
         }
     }
 }

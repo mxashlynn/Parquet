@@ -11,12 +11,12 @@ namespace ParquetUnitTests.Sandbox
     public class MapRegionUnitTest
     {
         #region Values for Tests
-        private static readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
-        private static readonly Color TestColor = new Color(255, 128, 26, 230);
-        private const string TestTitle = "New Region";
-        private const Elevation TestStory = Elevation.AboveGround;
-        private const int TestElevation = -3;
-        private static readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
+        private static readonly Vector2Int invalidPosition = new Vector2Int(-1, -1);
+        private static readonly Color testColor = new Color(255, 128, 26, 230);
+        private const string testTitle = "New Region";
+        private const Elevation testStory = Elevation.AboveGround;
+        private const int testElevation = -3;
+        private static readonly Guid testID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
         #endregion
 
         #region Region Map Initialization
@@ -41,13 +41,13 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestTitle, TestColor, TestStory, TestElevation, TestID);
+            var customRegion = new MapRegion(testTitle, testColor, testStory, testElevation, testID);
 
-            Assert.Equal(TestTitle, customRegion.Title);
-            Assert.Equal(TestColor, customRegion.Background);
-            Assert.Equal(TestStory, customRegion.ElevationLocal);
-            Assert.Equal(TestElevation, customRegion.ElevationGlobal);
-            Assert.Equal(TestID, customRegion.RegionID);
+            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testStory, customRegion.ElevationLocal);
+            Assert.Equal(testElevation, customRegion.ElevationGlobal);
+            Assert.Equal(testID, customRegion.RegionID);
         }
         #endregion
 
@@ -68,7 +68,7 @@ namespace ParquetUnitTests.Sandbox
             var region = new MapRegion();
             var parquet = TestParquets.TestFloor.ID;
 
-            var result = region.TrySetFloor(parquet, InvalidPosition);
+            var result = region.TrySetFloor(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -100,7 +100,7 @@ namespace ParquetUnitTests.Sandbox
             var region = new MapRegion();
             var parquet = TestParquets.TestBlock.ID;
 
-            var result = region.TrySetBlock(parquet, InvalidPosition);
+            var result = region.TrySetBlock(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -132,7 +132,7 @@ namespace ParquetUnitTests.Sandbox
             var region = new MapRegion();
             var parquet = TestParquets.TestFurnishing.ID;
 
-            var result = region.TrySetFurnishing(parquet, InvalidPosition);
+            var result = region.TrySetFurnishing(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -164,7 +164,7 @@ namespace ParquetUnitTests.Sandbox
             var region = new MapRegion();
             var parquet = TestParquets.TestCollectable.ID;
 
-            var result = region.TrySetCollectable(parquet, InvalidPosition);
+            var result = region.TrySetCollectable(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -185,7 +185,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TryRemoveFloor(InvalidPosition);
+            var result = region.TryRemoveFloor(invalidPosition);
 
             Assert.False(result);
         }
@@ -205,7 +205,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TryRemoveBlock(InvalidPosition);
+            var result = region.TryRemoveBlock(invalidPosition);
 
             Assert.False(result);
         }
@@ -225,7 +225,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TryRemoveFurnishing(InvalidPosition);
+            var result = region.TryRemoveFurnishing(invalidPosition);
 
             Assert.False(result);
         }
@@ -245,7 +245,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var result = region.TryRemoveCollectable(InvalidPosition);
+            var result = region.TryRemoveCollectable(invalidPosition);
 
             Assert.False(result);
         }
@@ -266,7 +266,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
+            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
 
             var result = region.TrySetSpawnPoint(point);
 
@@ -288,7 +288,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var point = new SpawnPoint(InvalidPosition, SpawnType.Player);
+            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
 
             var result = region.TryRemoveSpawnPoint(point);
 
@@ -322,7 +322,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetExitPointFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var point = new ExitPoint(InvalidPosition, new Guid());
+            var point = new ExitPoint(invalidPosition, new Guid());
 
             var result = region.TrySetExitPoint(point);
 
@@ -344,7 +344,7 @@ namespace ParquetUnitTests.Sandbox
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
             var region = new MapRegion();
-            var point = new ExitPoint(InvalidPosition, new Guid());
+            var point = new ExitPoint(invalidPosition, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
 
@@ -379,7 +379,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion();
 
-            var specialData = region.GetSpecialPointsAtPosition(InvalidPosition);
+            var specialData = region.GetSpecialPointsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }
@@ -443,7 +443,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion().FillTestPattern();
 
-            var result = region.GetFloorAtPosition(InvalidPosition);
+            var result = region.GetFloorAtPosition(invalidPosition);
 
             Assert.Null(result);
         }
@@ -463,7 +463,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion().FillTestPattern();
 
-            var result = region.GetBlockAtPosition(InvalidPosition);
+            var result = region.GetBlockAtPosition(invalidPosition);
 
             Assert.Null(result);
         }
@@ -483,7 +483,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion().FillTestPattern();
 
-            var result = region.GetFurnishingAtPosition(InvalidPosition);
+            var result = region.GetFurnishingAtPosition(invalidPosition);
 
             Assert.Null(result);
         }
@@ -503,7 +503,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion().FillTestPattern();
 
-            var result = region.GetCollectableAtPosition(InvalidPosition);
+            var result = region.GetCollectableAtPosition(invalidPosition);
 
             Assert.Null(result);
         }
@@ -523,7 +523,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var region = new MapRegion().FillTestPattern();
 
-            var parquetStack = region.GetAllParquetsAtPosition(InvalidPosition);
+            var parquetStack = region.GetAllParquetsAtPosition(invalidPosition);
 
             Assert.Null(parquetStack.Floor);
             Assert.Null(parquetStack.Block);

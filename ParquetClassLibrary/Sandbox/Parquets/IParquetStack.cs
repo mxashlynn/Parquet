@@ -4,7 +4,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
     /// Supports injecting ParquetStack into Rasterization methods.
     /// </summary>
-    public interface ParquetStackI
+    public interface IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>
         Floor Floor { get; }

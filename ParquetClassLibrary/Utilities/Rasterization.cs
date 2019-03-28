@@ -23,13 +23,13 @@ namespace ParquetClassLibrary.Utilities
             var deduplicationList = new HashSet<Vector2Int>();
 
             // Uses Bressenham's algorithm.
-            var deltaX = Math.Abs(in_end.x - in_start.x);
-            var xStep = in_start.x < in_end.x
+            var deltaX = Math.Abs(in_end.X - in_start.X);
+            var xStep = in_start.X < in_end.X
                     ? 1
                     : -1;
 
-            var deltaY = Math.Abs(in_end.y - in_start.y);
-            var yStep = in_start.y < in_end.y
+            var deltaY = Math.Abs(in_end.Y - in_start.Y);
+            var yStep = in_start.Y < in_end.Y
                     ? 1
                     : -1;
 
@@ -38,8 +38,8 @@ namespace ParquetClassLibrary.Utilities
                     : -deltaY;
             var error = largestDifference / 2;
 
-            var x = in_start.x;
-            var y = in_start.y;
+            var x = in_start.X;
+            var y = in_start.Y;
             do
             {
                 var position = new Vector2Int(x, y);
@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Utilities
                     y += yStep;
                 }
             }
-            while (x != in_end.x || y != in_end.y);
+            while (x != in_end.X || y != in_end.Y);
 
             deduplicationList.Add(in_end);
 
@@ -74,9 +74,9 @@ namespace ParquetClassLibrary.Utilities
             var deduplicationList = new HashSet<Vector2Int>();
 
             // By scanline, by position.
-            for (int y = in_upperLeft.y; y <= in_lowerRight.y; y++)
+            for (int y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
             {
-                for (int x = in_upperLeft.x; x <= in_lowerRight.x; x++)
+                for (int x = in_upperLeft.X; x <= in_lowerRight.X; x++)
                 {
                     var position = new Vector2Int(x, y);
                     if (in_isValid(position))
@@ -96,8 +96,8 @@ namespace ParquetClassLibrary.Utilities
             var deduplicationList = new HashSet<Vector2Int>();
 
             // Outline the edges.
-            var upperRight = new Vector2Int(in_lowerRight.x, in_upperLeft.y);
-            var lowerLeft = new Vector2Int(in_upperLeft.x, in_lowerRight.y);
+            var upperRight = new Vector2Int(in_lowerRight.X, in_upperLeft.Y);
+            var lowerLeft = new Vector2Int(in_upperLeft.X, in_lowerRight.Y);
 
             deduplicationList.UnionWith(PlotLine(in_upperLeft, upperRight, in_isValid));
             deduplicationList.UnionWith(PlotLine(upperRight, in_lowerRight, in_isValid));
@@ -124,7 +124,7 @@ namespace ParquetClassLibrary.Utilities
                         // (2) the position is on the circle proper (that is, the circle's outline).
                         && (in_isFilled || x * x + y * y > outlineLimit))
                     {
-                        var position = new Vector2Int(in_center.x + x, in_center.y + y);
+                        var position = new Vector2Int(in_center.X + x, in_center.Y + y);
                         if (in_isValid(position))
                         {
                             deduplicationList.Add(position);
@@ -161,10 +161,10 @@ namespace ParquetClassLibrary.Utilities
                     && in_matches(position, in_target))
                 {
                     results.Add(position);
-                    queue.Enqueue(new Vector2Int(position.x - 1, position.y));
-                    queue.Enqueue(new Vector2Int(position.x, position.y - 1));
-                    queue.Enqueue(new Vector2Int(position.x + 1, position.y));
-                    queue.Enqueue(new Vector2Int(position.x, position.y + 1));
+                    queue.Enqueue(new Vector2Int(position.X - 1, position.Y));
+                    queue.Enqueue(new Vector2Int(position.X, position.Y - 1));
+                    queue.Enqueue(new Vector2Int(position.X + 1, position.Y));
+                    queue.Enqueue(new Vector2Int(position.X, position.Y + 1));
                 }
             }
 

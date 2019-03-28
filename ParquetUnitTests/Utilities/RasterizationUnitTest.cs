@@ -166,23 +166,23 @@ namespace ParquetUnitTests.Utilities
 
             bool IsVaild(Vector2Int in_position)
             {
-                return in_position.x >= 0
-                       && in_position.x <= fillLayer.Length
-                       && in_position.y >= 0
-                       && in_position.y <= fillLayer.Length;
+                return in_position.X >= 0
+                       && in_position.X <= fillLayer.Length
+                       && in_position.Y >= 0
+                       && in_position.Y <= fillLayer.Length;
             }
 
             bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
             {
                 var matchAgainst = System.Convert.ToInt32(in_matchAgainst);
-                return fillLayer[in_position.x, in_position.y] == matchAgainst;
+                return fillLayer[in_position.X, in_position.Y] == matchAgainst;
             }
 
-            int CountAllTargets(int[,] array)
+            int CountAllTargets(int[,] in_array)
             {
                 int count = 0;
 
-                foreach (var item in array)
+                foreach (var item in in_array)
                 {
                     if (item == target)
                     {
@@ -198,7 +198,7 @@ namespace ParquetUnitTests.Utilities
             Assert.Equal(CountAllTargets(fillLayer), vectors.Count);
             foreach (var vector in vectors)
             {
-                Assert.Equal(target, fillLayer[vector.x, vector.y]);
+                Assert.Equal(target, fillLayer[vector.X, vector.Y]);
             }
         }
     }

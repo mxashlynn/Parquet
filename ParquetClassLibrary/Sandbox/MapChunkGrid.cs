@@ -47,10 +47,10 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Region Contents
         /// <summary>The type of chunks which make up the region.</summary>
-        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.x, DimensionsInChunks.y];
+        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.X, DimensionsInChunks.Y];
 
         /// <summary>The orientation of the chunks which make up the region.</summary>
-        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.x, DimensionsInChunks.y];
+        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.X, DimensionsInChunks.Y];
         #endregion
 
         #region Initialization
@@ -96,8 +96,8 @@ namespace ParquetClassLibrary.Sandbox
 
             if (valid)
             {
-                _chunkTypes[in_position.x, in_position.y] = in_type;
-                _chunkOrientations[in_position.x, in_position.y] = in_orientation;
+                _chunkTypes[in_position.X, in_position.Y] = in_type;
+                _chunkOrientations[in_position.X, in_position.Y] = in_orientation;
             }
 
             return valid;
@@ -115,8 +115,8 @@ namespace ParquetClassLibrary.Sandbox
             return IsValidPosition(in_position)
                 ? ((ChunkType type, ChunkOrientation orientation)?)
                 (
-                    _chunkTypes[in_position.x, in_position.y],
-                    _chunkOrientations[in_position.x, in_position.y]
+                    _chunkTypes[in_position.X, in_position.Y],
+                    _chunkOrientations[in_position.X, in_position.Y]
                 )
                 : null;
         }
@@ -182,10 +182,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2Int in_position)
         {
-            return in_position.x > -1
-                && in_position.y > -1
-                && in_position.x < DimensionsInChunks.x
-                && in_position.y < DimensionsInChunks.y;
+            return in_position.X > -1
+                && in_position.Y > -1
+                && in_position.X < DimensionsInChunks.X
+                && in_position.Y < DimensionsInChunks.Y;
         }
 
         /// <summary>
@@ -197,9 +197,9 @@ namespace ParquetClassLibrary.Sandbox
         {
             var representation = new StringBuilder(DimensionsInChunks.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInChunks.x; x++)
+            for (var x = 0; x < DimensionsInChunks.X; x++)
             {
-                for (var y = 0; y < DimensionsInChunks.y; y++)
+                for (var y = 0; y < DimensionsInChunks.Y; y++)
                 {
                     representation.Append(
                         _chunkTypes[x, y].ToString()

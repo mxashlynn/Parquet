@@ -7,20 +7,20 @@ namespace ParquetUnitTests.Utilities
     public class RangeUnitTest
     {
         #region Values for Tests
-        private const int LowerBound = 0;
-        private const int UpperBound = 10;
+        private const int lowerBound = 0;
+        private const int upperBound = 10;
         #endregion
 
         [Fact]
         public void RangeMustBeWillDefinedTest()
         {
-            Assert.Throws<ArgumentException>(() => { var range = new Range<int>(UpperBound, LowerBound); });
+            Assert.Throws<ArgumentException>(() => { var range = new Range<int>(upperBound, lowerBound); });
         }
 
         [Fact]
         public void WellDefinedRangeIsValidTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
+            var range = new Range<int>(lowerBound, upperBound);
 
             Assert.True(range.IsValid());
         }
@@ -28,8 +28,8 @@ namespace ParquetUnitTests.Utilities
         [Fact]
         public void AverageIsWithinRangeTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
-            var average = (LowerBound + UpperBound) / 2;
+            var range = new Range<int>(lowerBound, upperBound);
+            var average = (lowerBound + upperBound) / 2;
 
             Assert.True(range.ContainsValue(average));
         }
@@ -37,24 +37,24 @@ namespace ParquetUnitTests.Utilities
         [Fact]
         public void MinimumIsWithinRangeTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
+            var range = new Range<int>(lowerBound, upperBound);
 
-            Assert.True(range.ContainsValue(LowerBound));
+            Assert.True(range.ContainsValue(lowerBound));
         }
 
         [Fact]
         public void MaximumIsWithinRangeTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
+            var range = new Range<int>(lowerBound, upperBound);
 
-            Assert.True(range.ContainsValue(UpperBound));
+            Assert.True(range.ContainsValue(upperBound));
         }
 
         [Fact]
         public void GreaterThanMaximumIsNotWithinRangeTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
-            var greater = UpperBound + 1;
+            var range = new Range<int>(lowerBound, upperBound);
+            var greater = upperBound + 1;
 
             Assert.False(range.ContainsValue(greater));
         }
@@ -62,8 +62,8 @@ namespace ParquetUnitTests.Utilities
         [Fact]
         public void LessThanMinimumIsNotWithinRangeTest()
         {
-            var range = new Range<int>(LowerBound, UpperBound);
-            var lesser = LowerBound - 1;
+            var range = new Range<int>(lowerBound, upperBound);
+            var lesser = lowerBound - 1;
 
             Assert.False(range.ContainsValue(lesser));
         }

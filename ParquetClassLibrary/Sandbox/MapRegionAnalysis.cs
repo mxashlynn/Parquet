@@ -10,13 +10,13 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Biome Criteria
         /// <summary>Used in computing thresholds.</summary>
-        private static readonly int ParquetsPerLayer = Assembly.ParquetsPerRegionDimension * Assembly.ParquetsPerRegionDimension;
+        private static readonly int parquetsPerLayer = Assembly.ParquetsPerRegionDimension * Assembly.ParquetsPerRegionDimension;
 
         /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
-        private static readonly int LandThreshold = (int)Math.Floor(ParquetsPerLayer * 1.25);
+        private static readonly int landThreshold = (int)Math.Floor(parquetsPerLayer * 1.25);
 
         /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
-        private static readonly int FluidThreshold = (int)Math.Floor(ParquetsPerLayer * 0.75);
+        private static readonly int fluidThreshold = (int)Math.Floor(parquetsPerLayer * 0.75);
         #endregion
 
         #region Biome Analysis Methods
@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsHeavenly(); },
-                                                FluidThreshold);
+                                                fluidThreshold);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsVolcanic(); },
-                                                FluidThreshold);
+                                                fluidThreshold);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsCoastal(); },
-                                                FluidThreshold);
+                                                fluidThreshold);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsDeserted(); },
-                                                LandThreshold);
+                                                landThreshold);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsFrozen(); },
-                                                LandThreshold);
+                                                landThreshold);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsSwampy(); },
-                                                LandThreshold);
+                                                landThreshold);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             return CountMeetsOrExceedsThreshold(in_region,
                                                 (ParquetParent p) => { return p.AddsToBiome.IsForested(); },
-                                                LandThreshold);
+                                                landThreshold);
         }
 
         /// <summary>

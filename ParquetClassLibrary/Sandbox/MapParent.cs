@@ -56,9 +56,9 @@ namespace ParquetClassLibrary.Sandbox
             {
                 var count = 0;
 
-                for (var x = 0; x < DimensionsInParquets.x; x++)
+                for (var x = 0; x < DimensionsInParquets.X; x++)
                 {
-                    for (var y = 0; y < DimensionsInParquets.y; y++)
+                    for (var y = 0; y < DimensionsInParquets.Y; y++)
                     {
                         count += EntityID.None != _floorLayer[x, y] ? 1 : 0;
                         count += EntityID.None != _blockLayer[x, y] ? 1 : 0;
@@ -128,7 +128,7 @@ namespace ParquetClassLibrary.Sandbox
             var result = false;
             if (IsValidPosition(in_position) && EntityID.None != in_parquetID)
             {
-                in_parquetLayer[in_position.x, in_position.y] = in_parquetID;
+                in_parquetLayer[in_position.X, in_position.Y] = in_parquetID;
                 result = true;
             }
             return result;
@@ -197,7 +197,7 @@ namespace ParquetClassLibrary.Sandbox
             var result = false;
             if (IsValidPosition(in_position))
             {
-                in_parquetLayer[in_position.x, in_position.y] = EntityID.None;
+                in_parquetLayer[in_position.X, in_position.Y] = EntityID.None;
                 result = true;
             }
             return result;
@@ -277,8 +277,8 @@ namespace ParquetClassLibrary.Sandbox
             {
                 // Return true if the point was removed or if the point never existed.
                 result = _specialPoints.Remove(in_point) ||
-                         !_specialPoints.Exists(foundPoint =>
-                             foundPoint.GetType() == in_point.GetType() && foundPoint == in_point);
+                         !_specialPoints.Exists(in_foundPoint =>
+                             in_foundPoint.GetType() == in_point.GetType() && in_foundPoint == in_point);
             }
 
             return result;
@@ -297,7 +297,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Floor>(_floorLayer[in_position.x, in_position.y]);
+                result = AllParquets.Get<Floor>(_floorLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -314,7 +314,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Block>(_blockLayer[in_position.x, in_position.y]);
+                result = AllParquets.Get<Block>(_blockLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -331,7 +331,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Furnishing>(_furnishingLayer[in_position.x, in_position.y]);
+                result = AllParquets.Get<Furnishing>(_furnishingLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -348,7 +348,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Collectable>(_collectableLayer[in_position.x, in_position.y]);
+                result = AllParquets.Get<Collectable>(_collectableLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -375,9 +375,9 @@ namespace ParquetClassLibrary.Sandbox
         {
             var result = new List<ParquetParent>();
 
-            for (var x = 0; x < DimensionsInParquets.x; x++)
+            for (var x = 0; x < DimensionsInParquets.X; x++)
             {
-                for (var y = 0; y < DimensionsInParquets.y; y++)
+                for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     EntityID parquetID = _floorLayer[x, y];
                     if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Floor>(parquetID)); }
@@ -400,7 +400,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>The special points at the position.</returns>
         public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2Int in_position)
         {
-            return _specialPoints.FindAll(point => point.Position.Equals(in_position));
+            return _specialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
         }
         #endregion
 
@@ -425,10 +425,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2Int in_position)
         {
-            return in_position.x > -1
-                && in_position.y > -1
-                && in_position.x < DimensionsInParquets.x
-                && in_position.y < DimensionsInParquets.y;
+            return in_position.X > -1
+                && in_position.Y > -1
+                && in_position.X < DimensionsInParquets.X
+                && in_position.Y < DimensionsInParquets.Y;
         }
 
         /// <summary>
@@ -440,9 +440,9 @@ namespace ParquetClassLibrary.Sandbox
         {
             var representation = new StringBuilder(DimensionsInParquets.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInParquets.x; x++)
+            for (var x = 0; x < DimensionsInParquets.X; x++)
             {
-                for (var y = 0; y < DimensionsInParquets.y; y++)
+                for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     // TODO: This fails with TestParquet values.  Do we want to support ToStringing test values??
                     var parquet = EntityID.None != _collectableLayer[x, y]
@@ -476,9 +476,9 @@ namespace ParquetClassLibrary.Sandbox
             var furnishingsRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
             var collectablesRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInParquets.x; x++)
+            for (var x = 0; x < DimensionsInParquets.X; x++)
             {
-                for (var y = 0; y < DimensionsInParquets.y; y++)
+                for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     floorRepresentation.Append(EntityID.None != _floorLayer[x, y]
                         ? _floorLayer[x, y].ToString()
@@ -512,7 +512,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
         public override string ToString()
         {
-            return $"({DimensionsInParquets.x }, {DimensionsInParquets.y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
+            return $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
         }
         #endregion
     }

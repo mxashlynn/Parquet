@@ -9,8 +9,8 @@ namespace ParquetUnitTests.Stubs
         [Fact]
         public void ZeroVectorTest()
         {
-            Assert.Equal(0, Vector2Int.ZeroVector.x);
-            Assert.Equal(0, Vector2Int.ZeroVector.y);
+            Assert.Equal(0, Vector2Int.ZeroVector.X);
+            Assert.Equal(0, Vector2Int.ZeroVector.Y);
             Assert.Equal(0, Vector2Int.ZeroVector.Magnitude);
         }
 
@@ -24,8 +24,8 @@ namespace ParquetUnitTests.Stubs
         {
             var testVector = new Vector2Int(in_x, in_y);
 
-            Assert.Equal(in_x, testVector.x);
-            Assert.Equal(in_y, testVector.y);
+            Assert.Equal(in_x, testVector.X);
+            Assert.Equal(in_y, testVector.Y);
             var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(in_x * in_x + in_y * in_y)));
             Assert.Equal(magnitude, testVector.Magnitude);
         }

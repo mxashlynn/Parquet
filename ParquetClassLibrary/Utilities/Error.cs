@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Utilities
     public static class Error
     {
         /// <summary>The path and name of the log file.</summary>
-        private const string _logFile = "ParquetLogFile.txt";
+        private const string logFile = "ParquetLogFile.txt";
 
         /// <summary>
         /// Logs the given error and alerts the user.
@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Utilities
         public static void Handle(string in_errorMessage)
         {
             // TODO Convert this to use multiplatform utils.
-            using (StreamWriter log = File.AppendText(_logFile))
+            using (StreamWriter log = File.AppendText(logFile))
             {
                 log.WriteLine(in_errorMessage);
             }

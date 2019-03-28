@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Sandbox;
 
 namespace ParquetRunner
 {
     class MainClass
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             var region = new MapRegion();
             Console.WriteLine(region);

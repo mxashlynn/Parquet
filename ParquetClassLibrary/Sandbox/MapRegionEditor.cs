@@ -370,7 +370,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_position">The position to check.</param>
         /// <param name="in_matchAgainst">The stack to match against.</param>
         /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
-        private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : ParquetStackI
+        private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : IParquetStack
         {
             var result = false;
             var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);

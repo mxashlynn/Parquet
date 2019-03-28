@@ -3,7 +3,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Simple container for one of each layer of parquet that can occupy the same position.
     /// </summary>
-    public struct ParquetStack : ParquetStackI
+    public struct ParquetStack : IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>
         public Floor Floor { get; private set; }

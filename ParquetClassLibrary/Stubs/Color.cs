@@ -14,34 +14,34 @@ namespace ParquetClassLibrary.Stubs
         public static readonly Color Brown = new Color(153, 77, 0);
         public static readonly Color Transparent = new Color(0, 0, 0, 0);
 
-        public readonly int r;
-        public readonly int g;
-        public readonly int b;
-        public readonly int a;
+        public readonly int R;
+        public readonly int G;
+        public readonly int B;
+        public readonly int A;
 
         public Color(int in_r, int in_g, int in_b, int in_a = 255)
         {
-            r = in_r.Normalize(0, 255);
-            g = in_g.Normalize(0, 255);
-            b = in_b.Normalize(0, 255);
-            a = in_a.Normalize(0, 255);
+            R = in_r.Normalize(0, 255);
+            G = in_g.Normalize(0, 255);
+            B = in_b.Normalize(0, 255);
+            A = in_a.Normalize(0, 255);
         }
 
         #region IEquatable Implementation
         public override int GetHashCode()
         {
-            return r.GetHashCode() ^
-                   (g.GetHashCode() << 2) ^
-                   (b.GetHashCode() >> 2) ^
-                   (a.GetHashCode() >> 1);
+            return R.GetHashCode() ^
+                   (G.GetHashCode() << 2) ^
+                   (B.GetHashCode() >> 2) ^
+                   (A.GetHashCode() >> 1);
         }
 
         public bool Equals(Color in_color)
         {
-            return r == in_color.r
-                   && g == in_color.g
-                   && b == in_color.b
-                   && a == in_color.a;
+            return R == in_color.R
+                   && G == in_color.G
+                   && B == in_color.B
+                   && A == in_color.A;
         }
 
         public override bool Equals(object obj)

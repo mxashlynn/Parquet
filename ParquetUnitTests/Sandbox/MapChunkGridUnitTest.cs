@@ -10,11 +10,11 @@ namespace ParquetUnitTests.Sandbox
     public class MapChunkGridUnitTest
     {
         #region Values for Tests
-        private static readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
-        private static readonly Color TestColor = new Color(255, 128, 26, 230);
-        private const string TestTitle = "Test Region";
-        private const int TestElevation = 4;
-        private static readonly Guid TestID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
+        private static readonly Vector2Int invalidPosition = new Vector2Int(-1, -1);
+        private static readonly Color testColor = new Color(255, 128, 26, 230);
+        private const string testTitle = "Test Region";
+        private const int testElevation = 4;
+        private static readonly Guid testID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
         #endregion
 
         #region Initialization
@@ -39,12 +39,12 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void NewCustomMapChunkGridTest()
         {
-            var customRegion = new MapChunkGrid(TestTitle, TestColor, TestElevation, TestID);
+            var customRegion = new MapChunkGrid(testTitle, testColor, testElevation, testID);
 
-            Assert.Equal(TestTitle, customRegion.Title);
-            Assert.Equal(TestColor, customRegion.Background);
-            Assert.Equal(TestElevation, customRegion.GlobalElevation);
-            Assert.Equal(TestID, customRegion.RegionID);
+            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testElevation, customRegion.GlobalElevation);
+            Assert.Equal(testID, customRegion.RegionID);
         }
         #endregion
 
@@ -54,7 +54,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var grid = new MapChunkGrid();
 
-            var wasSet = grid.SetChunk(ChunkType.Handmade, ChunkOrientation.EastWest, InvalidPosition);
+            var wasSet = grid.SetChunk(ChunkType.Handmade, ChunkOrientation.EastWest, invalidPosition);
 
             Assert.False(wasSet);
         }
@@ -76,7 +76,7 @@ namespace ParquetUnitTests.Sandbox
         {
             var grid = new MapChunkGrid();
 
-            var chunkData = grid.GetChunk(InvalidPosition);
+            var chunkData = grid.GetChunk(invalidPosition);
 
             Assert.Null(chunkData);
         }
