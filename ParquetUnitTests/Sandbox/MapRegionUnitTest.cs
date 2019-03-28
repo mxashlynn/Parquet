@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
@@ -11,12 +11,12 @@ namespace ParquetUnitTests.Sandbox
     public class MapRegionUnitTest
     {
         #region Values for Tests
-        private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
-        private readonly Color TestColor = new Color(255, 128, 26, 230);
+        private static readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
+        private static readonly Color TestColor = new Color(255, 128, 26, 230);
         private const string TestTitle = "New Region";
         private const Elevation TestStory = Elevation.AboveGround;
         private const int TestElevation = -3;
-        private readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
+        private static readonly Guid TestID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
         #endregion
 
         #region Region Map Initialization

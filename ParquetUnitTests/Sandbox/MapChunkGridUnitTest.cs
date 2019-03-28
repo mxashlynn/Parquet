@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
@@ -10,11 +10,11 @@ namespace ParquetUnitTests.Sandbox
     public class MapChunkGridUnitTest
     {
         #region Values for Tests
-        private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
-        private readonly Color TestColor = new Color(255, 128, 26, 230);
+        private static readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
+        private static readonly Color TestColor = new Color(255, 128, 26, 230);
         private const string TestTitle = "Test Region";
         private const int TestElevation = 4;
-        private readonly Guid TestID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
+        private static readonly Guid TestID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
         #endregion
 
         #region Initialization

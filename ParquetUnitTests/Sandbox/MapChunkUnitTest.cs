@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.SpecialPoints;
@@ -11,7 +11,7 @@ namespace ParquetUnitTests.Sandbox
     public class MapChunkUnitTest
     {
         #region Values for Tests
-        private readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
+        private static readonly Vector2Int InvalidPosition = new Vector2Int(-1, -1);
         #endregion
 
         #region chunk Map Initialization

@@ -6,7 +6,7 @@ namespace ParquetUnitTests.Sandbox
 {
     public class SpecialPointUnitTest
     {
-        private readonly Vector2Int testPosition = new Vector2Int(2, 2);
+        private static readonly Vector2Int testPosition = new Vector2Int(2, 2);
 
         [Fact]
         public void SpecialPointsEquateIfTheirPositionsEquateTest()
