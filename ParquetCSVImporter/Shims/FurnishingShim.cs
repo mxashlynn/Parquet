@@ -1,4 +1,5 @@
 ﻿using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Sandbox.ID;
 
 namespace ParquetCSVImporter.ClassMaps
 {
@@ -14,6 +15,9 @@ namespace ParquetCSVImporter.ClassMaps
     {
         /// <summary>The furnishing may be walked on.</summary>
         public bool IsWalkable;
+
+        /// <summary>The item that represents this furnishing in the inventory.</summary>
+        public EntityID ItemID;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
