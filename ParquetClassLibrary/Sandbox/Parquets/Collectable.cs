@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
@@ -10,9 +11,26 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Collectable : ParquetParent
     {
         #region Class Defaults
-        /// <summary>The set of values that are allowed for Floor's allowed ParquetIDs.</summary>
+        /// <summary>The set of values that are allowed for Collectable IDs.</summary>
         [JsonIgnore]
-        protected override Range<ParquetID> Bounds { get { return Assembly.CollectableIDs; } }
+        protected override Range<EntityID> Bounds { get { return Assembly.CollectableIDs; } }
+        #endregion
+
+        #region Parquet Mechanics
+        /// <summary>The effect generated when a character encounters this Collectable.</summary>
+        [JsonProperty(PropertyName = "in_effect")]
+        public CollectionEffect Effect { get; private set; }
+
+        /// <summary>
+        /// The scale in points of the effect.  That is, how much to alter a stat if the
+        /// <see cref="T:ParquetClassLibrary.Sandbox.ID.CollectionEffect"/> is set to alter a stat.
+        /// </summary>
+        [JsonProperty(PropertyName = "in_effectAmount")]
+        public int EffectAmount { get; private set; }
+
+        /// <summary>The item spawned when a character encounters this Collectable.</summary>
+        [JsonProperty(PropertyName = "in_itemID")]
+        public EntityID ItemID { get; private set; }
         #endregion
 
         #region Initialization
@@ -24,10 +42,27 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_addsToBiome">
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
         /// </param>
+        /// <param name="in_effect">Effect of this collectable.</param>
+        /// <param name="in_effectAmount">
+        /// The scale in points of the effect.  That is, how much to alter a stat if in_effect is set to alter a stat.
+        /// </param>
+        /// <param name="in_itemID">The item that this collectable corresponds to, if any.</param>
         [JsonConstructor]
-        public Collectable(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        public Collectable(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+                           CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0,
+                           EntityID? in_itemID = null)
             : base(in_ID, in_name, in_addsToBiome)
-        { }
+        {
+            var nonNullItemID = in_itemID ?? EntityID.None;
+            if (!nonNullItemID.IsValidForRange(Assembly.ItemIDs))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_itemID));
+            }
+
+            Effect = in_effect;
+            EffectAmount = in_effectAmount;
+            ItemID = nonNullItemID;
+        }
         #endregion
     }
 }

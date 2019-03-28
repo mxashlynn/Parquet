@@ -16,12 +16,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>Maximum toughness value to use when none is specified.</summary>
         private const int DefaultMaxToughness = 10;
 
-        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        /// <summary>The set of values that are allowed for Block IDs.</summary>
         [JsonIgnore]
-        protected override Range<ParquetID> Bounds { get { return Assembly.BlockIDs; } }
+        protected override Range<EntityID> Bounds { get { return Assembly.BlockIDs; } }
         #endregion
 
-        #region Block Physics
+        #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
         [JsonProperty(PropertyName = "in_gatherTool")]
         public GatheringTools GatherTool { get; private set; }
@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None, GatheringTools in_gatherTool = GatheringTools.None,
+        public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None, GatheringTools in_gatherTool = GatheringTools.None,
                      bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
                      : base(in_ID, in_name, in_addsToBiome)
         {

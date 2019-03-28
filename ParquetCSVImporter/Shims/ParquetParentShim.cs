@@ -10,7 +10,7 @@ namespace ParquetCSVImporter.ClassMaps
     public abstract class ParquetParentShim
     {
         /// <summary>Unique identifier of the parquet.</summary>
-        public ParquetID ID;
+        public EntityID ID;
 
         /// <summary>Player-facing name of the parquet.</summary>
         public string Name;

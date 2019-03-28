@@ -10,9 +10,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public class Furnishing : ParquetParent
     {
         #region Class Defaults
-        /// <summary>The set of values that are allowed for Block's allowed ParquetIDs.</summary>
+        /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
         [JsonIgnore]
-        protected override Range<ParquetID> Bounds { get { return Assembly.FurnishingIDs; } }
+        protected override Range<EntityID> Bounds { get { return Assembly.FurnishingIDs; } }
         #endregion
 
         #region Initialization
@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
         /// </param>
         [JsonConstructor]
-        public Furnishing(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        public Furnishing(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
             : base(in_ID, in_name, in_addsToBiome)
         { }
         #endregion

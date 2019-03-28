@@ -10,13 +10,13 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public abstract class ParquetParent : IEquatable<ParquetParent>
     {
-        /// <summary>The set of values that are allowed for specific ParquetIDs.  Defined by child classes.</summary>
+        /// <summary>The set of values that are allowed for specific parquet IDs.  Defined by child classes.</summary>
         [JsonIgnore]
-        protected abstract Range<ParquetID> Bounds { get; }
+        protected abstract Range<EntityID> Bounds { get; }
 
         /// <summary>Unique identifier of the parquet.</summary>
         [JsonProperty(PropertyName = "in_ID")]
-        public ParquetID ID { get; private set; }
+        public EntityID ID { get; private set; }
 
         /// <summary>Player-facing name of the parquet.</summary>
         [JsonProperty(PropertyName = "in_name")]
@@ -40,11 +40,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// this parquet helps to generate.
         /// </param>
         [JsonConstructor]
-        protected ParquetParent(ParquetID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        protected ParquetParent(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
-            // Ensures that the absolute value of the given parquet identifier lies withint a specified range.
-            var absID = Math.Abs(in_ID);
-            if (!Bounds.ContainsValue(absID))
+            if (!in_ID.IsValidForRange(Bounds))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_ID));
             }
