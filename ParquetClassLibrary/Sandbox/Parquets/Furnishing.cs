@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox.ID;
 using System;
@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Configurations for a sandbox-mode Furniture and similar items.
     /// </summary>
-    public class Furnishing : ParquetParent
+    public sealed class Furnishing : ParquetParent
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>

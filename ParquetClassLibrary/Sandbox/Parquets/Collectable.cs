@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Configurations for a sandbox-mode Characters, Furnishings, Crafting Materils, etc.
     /// </summary>
-    public class Collectable : ParquetParent
+    public sealed class Collectable : ParquetParent
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectable IDs.</summary>

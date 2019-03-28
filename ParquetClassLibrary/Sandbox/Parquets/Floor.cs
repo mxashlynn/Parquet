@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Configurations for a sandbox-mode parquet floor.
     /// </summary>
-    public class Floor : ParquetParent
+    public sealed class Floor : ParquetParent
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsHole is set, if none is provided.</summary>

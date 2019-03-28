@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// <summary>
     /// Configurations for a sandbox-mode parquet block.
     /// </summary>
-    public class Block : ParquetParent
+    public sealed class Block : ParquetParent
     {
         #region Class Defaults
         /// <summary>Minimum toughness value.</summary>
