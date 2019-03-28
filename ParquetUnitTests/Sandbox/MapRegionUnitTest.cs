@@ -32,7 +32,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void NewNullMapRegionTest()
         {
-            var nulledRegion = new MapRegion(null, null);
+            var nulledRegion = new MapRegion(null);
 
             Assert.Equal(MapRegion.DefaultTitle, nulledRegion.Title);
             Assert.Equal(MapRegion.DefaultColor, nulledRegion.Background);
