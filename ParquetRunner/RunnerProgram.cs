@@ -3,7 +3,7 @@ using ParquetClassLibrary.Sandbox;
 
 namespace ParquetRunner
 {
-    class MainClass
+    internal class MainClass
     {
         public static void Main()
         {

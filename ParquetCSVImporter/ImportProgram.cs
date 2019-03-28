@@ -13,7 +13,7 @@ namespace ParquetCSVImporter
     /// <summary>
     /// A program that reads in Parquet definitions from CSV files, and outputs them as JSON.
     /// </summary>
-    class MainClass
+    internal class MainClass
     {
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
