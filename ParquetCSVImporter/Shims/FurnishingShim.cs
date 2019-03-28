@@ -12,6 +12,9 @@ namespace ParquetCSVImporter.ClassMaps
     /// </summary>
     public class FurnishingShim : ParquetParentShim
     {
+        /// <summary>The furnishing may be walked on.</summary>
+        public bool IsWalkable;
+
         /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>

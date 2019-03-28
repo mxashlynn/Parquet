@@ -1,4 +1,4 @@
-ID,Name,AddsToBiome
--30000,3 Furnishing Test Parquet,None
-30000,Chair,Town
-30001,Table,Town
+ID,Name,AddsToBiome,IsWalkable
+-30000,3 Furnishing Test Parquet,None,FALSE
+30000,Chair,Town,TRUE
+30001,Table,Town,FALSE

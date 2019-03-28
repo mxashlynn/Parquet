@@ -15,6 +15,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         protected override Range<EntityID> Bounds { get { return Assembly.FurnishingIDs; } }
         #endregion
 
+        #region Parquet Mechanics
+        /// <summary>The furnishing may be walked on.</summary>
+        [JsonProperty(PropertyName = "in_isWalkable")]
+        public bool IsWalkable { get; private set; }
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Furnishing"/> class.
