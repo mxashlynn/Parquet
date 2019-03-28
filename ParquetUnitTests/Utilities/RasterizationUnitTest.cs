@@ -1,6 +1,7 @@
 using Xunit;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Stubs;
+// ReSharper disable InconsistentNaming
 
 namespace ParquetUnitTests.Utilities
 {
@@ -13,7 +14,7 @@ namespace ParquetUnitTests.Utilities
             const int rightBound = 10;
             var leftEnd = new Vector2Int(leftBound, 0);
             var rightEnd = new Vector2Int(rightBound, 0);
-            var vectors = Rasterization.PlotLine(leftEnd, rightEnd, (a) => { return true; });
+            var vectors = Rasterization.PlotLine(leftEnd, rightEnd, a => true);
 
             for (var x = leftBound; x <= rightBound; x++)
             {
@@ -31,7 +32,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerBound = 10;
             var top = new Vector2Int(0, upperBound);
             var bottom = new Vector2Int(0, lowerBound);
-            var vectors = Rasterization.PlotLine(top, bottom, (a) => { return true; });
+            var vectors = Rasterization.PlotLine(top, bottom, a => { return true; });
 
             for (var y = upperBound; y <= lowerBound; y++)
             {
@@ -49,7 +50,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 10;
             var upperLeftEnd = new Vector2Int(upperLeftBound, upperLeftBound);
             var lowerRightEnd = new Vector2Int(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotLine(upperLeftEnd, lowerRightEnd, (a) => { return true; });
+            var vectors = Rasterization.PlotLine(upperLeftEnd, lowerRightEnd, a => { return true; });
 
             for (var i = upperLeftBound; i <= lowerRightBound; i++)
             {
@@ -67,7 +68,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 9;
             var upperLeftCorner = new Vector2Int(upperLeftBound, upperLeftBound);
             var lowerRightCorner = new Vector2Int(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotFilledRectangle(upperLeftCorner, lowerRightCorner, (a) => { return true; });
+            var vectors = Rasterization.PlotFilledRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
@@ -88,7 +89,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 9;
             var upperLeftCorner = new Vector2Int(upperLeftBound, upperLeftBound);
             var lowerRightCorner = new Vector2Int(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotEmptyRectangle(upperLeftCorner, lowerRightCorner, (a) => { return true; });
+            var vectors = Rasterization.PlotEmptyRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
@@ -119,7 +120,7 @@ namespace ParquetUnitTests.Utilities
             var rightOfCenter = new Vector2Int(location + 1, location);
             var belowCenter = new Vector2Int(location, location + 1);
 
-            var vectors = Rasterization.PlotCircle(center, radius, true, (a) => { return true; });
+            var vectors = Rasterization.PlotCircle(center, radius, true, a => { return true; });
 
             Assert.True(vectors.Remove(center));
             Assert.True(vectors.Remove(aboveCenter));
@@ -140,7 +141,7 @@ namespace ParquetUnitTests.Utilities
             var rightOfCenter = new Vector2Int(location + 1, location);
             var belowCenter = new Vector2Int(location, location + 1);
 
-            var vectors = Rasterization.PlotCircle(center, radius, false, (a) => { return true; });
+            var vectors = Rasterization.PlotCircle(center, radius, false, a => { return true; });
 
             Assert.False(vectors.Remove(center));
             Assert.True(vectors.Remove(aboveCenter));
@@ -155,7 +156,7 @@ namespace ParquetUnitTests.Utilities
         {
             const int location = 1;
             const int target = 0;
-            var fillLayer = new int[,]
+            var fillLayer = new[,]
                 { { 1, 1, 1, 1, 1, 1 },
                   { 1, 0, 0, 0, 0, 1 },
                   { 1, 0, 2, 0, 0, 1 },
