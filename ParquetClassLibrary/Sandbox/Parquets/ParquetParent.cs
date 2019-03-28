@@ -16,18 +16,18 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>Unique identifier of the parquet.</summary>
         [JsonProperty(PropertyName = "in_ID")]
-        public EntityID ID { get; private set; }
+        public EntityID ID { get; }
 
         /// <summary>Player-facing name of the parquet.</summary>
         [JsonProperty(PropertyName = "in_name")]
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// If a <see cref="T:ParquetClassLibrary.Sandbox.BiomeMask"/> flag is set,
         /// this parquet helps generate the corresponding <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToBiome")]
-        public BiomeMask AddsToBiome { get; private set; }
+        public BiomeMask AddsToBiome { get; }
 
         #region Initialization
         /// <summary>
