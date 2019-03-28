@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using System;
 using ParquetClassLibrary.Utilities;
 
@@ -14,7 +14,7 @@ namespace ParquetUnitTests.Utilities
         [Fact]
         public void RangeMustBeWillDefinedTest()
         {
-            Assert.Throws<ArgumentException>(() => { var range = new Range<int>(upperBound, lowerBound); });
+            Assert.Throws<ArgumentException>(() => { var _ = new Range<int>(upperBound, lowerBound); });
         }
 
         [Fact]
