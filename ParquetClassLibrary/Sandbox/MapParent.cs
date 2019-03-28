@@ -177,19 +177,6 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Attempts to remove all parquets at the given position.
-        /// </summary>
-        /// <param name="in_position">The position to clear.</param>
-        /// <returns><c>true</c>, if the position was entirely cleared, <c>false</c> otherwise.</returns>
-        private bool TryRemoveAll(Vector2Int in_position)
-        {
-            return TryRemoveFloor(in_position)
-                && TryRemoveBlock(in_position)
-                && TryRemoveFurnishing(in_position)
-                && TryRemoveCollectable(in_position);
-        }
-
-        /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
         /// <param name="in_position">The position to clear.</param>
