@@ -63,12 +63,12 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_ID">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_ID = null)
+        /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
+        public MapChunkGrid(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_id = null)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
-            RegionID = in_ID ?? Guid.NewGuid();
+            RegionID = in_id ?? Guid.NewGuid();
             GlobalElevation = in_globalElevation;
         }
 
@@ -204,9 +204,7 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInChunks.Y; y++)
                 {
-                    representation.Append(
-                        _chunkTypes[x, y].ToString()
-                        ?? "~");
+                    representation.Append(_chunkTypes[x, y].ToString());
                 }
                 representation.AppendLine();
             }
