@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetClassLibrary.Sandbox.SpecialPoints
@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
     public class SpecialPoint : IEquatable<SpecialPoint>
     {
         /// <summary>Location of this point.</summary>
-        public Vector2Int Position { get; private set; } = Vector2Int.ZeroVector;
+        public Vector2Int Position { get; }
 
         /// <summary>
         /// Initializes a new instance of <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>.
