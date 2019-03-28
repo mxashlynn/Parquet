@@ -12,15 +12,16 @@ namespace ParquetCSVImporter.ClassMaps
         /// </summary>
         public BlockClassMap()
         {
-            // Properties are ordered by index to facility a logical layout in spreadsheet apps.
+            // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
             Map(m => m.Name).Index(1);
             Map(m => m.AddsToBiome).Index(2);
 
             Map(m => m.GatherTool).Index(3);
-            Map(m => m.IsFlammable).Index(4);
-            Map(m => m.IsLiquid).Index(5);
-            Map(m => m.MaxToughness).Index(6);
+            Map(m => m.CollectableID).Index(4);
+            Map(m => m.IsFlammable).Index(5);
+            Map(m => m.IsLiquid).Index(6);
+            Map(m => m.MaxToughness).Index(7);
         }
     }
 }

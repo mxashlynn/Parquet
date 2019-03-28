@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
@@ -37,6 +38,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The block's native toughness.</summary>
         [JsonProperty(PropertyName = "in_maxToughness")]
         public int MaxToughness { get; private set; }
+
+        /// <summary>The Collectable spawned when a character Gathers this Block.</summary>
+        [JsonProperty(PropertyName = "in_collectableID")]
+        public EntityID CollectableID { get; private set; }
         #endregion
 
         #region Block Status
@@ -61,15 +66,24 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
+        /// <param name="in_collectableID">The Collectable to spawn, if any, when this Block is Gathered.</param>
         /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None, GatheringTools in_gatherTool = GatheringTools.None,
+        public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+                     GatheringTools in_gatherTool = GatheringTools.None, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
                      : base(in_ID, in_name, in_addsToBiome)
         {
+            var nonNullCollectableID = in_collectableID ?? EntityID.None;
+            if (!nonNullCollectableID.IsValidForRange(Assembly.CollectableIDs))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_collectableID));
+            }
+
             GatherTool = in_gatherTool;
+            CollectableID = nonNullCollectableID;
             IsFlammable = in_isFlammable;
             IsLiquid = in_isLiquid;
             MaxToughness = in_maxToughness;

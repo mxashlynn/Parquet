@@ -25,11 +25,16 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>The block's native toughness.</summary>
         public int MaxToughness;
 
+        /// <summary>The Collectable spawned when a character Gathers this Block.</summary>
+        public EntityID CollectableID;
+
         /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.</returns>
+        /// <returns>
+        /// An instance of a child class of <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.
+        /// </returns>
         /// <exception cref="System.ArgumentException">
         /// Thrown when the current shim does not correspond to the specified type.
         /// </exception>
@@ -39,7 +44,8 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Block))
             {
-                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, IsFlammable, IsLiquid, MaxToughness);
+                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, CollectableID, IsFlammable,
+                                                     IsLiquid, MaxToughness);
             }
             else
             {
