@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Sandbox.Parquets;
+// ReSharper disable InconsistentNaming
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -98,7 +99,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsHeavenly(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsHeavenly(); },
+                                                p => p.AddsToBiome.IsHeavenly(),
                                                 fluidThreshold);
         }
 
@@ -110,7 +111,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsVolcanic(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsVolcanic(); },
+                                                p => p.AddsToBiome.IsVolcanic(),
                                                 fluidThreshold);
         }
 
@@ -122,7 +123,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsCoastal(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsCoastal(); },
+                                                p => p.AddsToBiome.IsCoastal(),
                                                 fluidThreshold);
         }
 
@@ -134,7 +135,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsDeserted(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsDeserted(); },
+                                                p => p.AddsToBiome.IsDeserted(),
                                                 landThreshold);
         }
 
@@ -146,7 +147,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsFrozen(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsFrozen(); },
+                                                p => p.AddsToBiome.IsFrozen(),
                                                 landThreshold);
         }
 
@@ -158,7 +159,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsSwampy(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsSwampy(); },
+                                                p => p.AddsToBiome.IsSwampy(),
                                                 landThreshold);
         }
 
@@ -170,7 +171,7 @@ namespace ParquetClassLibrary.Sandbox
         internal static bool IsForested(this MapRegion in_region)
         {
             return CountMeetsOrExceedsThreshold(in_region,
-                                                (ParquetParent p) => { return p.AddsToBiome.IsForested(); },
+                                                p => p.AddsToBiome.IsForested(),
                                                 landThreshold);
         }
 
