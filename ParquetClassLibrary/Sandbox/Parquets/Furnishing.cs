@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                 throw new ArgumentOutOfRangeException(nameof(in_itemID));
             }
             var nonNullSwapID = in_swapID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(Bounds))
+            if (!nonNullSwapID.IsValidForRange(Bounds))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_swapID));
             }
