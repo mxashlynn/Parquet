@@ -68,13 +68,13 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_ID">A RegionID derived from a MapChunkGrid; if null, a new RegionID is generated.</param>
+        /// <param name="in_id">A RegionID derived from a MapChunkGrid; if null, a new RegionID is generated.</param>
         public MapRegion(string in_title = DefaultTitle, Color? in_background = null,
-                         Elevation in_localElevation = Elevation.LevelGround, int in_globalElevation = 0, Guid? in_ID = null)
+                         Elevation in_localElevation = Elevation.LevelGround, int in_globalElevation = 0, Guid? in_id = null)
         {
             Title = in_title ?? DefaultTitle;
             Background = in_background ?? Color.White;
-            RegionID = in_ID ?? Guid.NewGuid();
+            RegionID = in_id ?? Guid.NewGuid();
             ElevationLocal = in_localElevation;
             ElevationGlobal = in_globalElevation;
         }
