@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,6 +23,9 @@ namespace ParquetClassLibrary.Sandbox
 
         /// <summary>Default color for new regions.</summary>
         public static readonly Color DefaultColor = Color.White;
+
+        /// <summary>Relative elevation to use if none is provided.</summary>
+        protected const int DefaultRelativeElevation = 0;
         #endregion
 
         #region Whole-Region Characteristics
@@ -42,7 +45,7 @@ namespace ParquetClassLibrary.Sandbox
         public Color Background { get; set; } = DefaultColor;
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int GlobalElevation { get; set; } = 0;
+        public int GlobalElevation { get; set; } = DefaultRelativeElevation;
         #endregion
 
         #region Region Contents
