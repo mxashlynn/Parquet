@@ -28,7 +28,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void NewNullMapChunkGridTest()
         {
-            var nulledGrid = new MapChunkGrid(null, null);
+            var nulledGrid = new MapChunkGrid(null);
 
             Assert.Equal(MapChunkGrid.DefaultTitle, nulledGrid.Title);
             Assert.Equal(MapChunkGrid.DefaultColor, nulledGrid.Background);
