@@ -45,9 +45,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_modTool">The tool used to gather this block.</param>
-        /// <param name="in_nameWhenHole">The name to use for this tile when it has been dug out.</param>
-        /// <param name="in_isWalkable">If <c>true</c> this block may burn.</param>
+        /// <param name="in_modTool">The tool used to modify this floor.</param>
+        /// <param name="in_nameWhenHole">The name to use for this floor when it has been dug out.</param>
+        /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>
         [JsonConstructor]
         public Floor(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
