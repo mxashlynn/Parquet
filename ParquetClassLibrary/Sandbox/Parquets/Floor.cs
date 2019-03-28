@@ -42,17 +42,17 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/> class.
         /// </summary>
-        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
         /// <param name="in_modTool">The tool used to modify this floor.</param>
         /// <param name="in_nameWhenHole">The name to use for this floor when it has been dug out.</param>
         /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>
         [JsonConstructor]
-        public Floor(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Floor(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
                      string in_nameWhenHole = defaultNameWhenHole, bool in_isWalkable = true)
-                     : base(in_ID, in_name, in_addsToBiome)
+                     : base(in_id, in_name, in_addsToBiome)
         {
             ModTool = in_modTool;
             NameWhenHole = in_nameWhenHole;

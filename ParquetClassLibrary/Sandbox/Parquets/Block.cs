@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/> class.
         /// </summary>
-        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
@@ -81,12 +81,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Block(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect = GatherEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
                      int in_maxToughness = defaultMaxToughness)
-                     : base(in_ID, in_name, in_addsToBiome)
+                     : base(in_id, in_name, in_addsToBiome)
         {
             var nonNullCollectableID = in_collectableID ?? EntityID.None;
             if (!nonNullCollectableID.IsValidForRange(Assembly.CollectableIDs))

@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectable"/> class.
         /// </summary>
-        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
@@ -48,10 +48,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </param>
         /// <param name="in_itemID">The item that this collectable corresponds to, if any.</param>
         [JsonConstructor]
-        public Collectable(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Collectable(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                            CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0,
                            EntityID? in_itemID = null)
-            : base(in_ID, in_name, in_addsToBiome)
+            : base(in_id, in_name, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
             if (!nonNullItemID.IsValidForRange(Assembly.ItemIDs))
