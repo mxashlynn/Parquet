@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.Parquets;
@@ -372,7 +372,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
         private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : IParquetStack
         {
-            var result = false;
+            bool result;
             var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
 
             if (_parquetPaintPattern.HasFlag(ParquetMask.None))
