@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
@@ -77,7 +77,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </returns>
         public bool Equals(ParquetParent in_parquet)
         {
-            return ID == in_parquet.ID;
+            return in_parquet != null && ID == in_parquet.ID;
         }
 
         /// <summary>
