@@ -34,20 +34,43 @@ namespace ParquetClassLibrary.Sandbox
         #endregion
 
         #region Map Contents
-        /// <summary>Exit, spawn, and other special points in the region.</summary>
+        /// <summary>Exit, spawn, and other special points on the map.</summary>
         protected readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
 
-        /// <summary>Floors and walkable terrain in the region.</summary>
+        /// <summary>Floors and walkable terrain on the map.</summary>
         protected abstract EntityID[,] _floorLayer { get; }
 
-        /// <summary>Walls and obstructing terrain in the region.</summary>
+        /// <summary>Walls and obstructing terrain on the map.</summary>
         protected abstract EntityID[,] _blockLayer { get; }
 
-        /// <summary>Furniture and natural items in the region.</summary>
+        /// <summary>Furniture and natural items on the map.</summary>
         protected abstract EntityID[,] _furnishingLayer { get; }
 
-        /// <summary>Collectable materials in the region.</summary>
+        /// <summary>Collectable materials on the map.</summary>
         protected abstract EntityID[,] _collectableLayer { get; }
+
+        /// <summary>The total number of parquets in the entire map.</summary>
+        protected int ParquetsCount
+        {
+            get
+            {
+                var count = 0;
+
+                for (var x = 0; x < DimensionsInParquets.x; x++)
+                {
+                    for (var y = 0; y < DimensionsInParquets.y; y++)
+                    {
+                        count += EntityID.None != _floorLayer[x, y] ? 1 : 0;
+                        count += EntityID.None != _blockLayer[x, y] ? 1 : 0;
+                        count += EntityID.None != _furnishingLayer[x, y] ? 1 : 0;
+                        count += EntityID.None != _collectableLayer[x, y] ? 1 : 0;
+                    }
+                }
+
+                return count;
+            }
+        }
+
         #endregion
 
         #region Parquets Replacement Methods
@@ -345,7 +368,7 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Gets all the parquets in the entire region.
+        /// Gets all the parquets in the entire map.
         /// </summary>
         /// <returns>A collection of parquets.</returns>
         public IEnumerable<ParquetParent> GetAllParquets()
@@ -396,7 +419,7 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Determines if the given position corresponds to a point in the region.
+        /// Determines if the given position corresponds to a point on the map.
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
@@ -409,11 +432,11 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Visualizes the region as a string with merged layers.
+        /// Visualizes the map as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapParent"/>.</returns>
-        public override string ToString()
+        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        internal string DumpMap()
         {
             var representation = new StringBuilder(DimensionsInParquets.Magnitude);
             #region Compose visual represenation of contents.
@@ -439,6 +462,57 @@ namespace ParquetClassLibrary.Sandbox
             #endregion
 
             return representation.ToString();
+        }
+
+        /// <summary>
+        /// Visualizes the map as a string, listing layers separately.
+        /// Intended for Console debugging.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        public string DumpMapWithLayers()
+        {
+            var floorRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var blocksRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var furnishingsRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            var collectablesRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
+            #region Compose visual represenation of contents.
+            for (var x = 0; x < DimensionsInParquets.x; x++)
+            {
+                for (var y = 0; y < DimensionsInParquets.y; y++)
+                {
+                    floorRepresentation.Append(EntityID.None != _floorLayer[x, y]
+                        ? _floorLayer[x, y].ToString()
+                        : "~");
+                    blocksRepresentation.Append(EntityID.None != _blockLayer[x, y]
+                        ? _blockLayer[x, y].ToString()
+                        : " ");
+                    furnishingsRepresentation.Append(EntityID.None != _furnishingLayer[x, y]
+                        ? _furnishingLayer[x, y].ToString()
+                        : " ");
+                    collectablesRepresentation.Append(EntityID.None != _collectableLayer[x, y]
+                        ? _collectableLayer[x, y].ToString()
+                        : " ");
+                }
+                floorRepresentation.AppendLine();
+                blocksRepresentation.AppendLine();
+                furnishingsRepresentation.AppendLine();
+                collectablesRepresentation.AppendLine();
+            }
+            #endregion
+
+            return $"Floor:\n{floorRepresentation}\n" +
+                $"Blocks:\n{blocksRepresentation}\n" +
+                $"Furnishings:\n{furnishingsRepresentation}\n" +
+                $"Collectables:\n{collectablesRepresentation}";
+        }
+
+        /// <summary>
+        /// Describes the map as a string containing basic information.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        public override string ToString()
+        {
+            return $"({DimensionsInParquets.x }, {DimensionsInParquets.y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
         }
         #endregion
     }

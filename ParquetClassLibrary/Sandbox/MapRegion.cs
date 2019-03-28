@@ -137,56 +137,12 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Visualizes the region as a string with merged layers.
-        /// Intended for Console debugging.
+        /// Describes the region as a string containing basic information.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
         public override string ToString()
         {
-            return $"Region {Title} ({DimensionsInParquets.x }, {DimensionsInParquets.y})\n{base.ToString()}";
-        }
-
-        /// <summary>
-        /// Visualizes the region as a string, listing layers separately.
-        /// Intended for Console debugging.
-        /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
-        public string ToLayeredString()
-        {
-            var floorRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var blocksRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var furnishingsRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var collectablesRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInParquets.x; x++)
-            {
-                for (var y = 0; y < DimensionsInParquets.y; y++)
-                {
-                    floorRepresentation.Append(EntityID.None != _floorLayer[x, y]
-                        ? _floorLayer[x, y].ToString()
-                        : "~");
-                    blocksRepresentation.Append(EntityID.None != _blockLayer[x, y]
-                        ? _blockLayer[x, y].ToString()
-                        : " ");
-                    furnishingsRepresentation.Append(EntityID.None != _furnishingLayer[x, y]
-                        ? _furnishingLayer[x, y].ToString()
-                        : " ");
-                    collectablesRepresentation.Append(EntityID.None != _collectableLayer[x, y]
-                        ? _collectableLayer[x, y].ToString()
-                        : " ");
-                }
-                floorRepresentation.AppendLine();
-                blocksRepresentation.AppendLine();
-                furnishingsRepresentation.AppendLine();
-                collectablesRepresentation.AppendLine();
-            }
-            #endregion
-
-            return $"Region {Title} ({DimensionsInParquets.x}, {DimensionsInParquets.y})\n" +
-                $"Floor:\n{floorRepresentation}\n" +
-                $"Blocks:\n{blocksRepresentation}\n" +
-                $"Furnishings:\n{furnishingsRepresentation}\n" +
-                $"Collectables:\n{collectablesRepresentation}";
+            return $"Region {Title} {base.ToString()}";
         }
         #endregion
     }
