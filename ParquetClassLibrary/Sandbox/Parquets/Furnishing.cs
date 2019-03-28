@@ -24,6 +24,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The item that represents this furnishing in the inventory.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
         public EntityID ItemID { get; private set; }
+
+        /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
+        [JsonProperty(PropertyName = "in_swapID")]
+        public EntityID SwapID { get; private set; }
         #endregion
 
         #region Initialization
@@ -35,9 +39,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_addsToBiome">
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
         /// </param>
+        /// <param name="in_isWalkable">If <c>true</c> this furnishing may be walked/sat upon.</param>
+        /// <param name="in_itemID">The item that represents this furnishing in the inventory.</param>
+        /// <param name="in_swapID">A furnishing to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
         public Furnishing(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
-                          bool in_isWalkable = false, EntityID? in_itemID = null)
+                          bool in_isWalkable = false, EntityID? in_itemID = null, EntityID? in_swapID = null)
             : base(in_ID, in_name, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
@@ -45,9 +52,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             {
                 throw new ArgumentOutOfRangeException(nameof(in_itemID));
             }
+            var nonNullSwapID = in_swapID ?? EntityID.None;
+            if (!nonNullItemID.IsValidForRange(Bounds))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_swapID));
+            }
 
             IsWalkable = in_isWalkable;
             ItemID = nonNullItemID;
+            SwapID = nonNullSwapID;
         }
         #endregion
     }

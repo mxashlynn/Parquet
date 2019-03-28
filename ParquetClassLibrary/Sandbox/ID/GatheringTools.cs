@@ -10,6 +10,5 @@
         Axe,
         Shovel,
         Bucket,
-        Key,
     }
 }

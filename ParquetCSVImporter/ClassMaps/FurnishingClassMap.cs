@@ -19,6 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
 
             Map(m => m.IsWalkable).Index(3);
             Map(m => m.ItemID).Index(4);
+            Map(m => m.SwapID).Index(5);
         }
     }
 }
