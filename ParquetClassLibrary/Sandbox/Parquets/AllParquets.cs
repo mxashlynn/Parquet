@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 using Newtonsoft.Json;
@@ -21,15 +21,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Returns the specified parquet.
         /// </summary>
-        /// <param name="in_ID">A valid, defined parquet identifier.</param>
+        /// <param name="in_id">A valid, defined parquet identifier.</param>
         /// <typeparam name="T">The type of parquet sought.  Must correspond to the given ID.</typeparam>
         /// <returns>The specified parquet.</returns>
         /// <exception cref="System.InvalidCastException">
         /// Thrown when the specified type does not correspond to the given ID.
         /// </exception>
-        public static T Get<T>(EntityID in_ID) where T : ParquetParent
+        public static T Get<T>(EntityID in_id) where T : ParquetParent
         {
-            return (T)ParquetDefinitions[in_ID];
+            return (T)ParquetDefinitions[in_id];
         }
 
         /// <summary>
