@@ -19,10 +19,13 @@ namespace ParquetClassLibrary.Sandbox
                                                                                   Assembly.ParquetsPerRegionDimension);
 
         /// <summary>Default name for new regions.</summary>
-        public const string DefaultTitle = "New Region";
+        internal const string DefaultTitle = "New Region";
+
+        /// <summary>Relative elevation to use if none is provided.</summary>
+        internal const int DefaultRelativeElevation = 0;
 
         /// <summary>Default color for new regions.</summary>
-        public static readonly Color DefaultColor = Color.White;
+        internal static readonly Color DefaultColor = Color.White;
         #endregion
 
         #region Whole-Map Characteristics
@@ -39,7 +42,7 @@ namespace ParquetClassLibrary.Sandbox
         public Elevation ElevationLocal { get; set; } = Elevation.LevelGround;
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int ElevationGlobal { get; set; } = 0;
+        public int ElevationGlobal { get; set; } = DefaultRelativeElevation;
         #endregion
 
         #region Map Contents
