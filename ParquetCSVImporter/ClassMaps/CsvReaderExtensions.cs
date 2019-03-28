@@ -40,7 +40,7 @@ namespace ParquetCSVImporter.ClassMaps
             else
             {
                 shims = new List<ParquetParentShim>();
-                Error.Handle($"No shim exists for {typeof(T).ToString()}");
+                Error.Handle($"No shim exists for {typeof(T)}");
             }
 
             foreach (var shim in shims)

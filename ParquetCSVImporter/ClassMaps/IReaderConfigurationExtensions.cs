@@ -7,6 +7,7 @@ namespace ParquetCSVImporter.ClassMaps
     /// <summary>
     /// Provides extensions to the CSV Reader Configuration.
     /// </summary>
+    // ReSharper disable once InconsistentNaming
     public static class IReaderConfigurationExtensions
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace ParquetCSVImporter.ClassMaps
             }
             else
             {
-                Error.Handle($"No class map exists for {typeof(T).ToString()}");
+                Error.Handle($"No class map exists for {typeof(T)}");
             }
         }
     }
