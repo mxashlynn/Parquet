@@ -5,6 +5,7 @@ using ParquetClassLibrary.Sandbox.SpecialPoints;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
+// ReSharper disable InconsistentNaming
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -30,7 +31,7 @@ namespace ParquetClassLibrary.Sandbox
         protected readonly string DataVersion = Assembly.SupportedDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; protected set; } = 0;
+        public int Revision { get; private set; }
         #endregion
 
         #region Map Contents
@@ -180,6 +181,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
         /// <param name="in_position">The position to clear.</param>
+        /// <param name="in_parquetLayer">The layer to clear.</param>
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
         private bool TryRemoveParquet(Vector2Int in_position, EntityID[,] in_parquetLayer)
         {
