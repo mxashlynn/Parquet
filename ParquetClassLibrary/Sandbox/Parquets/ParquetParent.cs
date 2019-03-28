@@ -33,21 +33,22 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Used by children of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> class.
         /// </summary>
-        /// <param name="in_ID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>
         /// this parquet helps to generate.
         /// </param>
         [JsonConstructor]
-        protected ParquetParent(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        protected ParquetParent(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
-            if (!in_ID.IsValidForRange(Bounds))
+            // TODO Is it safe to call this virtual method in the constructor?
+            if (!in_id.IsValidForRange(Bounds))
             {
-                throw new ArgumentOutOfRangeException(nameof(in_ID));
+                throw new ArgumentOutOfRangeException(nameof(in_id));
             }
 
-            ID = in_ID;
+            ID = in_id;
             Name = in_name ?? throw new ArgumentNullException(nameof(in_name));
             AddsToBiome = in_addsToBiome;
         }
