@@ -121,7 +121,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
-        /// <param name="in_position">The position to clear.</param>
+        /// <param name="in_parquetID">The parquet to put.</param>
+        /// <param name="in_position">The position to put the parquet in.</param>
+        /// <param name="in_parquetLayer">The layer to put the parquet on.</param>
         /// <returns><c>true</c>, if the parquet was removed, <c>false</c> otherwise.</returns>
         private bool TrySetParquet(EntityID in_parquetID, Vector2Int in_position, EntityID[,] in_parquetLayer)
         {
