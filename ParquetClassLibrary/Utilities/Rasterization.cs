@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Utilities
         public static List<Vector2Int> PlotLine(Vector2Int in_start, Vector2Int in_end,
                                                 Predicate<Vector2Int> in_isValid)
         {
-            /// <summary>Ensures we do not return duplicate positions.</summary>
+            // Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2Int>();
 
             // Uses Bressenham's algorithm.
@@ -64,13 +64,13 @@ namespace ParquetClassLibrary.Utilities
 
             deduplicationList.Add(in_end);
 
-            return new List<Vector2Int>(deduplicationList); ;
+            return new List<Vector2Int>(deduplicationList);
         }
 
         public static List<Vector2Int> PlotFilledRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                            Predicate<Vector2Int> in_isValid)
         {
-            /// <summary>Ensures we do not return duplicate positions.</summary>
+            //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2Int>();
 
             // By scanline, by position.
@@ -92,7 +92,7 @@ namespace ParquetClassLibrary.Utilities
         public static List<Vector2Int> PlotEmptyRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                           Predicate<Vector2Int> in_isValid)
         {
-            /// <summary>Ensures we do not return duplicate positions.</summary>
+            //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2Int>();
 
             // Outline the edges.
@@ -110,7 +110,7 @@ namespace ParquetClassLibrary.Utilities
         public static List<Vector2Int> PlotCircle(Vector2Int in_center, int in_radius, bool in_isFilled,
                                                   Predicate<Vector2Int> in_isValid)
         {
-            /// <summary>Ensures we do not return duplicate positions.</summary>
+            //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2Int>();
 
             // Brute force.
