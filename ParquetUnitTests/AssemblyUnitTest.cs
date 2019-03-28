@@ -8,7 +8,6 @@ namespace ParquetUnitTests
     {
         #region Values for Tests
         private const string invalidDataVersion = "0.0.0";
-        private const int upperBound = 10;
         #endregion
 
         [Fact]
@@ -26,7 +25,7 @@ namespace ParquetUnitTests
         [Fact]
         public void AllDimensionsAreGreaterThanZeroTest()
         {
-            // TODO Does this type of sanity check make sense?
+            // ReSharper disable All
             var result = Assembly.ParquetsPerChunkDimension > 0
                          && Assembly.ChunksPerRegionDimension > 0
                          && Assembly.ParquetsPerRegionDimension > 0;
