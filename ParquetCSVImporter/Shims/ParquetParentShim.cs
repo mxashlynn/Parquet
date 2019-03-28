@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 
@@ -19,7 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// If a <see cref="T:ParquetClassLibrary.Sandbox.BiomeMask"/> flag is set,
         /// this parquet helps generate the corresponding <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
         /// </summary>
-        public BiomeMask AddsToBiome { get; private set; }
+        public BiomeMask AddsToBiome;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
