@@ -12,7 +12,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// </summary>
         public CollectableClassMap()
         {
-            // Properties are ordered by index to facility a logical layout in spreadsheet apps.
+            // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
             Map(m => m.Name).Index(1);
             Map(m => m.AddsToBiome).Index(2);
