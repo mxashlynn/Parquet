@@ -82,7 +82,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(EntityID in_ID, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
-                     GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect,
+                     GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect = GatherEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
                      int in_maxToughness = DefaultMaxToughness)
