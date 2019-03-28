@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Diagnostics.Contracts;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
@@ -84,6 +85,7 @@ namespace ParquetClassLibrary.Sandbox.ID
         /// </summary>
         /// <returns><c>true</c>, if the identifier is valid given the range, <c>false</c> otherwise.</returns>
         /// <param name="in_range">The range within which the absolute value of the ID must fall.</param>
+        [Pure]
         public bool IsValidForRange(Range<EntityID> in_range)
         {
             return _id == None || in_range.ContainsValue(Math.Abs(_id));
