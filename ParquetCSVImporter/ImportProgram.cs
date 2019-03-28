@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ParquetCSVImporter
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
 #if DEBUG
-            Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.Parent?.FullName;
 #else
             Environment.CurrentDirectory;
 #endif
@@ -60,7 +61,7 @@ namespace ParquetCSVImporter
         /// <param name="in_jsonRecords">In JSON records to write.</param>
         private static void OutputRecords(string in_jsonRecords)
         {
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/Parquets.json");
+            var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
             {
                 writer.Write(in_jsonRecords);
