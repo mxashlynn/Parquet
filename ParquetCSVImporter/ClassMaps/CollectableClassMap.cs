@@ -16,6 +16,10 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.ID).Index(0);
             Map(m => m.Name).Index(1);
             Map(m => m.AddsToBiome).Index(2);
+
+            Map(m => m.Effect).Index(3);
+            Map(m => m.EffectAmount).Index(4);
+            Map(m => m.ItemID).Index(5);
         }
     }
 }
