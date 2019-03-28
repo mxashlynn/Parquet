@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.ID;

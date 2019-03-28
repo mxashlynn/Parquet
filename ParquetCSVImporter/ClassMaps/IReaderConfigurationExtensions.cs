@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using CsvHelper;
 using CsvHelper.Configuration;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox.Parquets;

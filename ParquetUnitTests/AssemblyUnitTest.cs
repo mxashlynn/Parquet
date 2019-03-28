@@ -1,5 +1,4 @@
-﻿using Xunit;
-using System;
+using Xunit;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox.ID;
 
