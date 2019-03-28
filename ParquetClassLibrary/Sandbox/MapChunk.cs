@@ -10,6 +10,9 @@ namespace ParquetClassLibrary.Sandbox
     /// <summary>
     /// Models details of a playable chunk in sandbox-mode.
     /// Map Chunks are composed of Parquets and Special Points.
+    /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> are
+    /// handmade (as opposed to procedurally generated) components
+    /// of <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>s.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class MapChunk : MapParent
@@ -21,21 +24,21 @@ namespace ParquetClassLibrary.Sandbox
         #endregion
 
         #region Chunk Contents
-        /// <summary>Floors and walkable terrain in the region.</summary>
+        /// <summary>Floors and walkable terrain in the chunk.</summary>
         protected override EntityID[,] _floorLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
-                                                                             Assembly.ParquetsPerChunkDimension];
+                                                                           Assembly.ParquetsPerChunkDimension];
 
-        /// <summary>Walls and obstructing terrain in the region.</summary>
+        /// <summary>Walls and obstructing terrain in the chunk.</summary>
         protected override EntityID[,] _blockLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
-                                                                             Assembly.ParquetsPerChunkDimension];
+                                                                           Assembly.ParquetsPerChunkDimension];
 
-        /// <summary>Furniture and natural items in the region.</summary>
+        /// <summary>Furniture and natural items in the chunk.</summary>
         protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
-                                                                                  Assembly.ParquetsPerChunkDimension];
+                                                                                Assembly.ParquetsPerChunkDimension];
 
-        /// <summary>Collectable materials in the region.</summary>
+        /// <summary>Collectable materials in the chunk.</summary>
         protected override EntityID[,] _collectableLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
-                                                                                   Assembly.ParquetsPerChunkDimension];
+                                                                                 Assembly.ParquetsPerChunkDimension];
         #endregion
 
         #region Serialization Methods
@@ -57,7 +60,7 @@ namespace ParquetClassLibrary.Sandbox
             }
             else
             {
-                // Determine what version of region map was serialized.
+                // Determine what version of map was serialized.
                 try
                 {
                     var document = JObject.Parse(in_serializedMap);
@@ -82,13 +85,12 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Visualizes the region as a string with merged layers.
-        /// Intended for Console debugging.
+        /// Describes the chunk as a string containing basic information.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>.</returns>
         public override string ToString()
         {
-            return $"Chunk: \n{base.ToString()}";
+            return $"Chunk {base.ToString()}";
         }
         #endregion
     }
