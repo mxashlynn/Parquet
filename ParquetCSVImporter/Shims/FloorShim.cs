@@ -17,7 +17,7 @@ namespace ParquetCSVImporter.ClassMaps
         public ModificationTools ModTool;
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-        public string NameWhenHole;
+        public string TrenchName;
 
         /// <summary>The floor may be walked on.</summary>
         public bool IsWalkable;
@@ -36,7 +36,7 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Floor))
             {
-                result = (T)(ParquetParent)new Floor(ID, Name, AddsToBiome, ModTool, NameWhenHole, IsWalkable);
+                result = (T)(ParquetParent)new Floor(ID, Name, AddsToBiome, ModTool, TrenchName, IsWalkable);
             }
             else
             {

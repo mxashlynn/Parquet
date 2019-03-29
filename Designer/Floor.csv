@@ -1,4 +1,4 @@
-ID,Name,AddsToBiome,ModTool,NameWhenHole,IsWalkable
+ID,Name,AddsToBiome,ModTool,TrenchName,IsWalkable
 -10000,1 Floor Test Parquet,None,None,dark hole,TRUE
 10000,grass,None,Shovel,dirty pit,TRUE
 10001,weeds,Swampy,Shovel,muddy pit,TRUE

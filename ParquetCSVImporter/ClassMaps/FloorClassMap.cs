@@ -19,7 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.AddsToBiome).Index(2);
 
             Map(m => m.ModTool).Index(3);
-            Map(m => m.NameWhenHole).Index(4);
+            Map(m => m.TrenchName).Index(4);
             Map(m => m.IsWalkable).Index(5);
         }
     }
