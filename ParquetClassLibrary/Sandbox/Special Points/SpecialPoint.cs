@@ -51,6 +51,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         /// <c>true</c> if the specified <see cref="object"/> is equal to the current
         /// <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>; otherwise, <c>false</c>.
         /// </returns>
+        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
             var point = obj as SpecialPoint;

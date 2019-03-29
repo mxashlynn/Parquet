@@ -93,6 +93,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <c>true</c> if the specified <see cref="object"/> is equal to the current
         /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>; otherwise, <c>false</c>.
         /// </returns>
+        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
             var result = false;
