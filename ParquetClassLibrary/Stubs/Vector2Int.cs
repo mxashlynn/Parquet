@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace ParquetClassLibrary.Stubs
 {
     /// <summary>
@@ -74,6 +74,7 @@ namespace ParquetClassLibrary.Stubs
         /// <c>true</c> if the specified <see cref="object"/> is equal to the current
         /// <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>; otherwise, <c>false</c>.
         /// </returns>
+        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
             var result = false;
@@ -95,10 +96,6 @@ namespace ParquetClassLibrary.Stubs
         /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Vector2Int in_vector1, Vector2Int in_vector2)
         {
-            if (object.ReferenceEquals(in_vector1, in_vector2)) return true;
-            if (object.ReferenceEquals(in_vector1, null)) return false;
-            if (object.ReferenceEquals(in_vector2, null)) return false;
-
             return in_vector1.Equals(in_vector2);
         }
 
@@ -111,10 +108,6 @@ namespace ParquetClassLibrary.Stubs
         /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Vector2Int in_vector1, Vector2Int in_vector2)
         {
-            if (object.ReferenceEquals(in_vector1, in_vector2)) return false;
-            if (object.ReferenceEquals(in_vector1, null)) return true;
-            if (object.ReferenceEquals(in_vector2, null)) return true;
-
             return !in_vector1.Equals(in_vector2);
         }
         #endregion

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ParquetClassLibrary.Stubs
 {
@@ -44,6 +44,7 @@ namespace ParquetClassLibrary.Stubs
                    && A == in_color.A;
         }
 
+        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
             var result = false;
@@ -58,19 +59,11 @@ namespace ParquetClassLibrary.Stubs
 
         public static bool operator ==(Color in_color1, Color in_color2)
         {
-            if (object.ReferenceEquals(in_color1, in_color2)) return true;
-            if (object.ReferenceEquals(in_color1, null)) return false;
-            if (object.ReferenceEquals(in_color2, null)) return false;
-
             return in_color1.Equals(in_color2);
         }
 
         public static bool operator !=(Color in_color1, Color in_color2)
         {
-            if (object.ReferenceEquals(in_color1, in_color2)) return false;
-            if (object.ReferenceEquals(in_color1, null)) return true;
-            if (object.ReferenceEquals(in_color2, null)) return true;
-
             return !in_color1.Equals(in_color2);
         }
         #endregion
@@ -104,7 +97,7 @@ namespace ParquetClassLibrary.Stubs
                 //case ConsoleColor.Magenta:
                 //case ConsoleColor.Red:
                 //case ConsoleColor.Yellow:
-                case ConsoleColor.White:
+                //case ConsoleColor.White:
                 default:
                     result = White;
                     break;
