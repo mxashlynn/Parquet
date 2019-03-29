@@ -19,13 +19,15 @@ namespace ParquetClassLibrary.Sandbox
     public class MapRegionEditor
     {
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
+
         public static event EventHandler DisplayMap;
 
         private MapRegion _currentRegion;
 
         public bool IsMapLoaded => null != _currentRegion;
 
-        private readonly ParquetMask _parquetPaintPattern = ParquetMask.None;
+        private ParquetMask _parquetPaintPattern = ParquetMask.None;
+
         internal ParquetMask ParquetPaintPattern => _parquetPaintPattern;
 
         /// <summary>Identifier for the selected floor.</summary>
