@@ -1,6 +1,7 @@
-using Xunit;
-using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
+using Xunit;
+
 // ReSharper disable InconsistentNaming
 
 namespace ParquetUnitTests.Utilities

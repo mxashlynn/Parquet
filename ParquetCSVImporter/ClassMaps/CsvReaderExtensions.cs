@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CsvHelper;
-using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetCSVImporter.ClassMaps
 {

@@ -1,6 +1,6 @@
-﻿using Xunit;
-using ParquetClassLibrary.Sandbox;
+﻿using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
+using Xunit;
 
 namespace ParquetUnitTests.Sandbox
 {

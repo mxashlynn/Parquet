@@ -1,4 +1,5 @@
 using CsvHelper.Configuration;
+
 // ReSharper disable InconsistentNaming
 
 namespace ParquetCSVImporter.ClassMaps

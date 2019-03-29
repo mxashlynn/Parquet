@@ -1,6 +1,6 @@
-using Xunit;
 using System;
 using ParquetClassLibrary.Utilities;
+using Xunit;
 
 namespace ParquetUnitTests.Utilities
 {

@@ -1,7 +1,7 @@
-﻿using ParquetClassLibrary.Sandbox.Parquets;
+﻿using System;
 using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Sandbox.Parquets;
 using Xunit;
-using System;
 
 namespace ParquetUnitTests.Sandbox.Parquets
 {
