@@ -28,8 +28,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public GatheringTools GatherTool { get; private set; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "in_effect")]
-        public GatherEffect Effect { get; private set; }
+        [JsonProperty(PropertyName = "in_gatherEffect")]
+        public GatheringEffect GatherEffect { get; private set; }
 
         /// <summary>The item awarded to the player when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
-        /// <param name="in_effect">Effect of this block when gathered.</param>
+        /// <param name="in_gatherEffect">Effect of this block when gathered.</param>
         /// <param name="in_itemID">The item that this collectable corresponds to, if any.</param>
         /// <param name="in_collectableID">The Collectable to spawn, if any, when this Block is Gathered.</param>
         /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
@@ -82,7 +82,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
-                     GatheringTools in_gatherTool = GatheringTools.None, GatherEffect in_effect = GatherEffect.None,
+                     GatheringTools in_gatherTool = GatheringTools.None,
+                     GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
                      int in_maxToughness = defaultMaxToughness)
@@ -100,7 +101,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             }
 
             GatherTool = in_gatherTool;
-            Effect = in_effect;
+            GatherEffect = in_gatherEffect;
             ItemID = nonNullItemID;
             CollectableID = nonNullCollectableID;
             IsFlammable = in_isFlammable;

@@ -17,7 +17,7 @@ namespace ParquetCSVImporter.ClassMaps
         public GatheringTools GatherTool;
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        public GatherEffect Effect;
+        public GatheringEffect GatherEffect;
 
         /// <summary>The item awarded to the player when a character gathers this Block.</summary>
         public EntityID ItemID;
@@ -50,8 +50,8 @@ namespace ParquetCSVImporter.ClassMaps
 
             if (typeof(T) == typeof(Block))
             {
-                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, Effect, ItemID, CollectableID,
-                                                     IsFlammable, IsLiquid, MaxToughness);
+                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, GatherEffect, ItemID,
+                                                     CollectableID, IsFlammable, IsLiquid, MaxToughness);
             }
             else
             {

@@ -19,7 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.AddsToBiome).Index(2);
 
             Map(m => m.GatherTool).Index(3);
-            Map(m => m.Effect).Index(4);
+            Map(m => m.GatherEffect).Index(4);
             Map(m => m.ItemID).Index(5);
             Map(m => m.CollectableID).Index(6);
             Map(m => m.IsFlammable).Index(7);
