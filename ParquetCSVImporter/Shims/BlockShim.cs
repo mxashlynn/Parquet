@@ -1,4 +1,5 @@
-﻿using ParquetClassLibrary.Sandbox.ID;
+﻿using System;
+using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 
 namespace ParquetCSVImporter.ClassMaps
@@ -55,7 +56,7 @@ namespace ParquetCSVImporter.ClassMaps
             }
             else
             {
-                throw new System.ArgumentException(nameof(T));
+                throw new ArgumentException(nameof(T));
             }
 
             return result;
