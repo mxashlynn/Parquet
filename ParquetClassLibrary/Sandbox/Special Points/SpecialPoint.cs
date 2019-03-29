@@ -67,9 +67,9 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         /// <returns><c>true</c> if <c>in_point1</c> and <c>in_point2</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(SpecialPoint in_point1, SpecialPoint in_point2)
         {
-            if (object.ReferenceEquals(in_point1, in_point2)) return true;
-            if (object.ReferenceEquals(in_point1, null)) return false;
-            if (object.ReferenceEquals(in_point2, null)) return false;
+            if (ReferenceEquals(in_point1, in_point2)) return true;
+            if (ReferenceEquals(in_point1, null)) return false;
+            if (ReferenceEquals(in_point2, null)) return false;
 
             return in_point1.Equals(in_point2);
         }
@@ -85,9 +85,9 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         /// </returns>
         public static bool operator !=(SpecialPoint in_point1, SpecialPoint in_point2)
         {
-            if (object.ReferenceEquals(in_point1, in_point2)) return false;
-            if (object.ReferenceEquals(in_point1, null)) return true;
-            if (object.ReferenceEquals(in_point2, null)) return true;
+            if (ReferenceEquals(in_point1, in_point2)) return false;
+            if (ReferenceEquals(in_point1, null)) return true;
+            if (ReferenceEquals(in_point2, null)) return true;
 
             return !in_point1.Equals(in_point2);
         }
