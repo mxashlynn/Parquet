@@ -47,7 +47,6 @@
     <Compile Include="ClassMaps\CollectableClassMap.cs" />
     <Compile Include="ClassMaps\FloorClassMap.cs" />
     <Compile Include="ClassMaps\FurnishingClassMap.cs" />
-    <Compile Include="ClassMaps\ParquetParentClassMap.cs" />
     <Compile Include="ClassMaps\CsvReaderExtensions.cs" />
     <Compile Include="Shims\BlockShim.cs" />
     <Compile Include="Shims\CollectableShim.cs" />
