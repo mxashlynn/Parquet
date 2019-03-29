@@ -1,3 +1,4 @@
+using System;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 using Xunit;
@@ -176,13 +177,13 @@ namespace ParquetUnitTests.Utilities
 
             bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
             {
-                var matchAgainst = System.Convert.ToInt32(in_matchAgainst);
+                var matchAgainst = Convert.ToInt32(in_matchAgainst);
                 return fillLayer[in_position.X, in_position.Y] == matchAgainst;
             }
 
             int CountAllTargets(int[,] in_array)
             {
-                int count = 0;
+                var count = 0;
 
                 foreach (var item in in_array)
                 {

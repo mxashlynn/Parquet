@@ -399,7 +399,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void DeserializingNullFailsTest()
         {
-            var result = MapRegion.TryDeserializeFromString(null, out MapRegion mapRegionResults);
+            var result = MapRegion.TryDeserializeFromString(null, out var mapRegionResults);
 
             Assert.Null(mapRegionResults);
             Assert.False(result);
@@ -409,7 +409,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingUnsupportedVersionFailsTest()
         {
             var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.UnsupportedVersionString,
-                                                            out MapRegion mapRegionResults);
+                                                            out var mapRegionResults);
 
             Assert.Null(mapRegionResults);
             Assert.False(result);
@@ -419,7 +419,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownBadStringFailsTest()
         {
             var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.NonJsonString,
-                                                            out MapRegion mapRegionResults);
+                                                            out var mapRegionResults);
 
             Assert.Null(mapRegionResults);
             Assert.False(result);
@@ -429,7 +429,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownGoodStringSucceedsTest()
         {
             var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.KnownGoodString,
-                                                            out MapRegion mapRegionResults);
+                                                            out var mapRegionResults);
 
             Assert.NotNull(mapRegionResults);
             Assert.True(result);

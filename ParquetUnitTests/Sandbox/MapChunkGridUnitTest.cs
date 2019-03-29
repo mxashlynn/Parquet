@@ -110,7 +110,7 @@ namespace ParquetUnitTests.Sandbox
         [Fact]
         public void DeserializingNullFailsTest()
         {
-            var result = MapChunkGrid.TryDeserializeFromString(null, out MapChunkGrid mapGridResults);
+            var result = MapChunkGrid.TryDeserializeFromString(null, out var mapGridResults);
 
             Assert.Null(mapGridResults);
             Assert.False(result);
@@ -120,7 +120,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingUnsupportedVersionFailsTest()
         {
             var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.UnsupportedVersionString,
-                                                               out MapChunkGrid mapChunkGridResults);
+                                                               out var mapChunkGridResults);
 
             Assert.Null(mapChunkGridResults);
             Assert.False(result);
@@ -130,7 +130,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownBadStringFailsTest()
         {
             var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.NonJsonString,
-                                                               out MapChunkGrid mapChunkGridResults);
+                                                               out var mapChunkGridResults);
 
             Assert.Null(mapChunkGridResults);
             Assert.False(result);
@@ -140,7 +140,7 @@ namespace ParquetUnitTests.Sandbox
         public void DeserializingKnownGoodStringSucceedsTest()
         {
             var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.KnownGoodString,
-                                                               out MapChunkGrid mapChunkGridResults);
+                                                               out var mapChunkGridResults);
 
             Assert.NotNull(mapChunkGridResults);
             Assert.True(result);
