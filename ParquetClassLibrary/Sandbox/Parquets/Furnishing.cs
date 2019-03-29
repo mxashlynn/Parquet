@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
         [JsonIgnore]
-        protected override Range<EntityID> Bounds { get { return Assembly.FurnishingIDs; } }
+        protected override Range<EntityID> Bounds => Assembly.FurnishingIDs;
         #endregion
 
         #region Parquet Mechanics

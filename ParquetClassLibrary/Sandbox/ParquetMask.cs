@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>The variable with the flag cleared.</returns>
         public static ParquetMask Clear(this ref ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
-            return in_enumVariable = in_enumVariable & (~in_flagToTest);
+            return in_enumVariable = in_enumVariable & ~in_flagToTest;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns><c>true</c>, if at least this flag is unset, <c>false</c> otherwise.</returns>
         public static bool IsNotSet(this ParquetMask in_enumVariable, ParquetMask in_flagToTest)
         {
-            return (in_enumVariable & (~in_flagToTest)) == ParquetMask.None;
+            return (in_enumVariable & ~in_flagToTest) == ParquetMask.None;
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectable IDs.</summary>
         [JsonIgnore]
-        protected override Range<EntityID> Bounds { get { return Assembly.CollectableIDs; } }
+        protected override Range<EntityID> Bounds => Assembly.CollectableIDs;
         #endregion
 
         #region Parquet Mechanics

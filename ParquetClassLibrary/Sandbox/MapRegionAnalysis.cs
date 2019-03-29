@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <returns>The appropriate <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</returns>
         public static Biome GetBiome(this MapRegion in_region)
         {
-            Biome result = Biome.Field;
+            var result = Biome.Field;
 
             if (in_region.HasBuildings())
             {

@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Utilities
         public static void Handle(string in_errorMessage)
         {
             // TODO Convert this to use multiplatform utils.
-            using (StreamWriter log = File.AppendText(logFile))
+            using (var log = File.AppendText(logFile))
             {
                 log.WriteLine(in_errorMessage);
             }

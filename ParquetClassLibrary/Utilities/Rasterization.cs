@@ -74,9 +74,9 @@ namespace ParquetClassLibrary.Utilities
             var deduplicationList = new HashSet<Vector2Int>();
 
             // By scanline, by position.
-            for (int y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
+            for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
             {
-                for (int x = in_upperLeft.X; x <= in_lowerRight.X; x++)
+                for (var x = in_upperLeft.X; x <= in_lowerRight.X; x++)
                 {
                     var position = new Vector2Int(x, y);
                     if (in_isValid(position))
@@ -116,8 +116,10 @@ namespace ParquetClassLibrary.Utilities
             // Brute force.
             var circleLimit = in_radius * in_radius + in_radius;
             var outlineLimit = in_radius * in_radius - in_radius;
-            for (int y = -in_radius; y <= in_radius; y++)
-                for (int x = -in_radius; x <= in_radius; x++)
+            for (var y = -in_radius; y <= in_radius; y++)
+            {
+                for (var x = -in_radius; x <= in_radius; x++)
+                {
                     if (x * x + y * y < circleLimit
                         // Plot positions within the circle only if:
                         // (1) the circle is filled, or
@@ -130,6 +132,8 @@ namespace ParquetClassLibrary.Utilities
                             deduplicationList.Add(position);
                         }
                     }
+                }
+            }
 
             return new List<Vector2Int>(deduplicationList);
         }

@@ -371,7 +371,7 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    EntityID parquetID = _floorLayer[x, y];
+                    var parquetID = _floorLayer[x, y];
                     if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Floor>(parquetID)); }
                     parquetID = _blockLayer[x, y];
                     if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Block>(parquetID)); }

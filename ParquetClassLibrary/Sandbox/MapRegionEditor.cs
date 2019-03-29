@@ -23,22 +23,10 @@ namespace ParquetClassLibrary.Sandbox
 
         private MapRegion _currentRegion;
 
-        public bool IsMapLoaded
-        {
-            get
-            {
-                return null != _currentRegion;
-            }
-        }
+        public bool IsMapLoaded => null != _currentRegion;
 
-        private ParquetMask _parquetPaintPattern = ParquetMask.None;
-        internal ParquetMask ParquetPaintPattern
-        {
-            get
-            {
-                return _parquetPaintPattern;
-            }
-        }
+        private readonly ParquetMask _parquetPaintPattern = ParquetMask.None;
+        internal ParquetMask ParquetPaintPattern => _parquetPaintPattern;
 
         /// <summary>Identifier for the selected floor.</summary>
         private EntityID _floorToPaint;
@@ -83,7 +71,7 @@ namespace ParquetClassLibrary.Sandbox
         {
             // TODO Convert this to use multiplatform utils.
             var serialized = File.ReadAllText(in_path);
-            if (MapRegion.TryDeserializeFromString(serialized, out MapRegion result))
+            if (MapRegion.TryDeserializeFromString(serialized, out var result))
             {
                 _currentRegion = result;
             }

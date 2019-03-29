@@ -14,13 +14,13 @@ namespace ParquetClassLibrary.Sandbox
         /// Parquets at the given position.
         /// </summary>
         /// <value>The parquets.</value>
-        public ParquetStack Parquets { get; private set; }
+        public ParquetStack Parquets { get; }
 
         /// <summary>
         /// Special points at the given position.
         /// </summary>
         /// <value>The special points.</value>
-        public List<SpecialPoint> SpecialPoints { get; private set; }
+        public List<SpecialPoint> SpecialPoints { get; }
 
         public PositionInfoEvent(ParquetStack in_parquets, List<SpecialPoint> in_points)
         {

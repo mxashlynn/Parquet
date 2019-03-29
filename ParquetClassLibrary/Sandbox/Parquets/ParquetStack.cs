@@ -6,16 +6,16 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public struct ParquetStack : IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>
-        public Floor Floor { get; private set; }
+        public Floor Floor { get; }
 
         /// <summary>The block contained in this stack.</summary>
-        public Block Block { get; private set; }
+        public Block Block { get; }
 
         /// <summary>The furnishing contained in this stack.</summary>
-        public Furnishing Furnishing { get; private set; }
+        public Furnishing Furnishing { get; }
 
         /// <summary>The collectable contained in this stack.</summary>
-        public Collectable Collectable { get; private set; }
+        public Collectable Collectable { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> struct.
@@ -36,15 +36,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// Indicates whether this <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
-        public bool IsEmpty
-        {
-            get
-            {
-                return null == Floor &&
-                       null == Block &&
-                       null == Furnishing &&
-                       null == Collectable;
-            }
-        }
+        public bool IsEmpty => null == Floor &&
+                               null == Block &&
+                               null == Furnishing &&
+                               null == Collectable;
     }
 }

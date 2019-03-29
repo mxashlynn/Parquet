@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
         [JsonIgnore]
-        protected override Range<EntityID> Bounds { get { return Assembly.FloorIDs; } }
+        protected override Range<EntityID> Bounds => Assembly.FloorIDs;
         #endregion
 
         #region Parquet Mechanics
