@@ -192,11 +192,11 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Visualizes the region as a string with merged layers.
+        /// Visualizes the region as an array of chunks.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
-        public override string ToString()
+        /// <returns>A string containing a 2D grid representing the chunks.</returns>
+        public string DumpMap()
         {
             var representation = new StringBuilder(DimensionsInChunks.Magnitude);
             #region Compose visual represenation of contents.
@@ -211,6 +211,15 @@ namespace ParquetClassLibrary.Sandbox
             #endregion
 
             return $"Chunk Grid:\n{representation}";
+        }
+
+        /// <summary>
+        /// Describes the grid's basic information.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        public override string ToString()
+        {
+            return $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
         }
         #endregion
     }
