@@ -1,8 +1,9 @@
-﻿using ParquetClassLibrary.Sandbox.ID;
+using System.Runtime.CompilerServices;
+using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
 
 // Allow unit tests to access classes and members with internal accessibility.
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ParquetUnitTests")]
+[assembly: InternalsVisibleTo("ParquetUnitTests")]
 
 namespace ParquetClassLibrary
 {
