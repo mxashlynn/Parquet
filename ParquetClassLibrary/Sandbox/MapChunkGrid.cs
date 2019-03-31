@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Sandbox
         public Color Background { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int GlobalElevation { get; set; };
+        public int GlobalElevation { get; set; }
         #endregion
 
         #region Grid Contents

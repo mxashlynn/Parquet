@@ -21,8 +21,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var defaultGrid = new MapChunkGrid();
 
-            Assert.Equal(MapChunkGrid.DefaultTitle, defaultGrid.Title);
-            Assert.Equal(MapChunkGrid.DefaultColor, defaultGrid.Background);
+            Assert.Equal(MapRegion.DefaultTitle, defaultGrid.Title);
+            Assert.Equal(MapRegion.DefaultColor, defaultGrid.Background);
         }
 
         [Fact]
@@ -30,8 +30,8 @@ namespace ParquetUnitTests.Sandbox
         {
             var nulledGrid = new MapChunkGrid(null);
 
-            Assert.Equal(MapChunkGrid.DefaultTitle, nulledGrid.Title);
-            Assert.Equal(MapChunkGrid.DefaultColor, nulledGrid.Background);
+            Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
+            Assert.Equal(MapRegion.DefaultColor, nulledGrid.Background);
         }
 
         [Fact]
