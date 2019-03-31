@@ -48,13 +48,13 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Sandbox Map Element Dimensions
-        /// <summary>The length of each chunk dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
-        /// <summary>The length of each region dimension in chunks.</summary>
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>s.</summary>
         public const int ChunksPerRegionDimension = 4;
 
-        /// <summary>The length of each region dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ParquetsPerChunkDimension;
         #endregion
     }

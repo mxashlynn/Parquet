@@ -3,6 +3,10 @@ using ParquetClassLibrary.Stubs;
 
 namespace ParquetClassLibrary.Sandbox.SpecialPoints
 {
+    /// <summary>
+    /// A location on a <see cref="T:ParquetClassLibrary.Sandbox.MapParent"/> at which something happens
+    /// that cannot be determined from Parquet mechanics alone.  For example, critter spawning.
+    /// </summary>
     public class SpecialPoint : IEquatable<SpecialPoint>
     {
         /// <summary>Location of this point.</summary>

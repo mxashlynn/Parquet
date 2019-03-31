@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
-    /// Provides extensions to the CSV Reader Configuration.
+    /// Provides extensions to the <see cref="T:CsvHelper.Configuration.IReaderConfigurationExtension"/>.
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public static class IReaderConfigurationExtensions

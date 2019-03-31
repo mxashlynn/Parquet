@@ -8,14 +8,14 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// A pattern for generating a playable region in sandbox-mode.
-    /// Regions in the editor are stored as Chunk Grids before being fleshed out on load in-game.
+    /// A pattern for generating a playable <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> in sandbox-mode.
+    /// Regions in the editor are stored as <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>s before being fleshed out on load in-game.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class MapChunkGrid
     {
         #region Class Defaults
-        /// <summary>The region's dimensions in chunks.</summary>
+        /// <summary>The grid's dimensions in chunks.</summary>
         public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Assembly.ChunksPerRegionDimension, Assembly.ChunksPerRegionDimension);
         #endregion
 
@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         public readonly string DataVersion = Assembly.SupportedDataVersion;
 
-        /// <summary>The region identifier, used when referencing unloaded regions.</summary>
+        /// <summary>The identifier for the region that this grid will generate.</summary>
         public readonly Guid RegionID;
 
         /// <summary>What the region that this grid generates will be called in-game.</summary>
@@ -39,11 +39,11 @@ namespace ParquetClassLibrary.Sandbox
         public int GlobalElevation { get; set; };
         #endregion
 
-        #region Region Contents
-        /// <summary>The type of chunks which make up the region.</summary>
+        #region Grid Contents
+        /// <summary>The type of chunks which make up the grid.</summary>
         private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.X, DimensionsInChunks.Y];
 
-        /// <summary>The orientation of the chunks which make up the region.</summary>
+        /// <summary>The orientation of the chunks which make up the grid.</summary>
         private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.X, DimensionsInChunks.Y];
         #endregion
 
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Chunk Methods
         /// <summary>
-        /// Places the given chunk type at the given position anbd orients it.
+        /// Places the given chunk type at the given position and orients it.
         /// </summary>
         /// <param name="in_type">The new chunk type to set.</param>
         /// <param name="in_orientation">The orientation to set.</param>
@@ -121,7 +121,7 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current MapRegion to a string,
+        /// Serializes to the current <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> to a string,
         /// incrementing the revision number in the process.
         /// </summary>
         /// <returns>The serialized MapRegion.</returns>
@@ -131,7 +131,7 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Tries to deserialize a MapRegion from the given string.
+        /// Tries to deserialize a <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> from the given string.
         /// </summary>
         /// <param name="in_serializedMapChunkGrid">The serialized region map.</param>
         /// <param name="out_mapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
@@ -186,10 +186,10 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Visualizes the region as an array of chunks.
+        /// Visualizes the grid as an array of chunks.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A string containing a 2D grid representing the chunks.</returns>
+        /// <returns>A string containing a 2D grid representing the chunks in this grid.</returns>
         public string DumpMap()
         {
             var representation = new StringBuilder(DimensionsInChunks.Magnitude);
@@ -210,7 +210,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Describes the grid's basic information.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the current
+        /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>.
+        /// </returns>
         public override string ToString()
         {
             return $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";

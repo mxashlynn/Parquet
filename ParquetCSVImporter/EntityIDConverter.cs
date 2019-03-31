@@ -7,7 +7,7 @@ using ParquetClassLibrary.Sandbox.ID;
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// ID Converter for parquet identifiers.
+    /// Type converter for parquet identifiers.
     /// </summary>
     public class EntityIDConverter : DefaultTypeConverter
     {

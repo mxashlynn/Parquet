@@ -6,7 +6,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
-    /// Provides extensions to the CSV Reader.
+    /// Provides extensions to the <see cref="T:CsvHelper.CsvReader"/>.
     /// </summary>
     public static class CsvReaderExtensions
     {

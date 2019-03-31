@@ -1,5 +1,9 @@
 namespace ParquetUnitTests.Sandbox
 {
+    /// <summary>
+    /// Provides strings to be used in serialization tests for the <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>.
+    /// Stored in a separate structure and file as the string literals can too be lengthy for some editors.
+    /// </summary>
     internal struct SerializedMapChunkGridsForTest
     {
         internal const string NonJsonString = "thisIsNotAJSONStringNopeNope";

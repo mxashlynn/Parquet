@@ -1,10 +1,13 @@
-﻿using ParquetClassLibrary;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 using ParquetUnitTests.Sandbox.Parquets;
 
 namespace ParquetUnitTests.Sandbox
 {
+    /// <summary>
+    /// Provides extension methods for the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> used in unit testing.
+    /// </summary>
     internal static class MapRegionUnitTestExtensions
     {
         /// <summary>Fills the region with a test pattern.</summary>

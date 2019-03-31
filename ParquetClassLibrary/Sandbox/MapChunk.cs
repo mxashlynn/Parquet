@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.ID;
@@ -46,7 +46,9 @@ namespace ParquetClassLibrary.Sandbox
         /// Tries to deserialize a <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> from the given string.
         /// </summary>
         /// <param name="in_serializedMap">The serialized <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>.</param>
-        /// <param name="out_map">The deserialized <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>, or null if deserialization was impossible.</param>
+        /// <param name="out_map">
+        /// The deserialized <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>, or null if deserialization was impossible.
+        /// </param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedMap,
                                                     out MapChunk out_map)

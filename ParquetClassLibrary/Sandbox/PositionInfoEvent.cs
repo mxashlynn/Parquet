@@ -22,6 +22,11 @@ namespace ParquetClassLibrary.Sandbox
         /// <value>The special points.</value>
         public List<SpecialPoint> SpecialPoints { get; }
 
+        /// <summary>
+        /// TODO Fill this in.
+        /// </summary>
+        /// <param name="in_parquets"></param>
+        /// <param name="in_points"></param>
         public PositionInfoEvent(ParquetStack in_parquets, List<SpecialPoint> in_points)
         {
             Parquets = in_parquets;

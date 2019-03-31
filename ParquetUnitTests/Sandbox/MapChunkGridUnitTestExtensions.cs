@@ -1,9 +1,12 @@
-﻿using ParquetClassLibrary;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox
 {
+    /// <summary>
+    /// Provides extension methods for <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> used in unit testing.
+    /// </summary>
     internal static class MapChunkGridUnitTestExtensions
     {
         /// <summary>Fills the chunk grid with a test pattern.</summary>

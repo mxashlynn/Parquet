@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetClassLibrary.Sandbox.SpecialPoints
 {
+    /// <summary>
+    /// A location at which the player moves from one <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> to another.
+    /// </summary>
     public class ExitPoint : SpecialPoint
     {
         /// <summary>The region this exit leads to.</summary>

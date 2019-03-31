@@ -11,7 +11,7 @@ using ParquetCSVImporter.ClassMaps;
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// A program that reads in Parquet definitions from CSV files, and outputs them as JSON.
+    /// A program that reads in parquet definitions from CSV files, and outputs them as JSON.
     /// </summary>
     internal class MainClass
     {

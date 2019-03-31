@@ -1,5 +1,9 @@
 namespace ParquetUnitTests.Sandbox
 {
+    /// <summary>
+    /// Provides pre-serialized strings for use in unit testing <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.
+    /// Stored in a separate structure and file as the string literals can be too longthy for some editors.
+    /// </summary>
     internal struct SerializedRegionMapsForTest
     {
         internal const string NonJsonString = "private-readonly-Vector2Int-InvalidPosition-private-readonly-Vector2Int-InvalidPosition";

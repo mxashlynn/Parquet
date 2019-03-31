@@ -48,19 +48,19 @@ namespace ParquetClassLibrary.Sandbox
         #region Map Contents
         /// <summary>Floors and walkable terrain in the region.</summary>
         protected override EntityID[,] _floorLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                             Assembly.ParquetsPerRegionDimension];
+                                                                           Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
         protected override EntityID[,] _blockLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                             Assembly.ParquetsPerRegionDimension];
+                                                                           Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Furniture and natural items in the region.</summary>
         protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                                  Assembly.ParquetsPerRegionDimension];
+                                                                                Assembly.ParquetsPerRegionDimension];
 
         /// <summary>Collectable materials in the region.</summary>
         protected override EntityID[,] _collectableLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                                   Assembly.ParquetsPerRegionDimension];
+                                                                                 Assembly.ParquetsPerRegionDimension];
         #endregion
 
         #region Initialization
@@ -71,7 +71,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_id">A RegionID derived from a MapChunkGrid; if null, a new RegionID is generated.</param>
+        /// <param name="in_id">
+        /// An identifier derived from a <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>; if null, a new RegionID is generated.
+        /// </param>
         public MapRegion(string in_title = null, Color? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
                          int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)

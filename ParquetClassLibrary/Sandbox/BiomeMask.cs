@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Indicates that a parquet contributes to the formation of one or more BiomeMasks.
+    /// Indicates that a parquet contributes to the formation of one or more
+    /// <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
     /// </summary>
     [Flags]
     public enum BiomeMask
@@ -21,7 +22,7 @@ namespace ParquetClassLibrary.Sandbox
     /// <summary>
     /// Convenience extension methods for concise coding when working with ParquetSelection instances.
     /// </summary>
-    internal static class BiomeMaskMaskSelectionExtensions
+    internal static class BiomeMaskSelectionExtensions
     {
         /// <summary>Checks if the Deserted flag is set.</summary>
         /// <returns><c>true</c>, if the Deserted flag is set, <c>false</c> otherwise.</returns>

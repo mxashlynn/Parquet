@@ -1,5 +1,8 @@
-﻿namespace ParquetClassLibrary
+namespace ParquetClassLibrary
 {
+    /// <summary>
+    /// Provides extension methods to the built in integer type.
+    /// </summary>
     internal static class IntExtensions
     {
         /// <summary>Ensures an integer falls within the given range.</summary>
