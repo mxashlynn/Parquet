@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Sandbox
         internal const string DefaultTitle = "New Region";
 
         /// <summary>Relative elevation to use if none is provided.</summary>
-        internal const int DefaultRelativeElevation = 0;
+        internal const int DefaultGlobalElevation = 0;
 
         /// <summary>Default color for new regions.</summary>
         internal static readonly Color DefaultColor = Color.White;
@@ -33,16 +33,16 @@ namespace ParquetClassLibrary.Sandbox
         public readonly Guid RegionID;
 
         /// <summary>What the region is called in-game.</summary>
-        public string Title { get; set; } = DefaultTitle;
+        public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; } = DefaultColor;
+        public Color Background { get; set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        public Elevation ElevationLocal { get; set; } = Elevation.LevelGround;
+        public Elevation ElevationLocal { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int ElevationGlobal { get; set; } = DefaultRelativeElevation;
+        public int ElevationGlobal { get; set; }
         #endregion
 
         #region Map Contents
@@ -72,10 +72,13 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">A RegionID derived from a MapChunkGrid; if null, a new RegionID is generated.</param>
-        public MapRegion(string in_title = DefaultTitle, Color? in_background = null,
-                         Elevation in_localElevation = Elevation.LevelGround, int in_globalElevation = 0, Guid? in_id = null)
+        public MapRegion(string in_title = null, Color? in_background = null,
+                         Elevation in_localElevation = Elevation.LevelGround,
+                         int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
         {
-            Title = in_title ?? DefaultTitle;
+            Title = string.IsNullOrEmpty(in_title)
+                ? DefaultTitle
+                : in_title;
             Background = in_background ?? Color.White;
             RegionID = in_id ?? Guid.NewGuid();
             ElevationLocal = in_localElevation;

@@ -17,15 +17,6 @@ namespace ParquetClassLibrary.Sandbox
         #region Class Defaults
         /// <summary>The region's dimensions in chunks.</summary>
         public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Assembly.ChunksPerRegionDimension, Assembly.ChunksPerRegionDimension);
-
-        /// <summary>Default name for new regions.</summary>
-        public const string DefaultTitle = "New Region";
-
-        /// <summary>Default color for new regions.</summary>
-        public static readonly Color DefaultColor = Color.White;
-
-        /// <summary>Relative elevation to use if none is provided.</summary>
-        protected const int DefaultRelativeElevation = 0;
         #endregion
 
         #region Whole-Region Characteristics
@@ -38,14 +29,14 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
         public readonly Guid RegionID;
 
-        /// <summary>What the region is called in-game.</summary>
-        public string Title { get; set; } = DefaultTitle;
+        /// <summary>What the region that this grid generates will be called in-game.</summary>
+        public string Title { get; set; }
 
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; } = DefaultColor;
+        /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
+        public Color Background { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int GlobalElevation { get; set; } = DefaultRelativeElevation;
+        public int GlobalElevation { get; set; };
         #endregion
 
         #region Region Contents
@@ -64,12 +55,15 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = DefaultTitle, Color? in_background = null, int in_globalElevation = 0, Guid? in_id = null)
+        public MapChunkGrid(string in_title = null, Color? in_background = null,
+                            int in_globalElevation = MapRegion.DefaultGlobalElevation, Guid? in_id = null)
         {
-            Title = in_title ?? DefaultTitle;
-            Background = in_background ?? Color.White;
-            RegionID = in_id ?? Guid.NewGuid();
+            Title = string.IsNullOrEmpty(in_title)
+                ? MapRegion.DefaultTitle
+                : in_title;
+            Background = in_background ?? MapRegion.DefaultColor;
             GlobalElevation = in_globalElevation;
+            RegionID = in_id ?? Guid.NewGuid();
         }
 
         /// <summary>
