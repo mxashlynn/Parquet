@@ -10,10 +10,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public abstract class ParquetParent : IEquatable<ParquetParent>
     {
-        /// <summary>The set of values that are allowed for specific parquet IDs.  Defined by child classes.</summary>
-        [JsonIgnore]
-        protected abstract Range<EntityID> Bounds { get; }
-
         /// <summary>Unique identifier of the parquet.</summary>
         [JsonProperty(PropertyName = "in_ID")]
         public EntityID ID { get; }
@@ -33,6 +29,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>
         /// Used by children of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> class.
         /// </summary>
+        /// <param name="in_bounds">The bounds within which the derived parquet type's EntityID is defined.</param>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">
@@ -40,10 +37,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// this parquet helps to generate.
         /// </param>
         [JsonConstructor]
-        protected ParquetParent(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
         {
-            // TODO Is it safe to call this virtual method in the constructor?
-            if (!in_id.IsValidForRange(Bounds))
+            if (!in_id.IsValidForRange(in_bounds))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }

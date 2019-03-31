@@ -14,8 +14,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
+        // TODO Test if we can remove this ignore tag.
         [JsonIgnore]
-        protected override Range<EntityID> Bounds => Assembly.FloorIDs;
+        public static Range<EntityID> Bounds => Assembly.FloorIDs;
         #endregion
 
         #region Parquet Mechanics
@@ -52,7 +53,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public Floor(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
                      ModificationTools in_modTool = ModificationTools.None,
                      string in_trenchName = defaultTrenchName, bool in_isWalkable = true)
-                     : base(in_id, in_name, in_addsToBiome)
+                     : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             ModTool = in_modTool;
             TrenchName = in_trenchName;

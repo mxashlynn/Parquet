@@ -18,8 +18,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         private const int defaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
+        // TODO Test if we can remove this ignore tag.
         [JsonIgnore]
-        protected override Range<EntityID> Bounds => Assembly.BlockIDs;
+        public static Range<EntityID> Bounds => Assembly.BlockIDs;
         #endregion
 
         #region Parquet Mechanics
@@ -87,7 +88,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                      EntityID? in_itemID = null, EntityID? in_collectableID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
                      int in_maxToughness = defaultMaxToughness)
-                     : base(in_id, in_name, in_addsToBiome)
+                     : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullCollectableID = in_collectableID ?? EntityID.None;
             if (!nonNullCollectableID.IsValidForRange(Assembly.CollectableIDs))
