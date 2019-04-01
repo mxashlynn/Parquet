@@ -1,5 +1,5 @@
-using ParquetClassLibrary;
 using System.Reflection;
+using ParquetClassLibrary;
 
 // Set assembly values.
 [assembly: AssemblyTitle("Parquet Runner")]
