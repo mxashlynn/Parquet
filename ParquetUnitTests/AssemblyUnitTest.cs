@@ -13,29 +13,29 @@ namespace ParquetUnitTests
         [Fact]
         public void SupportedDataVersionIsDefinedTest()
         {
-            Assert.False(string.IsNullOrEmpty(Assembly.SupportedDataVersion));
+            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedDataVersion));
         }
 
         [Fact]
         public void SupportedDataVersionIsNotInvalidTest()
         {
-            Assert.NotEqual(invalidDataVersion, Assembly.SupportedDataVersion);
+            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedDataVersion);
         }
 
         [Fact]
         public void AllDimensionsAreGreaterThanZeroTest()
         {
             // ReSharper disable All
-            var result = Assembly.ParquetsPerChunkDimension > 0
-                         && Assembly.ChunksPerRegionDimension > 0
-                         && Assembly.ParquetsPerRegionDimension > 0;
+            var result = AssemblyInfo.ParquetsPerChunkDimension > 0
+                         && AssemblyInfo.ChunksPerRegionDimension > 0
+                         && AssemblyInfo.ParquetsPerRegionDimension > 0;
             Assert.True(result);
         }
 
         [Fact]
         public void NoneIsAValidFloorTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.FloorIDs);
+            var result = EntityID.None.IsValidForRange(AssemblyInfo.FloorIDs);
 
             Assert.True(result);
         }
@@ -43,7 +43,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidBlockTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.BlockIDs);
+            var result = EntityID.None.IsValidForRange(AssemblyInfo.BlockIDs);
 
             Assert.True(result);
         }
@@ -51,7 +51,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidFurnishingTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.FurnishingIDs);
+            var result = EntityID.None.IsValidForRange(AssemblyInfo.FurnishingIDs);
 
             Assert.True(result);
         }
@@ -59,7 +59,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidCollectibleTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.CollectibleIDs);
+            var result = EntityID.None.IsValidForRange(AssemblyInfo.CollectibleIDs);
 
             Assert.True(result);
         }
@@ -67,7 +67,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NoneIsAValidItemTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.ItemIDs);
+            var result = EntityID.None.IsValidForRange(AssemblyInfo.ItemIDs);
 
             Assert.True(result);
         }
@@ -75,7 +75,7 @@ namespace ParquetUnitTests
         [Fact]
         public void MinimumIsAValidFloorTest()
         {
-            var range = Assembly.FloorIDs;
+            var range = AssemblyInfo.FloorIDs;
             var floor = range.Minimum;
             var result = floor.IsValidForRange(range);
 
@@ -85,7 +85,7 @@ namespace ParquetUnitTests
         [Fact]
         public void MinimumIsAValidBlockTest()
         {
-            var range = Assembly.BlockIDs;
+            var range = AssemblyInfo.BlockIDs;
             var block = range.Minimum;
             var result = block.IsValidForRange(range);
 
@@ -95,7 +95,7 @@ namespace ParquetUnitTests
         [Fact]
         public void MinimumIsAValidFurnishingTest()
         {
-            var range = Assembly.FurnishingIDs;
+            var range = AssemblyInfo.FurnishingIDs;
             var furnishing = range.Minimum;
             var result = furnishing.IsValidForRange(range);
 
@@ -105,7 +105,7 @@ namespace ParquetUnitTests
         [Fact]
         public void MinimumIsAValidCollectibleTest()
         {
-            var range = Assembly.CollectibleIDs;
+            var range = AssemblyInfo.CollectibleIDs;
             var collectible = range.Minimum;
             var result = collectible.IsValidForRange(range);
 
@@ -115,7 +115,7 @@ namespace ParquetUnitTests
         [Fact]
         public void MinimumIsAValidItemTest()
         {
-            var range = Assembly.ItemIDs;
+            var range = AssemblyInfo.ItemIDs;
             var item = range.Minimum;
             var result = item.IsValidForRange(range);
 

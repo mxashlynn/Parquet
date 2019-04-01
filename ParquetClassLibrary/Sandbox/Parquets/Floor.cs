@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
         // TODO Test if we can remove this ignore tag.
         [JsonIgnore]
-        public static Range<EntityID> Bounds => Assembly.FloorIDs;
+        public static Range<EntityID> Bounds => AssemblyInfo.FloorIDs;
         #endregion
 
         #region Parquet Mechanics

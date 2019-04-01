@@ -1,19 +1,37 @@
-using System.Runtime.CompilerServices;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
+using System.Runtime.CompilerServices;
+using System.Reflection;
+
+// Set assembly values.
+[assembly: AssemblyTitle("Parquet Class Library")]
+[assembly: AssemblyDescription("Core game mechanics for Parquet.")]
+[assembly: AssemblyCompany("Queertet")]
+[assembly: AssemblyCopyright("2018-2019 Paige Ashlynn")]
+[assembly: AssemblyProduct("ParquetClassLibrary")]
 
 // Allow unit tests to access classes and members with internal accessibility.
 [assembly: InternalsVisibleTo("ParquetUnitTests")]
+
+// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
+// The form "{Major}.{Minor}.*" will automatically update the build and revision.
+[assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
+[assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
+[assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
 
 namespace ParquetClassLibrary
 {
     /// <summary>
     /// Provides assembly-wide information.
     /// </summary>
-    public struct Assembly
+    public struct AssemblyInfo
     {
         /// <summary>Describes the version of the serialized data that this class understands.</summary>
         public const string SupportedDataVersion = "0.1.0";
+
+        /// <summary>Describes the version of the class library itself.</summary>
+        public const string LibraryVersion = "0.1.0.0";
 
         #region Sandbox Parquet and Item ID Ranges
         /// <summary>

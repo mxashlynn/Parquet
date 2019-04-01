@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Assembly.ChunksPerRegionDimension, Assembly.ChunksPerRegionDimension);
+        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(AssemblyInfo.ChunksPerRegionDimension, AssemblyInfo.ChunksPerRegionDimension);
         #endregion
 
         #region Whole-Region Characteristics
@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public readonly string DataVersion = Assembly.SupportedDataVersion;
+        public readonly string DataVersion = AssemblyInfo.SupportedDataVersion;
 
         /// <summary>The identifier for the region that this grid will generate.</summary>
         public readonly Guid RegionID;
@@ -155,7 +155,7 @@ namespace ParquetClassLibrary.Sandbox
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
-                    if (Assembly.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+                    if (AssemblyInfo.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
                         out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
                         result = true;

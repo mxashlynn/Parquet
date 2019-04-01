@@ -12,16 +12,16 @@ namespace ParquetUnitTests.Sandbox.Parquets
     {
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Floor TestFloor = new Floor(-Assembly.FloorIDs.Minimum, "1 Floor Test Parquet");
+        public static readonly Floor TestFloor = new Floor(-AssemblyInfo.FloorIDs.Minimum, "1 Floor Test Parquet");
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Block TestBlock = new Block(-Assembly.BlockIDs.Minimum, "2 Block Test Parquet");
+        public static readonly Block TestBlock = new Block(-AssemblyInfo.BlockIDs.Minimum, "2 Block Test Parquet");
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Furnishing TestFurnishing = new Furnishing(-Assembly.FurnishingIDs.Minimum, "3 Furnishing Test Parquet");
+        public static readonly Furnishing TestFurnishing = new Furnishing(-AssemblyInfo.FurnishingIDs.Minimum, "3 Furnishing Test Parquet");
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Collectible TestCollectible = new Collectible(-Assembly.CollectibleIDs.Minimum, "4 Collectible Test Parquet");
+        public static readonly Collectible TestCollectible = new Collectible(-AssemblyInfo.CollectibleIDs.Minimum, "4 Collectible Test Parquet");
         #endregion
 
         /// <summary>A collection of all test parquets of all subtypes.</summary>

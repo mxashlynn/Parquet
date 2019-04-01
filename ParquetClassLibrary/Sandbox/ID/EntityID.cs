@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Sandbox.ID
     /// Although the compiler does not provide type-checking for
     /// IDs, within the scope of their usage the library defines
     /// valid ranges for their use and these are checked by
-    /// library code.  <see cref="ParquetClassLibrary.Assembly"/>
+    /// library code.  <see cref="ParquetClassLibrary.AssemblyInfo"/>
     /// 
     /// TODO: Move this explanation into the Wiki and expand it.
     /// </summary>

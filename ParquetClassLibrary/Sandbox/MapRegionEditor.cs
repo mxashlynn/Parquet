@@ -140,7 +140,7 @@ namespace ParquetClassLibrary.Sandbox
         public void SetFloorToPaint(EntityID in_floorID)
         {
             //Adds bounds-checking using the Ranges defined in Assembly.
-            if (in_floorID.IsValidForRange(Assembly.FloorIDs))
+            if (in_floorID.IsValidForRange(AssemblyInfo.FloorIDs))
             {
                 _floorToPaint = in_floorID;
             }
@@ -156,7 +156,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_blockID">The parquet ID to select.  Must represent a valid Block.</param>
         public void SetBlockToPaint(EntityID in_blockID)
         {
-            if (in_blockID.IsValidForRange(Assembly.BlockIDs))
+            if (in_blockID.IsValidForRange(AssemblyInfo.BlockIDs))
             {
                 _blockToPaint = in_blockID;
             }
@@ -172,7 +172,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_furnishingID">The parquet ID to select.  Must represent a valid Furnishing.</param>
         public void SetFurnishingToPaint(EntityID in_furnishingID)
         {
-            if (in_furnishingID.IsValidForRange(Assembly.FurnishingIDs))
+            if (in_furnishingID.IsValidForRange(AssemblyInfo.FurnishingIDs))
             {
                 _furnishingToPaint = in_furnishingID;
             }
@@ -188,7 +188,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_collectibleID">The parquet ID to select.  Must represent a valid Collectible.</param>
         public void SetCollectibleToPaint(EntityID in_collectibleID)
         {
-            if (in_collectibleID.IsValidForRange(Assembly.CollectibleIDs))
+            if (in_collectibleID.IsValidForRange(AssemblyInfo.CollectibleIDs))
             {
                 _collectibleToPaint = in_collectibleID;
             }

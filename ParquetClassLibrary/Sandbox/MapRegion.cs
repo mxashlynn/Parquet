@@ -15,8 +15,8 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(Assembly.ParquetsPerRegionDimension,
-                                                                                  Assembly.ParquetsPerRegionDimension);
+        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(AssemblyInfo.ParquetsPerRegionDimension,
+                                                                                  AssemblyInfo.ParquetsPerRegionDimension);
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -47,20 +47,20 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Map Contents
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override EntityID[,] _floorLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                           Assembly.ParquetsPerRegionDimension];
+        protected override EntityID[,] _floorLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerRegionDimension,
+                                                                           AssemblyInfo.ParquetsPerRegionDimension];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected override EntityID[,] _blockLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                           Assembly.ParquetsPerRegionDimension];
+        protected override EntityID[,] _blockLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerRegionDimension,
+                                                                           AssemblyInfo.ParquetsPerRegionDimension];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                                Assembly.ParquetsPerRegionDimension];
+        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerRegionDimension,
+                                                                                AssemblyInfo.ParquetsPerRegionDimension];
 
         /// <summary>Collectible materials in the region.</summary>
-        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
-                                                                                 Assembly.ParquetsPerRegionDimension];
+        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerRegionDimension,
+                                                                                 AssemblyInfo.ParquetsPerRegionDimension];
         #endregion
 
         #region Initialization
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Sandbox
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
-                    if (Assembly.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+                    if (AssemblyInfo.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
                         out_map = JsonConvert.DeserializeObject<MapRegion>(in_serializedMap);
                         result = true;

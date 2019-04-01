@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        protected readonly string DataVersion = Assembly.SupportedDataVersion;
+        protected readonly string DataVersion = AssemblyInfo.SupportedDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
