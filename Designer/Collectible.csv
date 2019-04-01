@@ -1,5 +1,5 @@
 ID,Name,AddsToBiome,Effect,EffectAmount,ItemID
--40000,4 Collectable Test Parquet,None,None,0,-50000
+-40000,4 Collectible Test Parquet,None,None,0,-50000
 40000,Flower,None,Item,0,50000
 40001,Pinecone,Forested,Item,0,50001
 40002,Seeds,Swampy,Item,0,50002
