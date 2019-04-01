@@ -57,9 +57,9 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void NoneIsAValidCollectableTest()
+        public void NoneIsAValidCollectibleTest()
         {
-            var result = EntityID.None.IsValidForRange(Assembly.CollectableIDs);
+            var result = EntityID.None.IsValidForRange(Assembly.CollectibleIDs);
 
             Assert.True(result);
         }
@@ -103,11 +103,11 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MinimumIsAValidCollectableTest()
+        public void MinimumIsAValidCollectibleTest()
         {
-            var range = Assembly.CollectableIDs;
-            var collectable = range.Minimum;
-            var result = collectable.IsValidForRange(range);
+            var range = Assembly.CollectibleIDs;
+            var collectible = range.Minimum;
+            var result = collectible.IsValidForRange(range);
 
             Assert.True(result);
         }

@@ -30,9 +30,9 @@ namespace ParquetCSVImporter.ClassMaps
             {
                 in_configuration.RegisterClassMap<FurnishingClassMap>();
             }
-            else if (typeof(T) == typeof(Collectable))
+            else if (typeof(T) == typeof(Collectible))
             {
-                in_configuration.RegisterClassMap<CollectableClassMap>();
+                in_configuration.RegisterClassMap<CollectibleClassMap>();
             }
             else
             {

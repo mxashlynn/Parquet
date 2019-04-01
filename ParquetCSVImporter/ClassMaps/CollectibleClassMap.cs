@@ -5,14 +5,14 @@ using CsvHelper.Configuration;
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
-    /// Maps the values in a <see cref="T:ParquetCSVImporter.Shims.CollectableShim"/> to records that CSVHelper recognizes.
+    /// Maps the values in a <see cref="T:ParquetCSVImporter.Shims.CollectibleShim"/> to records that CSVHelper recognizes.
     /// </summary>
-    public sealed class CollectableClassMap : ClassMap<CollectableShim>
+    public sealed class CollectibleClassMap : ClassMap<CollectibleShim>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetCSVImporter.ClassMaps.CollectableClassMap"/> class.
+        /// Initializes a new instance of the <see cref="T:ParquetCSVImporter.ClassMaps.CollectibleClassMap"/> class.
         /// </summary>
-        public CollectableClassMap()
+        public CollectibleClassMap()
         {
             // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);

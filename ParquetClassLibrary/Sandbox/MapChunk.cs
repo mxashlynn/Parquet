@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Sandbox.ID;
@@ -36,8 +36,8 @@ namespace ParquetClassLibrary.Sandbox
         protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                                 Assembly.ParquetsPerChunkDimension];
 
-        /// <summary>Collectable materials in the chunk.</summary>
-        protected override EntityID[,] _collectableLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
+        /// <summary>Collectible materials in the chunk.</summary>
+        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[Assembly.ParquetsPerChunkDimension,
                                                                                  Assembly.ParquetsPerChunkDimension];
         #endregion
 

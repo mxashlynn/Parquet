@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
 
             void TestCode()
             {
-                var _ = new Collectable(badFloorID, "will fail");
+                var _ = new Collectible(badFloorID, "will fail");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

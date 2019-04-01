@@ -39,8 +39,8 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>Identifier for the selected furnishing.</summary>
         private EntityID _furnishingToPaint;
 
-        /// <summary>Identifier for the selected collectable.</summary>
-        private EntityID _collectableToPaint;
+        /// <summary>Identifier for the selected collectible.</summary>
+        private EntityID _collectibleToPaint;
 
         #region New, Save, Load Methods
         /// <summary>
@@ -137,7 +137,6 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a floor to paint with.
         /// </summary>
         /// <param name="in_floorID">The parquet ID to select.  Must represent a valid Floor.</param>
-        // TODO Improve handling of IDs (especially in Unity version).
         public void SetFloorToPaint(EntityID in_floorID)
         {
             //Adds bounds-checking using the Ranges defined in Assembly.
@@ -155,7 +154,6 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a block to paint with.
         /// </summary>
         /// <param name="in_blockID">The parquet ID to select.  Must represent a valid Block.</param>
-        // TODO Improve handling of IDs (especially in Unity version).
         public void SetBlockToPaint(EntityID in_blockID)
         {
             if (in_blockID.IsValidForRange(Assembly.BlockIDs))
@@ -172,7 +170,6 @@ namespace ParquetClassLibrary.Sandbox
         /// Select a furnishing to paint with.
         /// </summary>
         /// <param name="in_furnishingID">The parquet ID to select.  Must represent a valid Furnishing.</param>
-        // TODO Improve handling of IDs (especially in Unity version).
         public void SetFurnishingToPaint(EntityID in_furnishingID)
         {
             if (in_furnishingID.IsValidForRange(Assembly.FurnishingIDs))
@@ -186,19 +183,18 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Select a collectable to paint with.
+        /// Select a collectible to paint with.
         /// </summary>
-        /// <param name="in_collectableID">The parquet ID to select.  Must represent a valid Collectable.</param>
-        // TODO Improve handling of IDs (especially in Unity version).
-        public void SetCollectableToPaint(EntityID in_collectableID)
+        /// <param name="in_collectibleID">The parquet ID to select.  Must represent a valid Collectible.</param>
+        public void SetCollectibleToPaint(EntityID in_collectibleID)
         {
-            if (in_collectableID.IsValidForRange(Assembly.CollectableIDs))
+            if (in_collectibleID.IsValidForRange(Assembly.CollectibleIDs))
             {
-                _collectableToPaint = in_collectableID;
+                _collectibleToPaint = in_collectibleID;
             }
             else
             {
-                Error.Handle($"Cannot paint non-Collectable {in_collectableID} as if it were a Collectable.");
+                Error.Handle($"Cannot paint non-Collectible {in_collectibleID} as if it were a Collectible.");
             }
         }
 
@@ -232,10 +228,10 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>
         /// Turns floor painting on or off.
         /// </summary>
-        /// <param name="in_enable">If <c>true</c> enable collectable painting, otherwise disable it.</param>
-        public void SetPaintCollectable(bool in_enable)
+        /// <param name="in_enable">If <c>true</c> enable collectible painting, otherwise disable it.</param>
+        public void SetPaintCollectible(bool in_enable)
         {
-            _parquetPaintPattern.SetTo(ParquetMask.Collectable, in_enable);
+            _parquetPaintPattern.SetTo(ParquetMask.Collectible, in_enable);
         }
 
         /// <summary>
@@ -266,11 +262,11 @@ namespace ParquetClassLibrary.Sandbox
                     ? ""
                     : " furnishing ";
             }
-            if (_parquetPaintPattern.IsSet(ParquetMask.Collectable))
+            if (_parquetPaintPattern.IsSet(ParquetMask.Collectible))
             {
-                error += _currentRegion.TrySetCollectable(_collectableToPaint, in_position)
+                error += _currentRegion.TrySetCollectible(_collectibleToPaint, in_position)
                     ? ""
-                    : " collectable ";
+                    : " collectible ";
             }
 
             if (!string.IsNullOrEmpty(error))
@@ -388,9 +384,9 @@ namespace ParquetClassLibrary.Sandbox
                 {
                     result &= parquets.Furnishing == in_matchAgainst.Furnishing;
                 }
-                if (_parquetPaintPattern.HasFlag(ParquetMask.Collectable))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.Collectible))
                 {
-                    result &= parquets.Collectable == in_matchAgainst.Collectable;
+                    result &= parquets.Collectible == in_matchAgainst.Collectible;
                 }
             }
 

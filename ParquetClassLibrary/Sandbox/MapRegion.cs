@@ -58,8 +58,8 @@ namespace ParquetClassLibrary.Sandbox
         protected override EntityID[,] _furnishingLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
                                                                                 Assembly.ParquetsPerRegionDimension];
 
-        /// <summary>Collectable materials in the region.</summary>
-        protected override EntityID[,] _collectableLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
+        /// <summary>Collectible materials in the region.</summary>
+        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[Assembly.ParquetsPerRegionDimension,
                                                                                  Assembly.ParquetsPerRegionDimension];
         #endregion
 

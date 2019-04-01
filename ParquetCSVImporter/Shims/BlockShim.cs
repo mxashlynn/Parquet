@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 
@@ -23,8 +23,8 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>The item awarded to the player when a character gathers this Block.</summary>
         public EntityID ItemID;
 
-        /// <summary>The Collectable spawned when a character gathers this Block.</summary>
-        public EntityID CollectableID;
+        /// <summary>The collectible spawned when a character gathers this Block.</summary>
+        public EntityID CollectibleID;
 
         /// <summary>The block is flammable.</summary>
         public bool IsFlammable;
@@ -52,7 +52,7 @@ namespace ParquetCSVImporter.ClassMaps
             if (typeof(T) == typeof(Block))
             {
                 result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, GatherEffect, ItemID,
-                                                     CollectableID, IsFlammable, IsLiquid, MaxToughness);
+                                                     CollectibleID, IsFlammable, IsLiquid, MaxToughness);
             }
             else
             {

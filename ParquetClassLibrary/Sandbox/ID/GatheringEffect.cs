@@ -1,4 +1,4 @@
-﻿namespace ParquetClassLibrary.Sandbox.ID
+namespace ParquetClassLibrary.Sandbox.ID
 {
     /// <summary>
     /// IDs for effects that can happen when a character gathers a Block.
@@ -7,6 +7,6 @@
     {
         None,
         Item,
-        Collectable,
+        Collectible,
     }
 }

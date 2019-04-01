@@ -15,8 +15,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The furnishing contained in this stack.</summary>
         Furnishing Furnishing { get; }
 
-        /// <summary>The collectable contained in this stack.</summary>
-        Collectable Collectable { get; }
+        /// <summary>The collectible contained in this stack.</summary>
+        Collectible Collectible { get; }
 
         /// <summary>
         /// Indicates whether this <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> is empty.

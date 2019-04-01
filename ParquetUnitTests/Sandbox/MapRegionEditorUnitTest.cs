@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
@@ -56,19 +56,19 @@ namespace ParquetUnitTests.Sandbox
         [InlineData(false, false, true, false)]
         [InlineData(false, false, false, true)]
         [InlineData(true, true, true, true)]
-        public void EditorParquetPatternCorrespondsToSetCommandsTest(bool in_setPaintFloor, bool in_setPaintBlock, bool in_setPaintFurnishing, bool in_setPaintCollectable)
+        public void EditorParquetPatternCorrespondsToSetCommandsTest(bool in_setPaintFloor, bool in_setPaintBlock, bool in_setPaintFurnishing, bool in_setPaintCollectible)
         {
             var editor = new MapRegionEditor();
 
             editor.SetPaintFloor(in_setPaintFloor);
             editor.SetPaintBlock(in_setPaintBlock);
             editor.SetPaintFurnishing(in_setPaintFurnishing);
-            editor.SetPaintCollectable(in_setPaintCollectable);
+            editor.SetPaintCollectible(in_setPaintCollectible);
 
             Assert.Equal(in_setPaintFloor, editor.ParquetPaintPattern.HasFlag(ParquetMask.Floor));
             Assert.Equal(in_setPaintBlock, editor.ParquetPaintPattern.HasFlag(ParquetMask.Block));
             Assert.Equal(in_setPaintFurnishing, editor.ParquetPaintPattern.HasFlag(ParquetMask.Furnishing));
-            Assert.Equal(in_setPaintCollectable, editor.ParquetPaintPattern.HasFlag(ParquetMask.Collectable));
+            Assert.Equal(in_setPaintCollectible, editor.ParquetPaintPattern.HasFlag(ParquetMask.Collectible));
         }
     }
 }

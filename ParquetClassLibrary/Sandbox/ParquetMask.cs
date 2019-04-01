@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Sandbox
         Floor = 1,
         Block = 2,
         Furnishing = 4,
-        Collectable = 8,
+        Collectible = 8,
     }
 
     /// <summary>

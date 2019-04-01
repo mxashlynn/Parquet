@@ -33,9 +33,9 @@ namespace ParquetCSVImporter.ClassMaps
             {
                 shims = in_csv.GetRecords<FurnishingShim>();
             }
-            else if (typeof(T) == typeof(Collectable))
+            else if (typeof(T) == typeof(Collectible))
             {
-                shims = in_csv.GetRecords<CollectableShim>();
+                shims = in_csv.GetRecords<CollectibleShim>();
             }
             else
             {

@@ -1,4 +1,4 @@
-using ParquetClassLibrary.Sandbox;
+﻿using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 using ParquetUnitTests.Sandbox.Parquets;
 
@@ -28,7 +28,7 @@ namespace ParquetUnitTests.Sandbox
                 in_mapChunk.TrySetBlock(TestParquets.TestBlock.ID, new Vector2Int(in_mapChunk.DimensionsInParquets.X - 1, y));
             }
             in_mapChunk.TrySetFurnishing(TestParquets.TestFurnishing.ID, new Vector2Int(1, 2));
-            in_mapChunk.TrySetCollectable(TestParquets.TestCollectable.ID, new Vector2Int(3, 3));
+            in_mapChunk.TrySetCollectible(TestParquets.TestCollectible.ID, new Vector2Int(3, 3));
 
             return in_mapChunk;
         }

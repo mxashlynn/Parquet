@@ -14,8 +14,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The furnishing contained in this stack.</summary>
         public Furnishing Furnishing { get; }
 
-        /// <summary>The collectable contained in this stack.</summary>
-        public Collectable Collectable { get; }
+        /// <summary>The collectible contained in this stack.</summary>
+        public Collectible Collectible { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> struct.
@@ -23,13 +23,13 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_floor">The floor-layer parquet.</param>
         /// <param name="in_block">The The floor-layer parquet-layer parquet.</param>
         /// <param name="in_furnishing">The furnishing-layer parquet.</param>
-        /// <param name="in_collectable">The collectable-layer parquet.</param>
-        public ParquetStack(Floor in_floor, Block in_block, Furnishing in_furnishing, Collectable in_collectable)
+        /// <param name="in_collectible">The collectible-layer parquet.</param>
+        public ParquetStack(Floor in_floor, Block in_block, Furnishing in_furnishing, Collectible in_collectible)
         {
             Floor = in_floor;
             Block = in_block;
             Furnishing = in_furnishing;
-            Collectable = in_collectable;
+            Collectible = in_collectible;
         }
 
         /// <summary>
@@ -39,6 +39,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public bool IsEmpty => null == Floor &&
                                null == Block &&
                                null == Furnishing &&
-                               null == Collectable;
+                               null == Collectible;
     }
 }

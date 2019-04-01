@@ -13,7 +13,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         #endregion
 
         [Fact]
-        public void ValidCollectableIDsArePermittedTest()
+        public void ValidCollectibleIDsArePermittedTest()
         {
             var testFurnishing = new Furnishing(newFurnishingID, "will be created");
 
@@ -21,7 +21,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         }
 
         [Fact]
-        public void InvalidCollectableIDsRaiseExceptionTest()
+        public void InvalidCollectibleIDsRaiseExceptionTest()
         {
             var badFurnishingID = TestParquets.TestBlock.ID;
 

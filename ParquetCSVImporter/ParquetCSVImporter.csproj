@@ -44,12 +44,12 @@
     <Compile Include="ImportProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClassMaps\BlockClassMap.cs" />
-    <Compile Include="ClassMaps\CollectableClassMap.cs" />
+    <Compile Include="ClassMaps\CollectibleClassMap.cs" />
     <Compile Include="ClassMaps\FloorClassMap.cs" />
     <Compile Include="ClassMaps\FurnishingClassMap.cs" />
     <Compile Include="ClassMaps\CsvReaderExtensions.cs" />
     <Compile Include="Shims\BlockShim.cs" />
-    <Compile Include="Shims\CollectableShim.cs" />
+    <Compile Include="Shims\CollectibleShim.cs" />
     <Compile Include="Shims\FloorShim.cs" />
     <Compile Include="Shims\FurnishingShim.cs" />
     <Compile Include="Shims\ParquetParentShim.cs" />

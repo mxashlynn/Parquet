@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 
@@ -6,15 +6,15 @@ namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectable"/>-like
+    /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectible"/>-like
     /// class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectable"/>
+    /// Provides the ability to generate a <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectible"/>
     /// from this class.
     /// </summary>
-    public class CollectableShim : ParquetParentShim
+    public class CollectibleShim : ParquetParentShim
     {
-        /// <summary>The effect generated when a character encounters this Collectable.</summary>
+        /// <summary>The effect generated when a character encounters this collectible.</summary>
         public CollectionEffect Effect;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// </summary>
         public int EffectAmount;
 
-        /// <summary>The item spawned when a character encounters this Collectable.</summary>
+        /// <summary>The item spawned when a character encounters this collectible.</summary>
         public EntityID ItemID;
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace ParquetCSVImporter.ClassMaps
         {
             T result;
 
-            if (typeof(T) == typeof(Collectable))
+            if (typeof(T) == typeof(Collectible))
             {
-                result = (T)(ParquetParent)new Collectable(ID, Name, AddsToBiome, Effect, EffectAmount, ItemID);
+                result = (T)(ParquetParent)new Collectible(ID, Name, AddsToBiome, Effect, EffectAmount, ItemID);
             }
             else
             {

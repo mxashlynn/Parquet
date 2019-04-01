@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Sandbox.Parquets;
 using Xunit;
@@ -79,23 +79,23 @@ namespace ParquetUnitTests.Sandbox.Parquets
         }
 
         [Fact]
-        public void ValidCollectableIDsArePermittedTest()
+        public void ValidCollectibleIDsArePermittedTest()
         {
-            var goodCollectableID = TestParquets.TestCollectable.ID;
+            var goodCollectibleID = TestParquets.TestCollectible.ID;
 
-            var testBlock = new Block(newBlockID, "will be created", in_collectableID: goodCollectableID);
+            var testBlock = new Block(newBlockID, "will be created", in_collectibleID: goodCollectibleID);
 
             Assert.NotNull(testBlock);
         }
 
         [Fact]
-        public void InvalidCollectableIDsRaiseExceptionTest()
+        public void InvalidCollectibleIDsRaiseExceptionTest()
         {
-            var badCollectableID = TestParquets.TestBlock.ID;
+            var badCollectibleID = TestParquets.TestBlock.ID;
 
             void TestCode()
             {
-                var _ = new Block(newBlockID, "will fail", in_collectableID: badCollectableID);
+                var _ = new Block(newBlockID, "will fail", in_collectibleID: badCollectibleID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

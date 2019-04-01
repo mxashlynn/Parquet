@@ -122,33 +122,33 @@ namespace ParquetUnitTests.Sandbox
         }
 
         [Fact]
-        public void TrySetCollectableFailsOnNullParquetTest()
+        public void TrySetCollectibleFailsOnNullParquetTest()
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TrySetCollectable(EntityID.None, Vector2Int.ZeroVector);
+            var result = chunk.TrySetCollectible(EntityID.None, Vector2Int.ZeroVector);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetCollectableFailsOnInvalidPositionTest()
+        public void TrySetCollectibleFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestCollectable.ID;
+            var parquetID = TestParquets.TestCollectible.ID;
 
-            var result = chunk.TrySetCollectable(parquetID, invalidPosition);
+            var result = chunk.TrySetCollectible(parquetID, invalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TrySetCollectableSucceedsOnDefaultParquetAndPositionTest()
+        public void TrySetCollectibleSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestCollectable.ID;
+            var parquetID = TestParquets.TestCollectible.ID;
 
-            var result = chunk.TrySetCollectable(parquetID, Vector2Int.ZeroVector);
+            var result = chunk.TrySetCollectible(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -214,21 +214,21 @@ namespace ParquetUnitTests.Sandbox
         }
 
         [Fact]
-        public void TryRemoveCollectableFailsOnInvalidPositionTest()
+        public void TryRemoveCollectibleFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TryRemoveCollectable(invalidPosition);
+            var result = chunk.TryRemoveCollectible(invalidPosition);
 
             Assert.False(result);
         }
 
         [Fact]
-        public void TryRemoveCollectableSucceedsOnDefaultPositionTest()
+        public void TryRemoveCollectibleSucceedsOnDefaultPositionTest()
         {
             var chunk = new MapChunk();
 
-            var result = chunk.TryRemoveCollectable(Vector2Int.ZeroVector);
+            var result = chunk.TryRemoveCollectible(Vector2Int.ZeroVector);
 
             Assert.True(result);
         }
@@ -471,21 +471,21 @@ namespace ParquetUnitTests.Sandbox
         }
 
         [Fact]
-        public void GetCollectableReturnsNullOnInvalidPositionTest()
+        public void GetCollectibleReturnsNullOnInvalidPositionTest()
         {
             var chunk = new MapChunk().FillTestPattern();
 
-            var result = chunk.GetCollectableAtPosition(invalidPosition);
+            var result = chunk.GetCollectibleAtPosition(invalidPosition);
 
             Assert.Null(result);
         }
 
         [Fact]
-        public void GetCollectableReturnsNullOnEmptyMapTest()
+        public void GetCollectibleReturnsNullOnEmptyMapTest()
         {
             var chunk = new MapChunk();
 
-            var result = chunk.GetCollectableAtPosition(Vector2Int.ZeroVector);
+            var result = chunk.GetCollectibleAtPosition(Vector2Int.ZeroVector);
 
             Assert.Null(result);
         }
@@ -500,7 +500,7 @@ namespace ParquetUnitTests.Sandbox
             Assert.Null(parquetStack.Floor);
             Assert.Null(parquetStack.Block);
             Assert.Null(parquetStack.Furnishing);
-            Assert.Null(parquetStack.Collectable);
+            Assert.Null(parquetStack.Collectible);
         }
 
         [Fact]
@@ -513,7 +513,7 @@ namespace ParquetUnitTests.Sandbox
             Assert.Null(parquetStack.Floor);
             Assert.Null(parquetStack.Block);
             Assert.Null(parquetStack.Furnishing);
-            Assert.Null(parquetStack.Collectable);
+            Assert.Null(parquetStack.Collectible);
         }
         #endregion
     }

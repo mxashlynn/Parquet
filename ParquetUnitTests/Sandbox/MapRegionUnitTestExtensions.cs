@@ -1,4 +1,4 @@
-using ParquetClassLibrary;
+﻿using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Stubs;
 using ParquetUnitTests.Sandbox.Parquets;
@@ -29,7 +29,7 @@ namespace ParquetUnitTests.Sandbox
                 in_mapRegion.TrySetBlock(TestParquets.TestBlock.ID, new Vector2Int(Assembly.ParquetsPerRegionDimension - 1, y));
             }
             in_mapRegion.TrySetFurnishing(TestParquets.TestFurnishing.ID, new Vector2Int(1, 2));
-            in_mapRegion.TrySetCollectable(TestParquets.TestCollectable.ID, new Vector2Int(3, 3));
+            in_mapRegion.TrySetCollectible(TestParquets.TestCollectible.ID, new Vector2Int(3, 3));
 
             return in_mapRegion;
         }

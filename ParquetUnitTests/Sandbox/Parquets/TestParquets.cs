@@ -21,7 +21,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         public static readonly Furnishing TestFurnishing = new Furnishing(-Assembly.FurnishingIDs.Minimum, "3 Furnishing Test Parquet");
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Collectable TestCollectable = new Collectable(-Assembly.CollectableIDs.Minimum, "4 Collectable Test Parquet");
+        public static readonly Collectible TestCollectible = new Collectible(-Assembly.CollectibleIDs.Minimum, "4 Collectible Test Parquet");
         #endregion
 
         /// <summary>A collection of all test parquets of all subtypes.</summary>
@@ -30,7 +30,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
             { TestFloor.ID, TestFloor },
             { TestBlock.ID, TestBlock },
             { TestFurnishing.ID, TestFurnishing },
-            { TestCollectable.ID, TestCollectable },
+            { TestCollectible.ID, TestCollectible },
         };
 
         /// <summary>
