@@ -1,73 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E7353ED3-7F34-4C6A-94B0-63FDDBB5C0A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ParquetCSVImporter</RootNamespace>
-    <AssemblyName>ParquetCSVImporter</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ExternalConsole>true</ExternalConsole>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ExternalConsole>true</ExternalConsole>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="CsvHelper">
-      <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
+    <PackageReference Include="CsvHelper" Version="12.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ImportProgram.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ClassMaps\BlockClassMap.cs" />
-    <Compile Include="ClassMaps\CollectibleClassMap.cs" />
-    <Compile Include="ClassMaps\FloorClassMap.cs" />
-    <Compile Include="ClassMaps\FurnishingClassMap.cs" />
-    <Compile Include="ClassMaps\CsvReaderExtensions.cs" />
-    <Compile Include="Shims\BlockShim.cs" />
-    <Compile Include="Shims\CollectibleShim.cs" />
-    <Compile Include="Shims\FloorShim.cs" />
-    <Compile Include="Shims\FurnishingShim.cs" />
-    <Compile Include="Shims\ParquetParentShim.cs" />
-    <Compile Include="EntityIDConverter.cs" />
-    <Compile Include="ClassMaps\IReaderConfigurationExtensions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj">
-      <Project>{5D426EB2-83DD-44E3-8404-E9914CE98FE7}</Project>
-      <Name>ParquetClassLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClassMaps\" />
-    <Folder Include="Shims\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
 </Project>

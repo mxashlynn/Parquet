@@ -18,9 +18,9 @@ namespace ParquetCSVImporter
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
 #if DEBUG
-            Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.Parent?.FullName;
+            Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 #else
-            Environment.CurrentDirectory;
+            Directory.GetCurrentDirectory().FullName;
 #endif
 
         /// <summary>All parquets defined in the CSV files.</summary>
