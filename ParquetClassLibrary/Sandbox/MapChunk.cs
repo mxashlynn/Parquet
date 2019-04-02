@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
@@ -24,6 +25,10 @@ namespace ParquetClassLibrary.Sandbox
         #endregion
 
         #region Chunk Contents
+        /// <summary>The statuses of parquets in the chunk.</summary>
+        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[AssemblyInfo.ParquetsPerChunkDimension,
+                                                                                        AssemblyInfo.ParquetsPerChunkDimension];
+
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         protected override EntityID[,] _floorLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerChunkDimension,
                                                                            AssemblyInfo.ParquetsPerChunkDimension];
