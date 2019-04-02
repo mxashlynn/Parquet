@@ -34,27 +34,6 @@ namespace ParquetUnitTests.Sandbox.Parquets
         }
 
         [Fact]
-        public void ToughnessCannotBeSetBelowZeroTest()
-        {
-            var testBlock = TestParquets.TestBlock;
-
-            testBlock.Toughness = int.MinValue;
-
-            Assert.Equal(Block.LowestPossibleToughness, testBlock.Toughness);
-        }
-
-        [Fact]
-        public void ToughnessCannotBeAboveMaxToughnessTest()
-        {
-            var testBlock = TestParquets.TestBlock;
-            var priorToughness = testBlock.Toughness;
-
-            testBlock.Toughness = int.MaxValue;
-
-            Assert.Equal(priorToughness, testBlock.Toughness);
-        }
-
-        [Fact]
         public void ValidItemIDsArePermittedTest()
         {
             // TODO When we have a cannonical source of item IDs, use that instead.
