@@ -15,10 +15,9 @@ using ParquetClassLibrary.Utilities;
 [assembly: InternalsVisibleTo("ParquetUnitTests")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision.
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
-[assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
+[assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
 
 namespace ParquetClassLibrary
 {
@@ -27,7 +26,7 @@ namespace ParquetClassLibrary
     /// </summary>
     public struct AssemblyInfo
     {
-        /// <summary>Describes the version of the serialized data that this class understands.</summary>
+        /// <summary>Describes the version of the serialized data that the class library understands.</summary>
         public const string SupportedDataVersion = "0.1.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
