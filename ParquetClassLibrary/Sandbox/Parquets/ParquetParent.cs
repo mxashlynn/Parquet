@@ -43,9 +43,13 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
+            if (string.IsNullOrEmpty(in_name))
+            {
+                throw new ArgumentNullException(nameof(in_name));
+            }
 
             ID = in_id;
-            Name = in_name ?? throw new ArgumentNullException(nameof(in_name));
+            Name = in_name;
             AddsToBiome = in_addsToBiome;
         }
         #endregion
