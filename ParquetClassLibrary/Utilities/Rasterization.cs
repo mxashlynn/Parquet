@@ -67,6 +67,13 @@ namespace ParquetClassLibrary.Utilities
             return new List<Vector2Int>(deduplicationList);
         }
 
+        /// <summary>
+        /// Plots a rectangular region including all points contained on and within the rectanle.
+        /// </summary>
+        /// <param name="in_upperLeft">The upper left corner of the rectangle.</param>
+        /// <param name="in_lowerRight">The lower right corner of the rectangle.</param>
+        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <returns>The filled rectangle.</returns>
         public static List<Vector2Int> PlotFilledRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                            Predicate<Vector2Int> in_isValid)
         {
@@ -89,6 +96,13 @@ namespace ParquetClassLibrary.Utilities
             return new List<Vector2Int>(deduplicationList);
         }
 
+        /// <summary>
+        /// Plots a rectangular region including all points contained on the rectanle but none within it.
+        /// </summary>
+        /// <param name="in_upperLeft">The upper left corner of the rectangle.</param>
+        /// <param name="in_lowerRight">The lower right corner of the rectangle.</param>
+        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <returns>The rectangle.</returns>
         public static List<Vector2Int> PlotEmptyRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight,
                                                           Predicate<Vector2Int> in_isValid)
         {
@@ -107,6 +121,14 @@ namespace ParquetClassLibrary.Utilities
             return new List<Vector2Int>(deduplicationList);
         }
 
+        /// <summary>
+        /// Plots a circular region including all points contained on the circle but none within it.
+        /// </summary>
+        /// <param name="in_center">The circle's center.</param>
+        /// <param name="in_radius">The circle's radius.</param>
+        /// <param name="in_isFilled">If set to <c>true</c> in is filled.</param>
+        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <returns>The circle.</returns>
         public static List<Vector2Int> PlotCircle(Vector2Int in_center, int in_radius, bool in_isFilled,
                                                   Predicate<Vector2Int> in_isValid)
         {
