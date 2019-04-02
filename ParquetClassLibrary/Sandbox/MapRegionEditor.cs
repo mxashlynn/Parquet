@@ -18,16 +18,29 @@ namespace ParquetClassLibrary.Sandbox
     /// </summary>
     public class MapRegionEditor
     {
+        #region Events
+        /// <summary>
+        /// Indicates when it is time to update the display of current position info.
+        /// </summary>
         public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
 
+        /// <summary>
+        /// Indicates when it is time to update the display of the map.
+        /// </summary>
         public static event EventHandler DisplayMap;
+        #endregion
 
+        /// <summary>The <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> currently being edited.</summary>
         private MapRegion _currentRegion;
 
-        public bool IsMapLoaded => null != _currentRegion;
+        /// <summary>Indicates whether a <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> is map loaded.</summary>
+        /// <value><c>true</c> if a map has been loaded; otherwise, <c>false</c>.</value>
+        internal bool IsMapLoaded => null != _currentRegion;
 
+        /// <summary>Backing variable that determines which type of parquets will be painted.</summary>
         private ParquetMask _parquetPaintPattern = ParquetMask.None;
 
+        /// <summary>Determines which type of parquets will be painted.</summary>
         internal ParquetMask ParquetPaintPattern => _parquetPaintPattern;
 
         /// <summary>Identifier for the selected floor.</summary>
