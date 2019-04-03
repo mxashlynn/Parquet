@@ -6,7 +6,7 @@ using ParquetClassLibrary.Sandbox.Parquets;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Convenience extension methods for concise coding when working with ParquetSelection instances.
+    /// Convenience extension methods for concise coding when working with <see cref="MapRegion"/> instances.
     /// </summary>
     internal static class MapRegionAnalysis
     {

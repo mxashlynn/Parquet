@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Sandbox
     }
 
     /// <summary>
-    /// Convenience extension methods for concise coding when working with ParquetSelection instances.
+    /// Convenience extension methods for concise coding when working with <see cref="BiomeMask"/> instances.
     /// </summary>
     internal static class BiomeMaskSelectionExtensions
     {
