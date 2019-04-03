@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox
     /// A playable region in sandbox-mode.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class MapRegion : MapParent
+    public sealed class MapRegion : MapParent
     {
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>

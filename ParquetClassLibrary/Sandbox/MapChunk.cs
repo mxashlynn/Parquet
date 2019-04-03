@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Sandbox
     /// of <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>s.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class MapChunk : MapParent
+    public sealed class MapChunk : MapParent
     {
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
