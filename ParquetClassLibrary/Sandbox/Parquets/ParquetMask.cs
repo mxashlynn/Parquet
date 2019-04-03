@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Sandbox.Parquets
 {
     /// <summary>
     /// Models which, if any, parquet layers have been selected (for instance in the map editor).
@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Sandbox
     }
 
     /// <summary>
-    /// Convenience extension methods for concise coding when working with ParquetSelection instances.
+    /// Convenience extension methods for concise coding when working with <see cref="ParquetMask"/> instances.
     /// </summary>
     internal static class ParquetSelectionExtensions
     {

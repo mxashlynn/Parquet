@@ -1,4 +1,5 @@
 using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 

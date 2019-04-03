@@ -1,5 +1,6 @@
 ﻿using System;
 using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Sandbox.Parquets;
 using Xunit;
 
 namespace ParquetUnitTests.Sandbox
