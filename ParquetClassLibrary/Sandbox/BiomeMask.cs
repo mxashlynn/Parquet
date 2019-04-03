@@ -10,9 +10,13 @@ namespace ParquetClassLibrary.Sandbox
     public enum BiomeMask
     {
         None = 0,
+        Mountainous,
+        Cavernous,
         Deserted,
         Forested,
         Heavenly,
+        Infernal,
+        Ruinous,
         Coastal,
         Swampy,
         Frozen,
