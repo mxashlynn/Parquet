@@ -73,9 +73,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <param name="in_parquet">
         /// The <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> to compare with the current.
         /// </param>
-        /// <returns>
-        /// <c>true</c> if the <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>s are equal.
-        /// </returns>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(ParquetParent in_parquet)
         {
             return in_parquet != null && ID == in_parquet.ID;
@@ -89,10 +87,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// The <see cref="object"/> to compare with the current
         /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.
         /// </param>
-        /// <returns>
-        /// <c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
@@ -112,7 +107,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <param name="in_parquet1">The first <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> to compare.</param>
         /// <param name="in_parquet2">The second <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> to compare.</param>
-        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are equal; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ParquetParent in_parquet1, ParquetParent in_parquet2)
         {
             if (ReferenceEquals(in_parquet1, in_parquet2)) return true;
@@ -128,7 +123,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <param name="in_parquet1">The first <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> to compare.</param>
         /// <param name="in_parquet2">The second <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/> to compare.</param>
-        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are NOT equal; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ParquetParent in_parquet1, ParquetParent in_parquet2)
         {
             if (ReferenceEquals(in_parquet1, in_parquet2)) return false;
