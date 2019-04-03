@@ -40,6 +40,9 @@ namespace ParquetClassLibrary.Sandbox
         protected readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
+        protected abstract ParquetStatus[,] _parquetStatus { get; }
+
+        /// <summary>Floors and walkable terrain on the map.</summary>
         protected abstract EntityID[,] _floorLayer { get; }
 
         /// <summary>Walls and obstructing terrain on the map.</summary>
@@ -278,6 +281,23 @@ namespace ParquetClassLibrary.Sandbox
         #endregion
 
         #region State Query Methods
+        /// <summary>
+        /// Gets the statuses of any parquets at the position.
+        /// </summary>
+        /// <param name="in_position">The position whose status is sought.</param>
+        /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
+        public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
+        {
+            ParquetStatus result = null;
+
+            if (IsValidPosition(in_position))
+            {
+                result = _parquetStatus[in_position.X, in_position.Y];
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Gets any floor parquet at the position.
         /// </summary>

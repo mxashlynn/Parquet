@@ -33,12 +33,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public bool IsWalkable { get; private set; }
         #endregion
 
-        #region Floor Status
-        /// <summary>The floor has been dug out.</summary>
-        [JsonIgnore]
-        public bool IsTrench { get; set; } = false;
-        #endregion
-
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/> class.

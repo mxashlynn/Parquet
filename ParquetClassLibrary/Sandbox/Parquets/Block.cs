@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public const int LowestPossibleToughness = 0;
 
         /// <summary>Maximum toughness value to use when none is specified.</summary>
-        private const int defaultMaxToughness = 10;
+        public const int DefaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
         // TODO Test if we can remove this ignore tag.
@@ -53,20 +53,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public int MaxToughness { get; private set; }
         #endregion
 
-        #region Block Status
-        /// <summary>The block's current toughness.</summary>
-        [JsonIgnore]
-        private int _toughness;
-
-        /// <summary>The block's current toughness, from 0 to <see cref="MaxToughness"/>.</summary>
-        [JsonIgnore]
-        public int Toughness
-        {
-            get => _toughness;
-            set => _toughness = value.Normalize(LowestPossibleToughness, MaxToughness);
-        }
-        #endregion
-
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/> class.
@@ -87,7 +73,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectibleID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
-                     int in_maxToughness = defaultMaxToughness)
+                     int in_maxToughness = DefaultMaxToughness)
                      : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
@@ -108,7 +94,6 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             IsFlammable = in_isFlammable;
             IsLiquid = in_isLiquid;
             MaxToughness = in_maxToughness;
-            Toughness = MaxToughness;
         }
         #endregion
     }
