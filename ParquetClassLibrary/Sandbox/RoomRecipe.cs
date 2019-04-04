@@ -46,9 +46,19 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_acceptableWalls">An optional list of block types this recipre requires as walls.</param>
         /// <param name="in_requiredFurnishings">A list of furnishing types this recipre requires.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when the either in_id or any of the in_acceptableFloors, in_acceptableWalls, or
-        /// in_requiredFurnishings are not within their associated ranges.
-        /// Also thrown when in_recipeMinimumFloors is less than <see cref="AssemblyInfo.RoomMinimumFloors"/>.
+        /// Thrown when in_id is not within the <see cref="AssemblyInfo.RoomRecipeIDs"/> range.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when any of the in_acceptableFloors are not within the <see cref="AssemblyInfo.FloorIDs"/> range.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when any of the in_acceptableWalls are not within the <see cref="AssemblyInfo.BlockIDs"/> range.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when any of the in_requiredFurnishings are not within the <see cref="AssemblyInfo.FurnishingIDs"/> range.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when in_recipeMinimumFloors is less than <see cref="AssemblyInfo.RoomMinimumFloors"/>.
         /// </exception>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when in_requiredFurnishings is empty.
