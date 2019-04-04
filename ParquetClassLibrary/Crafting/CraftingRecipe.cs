@@ -9,14 +9,6 @@ namespace ParquetClassLibrary.Crafting
     /// </summary>
     public struct CraftingRecipe
     {
-        #region Defaults
-        /// <summary>Maximum width of the <see cref="StrikePanel"/> patten.</summary>
-        public const int PanelPatternMaxWidth = 2;
-
-        /// <summary>Maximum height of the <see cref="StrikePanel"/> patten.</summary>
-        public const int PanelPatternMaxHeight = 4;
-        #endregion
-
         /// <summary>The type of item created by following this recipe.</summary>
         public EntityID ItemProduced { get; }
 
@@ -54,8 +46,8 @@ namespace ParquetClassLibrary.Crafting
                     throw new ArgumentOutOfRangeException(nameof(in_ingredients));
                 }
             }
-            if (in_panelPattern.GetLength(0) > PanelPatternMaxWidth
-                || in_panelPattern.GetLength(1) > PanelPatternMaxHeight)
+            if (in_panelPattern.GetLength(0) != AssemblyInfo.PanelPatternWidth
+                || in_panelPattern.GetLength(1) != AssemblyInfo.PanelPatternHeight)
             {
                 throw new IndexOutOfRangeException(nameof(in_panelPattern));
             }
