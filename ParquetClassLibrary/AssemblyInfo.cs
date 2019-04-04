@@ -34,6 +34,12 @@ namespace ParquetClassLibrary
 
         #region Entity ID Ranges
         /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for room recipes.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> RoomRecipeIDs = new Range<EntityID>(1000, 1900);
+
+        /// <summary>
         /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/> set aside for
         /// <see cref="T:ParquetClassLibrary.Sandbox.Parquet.Floor"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
@@ -78,5 +84,18 @@ namespace ParquetClassLibrary
         /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ParquetsPerChunkDimension;
         #endregion
+
+        #region Sandbox Room Requirements
+        /// <summary>
+        /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMinimumFloors = 4;
+
+        /// <summary>
+        /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMaximumFloors = (ParquetsPerChunkDimension - 1) * (ParquetsPerChunkDimension - 1);
+        #endregion
+
     }
 }
