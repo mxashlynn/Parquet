@@ -8,6 +8,9 @@ namespace ParquetClassLibrary.Crafting
     /// </summary>
     public struct StrikePanel
     {
+        /// <summary><c>true</c> if this panel is not used in the current crafting recipe; otherwise, <c>false</c>.</summary>
+        public bool IsVoid { get; set; }
+
         /// <summary>
         /// The range of values this panel can take on while being worked.  <see cref="Range{T}.Minimum"/> is normally 0.
         /// </summary>
