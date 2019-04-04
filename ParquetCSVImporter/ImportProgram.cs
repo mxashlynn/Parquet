@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetCSVImporter.ClassMaps;
 

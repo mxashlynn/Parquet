@@ -2,7 +2,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary;
 
 namespace ParquetCSVImporter
 {
