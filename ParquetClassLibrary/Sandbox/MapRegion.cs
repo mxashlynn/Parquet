@@ -33,6 +33,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
         public readonly Guid RegionID;
 
+        // TODO The setters bellow are here to facilitate region editing, but they shouldn't be changed in-game.
+        // Is there a better way to handle this?
+
         /// <summary>What the region is called in-game.</summary>
         public string Title { get; set; }
 
