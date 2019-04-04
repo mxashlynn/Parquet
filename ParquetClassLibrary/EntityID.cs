@@ -3,30 +3,30 @@ using System.Diagnostics.Contracts;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Sandbox.ID
+namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Uniquely identifies every defined game entity.
+    /// Uniquely identifies every game entity that must be directly referenced.
     /// 
-    /// <see cref="ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>
+    /// Multiple identicle parquet IDs may be assigned to MapChunks
+    /// or MapRegions, and multiple duplicate item IDs may exist in
+    /// the Inventory.  These IDs provide a means for the library to
+    /// look up the game entity definition when other game elements
+    /// interact with it.
     /// 
-    /// To be clear: there are multiple parquet and item subtypes,
+    /// To be clear: there are multiple entity subtypes (<see cref="Sandbox.Parquets.ParquetParent"/>,
+    /// items, etc.),
     /// and each of these subtypes has multiple definitions.
     /// The definitions are purely data-driven, read in from
     /// JSON or CSV files, and not type-checked by the compiler.
     /// 
-    /// Multiple identicle parquet IDs may be assigned to MapChunks
-    /// or MapRegions, and multiple duplicate item IDs may be spawned.
-    /// The IDs provide a means for the library to look up
-    /// the game entity definition when other game elements interact
-    /// with it.
-    /// 
     /// Although the compiler does not provide type-checking for
     /// IDs, within the scope of their usage the library defines
-    /// valid ranges for their use and these are checked by
-    /// library code.  <see cref="ParquetClassLibrary.AssemblyInfo"/>
+    /// valid ranges for and these are checked by library code.
+    /// <see cref="ParquetClassLibrary.AssemblyInfo"/>
     /// 
-    /// TODO: Move this explanation into the Wiki and expand it.
+    /// TODO: Include this explanation in the Wiki.
+    /// TODO: Update all comment references to "item" to see cref tags once Item is implemented.
     /// </summary>
     public struct EntityID : IComparable<EntityID>
     {

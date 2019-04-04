@@ -32,7 +32,7 @@ namespace ParquetClassLibrary
         /// <summary>Describes the version of the class library itself.</summary>
         public const string LibraryVersion = "0.1.0.0";
 
-        #region Sandbox Parquet and Item ID Ranges
+        #region Entity ID Ranges
         /// <summary>
         /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/> set aside for
         /// <see cref="T:ParquetClassLibrary.Sandbox.Parquet.Floor"/>s.
