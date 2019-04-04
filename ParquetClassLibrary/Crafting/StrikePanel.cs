@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Crafting
 
         /// <summary>
         /// The range of values this panel targets for a completed craft.
-        /// If the values must fall within the range of <c see="WorkingRange"/>.
+        /// The values must fall within the range of <c see="WorkingRange"/>.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown when the either the <see cref="Range{T}.Maximum"/> or <see cref="Range{T}.Minimum"/> are beyond

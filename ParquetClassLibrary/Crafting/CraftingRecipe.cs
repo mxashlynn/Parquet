@@ -10,7 +10,10 @@ namespace ParquetClassLibrary.Crafting
     public struct CraftingRecipe
     {
         #region Defaults
+        /// <summary>Maximum width of the <see cref="StrikePanel"/> patten.</summary>
         public const int PanelPatternMaxWidth = 2;
+
+        /// <summary>Maximum height of the <see cref="StrikePanel"/> patten.</summary>
         public const int PanelPatternMaxHeight = 4;
         #endregion
 
