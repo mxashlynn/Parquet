@@ -1,9 +1,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox.ID;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Stubs;
 
 // Set assembly values.
 [assembly: AssemblyTitle("Parquet Class Library")]

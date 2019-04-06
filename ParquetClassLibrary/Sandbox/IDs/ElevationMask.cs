@@ -1,33 +1,23 @@
 ﻿using System;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
-    /// Indicates the requirements for a player character to safely enter a <see cref="Biome"/>.
+    /// Indicates a the level of a MapChunk or MapRegion.
     /// </summary>
     [Flags]
-    public enum BiomeKey
+    internal enum ElevationMask
     {
-        None = 0,
-        Knapsack,
-        Sunscreen,
-        Boots,
-        Canteen,
-        BugSpray,
-        WarmGear,
-        Lantern,
-        Rope,
-        ClimbingKit,
-        GasMask,
-        Charm,
-        PearlyFeather,
-        CharredMask,
+        None,
+        BelowGround,
+        LevelGround,
+        AboveGround
     }
 
     /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="BiomeKey"/> instances.
+    /// Convenience extension methods for concise coding when working with <see cref="ElevationMask"/> instances.
     /// </summary>
-    internal static class BiomeKeyExtensions
+    internal static class ElevationMaskSelectionExtensions
     {
         /// <summary>
         /// Sets the given flag in the specified variable.
@@ -35,7 +25,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to set.</param>
         /// <returns>The variable with the flag set.</returns>
-        public static BiomeKey Set(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static ElevationMask Set(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest)
         {
             return in_enumVariable = in_enumVariable | in_flagToTest;
         }
@@ -46,7 +36,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to clear.</param>
         /// <returns>The variable with the flag cleared.</returns>
-        public static BiomeKey Clear(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static ElevationMask Clear(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest)
         {
             return in_enumVariable = in_enumVariable & ~in_flagToTest;
         }
@@ -57,7 +47,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is set, <c>false</c> otherwise.</returns>
-        public static bool IsSet(this BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static bool IsSet(this ElevationMask in_enumVariable, ElevationMask in_flagToTest)
         {
             return (in_enumVariable & in_flagToTest) == in_flagToTest;
         }
@@ -68,9 +58,9 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is unset, <c>false</c> otherwise.</returns>
-        public static bool IsNotSet(this BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static bool IsNotSet(this ElevationMask in_enumVariable, ElevationMask in_flagToTest)
         {
-            return (in_enumVariable & ~in_flagToTest) == BiomeKey.None;
+            return (in_enumVariable & ~in_flagToTest) == ElevationMask.None;
         }
 
         /// <summary>
@@ -80,7 +70,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_flagToTest">The flag to set or clear.</param>
         /// <param name="in_state">If <c>true</c>, the flag will be set; otherwise it will be cleared.</param>
         /// <returns>The variable with the flag modified.</returns>
-        public static BiomeKey SetTo(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest, bool in_state)
+        public static ElevationMask SetTo(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest, bool in_state)
         {
             return in_enumVariable = in_state
                 ? in_enumVariable.Set(in_flagToTest)

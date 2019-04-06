@@ -1,4 +1,6 @@
-﻿namespace ParquetClassLibrary.Sandbox
+﻿using ParquetClassLibrary.Items;
+
+namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
     /// Indicates the biome that a MapRegion embodies.
