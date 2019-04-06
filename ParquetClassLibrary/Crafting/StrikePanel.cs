@@ -20,10 +20,7 @@ namespace ParquetClassLibrary.Crafting
         /// </summary>
         public Range<int> WorkingRange
         {
-            get
-            {
-                return _workingRange;
-            }
+            get => _workingRange;
             set
             {
                 _workingRange = value;
@@ -52,10 +49,7 @@ namespace ParquetClassLibrary.Crafting
         /// </exception>
         public Range<int> IdealRange
         {
-            get
-            {
-                return _idealRange;
-            }
+            get => _idealRange;
             set
             {
                 if (value.Maximum > WorkingRange.Maximum ||
