@@ -8,28 +8,41 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     // TODO: This needs revision to represent all Key Item types.
     [Flags]
-    public enum BiomeKey
+    public enum KeyItem
     {
         None = 0,
-        Knapsack,
-        Sunscreen,
-        Boots,
-        Canteen,
-        BugSpray,
-        WarmGear,
-        Lantern,
-        Rope,
-        ClimbingKit,
-        GasMask,
-        Charm,
-        PearlyFeather,
-        CharredMask,
+        /// <summary>E.g., knapsack.</summary>
+        ForestKey,
+        /// <summary>E.g., sunscreen.</summary>
+        SeasideKey,
+        /// <summary>E.g., boots.</summary>
+        Tier2Key,
+        /// <summary>E.g., canteen.</summary>
+        DesertKey,
+        /// <summary>E.g., bug spray.</summary>
+        SwampKey,
+        /// <summary>E.g., snowpants.</summary>
+        TundraKey,
+        /// <summary>E.g., lantern.</summary>
+        CavernKey,
+        /// <summary>E.g., rope.</summary>
+        Tier3Key,
+        /// <summary>E.g., climbing gear.</summary>
+        AlpineKey,
+        /// <summary>E.g., GasMask.</summary>
+        VolcanoKey,
+        /// <summary>E.g., warding charm.</summary>
+        RuinsKey,
+        /// <summary>E.g., pearlescent feather.</summary>
+        HeavenlyKey,
+        /// <summary>E.g., charred mask.</summary>
+        InfernalKey,
     }
 
     /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="BiomeKey"/> instances.
+    /// Convenience extension methods for concise coding when working with <see cref="KeyItem"/> instances.
     /// </summary>
-    internal static class BiomeKeyExtensions
+    internal static class KeyItemExtensions
     {
         /// <summary>
         /// Sets the given flag in the specified variable.
@@ -37,7 +50,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to set.</param>
         /// <returns>The variable with the flag set.</returns>
-        public static BiomeKey Set(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static KeyItem Set(this ref KeyItem in_enumVariable, KeyItem in_flagToTest)
         {
             return in_enumVariable = in_enumVariable | in_flagToTest;
         }
@@ -48,7 +61,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to clear.</param>
         /// <returns>The variable with the flag cleared.</returns>
-        public static BiomeKey Clear(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static KeyItem Clear(this ref KeyItem in_enumVariable, KeyItem in_flagToTest)
         {
             return in_enumVariable = in_enumVariable & ~in_flagToTest;
         }
@@ -59,7 +72,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is set, <c>false</c> otherwise.</returns>
-        public static bool IsSet(this BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static bool IsSet(this KeyItem in_enumVariable, KeyItem in_flagToTest)
         {
             return (in_enumVariable & in_flagToTest) == in_flagToTest;
         }
@@ -70,9 +83,9 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
         /// <param name="in_flagToTest">The flag to test.</param>
         /// <returns><c>true</c>, if at least this flag is unset, <c>false</c> otherwise.</returns>
-        public static bool IsNotSet(this BiomeKey in_enumVariable, BiomeKey in_flagToTest)
+        public static bool IsNotSet(this KeyItem in_enumVariable, KeyItem in_flagToTest)
         {
-            return (in_enumVariable & ~in_flagToTest) == BiomeKey.None;
+            return (in_enumVariable & ~in_flagToTest) == KeyItem.None;
         }
 
         /// <summary>
@@ -82,7 +95,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_flagToTest">The flag to set or clear.</param>
         /// <param name="in_state">If <c>true</c>, the flag will be set; otherwise it will be cleared.</param>
         /// <returns>The variable with the flag modified.</returns>
-        public static BiomeKey SetTo(this ref BiomeKey in_enumVariable, BiomeKey in_flagToTest, bool in_state)
+        public static KeyItem SetTo(this ref KeyItem in_enumVariable, KeyItem in_flagToTest, bool in_state)
         {
             return in_enumVariable = in_state
                 ? in_enumVariable.Set(in_flagToTest)
