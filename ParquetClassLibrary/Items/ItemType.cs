@@ -11,10 +11,11 @@ namespace ParquetClassLibrary.Items
     {
         Other,
         Consumable,
-        GatheringTool,
-        ModificationTool,
         Equipment,
-        Storage,
         KeyItem,
+        Material,
+        Storage,
+        ToolForGathering,
+        ToolForModification,
     }
 }
