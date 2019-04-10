@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ParquetClassLibrary;
@@ -61,10 +63,41 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> CollectibleIDs = new Range<EntityID>(40000, 49000);
 
         /// <summary>
+        /// The largest <see cref="Range{EntityID}.Maximum"/> defined in <see cref="AssemblyInfo"/>,
+        /// excluding <see cref="ItemIDs"/>.
+        /// </summary>
+        private static readonly int IDsMaxExcludingItems = typeof(AssemblyInfo).GetFields()
+            .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
+                && fieldInfo.FieldType == typeof(Range<EntityID>)
+                && fieldInfo.Name != nameof(ItemIDs))
+            .Select(fieldInfo => fieldInfo.GetValue(null))
+            .Cast<Range<EntityID>>()
+            .Select(range => range.Maximum)
+            .Max();
+
+        /// <summary>
         /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/> set aside for items.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(50000, 59000);
+        /// <remarks>
+        /// Since it is possible for every parquet to have a corresponding item, this range must be at least
+        /// as large as all four parquet ranges put together.  Therefore, the <see cref="Range{T}.Minimum"/>
+        /// is well above the largest <see cref="Range{EntityID}.Maximum"/> already defined in <see cref="AssemblyInfo"/>.
+        /// </remarks>
+        // Here we use the formula:
+        // targetMultiple * ((value + (targetMultiple - 1)) / targetMultiple) where targetMultiple = 10,000.
+        public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(
+                10000 * ((FloorIDs.Minimum + IDsMaxExcludingItems + 9999) / 10000),
+                10000 * ((CollectibleIDs.Maximum + IDsMaxExcludingItems + 9999) / 10000)
+            );
+
+        /// <summary>
+        /// A collection containing all defined parquet <see cref="Range{EntityID}"/>s of parquet types.
+        /// </summary>
+        public static readonly List<Range<EntityID>> ParquetIDs = new List<Range<EntityID>>
+            {
+                FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs
+            };
         #endregion
 
         #region Sandbox Map Element Dimensions
