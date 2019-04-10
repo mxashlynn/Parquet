@@ -103,7 +103,7 @@ namespace ParquetClassLibrary
         [Pure]
         public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
         {
-            bool result = true;
+            bool result = false;
 
             foreach (var idRange in in_ranges)
             {
