@@ -66,10 +66,10 @@ namespace ParquetUnitTests
             var discreteRanges = new List<Range<EntityID>> { firstRange, secondRange };
 
             EntityID firstLower = firstRange.Minimum;
-            EntityID firstAverage = firstRange.Minimum + firstRange.Maximum / 2;
+            EntityID firstAverage = (firstRange.Minimum + firstRange.Maximum) / 2;
             EntityID firstUpper = firstRange.Maximum;
             EntityID secondLower = secondRange.Minimum;
-            EntityID secondAverage = secondRange.Minimum + secondRange.Maximum / 2;
+            EntityID secondAverage = (secondRange.Minimum + secondRange.Maximum) / 2;
             EntityID secondUpper = secondRange.Maximum;
 
             Assert.True(firstLower.IsValidForRange(discreteRanges));
@@ -88,10 +88,10 @@ namespace ParquetUnitTests
             var overlappingRanges = new List<Range<EntityID>> { firstRange, overlappingRange };
 
             EntityID firstLower = firstRange.Minimum;
-            EntityID firstAverage = firstRange.Minimum + firstRange.Maximum / 2;
+            EntityID firstAverage = (firstRange.Minimum + firstRange.Maximum) / 2;
             EntityID firstUpper = firstRange.Maximum;
             EntityID secondLower = overlappingRange.Minimum;
-            EntityID secondAverage = overlappingRange.Minimum + overlappingRange.Maximum / 2;
+            EntityID secondAverage = (overlappingRange.Minimum + overlappingRange.Maximum) / 2;
             EntityID secondUpper = overlappingRange.Maximum;
 
             Assert.True(firstLower.IsValidForRange(overlappingRanges));
