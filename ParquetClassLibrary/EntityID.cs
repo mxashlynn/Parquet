@@ -95,7 +95,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Validates the current ID over a collection of <see cref="Utilities.Range{EntityID}"/>s.
         /// An ID is valid if:
-        /// 1) it is <see cref="Sandbox.ID.EntityID.None"/>
+        /// 1) it is <see cref="None"/>
         /// 2) it is defined within the given range, regardless of sign.
         /// </summary>
         /// <returns><c>true</c>, if the identifier is valid given any of the given ranges, <c>false</c> otherwise.</returns>
