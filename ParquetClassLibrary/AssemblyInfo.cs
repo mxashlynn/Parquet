@@ -75,6 +75,9 @@ namespace ParquetClassLibrary
             .Select(range => range.Maximum)
             .Max();
 
+        /// <summary>By convention, the first EntityID in each Range begins with at a multiple of this.</summary>
+        private const int TargetMultiple = 10000;
+
         /// <summary>
         /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/> set aside for items.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
@@ -84,11 +87,9 @@ namespace ParquetClassLibrary
         /// as large as all four parquet ranges put together.  Therefore, the <see cref="Range{T}.Minimum"/>
         /// is well above the largest <see cref="Range{EntityID}.Maximum"/> already defined in <see cref="AssemblyInfo"/>.
         /// </remarks>
-        // Here we use the formula:
-        // targetMultiple * ((value + (targetMultiple - 1)) / targetMultiple) where targetMultiple = 10,000.
         public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(
-                10000 * ((FloorIDs.Minimum + IDsMaxExcludingItems + 9999) / 10000),
-                10000 * ((CollectibleIDs.Maximum + IDsMaxExcludingItems + 9999) / 10000)
+                TargetMultiple * ((FloorIDs.Minimum + IDsMaxExcludingItems + (TargetMultiple - 1)) / TargetMultiple),
+                TargetMultiple * ((CollectibleIDs.Maximum + IDsMaxExcludingItems + (TargetMultiple - 1)) / TargetMultiple)
             );
 
         /// <summary>
