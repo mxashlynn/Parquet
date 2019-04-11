@@ -22,11 +22,12 @@
   <ItemGroup>
     <Folder Include="Crafting\" />
     <Folder Include="Stubs\" />
-    <Folder Include="Sandbox\ID\" />
+    <Folder Include="Sandbox\IDs\" />
     <Folder Include="Sandbox\Parquets\" />
     <Folder Include="Sandbox\Special Points\" />
     <Folder Include="Utilities\" />
     <Folder Include="Quests\" />
+    <Folder Include="Items\" />
   </ItemGroup>
 
   <ItemGroup>

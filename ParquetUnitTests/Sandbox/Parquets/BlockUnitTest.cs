@@ -36,8 +36,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ValidItemIDsArePermittedTest()
         {
-            // TODO When we have a cannonical source of item IDs, use that instead.
-            EntityID goodItemID = -50000;
+            EntityID goodItemID = -AssemblyInfo.ItemIDs.Minimum;
 
             var testBlock = new Block(newBlockID, "will be created", in_itemID: goodItemID);
 

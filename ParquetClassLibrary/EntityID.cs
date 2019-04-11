@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
@@ -89,6 +90,27 @@ namespace ParquetClassLibrary
         public bool IsValidForRange(Range<EntityID> in_range)
         {
             return _id == None || in_range.ContainsValue(Math.Abs(_id));
+        }
+
+        /// <summary>
+        /// Validates the current ID over a collection of <see cref="Utilities.Range{EntityID}"/>s.
+        /// An ID is valid if:
+        /// 1) it is <see cref="None"/>
+        /// 2) it is defined within the given range, regardless of sign.
+        /// </summary>
+        /// <returns><c>true</c>, if the identifier is valid given any of the given ranges, <c>false</c> otherwise.</returns>
+        /// <param name="in_ranges">The range within which the absolute value of the ID must fall.</param>
+        [Pure]
+        public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
+        {
+            bool result = false;
+
+            foreach (var idRange in in_ranges)
+            {
+                result |= IsValidForRange(idRange);
+            }
+
+            return result;
         }
 
         /// <summary>
