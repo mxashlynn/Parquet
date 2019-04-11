@@ -1,8 +1,11 @@
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
     /// Indicates a the sorts of parquets to generate in a MapChunk.
     /// </summary>
+    // TODO:  This needs revision.  Many more combos of floors and blocks are possible.  (Should we
+    // specify those separately?  If so, how do we handle furnishings & collectables?  If not,
+    // we will need every combinations of N/S/E/W for every liquid....)
     public enum ChunkType
     {
         Empty,

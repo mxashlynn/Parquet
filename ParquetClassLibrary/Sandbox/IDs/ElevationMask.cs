@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
     /// Indicates a the level of a MapChunk or MapRegion.

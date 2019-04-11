@@ -1,6 +1,7 @@
 using System;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
 namespace ParquetCSVImporter.ClassMaps

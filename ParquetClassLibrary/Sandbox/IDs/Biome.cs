@@ -1,4 +1,6 @@
-﻿namespace ParquetClassLibrary.Sandbox
+﻿using ParquetClassLibrary.Items;
+
+namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
     /// Indicates the biome that a MapRegion embodies.
@@ -102,55 +104,61 @@
         }
 
         /// <summary>
-        /// Gets the <see cref="BiomeKey"/> a player character needs to safely access the given biome.
+        /// Gets the <see cref="KeyItem"/> a player character needs to safely access the given biome.
         /// </summary>
         /// <param name="in_enumVariable">The Biome under consideration.</param>
         /// <returns>The requirements needed to enter this Biome.</returns>
-        public static BiomeKey GetEntryRequirements(this ref Biome in_enumVariable)
+        public static KeyItem GetEntryRequirements(this ref Biome in_enumVariable)
         {
-            var key = BiomeKey.None;
+            var key = KeyItem.None;
 
             switch (in_enumVariable)
             {
+                // Tier 0
                 case Biome.Field:
                 case Biome.Town:
-                    key = BiomeKey.None;
+                    key = KeyItem.None;
                     break;
+                // Tier 1
                 case Biome.Forest:
-                    key = BiomeKey.Knapsack;
+                    key = KeyItem.ForestKey;
                     break;
                 case Biome.Seaside:
-                    key = BiomeKey.Sunscreen;
+                    key = KeyItem.SeasideKey;
                     break;
+                // Tier 2
                 case Biome.Desert:
-                    key = BiomeKey.Sunscreen | BiomeKey.Canteen | BiomeKey.Boots;
+                    key = KeyItem.SeasideKey | KeyItem.DesertKey | KeyItem.Tier2Key;
                     break;
                 case Biome.Swamp:
-                    key = BiomeKey.Knapsack | BiomeKey.BugSpray | BiomeKey.Boots;
+                    key = KeyItem.ForestKey | KeyItem.SwampKey | KeyItem.Tier2Key;
                     break;
                 case Biome.Tundra:
-                    key = BiomeKey.Sunscreen | BiomeKey.WarmGear | BiomeKey.Boots;
+                    key = KeyItem.SeasideKey | KeyItem.TundraKey | KeyItem.Tier2Key;
                     break;
+                // Tier 3
                 case Biome.Cavern:
-                    key = BiomeKey.Knapsack | BiomeKey.Lantern | BiomeKey.Boots | BiomeKey.Rope;
+                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key;
                     break;
+                // Tier 4
                 case Biome.Alpine:
-                    key = BiomeKey.Knapsack | BiomeKey.Lantern | BiomeKey.Boots | BiomeKey.Rope
-                        | BiomeKey.Sunscreen | BiomeKey.WarmGear | BiomeKey.ClimbingKit;
+                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
+                        | KeyItem.SeasideKey | KeyItem.TundraKey | KeyItem.AlpineKey;
                     break;
                 case Biome.Ruins:
-                    key = BiomeKey.Knapsack | BiomeKey.Lantern | BiomeKey.Boots | BiomeKey.Rope
-                        | BiomeKey.Knapsack | BiomeKey.BugSpray | BiomeKey.Charm;
+                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
+                        | KeyItem.ForestKey | KeyItem.SwampKey | KeyItem.RuinsKey;
                     break;
                 case Biome.Volcano:
-                    key = BiomeKey.Knapsack | BiomeKey.Lantern | BiomeKey.Boots | BiomeKey.Rope
-                        | BiomeKey.Sunscreen | BiomeKey.Canteen | BiomeKey.GasMask;
+                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
+                        | KeyItem.SeasideKey | KeyItem.DesertKey | KeyItem.VolcanoKey;
                     break;
+                // Tier 5
                 case Biome.Heavens:
-                    key = BiomeKey.PearlyFeather;
+                    key = KeyItem.HeavenlyKey;
                     break;
                 case Biome.Inferno:
-                    key = BiomeKey.CharredMask;
+                    key = KeyItem.InfernalKey;
                     break;
             }
 
