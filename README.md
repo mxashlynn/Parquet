@@ -6,6 +6,6 @@ mechanics separately as a learning exercise.
 Please see https://github.com/mxashlynn/ParquetClassLibrary/wiki for more information.
 
 # Credits
-Primary coding and design by Paige Ashlynn.
-Special thanks for code help to Isabelle Gould and Ashley Hauck.
-Special thanks for design help to Caidence Stone.
+- Primary coding and design by Paige Ashlynn.
+- Special thanks for code help to Isabelle Gould and Ashley Hauck.
+- Special thanks for design and math help to Caidence Stone.

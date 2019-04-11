@@ -1,5 +1,7 @@
+using System.Linq;
+using System.Collections.Generic;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests
@@ -7,7 +9,21 @@ namespace ParquetUnitTests
     public class AssemblyUnitTest
     {
         #region Values for Tests
+        /// <summary>This is the cannonical invalid version string used in serialization tests.</summary>
         private const string invalidDataVersion = "0.0.0";
+
+        /// <summary>
+        /// The highest <see cref="Range{EntityID}.Maximum"/> defined in <see cref="AssemblyInfo"/>
+        /// except for <see cref="AssemblyInfo.ItemIDs"/>.Maximum.
+        /// </summary>
+        public static readonly EntityID MaximumIDRangeUpperLimit = typeof(AssemblyInfo).GetFields()
+            .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
+                && fieldInfo.FieldType == typeof(Range<EntityID>)
+                && fieldInfo.Name != nameof(AssemblyInfo.ItemIDs))
+            .Select(fieldInfo => fieldInfo.GetValue(null))
+            .Cast<Range<EntityID>>()
+            .Select(range => range.Maximum)
+            .Max();
         #endregion
 
         [Fact]
@@ -28,98 +44,16 @@ namespace ParquetUnitTests
             // ReSharper disable All
             var result = AssemblyInfo.ParquetsPerChunkDimension > 0
                          && AssemblyInfo.ChunksPerRegionDimension > 0
-                         && AssemblyInfo.ParquetsPerRegionDimension > 0;
+                         && AssemblyInfo.ParquetsPerRegionDimension > 0
+                         && AssemblyInfo.PanelPatternWidth > 0
+                         && AssemblyInfo.PanelPatternHeight > 0;
             Assert.True(result);
         }
 
         [Fact]
-        public void NoneIsAValidFloorTest()
+        public void ItemIDMinimumIsGreaterThanMaximumDefinedRangeUpperBoundTest()
         {
-            var result = EntityID.None.IsValidForRange(AssemblyInfo.FloorIDs);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void NoneIsAValidBlockTest()
-        {
-            var result = EntityID.None.IsValidForRange(AssemblyInfo.BlockIDs);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void NoneIsAValidFurnishingTest()
-        {
-            var result = EntityID.None.IsValidForRange(AssemblyInfo.FurnishingIDs);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void NoneIsAValidCollectibleTest()
-        {
-            var result = EntityID.None.IsValidForRange(AssemblyInfo.CollectibleIDs);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void NoneIsAValidItemTest()
-        {
-            var result = EntityID.None.IsValidForRange(AssemblyInfo.ItemIDs);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void MinimumIsAValidFloorTest()
-        {
-            var range = AssemblyInfo.FloorIDs;
-            var floor = range.Minimum;
-            var result = floor.IsValidForRange(range);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void MinimumIsAValidBlockTest()
-        {
-            var range = AssemblyInfo.BlockIDs;
-            var block = range.Minimum;
-            var result = block.IsValidForRange(range);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void MinimumIsAValidFurnishingTest()
-        {
-            var range = AssemblyInfo.FurnishingIDs;
-            var furnishing = range.Minimum;
-            var result = furnishing.IsValidForRange(range);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void MinimumIsAValidCollectibleTest()
-        {
-            var range = AssemblyInfo.CollectibleIDs;
-            var collectible = range.Minimum;
-            var result = collectible.IsValidForRange(range);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void MinimumIsAValidItemTest()
-        {
-            var range = AssemblyInfo.ItemIDs;
-            var item = range.Minimum;
-            var result = item.IsValidForRange(range);
-
-            Assert.True(result);
+            Assert.True(AssemblyInfo.ItemIDs.Minimum > MaximumIDRangeUpperLimit);
         }
     }
 }

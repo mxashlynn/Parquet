@@ -1,6 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using ParquetClassLibrary.Sandbox.ID;
+using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <param name="in_bounds">The bounds within which the derived parquet type's EntityID is defined.</param>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
         /// <param name="in_addsToBiome">
         /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>
         /// this parquet helps to generate.
