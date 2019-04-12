@@ -1,6 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -12,24 +11,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public static class AllParquets
     {
         /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
-        private static Dictionary<EntityID, ParquetParent> ParquetDefinitions { get; set; } = new Dictionary<EntityID, ParquetParent>
-        {
-            { EntityID.None, null }
-        };
+        private static EntityCollection ParquetDefinitions { get; set; } = new EntityCollection();
 
-        /// <summary>
-        /// Returns the specified parquet.
-        /// </summary>
-        /// <param name="in_id">A valid, defined parquet identifier.</param>
-        /// <typeparam name="T">The type of parquet sought.  Must correspond to the given ID.</typeparam>
-        /// <returns>The specified parquet.</returns>
-        /// <exception cref="System.InvalidCastException">
-        /// Thrown when the specified type does not correspond to the given ID.
-        /// </exception>
-        public static T Get<T>(EntityID in_id) where T : ParquetParent
-        {
-            return (T)ParquetDefinitions[in_id];
-        }
+        /// <summary>The number of parquets currently defined.</summary>
+        public static int Count => ParquetDefinitions.Count;
 
         /// <summary>
         /// Adds the given parquet to the collection of cannonical parquets.
@@ -37,47 +22,79 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <param name="in_parquet">The parquet being defined.</param>
         /// <returns><c>true</c> if the parquet was added successfully; <c>false</c> otherwise.</returns>
-        public static bool Put(ParquetParent in_parquet)
+        public static bool Add(ParquetParent in_parquet)
         {
-            var isNew = !ParquetDefinitions.ContainsKey(in_parquet.ID);
-
-            if (isNew)
-            {
-                ParquetDefinitions[in_parquet.ID] = in_parquet;
-            }
-            else
-            {
-                Error.Handle($"Tried to create duplicate parquet ID {in_parquet.ID}.");
-            }
-
-            return isNew;
+            return ParquetDefinitions.Add(in_parquet);
         }
 
         /// <summary>
         /// Adds a collection of parquets to the cannonical definitions.
         /// This supports adding parquets via alternative serialization mechanisms.
         /// </summary>
-        /// <returns><c>true</c>, if range was added, <c>false</c> otherwise.</returns>
-        /// <param name="in_parquets">In parquets.</param>
+        /// <param name="in_parquets">The parquets to add.  Cannot be null.</param>
+        /// <returns><c>true</c> if all of the parquets were added successfully; <c>false</c> otherwise.</returns>
         public static bool AddRange(IEnumerable<ParquetParent> in_parquets)
         {
-            var succeeded = true;
-
-            foreach (var parquet in in_parquets)
-            {
-                succeeded &= Put(parquet);
-            }
-
-            return succeeded;
+            return ParquetDefinitions.AddRange(in_parquets);
         }
 
         /// <summary>
-        /// Serializes to the all defined parquets to a string.
+        /// Determines whether the <see cref="AllParquets"/> contains the specified <see cref="ParquetParent"/>.
+        /// </summary>
+        /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
+        /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
+        /// <remarks>This method is equivalent to <see cref="Dictionary{EntityID, ParquetParent}.ContainsKey"/>.</remarks>
+        public static bool Contains(EntityID in_id)
+        {
+            return ParquetDefinitions.Contains(in_id);
+        }
+
+        /// <summary>
+        /// Removes the <see cref="Entity"/> with the specified <see cref="EntityID"/> from the <see cref="AllParquets"/>.
+        /// </summary>
+        /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to remove.</param>
+        /// <returns>
+        /// <c>true</c> if the <see cref="Entity"/> is successfully found and removed; otherwise, <c>false</c>.
+        /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
+        /// </returns>
+        /// <remarks>
+        /// From the perspective of the game and tools client code, removing an <see cref="Entity"/> from its associated
+        /// <see cref="EntityCollection"/> is the same as undefining it.
+        /// </remarks>
+        public static bool Remove(EntityID in_id)
+        {
+            return ParquetDefinitions.Remove(in_id);
+        }
+
+        /// <summary>
+        /// Returns the specified parquet.
+        /// </summary>
+        /// <param name="in_id">A valid, defined parquet identifier.</param>
+        /// <typeparam name="T">The type of parquet sought.  Must correspond to the given ID.</typeparam>
+        /// <returns>The specified parquet.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Thrown when the given ID is not a valid parquet ID.
+        /// </exception>
+        /// <exception cref="System.InvalidCastException">
+        /// Thrown when the specified type does not correspond to the given ID.
+        /// </exception>
+        public static T Get<T>(EntityID in_id) where T : ParquetParent
+        {
+            if (!in_id.IsValidForRange(AssemblyInfo.ParquetIDs))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_id));
+            }
+
+            return (T)ParquetDefinitions.Get(in_id);
+        }
+
+        /// <summary>
+        /// Serializes all defined parquets to a string.
         /// </summary>
         /// <returns>The serialized parquets.</returns>
         public static string SerializeToString()
         {
-            return JsonConvert.SerializeObject(ParquetDefinitions, Formatting.None);
+            return ParquetDefinitions.SerializeToString();
         }
 
         /// <summary>
@@ -87,29 +104,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedParquets)
         {
-            // TODO: Ensure this is working as intended.  See:
-            // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
-            // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
-            var result = false;
-
-            if (string.IsNullOrEmpty(in_serializedParquets))
-            {
-                Error.Handle("Error deserializing a MapRegion.");
-            }
-            else
-            {
-                try
-                {
-                    ParquetDefinitions = JsonConvert.DeserializeObject<Dictionary<EntityID, ParquetParent>>(in_serializedParquets);
-                    result = true;
-                }
-                catch (JsonReaderException exception)
-                {
-                    Error.Handle($"Error reading string while deserializing parquets: {exception}");
-                }
-            }
-
-            return result;
+            return ParquetDefinitions.TryDeserializeFromString(in_serializedParquets);
         }
     }
 }
