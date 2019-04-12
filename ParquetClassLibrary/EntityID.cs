@@ -7,8 +7,9 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Uniquely identifies every game entity that must be directly referenced.
-    /// 
+    /// Uniquely identifies every <see cref="Entity"/>.
+    /// </summary>
+    /// <remarks>
     /// Multiple identicle parquet IDs may be assigned to MapChunks
     /// or MapRegions, and multiple duplicate item IDs may exist in
     /// the Inventory.  These IDs provide a means for the library to
@@ -16,19 +17,16 @@ namespace ParquetClassLibrary
     /// interact with it.
     /// 
     /// To be clear: there are multiple entity subtypes (<see cref="Sandbox.Parquets.ParquetParent"/>,
-    /// items, etc.),
-    /// and each of these subtypes has multiple definitions.
-    /// The definitions are purely data-driven, read in from
-    /// JSON or CSV files, and not type-checked by the compiler.
+    /// <see cref="Items.Item"/>, etc.), and each of these subtypes
+    /// has multiple definitions.  The definitions are purely data-driven,
+    /// read in from JSON or CSV files, and not type-checked by the compiler.
     /// 
     /// Although the compiler does not provide type-checking for
     /// IDs, within the scope of their usage the library defines
     /// valid ranges for and these are checked by library code.
     /// <see cref="ParquetClassLibrary.AssemblyInfo"/>
-    /// 
+    /// </remarks>
     /// TODO: Include this explanation in the Wiki.
-    /// TODO: Update all comment references to "item" to see cref tags once Item is implemented.
-    /// </summary>
     public struct EntityID : IComparable<EntityID>
     {
         /// <summary>Indicates the lack of a game entity associated with this identifier (e.g., parquet).</summary>
