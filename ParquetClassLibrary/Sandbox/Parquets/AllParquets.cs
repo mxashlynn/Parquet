@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </exception>
         public static T Get<T>(EntityID in_id) where T : ParquetParent
         {
-            if (!in_id.Equals(AssemblyInfo.ParquetIDs))
+            if (!in_id.IsValidForRange(AssemblyInfo.ParquetIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
