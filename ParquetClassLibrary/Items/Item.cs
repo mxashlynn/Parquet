@@ -95,8 +95,6 @@ namespace ParquetClassLibrary.Items
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
 
-            // TODO: What smarts does Item need?
-
             ID = in_id;
             Subtype = in_subtype;
             Name = in_name;
