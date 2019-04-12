@@ -7,19 +7,11 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public class Item : IEquatable<Item>
+    public class Item : Entity
     {
-        /// <summary>Unique identifier of the item.</summary>
-        [JsonProperty(PropertyName = "in_ID")]
-        public EntityID ID { get; }
-
         /// <summary>The type of item this is.</summary>
         [JsonProperty(PropertyName = "in_subtype")]
         public ItemType Subtype { get; }
-
-        /// <summary>Player-facing name of the item.</summary>
-        [JsonProperty(PropertyName = "in_name")]
-        public string Name { get; }
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         [JsonProperty(PropertyName = "in_price")]
@@ -74,12 +66,8 @@ namespace ParquetClassLibrary.Items
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity, int in_stackMax,
                     int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
-                    CraftingRecipe in_recipe)
+                    CraftingRecipe in_recipe) : base(AssemblyInfo.ItemIDs, in_id, in_name)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.ItemIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
             if (string.IsNullOrEmpty(in_name))
             {
                 throw new ArgumentNullException(nameof(in_name));
@@ -95,9 +83,7 @@ namespace ParquetClassLibrary.Items
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
 
-            ID = in_id;
             Subtype = in_subtype;
-            Name = in_name;
             Price = in_price;
             Rarity = in_rarity;
             StackMax = in_stackMax;
@@ -106,90 +92,6 @@ namespace ParquetClassLibrary.Items
             AsParquet = in_asParquet;
             AsKeyItem = in_asKeyItem;
             Recipe = in_recipe;
-        }
-        #endregion
-
-        #region IEquatable Implementation
-        /// <summary>
-        /// Serves as a hash function for an <see cref="Item"/> struct.
-        /// </summary>
-        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
-        public override int GetHashCode()
-        {
-            return ID.GetHashCode();
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="Item"/> is equal to the current <see cref="Item"/>.
-        /// </summary>
-        /// <param name="in_item">The <see cref="Item"/> to compare with the current.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Item in_item)
-        {
-            return in_item != null && ID == in_item.ID;
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the
-        /// current <see cref="Item"/>.
-        /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Item"/>.
-        /// </param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
-        public override bool Equals(object obj)
-        {
-            var result = false;
-
-            if (obj is Item in_item)
-            {
-                result = Equals(in_item);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Determines whether a specified instance of <see cref="Item"/> is equal to
-        /// another specified instance of <see cref="Item"/>.
-        /// </summary>
-        /// <param name="in_item1">The first <see cref="Item"/> to compare.</param>
-        /// <param name="in_item2">The second <see cref="Item"/> to compare.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Item in_item1, Item in_item2)
-        {
-            if (ReferenceEquals(in_item1, in_item2)) return true;
-            if (ReferenceEquals(in_item1, null)) return false;
-            if (ReferenceEquals(in_item2, null)) return false;
-
-            return in_item1.ID == in_item2.ID;
-        }
-
-        /// <summary>
-        /// Determines whether a specified instance of <see cref="Item"/> is not equal
-        /// to another specified instance of <see cref="Item"/>.
-        /// </summary>
-        /// <param name="in_item1">The first <see cref="Item"/> to compare.</param>
-        /// <param name="in_item2">The second <see cref="Item"/> to compare.</param>
-        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Item in_item1, Item in_item2)
-        {
-            if (ReferenceEquals(in_item1, in_item2)) return false;
-            if (ReferenceEquals(in_item1, null)) return true;
-            if (ReferenceEquals(in_item2, null)) return true;
-
-            return in_item1.ID != in_item2.ID;
-        }
-        #endregion
-
-        #region Utility Methods
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="Item"/>.
-        /// </summary>
-        /// <returns>The representation.</returns>
-        public override string ToString()
-        {
-            return Name[0].ToString();
         }
         #endregion
     }
