@@ -12,7 +12,7 @@ namespace ParquetClassLibrary
     /// and are considered equal if and only if their respective EntityIDs are equal.
     /// 
     /// Entity is intended to model the parts of a game object that do not change from one
-    /// instance to another.  In this sense, it can be thought of as analagous to a <see cref="class"/>.
+    /// instance to another.  In this sense, it can be thought of as analagous to a <see langword="class"/>.
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
     /// within collections in other classes.  Their definitions are found by submitting their EntityID
     /// to the appropriate <see cref="EntityCollection"/>.

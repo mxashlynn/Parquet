@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>
         /// Adds a collection of parquets to the cannonical definitions.
-        /// This supports adding parquets via alternative serialization mechanisms.
+        /// This supports adding parquets via CSV serialization mechanisms.
         /// </summary>
         /// <param name="in_parquets">The parquets to add.  Cannot be null.</param>
         /// <returns><c>true</c> if all of the parquets were added successfully; <c>false</c> otherwise.</returns>
@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         }
 
         /// <summary>
-        /// Determines whether the <see cref="AllParquets"/> contains the specified <see cref="ParquetParent"/>.
+        /// Determines whether <see cref="AllParquets"/> contains the specified <see cref="ParquetParent"/>.
         /// </summary>
         /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
@@ -58,8 +58,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
         /// </returns>
         /// <remarks>
-        /// From the perspective of the game and tools client code, removing an <see cref="Entity"/> from its associated
-        /// <see cref="EntityCollection"/> is the same as undefining it.
+        /// From the perspective of the game and tools client code, removing an <see cref="Entity"/> from
+        /// <see cref="AllParquets"/> is the same as undefining it.
         /// </remarks>
         public static bool Remove(EntityID in_id)
         {
