@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.IDs;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
@@ -20,15 +18,12 @@ namespace ParquetClassLibrary.Characters
         /// </param>
         /// <param name="in_name">Player-friendly name of the <see cref="Critter"/>.  Cannot be null or empty.</param>
         /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="Critter"/> is most comfortable.</param>
-        /// <param name="in_currentBehavior">The rules that govern how this <see cref="Critter"/> acts.  Cannot be null.</param>
-        /// <param name="in_currentLocation">Where this <see cref="Critter"/> currently is.</param>
+        /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Critter"/> acts.  Cannot be null.</param>
         /// <param name="in_avoids">Any parquets this <see cref="Critter"/> avoids.</param>
         /// <param name="in_seeks">Any parquets this <see cref="Critter"/> seeks.</param>
-        public Critter(EntityID in_id, string in_name, Biome in_nativeBiome,
-                       Behavior in_currentBehavior, Location in_currentLocation,
+        public Critter(EntityID in_id, string in_name, Biome in_nativeBiome, Behavior in_primaryBehavior,
                        List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
-            : base(AssemblyInfo.CritterIDs, in_id, in_name, in_nativeBiome, in_currentBehavior, in_currentLocation,
-                   in_avoids, in_seeks)
+            : base(AssemblyInfo.CritterIDs, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
             if (!in_id.IsValidForRange(AssemblyInfo.CritterIDs))
             {

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
@@ -12,23 +11,11 @@ namespace ParquetClassLibrary.Characters
     public abstract class Being : Entity
     {
         #region Characteristics
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        protected readonly string DataVersion = AssemblyInfo.SupportedDataVersion;
-
-        /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; private set; }
-
         /// <summary>The <see cref="Biome"/> in which this character is at home.</summary>
         public Biome NativeBiome { get; set; }
 
         /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
-        public Behavior CurrentBehavior { get; set; }
-
-        /// <summary>The <see cref="Location"/> of this character acts.</summary>
-        public Location CurrentLocation { get; set; }
+        public Behavior PrimaryBehavior { get; set; }
 
         /// <summary>Types of parquets this critter avoids, if any.</summary>
         public readonly List<EntityID> Avoids = new List<EntityID>();
@@ -48,13 +35,11 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_id">Unique identifier for the <see cref="Being"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Being"/>.  Cannot be null or empty.</param>
         /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
-        /// <param name="in_currentBehavior">The rules that govern how this <see cref="Being"/> acts.  Cannot be null.</param>
-        /// <param name="in_currentLocation">Where this <see cref="Being"/> currently is.</param>
+        /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Being"/> acts.  Cannot be null.</param>
         /// <param name="in_avoids">Any parquets this <see cref="Being"/> avoids.</param>
         /// <param name="in_seeks">Any parquets this <see cref="Being"/> seeks.</param>
         protected Being(Range<EntityID> in_bounds, EntityID in_id, string in_name, Biome in_nativeBiome,
-                        Behavior in_currentBehavior, Location in_currentLocation,
-                       List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
+                        Behavior in_primaryBehavior, List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
             : base(in_bounds, in_id, in_name)
         {
             if (!AssemblyInfo.BeingIDs.ContainsRange(in_bounds))
@@ -77,8 +62,7 @@ namespace ParquetClassLibrary.Characters
             }
 
             NativeBiome = in_nativeBiome;
-            CurrentBehavior = in_currentBehavior;
-            CurrentLocation = in_currentLocation;
+            PrimaryBehavior = in_primaryBehavior;
             Avoids.AddRange(in_avoids);
             Seeks.AddRange(in_seeks);
         }
