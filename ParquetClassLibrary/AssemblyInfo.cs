@@ -128,11 +128,14 @@ namespace ParquetClassLibrary
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(ItemLowerBound, 2 * ItemLowerBound);
+        #endregion
+
+        #region EntityID Meta Info
         /// <summary>
         /// The largest <see cref="Range{EntityID}.Maximum"/> defined in <see cref="AssemblyInfo"/>,
         /// excluding <see cref="ItemIDs"/>.
         /// </summary>
-        private static readonly int IDsMaxExcludingItems = typeof(AssemblyInfo).GetFields()
+        private static readonly int MaximumIDNotCountingItems = typeof(AssemblyInfo).GetFields()
             .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
                 && fieldInfo.FieldType == typeof(Range<EntityID>)
                 && fieldInfo.Name != nameof(ItemIDs))
@@ -141,30 +144,18 @@ namespace ParquetClassLibrary
             .Select(range => range.Maximum)
             .Max();
 
-        /// <summary>By convention, the first EntityID in each Range begins with at a multiple of this.</summary>
-        private const int TargetMultiple = 10000;
-
         /// <summary>
-        /// A subset of the values of <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/> set aside for items.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        /// <remarks>
         /// Since it is possible for every parquet to have a corresponding item, this range must be at least
         /// as large as all four parquet ranges put together.  Therefore, the <see cref="Range{T}.Minimum"/>
-        /// is well above the largest <see cref="Range{EntityID}.Maximum"/> already defined in <see cref="AssemblyInfo"/>.
-        /// </remarks>
-        public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(
-                TargetMultiple * ((FloorIDs.Minimum + IDsMaxExcludingItems + (TargetMultiple - 1)) / TargetMultiple),
-                TargetMultiple * ((CollectibleIDs.Maximum + IDsMaxExcludingItems + (TargetMultiple - 1)) / TargetMultiple)
-            );
+        /// is well above the largest previously defined <see cref="Range{EntityID}.Maximum"/> and
+        /// the <see cref="Range{EntityID}.Maximum"/> is twice this, ensuring a range at least as large as all prior ranges.
+        /// </summary>
+        private static readonly int ItemLowerBound = TargetMultiple * ((MaximumIDNotCountingItems + (TargetMultiple - 1)) / TargetMultiple);
 
         /// <summary>
-        /// A collection containing all defined parquet <see cref="Range{EntityID}"/>s of parquet types.
+        /// By convention, the first <see cref="EntityID"/> in each <see cref="Range{EntityID}"/> is a multiple of this.
         /// </summary>
-        public static readonly List<Range<EntityID>> ParquetIDs = new List<Range<EntityID>>
-            {
-                FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs
-            };
+        private const int TargetMultiple = 10000;
         #endregion
 
         #region Sandbox Map Element Dimensions
