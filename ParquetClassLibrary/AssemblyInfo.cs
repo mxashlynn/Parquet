@@ -51,25 +51,25 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Floor"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> FloorIDs = new Range<EntityID>(10000, 19000);
+        public static readonly Range<EntityID> FloorIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Block"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> BlockIDs = new Range<EntityID>(20000, 29000);
+        public static readonly Range<EntityID> BlockIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Furnishing"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> FurnishingIDs = new Range<EntityID>(30000, 39000);
+        public static readonly Range<EntityID> FurnishingIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Collectible"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> CollectibleIDs = new Range<EntityID>(40000, 49000);
+        public static readonly Range<EntityID> CollectibleIDs;
 
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquet types.
@@ -83,19 +83,19 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> CritterIDs = new Range<EntityID>(50000, 52900);
+        public static readonly Range<EntityID> CritterIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Character"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> CharacterIDs = new Range<EntityID>(53000, 55900);
+        public static readonly Range<EntityID> CharacterIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Player"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> PlayerIDs = new Range<EntityID>(56000, 58900);
+        public static readonly Range<EntityID> PlayerIDs;
 
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Characters.Being"/>s.
@@ -109,19 +109,19 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.RoomRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> RoomRecipeIDs = new Range<EntityID>(60000, 69000);
+        public static readonly Range<EntityID> RoomRecipeIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Crafting.CraftingRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> CraftingRecipeIDs = new Range<EntityID>(70000, 79000);
+        public static readonly Range<EntityID> CraftingRecipeIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Quests.Quest"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> QuestIDs = new Range<EntityID>(80000, 89000);
+        public static readonly Range<EntityID> QuestIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Items.Item"/>s.
