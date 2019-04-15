@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ParquetClassLibrary.Utilities
 {
@@ -34,7 +35,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Determines if the range is well defined; that is, if Minimum is less than or equal to Maximum.
+        /// Determines if the <see cref="Range{T}"/> is well defined; that is, if Minimum is less than or equal to Maximum.
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
         public bool IsValid()
@@ -42,8 +43,16 @@ namespace ParquetClassLibrary.Utilities
             return Minimum.CompareTo(Maximum) <= 0;
         }
 
+        /// <summary>Determines if the given <see cref="Range{T}"/> is equal to or entirely contained within the current Range.</summary>
+        /// <param name="in_range">The <see cref="Range{T}"/> to test.</param>
+        /// <returns><c>true</c>, if the given range is within the current range, <c>false</c> otherwise.</returns>
+        public bool ContainsRange(Range<T> in_range)
+        {
+            return ContainsValue(in_range.Minimum) && ContainsValue(in_range.Maximum);
+        }
+
         /// <summary>Determines if the given value is within the range, inclusive.</summary>
-        /// <param name="in_value">The value to test</param>
+        /// <param name="in_value">The value to test.</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
         public bool ContainsValue(T in_value)
         {
@@ -57,6 +66,65 @@ namespace ParquetClassLibrary.Utilities
         public override string ToString()
         {
             return string.Format($"[{Minimum} - {Maximum}]");
+        }
+    }
+
+    /// <summary>
+    /// Provides extension methods to <see cref="IEquatable{T}"/> collections of <see cref="Range{T}"/>.
+    /// </summary>
+    public static class RangeCollectionExtensions
+    {
+        /// <summary>
+        /// Determines if the given <paramref name="in_value"/> is contained by any of the <see cref="Range{T}"/>s
+        /// in the current <see cref="List{Range{Type}}"/>.
+        /// </summary>
+        /// <param name="in_rangeCollection">The range collection in which to search.</param>
+        /// <param name="in_value">The value to search for.</param>
+        /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
+        /// <returns>
+        /// <c>true</c>, if the <paramref name="in_value"/> was containsed in <paramref name="in_rangeCollection"/>,
+        /// <c>false</c> otherwise.
+        /// </returns>
+        public static bool ContainsValue<T>(this IEnumerable<Range<T>> in_rangeCollection, T in_value)
+            where T : IComparable<T>
+        {
+            var foundRange = false;
+
+            foreach (var range in in_rangeCollection)
+            {
+                if (range.ContainsValue(in_value))
+                {
+                    foundRange = true;
+                    break;
+                }
+            }
+
+            return foundRange;
+        }
+
+        /// <summary>
+        /// Determines if the given <see cref="Range{T}"/> is contained by any of the ranges
+        /// in the current <see cref="List{Range{Type}}"/>.
+        /// </summary>
+        /// <param name="in_rangeCollection">The range collection in which to search.</param>
+        /// <param name="in_range">The range to search for.</param>
+        /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
+        /// <returns><c>true</c>, if the given range was containsed in the list, <c>false</c> otherwise.</returns>
+        public static bool ContainsRange<T>(this IEnumerable<Range<T>> in_rangeCollection, Range<T> in_range)
+            where T : IComparable<T>
+        {
+            var foundRange = false;
+
+            foreach (var range in in_rangeCollection)
+            {
+                if (range.ContainsRange(in_range))
+                {
+                    foundRange = true;
+                    break;
+                }
+            }
+
+            return foundRange;
         }
     }
 }

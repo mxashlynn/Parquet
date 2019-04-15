@@ -52,8 +52,7 @@ namespace ParquetClassLibrary.Crafting
             get => _idealRange;
             set
             {
-                if (value.Maximum > WorkingRange.Maximum ||
-                    value.Minimum < WorkingRange.Minimum)
+                if (!WorkingRange.ContainsRange(value))
                 {
                     throw new ArgumentOutOfRangeException(nameof(IdealRange));
                 }
