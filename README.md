@@ -5,6 +5,10 @@ mechanics separately as a learning exercise.
 
 Please see https://github.com/mxashlynn/ParquetClassLibrary/wiki for more information.
 
+# Version 0.1.0 Warning
+
+Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the Pre-Alpha Vertical Slice milestone]( is hit the project should be much more usable.
+
 # Credits
 - Primary coding and design by Paige Ashlynn.
 - Special thanks for code help to Isabelle Gould and Ashley Hauck.
