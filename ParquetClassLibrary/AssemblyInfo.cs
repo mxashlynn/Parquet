@@ -200,5 +200,17 @@ namespace ParquetClassLibrary
         /// <summary>Height of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
         public const int PanelPatternHeight = 8;
         #endregion
+
+        #region Sandbox Room Requirements
+        /// <summary>
+        /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMinimumFloors = 4;
+
+        /// <summary>
+        /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMaximumFloors = (ParquetsPerChunkDimension - 1) * (ParquetsPerChunkDimension - 1);
+        #endregion
     }
 }
