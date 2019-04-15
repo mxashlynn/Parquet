@@ -127,35 +127,61 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Items.Item"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> ItemIDs = new Range<EntityID>(ItemLowerBound, 2 * ItemLowerBound);
+        public static readonly Range<EntityID> ItemIDs;
         #endregion
 
-        #region EntityID Meta Info
+        #region Initialization
         /// <summary>
-        /// The largest <see cref="Range{EntityID}.Maximum"/> defined in <see cref="AssemblyInfo"/>,
-        /// excluding <see cref="ItemIDs"/>.
+        /// Initializes the <see cref="Range{EntityID}"/>s defined in <see cref="AssemblyInfo"/>.
+        /// This supports defining ItemIDs in terms of the other Ranges.
         /// </summary>
-        private static readonly int MaximumIDNotCountingItems = typeof(AssemblyInfo).GetFields()
-            .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
-                && fieldInfo.FieldType == typeof(Range<EntityID>)
-                && fieldInfo.Name != nameof(ItemIDs))
-            .Select(fieldInfo => fieldInfo.GetValue(null))
-            .Cast<Range<EntityID>>()
-            .Select(range => range.Maximum)
-            .Max();
+        static AssemblyInfo()
+        {
+            // By convention, the first EntityID in each Range is a multiple of this number.
+            // An exception is made for Critter, Character, and Player as they are treated as sub-ranges.
+            var TargetMultiple = 10000;
 
-        /// <summary>
-        /// Since it is possible for every parquet to have a corresponding item, this range must be at least
-        /// as large as all four parquet ranges put together.  Therefore, the <see cref="Range{T}.Minimum"/>
-        /// is well above the largest previously defined <see cref="Range{EntityID}.Maximum"/> and
-        /// the <see cref="Range{EntityID}.Maximum"/> is twice this, ensuring a range at least as large as all prior ranges.
-        /// </summary>
-        private static readonly int ItemLowerBound = TargetMultiple * ((MaximumIDNotCountingItems + (TargetMultiple - 1)) / TargetMultiple);
+            FloorIDs = new Range<EntityID>(10000, 19000);
+            BlockIDs = new Range<EntityID>(20000, 29000);
+            FurnishingIDs = new Range<EntityID>(30000, 39000);
+            CollectibleIDs = new Range<EntityID>(40000, 49000);
+            CritterIDs = new Range<EntityID>(50000, 52900);
+            CharacterIDs = new Range<EntityID>(53000, 55900);
+            PlayerIDs = new Range<EntityID>(56000, 58900);
+            RoomRecipeIDs = new Range<EntityID>(60000, 69000);
+            CraftingRecipeIDs = new Range<EntityID>(70000, 79000);
+            QuestIDs = new Range<EntityID>(80000, 89000);
 
-        /// <summary>
-        /// By convention, the first <see cref="EntityID"/> in each <see cref="Range{EntityID}"/> is a multiple of this.
-        /// </summary>
-        private const int TargetMultiple = 10000;
+            // The largest Range.Maximum defined in AssemblyInfo, excluding ItemIDs.
+            int MaximumIDNotCountingItems = typeof(AssemblyInfo).GetFields()
+                .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
+                    && fieldInfo.FieldType == typeof(Range<EntityID>)
+                    && fieldInfo.Name != nameof(ItemIDs))
+                .Select(fieldInfo => fieldInfo.GetValue(null))
+                .Cast<Range<EntityID>>()
+                .Select(range => range.Maximum)
+                .Max();
+
+            // Since ItemIDs is being defined at runtime, its Range.Minimum must be chosen well above existing maxima.
+            var ItemLowerBound = TargetMultiple * ((MaximumIDNotCountingItems + (TargetMultiple - 1)) / TargetMultiple);
+
+            // The largest Range.Maximum of any paruet IDs.
+            int MaximumParquetID = ParquetIDs
+                .Select(range => range.Maximum)
+                .Max();
+
+            // The smallest Range.Minimum of any paruet IDs.
+            int MinimumParquetID = ParquetIDs
+                .Select(range => range.Minimum)
+                .Min();
+
+            // Since it is possible for every parquet to have a corresponding item, this range must be at least
+            // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
+            // ranges of all parquets.
+            var ItemUpperBound = ItemLowerBound + 2 * (TargetMultiple / 10 + MaximumParquetID - MinimumParquetID);
+
+            ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
+        }
         #endregion
 
         #region Sandbox Map Element Dimensions
