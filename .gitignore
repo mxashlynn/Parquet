@@ -1,48 +1,73 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Bb]in/
-[Bb]in-[Rr]elease/
-[Bb]uild/
-[Bb]uilds/
 [Ll]ibrary/
 [Oo]bj/
 [Tt]emp/
 [Uu]nity[Gg]enerated/
-SwitchIL2CPPCache/
-SwitchIL2CPPStats
+[Ss]witchIL2CPPCache/
+[Ss]witchIL2CPPStats/
 [Ll]ogs/
 .gradle/
-
 *.pidb.meta
 sysinfo.txt
 
-# ============= #
-# IDE generated #
-# ============= #
+# ===================== #
+# VS/MD/Ryder generated #
+# ===================== #
+/[Aa]ssets/Plugins/Editor/JetBrains*
+/[Aa]pp[Pp]ackages/
+/[Dd]ebug/
+/[Rr]elease/
+/[Rr]eleases/
+/x86/
+/x64/
+[Bb]in/
+[Bb]in-[Rr]elease/
+[Bb]uild/
+[Bb]uilds/
+[Bb]ld/
+[Dd]ebugPublic/
 [Ee]xported[Oo]bj/
+.builds/
 .consulo/
 .vs/
-*.booproj
+*.[Cc]ache
+*.[Cc]ache[Ff]ile
 *.mdb
 *.pidb
 *.pdb
-*.suo
 *.svd
+*.temp
 *.tmp
+*.tmp_proj
 *.unityproj
-*.user
 *.userprefs
+
+# =================== #
+# ReSharper generated #
+# =================== #
+_ReSharper*/
+*.[Dd]otCover
+*.[Dd]otSettings.user
+*.[Rr]e[Ss]harper
 
 # =============== #
 # NuGet generated #
 # =============== #
 **/[Pp]ackages/*
+/[Aa]rtifacts/
 *.nupkg
 *.nuget.props
 *.nuget.targets
 project.lock.json
 project.assets.json
+
+# ===================== #
+# Text editor generated #
+# ===================== #
+~$*
+*~
 
 # ============ #
 # OS generated #
@@ -63,22 +88,24 @@ Icons?
 *.apk
 *.app
 *.exe
+*.iap
 *.unitypackage
 
 # =================== #
 # Single seat plugins #
 # =================== #
-Assets/UnityVS.meta
-Assets/UnityVS/Editor.meta
-Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
-Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
-Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
-Assets/TEMP_IMPORT/**
-Assets/TEMP_IMPORT.meta
-Assets/ConsolePro/**
-Assets/ConsolePro.meta
-Reference/
-Assets/Add-Ons/TextMesh Pro/Documentation/
+/[Aa]ssets/AssetStoreTools*
+/[Aa]ssets/Add-Ons/TextMesh Pro/Documentation/
+/[Aa]ssets/UnityVS.meta
+/[Aa]ssets/UnityVS/Editor.meta
+/[Aa]ssets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
+/[Aa]ssets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
+/[Aa]ssets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
+/[Aa]ssets/TEMP_IMPORT/**
+/[Aa]ssets/TEMP_IMPORT.meta
+/[Aa]ssets/ConsolePro/**
+/[Aa]ssets/ConsolePro.meta
+/[Re]eference/
 
 # ================== #
 # Random Paige Stuff #
