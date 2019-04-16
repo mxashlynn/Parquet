@@ -48,6 +48,29 @@ namespace ParquetClassLibrary
 
         #region EntityID Ranges
         /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.PlayerCharacter"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> PlayerCharacterIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> CritterIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Being"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> NpcIDs;
+
+        /// <summary>
+        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Characters.Being"/>s.
+        /// </summary>
+        public static readonly List<Range<EntityID>> BeingIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Floor"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
@@ -74,36 +97,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquet types.
         /// </summary>
-        public static readonly List<Range<EntityID>> ParquetIDs = new List<Range<EntityID>>
-            {
-                FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs
-            };
-
-        /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<EntityID> CritterIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Character"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<EntityID> CharacterIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Player"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<EntityID> PlayerIDs;
-
-        /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Characters.Being"/>s.
-        /// </summary>
-        public static readonly List<Range<EntityID>> BeingIDs = new List<Range<EntityID>>
-            {
-                CritterIDs, CharacterIDs, PlayerIDs
-            };
+        public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.RoomRecipe"/>s.
@@ -138,19 +132,33 @@ namespace ParquetClassLibrary
         static AssemblyInfo()
         {
             // By convention, the first EntityID in each Range is a multiple of this number.
-            // An exception is made for Critter, Character, and Player as they are treated as sub-ranges.
+            // An exception is made for PlayerCharacters as these values are undefined at designtime.
             var TargetMultiple = 10000;
 
-            FloorIDs = new Range<EntityID>(10000, 19000);
-            BlockIDs = new Range<EntityID>(20000, 29000);
-            FurnishingIDs = new Range<EntityID>(30000, 39000);
-            CollectibleIDs = new Range<EntityID>(40000, 49000);
-            CritterIDs = new Range<EntityID>(50000, 52900);
-            CharacterIDs = new Range<EntityID>(53000, 55900);
-            PlayerIDs = new Range<EntityID>(56000, 58900);
-            RoomRecipeIDs = new Range<EntityID>(60000, 69000);
-            CraftingRecipeIDs = new Range<EntityID>(70000, 79000);
-            QuestIDs = new Range<EntityID>(80000, 89000);
+            #region Define Ranges
+            PlayerCharacterIDs = new Range<EntityID>(1, 9999);
+            CritterIDs = new Range<EntityID>(10000, 19000);
+            NpcIDs = new Range<EntityID>(20000, 29000);
+
+            FloorIDs = new Range<EntityID>(30000, 39000);
+            BlockIDs = new Range<EntityID>(40000, 49000);
+            FurnishingIDs = new Range<EntityID>(50000, 59000);
+            CollectibleIDs = new Range<EntityID>(60000, 69000);
+
+            RoomRecipeIDs = new Range<EntityID>(70000, 79000);
+            CraftingRecipeIDs = new Range<EntityID>(80000, 89000);
+
+            QuestIDs = new Range<EntityID>(90000, 99000);
+            #endregion
+
+            #region Define Range Collections
+            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
+            #endregion
+
+            // TODO Before Parquet-Release Candidate milestone (the one in the Unity project),
+            // replace all reflection and Linq in the main class library with hardcoded values.
+            // The tools and tests can continue to use Linq and reflection.
 
             // The largest Range.Maximum defined in AssemblyInfo, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(AssemblyInfo).GetFields()
@@ -165,12 +173,12 @@ namespace ParquetClassLibrary
             // Since ItemIDs is being defined at runtime, its Range.Minimum must be chosen well above existing maxima.
             var ItemLowerBound = TargetMultiple * ((MaximumIDNotCountingItems + (TargetMultiple - 1)) / TargetMultiple);
 
-            // The largest Range.Maximum of any paruet IDs.
+            // The largest Range.Maximum of any parquet IDs.
             int MaximumParquetID = ParquetIDs
                 .Select(range => range.Maximum)
                 .Max();
 
-            // The smallest Range.Minimum of any paruet IDs.
+            // The smallest Range.Minimum of any parquet IDs.
             int MinimumParquetID = ParquetIDs
                 .Select(range => range.Minimum)
                 .Min();
@@ -178,7 +186,7 @@ namespace ParquetClassLibrary
             // Since it is possible for every parquet to have a corresponding item, this range must be at least
             // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
             // ranges of all parquets.
-            var ItemUpperBound = ItemLowerBound + 2 * (TargetMultiple / 10 + MaximumParquetID - MinimumParquetID);
+            var ItemUpperBound = ItemLowerBound + 2 * ((TargetMultiple / 10) + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
         }
