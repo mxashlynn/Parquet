@@ -210,6 +210,8 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Sandbox Room Requirements
+        // TODO Refactor these names to "WalkablePositions" or something similar because it is not really about the floor count.
+
         /// <summary>
         /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
         /// </summary>
