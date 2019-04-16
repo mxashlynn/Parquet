@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     public static class AllParquets
     {
         /// <summary>A collection of all defined parquets of all subtypes.  All IDs must be unique.</summary>
-        private static EntityCollection ParquetDefinitions { get; set; } = new EntityCollection();
+        private static EntityCollection<ParquetParent> ParquetDefinitions { get; set; } = new EntityCollection<ParquetParent>(AssemblyInfo.ParquetIDs);
 
         /// <summary>The number of parquets currently defined.</summary>
         public static int Count => ParquetDefinitions.Count;
@@ -85,7 +85,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
 
-            return (T)ParquetDefinitions.Get(in_id);
+            return (T)ParquetDefinitions.Get<T>(in_id);
         }
 
         /// <summary>

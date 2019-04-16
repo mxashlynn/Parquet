@@ -6,19 +6,41 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Stores a collection of <see cref="Entity"/>s.
+    /// Stores an <see cref="Entity"/> collection.
+    /// Provides bounds-checking and type-checking against <typeparamref name="ParentType"/>.
     /// </summary>
-    public class EntityCollection
+    /// <remarks>
+    /// This generic version is intended to support <see cref="All.Parquets"/> allowing
+    /// the collection to store all parquet types but return only the requested subtype.
+    /// </remarks>
+    public class EntityCollection<ParentType> where ParentType : Entity
     {
         /// <summary>The internal collection mechanism.</summary>
-        private Dictionary<EntityID, Entity> Entities { get; set; } = new Dictionary<EntityID, Entity>
-        {
-            { EntityID.None, null }
-        };
+        private Dictionary<EntityID, Entity> Entities { get; set; }
+
+        private List<Range<EntityID>> Bounds { get; }
 
         /// <summary>The number of <see cref="Entity"/>s in the <see cref="EntityCollection"/>.</summary>
         public int Count => Entities.Count;
 
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        public EntityCollection(List<Range<EntityID>> in_bounds)
+        {
+            if (!in_bounds.IsValid())
+            {
+                throw new ArgumentException(nameof(in_bounds));
+            }
+
+            Bounds = in_bounds;
+            Entities = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
+        }
+        #endregion
+
+        #region Collection Access
         /// <summary>
         /// Adds the given <see cref="Entity"/> to the collection.
         /// </summary>
@@ -26,6 +48,15 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="Entity"/> was added successfully; <c>false</c> otherwise.</returns>
         public bool Add(Entity in_entity)
         {
+            if (null == in_entity)
+            {
+                throw new ArgumentNullException(nameof(in_entity));
+            }
+            if (!in_entity.ID.IsValidForRange(Bounds))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_entity.ID));
+            }
+
             var isNew = !Entities.ContainsKey(in_entity.ID);
 
             if (isNew)
@@ -80,6 +111,11 @@ namespace ParquetClassLibrary
         /// <remarks>This method is equivalent to <see cref="Dictionary{EntityID, Entity}.ContainsKey"/>.</remarks>
         public bool Contains(EntityID in_id)
         {
+            if (!in_id.IsValidForRange(Bounds))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_id));
+            }
+
             return Entities.ContainsKey(in_id);
         }
 
@@ -106,29 +142,34 @@ namespace ParquetClassLibrary
         /// </returns>
         public bool Remove(EntityID in_id)
         {
+            if (!in_id.IsValidForRange(Bounds))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_id));
+            }
+
             return Entities.Remove(in_id);
         }
 
         /// <summary>
-        /// Returns the specified <see cref="Entity"/>.
+        /// Returns the specified <typeparamref name="T"/>.
         /// </summary>
-        /// <param name="in_id">A valid, defined <see cref="Entity"/> identifier.</param>
-        /// <typeparam name="T">The type of <see cref="Entity"/> sought.  Must correspond to the given ID.</typeparam>
-        /// <returns>The specified <see cref="Entity"/>.</returns>
-        public Entity Get(EntityID in_id)
+        /// <param name="in_id">A valid, defined <typeparamref name="T"/> identifier.</param>
+        /// <typeparam name="T">
+        /// The type of <typeparamref name="ParentType"/> sought.  Must correspond to the given <paramref name="in_id"/>.
+        /// </typeparam>
+        /// <returns>The specified <typeparamref name="T"/>.</returns>
+        public Entity Get<T>(EntityID in_id) where T : ParentType
         {
-            return Entities[in_id];
-        }
+            if (!in_id.IsValidForRange(Bounds))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_id));
+            }
 
-        /// <summary>
-        /// Retrieves an enumerator for the <see cref="EntityCollection"/>.
-        /// </summary>
-        /// <returns>An enumerator that iterates through the collection.</returns>
-        public IEnumerator<Entity> GetEnumerator()
-        {
-            return Entities.Values.GetEnumerator();
+            return (T)Entities[in_id];
         }
+        #endregion
 
+        #region Utilitie Methods
         /// <summary>
         /// Serializes all defined parquets to a string.
         /// </summary>
@@ -168,6 +209,52 @@ namespace ParquetClassLibrary
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Retrieves an enumerator for the <see cref="EntityCollection{T}"/>.
+        /// </summary>
+        /// <returns>An enumerator that iterates through the collection.</returns>
+        public IEnumerator<Entity> GetEnumerator()
+        {
+            return Entities.Values.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Stores an <see cref="Entity"/> collection.
+    /// Provides bounds-checking and type-checking against <see cref="Entity"/>.
+    /// </summary>
+    /// <remarks>
+    /// This version supports collections that do not rely heavily on
+    /// multiple incompatible subclasses of <see cref="Entity"/>.
+    /// </remarks>
+    public class EntityCollection : EntityCollection<Entity>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        public EntityCollection(Range<EntityID> in_bounds) : base(new List<Range<EntityID>> { in_bounds }) { }
+
+        /// <summary>
+        /// Returns the specified <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="in_id">A valid, defined <see cref="Entity"/> identifier.</param>
+        /// <returns>The specified <see cref="Entity"/>.</returns>
+        public Entity Get(EntityID in_id)
+        {
+            return Get<Entity>(in_id);
         }
     }
 }

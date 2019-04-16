@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Items
     public static class AllItems
     {
         /// <summary>A collection of all defined items of all subtypes.  All IDs must be unique.</summary>
-        private static EntityCollection ItemDefinitions { get; set; } = new EntityCollection();
+        private static EntityCollection ItemDefinitions { get; set; } = new EntityCollection(AssemblyInfo.ItemIDs);
 
         /// <summary>The number of items currently defined.</summary>
         public static int Count => ItemDefinitions.Count;
