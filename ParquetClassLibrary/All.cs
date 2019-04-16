@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Characters;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -7,7 +10,7 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Provides content and parameters for the game.
     /// </summary>
-    public struct All
+    public static class All
     {
         #region EntityID Ranges
         /// <summary>
@@ -87,6 +90,63 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> ItemIDs;
         #endregion
 
+        #region Collections
+        /// <summary>
+        /// A collection of all defined parquets of all subtypes.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<ParquetParent> Parquets { get; set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="Item"/>s.
+        /// This collection is the source of truth about items for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        private static EntityCollection Items { get; set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="Being"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        private static EntityCollection Beings { get; set; }
+        #endregion
+
+        #region Dimensions
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
+        public const int ParquetsPerChunkDimension = 16;
+
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>s.</summary>
+        public const int ChunksPerRegionDimension = 4;
+
+        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in parquets.</summary>
+        public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ParquetsPerChunkDimension;
+
+        /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
+        public const int PanelPatternWidth = 2;
+
+        /// <summary>Height of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
+        public const int PanelPatternHeight = 8;
+        #endregion
+
+        #region Recipe Requirements
+        // TODO Refactor these names to "WalkablePositions" or something similar because it is not really about the floor count.
+
+        /// <summary>
+        /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMinimumFloors = 4;
+
+        /// <summary>
+        /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+        /// </summary>
+        public const int RoomMaximumFloors = (ParquetsPerChunkDimension - 1) * (ParquetsPerChunkDimension - 1);
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes the <see cref="Range{EntityID}"/>s defined in <see cref="All"/>.
@@ -94,6 +154,7 @@ namespace ParquetClassLibrary
         /// </summary>
         static All()
         {
+            #region Initalize Ranges
             // By convention, the first EntityID in each Range is a multiple of this number.
             // An exception is made for PlayerCharacters as these values are undefined at designtime.
             var TargetMultiple = 10000;
@@ -152,38 +213,14 @@ namespace ParquetClassLibrary
             var ItemUpperBound = ItemLowerBound + 2 * ((TargetMultiple / 10) + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
+            #endregion
+
+            #region Initialize Collections
+            Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
+            Items = new EntityCollection(ItemIDs);
+            Beings = new EntityCollection(BeingIDs);
+            #endregion
         }
-        #endregion
-
-        #region Sandbox Map Element Dimensions
-        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
-        public const int ParquetsPerChunkDimension = 16;
-
-        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>s.</summary>
-        public const int ChunksPerRegionDimension = 4;
-
-        /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in parquets.</summary>
-        public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ParquetsPerChunkDimension;
-
-        /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
-        public const int PanelPatternWidth = 2;
-
-        /// <summary>Height of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
-        public const int PanelPatternHeight = 8;
-        #endregion
-
-        #region Sandbox Room Requirements
-        // TODO Refactor these names to "WalkablePositions" or something similar because it is not really about the floor count.
-
-        /// <summary>
-        /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
-        /// </summary>
-        public const int RoomMinimumFloors = 4;
-
-        /// <summary>
-        /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
-        /// </summary>
-        public const int RoomMaximumFloors = (ParquetsPerChunkDimension - 1) * (ParquetsPerChunkDimension - 1);
         #endregion
     }
 }
