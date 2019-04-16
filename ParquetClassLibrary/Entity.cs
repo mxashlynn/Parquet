@@ -36,7 +36,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes a new instance of concrete implementations of the <see cref="Entity"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the derived type's EntityID is defined.</param>
+        /// <param name="in_bounds">The bounds within which the derived type's <see cref="EntityID"/> is defined.</param>
         /// <param name="in_id">Unique identifier for the entity.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the entity.  Cannot be null or empty.</param>
         [JsonConstructor]

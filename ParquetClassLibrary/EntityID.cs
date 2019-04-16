@@ -29,18 +29,20 @@ namespace ParquetClassLibrary
     /// TODO: Include this explanation in the Wiki.
     public struct EntityID : IComparable<EntityID>
     {
-        /// <summary>Indicates the lack of a game entity associated with this identifier (e.g., parquet).</summary>
+        /// <summary>Indicates the lack of an <see cref="Entity"/>.</summary>
         public static readonly EntityID None = 0;
 
-        /// <summary>Backing type for the identifier.</summary>
-        // Currently this is implemented as an int rather than a GUID in order
-        // to aid in range validation and human-readability of design documents.
+        /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
+        /// <remarks>
+        /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
+        /// to support human-readable design documents and <see cref="Range{T}"/> validation.
+        /// </remarks>
         [JsonProperty]
         private int _id;
 
         #region IComparable Methods
         /// <summary>
-        /// Enables identifiers to be treated as their backing type.
+        /// Enables <see cref="EntityID"/>s to be treated as their backing type.
         /// </summary>
         /// <param name="in_value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
@@ -50,7 +52,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Enables identifiers to be treated as their backing type.
+        /// Enables <see cref="EntityID"/> to be treated as their backing type.
         /// </summary>
         /// <param name="in_identifier">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
@@ -60,15 +62,15 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Enables identifiers to be compared with other identifiers.
+        /// Enables <see cref="EntityID"/> to be compared one another.
         /// </summary>
-        /// <param name="in_identifier">Any valid identifier value.</param>
+        /// <param name="in_identifier">Any valid <see cref="EntityID"/> value.</param>
         /// <returns>
-        /// A value indicating the relative ordering of the objects being compared.
+        /// A value indicating the relative ordering of the <see cref="EntityID"/>s being compared.
         /// The return value has these meanings:
-        /// Less than zero indicates that the current instance precedes the given identifier in the sort order.
-        /// Zero indicates that the current instance occurs in the same position in the sort order as the given identifier.
-        /// Greater than zero indicates that the current instance follows the given identifier in the sort order.
+        /// Less than zero indicates that the current instance precedes the given <see cref="EntityID"/> in the sort order.
+        /// Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityID"/>.
+        /// Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityID in_identifier)
         {
@@ -78,12 +80,15 @@ namespace ParquetClassLibrary
 
         #region Utility Methods
         /// <summary>
-        /// Validates the current ID.  An ID is valid if:
-        /// 1) it is <see cref="ParquetClassLibrary.Sandbox.ID.EntityID.None"/>
-        /// 2) it is defined within the given range, regardless of sign.
+        /// Validates the current <see cref="EntityID"/> over a <see cref="Range{EntityID}"/>.
+        /// An <see cref="EntityID"/> is valid if:
+        /// 1) it is <see cref="None"/>
+        /// 2) it is defined within the given <see cref="Range{T}"/>, regardless of sign.
         /// </summary>
-        /// <returns><c>true</c>, if the identifier is valid given the range, <c>false</c> otherwise.</returns>
-        /// <param name="in_range">The range within which the absolute value of the ID must fall.</param>
+        /// <param name="in_range">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
+        /// <returns>
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
+        /// </returns>
         [Pure]
         public bool IsValidForRange(Range<EntityID> in_range)
         {
@@ -91,13 +96,17 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Validates the current ID over a collection of <see cref="Utilities.Range{EntityID}"/>s.
-        /// An ID is valid if:
+        /// Validates the current <see cref="EntityID"/> over a <see cref="IEnumerable{Range{EntityID}}"/>.
+        /// An <see cref="EntityID"/> is valid if:
         /// 1) it is <see cref="None"/>
-        /// 2) it is defined within the given range, regardless of sign.
+        /// 2) it is defined within any of the <see cref="Range{T}"/> in the given <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <returns><c>true</c>, if the identifier is valid given any of the given ranges, <c>false</c> otherwise.</returns>
-        /// <param name="in_ranges">The range within which the absolute value of the ID must fall.</param>
+        /// <param name="in_ranges">
+        /// The <see cref="IEnumerable{Range{EntityID}}"/> within which the <see cref="EntityID"/> must fall.
+        /// </param>
+        /// <returns>
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
+        /// </returns>
         [Pure]
         public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
         {
@@ -112,8 +121,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current
-        /// <see cref="T:ParquetClassLibrary.Sandbox.ID.EntityID"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="EntityID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
