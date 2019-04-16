@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <param name="in_id">
         /// Unique identifier for the <see cref="Critter"/>.  Cannot be null.
-        /// Must be a <see cref="AssemblyInfo.CritterIDs"/>.
+        /// Must be a <see cref="All.CritterIDs"/>.
         /// </param>
         /// <param name="in_name">Player-friendly name of the <see cref="Critter"/>.  Cannot be null or empty.</param>
         /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="Critter"/> is most comfortable.</param>
@@ -23,9 +23,9 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_seeks">Any parquets this <see cref="Critter"/> seeks.</param>
         public Critter(EntityID in_id, string in_name, Biome in_nativeBiome, Behavior in_primaryBehavior,
                        List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
-            : base(AssemblyInfo.CritterIDs, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
+            : base(All.CritterIDs, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.CritterIDs))
+            if (!in_id.IsValidForRange(All.CritterIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }

@@ -39,12 +39,12 @@ namespace ParquetClassLibrary.Crafting
         /// <exception cref="IndexOutOfRangeException">Thrown when in_ingredients is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when in_panelPattern has dimensions other than those given by
-        /// <see cref="AssemblyInfo.PanelPatternWidth"/> and <see cref="AssemblyInfo.PanelPatternHeight"/>.
+        /// <see cref="All.PanelPatternWidth"/> and <see cref="All.PanelPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID in_itemProduced, int in_quantityProduced,
                               List<EntityID> in_ingredients, StrikePanel[,] in_panelPattern)
         {
-            if (!in_itemProduced.IsValidForRange(AssemblyInfo.ItemIDs))
+            if (!in_itemProduced.IsValidForRange(All.ItemIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_itemProduced));
             }
@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Crafting
             }
             foreach (var ingredient in in_ingredients)
             {
-                if (!ingredient.IsValidForRange(AssemblyInfo.ItemIDs))
+                if (!ingredient.IsValidForRange(All.ItemIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_ingredients));
                 }
@@ -67,8 +67,8 @@ namespace ParquetClassLibrary.Crafting
             {
                 throw new IndexOutOfRangeException(nameof(in_ingredients));
             }
-            if (in_panelPattern.GetLength(0) != AssemblyInfo.PanelPatternWidth
-                || in_panelPattern.GetLength(1) != AssemblyInfo.PanelPatternHeight)
+            if (in_panelPattern.GetLength(0) != All.PanelPatternWidth
+                || in_panelPattern.GetLength(1) != All.PanelPatternHeight)
             {
                 throw new IndexOutOfRangeException(nameof(in_panelPattern));
             }

@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The set of values that are allowed for Block IDs.</summary>
         // TODO Test if we can remove this ignore tag.
         [JsonIgnore]
-        public static Range<EntityID> Bounds => AssemblyInfo.BlockIDs;
+        public static Range<EntityID> Bounds => All.BlockIDs;
         #endregion
 
         #region Parquet Mechanics
@@ -78,12 +78,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                      : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
-            if (!nonNullCollectibleID.IsValidForRange(AssemblyInfo.CollectibleIDs))
+            if (!nonNullCollectibleID.IsValidForRange(All.CollectibleIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_collectibleID));
             }
             var nonNullItemID = in_itemID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(AssemblyInfo.ItemIDs))
+            if (!nonNullItemID.IsValidForRange(All.ItemIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_itemID));
             }

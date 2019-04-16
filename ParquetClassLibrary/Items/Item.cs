@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Items
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity, int in_stackMax,
                     int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
-                    CraftingRecipe in_recipe) : base(AssemblyInfo.ItemIDs, in_id, in_name)
+                    CraftingRecipe in_recipe) : base(All.ItemIDs, in_id, in_name)
         {
             if (string.IsNullOrEmpty(in_name))
             {
@@ -78,7 +78,7 @@ namespace ParquetClassLibrary.Items
             }
             // TODO Do we need to bounds-check in_effectWhileHeld?
             // TODO Do we need to bounds-check in_effectWhenUsed?
-            if (!in_asParquet.IsValidForRange(AssemblyInfo.ParquetIDs))
+            if (!in_asParquet.IsValidForRange(All.ParquetIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }

@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Items
     public static class AllItems
     {
         /// <summary>A collection of all defined items of all subtypes.  All IDs must be unique.</summary>
-        private static EntityCollection ItemDefinitions { get; set; } = new EntityCollection(AssemblyInfo.ItemIDs);
+        private static EntityCollection ItemDefinitions { get; set; } = new EntityCollection(All.ItemIDs);
 
         /// <summary>The number of items currently defined.</summary>
         public static int Count => ItemDefinitions.Count;
@@ -69,14 +69,14 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Returns the specified <see cref="Item"/>.
         /// </summary>
-        /// <param name="in_id">A valid, defined identifier from <see cref="AssemblyInfo.ItemIDs"/>.</param>
+        /// <param name="in_id">A valid, defined identifier from <see cref="All.ItemIDs"/>.</param>
         /// <returns>The specified item definition.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Thrown when the given ID is not a valid <see cref="AssemblyInfo.ItemIDs"/>.
+        /// Thrown when the given ID is not a valid <see cref="All.ItemIDs"/>.
         /// </exception>
         public static Item Get(EntityID in_id)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.ItemIDs))
+            if (!in_id.IsValidForRange(All.ItemIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
