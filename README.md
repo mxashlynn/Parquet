@@ -12,4 +12,5 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 # Credits
 - Primary coding and design by Paige Ashlynn.
 - Special thanks for code help to Isabelle Gould and Ashley Hauck.
-- Special thanks for design and math help to Caidence Stone.
+- Special thanks for design help to Caidence Stone and Lillian Harris.
+- Special thanks for math help to Caidence Stone.
