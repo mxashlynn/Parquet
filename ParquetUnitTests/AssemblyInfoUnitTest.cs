@@ -1,12 +1,11 @@
 using System.Linq;
-using System.Collections.Generic;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class AssemblyUnitTest
+    public class AssemblyInfoUnitTest
     {
         #region Values for Tests
         /// <summary>This is the cannonical invalid version string used in serialization tests.</summary>

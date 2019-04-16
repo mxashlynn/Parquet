@@ -12,7 +12,7 @@ namespace ParquetClassLibrary
     /// and are considered equal if and only if their respective EntityIDs are equal.
     /// 
     /// Entity is intended to model the parts of a game object that do not change from one
-    /// instance to another.  In this sense, it can be thought of as analagous to a <see cref="class"/>.
+    /// instance to another.  In this sense, it can be thought of as analagous to a <see langword="class"/>.
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
     /// within collections in other classes.  Their definitions are found by submitting their EntityID
     /// to the appropriate <see cref="EntityCollection"/>.
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes a new instance of concrete implementations of the <see cref="Entity"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the derived type's EntityID is defined.</param>
+        /// <param name="in_bounds">The bounds within which the derived type's <see cref="EntityID"/> is defined.</param>
         /// <param name="in_id">Unique identifier for the entity.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the entity.  Cannot be null or empty.</param>
         [JsonConstructor]

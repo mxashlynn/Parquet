@@ -91,10 +91,6 @@ namespace ParquetClassLibrary
         /// <c>true</c> if the <see cref="Entity"/> is successfully found and removed; otherwise, <c>false</c>.
         /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
         /// </returns>
-        /// <remarks>
-        /// From the perspective of the game and tools client code, removing an <see cref="Entity"/> from its associated
-        /// <see cref="EntityCollection"/> is the same as undefining it.
-        /// </remarks>
         public bool Remove(Entity in_entity)
         {
             return Entities.Remove(in_entity.ID);
@@ -108,10 +104,6 @@ namespace ParquetClassLibrary
         /// <c>true</c> if the <see cref="Entity"/> is successfully found and removed; otherwise, <c>false</c>.
         /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
         /// </returns>
-        /// <remarks>
-        /// From the perspective of the game and tools client code, removing an <see cref="Entity"/> from its associated
-        /// <see cref="EntityCollection"/> is the same as undefining it.
-        /// </remarks>
         public bool Remove(EntityID in_id)
         {
             return Entities.Remove(in_id);
