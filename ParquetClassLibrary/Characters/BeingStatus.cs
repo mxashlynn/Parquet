@@ -10,8 +10,8 @@ namespace ParquetClassLibrary.Characters
         public Being BeingDefinition { get; }
 
         /// <summary>The <see cref="Location"/> the tracked <see cref="Being"/> occupies.</summary>
-        [JsonProperty(PropertyName = "in_currentLocation")]
-        public Location CurrentLocation { get; set; }
+        [JsonProperty(PropertyName = "in_position")]
+        public Location Position { get; set; }
 
         /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
         [JsonProperty(PropertyName = "in_currentBehavior")]
@@ -24,13 +24,13 @@ namespace ParquetClassLibrary.Characters
         /// Initializes a new instance of the <see cref="BeingStatus"/> class.
         /// </summary>
         /// <param name="in_beingDefinition">The parquets whose status this instance is tracking.</param>
-        /// <param name="in_currentLocation">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
+        /// <param name="in_position">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
         /// <param name="in_currentBehavior">The <see cref="Behavior"/> currently governing .</param>
         [JsonConstructor]
-        public BeingStatus(Being in_beingDefinition, Location in_currentLocation, Behavior in_currentBehavior)
+        public BeingStatus(Being in_beingDefinition, Location in_position, Behavior in_currentBehavior)
         {
             BeingDefinition = in_beingDefinition;
-            CurrentLocation = in_currentLocation;
+            Position = in_position;
             CurrentBehavior = in_currentBehavior;
         }
         #endregion
