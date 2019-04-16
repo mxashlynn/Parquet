@@ -158,7 +158,7 @@ namespace ParquetClassLibrary
         /// The type of <typeparamref name="ParentType"/> sought.  Must correspond to the given <paramref name="in_id"/>.
         /// </typeparam>
         /// <returns>The specified <typeparamref name="T"/>.</returns>
-        public Entity Get<T>(EntityID in_id) where T : ParentType
+        public T Get<T>(EntityID in_id) where T : ParentType
         {
             if (!in_id.IsValidForRange(Bounds))
             {
@@ -241,6 +241,12 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class EntityCollection : EntityCollection<Entity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        public EntityCollection(List<Range<EntityID>> in_bounds) : base(in_bounds) { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
