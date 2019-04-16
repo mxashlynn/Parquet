@@ -57,12 +57,24 @@ namespace ParquetClassLibrary.Characters
                             string in_pronoun = DefaultPronoun)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
+            if (null == in_quests)
+            {
+                in_quests = new List<EntityID>();
+            }
             foreach (var questID in in_quests)
             {
                 if (!questID.IsValidForRange(AssemblyInfo.QuestIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_quests));
                 }
+            }
+            if (null == in_dialogue)
+            {
+                in_dialogue = new List<EntityID>();
+            }
+            if (null == in_inventory)
+            {
+                in_inventory = new List<EntityID>();
             }
             foreach (var itemID in in_inventory)
             {

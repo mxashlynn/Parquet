@@ -46,12 +46,20 @@ namespace ParquetClassLibrary.Characters
             {
                 throw new ArgumentOutOfRangeException(nameof(in_bounds));
             }
+            if (null == in_avoids)
+            {
+                in_avoids = new List<EntityID>();
+            }
             foreach (var parquetID in in_avoids)
             {
                 if (!parquetID.IsValidForRange(AssemblyInfo.ParquetIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_avoids));
                 }
+            }
+            if (null == in_seeks)
+            {
+                in_seeks = new List<EntityID>();
             }
             foreach (var parquetID in in_seeks)
             {
