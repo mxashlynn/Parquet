@@ -14,7 +14,6 @@ namespace ParquetClassLibrary.Characters
         public const string DefaultPronoun = "they";
         #endregion
 
-
         #region Characteristics
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
         // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.

@@ -129,7 +129,7 @@ namespace ParquetClassLibrary
 
         #region Utility Methods
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="Entity"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="Entity"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

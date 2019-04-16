@@ -15,9 +15,9 @@ namespace ParquetClassLibrary.Sandbox
         public Vector2Int Position;
 
         /// <summary>
-        /// Describes the <see cref="Location"/> as a <see cref="string"/>.
+        /// Describes the <see cref="Location"/> as a <see langword="string"/>.
         /// </summary>
-        /// <returns>A <see cref="string"/> that represents the current <see cref="Location"/>.</returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="Location"/>.</returns>
         public override string ToString()
         {
             return $"{Position} in {RegionID}";
