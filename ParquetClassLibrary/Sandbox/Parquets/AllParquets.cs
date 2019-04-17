@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParquetClassLibrary.Sandbox.Parquets
 {
@@ -35,7 +36,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <returns><c>true</c> if all of the parquets were added successfully; <c>false</c> otherwise.</returns>
         public static bool AddRange(IEnumerable<ParquetParent> in_parquets)
         {
-            return ParquetDefinitions.AddRange(in_parquets);
+            return ParquetDefinitions.AddRange(in_parquets ?? Enumerable.Empty<ParquetParent>());
         }
 
         /// <summary>

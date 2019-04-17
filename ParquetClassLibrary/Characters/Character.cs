@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox;
+using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
@@ -56,14 +56,14 @@ namespace ParquetClassLibrary.Characters
                             string in_pronoun = DefaultPronoun)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            foreach (var questID in in_quests)
+            foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
             {
                 if (!questID.IsValidForRange(AssemblyInfo.QuestIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_quests));
                 }
             }
-            foreach (var itemID in in_inventory)
+            foreach (var itemID in in_inventory ?? Enumerable.Empty<EntityID>())
             {
                 if (!itemID.IsValidForRange(AssemblyInfo.ItemIDs))
                 {
@@ -73,9 +73,9 @@ namespace ParquetClassLibrary.Characters
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
 
             Pronoun = nonNullPronoun;
-            Quests.AddRange(in_quests);
-            Dialogue.AddRange(in_dialogue);
-            Inventory.AddRange(in_inventory);
+            Quests.AddRange(in_quests ?? Enumerable.Empty<EntityID>());
+            Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
+            Inventory.AddRange(in_inventory ?? Enumerable.Empty<EntityID>());
         }
         #endregion
     }

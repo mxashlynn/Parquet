@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParquetClassLibrary.Items
 {
@@ -35,7 +36,7 @@ namespace ParquetClassLibrary.Items
         /// <returns><c>true</c> if all of the items were added successfully; <c>false</c> otherwise.</returns>
         public static bool AddRange(IEnumerable<Item> in_items)
         {
-            return ItemDefinitions.AddRange(in_items);
+            return ItemDefinitions.AddRange(in_items ?? Enumerable.Empty<Item>());
         }
 
         /// <summary>
