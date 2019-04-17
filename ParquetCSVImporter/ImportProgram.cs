@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
@@ -39,10 +40,10 @@ namespace ParquetCSVImporter
         public static void Main()
         {
             var recordsFromCSV = new List<ParquetParent>();
-            recordsFromCSV.AddRange(GetRecordsForType<Floor>());
-            recordsFromCSV.AddRange(GetRecordsForType<Block>());
-            recordsFromCSV.AddRange(GetRecordsForType<Furnishing>());
-            recordsFromCSV.AddRange(GetRecordsForType<Collectible>());
+            recordsFromCSV.AddRange(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
+            recordsFromCSV.AddRange(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
+            recordsFromCSV.AddRange(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
+            recordsFromCSV.AddRange(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
 
             Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);

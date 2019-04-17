@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
@@ -46,14 +47,14 @@ namespace ParquetClassLibrary.Characters
             {
                 throw new ArgumentOutOfRangeException(nameof(in_bounds));
             }
-            foreach (var parquetID in in_avoids)
+            foreach (var parquetID in in_avoids ?? Enumerable.Empty<EntityID>())
             {
                 if (!parquetID.IsValidForRange(All.ParquetIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_avoids));
                 }
             }
-            foreach (var parquetID in in_seeks)
+            foreach (var parquetID in in_seeks ?? Enumerable.Empty<EntityID>())
             {
                 if (!parquetID.IsValidForRange(All.ParquetIDs))
                 {
@@ -63,8 +64,8 @@ namespace ParquetClassLibrary.Characters
 
             NativeBiome = in_nativeBiome;
             PrimaryBehavior = in_primaryBehavior;
-            Avoids.AddRange(in_avoids);
-            Seeks.AddRange(in_seeks);
+            Avoids.AddRange(in_avoids ?? Enumerable.Empty<EntityID>());
+            Seeks.AddRange(in_seeks ?? Enumerable.Empty<EntityID>());
         }
         #endregion
     }
