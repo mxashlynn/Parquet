@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox;
+using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
@@ -13,7 +13,6 @@ namespace ParquetClassLibrary.Characters
         // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
         public const string DefaultPronoun = "they";
         #endregion
-
 
         #region Characteristics
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
@@ -38,7 +37,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <param name="in_bounds">
         /// The bounds within which the <see cref="Character"/>'s <see cref="EntityID"/> is defined.
-        /// Must be one of <see cref="AssemblyInfo.BeingIDs"/>.
+        /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Character"/>.  Cannot be null or empty.</param>
@@ -57,16 +56,16 @@ namespace ParquetClassLibrary.Characters
                             string in_pronoun = DefaultPronoun)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            foreach (var questID in in_quests)
+            foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
             {
-                if (!questID.IsValidForRange(AssemblyInfo.QuestIDs))
+                if (!questID.IsValidForRange(All.QuestIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_quests));
                 }
             }
-            foreach (var itemID in in_inventory)
+            foreach (var itemID in in_inventory ?? Enumerable.Empty<EntityID>())
             {
-                if (!itemID.IsValidForRange(AssemblyInfo.ItemIDs))
+                if (!itemID.IsValidForRange(All.ItemIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_inventory));
                 }
@@ -74,9 +73,9 @@ namespace ParquetClassLibrary.Characters
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
 
             Pronoun = nonNullPronoun;
-            Quests.AddRange(in_quests);
-            Dialogue.AddRange(in_dialogue);
-            Inventory.AddRange(in_inventory);
+            Quests.AddRange(in_quests ?? Enumerable.Empty<EntityID>());
+            Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
+            Inventory.AddRange(in_inventory ?? Enumerable.Empty<EntityID>());
         }
         #endregion
     }

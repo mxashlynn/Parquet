@@ -36,7 +36,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ValidItemIDsArePermittedTest()
         {
-            EntityID goodItemID = -AssemblyInfo.ItemIDs.Minimum;
+            EntityID goodItemID = -All.ItemIDs.Minimum;
 
             var testBlock = new Furnishing(newFurnishingID, "will be created", in_itemID: goodItemID);
 

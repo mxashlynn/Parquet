@@ -308,7 +308,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Floor>(_floorLayer[in_position.X, in_position.Y]);
+                result = All.Parquets.Get<Floor>(_floorLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -325,7 +325,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Block>(_blockLayer[in_position.X, in_position.Y]);
+                result = All.Parquets.Get<Block>(_blockLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -342,7 +342,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Furnishing>(_furnishingLayer[in_position.X, in_position.Y]);
+                result = All.Parquets.Get<Furnishing>(_furnishingLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -359,7 +359,7 @@ namespace ParquetClassLibrary.Sandbox
 
             if (IsValidPosition(in_position))
             {
-                result = AllParquets.Get<Collectible>(_collectibleLayer[in_position.X, in_position.Y]);
+                result = All.Parquets.Get<Collectible>(_collectibleLayer[in_position.X, in_position.Y]);
             }
 
             return result;
@@ -391,13 +391,13 @@ namespace ParquetClassLibrary.Sandbox
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     var parquetID = _floorLayer[x, y];
-                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Floor>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(All.Parquets.Get<Floor>(parquetID)); }
                     parquetID = _blockLayer[x, y];
-                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Block>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(All.Parquets.Get<Block>(parquetID)); }
                     parquetID = _furnishingLayer[x, y];
-                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Furnishing>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(All.Parquets.Get<Furnishing>(parquetID)); }
                     parquetID = _collectibleLayer[x, y];
-                    if (EntityID.None != parquetID) { result.Add(AllParquets.Get<Collectible>(parquetID)); }
+                    if (EntityID.None != parquetID) { result.Add(All.Parquets.Get<Collectible>(parquetID)); }
                 }
             }
 
@@ -457,13 +457,13 @@ namespace ParquetClassLibrary.Sandbox
                 {
                     // TODO: This fails with TestParquet values.  Do we want to support ToStringing test values??
                     var parquet = EntityID.None != _collectibleLayer[x, y]
-                        ? AllParquets.Get<ParquetParent>(_collectibleLayer[x, y]) 
+                        ? All.Parquets.Get<ParquetParent>(_collectibleLayer[x, y]) 
                         : EntityID.None != _furnishingLayer[x, y]
-                            ? AllParquets.Get<ParquetParent>(_furnishingLayer[x, y])
+                            ? All.Parquets.Get<ParquetParent>(_furnishingLayer[x, y])
                             : EntityID.None != _blockLayer[x, y]
-                                ? AllParquets.Get<ParquetParent>(_blockLayer[x, y])
+                                ? All.Parquets.Get<ParquetParent>(_blockLayer[x, y])
                                 : EntityID.None != _floorLayer[x, y]
-                                    ? AllParquets.Get<ParquetParent>(_floorLayer[x, y])
+                                    ? All.Parquets.Get<ParquetParent>(_floorLayer[x, y])
                                     : null;
 
                     representation.Append(parquet?.ToString() ?? "~");
