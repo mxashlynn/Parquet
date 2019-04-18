@@ -169,7 +169,7 @@ namespace ParquetClassLibrary
         }
         #endregion
 
-        #region Utilitie Methods
+        #region Utility Methods
         /// <summary>
         /// Serializes all defined parquets to a string.
         /// </summary>
