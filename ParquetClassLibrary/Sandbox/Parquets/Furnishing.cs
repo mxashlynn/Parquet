@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
         // TODO Test if we can remove this ignore tag.
         [JsonIgnore]
-        public static Range<EntityID> Bounds => AssemblyInfo.FurnishingIDs;
+        public static Range<EntityID> Bounds => All.FurnishingIDs;
         #endregion
 
         #region Parquet Mechanics
@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(AssemblyInfo.ItemIDs))
+            if (!nonNullItemID.IsValidForRange(All.ItemIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_itemID));
             }

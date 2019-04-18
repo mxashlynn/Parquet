@@ -19,30 +19,30 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(AssemblyInfo.ParquetsPerChunkDimension,
-                                                                                  AssemblyInfo.ParquetsPerChunkDimension);
+        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(All.Dimensions.ParquetsPerChunk,
+                                                                                  All.Dimensions.ParquetsPerChunk);
         #endregion
 
         #region Chunk Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[AssemblyInfo.ParquetsPerChunkDimension,
-                                                                                        AssemblyInfo.ParquetsPerChunkDimension];
+        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[All.Dimensions.ParquetsPerChunk,
+                                                                                        All.Dimensions.ParquetsPerChunk];
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        protected override EntityID[,] _floorLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerChunkDimension,
-                                                                           AssemblyInfo.ParquetsPerChunkDimension];
+        protected override EntityID[,] _floorLayer { get; } = new EntityID[All.Dimensions.ParquetsPerChunk,
+                                                                           All.Dimensions.ParquetsPerChunk];
 
         /// <summary>Walls and obstructing terrain in the chunk.</summary>
-        protected override EntityID[,] _blockLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerChunkDimension,
-                                                                           AssemblyInfo.ParquetsPerChunkDimension];
+        protected override EntityID[,] _blockLayer { get; } = new EntityID[All.Dimensions.ParquetsPerChunk,
+                                                                           All.Dimensions.ParquetsPerChunk];
 
         /// <summary>Furniture and natural items in the chunk.</summary>
-        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerChunkDimension,
-                                                                                AssemblyInfo.ParquetsPerChunkDimension];
+        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[All.Dimensions.ParquetsPerChunk,
+                                                                                All.Dimensions.ParquetsPerChunk];
 
         /// <summary>Collectible materials in the chunk.</summary>
-        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[AssemblyInfo.ParquetsPerChunkDimension,
-                                                                                 AssemblyInfo.ParquetsPerChunkDimension];
+        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[All.Dimensions.ParquetsPerChunk,
+                                                                                 All.Dimensions.ParquetsPerChunk];
         #endregion
 
         #region Serialization Methods
