@@ -67,24 +67,24 @@ namespace ParquetClassLibrary.Crafting
                           List<EntityID> in_acceptableFloors, List<EntityID> in_acceptableWalls,
                           List<EntityID> in_requiredFurnishings)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.RoomRecipeIDs))
+            if (!in_id.IsValidForRange(All.RoomRecipeIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
-            if (in_recipeMinimumFloors < AssemblyInfo.RoomMinimumFloors)
+            if (in_recipeMinimumFloors < All.Recipes.Rooms.MinWalkableParquets)
             {
                 throw new ArgumentOutOfRangeException(nameof(in_recipeMinimumFloors));
             }
             foreach (var floorID in in_acceptableFloors)
             {
-                if (!floorID.IsValidForRange(AssemblyInfo.FloorIDs))
+                if (!floorID.IsValidForRange(All.FloorIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_acceptableFloors));
                 }
             }
             foreach (var wallID in in_acceptableWalls)
             {
-                if (!wallID.IsValidForRange(AssemblyInfo.BlockIDs))
+                if (!wallID.IsValidForRange(All.BlockIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_acceptableWalls));
                 }
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Crafting
             }
             foreach (var furnishingID in in_requiredFurnishings)
             {
-                if (!furnishingID.IsValidForRange(AssemblyInfo.FurnishingIDs))
+                if (!furnishingID.IsValidForRange(All.FurnishingIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_requiredFurnishings));
                 }
