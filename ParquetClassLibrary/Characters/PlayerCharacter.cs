@@ -42,10 +42,10 @@ namespace ParquetClassLibrary.Characters
                                List<EntityID> in_avoids = null, List<EntityID> in_seeks = null,
                                List<EntityID> in_quests = null, List<string> in_dialogue = null,
                                List<EntityID> in_inventory = null, string in_pronoun = DefaultPronoun)
-            : base(AssemblyInfo.PlayerCharacterIDs, in_id, in_name, in_nativeBiome, in_currentBehavior,
+            : base(All.PlayerCharacterIDs, in_id, in_name, in_nativeBiome, in_currentBehavior,
                    in_avoids, in_seeks, in_quests, in_dialogue, in_inventory, in_pronoun)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.PlayerCharacterIDs))
+            if (!in_id.IsValidForRange(All.PlayerCharacterIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
