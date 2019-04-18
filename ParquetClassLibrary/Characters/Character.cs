@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <param name="in_bounds">
         /// The bounds within which the <see cref="Character"/>'s <see cref="EntityID"/> is defined.
-        /// Must be one of <see cref="AssemblyInfo.BeingIDs"/>.
+        /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Character"/>.  Cannot be null or empty.</param>
@@ -58,14 +58,14 @@ namespace ParquetClassLibrary.Characters
         {
             foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
             {
-                if (!questID.IsValidForRange(AssemblyInfo.QuestIDs))
+                if (!questID.IsValidForRange(All.QuestIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_quests));
                 }
             }
             foreach (var itemID in in_inventory ?? Enumerable.Empty<EntityID>())
             {
-                if (!itemID.IsValidForRange(AssemblyInfo.ItemIDs))
+                if (!itemID.IsValidForRange(All.ItemIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_inventory));
                 }

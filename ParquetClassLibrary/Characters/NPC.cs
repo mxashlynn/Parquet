@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <param name="in_id">
         /// Unique identifier for the <see cref="NPC"/>.  Cannot be null.
-        /// Must be a valid <see cref="AssemblyInfo.NpcIDs"/>.
+        /// Must be a valid <see cref="All.NpcIDs"/>.
         /// </param>
         /// <param name="in_name">Player-friendly name of the <see cref="NPC"/>.  Cannot be null or empty.</param>
         /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="NPC"/> is most comfortable.</param>
@@ -30,10 +30,10 @@ namespace ParquetClassLibrary.Characters
                    List<EntityID> in_avoids = null, List<EntityID> in_seeks = null,
                    List<EntityID> in_quests = null, List<string> in_dialogue = null,
                    List<EntityID> in_inventory = null, string in_pronoun = DefaultPronoun)
-            : base(AssemblyInfo.NpcIDs, in_id, in_name, in_nativeBiome, in_currentBehavior,
+            : base(All.NpcIDs, in_id, in_name, in_nativeBiome, in_currentBehavior,
                    in_avoids, in_seeks, in_quests, in_dialogue, in_inventory, in_pronoun)
         {
-            if (!in_id.IsValidForRange(AssemblyInfo.NpcIDs))
+            if (!in_id.IsValidForRange(All.NpcIDs))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }

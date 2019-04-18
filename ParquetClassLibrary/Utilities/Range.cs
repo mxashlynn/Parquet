@@ -75,6 +75,22 @@ namespace ParquetClassLibrary.Utilities
     public static class RangeCollectionExtensions
     {
         /// <summary>
+        /// Determines if all of the given <see cref="Range{T}"/>s are well defined; that is, if Minima are less than or equal to Maxima.
+        /// </summary>
+        /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValid<T>(this IEnumerable<Range<T>> in_rangeCollection) where T : IComparable<T>
+        {
+            var isValid = true;
+
+            foreach (var range in in_rangeCollection)
+            {
+                isValid &= range.IsValid();
+            }
+
+            return isValid;
+        }
+
+        /// <summary>
         /// Determines if the given <paramref name="in_value"/> is contained by any of the <see cref="Range{T}"/>s
         /// in the current <see cref="List{Range{Type}}"/>.
         /// </summary>

@@ -16,7 +16,7 @@ namespace ParquetRunner
         {
             var region = new MapRegion();
             Console.WriteLine(region);
-            Console.WriteLine($"Item range = {AssemblyInfo.ItemIDs}");
+            Console.WriteLine($"Item range = {All.ItemIDs}");
         }
     }
 }

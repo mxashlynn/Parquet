@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <param name="in_bounds">
         /// The bounds within which the <see cref="Being"/>'s <see cref="EntityID"/> is defined.
-        /// Must be one of <see cref="AssemblyInfo.BeingIDs"/>.
+        /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Being"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Being"/>.  Cannot be null or empty.</param>
@@ -43,20 +43,20 @@ namespace ParquetClassLibrary.Characters
                         Behavior in_primaryBehavior, List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
             : base(in_bounds, in_id, in_name)
         {
-            if (!AssemblyInfo.BeingIDs.ContainsRange(in_bounds))
+            if (!All.BeingIDs.ContainsRange(in_bounds))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_bounds));
             }
             foreach (var parquetID in in_avoids ?? Enumerable.Empty<EntityID>())
             {
-                if (!parquetID.IsValidForRange(AssemblyInfo.ParquetIDs))
+                if (!parquetID.IsValidForRange(All.ParquetIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_avoids));
                 }
             }
             foreach (var parquetID in in_seeks ?? Enumerable.Empty<EntityID>())
             {
-                if (!parquetID.IsValidForRange(AssemblyInfo.ParquetIDs))
+                if (!parquetID.IsValidForRange(All.ParquetIDs))
                 {
                     throw new ArgumentOutOfRangeException(nameof(in_seeks));
                 }

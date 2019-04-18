@@ -24,7 +24,7 @@ namespace ParquetClassLibrary
     /// Although the compiler does not provide type-checking for
     /// IDs, within the scope of their usage the library defines
     /// valid ranges for and these are checked by library code.
-    /// <see cref="ParquetClassLibrary.AssemblyInfo"/>
+    /// <see cref="ParquetClassLibrary.All"/>
     /// </remarks>
     /// TODO: Include this explanation in the Wiki.
     public struct EntityID : IComparable<EntityID>
