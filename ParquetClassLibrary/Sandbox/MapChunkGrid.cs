@@ -17,7 +17,8 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(All.ChunksPerRegionDimension, All.ChunksPerRegionDimension);
+        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(All.Dimensions.ChunksPerRegion,
+                                                                              All.Dimensions.ChunksPerRegion);
         #endregion
 
         #region Whole-Region Characteristics

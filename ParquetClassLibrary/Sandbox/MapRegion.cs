@@ -16,8 +16,8 @@ namespace ParquetClassLibrary.Sandbox
     {
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(All.ParquetsPerRegionDimension,
-                                                                                  All.ParquetsPerRegionDimension);
+        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(All.Dimensions.ParquetsPerRegion,
+                                                                                  All.Dimensions.ParquetsPerRegion);
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -51,24 +51,24 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[All.ParquetsPerRegionDimension,
-                                                                                        All.ParquetsPerRegionDimension];
+        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[All.Dimensions.ParquetsPerRegion,
+                                                                                        All.Dimensions.ParquetsPerRegion];
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override EntityID[,] _floorLayer { get; } = new EntityID[All.ParquetsPerRegionDimension,
-                                                                           All.ParquetsPerRegionDimension];
+        protected override EntityID[,] _floorLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
+                                                                           All.Dimensions.ParquetsPerRegion];
 
         /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected override EntityID[,] _blockLayer { get; } = new EntityID[All.ParquetsPerRegionDimension,
-                                                                           All.ParquetsPerRegionDimension];
+        protected override EntityID[,] _blockLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
+                                                                           All.Dimensions.ParquetsPerRegion];
 
         /// <summary>Furniture and natural items in the region.</summary>
-        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[All.ParquetsPerRegionDimension,
-                                                                                All.ParquetsPerRegionDimension];
+        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
+                                                                                All.Dimensions.ParquetsPerRegion];
 
         /// <summary>Collectible materials in the region.</summary>
-        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[All.ParquetsPerRegionDimension,
-                                                                                 All.ParquetsPerRegionDimension];
+        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
+                                                                                 All.Dimensions.ParquetsPerRegion];
         #endregion
 
         #region Initialization

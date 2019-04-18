@@ -26,11 +26,11 @@ namespace ParquetUnitTests
         public void AllDimensionsAreGreaterThanZeroTest()
         {
             // ReSharper disable All
-            var result = All.ParquetsPerChunkDimension > 0
-                         && All.ChunksPerRegionDimension > 0
-                         && All.ParquetsPerRegionDimension > 0
-                         && All.PanelPatternWidth > 0
-                         && All.PanelPatternHeight > 0;
+            var result = All.Dimensions.ParquetsPerChunk > 0
+                         && All.Dimensions.ChunksPerRegion > 0
+                         && All.Dimensions.ParquetsPerRegion > 0
+                         && All.Dimensions.PanelsPerPatternWidth > 0
+                         && All.Dimensions.PanelsPerPatternHeight > 0;
             Assert.True(result);
         }
 
