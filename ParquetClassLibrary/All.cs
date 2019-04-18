@@ -97,7 +97,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<ParquetParent> Parquets { get; set; }
+        public static EntityCollection<ParquetParent> Parquets { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -105,7 +105,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection Items { get; set; }
+        private static EntityCollection Items { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Being"/>s.
@@ -113,7 +113,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection Beings { get; set; }
+        private static EntityCollection Beings { get; }
         #endregion
 
         #region Dimensions
