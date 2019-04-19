@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Characters;
+using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Utilities;
@@ -92,12 +93,20 @@ namespace ParquetClassLibrary
 
         #region EntityCollections
         /// <summary>
-        /// A collection of all defined parquets of all subtypes.
-        /// This collection is the source of truth about parquets for the rest of the library,
+        /// A collection of all defined <see cref="Being"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<ParquetParent> Parquets { get; }
+        public static EntityCollection<Being> Beings { get; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CraftingRecipe"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection CraftingRecipes { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -105,15 +114,15 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection Items { get; }
+        public static EntityCollection Items { get; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Being"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// A collection of all defined parquets of all subtypes.
+        /// This collection is the source of truth about parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection Beings { get; }
+        public static EntityCollection<ParquetParent> Parquets { get; }
         #endregion
 
         #region Rules and Parameters
@@ -234,9 +243,10 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Initialize Collections
-            Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
+            Beings = new EntityCollection<Being>(BeingIDs);
+            CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
             Items = new EntityCollection(ItemIDs);
-            Beings = new EntityCollection(BeingIDs);
+            Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
             #endregion
         }
         #endregion
