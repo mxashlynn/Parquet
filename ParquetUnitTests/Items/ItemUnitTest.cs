@@ -69,7 +69,7 @@ namespace ParquetUnitTests
             void TestCode()
             {
                 var _ = new Item(newItemID, ItemType.Consumable, "will fail", 1, 1, goodStackMax, 0, 0,
-                                 TestEntities.TestBlock.ID, KeyItem.None, TestEntities.TestCraftingRecipe);
+                                 TestEntities.TestBlock.ID, KeyItem.None, TestEntities.TestCraftingRecipe.ID);
             }
 
             Assert.Throws<ArgumentException>(TestCode);
