@@ -14,75 +14,59 @@ namespace ParquetUnitTests
     public static class TestEntities
     {
         #region Test Values
-        // TODO Update this once players are implemented.
+        // TODO Update this once players are implemented.  Also update type initializer.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly PlayerCharacter TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0 Test Player");
+        //public static PlayerCharacter TestPlayer { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Critter TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", Biome.Field, Behavior.Still);
+        public static Critter TestCritter { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly NPC TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
+        public static NPC TestNPC { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Floor TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
+        public static Floor TestFloor { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Block TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block");
+        public static Block TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Furnishing TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing");
+        public static Furnishing TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Collectible TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
+        public static Collectible TestCollectible { get; }
 
-        // TODO Update this once Room recipes are implemented.
+        // TODO Update this once Room recipes are implemented.  Also update type initializer.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly RoomRecipe TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
-
-        // TODO Update this once Crafting Recipe has been derived from Entity.   <---
-        /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly CraftingRecipe TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe");
-
-        // TODO Update this once Quests are implemented.
-        /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly Quest TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
+        //public static RoomRecipe TestRoomRecipe { get: }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly Item TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item",
-                                                        1, 0, 99, 1, 1, TestBlock.ID, KeyItem.None, null);
+        public static CraftingRecipe TestCraftingRecipe { get; }
+
+        // TODO Update this once Quests are implemented.  Also update type initializer.
+        /// <summary>Used in test patterns in QA routines.</summary>
+        //public static Quest TestQuest { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static Item TestItem { get; }
         #endregion
 
-        /// <summary>A collection of all test parquets of all subtypes.</summary>
-        private static readonly Dictionary<EntityID, Entity> entityDefinitions = new Dictionary<EntityID, Entity>
+        static TestEntities()
         {
-            // TODO Uncomment this once it is implemented.
-            //{ TestPlayer.ID, TestPlayer },
-            { TestCritter.ID, TestCritter },
-            { TestNPC.ID, TestNPC },
-            { TestFloor.ID, TestFloor },
-            { TestBlock.ID, TestBlock },
-            { TestFurnishing.ID, TestFurnishing },
-            { TestCollectible.ID, TestCollectible },
-            // TODO Uncomment these once they are implemented.
-            //{ TestRoomRecipe.ID, TestRoomRecipe },
-            //{ TestCraftingRecipe.ID, TestCraftingRecipe },
-            //{ TestQuest.ID, TestQuest },
-            { TestItem.ID, TestItem },
-        };
-
-        /// <summary>
-        /// Returns the specified <see cref="Entity"/>.
-        /// </summary>
-        /// <param name="in_ID">A valid, defined <see cref="EntityID"/>.</param>
-        /// <typeparam name="T">The subtype of the entity sought.  Must correspond to the given ID.</typeparam>
-        /// <returns>The specified <see cref="Entity"/>, or <c>null</c>.</returns>
-        /// <exception cref="System.InvalidCastException">
-        /// Thrown when the specified type does not correspond to the given <see cref="EntityID"/>.
-        /// </exception>
-        public static T Get<T>(EntityID in_ID) where T : Entity
-        {
-            return (T)entityDefinitions[in_ID];
+            //TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0 Test Player");
+            TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", Biome.Field, Behavior.Still);
+            TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
+            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
+            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block");
+            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing");
+            TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
+            //TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
+            TestCraftingRecipe = new CraftingRecipe(-All.ItemIDs.Minimum, 1, //"8 Test Crafting Recipe"
+                                                    new List<EntityID> { -All.ItemIDs.Minimum },
+                                                    new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
+                                                                    All.Dimensions.PanelsPerPatternHeight]);
+            //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
+            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item", 1, 0, 99, 1, 1, -All.BlockIDs.Minimum, KeyItem.None);
         }
     }
 }
