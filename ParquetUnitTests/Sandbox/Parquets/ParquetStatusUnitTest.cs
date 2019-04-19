@@ -8,8 +8,8 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeSetBelowZeroTest()
         {
-            var validStack = new ParquetStack(TestParquets.TestFloor, TestParquets.TestBlock,
-                                              TestParquets.TestFurnishing, TestParquets.TestCollectible);
+            var validStack = new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock,
+                                              TestEntities.TestFurnishing, TestEntities.TestCollectible);
             var testStatus = new ParquetStatus(validStack);
 
             testStatus.Toughness = int.MinValue;
@@ -20,8 +20,8 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
-            var validStack = new ParquetStack(TestParquets.TestFloor, TestParquets.TestBlock,
-                                              TestParquets.TestFurnishing, TestParquets.TestCollectible);
+            var validStack = new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock,
+                                              TestEntities.TestFurnishing, TestEntities.TestCollectible);
             var testStatus = new ParquetStatus(validStack);
 
             var priorToughness = testStatus.Toughness;
