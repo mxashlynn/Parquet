@@ -98,7 +98,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection<Being> Beings { get; }
+        public static EntityCollection<Being> Beings { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="CraftingRecipe"/>s.
@@ -114,7 +114,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        private static EntityCollection Items { get; }
+        public static EntityCollection Items { get; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
