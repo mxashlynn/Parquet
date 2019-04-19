@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Items
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Items.Item"/> class.
+        /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_subtype">The type of item.</param>
@@ -68,20 +68,16 @@ namespace ParquetClassLibrary.Items
                     int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
                     CraftingRecipe? in_recipe = null) : base(All.ItemIDs, in_id, in_name)
         {
-            if (string.IsNullOrEmpty(in_name))
+            if (!in_asParquet.IsValidForRange(All.ParquetIDs))
             {
-                throw new ArgumentNullException(nameof(in_name));
+                throw new ArgumentOutOfRangeException(nameof(in_id));
             }
             if (in_stackMax < 1)
             {
                 throw new ArgumentOutOfRangeException(nameof(in_stackMax));
             }
-            // TODO Do we need to bounds-check in_effectWhileHeld?
-            // TODO Do we need to bounds-check in_effectWhenUsed?
-            if (!in_asParquet.IsValidForRange(All.ParquetIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
+            // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
 
             Subtype = in_subtype;
             Price = in_price;
