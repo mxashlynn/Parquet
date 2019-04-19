@@ -39,7 +39,6 @@ namespace ParquetUnitTests
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
         }
 
-
         [Fact]
         public void StackMaxMustBePositiveTest()
         {
@@ -60,6 +59,20 @@ namespace ParquetUnitTests
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeZero);
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegativeOne);
+        }
+
+        [Fact]
+        public void RecipeForGivenItemMustProduceGivenItemTest()
+        {
+            var recipeForOtherItem = TestEntities.TestCraftingRecipe;
+
+            void TestCode()
+            {
+                var _ = new Item(newItemID, ItemType.Consumable, "will fail", 1, 1, goodStackMax, 0, 0,
+                                 TestEntities.TestBlock.ID, KeyItem.None, TestEntities.TestCraftingRecipe);
+            }
+
+            Assert.Throws<ArgumentException>(TestCode);
         }
     }
 }

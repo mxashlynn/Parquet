@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {
@@ -78,6 +79,11 @@ namespace ParquetClassLibrary.Items
             }
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
+            var nonNullCraftingRecipe = in_recipe ?? CraftingRecipe.NotCraftable;
+            if (nonNullCraftingRecipe.ItemProduced != in_id && nonNullCraftingRecipe.ItemProduced != EntityID.None)
+            {
+                throw new ArgumentException($"The values of {in_id} and {nameof(in_recipe.ItemProduced)} must be identical.");
+            }
 
             Subtype = in_subtype;
             Price = in_price;
@@ -87,7 +93,7 @@ namespace ParquetClassLibrary.Items
             EffectWhenUsed = in_effectWhenUsed;
             AsParquet = in_asParquet;
             AsKeyItem = in_asKeyItem;
-            Recipe = in_recipe ?? CraftingRecipe.NotCraftable;
+            Recipe = nonNullCraftingRecipe;
         }
         #endregion
     }
