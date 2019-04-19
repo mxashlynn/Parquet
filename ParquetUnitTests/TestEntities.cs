@@ -22,7 +22,7 @@ namespace ParquetUnitTests
         public static readonly Critter TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", Biome.Field, Behavior.Still);
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly NPC TestNpc = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
+        public static readonly NPC TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly Floor TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
@@ -38,15 +38,15 @@ namespace ParquetUnitTests
 
         // TODO Update this once Room recipes are implemented.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly Floor TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
+        //public static readonly RoomRecipe TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
 
         // TODO Update this once Crafting Recipe has been derived from Entity.   <---
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly Block TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe");
+        //public static readonly CraftingRecipe TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe");
 
         // TODO Update this once Quests are implemented.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static readonly Furnishing TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
+        //public static readonly Quest TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly Item TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item",
@@ -56,10 +56,19 @@ namespace ParquetUnitTests
         /// <summary>A collection of all test parquets of all subtypes.</summary>
         private static readonly Dictionary<EntityID, Entity> entityDefinitions = new Dictionary<EntityID, Entity>
         {
+            // TODO Uncomment this once it is implemented.
+            //{ TestPlayer.ID, TestPlayer },
+            { TestCritter.ID, TestCritter },
+            { TestNPC.ID, TestNPC },
             { TestFloor.ID, TestFloor },
             { TestBlock.ID, TestBlock },
             { TestFurnishing.ID, TestFurnishing },
             { TestCollectible.ID, TestCollectible },
+            // TODO Uncomment these once they are implemented.
+            //{ TestRoomRecipe.ID, TestRoomRecipe },
+            //{ TestCraftingRecipe.ID, TestCraftingRecipe },
+            //{ TestQuest.ID, TestQuest },
+            { TestItem.ID, TestItem },
         };
 
         /// <summary>
