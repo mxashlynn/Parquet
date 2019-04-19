@@ -8,6 +8,12 @@ namespace ParquetClassLibrary.Crafting
     /// </summary>
     public struct CraftingRecipe
     {
+        /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
+        public static readonly CraftingRecipe NotCraftable =
+            new CraftingRecipe(EntityID.None, 1, new List<EntityID> { EntityID.None },
+                               new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
+                               All.Dimensions.PanelsPerPatternHeight]);
+
         /// <summary>The type of item created by following this recipe.</summary>
         public EntityID ItemProduced { get; }
 
@@ -39,7 +45,7 @@ namespace ParquetClassLibrary.Crafting
         /// <exception cref="IndexOutOfRangeException">Thrown when in_ingredients is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when in_panelPattern has dimensions other than those given by
-        /// <see cref="All.PanelsPerPatternWidth"/> and <see cref="All.PanelsPerPatternHeight"/>.
+        /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID in_itemProduced, int in_quantityProduced,
                               List<EntityID> in_ingredients, StrikePanel[,] in_panelPattern)
@@ -52,13 +58,6 @@ namespace ParquetClassLibrary.Crafting
             {
                 throw new ArgumentOutOfRangeException(nameof(in_quantityProduced));
             }
-            foreach (var ingredient in in_ingredients)
-            {
-                if (!ingredient.IsValidForRange(All.ItemIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_ingredients));
-                }
-            }
             if (null == in_ingredients)
             {
                 throw new ArgumentNullException(nameof(in_ingredients));
@@ -66,6 +65,13 @@ namespace ParquetClassLibrary.Crafting
             if (in_ingredients.Count < 1)
             {
                 throw new IndexOutOfRangeException(nameof(in_ingredients));
+            }
+            foreach (var ingredient in in_ingredients)
+            {
+                if (!ingredient.IsValidForRange(All.ItemIDs))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(in_ingredients));
+                }
             }
             if (in_panelPattern.GetLength(0) != All.Dimensions.PanelsPerPatternWidth
                 || in_panelPattern.GetLength(1) != All.Dimensions.PanelsPerPatternHeight)

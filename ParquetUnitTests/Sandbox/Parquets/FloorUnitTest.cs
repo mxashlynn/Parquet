@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new floor.</summary>
-        private static readonly EntityID newFloorID = TestParquets.TestFloor.ID - 1;
+        private static readonly EntityID newFloorID = TestEntities.TestFloor.ID - 1;
         #endregion
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void InvalidFloorIDsRaiseExceptionTest()
         {
-            var badFloorID = TestParquets.TestBlock.ID;
+            var badFloorID = TestEntities.TestBlock.ID;
 
             void TestCode()
             {

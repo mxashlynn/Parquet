@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new collectible.</summary>
-        private static readonly EntityID newCollectibleID = TestParquets.TestCollectible.ID - 1;
+        private static readonly EntityID newCollectibleID = TestEntities.TestCollectible.ID - 1;
         #endregion
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void InvalidCollectibleIDsRaiseExceptionTest()
         {
-            var badCollectibleID = TestParquets.TestBlock.ID;
+            var badCollectibleID = TestEntities.TestBlock.ID;
 
             void TestCode()
             {
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Sandbox.Parquets
         [Fact]
         public void InvalidItemIDsRaiseExceptionTest()
         {
-            var badItemID = TestParquets.TestBlock.ID;
+            var badItemID = TestEntities.TestBlock.ID;
 
             void TestCode()
             {

@@ -39,7 +39,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestFloor.ID;
+            var parquetID = TestEntities.TestFloor.ID;
 
             var result = chunk.TrySetFloor(parquetID, invalidPosition);
 
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestFloor.ID;
+            var parquetID = TestEntities.TestFloor.ID;
 
             var result = chunk.TrySetFloor(parquetID, Vector2Int.ZeroVector);
 
@@ -71,7 +71,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestBlock.ID;
+            var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlock(parquetID, invalidPosition);
 
@@ -82,7 +82,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestBlock.ID;
+            var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlock(parquetID, Vector2Int.ZeroVector);
 
@@ -103,7 +103,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestFurnishing.ID;
+            var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishing(parquetID, invalidPosition);
 
@@ -114,7 +114,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestFurnishing.ID;
+            var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishing(parquetID, Vector2Int.ZeroVector);
 
@@ -135,7 +135,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectibleFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestCollectible.ID;
+            var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectible(parquetID, invalidPosition);
 
@@ -146,7 +146,7 @@ namespace ParquetUnitTests.Sandbox
         public void TrySetCollectibleSucceedsOnDefaultParquetAndPositionTest()
         {
             var chunk = new MapChunk();
-            var parquetID = TestParquets.TestCollectible.ID;
+            var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectible(parquetID, Vector2Int.ZeroVector);
 
