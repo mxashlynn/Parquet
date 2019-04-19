@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Items
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity, int in_stackMax,
                     int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
-                    CraftingRecipe in_recipe) : base(All.ItemIDs, in_id, in_name)
+                    CraftingRecipe? in_recipe = null) : base(All.ItemIDs, in_id, in_name)
         {
             if (string.IsNullOrEmpty(in_name))
             {
@@ -91,7 +91,7 @@ namespace ParquetClassLibrary.Items
             EffectWhenUsed = in_effectWhenUsed;
             AsParquet = in_asParquet;
             AsKeyItem = in_asKeyItem;
-            Recipe = in_recipe;
+            Recipe = in_recipe ?? CraftingRecipe.NotCraftable;
         }
         #endregion
     }
