@@ -29,6 +29,7 @@
     <Folder Include="Utilities\" />
     <Folder Include="Quests\" />
     <Folder Include="Characters\" />
+    <Folder Include="Items\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
