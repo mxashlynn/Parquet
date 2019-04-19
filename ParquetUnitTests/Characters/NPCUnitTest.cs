@@ -5,9 +5,6 @@ using Xunit;
 
 namespace ParquetClassLibrary.Characters
 {
-    /// <summary>
-    /// Models the definition for a non-player character, such as a shop keeper.
-    /// </summary>
     public class NPCUnitTest
     {
         #region Test Values

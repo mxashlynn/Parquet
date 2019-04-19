@@ -6,9 +6,6 @@ using Xunit;
 
 namespace ParquetUnitTests.Characters
 {
-    /// <summary>
-    /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
-    /// </summary>
     public class CritterUnitTest
     {
         #region Test Values
