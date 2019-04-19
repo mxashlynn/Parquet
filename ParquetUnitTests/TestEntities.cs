@@ -61,7 +61,8 @@ namespace ParquetUnitTests
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing");
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
             //TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
-            TestCraftingRecipe = new CraftingRecipe(-All.ItemIDs.Minimum, 1, //"8 Test Crafting Recipe"
+            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
+                                                    -All.ItemIDs.Minimum, 1,
                                                     new List<EntityID> { -All.ItemIDs.Minimum },
                                                     new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                                     All.Dimensions.PanelsPerPatternHeight]);

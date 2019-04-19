@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {
@@ -43,9 +44,9 @@ namespace ParquetClassLibrary.Items
         [JsonProperty(PropertyName = "in_asKeyItem")]
         public KeyItem AsKeyItem { get; }
 
-        /// <summary>How this item is produced.</summary>
+        /// <summary>How this item is crafted.</summary>
         [JsonProperty(PropertyName = "in_recipe")]
-        public CraftingRecipe Recipe { get; }
+        public EntityID Recipe { get; }
 
         #region Initialization
         /// <summary>
@@ -62,11 +63,11 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_effectWhenUsed">Item's active effect.</param>
         /// <param name="in_asParquet">The parquet represented, if any.</param>
         /// <param name="in_asKeyItem">The key item action, if any.</param>
-        /// <param name="in_recipe">How to craft this item.</param>
+        /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this item.</param>
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity, int in_stackMax,
                     int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
-                    CraftingRecipe? in_recipe = null) : base(All.ItemIDs, in_id, in_name)
+                    EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
         {
             if (!in_asParquet.IsValidForRange(All.ParquetIDs))
             {
@@ -78,6 +79,12 @@ namespace ParquetClassLibrary.Items
             }
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
+            var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;
+            var craftingRecipe = All.CraftingRecipes.Get<CraftingRecipe>(nonNullCraftingRecipeID);
+            if (craftingRecipe.ItemProduced != in_id && craftingRecipe.ItemProduced != EntityID.None)
+            {
+                throw new ArgumentException($"The values of {in_id} and {nameof(craftingRecipe.ItemProduced)} must match.");
+            }
 
             Subtype = in_subtype;
             Price = in_price;
@@ -87,7 +94,7 @@ namespace ParquetClassLibrary.Items
             EffectWhenUsed = in_effectWhenUsed;
             AsParquet = in_asParquet;
             AsKeyItem = in_asKeyItem;
-            Recipe = in_recipe ?? CraftingRecipe.NotCraftable;
+            Recipe = nonNullCraftingRecipeID;
         }
         #endregion
     }
