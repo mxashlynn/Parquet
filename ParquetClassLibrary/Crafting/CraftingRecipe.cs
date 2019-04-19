@@ -8,6 +8,9 @@ namespace ParquetClassLibrary.Crafting
     /// </summary>
     public struct CraftingRecipe
     {
+        /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
+        public static readonly CraftingRecipe NotCraftable = new CraftingRecipe(EntityID.None, 0, null, null);
+
         /// <summary>The type of item created by following this recipe.</summary>
         public EntityID ItemProduced { get; }
 
@@ -39,7 +42,7 @@ namespace ParquetClassLibrary.Crafting
         /// <exception cref="IndexOutOfRangeException">Thrown when in_ingredients is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when in_panelPattern has dimensions other than those given by
-        /// <see cref="All.PanelsPerPatternWidth"/> and <see cref="All.PanelsPerPatternHeight"/>.
+        /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID in_itemProduced, int in_quantityProduced,
                               List<EntityID> in_ingredients, StrikePanel[,] in_panelPattern)
