@@ -4,7 +4,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCSVImporter.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a

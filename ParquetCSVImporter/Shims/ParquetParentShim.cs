@@ -2,7 +2,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCSVImporter.Shims
 {
     /// <summary>
     /// Parent class for all shims of parquet definitions.
