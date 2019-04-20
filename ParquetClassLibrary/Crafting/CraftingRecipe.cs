@@ -8,59 +8,53 @@ namespace ParquetClassLibrary.Crafting
     /// </summary>
     public class CraftingRecipe : Entity
     {
+        /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
+        private static readonly List<CraftingElement> EmptyCraftingElementList =
+            new List<CraftingElement> { CraftingElement.None };
+
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
         public static readonly CraftingRecipe NotCraftable =
-            new CraftingRecipe(EntityID.None, "Not Craftable", EntityID.None, 1, new List<EntityID> { EntityID.None },
+            new CraftingRecipe(EntityID.None, "Not Craftable", EmptyCraftingElementList, EmptyCraftingElementList,
                                new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                All.Dimensions.PanelsPerPatternHeight]);
 
-        /// <summary>The type of item created by following this recipe.</summary>
-        public EntityID ItemProduced { get; }
+        /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
+        public List<CraftingElement> Products { get; }
 
-        /// <summary>The number of items created by following this recipe.</summary>
-        public int QuantityProduced { get; }
-
-        /// <summary>All materials needed to follow this recipe once.</summary>
-        public readonly List<EntityID> Ingredients;
+        /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
+        public List<CraftingElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-        public readonly StrikePanel[,] PanelPattern;
+        public StrikePanel[,] PanelPattern { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
-        /// <param name="in_itemProduced">The type of item created by following this <see cref="CraftingRecipe"/>.</param>
-        /// <param name="in_quantityProduced">The number of items created by following this <see cref="CraftingRecipe"/>.</param>
+        /// <param name="in_products">The types and quantities of <see cref="Items.Item"/>s created by following this recipe once.</param>
         /// <param name="in_ingredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="in_panelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_products"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_ingredients"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_panelPattern"/> is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="in_quantityProduced"/> is less than <c>1</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when in_itemProduced is not within the <see cref="All.ItemIDs"/> range.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when any in_ingredients are not within the <see cref="All.ItemIDs"/> range.
-        /// </exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_products"/> is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_ingredients"/> is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">
-        /// Thrown when in_panelPattern has dimensions other than those given by
+        /// Thrown when <paramref name="in_panelPattern"/> has zero-dimensions or dimensions larger than those given by
         /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
-        public CraftingRecipe(EntityID in_id, string in_name,
-                              EntityID in_itemProduced, int in_quantityProduced,
-                              List<EntityID> in_ingredients, StrikePanel[,] in_panelPattern)
+        public CraftingRecipe(EntityID in_id, string in_name, List<CraftingElement> in_products,
+                              List<CraftingElement> in_ingredients, StrikePanel[,] in_panelPattern)
             : base(All.CraftingRecipeIDs, in_id, in_name)
         {
-            if (!in_itemProduced.IsValidForRange(All.ItemIDs))
+            if (null == in_products)
             {
-                throw new ArgumentOutOfRangeException(nameof(in_itemProduced));
+                throw new ArgumentNullException(nameof(in_products));
             }
-            if (in_quantityProduced < 1)
+            if (in_products.Count < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(in_quantityProduced));
+                throw new IndexOutOfRangeException(nameof(in_products));
             }
             if (null == in_ingredients)
             {
@@ -69,13 +63,6 @@ namespace ParquetClassLibrary.Crafting
             if (in_ingredients.Count < 1)
             {
                 throw new IndexOutOfRangeException(nameof(in_ingredients));
-            }
-            foreach (var ingredient in in_ingredients)
-            {
-                if (!ingredient.IsValidForRange(All.ItemIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_ingredients));
-                }
             }
             if (null == in_panelPattern)
             {
@@ -89,8 +76,7 @@ namespace ParquetClassLibrary.Crafting
                 throw new IndexOutOfRangeException(nameof(in_panelPattern));
             }
 
-            ItemProduced = in_itemProduced;
-            QuantityProduced = in_quantityProduced;
+            Products = in_products;
             Ingredients = in_ingredients;
             PanelPattern = in_panelPattern;
         }
