@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Utilities
     }
 
     /// <summary>
-    /// Provides extension methods to <see cref="IEquatable{T}"/> collections of <see cref="Range{T}"/>.
+    /// Provides extension methods to <see cref="IEnumerable{T}"/> collections of <see cref="Range{T}"/>.
     /// </summary>
     public static class RangeCollectionExtensions
     {
