@@ -453,7 +453,7 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    // TODO: This fails with TestParquet values.  Do we want to support ToStringing test values??
+                    // Note that this fails with TestParquet values.
                     var parquet = EntityID.None != _collectibleLayer[x, y]
                         ? All.Parquets.Get<ParquetParent>(_collectibleLayer[x, y]) 
                         : EntityID.None != _furnishingLayer[x, y]
