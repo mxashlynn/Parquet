@@ -54,9 +54,8 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         /// <param name="in_point2">The second <see cref="ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> to compare.</param>
         /// <returns><c>true</c> if <c>in_point1</c> and <c>in_point2</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(SpecialPoint in_point1, SpecialPoint in_point2)
-            => !(in_point1 is null)
-            && !(in_point2 is null)
-            && in_point1.Position == in_point2.Position;
+            => (in_point1 is null && in_point2 is null)
+            || (!(in_point1 is null) && !(in_point2 is null) && in_point1.Position == in_point2.Position);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>
@@ -68,9 +67,9 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         /// <c>true</c> if <c>in_point1</c> and <c>in_point2</c> are not equal; otherwise, <c>false</c>.
         /// </returns>
         public static bool operator !=(SpecialPoint in_point1, SpecialPoint in_point2)
-            => (in_point1 is null)
-            || (in_point2 is null)
-            || in_point1.Position != in_point2.Position;
+            => (!(in_point1 is null) && !(in_point2 is null) && in_point1.Position != in_point2.Position)
+            || (!(in_point1 is null) && in_point2 is null)
+            || (in_point1 is null && !(in_point2 is null));
         #endregion
     }
 }

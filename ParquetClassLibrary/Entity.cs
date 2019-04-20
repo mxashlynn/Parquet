@@ -90,9 +90,8 @@ namespace ParquetClassLibrary
         /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Entity in_entity1, Entity in_entity2)
-            => !(in_entity1 is null)
-            && !(in_entity2 is null)
-            && in_entity1.ID == in_entity2.ID;
+            => (in_entity1 is null && in_entity2 is null)
+            || (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID == in_entity2.ID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Entity"/> is not equal to another specified instance of <see cref="Entity"/>.
@@ -101,9 +100,9 @@ namespace ParquetClassLibrary
         /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Entity in_entity1, Entity in_entity2)
-            => (in_entity1 is null)
-            || (in_entity2 is null)
-            || in_entity1.ID != in_entity2.ID;
+            => (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID != in_entity2.ID)
+            || (!(in_entity1 is null) && in_entity2 is null)
+            || (in_entity1 is null && !(in_entity2 is null));
         #endregion
 
         #region Utility Methods
