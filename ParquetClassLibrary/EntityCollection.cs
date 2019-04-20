@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
@@ -175,9 +176,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The serialized parquets.</returns>
         public string SerializeToString()
-        {
-            return JsonConvert.SerializeObject(Entities, Formatting.None);
-        }
+            => JsonConvert.SerializeObject(Entities, Formatting.None);
 
         /// <summary>
         /// Tries to deserialize an <see cref="EntityCollection"/> from the given string.
@@ -216,9 +215,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<Entity> GetEnumerator()
-        {
-            return Entities.Values.GetEnumerator();
-        }
+            => Entities.Values.GetEnumerator();
 
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection"/>.
@@ -226,7 +223,12 @@ namespace ParquetClassLibrary
         /// <returns>The representation.</returns>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            var allBoundNames = new StringBuilder();
+            foreach (var bound in Bounds)
+            {
+                allBoundNames.Append(bound);
+            }
+            return $"Collects {typeof(ParentType)} over {allBoundNames}.";
         }
         #endregion
     }
