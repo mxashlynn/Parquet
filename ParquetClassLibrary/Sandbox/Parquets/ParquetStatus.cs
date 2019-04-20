@@ -52,9 +52,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
-        }
+            => $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
         #endregion
     }
 }

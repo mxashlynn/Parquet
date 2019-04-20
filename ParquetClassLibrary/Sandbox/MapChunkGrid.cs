@@ -128,9 +128,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.None);
-        }
+            => JsonConvert.SerializeObject(this, Formatting.None);
 
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.
@@ -214,9 +212,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunkGrid"/>.</returns>
         public override string ToString()
-        {
-            return $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
-        }
+            => $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
         #endregion
     }
 }

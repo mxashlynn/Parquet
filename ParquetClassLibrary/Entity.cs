@@ -133,9 +133,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return Name;
-        }
+            => Name;
         #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="Location"/>.</returns>
         public override string ToString()
-        {
-            return $"{Position} in {RegionID}";
-        }
+            => $"{Position} in {RegionID}";
     }
 }

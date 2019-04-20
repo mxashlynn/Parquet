@@ -92,9 +92,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
-        {
-            return $"Chunk {base.ToString()}";
-        }
+            => $"Chunk {base.ToString()}";
         #endregion
     }
 }

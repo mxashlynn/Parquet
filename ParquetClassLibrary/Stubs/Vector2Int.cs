@@ -116,9 +116,7 @@ namespace ParquetClassLibrary.Stubs
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"({X}, {Y})";
-        }
+            => $"({X}, {Y})";
         #endregion
     }
 }

@@ -520,9 +520,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-        {
-            return $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
-        }
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
         #endregion
     }
 }

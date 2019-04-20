@@ -156,9 +156,7 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
         public override string ToString()
-        {
-            return $"Region {Title} {base.ToString()}";
-        }
+            => $"Region {Title} {base.ToString()}";
         #endregion
     }
 }

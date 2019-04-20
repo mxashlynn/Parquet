@@ -64,9 +64,7 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return string.Format($"[{Minimum} - {Maximum}]");
-        }
+            => $"[{Minimum} - {Maximum}]";
     }
 
     /// <summary>

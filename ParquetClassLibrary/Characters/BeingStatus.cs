@@ -41,9 +41,7 @@ namespace ParquetClassLibrary.Characters
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"{BeingDefinition.Name}";
-        }
+            => $"{BeingDefinition.Name}";
         #endregion
     }
 }
