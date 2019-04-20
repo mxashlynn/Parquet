@@ -9,8 +9,8 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// A pattern for generating a playable <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> in sandbox-mode.
-    /// Regions in the editor are stored as <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>s before being fleshed out on load in-game.
+    /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox-mode.
+    /// Regions in the editor are stored as <see cref="MapChunkGrid"/>s before being fleshed out on load in-game.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class MapChunkGrid
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> class.
+        /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
@@ -69,9 +69,9 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> class.
+        /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
+        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
         public MapChunkGrid(bool in_generateID)
         {
             // Overwrite default behavior for tests.
@@ -123,7 +123,7 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> to a string,
+        /// Serializes to the current <see cref="MapChunkGrid"/> to a string,
         /// incrementing the revision number in the process.
         /// </summary>
         /// <returns>The serialized MapRegion.</returns>
@@ -133,7 +133,7 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Tries to deserialize a <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> from the given string.
+        /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.
         /// </summary>
         /// <param name="in_serializedMapChunkGrid">The serialized region map.</param>
         /// <param name="out_mapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
@@ -210,12 +210,9 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Describes the grid's basic information.
+        /// Describes the <see cref="MapChunkGrid"/>'s basic information.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current
-        /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>.
-        /// </returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunkGrid"/>.</returns>
         public override string ToString()
         {
             return $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";

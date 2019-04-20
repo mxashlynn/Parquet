@@ -16,12 +16,12 @@ namespace ParquetClassLibrary.Utilities
         public T Maximum { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Utilities.Range`1"/> struct.
+        /// Initializes a new instance of the <see cref="Range{T}"/> struct.
         /// </summary>
         /// <param name="in_minimum">The lower end of the range.</param>
         /// <param name="in_maximum">The upper end of the range.</param>
         /// <exception cref="ArgumentException">
-        /// Thrown when the range is not well-defined.  See <see cref="T:ParquetClassLibrary.Utilities.Range.IsValid"/>.
+        /// Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.
         /// </exception>
         public Range(T in_minimum, T in_maximum)
         {
@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Utilities.Range`1"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="Range{T}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

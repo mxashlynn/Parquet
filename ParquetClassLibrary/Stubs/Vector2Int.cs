@@ -35,7 +35,7 @@ namespace ParquetClassLibrary.Stubs
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/> struct.
+        /// Initializes a new instance of the <see cref="Vector2Int"/> struct.
         /// </summary>
         /// <param name="in_x">Offset in x.</param>
         /// <param name="in_y">Offset in y.</param>
@@ -48,7 +48,7 @@ namespace ParquetClassLibrary.Stubs
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/> struct.
+        /// Serves as a hash function for a <see cref="Vector2Int"/> struct.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
@@ -57,10 +57,10 @@ namespace ParquetClassLibrary.Stubs
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is equal to the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// Determines whether the specified <see cref="Vector2Int"/> is equal to the current <see cref="Vector2Int"/>.
         /// </summary>
-        /// <param name="in_vector">The <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare with the current.</param>
-        /// <returns><c>true</c> if the <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>s are equal.</returns>
+        /// <param name="in_vector">The <see cref="Vector2Int"/> to compare with the current.</param>
+        /// <returns><c>true</c> if the <see cref="Vector2Int"/>s are equal.</returns>
         public bool Equals(Vector2Int in_vector)
         {
             return X == in_vector.X
@@ -68,13 +68,10 @@ namespace ParquetClassLibrary.Stubs
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Vector2Int"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.</param>
-        /// <returns>
-        /// <c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>; otherwise, <c>false</c>.
-        /// </returns>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Vector2Int"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="Vector2Int"/>; otherwise, <c>false</c>.</returns>
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {
@@ -115,9 +112,9 @@ namespace ParquetClassLibrary.Stubs
 
         #region Utility Methods
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="Vector2Int"/>.
         /// </summary>
-        /// <returns>The string representation.</returns>
+        /// <returns>The representation.</returns>
         public override string ToString()
         {
             return $"({X}, {Y})";

@@ -73,14 +73,14 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
+        /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
         /// <param name="in_title">The name of the new region.</param>
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">
-        /// An identifier derived from a <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/>; if null, a new RegionID is generated.
+        /// An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.
         /// </param>
         public MapRegion(string in_title = null, Color? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
@@ -96,9 +96,9 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Constructs a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> class.
+        /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the RegionID is set to a default value.</param>
+        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
         public MapRegion(bool in_generateID)
         {
             // Overwrite default behavior for tests.
@@ -110,10 +110,10 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Tries to deserialize a <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> from the given string.
+        /// Tries to deserialize a <see cref="MapRegion"/> from the given string.
         /// </summary>
-        /// <param name="in_serializedMap">The serialized <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</param>
-        /// <param name="out_map">The deserialized <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>, or null if deserialization was impossible.</param>
+        /// <param name="in_serializedMap">The serialized <see cref="MapRegion"/>.</param>
+        /// <param name="out_map">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedMap,
                                                     out MapRegion out_map)
@@ -152,9 +152,9 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Describes the region as a string containing basic information.
+        /// Describes the <see cref="MapRegion"/>'s basic information.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.</returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
         public override string ToString()
         {
             return $"Region {Title} {base.ToString()}";

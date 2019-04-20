@@ -5,12 +5,10 @@ using ParquetClassLibrary.Sandbox.Parquets;
 namespace ParquetCSVImporter.Shims
 {
     /// <summary>
-    /// Provides a default public parameterless constructor for a
-    /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/>-like
+    /// Provides a default public parameterless constructor for a <see cref="Floor"/>-like
     /// class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/>
-    /// from this class.
+    /// Provides the ability to generate a <see cref="Floor"/> from this class.
     /// </summary>
     public class FloorShim : ParquetParentShim
     {
@@ -27,7 +25,7 @@ namespace ParquetCSVImporter.Shims
         /// Converts a shim into the class is corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.</returns>
+        /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
         /// <exception cref="System.ArgumentException">
         /// Thrown when the current shim does not correspond to the specified type.
         /// </exception>

@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         Collectible Collectible { get; }
 
         /// <summary>
-        /// Indicates whether this <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> is empty.
+        /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
         bool IsEmpty { get; }

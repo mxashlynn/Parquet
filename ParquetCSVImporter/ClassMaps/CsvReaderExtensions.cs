@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using CsvHelper;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Utilities;
+using ParquetCSVImporter.Shims;
 
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
-    /// Provides extensions to the <see cref="T:CsvHelper.CsvReader"/>.
+    /// Provides extensions to the <see cref="CsvReader"/>.
     /// </summary>
     public static class CsvReaderExtensions
     {

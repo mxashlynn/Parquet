@@ -6,7 +6,7 @@ using ParquetClassLibrary.Stubs;
 namespace ParquetUnitTests.Sandbox
 {
     /// <summary>
-    /// Provides extension methods for <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> used in unit testing.
+    /// Provides extension methods for <see cref="MapChunkGrid"/> used in unit testing.
     /// </summary>
     internal static class MapChunkGridUnitTestExtensions
     {

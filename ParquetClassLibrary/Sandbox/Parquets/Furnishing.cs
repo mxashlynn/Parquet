@@ -33,12 +33,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Furnishing"/> class.
+        /// Initializes a new instance of the <see cref="Furnishing"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">
-        /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
+        /// A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.
         /// </param>
         /// <param name="in_isWalkable">If <c>true</c> this furnishing may be walked/sat upon.</param>
         /// <param name="in_itemID">The item that represents this furnishing in the inventory.</param>

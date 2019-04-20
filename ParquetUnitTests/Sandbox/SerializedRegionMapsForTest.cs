@@ -1,7 +1,7 @@
 namespace ParquetUnitTests.Sandbox
 {
     /// <summary>
-    /// Provides pre-serialized strings for use in unit testing <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>.
+    /// Provides pre-serialized strings for use in unit testing <see cref="ParquetClassLibrary.Sandbox.MapRegion"/>.
     /// Stored in a separate structure and file as the string literals can be too longthy for some editors.
     /// </summary>
     internal struct SerializedRegionMapsForTest

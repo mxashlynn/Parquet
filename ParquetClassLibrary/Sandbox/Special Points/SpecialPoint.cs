@@ -4,7 +4,7 @@ using ParquetClassLibrary.Stubs;
 namespace ParquetClassLibrary.Sandbox.SpecialPoints
 {
     /// <summary>
-    /// A location on a <see cref="T:ParquetClassLibrary.Sandbox.MapParent"/> at which something happens
+    /// A location on a <see cref="MapParent"/> at which something happens
     /// that cannot be determined from Parquet mechanics alone.  For example, critter spawning.
     /// </summary>
     public class SpecialPoint : IEquatable<SpecialPoint>
@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         public Vector2Int Position { get; }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>.
+        /// Initializes a new instance of <see cref="SpecialPoint"/>.
         /// </summary>
         /// <param name="in_position">The location of this point.</param>
         public SpecialPoint(Vector2Int in_position)
@@ -23,23 +23,16 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
 
         #region Implements IEquatable
         /// <summary>
-        /// Hash function for a <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> object.
+        /// Hash function for a <see cref="SpecialPoint"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode() => Position.GetHashCode();
 
         /// <summary>
-        /// Determines whether the specified <see cref="ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> is
-        /// equal to the current <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>.
+        /// Determines whether the specified <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>.
         /// </summary>
-        /// <param name="in_point">
-        /// The <see cref="ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> to compare with.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the given <see cref="ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/> is equal
-        /// to the current <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>;
-        /// otherwise, <c>false</c>.
-        /// </returns>
+        /// <param name="in_point">The <see cref="SpecialPoint"/> to compare with.</param>
+        /// <returns><c>true</c> if the given <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(SpecialPoint in_point)
         {
             return null != in_point
@@ -48,13 +41,10 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         }
 
         /// <summary>
-        /// Determines whether the given <see cref="object"/> is equal to this <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>.
+        /// Determines whether the given <see cref="object"/> is equal to this <see cref="SpecialPoint"/>.
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with.</param>
-        /// <returns>
-        /// <c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpecialPoint"/>; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
         {

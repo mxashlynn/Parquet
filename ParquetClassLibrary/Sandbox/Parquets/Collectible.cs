@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         /// <summary>
         /// The scale in points of the effect.  That is, how much to alter a stat if the
-        /// <see cref="T:ParquetClassLibrary.Sandbox.ID.CollectionEffect"/> is set to alter a stat.
+        /// <see cref="CollectionEffect"/> is set to alter a stat.
         /// </summary>
         [JsonProperty(PropertyName = "in_effectAmount")]
         public int EffectAmount { get; private set; }
@@ -36,12 +36,12 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Collectible"/> class.
+        /// Initializes a new instance of the <see cref="Collectible"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="in_addsToBiome">
-        /// A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.
+        /// A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.
         /// </param>
         /// <param name="in_effect">Effect of this collectible.</param>
         /// <param name="in_effectAmount">
