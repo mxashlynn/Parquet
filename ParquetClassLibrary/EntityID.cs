@@ -125,9 +125,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return _id.ToString();
-        }
+            => _id.ToString();
         #endregion
     }
 }

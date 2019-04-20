@@ -10,11 +10,9 @@ using ParquetClassLibrary.Stubs;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Provides methods that are used by all Parquet-based Map models
-    /// (for example <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> and
-    /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>, but contrast
-    /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> which is not
-    /// Parquet-based).
+    /// Provides methods that are used by all parquet-based map models
+    /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>, but contrast
+    /// <see cref="MapChunkGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent
     {
@@ -446,7 +444,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Visualizes the map as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        /// <returns>A <see langword="string"/> that represents the current map.</returns>
         internal string DumpMap()
         {
             var representation = new StringBuilder(DimensionsInParquets.Magnitude);
@@ -455,7 +453,7 @@ namespace ParquetClassLibrary.Sandbox
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    // TODO: This fails with TestParquet values.  Do we want to support ToStringing test values??
+                    // Note that this fails with TestParquet values.
                     var parquet = EntityID.None != _collectibleLayer[x, y]
                         ? All.Parquets.Get<ParquetParent>(_collectibleLayer[x, y]) 
                         : EntityID.None != _furnishingLayer[x, y]
@@ -479,7 +477,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Visualizes the map as a string, listing layers separately.
         /// Intended for Console debugging.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public string DumpMapWithLayers()
         {
             var floorRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
@@ -518,13 +516,11 @@ namespace ParquetClassLibrary.Sandbox
         }
 
         /// <summary>
-        /// Describes the map as a string containing basic information.
+        /// Describes the map's basic information.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current map.</returns>
+        /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-        {
-            return $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
-        }
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
         #endregion
     }
 }

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class EntityIDTest
+    public class EntityIDUnitTest
     {
         #region Values for Tests
         private static readonly EntityID firstLowerBound = 10;

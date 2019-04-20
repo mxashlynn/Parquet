@@ -9,10 +9,8 @@ namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// Models details of a playable chunk in sandbox-mode.
-    /// Map Chunks are composed of Parquets and Special Points.
-    /// <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> are
-    /// handmade (as opposed to procedurally generated) components
-    /// of <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/>s.
+    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
+    /// MapChunks are handmade (as opposed to procedurally generated) components of <see cref="MapRegion"/>s.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public sealed class MapChunk : MapParent
@@ -47,15 +45,14 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Serialization Methods
         /// <summary>
-        /// Tries to deserialize a <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/> from the given string.
+        /// Tries to deserialize a <see cref="MapChunk"/> from the given string.
         /// </summary>
-        /// <param name="in_serializedMap">The serialized <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>.</param>
+        /// <param name="in_serializedMap">The serialized <see cref="MapChunk"/>.</param>
         /// <param name="out_map">
-        /// The deserialized <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>, or null if deserialization was impossible.
+        /// The deserialized <see cref="MapChunk"/>, or null if deserialization was impossible.
         /// </param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap,
-                                                    out MapChunk out_map)
+        public static bool TryDeserializeFromString(string in_serializedMap, out MapChunk out_map)
         {
             var result = false;
             out_map = null;
@@ -91,13 +88,11 @@ namespace ParquetClassLibrary.Sandbox
 
         #region Utility Methods
         /// <summary>
-        /// Describes the chunk as a string containing basic information.
+        /// Describes the <see cref="MapChunk"/> as a <see langword="string"/> containing basic information.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:ParquetClassLibrary.Sandbox.MapChunk"/>.</returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
-        {
-            return $"Chunk {base.ToString()}";
-        }
+            => $"Chunk {base.ToString()}";
         #endregion
     }
 }

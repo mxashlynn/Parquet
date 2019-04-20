@@ -4,7 +4,7 @@ using ParquetClassLibrary.Stubs;
 namespace ParquetClassLibrary.Sandbox.SpecialPoints
 {
     /// <summary>
-    /// A location at which the player moves from one <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> to another.
+    /// A location at which the player moves from one <see cref="MapRegion"/> to another.
     /// </summary>
     public class ExitPoint : SpecialPoint
     {
@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         public Guid Destination { get; }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.ExitPoint"/>.
+        /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
         /// <param name="in_position">The location of this point on its containing region.</param>
         /// <param name="in_guid">The region this exit leads to.</param>

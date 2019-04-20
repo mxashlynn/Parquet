@@ -2,7 +2,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCSVImporter.Shims
 {
     /// <summary>
     /// Parent class for all shims of parquet definitions.
@@ -16,8 +16,7 @@ namespace ParquetCSVImporter.ClassMaps
         public string Name;
 
         /// <summary>
-        /// If a <see cref="T:ParquetClassLibrary.Sandbox.BiomeMask"/> flag is set,
-        /// this parquet helps generate the corresponding <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
+        /// If a <see cref="BiomeMask"/> flag is set, this parquet helps generate the corresponding <see cref="Biome"/>.
         /// </summary>
         public BiomeMask AddsToBiome;
 
@@ -25,7 +24,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// Converts a shim into the class is corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.</returns>
+        /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
         public abstract T To<T>() where T : ParquetParent;
     }
 }

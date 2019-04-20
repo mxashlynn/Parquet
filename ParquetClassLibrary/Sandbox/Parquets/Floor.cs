@@ -36,11 +36,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Floor"/> class.
+        /// Initializes a new instance of the <see cref="Floor"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_modTool">The tool used to modify this floor.</param>
         /// <param name="in_trenchName">The name to use for this floor when it has been dug out.</param>
         /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>

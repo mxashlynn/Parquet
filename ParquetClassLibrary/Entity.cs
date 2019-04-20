@@ -64,9 +64,7 @@ namespace ParquetClassLibrary
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-        {
-            return ID.GetHashCode();
-        }
+            => ID.GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="Entity"/> is equal to the current <see cref="Entity"/>.
@@ -74,9 +72,7 @@ namespace ParquetClassLibrary
         /// <param name="in_entity">The <see cref="Entity"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(Entity in_entity)
-        {
-            return in_entity != null && ID == in_entity.ID;
-        }
+            => null != in_entity && ID == in_entity.ID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Entity"/>.
@@ -85,16 +81,7 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
-        {
-            var result = false;
-
-            if (obj is Entity parquet)
-            {
-                result = Equals(parquet);
-            }
-
-            return result;
-        }
+            => obj is Entity entity && Equals(entity);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Entity"/> is equal to another specified instance of <see cref="Entity"/>.
@@ -103,13 +90,8 @@ namespace ParquetClassLibrary
         /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Entity in_entity1, Entity in_entity2)
-        {
-            if (ReferenceEquals(in_entity1, in_entity2)) return true;
-            if (ReferenceEquals(in_entity1, null)) return false;
-            if (ReferenceEquals(in_entity2, null)) return false;
-
-            return in_entity1.ID == in_entity2.ID;
-        }
+            => (in_entity1 is null && in_entity2 is null)
+            || (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID == in_entity2.ID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Entity"/> is not equal to another specified instance of <see cref="Entity"/>.
@@ -118,13 +100,9 @@ namespace ParquetClassLibrary
         /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Entity in_entity1, Entity in_entity2)
-        {
-            if (ReferenceEquals(in_entity1, in_entity2)) return false;
-            if (ReferenceEquals(in_entity1, null)) return true;
-            if (ReferenceEquals(in_entity2, null)) return true;
-
-            return in_entity1.ID != in_entity2.ID;
-        }
+            => (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID != in_entity2.ID)
+            || (!(in_entity1 is null) && in_entity2 is null)
+            || (in_entity1 is null && !(in_entity2 is null));
         #endregion
 
         #region Utility Methods
@@ -133,9 +111,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return Name;
-        }
+            => Name;
         #endregion
     }
 }
