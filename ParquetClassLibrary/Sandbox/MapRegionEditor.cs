@@ -29,10 +29,10 @@ namespace ParquetClassLibrary.Sandbox
         public static event EventHandler DisplayMap;
         #endregion
 
-        /// <summary>The <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> currently being edited.</summary>
+        /// <summary>The <see cref="MapRegion"/> currently being edited.</summary>
         private MapRegion _currentRegion;
 
-        /// <summary>Indicates whether a <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> is map loaded.</summary>
+        /// <summary>Indicates whether a <see cref="MapRegion"/> is map loaded.</summary>
         /// <value><c>true</c> if a map has been loaded; otherwise, <c>false</c>.</value>
         internal bool IsMapLoaded => null != _currentRegion;
 

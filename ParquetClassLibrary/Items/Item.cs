@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {
@@ -65,9 +64,9 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_asKeyItem">The key item action, if any.</param>
         /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this item.</param>
         [JsonConstructor]
-        public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity, int in_stackMax,
-                    int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet, KeyItem in_asKeyItem,
-                    EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
+        public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity,
+                    int in_stackMax, int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet,
+                    KeyItem in_asKeyItem, EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
         {
             if (!in_asParquet.IsValidForRange(All.ParquetIDs))
             {
@@ -80,11 +79,27 @@ namespace ParquetClassLibrary.Items
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
             var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;
-            var craftingRecipe = All.CraftingRecipes.Get<CraftingRecipe>(nonNullCraftingRecipeID);
-            if (craftingRecipe.ItemProduced != in_id && craftingRecipe.ItemProduced != EntityID.None)
+            /* TODO This check is a good idea but it is improper to call an All entity collection
+             * during initialization of an entity.  If we are to include this functionality another
+             * means of implementing it must be found.
+            if (nonNullCraftingRecipeID != CraftingRecipe.NotCraftable.ID)
             {
-                throw new ArgumentException($"The values of {in_id} and {nameof(craftingRecipe.ItemProduced)} must match.");
+                var craftingRecipe = All.CraftingRecipes.Get<CraftingRecipe>(nonNullCraftingRecipeID);
+                var givenRecipeProducesGivenItem = false;
+                foreach (var product in craftingRecipe.Products)
+                {
+                    if (product.ItemID == in_id)
+                    {
+                        givenRecipeProducesGivenItem = true;
+                        break;
+                    }
+                }
+                if (!givenRecipeProducesGivenItem)
+                {
+                    throw new ArgumentException($"The crafting recipe for {in_name} include {in_name} among its products.");
+                }
             }
+            */
 
             Subtype = in_subtype;
             Price = in_price;

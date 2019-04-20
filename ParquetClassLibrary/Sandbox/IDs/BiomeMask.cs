@@ -3,8 +3,7 @@ using System;
 namespace ParquetClassLibrary.Sandbox.IDs
 {
     /// <summary>
-    /// Indicates that a parquet contributes to the formation of one or more
-    /// <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.
+    /// Indicates that a parquet contributes to the formation of one or more <see cref="Biome"/>.
     /// </summary>
     [Flags]
     public enum BiomeMask

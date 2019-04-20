@@ -1,16 +1,17 @@
 using CsvHelper.Configuration;
+using ParquetCSVImporter.Shims;
 
 // ReSharper disable InconsistentNaming
 
 namespace ParquetCSVImporter.ClassMaps
 {
     /// <summary>
-    /// Maps the values in a <see cref="T:ParquetCSVImporter.Shims.BlockShim"/> to records that CSVHelper recognizes.
+    /// Maps the values in a <see cref="BlockShim"/> to records that CSVHelper recognizes.
     /// </summary>
     public sealed class BlockClassMap : ClassMap<BlockShim>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetCSVImporter.ClassMaps.BlockClassMap"/> class.
+        /// Initializes a new instance of the <see cref="BlockClassMap"/> class.
         /// </summary>
         public BlockClassMap()
         {

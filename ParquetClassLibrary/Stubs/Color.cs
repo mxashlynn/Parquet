@@ -29,43 +29,29 @@ namespace ParquetClassLibrary.Stubs
 
         #region IEquatable Implementation
         public override int GetHashCode()
-        {
-            return R.GetHashCode() ^
-                   (G.GetHashCode() << 2) ^
-                   (B.GetHashCode() >> 2) ^
-                   (A.GetHashCode() >> 1);
-        }
+            => (R, G, B, A).GetHashCode();
 
         public bool Equals(Color in_color)
-        {
-            return R == in_color.R
-                   && G == in_color.G
-                   && B == in_color.B
-                   && A == in_color.A;
-        }
+            => R == in_color.R
+            && G == in_color.G
+            && B == in_color.B
+            && A == in_color.A;
 
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
-        {
-            var result = false;
-
-            if (obj is Color color)
-            {
-                result = Equals(color);
-            }
-
-            return result;
-        }
+            => obj is Color color && Equals(color);
 
         public static bool operator ==(Color in_color1, Color in_color2)
-        {
-            return in_color1.Equals(in_color2);
-        }
+            => in_color2.R == in_color1.R
+            && in_color2.G == in_color1.G
+            && in_color2.B == in_color1.B
+            && in_color2.A == in_color1.A;
 
         public static bool operator !=(Color in_color1, Color in_color2)
-        {
-            return !in_color1.Equals(in_color2);
-        }
+            => in_color2.R != in_color1.R
+            || in_color2.G != in_color1.G
+            || in_color2.B != in_color1.B
+            || in_color2.A != in_color1.A;
         #endregion
 
         #region Conversion Methods

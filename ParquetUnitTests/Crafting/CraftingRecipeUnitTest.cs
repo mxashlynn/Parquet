@@ -6,16 +6,22 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class CraftingRecipeTest
+    public class CraftingRecipeUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
         private static readonly EntityID newCraftingRecipeID = TestEntities.TestCraftingRecipe.ID - 1;
 
         /// <summary>A valid minimal list of test ingredients.</summary>
-        private static readonly List<EntityID> ingredientList = new List<EntityID>
+        private static readonly List<CraftingElement> ingredientList = new List<CraftingElement>
         {
-            TestEntities.TestItem.ID - 1,
+            new CraftingElement( TestEntities.TestItem.ID - 1, 1 ),
+        };
+
+        /// <summary>A valid minimal list of test products.</summary>
+        private static readonly List<CraftingElement> productList = new List<CraftingElement>
+        {
+            new CraftingElement( TestEntities.TestItem.ID - 2, 1 ),
         };
 
         /// <summary>A trivial panel pattern.</summary>
@@ -27,8 +33,7 @@ namespace ParquetUnitTests
         public void ValidCraftingRecipeIDsArePermittedTest()
         {
             var newCraftingRecipe = new CraftingRecipe(newCraftingRecipeID, "will be created",
-                                                       TestEntities.TestItem.ID, 1, ingredientList,
-                                                       emptyPanelPattern);
+                                                       productList, ingredientList, emptyPanelPattern);
 
             Assert.NotNull(newCraftingRecipe);
         }
@@ -41,69 +46,27 @@ namespace ParquetUnitTests
             void TestCode()
             {
                 var _ = new CraftingRecipe(badCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1, ingredientList,
-                                           emptyPanelPattern);
+                                           productList, ingredientList, emptyPanelPattern);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
         }
 
         [Fact]
-        public void InvalidItemProducedIDsThrowTest()
+        public void NullAndEmptyProductListsThrowTest()
         {
-            var badItemRecipeID = TestEntities.TestBlock.ID - 1;
-
-            void TestCode()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           badItemRecipeID, 1, ingredientList,
-                                           emptyPanelPattern);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(TestCode);
-        }
-
-        [Fact]
-        public void NonPositiveQuantiesProducedThrowTest()
-        {
-            var badQuanitityProducedZero = 0;
-            var badQuanitityProducedNegativeOne = -1;
-
-            void TestCodeZero()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, badQuanitityProducedZero,
-                                           ingredientList, emptyPanelPattern);
-            }
-
-            void TestCodeNegativeOne()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, badQuanitityProducedNegativeOne,
-                                           ingredientList, emptyPanelPattern);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeZero);
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegativeOne);
-        }
-
-        [Fact]
-        public void NullAndEmptyIngredientListsThrowTest()
-        {
-            var emptyIngredientList = new List<EntityID>();
+            var emptyProductList = new List<CraftingElement>();
 
             void TestCodeNull()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           null, emptyPanelPattern);
+                                           null, ingredientList, emptyPanelPattern);
             }
 
             void TestCodeEmpty()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           emptyIngredientList, emptyPanelPattern);
+                                           emptyProductList, ingredientList, emptyPanelPattern);
             }
 
             Assert.Throws<ArgumentNullException>(TestCodeNull);
@@ -111,23 +74,25 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void NonItemIngredientListsThrowTest()
+        public void NullAndEmptyIngredientListsThrowTest()
         {
-            var badIngredientList = new List<EntityID>
-            {
-                TestEntities.TestCollectible.ID,
-            };
+            var emptyIngredientList = new List<CraftingElement>();
 
-            void TestCode()
+            void TestCodeNull()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           badIngredientList, emptyPanelPattern);
+                                           productList, null, emptyPanelPattern);
             }
 
-            Assert.Throws<ArgumentOutOfRangeException>(TestCode);
-        }
+            void TestCodeEmpty()
+            {
+                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
+                                           productList, emptyIngredientList, emptyPanelPattern);
+            }
 
+            Assert.Throws<ArgumentNullException>(TestCodeNull);
+            Assert.Throws<IndexOutOfRangeException>(TestCodeEmpty);
+        }
 
         [Fact]
         public void NullPanelPatternsThrowTest()
@@ -135,8 +100,7 @@ namespace ParquetUnitTests
             void TestCode()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           ingredientList, null);
+                                           productList, ingredientList, null);
             }
 
             Assert.Throws<ArgumentNullException>(TestCode);
@@ -156,22 +120,19 @@ namespace ParquetUnitTests
             void TestCodeTooWide()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           ingredientList, patternTooWide);
+                                           productList, ingredientList, patternTooWide);
             }
 
             void TestCodeTooHigh()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           ingredientList, patternTooHigh);
+                                           productList, ingredientList, patternTooHigh);
             }
 
             void TestCodeTooSmall()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail",
-                                           TestEntities.TestItem.ID, 1,
-                                           ingredientList, patternTooSmall);
+                                           productList, ingredientList, patternTooSmall);
             }
 
             Assert.Throws<IndexOutOfRangeException>(TestCodeTooWide);

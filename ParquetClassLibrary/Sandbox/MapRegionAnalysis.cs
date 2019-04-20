@@ -15,20 +15,19 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>Used in computing thresholds.</summary>
         private static readonly int parquetsPerLayer = All.Dimensions.ParquetsPerRegion * All.Dimensions.ParquetsPerRegion;
 
-        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
+        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="Biome"/>.</summary>
         private static readonly int landThreshold = (int)Math.Floor(parquetsPerLayer * 1.25);
 
-        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</summary>
+        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="Biome"/>.</summary>
         private static readonly int fluidThreshold = (int)Math.Floor(parquetsPerLayer * 0.75);
         #endregion
 
         #region Biome Analysis Methods
         /// <summary>
-        /// Determines which <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> the 
-        /// given <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> corresponds to.
+        /// Determines which <see cref="Biome"/> the given <see cref="MapRegion"/> corresponds to.
         /// </summary>
         /// <param name="in_region">The region to investigate.</param>
-        /// <returns>The appropriate <see cref="T:ParquetClassLibrary.Sandbox.Biome"/>.</returns>
+        /// <returns>The appropriate <see cref="Biome"/>.</returns>
         public static Biome GetBiome(this MapRegion in_region)
         {
             var result = Biome.Field;

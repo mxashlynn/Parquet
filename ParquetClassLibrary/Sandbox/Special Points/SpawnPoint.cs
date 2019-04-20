@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Sandbox.SpecialPoints
         public SpawnType WhatToSpawn { get; }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="T:ParquetClassLibrary.Sandbox.SpecialPoints.SpawnPoint"/>.
+        /// Initializes a new instance of <see cref="SpawnPoint"/>.
         /// </summary>
         /// <param name="in_position">The location of this point.</param>
         /// <param name="in_whatToSpawn">The entity that spawns in this location.</param>

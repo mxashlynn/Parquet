@@ -53,6 +53,8 @@ namespace ParquetUnitTests
 
         static TestEntities()
         {
+            var testCraftingElement = new CraftingElement(-All.ItemIDs.Minimum - 100, 1);
+
             //TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0 Test Player");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", Biome.Field, Behavior.Still);
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
@@ -62,8 +64,8 @@ namespace ParquetUnitTests
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
             //TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
-                                                    -All.ItemIDs.Minimum, 1,
-                                                    new List<EntityID> { -All.ItemIDs.Minimum },
+                                                    new List<CraftingElement> { testCraftingElement, },
+                                                    new List<CraftingElement> { testCraftingElement, },
                                                     new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                                     All.Dimensions.PanelsPerPatternHeight]);
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");

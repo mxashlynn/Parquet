@@ -56,11 +56,11 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/> class.
+        /// Initializes a new instance of the <see cref="Block"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="T:ParquetClassLibrary.Sandbox.Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
         /// <param name="in_gatherEffect">Effect of this block when gathered.</param>
         /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>

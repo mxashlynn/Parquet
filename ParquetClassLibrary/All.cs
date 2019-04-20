@@ -131,13 +131,13 @@ namespace ParquetClassLibrary
         /// </summary>
         public static class Dimensions
         {
-            /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
+            /// <summary>The length of each <see cref="Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
             public const int ParquetsPerChunk = 16;
 
             /// <summary>The length of each <see cref="Sandbox.MapRegion"/> dimension in <see cref="Sandbox.MapChunkGrid"/>s.</summary>
             public const int ChunksPerRegion = 4;
 
-            /// <summary>The length of each <see cref="T:ParquetClassLibrary.Sandbox.MapRegion"/> dimension in parquets.</summary>
+            /// <summary>The length of each <see cref="Sandbox.MapRegion"/> dimension in parquets.</summary>
             public const int ParquetsPerRegion = ChunksPerRegion * ParquetsPerChunk;
 
             /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>

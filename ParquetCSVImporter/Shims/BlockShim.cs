@@ -4,15 +4,13 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCSVImporter.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/>-like
-    /// class that CSVHelper can instantiate.
+    /// <see cref="Block"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="T:ParquetClassLibrary.Sandbox.Parquets.Block"/>
-    /// from this class.
+    /// Provides the ability to generate a <see cref="Block"/> from this class.
     /// </summary>
     public class BlockShim : ParquetParentShim
     {
@@ -42,7 +40,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>
-        /// An instance of a child class of <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetParent"/>.
+        /// An instance of a child class of <see cref="ParquetParent"/>.
         /// </returns>
         /// <exception cref="System.ArgumentException">
         /// Thrown when the current shim does not correspond to the specified type.

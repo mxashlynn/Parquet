@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         public Collectible Collectible { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> struct.
+        /// Initializes a new instance of the <see cref="ParquetStack"/> struct.
         /// </summary>
         /// <param name="in_floor">The floor-layer parquet.</param>
         /// <param name="in_block">The The floor-layer parquet-layer parquet.</param>
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         }
 
         /// <summary>
-        /// Indicates whether this <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStack"/> is empty.
+        /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
         public bool IsEmpty => null == Floor &&

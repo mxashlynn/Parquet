@@ -61,6 +61,9 @@ namespace ParquetUnitTests
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegativeOne);
         }
 
+        /* TODO This check is a good idea but it's current implementation in Item.cs is improper.
+         * See note in that file for details.
+
         [Fact]
         public void RecipeForGivenItemMustProduceGivenItemTest()
         {
@@ -74,5 +77,6 @@ namespace ParquetUnitTests
 
             Assert.Throws<ArgumentException>(TestCode);
         }
+        */
     }
 }

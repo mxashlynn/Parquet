@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class AllTest
+    public class AllUnitTest
     {
         #region Values for Tests
         /// <summary>

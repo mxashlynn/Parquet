@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:ParquetClassLibrary.Sandbox.Parquets.ParquetStatus"/> class.
+        /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
         /// </summary>
         /// <param name="in_thisStack">The parquets whose status this instance is tracking.</param>
         /// <param name="in_isTrench">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
@@ -52,9 +52,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
-        }
+            => $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
         #endregion
     }
 }
