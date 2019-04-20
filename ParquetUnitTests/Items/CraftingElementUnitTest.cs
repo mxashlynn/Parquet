@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class CraftingElementTest
+    public class CraftingElementUnitTest
     {
         [Fact]
         public void InvalidItemIDsFailTest()

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
-    public class CraftingRecipeTest
+    public class CraftingRecipeUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
