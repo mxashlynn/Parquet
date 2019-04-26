@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ParquetClassLibrary.Crafting
+namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
@@ -39,7 +40,7 @@ namespace ParquetClassLibrary.Crafting
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoomRecipe"/> struct.
+        /// Initializes a new instance of the <see cref="RoomRecipe"/> class.
         /// </summary>
         /// <param name="in_id">Unique identifier for the recipe.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.</param>
