@@ -159,17 +159,33 @@ namespace ParquetClassLibrary
             /// </summary>
             public static class Rooms
             {
-                // TODO Refactor these names to "WalkablePositions" or something similar because it is not really about the floor count.
+                /// <summary>
+                /// Maximum number of open walkable spaces needed for any room to register.
+                /// </summary>
+                public const int MinWalkableSpaces = 4;
 
                 /// <summary>
-                /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+                /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
-                public const int MinWalkableParquets = 4;
+                public const int MaxWalkableSpaces = 121;
 
                 /// <summary>
-                /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+                /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches the given <see cref="Room"/>.
                 /// </summary>
-                public const int MaxWalkableParquets = (Dimensions.ParquetsPerChunk - 1) * (Dimensions.ParquetsPerChunk - 1);
+                /// <param name="in_room">The <see cref="Room"/> to match.</param>
+                /// <returns>The best match's <see cref="EntityID"/>.</returns>
+                public static EntityID FindBestMatch(Room in_room)
+                {
+                    var matches = new List<RoomRecipe>();
+                    foreach (RoomRecipe recipe in All.RoomRecipes)
+                    {
+                        if (recipe.Matches(in_room))
+                        {
+                            matches.Add(recipe);
+                        }
+                    }
+                    return matches.Select(recipe => recipe.Priority).Max();
+                }
             }
         }
         #endregion
