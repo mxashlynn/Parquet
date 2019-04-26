@@ -3,6 +3,7 @@ using System.Linq;
 using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -123,6 +124,14 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
         public static EntityCollection<ParquetParent> Parquets { get; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="RoomRecipe"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection RoomRecipes { get; }
         #endregion
 
         #region Rules and Parameters
@@ -177,7 +186,7 @@ namespace ParquetClassLibrary
                 public static EntityID FindBestMatch(Room in_room)
                 {
                     var matches = new List<RoomRecipe>();
-                    foreach (RoomRecipe recipe in All.RoomRecipes)
+                    foreach (RoomRecipe recipe in RoomRecipes)
                     {
                         if (recipe.Matches(in_room))
                         {
@@ -263,6 +272,7 @@ namespace ParquetClassLibrary
             CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
             Items = new EntityCollection(ItemIDs);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
+            RoomRecipes = new EntityCollection(RoomRecipeIDs);
             #endregion
         }
         #endregion
