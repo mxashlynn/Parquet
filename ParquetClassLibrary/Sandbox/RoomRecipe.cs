@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Sandbox
         public readonly List<EntityID> RequiredPerimeterBlocks = new List<EntityID>();
 
         /// <summary>A list of <see cref="Sandbox.Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
-        public readonly List<EntityID> RequiredFurnishings = new List<EntityID>();
+        public readonly Dictionary<EntityID, int> RequiredFurnishings;
         #endregion
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <param name="in_requiredFurnishings">A list of furnishing types this recipre requires.</param>
         public RoomRecipe(EntityID in_id, string in_name, int in_MinimumWalkableSpaces,
                           List<EntityID> in_requiredFloors, List<EntityID> in_requiredPerimeterBlocks,
-                          List<EntityID> in_requiredFurnishings)
+                          Dictionary<EntityID, int> in_requiredFurnishings)
             : base (All.RoomRecipeIDs, in_id, in_name)
         {
             if (in_MinimumWalkableSpaces < All.Recipes.Rooms.MinWalkableSpaces
@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Sandbox
             {
                 throw new IndexOutOfRangeException(nameof(in_requiredFurnishings));
             }
-            foreach (var furnishingID in in_requiredFurnishings)
+            foreach (var furnishingID in in_requiredFurnishings.Keys)
             {
                 if (!furnishingID.IsValidForRange(All.FurnishingIDs))
                 {
@@ -91,7 +91,7 @@ namespace ParquetClassLibrary.Sandbox
             MinimumWalkableSpaces = in_MinimumWalkableSpaces;
             RequiredFloors.AddRange(in_requiredFloors ?? Enumerable.Empty<EntityID>());
             RequiredPerimeterBlocks.AddRange(in_requiredPerimeterBlocks ?? Enumerable.Empty<EntityID>());
-            RequiredFurnishings.AddRange(in_requiredFurnishings);
+            RequiredFurnishings = in_requiredFurnishings;
         }
         #endregion
 
@@ -106,9 +106,9 @@ namespace ParquetClassLibrary.Sandbox
         public bool Matches(Room in_room)
         {
             return in_room.WalkableArea.Count >= MinimumWalkableSpaces
-                && RequiredFloors.All(s => in_room.WalkableArea.Contains(s))
-                && RequiredPerimeterBlocks.All(s => in_room.Perimeter.Contains(s))
-                && RequiredFurnishings.All(s => in_room.Furnishings.Contains(s));
+                && RequiredFloors.All(id => in_room.WalkableArea.Select(space => space.Content.Floor.ID).Contains(id))
+                && RequiredPerimeterBlocks.All(id => in_room.Perimeter.Select(space => space.Content.Block.ID).Contains(id))
+                && RequiredFurnishings.All(kvp => in_room.Furnishings.Contains(kvp));
         }
     }
 }
