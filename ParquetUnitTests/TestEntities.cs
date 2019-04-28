@@ -31,6 +31,7 @@ namespace ParquetUnitTests
         public static Block TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
+        // TODO Make this an Entry.
         public static Furnishing TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
