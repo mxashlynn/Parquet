@@ -3,9 +3,6 @@ using Xunit;
 
 namespace ParquetUnitTests.Sandbox.Parquets
 {
-    /// <summary>
-    /// Simple container for one of each layer of parquet that can occupy the same position.
-    /// </summary>
     public class ParquetStackUnitTest
     {
         [Fact]
@@ -14,6 +11,12 @@ namespace ParquetUnitTests.Sandbox.Parquets
             var stack = new ParquetStack();
 
             Assert.True(stack.IsEmpty);
+        }
+
+        [Fact]
+        internal void ParquetStackDotEmptyIsEmpty()
+        {
+            Assert.True(ParquetStack.Empty.IsEmpty);
         }
     }
 }
