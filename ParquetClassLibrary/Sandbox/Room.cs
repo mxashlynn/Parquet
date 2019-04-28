@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
@@ -16,13 +15,13 @@ namespace ParquetClassLibrary.Sandbox
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public readonly ImmutableHashSet<Space> WalkableArea;
+        public readonly HashSet<Space> WalkableArea;
 
         /// <summary>
         /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public readonly ImmutableHashSet<Space> Perimeter;
+        public readonly HashSet<Space> Perimeter;
 
         /// <summary>
         /// The cached <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
@@ -109,14 +108,18 @@ namespace ParquetClassLibrary.Sandbox
             {
                 throw new ArgumentNullException(nameof(in_perimeter));
             }
-            // TODO Is this check a good idea?
-            if (!in_walkableArea.Concat(in_perimeter).Any(space => space.Content.Furnishing.IsWalkable))
+            var minimumPossiblePerimeterLength = (2 * in_walkableArea.Count) + 2;
+            if (in_perimeter.Count < minimumPossiblePerimeterLength)
+            {
+                throw new IndexOutOfRangeException(nameof(in_perimeter));
+            }
+            if (!in_walkableArea.Concat(in_perimeter).Any(space => space.IsEntry))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(in_walkableArea)} or {nameof(in_perimeter)}.");
             }
 
-            WalkableArea = in_walkableArea.ToImmutableHashSet();
-            Perimeter = in_perimeter.ToImmutableHashSet();
+            WalkableArea = in_walkableArea;
+            Perimeter = in_perimeter;
         }
         #endregion
     }
