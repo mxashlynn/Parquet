@@ -12,9 +12,9 @@ namespace ParquetUnitTests.Sandbox
         #region Test Values
         private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock, null, null);
 
-        private static readonly ParquetStack TestFloor = new ParquetStack(TestEntities.TestFloor, null, null, null);
+        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor, null, null, null);
 
-        private static readonly ParquetStack TestExit = new ParquetStack(TestEntities.TestFloor, null, TestEntities.TestFurnishing, null);
+        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor, null, TestEntities.TestFurnishing, null);
 
         private static readonly HashSet<Space> TestPerimeter= new HashSet<Space>
         {
@@ -25,44 +25,63 @@ namespace ParquetUnitTests.Sandbox
             new Space(new Vector2Int(0, 1), TestWall),
             new Space(new Vector2Int(3, 1), TestWall),
             new Space(new Vector2Int(0, 2), TestWall),
-            new Space(new Vector2Int(1, 2), TestWall),
-            new Space(new Vector2Int(2, 2), TestWall),
             new Space(new Vector2Int(3, 2), TestWall),
+            new Space(new Vector2Int(0, 3), TestWall),
+            new Space(new Vector2Int(1, 3), TestWall),
+            new Space(new Vector2Int(2, 3), TestWall),
+            new Space(new Vector2Int(3, 3), TestWall),
         };
 
         private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
         {
-            new Space(new Vector2Int(1, 1), TestFloor),
-            new Space(new Vector2Int(2, 1), TestExit),
+            new Space(new Vector2Int(1, 1), TestWalk),
+            new Space(new Vector2Int(2, 1), TestWalk),
+            new Space(new Vector2Int(1, 2), TestWalk),
+            new Space(new Vector2Int(2, 2), TestEntry),
         };
         #endregion
 
         [Fact]
-        internal void NullOrEmptyParametersThrowTest()
+        internal void NullWalkableAreaThrowsTest()
         {
             void NullWalkableArea()
             {
                 var _ = new Room(null, TestPerimeter);
             }
 
+            Assert.Throws<ArgumentNullException>(NullWalkableArea);
+        }
+
+        [Fact]
+        internal void NullPerimeterThrowsTest()
+        {
             void NullPerimeter()
             {
                 var _ = new Room(TestWalkableArea, null);
             }
 
-            void EmptyWalkableAre()
+            Assert.Throws<ArgumentNullException>(NullPerimeter);
+        }
+
+        [Fact]
+        internal void EmptyWalkableAreaThrowsTest()
+        {
+            void EmptyWalkableArea()
             {
                 var _ = new Room(new HashSet<Space>(), TestPerimeter);
             }
 
+            Assert.Throws<IndexOutOfRangeException>(EmptyWalkableArea);
+        }
+
+        [Fact]
+        internal void EmptyPerimeterThrowsTest()
+        {
             void EmptyPerimeter()
             {
                 var _ = new Room(TestWalkableArea, new HashSet<Space>());
             }
 
-            Assert.Throws<ArgumentNullException>(NullWalkableArea);
-            Assert.Throws<ArgumentNullException>(NullPerimeter);
-            Assert.Throws<IndexOutOfRangeException>(EmptyWalkableAre);
             Assert.Throws<IndexOutOfRangeException>(EmptyPerimeter);
         }
 
@@ -71,8 +90,10 @@ namespace ParquetUnitTests.Sandbox
         {
             var walkableAreaWithNoExit = new HashSet<Space>
             {
-                new Space(new Vector2Int(1, 1), TestFloor),
-                new Space(new Vector2Int(2, 1), TestFloor),
+                new Space(new Vector2Int(1, 1), TestWalk),
+                new Space(new Vector2Int(2, 1), TestWalk),
+                new Space(new Vector2Int(1, 2), TestWalk),
+                new Space(new Vector2Int(2, 2), TestWalk),
             };
 
             void BadWalkableAre()
