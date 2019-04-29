@@ -31,7 +31,6 @@ namespace ParquetUnitTests
         public static Block TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        // TODO Make this an Entry.
         public static Furnishing TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -61,7 +60,7 @@ namespace ParquetUnitTests
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block");
-            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing");
+            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", in_isEntry: true);
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
             //TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
