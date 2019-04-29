@@ -18,18 +18,6 @@ namespace ParquetClassLibrary.Sandbox
         public readonly ParquetStack Content;
 
         /// <summary>
-        /// Indicates whether this <see cref="Space"/> is an entry/exit for <see cref="RoomAnalysis"/> purposes.
-        /// </summary>
-        /// <value><c>true</c> if this is an entry; otherwise, <c>false</c>.</value>
-        public bool IsEntry
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Space"/> class.
         /// </summary>
         /// <param name="in_position">Location of this <see cref="Space"/>.</param>
