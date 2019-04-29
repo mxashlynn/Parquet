@@ -37,13 +37,13 @@ namespace ParquetClassLibrary.Sandbox
         {
             get
             {
-                return _cachedFurnishings is null
-                    ? _cachedFurnishings = WalkableArea
-                        .Concat(Perimeter)
-                        .Where(space => space.Content.Furnishing.ID != EntityID.None)
-                        .GroupBy(space => space.Content.Furnishing.ID)
-                        .ToDictionary(group => group.Key, group => group.Count())
-                    : _cachedFurnishings;
+                return _cachedFurnishings
+                       ?? (_cachedFurnishings = WalkableArea
+                                                .Concat(Perimeter)
+                                                .Where(space => null != space.Content.Furnishing
+                                                             && space.Content.Furnishing.ID != EntityID.None)
+                                                .GroupBy(space => space.Content.Furnishing.ID)
+                                                .ToDictionary(group => group.Key, group => group.Count()));
             }
         }
 
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <remarks>
         /// A value of <c>null</c> indicates that this <see cref="Room"/> has yet to be located.
         /// </remarks>
-        private Vector2Int? _cachedPosition = null;
+        private Vector2Int? _cachedPosition;
 
         /// <summary>
         /// A location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
@@ -62,11 +62,11 @@ namespace ParquetClassLibrary.Sandbox
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
         public Vector2Int Position
-            => (Vector2Int)(_cachedPosition is null
-                ? _cachedPosition = new Vector2Int(Perimeter.Select(space => space.Position.X).Min(),
-                                                   Perimeter.Select(space => space.Position.X).Min())
-                : _cachedPosition);
-
+            => (Vector2Int)(
+                null == _cachedPosition
+                    ? _cachedPosition = new Vector2Int(Perimeter.Select(space => space.Position.X).Min(),
+                                                       Perimeter.Select(space => space.Position.X).Min())
+                    : _cachedPosition);
 
         /// <summary>
         /// The cached <see cref="RoomRecipe"/> identifier.
@@ -113,7 +113,9 @@ namespace ParquetClassLibrary.Sandbox
             {
                 throw new IndexOutOfRangeException(nameof(in_perimeter));
             }
-            if (!in_walkableArea.Concat(in_perimeter).Any(space => space.IsEntry))
+            if (!in_walkableArea.Concat(in_perimeter).Any(space
+                => null != space.Content.Furnishing
+                && space.Content.Furnishing.IsEntry))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(in_walkableArea)} or {nameof(in_perimeter)}.");
             }
