@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         [JsonProperty(PropertyName = "in_itemID")]
         public EntityID ItemID { get; private set; }
 
-        /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
+        /// <summary>The <see cref="Furnishing"/> to swap with this Furnishing on an open/close action.</summary>
         [JsonProperty(PropertyName = "in_swapID")]
         public EntityID SwapID { get; private set; }
         #endregion
