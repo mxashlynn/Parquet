@@ -16,13 +16,13 @@ namespace ParquetClassLibrary.Sandbox
         public int MinimumWalkableSpaces { get; }
 
         /// <summary>An optional list of <see cref="Sandbox.Parquets.Floor"/> types this <see cref="RoomRecipe"/> requires.</summary>
-        public readonly List<EntityID> RequiredFloors = new List<EntityID>();
+        public List<EntityID> RequiredFloors { get; }
 
         /// <summary>An optional list of <see cref="Sandbox.Parquets.Block"/> types this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public readonly List<EntityID> RequiredPerimeterBlocks = new List<EntityID>();
+        public List<EntityID> RequiredPerimeterBlocks { get; }
 
         /// <summary>A list of <see cref="Sandbox.Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
-        public readonly Dictionary<EntityID, int> RequiredFurnishings;
+        public Dictionary<EntityID, int> RequiredFurnishings { get; }
         #endregion
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace ParquetClassLibrary.Sandbox
             }
 
             MinimumWalkableSpaces = in_MinimumWalkableSpaces;
-            RequiredFloors.AddRange(in_requiredFloors ?? Enumerable.Empty<EntityID>());
-            RequiredPerimeterBlocks.AddRange(in_requiredPerimeterBlocks ?? Enumerable.Empty<EntityID>());
+            RequiredFloors = (List<EntityID>)(in_requiredFloors ?? Enumerable.Empty<EntityID>());
+            RequiredPerimeterBlocks = (List<EntityID>)(in_requiredPerimeterBlocks ?? Enumerable.Empty<EntityID>());
             RequiredFurnishings = in_requiredFurnishings;
         }
         #endregion
