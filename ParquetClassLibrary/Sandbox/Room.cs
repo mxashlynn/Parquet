@@ -124,5 +124,7 @@ namespace ParquetClassLibrary.Sandbox
             Perimeter = in_perimeter;
         }
         #endregion
+
+        // TODO Either make this explicitly immutable or implement a way to clear the caches when updating.
     }
 }
