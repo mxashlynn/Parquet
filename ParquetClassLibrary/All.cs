@@ -186,6 +186,7 @@ namespace ParquetClassLibrary
                 public static EntityID FindBestMatch(Room in_room)
                 {
                     var matches = new List<RoomRecipe>();
+
                     foreach (RoomRecipe recipe in RoomRecipes)
                     {
                         if (recipe.Matches(in_room))
@@ -193,7 +194,10 @@ namespace ParquetClassLibrary
                             matches.Add(recipe);
                         }
                     }
-                    return matches.Select(recipe => recipe.Priority).Max();
+
+                    return matches.Count > 0
+                        ? (EntityID)matches.Select(recipe => recipe.Priority).Max()
+                        : EntityID.None;
                 }
             }
         }
