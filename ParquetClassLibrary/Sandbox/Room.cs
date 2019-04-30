@@ -7,7 +7,7 @@ using ParquetClassLibrary.Stubs;
 namespace ParquetClassLibrary.Sandbox
 {
     /// <summary>
-    /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
+    /// Models the a constructed <see cref="Room"/>.
     /// </summary>
     public class Room
     {

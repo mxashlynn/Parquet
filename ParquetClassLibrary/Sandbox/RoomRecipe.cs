@@ -44,10 +44,10 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_id">Unique identifier for the recipe.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.</param>
-        /// <param name="in_requiredFurnishings">A list of furnishing types this recipre requires.</param>
+        /// <param name="in_requiredFurnishings">A list of furnishing types this recipe requires.</param>
         /// <param name="in_MinimumWalkableSpaces">In recipe minimum floors.</param>
-        /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor types this recipre requires.</param>
-        /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block types this recipre requires as walls.</param>
+        /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor types this recipe requires.</param>
+        /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block types this recipe requires as walls.</param>
         public RoomRecipe(EntityID in_id, string in_name, Dictionary<EntityID, int> in_requiredFurnishings,
                           int in_MinimumWalkableSpaces = All.Recipes.Rooms.MinWalkableSpaces,
                           List<EntityID> in_optionallyRequiredWalkableFloors = null,
