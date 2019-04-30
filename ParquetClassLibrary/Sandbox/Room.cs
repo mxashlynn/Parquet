@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Sandbox
             => (Vector2Int)(
                 null == _cachedPosition
                     ? _cachedPosition = new Vector2Int(Perimeter.Select(space => space.Position.X).Min(),
-                                                       Perimeter.Select(space => space.Position.X).Min())
+                                                       Perimeter.Select(space => space.Position.Y).Min())
                     : _cachedPosition);
 
         /// <summary>
@@ -73,13 +73,13 @@ namespace ParquetClassLibrary.Sandbox
         /// A value of <see cref="EntityID.None"/> indicates that this <see cref="Room"/>
         /// has yet to be matched with a <see cref="RoomRecipe"/>.
         /// </summary>
-        private EntityID _cachedRecipeID = EntityID.None;
+        private EntityID? _cachedRecipeID;
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public EntityID RecipeID
-            => _cachedRecipeID == EntityID.None
+            => (EntityID)(null == _cachedRecipeID
                 ? _cachedRecipeID = All.Recipes.Rooms.FindBestMatch(this)
-                : _cachedRecipeID;
+                : _cachedRecipeID);
 
         #region Initialization
         /// <summary>

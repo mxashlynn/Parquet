@@ -109,7 +109,7 @@ namespace ParquetClassLibrary.Sandbox
             return in_room.WalkableArea.Count >= MinimumWalkableSpaces
                 && RequiredFloors.All(id => in_room.WalkableArea.Select(space => space.Content.Floor.ID).Contains(id))
                 && RequiredPerimeterBlocks.All(id => in_room.Perimeter.Select(space => space.Content.Block.ID).Contains(id))
-                && RequiredFurnishings.All(kvp => in_room.Furnishings.Contains(kvp));
+                && RequiredFurnishings.All(kvp => in_room.Furnishings.ContainsKey(kvp.Key) && in_room.Furnishings[kvp.Key] >= kvp.Value);
         }
     }
 }
