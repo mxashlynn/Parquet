@@ -44,13 +44,14 @@ namespace ParquetClassLibrary.Sandbox
         /// </summary>
         /// <param name="in_id">Unique identifier for the recipe.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.</param>
-        /// <param name="in_MinimumWalkableSpaces">In recipe minimum floors.</param>
-        /// <param name="in_requiredFloors">An optional list of floor types this recipre requires.</param>
-        /// <param name="in_requiredPerimeterBlocks">An optional list of block types this recipre requires as walls.</param>
         /// <param name="in_requiredFurnishings">A list of furnishing types this recipre requires.</param>
-        public RoomRecipe(EntityID in_id, string in_name, int in_MinimumWalkableSpaces,
-                          List<EntityID> in_requiredFloors, List<EntityID> in_requiredPerimeterBlocks,
-                          Dictionary<EntityID, int> in_requiredFurnishings)
+        /// <param name="in_MinimumWalkableSpaces">In recipe minimum floors.</param>
+        /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor types this recipre requires.</param>
+        /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block types this recipre requires as walls.</param>
+        public RoomRecipe(EntityID in_id, string in_name, Dictionary<EntityID, int> in_requiredFurnishings,
+                          int in_MinimumWalkableSpaces = All.Recipes.Rooms.MinWalkableSpaces,
+                          List<EntityID> in_optionallyRequiredWalkableFloors = null,
+                          List<EntityID> in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name)
         {
             if (in_MinimumWalkableSpaces < All.Recipes.Rooms.MinWalkableSpaces
@@ -58,18 +59,18 @@ namespace ParquetClassLibrary.Sandbox
             {
                 throw new ArgumentOutOfRangeException(nameof(in_MinimumWalkableSpaces));
             }
-            foreach (var floorID in in_requiredFloors ?? Enumerable.Empty<EntityID>())
+            foreach (var floorID in in_optionallyRequiredWalkableFloors ?? Enumerable.Empty<EntityID>())
             {
                 if (!floorID.IsValidForRange(All.FloorIDs))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(in_requiredFloors));
+                    throw new ArgumentOutOfRangeException(nameof(in_optionallyRequiredWalkableFloors));
                 }
             }
-            foreach (var wallID in in_requiredPerimeterBlocks ?? Enumerable.Empty<EntityID>())
+            foreach (var wallID in in_optionallyRequiredPerimeterBlocks ?? Enumerable.Empty<EntityID>())
             {
                 if (!wallID.IsValidForRange(All.BlockIDs))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(in_requiredPerimeterBlocks));
+                    throw new ArgumentOutOfRangeException(nameof(in_optionallyRequiredPerimeterBlocks));
                 }
             }
             if (null == in_requiredFurnishings)
@@ -89,8 +90,8 @@ namespace ParquetClassLibrary.Sandbox
             }
 
             MinimumWalkableSpaces = in_MinimumWalkableSpaces;
-            RequiredFloors = (List<EntityID>)(in_requiredFloors ?? Enumerable.Empty<EntityID>());
-            RequiredPerimeterBlocks = (List<EntityID>)(in_requiredPerimeterBlocks ?? Enumerable.Empty<EntityID>());
+            RequiredFloors = in_optionallyRequiredWalkableFloors ?? Enumerable.Empty<EntityID>().ToList();
+            RequiredPerimeterBlocks = in_optionallyRequiredPerimeterBlocks ?? Enumerable.Empty<EntityID>().ToList();
             RequiredFurnishings = in_requiredFurnishings;
         }
         #endregion
