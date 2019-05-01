@@ -36,11 +36,6 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_products">The types and quantities of <see cref="Items.Item"/>s created by following this recipe once.</param>
         /// <param name="in_ingredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="in_panelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_products"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_ingredients"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_panelPattern"/> is null.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_products"/> is empty.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_ingredients"/> is empty.</exception>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when <paramref name="in_panelPattern"/> has zero-dimensions or dimensions larger than those given by
         /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
