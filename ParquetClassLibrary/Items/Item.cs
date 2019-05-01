@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {
@@ -68,18 +69,14 @@ namespace ParquetClassLibrary.Items
                     int in_stackMax, int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet,
                     KeyItem in_asKeyItem, EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
         {
-            if (!in_asParquet.IsValidForRange(All.ParquetIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
             if (in_stackMax < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(in_stackMax));
+                throw new ArgumentOutOfRangeException($"{nameof(in_stackMax)} cannot be 0 or less.");
             }
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
-            var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;
-            /* TODO This check is a good idea but it is improper to call an All entity collection
+            /* TODO This check is a good idea but it is improper to get a specific entityfrom All
              * during initialization of an entity.  If we are to include this functionality another
              * means of implementing it must be found.
             if (nonNullCraftingRecipeID != CraftingRecipe.NotCraftable.ID)
@@ -100,6 +97,8 @@ namespace ParquetClassLibrary.Items
                 }
             }
             */
+
+            var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;
 
             Subtype = in_subtype;
             Price = in_price;
