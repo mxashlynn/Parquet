@@ -3,6 +3,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetCSVImporter.Shims
 {
@@ -38,28 +39,16 @@ namespace ParquetCSVImporter.Shims
         /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>
-        /// <typeparam name="T">The type to convert this shim to.</typeparam>
+        /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
         /// <returns>
         /// An instance of a child class of <see cref="ParquetParent"/>.
         /// </returns>
-        /// <exception cref="System.ArgumentException">
-        /// Thrown when the current shim does not correspond to the specified type.
-        /// </exception>
-        public override T To<T>()
+        public override TargetType To<TargetType>()
         {
-            T result;
+            Precondition.IsOfType<TargetType, Block>(typeof(TargetType).ToString());
 
-            if (typeof(T) == typeof(Block))
-            {
-                result = (T)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, GatherEffect, ItemID,
-                                                     CollectibleID, IsFlammable, IsLiquid, MaxToughness);
-            }
-            else
-            {
-                throw new ArgumentException(nameof(T));
-            }
-
-            return result;
+            return (TargetType)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, GatherEffect, ItemID,
+                                               CollectibleID, IsFlammable, IsLiquid, MaxToughness);
         }
     }
 }
