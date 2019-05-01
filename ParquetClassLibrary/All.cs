@@ -196,7 +196,7 @@ namespace ParquetClassLibrary
                     }
 
                     return matches.Count > 0
-                        ? (EntityID)matches.Select(recipe => recipe.Priority).Max()
+                        ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
                         : EntityID.None;
                 }
             }
