@@ -68,6 +68,19 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        internal static void AreInRange(IEnumerable<EntityID> in_enumerable, Range<EntityID> in_bounds,
+                                        string in_argumentName = DefaultArgumentName)
+        {
+            foreach (var id in in_enumerable ?? Enumerable.Empty<EntityID>())
+            {
+                if (!id.IsValidForRange(in_bounds))
+                {
+                    throw new ArgumentOutOfRangeException(
+                        $"{in_argumentName}: {id} is not within {in_bounds}.");
+                }
+            }
+        }
+
         internal static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
         {
             if (string.IsNullOrEmpty(in_string))

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -54,39 +55,15 @@ namespace ParquetClassLibrary.Sandbox
                           List<EntityID> in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name)
         {
+            Precondition.AreInRange(in_optionallyRequiredWalkableFloors, All.FloorIDs, nameof(in_optionallyRequiredWalkableFloors));
+            Precondition.AreInRange(in_optionallyRequiredPerimeterBlocks, All.BlockIDs, nameof(in_optionallyRequiredPerimeterBlocks));
+            Precondition.IsNotNull(in_requiredFurnishings, nameof(in_requiredFurnishings));
+            Precondition.IsNotEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
+            Precondition.AreInRange(in_requiredFurnishings.Keys, All.FurnishingIDs, nameof(in_requiredFurnishings));
             if (in_MinimumWalkableSpaces < All.Recipes.Rooms.MinWalkableSpaces
                 || in_MinimumWalkableSpaces > All.Recipes.Rooms.MaxWalkableSpaces)
             {
                 throw new ArgumentOutOfRangeException(nameof(in_MinimumWalkableSpaces));
-            }
-            foreach (var floorID in in_optionallyRequiredWalkableFloors ?? Enumerable.Empty<EntityID>())
-            {
-                if (!floorID.IsValidForRange(All.FloorIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_optionallyRequiredWalkableFloors));
-                }
-            }
-            foreach (var wallID in in_optionallyRequiredPerimeterBlocks ?? Enumerable.Empty<EntityID>())
-            {
-                if (!wallID.IsValidForRange(All.BlockIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_optionallyRequiredPerimeterBlocks));
-                }
-            }
-            if (null == in_requiredFurnishings)
-            {
-                throw new ArgumentNullException(nameof(in_requiredFurnishings));
-            }
-            if (in_requiredFurnishings.Count < 1)
-            {
-                throw new IndexOutOfRangeException(nameof(in_requiredFurnishings));
-            }
-            foreach (var furnishingID in in_requiredFurnishings.Keys)
-            {
-                if (!furnishingID.IsValidForRange(All.FurnishingIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_requiredFurnishings));
-                }
             }
 
             MinimumWalkableSpaces = in_MinimumWalkableSpaces;
