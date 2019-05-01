@@ -21,8 +21,10 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.AddsToBiome).Index(2);
 
             Map(m => m.IsWalkable).Index(3);
-            Map(m => m.ItemID).Index(4);
-            Map(m => m.SwapID).Index(5);
+            Map(m => m.IsEntry).Index(4);
+            Map(m => m.IsEnclosing).Index(5);
+            Map(m => m.ItemID).Index(6);
+            Map(m => m.SwapID).Index(7);
         }
     }
 }

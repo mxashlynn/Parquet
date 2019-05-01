@@ -15,6 +15,12 @@ namespace ParquetCSVImporter.Shims
         /// <summary>The furnishing may be walked on.</summary>
         public bool IsWalkable;
 
+        /// <summary>The furnishing may be entered through.</summary>
+        public bool IsEntry;
+
+        /// <summary>The furnishing may be a wall.</summary>
+        public bool IsEnclosing;
+
         /// <summary>The item that represents this furnishing in the inventory.</summary>
         public EntityID ItemID;
 
@@ -35,7 +41,8 @@ namespace ParquetCSVImporter.Shims
 
             if (typeof(T) == typeof(Furnishing))
             {
-                result = (T)(ParquetParent)new Furnishing(ID, Name, AddsToBiome, IsWalkable, ItemID, SwapID);
+                result = (T)(ParquetParent)new Furnishing(ID, Name, AddsToBiome, IsWalkable,
+                                                          IsEntry, IsEnclosing, SwapID);
             }
             else
             {
