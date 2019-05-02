@@ -55,6 +55,18 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when <typeparamref name="TypeToCheck"/> does not correspond to <typeparamref name="TargetType"/>.
+        /// </exception>
+        public static void IsOfType<TypeToCheck, TargetType>(string in_parameter = DefaultArgumentName)
+        {
+            if (typeof(TypeToCheck) != typeof(TargetType))
+            {
+                throw new InvalidOperationException(
+                    $"{in_parameter} is of type {typeof(TypeToCheck)} but must be of type {typeof(TargetType)}.");
+            }
+        }
+
         internal static void AreInRange(IEnumerable<EntityID> in_enumerable, List<Range<EntityID>> in_bounds,
                                         string in_argumentName = DefaultArgumentName)
         {
@@ -81,14 +93,24 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        internal static void MustBePositive(int in_number, string in_argumentName = DefaultArgumentName)
+        {
+            if (in_number < 1)
+            {
+                throw new ArgumentOutOfRangeException($"{in_argumentName} must be a positive number.");
+            }
+        }
+
+        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_string"/> is null or empty.</exception>
         internal static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
         {
             if (string.IsNullOrEmpty(in_string))
             {
-                throw new ArgumentNullException($"{in_argumentName} is null or empty.");
+                throw new IndexOutOfRangeException($"{in_argumentName} is null or empty.");
             }
         }
 
+        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is null or empty.</exception>
         internal static void IsNotEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
         {
             if (!in_enumerable?.Any() ?? false)
@@ -97,6 +119,7 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_reference"/> is null.</exception>
         internal static void IsNotNull(object in_reference, string in_argumentName = DefaultArgumentName)
         {
             if (null == in_reference)
