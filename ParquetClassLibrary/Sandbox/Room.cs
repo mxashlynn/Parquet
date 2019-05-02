@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Sandbox
 {
@@ -95,24 +96,21 @@ namespace ParquetClassLibrary.Sandbox
         /// </param>
         public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter)
         {
-            if (null == in_walkableArea)
-            {
-                throw new ArgumentNullException(nameof(in_walkableArea));
-            }
+            Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
+            Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
+
             if (in_walkableArea.Count < All.Recipes.Rooms.MinWalkableSpaces
                 || in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
             {
                 throw new IndexOutOfRangeException(nameof(in_walkableArea));
             }
-            if (null == in_perimeter)
-            {
-                throw new ArgumentNullException(nameof(in_perimeter));
-            }
+
             var minimumPossiblePerimeterLength = (2 * in_walkableArea.Count) + 2;
             if (in_perimeter.Count < minimumPossiblePerimeterLength)
             {
-                throw new IndexOutOfRangeException(nameof(in_perimeter));
+                throw new IndexOutOfRangeException($"{nameof(in_perimeter)} is too small to surround {nameof(in_walkableArea)}.");
             }
+
             if (!in_walkableArea.Concat(in_perimeter).Any(space
                 => null != space.Content.Furnishing
                 && space.Content.Furnishing.IsEntry))

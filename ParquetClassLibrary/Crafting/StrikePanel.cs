@@ -52,9 +52,13 @@ namespace ParquetClassLibrary.Crafting
             get => _idealRange;
             set
             {
-                if (!WorkingRange.ContainsRange(value))
+                if (value.Maximum > WorkingRange.Maximum)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(IdealRange));
+                    value.Maximum = WorkingRange.Maximum;
+                }
+                if (value.Minimum < WorkingRange.Minimum)
+                {
+                    value.Minimum = WorkingRange.Minimum;
                 }
 
                 _idealRange = value;
