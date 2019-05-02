@@ -31,11 +31,6 @@ namespace ParquetClassLibrary
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds)
         {
-            if (!in_bounds.IsValid())
-            {
-                throw new ArgumentException($"Invalid bounds given: {nameof(in_bounds)}");
-            }
-
             Bounds = in_bounds;
             Entities = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
         }
