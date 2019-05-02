@@ -9,15 +9,20 @@ namespace ParquetClassLibrary.Utilities
     /// </summary>
     public static class Precondition
     {
+        #region Class Defaults
         /// <summary>Text to use when no argument name is provided.</summary>
         private const string DefaultArgumentName = "Argument";
+        #endregion
 
-        // TODO: XML comment these methods.
-        // TODO: Ensure that this is the only file that documents what it throws.
-
-
-        internal static void IsInRange(EntityID in_id, Range<EntityID> in_bounds,
-                                       string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{T}"/>.
+        /// </summary>
+        /// <param name="in_id">The identifier to test.</param>
+        /// <param name="in_bounds">The range it must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
+        public static void IsInRange(EntityID in_id, Range<EntityID> in_bounds,
+                                     string in_argumentName = DefaultArgumentName)
         {
             if (!in_id.IsValidForRange(in_bounds))
             {
@@ -25,8 +30,15 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
-        internal static void IsInRange(Range<EntityID> in_innerBounds, Range<EntityID> in_outerBounds,
-                                       string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Checks if the first given <see cref="Range{T}"/> falls within the second given <see cref="Range{T}"/>.
+        /// </summary>
+        /// <param name="in_innerBounds">The range to test.</param>
+        /// <param name="in_outerBounds">The range it must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
+        public static void IsInRange(Range<EntityID> in_innerBounds, Range<EntityID> in_outerBounds,
+                                     string in_argumentName = DefaultArgumentName)
         {
             if (!in_outerBounds.ContainsRange(in_innerBounds))
             {
@@ -35,8 +47,16 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
-        internal static void IsInRange(EntityID in_id, List<Range<EntityID>> in_boundsCollection,
-                                       string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Checks if the first given <see cref="EntityID"/> falls within at least one of the
+        /// given collection of <see cref="Range{T}"/>s.
+        /// </summary>
+        /// <param name="in_id">The identifier to test.</param>
+        /// <param name="in_boundsCollection">The collection of ranges it must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
+        public static void IsInRange(EntityID in_id, List<Range<EntityID>> in_boundsCollection,
+                                     string in_argumentName = DefaultArgumentName)
         {
             if (!in_id.IsValidForRange(in_boundsCollection))
             {
@@ -45,8 +65,16 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
-        internal static void IsInRange(Range<EntityID> in_innerBounds, List<Range<EntityID>> in_boundsCollection,
-                                       string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Checks if the given <see cref="Range{T}"/> falls within at least one of the
+        /// given collection of <see cref="Range{T}"/>s.
+        /// </summary>
+        /// <param name="in_innerBounds">The range to test.</param>
+        /// <param name="in_boundsCollection">The collection of ranges it must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
+        public static void IsInRange(Range<EntityID> in_innerBounds, List<Range<EntityID>> in_boundsCollection,
+                                     string in_argumentName = DefaultArgumentName)
         {
             if (!in_boundsCollection.ContainsRange(in_innerBounds))
             {
@@ -55,45 +83,71 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        /// <summary>
+        /// Verifies that the first given <see langword="type"/> is or is derived from
+        /// the second given <see langword="type"/>.
+        /// </summary>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <typeparam name="TypeToCheck">The type to check.</typeparam>
+        /// <typeparam name="TargetType">The type of which it must be a subtype.</typeparam>
         /// <exception cref="System.InvalidOperationException">
         /// Thrown when <typeparamref name="TypeToCheck"/> does not correspond to <typeparamref name="TargetType"/>.
         /// </exception>
-        public static void IsOfType<TypeToCheck, TargetType>(string in_parameter = DefaultArgumentName)
+        public static void IsOfType<TypeToCheck, TargetType>(string in_argumentName = DefaultArgumentName)
         {
             if (typeof(TypeToCheck) != typeof(TargetType))
             {
-                throw new InvalidOperationException(
-                    $"{in_parameter} is of type {typeof(TypeToCheck)} but must be of type {typeof(TargetType)}.");
+                throw new InvalidCastException(
+                    $"{in_argumentName} is of type {typeof(TypeToCheck)} but must be of type {typeof(TargetType)}.");
             }
         }
 
-        internal static void AreInRange(IEnumerable<EntityID> in_enumerable, List<Range<EntityID>> in_bounds,
-                                        string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Verifies that all of the given <see cref="EntityID"/>s fall within the given <see cref="Range{T}"/>.
+        /// </summary>
+        /// <param name="in_enumerable">The identifiers to test.</param>
+        /// <param name="in_bounds">The range they must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
+        public static void AreInRange(IEnumerable<EntityID> in_enumerable, Range<EntityID> in_bounds,
+                                      string in_argumentName = DefaultArgumentName)
         {
             foreach (var id in in_enumerable ?? Enumerable.Empty<EntityID>())
             {
                 if (!id.IsValidForRange(in_bounds))
                 {
-                    throw new ArgumentOutOfRangeException(
-                        $"{in_argumentName}: {id} is not within {in_bounds}.");
+                    throw new ArgumentOutOfRangeException($"{in_argumentName}: {id} is not within {in_bounds}.");
                 }
             }
         }
 
-        internal static void AreInRange(IEnumerable<EntityID> in_enumerable, Range<EntityID> in_bounds,
-                                        string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Verifies that all of the given <see cref="EntityID"/>s fall within the given 
+        /// collection of <see cref="Range{T}"/>s.
+        /// </summary>
+        /// <param name="in_enumerable">The identifiers to test.</param>
+        /// <param name="in_boundsCollection">The collection of ranges they must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
+        public static void AreInRange(IEnumerable<EntityID> in_enumerable, List<Range<EntityID>> in_boundsCollection,
+                                      string in_argumentName = DefaultArgumentName)
         {
             foreach (var id in in_enumerable ?? Enumerable.Empty<EntityID>())
             {
-                if (!id.IsValidForRange(in_bounds))
+                if (!id.IsValidForRange(in_boundsCollection))
                 {
-                    throw new ArgumentOutOfRangeException(
-                        $"{in_argumentName}: {id} is not within {in_bounds}.");
+                    throw new ArgumentOutOfRangeException($"{in_argumentName}: {id} is not within {in_boundsCollection}.");
                 }
             }
         }
 
-        internal static void MustBePositive(int in_number, string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Verifies that the given number is positive.
+        /// </summary>
+        /// <param name="in_number">The number to test.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the number is zero or less.</exception>
+        public static void MustBePositive(int in_number, string in_argumentName = DefaultArgumentName)
         {
             if (in_number < 1)
             {
@@ -101,8 +155,13 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_string"/> is null or empty.</exception>
-        internal static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
+        /// <summary>
+        /// Verifies that the given <see langword="string"/> is not empty.
+        /// </summary>
+        /// <param name="in_string">The string to test.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="IndexOutOfRangeException">When <paramref name="in_string"/> is null or empty.</exception>
+        public static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
         {
             if (string.IsNullOrEmpty(in_string))
             {
@@ -110,8 +169,13 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        /// <summary>
+        /// Verifies that the given <see cref="IEnumerable{T}"/> is not empty.
+        /// </summary>
+        /// <param name="in_enumerable">The collection to test.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is null or empty.</exception>
-        internal static void IsNotEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
+        public static void IsNotEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
         {
             if (!in_enumerable?.Any() ?? false)
             {
@@ -119,8 +183,13 @@ namespace ParquetClassLibrary.Utilities
             }
         }
 
+        /// <summary>
+        /// Verifies that the given reference is not <c>null</c>.
+        /// </summary>
+        /// <param name="in_reference">The reference to test.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_reference"/> is null.</exception>
-        internal static void IsNotNull(object in_reference, string in_argumentName = DefaultArgumentName)
+        public static void IsNotNull(object in_reference, string in_argumentName = DefaultArgumentName)
         {
             if (null == in_reference)
             {
