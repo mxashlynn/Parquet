@@ -70,10 +70,8 @@ namespace ParquetClassLibrary.Items
                     KeyItem in_asKeyItem, EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
-            if (in_stackMax < 1)
-            {
-                throw new ArgumentOutOfRangeException($"{nameof(in_stackMax)} cannot be 0 or less.");
-            }
+            Precondition.MustBePositive(in_stackMax, nameof(in_stackMax));
+
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
             /* TODO This check is a good idea but it is improper to get a specific entityfrom All

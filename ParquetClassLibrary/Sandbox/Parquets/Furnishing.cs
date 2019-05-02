@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
@@ -58,15 +57,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(All.ItemIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_itemID));
-            }
             var nonNullSwapID = in_swapID ?? EntityID.None;
-            if (!nonNullSwapID.IsValidForRange(Bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_swapID));
-            }
+
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
+            Precondition.IsInRange(nonNullSwapID, Bounds, nameof(in_swapID));
 
             IsWalkable = in_isWalkable;
             IsEntry = in_isEntry;
