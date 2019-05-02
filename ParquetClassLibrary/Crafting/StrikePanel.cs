@@ -43,10 +43,6 @@ namespace ParquetClassLibrary.Crafting
         /// The range of values this panel targets for a completed craft.
         /// The values must fall within the range of <c see="WorkingRange"/>.
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when the either the <see cref="Range{T}.Maximum"/> or <see cref="Range{T}.Minimum"/> are beyond
-        /// the range specified in <c see="WorkingRange"/>.
-        /// </exception>
         public Range<int> IdealRange
         {
             get => _idealRange;
