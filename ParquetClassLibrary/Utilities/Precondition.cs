@@ -84,8 +84,8 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Verifies that the first given <see langword="type"/> is or is derived from
-        /// the second given <see langword="type"/>.
+        /// Verifies that the first given <see langword="class"/> is or is derived from
+        /// the second given <see langword="class"/>.
         /// </summary>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <typeparam name="TypeToCheck">The type to check.</typeparam>
@@ -95,7 +95,8 @@ namespace ParquetClassLibrary.Utilities
         /// </exception>
         public static void IsOfType<TypeToCheck, TargetType>(string in_argumentName = DefaultArgumentName)
         {
-            if (typeof(TypeToCheck) != typeof(TargetType))
+            if (!typeof(TypeToCheck).IsSubclassOf(typeof(TargetType))
+                && typeof(TypeToCheck) != typeof(TargetType))
             {
                 throw new InvalidCastException(
                     $"{in_argumentName} is of type {typeof(TypeToCheck)} but must be of type {typeof(TargetType)}.");
