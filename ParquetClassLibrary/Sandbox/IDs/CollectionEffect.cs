@@ -7,8 +7,6 @@
     {
         None,
         Item,
-        Health,
-        Mana,
-        Money,
+        BiomeTime,
     }
 }

@@ -6,6 +6,6 @@ ID,Name,AddsToBiome,Effect,EffectAmount,ItemID
 60003,Bones,Deserted,Item,0,100003
 60004,Ice Crystal,Frozen,Item,0,100004
 60005,Copper Ore,None,Item,0,100005
-60006,Heart,None,Health,10,0
-60007,Star,None,Mana,10,0
-60008,Coin,None,Money,1,0
+60006,Heart,None,BiomeTime,10,0
+60007,Star,None,BiomeTime,10,0
+60008,Water Bottle,None,BiomeTime,10,0
