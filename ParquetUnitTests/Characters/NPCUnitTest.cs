@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ParquetClassLibrary.Characters
 {
-    public class NPCUnitUnitTest
+    public class NPCUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
