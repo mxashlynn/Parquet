@@ -19,6 +19,16 @@ namespace ParquetClassLibrary.Characters
         // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
         public string Pronoun { get; }
 
+        /// <summary>The story character that this <see cref="Character"/> represents.</summary>
+        /// <remarks>
+        /// This identifier provides a link between software character <see langword="class"/>es
+        /// and the characters written of in a game's narrative that they represent.  The goal
+        /// is that these identifiers be able to span any number of shipped titles, allowing a
+        /// sequel title to import data from prior titles in such a way that an one game's <see cref="NPC"/>
+        /// can become another game's <see cref="PlayerCharacter"/>.
+        /// </remarks>
+        public string StoryCharacterID { get; }
+
         /// <summary>Types of parquets this <see cref="Character"/> avoids.</summary>
         public readonly List<EntityID> Quests = new List<EntityID>();
 
@@ -51,9 +61,9 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_pronoun">How to refer to this <see cref="Character"/>.</param>
         protected Character(Range<EntityID> in_bounds, EntityID in_id, string in_name, Biome in_nativeBiome,
                             Behavior in_primaryBehavior, List<EntityID> in_avoids = null,
-                            List<EntityID> in_seeks = null, List<EntityID> in_quests = null,
-                            List<string> in_dialogue = null, List<EntityID> in_inventory = null,
-                            string in_pronoun = DefaultPronoun)
+                            List<EntityID> in_seeks = null, string in_storyCharacterID = "",
+                            List<EntityID> in_quests = null, List<string> in_dialogue = null,
+                            List<EntityID> in_inventory = null, string in_pronoun = DefaultPronoun)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
             foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
@@ -81,6 +91,7 @@ namespace ParquetClassLibrary.Characters
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
 
             Pronoun = nonNullPronoun;
+            StoryCharacterID = in_storyCharacterID;
             Quests.AddRange(in_quests ?? Enumerable.Empty<EntityID>());
             Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
             Inventory.AddRange(in_inventory ?? Enumerable.Empty<EntityID>());
