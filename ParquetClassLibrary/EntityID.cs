@@ -114,7 +114,11 @@ namespace ParquetClassLibrary
 
             foreach (var idRange in in_ranges)
             {
-                result |= IsValidForRange(idRange);
+                if (IsValidForRange(idRange))
+                {
+                    result = true;
+                    break;
+                }
             }
 
             return result;
