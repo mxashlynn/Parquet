@@ -3,6 +3,7 @@ using System.Linq;
 using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -123,6 +124,14 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
         public static EntityCollection<ParquetParent> Parquets { get; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="RoomRecipe"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection RoomRecipes { get; }
         #endregion
 
         #region Rules and Parameters
@@ -159,17 +168,37 @@ namespace ParquetClassLibrary
             /// </summary>
             public static class Rooms
             {
-                // TODO Refactor these names to "WalkablePositions" or something similar because it is not really about the floor count.
+                /// <summary>
+                /// Maximum number of open walkable spaces needed for any room to register.
+                /// </summary>
+                public const int MinWalkableSpaces = 4;
 
                 /// <summary>
-                /// Maximum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+                /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
-                public const int MinWalkableParquets = 4;
+                public const int MaxWalkableSpaces = 121;
 
                 /// <summary>
-                /// Minimum number of open <see cref="Sandbox.Parquets.Floor"/> needed for any room to register.
+                /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches the given <see cref="Room"/>.
                 /// </summary>
-                public const int MaxWalkableParquets = (Dimensions.ParquetsPerChunk - 1) * (Dimensions.ParquetsPerChunk - 1);
+                /// <param name="in_room">The <see cref="Room"/> to match.</param>
+                /// <returns>The best match's <see cref="EntityID"/>.</returns>
+                public static EntityID FindBestMatch(Room in_room)
+                {
+                    var matches = new List<RoomRecipe>();
+
+                    foreach (RoomRecipe recipe in RoomRecipes)
+                    {
+                        if (recipe.Matches(in_room))
+                        {
+                            matches.Add(recipe);
+                        }
+                    }
+
+                    return matches.Count > 0
+                        ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
+                        : EntityID.None;
+                }
             }
         }
         #endregion
@@ -247,6 +276,7 @@ namespace ParquetClassLibrary
             CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
             Items = new EntityCollection(ItemIDs);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
+            RoomRecipes = new EntityCollection(RoomRecipeIDs);
             #endregion
         }
         #endregion

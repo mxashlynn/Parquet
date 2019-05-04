@@ -3,6 +3,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Sandbox;
 using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Sandbox.Parquets;
 
@@ -36,9 +37,8 @@ namespace ParquetUnitTests
         /// <summary>Used in test patterns in QA routines.</summary>
         public static Collectible TestCollectible { get; }
 
-        // TODO Update this once Room recipes are implemented.  Also update type initializer.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static RoomRecipe TestRoomRecipe { get: }
+        public static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static CraftingRecipe TestCraftingRecipe { get; }
@@ -60,9 +60,13 @@ namespace ParquetUnitTests
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block");
-            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing");
+            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", in_isEntry: true);
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible");
-            //TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "7 Test Room Recipe");
+            TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe",
+                                            new Dictionary<EntityID, int> { { -All.FurnishingIDs.Minimum, 1 } },
+                                            All.Recipes.Rooms.MinWalkableSpaces + 1,
+                                            new List<EntityID> { -All.FloorIDs.Minimum },
+                                            new List<EntityID> { -All.BlockIDs.Minimum });
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
                                                     new List<CraftingElement> { testCraftingElement, },
                                                     new List<CraftingElement> { testCraftingElement, },

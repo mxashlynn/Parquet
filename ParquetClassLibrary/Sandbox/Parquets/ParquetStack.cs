@@ -5,6 +5,9 @@ namespace ParquetClassLibrary.Sandbox.Parquets
     /// </summary>
     public struct ParquetStack : IParquetStack
     {
+        /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
+        public static ParquetStack Empty => new ParquetStack(null, null, null, null);
+
         /// <summary>The floor contained in this stack.</summary>
         public Floor Floor { get; }
 
