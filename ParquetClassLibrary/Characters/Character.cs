@@ -29,16 +29,17 @@ namespace ParquetClassLibrary.Characters
         /// </remarks>
         public string StoryCharacterID { get; }
 
-        /// <summary>Types of parquets this <see cref="Character"/> avoids.</summary>
-        public readonly List<EntityID> Quests = new List<EntityID>();
+        /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
+        /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
+        public readonly List<EntityID> StartingQuests = new List<EntityID>();
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
         // TODO This is just a place-holder, I am not at all sure how we will handle this.
         public readonly List<string> Dialogue = new List<string>();
 
-        /// <summary>This <see cref="Character"/>'s belongings.</summary>
-        // TODO This is just a place-holder, inventory may need its own class.
-        public readonly List<EntityID> Inventory = new List<EntityID>();
+        /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
+        /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
+        public readonly List<EntityID> StartingInventory = new List<EntityID>();
         #endregion
 
         #region Initialization
@@ -51,50 +52,50 @@ namespace ParquetClassLibrary.Characters
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Character"/>.  Cannot be null or empty.</param>
-        /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="Character"/> is most comfortable.</param>
         /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
         /// <param name="in_avoids">Any parquets this <see cref="Character"/> avoids.</param>
         /// <param name="in_seeks">Any parquets this <see cref="Character"/> seeks.</param>
-        /// <param name="in_quests">Any quests this <see cref="Character"/> has to offer.</param>
-        /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
-        /// <param name="in_inventory">Any items this <see cref="Character"/> owns.</param>
         /// <param name="in_pronoun">How to refer to this <see cref="Character"/>.</param>
+        /// <param name="in_storyCharacterID">A means of identifying this <see cref="Character"/> across multiple shipped game titles.</param>
+        /// <param name="in_startingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
+        /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
+        /// <param name="in_startingInventory">Any items this <see cref="Character"/> owns at the outset.</param>
         protected Character(Range<EntityID> in_bounds, EntityID in_id, string in_name, Biome in_nativeBiome,
                             Behavior in_primaryBehavior, List<EntityID> in_avoids = null,
-                            List<EntityID> in_seeks = null, string in_storyCharacterID = "",
-                            List<EntityID> in_quests = null, List<string> in_dialogue = null,
-                            List<EntityID> in_inventory = null, string in_pronoun = DefaultPronoun)
+                            List<EntityID> in_seeks = null, string in_pronoun = DefaultPronoun,
+                            string in_storyCharacterID = "", List<EntityID> in_startingQuests = null,
+                            List<string> in_dialogue = null, List<EntityID> in_startingInventory = null)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
+            foreach (var questID in in_startingQuests ?? Enumerable.Empty<EntityID>())
             {
                 if (!questID.IsValidForRange(All.QuestIDs))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(in_quests));
+                    throw new ArgumentOutOfRangeException(nameof(in_startingQuests));
                 }
             }
             if (null == in_dialogue)
             {
                 in_dialogue = new List<string>();
             }
-            if (null == in_inventory)
+            if (null == in_startingInventory)
             {
-                in_inventory = new List<EntityID>();
+                in_startingInventory = new List<EntityID>();
             }
-            foreach (var itemID in in_inventory ?? Enumerable.Empty<EntityID>())
+            foreach (var itemID in in_startingInventory ?? Enumerable.Empty<EntityID>())
             {
                 if (!itemID.IsValidForRange(All.ItemIDs))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(in_inventory));
+                    throw new ArgumentOutOfRangeException(nameof(in_startingInventory));
                 }
             }
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
 
             Pronoun = nonNullPronoun;
             StoryCharacterID = in_storyCharacterID;
-            Quests.AddRange(in_quests ?? Enumerable.Empty<EntityID>());
+            StartingQuests.AddRange(in_startingQuests ?? Enumerable.Empty<EntityID>());
             Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            Inventory.AddRange(in_inventory ?? Enumerable.Empty<EntityID>());
+            StartingInventory.AddRange(in_startingInventory ?? Enumerable.Empty<EntityID>());
         }
         #endregion
     }
