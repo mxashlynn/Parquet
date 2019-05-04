@@ -7,6 +7,7 @@ namespace ParquetClassLibrary.Characters
     {
         // TODO Update these with more reasonable values.
         // TODO Will this actually be expanded into a class that governs behavior?
+        PlayerControlled,
         Still,
         Homebody,
         Adventurer,
