@@ -134,7 +134,7 @@ namespace ParquetClassLibrary.Sandbox
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
-                    if (AssemblyInfo.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+                    if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
                         out_map = JsonConvert.DeserializeObject<MapRegion>(in_serializedMap);
                         result = true;

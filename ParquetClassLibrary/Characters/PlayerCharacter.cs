@@ -13,8 +13,7 @@ namespace ParquetClassLibrary.Characters
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        // TODO We probably ought to differentiate between character versions and region versions.
-        public readonly string DataVersion = AssemblyInfo.SupportedDataVersion;
+        public readonly string DataVersion = AssemblyInfo.SupportedCharacterDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
