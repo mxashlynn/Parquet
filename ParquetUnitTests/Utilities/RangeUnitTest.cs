@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Utilities
         [Fact]
         public void RangeMustBeWillDefinedTest()
         {
-            Assert.Throws<ArgumentException>(() => { var _ = new Range<int>(upperBound, lowerBound); });
+            Assert.Throws<InvalidOperationException>(() => { var _ = new Range<int>(upperBound, lowerBound); });
         }
 
         [Fact]

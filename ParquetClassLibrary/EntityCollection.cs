@@ -31,11 +31,6 @@ namespace ParquetClassLibrary
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds)
         {
-            if (!in_bounds.IsValid())
-            {
-                throw new ArgumentException(nameof(in_bounds));
-            }
-
             Bounds = in_bounds;
             Entities = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
         }
@@ -49,14 +44,8 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="Entity"/> was added successfully; <c>false</c> otherwise.</returns>
         public bool Add(Entity in_entity)
         {
-            if (null == in_entity)
-            {
-                throw new ArgumentNullException(nameof(in_entity));
-            }
-            if (!in_entity.ID.IsValidForRange(Bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_entity.ID));
-            }
+            Precondition.IsNotNull(in_entity, nameof(in_entity));
+            Precondition.IsInRange(in_entity.ID, Bounds, nameof(in_entity));
 
             var isNew = !Entities.ContainsKey(in_entity.ID);
 
@@ -79,12 +68,9 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if all of the <see cref="Entity"/>s were added successfully; <c>false</c> otherwise.</returns>
         public bool AddRange(IEnumerable<Entity> in_entities)
         {
-            var succeeded = true;
+            Precondition.IsNotNull(in_entities, nameof(in_entities));
 
-            if (null == in_entities)
-            {
-                throw new ArgumentNullException(nameof(in_entities));
-            }
+            var succeeded = true;
 
             foreach (var entity in in_entities)
             {
@@ -112,10 +98,7 @@ namespace ParquetClassLibrary
         /// <remarks>This method is equivalent to <see cref="Dictionary{EntityID, Entity}.ContainsKey"/>.</remarks>
         public bool Contains(EntityID in_id)
         {
-            if (!in_id.IsValidForRange(Bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
             return Entities.ContainsKey(in_id);
         }
@@ -143,10 +126,7 @@ namespace ParquetClassLibrary
         /// </returns>
         public bool Remove(EntityID in_id)
         {
-            if (!in_id.IsValidForRange(Bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
             return Entities.Remove(in_id);
         }
@@ -161,10 +141,7 @@ namespace ParquetClassLibrary
         /// <returns>The specified <typeparamref name="T"/>.</returns>
         public T Get<T>(EntityID in_id) where T : ParentType
         {
-            if (!in_id.IsValidForRange(Bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
             return (T)Entities[in_id];
         }

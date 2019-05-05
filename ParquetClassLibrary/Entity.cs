@@ -42,14 +42,8 @@ namespace ParquetClassLibrary
         [JsonConstructor]
         protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name)
         {
-            if (!in_id.IsValidForRange(in_bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
-            if (string.IsNullOrEmpty(in_name))
-            {
-                throw new ArgumentNullException(nameof(in_name));
-            }
+            Precondition.IsInRange(in_id, in_bounds, nameof(in_id));
+            Precondition.IsNotEmpty(in_name, nameof(in_name));
 
             ID = in_id;
             Name = in_name;

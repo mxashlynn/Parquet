@@ -55,10 +55,8 @@ namespace ParquetClassLibrary.Sandbox.Parquets
             : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(All.ItemIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_itemID));
-            }
+
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
 
             Effect = in_effect;
             EffectAmount = in_effectAmount;

@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Utilities
 
             if (!IsValid())
             {
-                throw new ArgumentException($"{nameof(in_minimum)} and {nameof(in_maximum)}");
+                throw new InvalidOperationException($"{nameof(in_minimum)} must be less than or equal to {nameof(in_maximum)}.");
             }
         }
 

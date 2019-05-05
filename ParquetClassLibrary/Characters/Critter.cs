@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
@@ -25,10 +25,7 @@ namespace ParquetClassLibrary.Characters
                        List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
             : base(All.CritterIDs, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            if (!in_id.IsValidForRange(All.CritterIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, All.CritterIDs, nameof(in_id));
         }
     }
 }

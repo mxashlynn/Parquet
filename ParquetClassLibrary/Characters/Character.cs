@@ -56,26 +56,17 @@ namespace ParquetClassLibrary.Characters
                             string in_pronoun = DefaultPronoun)
             : base(in_bounds, in_id, in_name, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            foreach (var questID in in_quests ?? Enumerable.Empty<EntityID>())
-            {
-                if (!questID.IsValidForRange(All.QuestIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_quests));
-                }
-            }
-            foreach (var itemID in in_inventory ?? Enumerable.Empty<EntityID>())
-            {
-                if (!itemID.IsValidForRange(All.ItemIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_inventory));
-                }
-            }
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
+            var nonNullQuests = in_quests ?? Enumerable.Empty<EntityID>();
+            var nonNullInventory = in_inventory ?? Enumerable.Empty<EntityID>();
+
+            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_quests));
+            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_inventory));
 
             Pronoun = nonNullPronoun;
-            Quests.AddRange(in_quests ?? Enumerable.Empty<EntityID>());
+            Quests.AddRange(nonNullQuests);
             Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            Inventory.AddRange(in_inventory ?? Enumerable.Empty<EntityID>());
+            Inventory.AddRange(nonNullInventory);
         }
         #endregion
     }
