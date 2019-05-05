@@ -4,7 +4,7 @@ This class library implements core game mechanics and data models for a crafting
 
 # Version 0.1.0 Warning
 
-Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) is hit the project should be much more usable.
+Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Pre-Alpha Vertical Slice milestone](https://github.com/mxashlynn/Parquet/milestone/2) and [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) have both been hit the project should be much more usable.
 
 # Goals
 
