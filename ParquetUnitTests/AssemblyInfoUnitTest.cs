@@ -25,13 +25,13 @@ namespace ParquetUnitTests
         [Fact]
         public void SupportedCharacterDataVersionIsDefinedTest()
         {
-            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedCharacterDataVersion));
+            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedBeingDataVersion));
         }
 
         [Fact]
         public void SupportedCharacterDataVersionIsNotInvalidTest()
         {
-            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedCharacterDataVersion);
+            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedBeingDataVersion);
         }
     }
 }

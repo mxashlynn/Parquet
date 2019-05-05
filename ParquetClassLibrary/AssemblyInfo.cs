@@ -44,7 +44,7 @@ namespace ParquetClassLibrary
         /// - Minor ⇒ Backwards-compatible changes, preserving existing saves.
         /// - Build ⇒ Procedural updates that do not imply any changes.
         /// </remarks>
-        public const string SupportedCharacterDataVersion = "0.1.0";
+        public const string SupportedBeingDataVersion = "0.1.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>

@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Characters
         [Fact]
         public void ValidNpcIDsArePermittedTest()
         {
-            var newNPC = new NPC(newNpcID, "will be created", Biome.Forest, Behavior.Still);
+            var newNPC = new NPC(newNpcID, "NPC", "will be created", Biome.Forest, Behavior.Still);
 
             Assert.NotNull(newNPC);
         }
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Characters
 
             void TestCode()
             {
-                var _ = new NPC(badNpcID, "will fail", Biome.Forest, Behavior.Still);
+                var _ = new NPC(badNpcID, "NPC", "will fail", Biome.Forest, Behavior.Still);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

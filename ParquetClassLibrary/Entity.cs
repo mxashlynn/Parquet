@@ -30,7 +30,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         [JsonProperty(PropertyName = "in_name")]
-        public string Name { get; }
+        public virtual string Name { get; }
 
         #region Initialization
         /// <summary>
