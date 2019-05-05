@@ -83,20 +83,21 @@ namespace ParquetClassLibrary.Characters
             : base(in_bounds, in_id, in_personalName, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
-            var nonNullQuests = in_quests ?? Enumerable.Empty<EntityID>();
-            var nonNullInventory = in_inventory ?? Enumerable.Empty<EntityID>();
+            var nonNullQuests = in_startingQuests ?? Enumerable.Empty<EntityID>();
+            var nonNullInventory = in_startingInventory ?? Enumerable.Empty<EntityID>();
 
-            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_quests));
-            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_inventory));
-            Precondition.NotEmpty(in_personalName, nameof(in_personalName));
-            Precondition.NotEmpty(in_familyName, nameof(in_familyName));
+            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_startingQuests));
+            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_startingInventory));
+            Precondition.IsNotEmpty(in_personalName, nameof(in_personalName));
+            Precondition.IsNotEmpty(in_familyName, nameof(in_familyName));
 
             PersonalName = in_personalName;
             FamilyName = in_familyName;
             Pronoun = nonNullPronoun;
-            Quests.AddRange(nonNullQuests);
+            StoryCharacterID = in_storyCharacterID;
+            StartingQuests.AddRange(nonNullQuests);
             Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            Inventory.AddRange(nonNullInventory);
+            StartingInventory.AddRange(nonNullInventory);
         }
         #endregion
     }
