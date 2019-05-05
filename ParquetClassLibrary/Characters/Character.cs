@@ -82,41 +82,21 @@ namespace ParquetClassLibrary.Characters
                             List<string> in_dialogue = null, List<EntityID> in_startingInventory = null)
             : base(in_bounds, in_id, in_personalName, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
-            if (string.IsNullOrEmpty(in_familyName))
-            {
-                throw new ArgumentNullException(nameof(in_familyName));
-            }
-            foreach (var questID in in_startingQuests ?? Enumerable.Empty<EntityID>())
-            {
-                if (!questID.IsValidForRange(All.QuestIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_startingQuests));
-                }
-            }
-            if (null == in_dialogue)
-            {
-                in_dialogue = new List<string>();
-            }
-            if (null == in_startingInventory)
-            {
-                in_startingInventory = new List<EntityID>();
-            }
-            foreach (var itemID in in_startingInventory ?? Enumerable.Empty<EntityID>())
-            {
-                if (!itemID.IsValidForRange(All.ItemIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_startingInventory));
-                }
-            }
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
+            var nonNullQuests = in_quests ?? Enumerable.Empty<EntityID>();
+            var nonNullInventory = in_inventory ?? Enumerable.Empty<EntityID>();
+
+            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_quests));
+            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_inventory));
+            Precondition.NotEmpty(in_personalName, nameof(in_personalName));
+            Precondition.NotEmpty(in_familyName, nameof(in_familyName));
 
             PersonalName = in_personalName;
             FamilyName = in_familyName;
             Pronoun = nonNullPronoun;
-            StoryCharacterID = in_storyCharacterID;
-            StartingQuests.AddRange(in_startingQuests ?? Enumerable.Empty<EntityID>());
+            Quests.AddRange(nonNullQuests);
             Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            StartingInventory.AddRange(in_startingInventory ?? Enumerable.Empty<EntityID>());
+            Inventory.AddRange(nonNullInventory);
         }
         #endregion
     }

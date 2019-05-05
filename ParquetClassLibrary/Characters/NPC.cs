@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
@@ -36,10 +37,7 @@ namespace ParquetClassLibrary.Characters
             : base(All.NpcIDs, in_id, in_personalName, in_familyName, in_nativeBiome, in_currentBehavior,
                    in_avoids, in_seeks, in_pronoun, in_storyCharacterID, in_quests, in_dialogue, in_inventory)
         {
-            if (!in_id.IsValidForRange(All.NpcIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, All.NpcIDs, nameof(in_id));
         }
     }
 }

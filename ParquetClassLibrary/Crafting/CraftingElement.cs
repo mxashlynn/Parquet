@@ -1,5 +1,6 @@
 using System;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafting
 {
@@ -24,14 +25,8 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_itemAmount">In amount of the <see cref="Item"/>.  Must be positive.</param>
         public CraftingElement(EntityID in_itemID, int in_itemAmount)
         {
-            if (!in_itemID.IsValidForRange(All.ItemIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_itemID));
-            }
-            if (in_itemAmount < 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_itemAmount));
-            }
+            Precondition.IsInRange(in_itemID, All.ItemIDs, nameof(in_itemID));
+            Precondition.MustBePositive(in_itemAmount, nameof(in_itemAmount));
 
             ItemID = in_itemID;
             ItemAmount = in_itemAmount;

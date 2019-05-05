@@ -43,24 +43,9 @@ namespace ParquetClassLibrary.Characters
                         Behavior in_primaryBehavior, List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
             : base(in_bounds, in_id, in_name)
         {
-            if (!All.BeingIDs.ContainsRange(in_bounds))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_bounds));
-            }
-            foreach (var parquetID in in_avoids ?? Enumerable.Empty<EntityID>())
-            {
-                if (!parquetID.IsValidForRange(All.ParquetIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_avoids));
-                }
-            }
-            foreach (var parquetID in in_seeks ?? Enumerable.Empty<EntityID>())
-            {
-                if (!parquetID.IsValidForRange(All.ParquetIDs))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(in_seeks));
-                }
-            }
+            Precondition.IsInRange(in_bounds, All.BeingIDs, nameof(in_bounds));
+            Precondition.AreInRange(in_avoids, All.ParquetIDs, nameof(in_avoids));
+            Precondition.AreInRange(in_seeks, All.ParquetIDs, nameof(in_seeks));
 
             NativeBiome = in_nativeBiome;
             PrimaryBehavior = in_primaryBehavior;

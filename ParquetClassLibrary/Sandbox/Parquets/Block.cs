@@ -78,15 +78,10 @@ namespace ParquetClassLibrary.Sandbox.Parquets
                      : base(Bounds, in_id, in_name, in_addsToBiome)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
-            if (!nonNullCollectibleID.IsValidForRange(All.CollectibleIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_collectibleID));
-            }
             var nonNullItemID = in_itemID ?? EntityID.None;
-            if (!nonNullItemID.IsValidForRange(All.ItemIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_itemID));
-            }
+
+            Precondition.IsInRange(nonNullCollectibleID, All.CollectibleIDs, nameof(in_collectibleID));
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
 
             GatherTool = in_gatherTool;
             GatherEffect = in_gatherEffect;
