@@ -9,6 +9,7 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 # Goals
 
 This project has two goals:
+
     1) To provide a foundation for games developed in Unity, MonoGame, and other C# stacks;
     2) To provide a learning exercise and portfolio piece for the lead developer.
 
