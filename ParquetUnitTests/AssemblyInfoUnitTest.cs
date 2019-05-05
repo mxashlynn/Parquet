@@ -11,15 +11,27 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void SupportedDataVersionIsDefinedTest()
+        public void SupportedMapDataVersionIsDefinedTest()
         {
-            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedDataVersion));
+            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedMapDataVersion));
         }
 
         [Fact]
-        public void SupportedDataVersionIsNotInvalidTest()
+        public void SupportedMapDataVersionIsNotInvalidTest()
         {
-            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedDataVersion);
+            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedMapDataVersion);
+        }
+
+        [Fact]
+        public void SupportedCharacterDataVersionIsDefinedTest()
+        {
+            Assert.False(string.IsNullOrEmpty(AssemblyInfo.SupportedBeingDataVersion));
+        }
+
+        [Fact]
+        public void SupportedCharacterDataVersionIsNotInvalidTest()
+        {
+            Assert.NotEqual(invalidDataVersion, AssemblyInfo.SupportedBeingDataVersion);
         }
     }
 }

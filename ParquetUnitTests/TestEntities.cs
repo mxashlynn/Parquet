@@ -15,9 +15,8 @@ namespace ParquetUnitTests
     public static class TestEntities
     {
         #region Test Values
-        // TODO Update this once players are implemented.  Also update type initializer.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static PlayerCharacter TestPlayer { get; }
+        public static PlayerCharacter TestPlayer { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static Critter TestCritter { get; }
@@ -55,9 +54,9 @@ namespace ParquetUnitTests
         {
             var testCraftingElement = new CraftingElement(-All.ItemIDs.Minimum - 100, 1);
 
-            //TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0 Test Player");
+            TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", Biome.Field, Behavior.Still);
-            TestNPC = new NPC(-All.NpcIDs.Minimum, "2 Test NPC", Biome.Field, Behavior.Still);
+            TestNPC = new NPC(-All.NpcIDs.Minimum, "2", "Test NPC", Biome.Field, Behavior.Still);
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor");
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block");
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", in_isEntry: true);
@@ -73,7 +72,8 @@ namespace ParquetUnitTests
                                                     new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                                     All.Dimensions.PanelsPerPatternHeight]);
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
-            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item", 1, 0, 99, 1, 1, -All.BlockIDs.Minimum, KeyItem.None);
+            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item", 1, 0, 99, 1, 1,
+                                -All.BlockIDs.Minimum, KeyItem.None);
         }
     }
 }

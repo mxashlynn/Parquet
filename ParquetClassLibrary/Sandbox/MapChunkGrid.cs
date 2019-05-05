@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Sandbox
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public readonly string DataVersion = AssemblyInfo.SupportedDataVersion;
+        public readonly string DataVersion = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>The identifier for the region that this grid will generate.</summary>
         public readonly Guid RegionID;
@@ -155,7 +155,7 @@ namespace ParquetClassLibrary.Sandbox
                     var version = document?.Value<string>(nameof(DataVersion));
 
                     // Deserialize only if this class supports the version given.
-                    if (AssemblyInfo.SupportedDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
+                    if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                     {
                         out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
                         result = true;

@@ -5,19 +5,19 @@ using Xunit;
 
 namespace ParquetClassLibrary.Characters
 {
-    public class NPCUnitUnitTest
+    public class PlayerCharacterUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newNpcID = TestEntities.TestNPC.ID - 1;
+        private static readonly EntityID newPlayerID = TestEntities.TestPlayer.ID - 1;
         #endregion
 
         [Fact]
-        public void ValidNpcIDsArePermittedTest()
+        public void ValidPlayerIDsArePermittedTest()
         {
-            var newNPC = new NPC(newNpcID, "will be created", Biome.Forest, Behavior.Still);
+            var newPlayer = new PlayerCharacter(newPlayerID, "player character", "will be created");
 
-            Assert.NotNull(newNPC);
+            Assert.NotNull(newPlayer);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Characters
 
             void TestCode()
             {
-                var _ = new NPC(badNpcID, "will fail", Biome.Forest, Behavior.Still);
+                var _ = new PlayerCharacter(badNpcID, "player character", "will fail");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
