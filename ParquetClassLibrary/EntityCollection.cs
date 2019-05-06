@@ -16,6 +16,9 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class EntityCollection<ParentType> where ParentType : Entity
     {
+        /// <summary>Each <see cref="EntityCollection{T}"/> may be populated once, then becomes read-only.</summary>
+        private bool _frozen;
+
         /// <summary>The internal collection mechanism.</summary>
         private Dictionary<EntityID, Entity> Entities { get; set; }
 
@@ -33,32 +36,7 @@ namespace ParquetClassLibrary
         {
             Bounds = in_bounds;
             Entities = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
-        }
-        #endregion
-
-        #region Collection Access
-        /// <summary>
-        /// Adds the given <see cref="Entity"/> to the collection.
-        /// </summary>
-        /// <param name="in_entity">The <see cref="Entity"/> being added.</param>
-        /// <returns><c>true</c> if the <see cref="Entity"/> was added successfully; <c>false</c> otherwise.</returns>
-        public bool Add(Entity in_entity)
-        {
-            Precondition.IsNotNull(in_entity, nameof(in_entity));
-            Precondition.IsInRange(in_entity.ID, Bounds, nameof(in_entity));
-
-            var isNew = !Entities.ContainsKey(in_entity.ID);
-
-            if (isNew)
-            {
-                Entities[in_entity.ID] = in_entity;
-            }
-            else
-            {
-                Error.Handle($"Tried to create duplicate entity ID {in_entity.ID}.");
-            }
-
-            return isNew;
+            _frozen = false;
         }
 
         /// <summary>
@@ -66,9 +44,15 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_entities">The <see cref="Entity"/>s to add.  Cannot be null.</param>
         /// <returns><c>true</c> if all of the <see cref="Entity"/>s were added successfully; <c>false</c> otherwise.</returns>
+        /// <exception cref="InvalidOperationException">When an attempt is made to add <see cref="EntityID"/>s to an already-initialized collection.</exception>
         public bool AddRange(IEnumerable<Entity> in_entities)
         {
             Precondition.IsNotNull(in_entities, nameof(in_entities));
+
+            if (_frozen)
+            {
+                throw new InvalidOperationException($"{nameof(EntityCollection<ParentType>)} has already been initialized.");
+            }
 
             var succeeded = true;
 
@@ -77,9 +61,13 @@ namespace ParquetClassLibrary
                 succeeded &= Add(entity);
             }
 
+            _frozen = true;
+
             return succeeded;
         }
+        #endregion
 
+        #region Collection Access
         /// <summary>
         /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="Entity"/>.
         /// </summary>
@@ -117,7 +105,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Removes the <see cref="Entity"/> with the specified <see cref="EntityID"/> from the <see cref="EntityCollection"/>.
+        /// Removes the <see cref="Entity"/> with the specified <see cref="EntityID"/> from the <see cref="EntityCollection{T}"/>.
         /// </summary>
         /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to remove.</param>
         /// <returns>
@@ -149,6 +137,30 @@ namespace ParquetClassLibrary
 
         #region Utility Methods
         /// <summary>
+        /// Adds the given <see cref="Entity"/> to the collection.
+        /// </summary>
+        /// <param name="in_entity">The <see cref="Entity"/> being added.</param>
+        /// <returns><c>true</c> if the <see cref="Entity"/> was added successfully; <c>false</c> otherwise.</returns>
+        private bool Add(Entity in_entity)
+        {
+            Precondition.IsNotNull(in_entity, nameof(in_entity));
+            Precondition.IsInRange(in_entity.ID, Bounds, nameof(in_entity));
+
+            var isNew = !Entities.ContainsKey(in_entity.ID);
+
+            if (isNew)
+            {
+                Entities[in_entity.ID] = in_entity;
+            }
+            else
+            {
+                Error.Handle($"Tried to create duplicate entity ID {in_entity.ID}.");
+            }
+
+            return isNew;
+        }
+
+        /// <summary>
         /// Serializes all defined parquets to a string.
         /// </summary>
         /// <returns>The serialized parquets.</returns>
@@ -160,6 +172,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_serializedParquets">The serialized parquets.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
+        /// <exception cref="InvalidOperationException">When an attempt is made to add <see cref="EntityID"/>s to an already-initialized collection.</exception>
         public bool TryDeserializeFromString(string in_serializedParquets)
         {
             // TODO: Ensure this is working as intended.  See:
@@ -167,22 +180,24 @@ namespace ParquetClassLibrary
             // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
             var result = false;
 
-            if (string.IsNullOrEmpty(in_serializedParquets))
+            Precondition.IsNotEmpty(in_serializedParquets);
+
+            if (_frozen)
             {
-                Error.Handle($"Error deserializing an {nameof(EntityCollection)}.");
+                throw new InvalidOperationException($"{nameof(EntityCollection<ParentType>)} has already been initialized.");
             }
-            else
+
+            try
             {
-                try
-                {
-                    Entities = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(in_serializedParquets);
-                    result = true;
-                }
-                catch (JsonReaderException exception)
-                {
-                    Error.Handle($"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}: {exception}");
-                }
+                Entities = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(in_serializedParquets);
+                result = true;
             }
+            catch (JsonReaderException exception)
+            {
+                Error.Handle($"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}: {exception}");
+            }
+
+            _frozen = true;
 
             return result;
         }
@@ -203,7 +218,7 @@ namespace ParquetClassLibrary
             var allBoundNames = new StringBuilder();
             foreach (var bound in Bounds)
             {
-                allBoundNames.Append(bound);
+                allBoundNames.Append(bound.ToString());
             }
             return $"Collects {typeof(ParentType)} over {allBoundNames}.";
         }
