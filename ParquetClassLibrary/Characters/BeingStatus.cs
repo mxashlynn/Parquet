@@ -82,7 +82,7 @@ namespace ParquetClassLibrary.Characters
         [JsonProperty(PropertyName = "in_knwonCraftingRecipes")]
         public List<EntityID> KnownCraftingRecipes { get; }
 
-        /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="PlayerCharacter"/> has undertaken.</summary>
+        /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</summary>
         [JsonProperty(PropertyName = "in_quests")]
         public List<EntityID> Quests { get; }
 
@@ -100,10 +100,18 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_position">The <see cref="Location"/> the tracked <see cref="Being"/> occupies.</param>
         /// <param name="in_spawnAt">The <see cref="Location"/> the tracked <see cref="Being"/> will next spawn at.</param>
         /// <param name="in_currentBehavior">The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</param>
+        /// <param name="in_biomeTimeRemaining"></param>
         /// <param name="in_buildingSpeed">The time it takes the tracked <see cref="Being"/> to place new parquets.</param>
         /// <param name="in_modificationSpeed">The time it takes the tracked <see cref="Being"/> to modify existing parquets.</param>
         /// <param name="in_gatheringSpeed">The time it takes the tracked <see cref="Being"/> to gather existing parquets.</param>
         /// <param name="in_movementSpeed">The time it takes the tracked <see cref="Being"/> to walk from one <see cref="Location"/> to another.</param>
+        /// <param name="in_knownCritters">The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</param>
+        /// <param name="in_knownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
+        /// <param name="in_knownParquets">The parquets that this <see cref="Character"/> has analyzed.</param>
+        /// <param name="in_knownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</param>
+        /// <param name="in_knownCraftingRecipes">The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
+        /// <param name="in_quests">The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</param>
+        /// <param name="in_inventory">This <see cref="Character"/>'s set of belongings.</param>
         [JsonConstructor]
         public BeingStatus(Being in_beingDefinition, Behavior in_currentBehavior,
                            Location in_position, Location in_spawnAt,
