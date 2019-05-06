@@ -48,7 +48,7 @@ namespace ParquetCSVImporter
             Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);
 
-            All.Parquets.AddRange(Parquets);
+            All.InitializeCollections(Parquets);
 
             var recordsToJSON = All.Parquets.SerializeToString();
 

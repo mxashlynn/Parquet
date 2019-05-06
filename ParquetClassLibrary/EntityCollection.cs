@@ -16,11 +16,8 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class EntityCollection<ParentType> where ParentType : Entity
     {
-        /// <summary>Each <see cref="EntityCollection{T}"/> may be populated once, then becomes read-only.</summary>
-        private bool _frozen;
-
         /// <summary>The internal collection mechanism.</summary>
-        private Dictionary<EntityID, Entity> Entities { get; set; }
+        private IReadOnlyDictionary<EntityID, Entity> Entities { get; set; }
 
         private List<Range<EntityID>> Bounds { get; }
 
@@ -32,38 +29,56 @@ namespace ParquetClassLibrary
         /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        public EntityCollection(List<Range<EntityID>> in_bounds)
-        {
-            Bounds = in_bounds;
-            Entities = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
-            _frozen = false;
-        }
-
-        /// <summary>
-        /// Adds a collection of <see cref="Entity"/>s to the collection.
-        /// </summary>
-        /// <param name="in_entities">The <see cref="Entity"/>s to add.  Cannot be null.</param>
-        /// <returns><c>true</c> if all of the <see cref="Entity"/>s were added successfully; <c>false</c> otherwise.</returns>
-        /// <exception cref="InvalidOperationException">When an attempt is made to add <see cref="EntityID"/>s to an already-initialized collection.</exception>
-        public bool AddRange(IEnumerable<Entity> in_entities)
+        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(List<Range<EntityID>> in_bounds, IEnumerable<Entity> in_entities)
         {
             Precondition.IsNotNull(in_entities, nameof(in_entities));
 
-            if (_frozen)
-            {
-                throw new InvalidOperationException($"{nameof(EntityCollection<ParentType>)} has already been initialized.");
-            }
-
-            var succeeded = true;
-
+            var baseDictionary = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
             foreach (var entity in in_entities)
             {
-                succeeded &= Add(entity);
+                Precondition.IsInRange(entity.ID, in_bounds, nameof(in_entities));
+
+                if (!baseDictionary.ContainsKey(entity.ID))
+                {
+                    baseDictionary[entity.ID] = entity;
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Tried to duplicate entity ID {entity.ID}.");
+                }
             }
 
-            _frozen = true;
+            Bounds = in_bounds;
+            Entities = baseDictionary;
+        }
 
-            return succeeded;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="in_serializedParquets">The serialized parquets.</param>
+        public EntityCollection(List<Range<EntityID>> in_bounds, string in_serializedParquets)
+        {
+            Precondition.IsNotEmpty(in_serializedParquets, nameof(in_serializedParquets));
+
+            // TODO: Ensure this is working as intended.  See:
+            // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
+            // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
+
+            Dictionary<EntityID, Entity> baseCollection;
+            try
+            {
+                baseCollection = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(in_serializedParquets);
+            }
+            catch (JsonReaderException exception)
+            {
+                throw new System.Runtime.Serialization.SerializationException(
+                    $"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}", exception);
+            }
+
+            Bounds = in_bounds;
+            Entities = baseCollection;
         }
         #endregion
 
@@ -92,34 +107,6 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Removes the given <see cref="Entity"/> from the <see cref="EntityCollection{T}"/>.
-        /// </summary>
-        /// <param name="in_entity">The <see cref="Entity"/> to remove.</param>
-        /// <returns>
-        /// <c>true</c> if the <see cref="Entity"/> is successfully found and removed; otherwise, <c>false</c>.
-        /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
-        /// </returns>
-        public bool Remove(Entity in_entity)
-        {
-            return Entities.Remove(in_entity.ID);
-        }
-
-        /// <summary>
-        /// Removes the <see cref="Entity"/> with the specified <see cref="EntityID"/> from the <see cref="EntityCollection{T}"/>.
-        /// </summary>
-        /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to remove.</param>
-        /// <returns>
-        /// <c>true</c> if the <see cref="Entity"/> is successfully found and removed; otherwise, <c>false</c>.
-        /// This method returns <c>false</c> if <see cref="EntityID"/> is not found.
-        /// </returns>
-        public bool Remove(EntityID in_id)
-        {
-            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
-
-            return Entities.Remove(in_id);
-        }
-
-        /// <summary>
         /// Returns the specified <typeparamref name="T"/>.
         /// </summary>
         /// <param name="in_id">A valid, defined <typeparamref name="T"/> identifier.</param>
@@ -137,70 +124,11 @@ namespace ParquetClassLibrary
 
         #region Utility Methods
         /// <summary>
-        /// Adds the given <see cref="Entity"/> to the collection.
-        /// </summary>
-        /// <param name="in_entity">The <see cref="Entity"/> being added.</param>
-        /// <returns><c>true</c> if the <see cref="Entity"/> was added successfully; <c>false</c> otherwise.</returns>
-        private bool Add(Entity in_entity)
-        {
-            Precondition.IsNotNull(in_entity, nameof(in_entity));
-            Precondition.IsInRange(in_entity.ID, Bounds, nameof(in_entity));
-
-            var isNew = !Entities.ContainsKey(in_entity.ID);
-
-            if (isNew)
-            {
-                Entities[in_entity.ID] = in_entity;
-            }
-            else
-            {
-                Error.Handle($"Tried to create duplicate entity ID {in_entity.ID}.");
-            }
-
-            return isNew;
-        }
-
-        /// <summary>
         /// Serializes all defined parquets to a string.
         /// </summary>
         /// <returns>The serialized parquets.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(Entities, Formatting.None);
-
-        /// <summary>
-        /// Tries to deserialize an <see cref="EntityCollection{T}"/> from the given string.
-        /// </summary>
-        /// <param name="in_serializedParquets">The serialized parquets.</param>
-        /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        /// <exception cref="InvalidOperationException">When an attempt is made to add <see cref="EntityID"/>s to an already-initialized collection.</exception>
-        public bool TryDeserializeFromString(string in_serializedParquets)
-        {
-            // TODO: Ensure this is working as intended.  See:
-            // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
-            // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
-            var result = false;
-
-            Precondition.IsNotEmpty(in_serializedParquets);
-
-            if (_frozen)
-            {
-                throw new InvalidOperationException($"{nameof(EntityCollection<ParentType>)} has already been initialized.");
-            }
-
-            try
-            {
-                Entities = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(in_serializedParquets);
-                result = true;
-            }
-            catch (JsonReaderException exception)
-            {
-                Error.Handle($"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}: {exception}");
-            }
-
-            _frozen = true;
-
-            return result;
-        }
 
         /// <summary>
         /// Retrieves an enumerator for the <see cref="EntityCollection{T}"/>.
@@ -239,13 +167,17 @@ namespace ParquetClassLibrary
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        public EntityCollection(List<Range<EntityID>> in_bounds) : base(in_bounds) { }
+        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities)
+            : base(new List<Range<EntityID>> { in_bounds }, in_entities) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        public EntityCollection(Range<EntityID> in_bounds) : base(new List<Range<EntityID>> { in_bounds }) { }
+        /// <param name="in_serializedParquets">The serialized parquets.</param>
+        public EntityCollection(Range<EntityID> in_bounds, string in_serializedParquets)
+            : base(new List<Range<EntityID>> { in_bounds }, in_serializedParquets) { }
 
         /// <summary>
         /// Returns the specified <see cref="Entity"/>.
