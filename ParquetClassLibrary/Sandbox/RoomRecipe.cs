@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Sandbox
         /// <summary>An optional list of <see cref="Sandbox.Parquets.Block"/> types this <see cref="RoomRecipe"/> requires as walls.</summary>
         public List<EntityID> RequiredPerimeterBlocks { get; }
 
-        /// <summary>A list of <see cref="Sandbox.Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>A list of <see cref="Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
         public Dictionary<EntityID, int> RequiredFurnishings { get; }
         #endregion
 
