@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Sandbox
     public struct Space
     {
         /// <summary>The null <see cref="Space"/>, representing an arbitrary empty <see cref="ParquetStack"/>.</summary>
-        static public readonly Space Empty = new Space(Vector2Int.ZeroVector, ParquetStack.Empty);
+        public static readonly Space Empty = new Space(Vector2Int.ZeroVector, ParquetStack.Empty);
 
         /// <summary>Location of this <see cref="Space"/>.</summary>
         public readonly Vector2Int Position;

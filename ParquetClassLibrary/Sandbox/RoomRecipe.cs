@@ -31,13 +31,7 @@ namespace ParquetClassLibrary.Sandbox
         /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
         /// the room is asigned the type of the most demanding recipe.
         /// </summary>
-        public int Priority
-        {
-            get
-            {
-                return RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
-            }
-        }
+        public int Priority => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
 
         #region Initialization
         /// <summary>

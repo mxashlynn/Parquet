@@ -16,10 +16,7 @@ namespace ParquetClassLibrary.Characters
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
         /// <remarks>Overrides the base <see cref="Entity.Name"/> because <see cref="Character"/>s do not have a single name string.</remarks>
-        public override string Name
-        {
-            get => PersonalName;
-        }
+        public override string Name => PersonalName;
 
         /// <summary>Player-facing personal name.</summary>
         public string PersonalName { get; }

@@ -22,7 +22,7 @@ namespace ParquetClassLibrary
             new EntityCollection<ParentType>(new List<Range<EntityID>> { new Range<EntityID>(0, 0) }, Enumerable.Empty<Entity>());
 
         /// <summary>The internal collection mechanism.</summary>
-        private IReadOnlyDictionary<EntityID, Entity> Entities { get; set; }
+        private IReadOnlyDictionary<EntityID, Entity> Entities { get; }
 
         private List<Range<EntityID>> Bounds { get; }
 

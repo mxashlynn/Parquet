@@ -103,7 +103,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Being> Beings { get; private set; }
+        public static EntityCollection<Being> Beings { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="CraftingRecipe"/>s.
@@ -111,7 +111,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection CraftingRecipes { get; private set; }
+        public static EntityCollection CraftingRecipes { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -119,7 +119,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection Items { get; private set; }
+        public static EntityCollection Items { get; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -135,7 +135,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection RoomRecipes { get; private set; }
+        public static EntityCollection RoomRecipes { get; }
         #endregion
 
         #region Rules and Parameters
@@ -281,7 +281,7 @@ namespace ParquetClassLibrary
             // Since it is possible for every parquet to have a corresponding item, this range must be at least
             // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
             // ranges of all parquets.
-            var ItemUpperBound = ItemLowerBound + 2 * ((TargetMultiple / 10) + MaximumParquetID - MinimumParquetID);
+            var ItemUpperBound = ItemLowerBound + 2 * (TargetMultiple / 10 + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
