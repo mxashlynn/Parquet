@@ -19,7 +19,7 @@ Design and usage will be fully documented in [the wiki](https://github.com/mxash
 
 Parquet targets the following features:
  
-    1) A peaceful 2D overworld map that may be explored.
+    1) A peaceful 2D top-down overworld map that may be explored.
     2) Simple free-form building mechanics allowing player characters to create homes in the world.
     3) Resource collection mechanics allowing players to upgrade their homes and tools.
     4) A simple crafting system allowing players to unlock new tools and building materials.
