@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
@@ -19,10 +18,10 @@ namespace ParquetClassLibrary.Characters
         public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this critter avoids, if any.</summary>
-        public List<EntityID> Avoids { get; }
+        public IReadOnlyList<EntityID> Avoids { get; }
 
         /// <summary>Types of parquets this critter seeks out, if any.</summary>
-        public List<EntityID> Seeks { get; }
+        public IReadOnlyList<EntityID> Seeks { get; }
         #endregion
 
         #region Initialization

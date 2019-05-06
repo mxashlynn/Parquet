@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
@@ -44,15 +43,15 @@ namespace ParquetClassLibrary.Characters
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
         /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
-        public List<EntityID> StartingQuests { get; }
+        public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
         // TODO This is just a place-holder, I am not at all sure how we will handle this.
-        public List<string> Dialogue { get; }
+        public IReadOnlyList<string> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
-        public List<EntityID> StartingInventory { get; }
+        public IReadOnlyList<EntityID> StartingInventory { get; }
         #endregion
 
         #region Initialization
