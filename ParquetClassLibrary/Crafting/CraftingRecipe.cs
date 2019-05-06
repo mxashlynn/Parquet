@@ -10,11 +10,11 @@ namespace ParquetClassLibrary.Crafting
     public class CraftingRecipe : Entity
     {
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
-        private static readonly List<CraftingElement> EmptyCraftingElementList =
+        private static List<CraftingElement> EmptyCraftingElementList { get; } =
             new List<CraftingElement> { CraftingElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
-        public static readonly CraftingRecipe NotCraftable =
+        public static CraftingRecipe NotCraftable { get; } =
             new CraftingRecipe(EntityID.None, "Not Craftable", EmptyCraftingElementList, EmptyCraftingElementList,
                                new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                All.Dimensions.PanelsPerPatternHeight]);

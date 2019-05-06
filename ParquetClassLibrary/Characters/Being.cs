@@ -19,10 +19,10 @@ namespace ParquetClassLibrary.Characters
         public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this critter avoids, if any.</summary>
-        public readonly List<EntityID> Avoids = new List<EntityID>();
+        public List<EntityID> Avoids { get; }
 
         /// <summary>Types of parquets this critter seeks out, if any.</summary>
-        public readonly List<EntityID> Seeks = new List<EntityID>();
+        public List<EntityID> Seeks { get; }
         #endregion
 
         #region Initialization
@@ -49,8 +49,8 @@ namespace ParquetClassLibrary.Characters
 
             NativeBiome = in_nativeBiome;
             PrimaryBehavior = in_primaryBehavior;
-            Avoids.AddRange(in_avoids ?? Enumerable.Empty<EntityID>());
-            Seeks.AddRange(in_seeks ?? Enumerable.Empty<EntityID>());
+            Avoids = (in_avoids ?? Enumerable.Empty<EntityID>()).ToList();
+            Seeks = (in_seeks ?? Enumerable.Empty<EntityID>()).ToList();
         }
         #endregion
     }

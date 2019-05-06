@@ -44,15 +44,15 @@ namespace ParquetClassLibrary.Characters
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
         /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
-        public readonly List<EntityID> StartingQuests = new List<EntityID>();
+        public List<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
         // TODO This is just a place-holder, I am not at all sure how we will handle this.
-        public readonly List<string> Dialogue = new List<string>();
+        public List<string> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
-        public readonly List<EntityID> StartingInventory = new List<EntityID>();
+        public List<EntityID> StartingInventory { get; }
         #endregion
 
         #region Initialization
@@ -95,9 +95,9 @@ namespace ParquetClassLibrary.Characters
             FamilyName = in_familyName;
             Pronoun = nonNullPronoun;
             StoryCharacterID = in_storyCharacterID;
-            StartingQuests.AddRange(nonNullQuests);
-            Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            StartingInventory.AddRange(nonNullInventory);
+            StartingQuests = nonNullQuests.ToList();
+            Dialogue = (in_dialogue ?? Enumerable.Empty<string>()).ToList();
+            StartingInventory = nonNullInventory.ToList();
         }
         #endregion
     }
