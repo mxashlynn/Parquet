@@ -21,12 +21,12 @@ namespace ParquetClassLibrary
 
         private List<Range<EntityID>> Bounds { get; }
 
-        /// <summary>The number of <see cref="Entity"/>s in the <see cref="EntityCollection"/>.</summary>
+        /// <summary>The number of <see cref="Entity"/>s in the <see cref="EntityCollection{T}"/>.</summary>
         public int Count => Entities.Count;
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
+        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds)
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Determines whether the <see cref="EntityCollection"/> contains the specified <see cref="Entity"/>.
+        /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="Entity"/>.
         /// </summary>
         /// <param name="in_entity">The <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Entity"/> was found; <c>false</c> otherwise.</returns>
@@ -91,7 +91,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Determines whether the <see cref="EntityCollection"/> contains the specified <see cref="Entity"/>.
+        /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="Entity"/>.
         /// </summary>
         /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
@@ -104,7 +104,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Removes the given <see cref="Entity"/> from the <see cref="EntityCollection"/>.
+        /// Removes the given <see cref="Entity"/> from the <see cref="EntityCollection{T}"/>.
         /// </summary>
         /// <param name="in_entity">The <see cref="Entity"/> to remove.</param>
         /// <returns>
@@ -156,7 +156,7 @@ namespace ParquetClassLibrary
             => JsonConvert.SerializeObject(Entities, Formatting.None);
 
         /// <summary>
-        /// Tries to deserialize an <see cref="EntityCollection"/> from the given string.
+        /// Tries to deserialize an <see cref="EntityCollection{T}"/> from the given string.
         /// </summary>
         /// <param name="in_serializedParquets">The serialized parquets.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
@@ -195,7 +195,7 @@ namespace ParquetClassLibrary
             => Entities.Values.GetEnumerator();
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection{T}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
