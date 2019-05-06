@@ -5,8 +5,6 @@ using Xunit;
 
 namespace ParquetUnitTests.Sandbox
 {
-    // TODO Must mock out the entities provided to All.
-
     public class MapRegionEditorUnitTest
     {
         [Fact]

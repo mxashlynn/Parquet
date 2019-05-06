@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
@@ -16,6 +17,10 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class EntityCollection<ParentType> where ParentType : Entity
     {
+        /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
+        public static readonly EntityCollection<ParentType> Default =
+            new EntityCollection<ParentType>(new List<Range<EntityID>> { new Range<EntityID>(0, 0) }, Enumerable.Empty<Entity>());
+
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<EntityID, Entity> Entities { get; set; }
 
@@ -163,6 +168,10 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class EntityCollection : EntityCollection<Entity>
     {
+        /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
+        public static new readonly EntityCollection Default =
+            new EntityCollection(new Range<EntityID>(0, 0), Enumerable.Empty<Entity>());
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>

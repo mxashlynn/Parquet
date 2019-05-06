@@ -209,13 +209,23 @@ namespace ParquetClassLibrary
 
         #region Initialization
         /// <summary>
-        /// Initializes the <see cref="Range{EntityID}"/>s defined in <see cref="All"/>.
-        /// This supports defining ItemIDs in terms of the other Ranges.
+        /// Initializes the <see cref="Range{EntityID}"/>s and <see cref="EntityCollection{T}"/>s defined in <see cref="All"/>.
         /// </summary>
+        /// <remarks>
+        /// This supports defining ItemIDs in terms of the other Ranges.
+        /// </remarks>
         static All()
         {
+            #region Default Values for Enitity Collections
             _collectionsHaveBeenInitialized = false;
+            Beings = EntityCollection<Being>.Default;
+            CraftingRecipes = EntityCollection.Default;
+            Items = EntityCollection.Default;
+            Parquets = EntityCollection<ParquetParent>.Default;
+            RoomRecipes = EntityCollection.Default;
+            #endregion
 
+            #region Initialize Ranges
             // By convention, the first EntityID in each Range is a multiple of this number.
             // An exception is made for PlayerCharacters as these values are undefined at designtime.
             var TargetMultiple = 10000;
@@ -274,6 +284,7 @@ namespace ParquetClassLibrary
             var ItemUpperBound = ItemLowerBound + 2 * ((TargetMultiple / 10) + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
+            #endregion
         }
 
         /// <summary>
