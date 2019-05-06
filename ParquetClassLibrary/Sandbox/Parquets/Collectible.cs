@@ -20,18 +20,18 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Mechanics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         [JsonProperty(PropertyName = "in_effect")]
-        public CollectionEffect Effect { get; private set; }
+        public CollectionEffect Effect { get; }
 
         /// <summary>
         /// The scale in points of the effect.  That is, how much to alter a stat if the
         /// <see cref="CollectionEffect"/> is set to alter a stat.
         /// </summary>
         [JsonProperty(PropertyName = "in_effectAmount")]
-        public int EffectAmount { get; private set; }
+        public int EffectAmount { get; }
 
         /// <summary>The item spawned when a character encounters this Collectible.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
-        public EntityID ItemID { get; private set; }
+        public EntityID ItemID { get; }
         #endregion
 
         #region Initialization

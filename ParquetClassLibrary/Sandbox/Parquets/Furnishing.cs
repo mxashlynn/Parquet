@@ -19,23 +19,23 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Mechanics
         /// <summary>Indicates whether this <see cref="Furnishing"/> may be walked on.</summary>
         [JsonProperty(PropertyName = "in_isWalkable")]
-        public bool IsWalkable { get; private set; }
+        public bool IsWalkable { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</summary>
         [JsonProperty(PropertyName = "in_isEntry")]
-        public bool IsEntry { get; private set; }
+        public bool IsEntry { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</summary>
         [JsonProperty(PropertyName = "in_isEnclosing")]
-        public bool IsEnclosing { get; private set; }
+        public bool IsEnclosing { get; }
 
         /// <summary>The <see cref="ItemID"/> that represents this <see cref="Furnishing"/> in the <see cref="Inventory"/>.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
-        public EntityID ItemID { get; private set; }
+        public EntityID ItemID { get; }
 
         /// <summary>The <see cref="Furnishing"/> to swap with this Furnishing on an open/close action.</summary>
         [JsonProperty(PropertyName = "in_swapID")]
-        public EntityID SwapID { get; private set; }
+        public EntityID SwapID { get; }
         #endregion
 
         #region Initialization

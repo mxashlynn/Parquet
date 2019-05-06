@@ -23,15 +23,15 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Mechanics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [JsonProperty(PropertyName = "in_modTool")]
-        public ModificationTools ModTool { get; private set; }
+        public ModificationTools ModTool { get; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         [JsonProperty(PropertyName = "in_trenchName")]
-        public string TrenchName { get; private set; }
+        public string TrenchName { get; }
 
         /// <summary>The floor may be walked on.</summary>
         [JsonProperty(PropertyName = "in_isWalkable")]
-        public bool IsWalkable { get; private set; }
+        public bool IsWalkable { get; }
         #endregion
 
         #region Initialization

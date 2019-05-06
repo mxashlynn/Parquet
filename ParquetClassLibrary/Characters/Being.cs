@@ -13,10 +13,10 @@ namespace ParquetClassLibrary.Characters
     {
         #region Characteristics
         /// <summary>The <see cref="Biome"/> in which this character is at home.</summary>
-        public Biome NativeBiome { get; set; }
+        public Biome NativeBiome { get; }
 
         /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
-        public Behavior PrimaryBehavior { get; set; }
+        public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this critter avoids, if any.</summary>
         public readonly List<EntityID> Avoids = new List<EntityID>();
