@@ -27,31 +27,31 @@ namespace ParquetClassLibrary.Sandbox.Parquets
         #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
         [JsonProperty(PropertyName = "in_gatherTool")]
-        public GatheringTools GatherTool { get; private set; }
+        public GatheringTools GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_gatherEffect")]
-        public GatheringEffect GatherEffect { get; private set; }
+        public GatheringEffect GatherEffect { get; }
 
         /// <summary>The item awarded to the player when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_itemID")]
-        public EntityID ItemID { get; private set; }
+        public EntityID ItemID { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_collectibleID")]
-        public EntityID CollectibleID { get; private set; }
+        public EntityID CollectibleID { get; }
 
         /// <summary>The block is flammable.</summary>
         [JsonProperty(PropertyName = "in_isFlammable")]
-        public bool IsFlammable { get; private set; }
+        public bool IsFlammable { get; }
 
         /// <summary>The block is a liquid.</summary>
         [JsonProperty(PropertyName = "in_isLiquid")]
-        public bool IsLiquid { get; private set; }
+        public bool IsLiquid { get; }
 
         /// <summary>The block's native toughness.</summary>
         [JsonProperty(PropertyName = "in_maxToughness")]
-        public int MaxToughness { get; private set; }
+        public int MaxToughness { get; }
         #endregion
 
         #region Initialization

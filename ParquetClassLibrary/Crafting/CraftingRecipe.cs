@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafting
@@ -10,20 +11,20 @@ namespace ParquetClassLibrary.Crafting
     public class CraftingRecipe : Entity
     {
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
-        private static readonly List<CraftingElement> EmptyCraftingElementList =
+        private static IReadOnlyList<CraftingElement> EmptyCraftingElementList { get; } =
             new List<CraftingElement> { CraftingElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
-        public static readonly CraftingRecipe NotCraftable =
+        public static CraftingRecipe NotCraftable { get; } =
             new CraftingRecipe(EntityID.None, "Not Craftable", EmptyCraftingElementList, EmptyCraftingElementList,
                                new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                All.Dimensions.PanelsPerPatternHeight]);
 
         /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
-        public List<CraftingElement> Products { get; }
+        public IReadOnlyList<CraftingElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        public List<CraftingElement> Ingredients { get; }
+        public IReadOnlyList<CraftingElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         public StrikePanel[,] PanelPattern { get; }
@@ -40,8 +41,8 @@ namespace ParquetClassLibrary.Crafting
         /// Thrown when <paramref name="in_panelPattern"/> has zero-dimensions or dimensions larger than those given by
         /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
-        public CraftingRecipe(EntityID in_id, string in_name, List<CraftingElement> in_products,
-                              List<CraftingElement> in_ingredients, StrikePanel[,] in_panelPattern)
+        public CraftingRecipe(EntityID in_id, string in_name, IEnumerable<CraftingElement> in_products,
+                              IEnumerable<CraftingElement> in_ingredients, StrikePanel[,] in_panelPattern)
             : base(All.CraftingRecipeIDs, in_id, in_name)
         {
             Precondition.IsNotNull(in_products, nameof(in_products));
@@ -57,8 +58,8 @@ namespace ParquetClassLibrary.Crafting
                 throw new IndexOutOfRangeException($"Dimension outside specification: {nameof(in_panelPattern)}");
             }
 
-            Products = in_products;
-            Ingredients = in_ingredients;
+            Products = in_products.ToList();
+            Ingredients = in_ingredients.ToList();
             PanelPattern = in_panelPattern;
         }
     }

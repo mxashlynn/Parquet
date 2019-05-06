@@ -19,7 +19,7 @@ namespace ParquetCSVImporter
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
 #if DEBUG
-            Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            $"{Directory.GetCurrentDirectory()}/../../../../";
 #else
             Directory.GetCurrentDirectory().FullName;
 #endif
@@ -48,7 +48,7 @@ namespace ParquetCSVImporter
             Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);
 
-            All.Parquets.AddRange(Parquets);
+            All.InitializeCollections(Parquets);
 
             var recordsToJSON = All.Parquets.SerializeToString();
 

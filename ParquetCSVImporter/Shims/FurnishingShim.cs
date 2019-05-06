@@ -34,10 +34,10 @@ namespace ParquetCSVImporter.Shims
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
         public override TargetType To<TargetType>()
         {
-            Precondition.IsOfType<TargetType, Floor>(typeof(TargetType).ToString());
+            Precondition.IsOfType<TargetType, Furnishing>(typeof(TargetType).ToString());
 
             return (TargetType)(ParquetParent)new Furnishing(ID, Name, AddsToBiome, IsWalkable,
-                                                             IsEntry, IsEnclosing, SwapID);
+                                                             IsEntry, IsEnclosing, ItemID, SwapID);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace ParquetClassLibrary.Characters
     /// </summary>
     public sealed class PlayerCharacter : Character
     {
-        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerCharacter"/> class.
         /// </summary>
@@ -35,6 +34,5 @@ namespace ParquetClassLibrary.Characters
                 throw new ArgumentOutOfRangeException(nameof(in_id));
             }
         }
-        #endregion
     }
 }

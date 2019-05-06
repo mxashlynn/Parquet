@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
@@ -44,15 +43,15 @@ namespace ParquetClassLibrary.Characters
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
         /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
-        public readonly List<EntityID> StartingQuests = new List<EntityID>();
+        public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
         // TODO This is just a place-holder, I am not at all sure how we will handle this.
-        public readonly List<string> Dialogue = new List<string>();
+        public IReadOnlyList<string> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
-        public readonly List<EntityID> StartingInventory = new List<EntityID>();
+        public IReadOnlyList<EntityID> StartingInventory { get; }
         #endregion
 
         #region Initialization
@@ -83,20 +82,21 @@ namespace ParquetClassLibrary.Characters
             : base(in_bounds, in_id, in_personalName, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
-            var nonNullQuests = in_quests ?? Enumerable.Empty<EntityID>();
-            var nonNullInventory = in_inventory ?? Enumerable.Empty<EntityID>();
+            var nonNullQuests = in_startingQuests ?? Enumerable.Empty<EntityID>();
+            var nonNullInventory = in_startingInventory ?? Enumerable.Empty<EntityID>();
 
-            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_quests));
-            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_inventory));
-            Precondition.NotEmpty(in_personalName, nameof(in_personalName));
-            Precondition.NotEmpty(in_familyName, nameof(in_familyName));
+            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_startingQuests));
+            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_startingInventory));
+            Precondition.IsNotEmpty(in_personalName, nameof(in_personalName));
+            Precondition.IsNotEmpty(in_familyName, nameof(in_familyName));
 
             PersonalName = in_personalName;
             FamilyName = in_familyName;
             Pronoun = nonNullPronoun;
-            Quests.AddRange(nonNullQuests);
-            Dialogue.AddRange(in_dialogue ?? Enumerable.Empty<string>());
-            Inventory.AddRange(nonNullInventory);
+            StoryCharacterID = in_storyCharacterID;
+            StartingQuests = nonNullQuests.ToList();
+            Dialogue = (in_dialogue ?? Enumerable.Empty<string>()).ToList();
+            StartingInventory = nonNullInventory.ToList();
         }
         #endregion
     }

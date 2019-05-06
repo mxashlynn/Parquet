@@ -17,13 +17,13 @@ namespace ParquetClassLibrary.Sandbox
         public int MinimumWalkableSpaces { get; }
 
         /// <summary>An optional list of <see cref="Sandbox.Parquets.Floor"/> types this <see cref="RoomRecipe"/> requires.</summary>
-        public List<EntityID> RequiredFloors { get; }
+        public IReadOnlyList<EntityID> RequiredFloors { get; }
 
         /// <summary>An optional list of <see cref="Sandbox.Parquets.Block"/> types this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public List<EntityID> RequiredPerimeterBlocks { get; }
+        public IReadOnlyList<EntityID> RequiredPerimeterBlocks { get; }
 
-        /// <summary>A list of <see cref="Sandbox.Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
-        public Dictionary<EntityID, int> RequiredFurnishings { get; }
+        /// <summary>A list of <see cref="Parquets.Furnishing"/> types this <see cref="RoomRecipe"/> requires.</summary>
+        public IReadOnlyDictionary<EntityID, int> RequiredFurnishings { get; }
         #endregion
 
         /// <summary>

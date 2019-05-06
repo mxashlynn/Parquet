@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Characters;
@@ -93,13 +94,16 @@ namespace ParquetClassLibrary
         #endregion
 
         #region EntityCollections
+        /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
+        private static bool _collectionsHaveBeenInitialized;
+
         /// <summary>
         /// A collection of all defined <see cref="Being"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Being> Beings { get; }
+        public static EntityCollection<Being> Beings { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="CraftingRecipe"/>s.
@@ -107,7 +111,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection CraftingRecipes { get; }
+        public static EntityCollection CraftingRecipes { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -115,7 +119,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection Items { get; }
+        public static EntityCollection Items { get; private set; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -123,7 +127,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<ParquetParent> Parquets { get; }
+        public static EntityCollection<ParquetParent> Parquets { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
@@ -131,7 +135,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection RoomRecipes { get; }
+        public static EntityCollection RoomRecipes { get; private set; }
         #endregion
 
         #region Rules and Parameters
@@ -210,7 +214,8 @@ namespace ParquetClassLibrary
         /// </summary>
         static All()
         {
-            #region Initalize Ranges
+            _collectionsHaveBeenInitialized = false;
+
             // By convention, the first EntityID in each Range is a multiple of this number.
             // An exception is made for PlayerCharacters as these values are undefined at designtime.
             var TargetMultiple = 10000;
@@ -269,15 +274,30 @@ namespace ParquetClassLibrary
             var ItemUpperBound = ItemLowerBound + 2 * ((TargetMultiple / 10) + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
-            #endregion
+        }
 
-            #region Initialize Collections
-            Beings = new EntityCollection<Being>(BeingIDs);
-            CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
-            Items = new EntityCollection(ItemIDs);
-            Parquets = new EntityCollection<ParquetParent>(ParquetIDs);
-            RoomRecipes = new EntityCollection(RoomRecipeIDs);
-            #endregion
+        /// <summary>
+        /// Initializes the <see cref="EntityCollection{T}s"/> from the given collections.
+        /// </summary>
+        /// <param name="in_parquets">All parquets to be used in the game.</param>
+        /// <remarks>This initialization routine may be called only once per library execution.</remarks>
+        /// <exception cref="InvalidOperationException">When called more than once.</exception>
+        // TODO Make an version that takes serialized strings instead of ienumerables.
+        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets)
+        {
+            if (_collectionsHaveBeenInitialized)
+            {
+                throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
+            }
+
+            // TODO Uncomment these once we have CSV import implemented for non-parquets.
+            //Beings = new EntityCollection<Being>(BeingIDs);
+            //CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
+            //Items = new EntityCollection(ItemIDs);
+            Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
+            //RoomRecipes = new EntityCollection(RoomRecipeIDs);
+
+            _collectionsHaveBeenInitialized = true;
         }
         #endregion
     }

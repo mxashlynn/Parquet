@@ -15,7 +15,7 @@ namespace ParquetClassLibrary
     /// instance to another.  In this sense, it can be thought of as analagous to a <see langword="class"/>.
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
     /// within collections in other classes.  Their definitions are found by submitting their EntityID
-    /// to the appropriate <see cref="EntityCollection"/>.
+    /// to the appropriate <see cref="EntityCollection{T}"/>.
     /// 
     /// If individual game objects must have mutable state then a separate wrapper class,
     /// such as <see cref="Sandbox.Parquets.ParquetStatus"/>, models that state.

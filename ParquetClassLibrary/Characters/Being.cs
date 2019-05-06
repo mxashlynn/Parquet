@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Sandbox.IDs;
@@ -13,16 +12,16 @@ namespace ParquetClassLibrary.Characters
     {
         #region Characteristics
         /// <summary>The <see cref="Biome"/> in which this character is at home.</summary>
-        public Biome NativeBiome { get; set; }
+        public Biome NativeBiome { get; }
 
         /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
-        public Behavior PrimaryBehavior { get; set; }
+        public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this critter avoids, if any.</summary>
-        public readonly List<EntityID> Avoids = new List<EntityID>();
+        public IReadOnlyList<EntityID> Avoids { get; }
 
         /// <summary>Types of parquets this critter seeks out, if any.</summary>
-        public readonly List<EntityID> Seeks = new List<EntityID>();
+        public IReadOnlyList<EntityID> Seeks { get; }
         #endregion
 
         #region Initialization
@@ -49,8 +48,8 @@ namespace ParquetClassLibrary.Characters
 
             NativeBiome = in_nativeBiome;
             PrimaryBehavior = in_primaryBehavior;
-            Avoids.AddRange(in_avoids ?? Enumerable.Empty<EntityID>());
-            Seeks.AddRange(in_seeks ?? Enumerable.Empty<EntityID>());
+            Avoids = (in_avoids ?? Enumerable.Empty<EntityID>()).ToList();
+            Seeks = (in_seeks ?? Enumerable.Empty<EntityID>()).ToList();
         }
         #endregion
     }
