@@ -20,24 +20,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Biomes\" />
+    <Folder Include="Characters\" />
     <Folder Include="Crafting\" />
-    <Folder Include="Stubs\" />
-    <Folder Include="Sandbox\IDs\" />
-    <Folder Include="Sandbox\Parquets\" />
-    <Folder Include="Sandbox\Special Points\" />
-    <Folder Include="Utilities\" />
-    <Folder Include="Quests\" />
     <Folder Include="Items\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove=".DS_Store" />
-    <None Remove="Sandbox\.DS_Store" />
+    <Folder Include="Map\Special Points\" />
+    <Folder Include="Parquets\" />
+    <Folder Include="Quests\" />
+    <Folder Include="Rooms\" />
+    <Folder Include="Stubs\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
 
 </Project>

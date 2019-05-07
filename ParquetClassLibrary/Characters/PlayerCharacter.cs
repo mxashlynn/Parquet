@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Biomes;
 
 namespace ParquetClassLibrary.Characters
 {

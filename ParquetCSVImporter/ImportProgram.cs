@@ -6,7 +6,7 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 using ParquetCSVImporter.ClassMaps;
 
 namespace ParquetCSVImporter

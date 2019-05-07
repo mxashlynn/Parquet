@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Characters;
-using ParquetClassLibrary.Sandbox.IDs;
 using Xunit;
 
 namespace ParquetUnitTests.Characters
