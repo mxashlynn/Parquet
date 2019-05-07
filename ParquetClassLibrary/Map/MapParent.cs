@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using ParquetClassLibrary.Sandbox.Parquets;
-using ParquetClassLibrary.Sandbox.SpecialPoints;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Map.SpecialPoints;
 using ParquetClassLibrary.Stubs;
 
 // ReSharper disable InconsistentNaming
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Provides methods that are used by all parquet-based map models

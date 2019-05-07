@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetClassLibrary.Sandbox.SpecialPoints
+namespace ParquetClassLibrary.Map.SpecialPoints
 {
     /// <summary>
     /// A location at which the player moves from one <see cref="MapRegion"/> to another.

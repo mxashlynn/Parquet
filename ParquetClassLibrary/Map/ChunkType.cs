@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Indicates a the sorts of parquets to generate in a MapChunk.

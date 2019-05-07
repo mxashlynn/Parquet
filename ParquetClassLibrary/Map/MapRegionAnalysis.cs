@@ -1,10 +1,9 @@
 using System;
-using ParquetClassLibrary.Sandbox.IDs;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 
 // ReSharper disable InconsistentNaming
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Convenience extension methods for concise coding when working with <see cref="MapRegion"/> instances.

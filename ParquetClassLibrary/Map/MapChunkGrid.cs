@@ -2,11 +2,10 @@ using System;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox-mode.

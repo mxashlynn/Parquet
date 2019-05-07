@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Indicates a the major flow of parquets procedurally generated in a MapChunk.

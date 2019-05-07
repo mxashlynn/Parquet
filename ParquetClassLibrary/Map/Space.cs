@@ -1,7 +1,7 @@
-﻿using ParquetClassLibrary.Sandbox.Parquets;
+﻿using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// A <see cref="ParquetStack"/> together with its coordinates on the world map.

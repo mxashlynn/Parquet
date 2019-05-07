@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Represents a specific position within a specific <see cref="MapRegion"/>.

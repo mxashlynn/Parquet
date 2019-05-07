@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox.Parquets;
-using ParquetClassLibrary.Sandbox.SpecialPoints;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Map.SpecialPoints;
 
-namespace ParquetClassLibrary.Sandbox
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Indicates that the encapsulated info corresponding to a particular position in the current region map

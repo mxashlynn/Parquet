@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetClassLibrary.Sandbox.SpecialPoints
+namespace ParquetClassLibrary.Map.SpecialPoints
 {
     /// <summary>
     /// A location on a <see cref="MapParent"/> at which something happens

@@ -1,6 +1,6 @@
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetClassLibrary.Sandbox.SpecialPoints
+namespace ParquetClassLibrary.Map.SpecialPoints
 {
     /// <summary>
     /// The location at which a character spawns.
