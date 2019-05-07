@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -21,30 +22,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Crafting\" />
-    <Folder Include="Map\" />
-    <Folder Include="Stubs\" />
-    <Folder Include="Map\Special Points\" />
-    <Folder Include="Utilities\" />
-    <Folder Include="Quests\" />
-    <Folder Include="Characters\" />
-    <Folder Include="Items\" />
     <Folder Include="Biomes\" />
+    <Folder Include="Characters\" />
+    <Folder Include="Crafting\" />
+    <Folder Include="Items\" />
+    <Folder Include="Map\" />
+    <Folder Include="Map\Special Points\" />
     <Folder Include="Parquets\" />
+    <Folder Include="Quests\" />
     <Folder Include="Rooms\" />
+    <Folder Include="Stubs\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Stubs\ColorUnitTest %28copy%29.cs" />
-    <Compile Remove="Sandbox\Parquets\ParquetParent.cs" />
-    <Compile Remove="Stubs\Vector2UnitTest.cs" />
-    <Compile Remove="Stubs\Vector3UnitTest.cs" />
-    <Compile Remove="Utilities\Error.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove=".DS_Store" />
-    <None Remove="Sandbox\.DS_Store" />
   </ItemGroup>
 </Project>
