@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.

@@ -5,7 +5,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.
