@@ -1,7 +1,7 @@
 using ParquetClassLibrary.Parquets;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox.Parquets
+namespace ParquetUnitTests.Parquets
 {
     public class ParquetStatusUnitTest
     {

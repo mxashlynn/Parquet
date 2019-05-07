@@ -3,7 +3,7 @@ using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Rooms
 {
     public class SpaceUnitTest
     {

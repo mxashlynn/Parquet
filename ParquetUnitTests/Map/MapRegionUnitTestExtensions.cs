@@ -1,9 +1,9 @@
 ﻿using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
-using ParquetUnitTests.Sandbox.Parquets;
+using ParquetUnitTests.Parquets;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map
 {
     /// <summary>
     /// Provides extension methods for the <see cref="MapRegion"/> used in unit testing.

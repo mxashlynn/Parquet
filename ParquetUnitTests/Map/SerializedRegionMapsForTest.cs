@@ -1,4 +1,4 @@
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map
 {
     /// <summary>
     /// Provides pre-serialized strings for use in unit testing <see cref="ParquetClassLibrary.Sandbox.MapRegion"/>.

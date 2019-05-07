@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ParquetClassLibrary.Map;
 using Xunit;
 using System;
 using ParquetClassLibrary;
@@ -7,7 +6,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Rooms;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Rooms
 {
     public class RoomRecipeUnitTest
     {

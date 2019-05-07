@@ -3,7 +3,7 @@ using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Map;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map
 {
     public class ChunkTypeUnitTest
     {

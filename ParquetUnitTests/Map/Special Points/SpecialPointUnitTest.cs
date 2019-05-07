@@ -2,7 +2,7 @@ using ParquetClassLibrary.Map.SpecialPoints;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map.SpecialPoints
 {
     public class SpecialPointUnitTest
     {

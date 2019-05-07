@@ -1,10 +1,9 @@
 using System;
 using ParquetClassLibrary.Map;
-
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map
 {
     public class MapChunkGridUnitTest
     {

@@ -2,7 +2,7 @@
 using ParquetClassLibrary.Biomes;
 using Xunit;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Biomes
 {
     public class ElevationMaskUnitTest
     {

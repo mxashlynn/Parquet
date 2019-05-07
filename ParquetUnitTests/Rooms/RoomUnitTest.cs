@@ -6,7 +6,7 @@ using Xunit;
 using System;
 using ParquetClassLibrary.Rooms;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Rooms
 {
     public class RoomUnitTest
     {

@@ -1,9 +1,8 @@
 using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
-
 using ParquetClassLibrary.Stubs;
 
-namespace ParquetUnitTests.Sandbox
+namespace ParquetUnitTests.Map
 {
     /// <summary>
     /// Provides extension methods for <see cref="MapChunkGrid"/> used in unit testing.
