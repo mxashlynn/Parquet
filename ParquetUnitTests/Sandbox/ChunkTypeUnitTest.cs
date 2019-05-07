@@ -1,5 +1,6 @@
 ﻿using System;
-using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Map;
 using Xunit;
 
 namespace ParquetUnitTests.Sandbox

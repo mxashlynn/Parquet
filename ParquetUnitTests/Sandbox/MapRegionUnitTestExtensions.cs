@@ -1,5 +1,5 @@
 ﻿using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 using ParquetUnitTests.Sandbox.Parquets;
 

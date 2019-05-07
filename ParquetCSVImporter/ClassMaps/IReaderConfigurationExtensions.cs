@@ -1,5 +1,5 @@
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetCSVImporter.ClassMaps

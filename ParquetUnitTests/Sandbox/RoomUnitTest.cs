@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using ParquetClassLibrary.Sandbox.Parquets;
-using ParquetClassLibrary.Sandbox;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 using System;
+using ParquetClassLibrary.Rooms;
 
 namespace ParquetUnitTests.Sandbox
 {

@@ -1,3 +1,5 @@
+using ParquetClassLibrary.Biomes;
+
 namespace ParquetClassLibrary.Map
 {
     /// <summary>

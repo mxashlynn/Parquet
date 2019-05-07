@@ -1,6 +1,6 @@
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox.IDs;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Parquets;
 
 namespace ParquetCSVImporter.Shims
 {

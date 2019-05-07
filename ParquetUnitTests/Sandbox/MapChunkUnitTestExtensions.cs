@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary.Sandbox;
+﻿using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox

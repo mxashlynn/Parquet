@@ -1,4 +1,4 @@
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 using Xunit;
 
 namespace ParquetUnitTests.Sandbox.Parquets

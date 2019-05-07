@@ -1,6 +1,6 @@
 using ParquetClassLibrary;
-using ParquetClassLibrary.Sandbox;
-using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Map;
+
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetUnitTests.Sandbox

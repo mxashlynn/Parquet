@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using CsvHelper;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using ParquetCSVImporter.Shims;
 

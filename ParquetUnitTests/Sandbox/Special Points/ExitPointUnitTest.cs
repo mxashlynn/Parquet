@@ -1,5 +1,5 @@
 using System;
-using ParquetClassLibrary.Sandbox.SpecialPoints;
+using ParquetClassLibrary.Map.SpecialPoints;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
