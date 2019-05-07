@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Models the status of a stack of sandbox-mode parquets.

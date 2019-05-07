@@ -1,9 +1,8 @@
 using Newtonsoft.Json;
 using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox-mode parquet floor.

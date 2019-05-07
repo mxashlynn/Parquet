@@ -1,8 +1,7 @@
 using Newtonsoft.Json;
-using ParquetClassLibrary.Sandbox.IDs;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox-mode Characters, Furnishings, Crafting Materils, etc.

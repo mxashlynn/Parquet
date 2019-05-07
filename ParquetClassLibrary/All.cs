@@ -5,7 +5,7 @@ using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Sandbox;
-using ParquetClassLibrary.Sandbox.Parquets;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary

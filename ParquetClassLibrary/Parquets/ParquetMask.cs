@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Models which, if any, parquet layers have been selected (for instance in the map editor).

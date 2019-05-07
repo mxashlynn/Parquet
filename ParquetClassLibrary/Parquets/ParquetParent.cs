@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
-using ParquetClassLibrary.Sandbox.IDs;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Models a sandbox-mode parquet.

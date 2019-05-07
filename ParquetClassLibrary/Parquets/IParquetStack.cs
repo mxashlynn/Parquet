@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Sandbox.Parquets
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
