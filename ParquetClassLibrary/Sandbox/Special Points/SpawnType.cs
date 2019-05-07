@@ -1,4 +1,4 @@
-﻿namespace ParquetClassLibrary.Sandbox.IDs
+﻿namespace ParquetClassLibrary.Sandbox.SpecialPoints
 {
     /// <summary>
     /// Indicates a particular spawnable entity.
