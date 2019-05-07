@@ -1,6 +1,6 @@
 using System;
 
-namespace ParquetClassLibrary.Sandbox.IDs
+namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
     /// Indicates that a parquet contributes to the formation of one or more <see cref="Biome"/>.

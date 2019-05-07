@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParquetClassLibrary.Sandbox.IDs
+namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
     /// Indicates a the level of a MapChunk or MapRegion.

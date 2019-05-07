@@ -1,4 +1,4 @@
-﻿namespace ParquetClassLibrary.Sandbox.IDs
+﻿namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
     /// The three categories of elevation that the game understands.
