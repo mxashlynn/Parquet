@@ -168,6 +168,28 @@ namespace ParquetUnitTests.Utilities
         }
 
         [Fact]
+        public void MustBeNonNegativeTest()
+        {
+            var testValue0 = 0;
+            var testValue1 = 1;
+
+            var exception0 = Record.Exception(() => Precondition.MustBeNonNegative(testValue0));
+            var exception1 = Record.Exception(() => Precondition.MustBeNonNegative(testValue1));
+
+            Assert.Null(exception0);
+            Assert.Null(exception1);
+        }
+
+        [Fact]
+        public void MustBeNonNegativeThrowsOnNegativeTest()
+        {
+            var testValue = -1;
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.MustBeNonNegative(testValue));
+        }
+
+
+        [Fact]
         public void MustBePositiveTest()
         {
             var testValue = 1;
@@ -192,7 +214,6 @@ namespace ParquetUnitTests.Utilities
 
             Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.MustBePositive(testValue));
         }
-
 
         [Fact]
         public void IsNotEmptyTest()

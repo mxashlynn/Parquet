@@ -143,6 +143,20 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
+        /// Verifies that the given number is zero or positive.
+        /// </summary>
+        /// <param name="in_number">The number to test.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the number is -1 or less.</exception>
+        public static void MustBeNonNegative(int in_number, string in_argumentName = DefaultArgumentName)
+        {
+            if (in_number < 0)
+            {
+                throw new ArgumentOutOfRangeException($"{in_argumentName} must be a non-negative number.");
+            }
+        }
+
+        /// <summary>
         /// Verifies that the given number is positive.
         /// </summary>
         /// <param name="in_number">The number to test.</param>
