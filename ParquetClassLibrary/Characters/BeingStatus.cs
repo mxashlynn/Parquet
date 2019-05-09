@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Characters
         public List<EntityID> KnownRoomRecipes { get; }
 
         /// <summary>The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</summary>
-        [JsonProperty(PropertyName = "in_knwonCraftingRecipes")]
+        [JsonProperty(PropertyName = "in_knownCraftingRecipes")]
         public List<EntityID> KnownCraftingRecipes { get; }
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</summary>
@@ -118,10 +118,10 @@ namespace ParquetClassLibrary.Characters
                            int in_biomeTimeRemaining,
                            float in_buildingSpeed, float in_modificationSpeed,
                            float in_gatheringSpeed, float in_movementSpeed,
-                           List<EntityID> in_knownCritters, List<EntityID> in_knownNPCs,
-                           List<EntityID> in_knownParquets,
-                           List<EntityID> in_knownRoomRecipes, List<EntityID> in_knownCraftingRecipes,
-                           List<EntityID> in_quests, List<EntityID> in_inventory)
+                           List<EntityID> in_knownCritters = null, List<EntityID> in_knownNPCs = null,
+                           List<EntityID> in_knownParquets = null, List<EntityID> in_knownRoomRecipes = null,
+                           List<EntityID> in_knownCraftingRecipes = null, List<EntityID> in_quests = null,
+                           List<EntityID> in_inventory = null)
         {
             Precondition.IsNotNull(in_beingDefinition, nameof(in_beingDefinition));
             var nonNullCritters = in_knownCritters ?? Enumerable.Empty<EntityID>().ToList();
@@ -138,8 +138,6 @@ namespace ParquetClassLibrary.Characters
             Precondition.AreInRange(nonNullCraftingRecipes, All.CraftingRecipeIDs, nameof(in_knownCraftingRecipes));
             Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_quests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_inventory));
-
-            // TODO This will require heavy revision once the controllers and views are being implemented.
 
             BeingDefinition = in_beingDefinition;
             CurrentBehavior = in_currentBehavior;
