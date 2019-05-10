@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -68,7 +69,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Block(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
                      GatheringTools in_gatherTool = GatheringTools.None,
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_itemID = null, EntityID? in_collectibleID = null,

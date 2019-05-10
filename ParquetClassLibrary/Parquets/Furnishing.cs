@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -51,7 +52,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_itemID">The item that represents this furnishing in the inventory.</param>
         /// <param name="in_swapID">A furnishing to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
-        public Furnishing(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Furnishing(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
                           bool in_isWalkable = false, bool in_isEntry = false, bool in_isEnclosing = false,
                           EntityID? in_itemID = null, EntityID? in_swapID = null)
             : base(Bounds, in_id, in_name, in_addsToBiome)

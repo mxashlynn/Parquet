@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -45,7 +46,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_trenchName">The name to use for this floor when it has been dug out.</param>
         /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>
         [JsonConstructor]
-        public Floor(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Floor(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
                      ModificationTools in_modTool = ModificationTools.None,
                      string in_trenchName = defaultTrenchName, bool in_isWalkable = true)
                      : base(Bounds, in_id, in_name, in_addsToBiome)
