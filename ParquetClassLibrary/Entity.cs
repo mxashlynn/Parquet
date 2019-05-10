@@ -30,7 +30,19 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         [JsonProperty(PropertyName = "in_name")]
-        public virtual string Name { get; }
+        public string Name { get; }
+
+        /// <summary>Player-facing description.</summary>
+        [JsonProperty(PropertyName = "in_description")]
+        public string Description { get; }
+
+        /// <summary>Optional comment.</summary>
+        /// <remarks>
+        /// Could be used for designer notes or to implement an in-game dialogue
+        /// with or on the <see cref="Entity"/>.
+        /// </remarks>
+        [JsonProperty(PropertyName = "in_comment")]
+        public string Comment { get; }
 
         #region Initialization
         /// <summary>
@@ -40,13 +52,15 @@ namespace ParquetClassLibrary
         /// <param name="in_id">Unique identifier for the entity.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the entity.  Cannot be null or empty.</param>
         [JsonConstructor]
-        protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name)
+        protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description, string in_comment)
         {
             Precondition.IsInRange(in_id, in_bounds, nameof(in_id));
             Precondition.IsNotEmpty(in_name, nameof(in_name));
 
             ID = in_id;
             Name = in_name;
+            Description = in_description;
+            Comment = in_comment;
         }
         #endregion
 
