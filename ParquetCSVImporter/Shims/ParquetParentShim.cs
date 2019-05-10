@@ -17,6 +17,11 @@ namespace ParquetCSVImporter.Shims
         public string Name;
 
         /// <summary>
+        /// The <see cref="EntityID"/> of the item awarded to the player when a character gathers or collects this parquet.
+        /// </summary>
+        public EntityID ItemID;
+
+        /// <summary>
         /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) this parquet helps generate.
         /// </summary>
         public List<EntityTag> AddsToBiome;

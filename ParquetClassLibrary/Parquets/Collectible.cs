@@ -28,10 +28,6 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         [JsonProperty(PropertyName = "in_effectAmount")]
         public int EffectAmount { get; }
-
-        /// <summary>The item spawned when a character encounters this Collectible.</summary>
-        [JsonProperty(PropertyName = "in_itemID")]
-        public EntityID ItemID { get; }
         #endregion
 
         #region Initialization
@@ -40,19 +36,15 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_addsToBiome">
-        /// A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.
-        /// </param>
+        /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="Collectible"/> corresponds to, if any.</param>
+        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_effect">Effect of this collectible.</param>
-        /// <param name="in_effectAmount">
-        /// The scale in points of the effect.  That is, how much to alter a stat if in_effect is set to alter a stat.
-        /// </param>
-        /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>
+        /// <param name="in_effectAmount">The scale in points of the effect.  That is, how much to alter a stat if in_effect is set to alter a stat.</param>
         [JsonConstructor]
-        public Collectible(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
-                           CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0,
-                           EntityID? in_itemID = null)
-            : base(Bounds, in_id, in_name, in_addsToBiome)
+        public Collectible(EntityID in_id, string in_name, EntityID? in_itemID = null,
+                           List<EntityTag> in_addsToBiome = null,
+                           CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0)
+            : base(Bounds, in_id, in_name, in_itemID, in_addsToBiome)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
 
@@ -60,7 +52,6 @@ namespace ParquetClassLibrary.Parquets
 
             Effect = in_effect;
             EffectAmount = in_effectAmount;
-            ItemID = nonNullItemID;
         }
         #endregion
     }
