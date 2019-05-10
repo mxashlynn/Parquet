@@ -82,6 +82,7 @@ namespace ParquetCSVImporter
             {
                 using (var csv = new CsvReader(reader))
                 {
+                    csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
                     csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
                     csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                     csv.Configuration.RegisterClassMapFor<T>();

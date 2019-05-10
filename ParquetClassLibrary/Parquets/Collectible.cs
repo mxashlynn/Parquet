@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -48,7 +49,7 @@ namespace ParquetClassLibrary.Parquets
         /// </param>
         /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>
         [JsonConstructor]
-        public Collectible(EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None,
+        public Collectible(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
                            CollectionEffect in_effect = CollectionEffect.None, int in_effectAmount = 0,
                            EntityID? in_itemID = null)
             : base(Bounds, in_id, in_name, in_addsToBiome)

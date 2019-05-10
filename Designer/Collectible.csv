@@ -1,11 +1,11 @@
 ID,Name,AddsToBiome,Effect,EffectAmount,ItemID
--60000,4 Collectible Test Parquet,None,None,0,-100000
-60000,Flower,None,Item,0,100000
-60001,Pinecone,Forested,Item,0,100001
-60002,Seeds,Swampy,Item,0,100002
-60003,Bones,Deserted,Item,0,100003
-60004,Ice Crystal,Frozen,Item,0,100004
-60005,Copper Ore,None,Item,0,100005
+-60000,4 Collectible Test Parquet,None,None,0,-110000
+60000,Flower,None,Item,0,110000
+60001,Pinecone,Forested,Item,0,110001
+60002,Seeds,Swampy,Item,0,110002
+60003,Bones,Deserted,Item,0,110003
+60004,Ice Crystal,Frozen,Item,0,110004
+60005,Copper Ore,None,Item,0,110005
 60006,Heart,None,BiomeTime,10,0
 60007,Star,None,BiomeTime,10,0
 60008,Water Bottle,None,BiomeTime,10,0

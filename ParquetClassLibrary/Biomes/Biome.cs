@@ -1,168 +1,68 @@
-﻿using ParquetClassLibrary.Items;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Indicates the biome that a MapRegion embodies.
+    /// Models the biome that a <see cref="Map.MapRegion"/> embodies.
     /// </summary>
-    public enum Biome
+    public class Biome : Entity
     {
-        Alpine,
-        Cavern,
-        Desert,
-        Field,
-        Forest,
-        Heavens,
-        Inferno,
-        Ruins,
-        Seaside,
-        Swamp,
-        Town,
-        Tundra,
-        Volcano,
-    }
-
-    /// <summary>
-    /// Convenience extension methods for <see cref="Biome"/> instances.
-    /// </summary>
-    internal static class BiomeExtensions
-    {
+        #region Characteristics
         /// <summary>
-        /// Gets the tier-rating of the given biome in terms of number of stars.
+        /// A rating indicating where in the progression this <see cref="Biome"/> falls.
+        /// Must be non-negative.  Higher values indicate later Biomes.
         /// </summary>
-        /// <param name="in_enumVariable">The Biome under consideration.</param>
-        /// <returns>The number of stars for this Biome's tier.</returns>
-        public static int GetStarRating(this ref Biome in_enumVariable)
-        {
-            var stars = 0;
-
-            switch (in_enumVariable)
-            {
-                case Biome.Field:
-                case Biome.Town:
-                    stars = 0;
-                    break;
-                case Biome.Forest:
-                case Biome.Seaside:
-                    stars = 1;
-                    break;
-                case Biome.Desert:
-                case Biome.Swamp:
-                case Biome.Tundra:
-                    stars = 2;
-                    break;
-                case Biome.Cavern:
-                    stars = 3;
-                    break;
-                case Biome.Alpine:
-                case Biome.Ruins:
-                case Biome.Volcano:
-                    stars = 4;
-                    break;
-                case Biome.Heavens:
-                case Biome.Inferno:
-                    stars = 5;
-                    break;
-            }
-
-            return stars;
-        }
+        public int Tier { get; }
 
         /// <summary>
-        /// Gets an archtypical <see cref="Elevation"/> for the given biome.
+        /// Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.
         /// </summary>
-        /// <param name="in_enumVariable">The Biome under consideration.</param>
-        /// <returns>The elevation of this Biome.</returns>
-        public static Elevation GetElevation(this ref Biome in_enumVariable)
-        {
-            var elevation = Elevation.LevelGround;
-
-            switch (in_enumVariable)
-            {
-                case Biome.Field:
-                case Biome.Town:
-                case Biome.Forest:
-                case Biome.Seaside:
-                case Biome.Desert:
-                case Biome.Swamp:
-                case Biome.Tundra:
-                case Biome.Ruins:
-                    elevation = Elevation.LevelGround;
-                    break;
-                case Biome.Cavern:
-                case Biome.Inferno:
-                    elevation = Elevation.BelowGround;
-                    break;
-                case Biome.Alpine:
-                case Biome.Volcano:
-                case Biome.Heavens:
-                    elevation = Elevation.AboveGround;
-                    break;
-            }
-
-            return elevation;
-        }
+        public Elevation ElevationCategory { get; }
 
         /// <summary>
-        /// Gets the <see cref="KeyItem"/> a player character needs to safely access the given biome.
+        /// Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.
         /// </summary>
-        /// <param name="in_enumVariable">The Biome under consideration.</param>
-        /// <returns>The requirements needed to enter this Biome.</returns>
-        public static KeyItem GetEntryRequirements(this ref Biome in_enumVariable)
+        public bool IsLiquidBased { get; }
+
+        /// <summary>
+        /// Describes the parquets that make up this <see cref="Biome"/>.
+        /// </summary>
+        public IReadOnlyList<EntityTag> ParquetCriteria { get; }
+
+        /// <summary>
+        /// Describes the <see cref="Item"/>s a <see cref="Characters.PlayerCharacter"/> needs to
+        /// safely access this <see cref="Biome"/>.
+        /// </summary>
+        public IReadOnlyList<EntityTag> EntryRequirements { get; }
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Biome"/> class.
+        /// </summary>
+        /// <param name="in_id">Unique identifier for the <see cref="Biome"/>.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the <see cref="Biome"/>.  Cannot be null or empty.</param>
+        /// <param name="in_tier">A rating indicating where in the progression this <see cref="Biome"/> falls.</param>
+        /// <param name="in_elevationCategory">Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</param>
+        /// <param name="in_isLiquidBased">Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</param>
+        /// <param name="in_parquetCriteria">Describes the parquets that make up this <see cref="Biome"/>.</param>
+        /// <param name="in_entryRequirements">Describes the <see cref="Item"/>s needed to access this <see cref="Biome"/>.</param>
+        public Biome(EntityID in_id, string in_name, int in_tier, Elevation in_elevationCategory,
+                     bool in_isLiquidBased, List<EntityTag> in_parquetCriteria,
+                     List<EntityTag> in_entryRequirements)
+            : base(All.BiomeIDs, in_id, in_name)
         {
-            var key = KeyItem.None;
+            Precondition.MustBeNonNegative(in_tier, nameof(in_tier));
 
-            switch (in_enumVariable)
-            {
-                // Tier 0
-                case Biome.Field:
-                case Biome.Town:
-                    key = KeyItem.None;
-                    break;
-                // Tier 1
-                case Biome.Forest:
-                    key = KeyItem.ForestKey;
-                    break;
-                case Biome.Seaside:
-                    key = KeyItem.SeasideKey;
-                    break;
-                // Tier 2
-                case Biome.Desert:
-                    key = KeyItem.SeasideKey | KeyItem.DesertKey | KeyItem.Tier2Key;
-                    break;
-                case Biome.Swamp:
-                    key = KeyItem.ForestKey | KeyItem.SwampKey | KeyItem.Tier2Key;
-                    break;
-                case Biome.Tundra:
-                    key = KeyItem.SeasideKey | KeyItem.TundraKey | KeyItem.Tier2Key;
-                    break;
-                // Tier 3
-                case Biome.Cavern:
-                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key;
-                    break;
-                // Tier 4
-                case Biome.Alpine:
-                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
-                        | KeyItem.SeasideKey | KeyItem.TundraKey | KeyItem.AlpineKey;
-                    break;
-                case Biome.Ruins:
-                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
-                        | KeyItem.ForestKey | KeyItem.SwampKey | KeyItem.RuinsKey;
-                    break;
-                case Biome.Volcano:
-                    key = KeyItem.ForestKey | KeyItem.CavernKey | KeyItem.Tier2Key | KeyItem.Tier3Key
-                        | KeyItem.SeasideKey | KeyItem.DesertKey | KeyItem.VolcanoKey;
-                    break;
-                // Tier 5
-                case Biome.Heavens:
-                    key = KeyItem.HeavenlyKey;
-                    break;
-                case Biome.Inferno:
-                    key = KeyItem.InfernalKey;
-                    break;
-            }
-
-            return key;
+            Tier = in_tier;
+            ElevationCategory = in_elevationCategory;
+            IsLiquidBased = in_isLiquidBased;
+            ParquetCriteria = (in_parquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
+            EntryRequirements = (in_entryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
         }
+        #endregion
     }
 }

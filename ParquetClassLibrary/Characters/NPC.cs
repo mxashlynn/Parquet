@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Characters
         /// </param>
         /// <param name="in_personalName">Personal name of the <see cref="NPC"/>.  Cannot be null or empty.</param>
         /// <param name="in_familyName">Family name of the <see cref="NPC"/>.  Cannot be null or empty.</param>
-        /// <param name="in_nativeBiome">The <see cref="Biome"/> in which this <see cref="NPC"/> is most comfortable.</param>
+        /// <param name="in_nativeBiome">The <see cref="EntityID"/> of the <see cref="Biome"/> in which this <see cref="NPC"/> is most comfortable.</param>
         /// <param name="in_currentBehavior">The rules that govern how this <see cref="NPC"/> acts.  Cannot be null.</param>
         /// <param name="in_avoids">Any parquets this <see cref="NPC"/> avoids.</param>
         /// <param name="in_seeks">Any parquets this <see cref="NPC"/> seeks.</param>
@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_dialogue">All dialogue this <see cref="NPC"/> may say.</param>
         /// <param name="in_inventory">Any items this <see cref="NPC"/> owns.</param>
         public NPC(EntityID in_id, string in_personalName, string in_familyName,
-                   Biome in_nativeBiome, Behavior in_currentBehavior,
+                   EntityID in_nativeBiome, Behavior in_currentBehavior,
                    List<EntityID> in_avoids = null, List<EntityID> in_seeks = null,
                    string in_pronoun = DefaultPronoun, string in_storyCharacterID = "",
                    List<EntityID> in_quests = null, List<string> in_dialogue = null,

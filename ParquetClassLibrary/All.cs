@@ -87,6 +87,12 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> QuestIDs;
 
         /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biomes.Biome"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> BiomeIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Items.Item"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
@@ -244,6 +250,8 @@ namespace ParquetClassLibrary
             CraftingRecipeIDs = new Range<EntityID>(80000, 89000);
 
             QuestIDs = new Range<EntityID>(90000, 99000);
+
+            BiomeIDs = new Range<EntityID>(100000, 109000);
             #endregion
 
             #region Define Range Collections

@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
         /// <param name="in_startingInventory">Any items this <see cref="Character"/> owns at the outset.</param>
         protected Character(Range<EntityID> in_bounds, EntityID in_id,
-                            string in_personalName, string in_familyName, Biome in_nativeBiome,
+                            string in_personalName, string in_familyName, EntityID in_nativeBiome,
                             Behavior in_primaryBehavior, List<EntityID> in_avoids = null,
                             List<EntityID> in_seeks = null, string in_pronoun = DefaultPronoun,
                             string in_storyCharacterID = "", List<EntityID> in_startingQuests = null,

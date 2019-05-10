@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Characters
         public PlayerCharacter(EntityID in_id, string in_personalName, string in_familyName,
                             string in_pronoun = DefaultPronoun, string in_storyCharacterID = "",
                             List<EntityID> in_startingQuests = null, List<EntityID> in_startingInventory = null)
-            : base(All.PlayerCharacterIDs, in_id, in_personalName, in_familyName, Biome.Town,
+            : base(All.PlayerCharacterIDs, in_id, in_personalName, in_familyName, EntityID.None,
                    Behavior.PlayerControlled, null, null, in_pronoun, in_storyCharacterID, in_startingQuests,
                    null, in_startingInventory)
         {

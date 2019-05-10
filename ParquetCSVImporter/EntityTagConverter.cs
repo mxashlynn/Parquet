@@ -7,9 +7,9 @@ using ParquetClassLibrary;
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// Type converter for <see cref="EntityID"/>.
+    /// Type converter for <see cref="EntityTag"/>.
     /// </summary>
-    public class EntityIDConverter : DefaultTypeConverter
+    public class EntityTagConverter : DefaultTypeConverter
     {
         /// <summary>
         /// Converts the given record column to <see cref="EntityID"/>.
@@ -20,14 +20,7 @@ namespace ParquetCSVImporter
         /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
         public override object ConvertFromString(string in_text, IReaderRow in_row, MemberMapData in_memberMapData)
         {
-            var numberStyle = in_memberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-
-            if (int.TryParse(in_text, numberStyle, in_memberMapData.TypeConverterOptions.CultureInfo, out var id))
-            {
-                return (EntityID)id;
-            }
-
-            return (EntityID)base.ConvertFromString(in_text, in_row, in_memberMapData);
+            return (EntityTag)in_text;
         }
     }
 }

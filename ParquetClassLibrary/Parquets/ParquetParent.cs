@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -10,11 +12,10 @@ namespace ParquetClassLibrary.Parquets
     public abstract class ParquetParent : Entity
     {
         /// <summary>
-        /// If a <see cref="BiomeMask"/> flag is set, this parquet helps generate
-        /// the corresponding <see cref="Biome"/>.
+        /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) thhat this parquet helps generate.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToBiome")]
-        public BiomeMask AddsToBiome { get; }
+        public IReadOnlyList<EntityTag> AddsToBiome { get; }
 
         #region Initialization
         /// <summary>
@@ -23,12 +24,12 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_bounds">The bounds within which the derived parquet type's EntityID is defined.</param>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
-        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_addsToBiome">A set of <see cref="EntityTag"/>s indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         [JsonConstructor]
-        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, BiomeMask in_addsToBiome = BiomeMask.None)
+        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null)
             : base(in_bounds, in_id, in_name)
         {
-            AddsToBiome = in_addsToBiome;
+            AddsToBiome = in_addsToBiome ?? Enumerable.Empty<EntityTag>().ToList();
         }
         #endregion
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
@@ -16,9 +17,9 @@ namespace ParquetCSVImporter.Shims
         public string Name;
 
         /// <summary>
-        /// If a <see cref="BiomeMask"/> flag is set, this parquet helps generate the corresponding <see cref="Biome"/>.
+        /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) this parquet helps generate.
         /// </summary>
-        public BiomeMask AddsToBiome;
+        public List<EntityTag> AddsToBiome;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
