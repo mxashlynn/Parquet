@@ -15,14 +15,13 @@ namespace ParquetClassLibrary.Characters
 
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
-        /// <remarks>Overrides the base <see cref="Entity.Name"/> because <see cref="Character"/>s do not have a single name string.</remarks>
-        public new string Name => PersonalName;
-
-        /// <summary>Player-facing personal name.</summary>
         public string PersonalName { get; }
 
         /// <summary>Player-facing family name.</summary>
         public string FamilyName { get; }
+
+        /// <summary>Player-facing full name.</summary>
+        public string FullName => Name;
 
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
         // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
@@ -60,6 +59,8 @@ namespace ParquetClassLibrary.Characters
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="Character"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="Character"/>.</param>
         /// <param name="in_personalName">Personal name of the <see cref="Character"/>.  Cannot be null or empty.</param>
         /// <param name="in_familyName">Family name of the <see cref="Character"/>.  Cannot be null or empty.</param>
         /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
@@ -70,13 +71,14 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_startingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
         /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
         /// <param name="in_startingInventory">Any items this <see cref="Character"/> owns at the outset.</param>
-        protected Character(Range<EntityID> in_bounds, EntityID in_id,
+        protected Character(Range<EntityID> in_bounds, EntityID in_id, string in_description, string in_comment,
                             string in_personalName, string in_familyName, EntityID in_nativeBiome,
                             Behavior in_primaryBehavior, List<EntityID> in_avoids = null,
                             List<EntityID> in_seeks = null, string in_pronoun = DefaultPronoun,
                             string in_storyCharacterID = "", List<EntityID> in_startingQuests = null,
                             List<string> in_dialogue = null, List<EntityID> in_startingInventory = null)
-            : base(in_bounds, in_id, in_personalName, in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
+            : base(in_bounds, in_id, $"{in_personalName} {in_familyName}", in_description, in_comment,
+                   in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
         {
             var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
             var nonNullQuests = in_startingQuests ?? Enumerable.Empty<EntityID>();
