@@ -33,10 +33,6 @@ namespace ParquetClassLibrary.Parquets
         [JsonProperty(PropertyName = "in_gatherEffect")]
         public GatheringEffect GatherEffect { get; }
 
-        /// <summary>The item awarded to the player when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "in_itemID")]
-        public EntityID ItemID { get; }
-
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_collectibleID")]
         public EntityID CollectibleID { get; }
@@ -60,32 +56,30 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_gatherTool">The tool used to gather this block.</param>
         /// <param name="in_gatherEffect">Effect of this block when gathered.</param>
-        /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>
         /// <param name="in_collectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>
         /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(EntityID in_id, string in_name, List<EntityTag> in_addsToBiome = null,
+        public Block(EntityID in_id, string in_name, EntityID? in_itemID = null,
+                     List <EntityTag> in_addsToBiome = null,
                      GatheringTools in_gatherTool = GatheringTools.None,
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
-                     EntityID? in_itemID = null, EntityID? in_collectibleID = null,
+                     EntityID? in_collectibleID = null,
                      bool in_isFlammable = false, bool in_isLiquid = false,
                      int in_maxToughness = DefaultMaxToughness)
-                     : base(Bounds, in_id, in_name, in_addsToBiome)
+                     : base(Bounds, in_id, in_name, in_itemID, in_addsToBiome)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
-            var nonNullItemID = in_itemID ?? EntityID.None;
 
             Precondition.IsInRange(nonNullCollectibleID, All.CollectibleIDs, nameof(in_collectibleID));
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
 
             GatherTool = in_gatherTool;
             GatherEffect = in_gatherEffect;
-            ItemID = nonNullItemID;
             CollectibleID = nonNullCollectibleID;
             IsFlammable = in_isFlammable;
             IsLiquid = in_isLiquid;

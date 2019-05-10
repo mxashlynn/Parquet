@@ -21,9 +21,6 @@ namespace ParquetCSVImporter.Shims
         /// <summary>The effect generated when a character gathers this Block.</summary>
         public GatheringEffect GatherEffect;
 
-        /// <summary>The item awarded to the player when a character gathers this Block.</summary>
-        public EntityID ItemID;
-
         /// <summary>The collectible spawned when a character gathers this Block.</summary>
         public EntityID CollectibleID;
 
@@ -47,8 +44,9 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Block>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Block(ID, Name, AddsToBiome, GatherTool, GatherEffect, ItemID,
-                                               CollectibleID, IsFlammable, IsLiquid, MaxToughness);
+            return (TargetType)(ParquetParent)new Block(ID, Name, ItemID, AddsToBiome, GatherTool,
+                                                        GatherEffect, CollectibleID, IsFlammable, IsLiquid,
+                                                        MaxToughness);
         }
     }
 }

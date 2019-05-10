@@ -22,9 +22,6 @@ namespace ParquetCSVImporter.Shims
         /// </summary>
         public int EffectAmount;
 
-        /// <summary>The item spawned when a character encounters this collectible.</summary>
-        public EntityID ItemID;
-
         /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>
@@ -34,7 +31,7 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Collectible>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Collectible(ID, Name, AddsToBiome, Effect, EffectAmount, ItemID); ;
+            return (TargetType)(ParquetParent)new Collectible(ID, Name, ItemID, AddsToBiome, Effect, EffectAmount);
         }
     }
 }

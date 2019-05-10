@@ -21,9 +21,6 @@ namespace ParquetCSVImporter.Shims
         /// <summary>The furnishing may be a wall.</summary>
         public bool IsEnclosing;
 
-        /// <summary>The item that represents this furnishing in the inventory.</summary>
-        public EntityID ItemID;
-
         /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
         public EntityID SwapID;
 
@@ -36,8 +33,8 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Furnishing>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Furnishing(ID, Name, AddsToBiome, IsWalkable,
-                                                             IsEntry, IsEnclosing, ItemID, SwapID);
+            return (TargetType)(ParquetParent)new Furnishing(ID, Name, ItemID, AddsToBiome, IsWalkable,
+                                                             IsEntry, IsEnclosing, SwapID);
         }
     }
 }
