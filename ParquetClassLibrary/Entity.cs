@@ -49,8 +49,10 @@ namespace ParquetClassLibrary
         /// Initializes a new instance of concrete implementations of the <see cref="Entity"/> class.
         /// </summary>
         /// <param name="in_bounds">The bounds within which the derived type's <see cref="EntityID"/> is defined.</param>
-        /// <param name="in_id">Unique identifier for the entity.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the entity.  Cannot be null or empty.</param>
+        /// <param name="in_id">Unique identifier for the <see cref="Entity"/>.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the <see cref="Entity"/>.  Cannot be null or empty.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="Entity"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="Entity"/>.</param>
         [JsonConstructor]
         protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description, string in_comment)
         {
@@ -59,8 +61,8 @@ namespace ParquetClassLibrary
 
             ID = in_id;
             Name = in_name;
-            Description = in_description;
-            Comment = in_comment;
+            Description = in_description ?? "";
+            Comment = in_comment ?? "";
         }
         #endregion
 
