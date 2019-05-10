@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidCollectibleIDsArePermittedTest()
         {
-            var testCollectible = new Collectible(newCollectibleID, "will be created");
+            var testCollectible = new Collectible(newCollectibleID, "will be created", "", "");
 
             Assert.NotNull(testCollectible);
         }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Collectible(badCollectibleID, "will fail");
+                var _ = new Collectible(badCollectibleID, "will fail", "", "");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Parquets
         {
             EntityID goodItemID = -All.ItemIDs.Minimum;
 
-            var testBlock = new Collectible(newCollectibleID, "will be created", in_itemID: goodItemID);
+            var testBlock = new Collectible(newCollectibleID, "will be created", "", "", goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Collectible(newCollectibleID, "will fail", in_itemID: badItemID);
+                var _ = new Collectible(newCollectibleID, "will fail", "", "", badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

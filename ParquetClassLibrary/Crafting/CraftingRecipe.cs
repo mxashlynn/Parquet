@@ -16,7 +16,8 @@ namespace ParquetClassLibrary.Crafting
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
         public static CraftingRecipe NotCraftable { get; } =
-            new CraftingRecipe(EntityID.None, "Not Craftable", EmptyCraftingElementList, EmptyCraftingElementList,
+            new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
+                               EmptyCraftingElementList, EmptyCraftingElementList,
                                new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                All.Dimensions.PanelsPerPatternHeight]);
 

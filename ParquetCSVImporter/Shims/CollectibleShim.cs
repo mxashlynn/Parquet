@@ -31,7 +31,7 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Collectible>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Collectible(ID, Name, ItemID, AddsToBiome, Effect, EffectAmount);
+            return (TargetType)(ParquetParent)new Collectible(ID, Name, Description, Comment, ItemID, AddsToBiome, Effect, EffectAmount);
         }
     }
 }

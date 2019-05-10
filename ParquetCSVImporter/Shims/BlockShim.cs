@@ -44,7 +44,7 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Block>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Block(ID, Name, ItemID, AddsToBiome, GatherTool,
+            return (TargetType)(ParquetParent)new Block(ID, Name, Description, Comment, ItemID, AddsToBiome, GatherTool,
                                                         GatherEffect, CollectibleID, IsFlammable, IsLiquid,
                                                         MaxToughness);
         }
