@@ -21,6 +21,12 @@ namespace ParquetCSVImporter.Shims
         /// </summary>
         public EntityID ItemID;
 
+        /// <summary>Player-facing description.</summary>
+        public string Description { get; }
+
+        /// <summary>Optional comment.</summary>
+        public string Comment { get; }
+
         /// <summary>
         /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) this parquet helps generate.
         /// </summary>

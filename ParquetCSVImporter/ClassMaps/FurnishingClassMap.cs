@@ -18,13 +18,15 @@ namespace ParquetCSVImporter.ClassMaps
             // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
             Map(m => m.Name).Index(1);
-            Map(m => m.ItemID).Index(2);
-            Map(m => m.AddsToBiome).Index(3);
+            Map(m => m.Description).Index(2);
+            Map(m => m.Comment).Index(3);
+            Map(m => m.ItemID).Index(4);
+            Map(m => m.AddsToBiome).Index(5);
 
-            Map(m => m.IsWalkable).Index(4);
-            Map(m => m.IsEntry).Index(5);
-            Map(m => m.IsEnclosing).Index(6);
-            Map(m => m.SwapID).Index(7);
+            Map(m => m.IsWalkable).Index(6);
+            Map(m => m.IsEntry).Index(7);
+            Map(m => m.IsEnclosing).Index(8);
+            Map(m => m.SwapID).Index(9);
         }
     }
 }
