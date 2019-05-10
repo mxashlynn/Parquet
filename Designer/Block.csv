@@ -1,10 +1,10 @@
-ID,Name,AddsToBiome,GatherTool,GatherEffect,ItemID,CollectibleID,IsFlammable,IsLiquid,MaxToughness
--40000,2 Block Test Parquet,None,None,None,-110000,-60000,FALSE,FALSE,10
-40000,bush,None,Axe,Collectible,0,60000,TRUE,FALSE,1
-40001,tree,Forested,Axe,Collectible,0,60001,TRUE,FALSE,4
-40002,seed pod,Swampy,Axe,Collectible,0,60002,TRUE,FALSE,1
-40003,sandstone boulder,Deserted,Pick,None,0,0,FALSE,FALSE,10
-40004,ice boulder,Frozen,Pick,None,0,0,FALSE,FALSE,8
-40005,grey brick,None,Pick,None,0,0,FALSE,FALSE,8
-40006,fresh water,None,Bucket,Item,110001,0,FALSE,TRUE,1
-40007,lava,Volcanic,Bucket,Item,110002,0,FALSE,TRUE,1
+ID,Name,ItemID,AddsToBiome,GatherTool,GatherEffect,CollectibleID,IsFlammable,IsLiquid,MaxToughness
+-40000,2 Block Test Parquet,-110000,None,None,None,-60000,FALSE,FALSE,10
+40000,bush,0,None,Axe,Collectible,60000,TRUE,FALSE,1
+40001,tree,0,Forested,Axe,Collectible,60001,TRUE,FALSE,4
+40002,seed pod,0,Swampy,Axe,Collectible,60002,TRUE,FALSE,1
+40003,sandstone boulder,0,Deserted,Pick,None,0,FALSE,FALSE,10
+40004,ice boulder,0,Frozen,Pick,None,0,FALSE,FALSE,8
+40005,grey brick,0,None,Pick,None,0,FALSE,FALSE,8
+40006,fresh water,110001,None,Bucket,Item,0,FALSE,TRUE,1
+40007,lava,110002,Volcanic,Bucket,Item,0,FALSE,TRUE,1
