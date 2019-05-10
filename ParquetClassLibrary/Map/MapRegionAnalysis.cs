@@ -1,3 +1,7 @@
+/*
+
+    TODO Revisit this when implementing Biome detection.
+
 using System;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
@@ -214,3 +218,4 @@ namespace ParquetClassLibrary.Map
         #endregion
     }
 }
+*/
