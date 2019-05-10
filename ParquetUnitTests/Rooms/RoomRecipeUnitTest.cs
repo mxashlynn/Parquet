@@ -45,7 +45,7 @@ namespace ParquetUnitTests.Rooms
             new Dictionary<EntityID, int> { { -All.FurnishingIDs.Minimum, 1 } };
 
         private static readonly RoomRecipe MinimalRecipe =
-            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", TestRequiredFurnishings);
+            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", TestRequiredFurnishings);
 
         private static readonly Room MinimalRoom = new Room(TestWalkableArea, TestPerimeter);
         #endregion
@@ -55,7 +55,7 @@ namespace ParquetUnitTests.Rooms
         {
             void NullRequiredFurnishings()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", null);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", null);
             }
 
             Assert.Throws<ArgumentNullException>(NullRequiredFurnishings);
@@ -66,7 +66,8 @@ namespace ParquetUnitTests.Rooms
         {
             void EmptyRequiredFurnishings()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", new Dictionary<EntityID, int>());
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
+                                       new Dictionary<EntityID, int>());
             }
 
             Assert.Throws<IndexOutOfRangeException>(EmptyRequiredFurnishings);
@@ -79,7 +80,7 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredFurnishings()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", BadRequiredFurnishings);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", BadRequiredFurnishings);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredFurnishings);
@@ -92,7 +93,8 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredFloors()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", TestRequiredFurnishings,
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
+                                       TestRequiredFurnishings,
                                        in_optionallyRequiredWalkableFloors: BadRequiredFloors);
             }
 
@@ -106,7 +108,8 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredBlocks()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", TestRequiredFurnishings,
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
+                                       TestRequiredFurnishings,
                                        in_optionallyRequiredPerimeterBlocks: BadRequiredBlocks);
             }
 
@@ -120,8 +123,8 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredBlocks()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", TestRequiredFurnishings,
-                    in_MinimumWalkableSpaces: BadMinimum);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
+                                       TestRequiredFurnishings, BadMinimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredBlocks);
@@ -134,8 +137,8 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredBlocks()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", TestRequiredFurnishings,
-                    in_MinimumWalkableSpaces: BadMinimum);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
+                                       TestRequiredFurnishings, BadMinimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredBlocks);

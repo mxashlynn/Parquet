@@ -34,13 +34,16 @@ namespace ParquetClassLibrary.Characters
         /// </param>
         /// <param name="in_id">Unique identifier for the <see cref="Being"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Being"/>.  Cannot be null or empty.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="Being"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="Being"/>.</param>
         /// <param name="in_nativeBiome">The <see cref="EntityID"/> for the <see cref="Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
         /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Being"/> acts.  Cannot be null.</param>
         /// <param name="in_avoids">Any parquets this <see cref="Being"/> avoids.</param>
         /// <param name="in_seeks">Any parquets this <see cref="Being"/> seeks.</param>
-        protected Being(Range<EntityID> in_bounds, EntityID in_id, string in_name, EntityID in_nativeBiome,
-                        Behavior in_primaryBehavior, List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
-            : base(in_bounds, in_id, in_name)
+        protected Being(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
+                        string in_comment, EntityID in_nativeBiome, Behavior in_primaryBehavior,
+                        List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
+            : base(in_bounds, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsInRange(in_bounds, All.BeingIDs, nameof(in_bounds));
             Precondition.IsInRange(in_nativeBiome, All.BiomeIDs, nameof(in_nativeBiome));

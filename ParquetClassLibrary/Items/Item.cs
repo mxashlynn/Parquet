@@ -53,30 +53,33 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_subtype">The type of item.</param>
-        /// <param name="in_name">Player-friendly name of the item.  Cannot be null or empty.</param>
-        /// <param name="in_price">Item cost.</param>
-        /// <param name="in_rarity">Item rarity.</param>
+        /// <param name="in_id">Unique identifier for the <see cref="Item"/>.  Cannot be null.</param>
+        /// <param name="in_subtype">The type of <see cref="Item"/>.</param>
+        /// <param name="in_name">Player-friendly name of the <see cref="Item"/>.  Cannot be null or empty.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="Item"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="Item"/>.</param>
+        /// <param name="in_price"><see cref="Item"/> cost.</param>
+        /// <param name="in_rarity"><see cref="Item"/> rarity.</param>
         // TODO Implement the Inventory class.
         /// <param name="in_stackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
-        /// <param name="in_effectWhileHeld">Item's passive effect.</param>
-        /// <param name="in_effectWhenUsed">Item's active effect.</param>
+        /// <param name="in_effectWhileHeld"><see cref="Item"/>'s passive effect.</param>
+        /// <param name="in_effectWhenUsed"><see cref="Item"/>'s active effect.</param>
         /// <param name="in_asParquet">The parquet represented, if any.</param>
-        /// <param name="in_itemTags">The key item action, if any.</param>
-        /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this item.</param>
+        /// <param name="in_itemTags">Any <see cref="Biomes.Biome"/>-related functionality this item has.</param>
+        /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="Item"/>.</param>
         [JsonConstructor]
-        public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity,
-                    int in_stackMax, int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet,
+        public Item(EntityID in_id, ItemType in_subtype, string in_name, string in_description, string in_comment,
+                    int in_price, int in_rarity, int in_stackMax, int in_effectWhileHeld,
+                    int in_effectWhenUsed, EntityID in_asParquet,
                     List<EntityTag> in_itemTags = null, EntityID? in_recipeID = null)
-            : base(All.ItemIDs, in_id, in_name)
+            : base(All.ItemIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
             Precondition.MustBePositive(in_stackMax, nameof(in_stackMax));
 
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
-            /* TODO This check is a good idea but it is improper to get a specific entityfrom All
+            /* TODO This check is a good idea but it is improper to get a specific entity from All
              * during initialization of an entity.  If we are to include this functionality another
              * means of implementing it must be found.
             if (nonNullCraftingRecipeID != CraftingRecipe.NotCraftable.ID)

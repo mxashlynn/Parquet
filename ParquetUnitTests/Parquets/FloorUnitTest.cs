@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidFloorIDsArePermittedTest()
         {
-            var testFloor = new Floor(newFloorID, "will be created");
+            var testFloor = new Floor(newFloorID, "will be created", "", "");
 
             Assert.NotNull(testFloor);
         }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Collectible(badFloorID, "will fail");
+                var _ = new Collectible(badFloorID, "will fail", "", "");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

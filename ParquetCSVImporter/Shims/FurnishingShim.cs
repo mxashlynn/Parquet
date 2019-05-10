@@ -33,7 +33,7 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Furnishing>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Furnishing(ID, Name, ItemID, AddsToBiome, IsWalkable,
+            return (TargetType)(ParquetParent)new Furnishing(ID, Name, Description, Comment, ItemID, AddsToBiome, IsWalkable,
                                                              IsEntry, IsEnclosing, SwapID);
         }
     }

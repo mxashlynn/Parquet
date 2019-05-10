@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Characters
         [Fact]
         public void ValidPlayerIDsArePermittedTest()
         {
-            var newPlayer = new PlayerCharacter(newPlayerID, "player character", "will be created");
+            var newPlayer = new PlayerCharacter(newPlayerID, "player character", "will be created", "", "");
 
             Assert.NotNull(newPlayer);
         }
@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Characters
 
             void TestCode()
             {
-                var _ = new PlayerCharacter(badNpcID, "player character", "will fail");
+                var _ = new PlayerCharacter(badNpcID, "player character", "will fail", "", "");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
