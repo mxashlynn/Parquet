@@ -1,15 +1,15 @@
-ID,Name,Tier,ElevationCategory,IsLquidBased,ParquetCriteria,EntryRequirements
--100000,2 Block Test Parquet,1,LevelGround,TRUE,None,None
-100000,Alpine,4,AboveGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key; SeasideKey; TundraKey; AlpineKey
-100001,Cavern,3,BelowGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key
-100002,Desert,2,LevelGround,FALSE,Deserted,SeasideKey; DesertKey; Tier2Key
-100003,Field,0,LevelGround,FALSE,None,None
-100004,Forest,1,LevelGround,FALSE,Forested,ForestKey
-100005,Heavens,5,AboveGround,TRUE,Heavenly,HeavenlyKey
-100006,Inferno,5,BelowGround,TRUE,Volcanic,InfernalKey
-100007,Ruins,4,LevelGround,FALSE,Ruinous,ForestKey; CavernKey; Tier2Key; Tier3Key; ForestKey; SwampKey; RuinsKey
-100008,Seaside,1,LevelGround,TRUE,Coastal,SeasideKey
-100009,Swamp,2,LevelGround,FALSE,Swampy,ForestKey; SwampKey; Tier2Key
-100010,Town,0,LevelGround,FALSE,HasBuildings,None
-100011,Tundra,2,LevelGround,FALSE,Frozen,SeasideKey; TundraKey; Tier2Key
-100012,Volcano,4,AboveGround,TRUE,Volcanic,ForestKey; CavernKey; Tier2Key; Tier3Key; SeasideKey; DesertKey; VolcanoKey
+ID,Name,Description,Comment,Tier,ElevationCategory,IsLquidBased,ParquetCriteria,EntryRequirements
+-100000,2 Block Test Parquet,Test,Test,1,LevelGround,TRUE,None,None
+100000,Alpine,,,4,AboveGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key; SeasideKey; TundraKey; AlpineKey
+100001,Cavern,,,3,BelowGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key
+100002,Desert,,,2,LevelGround,FALSE,Deserted,SeasideKey; DesertKey; Tier2Key
+100003,Field,,,0,LevelGround,FALSE,None,None
+100004,Forest,,,1,LevelGround,FALSE,Forested,ForestKey
+100005,Heavens,,,5,AboveGround,TRUE,Heavenly,HeavenlyKey
+100006,Inferno,,,5,BelowGround,TRUE,Volcanic,InfernalKey
+100007,Ruins,,,4,LevelGround,FALSE,Ruinous,ForestKey; CavernKey; Tier2Key; Tier3Key; ForestKey; SwampKey; RuinsKey
+100008,Seaside,,,1,LevelGround,TRUE,Coastal,SeasideKey
+100009,Swamp,,,2,LevelGround,FALSE,Swampy,ForestKey; SwampKey; Tier2Key
+100010,Town,,,0,LevelGround,FALSE,HasBuildings,None
+100011,Tundra,,,2,LevelGround,FALSE,Frozen,SeasideKey; TundraKey; Tier2Key
+100012,Volcano,,,4,AboveGround,TRUE,Volcanic,ForestKey; CavernKey; Tier2Key; Tier3Key; SeasideKey; DesertKey; VolcanoKey
