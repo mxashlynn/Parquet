@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Utilities;
@@ -39,9 +41,9 @@ namespace ParquetClassLibrary.Items
         [JsonProperty(PropertyName = "in_asParquet")]
         public EntityID AsParquet { get; }
 
-        /// <summary>The key item this item acts as, if any.</summary>
-        [JsonProperty(PropertyName = "in_asKeyItem")]
-        public KeyItem AsKeyItem { get; }
+        /// <summary>Any <see cref="Biomes.Biome"/>-related functionality this item has.</summary>
+        [JsonProperty(PropertyName = "in_itemTags")]
+        public IReadOnlyList<EntityTag> ItemTags { get; }
 
         /// <summary>How this item is crafted.</summary>
         [JsonProperty(PropertyName = "in_recipe")]
@@ -61,12 +63,13 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_effectWhileHeld">Item's passive effect.</param>
         /// <param name="in_effectWhenUsed">Item's active effect.</param>
         /// <param name="in_asParquet">The parquet represented, if any.</param>
-        /// <param name="in_asKeyItem">The key item action, if any.</param>
+        /// <param name="in_itemTags">The key item action, if any.</param>
         /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this item.</param>
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, int in_price, int in_rarity,
                     int in_stackMax, int in_effectWhileHeld, int in_effectWhenUsed, EntityID in_asParquet,
-                    KeyItem in_asKeyItem, EntityID? in_recipeID = null) : base(All.ItemIDs, in_id, in_name)
+                    List<EntityTag> in_itemTags = null, EntityID? in_recipeID = null)
+            : base(All.ItemIDs, in_id, in_name)
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
             Precondition.MustBePositive(in_stackMax, nameof(in_stackMax));
@@ -95,6 +98,7 @@ namespace ParquetClassLibrary.Items
             }
             */
 
+            var nonNullItemTags = in_itemTags ?? Enumerable.Empty<EntityTag>().ToList();
             var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;
 
             Subtype = in_subtype;
@@ -104,7 +108,7 @@ namespace ParquetClassLibrary.Items
             EffectWhileHeld = in_effectWhileHeld;
             EffectWhenUsed = in_effectWhenUsed;
             AsParquet = in_asParquet;
-            AsKeyItem = in_asKeyItem;
+            ItemTags = nonNullItemTags;
             Recipe = nonNullCraftingRecipeID;
         }
         #endregion
