@@ -37,17 +37,20 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomRecipe"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the recipe.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.</param>
-        /// <param name="in_requiredFurnishings">A list of furnishing types this recipe requires.</param>
-        /// <param name="in_MinimumWalkableSpaces">In recipe minimum floors.</param>
-        /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor types this recipe requires.</param>
-        /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block types this recipe requires as walls.</param>
-        public RoomRecipe(EntityID in_id, string in_name, Dictionary<EntityID, int> in_requiredFurnishings,
+        /// <param name="in_id">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>
+        /// <param name="in_name">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
+        /// <param name="in_requiredFurnishings">A list of furnishing types this <see cref="RoomRecipe"/> requires.</param>
+        /// <param name="in_MinimumWalkableSpaces">The minimum number of walkable <see cref="Space"/>s required by this <see cref="RoomRecipe"/>.</param>
+        /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor types this <see cref="RoomRecipe"/> requires.</param>
+        /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block types this <see cref="RoomRecipe"/> requires as walls.</param>
+        public RoomRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
+                          Dictionary<EntityID, int> in_requiredFurnishings,
                           int in_MinimumWalkableSpaces = All.Recipes.Rooms.MinWalkableSpaces,
                           List<EntityID> in_optionallyRequiredWalkableFloors = null,
                           List<EntityID> in_optionallyRequiredPerimeterBlocks = null)
-            : base (All.RoomRecipeIDs, in_id, in_name)
+            : base (All.RoomRecipeIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.AreInRange(in_optionallyRequiredWalkableFloors, All.FloorIDs, nameof(in_optionallyRequiredWalkableFloors));
             Precondition.AreInRange(in_optionallyRequiredPerimeterBlocks, All.BlockIDs, nameof(in_optionallyRequiredPerimeterBlocks));

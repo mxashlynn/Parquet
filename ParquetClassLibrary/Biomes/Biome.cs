@@ -45,15 +45,18 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         /// <param name="in_id">Unique identifier for the <see cref="Biome"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Biome"/>.  Cannot be null or empty.</param>
+        /// <param name="in_description">Player-friendly description of the <see cref="Biome"/>.</param>
+        /// <param name="in_comment">Comment of, on, or by the <see cref="Biome"/>.</param>
         /// <param name="in_tier">A rating indicating where in the progression this <see cref="Biome"/> falls.</param>
         /// <param name="in_elevationCategory">Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</param>
         /// <param name="in_isLiquidBased">Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</param>
         /// <param name="in_parquetCriteria">Describes the parquets that make up this <see cref="Biome"/>.</param>
         /// <param name="in_entryRequirements">Describes the <see cref="Item"/>s needed to access this <see cref="Biome"/>.</param>
-        public Biome(EntityID in_id, string in_name, int in_tier, Elevation in_elevationCategory,
+        public Biome(EntityID in_id, string in_name, string in_description, string in_comment,
+                     int in_tier, Elevation in_elevationCategory,
                      bool in_isLiquidBased, List<EntityTag> in_parquetCriteria,
                      List<EntityTag> in_entryRequirements)
-            : base(All.BiomeIDs, in_id, in_name)
+            : base(All.BiomeIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.MustBeNonNegative(in_tier, nameof(in_tier));
 

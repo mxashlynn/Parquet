@@ -42,17 +42,19 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_id">Unique identifier for the <see cref="Furnishing"/>.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the <see cref="Furnishing"/>.  Cannot be null or empty.</param>
         /// <param name="in_itemID">The <see cref="EntityID"/> that represents this <see cref="Furnishing"/> in the <see cref="Inventory"/>.</param>
+        /// <param name="in_description">Player-friendly description of the parquet.</param>
+        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
         /// <param name="in_addsToBiome">Indicates which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_isWalkable">If <c>true</c> this <see cref="Furnishing"/> may be walked/sat upon.</param>
         /// <param name="in_isEntry">If <c>true</c> this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</param>
         /// <param name="in_isEnclosing">If <c>true</c> this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
         /// <param name="in_swapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
-        public Furnishing(EntityID in_id, string in_name, EntityID? in_itemID = null,
-                          List <EntityTag> in_addsToBiome = null, bool in_isWalkable = false,
-                          bool in_isEntry = false, bool in_isEnclosing = false,
+        public Furnishing(EntityID in_id, string in_name, string in_description, string in_comment,
+                          EntityID? in_itemID = null, List <EntityTag> in_addsToBiome = null,
+                          bool in_isWalkable = false, bool in_isEntry = false, bool in_isEnclosing = false,
                           EntityID? in_swapID = null)
-            : base(Bounds, in_id, in_name, in_itemID, in_addsToBiome)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome)
         {
             var nonNullSwapID = in_swapID ?? EntityID.None;
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(in_swapID));

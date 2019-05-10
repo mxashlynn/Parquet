@@ -30,12 +30,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_bounds">The bounds within which the derived parquet type's EntityID is defined.</param>
         /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
+        /// <param name="in_description">Player-friendly description of the parquet.</param>
+        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
         /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.</param>
         /// <param name="in_addsToBiome">A set of <see cref="EntityTag"/>s indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         [JsonConstructor]
-        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name,
-                                EntityID? in_itemID = null, List<EntityTag> in_addsToBiome = null)
-            : base(in_bounds, in_id, in_name)
+        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
+                                string in_comment, EntityID? in_itemID = null, List<EntityTag> in_addsToBiome = null)
+            : base(in_bounds, in_id, in_name, in_description, in_comment)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
