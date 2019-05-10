@@ -49,6 +49,9 @@ namespace ParquetUnitTests
         //public static Quest TestQuest { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static Biome TestBiome { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static Item TestItem { get; }
         #endregion
 
@@ -74,7 +77,8 @@ namespace ParquetUnitTests
                                                     new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                                     All.Dimensions.PanelsPerPatternHeight]);
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest");
-            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "10 Test Item", 1, 0, 99, 1, 1,
+            TestBiome = new Biome(-All.BiomeIDs.Minimum, "10 Test Biome", 1, Elevation.LevelGround, false, null, null);
+            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", 1, 0, 99, 1, 1,
                                 -All.BlockIDs.Minimum, KeyItem.None);
         }
     }
