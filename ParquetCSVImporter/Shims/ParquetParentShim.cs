@@ -28,14 +28,14 @@ namespace ParquetCSVImporter.Shims
         public string Comment { get; }
 
         /// <summary>
-        /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) this parquet helps generate.
+        /// Describing the <see cref="Biome"/>(s) this parquet helps form.
         /// </summary>
-        public List<EntityTag> AddsToBiome;
+        public EntityTag AddsToBiome;
 
         /// <summary>
-        /// A set of <see cref="EntityTag"/>s describing the <see cref="ParquetClassLibrary.Rooms.RoomRecipe"/>(s) this parquet helps generate.
+        /// Describes the <see cref="ParquetClassLibrary.Rooms.RoomRecipe"/>(s) this parquet helps form.
         /// </summary>
-        public List<EntityTag> AddsToRoom;
+        public EntityTag AddsToRoom;
 
         /// <summary>
         /// Converts a shim into the class is corresponds to.
