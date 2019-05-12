@@ -11,8 +11,8 @@ namespace ParquetClassLibrary.Crafting
     public class CraftingRecipe : Entity
     {
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
-        private static IReadOnlyList<CraftingElement> EmptyCraftingElementList { get; } =
-            new List<CraftingElement> { CraftingElement.None };
+        private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
+            new List<RecipeElement> { RecipeElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
         public static CraftingRecipe NotCraftable { get; } =
@@ -22,10 +22,10 @@ namespace ParquetClassLibrary.Crafting
                                                All.Dimensions.PanelsPerPatternHeight]);
 
         /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
-        public IReadOnlyList<CraftingElement> Products { get; }
+        public IReadOnlyList<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        public IReadOnlyList<CraftingElement> Ingredients { get; }
+        public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         public StrikePanel[,] PanelPattern { get; }
@@ -45,8 +45,8 @@ namespace ParquetClassLibrary.Crafting
         /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
-                              IEnumerable<CraftingElement> in_products,
-                              IEnumerable<CraftingElement> in_ingredients, StrikePanel[,] in_panelPattern)
+                              IEnumerable<RecipeElement> in_products,
+                              IEnumerable<RecipeElement> in_ingredients, StrikePanel[,] in_panelPattern)
             : base(All.CraftingRecipeIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsNotNull(in_products, nameof(in_products));
