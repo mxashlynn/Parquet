@@ -50,10 +50,10 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>
         [JsonConstructor]
         public Floor(EntityID in_id, string in_name, string in_description, string in_comment,
-                     EntityID? in_itemID = null, List <EntityTag> in_addsToBiome = null,
-                     ModificationTools in_modTool = ModificationTools.None,
+                     EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
+                     EntityTag? in_addsToRoom = null, ModificationTools in_modTool = ModificationTools.None,
                      string in_trenchName = defaultTrenchName, bool in_isWalkable = true)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome, in_addsToRoom)
         {
             ModTool = in_modTool;
             TrenchName = in_trenchName;
