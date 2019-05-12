@@ -33,6 +33,11 @@ namespace ParquetCSVImporter.Shims
         public List<EntityTag> AddsToBiome;
 
         /// <summary>
+        /// A set of <see cref="EntityTag"/>s describing the <see cref="ParquetClassLibrary.Rooms.RoomRecipe"/>(s) this parquet helps generate.
+        /// </summary>
+        public List<EntityTag> AddsToRoom;
+
+        /// <summary>
         /// Converts a shim into the class is corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
