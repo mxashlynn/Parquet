@@ -15,13 +15,13 @@ namespace ParquetUnitTests
         /// <summary>A valid minimal list of test ingredients.</summary>
         private static readonly List<CraftingElement> ingredientList = new List<CraftingElement>
         {
-            new CraftingElement( TestEntities.TestItem.ID - 1, 1 ),
+            new CraftingElement( "ingredient", 1 ),
         };
 
         /// <summary>A valid minimal list of test products.</summary>
         private static readonly List<CraftingElement> productList = new List<CraftingElement>
         {
-            new CraftingElement( TestEntities.TestItem.ID - 2, 1 ),
+            new CraftingElement( "product", 1 ),
         };
 
         /// <summary>A trivial panel pattern.</summary>

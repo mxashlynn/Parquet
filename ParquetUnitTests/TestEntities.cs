@@ -4,8 +4,6 @@ using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Map;
-
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 
@@ -57,7 +55,7 @@ namespace ParquetUnitTests
 
         static TestEntities()
         {
-            var testCraftingElement = new CraftingElement(-All.ItemIDs.Minimum - 100, 1);
+            var testCraftingElement = new CraftingElement("Test Tag", 1);
 
             TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",

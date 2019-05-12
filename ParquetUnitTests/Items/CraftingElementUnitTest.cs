@@ -7,32 +7,24 @@ namespace ParquetUnitTests
     public class CraftingElementUnitTest
     {
         [Fact]
-        public void InvalidItemIDsFailTest()
-        {
-            var badItemID = TestEntities.TestBlock.ID - 1;
-
-            void TestCode()
-            {
-                var _ = new CraftingElement(badItemID, 1);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(TestCode);
-        }
-
-        [Fact]
-        public void NonPositiveAmountsFailTest()
+        public void ZeroAmountsFailTest()
         {
             void TestCodeZero()
             {
-                var _ = new CraftingElement(TestEntities.TestItem.ID, 0);
-            }
-
-            void TestCodeNegative()
-            {
-                var _ = new CraftingElement(TestEntities.TestItem.ID, -1);
+                var _ = new CraftingElement("test", 0);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeZero);
+        }
+
+        [Fact]
+        public void NegativeeAountsFailTest()
+        {
+            void TestCodeNegative()
+            {
+                var _ = new CraftingElement("test", -1);
+            }
+
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegative);
         }
     }
