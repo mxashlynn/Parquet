@@ -47,7 +47,8 @@ namespace ParquetClassLibrary.Parquets
                            EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
                            EntityTag? in_addsToRoom = null, CollectionEffect in_effect = CollectionEffect.None,
                            int in_effectAmount = 0)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome, in_addsToRoom)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
+                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
 

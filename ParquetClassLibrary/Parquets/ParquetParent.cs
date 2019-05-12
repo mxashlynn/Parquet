@@ -43,16 +43,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_addsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         [JsonConstructor]
         protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
-                                string in_comment, EntityID? in_itemID = null,
-                                EntityTag? in_addsToBiome = null, EntityTag? in_addsToRoom = null)
+                                string in_comment, EntityID in_itemID, EntityTag in_addsToBiome, EntityTag in_addsToRoom)
             : base(in_bounds, in_id, in_name, in_description, in_comment)
         {
-            var nonNullItemID = in_itemID ?? EntityID.None;
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
+            Precondition.IsInRange(in_itemID, All.ItemIDs, nameof(in_itemID));
 
-            ItemID = nonNullItemID;
-            AddsToBiome = in_addsToBiome ?? EntityTag.None;
-            AddsToRoom = in_addsToRoom ?? EntityTag.None;
+            ItemID = in_itemID;
+            AddsToBiome = in_addsToBiome;
+            AddsToRoom = in_addsToRoom;
         }
         #endregion
     }

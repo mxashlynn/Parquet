@@ -74,7 +74,8 @@ namespace ParquetClassLibrary.Parquets
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_collectibleID = null, bool in_isFlammable = false,
                      bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome, in_addsToRoom)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
+                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
 
