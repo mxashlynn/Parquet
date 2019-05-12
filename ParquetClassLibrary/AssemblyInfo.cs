@@ -23,7 +23,7 @@ namespace ParquetClassLibrary
     public struct AssemblyInfo
     {
         /// <summary>
-        /// Describes the version of the serialized <see cref="Sandbox.MapParent"/>
+        /// Describes the version of the serialized <see cref="Map.MapParent"/>
         /// data that the class library understands.
         /// </summary>
         /// <remarks>

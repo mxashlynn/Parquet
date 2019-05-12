@@ -16,7 +16,7 @@ namespace ParquetClassLibrary
     /// look up the game entity definition when other game elements
     /// interact with it.
     /// 
-    /// To be clear: there are multiple entity subtypes (<see cref="Sandbox.Parquets.ParquetParent"/>,
+    /// To be clear: there are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
     /// <see cref="Items.Item"/>, etc.), and each of these subtypes
     /// has multiple definitions.  The definitions are purely data-driven,
     /// read in from JSON or CSV files, and not type-checked by the compiler.

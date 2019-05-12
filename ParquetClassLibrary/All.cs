@@ -40,25 +40,25 @@ namespace ParquetClassLibrary
         public static readonly List<Range<EntityID>> BeingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Floor"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Floor"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> FloorIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Block"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Block"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> BlockIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Furnishing"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Furnishing"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> FurnishingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.Parquets.Collectible"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Collectible"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> CollectibleIDs;
@@ -69,13 +69,13 @@ namespace ParquetClassLibrary
         public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Sandbox.RoomRecipe"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> RoomRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Crafting.CraftingRecipe"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CraftingRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> CraftingRecipeIDs;
@@ -150,13 +150,13 @@ namespace ParquetClassLibrary
         /// </summary>
         public static class Dimensions
         {
-            /// <summary>The length of each <see cref="Sandbox.MapChunkGrid"/> dimension in parquets.</summary>
+            /// <summary>The length of each <see cref="Map.MapChunkGrid"/> dimension in parquets.</summary>
             public const int ParquetsPerChunk = 16;
 
-            /// <summary>The length of each <see cref="Sandbox.MapRegion"/> dimension in <see cref="Sandbox.MapChunkGrid"/>s.</summary>
+            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in <see cref="Sandbox.MapChunkGrid"/>s.</summary>
             public const int ChunksPerRegion = 4;
 
-            /// <summary>The length of each <see cref="Sandbox.MapRegion"/> dimension in parquets.</summary>
+            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in parquets.</summary>
             public const int ParquetsPerRegion = ChunksPerRegion * ParquetsPerChunk;
 
             /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
