@@ -15,10 +15,10 @@ namespace ParquetClassLibrary
         public static readonly RecipeElement None = new RecipeElement(EntityTag.None, 1);
 
         /// <summary>An <see cref="EntityTag"/> describing the <see cref="Item"/>.</summary>
-        public EntityTag ItemTag { get; }
+        public EntityTag ElementTag { get; }
 
         /// <summary>The number of <see cref="Item"/>s.</summary>
-        public int ItemAmount { get; }
+        public int ElementAmount { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> struct.
@@ -29,8 +29,8 @@ namespace ParquetClassLibrary
         {
             Precondition.MustBePositive(in_itemAmount, nameof(in_itemAmount));
 
-            ItemTag = in_itemTag;
-            ItemAmount = in_itemAmount;
+            ElementTag = in_itemTag;
+            ElementAmount = in_itemAmount;
         }
 
         #region IEquatable Implementation
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-            => (ItemTag, ItemAmount).GetHashCode();
+            => (ElementTag, ElementAmount).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="RecipeElement"/> is equal to the current <see cref="RecipeElement"/>.
@@ -49,7 +49,7 @@ namespace ParquetClassLibrary
         /// <param name="in_element">The <see cref="RecipeElement"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(RecipeElement in_element)
-            => in_element.ItemTag == ItemTag && in_element.ItemAmount == ItemAmount;
+            => in_element.ElementTag == ElementTag && in_element.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.
@@ -67,7 +67,7 @@ namespace ParquetClassLibrary
         /// <param name="in_element2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(RecipeElement in_element1, RecipeElement in_element2)
-            => in_element1.ItemTag == in_element2.ItemTag && in_element1.ItemAmount == in_element2.ItemAmount;
+            => in_element1.ElementTag == in_element2.ElementTag && in_element1.ElementAmount == in_element2.ElementAmount;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is not equal to another specified instance of <see cref="RecipeElement"/>.
@@ -76,7 +76,7 @@ namespace ParquetClassLibrary
         /// <param name="in_element2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(RecipeElement in_element1, RecipeElement in_element2)
-            => in_element1.ItemTag != in_element2.ItemTag || in_element1.ItemAmount != in_element2.ItemAmount;
+            => in_element1.ElementTag != in_element2.ElementTag || in_element1.ElementAmount != in_element2.ElementAmount;
         #endregion
 
         #region Utility Methods
@@ -85,7 +85,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{ItemAmount} of {ItemTag}";
+            => $"{ElementAmount} of {ElementTag}";
         #endregion
     }
 }
