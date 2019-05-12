@@ -57,7 +57,7 @@ namespace ParquetUnitTests
 
         static TestEntities()
         {
-            var testCraftingElement = new CraftingElement(-All.ItemIDs.Minimum - 100, 1);
+            var testCraftingElement = new CraftingElement("test tag", 1);
 
             TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
