@@ -30,7 +30,8 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Floor>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome, ModTool, TrenchName, IsWalkable);
+            return (TargetType)(ParquetParent)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                                        AddsToRoom, ModTool, TrenchName, IsWalkable);
         }
     }
 }

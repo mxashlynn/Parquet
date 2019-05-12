@@ -51,10 +51,11 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_swapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
         public Furnishing(EntityID in_id, string in_name, string in_description, string in_comment,
-                          EntityID? in_itemID = null, List <EntityTag> in_addsToBiome = null,
-                          bool in_isWalkable = false, bool in_isEntry = false, bool in_isEnclosing = false,
-                          EntityID? in_swapID = null)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome)
+                          EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
+                          EntityTag? in_addsToRoom = null, bool in_isWalkable = false,
+                          bool in_isEntry = false, bool in_isEnclosing = false, EntityID? in_swapID = null)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
+                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             var nonNullSwapID = in_swapID ?? EntityID.None;
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(in_swapID));

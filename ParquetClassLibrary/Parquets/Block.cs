@@ -68,14 +68,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(EntityID in_id, string in_name, string in_description, string in_comment,
-                     EntityID? in_itemID = null,
-                     List <EntityTag> in_addsToBiome = null,
+                     EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
+                      EntityTag? in_addsToRoom = null,
                      GatheringTools in_gatherTool = GatheringTools.None,
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
-                     EntityID? in_collectibleID = null,
-                     bool in_isFlammable = false, bool in_isLiquid = false,
-                     int in_maxToughness = DefaultMaxToughness)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID, in_addsToBiome)
+                     EntityID? in_collectibleID = null, bool in_isFlammable = false,
+                     bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
+            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
+                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
 

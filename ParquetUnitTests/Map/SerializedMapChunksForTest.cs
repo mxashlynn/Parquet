@@ -1,7 +1,7 @@
 namespace ParquetUnitTests.Map
 {
     /// <summary>
-    /// Provides pre-serialized strings to be usedin unit testing <see cref="ParquetClassLibrary.Sandbox.MapChunk"/>.
+    /// Provides pre-serialized strings to be usedin unit testing <see cref="ParquetClassLibrary.Map.MapChunk"/>.
     /// Stored in a separate structure and file as the string literals can be too lengthy for some editors.
     /// </summary>
     internal struct SerializedMapChunksForTest

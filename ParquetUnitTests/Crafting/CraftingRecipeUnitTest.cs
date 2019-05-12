@@ -13,15 +13,15 @@ namespace ParquetUnitTests
         private static readonly EntityID newCraftingRecipeID = TestEntities.TestCraftingRecipe.ID - 1;
 
         /// <summary>A valid minimal list of test ingredients.</summary>
-        private static readonly List<CraftingElement> ingredientList = new List<CraftingElement>
+        private static readonly List<RecipeElement> ingredientList = new List<RecipeElement>
         {
-            new CraftingElement( "ingredient", 1 ),
+            new RecipeElement( "ingredient", 1 ),
         };
 
         /// <summary>A valid minimal list of test products.</summary>
-        private static readonly List<CraftingElement> productList = new List<CraftingElement>
+        private static readonly List<RecipeElement> productList = new List<RecipeElement>
         {
-            new CraftingElement( "product", 1 ),
+            new RecipeElement( "product", 1 ),
         };
 
         /// <summary>A trivial panel pattern.</summary>
@@ -55,7 +55,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NullAndEmptyProductListsThrowTest()
         {
-            var emptyProductList = new List<CraftingElement>();
+            var emptyProductList = new List<RecipeElement>();
 
             void TestCodeNull()
             {
@@ -76,7 +76,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NullAndEmptyIngredientListsThrowTest()
         {
-            var emptyIngredientList = new List<CraftingElement>();
+            var emptyIngredientList = new List<RecipeElement>();
 
             void TestCodeNull()
             {

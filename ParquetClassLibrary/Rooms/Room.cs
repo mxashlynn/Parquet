@@ -28,13 +28,13 @@ namespace ParquetClassLibrary.Rooms
         /// The cached <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
-        private Dictionary<EntityID, int> _cachedFurnishings;
+        private IEnumerable<EntityTag> _cachedFurnishings;
 
         /// <summary>
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
-        public Dictionary<EntityID, int> Furnishings
+        public IEnumerable<EntityTag> Furnishings
         {
             get
             {
@@ -42,9 +42,8 @@ namespace ParquetClassLibrary.Rooms
                        ?? (_cachedFurnishings = WalkableArea
                                                 .Concat(Perimeter)
                                                 .Where(space => null != space.Content.Furnishing
-                                                             && space.Content.Furnishing.ID != EntityID.None)
-                                                .GroupBy(space => space.Content.Furnishing.ID)
-                                                .ToDictionary(group => group.Key, group => group.Count()));
+                                                             && space.Content.Furnishing.AddsToRoom != EntityTag.None)
+                                                .Select(space => space.Content.Furnishing.AddsToRoom));
             }
         }
 

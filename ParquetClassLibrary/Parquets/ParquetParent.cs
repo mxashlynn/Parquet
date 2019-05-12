@@ -18,10 +18,16 @@ namespace ParquetClassLibrary.Parquets
         public EntityID ItemID { get; }
 
         /// <summary>
-        /// A set of <see cref="EntityTag"/>s describing the <see cref="Biome"/>(s) thhat this parquet helps generate.
+        /// Describes the <see cref="Biome"/>(s) that this parquet helps generate.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToBiome")]
-        public IReadOnlyList<EntityTag> AddsToBiome { get; }
+        public EntityTag AddsToBiome { get; }
+
+        /// <summary>
+        /// Describes the <see cref="Rooms.RoomRecipe"/>(s) that this parquet helps generate.
+        /// </summary>
+        [JsonProperty(PropertyName = "in_addsToRoom")]
+        public EntityTag AddsToRoom { get; }
 
         #region Initialization
         /// <summary>
@@ -33,17 +39,18 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_description">Player-friendly description of the parquet.</param>
         /// <param name="in_comment">Comment of, on, or by the parquet.</param>
         /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.</param>
-        /// <param name="in_addsToBiome">A set of <see cref="EntityTag"/>s indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="in_addsToBiome">Describes which, if any, <see cref="Biome"/>(s) this parquet helps form.</param>
+        /// <param name="in_addsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         [JsonConstructor]
         protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
-                                string in_comment, EntityID? in_itemID = null, List<EntityTag> in_addsToBiome = null)
+                                string in_comment, EntityID in_itemID, EntityTag in_addsToBiome, EntityTag in_addsToRoom)
             : base(in_bounds, in_id, in_name, in_description, in_comment)
         {
-            var nonNullItemID = in_itemID ?? EntityID.None;
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
+            Precondition.IsInRange(in_itemID, All.ItemIDs, nameof(in_itemID));
 
-            ItemID = nonNullItemID;
-            AddsToBiome = in_addsToBiome ?? Enumerable.Empty<EntityTag>().ToList();
+            ItemID = in_itemID;
+            AddsToBiome = in_addsToBiome;
+            AddsToRoom = in_addsToRoom;
         }
         #endregion
     }

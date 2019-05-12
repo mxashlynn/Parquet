@@ -22,10 +22,11 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.Comment).Index(3);
             Map(m => m.ItemID).Index(4);
             Map(m => m.AddsToBiome).Index(5);
+            Map(m => m.AddsToRoom).Index(6);
 
-            Map(m => m.ModTool).Index(6);
-            Map(m => m.TrenchName).Index(7);
-            Map(m => m.IsWalkable).Index(8);
+            Map(m => m.ModTool).Index(7);
+            Map(m => m.TrenchName).Index(8);
+            Map(m => m.IsWalkable).Index(9);
         }
     }
 }

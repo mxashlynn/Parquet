@@ -14,6 +14,11 @@ namespace ParquetUnitTests
     /// </summary>
     public static class TestEntities
     {
+        #region Test Value Components
+        public static readonly EntityTag TestTag = "Test Tag";
+        public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
+        #endregion
+
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
         public static PlayerCharacter TestPlayer { get; }
@@ -55,27 +60,23 @@ namespace ParquetUnitTests
 
         static TestEntities()
         {
-            var testCraftingElement = new CraftingElement("Test Tag", 1);
-
             TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
                               All.BiomeIDs.Minimum, Behavior.Still);
-            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test");
-            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test");
+            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", in_addsToRoom: TestTag);
+            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", in_addsToRoom: TestTag);
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
-                                            in_isEntry: true);
-            TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test");
+                                            in_isEntry: true, in_addsToRoom: TestTag);
+            TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
+                                              in_addsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
-                                            new Dictionary<EntityID, int> { { -All.FurnishingIDs.Minimum, 1 } },
-                                            All.Recipes.Rooms.MinWalkableSpaces + 1,
-                                            new List<EntityID> { -All.FloorIDs.Minimum },
-                                            new List<EntityID> { -All.BlockIDs.Minimum });
+                                            TestRecipeElementList, All.Recipes.Rooms.MinWalkableSpaces + 1,
+                                            TestRecipeElementList, TestRecipeElementList);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
                                                     "Test", "Test",
-                                                    new List<CraftingElement> { testCraftingElement, },
-                                                    new List<CraftingElement> { testCraftingElement, },
+                                                    TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
                                                                     All.Dimensions.PanelsPerPatternHeight]);
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test");

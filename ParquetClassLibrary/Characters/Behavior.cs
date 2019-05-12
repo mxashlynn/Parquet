@@ -1,7 +1,7 @@
 namespace ParquetClassLibrary.Characters
 {
     /// <summary>
-    /// The way a <see cref="Being"/> acts, on their own on the <see cref="ParquetClassLibrary.Sandbox.MapRegion"/>.
+    /// The way a <see cref="Being"/> acts.
     /// </summary>
     public enum Behavior
     {

@@ -41,8 +41,7 @@ namespace ParquetUnitTests.Rooms
                 new Space(new Vector2Int(2, 2), TestEntry),
             };
 
-        private static readonly Dictionary<EntityID, int> TestRequiredFurnishings =
-            new Dictionary<EntityID, int> { { -All.FurnishingIDs.Minimum, 1 } };
+        private static readonly List<RecipeElement> TestRequiredFurnishings = TestEntities.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
             new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", TestRequiredFurnishings);
@@ -67,53 +66,10 @@ namespace ParquetUnitTests.Rooms
             void EmptyRequiredFurnishings()
             {
                 var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
-                                       new Dictionary<EntityID, int>());
+                                       new List<RecipeElement>());
             }
 
             Assert.Throws<IndexOutOfRangeException>(EmptyRequiredFurnishings);
-        }
-
-        [Fact]
-        internal void NonFurnishingsInRequiredFurnishingsThrowsTest()
-        {
-            var BadRequiredFurnishings = new Dictionary<EntityID, int> { { -All.BlockIDs.Minimum, 1 } };
-
-            void HasBadRequiredFurnishings()
-            {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", BadRequiredFurnishings);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredFurnishings);
-        }
-
-        [Fact]
-        internal void NonFloorInRequiredFloorsThrowsTest()
-        {
-            var BadRequiredFloors = new List<EntityID> { -All.BlockIDs.Minimum };
-
-            void HasBadRequiredFloors()
-            {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
-                                       TestRequiredFurnishings,
-                                       in_optionallyRequiredWalkableFloors: BadRequiredFloors);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredFloors);
-        }
-
-        [Fact]
-        internal void NonBlockInRequiredBlocksThrowsTest()
-        {
-            var BadRequiredBlocks = new List<EntityID> { -All.FloorIDs.Minimum };
-
-            void HasBadRequiredBlocks()
-            {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "",
-                                       TestRequiredFurnishings,
-                                       in_optionallyRequiredPerimeterBlocks: BadRequiredBlocks);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredBlocks);
         }
 
         [Fact]

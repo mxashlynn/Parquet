@@ -1,7 +1,7 @@
 namespace ParquetUnitTests.Map
 {
     /// <summary>
-    /// Provides strings to be used in serialization tests for the <see cref="ParquetClassLibrary.Sandbox.MapChunkGrid"/>.
+    /// Provides strings to be used in serialization tests for the <see cref="ParquetClassLibrary.Map.MapChunkGrid"/>.
     /// Stored in a separate structure and file as the string literals can too be lengthy for some editors.
     /// </summary>
     internal struct SerializedMapChunkGridsForTest

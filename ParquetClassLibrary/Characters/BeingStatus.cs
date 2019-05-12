@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Characters
         [JsonProperty(PropertyName = "in_spawnAt")]
         public Location SpawnAt { get; set; }
 
-        /// <summary>The time remaining that the tracked <see cref="Being"/> can safely remain in the current <see cref="Sandbox.IDs.Biome"/>.</summary>
+        /// <summary>The time remaining that the tracked <see cref="Being"/> can safely remain in the current <see cref="Biomes.Biome"/>.</summary>
         /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacter"/>.</remarks>
         [JsonProperty(PropertyName = "in_biomeTimeRemaining")]
         public int BiomeTimeRemaining { get; set; }

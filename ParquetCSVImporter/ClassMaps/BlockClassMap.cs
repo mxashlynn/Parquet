@@ -22,13 +22,14 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.Comment).Index(3);
             Map(m => m.ItemID).Index(4);
             Map(m => m.AddsToBiome).Index(5);
+            Map(m => m.AddsToRoom).Index(6);
 
-            Map(m => m.GatherTool).Index(6);
-            Map(m => m.GatherEffect).Index(7);
-            Map(m => m.CollectibleID).Index(8);
-            Map(m => m.IsFlammable).Index(9);
-            Map(m => m.IsLiquid).Index(10);
-            Map(m => m.MaxToughness).Index(11);
+            Map(m => m.GatherTool).Index(7);
+            Map(m => m.GatherEffect).Index(8);
+            Map(m => m.CollectibleID).Index(9);
+            Map(m => m.IsFlammable).Index(10);
+            Map(m => m.IsLiquid).Index(11);
+            Map(m => m.MaxToughness).Index(12);
         }
     }
 }

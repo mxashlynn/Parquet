@@ -18,9 +18,9 @@ namespace ParquetClassLibrary
     /// to the appropriate <see cref="EntityCollection{T}"/>.
     /// 
     /// If individual game objects must have mutable state then a separate wrapper class,
-    /// such as <see cref="Sandbox.Parquets.ParquetStatus"/>, models that state.
+    /// such as <see cref="Parquets.ParquetStatus"/>, models that state.
     /// </remarks>
-    /// <seealso cref="Sandbox.Parquets.ParquetStatus"/>
+    /// <seealso cref="Parquets.ParquetStatus"/>
     /// <seealso cref="Items.Item"/>
     public abstract class Entity : IEquatable<Entity>
     {
