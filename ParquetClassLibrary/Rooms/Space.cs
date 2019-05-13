@@ -1,5 +1,9 @@
 ﻿using ParquetClassLibrary.Parquets;
+#if UNITY_2018_4_OR_NEWER
+using UnityEngine;
+#else
 using ParquetClassLibrary.Stubs;
+#endif
 
 namespace ParquetClassLibrary.Rooms
 {

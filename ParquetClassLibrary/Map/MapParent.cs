@@ -3,7 +3,11 @@ using System.Text;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Map.SpecialPoints;
+#if UNITY_2018_4_OR_NEWER
+using UnityEngine;
+#else
 using ParquetClassLibrary.Stubs;
+#endif
 
 // ReSharper disable InconsistentNaming
 
