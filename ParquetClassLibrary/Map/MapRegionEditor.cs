@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+#if UNITY_2018_4_OR_NEWER
+using UnityEngine;
+#else
+using ParquetClassLibrary.Stubs;
+#endif
 
 namespace ParquetClassLibrary.Map
 {

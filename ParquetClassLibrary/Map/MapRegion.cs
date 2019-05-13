@@ -3,8 +3,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+#if UNITY_2018_4_OR_NEWER
+using UnityEngine;
+#else
+using ParquetClassLibrary.Stubs;
+#endif
 
 namespace ParquetClassLibrary.Map
 {
