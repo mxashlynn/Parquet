@@ -10,7 +10,7 @@ Right now, there are no deadlines set for any development milestone.
 
 # Version 0.1.0 Warning
 
-Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Pre-Alpha Vertical Slice milestone](https://github.com/mxashlynn/Parquet/milestone/1) and [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) have both been hit the project should be much more usable.
+Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been hit the project should be much more usable.
 
 # Goals
 
@@ -41,14 +41,14 @@ Parquet targets the following features:
 # Requirements
 
 To work with this repository you will need:
- 
-    1) [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 2.2
-    2) [XUnit](https://github.com/xunit/xunit)
-    3) [JSONDotNet](https://www.newtonsoft.com/)
-    4) [CSVHelper](https://joshclose.github.io/CsvHelper/)
+
+- [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 2.2
+- [XUnit](https://github.com/xunit/xunit)
+- [JSONDotNet](https://www.newtonsoft.com/)
+- [CSVHelper](https://joshclose.github.io/CsvHelper/)
 
 # Credits
-    - Primary coding and design by Paige Ashlynn.
-    - Special thanks for code help to Isabelle Gould and Ashley Hauck.
-    - Special thanks for design help to Caidence Stone and Lillian Harris.
-    - Special thanks for math help to Caidence Stone.
+- Primary coding and design by Paige Ashlynn.
+- Special thanks for code help to Isabelle Gould and Ashley Hauck.
+- Special thanks for design help to Caidence Stone and Lillian Harris.
+- Special thanks for math help to Caidence Stone.
