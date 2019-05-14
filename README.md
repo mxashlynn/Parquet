@@ -38,8 +38,17 @@ Parquet targets the following features:
     
     8) Data-driven design with all key game entities customizable from CSV files.
 
+# Requirements
+
+To work with this repository you will need:
+ 
+    1) [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 2.2
+    2) [XUnit](https://github.com/xunit/xunit)
+    3) [JSONDotNet](https://www.newtonsoft.com/)
+    4) [CSVHelper](https://joshclose.github.io/CsvHelper/)
+
 # Credits
-- Primary coding and design by Paige Ashlynn.
-- Special thanks for code help to Isabelle Gould and Ashley Hauck.
-- Special thanks for design help to Caidence Stone and Lillian Harris.
-- Special thanks for math help to Caidence Stone.
+    - Primary coding and design by Paige Ashlynn.
+    - Special thanks for code help to Isabelle Gould and Ashley Hauck.
+    - Special thanks for design help to Caidence Stone and Lillian Harris.
+    - Special thanks for math help to Caidence Stone.
