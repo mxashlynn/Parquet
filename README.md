@@ -44,7 +44,7 @@ To work with this repository you will need:
 
 - [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 2.2
 - [XUnit](https://github.com/xunit/xunit)
-- [JSONDotNet](https://www.newtonsoft.com/)
+- [JSON.Net](https://www.newtonsoft.com/)
 - [CSVHelper](https://joshclose.github.io/CsvHelper/)
 
 # Credits
