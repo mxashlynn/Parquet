@@ -5,6 +5,7 @@ using ParquetClassLibrary.Stubs;
 using Xunit;
 using System;
 using ParquetClassLibrary.Rooms;
+using System.Linq;
 
 namespace ParquetUnitTests.Rooms
 {
@@ -40,6 +41,8 @@ namespace ParquetUnitTests.Rooms
             new Space(new Vector2Int(1, 2), TestWalk),
             new Space(new Vector2Int(2, 2), TestEntry),
         };
+
+        private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
         #endregion
 
         [Fact]
@@ -103,6 +106,24 @@ namespace ParquetUnitTests.Rooms
             }
 
             Assert.Throws<ArgumentException>(BadWalkableAre);
+        }
+
+        [Fact]
+        internal void ContainedPositionIsFoundTest()
+        {
+            var ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
+
+            Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
+        }
+
+
+        [Fact]
+        internal void UncontainedPositionIsNotFoundTest()
+        {
+            var UncontainedPosition = new Vector2Int(TestPerimeter.Select(space => space.Position.X).Min() - 1,
+                                                     TestPerimeter.Select(space => space.Position.Y).Min() - 1);
+
+            Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));
         }
     }
 }

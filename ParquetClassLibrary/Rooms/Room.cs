@@ -129,6 +129,6 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_position">The position to check for.</param>
         /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
         public bool ContainsPosition(Vector2Int in_position)
-            => WalkableArea.Concat(Perimeter).All(space => space.Position == in_position);
+            => WalkableArea.Concat(Perimeter).Any(space => space.Position == in_position);
     }
 }
