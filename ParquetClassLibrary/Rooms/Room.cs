@@ -16,6 +16,8 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class Room
     {
+        // TODO Either make this explicitly immutable or implement a way to clear the caches when updating.
+
         /// <summary>
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
@@ -39,17 +41,12 @@ namespace ParquetClassLibrary.Rooms
         /// together with the number of times that furnishing occurs.
         /// </summary>
         public IEnumerable<EntityTag> Furnishings
-        {
-            get
-            {
-                return _cachedFurnishings
-                       ?? (_cachedFurnishings = WalkableArea
-                                                .Concat(Perimeter)
-                                                .Where(space => null != space.Content.Furnishing
-                                                             && space.Content.Furnishing.AddsToRoom != EntityTag.None)
-                                                .Select(space => space.Content.Furnishing.AddsToRoom));
-            }
-        }
+            => _cachedFurnishings
+                ?? (_cachedFurnishings = WalkableArea
+                                         .Concat(Perimeter)
+                                         .Where(space => null != space.Content.Furnishing
+                                                      && space.Content.Furnishing.AddsToRoom != EntityTag.None)
+                                         .Select(space => space.Content.Furnishing.AddsToRoom));
 
         /// <summary>
         /// The location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
@@ -126,6 +123,12 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
-        // TODO Either make this explicitly immutable or implement a way to clear the caches when updating.
+        /// <summary>
+        /// Determines whether or not the given position is included in this <see cref="Room"/>.
+        /// </summary>
+        /// <param name="in_position">The position to check for.</param>
+        /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
+        public bool ContainsPosition(Vector2Int in_position)
+            => WalkableArea.Concat(Perimeter).All(space => space.Position == in_position);
     }
 }
