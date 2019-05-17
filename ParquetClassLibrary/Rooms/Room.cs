@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.
     /// </summary>
-    public struct Room
+    public class Room
     {
         /// <summary>
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
@@ -92,7 +92,7 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter) : this()
+        public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
