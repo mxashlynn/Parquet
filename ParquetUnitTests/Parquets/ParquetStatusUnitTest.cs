@@ -7,8 +7,8 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         private static readonly ParquetStack ValidStack =
-            new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock, TestEntities.TestFurnishing,
-                             TestEntities.TestCollectible);
+            new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, TestEntities.TestFurnishing.ID,
+                             TestEntities.TestCollectible.ID);
         #endregion
 
         [Fact]

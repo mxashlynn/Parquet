@@ -11,11 +11,11 @@ namespace ParquetUnitTests.Rooms
     public class RoomRecipeUnitTest
     {
         #region Test Values
-        private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock, null, null);
+        private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor, null, null, null);
+        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor, null, TestEntities.TestFurnishing, null);
+        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
         private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
             {

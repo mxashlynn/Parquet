@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
@@ -80,10 +81,10 @@ namespace ParquetClassLibrary.Rooms
             return in_room.WalkableArea.Count >= MinimumWalkableSpaces
                 && RequiredPerimeterBlocks.All(element =>
                     in_room.Perimeter.Count(space =>
-                        space.Content.Block?.AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                        All.Parquets.Get<Block>(space.Content.Block)?.AddsToRoom == element.ElementTag) >= element.ElementAmount)
                 && RequiredFloors.All(element =>
                     in_room.WalkableArea.Count(space =>
-                        space.Content.Floor?.AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                        All.Parquets.Get<Floor>(space.Content.Floor)?.AddsToRoom == element.ElementTag) >= element.ElementAmount)
                 && RequiredFurnishings.All(element =>
                     in_room.Furnishings.Count(tag => tag == element.ElementTag) >= element.ElementAmount);
         }

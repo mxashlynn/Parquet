@@ -42,9 +42,8 @@ namespace ParquetClassLibrary.Rooms
             => _cachedFurnishings
                 ?? (_cachedFurnishings = WalkableArea
                                          .Concat(Perimeter)
-                                         .Where(space => null != space.Content.Furnishing
-                                                      && space.Content.Furnishing.AddsToRoom != EntityTag.None)
-                                         .Select(space => space.Content.Furnishing.AddsToRoom));
+                                         .Where(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.AddsToRoom != EntityTag.None)
+                                         .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom));
 
         /// <summary>
         /// The location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
@@ -110,8 +109,7 @@ namespace ParquetClassLibrary.Rooms
             }
 
             if (!in_walkableArea.Concat(in_perimeter).Any(space
-                => null != space.Content.Furnishing
-                && space.Content.Furnishing.IsEntry))
+                => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(in_walkableArea)} or {nameof(in_perimeter)}.");
             }
