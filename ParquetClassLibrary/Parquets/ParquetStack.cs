@@ -32,9 +32,9 @@ namespace ParquetClassLibrary.Parquets
         public ParquetStack(EntityID in_floor, EntityID in_block, EntityID in_furnishing, EntityID in_collectible)
         {
             Precondition.IsInRange(in_floor, All.FloorIDs, nameof(in_floor));
-            Precondition.IsInRange(in_block, All.FloorIDs, nameof(in_block));
-            Precondition.IsInRange(in_furnishing, All.FloorIDs, nameof(in_furnishing));
-            Precondition.IsInRange(in_collectible, All.FloorIDs, nameof(in_collectible));
+            Precondition.IsInRange(in_block, All.BlockIDs, nameof(in_block));
+            Precondition.IsInRange(in_furnishing, All.FurnishingIDs, nameof(in_furnishing));
+            Precondition.IsInRange(in_collectible, All.CollectibleIDs, nameof(in_collectible));
 
             Floor = in_floor;
             Block = in_block;
