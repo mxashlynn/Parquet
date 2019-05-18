@@ -145,7 +145,7 @@ namespace ParquetClassLibrary.Map
         public void DisplayInfoAtPosition(Vector2Int in_position)
         {
             DisplayPositionInfo?.Invoke(this,
-                    new PositionInfoEvent(_currentRegion.GetAllParquetsAtPosition(in_position),
+                    new PositionInfoEvent(_currentRegion.GetDefinitionAtPosition(in_position),
                                           _currentRegion.GetSpecialPointsAtPosition(in_position)));
         }
 
@@ -262,25 +262,25 @@ namespace ParquetClassLibrary.Map
 
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                error += _currentRegion.TrySetFloor(_floorToPaint, in_position)
+                error += _currentRegion.TrySetFloorDefinition(_floorToPaint, in_position)
                     ? ""
                     : " floor ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
-                error += _currentRegion.TrySetBlock(_blockToPaint, in_position)
+                error += _currentRegion.TrySetBlockDefinition(_blockToPaint, in_position)
                     ? ""
                     : " block ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
-                error += _currentRegion.TrySetFurnishing(_furnishingToPaint, in_position)
+                error += _currentRegion.TrySetFurnishingDefinition(_furnishingToPaint, in_position)
                     ? ""
                     : " furnishing ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Collectible))
             {
-                error += _currentRegion.TrySetCollectible(_collectibleToPaint, in_position)
+                error += _currentRegion.TrySetCollectibleDefinition(_collectibleToPaint, in_position)
                     ? ""
                     : " collectible ";
             }
@@ -360,7 +360,7 @@ namespace ParquetClassLibrary.Map
         public void PaintFloodFill(Vector2Int in_start)
         {
             PaintAtLocations(Rasterization.PlotFloodFill(in_start,
-                                                         _currentRegion.GetAllParquetsAtPosition(in_start),
+                                                         _currentRegion.GetDefinitionAtPosition(in_start),
                                                          _currentRegion.IsValidPosition,
                                                          Matches));
         }
@@ -375,7 +375,7 @@ namespace ParquetClassLibrary.Map
         private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : IParquetStack
         {
             bool result;
-            var parquets = _currentRegion.GetAllParquetsAtPosition(in_position);
+            var parquets = _currentRegion.GetDefinitionAtPosition(in_position);
 
             if (_parquetPaintPattern.HasFlag(ParquetMask.None))
             {

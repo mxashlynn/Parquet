@@ -55,24 +55,12 @@ namespace ParquetClassLibrary.Map
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus[,] _parquetStatus { get; } = new ParquetStatus[All.Dimensions.ParquetsPerRegion,
-                                                                                        All.Dimensions.ParquetsPerRegion];
+        protected override ParquetStatus[,] _parquetStatus { get; } =
+            new ParquetStatus[All.Dimensions.ParquetsPerRegion, All.Dimensions.ParquetsPerRegion];
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override EntityID[,] _floorLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
-                                                                           All.Dimensions.ParquetsPerRegion];
-
-        /// <summary>Walls and obstructing terrain in the region.</summary>
-        protected override EntityID[,] _blockLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
-                                                                           All.Dimensions.ParquetsPerRegion];
-
-        /// <summary>Furniture and natural items in the region.</summary>
-        protected override EntityID[,] _furnishingLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
-                                                                                All.Dimensions.ParquetsPerRegion];
-
-        /// <summary>Collectible materials in the region.</summary>
-        protected override EntityID[,] _collectibleLayer { get; } = new EntityID[All.Dimensions.ParquetsPerRegion,
-                                                                                 All.Dimensions.ParquetsPerRegion];
+        protected override ParquetStack[,] _parquetDefintion { get; } =
+            new ParquetStack[All.Dimensions.ParquetsPerRegion, All.Dimensions.ParquetsPerRegion];
         #endregion
 
         #region Initialization

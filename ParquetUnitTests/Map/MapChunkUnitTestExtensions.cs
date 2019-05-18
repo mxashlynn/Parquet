@@ -15,19 +15,19 @@ namespace ParquetUnitTests.Map
             {
                 for (var y = 0; y < in_mapChunk.DimensionsInParquets.Y; y++)
                 {
-                    in_mapChunk.TrySetFloor(TestEntities.TestFloor.ID, new Vector2Int(x, y));
+                    in_mapChunk.TrySetFloorDefinition(TestEntities.TestFloor.ID, new Vector2Int(x, y));
                 }
 
-                in_mapChunk.TrySetBlock(TestEntities.TestBlock.ID, new Vector2Int(x, 0));
-                in_mapChunk.TrySetBlock(TestEntities.TestBlock.ID, new Vector2Int(x, in_mapChunk.DimensionsInParquets.Y - 1));
+                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2Int(x, 0));
+                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2Int(x, in_mapChunk.DimensionsInParquets.Y - 1));
             }
             for (var y = 0; y < in_mapChunk.DimensionsInParquets.Y; y++)
             {
-                in_mapChunk.TrySetBlock(TestEntities.TestBlock.ID, new Vector2Int(0, y));
-                in_mapChunk.TrySetBlock(TestEntities.TestBlock.ID, new Vector2Int(in_mapChunk.DimensionsInParquets.X - 1, y));
+                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2Int(0, y));
+                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2Int(in_mapChunk.DimensionsInParquets.X - 1, y));
             }
-            in_mapChunk.TrySetFurnishing(TestEntities.TestFurnishing.ID, new Vector2Int(1, 2));
-            in_mapChunk.TrySetCollectible(TestEntities.TestCollectible.ID, new Vector2Int(3, 3));
+            in_mapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2Int(1, 2));
+            in_mapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2Int(3, 3));
 
             return in_mapChunk;
         }
