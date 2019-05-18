@@ -1,9 +1,9 @@
 using System;
-using ParquetClassLibrary.Biomes;
-using ParquetUnitTests;
+using ParquetClassLibrary;
+using ParquetClassLibrary.Characters;
 using Xunit;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetUnitTests.Characters
 {
     public class NPCUnitTest
     {
