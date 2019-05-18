@@ -18,8 +18,8 @@ namespace ParquetClassLibrary
     public class EntityCollection<ParentType> where ParentType : Entity
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
-        public static readonly EntityCollection<ParentType> Default =
-            new EntityCollection<ParentType>(new List<Range<EntityID>> { new Range<EntityID>(0, 0) }, Enumerable.Empty<Entity>());
+        public static readonly EntityCollection<ParentType> Default = new EntityCollection<ParentType>(
+            new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) }, Enumerable.Empty<Entity>());
 
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<EntityID, Entity> Entities { get; }
@@ -170,8 +170,8 @@ namespace ParquetClassLibrary
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static new readonly EntityCollection Default =
-            new EntityCollection(new Range<EntityID>(0, 0), Enumerable.Empty<Entity>());
-
+            new EntityCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<Entity>());
+            
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
