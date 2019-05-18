@@ -89,6 +89,7 @@ namespace ParquetUnitTests
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
 
             // Sets up All so that bounds can be checked in various constructors.
+            Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestFurnishing, TestCollectible };
             All.InitializeCollections(Parquets);
         }
     }
