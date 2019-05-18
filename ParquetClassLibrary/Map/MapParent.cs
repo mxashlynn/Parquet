@@ -355,7 +355,6 @@ namespace ParquetClassLibrary.Map
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    // Note that this fails with TestParquet values.
                     var parquet = EntityID.None != _parquetDefintion[x, y].Collectible
                         ? All.Parquets.Get<ParquetParent>(_parquetDefintion[x, y].Collectible) 
                         : EntityID.None != _parquetDefintion[x, y].Furnishing
