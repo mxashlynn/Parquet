@@ -80,14 +80,13 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
         public bool TrySetFloorDefinition(EntityID in_floorID, Vector2Int in_position)
-        {
-            return TrySetParquetDefinition(
+            => IsValidPosition(in_position)
+            && TrySetParquetDefinition(
                     in_floorID,
                     _parquetDefintion[in_position.X, in_position.Y].Block,
                     _parquetDefintion[in_position.X, in_position.Y].Furnishing,
                     _parquetDefintion[in_position.X, in_position.Y].Collectible,
                     in_position);
-        }
 
         /// <summary>
         /// Attempts to update the block parquet at the given position.
@@ -96,14 +95,13 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
         public bool TrySetBlockDefinition(EntityID in_blockID, Vector2Int in_position)
-        {
-            return TrySetParquetDefinition(
+            => IsValidPosition(in_position)
+            && TrySetParquetDefinition(
                     _parquetDefintion[in_position.X, in_position.Y].Floor,
                     in_blockID,
                     _parquetDefintion[in_position.X, in_position.Y].Furnishing,
                     _parquetDefintion[in_position.X, in_position.Y].Collectible,
                     in_position);
-        }
 
         /// <summary>
         /// Attempts to update the furnishing parquet at the given position.
@@ -112,14 +110,13 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
         public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2Int in_position)
-        {
-            return TrySetParquetDefinition(
+            => IsValidPosition(in_position)
+            && TrySetParquetDefinition(
                     _parquetDefintion[in_position.X, in_position.Y].Floor,
                     _parquetDefintion[in_position.X, in_position.Y].Block,
                     in_furnishingID,
                     _parquetDefintion[in_position.X, in_position.Y].Collectible,
                     in_position);
-        }
 
         /// <summary>
         /// Attempts to update the collectible parquet at the given position.
@@ -128,14 +125,13 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the collectible was set, <c>false</c> otherwise.</returns>
         public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2Int in_position)
-        {
-            return TrySetParquetDefinition(
+            => IsValidPosition(in_position)
+            && TrySetParquetDefinition(
                     _parquetDefintion[in_position.X, in_position.Y].Floor,
                     _parquetDefintion[in_position.X, in_position.Y].Block,
                     _parquetDefintion[in_position.X, in_position.Y].Furnishing,
                     in_collectibleID,
                     in_position);
-        }
 
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
@@ -186,9 +182,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_point">The point to remove.</param>
         /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveExitPoint(ExitPoint in_point)
-        {
-            return TryRemoveSpecialPoint(in_point);
-        }
+            => TryRemoveSpecialPoint(in_point);
 
         /// <summary>
         /// Attempts to assign the given spawn point.
@@ -215,9 +209,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_point">The location of the spawn point to remove.</param>
         /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveSpawnPoint(SpawnPoint in_point)
-        {
-            return TryRemoveSpecialPoint(in_point);
-        }
+            => TryRemoveSpecialPoint(in_point);
 
         /// <summary>
         /// Attempts to remove a special point at the given location.
@@ -248,16 +240,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose status is sought.</param>
         /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
-        {
-            ParquetStatus result = null;
-
-            if (IsValidPosition(in_position))
-            {
-                result = _parquetStatus[in_position.X, in_position.Y];
-            }
-
-            return result;
-        }
+            => IsValidPosition(in_position)
+                ? _parquetStatus[in_position.X, in_position.Y]
+                : null;
 
         /// <summary>
         /// Gets any floor parquet at the position.
@@ -310,9 +295,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
         public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2Int in_position)
-        {
-            return _specialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
-        }
+            => _specialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
         #endregion
 
         #region Serialization Methods

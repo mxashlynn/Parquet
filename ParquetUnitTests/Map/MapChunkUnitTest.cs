@@ -25,16 +25,6 @@ namespace ParquetUnitTests.Map
 
         #region Parquets Replacement Methods
         [Fact]
-        public void TrySetFloorFailsOnNullParquetTest()
-        {
-            var chunk = new MapChunk();
-
-            var result = chunk.TrySetFloorDefinition(EntityID.None, Vector2Int.ZeroVector);
-
-            Assert.False(result);
-        }
-
-        [Fact]
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
@@ -54,16 +44,6 @@ namespace ParquetUnitTests.Map
             var result = chunk.TrySetFloorDefinition(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetBlockFailsOnNullParquetTest()
-        {
-            var chunk = new MapChunk();
-
-            var result = chunk.TrySetBlockDefinition(EntityID.None, Vector2Int.ZeroVector);
-
-            Assert.False(result);
         }
 
         [Fact]
@@ -89,16 +69,6 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void TrySetFurnishingFailsOnNullParquetTest()
-        {
-            var chunk = new MapChunk();
-
-            var result = chunk.TrySetFurnishingDefinition(EntityID.None, Vector2Int.ZeroVector);
-
-            Assert.False(result);
-        }
-
-        [Fact]
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
@@ -118,16 +88,6 @@ namespace ParquetUnitTests.Map
             var result = chunk.TrySetFurnishingDefinition(parquetID, Vector2Int.ZeroVector);
 
             Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetCollectibleFailsOnNullParquetTest()
-        {
-            var chunk = new MapChunk();
-
-            var result = chunk.TrySetCollectibleDefinition(EntityID.None, Vector2Int.ZeroVector);
-
-            Assert.False(result);
         }
 
         [Fact]

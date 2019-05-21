@@ -1,7 +1,6 @@
 ﻿using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
-using ParquetUnitTests.Parquets;
 
 namespace ParquetUnitTests.Map
 {
