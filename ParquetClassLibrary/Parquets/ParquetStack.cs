@@ -1,3 +1,4 @@
+using System;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -5,7 +6,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each layer of parquet that can occupy the same position.
     /// </summary>
-    public struct ParquetStack : IParquetStack
+    public struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
     {
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
@@ -50,5 +51,70 @@ namespace ParquetClassLibrary.Parquets
                                EntityID.None == Block &&
                                EntityID.None == Furnishing &&
                                EntityID.None == Collectible;
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for an <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (Floor, Block, Furnishing, Collectible).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetStack"/> is equal to the current <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(ParquetStack in_stack)
+            => Floor == in_stack.Floor
+            && Block == in_stack.Block
+            && Furnishing == in_stack.Furnishing
+            && Collectible == in_stack.Collectible;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStack"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        // ReSharper disable once InconsistentNaming
+        public override bool Equals(object obj)
+            => obj is ParquetStack stack && Equals(stack);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStack"/> is equal to another specified instance of <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <param name="in_stack1">The first <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="in_stack2">The second <see cref="ParquetStack"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(ParquetStack in_stack1, ParquetStack in_stack2)
+            => in_stack1.Floor == in_stack2.Floor
+            && in_stack1.Block == in_stack2.Block
+            && in_stack1.Furnishing == in_stack2.Furnishing
+            && in_stack1.Collectible == in_stack2.Collectible;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStack"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <param name="in_stack1">The first <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="in_stack2">The second <see cref="ParquetStack"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(ParquetStack in_stack1, ParquetStack in_stack2)
+            => in_stack1.Floor != in_stack2.Floor
+            || in_stack1.Block != in_stack2.Block
+            || in_stack1.Furnishing != in_stack2.Furnishing
+            || in_stack1.Collectible != in_stack2.Collectible;
+        #endregion
+
+        #region Utility Methods
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"[{Floor}{Block}{Furnishing}{Collectible}]";
+        #endregion
+
     }
 }
