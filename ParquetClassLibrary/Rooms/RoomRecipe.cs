@@ -32,7 +32,8 @@ namespace ParquetClassLibrary.Rooms
         /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
         /// the room is asigned the type of the most demanding recipe.
         /// </summary>
-        public int Priority => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
+        public int Priority
+            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
 
         #region Initialization
         /// <summary>
@@ -77,17 +78,15 @@ namespace ParquetClassLibrary.Rooms
         /// <c>false</c> otherwise.
         /// </returns>
         public bool Matches(Room in_room)
-        {
-            return in_room.WalkableArea.Count >= MinimumWalkableSpaces
-                && RequiredPerimeterBlocks.All(element =>
-                    in_room.Perimeter.Count(space =>
-                        All.Parquets.Get<Block>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-                && RequiredFloors.All(element =>
-                    in_room.WalkableArea.Count(space =>
-                        All.Parquets.Get<Floor>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-                && RequiredFurnishings.All(element =>
-                    in_room.FurnishingTags.Count(tag =>
-                        tag == element.ElementTag) >= element.ElementAmount);
-        }
+            => in_room.WalkableArea.Count >= MinimumWalkableSpaces
+            && RequiredPerimeterBlocks.All(element =>
+                in_room.Perimeter.Count(space =>
+                    All.Parquets.Get<Block>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+            && RequiredFloors.All(element =>
+                in_room.WalkableArea.Count(space =>
+                    All.Parquets.Get<Floor>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+            && RequiredFurnishings.All(element =>
+                in_room.FurnishingTags.Count(tag =>
+                    tag == element.ElementTag) >= element.ElementAmount);
     }
 }
