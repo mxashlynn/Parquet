@@ -38,12 +38,16 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
-        public IEnumerable<EntityTag> Furnishings
+        public IEnumerable<EntityTag> FurnishingTags
             => _cachedFurnishings
-                ?? (_cachedFurnishings = WalkableArea
-                                         .Concat(Perimeter)
-                                         .Where(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.AddsToRoom != EntityTag.None)
-                                         .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom));
+            ?? (_cachedFurnishings = new List<EntityTag>(
+                    WalkableArea
+                    .Concat(Perimeter)
+                    .Where(space => EntityID.None != space.Content.Furnishing
+                                 && EntityTag.None != All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
+                    .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
+                )
+            );
 
         /// <summary>
         /// The location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
