@@ -56,6 +56,9 @@ namespace ParquetUnitTests
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static Item TestItem { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static List<ParquetParent> Parquets { get; }
         #endregion
 
         static TestEntities()
@@ -84,6 +87,10 @@ namespace ParquetUnitTests
                                   1, Elevation.LevelGround, false, null, null);
             TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", "Test", "Test",
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
+
+            // Sets up All so that bounds can be checked in various constructors.
+            Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestFurnishing, TestCollectible };
+            All.InitializeCollections(Parquets);
         }
     }
 }

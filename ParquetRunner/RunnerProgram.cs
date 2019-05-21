@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetRunner

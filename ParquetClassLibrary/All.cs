@@ -259,10 +259,6 @@ namespace ParquetClassLibrary
             ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             #endregion
 
-            // TODO Before Parquet-Release Candidate milestone (the one in the Unity project),
-            // replace all reflection and Linq in the main class library with hardcoded values.
-            // The tools and tests can continue to use Linq and reflection.
-
             // The largest Range.Maximum defined in AssemblyInfo, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(All).GetFields()
                 .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
@@ -308,6 +304,7 @@ namespace ParquetClassLibrary
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
+            Precondition.IsNotNull(in_parquets, nameof(in_parquets));
 
             // TODO Uncomment these once we have CSV import implemented for non-parquets.
             //Beings = new EntityCollection<Being>(BeingIDs);

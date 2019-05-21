@@ -4,18 +4,20 @@ using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 using System;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Rooms;
+using System.Linq;
 
 namespace ParquetUnitTests.Rooms
 {
     public class RoomUnitTest
     {
         #region Test Values
-        private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor, TestEntities.TestBlock, null, null);
+        private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor, null, null, null);
+        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor, null, TestEntities.TestFurnishing, null);
+        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
         private static readonly HashSet<Space> TestPerimeter= new HashSet<Space>
         {
@@ -40,6 +42,8 @@ namespace ParquetUnitTests.Rooms
             new Space(new Vector2Int(1, 2), TestWalk),
             new Space(new Vector2Int(2, 2), TestEntry),
         };
+
+        private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
         #endregion
 
         [Fact]
@@ -103,6 +107,24 @@ namespace ParquetUnitTests.Rooms
             }
 
             Assert.Throws<ArgumentException>(BadWalkableAre);
+        }
+
+        [Fact]
+        internal void ContainedPositionIsFoundTest()
+        {
+            var ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
+
+            Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
+        }
+
+
+        [Fact]
+        internal void UncontainedPositionIsNotFoundTest()
+        {
+            var UncontainedPosition = new Vector2Int(TestPerimeter.Select(space => space.Position.X).Min() - 1,
+                                                     TestPerimeter.Select(space => space.Position.Y).Min() - 1);
+
+            Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));
         }
     }
 }

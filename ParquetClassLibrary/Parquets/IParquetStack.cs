@@ -7,16 +7,16 @@ namespace ParquetClassLibrary.Parquets
     public interface IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>
-        Floor Floor { get; }
+        EntityID Floor { get; }
 
         /// <summary>The block contained in this stack.</summary>
-        Block Block { get; }
+        EntityID Block { get; }
 
         /// <summary>The furnishing contained in this stack.</summary>
-        Furnishing Furnishing { get; }
+        EntityID Furnishing { get; }
 
         /// <summary>The collectible contained in this stack.</summary>
-        Collectible Collectible { get; }
+        EntityID Collectible { get; }
 
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.

@@ -23,7 +23,9 @@ namespace ParquetClassLibrary.Parquets
         public int Toughness
         {
             get => _toughness;
-            set => _toughness = value.Normalize(Block.LowestPossibleToughness, _thisStack.Block?.MaxToughness ?? Block.DefaultMaxToughness);
+            set => _toughness =
+                value.Normalize(Block.LowestPossibleToughness,
+                                All.Parquets.Get<Block>(_thisStack.Block)?.MaxToughness ?? Block.DefaultMaxToughness);
         }
 
         /// <summary>If the floor has been dug out.</summary>
@@ -42,7 +44,8 @@ namespace ParquetClassLibrary.Parquets
         {
             _thisStack = in_thisStack;
             IsTrench = in_isTrench;
-            Toughness = in_toughness ?? in_thisStack.Block?.MaxToughness ?? Block.DefaultMaxToughness;
+            Toughness = in_toughness ?? All.Parquets.Get<Block>(in_thisStack.Block)?.MaxToughness 
+                                     ?? Block.DefaultMaxToughness;
         }
         #endregion
 

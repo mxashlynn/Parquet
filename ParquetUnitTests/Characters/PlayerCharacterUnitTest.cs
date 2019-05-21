@@ -1,8 +1,9 @@
 using System;
-using ParquetUnitTests;
+using ParquetClassLibrary;
+using ParquetClassLibrary.Characters;
 using Xunit;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetUnitTests.Characters
 {
     public class PlayerCharacterUnitTest
     {

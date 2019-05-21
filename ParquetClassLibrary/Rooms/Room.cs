@@ -38,18 +38,16 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
-        public IEnumerable<EntityTag> Furnishings
-        {
-            get
-            {
-                return _cachedFurnishings
-                       ?? (_cachedFurnishings = WalkableArea
-                                                .Concat(Perimeter)
-                                                .Where(space => null != space.Content.Furnishing
-                                                             && space.Content.Furnishing.AddsToRoom != EntityTag.None)
-                                                .Select(space => space.Content.Furnishing.AddsToRoom));
-            }
-        }
+        public IEnumerable<EntityTag> FurnishingTags
+            => _cachedFurnishings
+            ?? (_cachedFurnishings = new List<EntityTag>(
+                    WalkableArea
+                    .Concat(Perimeter)
+                    .Where(space => EntityID.None != space.Content.Furnishing
+                                 && EntityTag.None != All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
+                    .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
+                )
+            );
 
         /// <summary>
         /// The location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
@@ -115,8 +113,7 @@ namespace ParquetClassLibrary.Rooms
             }
 
             if (!in_walkableArea.Concat(in_perimeter).Any(space
-                => null != space.Content.Furnishing
-                && space.Content.Furnishing.IsEntry))
+                => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(in_walkableArea)} or {nameof(in_perimeter)}.");
             }
@@ -126,6 +123,23 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
-        // TODO Either make this explicitly immutable or implement a way to clear the caches when updating.
+        /// <summary>
+        /// Determines whether or not the given position is included in this <see cref="Room"/>.
+        /// </summary>
+        /// <param name="in_position">The position to check for.</param>
+        /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
+        public bool ContainsPosition(Vector2Int in_position)
+            => WalkableArea.Concat(Perimeter).Any(space => space.Position == in_position);
+
+        /// <summary>
+        /// Clears internal caches ahead of <see cref="Room"/> update.
+        /// </summary>
+        // TODO Is this the best way to handle this?
+        public void ClearCaches()
+        {
+            _cachedPosition = null;
+            _cachedRecipeID = null;
+            _cachedFurnishings = null;
+        }
     }
 }

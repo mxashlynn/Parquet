@@ -19,12 +19,14 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>
         /// Describes the <see cref="Biome"/>(s) that this parquet helps generate.
+        /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToBiome")]
         public EntityTag AddsToBiome { get; }
 
         /// <summary>
         /// Describes the <see cref="Rooms.RoomRecipe"/>(s) that this parquet helps generate.
+        /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToRoom")]
         public EntityTag AddsToRoom { get; }
@@ -49,8 +51,8 @@ namespace ParquetClassLibrary.Parquets
             Precondition.IsInRange(in_itemID, All.ItemIDs, nameof(in_itemID));
 
             ItemID = in_itemID;
-            AddsToBiome = in_addsToBiome;
-            AddsToRoom = in_addsToRoom;
+            AddsToBiome = string.IsNullOrEmpty(in_addsToBiome) ? EntityTag.None : in_addsToBiome;
+            AddsToRoom = string.IsNullOrEmpty(in_addsToRoom) ? EntityTag.None : in_addsToRoom;
         }
         #endregion
     }

@@ -60,8 +60,13 @@ namespace ParquetClassLibrary.Utilities
         {
             if (!in_id.IsValidForRange(in_boundsCollection))
             {
+                var allBounds = "";
+                foreach (var range in in_boundsCollection)
+                {
+                    allBounds += range + " ";
+                }
                 throw new ArgumentOutOfRangeException(
-                    $"{in_argumentName}: {in_id} is not within {in_boundsCollection}.");
+                    $"{in_argumentName}: {in_id} is not within {allBounds}.");
             }
         }
 
