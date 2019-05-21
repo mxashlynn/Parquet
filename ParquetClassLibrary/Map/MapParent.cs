@@ -3,6 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Map.SpecialPoints;
+using System;
 #if UNITY_2018_4_OR_NEWER
 using UnityEngine;
 #else
@@ -312,6 +313,52 @@ namespace ParquetClassLibrary.Map
         #endregion
 
         #region Utility Methods
+        /// <summary>
+        /// Provides all parquet definitions within the current map.
+        /// </summary>
+        /// <returns>The entire map as a subregion.</returns>
+        public ParquetStack[,] GetSubregion()
+            => GetSubregion(Vector2Int.ZeroVector, new Vector2Int(DimensionsInParquets.X - 1,
+                                                                  DimensionsInParquets.Y - 1));
+
+        /// <summary>
+        /// Provides all parquet definitions within the specified rectangular subsection of the current map.
+        /// </summary>
+        /// <param name="in_upperLeft">The position of the upper-leftmost corner of the subregion.</param>
+        /// <param name="in_lowerRight">The position of the lower-rightmost corner of the subregion.</param>
+        /// <returns>A portion of the map as a subregion.</returns>
+        public ParquetStack[,] GetSubregion(Vector2Int in_upperLeft, Vector2Int in_lowerRight)
+        {
+            if (!IsValidPosition(in_upperLeft))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_upperLeft));
+            }
+            else if (!IsValidPosition(in_lowerRight))
+            {
+                throw new ArgumentOutOfRangeException(nameof(in_lowerRight));
+            }
+            else if (in_lowerRight.X < in_upperLeft.X && in_lowerRight.Y < in_upperLeft.Y)
+            {
+                throw new ArgumentException("Improper vector order.", nameof(in_lowerRight));
+            }
+            else
+            {
+                var subregion = new ParquetStack[in_lowerRight.X - in_upperLeft.X + 1,
+                                                 in_lowerRight.Y - in_upperLeft.Y + 1];
+
+                for (var x = in_upperLeft.X; x <= in_lowerRight.X; x++)
+                {
+                    for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
+                    {
+                        var temp = _parquetDefintion[x, y];
+                        subregion[x - in_upperLeft.X, y - in_upperLeft.Y] = temp;
+                    }
+                }
+
+                return subregion;
+            }
+        }
+
         /// <summary>
         /// Determines if the given position corresponds to a point on the map.
         /// </summary>

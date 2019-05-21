@@ -1,8 +1,10 @@
 using System;
+using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Map.SpecialPoints;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 
@@ -17,14 +19,13 @@ namespace ParquetUnitTests.Map
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly Guid testID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
+        private static readonly MapRegion defaultRegion = new MapRegion();
         #endregion
 
         #region Region Map Initialization
         [Fact]
         public void NewDefaultMapRegionTest()
         {
-            var defaultRegion = new MapRegion();
-
             Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
             Assert.Equal(MapRegion.DefaultColor, defaultRegion.Background);
         }
@@ -342,6 +343,90 @@ namespace ParquetUnitTests.Map
             Assert.Equal(EntityID.None, result.Block);
             Assert.Equal(EntityID.None, result.Furnishing);
             Assert.Equal(EntityID.None, result.Collectible);
+        }
+        #endregion
+
+        #region Subregion Methods
+        [Fact]
+        public void GetSubregionThrowsOnInvalidUpperLeftTest()
+        {
+            var invalidUpperLeft = invalidPosition;
+            var validLowerRight = new Vector2Int(defaultRegion.DimensionsInParquets.X - 1,
+                                                 defaultRegion.DimensionsInParquets.Y - 1);
+
+            void InvalidSubregion()
+            {
+                var _ = defaultRegion.GetSubregion(invalidUpperLeft, validLowerRight);
+            }
+
+            Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
+        }
+
+        [Fact]
+        public void GetSubregionThrowsOnInvalidLowerRightTest()
+        {
+            var validUpperLeft = Vector2Int.ZeroVector;
+            var invalidLowerRight = defaultRegion.DimensionsInParquets;
+
+            void InvalidSubregion()
+            {
+                var _ = defaultRegion.GetSubregion(validUpperLeft, invalidLowerRight);
+            }
+
+            Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
+        }
+
+        [Fact]
+        public void GetSubregionThrowsOnInvalidOrderingTest()
+        {
+            var validUpperLeft = Vector2Int.ZeroVector;
+            var validLowerRight = new Vector2Int(defaultRegion.DimensionsInParquets.X - 1,
+                                                 defaultRegion.DimensionsInParquets.Y - 1);
+
+            void InvalidSubregion()
+            {
+                var _ = defaultRegion.GetSubregion(validLowerRight, validUpperLeft);
+            }
+
+            Assert.Throws<ArgumentException>(InvalidSubregion);
+        }
+
+        [Fact]
+        public void GetSubregionMatchesPattern()
+        {
+            var originalChunk = typeof(MapRegion)
+                                .GetProperty("_parquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                ?.GetValue(defaultRegion) as ParquetStack[,];
+            var validUpperLeft = new Vector2Int(1, 4);
+            var validLowerRight = new Vector2Int(10, 14);
+
+            var subregion = defaultRegion.GetSubregion();
+
+            for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
+            {
+                for (var y = validUpperLeft.Y; y < validLowerRight.Y; y++)
+                {
+                    Assert.Equal(subregion[x, y], originalChunk[x, y]);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetSubregionOnWholeSubregionMatchesPattern()
+        {
+            var originalChunk = typeof(MapRegion)
+                                .GetProperty("_parquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                ?.GetValue(defaultRegion) as ParquetStack[,];
+
+            var subregion = defaultRegion.GetSubregion();
+
+            for (var x = 0; x < defaultRegion.DimensionsInParquets.X; x++)
+            {
+                for (var y = 0; y < defaultRegion.DimensionsInParquets.Y; y++)
+                {
+                    Assert.Equal(subregion[x, y], originalChunk[x, y]);
+                }
+            }
         }
         #endregion
     }
