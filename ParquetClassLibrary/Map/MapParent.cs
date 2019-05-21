@@ -318,12 +318,10 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2Int in_position)
-        {
-            return in_position.X > -1
-                && in_position.Y > -1
-                && in_position.X < DimensionsInParquets.X
-                && in_position.Y < DimensionsInParquets.Y;
-        }
+            => in_position.X > -1
+            && in_position.Y > -1
+            && in_position.X < DimensionsInParquets.X
+            && in_position.Y < DimensionsInParquets.Y;
 
         /// <summary>
         /// Visualizes the map as a string with merged layers.
