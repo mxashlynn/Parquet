@@ -18,28 +18,28 @@ namespace ParquetUnitTests.Rooms
         private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
         private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
-            {
-                new Space(new Vector2Int(0, 0), TestWall),
-                new Space(new Vector2Int(1, 0), TestWall),
-                new Space(new Vector2Int(2, 0), TestWall),
-                new Space(new Vector2Int(3, 0), TestWall),
-                new Space(new Vector2Int(0, 1), TestWall),
-                new Space(new Vector2Int(3, 1), TestWall),
-                new Space(new Vector2Int(0, 2), TestWall),
-                new Space(new Vector2Int(3, 2), TestWall),
-                new Space(new Vector2Int(0, 3), TestWall),
-                new Space(new Vector2Int(1, 3), TestWall),
-                new Space(new Vector2Int(2, 3), TestWall),
-                new Space(new Vector2Int(3, 3), TestWall),
-            };
+        {
+            new Space(new Vector2Int(0, 0), TestWall),
+            new Space(new Vector2Int(1, 0), TestWall),
+            new Space(new Vector2Int(2, 0), TestWall),
+            new Space(new Vector2Int(3, 0), TestWall),
+            new Space(new Vector2Int(0, 1), TestWall),
+            new Space(new Vector2Int(3, 1), TestWall),
+            new Space(new Vector2Int(0, 2), TestWall),
+            new Space(new Vector2Int(3, 2), TestWall),
+            new Space(new Vector2Int(0, 3), TestWall),
+            new Space(new Vector2Int(1, 3), TestWall),
+            new Space(new Vector2Int(2, 3), TestWall),
+            new Space(new Vector2Int(3, 3), TestWall),
+        };
 
         private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
-            {
-                new Space(new Vector2Int(1, 1), TestWalk),
-                new Space(new Vector2Int(2, 1), TestWalk),
-                new Space(new Vector2Int(1, 2), TestWalk),
-                new Space(new Vector2Int(2, 2), TestEntry),
-            };
+        {
+            new Space(new Vector2Int(1, 1), TestWalk),
+            new Space(new Vector2Int(2, 1), TestWalk),
+            new Space(new Vector2Int(1, 2), TestWalk),
+            new Space(new Vector2Int(2, 2), TestEntry),
+        };
 
         private static readonly List<RecipeElement> TestRequiredFurnishings = TestEntities.TestRecipeElementList;
 

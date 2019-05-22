@@ -36,6 +36,9 @@ namespace ParquetUnitTests
         public static Block TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static Block TestLiquid { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static Furnishing TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -70,6 +73,7 @@ namespace ParquetUnitTests
                               All.BiomeIDs.Minimum, Behavior.Still);
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", in_addsToRoom: TestTag);
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", in_addsToRoom: TestTag);
+            TestLiquid = new Block(-All.BlockIDs.Minimum, "L Test Liquid Block", "Test", "Test", in_isLiquid: true, in_addsToRoom: TestTag);
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
                                             in_isEntry: true, in_addsToRoom: TestTag);
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",

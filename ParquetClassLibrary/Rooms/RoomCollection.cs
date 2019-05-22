@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 
 namespace ParquetClassLibrary.Rooms
@@ -36,6 +37,22 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
         public Room GetRoomAt(Vector2Int in_position)
             => Rooms.First(room => room.ContainsPosition(in_position));
+
+        #region Initialization from Map Analysis
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoomCollection"/> class.
+        /// </summary>
+        /// <remarks>Private so that empty <see cref="RoomCollection"/>s are not made in client code.</remarks>
+        private RoomCollection() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoomCollection"/> class.
+        /// </summary>
+        public static RoomCollection CreateFromSubregion(ParquetStack[,] in_subregion)
+        {
+            return new RoomCollection();
+        }
+        #endregion
 
         #region Utility Methods
         /// <summary>
