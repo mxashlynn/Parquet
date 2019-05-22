@@ -80,6 +80,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
         public bool TrySetFloorDefinition(EntityID in_floorID, Vector2Int in_position)
+            // TODO If you make these nullable in TrySetParquet these calls can besimplified and the validity check postponned
             => IsValidPosition(in_position)
             && TrySetParquetDefinition(
                     in_floorID,
