@@ -56,14 +56,14 @@ namespace ParquetClassLibrary.Map
             {
                 var count = 0;
 
-                for (var x = 0; x < DimensionsInParquets.X; x++)
+                for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    for (var y = 0; y < DimensionsInParquets.Y; y++)
+                    for (var x = 0; x < DimensionsInParquets.X; x++)
                     {
-                        count += EntityID.None != _parquetDefintion[x, y].Floor ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[x, y].Block ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[x, y].Furnishing ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[x, y].Collectible ? 1 : 0;
+                        count += EntityID.None != _parquetDefintion[y, x].Floor ? 1 : 0;
+                        count += EntityID.None != _parquetDefintion[y, x].Block ? 1 : 0;
+                        count += EntityID.None != _parquetDefintion[y, x].Furnishing ? 1 : 0;
+                        count += EntityID.None != _parquetDefintion[y, x].Collectible ? 1 : 0;
                     }
                 }
 
@@ -83,9 +83,9 @@ namespace ParquetClassLibrary.Map
             => IsValidPosition(in_position)
             && TrySetParquetDefinition(
                     in_floorID,
-                    _parquetDefintion[in_position.X, in_position.Y].Block,
-                    _parquetDefintion[in_position.X, in_position.Y].Furnishing,
-                    _parquetDefintion[in_position.X, in_position.Y].Collectible,
+                    _parquetDefintion[in_position.Y, in_position.X].Block,
+                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
+                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
                     in_position);
 
         /// <summary>
@@ -97,10 +97,10 @@ namespace ParquetClassLibrary.Map
         public bool TrySetBlockDefinition(EntityID in_blockID, Vector2Int in_position)
             => IsValidPosition(in_position)
             && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.X, in_position.Y].Floor,
+                    _parquetDefintion[in_position.Y, in_position.X].Floor,
                     in_blockID,
-                    _parquetDefintion[in_position.X, in_position.Y].Furnishing,
-                    _parquetDefintion[in_position.X, in_position.Y].Collectible,
+                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
+                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
                     in_position);
 
         /// <summary>
@@ -112,10 +112,10 @@ namespace ParquetClassLibrary.Map
         public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2Int in_position)
             => IsValidPosition(in_position)
             && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.X, in_position.Y].Floor,
-                    _parquetDefintion[in_position.X, in_position.Y].Block,
+                    _parquetDefintion[in_position.Y, in_position.X].Floor,
+                    _parquetDefintion[in_position.Y, in_position.X].Block,
                     in_furnishingID,
-                    _parquetDefintion[in_position.X, in_position.Y].Collectible,
+                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
                     in_position);
 
         /// <summary>
@@ -127,9 +127,9 @@ namespace ParquetClassLibrary.Map
         public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2Int in_position)
             => IsValidPosition(in_position)
             && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.X, in_position.Y].Floor,
-                    _parquetDefintion[in_position.X, in_position.Y].Block,
-                    _parquetDefintion[in_position.X, in_position.Y].Furnishing,
+                    _parquetDefintion[in_position.Y, in_position.X].Floor,
+                    _parquetDefintion[in_position.Y, in_position.X].Block,
+                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
                     in_collectibleID,
                     in_position);
 
@@ -148,7 +148,7 @@ namespace ParquetClassLibrary.Map
             var result = false;
             if (IsValidPosition(in_position))
             {
-                _parquetDefintion[in_position.X, in_position.Y] =
+                _parquetDefintion[in_position.Y, in_position.X] =
                     new ParquetStack(in_floorID, in_blockID, in_furnishingID, in_collectibleID);
                 result = true;
             }
@@ -241,7 +241,7 @@ namespace ParquetClassLibrary.Map
         /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
             => IsValidPosition(in_position)
-                ? _parquetStatus[in_position.X, in_position.Y]
+                ? _parquetStatus[in_position.Y, in_position.X]
                 : null;
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace ParquetClassLibrary.Map
         /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2Int in_position)
             => IsValidPosition(in_position)
-                ? _parquetDefintion[in_position.X, in_position.Y]
+                ? _parquetDefintion[in_position.Y, in_position.X]
                 : ParquetStack.Empty;
 
         /// <summary>
@@ -263,25 +263,25 @@ namespace ParquetClassLibrary.Map
         {
             var result = new List<EntityID>();
 
-            for (var x = 0; x < DimensionsInParquets.X; x++)
+            for (var y = 0; y < DimensionsInParquets.Y; y++)
             {
-                for (var y = 0; y < DimensionsInParquets.Y; y++)
+                for (var x = 0; x < DimensionsInParquets.X; x++)
                 {
-                    if (EntityID.None != _parquetDefintion[x, y].Floor)
+                    if (EntityID.None != _parquetDefintion[y, x].Floor)
                     {
-                        result.Add(_parquetDefintion[x, y].Floor);
+                        result.Add(_parquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[x, y].Block)
+                    if (EntityID.None != _parquetDefintion[y, x].Block)
                     {
-                        result.Add(_parquetDefintion[x, y].Floor);
+                        result.Add(_parquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[x, y].Furnishing)
+                    if (EntityID.None != _parquetDefintion[y, x].Furnishing)
                     {
-                        result.Add(_parquetDefintion[x, y].Floor);
+                        result.Add(_parquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[x, y].Collectible)
+                    if (EntityID.None != _parquetDefintion[y, x].Collectible)
                     {
-                        result.Add(_parquetDefintion[x, y].Floor);
+                        result.Add(_parquetDefintion[y, x].Floor);
                     }
                 }
             }
@@ -338,14 +338,14 @@ namespace ParquetClassLibrary.Map
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    var parquet = EntityID.None != _parquetDefintion[x, y].Collectible
-                        ? All.Parquets.Get<ParquetParent>(_parquetDefintion[x, y].Collectible) 
-                        : EntityID.None != _parquetDefintion[x, y].Furnishing
-                            ? All.Parquets.Get<ParquetParent>(_parquetDefintion[x, y].Furnishing)
-                            : EntityID.None != _parquetDefintion[x, y].Block
-                                ? All.Parquets.Get<ParquetParent>(_parquetDefintion[x, y].Block)
-                                : EntityID.None != _parquetDefintion[x, y].Floor
-                                    ? All.Parquets.Get<ParquetParent>(_parquetDefintion[x, y].Floor)
+                    var parquet = EntityID.None != _parquetDefintion[y, x].Collectible
+                        ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Collectible) 
+                        : EntityID.None != _parquetDefintion[y, x].Furnishing
+                            ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Furnishing)
+                            : EntityID.None != _parquetDefintion[y, x].Block
+                                ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Block)
+                                : EntityID.None != _parquetDefintion[y, x].Floor
+                                    ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Floor)
                                     : null;
 
                     representation.Append(parquet?.ToString() ?? "~");
@@ -373,17 +373,17 @@ namespace ParquetClassLibrary.Map
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    floorRepresentation.Append(EntityID.None != _parquetDefintion[x, y].Floor
-                        ? All.Parquets.Get<Floor>(_parquetDefintion[x, y].Floor).ToString()
+                    floorRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Floor
+                        ? All.Parquets.Get<Floor>(_parquetDefintion[y, x].Floor).ToString()
                         : "~");
-                    blocksRepresentation.Append(EntityID.None != _parquetDefintion[x, y].Block
-                        ? All.Parquets.Get<Block>(_parquetDefintion[x, y].Block).ToString()
+                    blocksRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Block
+                        ? All.Parquets.Get<Block>(_parquetDefintion[y, x].Block).ToString()
                         : " ");
-                    furnishingsRepresentation.Append(EntityID.None != _parquetDefintion[x, y].Furnishing
-                        ? All.Parquets.Get<Furnishing>(_parquetDefintion[x, y].Furnishing).ToString()
+                    furnishingsRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Furnishing
+                        ? All.Parquets.Get<Furnishing>(_parquetDefintion[y, x].Furnishing).ToString()
                         : " ");
-                    collectiblesRepresentation.Append(EntityID.None != _parquetDefintion[x, y].Collectible
-                        ? All.Parquets.Get<Collectible>(_parquetDefintion[x, y].Collectible).ToString()
+                    collectiblesRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Collectible
+                        ? All.Parquets.Get<Collectible>(_parquetDefintion[y, x].Collectible).ToString()
                         : " ");
                 }
                 floorRepresentation.AppendLine();
