@@ -25,8 +25,8 @@ namespace ParquetUnitTests
         };
 
         /// <summary>A trivial panel pattern.</summary>
-        private static readonly StrikePanel[,] emptyPanelPattern = new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
-                                                                                   All.Dimensions.PanelsPerPatternHeight];
+        private static readonly StrikePanel[,] emptyPanelPattern = new StrikePanel[All.Dimensions.PanelsPerPatternHeight,
+                                                                                   All.Dimensions.PanelsPerPatternWidth];
         #endregion
 
         [Fact]
@@ -107,21 +107,38 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ImproperlySizedPanelPatternsThrowTest()
+        public void PanelTooNarrowPatternsThrowTest()
         {
-            var patternTooWide = new StrikePanel[All.Dimensions.PanelsPerPatternWidth + 1,
-                                                All.Dimensions.PanelsPerPatternHeight];
+            var patternTooNarrow = new StrikePanel[All.Dimensions.PanelsPerPatternHeight, 0];
 
-            var patternTooHigh = new StrikePanel[All.Dimensions.PanelsPerPatternWidth,
-                                                 All.Dimensions.PanelsPerPatternHeight + 1];
-
-            var patternTooSmall = new StrikePanel[0, 0];
-
-            void TestCodeTooWide()
+            void TestCodeTooNarrow()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, ingredientList, patternTooWide);
+                                           productList, ingredientList, patternTooNarrow);
             }
+
+            Assert.Throws<IndexOutOfRangeException>(TestCodeTooNarrow);
+        }
+
+        [Fact]
+        public void PanelTooShortPatternsThrowTest()
+        {
+            var patternTooShort = new StrikePanel[0, All.Dimensions.PanelsPerPatternWidth];
+
+            void TestCodeTooShort()
+            {
+                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
+                                           productList, ingredientList, patternTooShort);
+            }
+
+            Assert.Throws<IndexOutOfRangeException>(TestCodeTooShort);
+        }
+
+        [Fact]
+        public void PanelTooHighPatternsThrowTest()
+        {
+            var patternTooHigh = new StrikePanel[All.Dimensions.PanelsPerPatternHeight + 1,
+                                                 All.Dimensions.PanelsPerPatternWidth];
 
             void TestCodeTooHigh()
             {
@@ -129,15 +146,22 @@ namespace ParquetUnitTests
                                            productList, ingredientList, patternTooHigh);
             }
 
-            void TestCodeTooSmall()
+            Assert.Throws<IndexOutOfRangeException>(TestCodeTooHigh);
+        }
+
+        [Fact]
+        public void PanelTooWidePatternsThrowTest()
+        {
+            var patternTooWide = new StrikePanel[All.Dimensions.PanelsPerPatternHeight,
+                                                 All.Dimensions.PanelsPerPatternWidth + 1];
+
+            void TestCodeTooWide()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, ingredientList, patternTooSmall);
+                                           productList, ingredientList, patternTooWide);
             }
 
             Assert.Throws<IndexOutOfRangeException>(TestCodeTooWide);
-            Assert.Throws<IndexOutOfRangeException>(TestCodeTooHigh);
-            Assert.Throws<IndexOutOfRangeException>(TestCodeTooSmall);
         }
     }
 }

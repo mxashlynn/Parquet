@@ -46,10 +46,10 @@ namespace ParquetClassLibrary.Map
 
         #region Grid Contents
         /// <summary>The type of chunks which make up the grid.</summary>
-        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.X, DimensionsInChunks.Y];
+        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
 
         /// <summary>The orientation of the chunks which make up the grid.</summary>
-        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.X, DimensionsInChunks.Y];
+        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.Y, DimensionsInChunks.X];
         #endregion
 
         #region Initialization
@@ -98,8 +98,8 @@ namespace ParquetClassLibrary.Map
 
             if (valid)
             {
-                _chunkTypes[in_position.X, in_position.Y] = in_type;
-                _chunkOrientations[in_position.X, in_position.Y] = in_orientation;
+                _chunkTypes[in_position.Y, in_position.X] = in_type;
+                _chunkOrientations[in_position.Y, in_position.X] = in_orientation;
             }
 
             return valid;
@@ -117,8 +117,8 @@ namespace ParquetClassLibrary.Map
             return IsValidPosition(in_position)
                 ? ((ChunkType type, ChunkOrientation orientation)?)
                 (
-                    _chunkTypes[in_position.X, in_position.Y],
-                    _chunkOrientations[in_position.X, in_position.Y]
+                    _chunkTypes[in_position.Y, in_position.X],
+                    _chunkOrientations[in_position.Y, in_position.X]
                 )
                 : null;
         }
@@ -197,11 +197,11 @@ namespace ParquetClassLibrary.Map
         {
             var representation = new StringBuilder(DimensionsInChunks.Magnitude);
             #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInChunks.X; x++)
+            for (var y = 0; y < DimensionsInChunks.Y; y++)
             {
-                for (var y = 0; y < DimensionsInChunks.Y; y++)
+                for (var x = 0; x < DimensionsInChunks.X; x++)
                 {
-                    representation.Append(_chunkTypes[x, y].ToString());
+                    representation.Append(_chunkTypes[y, x].ToString());
                 }
                 representation.AppendLine();
             }

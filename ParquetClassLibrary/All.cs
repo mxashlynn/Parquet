@@ -153,7 +153,7 @@ namespace ParquetClassLibrary
             /// <summary>The length of each <see cref="Map.MapChunkGrid"/> dimension in parquets.</summary>
             public const int ParquetsPerChunk = 16;
 
-            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in <see cref="Sandbox.MapChunkGrid"/>s.</summary>
+            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in <see cref="Map.MapChunkGrid"/>s.</summary>
             public const int ChunksPerRegion = 4;
 
             /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in parquets.</summary>

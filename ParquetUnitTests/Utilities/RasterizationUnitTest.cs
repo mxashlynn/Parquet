@@ -178,7 +178,7 @@ namespace ParquetUnitTests.Utilities
             bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
             {
                 var matchAgainst = Convert.ToInt32(in_matchAgainst);
-                return fillLayer[in_position.X, in_position.Y] == matchAgainst;
+                return fillLayer[in_position.Y, in_position.X] == matchAgainst;
             }
 
             int CountAllTargets(int[,] in_array)
@@ -201,7 +201,7 @@ namespace ParquetUnitTests.Utilities
             Assert.Equal(CountAllTargets(fillLayer), vectors.Count);
             foreach (var vector in vectors)
             {
-                Assert.Equal(target, fillLayer[vector.X, vector.Y]);
+                Assert.Equal(target, fillLayer[vector.Y, vector.X]);
             }
         }
     }
