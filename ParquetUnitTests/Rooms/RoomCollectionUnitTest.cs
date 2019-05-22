@@ -808,7 +808,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void ContainsDoesNotFindNonexistantRoomTest()
         {
-            Assert.True(TestCollection.Contains(NonexistantRoom));
+            Assert.False(TestCollection.Contains(NonexistantRoom));
         }
 
         [Fact]
