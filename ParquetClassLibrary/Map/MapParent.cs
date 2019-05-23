@@ -81,14 +81,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
         public bool TrySetFloorDefinition(EntityID in_floorID, Vector2Int in_position)
-            // TODO If you make these nullable in TrySetParquet these calls can besimplified and the validity check postponned
-            => IsValidPosition(in_position)
-            && TrySetParquetDefinition(
-                    in_floorID,
-                    _parquetDefintion[in_position.Y, in_position.X].Block,
-                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
-                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
-                    in_position);
+            => TrySetParquetDefinition(in_floorID, null, null, null, in_position);
 
         /// <summary>
         /// Attempts to update the block parquet at the given position.
@@ -97,13 +90,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
         public bool TrySetBlockDefinition(EntityID in_blockID, Vector2Int in_position)
-            => IsValidPosition(in_position)
-            && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.Y, in_position.X].Floor,
-                    in_blockID,
-                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
-                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
-                    in_position);
+            => TrySetParquetDefinition(null, in_blockID, null, null, in_position);
 
         /// <summary>
         /// Attempts to update the furnishing parquet at the given position.
@@ -112,13 +99,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
         public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2Int in_position)
-            => IsValidPosition(in_position)
-            && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.Y, in_position.X].Floor,
-                    _parquetDefintion[in_position.Y, in_position.X].Block,
-                    in_furnishingID,
-                    _parquetDefintion[in_position.Y, in_position.X].Collectible,
-                    in_position);
+            => TrySetParquetDefinition(null, null, in_furnishingID, null, in_position);
 
         /// <summary>
         /// Attempts to update the collectible parquet at the given position.
@@ -127,13 +108,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the collectible was set, <c>false</c> otherwise.</returns>
         public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2Int in_position)
-            => IsValidPosition(in_position)
-            && TrySetParquetDefinition(
-                    _parquetDefintion[in_position.Y, in_position.X].Floor,
-                    _parquetDefintion[in_position.Y, in_position.X].Block,
-                    _parquetDefintion[in_position.Y, in_position.X].Furnishing,
-                    in_collectibleID,
-                    in_position);
+            => TrySetParquetDefinition(null, null, null, in_collectibleID, in_position);
 
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
@@ -144,14 +119,19 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_collectibleID">ID for the new collectible to set.</param>
         /// <param name="in_position">The position to put the parquet in.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(EntityID in_floorID, EntityID in_blockID, EntityID in_furnishingID,
-                                            EntityID in_collectibleID, Vector2Int in_position)
+        public bool TrySetParquetDefinition(EntityID? in_floorID, EntityID? in_blockID,
+                                            EntityID? in_furnishingID, EntityID? in_collectibleID,
+                                            Vector2Int in_position)
         {
             var result = false;
             if (IsValidPosition(in_position))
             {
                 _parquetDefintion[in_position.Y, in_position.X] =
-                    new ParquetStack(in_floorID, in_blockID, in_furnishingID, in_collectibleID);
+                    new ParquetStack(
+                        in_floorID ?? _parquetDefintion[in_position.Y, in_position.X].Floor,
+                        in_blockID ?? _parquetDefintion[in_position.Y, in_position.X].Block,
+                        in_furnishingID ?? _parquetDefintion[in_position.Y, in_position.X].Furnishing,
+                        in_collectibleID ?? _parquetDefintion[in_position.Y, in_position.X].Collectible);
                 result = true;
             }
             return result;
