@@ -10,6 +10,9 @@ namespace ParquetClassLibrary.Stubs
         /// <summary>The zero vector.</summary>
         public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
 
+        /// <summary>The unit vector.</summary>
+        public static readonly Vector2Int UnitVector = new Vector2Int(1, 1);
+
         /// <summary>Offset from origin in x.</summary>
         public readonly int X;
 
