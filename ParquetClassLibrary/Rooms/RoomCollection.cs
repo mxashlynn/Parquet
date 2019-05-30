@@ -73,4 +73,23 @@ namespace ParquetClassLibrary.Rooms
             => $"{Rooms.Count} Rooms";
         #endregion
     }
+
+    /// <summary>
+    /// Extension methods used in room analysis.
+    /// </summary>
+    internal static class ParquetStackExtensions
+    {
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Walkable iff:
+        /// 1, It has a <see cref="Floor"/>;
+        /// 2, It does not have a <see cref="Block"/>;
+        /// 3, It does not have a <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
+        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal static bool IsWalkable(this ParquetStack in_stack)
+            => in_stack.Floor != EntityID.None
+            && in_stack.Block == EntityID.None
+            && (!All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? true);
+    }
 }
