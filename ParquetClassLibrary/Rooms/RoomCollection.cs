@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Rooms
     public class RoomCollection
     {
         /// <summary>The internal collection mechanism.</summary>
-        private IReadOnlyList<Room> Rooms { get; } = new List<Room>();
+        private IReadOnlyList<Room> Rooms { get; }
 
         /// <summary>The number of <see cref="Entity"/>s in the <see cref="RoomCollection"/>.</summary>
         public int Count
@@ -43,7 +43,10 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
         /// <remarks>Private so that empty <see cref="RoomCollection"/>s are not made in client code.</remarks>
-        private RoomCollection() { }
+        private RoomCollection(List<Room> in_rooms)
+        {
+            Rooms = in_rooms;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
