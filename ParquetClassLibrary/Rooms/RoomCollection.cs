@@ -79,6 +79,33 @@ namespace ParquetClassLibrary.Rooms
         {
             return new RoomCollection();
         }
+
+        #region Algorithm Helper Methods
+        /// <summary>
+        /// Turns a 2D subregion into a 1D collection of <see cref="Space"/>s.
+        /// </summary>
+        /// <param name="in_subregion">The subregion to consider.</param>
+        /// <returns>A list of all Spaces contained in the subregion.</returns>
+        private static HashSet<Space> CollectAllSpaces(ParquetStack[,] in_subregion)
+        {
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+
+            var spaces = new HashSet<Space>();
+
+            var subregionRows = in_subregion.GetLength(0);
+            var subregionCols = in_subregion.GetLength(1);
+            for (var y = 0; y < subregionRows; y++)
+            {
+                for (var x = 0; x < subregionCols; x++)
+                {
+                    spaces.Add(new Space(new Vector2Int(x, y), in_subregion[y, x]));
+                }
+            }
+
+            return spaces;
+        }
+        #endregion
+
         #endregion
 
         #region Utility Methods
