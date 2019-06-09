@@ -102,5 +102,16 @@ namespace ParquetClassLibrary.Rooms
         internal static bool IsEnclosing(this ParquetStack in_stack)
             => (!All.Parquets.Get<Block>(in_stack.Block)?.IsLiquid ?? false)
             || (All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? false);
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Entry iff:
+        /// 1, It is either Walkable or Enclosing; and,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
+        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal static bool IsEntry(this ParquetStack in_stack)
+            => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
+            && (in_stack.IsWalkable() || in_stack.IsEnclosing());
     }
 }
