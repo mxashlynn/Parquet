@@ -15,6 +15,30 @@ namespace ParquetClassLibrary.Rooms
     /// </remarks>
     public class RoomCollection
     {
+        #region Inner Types
+        internal struct PotentialRoom
+        {
+            /// <summary>The subregion within which this <see cref="PotentialRoom"/> resides.</summary>
+            public readonly ParquetStack[,] subregion;
+
+            /// <summary>A valid walkable area.</summary>
+            public readonly HashSet<Space> WalkableArea;
+
+            /// <summary>A valid enclosing perimeter.</summary>
+            public readonly HashSet<Space> Perimeter;
+
+            /// <summary>
+            /// A <see cref="PotentialRoom"/> is Valid iff:
+            /// 1, together, its Walkable Area and its Perimeter contain at least one Entry Space; and,
+            /// 2, every <see cref="Space"/> in its Walkable Area is surrounded by it's Enclosing Perimeter.
+            /// </summary>
+            /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+            public bool IsValid()
+                => WalkableArea.Concat(Perimeter).Any(space => space.Content.IsEntry())
+                && Perimeter.Surrounds(WalkableArea, subregion);
+        }
+        #endregion
+
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyList<Room> Rooms { get; }
 
