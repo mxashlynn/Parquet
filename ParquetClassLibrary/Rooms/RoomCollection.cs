@@ -143,5 +143,27 @@ namespace ParquetClassLibrary.Rooms
         internal static bool IsValidPerimiter(this HashSet<Space> in_potentialPerimiter,
                                               ParquetStack[,] in_subregion)
             => in_potentialPerimiter.AllSpacesAreReachable(in_subregion);
+
+        /// <summary>
+        /// Determines if it is possible to reach every location in the subregion using only 4-connected
+        /// movements, beginning at an arbitrary <see cref="Space"/>.
+        /// </summary>
+        /// <param name="in_spaces">The potential perimiter.</param>
+        /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
+        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+        internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion)
+            => true;  // TODO: Implement connectedness search-test here.
+
+        /// <summary>
+        /// Determines if it is possible to reach every location in the subregion using only 4-connected
+        /// movements, beginning at an arbitrary <see cref="Space"/>.
+        /// </summary>
+        /// <param name="in_perimiterSpaces">The perimiter.</param>
+        /// <param name="in_internalSpaces">The <see cref="Space"/>s that the perimiter should enclose.</param>
+        /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
+        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+        internal static bool Surrounds(this HashSet<Space> in_perimiterSpaces,
+                                       HashSet<Space> in_internalSpaces, ParquetStack[,] in_subregion)
+            => true;  // TODO: Implement surroundedness search-test here.
     }
 }
