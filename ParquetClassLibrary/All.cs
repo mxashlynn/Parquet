@@ -173,6 +173,8 @@ namespace ParquetClassLibrary
         {
             // TODO Add class for crafting rules here.
 
+            // TODO Move all rules and parameters to dedicated GameRules static class.
+
             /// <summary>
             /// Provides recipe requirements for the game.
             /// </summary>
@@ -187,6 +189,8 @@ namespace ParquetClassLibrary
                 /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MaxWalkableSpaces = 121;
+
+                // TODO Consider moving this method to the Room class.
 
                 /// <summary>
                 /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches the given <see cref="Room"/>.
