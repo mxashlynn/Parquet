@@ -2,16 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
-    /// Stores an <see cref="Entity"/> collection.
-    /// Provides bounds-checking and type-checking against <typeparamref name="ParentType"/>.
+    /// Stores an <see cref="Room"/> collection.
+    /// Analysises subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
     /// </summary>
     /// <remarks>
-    /// This generic version is intended to support <see cref="All.Parquets"/> allowing
-    /// the collection to store all parquet types but return only the requested subtype.
+    /// For a complete explanation of the algorithm implemented here, see:
+    /// <a href="https://github.com/mxashlynn/Parquet/wiki/Room-Detection-and-Type-Assignment"/>
     /// </remarks>
     public class RoomCollection
     {
@@ -75,9 +76,28 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
+        /// <param name="in_subregion">The collection of parquets to search for <see cref="Room"/>s.</param>
+        /// <returns>An initialized <see cref="RoomCollection"/>.</returns>
         public static RoomCollection CreateFromSubregion(ParquetStack[,] in_subregion)
         {
-            return new RoomCollection();
+            //var spaces = ListAllSpaces(in_subregion);
+
+            var subregionRows = in_subregion.GetLength(0);
+            var subregionCols = in_subregion.GetLength(1);
+            for (var y = 0; y < subregionRows; y++)
+            {
+                for (var x = 0; x < subregionCols; x++)
+                {
+                    if (in_subregion[y, x].IsWalkable())
+                    {
+                        // HERE!
+                    }
+                }
+            }
+
+            var rooms = new List<Room>();
+
+            return new RoomCollection(rooms);
         }
 
         #region Algorithm Helper Methods
@@ -128,7 +148,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Extension methods used in room analysis.
     /// </summary>
-    internal static class ParquetStackExtensions
+    internal static class RoomAnalysisExtensions
     {
         /// <summary>
         /// A <see cref="ParquetStack"/> is Walkable iff:
