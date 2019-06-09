@@ -83,7 +83,7 @@ namespace ParquetClassLibrary.Rooms
         /// A <see cref="ParquetStack"/> is Walkable iff:
         /// 1, It has a <see cref="Floor"/>;
         /// 2, It does not have a <see cref="Block"/>;
-        /// 3, It does not have a <see cref="Furnishing.IsEnclosing"/>.
+        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
         /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
         /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
