@@ -113,5 +113,35 @@ namespace ParquetClassLibrary.Rooms
         internal static bool IsEntry(this ParquetStack in_stack)
             => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
             && (in_stack.IsWalkable() || in_stack.IsEnclosing());
+
+        /// <summary>
+        /// A Potential Walkable Area is Valid iff:
+        /// 1, there are at least the minimum number of Walkable Spaces; and
+        /// 2, there are no more than the maximum number of Walkable Spaces; and
+        /// 3, given an arbitrary Walkable Space within the PWA it is possible to reach every other
+        /// Walkable Space in the PWA using only 4-connected movements to only other Walkable Spaces.
+        /// (That is, without ever "stepping on" a non-Walkable Space.)
+        /// </summary>
+        /// <param name="in_potentialWalkableArea">The potential walkable area.</param>
+        /// <param name="in_subregion">The subregion within which the walkable area resides.</param>
+        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+        internal static bool IsValidWalkableArea(this HashSet<Space> in_potentialWalkableArea,
+                                                 ParquetStack[,] in_subregion)
+            => in_potentialWalkableArea.Count >= All.Recipes.Rooms.MinWalkableSpaces
+            && in_potentialWalkableArea.Count <= All.Recipes.Rooms.MaxWalkableSpaces
+            && in_potentialWalkableArea.AllSpacesAreReachable(in_subregion);
+
+        /// <summary>
+        /// A Potential Perimiter is Valid iff:
+        /// 1, given an arbitrary Enclosing Space within the PWA it is possible to reach every other
+        /// Enclosing Space in the PWA using only 4-connected movements to only other Enclosing Spaces.
+        /// (That is, without ever "stepping on" a non-Enclosing Space.)
+        /// </summary>
+        /// <param name="in_potentialPerimiter">The potential perimiter.</param>
+        /// <param name="in_subregion">The subregion within which the perimiter resides.</param>
+        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+        internal static bool IsValidPerimiter(this HashSet<Space> in_potentialPerimiter,
+                                              ParquetStack[,] in_subregion)
+            => in_potentialPerimiter.AllSpacesAreReachable(in_subregion);
     }
 }
