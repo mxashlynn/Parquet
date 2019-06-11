@@ -31,5 +31,17 @@ namespace ParquetClassLibrary.Rooms
             Position = in_position;
             Content = in_content;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Space"/> class.
+        /// </summary>
+        /// <param name="in_x">X-coordinate of this <see cref="Space"/>.</param>
+        /// <param name="in_y">Y-coordinate of this <see cref="Space"/>.</param>
+        /// <param name="in_content">All parquets occupying this <see cref="Space"/>.</param>
+        public Space(int in_x, int in_y, ParquetStack in_content)
+        {
+            Position = new Vector2Int(in_x, in_y);
+            Content = in_content;
+        }
     }
 }

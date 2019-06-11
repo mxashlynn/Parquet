@@ -21,26 +21,26 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly HashSet<Space> TestPerimeter= new HashSet<Space>
         {
-            new Space(new Vector2Int(0, 0), TestWall),
-            new Space(new Vector2Int(1, 0), TestWall),
-            new Space(new Vector2Int(2, 0), TestWall),
-            new Space(new Vector2Int(3, 0), TestWall),
-            new Space(new Vector2Int(0, 1), TestWall),
-            new Space(new Vector2Int(3, 1), TestWall),
-            new Space(new Vector2Int(0, 2), TestWall),
-            new Space(new Vector2Int(3, 2), TestWall),
-            new Space(new Vector2Int(0, 3), TestWall),
-            new Space(new Vector2Int(1, 3), TestWall),
-            new Space(new Vector2Int(2, 3), TestWall),
-            new Space(new Vector2Int(3, 3), TestWall),
+            new Space(0, 0, TestWall),
+            new Space(1, 0, TestWall),
+            new Space(2, 0, TestWall),
+            new Space(3, 0, TestWall),
+            new Space(0, 1, TestWall),
+            new Space(3, 1, TestWall),
+            new Space(0, 2, TestWall),
+            new Space(3, 2, TestWall),
+            new Space(0, 3, TestWall),
+            new Space(1, 3, TestWall),
+            new Space(2, 3, TestWall),
+            new Space(3, 3, TestWall),
         };
 
         private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
         {
-            new Space(new Vector2Int(1, 1), TestWalk),
-            new Space(new Vector2Int(2, 1), TestWalk),
-            new Space(new Vector2Int(1, 2), TestWalk),
-            new Space(new Vector2Int(2, 2), TestEntry),
+            new Space(1, 1, TestWalk),
+            new Space(2, 1, TestWalk),
+            new Space(1, 2, TestWalk),
+            new Space(2, 2, TestEntry),
         };
 
         private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);

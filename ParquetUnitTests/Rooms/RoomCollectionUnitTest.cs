@@ -435,49 +435,49 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly HashSet<Space> ExistantPerimeter = new HashSet<Space>
         {
-            new Space(new Vector2Int(0, 0), TWall),
-            new Space(new Vector2Int(1, 0), TWall),
-            new Space(new Vector2Int(2, 0), TWall),
-            new Space(new Vector2Int(3, 0), TWall),
-            new Space(new Vector2Int(0, 1), TWall),
-            new Space(new Vector2Int(3, 1), TWall),
-            new Space(new Vector2Int(0, 2), TWall),
-            new Space(new Vector2Int(3, 2), TDoor),
-            new Space(new Vector2Int(0, 3), TWall),
-            new Space(new Vector2Int(1, 3), TWall),
-            new Space(new Vector2Int(2, 3), TWall),
-            new Space(new Vector2Int(3, 3), TWall),
+            new Space(0, 0, TWall),
+            new Space(1, 0, TWall),
+            new Space(2, 0, TWall),
+            new Space(3, 0, TWall),
+            new Space(0, 1, TWall),
+            new Space(3, 1, TWall),
+            new Space(0, 2, TWall),
+            new Space(3, 2, TDoor),
+            new Space(0, 3, TWall),
+            new Space(1, 3, TWall),
+            new Space(2, 3, TWall),
+            new Space(3, 3, TWall),
         };
         private static readonly HashSet<Space> ExistantWalkableArea = new HashSet<Space>
         {
-            new Space(new Vector2Int(1, 1), TTile),
-            new Space(new Vector2Int(2, 1), TTile),
-            new Space(new Vector2Int(1, 2), TTile),
-            new Space(new Vector2Int(2, 2), TTile),
+            new Space(1, 1, TTile),
+            new Space(2, 1, TTile),
+            new Space(1, 2, TTile),
+            new Space(2, 2, TTile),
         };
         private static readonly Room ExistantRoom = new Room(ExistantWalkableArea, ExistantPerimeter);
 
         private static readonly HashSet<Space> NonexistantPerimeter = new HashSet<Space>
         {
-            new Space(new Vector2Int(10, 10), TWall),
-            new Space(new Vector2Int(11, 10), TWall),
-            new Space(new Vector2Int(12, 10), TWall),
-            new Space(new Vector2Int(13, 10), TWall),
-            new Space(new Vector2Int(10, 11), TWall),
-            new Space(new Vector2Int(13, 11), TWall),
-            new Space(new Vector2Int(10, 12), TWall),
-            new Space(new Vector2Int(13, 12), TDoor),
-            new Space(new Vector2Int(10, 13), TWall),
-            new Space(new Vector2Int(11, 13), TWall),
-            new Space(new Vector2Int(12, 13), TWall),
-            new Space(new Vector2Int(13, 13), TWall),
+            new Space(10, 10, TWall),
+            new Space(11, 10, TWall),
+            new Space(12, 10, TWall),
+            new Space(13, 10, TWall),
+            new Space(10, 11, TWall),
+            new Space(13, 11, TWall),
+            new Space(10, 12, TWall),
+            new Space(13, 12, TDoor),
+            new Space(10, 13, TWall),
+            new Space(11, 13, TWall),
+            new Space(12, 13, TWall),
+            new Space(13, 13, TWall),
         };
         private static readonly HashSet<Space> NonexistantWalkableArea = new HashSet<Space>
         {
-            new Space(new Vector2Int(11, 11), TTile),
-            new Space(new Vector2Int(12, 11), TTile),
-            new Space(new Vector2Int(11, 12), TTile),
-            new Space(new Vector2Int(12, 12), TTile),
+            new Space(11, 11, TTile),
+            new Space(12, 11, TTile),
+            new Space(11, 12, TTile),
+            new Space(12, 12, TTile),
         };
         private static readonly Room NonexistantRoom = new Room(NonexistantWalkableArea, NonexistantPerimeter);
         #endregion
