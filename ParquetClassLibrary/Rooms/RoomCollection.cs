@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -101,6 +102,73 @@ namespace ParquetClassLibrary.Rooms
         }
 
         #region Algorithm Helper Methods
+        /// <summary>
+        /// Finds all Potential Walkable Areas in a given subregion.
+        /// </summary>
+        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
+        /// <returns>The list of Potential Walkable Areas.</returns>
+        private static List<HashSet<Space>> FindAllPotentialWalkableAreas(ParquetStack[,] in_subregion)
+        {
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+
+            var PWAs = new List<HashSet<Space>>();
+
+            var subregionRows = in_subregion.GetLength(0);
+            var subregionCols = in_subregion.GetLength(1);
+            for (var y = 0; y < subregionRows; y++)
+            {
+                for (var x = 0; x < subregionCols; x++)
+                {
+                    if (in_subregion[y, x].IsWalkable())
+                    {
+                        var currentSpace = new Space(x, y, in_subregion[x, y]);
+
+                        var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable()
+                            ? new Space(x, y - 1, in_subregion[x, y - 1])
+                            : (Space?)null;
+                        var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable()
+                            ? new Space(x - 1, y, in_subregion[x - 1, y])
+                            : (Space?)null;
+
+                        if (null == northSpace && null == westSpace)
+                        {
+                            var newPWA = new HashSet<Space> { currentSpace };
+                            PWAs.Add(newPWA);
+                        }
+                        else if (null != northSpace && null != westSpace)
+                        {
+                            var northPWA = PWAs.Find(pwa => pwa.Contains((Space)northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains((Space)westSpace));
+                            if (northPWA == westPWA)
+                            {
+                                northPWA.Add(currentSpace);
+                            }
+                            else
+                            {
+                                var combinedPWA = new HashSet<Space>(northPWA.Union(westPWA)) { currentSpace };
+                                PWAs.Remove(northPWA);
+                                PWAs.Remove(westPWA);
+                                PWAs.Add(combinedPWA);
+                            }
+                        }
+                        else if (null == northSpace)
+                        {
+                            PWAs.Find(pwa => pwa.Contains((Space)westSpace)).Add(currentSpace);
+                        }
+                        else if (null == westSpace)
+                        {
+                            PWAs.Where(pwa => pwa.Contains((Space)northSpace)).Add(currentSpace);
+                        }
+                    }
+                }
+            }
+
+            var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < All.Recipes.Rooms.MinWalkableSpaces));
+            var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > All.Recipes.Rooms.MaxWalkableSpaces));
+
+            return new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge));
+        }
+
         /// <summary>
         /// Turns a 2D subregion into a 1D collection of <see cref="Space"/>s.
         /// </summary>
