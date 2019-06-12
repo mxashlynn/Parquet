@@ -78,14 +78,12 @@ namespace ParquetClassLibrary.Rooms
 
         #region Algorithm Helper Methods
         /// <summary>
-        /// Finds all Potential Walkable Areas in a given subregion.
+        /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
-        /// <returns>The list of Potential Walkable Areas.</returns>
-        private static List<HashSet<Space>> FindAllPotentialWalkableAreas(ParquetStack[,] in_subregion)
+        /// <returns>The list of vallid Walkable Areas.</returns>
+        private static List<HashSet<Space>> FindAllWalkableAreas(ParquetStack[,] in_subregion)
         {
-            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
-
             var PWAs = new List<HashSet<Space>>();
 
             var subregionRows = in_subregion.GetLength(0);
@@ -140,10 +138,13 @@ namespace ParquetClassLibrary.Rooms
 
             var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < All.Recipes.Rooms.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > All.Recipes.Rooms.MaxWalkableSpaces));
+            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(in_subregion)));
 
-            return new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge));
+            return new List<HashSet<Space>>(PWAs
+                                            .Except(PWAsTooSmall)
+                                            .Except(PWAsTooLarge)
+                                            .Except(PWAsDiscontinuous));
         }
-
         #endregion
 
         #endregion
