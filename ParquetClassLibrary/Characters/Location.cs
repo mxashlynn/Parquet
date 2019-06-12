@@ -5,7 +5,7 @@ using UnityEngine;
 using ParquetClassLibrary.Stubs;
 #endif
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Characters
 {
     /// <summary>
     /// Represents a specific position within a specific <see cref="MapRegion"/>.
