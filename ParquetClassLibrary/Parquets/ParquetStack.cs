@@ -43,6 +43,7 @@ namespace ParquetClassLibrary.Parquets
             Collectible = in_collectible;
         }
 
+        #region Gameplay Algorithm Support
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
@@ -51,6 +52,39 @@ namespace ParquetClassLibrary.Parquets
                                EntityID.None == Block &&
                                EntityID.None == Furnishing &&
                                EntityID.None == Collectible;
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Enclosing iff:
+        /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        public bool IsEnclosing
+            => !(All.Parquets.Get<Block>(Block)?.IsLiquid ?? true)
+            || (All.Parquets.Get<Furnishing>(Furnishing)?.IsEnclosing ?? false);
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Entry iff:
+        /// 1, It is either Walkable or Enclosing; and,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal bool IsEntry
+            => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
+            && (IsWalkable || IsEnclosing);
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is considered walkable iff:
+        /// 1, It has a <see cref="Floor"/>;
+        /// 2, It does not have a <see cref="Block"/>;
+        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal bool IsWalkable
+            => Floor != EntityID.None
+            && Block == EntityID.None
+            && !(All.Parquets.Get<Furnishing>(Furnishing)?.IsEnclosing ?? false);
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>
