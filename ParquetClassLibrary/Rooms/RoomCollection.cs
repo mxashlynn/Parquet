@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -17,30 +16,6 @@ namespace ParquetClassLibrary.Rooms
     /// </remarks>
     public class RoomCollection
     {
-        #region Inner Types
-        internal struct PotentialRoom
-        {
-            /// <summary>The subregion within which this <see cref="PotentialRoom"/> resides.</summary>
-            public readonly ParquetStack[,] subregion;
-
-            /// <summary>A valid walkable area.</summary>
-            public readonly HashSet<Space> WalkableArea;
-
-            /// <summary>A valid enclosing perimeter.</summary>
-            public readonly HashSet<Space> Perimeter;
-
-            /// <summary>
-            /// A <see cref="PotentialRoom"/> is Valid iff:
-            /// 1, together, its Walkable Area and its Perimeter contain at least one Entry Space; and,
-            /// 2, every <see cref="Space"/> in its Walkable Area is surrounded by it's Enclosing Perimeter.
-            /// </summary>
-            /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
-            public bool IsValid()
-                => WalkableArea.Concat(Perimeter).Any(space => space.Content.IsEntry())
-                && Perimeter.Surrounds(WalkableArea, subregion);
-        }
-        #endregion
-
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyList<Room> Rooms { get; }
 
@@ -169,29 +144,6 @@ namespace ParquetClassLibrary.Rooms
             return new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge));
         }
 
-        /// <summary>
-        /// Turns a 2D subregion into a 1D collection of <see cref="Space"/>s.
-        /// </summary>
-        /// <param name="in_subregion">The subregion to consider.</param>
-        /// <returns>A list of all Spaces contained in the subregion.</returns>
-        private static HashSet<Space> CollectAllSpaces(ParquetStack[,] in_subregion)
-        {
-            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
-
-            var spaces = new HashSet<Space>();
-
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
-            for (var y = 0; y < subregionRows; y++)
-            {
-                for (var x = 0; x < subregionCols; x++)
-                {
-                    spaces.Add(new Space(new Vector2Int(x, y), in_subregion[y, x]));
-                }
-            }
-
-            return spaces;
-        }
         #endregion
 
         #endregion
@@ -253,35 +205,6 @@ namespace ParquetClassLibrary.Rooms
             => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
             && (in_stack.IsWalkable() || in_stack.IsEnclosing());
 
-        /// <summary>
-        /// A Potential Walkable Area is Valid iff:
-        /// 1, there are at least the minimum number of Walkable Spaces; and
-        /// 2, there are no more than the maximum number of Walkable Spaces; and
-        /// 3, given an arbitrary Walkable Space within the PWA it is possible to reach every other
-        /// Walkable Space in the PWA using only 4-connected movements to only other Walkable Spaces.
-        /// (That is, without ever "stepping on" a non-Walkable Space.)
-        /// </summary>
-        /// <param name="in_potentialWalkableArea">The potential walkable area.</param>
-        /// <param name="in_subregion">The subregion within which the walkable area resides.</param>
-        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
-        internal static bool IsValidWalkableArea(this HashSet<Space> in_potentialWalkableArea,
-                                                 ParquetStack[,] in_subregion)
-            => in_potentialWalkableArea.Count >= All.Recipes.Rooms.MinWalkableSpaces
-            && in_potentialWalkableArea.Count <= All.Recipes.Rooms.MaxWalkableSpaces
-            && in_potentialWalkableArea.AllSpacesAreReachable(in_subregion);
-
-        /// <summary>
-        /// A Potential Perimiter is Valid iff:
-        /// 1, given an arbitrary Enclosing Space within the PWA it is possible to reach every other
-        /// Enclosing Space in the PWA using only 4-connected movements to only other Enclosing Spaces.
-        /// (That is, without ever "stepping on" a non-Enclosing Space.)
-        /// </summary>
-        /// <param name="in_potentialPerimiter">The potential perimiter.</param>
-        /// <param name="in_subregion">The subregion within which the perimiter resides.</param>
-        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
-        internal static bool IsValidPerimiter(this HashSet<Space> in_potentialPerimiter,
-                                              ParquetStack[,] in_subregion)
-            => in_potentialPerimiter.AllSpacesAreReachable(in_subregion);
 
         /// <summary>
         /// Determines if it is possible to reach every location in the subregion using only 4-connected
