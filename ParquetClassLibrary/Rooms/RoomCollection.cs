@@ -6,6 +6,9 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
+    // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
+    using ParquetClassLibrary.Rooms.RegionAnalysis;
+
     /// <summary>
     /// Stores a <see cref="Room"/> collection.
     /// Analysises subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
@@ -39,7 +42,7 @@ namespace ParquetClassLibrary.Rooms
         public Room GetRoomAt(Vector2Int in_position)
             => Rooms.First(room => room.ContainsPosition(in_position));
 
-        #region Initialization from Map Analysis
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
@@ -58,7 +61,7 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
-            var walkableAreas = FindAllWalkableAreas(in_subregion);
+            var walkableAreas = in_subregion.GetWalkableAreas();
             var rooms = walkableAreas
                         .Where(walkableArea => null != walkableArea.GetPerimeter(in_subregion))
                         .Where(walkableArea => walkableArea.Concat(walkableArea.GetPerimeter(in_subregion))
@@ -68,14 +71,74 @@ namespace ParquetClassLibrary.Rooms
 
             return new RoomCollection(rooms);
         }
+        #endregion
 
-        #region Algorithm Helper Methods
+        #region Utility Methods
+        /// <summary>
+        /// Retrieves an enumerator for the <see cref="RoomCollection"/>.
+        /// </summary>
+        /// <returns>An enumerator that iterates through the collection.</returns>
+        public IEnumerator<Room> GetEnumerator()
+            => Rooms.GetEnumerator();
+
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="RoomCollection"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"{Rooms.Count} Rooms";
+        #endregion
+    }
+}
+
+namespace ParquetClassLibrary.Rooms.RegionAnalysis
+{
+    /// <summary>
+    /// Extension methods used in analysing subregions.
+    /// </summary>
+    internal static class RegionAnalysisExtensions
+    {
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Walkable iff:
+        /// 1, It has a <see cref="Floor"/>;
+        /// 2, It does not have a <see cref="Block"/>;
+        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
+        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal static bool IsWalkable(this ParquetStack in_stack)
+            => in_stack.Floor != EntityID.None
+            && in_stack.Block == EntityID.None
+            && (!All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? true);
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Enclosing iff:
+        /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
+        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal static bool IsEnclosing(this ParquetStack in_stack)
+            => (!All.Parquets.Get<Block>(in_stack.Block)?.IsLiquid ?? false)
+            || (All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? false);
+
+        /// <summary>
+        /// A <see cref="ParquetStack"/> is Entry iff:
+        /// 1, It is either Walkable or Enclosing; and,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
+        /// </summary>
+        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
+        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        internal static bool IsEntry(this ParquetStack in_stack)
+            => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
+            && (in_stack.IsWalkable() || in_stack.IsEnclosing());
+
         /// <summary>
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        private static List<HashSet<Space>> FindAllWalkableAreas(ParquetStack[,] in_subregion)
+        internal static List<HashSet<Space>> GetWalkableAreas(this ParquetStack[,] in_subregion)
         {
             var PWAs = new List<HashSet<Space>>();
 
@@ -138,66 +201,6 @@ namespace ParquetClassLibrary.Rooms
                                             .Except(PWAsTooLarge)
                                             .Except(PWAsDiscontinuous));
         }
-        #endregion
-
-        #endregion
-
-        #region Utility Methods
-        /// <summary>
-        /// Retrieves an enumerator for the <see cref="RoomCollection"/>.
-        /// </summary>
-        /// <returns>An enumerator that iterates through the collection.</returns>
-        public IEnumerator<Room> GetEnumerator()
-            => Rooms.GetEnumerator();
-
-        /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="RoomCollection"/>.
-        /// </summary>
-        /// <returns>The representation.</returns>
-        public override string ToString()
-            => $"{Rooms.Count} Rooms";
-        #endregion
-    }
-
-    /// <summary>
-    /// Extension methods used in room analysis.
-    /// </summary>
-    internal static class RoomAnalysisExtensions
-    {
-        /// <summary>
-        /// A <see cref="ParquetStack"/> is Walkable iff:
-        /// 1, It has a <see cref="Floor"/>;
-        /// 2, It does not have a <see cref="Block"/>;
-        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
-        /// </summary>
-        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
-        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
-        internal static bool IsWalkable(this ParquetStack in_stack)
-            => in_stack.Floor != EntityID.None
-            && in_stack.Block == EntityID.None
-            && (!All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? true);
-
-        /// <summary>
-        /// A <see cref="ParquetStack"/> is Enclosing iff:
-        /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
-        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
-        /// </summary>
-        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
-        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
-        internal static bool IsEnclosing(this ParquetStack in_stack)
-            => (!All.Parquets.Get<Block>(in_stack.Block)?.IsLiquid ?? false)
-            || (All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEnclosing ?? false);
-
-        /// <summary>
-        /// A <see cref="ParquetStack"/> is Entry iff:
-        /// 1, It is either Walkable or Enclosing; and,
-        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
-        /// </summary>
-        /// <param name="in_stack">The <see cref="ParquetStack"/> to consider.</param>
-        /// <returns><c>true</c>, if the given <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
-        internal static bool IsEntry(this ParquetStack in_stack)
-            => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
-            && (in_stack.IsWalkable() || in_stack.IsEnclosing());
 
         /// <summary>
         /// Finds a walkable area's perimiter in a given subregion.
