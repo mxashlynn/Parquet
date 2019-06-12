@@ -65,9 +65,11 @@ namespace ParquetClassLibrary.Rooms
             var rooms = walkableAreas
                         .Where(walkableArea => null != walkableArea.GetPerimeter(in_subregion))
                         .Where(walkableArea => walkableArea.Concat(walkableArea.GetPerimeter(in_subregion))
-                                               .Any(space => space.Content.IsEntry()))
-                        .Select(walkableArea => new Room(walkableArea, walkableArea.GetPerimeter(in_subregion));
+                                               .Any(space => space.Content.IsEntry))
+                        .Select(walkableArea => new Room(walkableArea, walkableArea.GetPerimeter(in_subregion)));
             // TODO Clear the perimiter cache
+
+            // TODO Assign room types
 
             return new RoomCollection(rooms);
         }
@@ -151,7 +153,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         }
                         else if (null == westSpace)
                         {
-                            PWAs.Where(pwa => pwa.Contains((Space)northSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains((Space)northSpace)).Add(currentSpace);
                         }
                     }
                 }
@@ -186,17 +188,6 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// Determines if it is possible to reach every location in the subregion using only 4-connected
         /// movements, beginning at an arbitrary <see cref="Space"/>.
         /// </summary>
-        /// <param name="in_spaces">The potential perimiter.</param>
-        /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
-        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
-        internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion)
-            => true;    // TODO: Implement connectedness search-test here.
-                        // if DFS-ID(maxDepth: in_spaces.Count) == in_spaces.Count, then it is valid
-
-        /// <summary>
-        /// Determines if it is possible to reach every location in the subregion using only 4-connected
-        /// movements, beginning at an arbitrary <see cref="Space"/>.
-        /// </summary>
         /// <param name="in_perimiterSpaces">The perimiter.</param>
         /// <param name="in_internalSpaces">The <see cref="Space"/>s that the perimiter should enclose.</param>
         /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
@@ -204,5 +195,16 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         internal static bool Surrounds(this HashSet<Space> in_perimiterSpaces,
                                        HashSet<Space> in_internalSpaces, ParquetStack[,] in_subregion)
             => true;  // TODO: Implement surroundedness search-test here.
+
+        /// <summary>
+        /// Determines if it is possible to reach every location in the subregion using only 4-connected
+        /// movements, beginning at an arbitrary <see cref="Space"/>.
+        /// </summary>
+        /// <param name="in_spaces">The potential perimiter.</param>
+        /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
+        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
+        internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion)
+            => DFSID(in_subregion, maxDepth: in_spaces.Count) == maxDepth: in_spaces.Count;
+            // TODO: Implement connectedness search-test here.
     }
 }
