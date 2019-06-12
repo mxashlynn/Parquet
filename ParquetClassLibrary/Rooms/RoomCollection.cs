@@ -8,7 +8,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
-    /// Stores an <see cref="Room"/> collection.
+    /// Stores a <see cref="Room"/> collection.
     /// Analysises subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
     /// </summary>
     /// <remarks>
@@ -291,7 +291,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
         /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion)
-            => true;  // TODO: Implement connectedness search-test here.
+            => true;    // TODO: Implement connectedness search-test here.
+                        // if DFS-ID(maxDepth: in_spaces.Count) == in_spaces.Count, then it is valid
 
         /// <summary>
         /// Determines if it is possible to reach every location in the subregion using only 4-connected
