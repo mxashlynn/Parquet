@@ -44,9 +44,9 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
         /// <remarks>Private so that empty <see cref="RoomCollection"/>s are not made in client code.</remarks>
-        private RoomCollection(List<Room> in_rooms)
+        private RoomCollection(IEnumerable<Room> in_rooms)
         {
-            Rooms = in_rooms;
+            Rooms = in_rooms.ToList();
         }
 
         /// <summary>
@@ -56,22 +56,15 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>An initialized <see cref="RoomCollection"/>.</returns>
         public static RoomCollection CreateFromSubregion(ParquetStack[,] in_subregion)
         {
-            //var spaces = ListAllSpaces(in_subregion);
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
-            for (var y = 0; y < subregionRows; y++)
-            {
-                for (var x = 0; x < subregionCols; x++)
-                {
-                    if (in_subregion[y, x].IsWalkable())
-                    {
-                        // HERE!
-                    }
-                }
-            }
-
-            var rooms = new List<Room>();
+            var walkableAreas = FindAllWalkableAreas(in_subregion);
+            var rooms = walkableAreas
+                        .Where(walkableArea => null != walkableArea.GetPerimeter(in_subregion))
+                        .Where(walkableArea => walkableArea.Concat(walkableArea.GetPerimeter(in_subregion))
+                                               .Any(space => space.Content.IsEntry()))
+                        .Select(walkableArea => new Room(walkableArea, walkableArea.GetPerimeter(in_subregion));
+            // TODO Clear the perimiter cache
 
             return new RoomCollection(rooms);
         }
@@ -206,6 +199,20 @@ namespace ParquetClassLibrary.Rooms
             => All.Parquets.Get<Furnishing>(in_stack.Furnishing)?.IsEntry ?? false
             && (in_stack.IsWalkable() || in_stack.IsEnclosing());
 
+        /// <summary>
+        /// Finds a walkable area's perimiter in a given subregion.
+        /// </summary>
+        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
+        /// <param name="in_walkableArea">The walkable area whose perimeter is sought.</param>
+        /// <param name="in_subregion">The subregion containing the walkable area and the perimiter.</param>
+        /// <returns>The walkable area's valid perimiter, if it exists; otherwise, null.</returns>
+        internal static HashSet<Space> GetPerimeter(this HashSet<Space> in_walkableArea,
+                                                     ParquetStack[,] in_subregion)
+            => new HashSet<Space>();
+        // TODO Implement this.
+        // TODO This needs to be cached (use hash value) since it is called repeatedly for each set of arguments.
+        // && potentialPerimiter.AllSpacesAreReachable(in_subregion)
+        // && .Surrounds(walkableArea, in_subregion)
 
         /// <summary>
         /// Determines if it is possible to reach every location in the subregion using only 4-connected
