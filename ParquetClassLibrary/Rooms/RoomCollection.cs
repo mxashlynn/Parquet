@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -62,11 +63,12 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
             var walkableAreas = in_subregion.GetWalkableAreas();
+            HashSet<Space> perimeter = null;
             var rooms = walkableAreas
-                        .Where(walkableArea => null != walkableArea.GetPerimeter(in_subregion))
-                        .Where(walkableArea => walkableArea.Concat(walkableArea.GetPerimeter(in_subregion))
+                        .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
+                        .Where(walkableArea => walkableArea.Concat(perimeter)
                                                .Any(space => space.Content.IsEntry))
-                        .Select(walkableArea => new Room(walkableArea, walkableArea.GetPerimeter(in_subregion)));
+                        .Select(walkableArea => new Room(walkableArea, perimeter));
             // TODO Clear the perimiter cache
 
             // TODO Assign room types
@@ -100,6 +102,28 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
     /// </summary>
     internal static class RegionAnalysisExtensions
     {
+        #region Constraints
+        /// <summary>Maximum Y value for current subregion.</summary>
+        private static int subregionRows;
+
+        /// <summary>Maximum X value for current subregion.</summary>
+        private static int subregionCols;
+
+        /// <summary>Maximum possible count of <see cref="Space"/>s in this subregion.</summary>
+        private static int maxPerimeterCount;
+
+        /// <summary>
+        /// Initializes constraints on the search routines.
+        /// </summary>
+        /// <param name="in_subregion">The subregion under consideration.</param>
+        private static void InitConstraints(ParquetStack[,] in_subregion)
+        {
+            subregionRows = in_subregion.GetLength(0);
+            subregionCols = in_subregion.GetLength(1);
+            maxPerimeterCount = subregionCols* subregionRows - All.Recipes.Rooms.MinWalkableSpaces;
+        }
+        #endregion
+
         /// <summary>
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
@@ -108,9 +132,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         internal static List<HashSet<Space>> GetWalkableAreas(this ParquetStack[,] in_subregion)
         {
             var PWAs = new List<HashSet<Space>>();
+            InitConstraints(in_subregion);
 
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
             for (var y = 0; y < subregionRows; y++)
             {
                 for (var x = 0; x < subregionCols; x++)
@@ -172,29 +195,132 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <summary>
         /// Finds a walkable area's perimiter in a given subregion.
         /// </summary>
-        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <param name="in_walkableArea">The walkable area whose perimeter is sought.</param>
         /// <param name="in_subregion">The subregion containing the walkable area and the perimiter.</param>
-        /// <returns>The walkable area's valid perimiter, if it exists; otherwise, null.</returns>
-        internal static HashSet<Space> GetPerimeter(this HashSet<Space> in_walkableArea,
-                                                     ParquetStack[,] in_subregion)
-            => new HashSet<Space>();
-        // TODO Implement this.
-        // TODO This needs to be cached (use hash value) since it is called repeatedly for each set of arguments.
-        // && potentialPerimiter.AllSpacesAreReachable(in_subregion)
-        // && .Surrounds(walkableArea, in_subregion)
+        /// <param name="out_perimeter">The walkable area's valid perimiter, if it exists.</param>
+        /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
+        internal static bool TryGetPerimeter(this HashSet<Space> in_walkableArea, ParquetStack[,] in_subregion,
+                                             out HashSet<Space> out_perimeter)
+        {
+            InitConstraints(in_subregion);
+
+            HashSet<Space> potentialPerimeter = null;
+            out_perimeter = null;
+
+            #region Find Extreme Coordinate of Walkable Extrema
+            var greatestXValue = in_walkableArea
+                                 .Select(space => space.Position.X)
+                                 .Max();
+            var greatestYValue = in_walkableArea
+                                 .Select(space => space.Position.Y)
+                                 .Max();
+            var leastXValue = in_walkableArea
+                              .Select(space => space.Position.X)
+                              .Min();
+            var leastYValue = in_walkableArea
+                              .Select(space => space.Position.Y)
+                              .Min();
+            #endregion
+
+            // Only continue if perimeter is within the subregion.
+            if (leastXValue > 0 && leastYValue > 0)
+            {
+                #region Find Positions of Walkable Extrema
+                var northWalkableExtreme = in_walkableArea.First(space => space.Position.Y == leastYValue).Position;
+                var southWalkableExtreme = in_walkableArea.First(space => space.Position.Y == greatestYValue).Position;
+                var eastWalkableExtreme = in_walkableArea.First(space => space.Position.X == greatestXValue).Position;
+                var westWalkableExtreme = in_walkableArea.First(space => space.Position.X == leastXValue).Position;
+                #endregion
+
+                #region Find Positions of Seeds
+                var northPosition = new Vector2Int(northWalkableExtreme.Y - 1, northWalkableExtreme.X);
+                var southPosition = new Vector2Int(southWalkableExtreme.Y + 1, southWalkableExtreme.X);
+                var eastPosition = new Vector2Int(eastWalkableExtreme.Y, eastWalkableExtreme.X + 1);
+                var westPosition = new Vector2Int(westWalkableExtreme.Y, westWalkableExtreme.X - 1);
+                #endregion
+
+                #region TryGetSeed Helper Method
+                var stepCount = 0;
+
+                /// <summary>Finds the a <see cref="Space"/> that can be used to search for the perimeter.</summary>
+                /// <param name="in_potential">A <see cref="Space"/> to examine.</param>
+                /// <returns>The perimeter seed.</returns>
+                bool TryGetSeed(Vector2Int in_start, Func<Vector2Int, Vector2Int> in_adjust, out Vector2Int out_final)
+                {
+                    var found = false;
+                    var position = in_start;
+
+                    while (!found)
+                    {
+                        position = in_adjust(position);
+                        if (!IsValidPosition(position))
+                        {
+                            break;
+                        }
+                        stepCount++;
+                        if (stepCount + in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+                        {
+                            break;
+                        }
+                        found = in_subregion[position.Y, position.X].IsEnclosing;
+                    }
+
+                    out_final = found
+                        ? position
+                        : Vector2Int.ZeroVector;
+
+                    return found;
+                }
+                #endregion
+
+                // Only continue if all four seeds are found.
+                var perimiterSeeds = new List<Vector2Int>();
+                if (TryGetSeed(northPosition, position => new Vector2Int(position.X, position.Y - 1), out var northSeed)
+                    && TryGetSeed(southPosition, position => new Vector2Int(position.X, position.Y + 1), out var southSeed)
+                    && TryGetSeed(eastPosition, position => new Vector2Int(position.X + 1, position.Y), out var eastSeed)
+                    && TryGetSeed(westPosition, position => new Vector2Int(position.X - 1, position.Y), out var westSeed))
+                {
+                    perimiterSeeds.Add(northSeed);
+                    perimiterSeeds.Add(southSeed);
+                    perimiterSeeds.Add(eastSeed);
+                    perimiterSeeds.Add(westSeed);
+
+                    // Find the perimeter.
+                    potentialPerimeter = FindPotentialPerimeter(northSeed, in_subregion, maxPerimeterCount);
+
+                    // Validate the perimeter.
+                    out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion)
+                                    && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
+                        ? potentialPerimeter
+                        : null;
+                }
+            }
+
+            return null != out_perimeter;
+        }
 
         /// <summary>
-        /// Determines if it is possible to reach every location in the subregion using only 4-connected
-        /// movements, beginning at an arbitrary <see cref="Space"/>.
+        /// Determines if the given position corresponds to a point in the subregion.
         /// </summary>
-        /// <param name="in_perimiterSpaces">The perimiter.</param>
-        /// <param name="in_internalSpaces">The <see cref="Space"/>s that the perimiter should enclose.</param>
-        /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
-        /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
-        internal static bool Surrounds(this HashSet<Space> in_perimiterSpaces,
-                                       HashSet<Space> in_internalSpaces, ParquetStack[,] in_subregion)
-            => true;  // TODO: Implement surroundedness search-test here.
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        private static bool IsValidPosition(Vector2Int in_position)
+            => in_position.X > -1
+            && in_position.Y > -1
+            && in_position.X < subregionCols
+            && in_position.Y < subregionRows;
+
+        /// <summary>
+        /// Finds all 4-connected <see cref="Space"/>s in the given subregion whose <see cref="Space.Content"/>
+        /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="Space.Position"/>.
+        /// </summary>
+        /// <param name="in_start">Where to begin the perimeter search.</param>
+        /// <param name="in_subregion">The subregion that contains the perimeter.</param>
+        /// <param name="in_searchDepth">How long to search before giving up.</param>
+        /// <returns>The potential perimeter.</returns>
+        internal static HashSet<Space> FindPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion, int in_searchDepth)
+            => new HashSet<Space> { new Space(in_start, in_subregion[in_start.Y, in_start.X]) }
+                    .DFSID(in_subregion, in_searchDepth);
 
         /// <summary>
         /// Determines if it is possible to reach every location in the subregion using only 4-connected
@@ -204,7 +330,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <param name="in_subregion">The subregion within which these <see cref="Space"/>s reside.</param>
         /// <returns><c>true</c>, if valid, <c>false</c> otherwise.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion)
-            => DFSID(in_subregion, maxDepth: in_spaces.Count) == maxDepth: in_spaces.Count;
-            // TODO: Implement connectedness search-test here.
+            => in_spaces.DFSID(in_subregion, in_spaces.Count).Count == in_spaces.Count;
+
+        /// <summary>For now this is a stub.</summary>
+        internal static HashSet<Space> DFSID(this HashSet<Space> in_spaces, ParquetStack[,] in_subregion,
+                                             int in_maxDepth)
+            => in_spaces;
+        // TODO: Implement this.
+        // TODO: In the case of perimeter, DFSID gets called twice.  Can we cache the results?
     }
 }
