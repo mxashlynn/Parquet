@@ -106,7 +106,7 @@ namespace ParquetClassLibrary.Rooms
                 throw new IndexOutOfRangeException(nameof(in_walkableArea));
             }
 
-            var minimumPossiblePerimeterLength = 2 * in_walkableArea.Count + 2;
+            var minimumPossiblePerimeterLength = 2 * in_walkableArea.Count + 6;
             if (in_perimeter.Count < minimumPossiblePerimeterLength)
             {
                 throw new IndexOutOfRangeException($"{nameof(in_perimeter)} is too small to surround {nameof(in_walkableArea)}.");
