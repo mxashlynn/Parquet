@@ -7,7 +7,6 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
-    // TODO See if we can merge ConditionalDepthFirstTraversal and InOrderDepthFirstTraversal and cache results
     // TODO Write a buuuuunch of unit test for primitive actions, including for types we expanded/adjusted
     // like Space and ParquetStack
 
@@ -128,6 +127,9 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         #endregion
 
         #region Cache
+        /// <summary>Cached results from finding potential perimiters.</summary>
+        private static readonly Dictionary<int, HashSet<Space>> potentialPerimeters = new Dictionary<int, HashSet<Space>>();
+
         /// <summary>Cached results from determining if perimiters are connected.</summary>
         private static readonly Dictionary<int, bool> potentiallyConnectedCollections = new Dictionary<int, bool>();
         #endregion
@@ -136,7 +138,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// Clears all caches.
         /// </summary>
         public static void ClearCaches()
-            => potentiallyConnectedCollections.Clear();
+        {
+            potentialPerimeters.Clear();
+            potentiallyConnectedCollections.Clear();
+        }
 
         /// <summary>
         /// Determines if the given position corresponds to a point in the subregion.
@@ -359,7 +364,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     perimiterSeeds.Add(westSeed);
 
                     // Find the perimeter.
-                    potentialPerimeter = FindPotentialPerimeter(northSeed, in_subregion, maxPerimeterCount);
+                    potentialPerimeter = GetPotentialPerimeter(northSeed, in_subregion, maxPerimeterCount);
 
                     // Validate the perimeter.
                     out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion, parquetStack => parquetStack.IsEnclosing)
@@ -378,10 +383,26 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// </summary>
         /// <param name="in_start">Where to begin the perimeter search.</param>
         /// <param name="in_subregion">The subregion that contains the perimeter.</param>
-        /// <param name="in_searchDepth">How long to search before giving up.</param>
         /// <returns>The potential perimeter.</returns>
-        // TODO: In the case of perimeter, DFSID gets called twice.  Can we cache the results?
-        internal static HashSet<Space> FindPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion, int in_searchDepth)
+        internal static HashSet<Space> GetPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion)
+        {
+            var key = in_start.GetHashCode();
+            if (!potentialPerimeters.ContainsKey(key))
+            {
+                potentialPerimeters.Add(key, FindPotentialPerimeter(in_start, in_subregion));
+            }
+
+            return potentialPerimeters[key];
+        }
+
+        /// <summary>
+        /// Finds all 4-connected <see cref="Space"/>s in the given subregion whose <see cref="Space.Content"/>
+        /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="Space.Position"/>.
+        /// </summary>
+        /// <param name="in_start">Where to begin the perimeter search.</param>
+        /// <param name="in_subregion">The subregion that contains the perimeter.</param>
+        /// <returns>The potential perimeter.</returns>
+        internal static HashSet<Space> FindPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion)
         {
             var found = new HashSet<Space>();
 
