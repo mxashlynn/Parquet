@@ -27,11 +27,11 @@ namespace ParquetClassLibrary.Map
 
         #region Chunk Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus[,] _parquetStatus { get; } =
+        protected override ParquetStatus[,] ParquetStatus { get; } =
             new ParquetStatus[All.Dimensions.ParquetsPerChunk, All.Dimensions.ParquetsPerChunk];
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        protected override ParquetStack[,] _parquetDefintion { get; } =
+        protected override ParquetStack[,] ParquetDefintion { get; } =
             new ParquetStack[All.Dimensions.ParquetsPerChunk, All.Dimensions.ParquetsPerChunk];
         #endregion
 

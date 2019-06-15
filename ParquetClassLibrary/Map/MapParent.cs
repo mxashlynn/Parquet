@@ -39,16 +39,16 @@ namespace ParquetClassLibrary.Map
 
         #region Map Contents
         /// <summary>Exit, spawn, and other special points on the map.</summary>
-        protected readonly List<SpecialPoint> _specialPoints = new List<SpecialPoint>();
+        protected readonly List<SpecialPoint> SpecialPoints = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatus[,] _parquetStatus { get; }
+        protected abstract ParquetStatus[,] ParquetStatus { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
         /// and <see cref="Collectible"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStack[,] _parquetDefintion { get; }
+        protected abstract ParquetStack[,] ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
         protected int ParquetsCount
@@ -61,10 +61,10 @@ namespace ParquetClassLibrary.Map
                 {
                     for (var x = 0; x < DimensionsInParquets.X; x++)
                     {
-                        count += EntityID.None != _parquetDefintion[y, x].Floor ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[y, x].Block ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[y, x].Furnishing ? 1 : 0;
-                        count += EntityID.None != _parquetDefintion[y, x].Collectible ? 1 : 0;
+                        count += EntityID.None != ParquetDefintion[y, x].Floor ? 1 : 0;
+                        count += EntityID.None != ParquetDefintion[y, x].Block ? 1 : 0;
+                        count += EntityID.None != ParquetDefintion[y, x].Furnishing ? 1 : 0;
+                        count += EntityID.None != ParquetDefintion[y, x].Collectible ? 1 : 0;
                     }
                 }
 
@@ -126,12 +126,12 @@ namespace ParquetClassLibrary.Map
             var result = false;
             if (IsValidPosition(in_position))
             {
-                _parquetDefintion[in_position.Y, in_position.X] =
+                ParquetDefintion[in_position.Y, in_position.X] =
                     new ParquetStack(
-                        in_floorID ?? _parquetDefintion[in_position.Y, in_position.X].Floor,
-                        in_blockID ?? _parquetDefintion[in_position.Y, in_position.X].Block,
-                        in_furnishingID ?? _parquetDefintion[in_position.Y, in_position.X].Furnishing,
-                        in_collectibleID ?? _parquetDefintion[in_position.Y, in_position.X].Collectible);
+                        in_floorID ?? ParquetDefintion[in_position.Y, in_position.X].Floor,
+                        in_blockID ?? ParquetDefintion[in_position.Y, in_position.X].Block,
+                        in_furnishingID ?? ParquetDefintion[in_position.Y, in_position.X].Furnishing,
+                        in_collectibleID ?? ParquetDefintion[in_position.Y, in_position.X].Collectible);
                 result = true;
             }
             return result;
@@ -151,7 +151,7 @@ namespace ParquetClassLibrary.Map
 
             if (TryRemoveExitPoint(in_point))
             {
-                _specialPoints.Add(in_point);
+                SpecialPoints.Add(in_point);
                 result = true;
             }
 
@@ -178,7 +178,7 @@ namespace ParquetClassLibrary.Map
 
             if (TryRemoveSpawnPoint(in_point))
             {
-                _specialPoints.Add(in_point);
+                SpecialPoints.Add(in_point);
                 result = true;
             }
 
@@ -206,8 +206,8 @@ namespace ParquetClassLibrary.Map
                 && IsValidPosition(in_point.Position))
             {
                 // Return true if the point was removed or if the point never existed.
-                result = _specialPoints.Remove(in_point) ||
-                         !_specialPoints.Exists(in_foundPoint =>
+                result = SpecialPoints.Remove(in_point) ||
+                         !SpecialPoints.Exists(in_foundPoint =>
                              in_foundPoint.GetType() == in_point.GetType() && in_foundPoint == in_point);
             }
 
@@ -223,7 +223,7 @@ namespace ParquetClassLibrary.Map
         /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
             => IsValidPosition(in_position)
-                ? _parquetStatus[in_position.Y, in_position.X]
+                ? ParquetStatus[in_position.Y, in_position.X]
                 : null;
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace ParquetClassLibrary.Map
         /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2Int in_position)
             => IsValidPosition(in_position)
-                ? _parquetDefintion[in_position.Y, in_position.X]
+                ? ParquetDefintion[in_position.Y, in_position.X]
                 : ParquetStack.Empty;
 
         /// <summary>
@@ -249,21 +249,21 @@ namespace ParquetClassLibrary.Map
             {
                 for (var x = 0; x < DimensionsInParquets.X; x++)
                 {
-                    if (EntityID.None != _parquetDefintion[y, x].Floor)
+                    if (EntityID.None != ParquetDefintion[y, x].Floor)
                     {
-                        result.Add(_parquetDefintion[y, x].Floor);
+                        result.Add(ParquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[y, x].Block)
+                    if (EntityID.None != ParquetDefintion[y, x].Block)
                     {
-                        result.Add(_parquetDefintion[y, x].Floor);
+                        result.Add(ParquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[y, x].Furnishing)
+                    if (EntityID.None != ParquetDefintion[y, x].Furnishing)
                     {
-                        result.Add(_parquetDefintion[y, x].Floor);
+                        result.Add(ParquetDefintion[y, x].Floor);
                     }
-                    if (EntityID.None != _parquetDefintion[y, x].Collectible)
+                    if (EntityID.None != ParquetDefintion[y, x].Collectible)
                     {
-                        result.Add(_parquetDefintion[y, x].Floor);
+                        result.Add(ParquetDefintion[y, x].Floor);
                     }
                 }
             }
@@ -277,7 +277,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
         public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2Int in_position)
-            => _specialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
+            => SpecialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
         #endregion
 
         #region Serialization Methods
@@ -331,7 +331,7 @@ namespace ParquetClassLibrary.Map
                 {
                     for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
                     {
-                        var temp = _parquetDefintion[x, y];
+                        var temp = ParquetDefintion[x, y];
                         subregion[x - in_upperLeft.X, y - in_upperLeft.Y] = temp;
                     }
                 }
@@ -364,14 +364,14 @@ namespace ParquetClassLibrary.Map
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    var parquet = EntityID.None != _parquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Collectible) 
-                        : EntityID.None != _parquetDefintion[y, x].Furnishing
-                            ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Furnishing)
-                            : EntityID.None != _parquetDefintion[y, x].Block
-                                ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Block)
-                                : EntityID.None != _parquetDefintion[y, x].Floor
-                                    ? All.Parquets.Get<ParquetParent>(_parquetDefintion[y, x].Floor)
+                    var parquet = EntityID.None != ParquetDefintion[y, x].Collectible
+                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible) 
+                        : EntityID.None != ParquetDefintion[y, x].Furnishing
+                            ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Furnishing)
+                            : EntityID.None != ParquetDefintion[y, x].Block
+                                ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Block)
+                                : EntityID.None != ParquetDefintion[y, x].Floor
+                                    ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Floor)
                                     : null;
 
                     representation.Append(parquet?.ToString() ?? "~");
@@ -399,17 +399,17 @@ namespace ParquetClassLibrary.Map
             {
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
-                    floorRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Floor
-                        ? All.Parquets.Get<Floor>(_parquetDefintion[y, x].Floor).ToString()
+                    floorRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Floor
+                        ? All.Parquets.Get<Floor>(ParquetDefintion[y, x].Floor).ToString()
                         : "~");
-                    blocksRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Block
-                        ? All.Parquets.Get<Block>(_parquetDefintion[y, x].Block).ToString()
+                    blocksRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Block
+                        ? All.Parquets.Get<Block>(ParquetDefintion[y, x].Block).ToString()
                         : " ");
-                    furnishingsRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Furnishing
-                        ? All.Parquets.Get<Furnishing>(_parquetDefintion[y, x].Furnishing).ToString()
+                    furnishingsRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Furnishing
+                        ? All.Parquets.Get<Furnishing>(ParquetDefintion[y, x].Furnishing).ToString()
                         : " ");
-                    collectiblesRepresentation.Append(EntityID.None != _parquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<Collectible>(_parquetDefintion[y, x].Collectible).ToString()
+                    collectiblesRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Collectible
+                        ? All.Parquets.Get<Collectible>(ParquetDefintion[y, x].Collectible).ToString()
                         : " ");
                 }
                 floorRepresentation.AppendLine();
@@ -430,7 +430,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {_specialPoints.Count} special points.";
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {SpecialPoints.Count} special points.";
         #endregion
     }
 }
