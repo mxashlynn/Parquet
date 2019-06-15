@@ -7,9 +7,6 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
-    // TODO Write a buuuuunch of unit test for primitive actions, including for types we expanded/adjusted
-    // like Space and ParquetStack
-
     // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
     using ParquetClassLibrary.Rooms.RegionAnalysis;
 
