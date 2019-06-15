@@ -56,10 +56,10 @@ namespace ParquetUnitTests.Rooms
                                              TestEntities.TestBlock.ID,
                                              TestEntities.TestFurnishing.ID,
                                              TestEntities.TestCollectible.ID);
-            var testStack2 = new ParquetStack(TestEntities.TestFloor.ID + 1,
-                                             TestEntities.TestBlock.ID + 1,
-                                             TestEntities.TestFurnishing.ID + 1,
-                                             TestEntities.TestCollectible.ID + 1);
+            var testStack2 = new ParquetStack(TestEntities.TestFloor.ID - 1,
+                                             TestEntities.TestBlock.ID - 1,
+                                             TestEntities.TestFurnishing.ID - 1,
+                                             TestEntities.TestCollectible.ID - 1);
 
             var space1 = new Space(new Vector2Int(x, y), testStack1);
             var space2 = new Space(new Vector2Int(x, y), testStack2);
