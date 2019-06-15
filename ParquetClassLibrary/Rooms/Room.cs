@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public EntityID RecipeID
             => (EntityID)(null == _cachedRecipeID
-                ? _cachedRecipeID = All.Recipes.Rooms.FindBestMatch(this)
+                ? _cachedRecipeID = FindBestMatch()
                 : _cachedRecipeID);
 
         #region Initialization
@@ -120,6 +120,7 @@ namespace ParquetClassLibrary.Rooms
 
             WalkableArea = in_walkableArea;
             Perimeter = in_perimeter;
+            _cachedRecipeID = FindBestMatch();
         }
         #endregion
 

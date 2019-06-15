@@ -76,8 +76,6 @@ namespace ParquetClassLibrary.Rooms
 
             RegionAnalysisExtensions.ClearCaches();
 
-            // TODO Assign room types
-
             return new RoomCollection(rooms);
         }
         #endregion
