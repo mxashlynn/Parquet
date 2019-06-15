@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ParquetClassLibrary
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
     /// </remarks>
-    public class EntityCollection<ParentType> where ParentType : Entity
+    public class EntityCollection<ParentType> : IEnumerable<ParentType> where ParentType : Entity
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static readonly EntityCollection<ParentType> Default = new EntityCollection<ParentType>(
@@ -125,6 +126,20 @@ namespace ParquetClassLibrary
 
             return (T)Entities[in_id];
         }
+
+        /// <summary>
+        /// Exposes an <see cref="IEnumerator{ParentType}"/>, which supports simple iteration.
+        /// </summary>
+        /// <returns>An enumerator.</returns>
+        IEnumerator<ParentType> IEnumerable<ParentType>.GetEnumerator()
+            => (IEnumerator<ParentType>)Entities.Values.GetEnumerator();
+
+        /// <summary>
+        /// Exposes an <see cref="IEnumerator"/>, which supports simple iteration.
+        /// </summary>
+        /// <returns>An enumerator.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+            => Entities.Values.GetEnumerator();
         #endregion
 
         #region Utility Methods
