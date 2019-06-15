@@ -189,30 +189,6 @@ namespace ParquetClassLibrary
                 /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MaxWalkableSpaces = 121;
-
-                // TODO Consider moving this method to the Room class.
-
-                /// <summary>
-                /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches the given <see cref="Room"/>.
-                /// </summary>
-                /// <param name="in_room">The <see cref="Room"/> to match.</param>
-                /// <returns>The best match's <see cref="EntityID"/>.</returns>
-                public static EntityID FindBestMatch(Room in_room)
-                {
-                    var matches = new List<RoomRecipe>();
-
-                    foreach (RoomRecipe recipe in RoomRecipes)
-                    {
-                        if (recipe.Matches(in_room))
-                        {
-                            matches.Add(recipe);
-                        }
-                    }
-
-                    return matches.Count > 0
-                        ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
-                        : EntityID.None;
-                }
             }
         }
         #endregion

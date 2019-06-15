@@ -141,5 +141,16 @@ namespace ParquetClassLibrary.Rooms
             _cachedRecipeID = null;
             _cachedFurnishings = null;
         }
+
+        /// <summary>
+        /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
+        /// </summary>
+        private EntityID FindBestMatch()
+        {
+            var matches = All.RoomRecipes.Where(recipe => ((RoomRecipe)recipe).Matches(this)).Select(recipe => recipe).ToList();
+            return matches.Count > 0
+                ? (EntityID)matches.Select(recipe => ((RoomRecipe)recipe).Priority).DefaultIfEmpty(EntityID.None).Max()
+                : EntityID.None;
+        }
     }
 }
