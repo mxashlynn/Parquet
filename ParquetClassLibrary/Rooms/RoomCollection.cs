@@ -361,7 +361,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     perimiterSeeds.Add(westSeed);
 
                     // Find the perimeter.
-                    potentialPerimeter = GetPotentialPerimeter(northSeed, in_subregion, maxPerimeterCount);
+                    potentialPerimeter = GetPotentialPerimeter(northSeed, in_subregion);
+
+                    if(potentialPerimeter.Count > maxPerimeterCount)
+                    {
+                        // TODO Probably remove this check and this variable after debugging.
+                        throw new Exception("Perimeter is larger than it should be.");
+                    }
 
                     // Validate the perimeter.
                     out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion, parquetStack => parquetStack.IsEnclosing)
