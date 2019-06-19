@@ -142,44 +142,6 @@ namespace ParquetClassLibrary
             => Entities.Values.GetEnumerator();
         #endregion
 
-        #region LINQ
-        /// <summary>
-        /// Returns an arbitrary element in the collection.
-        /// </summary>
-        /// <typeparam name="T">A subtype of <typeparamref name="ParentType"/> to reurn.</typeparam>
-        /// <returns>An element</returns>
-        public T First<T>() where T : ParentType
-            => (T)Entities.First(kvp => kvp.Key != EntityID.None).Value;
-
-        /// <summary>
-        /// Returns an arbitrary element in the collection corresponding to the given predicate.
-        /// </summary>
-        /// <param name="in_predicate">True for the element sought.</param>
-        /// <typeparam name="T">A subtype of <typeparamref name="ParentType"/> to reurn.</typeparam>
-        /// <returns>An element</returns>
-        public T First<T>(Func<T, bool> in_predicate) where T : ParentType
-            => (T)Entities.First(kvp => kvp.Key != EntityID.None
-                                     && in_predicate((T)kvp.Value)).Value;
-
-        /// <summary>
-        /// Returns an arbitrary element in the collection, or null if none exists.
-        /// </summary>
-        /// <typeparam name="T">A subtype of <typeparamref name="ParentType"/> to reurn.</typeparam>
-        /// <returns>An element</returns>
-        public T FirstOrDefault<T>() where T : ParentType
-            => (T)Entities.FirstOrDefault(kvp => kvp.Key != EntityID.None).Value;
-
-        /// <summary>
-        /// Returns an arbitrary element in the collection corresponding to the given predicate, or null if none exists.
-        /// </summary>
-        /// <param name="in_predicate">True for the element sought.</param>
-        /// <typeparam name="T">A subtype of <typeparamref name="ParentType"/> to reurn.</typeparam>
-        /// <returns>An element</returns>
-        public T FirstOrDefault<T>(Func<T, bool> in_predicate) where T : ParentType
-            => (T)Entities.FirstOrDefault(kvp => kvp.Key != EntityID.None
-                                              && in_predicate((T)kvp.Value)).Value;
-        #endregion
-
         #region Utility Methods
         /// <summary>
         /// Serializes all defined parquets to a string.
