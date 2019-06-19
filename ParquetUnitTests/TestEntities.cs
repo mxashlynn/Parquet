@@ -62,6 +62,9 @@ namespace ParquetUnitTests
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<ParquetParent> Parquets { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static List<RoomRecipe> RoomRecipes { get; }
         #endregion
 
         static TestEntities()
@@ -94,7 +97,8 @@ namespace ParquetUnitTests
 
             // Sets up All so that bounds can be checked in various constructors.
             Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestFurnishing, TestCollectible };
-            All.InitializeCollections(Parquets);
+            RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
+            All.InitializeCollections(Parquets, RoomRecipes);
         }
     }
 }

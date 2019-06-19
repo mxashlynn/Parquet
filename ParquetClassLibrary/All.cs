@@ -141,7 +141,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection RoomRecipes { get; }
+        public static EntityCollection RoomRecipes { get; private set; }
         #endregion
 
         #region Rules and Parameters
@@ -278,7 +278,8 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         // TODO Make an version that takes serialized strings instead of ienumerables.
-        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets)
+        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets,
+                                                 IEnumerable<RoomRecipe> in_roomRecipes)
         {
             if (_collectionsHaveBeenInitialized)
             {
@@ -291,7 +292,7 @@ namespace ParquetClassLibrary
             //CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
             //Items = new EntityCollection(ItemIDs);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
-            //RoomRecipes = new EntityCollection(RoomRecipeIDs);
+            RoomRecipes = new EntityCollection(RoomRecipeIDs, in_roomRecipes);
 
             _collectionsHaveBeenInitialized = true;
         }
