@@ -48,7 +48,8 @@ namespace ParquetCSVImporter
             Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);
 
-            All.InitializeCollections(Parquets);
+            // TODO Fix this, cannot be null.
+            All.InitializeCollections(Parquets, null);
 
             var recordsToJSON = All.Parquets.SerializeToString();
 

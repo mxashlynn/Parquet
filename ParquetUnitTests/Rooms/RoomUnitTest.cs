@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 using System;
