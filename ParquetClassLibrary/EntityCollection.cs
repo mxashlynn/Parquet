@@ -36,6 +36,34 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities)
+        {
+            Precondition.IsNotNull(in_entities, nameof(in_entities));
+
+            var baseDictionary = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
+            foreach (var entity in in_entities)
+            {
+                Precondition.IsInRange(entity.ID, in_bounds, nameof(in_entities));
+
+                if (!baseDictionary.ContainsKey(entity.ID))
+                {
+                    baseDictionary[entity.ID] = entity;
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Tried to duplicate entity ID {entity.ID}.");
+                }
+            }
+
+            Bounds = new List<Range<EntityID>> { in_bounds };
+            Entities = baseDictionary;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds, IEnumerable<Entity> in_entities)
         {
             Precondition.IsNotNull(in_entities, nameof(in_entities));
