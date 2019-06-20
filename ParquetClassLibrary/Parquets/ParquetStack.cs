@@ -147,7 +147,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{Floor}{Block}{Furnishing}{Collectible}]";
+            => $"[{Floor} {Block} {Furnishing} {Collectible}]";
         #endregion
 
     }

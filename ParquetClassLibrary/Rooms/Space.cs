@@ -95,5 +95,14 @@ namespace ParquetClassLibrary.Rooms
             => in_space1.Position != in_space2.Position
             && in_space1.Content != in_space2.Content;
         #endregion
+
+        #region Utility Methods
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"{Position}{Content}]";
+        #endregion
     }
 }
