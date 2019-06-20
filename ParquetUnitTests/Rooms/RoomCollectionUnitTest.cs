@@ -33,9 +33,7 @@ namespace ParquetUnitTests.Rooms
             { TWall, TTile, TTile, TWall, TVoid, },
             { TWall, TWall, TDoor, TWall, TVoid, },
         };
-        private const int TestWidth = 10;
-        private const int TestHeight = 7;
-        private static readonly ParquetStack[,] OneSimpleRoomMap = new ParquetStack[TestHeight, TestWidth]
+        private static readonly ParquetStack[,] OneSimpleRoomMap =
         {
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
