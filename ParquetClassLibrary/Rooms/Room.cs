@@ -143,9 +143,9 @@ namespace ParquetClassLibrary.Rooms
         private EntityID FindBestMatch()
         {
             // TODO Can we skip the Any() comparison and condense this into a single line?
-            var matches = All.RoomRecipes.Where(entity => ((RoomRecipe)entity).Matches(this));
+            var matches = All.RoomRecipes.Where(entity => entity?.Matches(this) ?? false);
             return matches.Any()
-                ? (EntityID)matches.Select(recipe => ((RoomRecipe)recipe).Priority).DefaultIfEmpty(EntityID.None).Max()
+                ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
                 : EntityID.None;
         }
     }
