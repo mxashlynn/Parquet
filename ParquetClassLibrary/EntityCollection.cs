@@ -160,7 +160,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParentType> IEnumerable<ParentType>.GetEnumerator()
-            => (IEnumerator<ParentType>)Entities.Values.GetEnumerator();
+            => Entities.Values.Cast<ParentType>().GetEnumerator();
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/>, which supports simple iteration.
