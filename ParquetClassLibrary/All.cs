@@ -117,7 +117,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection CraftingRecipes { get; }
+        public static EntityCollection<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -125,7 +125,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection Items { get; }
+        public static EntityCollection<Item> Items { get; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -141,7 +141,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection RoomRecipes { get; private set; }
+        public static EntityCollection<RoomRecipe> RoomRecipes { get; private set; }
         #endregion
 
         #region Rules and Parameters
@@ -205,10 +205,10 @@ namespace ParquetClassLibrary
             #region Default Values for Enitity Collections
             _collectionsHaveBeenInitialized = false;
             Beings = EntityCollection<Being>.Default;
-            CraftingRecipes = EntityCollection.Default;
-            Items = EntityCollection.Default;
+            CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
+            Items = EntityCollection<Item>.Default;
             Parquets = EntityCollection<ParquetParent>.Default;
-            RoomRecipes = EntityCollection.Default;
+            RoomRecipes = EntityCollection<RoomRecipe>.Default;
             #endregion
 
             #region Initialize Ranges
@@ -289,10 +289,10 @@ namespace ParquetClassLibrary
 
             // TODO Uncomment these once we have CSV import implemented for non-parquets.
             //Beings = new EntityCollection<Being>(BeingIDs);
-            //CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
-            //Items = new EntityCollection(ItemIDs);
+            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs);
+            //Items = new EntityCollection<Item>(ItemIDs);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
-            RoomRecipes = new EntityCollection(RoomRecipeIDs, in_roomRecipes);
+            RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
 
             _collectionsHaveBeenInitialized = true;
         }
