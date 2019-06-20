@@ -331,8 +331,8 @@ namespace ParquetClassLibrary.Map
                 {
                     for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
                     {
-                        var temp = ParquetDefintion[x, y];
-                        subregion[x - in_upperLeft.X, y - in_upperLeft.Y] = temp;
+                        var temp = ParquetDefintion[y, x];
+                        subregion[y - in_upperLeft.Y, x - in_upperLeft.X] = temp;
                     }
                 }
 

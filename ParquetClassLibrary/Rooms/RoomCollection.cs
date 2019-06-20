@@ -215,13 +215,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 {
                     if (in_subregion[y, x].IsWalkable)
                     {
-                        var currentSpace = new Space(x, y, in_subregion[x, y]);
+                        var currentSpace = new Space(x, y, in_subregion[y, x]);
 
                         var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable
-                            ? new Space(x, y - 1, in_subregion[x, y - 1])
+                            ? new Space(x, y - 1, in_subregion[y - 1, x])
                             : (Space?)null;
                         var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable
-                            ? new Space(x - 1, y, in_subregion[x - 1, y])
+                            ? new Space(x - 1, y, in_subregion[y, x - 1])
                             : (Space?)null;
 
                         if (null == northSpace && null == westSpace)

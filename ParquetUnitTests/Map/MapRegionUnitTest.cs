@@ -406,7 +406,7 @@ namespace ParquetUnitTests.Map
             {
                 for (var y = validUpperLeft.Y; y < validLowerRight.Y; y++)
                 {
-                    Assert.Equal(subregion[x, y], originalChunk[x, y]);
+                    Assert.Equal(subregion[y, x], originalChunk[y, x]);
                 }
             }
         }
@@ -424,7 +424,7 @@ namespace ParquetUnitTests.Map
             {
                 for (var y = 0; y < defaultRegion.DimensionsInParquets.Y; y++)
                 {
-                    Assert.Equal(subregion[x, y], originalChunk[x, y]);
+                    Assert.Equal(subregion[y, x], originalChunk[y, x]);
                 }
             }
         }
