@@ -98,7 +98,9 @@ namespace ParquetClassLibrary.Rooms
         public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
+            Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
+            Precondition.IsNotEmpty(in_perimeter, nameof(in_perimeter));
 
             if (in_walkableArea.Count < All.Recipes.Rooms.MinWalkableSpaces
                 || in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
