@@ -128,7 +128,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TVoid, TWall, TWall, TWall, TWall, TWall, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TWall, TTile, TWell, TWell, TTile, TWall, TVoid, TVoid, },
-            { TVoid, TVoid, TWall, TStep, TWell, TWell, TTile, TWall, TVoid, TVoid, },
+            { TVoid, TVoid, TWall, TStep, TTile, TWell, TTile, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TWall, TTile, TWell, TWell, TTile, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TWall, TWall, TWall, TWall, TWall, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
