@@ -279,6 +279,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         {
             InitConstraints(in_subregion);
 
+            var stepCount = 0;
             HashSet<Space> potentialPerimeter = null;
             out_perimeter = null;
 
@@ -308,44 +309,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 #endregion
 
                 #region Find Positions of Seeds
-                var northPosition = new Vector2Int(northWalkableExtreme.Y - 1, northWalkableExtreme.X);
-                var southPosition = new Vector2Int(southWalkableExtreme.Y + 1, southWalkableExtreme.X);
-                var eastPosition = new Vector2Int(eastWalkableExtreme.Y, eastWalkableExtreme.X + 1);
-                var westPosition = new Vector2Int(westWalkableExtreme.Y, westWalkableExtreme.X - 1);
-                #endregion
-
-                #region TryGetSeed Helper Method
-                var stepCount = 0;
-
-                /// <summary>Finds the a <see cref="Space"/> that can be used to search for the perimeter.</summary>
-                /// <param name="in_potential">A <see cref="Space"/> to examine.</param>
-                /// <returns>The perimeter seed.</returns>
-                bool TryGetSeed(Vector2Int in_start, Func<Vector2Int, Vector2Int> in_adjust, out Vector2Int out_final)
-                {
-                    var found = false;
-                    var position = in_start;
-
-                    while (!found)
-                    {
-                        position = in_adjust(position);
-                        if (!IsValidPosition(position))
-                        {
-                            break;
-                        }
-                        stepCount++;
-                        if (stepCount + in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
-                        {
-                            break;
-                        }
-                        found = in_subregion[position.Y, position.X].IsEnclosing;
-                    }
-
-                    out_final = found
-                        ? position
-                        : Vector2Int.ZeroVector;
-
-                    return found;
-                }
+                var northPosition = new Vector2Int(northWalkableExtreme.X, northWalkableExtreme.Y - 1);
+                var southPosition = new Vector2Int(southWalkableExtreme.X, southWalkableExtreme.Y + 1);
+                var eastPosition = new Vector2Int(eastWalkableExtreme.X + 1, eastWalkableExtreme.Y);
+                var westPosition = new Vector2Int(westWalkableExtreme.X - 1, westWalkableExtreme.Y);
                 #endregion
 
                 // Only continue if all four seeds are found.
@@ -361,7 +328,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     perimiterSeeds.Add(westSeed);
 
                     // Find the perimeter.
-                    potentialPerimeter = GetPotentialPerimeter(northSeed, in_subregion);
+                    potentialPerimeter = GetPotentialPerimeter(northSeed);
 
                     if(potentialPerimeter.Count > maxPerimeterCount)
                     {
@@ -378,63 +345,90 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
             }
 
             return null != out_perimeter;
-        }
 
-        /// <summary>
-        /// Finds all 4-connected <see cref="Space"/>s in the given subregion whose <see cref="Space.Content"/>
-        /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="Space.Position"/>.
-        /// </summary>
-        /// <param name="in_start">Where to begin the perimeter search.</param>
-        /// <param name="in_subregion">The subregion that contains the perimeter.</param>
-        /// <returns>The potential perimeter.</returns>
-        internal static HashSet<Space> GetPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion)
-        {
-            var key = in_start.GetHashCode();
-            if (!potentialPerimeters.ContainsKey(key))
+            #region TryGetSeed Helper Method
+            /// <summary>
+            /// Finds the a <see cref="Space"/> that can be used to search for the perimeter.
+            /// </summary>
+            /// <param name="in_start">Where to begin looking.</param>
+            /// <param name="in_adjust">How to adjust the position at each step if a seed has not been found.</param>
+            /// <param name="out_final">The position of the perimeter seed.</param>
+            /// <returns><c>true</c> if a seed was found, <c>false</c> otherwise.</returns>
+            bool TryGetSeed(Vector2Int in_start, Func<Vector2Int, Vector2Int> in_adjust, out Vector2Int out_final)
             {
-                potentialPerimeters.Add(key, FindPotentialPerimeter(in_start, in_subregion));
-            }
+                var found = false;
+                var position = in_start;
 
-            return potentialPerimeters[key];
-        }
-
-        /// <summary>
-        /// Finds all 4-connected <see cref="Space"/>s in the given subregion whose <see cref="Space.Content"/>
-        /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="Space.Position"/>.
-        /// </summary>
-        /// <param name="in_start">Where to begin the perimeter search.</param>
-        /// <param name="in_subregion">The subregion that contains the perimeter.</param>
-        /// <returns>The potential perimeter.</returns>
-        internal static HashSet<Space> FindPotentialPerimeter(Vector2Int in_start, ParquetStack[,] in_subregion)
-        {
-            var found = new HashSet<Space>();
-
-            if (IsValidPosition(in_start))
-            {
-                var start = new Space(in_start, in_subregion[in_start.Y, in_start.X]);
-
-                InOrderDepthFirstTraversal(start);
-
-                /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
-                /// <param name="in_space">The <see cref="Space"/> under consideration.</param>
-                void InOrderDepthFirstTraversal(Space in_space)
+                while (!found)
                 {
-                    if (in_space.Content.IsEnclosing
-                        && !found.Contains(in_space))
+                    position = in_adjust(position);
+                    if (!IsValidPosition(position))
                     {
-                        // Mark "Traversed".
-                        found.Add(in_space);
-
-                        // And continue, examining all children in order.
-                        InOrderDepthFirstTraversal(ToNorth(in_space, in_subregion));
-                        InOrderDepthFirstTraversal(ToSouth(in_space, in_subregion));
-                        InOrderDepthFirstTraversal(ToEast(in_space, in_subregion));
-                        InOrderDepthFirstTraversal(ToWest(in_space, in_subregion));
+                        break;
                     }
+                    stepCount++;
+                    if (stepCount + in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+                    {
+                        break;
+                    }
+                    found = in_subregion[position.Y, position.X].IsEnclosing;
                 }
-            }
 
-            return found;
+                out_final = found
+                    ? position
+                    : Vector2Int.ZeroVector;
+
+                return found;
+            }
+            #endregion
+
+            #region GetPotentialPerimeter Helper Method
+            /// <summary>
+            /// Finds all 4-connected <see cref="Space"/>s in the given subregion whose <see cref="Space.Content"/>
+            /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="Space.Position"/>.
+            /// </summary>
+            /// <param name="in_start">Where to begin the perimeter search.</param>
+            /// <returns>The potential perimeter.</returns>
+            HashSet<Space> GetPotentialPerimeter(Vector2Int in_start)
+            {
+                var key = in_start.GetHashCode();
+                if (!potentialPerimeters.ContainsKey(key))
+                {
+                    var found = new HashSet<Space>();
+
+                    if (IsValidPosition(in_start))
+                    {
+                        var start = new Space(in_start, in_subregion[in_start.Y, in_start.X]);
+
+                        InOrderDepthFirstTraversal(start);
+
+                        /// <summary>
+                        /// Traverses the given 4-connected grid in a preorder, depth-first fashion.
+                        /// </summary>
+                        /// <param name="in_space">The <see cref="Space"/> under consideration.</param>
+                        void InOrderDepthFirstTraversal(Space in_space)
+                        {
+                            if (in_space.Content.IsEnclosing
+                                && !found.Contains(in_space))
+                            {
+                                // Mark "Traversed".
+                                found.Add(in_space);
+
+                                // And continue, examining all children in order.
+                                InOrderDepthFirstTraversal(ToNorth(in_space, in_subregion));
+                                InOrderDepthFirstTraversal(ToSouth(in_space, in_subregion));
+                                InOrderDepthFirstTraversal(ToEast(in_space, in_subregion));
+                                InOrderDepthFirstTraversal(ToWest(in_space, in_subregion));
+                            }
+                        }
+                    }
+
+                    potentialPerimeters.Add(key, found);
+                }
+
+                return potentialPerimeters[key];
+            }
+            #endregion
         }
 
         /// <summary>
@@ -450,6 +444,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                                    Predicate<ParquetStack> in_isTarget)
         {
             var key = (in_spaceSet, in_isTarget).GetHashCode();
+
             if (!potentiallyConnectedCollections.ContainsKey(key))
             {
                 potentiallyConnectedCollections.Add(key, CheckIfAllSpacesAreReachable(in_spaceSet,
