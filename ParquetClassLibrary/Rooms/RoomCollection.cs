@@ -308,19 +308,12 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 var westWalkableExtreme = in_walkableArea.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
-                #region Find Positions of Seeds
-                var northPosition = new Vector2Int(northWalkableExtreme.X, northWalkableExtreme.Y - 1);
-                var southPosition = new Vector2Int(southWalkableExtreme.X, southWalkableExtreme.Y + 1);
-                var eastPosition = new Vector2Int(eastWalkableExtreme.X + 1, eastWalkableExtreme.Y);
-                var westPosition = new Vector2Int(westWalkableExtreme.X - 1, westWalkableExtreme.Y);
-                #endregion
-
                 // Only continue if all four seeds are found.
                 var perimiterSeeds = new List<Vector2Int>();
-                if (TryGetSeed(northPosition, position => new Vector2Int(position.X, position.Y - 1), out var northSeed)
-                    && TryGetSeed(southPosition, position => new Vector2Int(position.X, position.Y + 1), out var southSeed)
-                    && TryGetSeed(eastPosition, position => new Vector2Int(position.X + 1, position.Y), out var eastSeed)
-                    && TryGetSeed(westPosition, position => new Vector2Int(position.X - 1, position.Y), out var westSeed))
+                if (TryGetSeed(northWalkableExtreme, position => new Vector2Int(position.X, position.Y - 1), out var northSeed)
+                    && TryGetSeed(southWalkableExtreme, position => new Vector2Int(position.X, position.Y + 1), out var southSeed)
+                    && TryGetSeed(eastWalkableExtreme, position => new Vector2Int(position.X + 1, position.Y), out var eastSeed)
+                    && TryGetSeed(westWalkableExtreme, position => new Vector2Int(position.X - 1, position.Y), out var westSeed))
                 {
                     perimiterSeeds.Add(northSeed);
                     perimiterSeeds.Add(southSeed);
