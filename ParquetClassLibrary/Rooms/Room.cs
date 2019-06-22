@@ -66,8 +66,8 @@ namespace ParquetClassLibrary.Rooms
         public Vector2Int Position
             => (Vector2Int)(
                 null == _cachedPosition
-                    ? _cachedPosition = new Vector2Int(Perimeter.Select(space => space.Position.X).Min(),
-                                                       Perimeter.Select(space => space.Position.Y).Min())
+                    ? _cachedPosition = new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
+                                                       WalkableArea.Select(space => space.Position.Y).Min())
                     : _cachedPosition);
 
         /// <summary>
