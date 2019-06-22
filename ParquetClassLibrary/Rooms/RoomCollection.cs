@@ -65,9 +65,10 @@ namespace ParquetClassLibrary.Rooms
             var walkableAreas = in_subregion.GetWalkableAreas();
             HashSet<Space> perimeter = null;
             var rooms = walkableAreas
-                        .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
-                        .Where(walkableArea => walkableArea.Concat(perimeter)
-                                               .Any(space => space.Content.IsEntry))
+                                 .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
+                                 //.Where(walkableArea => walkableArea.Concat(perimeter)
+                                 //                                   .Any(space => space.Content.IsEntry));
+                                 .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion, parquetStack => parquetStack.IsWalkable))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
             RegionAnalysisExtensions.ClearCaches();
@@ -308,7 +309,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 var westWalkableExtreme = in_walkableArea.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
-                // Only continue if all four seeds are found.
+                // Only continue if all four extrema are found.
                 var perimiterSeeds = new List<Vector2Int>();
                 if (TryGetSeed(northWalkableExtreme, position => new Vector2Int(position.X, position.Y - 1), out var northSeed)
                     && TryGetSeed(southWalkableExtreme, position => new Vector2Int(position.X, position.Y + 1), out var southSeed)
@@ -432,7 +433,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isTarget">Determines if a <see cref="Space"/> is a target Space.</param>
-        /// <returns><c>true</c> is all members of the given set are reachable from all other members of the given set.</returns>
+        /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
                                                    Predicate<ParquetStack> in_isTarget)
         {
@@ -456,7 +457,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isTarget">Determines if a <see cref="Space"/> is a target Space.</param>
-        /// <returns><c>true</c> is all members of the given set are reachable from all other members of the given set.</returns>
+        /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal static bool CheckIfAllSpacesAreReachable(this HashSet<Space> in_spaceSet,
                                                           ParquetStack[,] in_subregion,
                                                           Predicate<ParquetStack> in_isTarget)
@@ -495,6 +496,71 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         consistent = false;
                     }
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// Determines if it is possible to reach <see cref="Space"/> whose
+        /// <see cref="Furnishing.IsEntry"/> and whose <see cref="Space.Content"/>
+        /// conforms to the given predicate using only 4-connected movements,
+        /// beginning at an arbitrary space.
+        /// </summary>
+        /// <param name="in_spaceSet">The collection under consideration.</param>
+        /// <param name="in_subregion">The grid on which the set exists.</param>
+        /// <param name="in_isTarget">Determines if a <see cref="Space"/> is a target Space.</param>
+        /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
+        internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
+                                              Predicate<ParquetStack> in_isTarget)
+        {
+            var visited = new HashSet<int>();
+            var start = in_spaceSet.FirstOrDefault();
+            var consistent = IsValidPosition(start.Position);
+
+            return consistent && ConditionalDepthFirstSearch(start, parquetStack => parquetStack.IsEntry);
+
+            /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
+            /// <param name="in_space">The <see cref="Space"/> under consideration.</param>
+            /// <param name="in_isGoal"><c>true</c> when the goal has been found.</param>
+            bool ConditionalDepthFirstSearch(Space in_space, Predicate<ParquetStack> in_isGoal)
+            {
+                bool result = false;
+
+                if (consistent
+                    && in_isTarget(in_space.Content)
+                    && !visited.Contains(in_space.GetHashCode()))
+                {
+                    if (in_spaceSet.Contains(in_space))
+                    {
+                        if (in_isGoal(in_space.Content)
+                            || in_isGoal(ToNorth(in_space, in_subregion).Content)
+                            || in_isGoal(ToSouth(in_space, in_subregion).Content)
+                            || in_isGoal(ToEast(in_space, in_subregion).Content)
+                            || in_isGoal(ToWest(in_space, in_subregion).Content))
+                        {
+                            result = true;
+                        }
+                        else
+                        {
+                            // Mark "Traversed".
+                            visited.Add(in_space.GetHashCode());
+
+                            // And continue, examining all children in order.
+                            result = ConditionalDepthFirstSearch(ToNorth(in_space, in_subregion), in_isGoal)
+                                || ConditionalDepthFirstSearch(ToSouth(in_space, in_subregion), in_isGoal)
+                                || ConditionalDepthFirstSearch(ToEast(in_space, in_subregion), in_isGoal)
+                                || ConditionalDepthFirstSearch(ToWest(in_space, in_subregion), in_isGoal);
+                        }
+                    }
+                    else
+                    {
+                        // Unless a valid target Space is not in the original
+                        // set of Spaces, in which case fail.
+                        consistent = false;
+                    }
+                }
+
+                return result;
             }
         }
     }
