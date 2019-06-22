@@ -157,7 +157,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
         private static Space ToNorth(Space in_space, ParquetStack[,] in_subregion)
         {
-            var northPosition = new Vector2Int(in_space.Position.Y - 1, in_space.Position.X);
+            var northPosition = new Vector2Int(in_space.Position.X, in_space.Position.Y - 1);
             return IsValidPosition(northPosition)
                 ? new Space(northPosition, in_subregion[northPosition.Y, northPosition.X])
                 : Space.Empty;
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
         private static Space ToSouth(Space in_space, ParquetStack[,] in_subregion)
         {
-            var southPosition = new Vector2Int(in_space.Position.Y + 1, in_space.Position.X);
+            var southPosition = new Vector2Int(in_space.Position.X, in_space.Position.Y + 1);
             return IsValidPosition(southPosition)
                 ? new Space(southPosition, in_subregion[southPosition.Y, southPosition.X])
                 : Space.Empty;
@@ -181,7 +181,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
         private static Space ToEast(Space in_space, ParquetStack[,] in_subregion)
         {
-            var eastPosition = new Vector2Int(in_space.Position.Y, in_space.Position.X + 1);
+            var eastPosition = new Vector2Int(in_space.Position.X + 1, in_space.Position.Y);
             return IsValidPosition(eastPosition)
                 ? new Space(eastPosition, in_subregion[eastPosition.Y, eastPosition.X])
                 : Space.Empty;
@@ -193,7 +193,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
         private static Space ToWest(Space in_space, ParquetStack[,] in_subregion)
         {
-            var westPosition = new Vector2Int(in_space.Position.Y, in_space.Position.X - 1);
+            var westPosition = new Vector2Int(in_space.Position.X - 1, in_space.Position.Y);
             return IsValidPosition(westPosition)
                 ? new Space(westPosition, in_subregion[westPosition.Y, westPosition.X])
                 : Space.Empty;
