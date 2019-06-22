@@ -94,10 +94,10 @@ namespace ParquetUnitTests.Rooms
         {
             var walkableAreaWithNoExit = new HashSet<Space>
             {
-                new Space(new Vector2Int(1, 1), TestWalk),
-                new Space(new Vector2Int(2, 1), TestWalk),
-                new Space(new Vector2Int(1, 2), TestWalk),
-                new Space(new Vector2Int(2, 2), TestWalk),
+                new Space(1, 1, TestWalk),
+                new Space(2, 1, TestWalk),
+                new Space(1, 2, TestWalk),
+                new Space(2, 2, TestWalk),
             };
 
             void BadWalkableAre()
