@@ -65,10 +65,8 @@ namespace ParquetClassLibrary.Rooms
             var walkableAreas = in_subregion.GetWalkableAreas();
             HashSet<Space> perimeter = null;
             var rooms = walkableAreas
-                                 .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
-                                 //.Where(walkableArea => walkableArea.Concat(perimeter)
-                                 //                                   .Any(space => space.Content.IsEntry));
-                                 .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion, parquetStack => parquetStack.IsWalkable))
+                        .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
+                        .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion, parquetStack => parquetStack.IsWalkable))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
             RegionAnalysisExtensions.ClearCaches();
