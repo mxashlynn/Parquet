@@ -7,6 +7,7 @@ using CsvHelper;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetCSVImporter.ClassMaps;
 
 namespace ParquetCSVImporter
@@ -26,6 +27,9 @@ namespace ParquetCSVImporter
 
         /// <summary>All parquets defined in the CSV files.</summary>
         public static readonly HashSet<ParquetParent> Parquets = new HashSet<ParquetParent>();
+
+        /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<RoomRecipe> RoomRecipes = new HashSet<RoomRecipe>();
 
         /// <summary>Instructions for handling integer type conversion when reading in parquet identifiers.</summary>
         public static readonly TypeConverterOptions IdentifierOptions = new TypeConverterOptions
@@ -48,8 +52,7 @@ namespace ParquetCSVImporter
             Parquets.Clear();
             Parquets.UnionWith(recordsFromCSV);
 
-            // TODO Fix this, cannot be null.
-            All.InitializeCollections(Parquets, null);
+            All.InitializeCollections(Parquets, RoomRecipes);
 
             var recordsToJSON = All.Parquets.SerializeToString();
 
