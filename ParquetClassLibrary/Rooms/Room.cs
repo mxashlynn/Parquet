@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.
     /// </summary>
-    public class Room
+    public class Room : IEquatable<Room>
     {
         /// <summary>
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
@@ -150,5 +150,65 @@ namespace ParquetClassLibrary.Rooms
                 ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
                 : EntityID.None;
         }
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for an <see cref="Room"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (WalkableArea, Perimeter).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="Room"/> is equal to the current <see cref="Room"/>.
+        /// </summary>
+        /// <param name="in_room">The <see cref="Room"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(Room in_room)
+            => null != in_room
+            && WalkableArea.SetEquals(in_room.WalkableArea)
+            && Perimeter.SetEquals(in_room.Perimeter);
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Room"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Room"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        // ReSharper disable once InconsistentNaming
+        public override bool Equals(object obj)
+            => obj is Room room && Equals(room);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="in_room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="in_room2">The second <see cref="Room"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(Room in_room1, Room in_room2)
+            => (in_room1 is null
+                && in_room2 is null)
+            || (!(in_room1 is null)
+                && !(in_room2 is null)
+                && in_room1.WalkableArea.SetEquals(in_room2.WalkableArea)
+                && in_room1.Perimeter.SetEquals(in_room2.Perimeter));
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="in_room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="in_room2">The second <see cref="Room"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(Room in_room1, Room in_room2)
+            => (!(in_room1 is null)
+                && !(in_room2 is null)
+                && !in_room1.WalkableArea.SetEquals(in_room2.WalkableArea)
+                && !in_room1.Perimeter.SetEquals(in_room2.Perimeter))
+            || (!(in_room1 is null)
+                && in_room2 is null)
+            || (in_room1 is null
+                && !(in_room2 is null));
+        #endregion
     }
 }
