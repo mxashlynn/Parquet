@@ -181,14 +181,19 @@ namespace ParquetClassLibrary
             public static class Rooms
             {
                 /// <summary>
-                /// Maximum number of open walkable spaces needed for any room to register.
+                /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MinWalkableSpaces = 4;
 
                 /// <summary>
-                /// Minimum number of open walkable spaces needed for any room to register.
+                /// Maximum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MaxWalkableSpaces = 121;
+
+                /// <summary>
+                /// Minimum number of open enclosing spaces needed for any room to register.
+                /// </summary>
+                public const int MinPerimeterSpaces = 12;
             }
         }
         #endregion

@@ -338,7 +338,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 }
             }
 
-            return null != out_perimeter;
+            return (out_perimeter?.Count ?? 0) > All.Recipes.Rooms.MinPerimeterSpaces;
 
             #region TryGetSeed Helper Method
             /// <summary>
