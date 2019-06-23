@@ -434,7 +434,7 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(TestRoomMap);
 
-        private static readonly HashSet<Space> ExistantPerimeter = new HashSet<Space>
+        private static readonly HashSet<Space> ExtantPerimeter = new HashSet<Space>
         {
             new Space(0, 0, TWall),
             new Space(1, 0, TWall),
@@ -449,16 +449,16 @@ namespace ParquetUnitTests.Rooms
             new Space(2, 3, TWall),
             new Space(3, 3, TWall),
         };
-        private static readonly HashSet<Space> ExistantWalkableArea = new HashSet<Space>
+        private static readonly HashSet<Space> ExtantWalkableArea = new HashSet<Space>
         {
             new Space(1, 1, TTile),
             new Space(2, 1, TTile),
             new Space(1, 2, TTile),
             new Space(2, 2, TTile),
         };
-        private static readonly Room ExistantRoom = new Room(ExistantWalkableArea, ExistantPerimeter);
+        private static readonly Room ExtantRoom = new Room(ExtantWalkableArea, ExtantPerimeter);
 
-        private static readonly HashSet<Space> NonexistantPerimeter = new HashSet<Space>
+        private static readonly HashSet<Space> NonextantPerimeter = new HashSet<Space>
         {
             new Space(10, 10, TWall),
             new Space(11, 10, TWall),
@@ -473,14 +473,14 @@ namespace ParquetUnitTests.Rooms
             new Space(12, 13, TWall),
             new Space(13, 13, TWall),
         };
-        private static readonly HashSet<Space> NonexistantWalkableArea = new HashSet<Space>
+        private static readonly HashSet<Space> NonextantWalkableArea = new HashSet<Space>
         {
             new Space(11, 11, TTile),
             new Space(12, 11, TTile),
             new Space(11, 12, TTile),
             new Space(12, 12, TTile),
         };
-        private static readonly Room NonexistantRoom = new Room(NonexistantWalkableArea, NonexistantPerimeter);
+        private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
         #endregion
 
         #region Finding Valid Rooms
@@ -804,15 +804,15 @@ namespace ParquetUnitTests.Rooms
 
         #region Individual Room Access
         [Fact]
-        internal void ContainsFindsExistantRoomTest()
+        internal void ContainsFindsExtantRoomTest()
         {
-            Assert.True(TestCollection.Contains(ExistantRoom));
+            Assert.True(TestCollection.Contains(ExtantRoom));
         }
 
         [Fact]
-        internal void ContainsDoesNotFindNonexistantRoomTest()
+        internal void ContainsDoesNotFindNonextantRoomTest()
         {
-            Assert.False(TestCollection.Contains(NonexistantRoom));
+            Assert.False(TestCollection.Contains(NonextantRoom));
         }
 
         [Fact]
@@ -820,7 +820,7 @@ namespace ParquetUnitTests.Rooms
         {
             var correctPosition = new Vector2Int(1, 1);
 
-            Assert.Equal(ExistantRoom, TestCollection.GetRoomAt(correctPosition));
+            Assert.Equal(ExtantRoom, TestCollection.GetRoomAt(correctPosition));
         }
 
         [Fact]
