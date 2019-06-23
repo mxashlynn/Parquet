@@ -1,5 +1,8 @@
+using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using ParquetClassLibrary;
 
 // Set assembly values.
@@ -11,6 +14,15 @@ using ParquetClassLibrary;
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
+
+// Make no promises to maintain public services.
+[assembly: ComVisible(false)]
+
+// Declare American English as the coding language.
+[assembly: NeutralResourcesLanguage("en-US")]
+
+// Show warnings on CLS-noncompliant statements to better support .NET languages other than C#.
+[assembly: CLSCompliant(true)]
 
 // Allow unit tests to access classes and members with internal accessibility.
 [assembly: InternalsVisibleTo("ParquetUnitTests")]

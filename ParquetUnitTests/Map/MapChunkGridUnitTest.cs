@@ -97,15 +97,16 @@ namespace ParquetUnitTests.Map
         #endregion
 
         #region Serialization Methods
-        [Fact]
-        public void SerializingKnownMapProducesKnownStringTest()
-        {
-            var grid = new MapChunkGrid(false).FillTestPattern();
-
-            var result = grid.SerializeToString();
-
-            Assert.Equal(SerializedMapChunkGridsForTest.KnownGoodString, result);
-        }
+        // TODO: Consider removing these, and associated pre-serialized files.
+        //[Fact]
+        //public void SerializingKnownMapProducesKnownStringTest()
+        //{
+        //    var grid = new MapChunkGrid(false).FillTestPattern();
+        //
+        //    var result = grid.SerializeToString();
+        //
+        //    Assert.Equal(SerializedMapChunkGridsForTest.KnownGoodString, result);
+        //}
 
         [Fact]
         public void DeserializingNullFailsTest()

@@ -10,6 +10,9 @@ namespace ParquetClassLibrary.Stubs
         /// <summary>The zero vector.</summary>
         public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
 
+        /// <summary>The unit vector.</summary>
+        public static readonly Vector2Int UnitVector = new Vector2Int(1, 1);
+
         /// <summary>Offset from origin in x.</summary>
         public readonly int X;
 
@@ -73,23 +76,23 @@ namespace ParquetClassLibrary.Stubs
             => obj is Vector2Int vector && Equals(vector);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is equal to
-        /// another specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// Determines whether a specified instance of <see cref="Vector2Int"/> is equal to
+        /// another specified instance of <see cref="Vector2Int"/>.
         /// </summary>
-        /// <param name="in_vector1">The first <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
-        /// <param name="in_vector2">The second <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
-        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are equal; otherwise, <c>false</c>.</returns>
+        /// <param name="in_vector1">The first <see cref="Vector2Int"/> to compare.</param>
+        /// <param name="in_vector2">The second <see cref="Vector2Int"/> to compare.</param>
+        /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Vector2Int in_vector1, Vector2Int in_vector2)
             => in_vector1.X == in_vector2.X
             && in_vector1.Y == in_vector2.Y;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> is not equal
-        /// to another specified instance of <see cref="ParquetClassLibrary.Stubs.Vector2Int"/>.
+        /// Determines whether a specified instance of <see cref="Vector2Int"/> is not equal
+        /// to another specified instance of <see cref="Vector2Int"/>.
         /// </summary>
-        /// <param name="in_vector1">The first <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
-        /// <param name="in_vector2">The second <see cref="ParquetClassLibrary.Stubs.Vector2Int"/> to compare.</param>
-        /// <returns><c>true</c> if <c>in_vector1</c> and <c>in_vector2</c> are NOT equal; otherwise, <c>false</c>.</returns>
+        /// <param name="in_vector1">The first <see cref="Vector2Int"/> to compare.</param>
+        /// <param name="in_vector2">The second <see cref="Vector2Int"/> to compare.</param>
+        /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Vector2Int in_vector1, Vector2Int in_vector2)
             => in_vector1.X != in_vector2.X
             || in_vector1.Y != in_vector2.Y;

@@ -36,6 +36,9 @@ namespace ParquetUnitTests
         public static Block TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static Block TestLiquid { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static Furnishing TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -59,6 +62,9 @@ namespace ParquetUnitTests
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<ParquetParent> Parquets { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static List<RoomRecipe> RoomRecipes { get; }
         #endregion
 
         static TestEntities()
@@ -70,6 +76,7 @@ namespace ParquetUnitTests
                               All.BiomeIDs.Minimum, Behavior.Still);
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", in_addsToRoom: TestTag);
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", in_addsToRoom: TestTag);
+            TestLiquid = new Block(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", in_isLiquid: true, in_addsToRoom: TestTag);
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
                                             in_isEntry: true, in_addsToRoom: TestTag);
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
@@ -89,8 +96,9 @@ namespace ParquetUnitTests
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
 
             // Sets up All so that bounds can be checked in various constructors.
-            Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestFurnishing, TestCollectible };
-            All.InitializeCollections(Parquets);
+            Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
+            RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
+            All.InitializeCollections(Parquets, RoomRecipes);
         }
     }
 }

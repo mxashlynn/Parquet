@@ -117,7 +117,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection CraftingRecipes { get; }
+        public static EntityCollection<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
@@ -125,7 +125,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection Items { get; }
+        public static EntityCollection<Item> Items { get; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -141,7 +141,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection RoomRecipes { get; }
+        public static EntityCollection<RoomRecipe> RoomRecipes { get; private set; }
         #endregion
 
         #region Rules and Parameters
@@ -173,42 +173,27 @@ namespace ParquetClassLibrary
         {
             // TODO Add class for crafting rules here.
 
+            // TODO Move all rules and parameters to dedicated GameRules static class.
+
             /// <summary>
             /// Provides recipe requirements for the game.
             /// </summary>
             public static class Rooms
             {
                 /// <summary>
-                /// Maximum number of open walkable spaces needed for any room to register.
+                /// Minimum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MinWalkableSpaces = 4;
 
                 /// <summary>
-                /// Minimum number of open walkable spaces needed for any room to register.
+                /// Maximum number of open walkable spaces needed for any room to register.
                 /// </summary>
                 public const int MaxWalkableSpaces = 121;
 
                 /// <summary>
-                /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches the given <see cref="Room"/>.
+                /// Minimum number of open enclosing spaces needed for any room to register.
                 /// </summary>
-                /// <param name="in_room">The <see cref="Room"/> to match.</param>
-                /// <returns>The best match's <see cref="EntityID"/>.</returns>
-                public static EntityID FindBestMatch(Room in_room)
-                {
-                    var matches = new List<RoomRecipe>();
-
-                    foreach (RoomRecipe recipe in RoomRecipes)
-                    {
-                        if (recipe.Matches(in_room))
-                        {
-                            matches.Add(recipe);
-                        }
-                    }
-
-                    return matches.Count > 0
-                        ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
-                        : EntityID.None;
-                }
+                public const int MinPerimeterSpaces = 12;
             }
         }
         #endregion
@@ -225,10 +210,10 @@ namespace ParquetClassLibrary
             #region Default Values for Enitity Collections
             _collectionsHaveBeenInitialized = false;
             Beings = EntityCollection<Being>.Default;
-            CraftingRecipes = EntityCollection.Default;
-            Items = EntityCollection.Default;
+            CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
+            Items = EntityCollection<Item>.Default;
             Parquets = EntityCollection<ParquetParent>.Default;
-            RoomRecipes = EntityCollection.Default;
+            RoomRecipes = EntityCollection<RoomRecipe>.Default;
             #endregion
 
             #region Initialize Ranges
@@ -237,7 +222,7 @@ namespace ParquetClassLibrary
             var TargetMultiple = 10000;
 
             #region Define Ranges
-            PlayerCharacterIDs = new Range<EntityID>(1, 9999);
+            PlayerCharacterIDs = new Range<EntityID>(1, 9000);
             CritterIDs = new Range<EntityID>(10000, 19000);
             NpcIDs = new Range<EntityID>(20000, 29000);
 
@@ -298,7 +283,8 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         // TODO Make an version that takes serialized strings instead of ienumerables.
-        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets)
+        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets,
+                                                 IEnumerable<RoomRecipe> in_roomRecipes)
         {
             if (_collectionsHaveBeenInitialized)
             {
@@ -308,10 +294,10 @@ namespace ParquetClassLibrary
 
             // TODO Uncomment these once we have CSV import implemented for non-parquets.
             //Beings = new EntityCollection<Being>(BeingIDs);
-            //CraftingRecipes = new EntityCollection(CraftingRecipeIDs);
-            //Items = new EntityCollection(ItemIDs);
+            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs);
+            //Items = new EntityCollection<Item>(ItemIDs);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
-            //RoomRecipes = new EntityCollection(RoomRecipeIDs);
+            RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
 
             _collectionsHaveBeenInitialized = true;
         }

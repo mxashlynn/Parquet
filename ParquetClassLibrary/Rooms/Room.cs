@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.
     /// </summary>
-    public class Room
+    public class Room : IEquatable<Room>
     {
         /// <summary>
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
@@ -66,8 +66,8 @@ namespace ParquetClassLibrary.Rooms
         public Vector2Int Position
             => (Vector2Int)(
                 null == _cachedPosition
-                    ? _cachedPosition = new Vector2Int(Perimeter.Select(space => space.Position.X).Min(),
-                                                       Perimeter.Select(space => space.Position.Y).Min())
+                    ? _cachedPosition = new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
+                                                       WalkableArea.Select(space => space.Position.Y).Min())
                     : _cachedPosition);
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public EntityID RecipeID
             => (EntityID)(null == _cachedRecipeID
-                ? _cachedRecipeID = All.Recipes.Rooms.FindBestMatch(this)
+                ? _cachedRecipeID = FindBestMatch()
                 : _cachedRecipeID);
 
         #region Initialization
@@ -98,18 +98,14 @@ namespace ParquetClassLibrary.Rooms
         public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
+            Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
+            Precondition.IsNotEmpty(in_perimeter, nameof(in_perimeter));
 
             if (in_walkableArea.Count < All.Recipes.Rooms.MinWalkableSpaces
                 || in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
             {
                 throw new IndexOutOfRangeException(nameof(in_walkableArea));
-            }
-
-            var minimumPossiblePerimeterLength = 2 * in_walkableArea.Count + 2;
-            if (in_perimeter.Count < minimumPossiblePerimeterLength)
-            {
-                throw new IndexOutOfRangeException($"{nameof(in_perimeter)} is too small to surround {nameof(in_walkableArea)}.");
             }
 
             if (!in_walkableArea.Concat(in_perimeter).Any(space
@@ -120,6 +116,7 @@ namespace ParquetClassLibrary.Rooms
 
             WalkableArea = in_walkableArea;
             Perimeter = in_perimeter;
+            _cachedRecipeID = FindBestMatch();
         }
         #endregion
 
@@ -141,5 +138,77 @@ namespace ParquetClassLibrary.Rooms
             _cachedRecipeID = null;
             _cachedFurnishings = null;
         }
+
+        /// <summary>
+        /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
+        /// </summary>
+        private EntityID FindBestMatch()
+        {
+            // TODO Can we skip the Any() comparison and condense this into a single line?
+            var matches = All.RoomRecipes.Where(entity => entity?.Matches(this) ?? false);
+            return matches.Any()
+                ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
+                : EntityID.None;
+        }
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for an <see cref="Room"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (WalkableArea, Perimeter).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="Room"/> is equal to the current <see cref="Room"/>.
+        /// </summary>
+        /// <param name="in_room">The <see cref="Room"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(Room in_room)
+            => null != in_room
+            && WalkableArea.SetEquals(in_room.WalkableArea)
+            && Perimeter.SetEquals(in_room.Perimeter);
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Room"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Room"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        // ReSharper disable once InconsistentNaming
+        public override bool Equals(object obj)
+            => obj is Room room && Equals(room);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="in_room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="in_room2">The second <see cref="Room"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(Room in_room1, Room in_room2)
+            => (in_room1 is null
+                && in_room2 is null)
+            || (!(in_room1 is null)
+                && !(in_room2 is null)
+                && in_room1.WalkableArea.SetEquals(in_room2.WalkableArea)
+                && in_room1.Perimeter.SetEquals(in_room2.Perimeter));
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Entity"/>.
+        /// </summary>
+        /// <param name="in_room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="in_room2">The second <see cref="Room"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(Room in_room1, Room in_room2)
+            => (!(in_room1 is null)
+                && !(in_room2 is null)
+                && !in_room1.WalkableArea.SetEquals(in_room2.WalkableArea)
+                && !in_room1.Perimeter.SetEquals(in_room2.Perimeter))
+            || (!(in_room1 is null)
+                && in_room2 is null)
+            || (in_room1 is null
+                && !(in_room2 is null));
+        #endregion
     }
 }

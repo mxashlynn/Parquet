@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Stubs;
 using Xunit;
 using System;
@@ -19,28 +18,28 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
-        private static readonly HashSet<Space> TestPerimeter= new HashSet<Space>
+        private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
         {
-            new Space(new Vector2Int(0, 0), TestWall),
-            new Space(new Vector2Int(1, 0), TestWall),
-            new Space(new Vector2Int(2, 0), TestWall),
-            new Space(new Vector2Int(3, 0), TestWall),
-            new Space(new Vector2Int(0, 1), TestWall),
-            new Space(new Vector2Int(3, 1), TestWall),
-            new Space(new Vector2Int(0, 2), TestWall),
-            new Space(new Vector2Int(3, 2), TestWall),
-            new Space(new Vector2Int(0, 3), TestWall),
-            new Space(new Vector2Int(1, 3), TestWall),
-            new Space(new Vector2Int(2, 3), TestWall),
-            new Space(new Vector2Int(3, 3), TestWall),
+            new Space(0, 0, TestWall),
+            new Space(1, 0, TestWall),
+            new Space(2, 0, TestWall),
+            new Space(3, 0, TestWall),
+            new Space(0, 1, TestWall),
+            new Space(3, 1, TestWall),
+            new Space(0, 2, TestWall),
+            new Space(3, 2, TestWall),
+            new Space(0, 3, TestWall),
+            new Space(1, 3, TestWall),
+            new Space(2, 3, TestWall),
+            new Space(3, 3, TestWall),
         };
 
         private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
         {
-            new Space(new Vector2Int(1, 1), TestWalk),
-            new Space(new Vector2Int(2, 1), TestWalk),
-            new Space(new Vector2Int(1, 2), TestWalk),
-            new Space(new Vector2Int(2, 2), TestEntry),
+            new Space(1, 1, TestWalk),
+            new Space(2, 1, TestWalk),
+            new Space(1, 2, TestWalk),
+            new Space(2, 2, TestEntry),
         };
 
         private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
@@ -95,10 +94,10 @@ namespace ParquetUnitTests.Rooms
         {
             var walkableAreaWithNoExit = new HashSet<Space>
             {
-                new Space(new Vector2Int(1, 1), TestWalk),
-                new Space(new Vector2Int(2, 1), TestWalk),
-                new Space(new Vector2Int(1, 2), TestWalk),
-                new Space(new Vector2Int(2, 2), TestWalk),
+                new Space(1, 1, TestWalk),
+                new Space(2, 1, TestWalk),
+                new Space(1, 2, TestWalk),
+                new Space(2, 2, TestWalk),
             };
 
             void BadWalkableAre()
@@ -117,7 +116,6 @@ namespace ParquetUnitTests.Rooms
             Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
         }
 
-
         [Fact]
         internal void UncontainedPositionIsNotFoundTest()
         {
@@ -125,6 +123,32 @@ namespace ParquetUnitTests.Rooms
                                                      TestPerimeter.Select(space => space.Position.Y).Min() - 1);
 
             Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));
+        }
+
+        [Fact]
+        internal void IdenticalRoomsAreEqualTest()
+        {
+            var room1 = new Room(TestWalkableArea, TestPerimeter);
+            var room2 = new Room(TestWalkableArea, TestPerimeter);
+
+            Assert.Equal(room1, room2);
+        }
+
+        [Fact]
+        internal void DifferingRoomsAreUnequalTest()
+        {
+            var otherWalkableArea = new HashSet<Space>
+            {
+                new Space(1, 1, TestEntry),
+                new Space(2, 1, TestWalk),
+                new Space(1, 2, TestWalk),
+                new Space(2, 2, TestWalk),
+            };
+
+            var room1 = new Room(TestWalkableArea, TestPerimeter);
+            var room2 = new Room(otherWalkableArea, TestPerimeter);
+
+            Assert.NotEqual(room1, room2);
         }
     }
 }
