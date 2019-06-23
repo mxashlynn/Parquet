@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Rooms
 
     /// <summary>
     /// Stores a <see cref="Room"/> collection.
-    /// Analysises subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
+    /// Analyzes subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
     /// </summary>
     /// <remarks>
     /// For a complete explanation of the algorithm implemented here, see:
@@ -96,7 +96,7 @@ namespace ParquetClassLibrary.Rooms
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>
-    /// Extension methods used in analysing subregions.
+    /// Extension methods used in analyzing subregions.
     /// </summary>
     internal static class RegionAnalysisExtensions
     {
@@ -322,9 +322,9 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     // Find the perimeter.
                     potentialPerimeter = GetPotentialPerimeter(northSeed);
 
-                    if(potentialPerimeter.Count > maxPerimeterCount)
+                    // TODO Probably remove this check and this variable after debugging.
+                    if (potentialPerimeter.Count > maxPerimeterCount)
                     {
-                        // TODO Probably remove this check and this variable after debugging.
                         throw new Exception("Perimeter is larger than it should be.");
                     }
 
