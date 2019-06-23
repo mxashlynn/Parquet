@@ -367,6 +367,8 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TWall, TWall, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        // IDEA: If flooded entries become a problem, uncomment this test.
+        /*
         private static readonly ParquetStack[,] FloodedStepMap =
         {
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
@@ -377,6 +379,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        */
         private static readonly ParquetStack[,] DisconectedEntryMap =
         {
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
@@ -683,6 +686,8 @@ namespace ParquetUnitTests.Rooms
             Assert.Equal(0, collection.Count);
         }
 
+        // IDEA If flooded entries become a problem, uncomment this test.
+        /*
         [Fact]
         internal void FloodedStepYieldsNoRoomsTest()
         {
@@ -690,6 +695,7 @@ namespace ParquetUnitTests.Rooms
 
             Assert.Equal(0, collection.Count);
         }
+        */
 
         [Fact]
         internal void IncompletePerimeterYieldsNoRoomsTest()
