@@ -217,7 +217,7 @@ namespace ParquetClassLibrary
             var TargetMultiple = 10000;
 
             #region Define Ranges
-            PlayerCharacterIDs = new Range<EntityID>(1, 9999);
+            PlayerCharacterIDs = new Range<EntityID>(1, 9000);
             CritterIDs = new Range<EntityID>(10000, 19000);
             NpcIDs = new Range<EntityID>(20000, 29000);
 
