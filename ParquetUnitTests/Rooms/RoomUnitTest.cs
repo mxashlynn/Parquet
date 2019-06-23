@@ -18,7 +18,7 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
-        private static readonly HashSet<Space> TestPerimeter= new HashSet<Space>
+        private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
         {
             new Space(0, 0, TestWall),
             new Space(1, 0, TestWall),
@@ -116,7 +116,6 @@ namespace ParquetUnitTests.Rooms
             Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
         }
 
-
         [Fact]
         internal void UncontainedPositionIsNotFoundTest()
         {
@@ -124,6 +123,32 @@ namespace ParquetUnitTests.Rooms
                                                      TestPerimeter.Select(space => space.Position.Y).Min() - 1);
 
             Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));
+        }
+
+        [Fact]
+        internal void IdenticalRoomsAreEqualTest()
+        {
+            var room1 = new Room(TestWalkableArea, TestPerimeter);
+            var room2 = new Room(TestWalkableArea, TestPerimeter);
+
+            Assert.Equal(room1, room2);
+        }
+
+        [Fact]
+        internal void DifferingRoomsAreUnequalTest()
+        {
+            var otherWalkableArea = new HashSet<Space>
+            {
+                new Space(1, 1, TestEntry),
+                new Space(2, 1, TestWalk),
+                new Space(1, 2, TestWalk),
+                new Space(2, 2, TestWalk),
+            };
+
+            var room1 = new Room(TestWalkableArea, TestPerimeter);
+            var room2 = new Room(otherWalkableArea, TestPerimeter);
+
+            Assert.NotEqual(room1, room2);
         }
     }
 }
