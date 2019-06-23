@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_position">An in-bonds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
         public Room GetRoomAt(Vector2Int in_position)
-            => Rooms.First(room => room.ContainsPosition(in_position));
+            => Rooms.FirstOrDefault(room => room.ContainsPosition(in_position));
 
         #region Initialization
         /// <summary>
