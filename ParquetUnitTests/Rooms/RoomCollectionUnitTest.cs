@@ -30,8 +30,8 @@ namespace ParquetUnitTests.Rooms
         {
             { TWall, TWall, TWall, TWall, TVoid, },
             { TWall, TTile, TTile, TWall, TVoid, },
-            { TWall, TTile, TTile, TWall, TVoid, },
-            { TWall, TWall, TDoor, TWall, TVoid, },
+            { TWall, TTile, TTile, TDoor, TVoid, },
+            { TWall, TWall, TWall, TWall, TVoid, },
         };
         private static readonly ParquetStack[,] OneSimpleRoomMap =
         {
