@@ -267,15 +267,16 @@ namespace ParquetUnitTests.Map
         #endregion
 
         #region Serialization Methods
-        [Fact]
-        public void SerializingKnownMapProducesKnownStringTest()
-        {
-            var region = new MapRegion(false).FillTestPattern();
-
-            var result = region.SerializeToString();
-
-            Assert.Equal(SerializedRegionMapsForTest.KnownGoodString, result);
-        }
+        // TODO: Consider removing these, and associated pre-serialized files.
+        //[Fact]
+        //public void SerializingKnownMapProducesKnownStringTest()
+        //{
+        //    var region = new MapRegion(false).FillTestPattern();
+        //
+        //    var result = region.SerializeToString();
+        //
+        //    Assert.Equal(SerializedRegionMapsForTest.KnownGoodString, result);
+        //}
 
         [Fact]
         public void DeserializingNullFailsTest()
