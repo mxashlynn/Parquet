@@ -385,7 +385,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
                 if (!potentialPerimeters.ContainsKey(key))
                 {
-                    var found = in_subregion.GetSpaces().Search(in_subregion,
+                    var found = in_subregion.GetSpaces().Search(in_start, in_subregion,
                                                                 space => space.Content.IsEnclosing,
                                                                 space => false).Visited;
                     potentialPerimeters.Add(key, found);
@@ -431,7 +431,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         internal static bool CheckIfAllSpacesAreReachable(this HashSet<Space> in_spaceSet,
                                                           ParquetStack[,] in_subregion,
                                                           Predicate<Space> in_isApplicable)
-            => in_spaceSet.Search(in_subregion, in_isApplicable, space => false).Visited.Count == in_spaceSet.Count;
+            => in_spaceSet.Search(in_spaceSet.First(),
+                                  in_subregion,
+                                  in_isApplicable,
+                                  space => false).Visited.Count == in_spaceSet.Count;
 
         /// <summary>
         /// Determines if it is possible to reach <see cref="Space"/> whose
@@ -445,7 +448,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
         internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
                                               Predicate<Space> in_isApplicable)
-            => in_spaceSet.Search(in_subregion,
+            => in_spaceSet.Search(in_spaceSet.First(),
+                                  in_subregion,
                                   in_isApplicable,
                                   space => space.Content.IsEntry
                                         || space.NorthNeighbor(in_subregion, IsValidPosition).Content.IsEntry
@@ -470,6 +474,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// Second valye is a list of all <see cref="Space"/>s that were visited during the search.
         /// </returns>
         internal static (bool GoalFound, HashSet<Space> Visited) Search(this HashSet<Space> in_spaceSet,
+                                                                        Space in_start,
                                                                         ParquetStack[,] in_subregion,
                                                                         Predicate<Space> in_isApplicable,
                                                                         Predicate<Space> in_isGoal)
@@ -477,9 +482,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
             Precondition.IsNotEmpty(in_spaceSet);
 
             var visited = new HashSet<Space>();
-            var start = in_spaceSet.First();
 
-            return (DepthFirstSearch(start), visited);
+            return (DepthFirstSearch(in_start), visited);
 
             /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
             /// <param name="in_space">The <see cref="Space"/> under consideration this stack frame.</param>
