@@ -476,8 +476,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
                                               Predicate<Space> in_isTarget)
         {
+            Precondition.IsNotEmpty(in_spaceSet);
+
             var visited = new HashSet<int>();
-            var start = in_spaceSet.FirstOrDefault();
+            var start = in_spaceSet.First();
             var consistent = IsValidPosition(start.Position);
 
             return consistent && ConditionalDepthFirstSearch(start, parquetStack => parquetStack.IsEntry);
