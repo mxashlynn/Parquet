@@ -66,7 +66,8 @@ namespace ParquetClassLibrary.Rooms
             HashSet<Space> perimeter = null;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
-                        .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion, parquetStack => parquetStack.IsWalkable))
+                        .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion,
+                                                                             space => walkableArea.Contains(space)))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
             RegionAnalysisExtensions.ClearCaches();
@@ -473,7 +474,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <param name="in_isTarget">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
         internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
-                                              Predicate<ParquetStack> in_isTarget)
+                                              Predicate<Space> in_isTarget)
         {
             var visited = new HashSet<int>();
             var start = in_spaceSet.FirstOrDefault();
@@ -489,7 +490,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 bool result = false;
 
                 if (consistent
-                    && in_isTarget(in_space.Content)
+                    && in_isTarget(in_space)
                     && !visited.Contains(in_space.GetHashCode()))
                 {
                     if (in_spaceSet.Contains(in_space))
