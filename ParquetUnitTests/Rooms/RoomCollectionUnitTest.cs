@@ -493,6 +493,14 @@ namespace ParquetUnitTests.Rooms
         }
 
         [Fact]
+        internal void OneSimpleRoomFoundTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
+
+            Assert.Equal(1, collection.Count);
+        }
+
+        [Fact]
         internal void OneRoomCentralPillarFoundTest()
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCentralPillarMap);
@@ -584,14 +592,6 @@ namespace ParquetUnitTests.Rooms
         internal void OneRoomUShapeFoundTest()
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomUShapeMap);
-
-            Assert.Equal(1, collection.Count);
-        }
-
-        [Fact]
-        internal void OneSimpleRoomFoundTest()
-        {
-            var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
 
             Assert.Equal(1, collection.Count);
         }
