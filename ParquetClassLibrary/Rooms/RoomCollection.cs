@@ -412,9 +412,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
             if (!potentiallyConnectedCollections.ContainsKey(key))
             {
-                potentiallyConnectedCollections.Add(key, CheckIfAllSpacesAreReachable(in_spaceSet,
-                                                                                      in_subregion,
-                                                                                      in_isApplicable));
+                potentiallyConnectedCollections.Add(key,
+                    in_spaceSet.CheckIfAllSpacesAreReachable(in_subregion, in_isApplicable));
             }
 
             return potentiallyConnectedCollections[key];
