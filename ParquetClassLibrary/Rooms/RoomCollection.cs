@@ -70,6 +70,9 @@ namespace ParquetClassLibrary.Rooms
                                                                              space => walkableArea.Contains(space)))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
+            // TODO: We need a test case that is a looping set of enclosing spaces that contain all
+            // extrema but fail to completely surround the walkable area.
+
             RegionAnalysisExtensions.ClearCaches();
 
             return new RoomCollection(rooms);
@@ -94,6 +97,7 @@ namespace ParquetClassLibrary.Rooms
     }
 }
 
+// TODO Make a class that is a HashSet<Space> with all of the associated functionality found here.
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>
