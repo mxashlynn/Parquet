@@ -319,6 +319,12 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         throw new Exception("Perimeter is larger than it should be.");
                     }
 
+                    // TODO Probably remove this check after debugging.
+                    if (potentialPerimeter.Count < All.Recipes.Rooms.MinPerimeterSpaces)
+                    {
+                        throw new Exception("Perimeter is smaller than it should be.");
+                    }
+
                     // Validate the perimeter.
                     // TODO We actually need to ensure that the perimeter is a cycle.
                     out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion, space => space.Content.IsEnclosing)
