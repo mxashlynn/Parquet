@@ -47,6 +47,48 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
+        #region Position Offsets
+        /// <summary>Finds the <see cref="Space"/> related to the given space by the given offset, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <param name="in_isValid"><c>true</c> when the given position is defined for the given subregion.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space Neighbor(ParquetStack[,] in_subregion, Predicate<Vector2Int> in_isValid, Vector2Int in_offset)
+        {
+            var offsetPosition = Position + in_offset;
+            return in_isValid(offsetPosition)
+                ? new Space(offsetPosition, in_subregion[offsetPosition.Y, offsetPosition.X])
+                : Empty;
+        }
+
+        /// <summary>Finds the <see cref="Space"/> to the north of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <param name="in_isValid"><c>true</c> when the given position is defined for the given subregion.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space NorthNeighbor(ParquetStack[,] in_subregion, Predicate<Vector2Int> in_isValid)
+            => Neighbor(in_subregion, in_isValid, Vector2Int.North);
+
+        /// <summary>Finds the <see cref="Space"/> to the south of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <param name="in_isValid"><c>true</c> when the given position is defined for the given subregion.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space SouthNeighbor(ParquetStack[,] in_subregion, Predicate<Vector2Int> in_isValid)
+            => Neighbor(in_subregion, in_isValid, Vector2Int.South);
+
+        /// <summary>Finds the <see cref="Space"/> to the east of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <param name="in_isValid"><c>true</c> when the given position is defined for the given subregion.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space EastNeighbor(ParquetStack[,] in_subregion, Predicate<Vector2Int> in_isValid)
+            => Neighbor(in_subregion, in_isValid, Vector2Int.East);
+
+        /// <summary>Finds the <see cref="Space"/> to the west of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <param name="in_isValid"><c>true</c> when the given position is defined for the given subregion.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space WestNeighbor(ParquetStack[,] in_subregion, Predicate<Vector2Int> in_isValid)
+            => Neighbor(in_subregion, in_isValid, Vector2Int.West);
+        #endregion
+
         #region IEquatable Implementation
         /// <summary>
         /// Serves as a hash function for a <see cref="Space"/> struct.

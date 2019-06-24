@@ -3,7 +3,7 @@ using System;
 namespace ParquetClassLibrary.Stubs
 {
     /// <summary>
-    /// Stand-in for Unity Vector2 class.
+    /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
     public struct Vector2Int : IEquatable<Vector2Int>
     {
@@ -12,6 +12,18 @@ namespace ParquetClassLibrary.Stubs
 
         /// <summary>The unit vector.</summary>
         public static readonly Vector2Int UnitVector = new Vector2Int(1, 1);
+
+        /// <summary>The vector offset to the North.</summary>
+        public static readonly Vector2Int North = new Vector2Int(0, -1);
+
+        /// <summary>The vector offset to the South.</summary>
+        public static readonly Vector2Int South = new Vector2Int(0, 1);
+
+        /// <summary>The vector offset to the East.</summary>
+        public static readonly Vector2Int East = new Vector2Int(1, 0);
+
+        /// <summary>The vector offset to the West.</summary>
+        public static readonly Vector2Int West = new Vector2Int(-1, 0);
 
         /// <summary>Offset from origin in x.</summary>
         public readonly int X;
@@ -48,6 +60,35 @@ namespace ParquetClassLibrary.Stubs
             Y = in_y;
             _magnitude = int.MinValue;
         }
+
+        #region Vector Math
+        /// <summary>
+        /// Sums the given vectors.
+        /// </summary>
+        /// <param name="in_vector1">First operand.</param>
+        /// <param name="in_vector2">Second operand.</param>
+        /// <returns>A vector representing the sum of the given vectors.</returns>
+        public static Vector2Int operator +(Vector2Int in_vector1, Vector2Int in_vector2)
+            => new Vector2Int(in_vector1.X + in_vector2.X, in_vector1.Y + in_vector2.Y);
+
+        /// <summary>
+        /// Finds the difference between the given vectors.
+        /// </summary>
+        /// <param name="in_vector1">First operand.</param>
+        /// <param name="in_vector2">Second operand.</param>
+        /// <returns>A vector representing the difference of the given vectors.</returns>
+        public static Vector2Int operator -(Vector2Int in_vector1, Vector2Int in_vector2)
+            => new Vector2Int(in_vector1.X - in_vector2.X, in_vector1.Y - in_vector2.Y);
+
+        /// <summary>
+        /// Scales a vector.
+        /// </summary>
+        /// <param name="in_scalar">The scalar.</param>
+        /// <param name="in_vector">The vector.</param>
+        /// <returns>A scaled vector.</returns>
+        public static Vector2Int operator *(int in_scalar, Vector2Int in_vector)
+            => new Vector2Int(in_scalar * in_vector.X, in_scalar * in_vector.Y);
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>

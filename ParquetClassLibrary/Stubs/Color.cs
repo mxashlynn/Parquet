@@ -3,7 +3,7 @@ using System;
 namespace ParquetClassLibrary.Stubs
 {
     /// <summary>
-    /// Stand-in for Unity Color class.
+    /// A simple representation of RGBA color, tailored for Parquet's needs.
     /// </summary>
     public struct Color : IEquatable<Color>
     {

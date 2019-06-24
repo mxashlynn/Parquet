@@ -150,42 +150,6 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
             && in_position.X < subregionCols
             && in_position.Y < subregionRows;
 
-        /// <summary>Finds the <see cref="Space"/> to the north of the given space, if any.</summary>
-        /// <param name="in_space">The <see cref="Space"/> to move north from.</param>
-        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
-        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
-        private static Space ToNorth(Space in_space, ParquetStack[,] in_subregion)
-        {
-            var northPosition = new Vector2Int(in_space.Position.X, in_space.Position.Y - 1);
-            return IsValidPosition(northPosition)
-                ? new Space(northPosition, in_subregion[northPosition.Y, northPosition.X])
-                : Space.Empty;
-        }
-
-        /// <summary>Finds the <see cref="Space"/> to the south of the given space, if any.</summary>
-        /// <param name="in_space">The <see cref="Space"/> to move south from.</param>
-        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
-        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
-        private static Space ToSouth(Space in_space, ParquetStack[,] in_subregion)
-        {
-            var southPosition = new Vector2Int(in_space.Position.X, in_space.Position.Y + 1);
-            return IsValidPosition(southPosition)
-                ? new Space(southPosition, in_subregion[southPosition.Y, southPosition.X])
-                : Space.Empty;
-        }
-
-        /// <summary>Finds the <see cref="Space"/> to the east of the given space, if any.</summary>
-        /// <param name="in_space">The <see cref="Space"/> to east north from.</param>
-        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
-        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Space.Empty"/> otherwise.</returns>
-        private static Space ToEast(Space in_space, ParquetStack[,] in_subregion)
-        {
-            var eastPosition = new Vector2Int(in_space.Position.X + 1, in_space.Position.Y);
-            return IsValidPosition(eastPosition)
-                ? new Space(eastPosition, in_subregion[eastPosition.Y, eastPosition.X])
-                : Space.Empty;
-        }
-
         /// <summary>Finds the <see cref="Space"/> to the west of the given space, if any.</summary>
         /// <param name="in_space">The <see cref="Space"/> to move west from.</param>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
@@ -407,10 +371,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                 found.Add(in_space);
 
                                 // And continue, examining all children in order.
-                                InOrderDepthFirstTraversal(ToNorth(in_space, in_subregion));
-                                InOrderDepthFirstTraversal(ToSouth(in_space, in_subregion));
-                                InOrderDepthFirstTraversal(ToEast(in_space, in_subregion));
-                                InOrderDepthFirstTraversal(ToWest(in_space, in_subregion));
+                                InOrderDepthFirstTraversal(in_space.NorthNeighbor(in_subregion, IsValidPosition));
+                                InOrderDepthFirstTraversal(in_space.SouthNeighbor(in_subregion, IsValidPosition));
+                                InOrderDepthFirstTraversal(in_space.EastNeighbor(in_subregion, IsValidPosition));
+                                InOrderDepthFirstTraversal(in_space.WestNeighbor(in_subregion, IsValidPosition));
                             }
                         }
                     }
@@ -482,10 +446,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         visited.Add(in_space.GetHashCode());
 
                         // And continue, examining all children in order.
-                        ConditionalDepthFirstTraversal(ToNorth(in_space, in_subregion));
-                        ConditionalDepthFirstTraversal(ToSouth(in_space, in_subregion));
-                        ConditionalDepthFirstTraversal(ToEast(in_space, in_subregion));
-                        ConditionalDepthFirstTraversal(ToWest(in_space, in_subregion));
+                        ConditionalDepthFirstTraversal(in_space.NorthNeighbor(in_subregion, IsValidPosition));
+                        ConditionalDepthFirstTraversal(in_space.SouthNeighbor(in_subregion, IsValidPosition));
+                        ConditionalDepthFirstTraversal(in_space.EastNeighbor(in_subregion, IsValidPosition));
+                        ConditionalDepthFirstTraversal(in_space.WestNeighbor(in_subregion, IsValidPosition));
                     }
                     else
                     {
@@ -531,10 +495,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     if (in_spaceSet.Contains(in_space))
                     {
                         if (in_isGoal(in_space.Content)
-                            || in_isGoal(ToNorth(in_space, in_subregion).Content)
-                            || in_isGoal(ToSouth(in_space, in_subregion).Content)
-                            || in_isGoal(ToEast(in_space, in_subregion).Content)
-                            || in_isGoal(ToWest(in_space, in_subregion).Content))
+                            || in_isGoal(in_space.NorthNeighbor(in_subregion, IsValidPosition).Content)
+                            || in_isGoal(in_space.SouthNeighbor(in_subregion, IsValidPosition).Content)
+                            || in_isGoal(in_space.EastNeighbor(in_subregion, IsValidPosition).Content)
+                            || in_isGoal(in_space.WestNeighbor(in_subregion, IsValidPosition).Content))
                         {
                             result = true;
                         }
@@ -544,10 +508,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                             visited.Add(in_space.GetHashCode());
 
                             // And continue, examining all children in order.
-                            result = ConditionalDepthFirstSearch(ToNorth(in_space, in_subregion), in_isGoal)
-                                || ConditionalDepthFirstSearch(ToSouth(in_space, in_subregion), in_isGoal)
-                                || ConditionalDepthFirstSearch(ToEast(in_space, in_subregion), in_isGoal)
-                                || ConditionalDepthFirstSearch(ToWest(in_space, in_subregion), in_isGoal);
+                            result = ConditionalDepthFirstSearch(in_space.NorthNeighbor(in_subregion, IsValidPosition), in_isGoal)
+                                || ConditionalDepthFirstSearch(in_space.SouthNeighbor(in_subregion, IsValidPosition), in_isGoal)
+                                || ConditionalDepthFirstSearch(in_space.EastNeighbor(in_subregion, IsValidPosition), in_isGoal)
+                                || ConditionalDepthFirstSearch(in_space.WestNeighbor(in_subregion, IsValidPosition), in_isGoal);
                         }
                     }
                     else
