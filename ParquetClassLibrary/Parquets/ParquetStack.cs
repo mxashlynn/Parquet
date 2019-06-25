@@ -1,4 +1,5 @@
 using System;
+using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -149,6 +150,22 @@ namespace ParquetClassLibrary.Parquets
         public override string ToString()
             => $"[{Floor} {Block} {Furnishing} {Collectible}]";
         #endregion
+    }
 
+    /// <summary>
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetStack"/>s.
+    /// </summary>
+    public static class ParquetStackArrayExtensions
+    {
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the current array.
+        /// </summary>
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2Int in_position)
+            => in_position.X > -1
+            && in_position.Y > -1
+            && in_position.X < in_subregion.GetLength(1)
+            && in_position.Y < in_subregion.GetLength(0);
     }
 }
