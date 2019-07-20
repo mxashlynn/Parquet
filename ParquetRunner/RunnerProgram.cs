@@ -5,7 +5,7 @@ using ParquetClassLibrary.Map;
 namespace ParquetRunner
 {
     /// <summary>
-    /// A simple progream used to run some basic features of the <see cref="ParquetClassLibrary"/>.
+    /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
     /// </summary>
     internal class MainClass
     {
