@@ -1,5 +1,5 @@
 ID,Name,Description,Comment,Tier,ElevationCategory,IsLquidBased,ParquetCriteria,EntryRequirements
--100000,2 Block Test Parquet,Test,Test,1,LevelGround,TRUE,None,None
+-100000,- Biome Test,Test,Test,1,LevelGround,TRUE,None,None
 100000,Alpine,,,4,AboveGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key; SeasideKey; TundraKey; AlpineKey
 100001,Cavern,,,3,BelowGround,FALSE,None,ForestKey; CavernKey; Tier2Key; Tier3Key
 100002,Desert,,,2,LevelGround,FALSE,Deserted,SeasideKey; DesertKey; Tier2Key
