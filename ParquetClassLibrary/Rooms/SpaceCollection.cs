@@ -5,6 +5,7 @@ using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Rooms.RegionAnalysis;
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -14,26 +15,8 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class SpaceCollection : IEnumerable<Space>
     {
-
         // TODO:  Adjust these methods so that they work on SpaceCollection as appropriate
         //        and HashSet<Space> where needed.  This may take some thinking.
-
-        #region Cache
-        /// <summary>Cached results from finding potential perimiters.</summary>
-        private static readonly Dictionary<int, HashSet<Space>> potentialPerimeters = new Dictionary<int, HashSet<Space>>();
-
-        /// <summary>Cached results from determining if perimiters are connected.</summary>
-        private static readonly Dictionary<int, bool> potentiallyConnectedCollections = new Dictionary<int, bool>();
-
-        /// <summary>
-        /// Clears all caches.
-        /// </summary>
-        public static void ClearCaches()
-        {
-            potentialPerimeters.Clear();
-            potentiallyConnectedCollections.Clear();
-        }
-        #endregion
 
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<Space> Spaces { get; }
@@ -61,9 +44,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_space">The <see cref="Space"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Space"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(Space in_space)
-        {
-            return Spaces.Contains(in_space);
-        }
+            => Spaces.Contains(in_space);
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{Space}"/>, which supports simple iteration.
@@ -203,19 +184,10 @@ namespace ParquetClassLibrary.Rooms
             /// <param name="in_start">Where to begin the perimeter search.</param>
             /// <returns>The potential perimeter.</returns>
             HashSet<Space> GetPotentialPerimeter(Space in_start)
-            {
-                var key = in_start.GetHashCode();
-
-                if (!potentialPerimeters.ContainsKey(key))
-                {
-                    var found = in_subregion.GetSpaces().Search(in_start, in_subregion,
-                                                                space => space.Content.IsEnclosing,
-                                                                space => false).Visited;
-                    potentialPerimeters.Add(key, found);
-                }
-
-                return potentialPerimeters[key];
-            }
+                => in_subregion.GetSpaces().Search(in_start,
+                                                   in_subregion,
+                                                   space => space.Content.IsEnclosing,
+                                                   space => false).Visited;
             #endregion
         }
 
@@ -230,17 +202,7 @@ namespace ParquetClassLibrary.Rooms
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
                                                    Predicate<Space> in_isApplicable)
-        {
-            var key = (in_spaceSet, in_isApplicable).GetHashCode();
-
-            if (!potentiallyConnectedCollections.ContainsKey(key))
-            {
-                potentiallyConnectedCollections.Add(key,
-                    in_spaceSet.CheckIfAllSpacesAreReachable(in_subregion, in_isApplicable));
-            }
-
-            return potentiallyConnectedCollections[key];
-        }
+            => in_spaceSet.CheckIfAllSpacesAreReachable(in_subregion, in_isApplicable);
 
         /// <summary>
         /// Determines if it is possible to reach every <see cref="Space"/> in the given subregion
