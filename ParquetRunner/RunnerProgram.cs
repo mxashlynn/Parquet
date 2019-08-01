@@ -608,5 +608,6 @@ namespace ParquetRunner
             collection = RoomCollection.CreateFromSubregion(IncompleteMap);
             Console.WriteLine($"39: {0 == collection.Count}");
             #endregion
+        }
     }
 }
