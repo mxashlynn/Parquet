@@ -298,7 +298,6 @@ namespace ParquetClassLibrary.Rooms
 
                 return result;
             }
-
         }
         #endregion
 

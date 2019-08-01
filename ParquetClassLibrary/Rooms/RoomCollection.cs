@@ -95,7 +95,6 @@ namespace ParquetClassLibrary.Rooms
         #endregion
     }
 }
-
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>
@@ -170,29 +169,6 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                             .Except(PWAsTooSmall)
                                             .Except(PWAsTooLarge)
                                             .Except(PWAsDiscontinuous));
-        }
-
-        /// <summary>
-        /// Returns the set of <see cref="Space"/>s corresponding to the subregion.
-        /// </summary>
-        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
-        /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
-        internal static HashSet<Space> GetSpaces(this ParquetStack[,] in_subregion)
-        {
-            var result = new HashSet<Space>();
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
-
-            for (var y = 0; y < subregionRows; y++)
-            {
-                for (var x = 0; x < subregionCols; x++)
-                {
-                   var currentSpace = new Space(x, y, in_subregion[y, x]);
-                   result.Add(currentSpace);
-                }
-            }
-
-            return result;
         }
     }
 }
