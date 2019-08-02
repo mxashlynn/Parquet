@@ -69,24 +69,23 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_subregion">The subregion containing the walkable area and the perimiter.</param>
         /// <param name="out_perimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        public bool TryGetPerimeter(HashSet<Space> in_walkableArea, ParquetStack[,] in_subregion,
-                                    out SpaceCollection out_perimeter)
+        public bool TryGetPerimeter(ParquetStack[,] in_subregion, out SpaceCollection out_perimeter)
         {
             var stepCount = 0;
-            HashSet<Space> potentialPerimeter = null;
+            SpaceCollection potentialPerimeter = null;
             out_perimeter = null;
 
             #region Find Extreme Coordinate of Walkable Extrema
-            var greatestXValue = in_walkableArea
+            var greatestXValue = Spaces
                                  .Select(space => space.Position.X)
                                  .Max();
-            var greatestYValue = in_walkableArea
+            var greatestYValue = Spaces
                                  .Select(space => space.Position.Y)
                                  .Max();
-            var leastXValue = in_walkableArea
+            var leastXValue = Spaces
                               .Select(space => space.Position.X)
                               .Min();
-            var leastYValue = in_walkableArea
+            var leastYValue = Spaces
                               .Select(space => space.Position.Y)
                               .Min();
             #endregion
@@ -95,10 +94,10 @@ namespace ParquetClassLibrary.Rooms
             if (leastXValue > 0 && leastYValue > 0)
             {
                 #region Find Positions of Walkable Extrema
-                var northWalkableExtreme = in_walkableArea.First(space => space.Position.Y == leastYValue).Position;
-                var southWalkableExtreme = in_walkableArea.First(space => space.Position.Y == greatestYValue).Position;
-                var eastWalkableExtreme = in_walkableArea.First(space => space.Position.X == greatestXValue).Position;
-                var westWalkableExtreme = in_walkableArea.First(space => space.Position.X == leastXValue).Position;
+                var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
+                var southWalkableExtreme = Spaces.First(space => space.Position.Y == greatestYValue).Position;
+                var eastWalkableExtreme = Spaces.First(space => space.Position.X == greatestXValue).Position;
+                var westWalkableExtreme = Spaces.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
                 // Only continue if all four extrema are found.
@@ -183,7 +182,7 @@ namespace ParquetClassLibrary.Rooms
             /// </summary>
             /// <param name="in_start">Where to begin the perimeter search.</param>
             /// <returns>The potential perimeter.</returns>
-            HashSet<Space> GetPotentialPerimeter(Space in_start)
+            SpaceCollection GetPotentialPerimeter(Space in_start)
                 => in_subregion.GetSpaces().Search(in_start,
                                                    in_subregion,
                                                    space => space.Content.IsEnclosing,
