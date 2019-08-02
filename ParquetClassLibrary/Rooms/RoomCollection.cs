@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<HashSet<Space>> GetWalkableAreas(this ParquetStack[,] in_subregion)
+        internal static List<SpaceCollection> GetWalkableAreas(this ParquetStack[,] in_subregion)
         {
             var PWAs = new List<HashSet<Space>>();
             var subregionRows = in_subregion.GetLength(0);
@@ -164,11 +164,9 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
             var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < All.Recipes.Rooms.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > All.Recipes.Rooms.MaxWalkableSpaces));
             var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var results = new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
-            return new List<HashSet<Space>>(PWAs
-                                            .Except(PWAsTooSmall)
-                                            .Except(PWAsTooLarge)
-                                            .Except(PWAsDiscontinuous));
+            return results.ConvertAll(hashOfSpaces => new SpaceCollection(hashOfSpaces));
         }
     }
 }

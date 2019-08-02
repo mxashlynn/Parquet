@@ -219,20 +219,16 @@ namespace ParquetClassLibrary.Rooms
         /// conforms to the given predicate using only 4-connected movements,
         /// beginning at an arbitrary space.
         /// </summary>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
-        internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
-                                              Predicate<Space> in_isApplicable)
-            => in_spaceSet.Search(in_spaceSet.First(),
-                                  in_subregion,
-                                  in_isApplicable,
-                                  space => space.Content.IsEntry
-                                        || space.NorthNeighbor(in_subregion).Content.IsEntry
-                                        || space.SouthNeighbor(in_subregion).Content.IsEntry
-                                        || space.EastNeighbor(in_subregion).Content.IsEntry
-                                        || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
+        internal bool EntryIsReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
+            => Spaces.Search(Spaces.First(), in_subregion, in_isApplicable,
+                             space => space.Content.IsEntry
+                                   || space.NorthNeighbor(in_subregion).Content.IsEntry
+                                   || space.SouthNeighbor(in_subregion).Content.IsEntry
+                                   || space.EastNeighbor(in_subregion).Content.IsEntry
+                                   || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
 
         /// <summary>
         /// Searches the given set of <see cref="Space"/>s using only 4-connected movements,
