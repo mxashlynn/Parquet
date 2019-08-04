@@ -5,6 +5,7 @@ using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Rooms.RegionAnalysis;
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -14,27 +15,6 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class SpaceCollection : IEnumerable<Space>
     {
-
-        // TODO:  Adjust these methods so that they work on SpaceCollection as appropriate
-        //        and HashSet<Space> where needed.  This may take some thinking.
-
-        #region Cache
-        /// <summary>Cached results from finding potential perimiters.</summary>
-        private static readonly Dictionary<int, HashSet<Space>> potentialPerimeters = new Dictionary<int, HashSet<Space>>();
-
-        /// <summary>Cached results from determining if perimiters are connected.</summary>
-        private static readonly Dictionary<int, bool> potentiallyConnectedCollections = new Dictionary<int, bool>();
-
-        /// <summary>
-        /// Clears all caches.
-        /// </summary>
-        public static void ClearCaches()
-        {
-            potentialPerimeters.Clear();
-            potentiallyConnectedCollections.Clear();
-        }
-        #endregion
-
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<Space> Spaces { get; }
 
@@ -61,9 +41,15 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_space">The <see cref="Space"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Space"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(Space in_space)
-        {
-            return Spaces.Contains(in_space);
-        }
+            => Spaces.Contains(in_space);
+
+        /// <summary>
+        /// Determines whether the <see cref="SpaceCollection"/> is set-equal to the given SpaceCollection.
+        /// </summary>
+        /// <param name="in_equalTo">The collection to compare against this collection.</param>
+        /// <returns><c>true</c> if the <see cref="SpaceCollection"/>s are set-equal; <c>false</c> otherwise.</returns>
+        public bool SetEquals(SpaceCollection in_equalTo)
+            => Spaces.SetEquals(in_equalTo.Spaces);
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{Space}"/>, which supports simple iteration.
@@ -80,6 +66,22 @@ namespace ParquetClassLibrary.Rooms
             => ((IEnumerable<Space>)Spaces).GetEnumerator();
         #endregion
 
+        #region Conversion Operators
+        /// <summary>
+        /// Converts the given <see cref="SpaceCollection"/> to a plain <see cref="HashSet{Space}"/>.
+        /// </summary>
+        /// <param name="in_spaces">The collection to convert.</param>
+        public static implicit operator HashSet<Space>(SpaceCollection in_spaces)
+            => in_spaces.Spaces;
+
+        /// <summary>
+        /// Converts the given <see cref="HashSet{Space}"/> to a full <see cref="SpaceCollection"/>.
+        /// </summary>
+        /// <param name="in_spaces">The collection to convert.</param>
+        public static implicit operator SpaceCollection(HashSet<Space> in_spaces)
+            => new SpaceCollection(in_spaces);
+        #endregion
+
         #region Room Analysis Methods
         /// <summary>
         /// Finds a walkable area's perimiter in a given subregion.
@@ -88,24 +90,23 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_subregion">The subregion containing the walkable area and the perimiter.</param>
         /// <param name="out_perimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        public bool TryGetPerimeter(HashSet<Space> in_walkableArea, ParquetStack[,] in_subregion,
-                                    out SpaceCollection out_perimeter)
+        public bool TryGetPerimeter(ParquetStack[,] in_subregion, out SpaceCollection out_perimeter)
         {
             var stepCount = 0;
-            HashSet<Space> potentialPerimeter = null;
+            SpaceCollection potentialPerimeter = null;
             out_perimeter = null;
 
             #region Find Extreme Coordinate of Walkable Extrema
-            var greatestXValue = in_walkableArea
+            var greatestXValue = Spaces
                                  .Select(space => space.Position.X)
                                  .Max();
-            var greatestYValue = in_walkableArea
+            var greatestYValue = Spaces
                                  .Select(space => space.Position.Y)
                                  .Max();
-            var leastXValue = in_walkableArea
+            var leastXValue = Spaces
                               .Select(space => space.Position.X)
                               .Min();
-            var leastYValue = in_walkableArea
+            var leastYValue = Spaces
                               .Select(space => space.Position.Y)
                               .Min();
             #endregion
@@ -114,10 +115,10 @@ namespace ParquetClassLibrary.Rooms
             if (leastXValue > 0 && leastYValue > 0)
             {
                 #region Find Positions of Walkable Extrema
-                var northWalkableExtreme = in_walkableArea.First(space => space.Position.Y == leastYValue).Position;
-                var southWalkableExtreme = in_walkableArea.First(space => space.Position.Y == greatestYValue).Position;
-                var eastWalkableExtreme = in_walkableArea.First(space => space.Position.X == greatestXValue).Position;
-                var westWalkableExtreme = in_walkableArea.First(space => space.Position.X == leastXValue).Position;
+                var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
+                var southWalkableExtreme = Spaces.First(space => space.Position.Y == greatestYValue).Position;
+                var eastWalkableExtreme = Spaces.First(space => space.Position.X == greatestXValue).Position;
+                var westWalkableExtreme = Spaces.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
                 // Only continue if all four extrema are found.
@@ -149,8 +150,7 @@ namespace ParquetClassLibrary.Rooms
                     }
 
                     // Validate the perimeter.
-                    // TODO We actually need to ensure that the perimeter is a cycle.
-                    out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion, space => space.Content.IsEnclosing)
+                    out_perimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(in_subregion, space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
                         : null;
@@ -180,7 +180,7 @@ namespace ParquetClassLibrary.Rooms
                         break;
                     }
                     stepCount++;
-                    if (stepCount + in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+                    if (stepCount + Spaces.Count > All.Recipes.Rooms.MaxWalkableSpaces)
                     {
                         break;
                     }
@@ -202,20 +202,11 @@ namespace ParquetClassLibrary.Rooms
             /// </summary>
             /// <param name="in_start">Where to begin the perimeter search.</param>
             /// <returns>The potential perimeter.</returns>
-            HashSet<Space> GetPotentialPerimeter(Space in_start)
-            {
-                var key = in_start.GetHashCode();
-
-                if (!potentialPerimeters.ContainsKey(key))
-                {
-                    var found = in_subregion.GetSpaces().Search(in_start, in_subregion,
-                                                                space => space.Content.IsEnclosing,
-                                                                space => false).Visited;
-                    potentialPerimeters.Add(key, found);
-                }
-
-                return potentialPerimeters[key];
-            }
+            SpaceCollection GetPotentialPerimeter(Space in_start)
+                => in_subregion.GetSpaces().Search(in_start,
+                                                   in_subregion,
+                                                   space => space.Content.IsEnclosing,
+                                                   space => false).Visited;
             #endregion
         }
 
@@ -224,40 +215,27 @@ namespace ParquetClassLibrary.Rooms
         /// whose <see cref="Space.Content"/> conforms to the given predicate using only
         /// 4-connected movements, beginning at an arbitrary <see cref="Space"/>.
         /// </summary>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool AllSpacesAreReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
-                                                   Predicate<Space> in_isApplicable)
-        {
-            var key = (in_spaceSet, in_isApplicable).GetHashCode();
-
-            if (!potentiallyConnectedCollections.ContainsKey(key))
-            {
-                potentiallyConnectedCollections.Add(key,
-                    in_spaceSet.CheckIfAllSpacesAreReachable(in_subregion, in_isApplicable));
-            }
-
-            return potentiallyConnectedCollections[key];
-        }
+        internal bool AllSpacesAreReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
+            => Search(Spaces.First(), in_subregion, in_isApplicable, space => false)
+               .Visited.Count == Spaces.Count;
 
         /// <summary>
         /// Determines if it is possible to reach every <see cref="Space"/> in the given subregion
         /// whose <see cref="Space.Content"/> conforms to the given predicate using only
         /// 4-connected movements, beginning at an arbitrary <see cref="Space"/>.
         /// </summary>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool CheckIfAllSpacesAreReachable(this HashSet<Space> in_spaceSet,
-                                                          ParquetStack[,] in_subregion,
-                                                          Predicate<Space> in_isApplicable)
-            => in_spaceSet.Search(in_spaceSet.First(),
-                                  in_subregion,
-                                  in_isApplicable,
-                                  space => false).Visited.Count == in_spaceSet.Count;
+        internal bool AllSpacesAreReachableAndCycleExists(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
+        {
+            var results = Search(Spaces.First(), in_subregion, in_isApplicable, space => false);
+            return results.CycleFound
+                && results.Visited.Count == Spaces.Count;
+        }
 
         /// <summary>
         /// Determines if it is possible to reach <see cref="Space"/> whose
@@ -265,20 +243,16 @@ namespace ParquetClassLibrary.Rooms
         /// conforms to the given predicate using only 4-connected movements,
         /// beginning at an arbitrary space.
         /// </summary>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
-        internal static bool EntryIsReachable(this HashSet<Space> in_spaceSet, ParquetStack[,] in_subregion,
-                                              Predicate<Space> in_isApplicable)
-            => in_spaceSet.Search(in_spaceSet.First(),
-                                  in_subregion,
-                                  in_isApplicable,
-                                  space => space.Content.IsEntry
-                                        || space.NorthNeighbor(in_subregion).Content.IsEntry
-                                        || space.SouthNeighbor(in_subregion).Content.IsEntry
-                                        || space.EastNeighbor(in_subregion).Content.IsEntry
-                                        || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
+        internal bool EntryIsReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
+            => Search(Spaces.First(), in_subregion, in_isApplicable,
+                      space => space.Content.IsEntry
+                            || space.NorthNeighbor(in_subregion).Content.IsEntry
+                            || space.SouthNeighbor(in_subregion).Content.IsEntry
+                            || space.EastNeighbor(in_subregion).Content.IsEntry
+                            || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
 
         /// <summary>
         /// Searches the given set of <see cref="Space"/>s using only 4-connected movements,
@@ -288,7 +262,6 @@ namespace ParquetClassLibrary.Rooms
         /// <remarks>
         /// Searches in a preorder, depth-first fashion.
         /// </remarks>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set is defined.</param>
         /// <param name="in_isApplicable"><c>true</c> if a <see cref="Space"/> ought to be considered.</param>
         /// <param name="in_isGoal"><c>true</c> if a the search goal has been satisfied.</param>
@@ -296,17 +269,15 @@ namespace ParquetClassLibrary.Rooms
         /// First value is <c>true</c> if the goal was reached, <c>false</c> otherwise.
         /// Second valye is a list of all <see cref="Space"/>s that were visited during the search.
         /// </returns>
-        internal static (bool GoalFound, HashSet<Space> Visited) Search(this HashSet<Space> in_spaceSet,
-                                                                        Space in_start,
-                                                                        ParquetStack[,] in_subregion,
-                                                                        Predicate<Space> in_isApplicable,
-                                                                        Predicate<Space> in_isGoal)
+        private SearchResults Search(Space in_start, ParquetStack[,] in_subregion,
+                                      Predicate<Space> in_isApplicable, Predicate<Space> in_isGoal)
         {
-            Precondition.IsNotEmpty(in_spaceSet);
+            Precondition.IsNotEmpty(Spaces);
 
             var visited = new HashSet<Space>();
+            var cycleFound = false;
 
-            return (DepthFirstSearch(in_start), visited);
+            return new SearchResults(DepthFirstSearch(in_start), cycleFound, new SpaceCollection(visited));
 
             /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
             /// <param name="in_space">The <see cref="Space"/> under consideration this stack frame.</param>
@@ -314,29 +285,55 @@ namespace ParquetClassLibrary.Rooms
             {
                 bool result = false;
 
-                if (in_isApplicable(in_space)
-                    && !visited.Contains(in_space))
+                if (in_isApplicable(in_space))
                 {
-                    if (in_isGoal(in_space))
+                    if (visited.Contains(in_space))
                     {
-                        result = true;
+                        cycleFound = true;
                     }
-                    else
-                    {
-                        // Log as "Visited".
-                        visited.Add(in_space);
+                    else {
+                        if (in_isGoal(in_space))
+                        {
+                            result = true;
+                        }
+                        else
+                        {
+                            // Log as "Visited".
+                            visited.Add(in_space);
 
-                        // Continue, examining all children in order.
-                        result = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.SouthNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.EastNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.WestNeighbor(in_subregion));
+                            // Continue, examining all children in order.
+                            result = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.SouthNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.EastNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.WestNeighbor(in_subregion));
+                        }
                     }
                 }
 
                 return result;
             }
+        }
 
+        /// <summary>
+        /// Encapsulates the results of a graph search.
+        /// </summary>
+        private struct SearchResults
+        {
+            /// <summary><c>true</c> if the goal condition was met, <c>false</c> otherwise.</summary>
+            public bool GoalFound;
+
+            /// <summary><c>true</c> if a cycle was met during the search, <c>false</c> otherwise.</summary>
+            public bool CycleFound;
+
+            /// <summary>A collection of all the <see cref="Space"/>s visited during the search.</summary>
+            public SpaceCollection Visited;
+
+            public SearchResults(bool in_goalFound, bool in_cycleFound, SpaceCollection in_visited)
+            {
+                GoalFound = in_goalFound;
+                CycleFound = in_cycleFound;
+                Visited = in_visited;
+            }
         }
         #endregion
 

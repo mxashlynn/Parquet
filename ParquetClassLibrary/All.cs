@@ -193,7 +193,7 @@ namespace ParquetClassLibrary
                 /// <summary>
                 /// Minimum number of open enclosing spaces needed for any room to register.
                 /// </summary>
-                public const int MinPerimeterSpaces = 12;
+                public const int MinPerimeterSpaces = MinWalkableSpaces * 3;
             }
         }
         #endregion

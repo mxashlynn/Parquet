@@ -62,17 +62,12 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
             var walkableAreas = in_subregion.GetWalkableAreas();
-            HashSet<Space> perimeter = null;
+            SpaceCollection perimeter = null;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
                         .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion,
                                                                              space => walkableArea.Contains(space)))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
-
-            // TODO: We need a test case that is a looping set of enclosing spaces that contain all
-            // extrema but fail to completely surround the walkable area.
-
-            RegionAnalysisExtensions.ClearCaches();
 
             return new RoomCollection(rooms);
         }
@@ -95,7 +90,6 @@ namespace ParquetClassLibrary.Rooms
         #endregion
     }
 }
-
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>
@@ -108,7 +102,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<HashSet<Space>> GetWalkableAreas(this ParquetStack[,] in_subregion)
+        internal static List<SpaceCollection> GetWalkableAreas(this ParquetStack[,] in_subregion)
         {
             var PWAs = new List<HashSet<Space>>();
             var subregionRows = in_subregion.GetLength(0);
@@ -164,35 +158,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
             var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < All.Recipes.Rooms.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > All.Recipes.Rooms.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !new SpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var results = new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
-            return new List<HashSet<Space>>(PWAs
-                                            .Except(PWAsTooSmall)
-                                            .Except(PWAsTooLarge)
-                                            .Except(PWAsDiscontinuous));
-        }
-
-        /// <summary>
-        /// Returns the set of <see cref="Space"/>s corresponding to the subregion.
-        /// </summary>
-        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
-        /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
-        internal static HashSet<Space> GetSpaces(this ParquetStack[,] in_subregion)
-        {
-            var result = new HashSet<Space>();
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
-
-            for (var y = 0; y < subregionRows; y++)
-            {
-                for (var x = 0; x < subregionCols; x++)
-                {
-                   var currentSpace = new Space(x, y, in_subregion[y, x]);
-                   result.Add(currentSpace);
-                }
-            }
-
-            return result;
+            return results.ConvertAll(hashOfSpaces => new SpaceCollection(hashOfSpaces));
         }
     }
 }
