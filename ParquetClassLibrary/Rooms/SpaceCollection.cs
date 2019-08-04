@@ -47,6 +47,14 @@ namespace ParquetClassLibrary.Rooms
             => Spaces.Contains(in_space);
 
         /// <summary>
+        /// Determines whether the <see cref="SpaceCollection"/> is set-equal to the given SpaceCollection.
+        /// </summary>
+        /// <param name="in_equalTo">The collection to compare against this collection.</param>
+        /// <returns><c>true</c> if the <see cref="SpaceCollection"/>s are set-equal; <c>false</c> otherwise.</returns>
+        public bool SetEquals(SpaceCollection in_equalTo)
+            => Spaces.SetEquals(in_equalTo.Spaces);
+
+        /// <summary>
         /// Exposes an <see cref="IEnumerator{Space}"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
@@ -59,6 +67,22 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ((IEnumerable<Space>)Spaces).GetEnumerator();
+        #endregion
+
+        #region Conversion Operators
+        /// <summary>
+        /// Converts the given <see cref="SpaceCollection"/> to a plain <see cref="HashSet{Space}"/>.
+        /// </summary>
+        /// <param name="in_spaces">The collection to convert.</param>
+        public static implicit operator HashSet<Space>(SpaceCollection in_spaces)
+            => in_spaces.Spaces;
+
+        /// <summary>
+        /// Converts the given <see cref="HashSet{Space}"/> to a full <see cref="SpaceCollection"/>.
+        /// </summary>
+        /// <param name="in_spaces">The collection to convert.</param>
+        public static implicit operator SpaceCollection(HashSet<Space> in_spaces)
+            => new SpaceCollection(in_spaces);
         #endregion
 
         #region Room Analysis Methods
