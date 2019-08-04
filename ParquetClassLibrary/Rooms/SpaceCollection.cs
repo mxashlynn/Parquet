@@ -184,7 +184,7 @@ namespace ParquetClassLibrary.Rooms
                         break;
                     }
                     stepCount++;
-                    if (stepCount + in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+                    if (stepCount + Spaces.Count > All.Recipes.Rooms.MaxWalkableSpaces)
                     {
                         break;
                     }
@@ -234,8 +234,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal bool CheckIfAllSpacesAreReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
-            => Spaces.Search(Spaces.First(), in_subregion, in_isApplicable, space => false)
-                     .Visited.Count == Spaces.Count;
+            => Search(Spaces.First(), in_subregion, in_isApplicable, space => false)
+               .Visited.Count == Spaces.Count;
 
         /// <summary>
         /// Determines if it is possible to reach <see cref="Space"/> whose
@@ -247,12 +247,12 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
         internal bool EntryIsReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
-            => Spaces.Search(Spaces.First(), in_subregion, in_isApplicable,
-                             space => space.Content.IsEntry
-                                   || space.NorthNeighbor(in_subregion).Content.IsEntry
-                                   || space.SouthNeighbor(in_subregion).Content.IsEntry
-                                   || space.EastNeighbor(in_subregion).Content.IsEntry
-                                   || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
+            => Search(Spaces.First(), in_subregion, in_isApplicable,
+                      space => space.Content.IsEntry
+                            || space.NorthNeighbor(in_subregion).Content.IsEntry
+                            || space.SouthNeighbor(in_subregion).Content.IsEntry
+                            || space.EastNeighbor(in_subregion).Content.IsEntry
+                            || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
 
         /// <summary>
         /// Searches the given set of <see cref="Space"/>s using only 4-connected movements,
@@ -262,7 +262,6 @@ namespace ParquetClassLibrary.Rooms
         /// <remarks>
         /// Searches in a preorder, depth-first fashion.
         /// </remarks>
-        /// <param name="in_spaceSet">The collection under consideration.</param>
         /// <param name="in_subregion">The grid on which the set is defined.</param>
         /// <param name="in_isApplicable"><c>true</c> if a <see cref="Space"/> ought to be considered.</param>
         /// <param name="in_isGoal"><c>true</c> if a the search goal has been satisfied.</param>
@@ -270,17 +269,14 @@ namespace ParquetClassLibrary.Rooms
         /// First value is <c>true</c> if the goal was reached, <c>false</c> otherwise.
         /// Second valye is a list of all <see cref="Space"/>s that were visited during the search.
         /// </returns>
-        internal static (bool GoalFound, HashSet<Space> Visited) Search(this HashSet<Space> in_spaceSet,
-                                                                        Space in_start,
-                                                                        ParquetStack[,] in_subregion,
-                                                                        Predicate<Space> in_isApplicable,
-                                                                        Predicate<Space> in_isGoal)
+        internal (bool GoalFound, SpaceCollection Visited) Search(Space in_start, ParquetStack[,] in_subregion,
+                                                                 Predicate<Space> in_isApplicable, Predicate<Space> in_isGoal)
         {
-            Precondition.IsNotEmpty(in_spaceSet);
+            Precondition.IsNotEmpty(Spaces);
 
             var visited = new HashSet<Space>();
 
-            return (DepthFirstSearch(in_start), visited);
+            return (DepthFirstSearch(in_start), new SpaceCollection(visited));
 
             /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
             /// <param name="in_space">The <see cref="Space"/> under consideration this stack frame.</param>
