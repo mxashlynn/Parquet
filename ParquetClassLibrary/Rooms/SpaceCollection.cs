@@ -150,8 +150,7 @@ namespace ParquetClassLibrary.Rooms
                     }
 
                     // Validate the perimeter.
-                    // TODO We actually need to ensure that the perimeter is a cycle.
-                    out_perimeter = potentialPerimeter.AllSpacesAreReachable(in_subregion, space => space.Content.IsEnclosing)
+                    out_perimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(in_subregion, space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
                         : null;
@@ -224,6 +223,21 @@ namespace ParquetClassLibrary.Rooms
                .Visited.Count == Spaces.Count;
 
         /// <summary>
+        /// Determines if it is possible to reach every <see cref="Space"/> in the given subregion
+        /// whose <see cref="Space.Content"/> conforms to the given predicate using only
+        /// 4-connected movements, beginning at an arbitrary <see cref="Space"/>.
+        /// </summary>
+        /// <param name="in_subregion">The grid on which the set exists.</param>
+        /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
+        /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
+        internal bool AllSpacesAreReachableAndCycleExists(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
+        {
+            var results = Search(Spaces.First(), in_subregion, in_isApplicable, space => false);
+            return results.CycleFound
+                && results.Visited.Count == Spaces.Count;
+        }
+
+        /// <summary>
         /// Determines if it is possible to reach <see cref="Space"/> whose
         /// <see cref="Furnishing.IsEntry"/> and whose <see cref="Space.Content"/>
         /// conforms to the given predicate using only 4-connected movements,
@@ -255,14 +269,15 @@ namespace ParquetClassLibrary.Rooms
         /// First value is <c>true</c> if the goal was reached, <c>false</c> otherwise.
         /// Second valye is a list of all <see cref="Space"/>s that were visited during the search.
         /// </returns>
-        internal (bool GoalFound, SpaceCollection Visited) Search(Space in_start, ParquetStack[,] in_subregion,
-                                                                 Predicate<Space> in_isApplicable, Predicate<Space> in_isGoal)
+        private SearchResults Search(Space in_start, ParquetStack[,] in_subregion,
+                                      Predicate<Space> in_isApplicable, Predicate<Space> in_isGoal)
         {
             Precondition.IsNotEmpty(Spaces);
 
             var visited = new HashSet<Space>();
+            var cycleFound = false;
 
-            return (DepthFirstSearch(in_start), new SpaceCollection(visited));
+            return new SearchResults(DepthFirstSearch(in_start), cycleFound, new SpaceCollection(visited));
 
             /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
             /// <param name="in_space">The <see cref="Space"/> under consideration this stack frame.</param>
@@ -270,27 +285,54 @@ namespace ParquetClassLibrary.Rooms
             {
                 bool result = false;
 
-                if (in_isApplicable(in_space)
-                    && !visited.Contains(in_space))
+                if (in_isApplicable(in_space))
                 {
-                    if (in_isGoal(in_space))
+                    if (visited.Contains(in_space))
                     {
-                        result = true;
+                        cycleFound = true;
                     }
-                    else
-                    {
-                        // Log as "Visited".
-                        visited.Add(in_space);
+                    else {
+                        if (in_isGoal(in_space))
+                        {
+                            result = true;
+                        }
+                        else
+                        {
+                            // Log as "Visited".
+                            visited.Add(in_space);
 
-                        // Continue, examining all children in order.
-                        result = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.SouthNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.EastNeighbor(in_subregion))
-                            || DepthFirstSearch(in_space.WestNeighbor(in_subregion));
+                            // Continue, examining all children in order.
+                            result = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.SouthNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.EastNeighbor(in_subregion))
+                                || DepthFirstSearch(in_space.WestNeighbor(in_subregion));
+                        }
                     }
                 }
 
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// Encapsulates the results of a graph search.
+        /// </summary>
+        private struct SearchResults
+        {
+            /// <summary><c>true</c> if the goal condition was met, <c>false</c> otherwise.</summary>
+            public bool GoalFound;
+
+            /// <summary><c>true</c> if a cycle was met during the search, <c>false</c> otherwise.</summary>
+            public bool CycleFound;
+
+            /// <summary>A collection of all the <see cref="Space"/>s visited during the search.</summary>
+            public SpaceCollection Visited;
+
+            public SearchResults(bool in_goalFound, bool in_cycleFound, SpaceCollection in_visited)
+            {
+                GoalFound = in_goalFound;
+                CycleFound = in_cycleFound;
+                Visited = in_visited;
             }
         }
         #endregion
