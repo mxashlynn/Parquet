@@ -101,13 +101,10 @@ namespace ParquetClassLibrary.Rooms
         /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
         /// </summary>
         private EntityID FindBestMatch()
-        {
-            // TODO Can we skip the Any() comparison and condense this into a single line?
-            var matches = All.RoomRecipes.Where(entity => entity?.Matches(this) ?? false);
-            return matches.Any()
-                ? (EntityID)matches.Select(recipe => recipe.Priority).DefaultIfEmpty(EntityID.None).Max()
-                : EntityID.None;
-        }
+            => All.RoomRecipes
+                  .Where(entity => entity?.Matches(this) ?? false)
+                  .Select(recipe => recipe.Priority)
+                  .DefaultIfEmpty(EntityID.None).Max();
 
         #region IEquatable Implementation
         /// <summary>
