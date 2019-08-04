@@ -72,8 +72,8 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
             Precondition.IsNotEmpty(in_perimeter, nameof(in_perimeter));
 
-            if (in_walkableArea.Count < All.Recipes.Rooms.MinWalkableSpaces
-                || in_walkableArea.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+            if (in_walkableArea.Count < Rules.Recipes.Rooms.MinWalkableSpaces
+                || in_walkableArea.Count > Rules.Recipes.Rooms.MaxWalkableSpaces)
             {
                 throw new IndexOutOfRangeException(nameof(in_walkableArea));
             }

@@ -20,8 +20,8 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(All.Dimensions.ChunksPerRegion,
-                                                                              All.Dimensions.ChunksPerRegion);
+        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Rules.Dimensions.ChunksPerRegion,
+                                                                              Rules.Dimensions.ChunksPerRegion);
         #endregion
 
         #region Whole-Region Characteristics

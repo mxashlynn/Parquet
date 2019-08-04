@@ -5,7 +5,6 @@ using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Rooms.RegionAnalysis;
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -137,14 +136,14 @@ namespace ParquetClassLibrary.Rooms
                     potentialPerimeter = GetPotentialPerimeter(new Space(northSeed, in_subregion[northSeed.Y, northSeed.X]));
 
                     // TODO Probably remove this check and this variable after debugging.
-                    var maxPerimeterCount = in_subregion.GetLength(0) * in_subregion.GetLength(1) - All.Recipes.Rooms.MinWalkableSpaces;
+                    var maxPerimeterCount = in_subregion.GetLength(0) * in_subregion.GetLength(1) - Rules.Recipes.Rooms.MinWalkableSpaces;
                     if (potentialPerimeter.Count > maxPerimeterCount)
                     {
                         throw new Exception("Perimeter is larger than it should be.");
                     }
 
                     // TODO Probably remove this check after debugging.
-                    if (potentialPerimeter.Count < All.Recipes.Rooms.MinPerimeterSpaces)
+                    if (potentialPerimeter.Count < Rules.Recipes.Rooms.MinPerimeterSpaces)
                     {
                         throw new Exception("Perimeter is smaller than it should be.");
                     }
@@ -157,7 +156,7 @@ namespace ParquetClassLibrary.Rooms
                 }
             }
 
-            return (out_perimeter?.Count ?? 0) >= All.Recipes.Rooms.MinPerimeterSpaces;
+            return (out_perimeter?.Count ?? 0) >= Rules.Recipes.Rooms.MinPerimeterSpaces;
 
             #region TryGetSeed Helper Method
             /// <summary>
@@ -180,7 +179,7 @@ namespace ParquetClassLibrary.Rooms
                         break;
                     }
                     stepCount++;
-                    if (stepCount + Spaces.Count > All.Recipes.Rooms.MaxWalkableSpaces)
+                    if (stepCount + Spaces.Count > Rules.Recipes.Rooms.MaxWalkableSpaces)
                     {
                         break;
                     }

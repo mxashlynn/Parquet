@@ -18,8 +18,8 @@ namespace ParquetClassLibrary.Crafting
         public static CraftingRecipe NotCraftable { get; } =
             new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
                                EmptyCraftingElementList, EmptyCraftingElementList,
-                               new StrikePanel[All.Dimensions.PanelsPerPatternHeight,
-                                               All.Dimensions.PanelsPerPatternWidth]);
+                               new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
+                                               Rules.Dimensions.PanelsPerPatternWidth]);
 
         /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_panelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
         /// Thrown when <paramref name="in_panelPattern"/> has zero-dimensions or dimensions larger than those given by
-        /// <see cref="All.Dimensions.PanelsPerPatternWidth"/> and <see cref="All.Dimensions.PanelsPerPatternHeight"/>.
+        /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
                               IEnumerable<RecipeElement> in_products,
@@ -54,8 +54,8 @@ namespace ParquetClassLibrary.Crafting
             Precondition.IsNotNull(in_ingredients, nameof(in_ingredients));
             Precondition.IsNotEmpty(in_ingredients, nameof(in_ingredients));
             Precondition.IsNotNull(in_panelPattern, nameof(in_panelPattern));
-            if (in_panelPattern.GetLength(0) > All.Dimensions.PanelsPerPatternHeight
-                || in_panelPattern.GetLength(1) > All.Dimensions.PanelsPerPatternWidth
+            if (in_panelPattern.GetLength(0) > Rules.Dimensions.PanelsPerPatternHeight
+                || in_panelPattern.GetLength(1) > Rules.Dimensions.PanelsPerPatternWidth
                 || in_panelPattern.GetLength(0) < 1
                 || in_panelPattern.GetLength(1) < 1)
             {

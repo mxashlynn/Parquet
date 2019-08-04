@@ -20,8 +20,8 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(All.Dimensions.ParquetsPerRegion,
-                                                                                  All.Dimensions.ParquetsPerRegion);
+        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(Rules.Dimensions.ParquetsPerRegion,
+                                                                                  Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -56,11 +56,11 @@ namespace ParquetClassLibrary.Map
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
         protected override ParquetStatus[,] ParquetStatus { get; } =
-            new ParquetStatus[All.Dimensions.ParquetsPerRegion, All.Dimensions.ParquetsPerRegion];
+            new ParquetStatus[Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion];
 
         /// <summary>Floors and walkable terrain in the region.</summary>
         protected override ParquetStack[,] ParquetDefintion { get; } =
-            new ParquetStack[All.Dimensions.ParquetsPerRegion, All.Dimensions.ParquetsPerRegion];
+            new ParquetStack[Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion];
         #endregion
 
         #region Initialization

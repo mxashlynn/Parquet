@@ -53,7 +53,7 @@ namespace ParquetRunner
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
                                               in_addsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
-                                            TestRecipeElementList, All.Recipes.Rooms.MinWalkableSpaces + 1,
+                                            TestRecipeElementList, Rules.Recipes.Rooms.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
 
             // Sets up All so that bounds can be checked in various constructors.
