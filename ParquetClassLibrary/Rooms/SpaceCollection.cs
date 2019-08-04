@@ -220,17 +220,6 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal bool AllSpacesAreReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
-            => CheckIfAllSpacesAreReachable(in_subregion, in_isApplicable);
-
-        /// <summary>
-        /// Determines if it is possible to reach every <see cref="Space"/> in the given subregion
-        /// whose <see cref="Space.Content"/> conforms to the given predicate using only
-        /// 4-connected movements, beginning at an arbitrary <see cref="Space"/>.
-        /// </summary>
-        /// <param name="in_subregion">The grid on which the set exists.</param>
-        /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
-        /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal bool CheckIfAllSpacesAreReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
             => Search(Spaces.First(), in_subregion, in_isApplicable, space => false)
                .Visited.Count == Spaces.Count;
 
