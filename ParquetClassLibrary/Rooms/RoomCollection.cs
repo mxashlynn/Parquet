@@ -69,9 +69,6 @@ namespace ParquetClassLibrary.Rooms
                                                                              space => walkableArea.Contains(space)))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
-            // TODO: We need a test case that is a looping set of enclosing spaces that contain all
-            // extrema but fail to completely surround the walkable area.
-
             return new RoomCollection(rooms);
         }
         #endregion

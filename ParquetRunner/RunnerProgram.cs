@@ -476,6 +476,39 @@ namespace ParquetRunner
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        private static readonly ParquetStack[,] LoopNotEnclosingMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TDoor, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWell, TWall, TVoid, },
+            { TVoid, TWall, TWell, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] InaccessibleExitMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TStep, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] DoughnutNotEnclosingMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TStep, TTile, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TTile, TTile, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TVoid, TWall, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TVoid, TWall, TVoid, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
         #endregion
         #endregion
 
@@ -607,6 +640,15 @@ namespace ParquetRunner
 
             collection = RoomCollection.CreateFromSubregion(IncompleteMap);
             Console.WriteLine($"39: {0 == collection.Count}");
+
+            collection = RoomCollection.CreateFromSubregion(LoopNotEnclosingMap);
+            Console.WriteLine($"40: {0 == collection.Count}");
+
+            collection = RoomCollection.CreateFromSubregion(InaccessibleExitMap);
+            Console.WriteLine($"41: {0 == collection.Count}");
+
+            collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
+            Console.WriteLine($"42: {0 == collection.Count}");
             #endregion
         }
     }

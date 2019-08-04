@@ -15,9 +15,6 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class SpaceCollection : IEnumerable<Space>
     {
-        // TODO:  Adjust these methods so that they work on SpaceCollection as appropriate
-        //        and HashSet<Space> where needed.  This may take some thinking.
-
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<Space> Spaces { get; }
 
