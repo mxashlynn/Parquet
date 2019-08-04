@@ -29,33 +29,15 @@ namespace ParquetClassLibrary.Rooms
         public readonly SpaceCollection Perimeter;
 
         /// <summary>
-        /// The cached <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
-        /// together with the number of times that furnishing occurs.
-        /// </summary>
-        private IEnumerable<EntityTag> _cachedFurnishings;
-
-        /// <summary>
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
         public IEnumerable<EntityTag> FurnishingTags
-            => _cachedFurnishings
-            ?? (_cachedFurnishings = new List<EntityTag>(
-                    WalkableArea
-                    .Concat(Perimeter)
-                    .Where(space => EntityID.None != space.Content.Furnishing
-                                 && EntityTag.None != All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
-                    .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
-                )
-            );
-
-        /// <summary>
-        /// The location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
-        /// </summary>
-        /// <remarks>
-        /// A value of <c>null</c> indicates that this <see cref="Room"/> has yet to be located.
-        /// </remarks>
-        private Vector2Int? _cachedPosition;
+            => WalkableArea
+               .Concat(Perimeter)
+               .Where(space => EntityID.None != space.Content.Furnishing
+                            && EntityTag.None != All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
+               .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom);
 
         /// <summary>
         /// A location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
@@ -64,24 +46,12 @@ namespace ParquetClassLibrary.Rooms
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
         public Vector2Int Position
-            => (Vector2Int)(
-                null == _cachedPosition
-                    ? _cachedPosition = new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
-                                                       WalkableArea.Select(space => space.Position.Y).Min())
-                    : _cachedPosition);
-
-        /// <summary>
-        /// The cached <see cref="RoomRecipe"/> identifier.
-        /// A value of <see cref="EntityID.None"/> indicates that this <see cref="Room"/>
-        /// has yet to be matched with a <see cref="RoomRecipe"/>.
-        /// </summary>
-        private EntityID? _cachedRecipeID;
+            => new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
+                              WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public EntityID RecipeID
-            => (EntityID)(null == _cachedRecipeID
-                ? _cachedRecipeID = FindBestMatch()
-                : _cachedRecipeID);
+            => FindBestMatch();
 
         #region Initialization
         /// <summary>
@@ -116,7 +86,6 @@ namespace ParquetClassLibrary.Rooms
 
             WalkableArea = in_walkableArea;
             Perimeter = in_perimeter;
-            _cachedRecipeID = FindBestMatch();
         }
         #endregion
 
@@ -127,17 +96,6 @@ namespace ParquetClassLibrary.Rooms
         /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
         public bool ContainsPosition(Vector2Int in_position)
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == in_position);
-
-        /// <summary>
-        /// Clears internal caches ahead of <see cref="Room"/> update.
-        /// </summary>
-        // TODO Is this the best way to handle this?
-        public void ClearCaches()
-        {
-            _cachedPosition = null;
-            _cachedRecipeID = null;
-            _cachedFurnishings = null;
-        }
 
         /// <summary>
         /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
