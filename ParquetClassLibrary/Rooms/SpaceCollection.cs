@@ -188,7 +188,7 @@ namespace ParquetClassLibrary.Rooms
 
                 out_final = found
                     ? position
-                    : Vector2Int.ZeroVector;
+                    : Vector2Int.Zero;
 
                 return found;
             }

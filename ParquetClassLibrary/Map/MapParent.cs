@@ -303,7 +303,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
         public ParquetStack[,] GetSubregion()
-            => GetSubregion(Vector2Int.ZeroVector, new Vector2Int(DimensionsInParquets.X - 1,
+            => GetSubregion(Vector2Int.Zero, new Vector2Int(DimensionsInParquets.X - 1,
                                                                   DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace ParquetClassLibrary.Map
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     var parquet = EntityID.None != ParquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible) 
+                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible)
                         : EntityID.None != ParquetDefintion[y, x].Furnishing
                             ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Furnishing)
                             : EntityID.None != ParquetDefintion[y, x].Block

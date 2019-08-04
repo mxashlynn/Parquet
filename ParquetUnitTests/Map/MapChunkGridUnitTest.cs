@@ -64,7 +64,7 @@ namespace ParquetUnitTests.Map
             var chunkType = ChunkType.Handmade;
             var chunkOrientation = ChunkOrientation.EastWest;
 
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.ZeroVector);
+            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.Zero);
 
             Assert.True(wasSet);
         }
@@ -86,9 +86,9 @@ namespace ParquetUnitTests.Map
             var chunkType = ChunkType.Handmade;
             var chunkOrientation = ChunkOrientation.EastWest;
 
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.ZeroVector);
+            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.Zero);
 
-            var chunkData = grid.GetChunk(Vector2Int.ZeroVector).GetValueOrDefault();
+            var chunkData = grid.GetChunk(Vector2Int.Zero).GetValueOrDefault();
 
             Assert.True(wasSet);
             Assert.Equal(chunkData.type, chunkType);

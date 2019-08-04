@@ -8,10 +8,10 @@ namespace ParquetClassLibrary.Stubs
     public struct Vector2Int : IEquatable<Vector2Int>
     {
         /// <summary>The zero vector.</summary>
-        public static readonly Vector2Int ZeroVector = new Vector2Int(0, 0);
+        public static readonly Vector2Int Zero = new Vector2Int(0, 0);
 
         /// <summary>The unit vector.</summary>
-        public static readonly Vector2Int UnitVector = new Vector2Int(1, 1);
+        public static readonly Vector2Int Unit = new Vector2Int(1, 1);
 
         /// <summary>The vector offset to the North.</summary>
         public static readonly Vector2Int North = new Vector2Int(0, -1);

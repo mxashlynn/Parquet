@@ -9,9 +9,9 @@ namespace ParquetUnitTests.Stubs
         [Fact]
         public void ZeroVectorTest()
         {
-            Assert.Equal(0, Vector2Int.ZeroVector.X);
-            Assert.Equal(0, Vector2Int.ZeroVector.Y);
-            Assert.Equal(0, Vector2Int.ZeroVector.Magnitude);
+            Assert.Equal(0, Vector2Int.Zero.X);
+            Assert.Equal(0, Vector2Int.Zero.Y);
+            Assert.Equal(0, Vector2Int.Zero.Magnitude);
         }
 
         [Theory]
