@@ -20,13 +20,13 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public readonly HashSet<Space> WalkableArea;
+        public readonly SpaceCollection WalkableArea;
 
         /// <summary>
         /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public readonly HashSet<Space> Perimeter;
+        public readonly SpaceCollection Perimeter;
 
         /// <summary>
         /// The cached <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(HashSet<Space> in_walkableArea, HashSet<Space> in_perimeter)
+        public Room(SpaceCollection in_walkableArea, SpaceCollection in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));

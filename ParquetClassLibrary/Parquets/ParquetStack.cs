@@ -177,7 +177,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
         public static SpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
         {
-            var uniqueResults = new HashSet<Space();
+            var uniqueResults = new HashSet<Space>();
             var subregionRows = in_subregion.GetLength(0);
             var subregionCols = in_subregion.GetLength(1);
 

@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
             var walkableAreas = in_subregion.GetWalkableAreas();
-            HashSet<Space> perimeter = null;
+            SpaceCollection perimeter = null;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
                         .Where(walkableArea => walkableArea.EntryIsReachable(in_subregion,
@@ -71,8 +71,6 @@ namespace ParquetClassLibrary.Rooms
 
             // TODO: We need a test case that is a looping set of enclosing spaces that contain all
             // extrema but fail to completely surround the walkable area.
-
-            RegionAnalysisExtensions.ClearCaches();
 
             return new RoomCollection(rooms);
         }
@@ -163,7 +161,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
             var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < All.Recipes.Rooms.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > All.Recipes.Rooms.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !new SpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
             var results = new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
             return results.ConvertAll(hashOfSpaces => new SpaceCollection(hashOfSpaces));
