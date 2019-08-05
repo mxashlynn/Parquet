@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
-            && (IsWalkable || IsEnclosing);
+            && (IsWalkable ^ IsEnclosing);
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is considered walkable iff:

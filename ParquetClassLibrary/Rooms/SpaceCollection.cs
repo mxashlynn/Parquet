@@ -237,23 +237,6 @@ namespace ParquetClassLibrary.Rooms
         }
 
         /// <summary>
-        /// Determines if it is possible to reach <see cref="Space"/> whose
-        /// <see cref="Furnishing.IsEntry"/> and whose <see cref="Space.Content"/>
-        /// conforms to the given predicate using only 4-connected movements,
-        /// beginning at an arbitrary space.
-        /// </summary>
-        /// <param name="in_subregion">The grid on which the set exists.</param>
-        /// <param name="in_isApplicable">Determines if a <see cref="Space"/> is a target Space.</param>
-        /// <returns><c>true</c> is any entry was reached, <c>false</c> otherwise.</returns>
-        internal bool EntryIsReachable(ParquetStack[,] in_subregion, Predicate<Space> in_isApplicable)
-            => Search(Spaces.First(), in_subregion, in_isApplicable,
-                      space => space.Content.IsEntry
-                            || space.NorthNeighbor(in_subregion).Content.IsEntry
-                            || space.SouthNeighbor(in_subregion).Content.IsEntry
-                            || space.EastNeighbor(in_subregion).Content.IsEntry
-                            || space.WestNeighbor(in_subregion).Content.IsEntry).GoalFound;
-
-        /// <summary>
         /// Searches the given set of <see cref="Space"/>s using only 4-connected movements,
         /// considering all spaces that conform to the given applicability predicate,
         /// beginning at an arbitrary space and continuing until the given goal predicate is satisfied.
@@ -266,7 +249,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_isGoal"><c>true</c> if a the search goal has been satisfied.</param>
         /// <returns>
         /// First value is <c>true</c> if the goal was reached, <c>false</c> otherwise.
-        /// Second valye is a list of all <see cref="Space"/>s that were visited during the search.
+        /// Second value is a list of all <see cref="Space"/>s that were visited during the search.
         /// </returns>
         private SearchResults Search(Space in_start, ParquetStack[,] in_subregion,
                                       Predicate<Space> in_isApplicable, Predicate<Space> in_isGoal)

@@ -76,7 +76,6 @@ namespace ParquetRunner
         private static readonly ParquetStack TTile = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
         private static readonly ParquetStack TStep = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
         private static readonly ParquetStack TWell = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestLiquid.ID, EntityID.None, EntityID.None);
-        private static readonly ParquetStack FStep = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestLiquid.ID, TestEntities.TestFurnishing.ID, EntityID.None);
 
         #region Valid Subregions
         private static readonly ParquetStack[,] OneMinimalRoomMap =
@@ -510,6 +509,26 @@ namespace ParquetRunner
             { TVoid, TWall, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        private static readonly ParquetStack[,] DoorUsedAsStepMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TDoor, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] StepUsedAsDoorMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TStep, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
         #endregion
         #endregion
 
@@ -650,7 +669,13 @@ namespace ParquetRunner
 
             collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
             Console.WriteLine($"42: {0 == collection.Count}");
+
+            collection = RoomCollection.CreateFromSubregion(DoorUsedAsStepMap);
+            Console.WriteLine($"43: {0 == collection.Count}");
+
+            collection = RoomCollection.CreateFromSubregion(StepUsedAsDoorMap);
+            Console.WriteLine($"44: {0 == collection.Count}");
             #endregion
-        }
     }
+}
 }
