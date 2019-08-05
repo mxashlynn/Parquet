@@ -463,6 +463,26 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        private static readonly ParquetStack[,] DoorUsedAsStepMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TDoor, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] StepUsedAsDoorMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TStep, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
         #endregion
 
         private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(TestRoomMap);
@@ -854,6 +874,22 @@ namespace ParquetUnitTests.Rooms
         internal void DoughnutNotEnclosingMapYieldsNoRoomsTest()
         {
             var collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void DoorUsedAsStepMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(DoorUsedAsStepMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void StepUsedAsDoorMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(StepUsedAsDoorMap);
 
             Assert.Equal(0, collection.Count);
         }
