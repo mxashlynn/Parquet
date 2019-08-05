@@ -1,3 +1,4 @@
+using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Stubs;
@@ -7,6 +8,21 @@ namespace ParquetUnitTests.Rooms
 {
     public class SpaceUnitTest
     {
+        #region Test Values
+        private static readonly ParquetStack TVoid = ParquetStack.Empty;
+        private static readonly ParquetStack TWall = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TDoor = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, TestEntities.TestFurnishing.ID, EntityID.None);
+        private static readonly ParquetStack TTile = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
+
+        private static readonly ParquetStack[,] TestRoomMap =
+        {
+            { TWall, TWall, TWall, TWall, TVoid, },
+            { TWall, TTile, TTile, TWall, TVoid, },
+            { TWall, TTile, TTile, TDoor, TVoid, },
+            { TWall, TWall, TWall, TWall, TVoid, },
+        };
+        #endregion
+
         [Fact]
         internal void SpaceDotEmptyIsEmptyTest()
         {
@@ -65,6 +81,110 @@ namespace ParquetUnitTests.Rooms
             var space2 = new Space(new Vector2Int(x, y), testStack2);
 
             Assert.NotEqual(space1, space2);
+        }
+
+        [Fact]
+        internal void ValidNorthNeighbourIsFoundTest()
+        {
+            var x = 1;
+            var y = 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.NorthNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour.Position.Y, y - 1);
+        }
+
+        [Fact]
+        internal void InvalidNorthNeighbourIsEmptyTest()
+        {
+            var x = 0;
+            var y = 0;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.NorthNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour, Space.Empty);
+        }
+
+        [Fact]
+        internal void ValidSouthNeighbourIsFoundTest()
+        {
+            var x = 1;
+            var y = 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.SouthNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour.Position.Y, y + 1);
+        }
+
+        [Fact]
+        internal void InvalidSouthNeighbourIsEmptyTest()
+        {
+            var x = 1;
+            var y = TestRoomMap.GetLength(0) - 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.SouthNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour, Space.Empty);
+        }
+
+        [Fact]
+        internal void ValidEastNeighbourIsFoundTest()
+        {
+            var x = 1;
+            var y = 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.EastNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour.Position.X, x + 1);
+        }
+
+        [Fact]
+        internal void InvalidEastNeighbourIsEmptyTest()
+        {
+            var x = TestRoomMap.GetLength(1) - 1;
+            var y = 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.EastNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour, Space.Empty);
+        }
+
+        [Fact]
+        internal void ValidWestNeighbourIsFoundTest()
+        {
+            var x = 1;
+            var y = 1;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.WestNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour.Position.X, x - 1);
+        }
+
+        [Fact]
+        internal void InvalidWestNeighbourIsEmptyTest()
+        {
+            var x = 0;
+            var y = 0;
+
+            var space = new Space(new Vector2Int(x, y), TestRoomMap[y, x]);
+            var neighbour = space.WestNeighbor(TestRoomMap);
+
+            Assert.NotEqual(space, neighbour);
+            Assert.Equal(neighbour, Space.Empty);
         }
     }
 }
