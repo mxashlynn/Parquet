@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -118,11 +118,23 @@ namespace ParquetClassLibrary.Rooms
         /// <seealso cref="IsWalkableEntry"/>
         /// <returns><c>true</c>, if this <see cref="Space"/> is both walkable and an entry, <c>false</c> otherwise.</returns>
         internal bool IsEnclosingEntry(ParquetStack[,] in_subregion, SpaceCollection in_walkableArea)
-            => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
-            && Content.IsEnclosing
-            && Neighbors(in_subregion).Any(neighbor => in_walkableArea.Contains(neighbor))
-            && Neighbors(in_subregion).Any(neighbor => neighbor.Content.IsWalkable
-                                                    && !in_walkableArea.Contains(neighbor));
+        
+        {
+            // NOTE This logic fails when evaluated as a single if-statement, incorrectly reporting
+            // that a neighbor2 exists that is not a part of in_walkableArea.  I have not yet
+            // tracked down the cause of this failure.
+            if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
+                && Content.IsEnclosing
+                && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1)))
+            {
+                if (Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
+                                                          && neighbor2.Content.IsWalkable))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
 
         #region IEquatable Implementation

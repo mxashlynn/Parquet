@@ -81,7 +81,6 @@ namespace ParquetClassLibrary.Rooms
             if (!in_walkableArea.Concat(in_perimeter).Any(space
                 => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false))
             {
-                // EXCEPTION BEING THROWN HERE -- FALSE POSITIVES STILL SLIPPING BY
                 throw new ArgumentException($"No entry/exit found in {nameof(in_walkableArea)} or {nameof(in_perimeter)}.");
             }
 
