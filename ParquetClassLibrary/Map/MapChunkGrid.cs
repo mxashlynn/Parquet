@@ -20,8 +20,8 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(All.Dimensions.ChunksPerRegion,
-                                                                              All.Dimensions.ChunksPerRegion);
+        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Rules.Dimensions.ChunksPerRegion,
+                                                                              Rules.Dimensions.ChunksPerRegion);
         #endregion
 
         #region Whole-Region Characteristics
@@ -180,6 +180,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        // TODO Make this an extension to ChunkType[,].
         public bool IsValidPosition(Vector2Int in_position)
         {
             return in_position.X > -1

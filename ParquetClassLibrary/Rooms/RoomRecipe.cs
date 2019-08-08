@@ -49,15 +49,15 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
                           List<RecipeElement> in_requiredFurnishings,
-                          int in_MinimumWalkableSpaces = All.Recipes.Rooms.MinWalkableSpaces,
+                          int in_MinimumWalkableSpaces = Rules.Recipes.Rooms.MinWalkableSpaces,
                           List<RecipeElement> in_optionallyRequiredWalkableFloors = null,
                           List<RecipeElement> in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsNotNull(in_requiredFurnishings, nameof(in_requiredFurnishings));
             Precondition.IsNotEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
-            if (in_MinimumWalkableSpaces < All.Recipes.Rooms.MinWalkableSpaces
-                || in_MinimumWalkableSpaces > All.Recipes.Rooms.MaxWalkableSpaces)
+            if (in_MinimumWalkableSpaces < Rules.Recipes.Rooms.MinWalkableSpaces
+                || in_MinimumWalkableSpaces > Rules.Recipes.Rooms.MaxWalkableSpaces)
             {
                 throw new ArgumentOutOfRangeException(nameof(in_MinimumWalkableSpaces));
             }

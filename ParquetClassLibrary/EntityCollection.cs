@@ -168,6 +168,13 @@ namespace ParquetClassLibrary
         /// <returns>An enumerator.</returns>
         IEnumerator IEnumerable.GetEnumerator()
             => Entities.Values.GetEnumerator();
+
+        /// <summary>
+        /// Retrieves an enumerator for the <see cref="EntityCollection{T}"/>.
+        /// </summary>
+        /// <returns>An enumerator that iterates through the collection.</returns>
+        public IEnumerator<Entity> GetEnumerator()
+            => Entities.Values.GetEnumerator();
         #endregion
 
         #region Utility Methods
@@ -177,13 +184,6 @@ namespace ParquetClassLibrary
         /// <returns>The serialized parquets.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(Entities, Formatting.None);
-
-        /// <summary>
-        /// Retrieves an enumerator for the <see cref="EntityCollection{T}"/>.
-        /// </summary>
-        /// <returns>An enumerator that iterates through the collection.</returns>
-        public IEnumerator<Entity> GetEnumerator()
-            => Entities.Values.GetEnumerator();
 
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection{T}"/>.

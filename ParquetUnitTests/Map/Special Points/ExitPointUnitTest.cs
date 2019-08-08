@@ -11,7 +11,7 @@ namespace ParquetUnitTests.Map.SpecialPoints
         public void ExitPointKnowsWhereItLeadsTest()
         {
             var arbitraryGUID = new Guid();
-            var exitPoint = new ExitPoint(Vector2Int.ZeroVector, arbitraryGUID);
+            var exitPoint = new ExitPoint(Vector2Int.Zero, arbitraryGUID);
 
             Assert.Equal(arbitraryGUID, exitPoint.Destination);
         }

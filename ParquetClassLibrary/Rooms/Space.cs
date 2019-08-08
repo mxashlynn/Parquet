@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ParquetClassLibrary.Parquets;
 #if UNITY_2018_4_OR_NEWER
 using UnityEngine;
@@ -44,6 +46,94 @@ namespace ParquetClassLibrary.Rooms
         {
             Position = new Vector2Int(in_x, in_y);
             Content = in_content;
+        }
+        #endregion
+
+        #region Position Offsets
+        /// <summary>Finds the <see cref="Space"/> related to the given space by the given offset, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space Neighbor(ParquetStack[,] in_subregion, Vector2Int in_offset)
+        {
+            var offsetPosition = Position + in_offset;
+            return in_subregion.IsValidPosition(offsetPosition)
+                ? new Space(offsetPosition, in_subregion[offsetPosition.Y, offsetPosition.X])
+                : Empty;
+        }
+
+        /// <summary>Finds the <see cref="Space"/> to the north of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space NorthNeighbor(ParquetStack[,] in_subregion)
+            => Neighbor(in_subregion, Vector2Int.North);
+
+        /// <summary>Finds the <see cref="Space"/> to the south of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space SouthNeighbor(ParquetStack[,] in_subregion)
+            => Neighbor(in_subregion, Vector2Int.South);
+
+        /// <summary>Finds the <see cref="Space"/> to the east of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space EastNeighbor(ParquetStack[,] in_subregion)
+            => Neighbor(in_subregion, Vector2Int.East);
+
+        /// <summary>Finds the <see cref="Space"/> to the west of the given space, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public Space WestNeighbor(ParquetStack[,] in_subregion)
+            => Neighbor(in_subregion, Vector2Int.West);
+
+        /// <summary>Finds the <see cref="Space"/> related to the given space by the given offset, if any.</summary>
+        /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
+        /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
+        public List<Space> Neighbors(ParquetStack[,] in_subregion)
+            => new List<Space>
+            {
+                NorthNeighbor(in_subregion),
+                SouthNeighbor(in_subregion),
+                EastNeighbor(in_subregion),
+                WestNeighbor(in_subregion),
+            };
+        #endregion
+
+        #region Neighbor-Relative Game Logic
+        /// <summary>
+        /// Determines if this <see cref="Content"/> is both <see cref="ParquetStack.IsEntry"/>
+        /// and <see cref="ParquetStack.IsWalkable"/>.
+        /// </summary>
+        /// <seealso cref="IsEnclosingEntry"/>
+        /// <returns><c>true</c>, if this <see cref="Space"/> is both walkable and an entry, <c>false</c> otherwise.</returns>
+        internal bool IsWalkableEntry
+            => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
+            && Content.IsWalkable;
+
+        /// <summary>
+        /// Determines if this <see cref="Space"/> is:
+        /// 1) <see cref="ParquetStack.IsEntry"/>
+        /// 2) <see cref="ParquetStack.IsEnclosing"/>
+        /// 3) has one walkable neighbor that is within the given <see cref="SpaceCollection"/> and one not within it.
+        /// </summary>
+        /// <seealso cref="IsWalkableEntry"/>
+        /// <returns><c>true</c>, if this <see cref="Space"/> is both walkable and an entry, <c>false</c> otherwise.</returns>
+        internal bool IsEnclosingEntry(ParquetStack[,] in_subregion, SpaceCollection in_walkableArea)
+        
+        {
+            // NOTE This logic fails when evaluated as a single if-statement, incorrectly reporting
+            // that a neighbor2 exists that is not a part of in_walkableArea.  I have not yet
+            // tracked down the cause of this failure.
+            if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
+                && Content.IsEnclosing
+                && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1)))
+            {
+                if (Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
+                                                          && neighbor2.Content.IsWalkable))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 

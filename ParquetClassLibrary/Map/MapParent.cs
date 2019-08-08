@@ -35,6 +35,9 @@ namespace ParquetClassLibrary.Map
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
+
+        public bool IsValidPosition(Vector2Int in_position)
+            => ParquetDefintion.IsValidPosition(in_position);
         #endregion
 
         #region Map Contents
@@ -124,7 +127,7 @@ namespace ParquetClassLibrary.Map
                                             Vector2Int in_position)
         {
             var result = false;
-            if (IsValidPosition(in_position))
+            if (ParquetDefintion.IsValidPosition(in_position))
             {
                 ParquetDefintion[in_position.Y, in_position.X] =
                     new ParquetStack(
@@ -203,7 +206,7 @@ namespace ParquetClassLibrary.Map
             var result = false;
 
             if (null != in_point
-                && IsValidPosition(in_point.Position))
+                && ParquetDefintion.IsValidPosition(in_point.Position))
             {
                 // Return true if the point was removed or if the point never existed.
                 result = SpecialPoints.Remove(in_point) ||
@@ -222,7 +225,8 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose status is sought.</param>
         /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
-            => IsValidPosition(in_position)
+            // TODO Make this an extension of ParquetStatus[,] -- also, change the name of this class variable so it doesn't repeat the name of the type!
+            => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetStatus[in_position.Y, in_position.X]
                 : null;
 
@@ -232,7 +236,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose floor is sought.</param>
         /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2Int in_position)
-            => IsValidPosition(in_position)
+            => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetDefintion[in_position.Y, in_position.X]
                 : ParquetStack.Empty;
 
@@ -299,7 +303,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
         public ParquetStack[,] GetSubregion()
-            => GetSubregion(Vector2Int.ZeroVector, new Vector2Int(DimensionsInParquets.X - 1,
+            => GetSubregion(Vector2Int.Zero, new Vector2Int(DimensionsInParquets.X - 1,
                                                                   DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -310,11 +314,11 @@ namespace ParquetClassLibrary.Map
         /// <returns>A portion of the map as a subregion.</returns>
         public ParquetStack[,] GetSubregion(Vector2Int in_upperLeft, Vector2Int in_lowerRight)
         {
-            if (!IsValidPosition(in_upperLeft))
+            if (!ParquetDefintion.IsValidPosition(in_upperLeft))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_upperLeft));
             }
-            else if (!IsValidPosition(in_lowerRight))
+            else if (!ParquetDefintion.IsValidPosition(in_lowerRight))
             {
                 throw new ArgumentOutOfRangeException(nameof(in_lowerRight));
             }
@@ -341,17 +345,6 @@ namespace ParquetClassLibrary.Map
         }
 
         /// <summary>
-        /// Determines if the given position corresponds to a point on the map.
-        /// </summary>
-        /// <param name="in_position">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2Int in_position)
-            => in_position.X > -1
-            && in_position.Y > -1
-            && in_position.X < DimensionsInParquets.X
-            && in_position.Y < DimensionsInParquets.Y;
-
-        /// <summary>
         /// Visualizes the map as a string with merged layers.
         /// Intended for Console debugging.
         /// </summary>
@@ -365,7 +358,7 @@ namespace ParquetClassLibrary.Map
                 for (var y = 0; y < DimensionsInParquets.Y; y++)
                 {
                     var parquet = EntityID.None != ParquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible) 
+                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible)
                         : EntityID.None != ParquetDefintion[y, x].Furnishing
                             ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Furnishing)
                             : EntityID.None != ParquetDefintion[y, x].Block

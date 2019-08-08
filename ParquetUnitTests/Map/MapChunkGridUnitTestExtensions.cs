@@ -12,9 +12,9 @@ namespace ParquetUnitTests.Map
         /// <summary>Fills the chunk grid with a test pattern.</summary>
         public static MapChunkGrid FillTestPattern(this MapChunkGrid in_mapChunkGrid)
         {
-            for (var y = 0; y < All.Dimensions.ChunksPerRegion; y++)
+            for (var y = 0; y < Rules.Dimensions.ChunksPerRegion; y++)
             {
-                for (var x = 0; x < All.Dimensions.ChunksPerRegion; x++)
+                for (var x = 0; x < Rules.Dimensions.ChunksPerRegion; x++)
                 {
                     in_mapChunkGrid.SetChunk(ChunkType.GrassyField, ChunkOrientation.None, new Vector2Int(x, y));
                 }

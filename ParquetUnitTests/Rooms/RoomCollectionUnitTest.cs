@@ -25,12 +25,13 @@ namespace ParquetUnitTests.Rooms
             { TWall, TTile, TTile, TWall, },
             { TWall, TTile, TTile, TWall, },
             { TWall, TWall, TDoor, TWall, },
+            { TVoid, TVoid, TTile, TVoid, },
         };
         private static readonly ParquetStack[,] TestRoomMap =
         {
             { TWall, TWall, TWall, TWall, TVoid, },
             { TWall, TTile, TTile, TWall, TVoid, },
-            { TWall, TTile, TTile, TDoor, TVoid, },
+            { TWall, TTile, TTile, TDoor, TTile, },
             { TWall, TWall, TWall, TWall, TVoid, },
         };
         private static readonly ParquetStack[,] OneSimpleRoomMap =
@@ -41,7 +42,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomCentralPillarMap =
         {
@@ -51,7 +52,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWall, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomCentralWellMap =
         {
@@ -61,7 +62,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWell, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomCentralVoidMap =
         {
@@ -71,7 +72,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TVoid, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomCornerLakeMap =
         {
@@ -81,7 +82,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TWell, TWell, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomIntrusionMap =
         {
@@ -91,7 +92,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWall, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomExtrusionMap =
         {
@@ -101,7 +102,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TTile, TTile, TWall, TWall, TWall, TWall, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomCrossMap =
         {
@@ -111,7 +112,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWall, TWall, TWall, TWall, TWall, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomInnerMoatMap =
         {
@@ -141,7 +142,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWall, TWall, TWall, TTile, TTile, TWall, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TTile, TTile, TTile, TWall, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomDonoughtShapeMap =
         {
@@ -153,7 +154,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TWall, TWall, TWall, TTile, TWall, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TTile, TTile, TWall, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TWall, TWall, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] OneRoomThickWallsMap =
         {
@@ -163,7 +164,7 @@ namespace ParquetUnitTests.Rooms
             { TWall, TWall, TTile, TTile, TTile, TWall, TWall, TWall, TWall, TWall, },
             { TWall, TWall, TTile, TTile, TTile, TWall, TWall, TWall, TWall, TWall, },
             { TWall, TWall, TWall, TDoor, TWall, TWall, TWall, TWall, TWall, TWall, },
-            { TWall, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TWall, },
+            { TWall, TWall, TWall, TTile, TWall, TWall, TWall, TWall, TWall, TWall, },
         };
         private static readonly ParquetStack[,] TwoSimpleRoomsMap =
         {
@@ -173,7 +174,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TWall, TTile, TStep, TWall, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TWall, TTile, TTile, TWall, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] TwoJoinedRoomsMap =
         {
@@ -183,7 +184,7 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TTile, TTile, TWall, TTile, TStep, TWall, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TTile, TTile, TWall, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
         private static readonly ParquetStack[,] SixSimpleRoomsMap =
         {
@@ -193,12 +194,12 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TWall, TTile, TStep, TWall, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, TWall, TTile, TTile, TWall, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TWall, TWall, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, TVoid, },
-            { TVoid, TWall, TTile, TTile, TWall, TVoid, TDoor, TTile, TTile, TWall, TVoid, TVoid, },
-            { TVoid, TWall, TTile, TTile, TWall, TVoid, TWall, TTile, TTile, TWall, TVoid, TVoid, },
-            { TVoid, TWall, TWall, TDoor, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TTile, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TTile, TWall, TWall, TWall, TWall, TVoid, TVoid, },
+            { TVoid, TWall, TTile, TTile, TWall, TTile, TDoor, TTile, TTile, TWall, TVoid, TVoid, },
+            { TVoid, TWall, TTile, TTile, TWall, TTile, TWall, TTile, TTile, TWall, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TDoor, TWall, TTile, TWall, TWall, TWall, TWall, TVoid, TVoid, },
+            { TVoid, TVoid, TVoid, TTile, TTile, TTile, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TWall, TDoor, TWall, TWall, TWall, TWall, TWall, TVoid, TVoid, TVoid, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TTile, TTile, TWall, TVoid, TWall, TWall, },
             { TVoid, TWall, TTile, TTile, TTile, TWall, TTile, TStep, TWall, TVoid, TWall, TWall, },
@@ -430,6 +431,59 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
+        private static readonly ParquetStack[,] LoopNotEnclosingMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TDoor, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWell, TWall, TVoid, },
+            { TVoid, TWall, TWell, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] InaccessibleExitMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TWall, TStep, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] DoughnutNotEnclosingMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TStep, TTile, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TTile, TTile, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TVoid, TWall, TWall, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TVoid, TWall, TVoid, TWall, TVoid, TVoid, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TVoid, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] DoorUsedAsStepMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TDoor, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
+        private static readonly ParquetStack[,] StepUsedAsDoorMap =
+        {
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
+            { TVoid, TWall, TWall, TStep, TWall, TWall, TVoid, },
+            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
+        };
         #endregion
 
         private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(TestRoomMap);
@@ -483,11 +537,43 @@ namespace ParquetUnitTests.Rooms
         private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
         #endregion
 
+        #region Correctly Constructing Rooms
+        [Fact]
+        internal void DistinctRoomsHaveDistinctWalkableAreasTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+
+            var walkableArea1 = collection.GetRoomAt(new Vector2Int(2, 2)).WalkableArea;
+            var walkableArea2 = collection.GetRoomAt(new Vector2Int(8, 2)).WalkableArea;
+
+            Assert.False(walkableArea1.SetEquals(walkableArea2));
+        }
+
+        [Fact]
+        internal void DistinctRoomsHaveDistinctPerimetersTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+
+            var perimeter1 = collection.GetRoomAt(new Vector2Int(2, 2)).Perimeter;
+            var perimeter2 = collection.GetRoomAt(new Vector2Int(8, 2)).Perimeter;
+
+            Assert.False(perimeter1.SetEquals(perimeter2));
+        }
+        #endregion
+
         #region Finding Valid Rooms
         [Fact]
         internal void OneMinimalRoomFoundTest()
         {
             var collection = RoomCollection.CreateFromSubregion(OneMinimalRoomMap);
+
+            Assert.Equal(1, collection.Count);
+        }
+
+        [Fact]
+        internal void OneSimpleRoomFoundTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
 
             Assert.Equal(1, collection.Count);
         }
@@ -584,14 +670,6 @@ namespace ParquetUnitTests.Rooms
         internal void OneRoomUShapeFoundTest()
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomUShapeMap);
-
-            Assert.Equal(1, collection.Count);
-        }
-
-        [Fact]
-        internal void OneSimpleRoomFoundTest()
-        {
-            var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
 
             Assert.Equal(1, collection.Count);
         }
@@ -797,6 +875,46 @@ namespace ParquetUnitTests.Rooms
         internal void IncompleteMapYieldsNoRoomsTest()
         {
             var collection = RoomCollection.CreateFromSubregion(IncompleteMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void LoopNotEnclosingMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(LoopNotEnclosingMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void InaccessibleExitMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(InaccessibleExitMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void DoughnutNotEnclosingMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void DoorUsedAsStepMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(DoorUsedAsStepMap);
+
+            Assert.Equal(0, collection.Count);
+        }
+
+        [Fact]
+        internal void StepUsedAsDoorMapYieldsNoRoomsTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(StepUsedAsDoorMap);
 
             Assert.Equal(0, collection.Count);
         }

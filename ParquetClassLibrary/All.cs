@@ -11,7 +11,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Provides content, rules, and parameters for the game.
+    /// Provides content and identifiers for the game.
     /// </summary>
     public static class All
     {
@@ -142,60 +142,6 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
         public static EntityCollection<RoomRecipe> RoomRecipes { get; private set; }
-        #endregion
-
-        #region Rules and Parameters
-        /// <summary>
-        /// Provides dimensional parameters for the game.
-        /// </summary>
-        public static class Dimensions
-        {
-            /// <summary>The length of each <see cref="Map.MapChunkGrid"/> dimension in parquets.</summary>
-            public const int ParquetsPerChunk = 16;
-
-            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in <see cref="Map.MapChunkGrid"/>s.</summary>
-            public const int ChunksPerRegion = 4;
-
-            /// <summary>The length of each <see cref="Map.MapRegion"/> dimension in parquets.</summary>
-            public const int ParquetsPerRegion = ChunksPerRegion * ParquetsPerChunk;
-
-            /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
-            public const int PanelsPerPatternWidth = 2;
-
-            /// <summary>Height of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
-            public const int PanelsPerPatternHeight = 8;
-        }
-
-        /// <summary>
-        /// Provides recipe requirements for the game.
-        /// </summary>
-        public static class Recipes
-        {
-            // TODO Add class for crafting rules here.
-
-            // TODO Move all rules and parameters to dedicated GameRules static class.
-
-            /// <summary>
-            /// Provides recipe requirements for the game.
-            /// </summary>
-            public static class Rooms
-            {
-                /// <summary>
-                /// Minimum number of open walkable spaces needed for any room to register.
-                /// </summary>
-                public const int MinWalkableSpaces = 4;
-
-                /// <summary>
-                /// Maximum number of open walkable spaces needed for any room to register.
-                /// </summary>
-                public const int MaxWalkableSpaces = 121;
-
-                /// <summary>
-                /// Minimum number of open enclosing spaces needed for any room to register.
-                /// </summary>
-                public const int MinPerimeterSpaces = 12;
-            }
-        }
         #endregion
 
         #region Initialization

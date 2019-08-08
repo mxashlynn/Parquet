@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Rooms;
 
 namespace ParquetClassLibrary.Parquets
 {
@@ -71,7 +74,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
-            && (IsWalkable || IsEnclosing);
+            && (IsWalkable ^ IsEnclosing);
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is considered walkable iff:
@@ -149,6 +152,45 @@ namespace ParquetClassLibrary.Parquets
         public override string ToString()
             => $"[{Floor} {Block} {Furnishing} {Collectible}]";
         #endregion
+    }
 
+    /// <summary>
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetStack"/>s.
+    /// </summary>
+    public static class ParquetStackArrayExtensions
+    {
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the current array.
+        /// </summary>
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2Int in_position)
+            => in_position.X > -1
+            && in_position.Y > -1
+            && in_position.X < in_subregion.GetLength(1)
+            && in_position.Y < in_subregion.GetLength(0);
+
+        /// <summary>
+        /// Returns the set of <see cref="Space"/>s corresponding to the subregion.
+        /// </summary>
+        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
+        /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
+        public static SpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
+        {
+            var uniqueResults = new HashSet<Space>();
+            var subregionRows = in_subregion.GetLength(0);
+            var subregionCols = in_subregion.GetLength(1);
+
+            for (var y = 0; y < subregionRows; y++)
+            {
+                for (var x = 0; x < subregionCols; x++)
+                {
+                    var currentSpace = new Space(x, y, in_subregion[y, x]);
+                    uniqueResults.Add(currentSpace);
+                }
+            }
+
+            return new SpaceCollection(uniqueResults);
+        }
     }
 }

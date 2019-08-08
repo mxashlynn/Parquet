@@ -21,7 +21,7 @@ namespace ParquetUnitTests.Map.SpecialPoints
         public void SpecialPointsDoNotEquateIfTheirPositionsDoNotEquateTest()
         {
             var point1 = new SpecialPoint(testPosition);
-            var point2 = new SpecialPoint(Vector2Int.ZeroVector);
+            var point2 = new SpecialPoint(Vector2Int.Zero);
 
             Assert.NotEqual(point1, point2);
         }

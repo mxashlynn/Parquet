@@ -21,18 +21,18 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(All.Dimensions.ParquetsPerChunk,
-                                                                                  All.Dimensions.ParquetsPerChunk);
+        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(Rules.Dimensions.ParquetsPerChunk,
+                                                                                  Rules.Dimensions.ParquetsPerChunk);
         #endregion
 
         #region Chunk Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
         protected override ParquetStatus[,] ParquetStatus { get; } =
-            new ParquetStatus[All.Dimensions.ParquetsPerChunk, All.Dimensions.ParquetsPerChunk];
+            new ParquetStatus[Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk];
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         protected override ParquetStack[,] ParquetDefintion { get; } =
-            new ParquetStack[All.Dimensions.ParquetsPerChunk, All.Dimensions.ParquetsPerChunk];
+            new ParquetStack[Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk];
         #endregion
 
         #region Serialization Methods

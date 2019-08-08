@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Map.SpecialPoints
         [Fact]
         public void SpawnPointKnowsWhatToSpawnTest()
         {
-            var spawnPoint = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
+            var spawnPoint = new SpawnPoint(Vector2Int.Zero, SpawnType.Player);
 
             Assert.Equal(SpawnType.Player, spawnPoint.WhatToSpawn);
         }

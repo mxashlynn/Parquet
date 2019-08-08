@@ -42,7 +42,7 @@ namespace ParquetUnitTests.Map
             var chunk = new MapChunk();
             var parquetID = TestEntities.TestFloor.ID;
 
-            var result = chunk.TrySetFloorDefinition(parquetID, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFloorDefinition(parquetID, Vector2Int.Zero);
 
             Assert.True(result);
         }
@@ -64,7 +64,7 @@ namespace ParquetUnitTests.Map
             var chunk = new MapChunk();
             var parquetID = TestEntities.TestBlock.ID;
 
-            var result = chunk.TrySetBlockDefinition(parquetID, Vector2Int.ZeroVector);
+            var result = chunk.TrySetBlockDefinition(parquetID, Vector2Int.Zero);
 
             Assert.True(result);
         }
@@ -86,7 +86,7 @@ namespace ParquetUnitTests.Map
             var chunk = new MapChunk();
             var parquetID = TestEntities.TestFurnishing.ID;
 
-            var result = chunk.TrySetFurnishingDefinition(parquetID, Vector2Int.ZeroVector);
+            var result = chunk.TrySetFurnishingDefinition(parquetID, Vector2Int.Zero);
 
             Assert.True(result);
         }
@@ -108,7 +108,7 @@ namespace ParquetUnitTests.Map
             var chunk = new MapChunk();
             var parquetID = TestEntities.TestCollectible.ID;
 
-            var result = chunk.TrySetCollectibleDefinition(parquetID, Vector2Int.ZeroVector);
+            var result = chunk.TrySetCollectibleDefinition(parquetID, Vector2Int.Zero);
 
             Assert.True(result);
         }
@@ -130,7 +130,7 @@ namespace ParquetUnitTests.Map
         public void TrySetSpawnPointSucceedsOnValidPositionTest()
         {
             var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
+            var point = new SpawnPoint(Vector2Int.Zero, SpawnType.Player);
 
             var result = chunk.TrySetSpawnPoint(point);
 
@@ -152,7 +152,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
         {
             var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
+            var point = new SpawnPoint(Vector2Int.Zero, SpawnType.Player);
 
             var result = chunk.TryRemoveSpawnPoint(point);
 
@@ -163,7 +163,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
         {
             var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2Int.ZeroVector, SpawnType.Player);
+            var point = new SpawnPoint(Vector2Int.Zero, SpawnType.Player);
             chunk.TrySetSpawnPoint(point);
 
             var result = chunk.TryRemoveSpawnPoint(point);
@@ -186,7 +186,7 @@ namespace ParquetUnitTests.Map
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
+            var point = new ExitPoint(Vector2Int.Zero, new Guid());
 
             var result = chunk.TrySetExitPoint(point);
 
@@ -208,7 +208,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
         {
             var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
+            var point = new ExitPoint(Vector2Int.Zero, new Guid());
 
             var result = chunk.TryRemoveExitPoint(point);
 
@@ -219,7 +219,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
             var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2Int.ZeroVector, new Guid());
+            var point = new ExitPoint(Vector2Int.Zero, new Guid());
             chunk.TrySetExitPoint(point);
 
             var result = chunk.TryRemoveExitPoint(point);
@@ -309,7 +309,7 @@ namespace ParquetUnitTests.Map
         {
             var chunk = new MapChunk();
 
-            var result = chunk.GetDefinitionAtPosition(Vector2Int.ZeroVector);
+            var result = chunk.GetDefinitionAtPosition(Vector2Int.Zero);
 
             Assert.Equal(EntityID.None, result.Floor);
             Assert.Equal(EntityID.None, result.Block);
@@ -337,7 +337,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
-            var validUpperLeft = Vector2Int.ZeroVector;
+            var validUpperLeft = Vector2Int.Zero;
             var invalidLowerRight = defaultChunk.DimensionsInParquets;
 
             void InvalidSubregion()
@@ -351,7 +351,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
-            var validUpperLeft = Vector2Int.ZeroVector;
+            var validUpperLeft = Vector2Int.Zero;
             var validLowerRight = new Vector2Int(defaultChunk.DimensionsInParquets.X - 1,
                                                  defaultChunk.DimensionsInParquets.Y - 1);
 

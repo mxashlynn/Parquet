@@ -82,13 +82,13 @@ namespace ParquetUnitTests
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
                                               in_addsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
-                                            TestRecipeElementList, All.Recipes.Rooms.MinWalkableSpaces + 1,
+                                            TestRecipeElementList, Rules.Recipes.Rooms.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
                                                     "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanel[All.Dimensions.PanelsPerPatternHeight,
-                                                                    All.Dimensions.PanelsPerPatternWidth]);
+                                                    new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
+                                                                    Rules.Dimensions.PanelsPerPatternWidth]);
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test");
             TestBiome = new Biome(-All.BiomeIDs.Minimum, "10 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);

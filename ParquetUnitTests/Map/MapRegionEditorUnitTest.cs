@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Map
             editor.NewMapRegion();
             MapRegionEditor.DisplayPositionInfo += HandleEvent;
 
-            editor.DisplayInfoAtPosition(Vector2Int.ZeroVector);
+            editor.DisplayInfoAtPosition(Vector2Int.Zero);
 
             Assert.True(wasEventRaised);
             Assert.Equal(editor, sender);
