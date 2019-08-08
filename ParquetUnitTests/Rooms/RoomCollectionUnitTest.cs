@@ -537,6 +537,30 @@ namespace ParquetUnitTests.Rooms
         private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
         #endregion
 
+        #region Correctly Constructing Rooms
+        [Fact]
+        internal void DistinctRoomsHaveDistinctWalkableAreasTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+
+            var walkableArea1 = collection.GetRoomAt(new Vector2Int(2, 2)).WalkableArea;
+            var walkableArea2 = collection.GetRoomAt(new Vector2Int(8, 2)).WalkableArea;
+
+            Assert.False(walkableArea1.SetEquals(walkableArea2));
+        }
+
+        [Fact]
+        internal void DistinctRoomsHaveDistinctPerimetersTest()
+        {
+            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+
+            var perimeter1 = collection.GetRoomAt(new Vector2Int(2, 2)).Perimeter;
+            var perimeter2 = collection.GetRoomAt(new Vector2Int(8, 2)).Perimeter;
+
+            Assert.False(perimeter1.SetEquals(perimeter2));
+        }
+        #endregion
+
         #region Finding Valid Rooms
         [Fact]
         internal void OneMinimalRoomFoundTest()
