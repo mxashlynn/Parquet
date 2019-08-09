@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 using System;
 using ParquetClassLibrary;
@@ -119,7 +119,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void UncontainedPositionIsNotFoundTest()
         {
-            var UncontainedPosition = new Vector2Int(TestPerimeter.Select(space => space.Position.X).Min() - 1,
+            var UncontainedPosition = new Vector2D(TestPerimeter.Select(space => space.Position.X).Min() - 1,
                                                      TestPerimeter.Select(space => space.Position.Y).Min() - 1);
 
             Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));

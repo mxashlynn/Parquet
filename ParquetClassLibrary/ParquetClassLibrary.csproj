@@ -29,7 +29,6 @@
     <Folder Include="Parquets\" />
     <Folder Include="Quests\" />
     <Folder Include="Rooms\" />
-    <Folder Include="Stubs\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
 

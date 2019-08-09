@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
@@ -121,11 +120,11 @@ namespace ParquetClassLibrary.Rooms
                 #endregion
 
                 // Only continue if all four extrema are found.
-                var perimiterSeeds = new List<Vector2Int>();
-                if (TryGetSeed(northWalkableExtreme, position => position + Vector2Int.North, out var northSeed)
-                    && TryGetSeed(southWalkableExtreme, position => position + Vector2Int.South, out var southSeed)
-                    && TryGetSeed(eastWalkableExtreme, position => position + Vector2Int.East, out var eastSeed)
-                    && TryGetSeed(westWalkableExtreme, position => position + Vector2Int.West, out var westSeed))
+                var perimiterSeeds = new List<Vector2D>();
+                if (TryGetSeed(northWalkableExtreme, position => position + Vector2D.North, out var northSeed)
+                    && TryGetSeed(southWalkableExtreme, position => position + Vector2D.South, out var southSeed)
+                    && TryGetSeed(eastWalkableExtreme, position => position + Vector2D.East, out var eastSeed)
+                    && TryGetSeed(westWalkableExtreme, position => position + Vector2D.West, out var westSeed))
                 {
                     perimiterSeeds.Add(northSeed);
                     perimiterSeeds.Add(southSeed);
@@ -166,7 +165,7 @@ namespace ParquetClassLibrary.Rooms
             /// <param name="in_adjust">How to adjust the position at each step if a seed has not been found.</param>
             /// <param name="out_final">The position of the perimeter seed.</param>
             /// <returns><c>true</c> if a seed was found, <c>false</c> otherwise.</returns>
-            bool TryGetSeed(Vector2Int in_start, Func<Vector2Int, Vector2Int> in_adjust, out Vector2Int out_final)
+            bool TryGetSeed(Vector2D in_start, Func<Vector2D, Vector2D> in_adjust, out Vector2D out_final)
             {
                 var found = false;
                 var position = in_start;
@@ -188,7 +187,7 @@ namespace ParquetClassLibrary.Rooms
 
                 out_final = found
                     ? position
-                    : Vector2Int.Zero;
+                    : Vector2D.Zero;
 
                 return found;
             }

@@ -1,5 +1,5 @@
 using ParquetClassLibrary.Map.SpecialPoints;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Map.SpecialPoints
@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Map.SpecialPoints
         [Fact]
         public void SpawnPointKnowsWhatToSpawnTest()
         {
-            var spawnPoint = new SpawnPoint(Vector2Int.Zero, SpawnType.Player);
+            var spawnPoint = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
 
             Assert.Equal(SpawnType.Player, spawnPoint.WhatToSpawn);
         }

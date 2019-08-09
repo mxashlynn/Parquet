@@ -1,6 +1,6 @@
 using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Map
@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Map
             editor.NewMapRegion();
             MapRegionEditor.DisplayPositionInfo += HandleEvent;
 
-            editor.DisplayInfoAtPosition(Vector2Int.Zero);
+            editor.DisplayInfoAtPosition(Vector2D.Zero);
 
             Assert.True(wasEventRaised);
             Assert.Equal(editor, sender);

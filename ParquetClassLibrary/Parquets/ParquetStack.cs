@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Rooms;
 
@@ -164,7 +163,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2Int in_position)
+        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2D in_position)
             => in_position.X > -1
             && in_position.Y > -1
             && in_position.X < in_subregion.GetLength(1)

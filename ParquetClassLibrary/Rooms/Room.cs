@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -45,8 +40,8 @@ namespace ParquetClassLibrary.Rooms
         /// <remarks>
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
-        public Vector2Int Position
-            => new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
+        public Vector2D Position
+            => new Vector2D(WalkableArea.Select(space => space.Position.X).Min(),
                               WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
@@ -94,7 +89,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="in_position">The position to check for.</param>
         /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
-        public bool ContainsPosition(Vector2Int in_position)
+        public bool ContainsPosition(Vector2D in_position)
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == in_position);
 
         /// <summary>

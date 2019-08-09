@@ -1,9 +1,5 @@
 using System;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
@@ -16,7 +12,7 @@ namespace ParquetClassLibrary.Characters
         public Guid RegionID;
 
         /// <summary>The position within the current <see cref="MapRegion"/> where this character is located.</summary>
-        public Vector2Int Position;
+        public Vector2D Position;
 
         /// <summary>
         /// Describes the <see cref="Location"/> as a <see langword="string"/>.

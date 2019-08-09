@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
@@ -39,7 +38,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="in_position">An in-bonds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
-        public Room GetRoomAt(Vector2Int in_position)
+        public Room GetRoomAt(Vector2D in_position)
             => Rooms.FirstOrDefault(room => room.ContainsPosition(in_position));
 
         #region Initialization

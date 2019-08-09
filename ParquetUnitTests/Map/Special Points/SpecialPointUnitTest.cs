@@ -1,12 +1,12 @@
 using ParquetClassLibrary.Map.SpecialPoints;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Map.SpecialPoints
 {
     public class SpecialPointUnitTest
     {
-        private static readonly Vector2Int testPosition = new Vector2Int(2, 2);
+        private static readonly Vector2D testPosition = new Vector2D(2, 2);
 
         [Fact]
         public void SpecialPointsEquateIfTheirPositionsEquateTest()
@@ -21,7 +21,7 @@ namespace ParquetUnitTests.Map.SpecialPoints
         public void SpecialPointsDoNotEquateIfTheirPositionsDoNotEquateTest()
         {
             var point1 = new SpecialPoint(testPosition);
-            var point2 = new SpecialPoint(Vector2Int.Zero);
+            var point2 = new SpecialPoint(Vector2D.Zero);
 
             Assert.NotEqual(point1, point2);
         }

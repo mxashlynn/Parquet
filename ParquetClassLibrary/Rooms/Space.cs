@@ -2,11 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -16,10 +12,10 @@ namespace ParquetClassLibrary.Rooms
     public struct Space : IEquatable<Space>
     {
         /// <summary>The null <see cref="Space"/>, which exists nowhere and contains nothing.</summary>
-        public static readonly Space Empty = new Space(new Vector2Int(int.MinValue, int.MinValue), ParquetStack.Empty);
+        public static readonly Space Empty = new Space(new Vector2D(int.MinValue, int.MinValue), ParquetStack.Empty);
 
         /// <summary>Location of this <see cref="Space"/>.</summary>
-        public readonly Vector2Int Position;
+        public readonly Vector2D Position;
 
         /// <summary>All parquets occupying this <see cref="Space"/>.</summary>
         public readonly ParquetStack Content;
@@ -30,7 +26,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="in_position">Location of this <see cref="Space"/>.</param>
         /// <param name="in_content">All parquets occupying this <see cref="Space"/>.</param>
-        public Space(Vector2Int in_position, ParquetStack in_content)
+        public Space(Vector2D in_position, ParquetStack in_content)
         {
             Position = in_position;
             Content = in_content;
@@ -44,7 +40,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_content">All parquets occupying this <see cref="Space"/>.</param>
         public Space(int in_x, int in_y, ParquetStack in_content)
         {
-            Position = new Vector2Int(in_x, in_y);
+            Position = new Vector2D(in_x, in_y);
             Content = in_content;
         }
         #endregion
@@ -53,7 +49,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>Finds the <see cref="Space"/> related to the given space by the given offset, if any.</summary>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public Space Neighbor(ParquetStack[,] in_subregion, Vector2Int in_offset)
+        public Space Neighbor(ParquetStack[,] in_subregion, Vector2D in_offset)
         {
             var offsetPosition = Position + in_offset;
             return in_subregion.IsValidPosition(offsetPosition)
@@ -65,25 +61,25 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public Space NorthNeighbor(ParquetStack[,] in_subregion)
-            => Neighbor(in_subregion, Vector2Int.North);
+            => Neighbor(in_subregion, Vector2D.North);
 
         /// <summary>Finds the <see cref="Space"/> to the south of the given space, if any.</summary>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public Space SouthNeighbor(ParquetStack[,] in_subregion)
-            => Neighbor(in_subregion, Vector2Int.South);
+            => Neighbor(in_subregion, Vector2D.South);
 
         /// <summary>Finds the <see cref="Space"/> to the east of the given space, if any.</summary>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public Space EastNeighbor(ParquetStack[,] in_subregion)
-            => Neighbor(in_subregion, Vector2Int.East);
+            => Neighbor(in_subregion, Vector2D.East);
 
         /// <summary>Finds the <see cref="Space"/> to the west of the given space, if any.</summary>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>
         /// <returns>A <see cref="Space"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public Space WestNeighbor(ParquetStack[,] in_subregion)
-            => Neighbor(in_subregion, Vector2Int.West);
+            => Neighbor(in_subregion, Vector2D.West);
 
         /// <summary>Finds the <see cref="Space"/> related to the given space by the given offset, if any.</summary>
         /// <param name="in_subregion">The subregion containing the <see cref="Space"/>s.</param>

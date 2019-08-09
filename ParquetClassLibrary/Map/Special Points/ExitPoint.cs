@@ -1,9 +1,5 @@
 using System;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Map.SpecialPoints
 {
@@ -20,7 +16,7 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         /// </summary>
         /// <param name="in_position">The location of this point on its containing region.</param>
         /// <param name="in_guid">The region this exit leads to.</param>
-        public ExitPoint(Vector2Int in_position, Guid in_guid) : base(in_position)
+        public ExitPoint(Vector2D in_position, Guid in_guid) : base(in_position)
            => Destination = in_guid;
     }
 }
