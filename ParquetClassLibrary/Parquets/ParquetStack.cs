@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Parquets
         /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Enclosing, <c>false</c> otherwise.</returns>
         public bool IsEnclosing
             => !(All.Parquets.Get<Block>(Block)?.IsLiquid ?? true)
             || (All.Parquets.Get<Furnishing>(Furnishing)?.IsEnclosing ?? false);
@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Parquets
         /// 1, It is either Walkable or Enclosing; and,
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
             && (IsWalkable ^ IsEnclosing);
@@ -82,7 +82,7 @@ namespace ParquetClassLibrary.Parquets
         /// 2, It does not have a <see cref="Block"/>;
         /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Walkable, <c>false</c> otherwise.</returns>
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None

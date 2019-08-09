@@ -98,13 +98,51 @@ namespace ParquetClassLibrary.Rooms
             };
         #endregion
 
-        #region Neighbor-Relative Game Logic
+        #region Gameplay Support
+        /// <summary>
+        /// Indicates whether this <see cref="ParquetStack"/> is empty.
+        /// </summary>
+        /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
+        public bool IsEmpty => EntityID.None == Content.Floor &&
+                               EntityID.None == Content.Block &&
+                               EntityID.None == Content.Furnishing &&
+                               EntityID.None == Content.Collectible;
+
+        /// <summary>
+        /// A <see cref="Space"/> is Enclosing iff:
+        /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="Space"/> is Enclosing, <c>false</c> otherwise.</returns>
+        public bool IsEnclosing
+            => Content.IsEnclosing;
+
+        /// <summary>
+        /// A <see cref="Space"/> is Entry iff:
+        /// 1, Its <see cref="Content"/> is either Walkable or Enclosing; and,
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="Space"/> is Entry, <c>false</c> otherwise.</returns>
+        internal bool IsEntry
+            => Content.IsEntry;
+
+        /// <summary>
+        /// A <see cref="Space"/> is Walkable iff:
+        /// 1, It has a <see cref="Floor"/>;
+        /// 2, It does not have a <see cref="Block"/>;
+        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
+        /// </summary>
+        /// <returns><c>true</c>, if this <see cref="Space"/> is Walkable, <c>false</c> otherwise.</returns>
+        internal bool IsWalkable
+            => Content.IsWalkable;
+
+        #region Neighbor-Relative Gameplay Algorithm Support
         /// <summary>
         /// Determines if this <see cref="Content"/> is both <see cref="ParquetStack.IsEntry"/>
         /// and <see cref="ParquetStack.IsWalkable"/>.
         /// </summary>
         /// <seealso cref="IsEnclosingEntry"/>
-        /// <returns><c>true</c>, if this <see cref="Space"/> is both walkable and an entry, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="Space"/> may be used as a walkable entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsWalkableEntry
             => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
             && Content.IsWalkable;
@@ -116,7 +154,7 @@ namespace ParquetClassLibrary.Rooms
         /// 3) has one walkable neighbor that is within the given <see cref="SpaceCollection"/> and one not within it.
         /// </summary>
         /// <seealso cref="IsWalkableEntry"/>
-        /// <returns><c>true</c>, if this <see cref="Space"/> is both walkable and an entry, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="Space"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsEnclosingEntry(ParquetStack[,] in_subregion, SpaceCollection in_walkableArea)
         
         {
@@ -135,6 +173,7 @@ namespace ParquetClassLibrary.Rooms
             }
             return false;
         }
+        #endregion
         #endregion
 
         #region IEquatable Implementation
