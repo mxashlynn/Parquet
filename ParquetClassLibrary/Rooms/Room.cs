@@ -12,16 +12,16 @@ namespace ParquetClassLibrary.Rooms
     public class Room : IEquatable<Room>
     {
         /// <summary>
-        /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public readonly SpaceCollection WalkableArea;
+        public readonly MapSpaceCollection WalkableArea;
 
         /// <summary>
-        /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public readonly SpaceCollection Perimeter;
+        public readonly MapSpaceCollection Perimeter;
 
         /// <summary>
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
@@ -35,7 +35,7 @@ namespace ParquetClassLibrary.Rooms
                .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom);
 
         /// <summary>
-        /// A location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
+        /// A location with the least X and Y coordinates of every <see cref="MapSpace"/> in this <see cref="Room"/>.
         /// </summary>
         /// <remarks>
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
@@ -53,14 +53,14 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
         /// <param name="in_walkableArea">
-        /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </param>
         /// <param name="in_perimeter">
-        /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(SpaceCollection in_walkableArea, SpaceCollection in_perimeter)
+        public Room(MapSpaceCollection in_walkableArea, MapSpaceCollection in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));

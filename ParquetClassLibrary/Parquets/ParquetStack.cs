@@ -170,13 +170,13 @@ namespace ParquetClassLibrary.Parquets
             && in_position.Y < in_subregion.GetLength(0);
 
         /// <summary>
-        /// Returns the set of <see cref="Space"/>s corresponding to the subregion.
+        /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
-        /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
-        public static SpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
+        /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
+        public static MapSpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
         {
-            var uniqueResults = new HashSet<Space>();
+            var uniqueResults = new HashSet<MapSpace>();
             var subregionRows = in_subregion.GetLength(0);
             var subregionCols = in_subregion.GetLength(1);
 
@@ -184,12 +184,12 @@ namespace ParquetClassLibrary.Parquets
             {
                 for (var x = 0; x < subregionCols; x++)
                 {
-                    var currentSpace = new Space(x, y, in_subregion[y, x]);
+                    var currentSpace = new MapSpace(x, y, in_subregion[y, x]);
                     uniqueResults.Add(currentSpace);
                 }
             }
 
-            return new SpaceCollection(uniqueResults);
+            return new MapSpaceCollection(uniqueResults);
         }
     }
 }

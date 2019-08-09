@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Rooms
 
             var walkableAreas = in_subregion.GetWalkableAreas();
             // TODO Double check that correct perimeters are being attached to walkable areas.
-            SpaceCollection perimeter = null;
+            MapSpaceCollection perimeter = null;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
                         .Where(walkableArea => walkableArea.Any(space => space.IsWalkableEntry
@@ -102,9 +102,9 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<SpaceCollection> GetWalkableAreas(this ParquetStack[,] in_subregion)
+        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStack[,] in_subregion)
         {
-            var PWAs = new List<HashSet<Space>>();
+            var PWAs = new List<HashSet<MapSpace>>();
             var subregionRows = in_subregion.GetLength(0);
             var subregionCols = in_subregion.GetLength(1);
 
@@ -114,31 +114,31 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 {
                     if (in_subregion[y, x].IsWalkable)
                     {
-                        var currentSpace = new Space(x, y, in_subregion[y, x]);
+                        var currentSpace = new MapSpace(x, y, in_subregion[y, x]);
 
                         var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable
-                            ? new Space(x, y - 1, in_subregion[y - 1, x])
-                            : (Space?)null;
+                            ? new MapSpace(x, y - 1, in_subregion[y - 1, x])
+                            : (MapSpace?)null;
                         var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable
-                            ? new Space(x - 1, y, in_subregion[y, x - 1])
-                            : (Space?)null;
+                            ? new MapSpace(x - 1, y, in_subregion[y, x - 1])
+                            : (MapSpace?)null;
 
                         if (null == northSpace && null == westSpace)
                         {
-                            var newPWA = new HashSet<Space> { currentSpace };
+                            var newPWA = new HashSet<MapSpace> { currentSpace };
                             PWAs.Add(newPWA);
                         }
                         else if (null != northSpace && null != westSpace)
                         {
-                            var northPWA = PWAs.Find(pwa => pwa.Contains((Space)northSpace));
-                            var westPWA = PWAs.Find(pwa => pwa.Contains((Space)westSpace));
+                            var northPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace));
                             if (northPWA == westPWA)
                             {
                                 northPWA.Add(currentSpace);
                             }
                             else
                             {
-                                var combinedPWA = new HashSet<Space>(northPWA.Union(westPWA)) { currentSpace };
+                                var combinedPWA = new HashSet<MapSpace>(northPWA.Union(westPWA)) { currentSpace };
                                 PWAs.Remove(northPWA);
                                 PWAs.Remove(westPWA);
                                 PWAs.Add(combinedPWA);
@@ -146,22 +146,22 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         }
                         else if (null == northSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((Space)westSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace)).Add(currentSpace);
                         }
                         else if (null == westSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((Space)northSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace)).Add(currentSpace);
                         }
                     }
                 }
             }
 
-            var PWAsTooSmall = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Rooms.MinWalkableSpaces));
-            var PWAsTooLarge = new HashSet<HashSet<Space>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Rooms.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<Space>>(PWAs.Where(pwa => !new SpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
-            var results = new List<HashSet<Space>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
+            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Rooms.MinWalkableSpaces));
+            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Rooms.MaxWalkableSpaces));
+            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
-            return results.ConvertAll(hashOfSpaces => new SpaceCollection(hashOfSpaces));
+            return results.ConvertAll(hashOfSpaces => new MapSpaceCollection(hashOfSpaces));
         }
     }
 }

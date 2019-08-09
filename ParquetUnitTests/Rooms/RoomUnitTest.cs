@@ -18,28 +18,28 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
-        private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
+        private static readonly HashSet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
-            new Space(0, 0, TestWall),
-            new Space(1, 0, TestWall),
-            new Space(2, 0, TestWall),
-            new Space(3, 0, TestWall),
-            new Space(0, 1, TestWall),
-            new Space(3, 1, TestWall),
-            new Space(0, 2, TestWall),
-            new Space(3, 2, TestWall),
-            new Space(0, 3, TestWall),
-            new Space(1, 3, TestWall),
-            new Space(2, 3, TestWall),
-            new Space(3, 3, TestWall),
+            new MapSpace(0, 0, TestWall),
+            new MapSpace(1, 0, TestWall),
+            new MapSpace(2, 0, TestWall),
+            new MapSpace(3, 0, TestWall),
+            new MapSpace(0, 1, TestWall),
+            new MapSpace(3, 1, TestWall),
+            new MapSpace(0, 2, TestWall),
+            new MapSpace(3, 2, TestWall),
+            new MapSpace(0, 3, TestWall),
+            new MapSpace(1, 3, TestWall),
+            new MapSpace(2, 3, TestWall),
+            new MapSpace(3, 3, TestWall),
         };
 
-        private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
+        private static readonly HashSet<MapSpace> TestWalkableArea = new HashSet<MapSpace>
         {
-            new Space(1, 1, TestWalk),
-            new Space(2, 1, TestWalk),
-            new Space(1, 2, TestWalk),
-            new Space(2, 2, TestEntry),
+            new MapSpace(1, 1, TestWalk),
+            new MapSpace(2, 1, TestWalk),
+            new MapSpace(1, 2, TestWalk),
+            new MapSpace(2, 2, TestEntry),
         };
 
         private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
@@ -72,7 +72,7 @@ namespace ParquetUnitTests.Rooms
         {
             void EmptyWalkableArea()
             {
-                var _ = new Room(new HashSet<Space>(), TestPerimeter);
+                var _ = new Room(new HashSet<MapSpace>(), TestPerimeter);
             }
 
             Assert.Throws<IndexOutOfRangeException>(EmptyWalkableArea);
@@ -83,7 +83,7 @@ namespace ParquetUnitTests.Rooms
         {
             void EmptyPerimeter()
             {
-                var _ = new Room(TestWalkableArea, new HashSet<Space>());
+                var _ = new Room(TestWalkableArea, new HashSet<MapSpace>());
             }
 
             Assert.Throws<IndexOutOfRangeException>(EmptyPerimeter);
@@ -92,12 +92,12 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NoEntryThrowsTest()
         {
-            var walkableAreaWithNoExit = new HashSet<Space>
+            var walkableAreaWithNoExit = new HashSet<MapSpace>
             {
-                new Space(1, 1, TestWalk),
-                new Space(2, 1, TestWalk),
-                new Space(1, 2, TestWalk),
-                new Space(2, 2, TestWalk),
+                new MapSpace(1, 1, TestWalk),
+                new MapSpace(2, 1, TestWalk),
+                new MapSpace(1, 2, TestWalk),
+                new MapSpace(2, 2, TestWalk),
             };
 
             void BadWalkableAre()
@@ -137,12 +137,12 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DifferingRoomsAreUnequalTest()
         {
-            var otherWalkableArea = new HashSet<Space>
+            var otherWalkableArea = new HashSet<MapSpace>
             {
-                new Space(1, 1, TestEntry),
-                new Space(2, 1, TestWalk),
-                new Space(1, 2, TestWalk),
-                new Space(2, 2, TestWalk),
+                new MapSpace(1, 1, TestEntry),
+                new MapSpace(2, 1, TestWalk),
+                new MapSpace(1, 2, TestWalk),
+                new MapSpace(2, 2, TestWalk),
             };
 
             var room1 = new Room(TestWalkableArea, TestPerimeter);

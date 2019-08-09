@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_description">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
         /// <param name="in_comment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
         /// <param name="in_requiredFurnishings">A list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
-        /// <param name="in_MinimumWalkableSpaces">The minimum number of walkable <see cref="Space"/>s required by this <see cref="RoomRecipe"/>.</param>
+        /// <param name="in_MinimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
         /// <param name="in_optionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
