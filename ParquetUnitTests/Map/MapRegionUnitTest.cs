@@ -14,7 +14,7 @@ namespace ParquetUnitTests.Map
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly Color testColor = new Color(255, 128, 26, 230);
+        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
         private const string testTitle = "New Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;

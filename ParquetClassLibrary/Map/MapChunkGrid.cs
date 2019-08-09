@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Map
         public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
-        public Color Background { get; set; }
+        public PCLColor Background { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
         public int GlobalElevation { get; set; }
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = null, Color? in_background = null,
+        public MapChunkGrid(string in_title = null, PCLColor? in_background = null,
                             int in_globalElevation = MapRegion.DefaultGlobalElevation, Guid? in_id = null)
         {
             Title = string.IsNullOrEmpty(in_title)

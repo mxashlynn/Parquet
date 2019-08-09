@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Map
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly Color testColor = new Color(255, 128, 26, 230);
+        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
         private static readonly Guid testID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");

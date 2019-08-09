@@ -1,25 +1,25 @@
 using System;
 
-namespace ParquetClassLibrary.Stubs
+namespace ParquetClassLibrary.Utilities
 {
     /// <summary>
     /// A simple representation of RGBA color, tailored for Parquet's needs.
     /// </summary>
-    public struct Color : IEquatable<Color>
+    public struct PCLColor : IEquatable<PCLColor>
     {
-        public static readonly Color White = new Color(255, 255, 255);
-        public static readonly Color Grey = new Color(128, 128, 128);
-        public static readonly Color Black = new Color(0, 0, 0);
-        public static readonly Color SkyBlue = new Color(180, 230, 255);
-        public static readonly Color Brown = new Color(153, 77, 0);
-        public static readonly Color Transparent = new Color(0, 0, 0, 0);
+        public static readonly PCLColor White = new PCLColor(255, 255, 255);
+        public static readonly PCLColor Grey = new PCLColor(128, 128, 128);
+        public static readonly PCLColor Black = new PCLColor(0, 0, 0);
+        public static readonly PCLColor SkyBlue = new PCLColor(180, 230, 255);
+        public static readonly PCLColor Brown = new PCLColor(153, 77, 0);
+        public static readonly PCLColor Transparent = new PCLColor(0, 0, 0, 0);
 
         public readonly int R;
         public readonly int G;
         public readonly int B;
         public readonly int A;
 
-        public Color(int in_r, int in_g, int in_b, int in_a = 255)
+        public PCLColor(int in_r, int in_g, int in_b, int in_a = 255)
         {
             R = in_r.Normalize(0, 255);
             G = in_g.Normalize(0, 255);
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Stubs
         public override int GetHashCode()
             => (R, G, B, A).GetHashCode();
 
-        public bool Equals(Color in_color)
+        public bool Equals(PCLColor in_color)
             => R == in_color.R
             && G == in_color.G
             && B == in_color.B
@@ -39,15 +39,15 @@ namespace ParquetClassLibrary.Stubs
 
         // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
-            => obj is Color color && Equals(color);
+            => obj is PCLColor color && Equals(color);
 
-        public static bool operator ==(Color in_color1, Color in_color2)
+        public static bool operator ==(PCLColor in_color1, PCLColor in_color2)
             => in_color2.R == in_color1.R
             && in_color2.G == in_color1.G
             && in_color2.B == in_color1.B
             && in_color2.A == in_color1.A;
 
-        public static bool operator !=(Color in_color1, Color in_color2)
+        public static bool operator !=(PCLColor in_color1, PCLColor in_color2)
             => in_color2.R != in_color1.R
             || in_color2.G != in_color1.G
             || in_color2.B != in_color1.B
@@ -55,9 +55,9 @@ namespace ParquetClassLibrary.Stubs
         #endregion
 
         #region Conversion Methods
-        public static implicit operator Color(ConsoleColor in_color)
+        public static implicit operator PCLColor(ConsoleColor in_color)
         {
-            Color result;
+            PCLColor result;
             switch (in_color)
             {
                 case ConsoleColor.Black:
@@ -92,7 +92,7 @@ namespace ParquetClassLibrary.Stubs
             return result;
         }
 
-        public static implicit operator ConsoleColor(Color in_color)
+        public static implicit operator ConsoleColor(PCLColor in_color)
         {
             ConsoleColor result;
 
@@ -126,3 +126,4 @@ namespace ParquetClassLibrary.Stubs
         #endregion
     }
 }
+

@@ -104,7 +104,7 @@ namespace ParquetClassLibrary.Map
         {
             if (null != _currentRegion)
             {
-                _currentRegion.Background = Color.SkyBlue;
+                _currentRegion.Background = PCLColor.SkyBlue;
             }
         }
 
@@ -115,7 +115,7 @@ namespace ParquetClassLibrary.Map
         {
             if (null != _currentRegion)
             {
-                _currentRegion.Background = Color.Brown;
+                _currentRegion.Background = PCLColor.Brown;
             }
         }
 

@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Map
         internal const int DefaultGlobalElevation = 0;
 
         /// <summary>Default color for new regions.</summary>
-        internal static readonly Color DefaultColor = Color.White;
+        internal static readonly PCLColor DefaultColor = PCLColor.White;
         #endregion
 
         #region Whole-Map Characteristics
@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Map
         public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public Color Background { get; set; }
+        public PCLColor Background { get; set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         public Elevation ElevationLocal { get; set; }
@@ -69,14 +69,14 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_id">
         /// An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.
         /// </param>
-        public MapRegion(string in_title = null, Color? in_background = null,
+        public MapRegion(string in_title = null, PCLColor? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
                          int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
         {
             Title = string.IsNullOrEmpty(in_title)
                 ? DefaultTitle
                 : in_title;
-            Background = in_background ?? Color.White;
+            Background = in_background ?? PCLColor.White;
             RegionID = in_id ?? Guid.NewGuid();
             ElevationLocal = in_localElevation;
             ElevationGlobal = in_globalElevation;
