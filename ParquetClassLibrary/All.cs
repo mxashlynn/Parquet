@@ -101,7 +101,7 @@ namespace ParquetClassLibrary
 
         #region EntityCollections
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
-        private static bool _collectionsHaveBeenInitialized;
+        public static bool CollectionsHaveBeenInitialized { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="Being"/>s.
@@ -154,7 +154,7 @@ namespace ParquetClassLibrary
         static All()
         {
             #region Default Values for Enitity Collections
-            _collectionsHaveBeenInitialized = false;
+            CollectionsHaveBeenInitialized = false;
             Beings = EntityCollection<Being>.Default;
             CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
             Items = EntityCollection<Item>.Default;
@@ -232,7 +232,7 @@ namespace ParquetClassLibrary
         public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets,
                                                  IEnumerable<RoomRecipe> in_roomRecipes)
         {
-            if (_collectionsHaveBeenInitialized)
+            if (CollectionsHaveBeenInitialized)
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
@@ -245,7 +245,7 @@ namespace ParquetClassLibrary
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
             RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
 
-            _collectionsHaveBeenInitialized = true;
+            CollectionsHaveBeenInitialized = true;
         }
         #endregion
     }
