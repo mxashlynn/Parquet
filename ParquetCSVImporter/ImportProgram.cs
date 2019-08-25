@@ -13,9 +13,9 @@ using ParquetCSVImporter.ClassMaps;
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// A program that reads in parquet definitions from CSV files, and outputs them as JSON.
+    /// A program that reads in game definitions from CSV files, and outputs them as JSON.
     /// </summary>
-    internal class MainClass
+    internal class ImportProgram
     {
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
@@ -39,7 +39,7 @@ namespace ParquetCSVImporter
         };
 
         /// <summary>
-        /// The entry point of the ParquetCVSImporter program, where the program control starts and ends.
+        /// The entry point of the Importer, where program control starts and ends.
         /// </summary>
         public static void Main()
         {
@@ -60,7 +60,7 @@ namespace ParquetCSVImporter
         }
 
         /// <summary>
-        /// Writes all JSON records to the appropriate file.
+        /// Reads all records of the given type from the appropriate file.
         /// </summary>
         /// <param name="in_jsonRecords">In JSON records to write.</param>
         private static void OutputRecords(string in_jsonRecords)
