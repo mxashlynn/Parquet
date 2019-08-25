@@ -65,52 +65,37 @@ namespace ParquetCSVImporter
         public static void Main()
         {
             #region Deserialization from CSV
-
-            #region Beings
-
-            var beingRecordsFromCSV = new List<Being>();
             // TODO Unresolved design question -- do we predefine players, or are they all defined at runtime?
-            beingRecordsFromCSV.AddRange(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
-            beingRecordsFromCSV.AddRange(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
-            beingRecordsFromCSV.AddRange(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
             Beings.Clear();
-            Beings.UnionWith(beingRecordsFromCSV);
-            #endregion
+            Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
+            Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
+            Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
 
-            #region Parquets
-            var parquetRecordsFromCSV = new List<ParquetParent>();
-            parquetRecordsFromCSV.AddRange(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
-            parquetRecordsFromCSV.AddRange(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
-            parquetRecordsFromCSV.AddRange(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
-            parquetRecordsFromCSV.AddRange(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
             Parquets.Clear();
-            Parquets.UnionWith(parquetRecordsFromCSV);
+            Parquets.UnionWith(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
+            Parquets.UnionWith(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
+            Parquets.UnionWith(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
+            Parquets.UnionWith(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
+
+            RoomRecipes.Clear();
+            RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
+
+            CraftingRecipes.Clear();
+            CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
+
+            Quests.Clear();
+            Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
+
+            Biomes.Clear();
+            Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
+
+            Items.Clear();
+            Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
             #endregion
 
-            #region Room Recipes
-
-            #endregion
-
-            #region Crafting Recipes
-
-            #endregion
-
-            #region Quests
-
-            #endregion
-
-            #region Biomes
-
-            #endregion
-
-            #region Items
-
-            #endregion
-
-            #endregion
-
-            #region Reserialization as JSON
+            #region ReserializE as JSON
             All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, Items);
+            // TODO -- do we want to do this per supercollection, or do we want to do it all in one giant glob?
             var recordsToJSON = All.Parquets.SerializeToString();
             var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
