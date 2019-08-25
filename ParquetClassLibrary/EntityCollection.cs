@@ -156,7 +156,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Exposes an <see cref="IEnumerator{ParentType}"/>, which supports simple iteration.
+        /// Exposes an <see cref="IEnumerator{ParentType}"/> to support simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParentType> IEnumerable<ParentType>.GetEnumerator()
@@ -214,7 +214,7 @@ namespace ParquetClassLibrary
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static new readonly EntityCollection Default =
             new EntityCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<Entity>());
-            
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
