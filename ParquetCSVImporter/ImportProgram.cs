@@ -70,19 +70,19 @@ namespace ParquetCSVImporter
 
             var beingRecordsFromCSV = new List<Being>();
             // TODO Unresolved design question -- do we predefine players, or are they all defined at runtime?
-            beingRecordsFromCSV.AddRange(GetBeingRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
-            beingRecordsFromCSV.AddRange(GetBeingRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
-            beingRecordsFromCSV.AddRange(GetBeingRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
+            beingRecordsFromCSV.AddRange(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
+            beingRecordsFromCSV.AddRange(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
+            beingRecordsFromCSV.AddRange(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
             Beings.Clear();
             Beings.UnionWith(beingRecordsFromCSV);
             #endregion
 
             #region Parquets
             var parquetRecordsFromCSV = new List<ParquetParent>();
-            parquetRecordsFromCSV.AddRange(GetParquetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
-            parquetRecordsFromCSV.AddRange(GetParquetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
-            parquetRecordsFromCSV.AddRange(GetParquetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
-            parquetRecordsFromCSV.AddRange(GetParquetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
+            parquetRecordsFromCSV.AddRange(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
+            parquetRecordsFromCSV.AddRange(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
+            parquetRecordsFromCSV.AddRange(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
+            parquetRecordsFromCSV.AddRange(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
             Parquets.Clear();
             Parquets.UnionWith(parquetRecordsFromCSV);
             #endregion
@@ -123,13 +123,13 @@ namespace ParquetCSVImporter
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
-        /// <typeparam name="BeingType">The type of records to read.</typeparam>
+        /// <typeparam name="T">The type of records to read.</typeparam>
         /// <returns>The records read.</returns>
-        private static IEnumerable<BeingType> GetBeingRecordsForType<BeingType>()
-            where BeingType : Being
+        private static IEnumerable<T> GetRecordsForType<T>()
+            where T : Entity
         {
-            IEnumerable<BeingType> records;
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(BeingType).Name}.csv");
+            IEnumerable<T> records;
+            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using (var csv = new CsvReader(reader))
@@ -137,33 +137,8 @@ namespace ParquetCSVImporter
                     csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
                     csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
                     csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                    csv.Configuration.RegisterClassMapFor<BeingType>();
-                    records = csv.GetRecordsViaShim<BeingType>();
-                }
-            }
-
-            return records;
-        }
-
-        /// <summary>
-        /// Reads all records of the given type from the appropriate file.
-        /// </summary>
-        /// <typeparam name="ParquetType">The type of records to read.</typeparam>
-        /// <returns>The records read.</returns>
-        private static IEnumerable<ParquetType> GetParquetRecordsForType<ParquetType>()
-            where ParquetType : ParquetParent
-        {
-            IEnumerable<ParquetType> records;
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(ParquetType).Name}.csv");
-            using (var reader = new StreamReader(filenameAndPath))
-            {
-                using (var csv = new CsvReader(reader))
-                {
-                    csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
-                    csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
-                    csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                    csv.Configuration.RegisterClassMapFor<ParquetType>();
-                    records = csv.GetRecordsViaShim<ParquetType>();
+                    csv.Configuration.RegisterClassMapFor<T>();
+                    records = csv.GetRecordsViaShim<T>();
                 }
             }
 
