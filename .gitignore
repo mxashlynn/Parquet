@@ -1,20 +1,6 @@
-# =============== #
-# Unity generated #
-# =============== #
-[Ll]ibrary/
-[Oo]bj/
-[Tt]emp/
-[Uu]nity[Gg]enerated/
-[Ss]witchIL2CPPCache/
-[Ss]witchIL2CPPStats/
-[Ll]ogs/
-.gradle/
-*.pidb.meta
-sysinfo.txt
-
-# ===================== #
-# VS/MD/Ryder generated #
-# ===================== #
+# ============= #
+# IDE generated #
+# ============= #
 /[Aa]ssets/Plugins/Editor/JetBrains*
 /[Aa]pp[Pp]ackages/
 /[Dd]ebug/
@@ -29,6 +15,7 @@ sysinfo.txt
 [Bb]ld/
 [Dd]ebugPublic/
 [Ee]xported[Oo]bj/
+.idea/
 .builds/
 .consulo/
 .vs/
@@ -45,13 +32,23 @@ sysinfo.txt
 *.unityproj
 *.userprefs
 
-# =================== #
-# ReSharper generated #
-# =================== #
+# ============== #
+# Tool generated #
+# ============== #
+[Ll]ibrary/
+[Oo]bj/
+[Tt]emp/
+[Uu]nity[Gg]enerated/
+[Ss]witchIL2CPPCache/
+[Ss]witchIL2CPPStats/
+[Ll]ogs/
+.gradle/
 _ReSharper*/
+*.pidb.meta
 *.[Dd]otCover
 *.[Dd]otSettings.user
 *.[Rr]e[Ss]harper
+sysinfo.txt
 
 # =============== #
 # NuGet generated #
@@ -102,8 +99,6 @@ Icons?
 /[Aa]ssets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
 /[Aa]ssets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
 /[Aa]ssets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
-/[Aa]ssets/TEMP_IMPORT/**
-/[Aa]ssets/TEMP_IMPORT.meta
 /[Aa]ssets/ConsolePro/**
 /[Aa]ssets/ConsolePro.meta
 
