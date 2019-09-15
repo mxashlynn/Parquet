@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Rooms
             => All.RoomRecipes
                   .Where(entity => entity?.Matches(this) ?? false)
                   .Select(recipe => recipe.Priority)
-                  .DefaultIfEmpty(EntityID.None).Max();
+                  .DefaultIfEmpty<int>(EntityID.None).Max();
 
         #region IEquatable Implementation
         /// <summary>
