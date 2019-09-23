@@ -27,7 +27,7 @@ That said, (within the bounds imposed by the license) feel free to use this code
 # Features
 
 Parquet targets the following features:
- 
+
     1) A peaceful 2D top-down overworld map that may be explored.
     2) Simple free-form building mechanics allowing player characters to create homes in the world.
     3) Resource collection mechanics allowing players to upgrade their homes and tools.
@@ -35,14 +35,14 @@ Parquet targets the following features:
     5) Interactive noncombatant NPCs.
     6) A quest system encouraging players to build particular building types.
     7) Dialogue and narrative delivery.
-    
+
     8) Data-driven design with all key game entities customizable from CSV files.
 
 # Requirements
 
 To work with this repository you will need:
 
-- [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 2.2
+- [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.0
 - [XUnit](https://github.com/xunit/xunit)
 - [JSON.Net](https://www.newtonsoft.com/)
 - [CSVHelper](https://joshclose.github.io/CsvHelper/)
