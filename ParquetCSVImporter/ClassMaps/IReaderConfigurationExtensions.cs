@@ -1,4 +1,6 @@
 using CsvHelper.Configuration;
+using ParquetClassLibrary;
+using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -16,9 +18,21 @@ namespace ParquetCSVImporter.ClassMaps
         /// <param name="in_configuration">The CSV Reader Configuration.</param>
         /// <typeparam name="T">The class to map.</typeparam>
         /// <returns>The class map for the given type.</returns>
-        public static void RegisterClassMapFor<T>(this IReaderConfiguration in_configuration) where T : ParquetParent
+        public static void RegisterClassMapFor<T>(this IReaderConfiguration in_configuration) where T : Entity
         {
-            if (typeof(T) == typeof(Floor))
+            if (typeof(T) == typeof(PlayerCharacter))
+            {
+                in_configuration.RegisterClassMap<PlayerCharacterClassMap>();
+            }
+            else if (typeof(T) == typeof(NPC))
+            {
+                in_configuration.RegisterClassMap<NPCClassMap>();
+            }
+            else if (typeof(T) == typeof(Critter))
+            {
+                in_configuration.RegisterClassMap<CritterClassMap>();
+            }
+            else if (typeof(T) == typeof(Floor))
             {
                 in_configuration.RegisterClassMap<FloorClassMap>();
             }
