@@ -18,6 +18,7 @@
 .idea/
 .builds/
 .consulo/
+.idea/
 .vs/
 *.[Cc]ache
 *.[Cc]ache[Ff]ile
