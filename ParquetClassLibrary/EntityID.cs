@@ -23,7 +23,7 @@ namespace ParquetClassLibrary
     /// 
     /// Although the compiler does not provide type-checking for
     /// IDs, within the scope of their usage the library defines
-    /// valid ranges for and these are checked by library code.
+    /// valid ranges for IDs and these are checked by library code.
     /// <see cref="ParquetClassLibrary.All"/>
     /// </remarks>
     /// TODO: Include this explanation in the Wiki.
@@ -54,23 +54,23 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Enables <see cref="EntityID"/> to be treated as their backing type.
         /// </summary>
-        /// <param name="in_identifier">Any valid identifier value.</param>
-        /// <returns>The given identifier value.</returns>
+        /// <param name="in_identifier">Any identifier.</param>
+        /// <returns>The identifier's value.</returns>
         public static implicit operator int(EntityID in_identifier)
         {
             return in_identifier._id;
         }
 
         /// <summary>
-        /// Enables <see cref="EntityID"/> to be compared one another.
+        /// Enables <see cref="EntityID"/> to be compared to one another.
         /// </summary>
-        /// <param name="in_identifier">Any valid <see cref="EntityID"/> value.</param>
+        /// <param name="in_identifier">Any <see cref="EntityID"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="EntityID"/>s being compared.
         /// The return value has these meanings:
-        /// Less than zero indicates that the current instance precedes the given <see cref="EntityID"/> in the sort order.
-        /// Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityID"/>.
-        /// Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
+        ///     Less than zero indicates that the current instance precedes the given <see cref="EntityID"/> in the sort order.
+        ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityID"/>.
+        ///     Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityID in_identifier)
         {
@@ -82,8 +82,8 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="Range{EntityID}"/>.
         /// An <see cref="EntityID"/> is valid if:
-        /// 1) it is <see cref="None"/>
-        /// 2) it is defined within the given <see cref="Range{T}"/>, regardless of sign.
+        ///     1) it is <see cref="None"/>
+        ///     2) it is defined within the given <see cref="Range{T}"/>, regardless of sign.
         /// </summary>
         /// <param name="in_range">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
         /// <returns>
@@ -98,14 +98,14 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="IEnumerable{Range{EntityID}}"/>.
         /// An <see cref="EntityID"/> is valid if:
-        /// 1) it is <see cref="None"/>
-        /// 2) it is defined within any of the <see cref="Range{T}"/> in the given <see cref="IEnumerable{T}"/>.
+        ///     1) it is <see cref="None"/>
+        ///     2) it is defined within any of the <see cref="Range{T}"/> in the given <see cref="IEnumerable{T}"/>, regardless of sign.
         /// </summary>
         /// <param name="in_ranges">
-        /// The <see cref="IEnumerable{Range{EntityID}}"/> within which the <see cref="EntityID"/> must fall.
+        /// The <see cref="IEnumerable{Range{T}}"/> within which the <see cref="EntityID"/> must fall.
         /// </param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{T}}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)

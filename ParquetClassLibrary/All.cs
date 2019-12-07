@@ -20,19 +20,19 @@ namespace ParquetClassLibrary
         #region EntityID Ranges
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.PlayerCharacter"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
         public static readonly Range<EntityID> PlayerCharacterIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
         public static readonly Range<EntityID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Being"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.NPC"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
         public static readonly Range<EntityID> NpcIDs;
 
@@ -66,19 +66,19 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> CollectibleIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquet types.
+        /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquets.
         /// </summary>
         public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<EntityID> RoomRecipeIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CraftingRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<EntityID> CraftingRecipeIDs;
 
@@ -90,7 +90,7 @@ namespace ParquetClassLibrary
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biomes.Biome"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
         public static readonly Range<EntityID> BiomeIDs;
 
@@ -203,14 +203,8 @@ namespace ParquetClassLibrary
             QuestIDs = new Range<EntityID>(90000, 99000);
 
             BiomeIDs = new Range<EntityID>(100000, 109000);
-            #endregion
 
-            #region Define Range Collections
-            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
-            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
-            #endregion
-
-            // The largest Range.Maximum defined in AssemblyInfo, excluding ItemIDs.
+            // The largest Range.Maximum defined in All, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(All).GetFields()
                 .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
                     && fieldInfo.FieldType == typeof(Range<EntityID>)
@@ -239,6 +233,13 @@ namespace ParquetClassLibrary
             var ItemUpperBound = ItemLowerBound + 2 * (TargetMultiple / 10 + MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
+            #endregion
+
+            #region Define Range Collections
+            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
+            #endregion
+
             #endregion
         }
 

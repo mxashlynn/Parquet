@@ -14,11 +14,14 @@ namespace ParquetClassLibrary
     /// Entity is intended to model the parts of a game object that do not change from one
     /// instance to another.  In this sense, it can be thought of as analagous to a <see langword="class"/>.
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
-    /// within collections in other classes.  Their definitions are found by submitting their EntityID
-    /// to the appropriate <see cref="EntityCollection{T}"/>.
+    /// within collections in other classes.  Their definitions are found by submitting their
+    /// EntityID to the appropriate <see cref="EntityCollection{T}"/>.  Many such collections
+    /// are contained in <see cref="All"/>.
     /// 
     /// If individual game objects must have mutable state then a separate wrapper class,
     /// such as <see cref="Parquets.ParquetStatus"/>, models that state.
+    ///
+    /// This class could be considered the fundamental class of the entire library.
     /// </remarks>
     /// <seealso cref="Parquets.ParquetStatus"/>
     /// <seealso cref="Items.Item"/>
@@ -85,11 +88,10 @@ namespace ParquetClassLibrary
             => null != in_entity && ID == in_entity.ID;
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Entity"/>.
+        /// Determines whether the specified <see langword="object"/> is equal to the current <see cref="Entity"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Entity"/>.</param>
+        /// <param name="obj">The <see langword="object"/> to compare with the current <see cref="Entity"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is Entity entity && Equals(entity);
 
