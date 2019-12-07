@@ -57,4 +57,7 @@ end_of_line = crlf
 indent_size = 2
 
 # IDE0022: Use block body for methods
-csharp_style_expression_bodied_methods = false:none
+csharp_style_expression_bodied_methods = none
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
