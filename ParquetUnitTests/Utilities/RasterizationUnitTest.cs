@@ -1,6 +1,6 @@
 using System;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
+
 using Xunit;
 
 // ReSharper disable InconsistentNaming
@@ -14,13 +14,13 @@ namespace ParquetUnitTests.Utilities
         {
             const int leftBound = 1;
             const int rightBound = 10;
-            var leftEnd = new Vector2Int(leftBound, 0);
-            var rightEnd = new Vector2Int(rightBound, 0);
+            var leftEnd = new Vector2D(leftBound, 0);
+            var rightEnd = new Vector2D(rightBound, 0);
             var vectors = Rasterization.PlotLine(leftEnd, rightEnd, a => true);
 
             for (var x = leftBound; x <= rightBound; x++)
             {
-                var position = new Vector2Int(x, 0);
+                var position = new Vector2D(x, 0);
                 Assert.True(vectors.Remove(position));
             }
 
@@ -32,13 +32,13 @@ namespace ParquetUnitTests.Utilities
         {
             const int upperBound = 1;
             const int lowerBound = 10;
-            var top = new Vector2Int(0, upperBound);
-            var bottom = new Vector2Int(0, lowerBound);
+            var top = new Vector2D(0, upperBound);
+            var bottom = new Vector2D(0, lowerBound);
             var vectors = Rasterization.PlotLine(top, bottom, a => { return true; });
 
             for (var y = upperBound; y <= lowerBound; y++)
             {
-                var position = new Vector2Int(0, y);
+                var position = new Vector2D(0, y);
                 Assert.True(vectors.Remove(position));
             }
 
@@ -50,13 +50,13 @@ namespace ParquetUnitTests.Utilities
         {
             const int upperLeftBound = 1;
             const int lowerRightBound = 10;
-            var upperLeftEnd = new Vector2Int(upperLeftBound, upperLeftBound);
-            var lowerRightEnd = new Vector2Int(lowerRightBound, lowerRightBound);
+            var upperLeftEnd = new Vector2D(upperLeftBound, upperLeftBound);
+            var lowerRightEnd = new Vector2D(lowerRightBound, lowerRightBound);
             var vectors = Rasterization.PlotLine(upperLeftEnd, lowerRightEnd, a => { return true; });
 
             for (var i = upperLeftBound; i <= lowerRightBound; i++)
             {
-                var position = new Vector2Int(i, i);
+                var position = new Vector2D(i, i);
                 Assert.True(vectors.Remove(position));
             }
 
@@ -68,15 +68,15 @@ namespace ParquetUnitTests.Utilities
         {
             const int upperLeftBound = 1;
             const int lowerRightBound = 9;
-            var upperLeftCorner = new Vector2Int(upperLeftBound, upperLeftBound);
-            var lowerRightCorner = new Vector2Int(lowerRightBound, lowerRightBound);
+            var upperLeftCorner = new Vector2D(upperLeftBound, upperLeftBound);
+            var lowerRightCorner = new Vector2D(lowerRightBound, lowerRightBound);
             var vectors = Rasterization.PlotFilledRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
                 for (var y = upperLeftBound; y <= lowerRightBound; y++)
                 {
-                    var position = new Vector2Int(x, y);
+                    var position = new Vector2D(x, y);
                     Assert.True(vectors.Remove(position));
                 }
             }
@@ -89,22 +89,22 @@ namespace ParquetUnitTests.Utilities
         {
             const int upperLeftBound = 1;
             const int lowerRightBound = 9;
-            var upperLeftCorner = new Vector2Int(upperLeftBound, upperLeftBound);
-            var lowerRightCorner = new Vector2Int(lowerRightBound, lowerRightBound);
+            var upperLeftCorner = new Vector2D(upperLeftBound, upperLeftBound);
+            var lowerRightCorner = new Vector2D(lowerRightBound, lowerRightBound);
             var vectors = Rasterization.PlotEmptyRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
-                var position = new Vector2Int(x, upperLeftBound);
+                var position = new Vector2D(x, upperLeftBound);
                 Assert.True(vectors.Remove(position));
-                position = new Vector2Int(x, lowerRightBound);
+                position = new Vector2D(x, lowerRightBound);
                 Assert.True(vectors.Remove(position));
             }
             for (var y = upperLeftBound + 1; y < lowerRightBound; y++)
             {
-                var position = new Vector2Int(upperLeftBound, y);
+                var position = new Vector2D(upperLeftBound, y);
                 Assert.True(vectors.Remove(position));
-                position = new Vector2Int(lowerRightBound, y);
+                position = new Vector2D(lowerRightBound, y);
                 Assert.True(vectors.Remove(position));
             }
 
@@ -116,11 +116,11 @@ namespace ParquetUnitTests.Utilities
         {
             const int location = 3;
             const int radius = 1;
-            var center = new Vector2Int(location, location);
-            var aboveCenter = new Vector2Int(location, location - 1);
-            var leftOfCenter = new Vector2Int(location - 1, location);
-            var rightOfCenter = new Vector2Int(location + 1, location);
-            var belowCenter = new Vector2Int(location, location + 1);
+            var center = new Vector2D(location, location);
+            var aboveCenter = new Vector2D(location, location - 1);
+            var leftOfCenter = new Vector2D(location - 1, location);
+            var rightOfCenter = new Vector2D(location + 1, location);
+            var belowCenter = new Vector2D(location, location + 1);
 
             var vectors = Rasterization.PlotCircle(center, radius, true, a => { return true; });
 
@@ -137,11 +137,11 @@ namespace ParquetUnitTests.Utilities
         {
             const int location = 3;
             const int radius = 1;
-            var center = new Vector2Int(location, location);
-            var aboveCenter = new Vector2Int(location, location - 1);
-            var leftOfCenter = new Vector2Int(location - 1, location);
-            var rightOfCenter = new Vector2Int(location + 1, location);
-            var belowCenter = new Vector2Int(location, location + 1);
+            var center = new Vector2D(location, location);
+            var aboveCenter = new Vector2D(location, location - 1);
+            var leftOfCenter = new Vector2D(location - 1, location);
+            var rightOfCenter = new Vector2D(location + 1, location);
+            var belowCenter = new Vector2D(location, location + 1);
 
             var vectors = Rasterization.PlotCircle(center, radius, false, a => { return true; });
 
@@ -165,9 +165,9 @@ namespace ParquetUnitTests.Utilities
                   { 1, 0, 0, 0, 0, 1 },
                   { 1, 0, 0, 0, 0, 1 },
                   { 1, 1, 1, 1, 1, 1 } };
-            var start = new Vector2Int(location, location);
+            var start = new Vector2D(location, location);
 
-            bool IsVaild(Vector2Int in_position)
+            bool IsVaild(Vector2D in_position)
             {
                 return in_position.X >= 0
                        && in_position.X <= fillLayer.Length
@@ -175,7 +175,7 @@ namespace ParquetUnitTests.Utilities
                        && in_position.Y <= fillLayer.Length;
             }
 
-            bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : struct
+            bool Matches<T>(Vector2D in_position, T in_matchAgainst) where T : struct
             {
                 var matchAgainst = Convert.ToInt32(in_matchAgainst);
                 return fillLayer[in_position.Y, in_position.X] == matchAgainst;

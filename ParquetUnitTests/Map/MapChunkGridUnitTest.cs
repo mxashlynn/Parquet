@@ -1,6 +1,6 @@
 using System;
 using ParquetClassLibrary.Map;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Map
@@ -8,8 +8,8 @@ namespace ParquetUnitTests.Map
     public class MapChunkGridUnitTest
     {
         #region Values for Tests
-        private static readonly Vector2Int invalidPosition = new Vector2Int(-1, -1);
-        private static readonly Color testColor = new Color(255, 128, 26, 230);
+        private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
+        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
         private static readonly Guid testID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
@@ -64,7 +64,7 @@ namespace ParquetUnitTests.Map
             var chunkType = ChunkType.Handmade;
             var chunkOrientation = ChunkOrientation.EastWest;
 
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.Zero);
+            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
 
             Assert.True(wasSet);
         }
@@ -86,9 +86,9 @@ namespace ParquetUnitTests.Map
             var chunkType = ChunkType.Handmade;
             var chunkOrientation = ChunkOrientation.EastWest;
 
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2Int.Zero);
+            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
 
-            var chunkData = grid.GetChunk(Vector2Int.Zero).GetValueOrDefault();
+            var chunkData = grid.GetChunk(Vector2D.Zero).GetValueOrDefault();
 
             Assert.True(wasSet);
             Assert.Equal(chunkData.type, chunkType);

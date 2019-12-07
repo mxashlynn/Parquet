@@ -1,9 +1,5 @@
 using System;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Map.SpecialPoints
 {
@@ -14,13 +10,13 @@ namespace ParquetClassLibrary.Map.SpecialPoints
     public class SpecialPoint : IEquatable<SpecialPoint>
     {
         /// <summary>Location of this point.</summary>
-        public Vector2Int Position { get; }
+        public Vector2D Position { get; }
 
         /// <summary>
         /// Initializes a new instance of <see cref="SpecialPoint"/>.
         /// </summary>
         /// <param name="in_position">The location of this point.</param>
-        public SpecialPoint(Vector2Int in_position)
+        public SpecialPoint(Vector2D in_position)
         {
             Position = in_position;
         }

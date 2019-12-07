@@ -1,13 +1,8 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
 
 namespace ParquetClassLibrary.Map
 {
@@ -21,8 +16,8 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public override Vector2Int DimensionsInParquets { get; } = new Vector2Int(Rules.Dimensions.ParquetsPerChunk,
-                                                                                  Rules.Dimensions.ParquetsPerChunk);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
+                                                                              Rules.Dimensions.ParquetsPerChunk);
         #endregion
 
         #region Chunk Contents

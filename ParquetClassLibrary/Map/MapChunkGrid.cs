@@ -3,11 +3,6 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Utilities;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
 
 namespace ParquetClassLibrary.Map
 {
@@ -20,7 +15,7 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2Int DimensionsInChunks = new Vector2Int(Rules.Dimensions.ChunksPerRegion,
+        public static readonly Vector2D DimensionsInChunks = new Vector2D(Rules.Dimensions.ChunksPerRegion,
                                                                               Rules.Dimensions.ChunksPerRegion);
         #endregion
 
@@ -38,7 +33,7 @@ namespace ParquetClassLibrary.Map
         public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
-        public Color Background { get; set; }
+        public PCLColor Background { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
         public int GlobalElevation { get; set; }
@@ -60,7 +55,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = null, Color? in_background = null,
+        public MapChunkGrid(string in_title = null, PCLColor? in_background = null,
                             int in_globalElevation = MapRegion.DefaultGlobalElevation, Guid? in_id = null)
         {
             Title = string.IsNullOrEmpty(in_title)
@@ -92,7 +87,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_orientation">The orientation to set.</param>
         /// <param name="in_position">The position at which to set it.</param>
         /// <returns><c>true</c> if the position was valid, <c>false</c> otherwise.</returns>
-        public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2Int in_position)
+        public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2D in_position)
         {
             var valid = IsValidPosition(in_position);
 
@@ -112,7 +107,7 @@ namespace ParquetClassLibrary.Map
         /// <returns>
         /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
         /// </returns>
-        public (ChunkType type, ChunkOrientation orientation)? GetChunk(Vector2Int in_position)
+        public (ChunkType type, ChunkOrientation orientation)? GetChunk(Vector2D in_position)
         {
             return IsValidPosition(in_position)
                 ? ((ChunkType type, ChunkOrientation orientation)?)
@@ -181,7 +176,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         // TODO Make this an extension to ChunkType[,].
-        public bool IsValidPosition(Vector2Int in_position)
+        public bool IsValidPosition(Vector2D in_position)
         {
             return in_position.X > -1
                 && in_position.Y > -1

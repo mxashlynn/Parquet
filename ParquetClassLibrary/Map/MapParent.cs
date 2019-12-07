@@ -4,11 +4,7 @@ using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Map.SpecialPoints;
 using System;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
+using ParquetClassLibrary.Utilities;
 
 // ReSharper disable InconsistentNaming
 
@@ -23,7 +19,7 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
-        public abstract Vector2Int DimensionsInParquets { get; }
+        public abstract Vector2D DimensionsInParquets { get; }
         #endregion
 
         #region Whole-Map Characteristics
@@ -36,7 +32,7 @@ namespace ParquetClassLibrary.Map
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
 
-        public bool IsValidPosition(Vector2Int in_position)
+        public bool IsValidPosition(Vector2D in_position)
             => ParquetDefintion.IsValidPosition(in_position);
         #endregion
 
@@ -83,7 +79,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_floorID">ID for the new floor to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFloorDefinition(EntityID in_floorID, Vector2Int in_position)
+        public bool TrySetFloorDefinition(EntityID in_floorID, Vector2D in_position)
             => TrySetParquetDefinition(in_floorID, null, null, null, in_position);
 
         /// <summary>
@@ -92,7 +88,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_blockID">ID for the new block to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
-        public bool TrySetBlockDefinition(EntityID in_blockID, Vector2Int in_position)
+        public bool TrySetBlockDefinition(EntityID in_blockID, Vector2D in_position)
             => TrySetParquetDefinition(null, in_blockID, null, null, in_position);
 
         /// <summary>
@@ -101,7 +97,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2Int in_position)
+        public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2D in_position)
             => TrySetParquetDefinition(null, null, in_furnishingID, null, in_position);
 
         /// <summary>
@@ -110,7 +106,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_collectibleID">ID for the new collectible to set.</param>
         /// <param name="in_position">The position to set.</param>
         /// <returns><c>true</c>, if the collectible was set, <c>false</c> otherwise.</returns>
-        public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2Int in_position)
+        public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2D in_position)
             => TrySetParquetDefinition(null, null, null, in_collectibleID, in_position);
 
         /// <summary>
@@ -124,7 +120,7 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
         public bool TrySetParquetDefinition(EntityID? in_floorID, EntityID? in_blockID,
                                             EntityID? in_furnishingID, EntityID? in_collectibleID,
-                                            Vector2Int in_position)
+                                            Vector2D in_position)
         {
             var result = false;
             if (ParquetDefintion.IsValidPosition(in_position))
@@ -224,7 +220,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position whose status is sought.</param>
         /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
-        public ParquetStatus GetStatusAtPosition(Vector2Int in_position)
+        public ParquetStatus GetStatusAtPosition(Vector2D in_position)
             // TODO Make this an extension of ParquetStatus[,] -- also, change the name of this class variable so it doesn't repeat the name of the type!
             => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetStatus[in_position.Y, in_position.X]
@@ -235,7 +231,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position whose floor is sought.</param>
         /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
-        public ParquetStack GetDefinitionAtPosition(Vector2Int in_position)
+        public ParquetStack GetDefinitionAtPosition(Vector2D in_position)
             => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetDefintion[in_position.Y, in_position.X]
                 : ParquetStack.Empty;
@@ -280,7 +276,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
-        public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2Int in_position)
+        public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2D in_position)
             => SpecialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
         #endregion
 
@@ -303,7 +299,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
         public ParquetStack[,] GetSubregion()
-            => GetSubregion(Vector2Int.Zero, new Vector2Int(DimensionsInParquets.X - 1,
+            => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1,
                                                                   DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -312,7 +308,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_upperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="in_lowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion(Vector2Int in_upperLeft, Vector2Int in_lowerRight)
+        public ParquetStack[,] GetSubregion(Vector2D in_upperLeft, Vector2D in_lowerRight)
         {
             if (!ParquetDefintion.IsValidPosition(in_upperLeft))
             {

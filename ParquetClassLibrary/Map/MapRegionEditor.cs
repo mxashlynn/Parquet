@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
 
 namespace ParquetClassLibrary.Map
 {
@@ -109,7 +104,7 @@ namespace ParquetClassLibrary.Map
         {
             if (null != _currentRegion)
             {
-                _currentRegion.Background = Color.SkyBlue;
+                _currentRegion.Background = PCLColor.SkyBlue;
             }
         }
 
@@ -120,7 +115,7 @@ namespace ParquetClassLibrary.Map
         {
             if (null != _currentRegion)
             {
-                _currentRegion.Background = Color.Brown;
+                _currentRegion.Background = PCLColor.Brown;
             }
         }
 
@@ -142,7 +137,7 @@ namespace ParquetClassLibrary.Map
         /// Displays information corresponging to the requested position on the current region map.
         /// </summary>
         /// <param name="in_position">The position whose information is sought.</param>
-        public void DisplayInfoAtPosition(Vector2Int in_position)
+        public void DisplayInfoAtPosition(Vector2D in_position)
         {
             DisplayPositionInfo?.Invoke(this,
                     new PositionInfoEvent(_currentRegion.GetDefinitionAtPosition(in_position),
@@ -255,7 +250,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">Where to paint.</param>
         /// <returns><c>true</c>, if location was painted correctly, <c>false</c> if an error occured.</returns>
-        public bool PaintAtLocation(Vector2Int in_position)
+        public bool PaintAtLocation(Vector2D in_position)
         {
             var result = true;
             var error = "";
@@ -298,7 +293,7 @@ namespace ParquetClassLibrary.Map
         /// Paints currently selected parquets at the given positions.
         /// </summary>
         /// <param name="in_positions">Where to paint.</param>
-        public void PaintAtLocations(List<Vector2Int> in_positions)
+        public void PaintAtLocations(List<Vector2D> in_positions)
         {
             foreach (var position in in_positions)
             {
@@ -317,7 +312,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_start">The line's start.</param>
         /// <param name="in_end">The line's end.</param>
-        public void PaintLine(Vector2Int in_start, Vector2Int in_end)
+        public void PaintLine(Vector2D in_start, Vector2D in_end)
         {
             PaintAtLocations(Rasterization.PlotLine(in_start, in_end, _currentRegion.IsValidPosition));
         }
@@ -331,7 +326,7 @@ namespace ParquetClassLibrary.Map
         /// If set to <c>true</c>, the rectangle will be filled in; otherwise,
         /// only the outline will be painted.
         /// </param>
-        public void PaintRectangle(Vector2Int in_upperLeft, Vector2Int in_lowerRight, bool in_filled)
+        public void PaintRectangle(Vector2D in_upperLeft, Vector2D in_lowerRight, bool in_filled)
         {
             PaintAtLocations(in_filled
                 ? Rasterization.PlotFilledRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition)
@@ -347,7 +342,7 @@ namespace ParquetClassLibrary.Map
         /// If set to <c>true</c>, the circle will be filled in; otherwise,
         /// only the outline will be painted.
         /// </param>
-        public void PaintCircle(Vector2Int in_center, int in_radius, bool in_filled)
+        public void PaintCircle(Vector2D in_center, int in_radius, bool in_filled)
         {
             PaintAtLocations(Rasterization.PlotCircle(in_center, in_radius, in_filled, _currentRegion.IsValidPosition));
         }
@@ -357,7 +352,7 @@ namespace ParquetClassLibrary.Map
         /// positions whose parquets match those initially found at the starting position.
         /// </summary>
         /// <param name="in_start">Where to start the fill.</param>
-        public void PaintFloodFill(Vector2Int in_start)
+        public void PaintFloodFill(Vector2D in_start)
         {
             PaintAtLocations(Rasterization.PlotFloodFill(in_start,
                                                          _currentRegion.GetDefinitionAtPosition(in_start),
@@ -372,7 +367,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to check.</param>
         /// <param name="in_matchAgainst">The stack to match against.</param>
         /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
-        private bool Matches<T>(Vector2Int in_position, T in_matchAgainst) where T : IParquetStack
+        private bool Matches<T>(Vector2D in_position, T in_matchAgainst) where T : IParquetStack
         {
             bool result;
             var parquets = _currentRegion.GetDefinitionAtPosition(in_position);

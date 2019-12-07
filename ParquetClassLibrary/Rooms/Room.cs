@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
-#if UNITY_2018_4_OR_NEWER
-using UnityEngine;
-#else
-using ParquetClassLibrary.Stubs;
-#endif
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -17,16 +12,16 @@ namespace ParquetClassLibrary.Rooms
     public class Room : IEquatable<Room>
     {
         /// <summary>
-        /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public readonly SpaceCollection WalkableArea;
+        public readonly MapSpaceCollection WalkableArea;
 
         /// <summary>
-        /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public readonly SpaceCollection Perimeter;
+        public readonly MapSpaceCollection Perimeter;
 
         /// <summary>
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
@@ -40,13 +35,13 @@ namespace ParquetClassLibrary.Rooms
                .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom);
 
         /// <summary>
-        /// A location with the least X and Y coordinates of every <see cref="Space"/> in this <see cref="Room"/>.
+        /// A location with the least X and Y coordinates of every <see cref="MapSpace"/> in this <see cref="Room"/>.
         /// </summary>
         /// <remarks>
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
-        public Vector2Int Position
-            => new Vector2Int(WalkableArea.Select(space => space.Position.X).Min(),
+        public Vector2D Position
+            => new Vector2D(WalkableArea.Select(space => space.Position.X).Min(),
                               WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
@@ -58,14 +53,14 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
         /// <param name="in_walkableArea">
-        /// The <see cref="Space"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </param>
         /// <param name="in_perimeter">
-        /// The <see cref="Space"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(SpaceCollection in_walkableArea, SpaceCollection in_perimeter)
+        public Room(MapSpaceCollection in_walkableArea, MapSpaceCollection in_perimeter)
         {
             Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));
@@ -94,7 +89,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="in_position">The position to check for.</param>
         /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
-        public bool ContainsPosition(Vector2Int in_position)
+        public bool ContainsPosition(Vector2D in_position)
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == in_position);
 
         /// <summary>
@@ -104,7 +99,7 @@ namespace ParquetClassLibrary.Rooms
             => All.RoomRecipes
                   .Where(entity => entity?.Matches(this) ?? false)
                   .Select(recipe => recipe.Priority)
-                  .DefaultIfEmpty(EntityID.None).Max();
+                  .DefaultIfEmpty<int>(EntityID.None).Max();
 
         #region IEquatable Implementation
         /// <summary>

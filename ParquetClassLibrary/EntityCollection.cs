@@ -9,10 +9,12 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Stores an <see cref="Entity"/> collection.
+    /// Collects a group of <see cref="Entity"/>s.
     /// Provides bounds-checking and type-checking against <typeparamref name="ParentType"/>.
     /// </summary>
     /// <remarks>
+    /// All Collections of Entities implicitly contain the None Entity.
+    /// 
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
     /// </remarks>
@@ -20,11 +22,13 @@ namespace ParquetClassLibrary
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static readonly EntityCollection<ParentType> Default = new EntityCollection<ParentType>(
-            new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) }, Enumerable.Empty<Entity>());
+            new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
+            Enumerable.Empty<Entity>());
 
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<EntityID, Entity> Entities { get; }
 
+        /// <summary>The bounds within which all collected <see cref="Entity"/>s must be defined.</summary>
         private List<Range<EntityID>> Bounds { get; }
 
         /// <summary>The number of <see cref="Entity"/>s in the <see cref="EntityCollection{T}"/>.</summary>
@@ -36,43 +40,20 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities)
-        {
-            Precondition.IsNotNull(in_entities, nameof(in_entities));
-
-            var baseDictionary = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
-            foreach (var entity in in_entities)
-            {
-                Precondition.IsInRange(entity.ID, in_bounds, nameof(in_entities));
-
-                if (!baseDictionary.ContainsKey(entity.ID))
-                {
-                    baseDictionary[entity.ID] = entity;
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Tried to duplicate entity ID {entity.ID}.");
-                }
-            }
-
-            Bounds = new List<Range<EntityID>> { in_bounds };
-            Entities = baseDictionary;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
-        /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds, IEnumerable<Entity> in_entities)
         {
             Precondition.IsNotNull(in_entities, nameof(in_entities));
 
+            // All Collections of Entities implicitly contain the None Entity.
             var baseDictionary = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
             foreach (var entity in in_entities)
             {
                 Precondition.IsInRange(entity.ID, in_bounds, nameof(in_entities));
 
+                if (entity.ID == EntityID.None)
+                {
+                    continue;
+                }
                 if (!baseDictionary.ContainsKey(entity.ID))
                 {
                     baseDictionary[entity.ID] = entity;
@@ -86,6 +67,14 @@ namespace ParquetClassLibrary
             Bounds = in_bounds;
             Entities = baseDictionary;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
+        /// </summary>
+        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities) :
+            this(new List<Range<EntityID>> { in_bounds }, in_entities) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
@@ -123,18 +112,16 @@ namespace ParquetClassLibrary
         /// <param name="in_entity">The <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Entity"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(Entity in_entity)
-        {
-            return Entities.ContainsKey(in_entity.ID);
-        }
+            => Entities.ContainsKey(in_entity.ID);
 
         /// <summary>
-        /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="Entity"/>.
+        /// Determines whether the <see cref="EntityCollection{T}"/> contains an <see cref="Entity"/> with the specified <see cref="EntityID"/>.
         /// </summary>
         /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
-        /// <remarks>This method is equivalent to <see cref="Dictionary{EntityID, Entity}.ContainsKey"/>.</remarks>
         public bool Contains(EntityID in_id)
         {
+            // TODO: It might make sense to remove this check after debugging.
             Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
             return Entities.ContainsKey(in_id);
@@ -156,15 +143,17 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Exposes an <see cref="IEnumerator{ParentType}"/>, which supports simple iteration.
+        /// Exposes an <see cref="IEnumerator{ParentType}"/> to support simple iteration.
         /// </summary>
+        /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParentType> IEnumerable<ParentType>.GetEnumerator()
             => Entities.Values.Cast<ParentType>().GetEnumerator();
 
         /// <summary>
-        /// Exposes an <see cref="IEnumerator"/>, which supports simple iteration.
+        /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
         /// </summary>
+        /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator IEnumerable.GetEnumerator()
             => Entities.Values.GetEnumerator();
@@ -191,12 +180,12 @@ namespace ParquetClassLibrary
         /// <returns>The representation.</returns>
         public override string ToString()
         {
-            var allBoundNames = new StringBuilder();
+            var allBounds = new StringBuilder();
             foreach (var bound in Bounds)
             {
-                allBoundNames.Append(bound.ToString());
+                allBounds.Append($"{bound.ToString()} ");
             }
-            return $"Collects {typeof(ParentType)} over {allBoundNames}.";
+            return $"Collects {typeof(ParentType)} over {allBounds}.";
         }
         #endregion
     }
@@ -214,7 +203,7 @@ namespace ParquetClassLibrary
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static new readonly EntityCollection Default =
             new EntityCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<Entity>());
-            
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>

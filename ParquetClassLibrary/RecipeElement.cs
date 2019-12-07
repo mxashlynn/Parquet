@@ -9,6 +9,11 @@ namespace ParquetClassLibrary
     /// or <see cref="Rooms.RoomRecipe"/>.  The <see cref="RecipeElement"/> may either be consumed as an ingredient
     /// or returned as the final product.
     /// </summary>
+    /// <remarks>
+    /// The pairing of ElementTag with an ElementAmount achieves two ends:
+    ///     1) It allows multiple instances of an element to be required without having to store and count multiple objects representing that element.
+    ///     2) It allows various Entities to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
+    /// </remarks>
     public struct RecipeElement : IEquatable<RecipeElement>
     {
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
@@ -23,19 +28,19 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> struct.
         /// </summary>
-        /// <param name="in_itemTag">An <see cref="EntityTag"/> describing the <see cref="Item"/>.</param>
-        /// <param name="in_itemAmount">In amount of the <see cref="Item"/>.  Must be positive.</param>
-        public RecipeElement(EntityTag in_itemTag, int in_itemAmount)
+        /// <param name="in_elementTag">An <see cref="EntityTag"/> describing the element.</param>
+        /// <param name="in_elementAmount">The amount of the element.  Must be positive.</param>
+        public RecipeElement(EntityTag in_elementTag, int in_elementAmount)
         {
-            Precondition.MustBePositive(in_itemAmount, nameof(in_itemAmount));
+            Precondition.MustBePositive(in_elementAmount, nameof(in_elementAmount));
 
-            ElementTag = in_itemTag;
-            ElementAmount = in_itemAmount;
+            ElementTag = in_elementTag;
+            ElementAmount = in_elementAmount;
         }
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for an <see cref="RecipeElement"/>.
+        /// Serves as a hash function for a <see cref="RecipeElement"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
@@ -56,12 +61,11 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="RecipeElement"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is RecipeElement element && Equals(element);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="RecipeElement"/> is equal to another specified instance of <see cref="Entity"/>.
+        /// Determines whether a specified instance of <see cref="RecipeElement"/> is equal to another specified instance of <see cref="RecipeElement"/>.
         /// </summary>
         /// <param name="in_element1">The first <see cref="RecipeElement"/> to compare.</param>
         /// <param name="in_element2">The second <see cref="RecipeElement"/> to compare.</param>

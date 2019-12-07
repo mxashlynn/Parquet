@@ -9,7 +9,7 @@ using ParquetClassLibrary;
 [assembly: AssemblyTitle("Parquet Class Library")]
 [assembly: AssemblyDescription("Core game mechanics for Parquet.")]
 [assembly: AssemblyCompany("Queertet")]
-[assembly: AssemblyCopyright("2018-2019 Paige Ashlynn")]
+[assembly: AssemblyCopyright("2018-2020 Paige Ashlynn")]
 [assembly: AssemblyProduct("ParquetClassLibrary")]
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]

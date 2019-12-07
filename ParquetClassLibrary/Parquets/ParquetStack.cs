@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Stubs;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Rooms;
 
@@ -61,7 +60,7 @@ namespace ParquetClassLibrary.Parquets
         /// 1, It has a <see cref="Block"/> that is not <see cref="Block.IsLiquid"/>; or,
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Enclosing, <c>false</c> otherwise.</returns>
         public bool IsEnclosing
             => !(All.Parquets.Get<Block>(Block)?.IsLiquid ?? true)
             || (All.Parquets.Get<Furnishing>(Furnishing)?.IsEnclosing ?? false);
@@ -71,7 +70,7 @@ namespace ParquetClassLibrary.Parquets
         /// 1, It is either Walkable or Enclosing; and,
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
             && (IsWalkable ^ IsEnclosing);
@@ -82,7 +81,7 @@ namespace ParquetClassLibrary.Parquets
         /// 2, It does not have a <see cref="Block"/>;
         /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
-        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is walkable, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Walkable, <c>false</c> otherwise.</returns>
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None
@@ -164,20 +163,20 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2Int in_position)
+        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2D in_position)
             => in_position.X > -1
             && in_position.Y > -1
             && in_position.X < in_subregion.GetLength(1)
             && in_position.Y < in_subregion.GetLength(0);
 
         /// <summary>
-        /// Returns the set of <see cref="Space"/>s corresponding to the subregion.
+        /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
         /// </summary>
         /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
-        /// <returns>The <see cref="Space"/>s defined by this subregion.</returns>
-        public static SpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
+        /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
+        public static MapSpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
         {
-            var uniqueResults = new HashSet<Space>();
+            var uniqueResults = new HashSet<MapSpace>();
             var subregionRows = in_subregion.GetLength(0);
             var subregionCols = in_subregion.GetLength(1);
 
@@ -185,12 +184,12 @@ namespace ParquetClassLibrary.Parquets
             {
                 for (var x = 0; x < subregionCols; x++)
                 {
-                    var currentSpace = new Space(x, y, in_subregion[y, x]);
+                    var currentSpace = new MapSpace(x, y, in_subregion[y, x]);
                     uniqueResults.Add(currentSpace);
                 }
             }
 
-            return new SpaceCollection(uniqueResults);
+            return new MapSpaceCollection(uniqueResults);
         }
     }
 }

@@ -41,8 +41,8 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="in_tag">Any valid tag value.</param>
-        /// <returns>The given value as a tag.</returns>
+        /// <param name="in_tag">Any tag.</param>
+        /// <returns>The tag's value.</returns>
         public static implicit operator string(EntityTag in_tag)
         {
             return in_tag._tagName;
@@ -55,9 +55,9 @@ namespace ParquetClassLibrary
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="EntityTag"/>s being compared.
         /// The return value has these meanings:
-        /// Less than zero indicates that the current instance precedes the given <see cref="EntityTag"/> in the sort order.
-        /// Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityTag"/>.
-        /// Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
+        ///     Less than zero indicates that the current instance precedes the given <see cref="EntityTag"/> in the sort order.
+        ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityTag"/>.
+        ///     Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityTag in_tag)
         {

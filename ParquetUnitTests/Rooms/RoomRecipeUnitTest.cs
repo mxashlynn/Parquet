@@ -3,7 +3,7 @@ using Xunit;
 using System;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Rooms;
 
 namespace ParquetUnitTests.Rooms
@@ -17,28 +17,28 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
 
-        private static readonly HashSet<Space> TestPerimeter = new HashSet<Space>
+        private static readonly HashSet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
-            new Space(0, 0, TestWall),
-            new Space(1, 0, TestWall),
-            new Space(2, 0, TestWall),
-            new Space(3, 0, TestWall),
-            new Space(0, 1, TestWall),
-            new Space(3, 1, TestWall),
-            new Space(0, 2, TestWall),
-            new Space(3, 2, TestWall),
-            new Space(0, 3, TestWall),
-            new Space(1, 3, TestWall),
-            new Space(2, 3, TestWall),
-            new Space(3, 3, TestWall),
+            new MapSpace(0, 0, TestWall),
+            new MapSpace(1, 0, TestWall),
+            new MapSpace(2, 0, TestWall),
+            new MapSpace(3, 0, TestWall),
+            new MapSpace(0, 1, TestWall),
+            new MapSpace(3, 1, TestWall),
+            new MapSpace(0, 2, TestWall),
+            new MapSpace(3, 2, TestWall),
+            new MapSpace(0, 3, TestWall),
+            new MapSpace(1, 3, TestWall),
+            new MapSpace(2, 3, TestWall),
+            new MapSpace(3, 3, TestWall),
         };
 
-        private static readonly HashSet<Space> TestWalkableArea = new HashSet<Space>
+        private static readonly HashSet<MapSpace> TestWalkableArea = new HashSet<MapSpace>
         {
-            new Space(1, 1, TestWalk),
-            new Space(2, 1, TestWalk),
-            new Space(1, 2, TestWalk),
-            new Space(2, 2, TestEntry),
+            new MapSpace(1, 1, TestWalk),
+            new MapSpace(2, 1, TestWalk),
+            new MapSpace(1, 2, TestWalk),
+            new MapSpace(2, 2, TestEntry),
         };
 
         private static readonly List<RecipeElement> TestRequiredFurnishings = TestEntities.TestRecipeElementList;

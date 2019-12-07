@@ -1,32 +1,32 @@
-using ParquetClassLibrary.Stubs;
+using ParquetClassLibrary.Utilities;
 using Xunit;
 
-namespace ParquetUnitTests.Stubs
+namespace ParquetUnitTests.Utilities
 {
     public class ColorUnitTest
     {
         [Fact]
         public void WhiteTest()
         {
-            Assert.Equal(255, Color.White.R);
-            Assert.Equal(255, Color.White.G);
-            Assert.Equal(255, Color.White.B);
-            Assert.Equal(255, Color.White.A);
+            Assert.Equal(255, PCLColor.White.R);
+            Assert.Equal(255, PCLColor.White.G);
+            Assert.Equal(255, PCLColor.White.B);
+            Assert.Equal(255, PCLColor.White.A);
         }
 
         [Fact]
         public void BlackTest()
         {
-            Assert.Equal(0, Color.Black.R);
-            Assert.Equal(0, Color.Black.G);
-            Assert.Equal(0, Color.Black.B);
-            Assert.Equal(255, Color.Black.A);
+            Assert.Equal(0, PCLColor.Black.R);
+            Assert.Equal(0, PCLColor.Black.G);
+            Assert.Equal(0, PCLColor.Black.B);
+            Assert.Equal(255, PCLColor.Black.A);
         }
 
         [Fact]
         public void TransparentTest()
         {
-            Assert.Equal(0, Color.Transparent.A);
+            Assert.Equal(0, PCLColor.Transparent.A);
         }
 
         [Theory]
@@ -37,7 +37,7 @@ namespace ParquetUnitTests.Stubs
         [InlineData(255, 255, 255)]
         public void NewSolidColorTest(int in_r, int in_g, int in_b)
         {
-            var testVector = new Color(in_r, in_g, in_b);
+            var testVector = new PCLColor(in_r, in_g, in_b);
             Assert.Equal(in_r, testVector.R);
             Assert.Equal(in_g, testVector.G);
             Assert.Equal(in_b, testVector.B);
@@ -51,7 +51,7 @@ namespace ParquetUnitTests.Stubs
         [InlineData(255, 255, 255, 255)]
         public void NewTranslucentColorTest(int in_r, int in_g, int in_b, int in_a)
         {
-            var testVector = new Color(in_r, in_g, in_b, in_a);
+            var testVector = new PCLColor(in_r, in_g, in_b, in_a);
             Assert.Equal(in_r, testVector.R);
             Assert.Equal(in_g, testVector.G);
             Assert.Equal(in_b, testVector.B);

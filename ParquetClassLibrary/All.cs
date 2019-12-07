@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Quests;
 
 namespace ParquetClassLibrary
 {
@@ -18,19 +20,19 @@ namespace ParquetClassLibrary
         #region EntityID Ranges
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.PlayerCharacter"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
         public static readonly Range<EntityID> PlayerCharacterIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
         public static readonly Range<EntityID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Being"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.NPC"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
         public static readonly Range<EntityID> NpcIDs;
 
@@ -64,19 +66,19 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> CollectibleIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquet types.
+        /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquets.
         /// </summary>
         public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<EntityID> RoomRecipeIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CraftingRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<EntityID> CraftingRecipeIDs;
 
@@ -88,12 +90,12 @@ namespace ParquetClassLibrary
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biomes.Biome"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
         public static readonly Range<EntityID> BiomeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Items.Item"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Item"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> ItemIDs;
@@ -101,7 +103,7 @@ namespace ParquetClassLibrary
 
         #region EntityCollections
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
-        private static bool _collectionsHaveBeenInitialized;
+        public static bool CollectionsHaveBeenInitialized { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="Being"/>s.
@@ -109,23 +111,7 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Being> Beings { get; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="CraftingRecipe"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<CraftingRecipe> CraftingRecipes { get; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="Item"/>s.
-        /// This collection is the source of truth about items for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Item> Items { get; }
+        public static EntityCollection<Being> Beings { get; private set; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -142,11 +128,43 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
         public static EntityCollection<RoomRecipe> RoomRecipes { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CraftingRecipe"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<CraftingRecipe> CraftingRecipes { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="Quest"/>s.
+        /// This collection is the source of truth about quests for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<Quest> Quests { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="Biome"/>s.
+        /// This collection is the source of truth about biome for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<Biome> Biomes { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="Item"/>s.
+        /// This collection is the source of truth about items for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<Item> Items { get; private set; }
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes the <see cref="Range{EntityID}"/>s and <see cref="EntityCollection{T}"/>s defined in <see cref="All"/>.
+        /// Initializes the <see cref="Range{T}"/>s and <see cref="EntityCollection{T}"/>s defined in <see cref="All"/>.
         /// </summary>
         /// <remarks>
         /// This supports defining ItemIDs in terms of the other Ranges.
@@ -154,18 +172,20 @@ namespace ParquetClassLibrary
         static All()
         {
             #region Default Values for Enitity Collections
-            _collectionsHaveBeenInitialized = false;
+            CollectionsHaveBeenInitialized = false;
             Beings = EntityCollection<Being>.Default;
-            CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
-            Items = EntityCollection<Item>.Default;
             Parquets = EntityCollection<ParquetParent>.Default;
             RoomRecipes = EntityCollection<RoomRecipe>.Default;
+            CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
+            Quests = EntityCollection<Quest>.Default;
+            Biomes = EntityCollection<Biome>.Default;
+            Items = EntityCollection<Item>.Default;
             #endregion
 
             #region Initialize Ranges
             // By convention, the first EntityID in each Range is a multiple of this number.
             // An exception is made for PlayerCharacters as these values are undefined at designtime.
-            var TargetMultiple = 10000;
+            const int TargetMultiple = 10000;
 
             #region Define Ranges
             PlayerCharacterIDs = new Range<EntityID>(1, 9000);
@@ -183,14 +203,8 @@ namespace ParquetClassLibrary
             QuestIDs = new Range<EntityID>(90000, 99000);
 
             BiomeIDs = new Range<EntityID>(100000, 109000);
-            #endregion
 
-            #region Define Range Collections
-            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
-            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
-            #endregion
-
-            // The largest Range.Maximum defined in AssemblyInfo, excluding ItemIDs.
+            // The largest Range.Maximum defined in All, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(All).GetFields()
                 .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
                     && fieldInfo.FieldType == typeof(Range<EntityID>)
@@ -220,32 +234,51 @@ namespace ParquetClassLibrary
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
+
+            #region Define Range Collections
+            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
+            #endregion
+
+            #endregion
         }
 
         /// <summary>
         /// Initializes the <see cref="EntityCollection{T}s"/> from the given collections.
         /// </summary>
+        /// <param name="in_beings">All beings to be used in the game.</param>
         /// <param name="in_parquets">All parquets to be used in the game.</param>
+        /// <param name="in_roomRecipes">All room recipes to be used in the game.</param>
+        /// <param name="in_craftingRecipes">All crafting recipes to be used in the game.</param>
+        /// <param name="in_quests">All quests to be used in the game.</param>
+        /// <param name="in_biomes">All biomes to be used in the game.</param>
+        /// <param name="in_items">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        // TODO Make an version that takes serialized strings instead of ienumerables.
-        public static void InitializeCollections(IEnumerable<ParquetParent> in_parquets,
-                                                 IEnumerable<RoomRecipe> in_roomRecipes)
+        // TODO Make a version that takes serialized JSON strings instead of ienumerables.  <-- Really?  Consider this usage.
+        public static void InitializeCollections(IEnumerable<Being> in_beings,
+                                                 IEnumerable<ParquetParent> in_parquets,
+                                                 IEnumerable<RoomRecipe> in_roomRecipes,
+                                                 IEnumerable<CraftingRecipe> in_craftingRecipes,
+                                                 IEnumerable<Quest> in_quests,
+                                                 IEnumerable<Biome> in_biomes,
+                                                 IEnumerable<Item> in_items)
         {
-            if (_collectionsHaveBeenInitialized)
+            if (CollectionsHaveBeenInitialized)
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
             Precondition.IsNotNull(in_parquets, nameof(in_parquets));
 
-            // TODO Uncomment these once we have CSV import implemented for non-parquets.
-            //Beings = new EntityCollection<Being>(BeingIDs);
-            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs);
-            //Items = new EntityCollection<Item>(ItemIDs);
+            Beings = new EntityCollection<Being>(BeingIDs, in_beings);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
             RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
+            CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, in_craftingRecipes);
+            Quests = new EntityCollection<Quest>(QuestIDs, in_quests);
+            Biomes = new EntityCollection<Biome>(BiomeIDs, in_biomes);
+            Items = new EntityCollection<Item>(ItemIDs, in_items);
 
-            _collectionsHaveBeenInitialized = true;
+            CollectionsHaveBeenInitialized = true;
         }
         #endregion
     }

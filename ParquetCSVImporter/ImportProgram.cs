@@ -6,16 +6,21 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Characters;
+using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Rooms;
 using ParquetCSVImporter.ClassMaps;
 
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// A program that reads in parquet definitions from CSV files, and outputs them as JSON.
+    /// A program that reads in game definitions from CSV files, and outputs them as JSON.
     /// </summary>
-    internal class MainClass
+    internal class ImportProgram
     {
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
@@ -25,13 +30,29 @@ namespace ParquetCSVImporter
             Directory.GetCurrentDirectory().FullName;
 #endif
 
+
+        /// <summary>All <see cref="Being"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Being> Beings = new HashSet<Being>();
+
         /// <summary>All parquets defined in the CSV files.</summary>
         public static readonly HashSet<ParquetParent> Parquets = new HashSet<ParquetParent>();
 
         /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
         public static readonly HashSet<RoomRecipe> RoomRecipes = new HashSet<RoomRecipe>();
 
-        /// <summary>Instructions for handling integer type conversion when reading in parquet identifiers.</summary>
+        /// <summary>All <see cref="CraftingRecipe"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<CraftingRecipe> CraftingRecipes = new HashSet<CraftingRecipe>();
+
+        /// <summary>All <see cref="Quest"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Quest> Quests = new HashSet<Quest>();
+
+        /// <summary>All <see cref="Biome"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Biome> Biomes = new HashSet<Biome>();
+
+        /// <summary>All <see cref="Item"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Item> Items = new HashSet<Item>();
+
+        /// <summary>Instructions for handling integer type conversion when reading in identifiers.</summary>
         public static readonly TypeConverterOptions IdentifierOptions = new TypeConverterOptions
         {
             NumberStyle = NumberStyles.AllowLeadingSign &
@@ -39,37 +60,49 @@ namespace ParquetCSVImporter
         };
 
         /// <summary>
-        /// The entry point of the ParquetCVSImporter program, where the program control starts and ends.
+        /// The entry point of the Importer, where program control starts and ends.
         /// </summary>
         public static void Main()
         {
-            var recordsFromCSV = new List<ParquetParent>();
-            recordsFromCSV.AddRange(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
-            recordsFromCSV.AddRange(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
-            recordsFromCSV.AddRange(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
-            recordsFromCSV.AddRange(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
+            #region Deserialization from CSV
+            // TODO Unresolved design question -- do we predefine players, or are they all defined at runtime?
+            Beings.Clear();
+            Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
+            Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
+            Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
 
             Parquets.Clear();
-            Parquets.UnionWith(recordsFromCSV);
+            Parquets.UnionWith(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
+            Parquets.UnionWith(GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
+            Parquets.UnionWith(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
+            Parquets.UnionWith(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
 
-            All.InitializeCollections(Parquets, RoomRecipes);
+            RoomRecipes.Clear();
+            RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
 
+            CraftingRecipes.Clear();
+            CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
+
+            Quests.Clear();
+            Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
+
+            Biomes.Clear();
+            Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
+
+            Items.Clear();
+            Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
+            #endregion
+
+            #region ReserializE as JSON
+            All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, Items);
+            // TODO -- do we want to do this per supercollection, or do we want to do it all in one giant glob?
             var recordsToJSON = All.Parquets.SerializeToString();
-
-            OutputRecords(recordsToJSON);
-        }
-
-        /// <summary>
-        /// Writes all JSON records to the appropriate file.
-        /// </summary>
-        /// <param name="in_jsonRecords">In JSON records to write.</param>
-        private static void OutputRecords(string in_jsonRecords)
-        {
             var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
             {
-                writer.Write(in_jsonRecords);
+                writer.Write(recordsToJSON);
             }
+            #endregion
         }
 
         /// <summary>
@@ -78,7 +111,7 @@ namespace ParquetCSVImporter
         /// <typeparam name="T">The type of records to read.</typeparam>
         /// <returns>The records read.</returns>
         private static IEnumerable<T> GetRecordsForType<T>()
-            where T : ParquetParent
+            where T : Entity
         {
             IEnumerable<T> records;
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");
