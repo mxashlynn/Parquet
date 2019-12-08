@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Parquets
         #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
         [JsonProperty(PropertyName = "in_gatherTool")]
-        public GatheringTools GatherTool { get; }
+        public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_gatherEffect")]
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Parquets
         public Block(EntityID in_id, string in_name, string in_description, string in_comment,
                      EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
                       EntityTag? in_addsToRoom = null,
-                     GatheringTools in_gatherTool = GatheringTools.None,
+                     GatheringTool in_gatherTool = GatheringTool.None,
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_collectibleID = null, bool in_isFlammable = false,
                      bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)

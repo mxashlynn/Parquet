@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Parquets
         #region Parquet Mechanics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [JsonProperty(PropertyName = "in_modTool")]
-        public ModificationTools ModTool { get; }
+        public ModificationTool ModTool { get; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         [JsonProperty(PropertyName = "in_trenchName")]
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Parquets
         [JsonConstructor]
         public Floor(EntityID in_id, string in_name, string in_description, string in_comment,
                      EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
-                     EntityTag? in_addsToRoom = null, ModificationTools in_modTool = ModificationTools.None,
+                     EntityTag? in_addsToRoom = null, ModificationTool in_modTool = ModificationTool.None,
                      string in_trenchName = defaultTrenchName, bool in_isWalkable = true)
             : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
                    in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)

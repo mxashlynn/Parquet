@@ -13,7 +13,7 @@ namespace ParquetCSVImporter.Shims
     public class FloorShim : ParquetParentShim
     {
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        public ModificationTools ModTool;
+        public ModificationTool ModTool;
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         public string TrenchName;

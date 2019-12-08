@@ -16,7 +16,7 @@ namespace ParquetCSVImporter.Shims
     public class BlockShim : ParquetParentShim
     {
         /// <summary>The tool used to remove the block.</summary>
-        public GatheringTools GatherTool;
+        public GatheringTool GatherTool;
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         public GatheringEffect GatherEffect;

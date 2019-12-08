@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Items
         [JsonProperty(PropertyName = "in_asParquet")]
         public EntityID AsParquet { get; }
 
-        /// <summary>Any <see cref="Biomes.Biome"/>-related functionality this item has.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</summary>
         [JsonProperty(PropertyName = "in_itemTags")]
         public IReadOnlyList<EntityTag> ItemTags { get; }
 
@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_effectWhileHeld"><see cref="Item"/>'s passive effect.</param>
         /// <param name="in_effectWhenUsed"><see cref="Item"/>'s active effect.</param>
         /// <param name="in_asParquet">The parquet represented, if any.</param>
-        /// <param name="in_itemTags">Any <see cref="Biomes.Biome"/>-related functionality this item has.</param>
+        /// <param name="in_itemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</param>
         /// <param name="in_recipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="Item"/>.</param>
         [JsonConstructor]
         public Item(EntityID in_id, ItemType in_subtype, string in_name, string in_description, string in_comment,
@@ -76,12 +76,14 @@ namespace ParquetClassLibrary.Items
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
             Precondition.MustBePositive(in_stackMax, nameof(in_stackMax));
-
             // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
             // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
-            /* TODO This check is a good idea but it is improper to get a specific entity from All
-             * during initialization of an entity.  If we are to include this functionality another
-             * means of implementing it must be found.
+
+            // TODO This check is a good idea but it is improper to get a specific entity from All
+            // during initialization of an entity.  If we are to include this functionality another
+            // means of implementing it must be found.
+            // Probably this should be a tool in the CSV suite.
+            /*
             if (nonNullCraftingRecipeID != CraftingRecipe.NotCraftable.ID)
             {
                 var craftingRecipe = All.CraftingRecipes.Get<CraftingRecipe>(nonNullCraftingRecipeID);
