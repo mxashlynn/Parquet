@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Biomes;
 using Xunit;
 
@@ -81,16 +81,6 @@ namespace ParquetUnitTests.Biomes
                         Assert.Equal(mask.HasFlag(flag), mask.IsSet(flag));
                     }
                 }
-            }
-        }
-
-        [Fact]
-        // Note: I feel like this is a poor test, maybe it can be improved?
-        internal void ElevationMaskIsNotSetForAllFlagsOnNoneTest()
-        {
-            foreach (ElevationMask flag in Enum.GetValues(typeof(ElevationMask)))
-            {
-                Assert.True(ElevationMask.None.IsNotSet(flag));
             }
         }
     }

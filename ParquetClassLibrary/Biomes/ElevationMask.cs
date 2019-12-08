@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Indicates a the level of a MapChunk or MapRegion.
+    /// Indicates the level of a MapChunk or MapRegion.
     /// </summary>
     [Flags]
     internal enum ElevationMask
@@ -23,22 +23,22 @@ namespace ParquetClassLibrary.Biomes
         /// Sets the given flag in the specified variable.
         /// </summary>
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
-        /// <param name="in_flagToTest">The flag to set.</param>
+        /// <param name="in_flagToSet">The flag to set.</param>
         /// <returns>The variable with the flag set.</returns>
-        public static ElevationMask Set(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest)
+        public static ElevationMask Set(this ref ElevationMask in_enumVariable, ElevationMask in_flagToSet)
         {
-            return in_enumVariable = in_enumVariable | in_flagToTest;
+            return in_enumVariable |= in_flagToSet;
         }
 
         /// <summary>
         /// Clears the given flag in the specified variable.
         /// </summary>
         /// <param name="in_enumVariable">The enum variable under consideration.</param>
-        /// <param name="in_flagToTest">The flag to clear.</param>
+        /// <param name="in_flagToClear">The flag to clear.</param>
         /// <returns>The variable with the flag cleared.</returns>
-        public static ElevationMask Clear(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest)
+        public static ElevationMask Clear(this ref ElevationMask in_enumVariable, ElevationMask in_flagToClear)
         {
-            return in_enumVariable = in_enumVariable & ~in_flagToTest;
+            return in_enumVariable &= ~in_flagToClear;
         }
 
         /// <summary>
@@ -50,17 +50,6 @@ namespace ParquetClassLibrary.Biomes
         public static bool IsSet(this ElevationMask in_enumVariable, ElevationMask in_flagToTest)
         {
             return (in_enumVariable & in_flagToTest) == in_flagToTest;
-        }
-
-        /// <summary>
-        /// Checks if the given flag is unset.
-        /// </summary>
-        /// <param name="in_enumVariable">The enum variable under consideration.</param>
-        /// <param name="in_flagToTest">The flag to test.</param>
-        /// <returns><c>true</c>, if at least this flag is unset, <c>false</c> otherwise.</returns>
-        public static bool IsNotSet(this ElevationMask in_enumVariable, ElevationMask in_flagToTest)
-        {
-            return (in_enumVariable & ~in_flagToTest) == ElevationMask.None;
         }
 
         /// <summary>
