@@ -78,7 +78,8 @@ namespace ParquetClassLibrary.Rooms
         /// <c>false</c> otherwise.
         /// </returns>
         public bool Matches(Room in_room)
-            => in_room.WalkableArea.Count >= MinimumWalkableSpaces
+            => null != in_room
+            && in_room.WalkableArea.Count >= MinimumWalkableSpaces
             && RequiredPerimeterBlocks.All(element =>
                 in_room.Perimeter.Count(space =>
                     All.Parquets.Get<Block>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)

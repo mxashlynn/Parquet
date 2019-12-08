@@ -103,7 +103,7 @@ namespace ParquetClassLibrary.Rooms
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for an <see cref="Room"/>.
+        /// Serves as a hash function for a <see cref="Room"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
@@ -126,7 +126,6 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Room"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is Room room && Equals(room);
 
