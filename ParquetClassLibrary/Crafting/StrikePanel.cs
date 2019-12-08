@@ -14,6 +14,9 @@ namespace ParquetClassLibrary.Crafting
         /// <summary>Backing value for <see cref="WorkingRange"/>.</summary>
         private Range<int> _workingRange;
 
+        /// <summary>Backing value for <see cref="IdealRange"/>.</summary>
+        private Range<int> _idealRange;
+
         /// <summary>
         /// The range of values this panel can take on while being worked.  <see cref="Range{T}.Minimum"/> is normally 0.
         /// This range constricts that given by <c see="IdealRange"/>.
@@ -35,9 +38,6 @@ namespace ParquetClassLibrary.Crafting
                 }
             }
         }
-
-        /// <summary>Backing value for <see cref="IdealRange"/>.</summary>
-        private Range<int> _idealRange;
 
         /// <summary>
         /// The range of values this panel targets for a completed craft.

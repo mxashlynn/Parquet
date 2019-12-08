@@ -28,6 +28,7 @@ namespace ParquetClassLibrary.Crafting
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        // TODO Replace with a read-only array substitute?  See https://web.archive.org/web/20120103002717/http://msdn.microsoft.com/en-us/library/aa664459(v=vs.71).aspx
         public StrikePanel[,] PanelPattern { get; }
 
         /// <summary>
