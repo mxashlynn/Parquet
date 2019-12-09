@@ -29,3 +29,8 @@
     "CA2225:Operator overloads have named alternates",
     Justification = "This would defeat the purpose of making EntityTag implicitly interchangeable with String.",
     Scope = "type", Target = "~T:ParquetClassLibrary.EntityTag")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage",
+    "CA2225:Operator overloads have named alternates",
+    Justification = "This would defeat the purpose of making MapSpaceCollection implicitly interchangeable with HashSet<MapSpace>.",
+    Scope = "type", Target = "~T:ParquetClassLibrary.Parquets.MapSpaceCollection")]

@@ -43,10 +43,13 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines whether the <see cref="MapSpaceCollection"/> is set-equal to the given MapSpaceCollection.
         /// </summary>
-        /// <param name="in_equalTo">The collection to compare against this collection.</param>
+        /// <param name="in_equalTo">The collection to compare against this collection. Cannot be null.</param>
         /// <returns><c>true</c> if the <see cref="MapSpaceCollection"/>s are set-equal; <c>false</c> otherwise.</returns>
         public bool SetEquals(MapSpaceCollection in_equalTo)
-            => Spaces.SetEquals(in_equalTo.Spaces);
+        {
+            Precondition.IsNotNull(in_equalTo, nameof(in_equalTo));
+            return Spaces.SetEquals(in_equalTo.Spaces);
+        }
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{MapSpace}"/>, which supports simple iteration.
@@ -63,13 +66,16 @@ namespace ParquetClassLibrary.Parquets
             => ((IEnumerable<MapSpace>)Spaces).GetEnumerator();
         #endregion
 
-        #region Conversion Operators
+        #region Implicit Conversion Operators
         /// <summary>
         /// Converts the given <see cref="MapSpaceCollection"/> to a plain <see cref="HashSet{MapSpace}"/>.
         /// </summary>
         /// <param name="in_spaces">The collection to convert.</param>
         public static implicit operator HashSet<MapSpace>(MapSpaceCollection in_spaces)
-            => in_spaces.Spaces;
+        {
+            Precondition.IsNotNull(in_spaces, nameof(in_spaces));
+            return in_spaces.Spaces;
+        }
 
         /// <summary>
         /// Converts the given <see cref="HashSet{MapSpace}"/> to a full <see cref="MapSpaceCollection"/>.
@@ -83,12 +89,13 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Finds a walkable area's perimiter in a given subregion.
         /// </summary>
-        /// <param name="in_walkableArea">The walkable area whose perimeter is sought.</param>
-        /// <param name="in_subregion">The subregion containing the walkable area and the perimiter.</param>
+        /// <param name="in_subregion">The subregion containing the walkable area and the potential perimiter.</param>
         /// <param name="out_perimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
         public bool TryGetPerimeter(ParquetStack[,] in_subregion, out MapSpaceCollection out_perimeter)
         {
+            Precondition.IsNotNull(in_subregion);
+
             var stepCount = 0;
             MapSpaceCollection potentialPerimeter = null;
             out_perimeter = null;
@@ -109,6 +116,7 @@ namespace ParquetClassLibrary.Parquets
             #endregion
 
             // Only continue if perimeter is within the subregion.
+            // TODO Why do we not need to check max values here as well?
             if (leastXValue > 0 && leastYValue > 0)
             {
                 #region Find Positions of Walkable Extrema
@@ -118,7 +126,7 @@ namespace ParquetClassLibrary.Parquets
                 var westWalkableExtreme = Spaces.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
-                // Only continue if all four extrema are found.
+                // Only continue if all four seeds are found.
                 var perimiterSeeds = new List<Vector2D>();
                 if (TryGetSeed(northWalkableExtreme, position => position + Vector2D.North, out var northSeed)
                     && TryGetSeed(southWalkableExtreme, position => position + Vector2D.South, out var southSeed)
@@ -158,7 +166,7 @@ namespace ParquetClassLibrary.Parquets
 
             #region TryGetSeed Helper Method
             /// <summary>
-            /// Finds the a <see cref="MapSpace"/> that can be used to search for the perimeter.
+            /// Finds a <see cref="MapSpace"/> that can be used to search for the perimeter.
             /// </summary>
             /// <param name="in_start">Where to begin looking.</param>
             /// <param name="in_adjust">How to adjust the position at each step if a seed has not been found.</param>
@@ -222,7 +230,8 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subregion
         /// whose <see cref="MapSpace.Content"/> conforms to the given predicate using only
-        /// 4-connected movements, beginning at an arbitrary <see cref="MapSpace"/>.
+        /// 4-connected movements, beginning at an arbitrary <see cref="MapSpace"/>, while encountering
+        /// at least one cycle.
         /// </summary>
         /// <param name="in_subregion">The grid on which the set exists.</param>
         /// <param name="in_isApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
@@ -245,12 +254,9 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_subregion">The grid on which the set is defined.</param>
         /// <param name="in_isApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
         /// <param name="in_isGoal"><c>true</c> if a the search goal has been satisfied.</param>
-        /// <returns>
-        /// First value is <c>true</c> if the goal was reached, <c>false</c> otherwise.
-        /// Second value is a list of all <see cref="MapSpace"/>s that were visited during the search.
-        /// </returns>
+        /// <returns>Information about the results of the search procedure.</returns>
         private SearchResults Search(MapSpace in_start, ParquetStack[,] in_subregion,
-                                      Predicate<MapSpace> in_isApplicable, Predicate<MapSpace> in_isGoal)
+                                     Predicate<MapSpace> in_isApplicable, Predicate<MapSpace> in_isGoal)
         {
             Precondition.IsNotEmpty(Spaces);
 
@@ -274,6 +280,9 @@ namespace ParquetClassLibrary.Parquets
                     else {
                         if (in_isGoal(in_space))
                         {
+                            // TODO Should the goal be logged as visited?  It seems like it should.
+                            // NOTE After investigating, I am pretty sure it not being marked visited is an error introduced in commit dafd693.
+                            // TODO After looking at all call sites, it appears this predicate is never actually used -- we aren't interested in any goal spaces as yet.
                             result = true;
                         }
                         else

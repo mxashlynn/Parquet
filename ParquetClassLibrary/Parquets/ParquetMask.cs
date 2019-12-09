@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The variable with the flag set.</returns>
         public static ParquetMask Set(this ref ParquetMask in_enumVariable, ParquetMask in_flagToSet)
         {
-            return in_enumVariable = in_enumVariable | in_flagToSet;
+            return in_enumVariable |= in_flagToSet;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The variable with the flag cleared.</returns>
         public static ParquetMask Clear(this ref ParquetMask in_enumVariable, ParquetMask in_flagToClear)
         {
-            return in_enumVariable = in_enumVariable & ~in_flagToClear;
+            return in_enumVariable &= ~in_flagToClear;
         }
 
         /// <summary>

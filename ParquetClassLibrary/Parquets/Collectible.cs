@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -23,7 +22,7 @@ namespace ParquetClassLibrary.Parquets
         public CollectionEffect Effect { get; }
 
         /// <summary>
-        /// The scale in points of the effect.  That is, how much to alter a stat if the
+        /// The scale in points of the effect.  For example, how much to alter a stat if the
         /// <see cref="CollectionEffect"/> is set to alter a stat.
         /// </summary>
         [JsonProperty(PropertyName = "in_effectAmount")]
@@ -41,17 +40,19 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="Collectible"/> corresponds to, if any.</param>
         /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
         /// <param name="in_effect">Effect of this collectible.</param>
-        /// <param name="in_effectAmount">The scale in points of the effect.  That is, how much to alter a stat if in_effect is set to alter a stat.</param>
+        /// <param name="in_effectAmount">
+        /// The scale in points of the effect.
+        /// For example, how much to alter a stat if in_effect is set to alter a stat.
+        /// </param>
         [JsonConstructor]
         public Collectible(EntityID in_id, string in_name, string in_description, string in_comment,
-                           EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
-                           EntityTag? in_addsToRoom = null, CollectionEffect in_effect = CollectionEffect.None,
+                           EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
+                           EntityTag in_addsToRoom = null, CollectionEffect in_effect = CollectionEffect.None,
                            int in_effectAmount = 0)
             : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
                    in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             var nonNullItemID = in_itemID ?? EntityID.None;
-
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
 
             Effect = in_effect;

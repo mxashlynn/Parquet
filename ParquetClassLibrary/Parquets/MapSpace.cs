@@ -14,16 +14,16 @@ namespace ParquetClassLibrary.Parquets
         public static readonly MapSpace Empty = new MapSpace(new Vector2D(int.MinValue, int.MinValue), ParquetStack.Empty);
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
-        public readonly Vector2D Position;
+        public Vector2D Position { get; }
 
         /// <summary>All parquets occupying this <see cref="MapSpace"/>.</summary>
-        public readonly ParquetStack Content;
+        public ParquetStack Content { get; }
 
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="MapSpace"/> class.
         /// </summary>
-        /// <param name="in_position">Location of this <see cref="MapSpace"/>.</param>
+        /// <param name="in_position">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="in_content">All parquets occupying this <see cref="MapSpace"/>.</param>
         public MapSpace(Vector2D in_position, ParquetStack in_content)
         {
@@ -37,11 +37,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_x">X-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="in_y">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="in_content">All parquets occupying this <see cref="MapSpace"/>.</param>
-        public MapSpace(int in_x, int in_y, ParquetStack in_content)
-        {
-            Position = new Vector2D(in_x, in_y);
-            Content = in_content;
-        }
+        public MapSpace(int in_x, int in_y, ParquetStack in_content) : this(new Vector2D(in_x, in_y), in_content) { }
         #endregion
 
         #region Position Offsets
@@ -93,15 +89,13 @@ namespace ParquetClassLibrary.Parquets
             };
         #endregion
 
-        #region Gameplay Support
+        #region General Gameplay Support
         /// <summary>
-        /// Indicates whether this <see cref="ParquetStack"/> is empty.
+        /// Indicates whether this <see cref="MapSpace"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
-        public bool IsEmpty => EntityID.None == Content.Floor &&
-                               EntityID.None == Content.Block &&
-                               EntityID.None == Content.Furnishing &&
-                               EntityID.None == Content.Collectible;
+        public bool IsEmpty
+            => Content.IsEmpty;
 
         /// <summary>
         /// A <see cref="MapSpace"/> is Enclosing iff:
@@ -130,22 +124,22 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> is Walkable, <c>false</c> otherwise.</returns>
         internal bool IsWalkable
             => Content.IsWalkable;
+        #endregion
 
         #region Neighbor-Relative Gameplay Algorithm Support
         /// <summary>
-        /// Determines if this <see cref="Content"/> is both <see cref="ParquetStack.IsEntry"/>
-        /// and <see cref="ParquetStack.IsWalkable"/>.
+        /// Determines if this <see cref="MapSpace"/> is both <see cref="IsEntry"/>
+        /// and <see cref="IsWalkable"/>.
         /// </summary>
         /// <seealso cref="IsEnclosingEntry"/>
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as a walkable entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsWalkableEntry
-            => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
-            && Content.IsWalkable;
-
+            => IsEntry && IsWalkable;
+        
         /// <summary>
         /// Determines if this <see cref="MapSpace"/> is:
-        /// 1) <see cref="ParquetStack.IsEntry"/>
-        /// 2) <see cref="ParquetStack.IsEnclosing"/>
+        /// 1) <see cref="IsEntry"/>
+        /// 2) <see cref="IsEnclosing"/>
         /// 3) has one walkable neighbor that is within the given <see cref="MapSpaceCollection"/> and one not within it.
         /// </summary>
         /// <seealso cref="IsWalkableEntry"/>
@@ -153,9 +147,12 @@ namespace ParquetClassLibrary.Parquets
         internal bool IsEnclosingEntry(ParquetStack[,] in_subregion, MapSpaceCollection in_walkableArea)
         
         {
+            var result = false;
+
             // NOTE This logic fails when evaluated as a single if-statement, incorrectly reporting
             // that a neighbor2 exists that is not a part of in_walkableArea.  I have not yet
             // tracked down the cause of this failure.
+            // TODO Re-test this once we have answered the TODO logic/operator questions in ParquetStack.
             if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
                 && Content.IsEnclosing
                 && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1)))
@@ -163,12 +160,12 @@ namespace ParquetClassLibrary.Parquets
                 if (Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
                                                           && neighbor2.Content.IsWalkable))
                 {
-                    return true;
+                    result = true;
                 }
             }
-            return false;
+
+            return result;
         }
-        #endregion
         #endregion
 
         #region IEquatable Implementation
@@ -193,7 +190,6 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is MapSpace vector && Equals(vector);
 
@@ -203,7 +199,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_space1">The first <see cref="MapSpace"/> to compare.</param>
         /// <param name="in_space2">The second <see cref="MapSpace"/> to compare.</param>
-        /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(MapSpace in_space1, MapSpace in_space2)
             => in_space1.Position == in_space2.Position
             && in_space1.Content == in_space2.Content;
@@ -214,7 +210,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="in_space1">The first <see cref="MapSpace"/> to compare.</param>
         /// <param name="in_space2">The second <see cref="MapSpace"/> to compare.</param>
-        /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(MapSpace in_space1, MapSpace in_space2)
             => in_space1.Position != in_space2.Position
             && in_space1.Content != in_space2.Content;
@@ -222,7 +218,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region Utility Methods
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStack"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
