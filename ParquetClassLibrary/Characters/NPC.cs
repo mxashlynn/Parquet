@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters

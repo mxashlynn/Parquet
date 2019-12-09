@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
@@ -17,10 +16,12 @@ namespace ParquetClassLibrary.Characters
         /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
         public Behavior PrimaryBehavior { get; }
 
-        /// <summary>Types of parquets this critter avoids, if any.</summary>
+        /// <summary>Types of parquets this <see cref="Being"/> avoids, if any.</summary>
+        // TODO These should probably be made a part of the behavior script?
         public IReadOnlyList<EntityID> Avoids { get; }
 
-        /// <summary>Types of parquets this critter seeks out, if any.</summary>
+        /// <summary>Types of parquets this <see cref="Being"/> seeks out, if any.</summary>
+        // TODO These should probably be made a part of the behavior script?
         public IReadOnlyList<EntityID> Seeks { get; }
         #endregion
 

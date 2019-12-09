@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Characters
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public readonly string DataVersion = AssemblyInfo.SupportedBeingDataVersion;
+        public string DataVersion { get; } = AssemblyInfo.SupportedBeingDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
@@ -23,10 +23,6 @@ namespace ParquetClassLibrary.Characters
         /// <summary>The <see cref="Being"/> whose status is being tracked.</summary>
         [JsonProperty(PropertyName = "in_beingDefinition")]
         public Being BeingDefinition { get; }
-
-        /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
-        [JsonProperty(PropertyName = "in_currentBehavior")]
-        public Behavior CurrentBehavior { get; set; }
         #endregion
 
         #region Stats
@@ -38,6 +34,10 @@ namespace ParquetClassLibrary.Characters
         /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
         [JsonProperty(PropertyName = "in_spawnAt")]
         public Location SpawnAt { get; set; }
+
+        /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
+        [JsonProperty(PropertyName = "in_currentBehavior")]
+        public Behavior CurrentBehavior { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="Being"/> can safely remain in the current <see cref="Biomes.Biome"/>.</summary>
         /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacter"/>.</remarks>
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Characters
         [JsonProperty(PropertyName = "in_knownCharacters")]
         public List<EntityID> KnownNPCs { get; }
 
-        /// <summary>The parquets that this <see cref="Character"/> has analyzed.</summary>
+        /// <summary>The parquets that this <see cref="Character"/> has encountered.</summary>
         [JsonProperty(PropertyName = "in_knownParquets")]
         public List<EntityID> KnownParquets { get; }
 
@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_movementSpeed">The time it takes the tracked <see cref="Being"/> to walk from one <see cref="Location"/> to another.</param>
         /// <param name="in_knownCritters">The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</param>
         /// <param name="in_knownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
-        /// <param name="in_knownParquets">The parquets that this <see cref="Character"/> has analyzed.</param>
+        /// <param name="in_knownParquets">The parquets that this <see cref="Character"/> has encountered.</param>
         /// <param name="in_knownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</param>
         /// <param name="in_knownCraftingRecipes">The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
         /// <param name="in_quests">The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</param>
