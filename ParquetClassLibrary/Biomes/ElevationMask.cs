@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Biomes
         /// <returns>The variable with the flag modified.</returns>
         public static ElevationMask SetTo(this ref ElevationMask in_enumVariable, ElevationMask in_flagToTest, bool in_state)
         {
-            return in_enumVariable = in_state
+            return in_state
                 ? in_enumVariable.Set(in_flagToTest)
                 : in_enumVariable.Clear(in_flagToTest);
         }
