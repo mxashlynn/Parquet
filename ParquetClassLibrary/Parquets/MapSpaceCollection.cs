@@ -260,6 +260,8 @@ namespace ParquetClassLibrary.Parquets
         {
             Precondition.IsNotEmpty(Spaces);
 
+            // TODO Either goalFound should be outside with the other results, or all three results should be returned as part of the method.
+            // It's confusing otherwise.
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 
@@ -269,7 +271,7 @@ namespace ParquetClassLibrary.Parquets
             /// <param name="in_space">The <see cref="MapSpace"/> under consideration this stack frame.</param>
             bool DepthFirstSearch(MapSpace in_space)
             {
-                bool result = false;
+                bool goalFound = false;
 
                 if (in_isApplicable(in_space))
                 {
@@ -277,21 +279,18 @@ namespace ParquetClassLibrary.Parquets
                     {
                         cycleFound = true;
                     }
-                    else {
+                    else
+                    {
+                        visited.Add(in_space);
+
                         if (in_isGoal(in_space))
                         {
-                            // TODO Should the goal be logged as visited?  It seems like it should.
-                            // NOTE After investigating, I am pretty sure it not being marked visited is an error introduced in commit dafd693.
-                            // TODO After looking at all call sites, it appears this predicate is never actually used -- we aren't interested in any goal spaces as yet.
-                            result = true;
+                            goalFound = true;
                         }
                         else
                         {
-                            // Log as "Visited".
-                            visited.Add(in_space);
-
                             // Continue, examining all children in order.
-                            result = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
+                            goalFound = DepthFirstSearch(in_space.NorthNeighbor(in_subregion))
                                 || DepthFirstSearch(in_space.SouthNeighbor(in_subregion))
                                 || DepthFirstSearch(in_space.EastNeighbor(in_subregion))
                                 || DepthFirstSearch(in_space.WestNeighbor(in_subregion));
@@ -299,7 +298,7 @@ namespace ParquetClassLibrary.Parquets
                     }
                 }
 
-                return result;
+                return goalFound;
             }
         }
 
