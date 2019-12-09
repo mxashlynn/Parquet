@@ -65,8 +65,8 @@ namespace ParquetCSVImporter
         public static void Main()
         {
             #region Deserialization from CSV
-            // TODO Unresolved design question -- do we predefine players, or are they all defined at runtime?
             Beings.Clear();
+            // Note: Player Characters are not designed in CSVs but at run-time in-game.
             Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
             Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
             Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
@@ -93,7 +93,7 @@ namespace ParquetCSVImporter
             Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
             #endregion
 
-            #region ReserializE as JSON
+            #region Reserialize as JSON
             All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, Items);
             // TODO -- do we want to do this per supercollection, or do we want to do it all in one giant glob?
             var recordsToJSON = All.Parquets.SerializeToString();

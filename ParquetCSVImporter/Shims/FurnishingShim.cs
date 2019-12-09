@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -12,20 +12,20 @@ namespace ParquetCSVImporter.Shims
     /// </summary>
     public class FurnishingShim : ParquetParentShim
     {
-        /// <summary>The furnishing may be walked on.</summary>
+        /// <summary>Indicates if the furnishing may be walked on.</summary>
         public bool IsWalkable;
 
-        /// <summary>The furnishing may be entered through.</summary>
+        /// <summary>Indicates if the furnishing may be entered through.</summary>
         public bool IsEntry;
 
-        /// <summary>The furnishing may be a wall.</summary>
+        /// <summary>Indicates if the furnishing acts like a wall.</summary>
         public bool IsEnclosing;
 
         /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
         public EntityID SwapID;
 
         /// <summary>
-        /// Converts a shim into the class is corresponds to.
+        /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
