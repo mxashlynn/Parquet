@@ -40,7 +40,7 @@ namespace ParquetClassLibrary
         [JsonProperty]
         private int _id;
 
-        #region Implicit Conversion To/From Int
+        #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityID"/>s to be treated as their backing type.
         /// </summary>

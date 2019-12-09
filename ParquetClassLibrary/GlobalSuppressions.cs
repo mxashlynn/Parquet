@@ -20,3 +20,12 @@
     "CA1815:Override equals and operator equals on value types",
     Justification = "Comparing two AssemblyInfos is nonsensical.",
     Scope = "type", Target = "~T:ParquetClassLibrary.AssemblyInfo")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+    "CA1036:Override methods on comparable types",
+    Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.",
+    Scope = "type", Target = "~T:ParquetClassLibrary.EntityTag")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage",
+    "CA2225:Operator overloads have named alternates",
+    Justification = "This would defeat the purpose of making EntityTag implicitly interchangeable with String.",
+    Scope = "type", Target = "~T:ParquetClassLibrary.EntityTag")]

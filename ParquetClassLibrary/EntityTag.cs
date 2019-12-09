@@ -18,7 +18,7 @@ namespace ParquetClassLibrary
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".
     /// </remarks>
     /// TODO: Include this explanation in the Wiki.
-    public struct EntityTag : IComparable<EntityTag>
+    public class EntityTag : IComparable<EntityTag>
     {
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>
         public static readonly EntityTag None = string.Empty;
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary
         [JsonProperty]
         private string _tagName;
 
-        #region IComparable Methods
+        #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
@@ -47,7 +47,9 @@ namespace ParquetClassLibrary
         {
             return in_tag._tagName;
         }
+        #endregion
 
+        #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be compared one another.
         /// </summary>
