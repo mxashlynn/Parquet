@@ -9,7 +9,6 @@ namespace ParquetCSVImporter.ClassMaps
     /// <summary>
     /// Provides extensions to the <see cref="CsvHelper.Configuration.IReaderConfigurationExtension"/>.
     /// </summary>
-    // ReSharper disable once InconsistentNaming
     public static class IReaderConfigurationExtensions
     {
         /// <summary>

@@ -112,7 +112,6 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Vector2D"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="Vector2D"/>; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is Vector2D vector && Equals(vector);
 

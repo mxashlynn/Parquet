@@ -1,9 +1,7 @@
 using System;
 using ParquetClassLibrary.Utilities;
-
 using Xunit;
 
-// ReSharper disable InconsistentNaming
 
 namespace ParquetUnitTests.Utilities
 {

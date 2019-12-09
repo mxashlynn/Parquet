@@ -6,8 +6,6 @@ using ParquetClassLibrary.Map.SpecialPoints;
 using System;
 using ParquetClassLibrary.Utilities;
 
-// ReSharper disable InconsistentNaming
-
 namespace ParquetClassLibrary.Map
 {
     /// <summary>

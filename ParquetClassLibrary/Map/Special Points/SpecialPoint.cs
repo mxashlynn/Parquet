@@ -42,7 +42,6 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is SpecialPoint point && Equals(point);
 

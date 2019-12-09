@@ -37,7 +37,6 @@ namespace ParquetClassLibrary.Utilities
             && B == in_color.B
             && A == in_color.A;
 
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is PCLColor color && Equals(color);
 

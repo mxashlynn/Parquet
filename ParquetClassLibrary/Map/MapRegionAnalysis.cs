@@ -6,8 +6,6 @@ using System;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
-// ReSharper disable InconsistentNaming
-
 namespace ParquetClassLibrary.Map
 {
     /// <summary>
