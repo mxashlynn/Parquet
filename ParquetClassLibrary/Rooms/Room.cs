@@ -62,10 +62,8 @@ namespace ParquetClassLibrary.Rooms
         /// </param>
         public Room(MapSpaceCollection in_walkableArea, MapSpaceCollection in_perimeter)
         {
-            Precondition.IsNotNull(in_walkableArea, nameof(in_walkableArea));
-            Precondition.IsNotEmpty(in_walkableArea, nameof(in_walkableArea));
-            Precondition.IsNotNull(in_perimeter, nameof(in_perimeter));
-            Precondition.IsNotEmpty(in_perimeter, nameof(in_perimeter));
+            Precondition.IsNotNullOrEmpty(in_walkableArea, nameof(in_walkableArea));
+            Precondition.IsNotNullOrEmpty(in_perimeter, nameof(in_perimeter));
 
             if (in_walkableArea.Count < Rules.Recipes.Rooms.MinWalkableSpaces
                 || in_walkableArea.Count > Rules.Recipes.Rooms.MaxWalkableSpaces)

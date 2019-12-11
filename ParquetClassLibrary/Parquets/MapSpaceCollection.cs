@@ -258,7 +258,7 @@ namespace ParquetClassLibrary.Parquets
         private SearchResults Search(MapSpace in_start, ParquetStack[,] in_subregion,
                                      Predicate<MapSpace> in_isApplicable, Predicate<MapSpace> in_isGoal)
         {
-            Precondition.IsNotEmpty(Spaces);
+            Precondition.IsNotNullOrEmpty(Spaces);
 
             // TODO Either goalFound should be outside with the other results, or all three results should be returned as part of the method.
             // It's confusing otherwise.

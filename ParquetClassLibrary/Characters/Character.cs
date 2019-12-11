@@ -92,8 +92,8 @@ namespace ParquetClassLibrary.Characters
 
             Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_startingQuests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_startingInventory));
-            Precondition.IsNotEmpty(in_personalName, nameof(in_personalName));
-            Precondition.IsNotEmpty(in_familyName, nameof(in_familyName));
+            Precondition.IsNotNullOrEmpty(in_personalName, nameof(in_personalName));
+            Precondition.IsNotNullOrEmpty(in_familyName, nameof(in_familyName));
 
             PersonalName = in_personalName;
             FamilyName = in_familyName;

@@ -54,8 +54,7 @@ namespace ParquetClassLibrary.Rooms
                           List<RecipeElement> in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name, in_description, in_comment)
         {
-            Precondition.IsNotNull(in_requiredFurnishings, nameof(in_requiredFurnishings));
-            Precondition.IsNotEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
+            Precondition.IsNotNullOrEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
             if (in_MinimumWalkableSpaces < Rules.Recipes.Rooms.MinWalkableSpaces
                 || in_MinimumWalkableSpaces > Rules.Recipes.Rooms.MaxWalkableSpaces)
             {

@@ -181,7 +181,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="in_string">The string to test.</param>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="IndexOutOfRangeException">When <paramref name="in_string"/> is null or empty.</exception>
-        public static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
+        public static void IsNotNullOrEmpty(string in_string, string in_argumentName = DefaultArgumentName)
         {
             if (string.IsNullOrEmpty(in_string))
             {
@@ -194,10 +194,15 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="in_enumerable">The collection to test.</param>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is null or empty.</exception>
-        public static void IsNotEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_enumerable"/> is null.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is empty.</exception>
+        public static void IsNotNullOrEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
         {
-            if (!in_enumerable?.Any() ?? false)
+            if (null == in_enumerable)
+            {
+                throw new ArgumentNullException($"{in_argumentName} is null.");
+            }
+            else if (!in_enumerable.Any())
             {
                 throw new IndexOutOfRangeException($"{in_argumentName} is empty.");
             }

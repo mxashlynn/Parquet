@@ -83,7 +83,7 @@ namespace ParquetClassLibrary
         /// <param name="in_serializedParquets">The serialized parquets.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds, string in_serializedParquets)
         {
-            Precondition.IsNotEmpty(in_serializedParquets, nameof(in_serializedParquets));
+            Precondition.IsNotNullOrEmpty(in_serializedParquets, nameof(in_serializedParquets));
 
             // TODO: Ensure this is working as intended.  See:
             // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
