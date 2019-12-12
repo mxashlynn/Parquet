@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Map
 
         #region Whole-Map Characteristics
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
-        public readonly Guid RegionID;
+        public Guid RegionID { get; }
 
         // TODO The setters bellow are here to facilitate region editing, but they shouldn't be changed in-game.
         // Is there a better way to handle this?
@@ -62,13 +62,11 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
-        /// <param name="in_title">The name of the new region.</param>
-        /// <param name="in_background">Background color for the new region.</param>
+        /// <param name="in_title">The player-facing name of the new region.</param>
+        /// <param name="in_background">A color to show in the new region when no parquet is present.</param>
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_id">
-        /// An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.
-        /// </param>
+        /// <param name="in_id">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
         public MapRegion(string in_title = null, PCLColor? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
                          int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
@@ -102,35 +100,28 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_serializedMap">The serialized <see cref="MapRegion"/>.</param>
         /// <param name="out_map">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap,
-                                                    out MapRegion out_map)
+        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion out_map)
         {
+            Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;
             out_map = null;
 
-            if (string.IsNullOrEmpty(in_serializedMap))
+            // Determine what version of region map was serialized.
+            try
             {
-                Error.Handle("Error deserializing a MapRegion.");
-            }
-            else
-            {
-                // Determine what version of region map was serialized.
-                try
-                {
-                    var document = JObject.Parse(in_serializedMap);
-                    var version = document?.Value<string>(nameof(DataVersion));
+                var document = JObject.Parse(in_serializedMap);
+                var version = document?.Value<string>(nameof(DataVersion));
 
-                    // Deserialize only if this class supports the version given.
-                    if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                    {
-                        out_map = JsonConvert.DeserializeObject<MapRegion>(in_serializedMap);
-                        result = true;
-                    }
-                }
-                catch (JsonReaderException exception)
+                // Deserialize only if this class supports the version given.
+                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    Error.Handle($"Error reading string while deserializing a MapRegion: {exception}");
+                    out_map = JsonConvert.DeserializeObject<MapRegion>(in_serializedMap);
+                    result = true;
                 }
+            }
+            catch (JsonReaderException exception)
+            {
+                Error.Handle($"Error reading string while deserializing a MapRegion: {exception}");
             }
 
             return result;
@@ -139,7 +130,7 @@ namespace ParquetClassLibrary.Map
 
         #region Utility Methods
         /// <summary>
-        /// Describes the <see cref="MapRegion"/>'s basic information.
+        /// Describes the <see cref="MapRegion"/>.
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
         public override string ToString()

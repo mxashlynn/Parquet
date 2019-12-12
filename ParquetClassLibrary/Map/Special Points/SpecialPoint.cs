@@ -21,9 +21,9 @@ namespace ParquetClassLibrary.Map.SpecialPoints
             Position = in_position;
         }
 
-        #region Implements IEquatable
+        #region IEquatable Implementation
         /// <summary>
-        /// Hash function for a <see cref="SpecialPoint"/> object.
+        /// Hash function for a <see cref="SpecialPoint"/>.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()

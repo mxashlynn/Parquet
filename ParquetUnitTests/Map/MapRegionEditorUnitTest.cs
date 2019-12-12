@@ -27,10 +27,10 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void DisplayInfoAtPositionRaisesPositionInfoEvent()
         {
-            PositionInfoEvent eventArgument = null;
+            PositionInfoEventArgs eventArgument = null;
             object sender = null;
             var wasEventRaised = false;
-            void HandleEvent(object in_sender, PositionInfoEvent in_args)
+            void HandleEvent(object in_sender, PositionInfoEventArgs in_args)
             {
                 eventArgument = in_args;
                 sender = in_sender;

@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Utilities;
@@ -15,8 +14,8 @@ namespace ParquetClassLibrary.Map
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static readonly Vector2D DimensionsInChunks = new Vector2D(Rules.Dimensions.ChunksPerRegion,
-                                                                              Rules.Dimensions.ChunksPerRegion);
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion,
+                                                                          Rules.Dimensions.ChunksPerRegion);
         #endregion
 
         #region Whole-Region Characteristics
@@ -24,10 +23,10 @@ namespace ParquetClassLibrary.Map
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        public readonly string DataVersion = AssemblyInfo.SupportedMapDataVersion;
+        public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>The identifier for the region that this grid will generate.</summary>
-        public readonly Guid RegionID;
+        public Guid RegionID { get; set; }
 
         /// <summary>What the region that this grid generates will be called in-game.</summary>
         public string Title { get; set; }
@@ -40,6 +39,8 @@ namespace ParquetClassLibrary.Map
         #endregion
 
         #region Grid Contents
+        // TODO These are begging to be collapsed into a single struct, says I.
+        // !! Do this at the same time that we revise ChunkType !!
         /// <summary>The type of chunks which make up the grid.</summary>
         private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
 
@@ -79,7 +80,7 @@ namespace ParquetClassLibrary.Map
         }
         #endregion
 
-        #region Chunk Methods
+        #region Chunk Access Methods
         /// <summary>
         /// Places the given chunk type at the given position and orients it.
         /// </summary>
@@ -87,6 +88,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_orientation">The orientation to set.</param>
         /// <param name="in_position">The position at which to set it.</param>
         /// <returns><c>true</c> if the position was valid, <c>false</c> otherwise.</returns>
+        // TODO Do we actually need this return value?
         public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2D in_position)
         {
             var valid = IsValidPosition(in_position);
@@ -108,25 +110,23 @@ namespace ParquetClassLibrary.Map
         /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
         /// </returns>
         public (ChunkType type, ChunkOrientation orientation)? GetChunk(Vector2D in_position)
-        {
-            return IsValidPosition(in_position)
+            => IsValidPosition(in_position)
                 ? ((ChunkType type, ChunkOrientation orientation)?)
                 (
                     _chunkTypes[in_position.Y, in_position.X],
                     _chunkOrientations[in_position.Y, in_position.X]
                 )
                 : null;
-        }
         #endregion
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current <see cref="MapChunkGrid"/> to a string,
-        /// incrementing the revision number in the process.
+        /// Serializes to the current <see cref="MapChunkGrid"/> to a string.
         /// </summary>
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(this, Formatting.None);
+        // TODO Should this class track revisions?
 
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.
@@ -137,32 +137,26 @@ namespace ParquetClassLibrary.Map
         public static bool TryDeserializeFromString(string in_serializedMapChunkGrid,
                                                     out MapChunkGrid out_mapChunkGrid)
         {
+            Precondition.IsNotNullOrEmpty(in_serializedMapChunkGrid, nameof(in_serializedMapChunkGrid));
             var result = false;
             out_mapChunkGrid = null;
 
-            if (string.IsNullOrEmpty(in_serializedMapChunkGrid))
+            // Determine what version of region map was serialized.
+            try
             {
-                Error.Handle("Tried to deserialize a null string as a MapChunkGrid.");
-            }
-            else
-            {
-                // Determine what version of region map was serialized.
-                try
-                {
-                    var document = JObject.Parse(in_serializedMapChunkGrid);
-                    var version = document?.Value<string>(nameof(DataVersion));
+                var document = JObject.Parse(in_serializedMapChunkGrid);
+                var version = document?.Value<string>(nameof(DataVersion));
 
-                    // Deserialize only if this class supports the version given.
-                    if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                    {
-                        out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
-                        result = true;
-                    }
-                }
-                catch (JsonReaderException exception)
+                // Deserialize only if this class supports the version given.
+                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    Error.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
+                    out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
+                    result = true;
                 }
+            }
+            catch (JsonReaderException exception)
+            {
+                Error.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
             }
 
             return result;
@@ -171,39 +165,17 @@ namespace ParquetClassLibrary.Map
 
         #region Utility Methods
         /// <summary>
-        /// Determines if the given position corresponds to a point in the region.
+        /// Determines if the given position corresponds to a point on the grid.
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         // TODO Make this an extension to ChunkType[,].
-        public bool IsValidPosition(Vector2D in_position)
+        public static bool IsValidPosition(Vector2D in_position)
         {
             return in_position.X > -1
                 && in_position.Y > -1
                 && in_position.X < DimensionsInChunks.X
                 && in_position.Y < DimensionsInChunks.Y;
-        }
-
-        /// <summary>
-        /// Visualizes the grid as an array of chunks.
-        /// Intended for Console debugging.
-        /// </summary>
-        /// <returns>A string containing a 2D grid representing the chunks in this grid.</returns>
-        public string DumpMap()
-        {
-            var representation = new StringBuilder(DimensionsInChunks.Magnitude);
-            #region Compose visual represenation of contents.
-            for (var y = 0; y < DimensionsInChunks.Y; y++)
-            {
-                for (var x = 0; x < DimensionsInChunks.X; x++)
-                {
-                    representation.Append(_chunkTypes[y, x].ToString());
-                }
-                representation.AppendLine();
-            }
-            #endregion
-
-            return $"Chunk Grid:\n{representation}";
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 namespace ParquetClassLibrary.Map
 {
     /// <summary>
-    /// Indicates a the major flow of parquets procedurally generated in a MapChunk.
+    /// Indicates the major flow of parquets procedurally generated in a MapChunk.
     /// </summary>
     public enum ChunkOrientation
     {

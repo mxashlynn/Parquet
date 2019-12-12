@@ -11,6 +11,8 @@ namespace ParquetClassLibrary.Map
     // IDEA: Allow painting in a match-only mode similar to the way the flood fill matches,
     //       c.f. the mask properties in TEdit.
 
+        // TODO Once again I am not sure this belongs in the library.
+
     /// <summary>
     /// Controller to manage in-game MapRegion editing.
     /// </summary>
@@ -20,7 +22,7 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Indicates when it is time to update the display of current position info.
         /// </summary>
-        public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
+        public static event EventHandler<PositionInfoEventArgs> DisplayPositionInfo;
 
         /// <summary>
         /// Indicates when it is time to update the display of the map.
@@ -140,8 +142,8 @@ namespace ParquetClassLibrary.Map
         public void DisplayInfoAtPosition(Vector2D in_position)
         {
             DisplayPositionInfo?.Invoke(this,
-                    new PositionInfoEvent(_currentRegion.GetDefinitionAtPosition(in_position),
-                                          _currentRegion.GetSpecialPointsAtPosition(in_position)));
+                    new PositionInfoEventArgs(_currentRegion.GetDefinitionAtPosition(in_position),
+                                              _currentRegion.GetSpecialPointsAtPosition(in_position)));
         }
 
         /// <summary>
