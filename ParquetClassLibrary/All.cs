@@ -187,7 +187,7 @@ namespace ParquetClassLibrary
             // An exception is made for PlayerCharacters as these values are undefined at designtime.
             const int TargetMultiple = 10000;
 
-            #region Define Ranges
+            #region Define Most Ranges
             PlayerCharacterIDs = new Range<EntityID>(1, 9000);
             CritterIDs = new Range<EntityID>(10000, 19000);
             NpcIDs = new Range<EntityID>(20000, 29000);
@@ -203,7 +203,14 @@ namespace ParquetClassLibrary
             QuestIDs = new Range<EntityID>(90000, 99000);
 
             BiomeIDs = new Range<EntityID>(100000, 109000);
+            #endregion
 
+            #region Define Range Collections
+            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
+            #endregion
+
+            #region Calculate Item Range
             // The largest Range.Maximum defined in All, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(All).GetFields()
                 .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
@@ -235,11 +242,6 @@ namespace ParquetClassLibrary
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
 
-            #region Define Range Collections
-            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
-            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
-            #endregion
-
             #endregion
         }
 
@@ -256,6 +258,10 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         // TODO Make a version that takes serialized JSON strings instead of ienumerables.  <-- Really?  Consider this usage.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
+            "CA1810:Initialize reference type static fields inline",
+            Scope = "member", Target = "~M:ParquetClassLibrary.All.#cctor",
+            Justification = "Inline initializers would notably complicate the code in this instance.")]
         public static void InitializeCollections(IEnumerable<Being> in_beings,
                                                  IEnumerable<ParquetParent> in_parquets,
                                                  IEnumerable<RoomRecipe> in_roomRecipes,
@@ -268,15 +274,21 @@ namespace ParquetClassLibrary
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
+            //Precondition.IsNotNull(in_parquets, nameof(in_beings));
             Precondition.IsNotNull(in_parquets, nameof(in_parquets));
+            //Precondition.IsNotNull(in_parquets, nameof(in_roomRecipes));
+            //Precondition.IsNotNull(in_parquets, nameof(in_craftingRecipes));
+            //Precondition.IsNotNull(in_parquets, nameof(in_quests));
+            //Precondition.IsNotNull(in_parquets, nameof(in_biomes));
+            //Precondition.IsNotNull(in_parquets, nameof(in_items));
 
-            Beings = new EntityCollection<Being>(BeingIDs, in_beings);
+            //Beings = new EntityCollection<Being>(BeingIDs, in_beings);
             Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
-            RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
-            CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, in_craftingRecipes);
-            Quests = new EntityCollection<Quest>(QuestIDs, in_quests);
-            Biomes = new EntityCollection<Biome>(BiomeIDs, in_biomes);
-            Items = new EntityCollection<Item>(ItemIDs, in_items);
+            //RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
+            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, in_craftingRecipes);
+            //Quests = new EntityCollection<Quest>(QuestIDs, in_quests);
+            //Biomes = new EntityCollection<Biome>(BiomeIDs, in_biomes);
+            //Items = new EntityCollection<Item>(ItemIDs, in_items);
 
             CollectionsHaveBeenInitialized = true;
         }

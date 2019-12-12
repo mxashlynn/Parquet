@@ -55,9 +55,12 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="in_boundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_boundsCollection"/> is null.</exception>
         public static void IsInRange(EntityID in_id, List<Range<EntityID>> in_boundsCollection,
                                      string in_argumentName = DefaultArgumentName)
         {
+            IsNotNull(in_boundsCollection, nameof(in_boundsCollection));
+
             if (!in_id.IsValidForRange(in_boundsCollection))
             {
                 var allBounds = "";
@@ -93,18 +96,18 @@ namespace ParquetClassLibrary.Utilities
         /// the second given <see langword="class"/>.
         /// </summary>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
-        /// <typeparam name="TypeToCheck">The type to check.</typeparam>
-        /// <typeparam name="TargetType">The type of which it must be a subtype.</typeparam>
+        /// <typeparam name="TToCheck">The type to check.</typeparam>
+        /// <typeparam name="TTarget">The type of which it must be a subtype.</typeparam>
         /// <exception cref="System.InvalidOperationException">
-        /// Thrown when <typeparamref name="TypeToCheck"/> does not correspond to <typeparamref name="TargetType"/>.
+        /// Thrown when <typeparamref name="TToCheck"/> does not correspond to <typeparamref name="TTarget"/>.
         /// </exception>
-        public static void IsOfType<TypeToCheck, TargetType>(string in_argumentName = DefaultArgumentName)
+        public static void IsOfType<TToCheck, TTarget>(string in_argumentName = DefaultArgumentName)
         {
-            if (!typeof(TypeToCheck).IsSubclassOf(typeof(TargetType))
-                && typeof(TypeToCheck) != typeof(TargetType))
+            if (!typeof(TToCheck).IsSubclassOf(typeof(TTarget))
+                && typeof(TToCheck) != typeof(TTarget))
             {
                 throw new InvalidCastException(
-                    $"{in_argumentName} is of type {typeof(TypeToCheck)} but must be of type {typeof(TargetType)}.");
+                    $"{in_argumentName} is of type {typeof(TToCheck)} but must be of type {typeof(TTarget)}.");
             }
         }
 
@@ -181,7 +184,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="in_string">The string to test.</param>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="IndexOutOfRangeException">When <paramref name="in_string"/> is null or empty.</exception>
-        public static void IsNotEmpty(string in_string, string in_argumentName = DefaultArgumentName)
+        public static void IsNotNullOrEmpty(string in_string, string in_argumentName = DefaultArgumentName)
         {
             if (string.IsNullOrEmpty(in_string))
             {
@@ -194,10 +197,15 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="in_enumerable">The collection to test.</param>
         /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is null or empty.</exception>
-        public static void IsNotEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="in_enumerable"/> is null.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="in_enumerable"/> is empty.</exception>
+        public static void IsNotNullOrEmpty<T>(IEnumerable<T> in_enumerable, string in_argumentName = DefaultArgumentName)
         {
-            if (!in_enumerable?.Any() ?? false)
+            if (null == in_enumerable)
+            {
+                throw new ArgumentNullException($"{in_argumentName} is null.");
+            }
+            else if (!in_enumerable.Any())
             {
                 throw new IndexOutOfRangeException($"{in_argumentName} is empty.");
             }

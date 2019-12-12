@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ParquetClassLibrary.Parquets;
 using Xunit;
 
@@ -81,16 +81,6 @@ namespace ParquetUnitTests.Map
                         Assert.Equal(mask.HasFlag(flag), mask.IsSet(flag));
                     }
                 }
-            }
-        }
-
-        [Fact]
-        // Note: I feel like this is a poor test, maybe it can be improved?
-        internal void ParquetMaskIsNotSetForAllFlagsOnNoneTest()
-        {
-            foreach (ParquetMask flag in Enum.GetValues(typeof(ParquetMask)))
-            {
-                Assert.True(ParquetMask.None.IsNotSet(flag));
             }
         }
     }

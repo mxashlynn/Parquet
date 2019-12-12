@@ -25,7 +25,6 @@ namespace ParquetUnitTests
         [Fact]
         public void AllDimensionsAreGreaterThanZeroTest()
         {
-            // ReSharper disable All
             var result = Rules.Dimensions.ParquetsPerChunk > 0
                          && Rules.Dimensions.ChunksPerRegion > 0
                          && Rules.Dimensions.ParquetsPerRegion > 0

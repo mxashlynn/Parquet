@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -18,16 +16,20 @@ namespace ParquetClassLibrary.Parquets
         public EntityID ItemID { get; }
 
         /// <summary>
-        /// Describes the <see cref="Biome"/>(s) that this parquet helps generate.
+        /// Describes the <see cref="Biome"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [JsonProperty(PropertyName = "in_addsToBiome")]
         public EntityTag AddsToBiome { get; }
 
         /// <summary>
-        /// Describes the <see cref="Rooms.RoomRecipe"/>(s) that this parquet helps generate.
+        /// Describes the <see cref="Rooms.RoomRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
+        // TODO Is this the right way to handle this?
+        // I am guessing that the idea was to help create, for example, "wooden" or "golden" or even "rustic" or "fancy" rooms
+        // but, it seems that a parquet ought not to know anything about room recipes.
+        // Perhaps this comment merely needs to be rephrased.
         [JsonProperty(PropertyName = "in_addsToRoom")]
         public EntityTag AddsToRoom { get; }
 

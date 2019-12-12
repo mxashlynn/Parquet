@@ -6,8 +6,6 @@ using System;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
-// ReSharper disable InconsistentNaming
-
 namespace ParquetClassLibrary.Map
 {
     /// <summary>
@@ -102,11 +100,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsHeavenly(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsHeavenly(),
-                                                fluidThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsHeavenly(),
+                                            fluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough flowing lava to qualify as volcanic.
@@ -114,11 +110,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsVolcanic(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsVolcanic(),
-                                                fluidThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsVolcanic(),
+                                            fluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough flowing water to qualify as oceanic.
@@ -126,11 +120,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsCoastal(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsCoastal(),
-                                                fluidThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsCoastal(),
+                                            fluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough sandy parquets to qualify as a desert.
@@ -138,11 +130,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsDeserted(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsDeserted(),
-                                                landThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsDeserted(),
+                                            landThreshold);
 
         /// <summary>
         /// Determines if the region has enough snowy parquets to qualify as tundra.
@@ -150,11 +140,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsFrozen(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsFrozen(),
-                                                landThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsFrozen(),
+                                            landThreshold);
 
         /// <summary>
         /// Determines if the region has enough marshy parquets to qualify as a swamp.
@@ -162,11 +150,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsSwampy(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsSwampy(),
-                                                landThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsSwampy(),
+                                            landThreshold);
 
         /// <summary>
         /// Determines if the region has enough trees to qualify as a forest.
@@ -174,11 +160,9 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_region">The region to test.</param>
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsForested(this MapRegion in_region)
-        {
-            return CountMeetsOrExceedsThreshold(in_region,
-                                                p => p.AddsToBiome.IsForested(),
-                                                landThreshold);
-        }
+            => CountMeetsOrExceedsThreshold(in_region,
+                                            p => p.AddsToBiome.IsForested(),
+                                            landThreshold);
 
         /// <summary>
         /// Helper method determines if the region has enough parquets satisfying the given predicate

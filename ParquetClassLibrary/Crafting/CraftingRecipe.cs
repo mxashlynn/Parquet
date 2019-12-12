@@ -28,6 +28,7 @@ namespace ParquetClassLibrary.Crafting
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        // TODO Replace with a read-only array substitute?  See https://web.archive.org/web/20120103002717/http://msdn.microsoft.com/en-us/library/aa664459(v=vs.71).aspx
         public StrikePanel[,] PanelPattern { get; }
 
         /// <summary>
@@ -49,10 +50,8 @@ namespace ParquetClassLibrary.Crafting
                               IEnumerable<RecipeElement> in_ingredients, StrikePanel[,] in_panelPattern)
             : base(All.CraftingRecipeIDs, in_id, in_name, in_description, in_comment)
         {
-            Precondition.IsNotNull(in_products, nameof(in_products));
-            Precondition.IsNotEmpty(in_products, nameof(in_products));
-            Precondition.IsNotNull(in_ingredients, nameof(in_ingredients));
-            Precondition.IsNotEmpty(in_ingredients, nameof(in_ingredients));
+            Precondition.IsNotNullOrEmpty(in_products, nameof(in_products));
+            Precondition.IsNotNullOrEmpty(in_ingredients, nameof(in_ingredients));
             Precondition.IsNotNull(in_panelPattern, nameof(in_panelPattern));
             if (in_panelPattern.GetLength(0) > Rules.Dimensions.PanelsPerPatternHeight
                 || in_panelPattern.GetLength(1) > Rules.Dimensions.PanelsPerPatternWidth

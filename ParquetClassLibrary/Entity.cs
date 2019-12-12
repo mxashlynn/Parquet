@@ -60,7 +60,7 @@ namespace ParquetClassLibrary
         protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description, string in_comment)
         {
             Precondition.IsInRange(in_id, in_bounds, nameof(in_id));
-            Precondition.IsNotEmpty(in_name, nameof(in_name));
+            Precondition.IsNotNullOrEmpty(in_name, nameof(in_name));
 
             ID = in_id;
             Name = in_name;

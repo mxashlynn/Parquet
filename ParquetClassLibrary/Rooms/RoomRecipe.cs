@@ -49,15 +49,14 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="in_optionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
                           List<RecipeElement> in_requiredFurnishings,
-                          int in_MinimumWalkableSpaces = Rules.Recipes.Rooms.MinWalkableSpaces,
+                          int in_MinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
                           List<RecipeElement> in_optionallyRequiredWalkableFloors = null,
                           List<RecipeElement> in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name, in_description, in_comment)
         {
-            Precondition.IsNotNull(in_requiredFurnishings, nameof(in_requiredFurnishings));
-            Precondition.IsNotEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
-            if (in_MinimumWalkableSpaces < Rules.Recipes.Rooms.MinWalkableSpaces
-                || in_MinimumWalkableSpaces > Rules.Recipes.Rooms.MaxWalkableSpaces)
+            Precondition.IsNotNullOrEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
+            if (in_MinimumWalkableSpaces < Rules.Recipes.Room.MinWalkableSpaces
+                || in_MinimumWalkableSpaces > Rules.Recipes.Room.MaxWalkableSpaces)
             {
                 throw new ArgumentOutOfRangeException(nameof(in_MinimumWalkableSpaces));
             }
@@ -78,7 +77,8 @@ namespace ParquetClassLibrary.Rooms
         /// <c>false</c> otherwise.
         /// </returns>
         public bool Matches(Room in_room)
-            => in_room.WalkableArea.Count >= MinimumWalkableSpaces
+            => null != in_room
+            && in_room.WalkableArea.Count >= MinimumWalkableSpaces
             && RequiredPerimeterBlocks.All(element =>
                 in_room.Perimeter.Count(space =>
                     All.Parquets.Get<Block>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)

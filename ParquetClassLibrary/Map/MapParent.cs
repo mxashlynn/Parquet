@@ -1,19 +1,16 @@
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Map.SpecialPoints;
 using System;
 using ParquetClassLibrary.Utilities;
 
-// ReSharper disable InconsistentNaming
-
 namespace ParquetClassLibrary.Map
 {
     /// <summary>
     /// Provides methods that are used by all parquet-based map models
-    /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>, but contrast
-    /// <see cref="MapChunkGrid"/> which is not parquet-based).
+    /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
+    /// but contrast <see cref="MapChunkGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent
     {
@@ -27,18 +24,15 @@ namespace ParquetClassLibrary.Map
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
-        protected readonly string DataVersion = AssemblyInfo.SupportedMapDataVersion;
+        protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
-
-        public bool IsValidPosition(Vector2D in_position)
-            => ParquetDefintion.IsValidPosition(in_position);
         #endregion
 
         #region Map Contents
-        /// <summary>Exit, spawn, and other special points on the map.</summary>
-        protected readonly List<SpecialPoint> SpecialPoints = new List<SpecialPoint>();
+        /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
+        protected List<SpecialPoint> SpecialPoints { get; } = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
         protected abstract ParquetStatus[,] ParquetStatus { get; }
@@ -50,6 +44,7 @@ namespace ParquetClassLibrary.Map
         protected abstract ParquetStack[,] ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
+        // TODO Move this to an extension on ParquetStatus[,].
         protected int ParquetsCount
         {
             get
@@ -74,7 +69,7 @@ namespace ParquetClassLibrary.Map
 
         #region Parquets Replacement Methods
         /// <summary>
-        /// Attempts to update the floor parquet at the given position.
+        /// Attempts to update the <see cref="Floor"/> parquet at the given position.
         /// </summary>
         /// <param name="in_floorID">ID for the new floor to set.</param>
         /// <param name="in_position">The position to set.</param>
@@ -83,7 +78,7 @@ namespace ParquetClassLibrary.Map
             => TrySetParquetDefinition(in_floorID, null, null, null, in_position);
 
         /// <summary>
-        /// Attempts to update the block parquet at the given position.
+        /// Attempts to update the <see cref="Block"/> at the given position.
         /// </summary>
         /// <param name="in_blockID">ID for the new block to set.</param>
         /// <param name="in_position">The position to set.</param>
@@ -92,7 +87,7 @@ namespace ParquetClassLibrary.Map
             => TrySetParquetDefinition(null, in_blockID, null, null, in_position);
 
         /// <summary>
-        /// Attempts to update the furnishing parquet at the given position.
+        /// Attempts to update the <see cref="Furnishing"/> at the given position.
         /// </summary>
         /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
         /// <param name="in_position">The position to set.</param>
@@ -101,7 +96,7 @@ namespace ParquetClassLibrary.Map
             => TrySetParquetDefinition(null, null, in_furnishingID, null, in_position);
 
         /// <summary>
-        /// Attempts to update the collectible parquet at the given position.
+        /// Attempts to update the <see cref="Collectible"/> at the given position.
         /// </summary>
         /// <param name="in_collectibleID">ID for the new collectible to set.</param>
         /// <param name="in_position">The position to set.</param>
@@ -204,6 +199,9 @@ namespace ParquetClassLibrary.Map
             if (null != in_point
                 && ParquetDefintion.IsValidPosition(in_point.Position))
             {
+                // TODO I think this is broken because the List<SpecialPoints> regards all subclasses of special points as equivalent.
+                // TODO Further, I believe spawn points are not even needed.  Consider removing those.
+
                 // Return true if the point was removed or if the point never existed.
                 result = SpecialPoints.Remove(in_point) ||
                          !SpecialPoints.Exists(in_foundPoint =>
@@ -219,25 +217,25 @@ namespace ParquetClassLibrary.Map
         /// Gets the statuses of any parquets at the position.
         /// </summary>
         /// <param name="in_position">The position whose status is sought.</param>
-        /// <returns>The status of parquets at the given position, or <c>null</c> if the position is invalid.</returns>
+        /// <returns>The status of parquets at the given position.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2D in_position)
             // TODO Make this an extension of ParquetStatus[,] -- also, change the name of this class variable so it doesn't repeat the name of the type!
             => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetStatus[in_position.Y, in_position.X]
-                : null;
+                : throw new ArgumentOutOfRangeException(nameof(in_position));
 
         /// <summary>
         /// Gets any floor parquet at the position.
         /// </summary>
         /// <param name="in_position">The position whose floor is sought.</param>
-        /// <returns>The floor at the given position, or <c>null</c> if there is none.</returns>
+        /// <returns>The floor at the given position.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2D in_position)
             => ParquetDefintion.IsValidPosition(in_position)
                 ? ParquetDefintion[in_position.Y, in_position.X]
-                : ParquetStack.Empty;
+                : throw new ArgumentOutOfRangeException(nameof(in_position));
 
         /// <summary>
-        /// Gets all the parquets in the entire map.
+        /// Gets all the parquet definitions in the entire map.
         /// </summary>
         /// <returns>A collection of parquets.</returns>
         // TODO This should probably be rethought.
@@ -282,7 +280,7 @@ namespace ParquetClassLibrary.Map
 
         #region Serialization Methods
         /// <summary>
-        /// Serializes to the current Map to a string,
+        /// Serializes the current Map to a string,
         /// incrementing the revision number in the process.
         /// </summary>
         /// <returns>The serialized Map.</returns>
@@ -295,12 +293,19 @@ namespace ParquetClassLibrary.Map
 
         #region Utility Methods
         /// <summary>
+        /// Determines if the given position corresponds to a point in the region.
+        /// </summary>
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public bool IsValidPosition(Vector2D in_position)
+            => ParquetDefintion.IsValidPosition(in_position);
+
+        /// <summary>
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
         public ParquetStack[,] GetSubregion()
-            => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1,
-                                                                  DimensionsInParquets.Y - 1));
+            => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1, DimensionsInParquets.Y - 1));
 
         /// <summary>
         /// Provides all parquet definitions within the specified rectangular subsection of the current map.
@@ -341,81 +346,7 @@ namespace ParquetClassLibrary.Map
         }
 
         /// <summary>
-        /// Visualizes the map as a string with merged layers.
-        /// Intended for Console debugging.
-        /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current map.</returns>
-        internal string DumpMap()
-        {
-            var representation = new StringBuilder(DimensionsInParquets.Magnitude);
-            #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInParquets.X; x++)
-            {
-                for (var y = 0; y < DimensionsInParquets.Y; y++)
-                {
-                    var parquet = EntityID.None != ParquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Collectible)
-                        : EntityID.None != ParquetDefintion[y, x].Furnishing
-                            ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Furnishing)
-                            : EntityID.None != ParquetDefintion[y, x].Block
-                                ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Block)
-                                : EntityID.None != ParquetDefintion[y, x].Floor
-                                    ? All.Parquets.Get<ParquetParent>(ParquetDefintion[y, x].Floor)
-                                    : null;
-
-                    representation.Append(parquet?.ToString() ?? "~");
-                }
-                representation.AppendLine();
-            }
-            #endregion
-
-            return representation.ToString();
-        }
-
-        /// <summary>
-        /// Visualizes the map as a string, listing layers separately.
-        /// Intended for Console debugging.
-        /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current map.</returns>
-        public string DumpMapWithLayers()
-        {
-            var floorRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var blocksRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var furnishingsRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            var collectiblesRepresentation = new StringBuilder(DimensionsInParquets.Magnitude);
-            #region Compose visual represenation of contents.
-            for (var x = 0; x < DimensionsInParquets.X; x++)
-            {
-                for (var y = 0; y < DimensionsInParquets.Y; y++)
-                {
-                    floorRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Floor
-                        ? All.Parquets.Get<Floor>(ParquetDefintion[y, x].Floor).ToString()
-                        : "~");
-                    blocksRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Block
-                        ? All.Parquets.Get<Block>(ParquetDefintion[y, x].Block).ToString()
-                        : " ");
-                    furnishingsRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Furnishing
-                        ? All.Parquets.Get<Furnishing>(ParquetDefintion[y, x].Furnishing).ToString()
-                        : " ");
-                    collectiblesRepresentation.Append(EntityID.None != ParquetDefintion[y, x].Collectible
-                        ? All.Parquets.Get<Collectible>(ParquetDefintion[y, x].Collectible).ToString()
-                        : " ");
-                }
-                floorRepresentation.AppendLine();
-                blocksRepresentation.AppendLine();
-                furnishingsRepresentation.AppendLine();
-                collectiblesRepresentation.AppendLine();
-            }
-            #endregion
-
-            return $"Floor:\n{floorRepresentation}\n" +
-                $"Blocks:\n{blocksRepresentation}\n" +
-                $"Furnishings:\n{furnishingsRepresentation}\n" +
-                $"Collectibles:\n{collectiblesRepresentation}";
-        }
-
-        /// <summary>
-        /// Describes the map's basic information.
+        /// Describes the map through general characteristics.
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()

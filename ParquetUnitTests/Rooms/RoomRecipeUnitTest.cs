@@ -75,7 +75,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MinimumWalkableSpacesBelowGlobalMinimumThrowsTest()
         {
-            var BadMinimum = Rules.Recipes.Rooms.MinWalkableSpaces - 1;
+            var BadMinimum = Rules.Recipes.Room.MinWalkableSpaces - 1;
 
             void HasBadRequiredBlocks()
             {
@@ -89,7 +89,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MinimumWalkableSpacesAboveGlobalMaximumThrowsTest()
         {
-            var BadMinimum = Rules.Recipes.Rooms.MaxWalkableSpaces + 1;
+            var BadMinimum = Rules.Recipes.Room.MaxWalkableSpaces + 1;
 
             void HasBadRequiredBlocks()
             {

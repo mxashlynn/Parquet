@@ -253,10 +253,14 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void DeserializingNullFailsTest()
         {
-            var result = MapChunk.TryDeserializeFromString(null, out var mapChunkResults);
+            var chunk = new MapChunk().FillTestPattern();
 
-            Assert.Null(mapChunkResults);
-            Assert.False(result);
+            static void TestCode()
+            {
+                var _ = MapChunk.TryDeserializeFromString(null, out var mapChunkResults);
+            }
+
+            Assert.Throws<IndexOutOfRangeException>(TestCode);
         }
 
         [Fact]
@@ -296,12 +300,12 @@ namespace ParquetUnitTests.Map
         {
             var chunk = new MapChunk().FillTestPattern();
 
-            var result = chunk.GetDefinitionAtPosition(invalidPosition);
+            void TestCode()
+            {
+                var _ = chunk.GetDefinitionAtPosition(invalidPosition);
+            }
 
-            Assert.Equal(EntityID.None, result.Floor);
-            Assert.Equal(EntityID.None, result.Block);
-            Assert.Equal(EntityID.None, result.Furnishing);
-            Assert.Equal(EntityID.None, result.Collectible);
+            Assert.Throws<ArgumentOutOfRangeException>(TestCode);
         }
 
         [Fact]

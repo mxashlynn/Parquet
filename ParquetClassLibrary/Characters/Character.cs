@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
+    /// <summary>
+    /// Models the definitions shared by in-game actors that take part in the narrative.
+    /// </summary>
     public abstract class Character : Being
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
         // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
+        // TODO Should this be in a resource table to support globalization?
         public const string DefaultPronoun = "they";
         #endregion
 
@@ -32,9 +35,10 @@ namespace ParquetClassLibrary.Characters
         /// This identifier provides a link between software character <see langword="class"/>es
         /// and the characters written of in a game's narrative that they represent.  The goal
         /// is that these identifiers be able to span any number of shipped titles, allowing a
-        /// sequel title to import data from prior titles in such a way that an one game's <see cref="NPC"/>
+        /// sequel title to import data from prior titles in such a way that one game's <see cref="NPC"/>
         /// can become another game's <see cref="PlayerCharacter"/>.
         /// </remarks>
+        // TODO This implementation may need more thought/work.
         public string StoryCharacterID { get; }
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
@@ -42,7 +46,8 @@ namespace ParquetClassLibrary.Characters
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
-        // TODO This is just a place-holder, I am not at all sure how we will handle this.
+        // TODO This is just a place-holder, I am not at all sure how we will handle dialogue.
+        // TODO This may be tied in to the script system.
         public IReadOnlyList<string> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
@@ -70,7 +75,7 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_storyCharacterID">A means of identifying this <see cref="Character"/> across multiple shipped game titles.</param>
         /// <param name="in_startingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
         /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
-        /// <param name="in_startingInventory">Any items this <see cref="Character"/> owns at the outset.</param>
+        /// <param name="in_startingInventory">Any items this <see cref="Character"/> possesses at the outset.</param>
         protected Character(Range<EntityID> in_bounds, EntityID in_id,
                             string in_personalName, string in_familyName,
                             string in_description, string in_comment, EntityID in_nativeBiome,
@@ -87,8 +92,8 @@ namespace ParquetClassLibrary.Characters
 
             Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_startingQuests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_startingInventory));
-            Precondition.IsNotEmpty(in_personalName, nameof(in_personalName));
-            Precondition.IsNotEmpty(in_familyName, nameof(in_familyName));
+            Precondition.IsNotNullOrEmpty(in_personalName, nameof(in_personalName));
+            Precondition.IsNotNullOrEmpty(in_familyName, nameof(in_familyName));
 
             PersonalName = in_personalName;
             FamilyName = in_familyName;

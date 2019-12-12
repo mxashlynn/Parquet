@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -12,7 +11,7 @@ namespace ParquetClassLibrary.Parquets
     public sealed class Block : ParquetParent
     {
         #region Class Defaults
-        /// <summary>Minimum toughness value.</summary>
+        /// <summary>Minimum toughness value for any Block.</summary>
         public const int LowestPossibleToughness = 0;
 
         /// <summary>Maximum toughness value to use when none is specified.</summary>
@@ -27,7 +26,7 @@ namespace ParquetClassLibrary.Parquets
         #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
         [JsonProperty(PropertyName = "in_gatherTool")]
-        public GatheringTools GatherTool { get; }
+        public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_gatherEffect")]
@@ -37,11 +36,11 @@ namespace ParquetClassLibrary.Parquets
         [JsonProperty(PropertyName = "in_collectibleID")]
         public EntityID CollectibleID { get; }
 
-        /// <summary>The block is flammable.</summary>
+        /// <summary>Whether or not the block is flammable.</summary>
         [JsonProperty(PropertyName = "in_isFlammable")]
         public bool IsFlammable { get; }
 
-        /// <summary>The block is a liquid.</summary>
+        /// <summary>Whether or not the block is a liquid.</summary>
         [JsonProperty(PropertyName = "in_isLiquid")]
         public bool IsLiquid { get; }
 
@@ -68,9 +67,9 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
         public Block(EntityID in_id, string in_name, string in_description, string in_comment,
-                     EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
-                      EntityTag? in_addsToRoom = null,
-                     GatheringTools in_gatherTool = GatheringTools.None,
+                     EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
+                     EntityTag in_addsToRoom = null,
+                     GatheringTool in_gatherTool = GatheringTool.None,
                      GatheringEffect in_gatherEffect = GatheringEffect.None,
                      EntityID? in_collectibleID = null, bool in_isFlammable = false,
                      bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)

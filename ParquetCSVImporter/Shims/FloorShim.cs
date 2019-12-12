@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -13,16 +13,17 @@ namespace ParquetCSVImporter.Shims
     public class FloorShim : ParquetParentShim
     {
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        public ModificationTools ModTool;
+        public ModificationTool ModTool;
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         public string TrenchName;
 
-        /// <summary>The floor may be walked on.</summary>
+        /// <summary>Indicates if the floor may be walked on.</summary>
+        // TODO Remove this, all floors are now walkable.
         public bool IsWalkable;
 
         /// <summary>
-        /// Converts a shim into the class is corresponds to.
+        /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>

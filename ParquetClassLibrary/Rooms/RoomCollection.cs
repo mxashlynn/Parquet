@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Rooms
 
     /// <summary>
     /// Stores a <see cref="Room"/> collection.
-    /// Analyzes subregions of <see cref="ParquetStack"/>s to find all valid rooms in them.
+    /// Analyzes subregions of <see cref="ParquetStack"/>s to find all valid rooms within them.
     /// </summary>
     /// <remarks>
     /// For a complete explanation of the algorithm implemented here, see:
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>
         /// Returns the <see cref="Room"/> at the given position, if there is one.
         /// </summary>
-        /// <param name="in_position">An in-bonds position to search for a <see cref="Room"/>.</param>
+        /// <param name="in_position">An in-bounds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
         public Room GetRoomAt(Vector2D in_position)
             => Rooms.FirstOrDefault(room => room.ContainsPosition(in_position));
@@ -156,8 +156,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 }
             }
 
-            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Rooms.MinWalkableSpaces));
-            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Rooms.MaxWalkableSpaces));
+            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Room.MinWalkableSpaces));
+            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Room.MaxWalkableSpaces));
             var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 

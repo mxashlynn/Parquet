@@ -2,7 +2,7 @@ namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
-    /// Supports injecting ParquetStack into Rasterization methods.
+    /// Supports injecting <see cref="ParquetStack"/> into <see cref="Utilities.Rasterization"/> methods.
     /// </summary>
     public interface IParquetStack
     {
@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
-        /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the stack contains no parquet at all; otherwise, <c>false</c>.</value>
         bool IsEmpty { get; }
     }
 }

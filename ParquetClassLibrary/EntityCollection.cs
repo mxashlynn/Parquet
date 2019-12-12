@@ -10,7 +10,7 @@ namespace ParquetClassLibrary
 {
     /// <summary>
     /// Collects a group of <see cref="Entity"/>s.
-    /// Provides bounds-checking and type-checking against <typeparamref name="ParentType"/>.
+    /// Provides bounds-checking and type-checking against <typeparamref name="TParentType"/>.
     /// </summary>
     /// <remarks>
     /// All Collections of Entities implicitly contain the None Entity.
@@ -18,10 +18,10 @@ namespace ParquetClassLibrary
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
     /// </remarks>
-    public class EntityCollection<ParentType> : IEnumerable<ParentType> where ParentType : Entity
+    public class EntityCollection<TParentType> : IEnumerable<TParentType> where TParentType : Entity
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
-        public static readonly EntityCollection<ParentType> Default = new EntityCollection<ParentType>(
+        public static readonly EntityCollection<TParentType> Default = new EntityCollection<TParentType>(
             new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<Entity>());
 
@@ -83,7 +83,7 @@ namespace ParquetClassLibrary
         /// <param name="in_serializedParquets">The serialized parquets.</param>
         public EntityCollection(List<Range<EntityID>> in_bounds, string in_serializedParquets)
         {
-            Precondition.IsNotEmpty(in_serializedParquets, nameof(in_serializedParquets));
+            Precondition.IsNotNullOrEmpty(in_serializedParquets, nameof(in_serializedParquets));
 
             // TODO: Ensure this is working as intended.  See:
             // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
@@ -112,7 +112,11 @@ namespace ParquetClassLibrary
         /// <param name="in_entity">The <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Entity"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(Entity in_entity)
-            => Entities.ContainsKey(in_entity.ID);
+        {
+            Precondition.IsNotNull(in_entity);
+
+            return Entities.ContainsKey(in_entity.ID);
+        }
 
         /// <summary>
         /// Determines whether the <see cref="EntityCollection{T}"/> contains an <see cref="Entity"/> with the specified <see cref="EntityID"/>.
@@ -132,10 +136,10 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_id">A valid, defined <typeparamref name="T"/> identifier.</param>
         /// <typeparam name="T">
-        /// The type of <typeparamref name="ParentType"/> sought.  Must correspond to the given <paramref name="in_id"/>.
+        /// The type of <typeparamref name="TParentType"/> sought.  Must correspond to the given <paramref name="in_id"/>.
         /// </typeparam>
         /// <returns>The specified <typeparamref name="T"/>.</returns>
-        public T Get<T>(EntityID in_id) where T : ParentType
+        public T Get<T>(EntityID in_id) where T : TParentType
         {
             Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
@@ -147,8 +151,8 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
-        IEnumerator<ParentType> IEnumerable<ParentType>.GetEnumerator()
-            => Entities.Values.Cast<ParentType>().GetEnumerator();
+        IEnumerator<TParentType> IEnumerable<TParentType>.GetEnumerator()
+            => Entities.Values.Cast<TParentType>().GetEnumerator();
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
@@ -185,7 +189,7 @@ namespace ParquetClassLibrary
             {
                 allBounds.Append($"{bound.ToString()} ");
             }
-            return $"Collects {typeof(ParentType)} over {allBounds}.";
+            return $"Collects {typeof(TParentType)} over {allBounds}.";
         }
         #endregion
     }
@@ -226,8 +230,6 @@ namespace ParquetClassLibrary
         /// <param name="in_id">A valid, defined <see cref="Entity"/> identifier.</param>
         /// <returns>The specified <see cref="Entity"/>.</returns>
         public Entity Get(EntityID in_id)
-        {
-            return Get<Entity>(in_id);
-        }
+            => Get<Entity>(in_id);
     }
 }

@@ -16,14 +16,11 @@ namespace ParquetCSVImporter.Shims
         /// <summary>The effect generated when a character encounters this collectible.</summary>
         public CollectionEffect Effect;
 
-        /// <summary>
-        /// The scale in points of the effect.  That is, how much to alter a stat if the
-        /// <see cref="CollectionEffect"/> is set to alter a stat.
-        /// </summary>
+        /// <summary>The scale in points of the effect.</summary>
         public int EffectAmount;
 
         /// <summary>
-        /// Converts a shim into the class is corresponds to.
+        /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>

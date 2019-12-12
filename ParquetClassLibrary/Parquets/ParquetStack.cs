@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Rooms;
 
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Simple container for one of each layer of parquet that can occupy the same position.
+    /// Simple container for one of each overlapping layer of parquet.
     /// </summary>
     public struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
     {
@@ -67,10 +66,11 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is Entry iff:
-        /// 1, It is either Walkable or Enclosing; and,
+        /// 1, It is either Walkable or Enclosing but not both; and,
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
+        // TODO Is XOR (^) correct here?  Should it not be a logical OR (||) ?
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
             && (IsWalkable ^ IsEnclosing);
@@ -82,6 +82,7 @@ namespace ParquetClassLibrary.Parquets
         /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Walkable, <c>false</c> otherwise.</returns>
+        // TODO Is the usage of ?? correct here?
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None
@@ -114,7 +115,6 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStack"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        // ReSharper disable once InconsistentNaming
         public override bool Equals(object obj)
             => obj is ParquetStack stack && Equals(stack);
 
@@ -164,10 +164,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2D in_position)
-            => in_position.X > -1
-            && in_position.Y > -1
-            && in_position.X < in_subregion.GetLength(1)
-            && in_position.Y < in_subregion.GetLength(0);
+        {
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+
+            return in_position.X > -1
+                && in_position.Y > -1
+                && in_position.X < in_subregion.GetLength(1)
+                && in_position.Y < in_subregion.GetLength(0);
+        }
 
         /// <summary>
         /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
@@ -176,6 +180,8 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
         public static MapSpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
         {
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+
             var uniqueResults = new HashSet<MapSpace>();
             var subregionRows = in_subregion.GetLength(0);
             var subregionCols = in_subregion.GetLength(1);

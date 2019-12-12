@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
@@ -27,7 +28,7 @@ namespace ParquetClassLibrary
     /// <see cref="ParquetClassLibrary.All"/>
     /// </remarks>
     /// TODO: Include this explanation in the Wiki.
-    public struct EntityID : IComparable<EntityID>
+    public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
     {
         /// <summary>Indicates the lack of an <see cref="Entity"/>.</summary>
         public static readonly EntityID None = 0;
@@ -40,16 +41,14 @@ namespace ParquetClassLibrary
         [JsonProperty]
         private int _id;
 
-        #region IComparable Methods
+        #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityID"/>s to be treated as their backing type.
         /// </summary>
         /// <param name="in_value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
         public static implicit operator EntityID(int in_value)
-        {
-            return new EntityID { _id = in_value };
-        }
+            => new EntityID { _id = in_value };
 
         /// <summary>
         /// Enables <see cref="EntityID"/> to be treated as their backing type.
@@ -57,10 +56,10 @@ namespace ParquetClassLibrary
         /// <param name="in_identifier">Any identifier.</param>
         /// <returns>The identifier's value.</returns>
         public static implicit operator int(EntityID in_identifier)
-        {
-            return in_identifier._id;
-        }
+            => in_identifier._id;
+        #endregion
 
+        #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="EntityID"/> to be compared to one another.
         /// </summary>
@@ -73,9 +72,90 @@ namespace ParquetClassLibrary
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityID in_identifier)
-        {
-            return _id.CompareTo(in_identifier._id);
-        }
+            => _id.CompareTo(in_identifier._id);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> strictly precedes another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if the first identifier strictly precedes the second; otherwise, <c>false</c>.</returns>
+        public static bool operator <(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id < in_identifier2._id;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> precedes or is ordinally equivalent with
+        /// another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if the first identifier precedes or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
+        public static bool operator <=(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id <= in_identifier2._id;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> strictly follows another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if the first identifier strictly followa the second; otherwise, <c>false</c>.</returns>
+        public static bool operator >(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id > in_identifier2._id;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> follows or is ordinally equivalent with
+        /// another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if the first identifier follows or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
+        public static bool operator >=(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id >= in_identifier2._id;
+        #endregion
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for a <see cref="EntityID"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => _id.GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="EntityID"/> is equal to the current <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier">The <see cref="EntityID"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(EntityID in_identifier)
+            => _id == in_identifier._id;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="EntityID"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+            => obj is EntityID entityID && Equals(entityID);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> is equal to another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id == in_identifier2._id;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="EntityID"/> is not equal to another specified instance of <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(EntityID in_identifier1, EntityID in_identifier2)
+            => in_identifier1._id != in_identifier2._id;
         #endregion
 
         #region Utility Methods
@@ -91,9 +171,7 @@ namespace ParquetClassLibrary
         /// </returns>
         [Pure]
         public bool IsValidForRange(Range<EntityID> in_range)
-        {
-            return _id == None || in_range.ContainsValue(Math.Abs(_id));
-        }
+            => _id == None || in_range.ContainsValue(Math.Abs(_id));
 
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="IEnumerable{Range{EntityID}}"/>.
@@ -110,6 +188,7 @@ namespace ParquetClassLibrary
         [Pure]
         public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
         {
+            Precondition.IsNotNull(in_ranges, nameof(in_ranges));
             var result = false;
 
             foreach (var idRange in in_ranges)
@@ -129,7 +208,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => _id.ToString();
+            => _id.ToString(CultureInfo.InvariantCulture);
         #endregion
     }
 }

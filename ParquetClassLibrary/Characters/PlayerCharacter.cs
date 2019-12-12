@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
 {
@@ -32,10 +31,7 @@ namespace ParquetClassLibrary.Characters
                    EntityID.None, Behavior.PlayerControlled, null, null, in_pronoun, in_storyCharacterID,
                    in_startingQuests, null, in_startingInventory)
         {
-            if (!in_id.IsValidForRange(All.PlayerCharacterIDs))
-            {
-                throw new ArgumentOutOfRangeException(nameof(in_id));
-            }
+            Precondition.IsInRange(in_id, All.PlayerCharacterIDs, nameof(in_id));
         }
     }
 }

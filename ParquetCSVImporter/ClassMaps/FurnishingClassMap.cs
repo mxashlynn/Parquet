@@ -1,7 +1,6 @@
 using CsvHelper.Configuration;
 using ParquetCSVImporter.Shims;
 
-// ReSharper disable InconsistentNaming
 
 namespace ParquetCSVImporter.ClassMaps
 {

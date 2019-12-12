@@ -9,6 +9,8 @@ namespace ParquetClassLibrary.Map
     /// <summary>
     /// Models details of a playable chunk in sandbox-mode.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
+    // TODO Is the statement below true?  If so, it is confusing.  What then is a ChunkType used for?
+    // Probably we just need to rename things a bit.
     /// MapChunks are handmade (as opposed to procedurally generated) components of <see cref="MapRegion"/>s.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
@@ -41,32 +43,26 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string in_serializedMap, out MapChunk out_map)
         {
+            Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;
             out_map = null;
 
-            if (string.IsNullOrEmpty(in_serializedMap))
+            // Determine what version of map was serialized.
+            try
             {
-                Error.Handle("Error deserializing a MapChunk.");
-            }
-            else
-            {
-                // Determine what version of map was serialized.
-                try
-                {
-                    var document = JObject.Parse(in_serializedMap);
-                    var version = document?.Value<string>(nameof(DataVersion));
+                var document = JObject.Parse(in_serializedMap);
+                var version = document?.Value<string>(nameof(DataVersion));
 
-                    // Deserialize only if this class supports the version given.
-                    if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                    {
-                        out_map = JsonConvert.DeserializeObject<MapChunk>(in_serializedMap);
-                        result = true;
-                    }
-                }
-                catch (JsonReaderException exception)
+                // Deserialize only if this class supports the version given.
+                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    Error.Handle($"Error reading string while deserializing a MapChunk: {exception}");
+                    out_map = JsonConvert.DeserializeObject<MapChunk>(in_serializedMap);
+                    result = true;
                 }
+            }
+            catch (JsonReaderException exception)
+            {
+                LibraryError.Handle($"Error reading string while deserializing a MapChunk: {exception}");
             }
 
             return result;

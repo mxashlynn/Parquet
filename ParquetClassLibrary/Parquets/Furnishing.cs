@@ -45,14 +45,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="in_description">Player-friendly description of the parquet.</param>
         /// <param name="in_comment">Comment of, on, or by the parquet.</param>
         /// <param name="in_addsToBiome">Indicates which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_isWalkable">If <c>true</c> this <see cref="Furnishing"/> may be walked/sat upon.</param>
+        /// <param name="in_isWalkable">If <c>true</c> this <see cref="Furnishing"/> may be walked on.</param>
         /// <param name="in_isEntry">If <c>true</c> this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</param>
         /// <param name="in_isEnclosing">If <c>true</c> this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
         /// <param name="in_swapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
         public Furnishing(EntityID in_id, string in_name, string in_description, string in_comment,
-                          EntityID? in_itemID = null, EntityTag? in_addsToBiome = null,
-                          EntityTag? in_addsToRoom = null, bool in_isWalkable = false,
+                          EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
+                          EntityTag in_addsToRoom = null, bool in_isWalkable = false,
                           bool in_isEntry = false, bool in_isEnclosing = false, EntityID? in_swapID = null)
             : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
                    in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)

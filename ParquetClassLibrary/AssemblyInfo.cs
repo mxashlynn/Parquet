@@ -32,6 +32,10 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Provides assembly-wide information.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
+        "CA1815:Override equals and operator equals on value types",
+        Scope = "type", Target = "~T:ParquetClassLibrary.AssemblyInfo",
+        Justification = "Comparing two AssemblyInfos is nonsensical.")]
     public struct AssemblyInfo
     {
         /// <summary>

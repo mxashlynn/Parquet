@@ -1,9 +1,9 @@
-﻿namespace ParquetClassLibrary.Items
+namespace ParquetClassLibrary.Items
 {
     /// <summary>
     /// IDs for tools that Characters can use to gather Blocks.
     /// </summary>
-    public enum GatheringTools
+    public enum GatheringTool
     {
         None,
         Pick,

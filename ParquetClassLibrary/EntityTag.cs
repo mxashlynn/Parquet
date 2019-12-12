@@ -18,7 +18,11 @@ namespace ParquetClassLibrary
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".
     /// </remarks>
     /// TODO: Include this explanation in the Wiki.
-    public struct EntityTag : IComparable<EntityTag>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+        "CA1036:Override methods on comparable types",
+        Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.",
+        Scope = "type", Target = "~T:ParquetClassLibrary.EntityTag")]
+    public class EntityTag : IComparable<EntityTag>
     {
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>
         public static readonly EntityTag None = string.Empty;
@@ -27,16 +31,14 @@ namespace ParquetClassLibrary
         [JsonProperty]
         private string _tagName;
 
-        #region IComparable Methods
+        #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
         /// <param name="in_value">Any valid tag value.</param>
         /// <returns>The given value as a tag.</returns>
         public static implicit operator EntityTag(string in_value)
-        {
-            return new EntityTag { _tagName = in_value };
-        }
+            => new EntityTag { _tagName = in_value };
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
@@ -44,10 +46,10 @@ namespace ParquetClassLibrary
         /// <param name="in_tag">Any tag.</param>
         /// <returns>The tag's value.</returns>
         public static implicit operator string(EntityTag in_tag)
-        {
-            return in_tag._tagName;
-        }
+            => in_tag?._tagName ?? "";
+        #endregion
 
+        #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be compared one another.
         /// </summary>
@@ -60,9 +62,7 @@ namespace ParquetClassLibrary
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityTag in_tag)
-        {
-            return string.Compare(_tagName, in_tag._tagName, StringComparison.Ordinal);
-        }
+            => string.Compare(_tagName, in_tag?._tagName ?? "", StringComparison.Ordinal);
         #endregion
 
         #region Utility Methods

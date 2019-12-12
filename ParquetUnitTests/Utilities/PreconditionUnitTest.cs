@@ -220,7 +220,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = new List<EntityID> { 0, 1, 2 };
 
-            var exception = Record.Exception(() => Precondition.IsNotEmpty(testValue));
+            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue));
 
             Assert.Null(exception);
         }
@@ -231,7 +231,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = "will pass";
 
-            var exception = Record.Exception(() => Precondition.IsNotEmpty(testValue));
+            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue));
 
             Assert.Null(exception);
         }
@@ -241,7 +241,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = new List<EntityID>();
 
-            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotEmpty(testValue));
+            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue));
         }
 
         [Fact]
@@ -249,7 +249,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = "";
 
-            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotEmpty(testValue));
+            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue));
         }
 
         [Fact]

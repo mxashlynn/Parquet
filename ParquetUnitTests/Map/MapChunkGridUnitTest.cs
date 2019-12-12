@@ -111,10 +111,12 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void DeserializingNullFailsTest()
         {
-            var result = MapChunkGrid.TryDeserializeFromString(null, out var mapGridResults);
+            static void TestCode()
+            {
+                var _ = MapChunkGrid.TryDeserializeFromString(null, out var mapGridResults);
+            }
 
-            Assert.Null(mapGridResults);
-            Assert.False(result);
+            Assert.Throws<IndexOutOfRangeException>(TestCode);
         }
 
         [Fact]

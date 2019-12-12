@@ -11,6 +11,8 @@ namespace ParquetClassLibrary.Map
     // IDEA: Allow painting in a match-only mode similar to the way the flood fill matches,
     //       c.f. the mask properties in TEdit.
 
+        // TODO Once again I am not sure this belongs in the library.
+
     /// <summary>
     /// Controller to manage in-game MapRegion editing.
     /// </summary>
@@ -20,7 +22,7 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Indicates when it is time to update the display of current position info.
         /// </summary>
-        public static event EventHandler<PositionInfoEvent> DisplayPositionInfo;
+        public static event EventHandler<PositionInfoEventArgs> DisplayPositionInfo;
 
         /// <summary>
         /// Indicates when it is time to update the display of the map.
@@ -90,7 +92,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Could not load region from {in_path}");
+                LibraryError.Handle($"Could not load region from {in_path}");
             }
 
         }
@@ -140,8 +142,8 @@ namespace ParquetClassLibrary.Map
         public void DisplayInfoAtPosition(Vector2D in_position)
         {
             DisplayPositionInfo?.Invoke(this,
-                    new PositionInfoEvent(_currentRegion.GetDefinitionAtPosition(in_position),
-                                          _currentRegion.GetSpecialPointsAtPosition(in_position)));
+                    new PositionInfoEventArgs(_currentRegion.GetDefinitionAtPosition(in_position),
+                                              _currentRegion.GetSpecialPointsAtPosition(in_position)));
         }
 
         /// <summary>
@@ -157,7 +159,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
+                LibraryError.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
             }
         }
 
@@ -173,7 +175,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
+                LibraryError.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
             }
         }
 
@@ -189,7 +191,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
+                LibraryError.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
             }
         }
 
@@ -205,7 +207,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Collectible {in_collectibleID} as if it were a Collectible.");
+                LibraryError.Handle($"Cannot paint non-Collectible {in_collectibleID} as if it were a Collectible.");
             }
         }
 
@@ -282,7 +284,7 @@ namespace ParquetClassLibrary.Map
 
             if (!string.IsNullOrEmpty(error))
             {
-                Error.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
+                LibraryError.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
                 result = false;
              }
 
@@ -295,6 +297,8 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_positions">Where to paint.</param>
         public void PaintAtLocations(List<Vector2D> in_positions)
         {
+            Precondition.IsNotNull(in_positions, nameof(in_positions));
+
             foreach (var position in in_positions)
             {
                 var errorEncountered = PaintAtLocation(position);
