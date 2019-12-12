@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Characters;
@@ -98,7 +98,7 @@ namespace ParquetUnitTests
             // Sets up All so that bounds can be checked in various constructors.
             Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
-            All.InitializeCollections(Parquets, RoomRecipes);
+            All.InitializeCollections(null, Parquets, RoomRecipes, null, null, null, null);
         }
     }
 }
