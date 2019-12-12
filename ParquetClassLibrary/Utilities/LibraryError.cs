@@ -5,10 +5,11 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// Error handling routines for the application.
     /// </summary>
-    public static class Error
+    public static class LibraryError
     {
         /// <summary>The path and name of the log file.</summary>
-        private const string logFile = "ParquetLogFile.txt";
+        private static string logFile { get; } = $"ParquetLogFile{System.Diagnostics.Process.GetCurrentProcess().Handle}.txt";
+        // TODO Is it okay to ship with a call to Diagnostics?
 
         /// <summary>
         /// Logs the given error and alerts the user.

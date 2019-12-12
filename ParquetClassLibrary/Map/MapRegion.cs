@@ -121,7 +121,7 @@ namespace ParquetClassLibrary.Map
             }
             catch (JsonReaderException exception)
             {
-                Error.Handle($"Error reading string while deserializing a MapRegion: {exception}");
+                LibraryError.Handle($"Error reading string while deserializing a MapRegion: {exception}");
             }
 
             return result;

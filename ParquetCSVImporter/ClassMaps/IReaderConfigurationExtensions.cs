@@ -50,7 +50,7 @@ namespace ParquetCSVImporter.ClassMaps
             }
             else
             {
-                Error.Handle($"No class map exists for {typeof(T)}");
+                LibraryError.Handle($"No class map exists for {typeof(T)}");
             }
         }
     }

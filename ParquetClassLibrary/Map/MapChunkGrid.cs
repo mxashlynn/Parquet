@@ -156,7 +156,7 @@ namespace ParquetClassLibrary.Map
             }
             catch (JsonReaderException exception)
             {
-                Error.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
+                LibraryError.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
             }
 
             return result;

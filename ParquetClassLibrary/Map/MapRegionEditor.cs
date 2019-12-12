@@ -92,7 +92,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Could not load region from {in_path}");
+                LibraryError.Handle($"Could not load region from {in_path}");
             }
 
         }
@@ -159,7 +159,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
+                LibraryError.Handle($"Cannot paint non-Floor {in_floorID} as if it were a Floor.");
             }
         }
 
@@ -175,7 +175,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
+                LibraryError.Handle($"Cannot paint non-Block {in_blockID} as if it were a Block.");
             }
         }
 
@@ -191,7 +191,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
+                LibraryError.Handle($"Cannot paint non-Furnishing {in_furnishingID} as if it were a Furnishing.");
             }
         }
 
@@ -207,7 +207,7 @@ namespace ParquetClassLibrary.Map
             }
             else
             {
-                Error.Handle($"Cannot paint non-Collectible {in_collectibleID} as if it were a Collectible.");
+                LibraryError.Handle($"Cannot paint non-Collectible {in_collectibleID} as if it were a Collectible.");
             }
         }
 
@@ -284,7 +284,7 @@ namespace ParquetClassLibrary.Map
 
             if (!string.IsNullOrEmpty(error))
             {
-                Error.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
+                LibraryError.Handle($"Error at position {in_position}.  Could not assign these parquets: {error}");
                 result = false;
              }
 
