@@ -67,9 +67,9 @@ namespace ParquetCSVImporter
             #region Deserialization from CSV
             Beings.Clear();
             // Note: Player Characters are not designed in CSVs but at run-time in-game.
-            Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
-            Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
-            Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
+            //Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
+            //Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
+            //Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
 
             Parquets.Clear();
             Parquets.UnionWith(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
@@ -78,19 +78,19 @@ namespace ParquetCSVImporter
             Parquets.UnionWith(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
 
             RoomRecipes.Clear();
-            RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
+            //RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
 
             CraftingRecipes.Clear();
-            CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
+            //CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
 
             Quests.Clear();
-            Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
+            //Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
 
             Biomes.Clear();
-            Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
+            //Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
 
             Items.Clear();
-            Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
+            //Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
             #endregion
 
             #region Reserialize as JSON
@@ -111,7 +111,7 @@ namespace ParquetCSVImporter
         /// <typeparam name="T">The type of records to read.</typeparam>
         /// <returns>The records read.</returns>
         private static IEnumerable<T> GetRecordsForType<T>()
-            where T : Entity
+            where T : ParquetParent
         {
             IEnumerable<T> records;
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");

@@ -19,6 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// <returns>The class map for the given type.</returns>
         public static void RegisterClassMapFor<T>(this IReaderConfiguration in_configuration) where T : Entity
         {
+            /*
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 in_configuration.RegisterClassMap<PlayerCharacterClassMap>();
@@ -31,7 +32,7 @@ namespace ParquetCSVImporter.ClassMaps
             {
                 in_configuration.RegisterClassMap<CritterClassMap>();
             }
-            else if (typeof(T) == typeof(Floor))
+            else */if (typeof(T) == typeof(Floor))
             {
                 in_configuration.RegisterClassMap<FloorClassMap>();
             }

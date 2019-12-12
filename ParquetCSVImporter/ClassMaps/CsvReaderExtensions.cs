@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CsvHelper;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Characters;
+//using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using ParquetCSVImporter.Shims;
@@ -19,11 +19,11 @@ namespace ParquetCSVImporter.ClassMaps
         /// <param name="in_csv">In CSV Reader.</param>
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <returns>The records.</returns>
-        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader in_csv) where T : Entity
+        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader in_csv) where T : ParquetParent
         {
             var result = new List<T>();
             IEnumerable<ParquetParentShim> shims;
-
+            /*
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 shims = in_csv.GetRecords<PlayerCharacterShim>();
@@ -37,7 +37,7 @@ namespace ParquetCSVImporter.ClassMaps
                 shims = in_csv.GetRecords<CritterShim>();
             }
 
-            else if (typeof(T) == typeof(Floor))
+            else */if (typeof(T) == typeof(Floor))
             {
                 shims = in_csv.GetRecords<FloorShim>();
             }
