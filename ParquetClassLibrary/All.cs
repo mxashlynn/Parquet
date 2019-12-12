@@ -258,6 +258,10 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         // TODO Make a version that takes serialized JSON strings instead of ienumerables.  <-- Really?  Consider this usage.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
+            "CA1810:Initialize reference type static fields inline",
+            Scope = "member", Target = "~M:ParquetClassLibrary.All.#cctor",
+            Justification = "Inline initializers would notably complicate the code in this instance.")]
         public static void InitializeCollections(IEnumerable<Being> in_beings,
                                                  IEnumerable<ParquetParent> in_parquets,
                                                  IEnumerable<RoomRecipe> in_roomRecipes,

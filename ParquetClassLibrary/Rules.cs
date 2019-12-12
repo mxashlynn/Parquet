@@ -8,6 +8,10 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Provides dimensional parameters for the game.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+            "CA1034:Nested types should not be visible",
+            Justification = "No adequate alternative in this instance.",
+            Scope = "type", Target = "~T:ParquetClassLibrary.Rules.Dimensions")]
         public static class Dimensions
         {
             /// <summary>The length of each <see cref="Map.MapChunkGrid"/> dimension in parquets.</summary>
@@ -29,6 +33,10 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Provides recipe requirements for the game.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+            "CA1034:Nested types should not be visible",
+            Justification = "No adequate alternative in this instance.",
+            Scope = "type", Target = "~T:ParquetClassLibrary.Rules.Recipes")]
         public static class Recipes
         {
             // TODO Add class for crafting rules here.
