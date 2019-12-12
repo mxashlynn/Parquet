@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
@@ -47,9 +48,7 @@ namespace ParquetClassLibrary
         /// <param name="in_value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
         public static implicit operator EntityID(int in_value)
-        {
-            return new EntityID { _id = in_value };
-        }
+            => new EntityID { _id = in_value };
 
         /// <summary>
         /// Enables <see cref="EntityID"/> to be treated as their backing type.
@@ -57,9 +56,7 @@ namespace ParquetClassLibrary
         /// <param name="in_identifier">Any identifier.</param>
         /// <returns>The identifier's value.</returns>
         public static implicit operator int(EntityID in_identifier)
-        {
-            return in_identifier._id;
-        }
+            => in_identifier._id;
         #endregion
 
         #region IComparable Implementation
@@ -75,9 +72,7 @@ namespace ParquetClassLibrary
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityID in_identifier)
-        {
-            return _id.CompareTo(in_identifier._id);
-        }
+            => _id.CompareTo(in_identifier._id);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> strictly precedes another specified instance of <see cref="EntityID"/>.
@@ -176,9 +171,7 @@ namespace ParquetClassLibrary
         /// </returns>
         [Pure]
         public bool IsValidForRange(Range<EntityID> in_range)
-        {
-            return _id == None || in_range.ContainsValue(Math.Abs(_id));
-        }
+            => _id == None || in_range.ContainsValue(Math.Abs(_id));
 
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="IEnumerable{Range{EntityID}}"/>.
@@ -195,6 +188,7 @@ namespace ParquetClassLibrary
         [Pure]
         public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
         {
+            Precondition.IsNotNull(in_ranges, nameof(in_ranges));
             var result = false;
 
             foreach (var idRange in in_ranges)
@@ -214,7 +208,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => _id.ToString();
+            => _id.ToString(CultureInfo.InvariantCulture);
         #endregion
     }
 }

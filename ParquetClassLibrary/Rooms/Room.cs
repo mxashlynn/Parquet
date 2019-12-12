@@ -15,13 +15,13 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public readonly MapSpaceCollection WalkableArea;
+        public MapSpaceCollection WalkableArea { get; }
 
         /// <summary>
         /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public readonly MapSpaceCollection Perimeter;
+        public MapSpaceCollection Perimeter { get; }
 
         /// <summary>
         /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
@@ -65,8 +65,8 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNullOrEmpty(in_walkableArea, nameof(in_walkableArea));
             Precondition.IsNotNullOrEmpty(in_perimeter, nameof(in_perimeter));
 
-            if (in_walkableArea.Count < Rules.Recipes.Rooms.MinWalkableSpaces
-                || in_walkableArea.Count > Rules.Recipes.Rooms.MaxWalkableSpaces)
+            if (in_walkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces
+                || in_walkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
             {
                 throw new IndexOutOfRangeException(nameof(in_walkableArea));
             }

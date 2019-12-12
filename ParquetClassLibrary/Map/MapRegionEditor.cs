@@ -297,6 +297,8 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_positions">Where to paint.</param>
         public void PaintAtLocations(List<Vector2D> in_positions)
         {
+            Precondition.IsNotNull(in_positions, nameof(in_positions));
+
             foreach (var position in in_positions)
             {
                 var errorEncountered = PaintAtLocation(position);

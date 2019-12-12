@@ -14,10 +14,10 @@ namespace ParquetClassLibrary.Utilities
         public static readonly PCLColor Brown = new PCLColor(153, 77, 0);
         public static readonly PCLColor Transparent = new PCLColor(0, 0, 0, 0);
 
-        public readonly int R;
-        public readonly int G;
-        public readonly int B;
-        public readonly int A;
+        public int R { get; }
+        public int G { get; }
+        public int B { get; }
+        public int A { get; }
 
         public PCLColor(int in_r, int in_g, int in_b, int in_a = 255)
         {

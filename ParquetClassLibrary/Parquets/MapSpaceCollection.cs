@@ -142,14 +142,14 @@ namespace ParquetClassLibrary.Parquets
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, in_subregion[northSeed.Y, northSeed.X]));
 
                     // TODO Probably remove this check and this variable after debugging.
-                    var maxPerimeterCount = in_subregion.GetLength(0) * in_subregion.GetLength(1) - Rules.Recipes.Rooms.MinWalkableSpaces;
+                    var maxPerimeterCount = in_subregion.GetLength(0) * in_subregion.GetLength(1) - Rules.Recipes.Room.MinWalkableSpaces;
                     if (potentialPerimeter.Count > maxPerimeterCount)
                     {
                         throw new Exception("Perimeter is larger than it should be.");
                     }
 
                     // TODO Probably remove this check after debugging.
-                    if (potentialPerimeter.Count < Rules.Recipes.Rooms.MinPerimeterSpaces)
+                    if (potentialPerimeter.Count < Rules.Recipes.Room.MinPerimeterSpaces)
                     {
                         throw new Exception("Perimeter is smaller than it should be.");
                     }
@@ -162,7 +162,7 @@ namespace ParquetClassLibrary.Parquets
                 }
             }
 
-            return (out_perimeter?.Count ?? 0) >= Rules.Recipes.Rooms.MinPerimeterSpaces;
+            return (out_perimeter?.Count ?? 0) >= Rules.Recipes.Room.MinPerimeterSpaces;
 
             #region TryGetSeed Helper Method
             /// <summary>
@@ -185,7 +185,7 @@ namespace ParquetClassLibrary.Parquets
                         break;
                     }
                     stepCount++;
-                    if (stepCount + Spaces.Count > Rules.Recipes.Rooms.MaxWalkableSpaces)
+                    if (stepCount + Spaces.Count > Rules.Recipes.Room.MaxWalkableSpaces)
                     {
                         break;
                     }

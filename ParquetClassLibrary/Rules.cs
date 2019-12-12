@@ -44,7 +44,7 @@ namespace ParquetClassLibrary
             /// <summary>
             /// Provides recipe requirements for the game.
             /// </summary>
-            public static class Rooms
+            public static class Room
             {
                 /// <summary>
                 /// Minimum number of open walkable spaces needed for any room to register.

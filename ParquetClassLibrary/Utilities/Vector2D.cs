@@ -26,10 +26,10 @@ namespace ParquetClassLibrary.Utilities
         public static readonly Vector2D West = new Vector2D(-1, 0);
 
         /// <summary>Offset from origin in x.</summary>
-        public readonly int X;
+        public int X { get; }
 
         /// <summary>Offset from origin in y.</summary>
-        public readonly int Y;
+        public int Y { get; }
 
         /// <summary>The magnitude cached for future reference.</summary>
         private int _magnitude;

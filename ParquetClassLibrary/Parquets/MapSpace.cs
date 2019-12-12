@@ -46,6 +46,8 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace Neighbor(ParquetStack[,] in_subregion, Vector2D in_offset)
         {
+            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+
             var offsetPosition = Position + in_offset;
             return in_subregion.IsValidPosition(offsetPosition)
                 ? new MapSpace(offsetPosition, in_subregion[offsetPosition.Y, offsetPosition.X])

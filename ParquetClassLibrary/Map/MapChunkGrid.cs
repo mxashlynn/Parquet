@@ -171,12 +171,10 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         // TODO Make this an extension to ChunkType[,].
         public static bool IsValidPosition(Vector2D in_position)
-        {
-            return in_position.X > -1
-                && in_position.Y > -1
-                && in_position.X < DimensionsInChunks.X
-                && in_position.Y < DimensionsInChunks.Y;
-        }
+            => in_position.X > -1
+            && in_position.Y > -1
+            && in_position.X < DimensionsInChunks.X
+            && in_position.Y < DimensionsInChunks.Y;
 
         /// <summary>
         /// Describes the <see cref="MapChunkGrid"/>'s basic information.

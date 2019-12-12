@@ -39,25 +39,19 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
         public bool IsValid()
-        {
-            return Minimum.CompareTo(Maximum) <= 0;
-        }
+            => Minimum.CompareTo(Maximum) <= 0;
 
         /// <summary>Determines if the given <see cref="Range{T}"/> is equal to or entirely contained within the current Range.</summary>
         /// <param name="in_range">The <see cref="Range{T}"/> to test.</param>
         /// <returns><c>true</c>, if the given range is within the current range, <c>false</c> otherwise.</returns>
         public bool ContainsRange(Range<T> in_range)
-        {
-            return ContainsValue(in_range.Minimum) && ContainsValue(in_range.Maximum);
-        }
+            => ContainsValue(in_range.Minimum) && ContainsValue(in_range.Maximum);
 
         /// <summary>Determines if the given value is within the range, inclusive.</summary>
         /// <param name="in_value">The value to test.</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
         public bool ContainsValue(T in_value)
-        {
-            return Minimum.CompareTo(in_value) <= 0 && Maximum.CompareTo(in_value) >= 0;
-        }
+            => Minimum.CompareTo(in_value) <= 0 && Maximum.CompareTo(in_value) >= 0;
 
         #region IEquatable Implementation
         /// <summary>
