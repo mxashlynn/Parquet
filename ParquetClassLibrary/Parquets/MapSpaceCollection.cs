@@ -305,7 +305,7 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Encapsulates the results of a graph search.
         /// </summary>
-        private struct SearchResults
+        private class SearchResults
         {
             /// <summary><c>true</c> if the goal condition was met, <c>false</c> otherwise.</summary>
             public bool GoalFound;

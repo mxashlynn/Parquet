@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Map.MapRegion"/>.
     /// </summary>
-    public struct MapSpace : IEquatable<MapSpace>
+    public readonly struct MapSpace : IEquatable<MapSpace>
     {
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
         public static readonly MapSpace Empty = new MapSpace(new Vector2D(int.MinValue, int.MinValue), ParquetStack.Empty);

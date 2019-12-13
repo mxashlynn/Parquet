@@ -20,8 +20,7 @@ namespace ParquetClassLibrary
     /// TODO: Include this explanation in the Wiki.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
-        Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.",
-        Scope = "type", Target = "~T:ParquetClassLibrary.EntityTag")]
+        Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]
     public class EntityTag : IComparable<EntityTag>
     {
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>

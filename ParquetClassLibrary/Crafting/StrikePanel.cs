@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Crafting
     /// <summary>
     /// Models the panels that the player must strike during item crafting.
     /// </summary>
-    public struct StrikePanel : IEquatable<StrikePanel>
+    public class StrikePanel : IEquatable<StrikePanel>
     {
         /// <summary><c>true</c> if this panel is not used in the current crafting recipe; otherwise, <c>false</c>.</summary>
         public bool IsVoid { get; set; }
@@ -30,18 +30,18 @@ namespace ParquetClassLibrary.Crafting
 
                 if (IdealRange.Maximum > value.Maximum)
                 {
-                    _idealRange.Maximum = value.Maximum;
+                    _idealRange = new Range<int>(_idealRange.Minimum, value.Maximum);
                 }
                 if (IdealRange.Minimum < value.Minimum)
                 {
-                    _idealRange.Minimum = value.Minimum;
+                    _idealRange = new Range<int>(value.Minimum, _idealRange.Maximum);
                 }
             }
         }
 
         /// <summary>
         /// The range of values this panel targets for a completed craft.
-        /// The values must fall within the range of <c see="WorkingRange"/>.
+        /// This range expands that given by <c see="WorkingRange"/> if necessary.
         /// </summary>
         public Range<int> IdealRange
         {
@@ -50,11 +50,11 @@ namespace ParquetClassLibrary.Crafting
             {
                 if (value.Maximum > WorkingRange.Maximum)
                 {
-                    value.Maximum = WorkingRange.Maximum;
+                    value = new Range<int>(value.Minimum, WorkingRange.Maximum);
                 }
                 if (value.Minimum < WorkingRange.Minimum)
                 {
-                    value.Minimum = WorkingRange.Minimum;
+                    value = new Range<int>(WorkingRange.Minimum, value.Maximum);
                 }
 
                 _idealRange = value;
@@ -77,9 +77,13 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_strikePanel">The <see cref="StrikePanel"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(StrikePanel in_strikePanel)
-            => IsVoid == in_strikePanel.IsVoid
-            && _workingRange == in_strikePanel._workingRange
-            && _idealRange == in_strikePanel._idealRange;
+        {
+            Precondition.IsNotNull(in_strikePanel, nameof(in_strikePanel));
+
+            return IsVoid == in_strikePanel.IsVoid
+                && _workingRange == in_strikePanel._workingRange
+                && _idealRange == in_strikePanel._idealRange;
+        }
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="StrikePanel"/>.
@@ -96,9 +100,14 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_strikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(StrikePanel in_strikePanel1, StrikePanel in_strikePanel2)
-            => in_strikePanel1.IsVoid == in_strikePanel2.IsVoid
-            && in_strikePanel1._workingRange == in_strikePanel2._workingRange
-            && in_strikePanel1._idealRange == in_strikePanel2._idealRange;
+        {
+            Precondition.IsNotNull(in_strikePanel1, nameof(in_strikePanel1));
+            Precondition.IsNotNull(in_strikePanel2, nameof(in_strikePanel2));
+
+            return in_strikePanel1.IsVoid == in_strikePanel2.IsVoid
+                && in_strikePanel1._workingRange == in_strikePanel2._workingRange
+                && in_strikePanel1._idealRange == in_strikePanel2._idealRange;
+        }
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is not equal to another specified instance of <see cref="StrikePanel"/>.
@@ -107,9 +116,14 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="in_strikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(StrikePanel in_strikePanel1, StrikePanel in_strikePanel2)
-            => in_strikePanel1.IsVoid != in_strikePanel2.IsVoid
-            || in_strikePanel1._workingRange != in_strikePanel2._workingRange
-            || in_strikePanel1._idealRange != in_strikePanel2._idealRange;
+        {
+            Precondition.IsNotNull(in_strikePanel1, nameof(in_strikePanel1));
+            Precondition.IsNotNull(in_strikePanel2, nameof(in_strikePanel2));
+
+            return in_strikePanel1.IsVoid != in_strikePanel2.IsVoid
+                || in_strikePanel1._workingRange != in_strikePanel2._workingRange
+                || in_strikePanel1._idealRange != in_strikePanel2._idealRange;
+        }
         #endregion
 
         #region Utility Methods

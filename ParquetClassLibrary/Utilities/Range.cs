@@ -7,13 +7,13 @@ namespace ParquetClassLibrary.Utilities
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.
     /// </summary>
     /// <typeparam name="T">The type over which the range is spread.</typeparam>
-    public struct Range<T> : IEquatable<Range<T>> where T : IComparable<T>, IEquatable<T>
+    public readonly struct Range<T> : IEquatable<Range<T>> where T : IComparable<T>, IEquatable<T>
     {
         /// <summary>Minimum value of the range.</summary>
-        public T Minimum { get; set; }
+        public T Minimum { get; }
 
         /// <summary>Maximum value of the range.</summary>
-        public T Maximum { get; set; }
+        public T Maximum { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Range{T}"/> struct.

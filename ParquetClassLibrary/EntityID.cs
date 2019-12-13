@@ -71,7 +71,7 @@ namespace ParquetClassLibrary
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityID"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
-        public int CompareTo(EntityID in_identifier)
+        public readonly int CompareTo(EntityID in_identifier)
             => _id.CompareTo(in_identifier._id);
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ParquetClassLibrary
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
-        public override int GetHashCode()
+        public override readonly int GetHashCode()
             => _id.GetHashCode();
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="in_identifier">The <see cref="EntityID"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(EntityID in_identifier)
+        public readonly bool Equals(EntityID in_identifier)
             => _id == in_identifier._id;
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="EntityID"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
+        public readonly override bool Equals(object obj)
             => obj is EntityID entityID && Equals(entityID);
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace ParquetClassLibrary
         /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public bool IsValidForRange(Range<EntityID> in_range)
+        public readonly bool IsValidForRange(Range<EntityID> in_range)
             => _id == None || in_range.ContainsValue(Math.Abs(_id));
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ParquetClassLibrary
         /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{T}}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
+        public readonly bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
         {
             Precondition.IsNotNull(in_ranges, nameof(in_ranges));
             var result = false;
@@ -207,7 +207,7 @@ namespace ParquetClassLibrary
         /// Returns a <see langword="string"/> that represents the current <see cref="EntityID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
-        public override string ToString()
+        public override readonly string ToString()
             => _id.ToString(CultureInfo.InvariantCulture);
         #endregion
     }

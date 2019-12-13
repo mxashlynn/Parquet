@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// A simple representation of RGBA color, tailored for Parquet's needs.
     /// </summary>
-    public struct PCLColor : IEquatable<PCLColor>
+    public readonly struct PCLColor : IEquatable<PCLColor>
     {
         public static readonly PCLColor White = new PCLColor(255, 255, 255);
         public static readonly PCLColor Grey = new PCLColor(128, 128, 128);

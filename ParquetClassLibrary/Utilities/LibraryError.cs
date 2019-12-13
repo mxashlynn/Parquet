@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Utilities
     public static class LibraryError
     {
         /// <summary>The path and name of the log file.</summary>
-        private static string logFile { get; } = $"ParquetLogFile{System.Diagnostics.Process.GetCurrentProcess().Handle}.txt";
+        private const string logFile = "ParquetLogFile.txt";
         // TODO Is it okay to ship with a call to Diagnostics?
 
         /// <summary>
@@ -18,10 +18,12 @@ namespace ParquetClassLibrary.Utilities
         public static void Handle(string in_errorMessage)
         {
             // TODO Convert this to use multiplatform utils.
-            using (var log = File.AppendText(logFile))
+            try
             {
-                log.WriteLine(in_errorMessage);
+                using var log = File.AppendText(logFile);
+                log.WriteLine($"[{in_errorMessage}]");
             }
+            catch { /* TODO Eliminate this, this is just a stop-gap for unit testing conflicts. */ }
         }
     }
 }
