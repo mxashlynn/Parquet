@@ -14,7 +14,7 @@ namespace ParquetClassLibrary
     ///     1) It allows multiple instances of an element to be required without having to store and count multiple objects representing that element.
     ///     2) It allows various Entities to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
     /// </remarks>
-    public struct RecipeElement : IEquatable<RecipeElement>
+    public readonly struct RecipeElement : IEquatable<RecipeElement>
     {
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(EntityTag.None, 1);

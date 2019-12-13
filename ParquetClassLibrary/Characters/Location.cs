@@ -6,13 +6,14 @@ namespace ParquetClassLibrary.Characters
     /// <summary>
     /// Represents a specific position within a specific <see cref="MapRegion"/>.
     /// </summary>
-    public struct Location : IEquatable<Location>
+    // TODO Is this class really needed?  I feel like it aaaaaalmost duplicates Space.
+    public readonly struct Location : IEquatable<Location>
     {
         /// <summary>The identifier for the <see cref="MapRegion"/> this character is located in.</summary>
-        public Guid RegionID { get; set; }
+        public Guid RegionID { get; }
 
         /// <summary>The position within the current <see cref="MapRegion"/> where this character is located.</summary>
-        public Vector2D Position { get; set; }
+        public Vector2D Position { get; }
 
         #region IEquatable Implementation
         /// <summary>

@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Utilities
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
-    public struct Vector2D : IEquatable<Vector2D>
+    public readonly struct Vector2D : IEquatable<Vector2D>
     {
         /// <summary>The zero vector.</summary>
         public static readonly Vector2D Zero = new Vector2D(0, 0);
@@ -31,23 +31,8 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>Offset from origin in y.</summary>
         public int Y { get; }
 
-        /// <summary>The magnitude cached for future reference.</summary>
-        private int _magnitude;
-
         /// <summary>Provides the magnitude of the vector as an integer, rounded-down.</summary>
-        /// <value>The magnitude.</value>
-        public int Magnitude
-        {
-            get
-            {
-                // If this is the first time the value has been accessed, calculate and cache it.
-                if (_magnitude == int.MinValue)
-                {
-                    _magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
-                }
-                return _magnitude;
-            }
-        }
+        public int Magnitude { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2D"/> struct.
@@ -58,7 +43,7 @@ namespace ParquetClassLibrary.Utilities
         {
             X = in_x;
             Y = in_y;
-            _magnitude = int.MinValue;
+            Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
         }
 
         #region Vector Math

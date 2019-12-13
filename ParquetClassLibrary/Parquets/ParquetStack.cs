@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each overlapping layer of parquet.
     /// </summary>
-    public struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
+    public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
     {
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
