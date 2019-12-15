@@ -16,6 +16,9 @@ namespace ParquetClassLibrary.Map
     [JsonObject(MemberSerialization.Fields)]
     public sealed class MapChunk : MapParent
     {
+        /// <summary>Used to indicate an empty grid.</summary>
+        public static readonly MapChunk Empty = new MapChunk();
+
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
@@ -45,7 +48,7 @@ namespace ParquetClassLibrary.Map
         {
             Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;
-            out_map = null;
+            out_map = Empty;
 
             // Determine what version of map was serialized.
             try

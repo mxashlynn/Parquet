@@ -12,6 +12,9 @@ namespace ParquetClassLibrary.Map
     [JsonObject(MemberSerialization.Fields)]
     public class MapChunkGrid
     {
+        /// <summary>Used to indicate an empty grid.</summary>
+        public static readonly MapChunkGrid Empty = new MapChunkGrid(false);
+
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
         public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion,
@@ -56,7 +59,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_background">Background color for the new region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = null, PCLColor? in_background = null,
+        public MapChunkGrid(string? in_title = null, PCLColor? in_background = null,
                             int in_globalElevation = MapRegion.DefaultGlobalElevation, Guid? in_id = null)
         {
             Title = string.IsNullOrEmpty(in_title)
@@ -73,6 +76,10 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
         public MapChunkGrid(bool in_generateID)
         {
+            Title = MapRegion.DefaultTitle;
+            Background = MapRegion.DefaultColor;
+            GlobalElevation = 0;
+
             // Overwrite default behavior for tests.
             RegionID = in_generateID
                 ? Guid.NewGuid()
@@ -109,14 +116,10 @@ namespace ParquetClassLibrary.Map
         /// <returns>
         /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
         /// </returns>
-        public (ChunkType type, ChunkOrientation orientation)? GetChunk(Vector2D in_position)
+        public (ChunkType type, ChunkOrientation orientation) GetChunk(Vector2D in_position)
             => IsValidPosition(in_position)
-                ? ((ChunkType type, ChunkOrientation orientation)?)
-                (
-                    _chunkTypes[in_position.Y, in_position.X],
-                    _chunkOrientations[in_position.Y, in_position.X]
-                )
-                : null;
+                ? (_chunkTypes[in_position.Y, in_position.X], _chunkOrientations[in_position.Y, in_position.X])
+                : (ChunkType.Empty, ChunkOrientation.None);
         #endregion
 
         #region Serialization Methods
@@ -139,7 +142,7 @@ namespace ParquetClassLibrary.Map
         {
             Precondition.IsNotNullOrEmpty(in_serializedMapChunkGrid, nameof(in_serializedMapChunkGrid));
             var result = false;
-            out_mapChunkGrid = null;
+            out_mapChunkGrid = Empty;
 
             // Determine what version of region map was serialized.
             try

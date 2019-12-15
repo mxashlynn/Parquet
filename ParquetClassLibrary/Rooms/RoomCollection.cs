@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Rooms
 
             var walkableAreas = in_subregion.GetWalkableAreas();
             // TODO Double check that correct perimeters are being attached to walkable areas.
-            MapSpaceCollection perimeter = null;
+            MapSpaceCollection perimeter = MapSpaceCollection.Empty;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
                         .Where(walkableArea => walkableArea.Any(space => space.IsWalkableEntry
@@ -144,11 +144,11 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                 PWAs.Add(combinedPWA);
                             }
                         }
-                        else if (null == northSpace)
+                        else if (null == northSpace && null != westSpace)
                         {
                             PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace)).Add(currentSpace);
                         }
-                        else if (null == westSpace)
+                        else if (null != northSpace && null == westSpace)
                         {
                             PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace)).Add(currentSpace);
                         }

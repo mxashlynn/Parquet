@@ -109,6 +109,7 @@ namespace ParquetClassLibrary.Rooms
         public override int GetHashCode()
             => (WalkableArea, Perimeter).GetHashCode();
 
+#pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
         /// Determines whether the specified <see cref="Room"/> is equal to the current <see cref="Room"/>.
         /// </summary>
@@ -118,6 +119,7 @@ namespace ParquetClassLibrary.Rooms
             => null != in_room
             && WalkableArea.SetEquals(in_room.WalkableArea)
             && Perimeter.SetEquals(in_room.Perimeter);
+#pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Room"/>.

@@ -13,6 +13,9 @@ namespace ParquetClassLibrary.Map
     [JsonObject(MemberSerialization.Fields)]
     public sealed class MapRegion : MapParent
     {
+        /// <summary>Used to indicate an empty grid.</summary>
+        public static readonly MapRegion Empty = new MapRegion(false);
+
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
@@ -67,7 +70,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
-        public MapRegion(string in_title = null, PCLColor? in_background = null,
+        public MapRegion(string? in_title = null, PCLColor? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
                          int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
         {
@@ -86,6 +89,11 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
         public MapRegion(bool in_generateID)
         {
+            Title = DefaultTitle;
+            Background = PCLColor.White;
+            ElevationLocal = Elevation.LevelGround;
+            ElevationGlobal = 0;
+
             // Overwrite default behavior for tests.
             RegionID = in_generateID
                 ? Guid.NewGuid()
@@ -100,11 +108,11 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_serializedMap">The serialized <see cref="MapRegion"/>.</param>
         /// <param name="out_map">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion out_map)
+        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion? out_map)
         {
             Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;
-            out_map = null;
+            out_map = Empty;
 
             // Determine what version of region map was serialized.
             try

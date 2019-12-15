@@ -28,7 +28,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
         [JsonProperty]
-        private string _tagName;
+        private string _tagName = "";
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>

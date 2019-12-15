@@ -13,6 +13,9 @@ namespace ParquetClassLibrary.Parquets
     public class MapSpaceCollection : IEnumerable<MapSpace>
     {
         /// <summary>The internal collection mechanism.</summary>
+        public static HashSet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
+
+        /// <summary>The internal collection mechanism.</summary>
         private HashSet<MapSpace> Spaces { get; }
 
         /// <summary>The number of <see cref="MapSpace"/>s in the <see cref="MapSpaceCollection"/>.</summary>
@@ -97,8 +100,8 @@ namespace ParquetClassLibrary.Parquets
             Precondition.IsNotNull(in_subregion);
 
             var stepCount = 0;
-            MapSpaceCollection potentialPerimeter = null;
-            out_perimeter = null;
+            MapSpaceCollection potentialPerimeter = Empty;
+            out_perimeter = Empty;
 
             #region Find Extreme Coordinate of Walkable Extrema
             var greatestXValue = Spaces
@@ -158,11 +161,11 @@ namespace ParquetClassLibrary.Parquets
                     out_perimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(in_subregion, space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
-                        : null;
+                        : (MapSpaceCollection) Empty;
                 }
             }
 
-            return (out_perimeter?.Count ?? 0) >= Rules.Recipes.Room.MinPerimeterSpaces;
+            return out_perimeter.Count >= Rules.Recipes.Room.MinPerimeterSpaces;
 
             #region TryGetSeed Helper Method
             /// <summary>

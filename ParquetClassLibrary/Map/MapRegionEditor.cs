@@ -22,16 +22,16 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Indicates when it is time to update the display of current position info.
         /// </summary>
-        public static event EventHandler<PositionInfoEventArgs> DisplayPositionInfo;
+        public static event EventHandler<PositionInfoEventArgs>? DisplayPositionInfo;
 
         /// <summary>
         /// Indicates when it is time to update the display of the map.
         /// </summary>
-        public static event EventHandler DisplayMap;
+        public static event EventHandler? DisplayMap;
         #endregion
 
         /// <summary>The <see cref="MapRegion"/> currently being edited.</summary>
-        private MapRegion _currentRegion;
+        private MapRegion? _currentRegion = null;
 
         /// <summary>Indicates whether a <see cref="MapRegion"/> is map loaded.</summary>
         /// <value><c>true</c> if a map has been loaded; otherwise, <c>false</c>.</value>
@@ -73,7 +73,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_path">The location in which to store the saved region.</param>
         public void SaveMapRegion(string in_path)
         {
-            var serialized = _currentRegion.SerializeToString();
+            var serialized = _currentRegion?.SerializeToString() ?? "";
             // TODO Convert this to use multiplatform utils.
             File.WriteAllText(in_path, serialized);
         }
@@ -141,9 +141,12 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose information is sought.</param>
         public void DisplayInfoAtPosition(Vector2D in_position)
         {
-            DisplayPositionInfo?.Invoke(this,
-                    new PositionInfoEventArgs(_currentRegion.GetDefinitionAtPosition(in_position),
-                                              _currentRegion.GetSpecialPointsAtPosition(in_position)));
+            if (null != _currentRegion)
+            {
+                DisplayPositionInfo?.Invoke(this,
+                        new PositionInfoEventArgs(_currentRegion.GetDefinitionAtPosition(in_position),
+                                                  _currentRegion.GetSpecialPointsAtPosition(in_position)));
+            }
         }
 
         /// <summary>
@@ -216,36 +219,28 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable floor painting, otherwise disable it.</param>
         public void SetPaintFloor(bool in_enable)
-        {
-            _parquetPaintPattern.SetTo(ParquetMask.Floor, in_enable);
-        }
+            => _parquetPaintPattern.SetTo(ParquetMask.Floor, in_enable);
 
         /// <summary>
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable block painting, otherwise disable it.</param>
         public void SetPaintBlock(bool in_enable)
-        {
-            _parquetPaintPattern.SetTo(ParquetMask.Block, in_enable);
-        }
+            => _parquetPaintPattern.SetTo(ParquetMask.Block, in_enable);
 
         /// <summary>
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable furnishing painting, otherwise disable it.</param>
         public void SetPaintFurnishing(bool in_enable)
-        {
-            _parquetPaintPattern.SetTo(ParquetMask.Furnishing, in_enable);
-        }
+            => _parquetPaintPattern.SetTo(ParquetMask.Furnishing, in_enable);
 
         /// <summary>
         /// Turns floor painting on or off.
         /// </summary>
         /// <param name="in_enable">If <c>true</c> enable collectible painting, otherwise disable it.</param>
         public void SetPaintCollectible(bool in_enable)
-        {
-            _parquetPaintPattern.SetTo(ParquetMask.Collectible, in_enable);
-        }
+            => _parquetPaintPattern.SetTo(ParquetMask.Collectible, in_enable);
 
         /// <summary>
         /// Paints currently selected parquets at the given position.
@@ -257,27 +252,28 @@ namespace ParquetClassLibrary.Map
             var result = true;
             var error = "";
 
+            // TODO There must be a less elaborate error tracking scheme possible here.
             if (_parquetPaintPattern.IsSet(ParquetMask.Floor))
             {
-                error += _currentRegion.TrySetFloorDefinition(_floorToPaint, in_position)
+                error += _currentRegion?.TrySetFloorDefinition(_floorToPaint, in_position) ?? true
                     ? ""
                     : " floor ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Block))
             {
-                error += _currentRegion.TrySetBlockDefinition(_blockToPaint, in_position)
+                error += _currentRegion?.TrySetBlockDefinition(_blockToPaint, in_position) ?? true
                     ? ""
                     : " block ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Furnishing))
             {
-                error += _currentRegion.TrySetFurnishingDefinition(_furnishingToPaint, in_position)
+                error += _currentRegion?.TrySetFurnishingDefinition(_furnishingToPaint, in_position) ?? true
                     ? ""
                     : " furnishing ";
             }
             if (_parquetPaintPattern.IsSet(ParquetMask.Collectible))
             {
-                error += _currentRegion.TrySetCollectibleDefinition(_collectibleToPaint, in_position)
+                error += _currentRegion?.TrySetCollectibleDefinition(_collectibleToPaint, in_position) ?? true
                     ? ""
                     : " collectible ";
             }
@@ -318,7 +314,10 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_end">The line's end.</param>
         public void PaintLine(Vector2D in_start, Vector2D in_end)
         {
-            PaintAtLocations(Rasterization.PlotLine(in_start, in_end, _currentRegion.IsValidPosition));
+            if (null != _currentRegion)
+            {
+                PaintAtLocations(Rasterization.PlotLine(in_start, in_end, _currentRegion.IsValidPosition));
+            }
         }
 
         /// <summary>
@@ -332,9 +331,12 @@ namespace ParquetClassLibrary.Map
         /// </param>
         public void PaintRectangle(Vector2D in_upperLeft, Vector2D in_lowerRight, bool in_filled)
         {
-            PaintAtLocations(in_filled
-                ? Rasterization.PlotFilledRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition)
-                : Rasterization.PlotEmptyRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition));
+            if (null != _currentRegion)
+            {
+                PaintAtLocations(in_filled
+                    ? Rasterization.PlotFilledRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition)
+                    : Rasterization.PlotEmptyRectangle(in_upperLeft, in_lowerRight, _currentRegion.IsValidPosition));
+            }
         }
 
         /// <summary>
@@ -348,7 +350,10 @@ namespace ParquetClassLibrary.Map
         /// </param>
         public void PaintCircle(Vector2D in_center, int in_radius, bool in_filled)
         {
-            PaintAtLocations(Rasterization.PlotCircle(in_center, in_radius, in_filled, _currentRegion.IsValidPosition));
+            if (null != _currentRegion)
+            {
+                PaintAtLocations(Rasterization.PlotCircle(in_center, in_radius, in_filled, _currentRegion.IsValidPosition));
+            }
         }
 
         /// <summary>
@@ -358,10 +363,11 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_start">Where to start the fill.</param>
         public void PaintFloodFill(Vector2D in_start)
         {
-            PaintAtLocations(Rasterization.PlotFloodFill(in_start,
-                                                         _currentRegion.GetDefinitionAtPosition(in_start),
-                                                         _currentRegion.IsValidPosition,
-                                                         Matches));
+            if (null != _currentRegion)
+            {
+                PaintAtLocations(
+                    Rasterization.PlotFloodFill(in_start, _currentRegion.GetDefinitionAtPosition(in_start), _currentRegion.IsValidPosition, Matches));
+            }
         }
 
         /// <summary>
@@ -373,35 +379,39 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if the parquet stacks match, <c>false</c> otherwise.</returns>
         private bool Matches<T>(Vector2D in_position, T in_matchAgainst) where T : IParquetStack
         {
-            bool result;
-            var parquets = _currentRegion.GetDefinitionAtPosition(in_position);
+            bool result = false;
 
-            if (_parquetPaintPattern.HasFlag(ParquetMask.None))
+            if (null != _currentRegion)
             {
-                // Match only against completely empty map positions.
-                result = parquets.IsEmpty;
-            }
-            else
-            {
-                // For positions with at least some parquets, assume a match
-                // then attempt to disprove that assumption.
-                result = true;
+                var parquets = _currentRegion.GetDefinitionAtPosition(in_position);
 
-                if (_parquetPaintPattern.HasFlag(ParquetMask.Floor))
+                if (_parquetPaintPattern.HasFlag(ParquetMask.None))
                 {
-                    result &= parquets.Floor == in_matchAgainst.Floor;
+                    // Match only against completely empty map positions.
+                    result = parquets.IsEmpty;
                 }
-                if (_parquetPaintPattern.HasFlag(ParquetMask.Block))
+                else
                 {
-                    result &= parquets.Block == in_matchAgainst.Block;
-                }
-                if (_parquetPaintPattern.HasFlag(ParquetMask.Furnishing))
-                {
-                    result &= parquets.Furnishing == in_matchAgainst.Furnishing;
-                }
-                if (_parquetPaintPattern.HasFlag(ParquetMask.Collectible))
-                {
-                    result &= parquets.Collectible == in_matchAgainst.Collectible;
+                    // For positions with at least some parquets, assume a match
+                    // then attempt to disprove that assumption.
+                    result = true;
+
+                    if (_parquetPaintPattern.HasFlag(ParquetMask.Floor))
+                    {
+                        result &= parquets.Floor == in_matchAgainst.Floor;
+                    }
+                    if (_parquetPaintPattern.HasFlag(ParquetMask.Block))
+                    {
+                        result &= parquets.Block == in_matchAgainst.Block;
+                    }
+                    if (_parquetPaintPattern.HasFlag(ParquetMask.Furnishing))
+                    {
+                        result &= parquets.Furnishing == in_matchAgainst.Furnishing;
+                    }
+                    if (_parquetPaintPattern.HasFlag(ParquetMask.Collectible))
+                    {
+                        result &= parquets.Collectible == in_matchAgainst.Collectible;
+                    }
                 }
             }
 

@@ -29,6 +29,7 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         public override int GetHashCode()
             => Position.GetHashCode();
 
+#pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
         /// Determines whether the specified <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>.
         /// </summary>
@@ -36,6 +37,7 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         /// <returns><c>true</c> if the given <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(SpecialPoint in_point)
             => null != in_point && Position == in_point.Position;
+#pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 
         /// <summary>
         /// Determines whether the given <see cref="object"/> is equal to this <see cref="SpecialPoint"/>.

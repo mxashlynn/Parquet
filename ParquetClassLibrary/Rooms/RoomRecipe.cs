@@ -50,8 +50,8 @@ namespace ParquetClassLibrary.Rooms
         public RoomRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
                           List<RecipeElement> in_requiredFurnishings,
                           int in_MinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
-                          List<RecipeElement> in_optionallyRequiredWalkableFloors = null,
-                          List<RecipeElement> in_optionallyRequiredPerimeterBlocks = null)
+                          List<RecipeElement>? in_optionallyRequiredWalkableFloors = null,
+                          List<RecipeElement>? in_optionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsNotNullOrEmpty(in_requiredFurnishings, nameof(in_requiredFurnishings));
@@ -68,6 +68,7 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
+#pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
         /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
         /// </summary>
@@ -89,4 +90,5 @@ namespace ParquetClassLibrary.Rooms
                 in_room.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);
     }
+#pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 }
