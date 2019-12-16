@@ -28,11 +28,11 @@ namespace ParquetUnitTests.Utilities
         }
 
         [Theory]
-        [InlineData(int.MinValue, int.MinValue)]
+        [InlineData(-4096, -4096)]
         [InlineData(-1, 1)]
         [InlineData(0,  0)]
         [InlineData(1, -1)]
-        [InlineData(int.MaxValue, int.MaxValue)]
+        [InlineData(4096, 4096)]
         public void NewVectorTest(int in_x, int in_y)
         {
             var testVector = new Vector2D(in_x, in_y);
