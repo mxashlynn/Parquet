@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Items
         public Item(EntityID in_id, ItemType in_subtype, string in_name, string in_description, string in_comment,
                     int in_price, int in_rarity, int in_stackMax, int in_effectWhileHeld,
                     int in_effectWhenUsed, EntityID in_asParquet,
-                    List<EntityTag>? in_itemTags = null, EntityID? in_recipeID = null)
+                    List<EntityTag> in_itemTags = null, EntityID? in_recipeID = null)
             : base(All.ItemIDs, in_id, in_name, in_description, in_comment)
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));

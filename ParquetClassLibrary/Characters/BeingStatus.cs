@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Characters
@@ -118,10 +117,10 @@ namespace ParquetClassLibrary.Characters
                            int in_biomeTimeRemaining,
                            float in_buildingSpeed, float in_modificationSpeed,
                            float in_gatheringSpeed, float in_movementSpeed,
-                           List<EntityID> in_knownCritters = null, List<EntityID> in_knownNPCs = null,
-                           List<EntityID> in_knownParquets = null, List<EntityID> in_knownRoomRecipes = null,
-                           List<EntityID> in_knownCraftingRecipes = null, List<EntityID> in_quests = null,
-                           List<EntityID> in_inventory = null)
+                           List<EntityID>? in_knownCritters = null, List<EntityID>? in_knownNPCs = null,
+                           List<EntityID>? in_knownParquets = null, List<EntityID>? in_knownRoomRecipes = null,
+                           List<EntityID>? in_knownCraftingRecipes = null, List<EntityID>? in_quests = null,
+                           List<EntityID>? in_inventory = null)
         {
             Precondition.IsNotNull(in_beingDefinition, nameof(in_beingDefinition));
             var nonNullCritters = in_knownCritters ?? Enumerable.Empty<EntityID>().ToList();

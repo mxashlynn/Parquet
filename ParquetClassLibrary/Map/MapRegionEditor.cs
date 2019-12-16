@@ -22,16 +22,16 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Indicates when it is time to update the display of current position info.
         /// </summary>
-        public static event EventHandler<PositionInfoEventArgs>? DisplayPositionInfo;
+        public static event EventHandler<PositionInfoEventArgs> DisplayPositionInfo;
 
         /// <summary>
         /// Indicates when it is time to update the display of the map.
         /// </summary>
-        public static event EventHandler? DisplayMap;
+        public static event EventHandler DisplayMap;
         #endregion
 
         /// <summary>The <see cref="MapRegion"/> currently being edited.</summary>
-        private MapRegion? _currentRegion = null;
+        private MapRegion _currentRegion = null;
 
         /// <summary>Indicates whether a <see cref="MapRegion"/> is map loaded.</summary>
         /// <value><c>true</c> if a map has been loaded; otherwise, <c>false</c>.</value>

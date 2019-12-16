@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_localElevation">The absolute elevation of this region.</param>
         /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="in_id">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
-        public MapRegion(string? in_title = null, PCLColor? in_background = null,
+        public MapRegion(string in_title = null, PCLColor? in_background = null,
                          Elevation in_localElevation = Elevation.LevelGround,
                          int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
         {
@@ -108,7 +108,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_serializedMap">The serialized <see cref="MapRegion"/>.</param>
         /// <param name="out_map">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion? out_map)
+        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion out_map)
         {
             Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;

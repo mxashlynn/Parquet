@@ -76,7 +76,8 @@ namespace ParquetUnitTests.Map
 
             var chunkData = grid.GetChunk(invalidPosition);
 
-            Assert.Null(chunkData);
+            Assert.Equal(ChunkType.Empty, chunkData.type);
+            Assert.Equal(ChunkOrientation.None, chunkData.orientation);
         }
 
         [Fact]
@@ -88,11 +89,11 @@ namespace ParquetUnitTests.Map
 
             var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
 
-            var chunkData = grid.GetChunk(Vector2D.Zero).GetValueOrDefault();
+            var chunkData = grid.GetChunk(Vector2D.Zero);
 
             Assert.True(wasSet);
-            Assert.Equal(chunkData.type, chunkType);
-            Assert.Equal(chunkData.orientation, chunkOrientation);
+            Assert.Equal(chunkType, chunkData.type);
+            Assert.Equal(chunkOrientation, chunkData.orientation);
         }
         #endregion
 
