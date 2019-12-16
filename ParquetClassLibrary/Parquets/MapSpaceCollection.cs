@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// Stores a collection of <see cref="MapSpace"/>s.
     /// Provides bounds-checking and various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
-    public class MapSpaceCollection : IEnumerable<MapSpace>
+    public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
         /// <summary>The internal collection mechanism.</summary>
         public static HashSet<MapSpace> Empty { get; } = new HashSet<MapSpace>();

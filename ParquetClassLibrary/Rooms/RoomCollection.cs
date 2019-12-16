@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -16,7 +17,7 @@ namespace ParquetClassLibrary.Rooms
     /// For a complete explanation of the algorithm implemented here, see:
     /// <a href="https://github.com/mxashlynn/Parquet/wiki/Room-Detection-and-Type-Assignment"/>
     /// </remarks>
-    public class RoomCollection
+    public class RoomCollection : IReadOnlyCollection<Room>
     {
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyList<Room> Rooms { get; }
@@ -73,14 +74,23 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
-        #region Utility Methods
+        #region Collection Access
+        /// <summary>
+        /// Exposes an <see cref="IEnumerator"/>, which supports simple iteration.
+        /// </summary>
+        /// <returns>An enumerator.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+            => Rooms.GetEnumerator();
+
         /// <summary>
         /// Retrieves an enumerator for the <see cref="RoomCollection"/>.
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<Room> GetEnumerator()
             => Rooms.GetEnumerator();
+        #endregion
 
+        #region Utility Methods
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="RoomCollection"/>.
         /// </summary>
