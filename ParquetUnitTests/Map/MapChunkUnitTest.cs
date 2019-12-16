@@ -269,7 +269,6 @@ namespace ParquetUnitTests.Map
             var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.UnsupportedVersionString,
                                                            out var mapChunkResults);
 
-            Assert.Null(mapChunkResults);
             Assert.False(result);
         }
 
@@ -279,7 +278,6 @@ namespace ParquetUnitTests.Map
             var result = MapChunk.TryDeserializeFromString(SerializedMapChunksForTest.NonJsonString,
                                                            out var mapChunkResults);
 
-            Assert.Null(mapChunkResults);
             Assert.False(result);
         }
 

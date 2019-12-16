@@ -126,7 +126,6 @@ namespace ParquetUnitTests.Map
             var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.UnsupportedVersionString,
                                                                out var mapChunkGridResults);
 
-            Assert.Null(mapChunkGridResults);
             Assert.False(result);
         }
 
@@ -136,7 +135,6 @@ namespace ParquetUnitTests.Map
             var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.NonJsonString,
                                                                out var mapChunkGridResults);
 
-            Assert.Null(mapChunkGridResults);
             Assert.False(result);
         }
 

@@ -297,7 +297,6 @@ namespace ParquetUnitTests.Map
             var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.UnsupportedVersionString,
                                                             out var mapRegionResults);
 
-            Assert.Null(mapRegionResults);
             Assert.False(result);
         }
 
@@ -307,7 +306,6 @@ namespace ParquetUnitTests.Map
             var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.NonJsonString,
                                                             out var mapRegionResults);
 
-            Assert.Null(mapRegionResults);
             Assert.False(result);
         }
 
