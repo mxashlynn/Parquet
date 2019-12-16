@@ -118,20 +118,20 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
                         var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable
                             ? new MapSpace(x, y - 1, in_subregion[y - 1, x])
-                            : (MapSpace?)null;
+                            : MapSpace.Empty;
                         var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable
                             ? new MapSpace(x - 1, y, in_subregion[y, x - 1])
-                            : (MapSpace?)null;
+                            : MapSpace.Empty;
 
-                        if (null == northSpace && null == westSpace)
+                        if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)
                         {
                             var newPWA = new HashSet<MapSpace> { currentSpace };
                             PWAs.Add(newPWA);
                         }
-                        else if (null != northSpace && null != westSpace)
+                        else if (MapSpace.Empty != northSpace && MapSpace.Empty != westSpace)
                         {
-                            var northPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace));
-                            var westPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace));
+                            var northPWA = PWAs.Find(pwa => pwa.Contains(northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains(westSpace));
                             if (northPWA == westPWA)
                             {
                                 northPWA.Add(currentSpace);
@@ -144,13 +144,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                 PWAs.Add(combinedPWA);
                             }
                         }
-                        else if (null == northSpace && null != westSpace)
+                        else if (MapSpace.Empty != westSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains(westSpace)).Add(currentSpace);
                         }
-                        else if (null != northSpace && null == westSpace)
+                        else if (MapSpace.Empty != northSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains(northSpace)).Add(currentSpace);
                         }
                     }
                 }
