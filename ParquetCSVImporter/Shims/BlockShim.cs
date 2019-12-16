@@ -17,7 +17,7 @@ namespace ParquetCSVImporter.Shims
         public GatheringTool GatherTool;
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        public GatheringEffect GatherEffect;
+        public GatherEffect GatherEffect;
 
         /// <summary>The collectible spawned when a character gathers this Block.</summary>
         public EntityID CollectibleID;

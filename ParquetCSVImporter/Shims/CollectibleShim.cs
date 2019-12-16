@@ -14,7 +14,7 @@ namespace ParquetCSVImporter.Shims
     public class CollectibleShim : ParquetParentShim
     {
         /// <summary>The effect generated when a character encounters this collectible.</summary>
-        public CollectionEffect Effect;
+        public CollectEffect Effect;
 
         /// <summary>The scale in points of the effect.</summary>
         public int EffectAmount;
