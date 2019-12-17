@@ -27,9 +27,17 @@ namespace ParquetClassLibrary.Crafting
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
+        /// <summary>Backing field for the arrangment of panels encompassed by this recipe.</summary>
+        private StrikePanel[,] PanelPattern { get; }
+
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-        // TODO Replace with a read-only array substitute?  See https://web.archive.org/web/20120103002717/http://msdn.microsoft.com/en-us/library/aa664459(v=vs.71).aspx
-        public StrikePanel[,] PanelPattern { get; }
+        public StrikePanel this[int y, int x]
+        {
+            get
+            {
+                return PanelPattern[y, x];
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
