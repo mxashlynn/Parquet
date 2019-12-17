@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -16,7 +17,7 @@ namespace ParquetClassLibrary.Rooms
     /// For a complete explanation of the algorithm implemented here, see:
     /// <a href="https://github.com/mxashlynn/Parquet/wiki/Room-Detection-and-Type-Assignment"/>
     /// </remarks>
-    public class RoomCollection
+    public class RoomCollection : IReadOnlyCollection<Room>
     {
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyList<Room> Rooms { get; }
@@ -62,7 +63,7 @@ namespace ParquetClassLibrary.Rooms
 
             var walkableAreas = in_subregion.GetWalkableAreas();
             // TODO Double check that correct perimeters are being attached to walkable areas.
-            MapSpaceCollection perimeter = null;
+            MapSpaceCollection perimeter = MapSpaceCollection.Empty;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
                         .Where(walkableArea => walkableArea.Any(space => space.IsWalkableEntry
@@ -73,14 +74,23 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
-        #region Utility Methods
+        #region Collection Access
+        /// <summary>
+        /// Exposes an <see cref="IEnumerator"/>, which supports simple iteration.
+        /// </summary>
+        /// <returns>An enumerator.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+            => Rooms.GetEnumerator();
+
         /// <summary>
         /// Retrieves an enumerator for the <see cref="RoomCollection"/>.
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<Room> GetEnumerator()
             => Rooms.GetEnumerator();
+        #endregion
 
+        #region Utility Methods
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="RoomCollection"/>.
         /// </summary>
@@ -118,20 +128,20 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
                         var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable
                             ? new MapSpace(x, y - 1, in_subregion[y - 1, x])
-                            : (MapSpace?)null;
+                            : MapSpace.Empty;
                         var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable
                             ? new MapSpace(x - 1, y, in_subregion[y, x - 1])
-                            : (MapSpace?)null;
+                            : MapSpace.Empty;
 
-                        if (null == northSpace && null == westSpace)
+                        if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)
                         {
                             var newPWA = new HashSet<MapSpace> { currentSpace };
                             PWAs.Add(newPWA);
                         }
-                        else if (null != northSpace && null != westSpace)
+                        else if (MapSpace.Empty != northSpace && MapSpace.Empty != westSpace)
                         {
-                            var northPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace));
-                            var westPWA = PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace));
+                            var northPWA = PWAs.Find(pwa => pwa.Contains(northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains(westSpace));
                             if (northPWA == westPWA)
                             {
                                 northPWA.Add(currentSpace);
@@ -144,13 +154,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                                 PWAs.Add(combinedPWA);
                             }
                         }
-                        else if (null == northSpace)
+                        else if (MapSpace.Empty != westSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((MapSpace)westSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains(westSpace)).Add(currentSpace);
                         }
-                        else if (null == westSpace)
+                        else if (MapSpace.Empty != northSpace)
                         {
-                            PWAs.Find(pwa => pwa.Contains((MapSpace)northSpace)).Add(currentSpace);
+                            PWAs.Find(pwa => pwa.Contains(northSpace)).Add(currentSpace);
                         }
                     }
                 }

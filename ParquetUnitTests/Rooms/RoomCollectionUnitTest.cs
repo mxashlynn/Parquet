@@ -567,7 +567,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneMinimalRoomMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -575,7 +575,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -583,7 +583,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCentralPillarMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -591,7 +591,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCentralVoidMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -599,7 +599,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCentralWellMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -607,7 +607,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCornerLakeMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -615,7 +615,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomCrossMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -623,7 +623,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomDonoughtShapeMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -631,7 +631,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomExtrusionMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -639,7 +639,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomInaccessibleFloorMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -647,7 +647,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomInnerMoatMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -655,7 +655,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomIntrusionMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -663,7 +663,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomThickWallsMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -671,7 +671,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(OneRoomUShapeMap);
 
-            Assert.Equal(1, collection.Count);
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -705,7 +705,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(AllFloorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -713,7 +713,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(AllVoidMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -721,7 +721,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(AllWallsMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -729,7 +729,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(BlockedEntryMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -737,7 +737,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(DisconectedEntryMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -745,7 +745,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(DisconectedFloorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -753,7 +753,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(FloodedDoorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -761,7 +761,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(FloodedMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         // IDEA If flooded entries become a problem, uncomment this test.
@@ -780,7 +780,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(IncompletePerimeterMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -788,7 +788,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(IslandStepMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -796,7 +796,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(MissingWallMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -804,7 +804,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(MoatInsteadOfWallsMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -812,7 +812,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(NoDoorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -820,7 +820,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(NoFloorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -828,7 +828,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(NoWallsMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -836,7 +836,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(RoomTooSmallMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -844,7 +844,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(WrongEntryMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -852,7 +852,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(MoatWallMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -860,7 +860,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(PerforatedWallMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -868,7 +868,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(InvertedMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -876,7 +876,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(IncompleteMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -884,7 +884,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(LoopNotEnclosingMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -892,7 +892,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(InaccessibleExitMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -900,7 +900,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -908,7 +908,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(DoorUsedAsStepMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
 
         [Fact]
@@ -916,7 +916,7 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(StepUsedAsDoorMap);
 
-            Assert.Equal(0, collection.Count);
+            Assert.Empty(collection);
         }
         #endregion
 

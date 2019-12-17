@@ -18,7 +18,7 @@ namespace ParquetClassLibrary
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
     /// </remarks>
-    public class EntityCollection<TParentType> : IEnumerable<TParentType> where TParentType : Entity
+    public class EntityCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : Entity
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
         public static readonly EntityCollection<TParentType> Default = new EntityCollection<TParentType>(

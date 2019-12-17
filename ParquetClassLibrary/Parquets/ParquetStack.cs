@@ -12,6 +12,12 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
 
+        /// <summary>The number of parquets actually present in this stack.</summary>
+        public int Count => EntityID.None != Floor ? 1 : 0
+                            + EntityID.None != Block ? 1 : 0
+                            + EntityID.None != Furnishing ? 1 : 0
+                            + EntityID.None != Collectible ? 1 : 0;
+
         /// <summary>The floor contained in this stack.</summary>
         public EntityID Floor { get; }
 

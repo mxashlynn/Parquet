@@ -13,6 +13,9 @@ namespace ParquetClassLibrary.Map
     [JsonObject(MemberSerialization.Fields)]
     public sealed class MapRegion : MapParent
     {
+        /// <summary>Used to indicate an empty grid.</summary>
+        public static readonly MapRegion Empty = new MapRegion(false);
+
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
@@ -50,12 +53,10 @@ namespace ParquetClassLibrary.Map
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus[,] ParquetStatus { get; } =
-            new ParquetStatus[Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion];
+        protected override ParquetStatus2DCollection ParquetStatus { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override ParquetStack[,] ParquetDefintion { get; } =
-            new ParquetStack[Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion];
+        protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerRegion);
         #endregion
 
         #region Initialization
@@ -86,6 +87,11 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
         public MapRegion(bool in_generateID)
         {
+            Title = DefaultTitle;
+            Background = PCLColor.White;
+            ElevationLocal = Elevation.LevelGround;
+            ElevationGlobal = 0;
+
             // Overwrite default behavior for tests.
             RegionID = in_generateID
                 ? Guid.NewGuid()
@@ -104,7 +110,7 @@ namespace ParquetClassLibrary.Map
         {
             Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
             var result = false;
-            out_map = null;
+            out_map = Empty;
 
             // Determine what version of region map was serialized.
             try

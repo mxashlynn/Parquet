@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_gatherEffect")]
-        public GatheringEffect GatherEffect { get; }
+        public GatherEffect GatherEffect { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         [JsonProperty(PropertyName = "in_collectibleID")]
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Parquets
                      EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
                      EntityTag in_addsToRoom = null,
                      GatheringTool in_gatherTool = GatheringTool.None,
-                     GatheringEffect in_gatherEffect = GatheringEffect.None,
+                     GatherEffect in_gatherEffect = GatherEffect.None,
                      EntityID? in_collectibleID = null, bool in_isFlammable = false,
                      bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
             : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,

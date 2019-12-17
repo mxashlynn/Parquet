@@ -76,7 +76,8 @@ namespace ParquetUnitTests.Map
 
             var chunkData = grid.GetChunk(invalidPosition);
 
-            Assert.Null(chunkData);
+            Assert.Equal(ChunkType.Empty, chunkData.type);
+            Assert.Equal(ChunkOrientation.None, chunkData.orientation);
         }
 
         [Fact]
@@ -88,65 +89,11 @@ namespace ParquetUnitTests.Map
 
             var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
 
-            var chunkData = grid.GetChunk(Vector2D.Zero).GetValueOrDefault();
+            var chunkData = grid.GetChunk(Vector2D.Zero);
 
             Assert.True(wasSet);
-            Assert.Equal(chunkData.type, chunkType);
-            Assert.Equal(chunkData.orientation, chunkOrientation);
-        }
-        #endregion
-
-        #region Serialization Methods
-        // TODO: Consider removing these, and associated pre-serialized files.
-        //[Fact]
-        //public void SerializingKnownMapProducesKnownStringTest()
-        //{
-        //    var grid = new MapChunkGrid(false).FillTestPattern();
-        //
-        //    var result = grid.SerializeToString();
-        //
-        //    Assert.Equal(SerializedMapChunkGridsForTest.KnownGoodString, result);
-        //}
-
-        [Fact]
-        public void DeserializingNullFailsTest()
-        {
-            static void TestCode()
-            {
-                var _ = MapChunkGrid.TryDeserializeFromString(null, out var mapGridResults);
-            }
-
-            Assert.Throws<IndexOutOfRangeException>(TestCode);
-        }
-
-        [Fact]
-        public void DeserializingUnsupportedVersionFailsTest()
-        {
-            var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.UnsupportedVersionString,
-                                                               out var mapChunkGridResults);
-
-            Assert.Null(mapChunkGridResults);
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void DeserializingKnownBadStringFailsTest()
-        {
-            var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.NonJsonString,
-                                                               out var mapChunkGridResults);
-
-            Assert.Null(mapChunkGridResults);
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void DeserializingKnownGoodStringSucceedsTest()
-        {
-            var result = MapChunkGrid.TryDeserializeFromString(SerializedMapChunkGridsForTest.KnownGoodString,
-                                                               out var mapChunkGridResults);
-
-            Assert.NotNull(mapChunkGridResults);
-            Assert.True(result);
+            Assert.Equal(chunkType, chunkData.type);
+            Assert.Equal(chunkOrientation, chunkData.orientation);
         }
         #endregion
     }

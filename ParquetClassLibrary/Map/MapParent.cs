@@ -35,36 +35,16 @@ namespace ParquetClassLibrary.Map
         protected List<SpecialPoint> SpecialPoints { get; } = new List<SpecialPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatus[,] ParquetStatus { get; }
+        protected abstract ParquetStatus2DCollection ParquetStatus { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
         /// and <see cref="Collectible"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStack[,] ParquetDefintion { get; }
+        protected abstract ParquetStack2DCollection ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
-        // TODO Move this to an extension on ParquetStatus[,].
-        protected int ParquetsCount
-        {
-            get
-            {
-                var count = 0;
-
-                for (var y = 0; y < DimensionsInParquets.Y; y++)
-                {
-                    for (var x = 0; x < DimensionsInParquets.X; x++)
-                    {
-                        count += EntityID.None != ParquetDefintion[y, x].Floor ? 1 : 0;
-                        count += EntityID.None != ParquetDefintion[y, x].Block ? 1 : 0;
-                        count += EntityID.None != ParquetDefintion[y, x].Furnishing ? 1 : 0;
-                        count += EntityID.None != ParquetDefintion[y, x].Collectible ? 1 : 0;
-                    }
-                }
-
-                return count;
-            }
-        }
+        protected int ParquetsCount => ParquetDefintion.Count;
         #endregion
 
         #region Parquets Replacement Methods

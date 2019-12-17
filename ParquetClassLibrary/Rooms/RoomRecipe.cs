@@ -68,6 +68,7 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
+#pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
         /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
         /// </summary>
@@ -89,4 +90,5 @@ namespace ParquetClassLibrary.Rooms
                 in_room.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);
     }
+#pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 }

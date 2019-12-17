@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Parquets
     public readonly struct MapSpace : IEquatable<MapSpace>
     {
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        public static readonly MapSpace Empty = new MapSpace(new Vector2D(int.MinValue, int.MinValue), ParquetStack.Empty);
+        public static readonly MapSpace Empty = new MapSpace(new Vector2D(0, 0), ParquetStack.Empty);
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
         public Vector2D Position { get; }
