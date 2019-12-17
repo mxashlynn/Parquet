@@ -18,10 +18,6 @@ namespace ParquetCSVImporter.Shims
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         public string TrenchName;
 
-        /// <summary>Indicates if the floor may be walked on.</summary>
-        // TODO Remove this, all floors are now walkable.
-        public bool IsWalkable;
-
         /// <summary>
         /// Converts a shim into the class it corresponds to.
         /// </summary>
@@ -32,7 +28,7 @@ namespace ParquetCSVImporter.Shims
             Precondition.IsOfType<TargetType, Floor>(typeof(TargetType).ToString());
 
             return (TargetType)(ParquetParent)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                        AddsToRoom, ModTool, TrenchName, IsWalkable);
+                                                        AddsToRoom, ModTool, TrenchName);
         }
     }
 }
