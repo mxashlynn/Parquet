@@ -11,8 +11,6 @@ namespace ParquetClassLibrary.Characters
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
-        // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
-        // TODO Should this be in a resource table to support globalization?
         public const string DefaultPronoun = "they";
         #endregion
 
@@ -27,7 +25,6 @@ namespace ParquetClassLibrary.Characters
         public string FullName => Name;
 
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
-        // TODO This is just a place-holder, I am not sure yet how we will handle pronouns.
         public string Pronoun { get; }
 
         /// <summary>The story character that this <see cref="Character"/> represents.</summary>
@@ -38,7 +35,6 @@ namespace ParquetClassLibrary.Characters
         /// sequel title to import data from prior titles in such a way that one game's <see cref="NPC"/>
         /// can become another game's <see cref="PlayerCharacter"/>.
         /// </remarks>
-        // TODO This implementation may need more thought/work.
         public string StoryCharacterID { get; }
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
@@ -46,8 +42,6 @@ namespace ParquetClassLibrary.Characters
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
-        // TODO This is just a place-holder, I am not at all sure how we will handle dialogue.
-        // TODO This may be tied in to the script system.
         public IReadOnlyList<string> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>

@@ -86,7 +86,6 @@ namespace ParquetClassLibrary.Characters
         public List<EntityID> Quests { get; }
 
         /// <summary>This <see cref="Character"/>'s set of belongings.</summary>
-        // TODO This is just a place-holder, inventory needs to be its own class.
         [JsonProperty(PropertyName = "in_inventory")]
         public List<EntityID> Inventory { get; }
         #endregion

@@ -260,7 +260,6 @@ namespace ParquetClassLibrary
         /// <param name="in_items">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        // TODO Make a version that takes serialized JSON strings instead of ienumerables.  <-- Really?  Consider this usage.
         public static void InitializeCollections(IEnumerable<Being> in_beings,
                                                  IEnumerable<ParquetParent> in_parquets,
                                                  IEnumerable<RoomRecipe> in_roomRecipes,

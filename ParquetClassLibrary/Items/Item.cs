@@ -29,12 +29,10 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>An in-game effect caused by keeping the item in a character's inventory.</summary>
         [JsonProperty(PropertyName = "in_effectWhileHeld")]
-        // TODO This is not actually an int; this type needs to be implemented.
         public int EffectWhileHeld { get; }
 
         /// <summary>An in-game effect caused by using (consuming) the item.</summary>
         [JsonProperty(PropertyName = "in_effectWhenUsed")]
-        // TODO This is not actually an int; this type needs to be implemented.
         public int EffectWhenUsed { get; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
@@ -60,7 +58,6 @@ namespace ParquetClassLibrary.Items
         /// <param name="in_comment">Comment of, on, or by the <see cref="Item"/>.</param>
         /// <param name="in_price"><see cref="Item"/> cost.</param>
         /// <param name="in_rarity"><see cref="Item"/> rarity.</param>
-        // TODO Implement the Inventory class.
         /// <param name="in_stackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
         /// <param name="in_effectWhileHeld"><see cref="Item"/>'s passive effect.</param>
         /// <param name="in_effectWhenUsed"><see cref="Item"/>'s active effect.</param>
@@ -76,32 +73,6 @@ namespace ParquetClassLibrary.Items
         {
             Precondition.IsInRange(in_asParquet, All.ParquetIDs, nameof(in_asParquet));
             Precondition.MustBePositive(in_stackMax, nameof(in_stackMax));
-            // TODO Do we need to bounds-check in_effectWhileHeld?  If so, add a unit test.
-            // TODO Do we need to bounds-check in_effectWhenUsed?  If so, add a unit test.
-
-            // TODO This check is a good idea but it is improper to get a specific entity from All
-            // during initialization of an entity.  If we are to include this functionality another
-            // means of implementing it must be found.
-            // Probably this should be a tool in the CSV suite.
-            /*
-            if (nonNullCraftingRecipeID != CraftingRecipe.NotCraftable.ID)
-            {
-                var craftingRecipe = All.CraftingRecipes.Get<CraftingRecipe>(nonNullCraftingRecipeID);
-                var givenRecipeProducesGivenItem = false;
-                foreach (var product in craftingRecipe.Products)
-                {
-                    if (product.ItemID == in_id)
-                    {
-                        givenRecipeProducesGivenItem = true;
-                        break;
-                    }
-                }
-                if (!givenRecipeProducesGivenItem)
-                {
-                    throw new ArgumentException($"The crafting recipe for {in_name} include {in_name} among its products.");
-                }
-            }
-            */
 
             var nonNullItemTags = in_itemTags ?? Enumerable.Empty<EntityTag>().ToList();
             var nonNullCraftingRecipeID = in_recipeID ?? CraftingRecipe.NotCraftable.ID;

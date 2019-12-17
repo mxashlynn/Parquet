@@ -85,10 +85,6 @@ namespace ParquetClassLibrary
         {
             Precondition.IsNotNullOrEmpty(in_serializedParquets, nameof(in_serializedParquets));
 
-            // TODO: Ensure this is working as intended.  See:
-            // https://stackoverflow.com/questions/6348215/how-to-deserialize-json-into-ienumerablebasetype-with-newtonsoft-json-net
-            // https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm
-
             Dictionary<EntityID, Entity> baseCollection;
             try
             {

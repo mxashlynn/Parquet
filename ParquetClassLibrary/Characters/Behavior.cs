@@ -5,8 +5,6 @@ namespace ParquetClassLibrary.Characters
     /// </summary>
     public enum Behavior
     {
-        // TODO Update these with more reasonable values.
-        // TODO Will this actually be expanded into a class that governs behavior?
         PlayerControlled,
         Still,
         Homebody,
