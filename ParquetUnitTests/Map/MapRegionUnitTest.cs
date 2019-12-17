@@ -266,61 +266,6 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region Serialization Methods
-        // TODO: Consider removing these, and associated pre-serialized files.
-        //[Fact]
-        //public void SerializingKnownMapProducesKnownStringTest()
-        //{
-        //    var region = new MapRegion(false).FillTestPattern();
-        //
-        //    var result = region.SerializeToString();
-        //
-        //    Assert.Equal(SerializedRegionMapsForTest.KnownGoodString, result);
-        //}
-
-        [Fact]
-        public void DeserializingNullFailsTest()
-        {
-            var chunk = new MapChunk().FillTestPattern();
-
-            static void TestCode()
-            {
-                var _ = MapRegion.TryDeserializeFromString(null, out var mapRegionResults);
-            }
-
-            Assert.Throws<IndexOutOfRangeException>(TestCode);
-        }
-
-        [Fact]
-        public void DeserializingUnsupportedVersionFailsTest()
-        {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.UnsupportedVersionString,
-                                                            out var mapRegionResults);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void DeserializingKnownBadStringFailsTest()
-        {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.NonJsonString,
-                                                            out var mapRegionResults);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void DeserializingKnownGoodStringSucceedsTest()
-        {
-            var result = MapRegion.TryDeserializeFromString(SerializedRegionMapsForTest.KnownGoodString,
-                                                            out var mapRegionResults);
-
-            Assert.NotNull(mapRegionResults);
-            Assert.True(result);
-        }
-
-        #endregion
-
         #region State Query Methods
         [Fact]
         public void GetDefinitionReturnsNoneOnInvalidPositionTest()
@@ -399,7 +344,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapRegion)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultRegion) as ParquetStack[,];
+                                ?.GetValue(defaultRegion) as ParquetStack2DCollection;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
@@ -409,7 +354,7 @@ namespace ParquetUnitTests.Map
             {
                 for (var y = validUpperLeft.Y; y < validLowerRight.Y; y++)
                 {
-                    Assert.Equal(subregion[y, x], originalChunk[y, x]);
+                    Assert.Equal(originalChunk[y, x], subregion[y, x]);
                 }
             }
         }
@@ -419,7 +364,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapRegion)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultRegion) as ParquetStack[,];
+                                ?.GetValue(defaultRegion) as ParquetStack2DCollection;
 
             var subregion = defaultRegion.GetSubregion();
 
@@ -427,7 +372,7 @@ namespace ParquetUnitTests.Map
             {
                 for (var y = 0; y < defaultRegion.DimensionsInParquets.Y; y++)
                 {
-                    Assert.Equal(subregion[y, x], originalChunk[y, x]);
+                    Assert.Equal(originalChunk[y, x], subregion[y, x]);
                 }
             }
         }
