@@ -1,4 +1,5 @@
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Map
 {
@@ -155,7 +156,7 @@ namespace ParquetClassLibrary.Map
         /// Indicates if this ChunkType requires loading or procedural generation.
         /// </summary>
         /// <param name="in_chunkType">The chunk to evaluate.</param>
-        /// <returns>An elevation mask.</returns>
+        /// <returns>True if the chunk is handmade, false otherwise.</returns>
         public static bool IsLoadable(this ChunkType in_chunkType)
         {
             bool result;
@@ -171,6 +172,21 @@ namespace ParquetClassLibrary.Map
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the current array.
+        /// </summary>
+        /// <param name="in_position">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValidPosition(this ChunkType[,] in_chunkArray, Vector2D in_position)
+        {
+            Precondition.IsNotNull(in_chunkArray, nameof(in_chunkArray));
+
+            return in_position.X > -1
+                && in_position.Y > -1
+                && in_position.X < in_chunkArray.GetLength(1)
+                && in_position.Y < in_chunkArray.GetLength(0);
         }
     }
 }

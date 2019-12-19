@@ -4,6 +4,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetRunner
 {
