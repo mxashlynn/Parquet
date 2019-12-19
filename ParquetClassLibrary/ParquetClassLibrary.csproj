@@ -30,7 +30,6 @@
     <Folder Include="Crafting\" />
     <Folder Include="Items\" />
     <Folder Include="Map\" />
-    <Folder Include="Map\Special Points\" />
     <Folder Include="Parquets\" />
     <Folder Include="Quests\" />
     <Folder Include="Rooms\" />

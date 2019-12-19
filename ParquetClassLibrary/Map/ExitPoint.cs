@@ -1,23 +1,29 @@
 using System;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map.SpecialPoints
+namespace ParquetClassLibrary.Map
 {
     /// <summary>
-    /// A location on a <see cref="MapParent"/> at which something happens
-    /// that cannot be determined from Parquet mechanics alone.  For example, critter spawning.
+    /// A location at which the player moves from one <see cref="MapRegion"/> to another.
     /// </summary>
-    public class SpecialPoint : IEquatable<SpecialPoint>
+    /// <remarks>
+    /// Since only one Exit Point can exist in a given location, exit points are considered e</remarks>
+    public struct ExitPoint : IEquatable<ExitPoint>
     {
-        /// <summary>Location of this point.</summary>
+        /// <summary>Location of this exit point.</summary>
         public Vector2D Position { get; }
 
+        /// <summary>The region this exit leads to.</summary>
+        public Guid Destination { get; }
+
         /// <summary>
-        /// Initializes a new instance of <see cref="SpecialPoint"/>.
+        /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="in_position">The location of this point.</param>
-        public SpecialPoint(Vector2D in_position)
+        /// <param name="in_position">The location of this point on its containing region.</param>
+        /// <param name="in_guid">The region this exit leads to.</param>
+        public ExitPoint(Vector2D in_position, Guid in_guid)
         {
+            Destination = in_guid;
             Position = in_position;
         }
 
@@ -31,21 +37,21 @@ namespace ParquetClassLibrary.Map.SpecialPoints
 
 #pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
-        /// Determines whether the specified <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>.
+        /// Determines whether the specified <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="in_point">The <see cref="SpecialPoint"/> to compare with.</param>
-        /// <returns><c>true</c> if the given <see cref="SpecialPoint"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
-        public bool Equals(SpecialPoint in_point)
+        /// <param name="in_point">The <see cref="ExitPoint"/> to compare with.</param>
+        /// <returns><c>true</c> if the given <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>; otherwise, <c>false</c>.</returns>
+        public bool Equals(ExitPoint in_point)
             => null != in_point && Position == in_point.Position;
 #pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 
         /// <summary>
-        /// Determines whether the given <see cref="object"/> is equal to this <see cref="SpecialPoint"/>.
+        /// Determines whether the given <see cref="object"/> is equal to this <see cref="ExitPoint"/>.
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is SpecialPoint point && Equals(point);
+            => obj is ExitPoint point && Position == point.Position;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="SpecialPoint"/>
@@ -54,9 +60,8 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         /// <param name="in_point1">The first <see cref="SpecialPoint"/> to compare.</param>
         /// <param name="in_point2">The second <see cref="SpecialPoint"/> to compare.</param>
         /// <returns><c>true</c> if <c>in_point1</c> and <c>in_point2</c> are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(SpecialPoint in_point1, SpecialPoint in_point2)
-            => (in_point1 is null && in_point2 is null)
-            || (!(in_point1 is null) && !(in_point2 is null) && in_point1.Position == in_point2.Position);
+        public static bool operator ==(ExitPoint in_point1, ExitPoint in_point2)
+            => in_point1.Position == in_point2.Position;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="SpecialPoint"/>
@@ -67,10 +72,8 @@ namespace ParquetClassLibrary.Map.SpecialPoints
         /// <returns>
         /// <c>true</c> if <c>in_point1</c> and <c>in_point2</c> are not equal; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator !=(SpecialPoint in_point1, SpecialPoint in_point2)
-            => (!(in_point1 is null) && !(in_point2 is null) && in_point1.Position != in_point2.Position)
-            || (!(in_point1 is null) && in_point2 is null)
-            || (in_point1 is null && !(in_point2 is null));
+        public static bool operator !=(ExitPoint in_point1, ExitPoint in_point2)
+            => in_point1.Position != in_point2.Position;
         #endregion
     }
 }

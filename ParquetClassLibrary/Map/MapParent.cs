@@ -1,8 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Map.SpecialPoints;
-using System;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Map
@@ -32,7 +31,7 @@ namespace ParquetClassLibrary.Map
 
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-        protected List<SpecialPoint> SpecialPoints { get; } = new List<SpecialPoint>();
+        protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
         protected abstract ParquetStatus2DCollection ParquetStatus { get; }
@@ -121,13 +120,13 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if the point was set, <c>false</c> otherwise.</returns>
         public bool TrySetExitPoint(ExitPoint in_point)
         {
-            var result = false;
+            var result = true;
 
-            if (TryRemoveExitPoint(in_point))
+            if (ExitPoints.Contains(in_point))
             {
-                SpecialPoints.Add(in_point);
-                result = true;
+                result = TryRemoveExitPoint(in_point);
             }
+            ExitPoints.Add(in_point);
 
             return result;
         }
@@ -136,60 +135,10 @@ namespace ParquetClassLibrary.Map
         /// Attempts to remove the given exit point.
         /// </summary>
         /// <param name="in_point">The point to remove.</param>
-        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the point was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveExitPoint(ExitPoint in_point)
-            => TryRemoveSpecialPoint(in_point);
-
-        /// <summary>
-        /// Attempts to assign the given spawn point.
-        /// If a spawn point already exists at this location, it is replaced.
-        /// </summary>
-        /// <param name="in_point">The point to set.</param>
-        /// <returns><c>true</c>, if the point was set, <c>false</c> otherwise.</returns>
-        public bool TrySetSpawnPoint(SpawnPoint in_point)
-        {
-            var result = false;
-
-            if (TryRemoveSpawnPoint(in_point))
-            {
-                SpecialPoints.Add(in_point);
-                result = true;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Attempts to remove a spawn point at the given location.
-        /// </summary>
-        /// <param name="in_point">The location of the spawn point to remove.</param>
-        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
-        public bool TryRemoveSpawnPoint(SpawnPoint in_point)
-            => TryRemoveSpecialPoint(in_point);
-
-        /// <summary>
-        /// Attempts to remove a special point at the given location.
-        /// </summary>
-        /// <param name="in_point">The location of the special point to remove.</param>
-        /// <returns><c>true</c>, if the point was not found or if it was found and removed, <c>false</c> otherwise.</returns>
-        private bool TryRemoveSpecialPoint(SpecialPoint in_point)
-        {
-            var result = false;
-
-            if (null != in_point
-                && ParquetDefintion.IsValidPosition(in_point.Position))
-            {
-                // TODO I think this is broken because the List<SpecialPoints> regards all subclasses of special points as equivalent.
-                // TODO Further, I believe spawn points are not even needed.  Consider removing those.
-
-                // Return true if the point was removed or if the point never existed.
-                result = SpecialPoints.Remove(in_point) ||
-                         !SpecialPoints.Exists(in_foundPoint =>
-                             in_foundPoint.GetType() == in_point.GetType() && in_foundPoint == in_point);
-            }
-
-            return result;
-        }
+            => ParquetDefintion.IsValidPosition(in_point.Position)
+            && ExitPoints.Remove(in_point);
         #endregion
 
         #region State Query Methods
@@ -250,12 +199,12 @@ namespace ParquetClassLibrary.Map
         }
 
         /// <summary>
-        /// Gets all special data at the given position, if any.
+        /// Gets any <see cref="ExitPoint"/>s at the given position, if any.
         /// </summary>
         /// <param name="in_position">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
-        public List<SpecialPoint> GetSpecialPointsAtPosition(Vector2D in_position)
-            => SpecialPoints.FindAll(in_point => in_point.Position.Equals(in_position));
+        public List<ExitPoint> GetExitsAtPosition(Vector2D in_position)
+            => ExitPoints.FindAll(in_point => in_point.Position.Equals(in_position));
         #endregion
 
         #region Serialization Methods
@@ -330,7 +279,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {SpecialPoints.Count} special points.";
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {ExitPoints.Count} special points.";
         #endregion
     }
 }

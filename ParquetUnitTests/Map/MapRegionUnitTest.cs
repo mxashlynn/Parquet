@@ -3,7 +3,6 @@ using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Map;
-using ParquetClassLibrary.Map.SpecialPoints;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -143,73 +142,6 @@ namespace ParquetUnitTests.Map
 
         #region Special Location Methods
         [Fact]
-        public void TrySetSpawnPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = region.TrySetSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TrySetSpawnPointSucceedsOnValidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = region.TrySetSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-            region.TrySetSpawnPoint(point);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetExitPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new ExitPoint(invalidPosition, new Guid());
-
-            var result = region.TrySetExitPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var region = new MapRegion();
@@ -232,14 +164,14 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
+        public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
             var region = new MapRegion();
             var point = new ExitPoint(Vector2D.Zero, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
 
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -255,11 +187,11 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void GetSpecialDataReturnsNullsOnInvalidPositionTest()
+        public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
             var region = new MapRegion();
 
-            var specialData = region.GetSpecialPointsAtPosition(invalidPosition);
+            var specialData = region.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }

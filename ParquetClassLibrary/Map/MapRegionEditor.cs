@@ -145,7 +145,7 @@ namespace ParquetClassLibrary.Map
             {
                 DisplayPositionInfo?.Invoke(this,
                         new PositionInfoEventArgs(_currentRegion.GetDefinitionAtPosition(in_position),
-                                                  _currentRegion.GetSpecialPointsAtPosition(in_position)));
+                                                  _currentRegion.GetExitsAtPosition(in_position)));
             }
         }
 
