@@ -128,7 +128,6 @@ namespace ParquetClassLibrary.Map
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(this, Formatting.None);
-        // TODO Should this class track revisions?
 
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.

@@ -76,19 +76,18 @@ namespace ParquetClassLibrary.Parquets
         /// 2, It has a <see cref="Furnishing"/> that is <see cref="Furnishing.IsEntry"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
-        // TODO Is XOR (^) correct here?  Should it not be a logical OR (||) ?
         internal bool IsEntry
             => All.Parquets.Get<Furnishing>(Furnishing)?.IsEntry ?? false
-            && (IsWalkable ^ IsEnclosing);
+            // Inequality standing in for missing conditional XOR here.
+            && (IsWalkable != IsEnclosing);
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is considered walkable iff:
         /// 1, It has a <see cref="Floor"/>;
         /// 2, It does not have a <see cref="Block"/>;
-        /// 3, It does not have a <see cref="Furnishing"/> that is not <see cref="Furnishing.IsEnclosing"/>.
+        /// 3, It does not have a <see cref="Furnishing"/> that <see cref="Furnishing.IsEnclosing"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Walkable, <c>false</c> otherwise.</returns>
-        // TODO Is the usage of ?? correct here?
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None

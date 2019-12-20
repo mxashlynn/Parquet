@@ -163,41 +163,6 @@ namespace ParquetClassLibrary.Map
                 : throw new ArgumentOutOfRangeException(nameof(in_position));
 
         /// <summary>
-        /// Gets all the parquet definitions in the entire map.
-        /// </summary>
-        /// <returns>A collection of parquets.</returns>
-        // TODO This should probably be rethought.
-        public IEnumerable<EntityID> GetAllParquets()
-        {
-            var result = new List<EntityID>();
-
-            for (var y = 0; y < DimensionsInParquets.Y; y++)
-            {
-                for (var x = 0; x < DimensionsInParquets.X; x++)
-                {
-                    if (EntityID.None != ParquetDefintion[y, x].Floor)
-                    {
-                        result.Add(ParquetDefintion[y, x].Floor);
-                    }
-                    if (EntityID.None != ParquetDefintion[y, x].Block)
-                    {
-                        result.Add(ParquetDefintion[y, x].Floor);
-                    }
-                    if (EntityID.None != ParquetDefintion[y, x].Furnishing)
-                    {
-                        result.Add(ParquetDefintion[y, x].Floor);
-                    }
-                    if (EntityID.None != ParquetDefintion[y, x].Collectible)
-                    {
-                        result.Add(ParquetDefintion[y, x].Floor);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Gets any <see cref="ExitPoint"/>s at the given position, if any.
         /// </summary>
         /// <param name="in_position">The position whose data is sought.</param>

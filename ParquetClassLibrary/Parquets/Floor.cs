@@ -12,7 +12,6 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
-        // TODO This should likely also be set from some kind of CSV or resource file or something.
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>

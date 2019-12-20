@@ -157,14 +157,12 @@ namespace ParquetClassLibrary.Parquets
             // TODO Re-test this once we have answered the TODO logic/operator questions in ParquetStack.
             if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
                 && Content.IsEnclosing
-                && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1)))
-            {
-                if (Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
-                                                          && neighbor2.Content.IsWalkable))
+                && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1))
+                && Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
+                                                         && neighbor2.Content.IsWalkable))
                 {
                     result = true;
                 }
-            }
 
             return result;
         }

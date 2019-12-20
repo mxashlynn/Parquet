@@ -9,9 +9,6 @@ namespace ParquetClassLibrary.Map
     /// <summary>
     /// Models details of a playable chunk in sandbox-mode.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
-    // TODO Is the statement below true?  If so, it is confusing.  What then is a ChunkType used for?
-    // Probably we just need to rename things a bit.
-    /// MapChunks are handmade (as opposed to procedurally generated) components of <see cref="MapRegion"/>s.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public sealed class MapChunk : MapParent

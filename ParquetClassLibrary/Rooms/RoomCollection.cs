@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Rooms
             MapSpaceCollection perimeter = MapSpaceCollection.Empty;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
-                        .Where(walkableArea => walkableArea.Any(space => space.IsWalkableEntry
+                        .Where(walkableArea => walkableArea.Any(space => space.IsWalkableEntry // BUG This test is insufficient, see results of Unit Test DoorUsedAsStepMapYieldsNoRoomsTest
                                                                       || space.Neighbors(in_subregion).Any(neighbor => neighbor.IsEnclosingEntry(in_subregion, walkableArea))))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
