@@ -171,7 +171,7 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(Vector2D in_position)
+        public bool IsValidPosition(Vector2D in_position)
             => _chunkTypes.IsValidPosition(in_position);
 
         /// <summary>

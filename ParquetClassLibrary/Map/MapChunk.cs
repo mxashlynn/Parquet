@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Map
 
         #region Chunk Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus2DCollection ParquetStatus { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerChunk);
+        protected override ParquetStatus2DCollection ParquetStatuses { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerChunk);
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerChunk);

@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Map
         protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatus2DCollection ParquetStatus { get; }
+        protected abstract ParquetStatus2DCollection ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
@@ -148,9 +148,8 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position whose status is sought.</param>
         /// <returns>The status of parquets at the given position.</returns>
         public ParquetStatus GetStatusAtPosition(Vector2D in_position)
-            // TODO Make this an extension of ParquetStatus[,] -- also, change the name of this class variable so it doesn't repeat the name of the type!
-            => ParquetDefintion.IsValidPosition(in_position)
-                ? ParquetStatus[in_position.Y, in_position.X]
+            => ParquetStatuses.IsValidPosition(in_position)
+                ? ParquetStatuses[in_position.Y, in_position.X]
                 : throw new ArgumentOutOfRangeException(nameof(in_position));
 
         /// <summary>

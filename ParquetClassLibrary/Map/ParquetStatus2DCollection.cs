@@ -36,10 +36,7 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D in_position)
-            => in_position.X > -1
-            && in_position.Y > -1
-            && in_position.X < ParquetStatuses.GetLength(1)
-            && in_position.Y < ParquetStatuses.GetLength(0);
+            => ParquetStatuses.IsValidPosition(in_position);
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ParquetStatus this[int y, int x]
