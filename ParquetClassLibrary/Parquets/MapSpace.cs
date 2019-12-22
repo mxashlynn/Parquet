@@ -154,7 +154,6 @@ namespace ParquetClassLibrary.Parquets
             // NOTE This logic fails when evaluated as a single if-statement, incorrectly reporting
             // that a neighbor2 exists that is not a part of in_walkableArea.  I have not yet
             // tracked down the cause of this failure.
-            // TODO Re-test this once we have answered the TODO logic/operator questions in ParquetStack.
             if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
                 && Content.IsEnclosing
                 && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1))

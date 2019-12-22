@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Quests
 {

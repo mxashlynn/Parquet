@@ -120,7 +120,10 @@ namespace ParquetClassLibrary.Parquets
 
             // Only continue if perimeter is within the subregion.
             // TODO Why do we not need to check max values here as well?
-            if (leastXValue > 0 && leastYValue > 0)
+            if (leastXValue > 0
+                && leastYValue > 0
+                && greatestXValue < in_subregion.GetLength(1)
+                && greatestYValue < in_subregion.GetLength(0))
             {
                 #region Find Positions of Walkable Extrema
                 var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
@@ -262,9 +265,6 @@ namespace ParquetClassLibrary.Parquets
                                      Predicate<MapSpace> in_isApplicable, Predicate<MapSpace> in_isGoal)
         {
             Precondition.IsNotNullOrEmpty(Spaces);
-
-            // TODO Either goalFound should be outside with the other results, or all three results should be returned as part of the method.
-            // It's confusing otherwise.
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 
@@ -272,9 +272,10 @@ namespace ParquetClassLibrary.Parquets
 
             /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
             /// <param name="in_space">The <see cref="MapSpace"/> under consideration this stack frame.</param>
+            /// <returns><c>true</c> is the goal was found, <c>false</c> otherwise.</returns>
             bool DepthFirstSearch(MapSpace in_space)
             {
-                bool goalFound = false;
+                var goalFound = false;
 
                 if (in_isApplicable(in_space))
                 {
