@@ -6,7 +6,6 @@ namespace ParquetClassLibrary.Quests
     /// <summary>
     /// Models a quest that an <see cref="Characters.NPC"/> may give to a <see cref="Characters.PlayerCharacter"/> embodies.
     /// </summary>
-    // TODO This class is a place holder for a later implementation.
     public class Quest : Entity
     {
         #region Characteristics

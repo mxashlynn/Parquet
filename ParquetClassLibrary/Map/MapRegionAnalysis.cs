@@ -196,7 +196,7 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool HasBuildings(this MapRegion in_region)
         {
-            // TODO Implement this!
+            // Implement this!
             return false;
         }
         #endregion

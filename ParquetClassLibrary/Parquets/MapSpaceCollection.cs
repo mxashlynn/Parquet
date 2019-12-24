@@ -119,7 +119,6 @@ namespace ParquetClassLibrary.Parquets
             #endregion
 
             // Only continue if perimeter is within the subregion.
-            // TODO Why do we not need to check max values here as well?
             if (leastXValue > 0
                 && leastYValue > 0
                 && greatestXValue < in_subregion.GetLength(1)
