@@ -1,8 +1,7 @@
+using System;
 using CsvHelper.Configuration;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetCSVImporter.ClassMaps
 {
@@ -50,7 +49,7 @@ namespace ParquetCSVImporter.ClassMaps
             }
             else
             {
-                LibraryError.Handle($"No class map exists for {typeof(T)}");
+                Console.WriteLine($"No class map exists for {typeof(T)}");
             }
         }
     }

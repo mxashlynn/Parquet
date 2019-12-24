@@ -1,9 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using CsvHelper;
-using ParquetClassLibrary;
-//using ParquetClassLibrary.Characters;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Utilities;
 using ParquetCSVImporter.Shims;
 
 namespace ParquetCSVImporter.ClassMaps
@@ -55,8 +54,8 @@ namespace ParquetCSVImporter.ClassMaps
             }
             else
             {
-                shims = new List<ParquetParentShim>();
-                LibraryError.Handle($"No shim exists for {typeof(T)}");
+                shims = Enumerable.Empty<ParquetParentShim>();
+                Console.WriteLine($"No shim exists for {typeof(T)}");
             }
 
             foreach (var shim in shims)
