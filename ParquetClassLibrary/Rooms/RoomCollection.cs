@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(in_subregion, nameof(in_subregion));
 
             var walkableAreas = in_subregion.GetWalkableAreas();
-            // TODO Double check that correct perimeters are being attached to walkable areas.
+
             MapSpaceCollection perimeter = MapSpaceCollection.Empty;
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter))
