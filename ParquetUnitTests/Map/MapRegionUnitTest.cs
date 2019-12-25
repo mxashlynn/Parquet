@@ -13,7 +13,7 @@ namespace ParquetUnitTests.Map
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
-        private const string testTitle = "New Region";
+        private const string testTitle = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly Guid testID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
@@ -47,6 +47,25 @@ namespace ParquetUnitTests.Map
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
             Assert.Equal(testID, customRegion.RegionID);
+        }
+        #endregion
+
+        #region Whole Region Characteristics Editing
+        [Fact]
+        public void MapRegionMayBeEditedTest()
+        {
+            var customRegion = new MapRegion();
+            IMapRegionEdit editableRegion = customRegion;
+
+            editableRegion.Title = testTitle;
+            editableRegion.Background = testColor;
+            editableRegion.ElevationLocal = testStory;
+            editableRegion.ElevationGlobal = testElevation;
+
+            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testStory, customRegion.ElevationLocal);
+            Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
         #endregion
 
@@ -199,7 +218,7 @@ namespace ParquetUnitTests.Map
 
         #region State Query Methods
         [Fact]
-        public void GetDefinitionReturnsNoneOnInvalidPositionTest()
+        public void GetDefinitionReturnsThrowsOnInvalidPositionTest()
         {
             var chunk = new MapRegion().FillTestPattern();
 
