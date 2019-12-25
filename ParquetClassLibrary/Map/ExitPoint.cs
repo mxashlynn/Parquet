@@ -35,7 +35,6 @@ namespace ParquetClassLibrary.Map
         public override int GetHashCode()
             => Position.GetHashCode();
 
-#pragma warning disable CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
         /// <summary>
         /// Determines whether the specified <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>.
         /// </summary>
@@ -43,7 +42,6 @@ namespace ParquetClassLibrary.Map
         /// <returns><c>true</c> if the given <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(ExitPoint in_point)
             => null != in_point && Position == in_point.Position;
-#pragma warning restore CS8625 // NOTE Here to help Roslyn Analyzers and Nullable Reference Types get along.  Remove when one or the other is removed.
 
         /// <summary>
         /// Determines whether the given <see cref="object"/> is equal to this <see cref="ExitPoint"/>.

@@ -121,7 +121,7 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(EntityID in_id)
         {
-            // TODO: It might make sense to remove this check after debugging.
+            // TODO Remove this test after debugging.
             Precondition.IsInRange(in_id, Bounds, nameof(in_id));
 
             return Entities.ContainsKey(in_id);
