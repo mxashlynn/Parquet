@@ -208,7 +208,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{Position}{Content}]";
+            => $"{Position}{Content}";
         #endregion
     }
 }

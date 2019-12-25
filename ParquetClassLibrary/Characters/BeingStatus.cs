@@ -25,14 +25,14 @@ namespace ParquetClassLibrary.Characters
         #endregion
 
         #region Stats
-        /// <summary>The <see cref="Location"/> the tracked <see cref="Being"/> occupies.</summary>
+        /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="Being"/> occupies.</summary>
         [JsonProperty(PropertyName = "in_position")]
-        public Location Position { get; set; }
+        public BeingLocation Position { get; set; }
 
-        /// <summary>The <see cref="Location"/> the tracked <see cref="Being"/> will next spawn at.</summary>
+        /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="Being"/> will next spawn at.</summary>
         /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
         [JsonProperty(PropertyName = "in_spawnAt")]
-        public Location SpawnAt { get; set; }
+        public BeingLocation SpawnAt { get; set; }
 
         /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
         [JsonProperty(PropertyName = "in_currentBehavior")]
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Characters
         [JsonProperty(PropertyName = "in_gatheringSpeed")]
         public float GatheringSpeed { get; set; }
 
-        /// <summary>The time it takes the tracked <see cref="Being"/> to walk from one <see cref="Location"/> to another.</summary>
+        /// <summary>The time it takes the tracked <see cref="Being"/> to walk from one <see cref="BeingLocation"/> to another.</summary>
         [JsonProperty(PropertyName = "in_movementSpeed")]
         public float MovementSpeed { get; set; }
         #endregion
@@ -95,14 +95,14 @@ namespace ParquetClassLibrary.Characters
         /// Initializes a new instance of the <see cref="BeingStatus"/> class.
         /// </summary>
         /// <param name="in_beingDefinition">The <see cref="Being"/> whose status is being tracked.</param>
-        /// <param name="in_position">The <see cref="Location"/> the tracked <see cref="Being"/> occupies.</param>
-        /// <param name="in_spawnAt">The <see cref="Location"/> the tracked <see cref="Being"/> will next spawn at.</param>
+        /// <param name="in_position">The <see cref="BeingLocation"/> the tracked <see cref="Being"/> occupies.</param>
+        /// <param name="in_spawnAt">The <see cref="BeingLocation"/> the tracked <see cref="Being"/> will next spawn at.</param>
         /// <param name="in_currentBehavior">The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</param>
         /// <param name="in_biomeTimeRemaining"></param>
         /// <param name="in_buildingSpeed">The time it takes the tracked <see cref="Being"/> to place new parquets.</param>
         /// <param name="in_modificationSpeed">The time it takes the tracked <see cref="Being"/> to modify existing parquets.</param>
         /// <param name="in_gatheringSpeed">The time it takes the tracked <see cref="Being"/> to gather existing parquets.</param>
-        /// <param name="in_movementSpeed">The time it takes the tracked <see cref="Being"/> to walk from one <see cref="Location"/> to another.</param>
+        /// <param name="in_movementSpeed">The time it takes the tracked <see cref="Being"/> to walk from one <see cref="BeingLocation"/> to another.</param>
         /// <param name="in_knownCritters">The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</param>
         /// <param name="in_knownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
         /// <param name="in_knownParquets">The parquets that this <see cref="Character"/> has encountered.</param>
@@ -112,7 +112,7 @@ namespace ParquetClassLibrary.Characters
         /// <param name="in_inventory">This <see cref="Character"/>'s set of belongings.</param>
         [JsonConstructor]
         public BeingStatus(Being in_beingDefinition, Behavior in_currentBehavior,
-                           Location in_position, Location in_spawnAt,
+                           BeingLocation in_position, BeingLocation in_spawnAt,
                            int in_biomeTimeRemaining,
                            float in_buildingSpeed, float in_modificationSpeed,
                            float in_gatheringSpeed, float in_movementSpeed,
