@@ -3,8 +3,6 @@ using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Map;
-using ParquetClassLibrary.Map.SpecialPoints;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -15,7 +13,7 @@ namespace ParquetUnitTests.Map
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
-        private const string testTitle = "New Region";
+        private const string testTitle = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly Guid testID = Guid.Parse("2F06E2CB-72D7-437F-ABA8-0D360AEDEA98");
@@ -49,6 +47,25 @@ namespace ParquetUnitTests.Map
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
             Assert.Equal(testID, customRegion.RegionID);
+        }
+        #endregion
+
+        #region Whole Region Characteristics Editing
+        [Fact]
+        public void MapRegionMayBeEditedTest()
+        {
+            var customRegion = new MapRegion();
+            IMapRegionEdit editableRegion = customRegion;
+
+            editableRegion.Title = testTitle;
+            editableRegion.Background = testColor;
+            editableRegion.ElevationLocal = testStory;
+            editableRegion.ElevationGlobal = testElevation;
+
+            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testStory, customRegion.ElevationLocal);
+            Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
         #endregion
 
@@ -144,73 +161,6 @@ namespace ParquetUnitTests.Map
 
         #region Special Location Methods
         [Fact]
-        public void TrySetSpawnPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = region.TrySetSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TrySetSpawnPointSucceedsOnValidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = region.TrySetSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
-        {
-            var region = new MapRegion();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-            region.TrySetSpawnPoint(point);
-
-            var result = region.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetExitPointFailsOnInvalidPositionTest()
-        {
-            var region = new MapRegion();
-            var point = new ExitPoint(invalidPosition, new Guid());
-
-            var result = region.TrySetExitPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var region = new MapRegion();
@@ -233,14 +183,14 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
+        public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
             var region = new MapRegion();
             var point = new ExitPoint(Vector2D.Zero, new Guid());
 
             var result = region.TryRemoveExitPoint(point);
 
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -256,11 +206,11 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void GetSpecialDataReturnsNullsOnInvalidPositionTest()
+        public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
             var region = new MapRegion();
 
-            var specialData = region.GetSpecialPointsAtPosition(invalidPosition);
+            var specialData = region.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }
@@ -268,7 +218,7 @@ namespace ParquetUnitTests.Map
 
         #region State Query Methods
         [Fact]
-        public void GetDefinitionReturnsNoneOnInvalidPositionTest()
+        public void GetDefinitionReturnsThrowsOnInvalidPositionTest()
         {
             var chunk = new MapRegion().FillTestPattern();
 

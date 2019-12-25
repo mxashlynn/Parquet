@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Map
     /// A playable region in sandbox-mode.
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public sealed class MapRegion : MapParent
+    public sealed class MapRegion : MapParent, IMapRegionEdit
     {
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapRegion Empty = new MapRegion(false);
@@ -35,25 +35,26 @@ namespace ParquetClassLibrary.Map
         /// <summary>The region identifier, used when referencing unloaded regions.</summary>
         public Guid RegionID { get; }
 
-        // TODO The setters bellow are here to facilitate region editing, but they shouldn't be changed in-game.
-        // Is there a better way to handle this?
-
         /// <summary>What the region is called in-game.</summary>
-        public string Title { get; set; }
+        public string Title { get; private set; }
+        string IMapRegionEdit.Title { get => Title; set => Title = value; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public PCLColor Background { get; set; }
+        public PCLColor Background { get; private set; }
+        PCLColor IMapRegionEdit.Background { get => Background; set => Background = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        public Elevation ElevationLocal { get; set; }
+        public Elevation ElevationLocal { get; private set; }
+        Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        public int ElevationGlobal { get; set; }
+        public int ElevationGlobal { get; private set; }
+        int IMapRegionEdit.ElevationGlobal { get => ElevationGlobal; set => ElevationGlobal = value; }
         #endregion
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus2DCollection ParquetStatus { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStatus2DCollection ParquetStatuses { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>Floors and walkable terrain in the region.</summary>
         protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerRegion);
@@ -127,7 +128,7 @@ namespace ParquetClassLibrary.Map
             }
             catch (JsonReaderException exception)
             {
-                LibraryError.Handle($"Error reading string while deserializing a MapRegion: {exception}");
+                throw new JsonReaderException($"Error reading string while deserializing a MapRegion: {exception}");
             }
 
             return result;

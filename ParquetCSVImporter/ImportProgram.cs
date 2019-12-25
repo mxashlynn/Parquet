@@ -66,8 +66,8 @@ namespace ParquetCSVImporter
         {
             #region Deserialization from CSV
             Beings.Clear();
-            // Note: Player Characters are not designed in CSVs but at run-time in-game.
-            //Beings.UnionWith(GetRecordsForType<PlayerCharacter>() ?? Enumerable.Empty<PlayerCharacter>());
+            // NOTE Player Characters are not designed in CSVs but at run-time in-game.
+            Beings.UnionWith(Enumerable.Empty<PlayerCharacter>());
             //Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
             //Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
 
@@ -95,7 +95,6 @@ namespace ParquetCSVImporter
 
             #region Reserialize as JSON
             All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, Items);
-            // TODO -- do we want to do this per supercollection, or do we want to do it all in one giant glob?
             var recordsToJSON = All.Parquets.SerializeToString();
             var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))

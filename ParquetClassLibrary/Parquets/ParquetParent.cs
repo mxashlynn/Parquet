@@ -23,13 +23,12 @@ namespace ParquetClassLibrary.Parquets
         public EntityTag AddsToBiome { get; }
 
         /// <summary>
-        /// Describes the <see cref="Rooms.RoomRecipe"/>(s) that this parquet helps form.
+        /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
-        // TODO Is this the right way to handle this?
-        // I am guessing that the idea was to help create, for example, "wooden" or "golden" or even "rustic" or "fancy" rooms
-        // but, it seems that a parquet ought not to know anything about room recipes.
-        // Perhaps this comment merely needs to be rephrased.
+        /// <remarks>
+        /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
+        /// </remarks>
         [JsonProperty(PropertyName = "in_addsToRoom")]
         public EntityTag AddsToRoom { get; }
 

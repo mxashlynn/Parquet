@@ -1,9 +1,8 @@
-ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName,IsWalkable
--30000,1 Floor Test Parquet,Test,Test,-110000,None,None,None,dark hole,TRUE
-30000,grass,,,0,None,None,Shovel,dirty pit,TRUE
-30001,weeds,,,0,Swampy,None,Shovel,muddy pit,TRUE
-30002,sand,,,0,Deserted,None,Shovel,sandy pit,TRUE
-30003,snow,,,0,Frozen,None,Shovel,snowy pit,TRUE
-30004,stone floor,,,0,None,Stone,Hammer,stony trench,TRUE
-30005,red brick,,,0,None,Brick,Hammer,red brick channel,TRUE
-30006,spikes,,,0,None,None,Hammer,spike trap,FALSE
+ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
+-30000,1 Floor Test Parquet,Test,Test,-110000,None,None,None,dark hole
+30000,grass,,,0,None,None,Shovel,dirty pit
+30001,weeds,,,0,Swampy,None,Shovel,muddy pit
+30002,sand,,,0,Deserted,None,Shovel,sandy pit
+30003,snow,,,0,Frozen,None,Shovel,snowy pit
+30004,stone floor,,,0,None,Stone,Hammer,stony trench
+30005,red brick,,,0,None,Brick,Hammer,red brick channel

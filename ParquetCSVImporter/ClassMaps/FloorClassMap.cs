@@ -24,7 +24,6 @@ namespace ParquetCSVImporter.ClassMaps
 
             Map(m => m.ModTool).Index(7);
             Map(m => m.TrenchName).Index(8);
-            Map(m => m.IsWalkable).Index(9);
         }
     }
 }

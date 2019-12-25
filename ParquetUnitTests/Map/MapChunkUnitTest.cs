@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Map;
-using ParquetClassLibrary.Map.SpecialPoints;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
@@ -116,73 +115,6 @@ namespace ParquetUnitTests.Map
 
         #region Special Location Methods
         [Fact]
-        public void TrySetSpawnPointFailsOnInvalidPositionTest()
-        {
-            var chunk = new MapChunk();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = chunk.TrySetSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TrySetSpawnPointSucceedsOnValidPositionTest()
-        {
-            var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = chunk.TrySetSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointFailsOnInvalidPositionTest()
-        {
-            var chunk = new MapChunk();
-            var point = new SpawnPoint(invalidPosition, SpawnType.Player);
-
-            var result = chunk.TryRemoveSpawnPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointMissingTest()
-        {
-            var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-
-            var result = chunk.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TryRemoveSpawnPointSucceedsOnSpawnPointSetTest()
-        {
-            var chunk = new MapChunk();
-            var point = new SpawnPoint(Vector2D.Zero, SpawnType.Player);
-            chunk.TrySetSpawnPoint(point);
-
-            var result = chunk.TryRemoveSpawnPoint(point);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void TrySetExitPointFailsOnInvalidPositionTest()
-        {
-            var chunk = new MapChunk();
-            var point = new ExitPoint(invalidPosition, new Guid());
-
-            var result = chunk.TrySetExitPoint(point);
-
-            Assert.False(result);
-        }
-
-        [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var chunk = new MapChunk();
@@ -205,14 +137,14 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void TryRemoveExitPointSucceedsOnExitPointMissingTest()
+        public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
             var chunk = new MapChunk();
             var point = new ExitPoint(Vector2D.Zero, new Guid());
 
             var result = chunk.TryRemoveExitPoint(point);
 
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -228,11 +160,11 @@ namespace ParquetUnitTests.Map
         }
 
         [Fact]
-        public void GetSpecialDataReturnsNullsOnInvalidPositionTest()
+        public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
             var chunk = new MapChunk();
 
-            var specialData = chunk.GetSpecialPointsAtPosition(invalidPosition);
+            var specialData = chunk.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }

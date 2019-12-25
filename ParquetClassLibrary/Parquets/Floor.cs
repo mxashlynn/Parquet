@@ -12,12 +12,9 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
-        // TODO This should likely also be set from some kind of CSV or resource file or something.
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
-        // TODO Test if we can remove this ignore tag.
-        [JsonIgnore]
         public static Range<EntityID> Bounds => All.FloorIDs;
         #endregion
 
@@ -29,10 +26,6 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         [JsonProperty(PropertyName = "in_trenchName")]
         public string TrenchName { get; }
-
-        /// <summary>Whether or not the floor may be walked on.</summary>
-        [JsonProperty(PropertyName = "in_isWalkable")]
-        public bool IsWalkable { get; }
         #endregion
 
         #region Initialization
@@ -52,13 +45,12 @@ namespace ParquetClassLibrary.Parquets
         public Floor(EntityID in_id, string in_name, string in_description, string in_comment,
                      EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
                      EntityTag in_addsToRoom = null, ModificationTool in_modTool = ModificationTool.None,
-                     string in_trenchName = defaultTrenchName, bool in_isWalkable = true)
+                     string in_trenchName = defaultTrenchName)
             : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
                    in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
         {
             ModTool = in_modTool;
             TrenchName = in_trenchName;
-            IsWalkable = in_isWalkable;
         }
         #endregion
     }

@@ -17,11 +17,9 @@ namespace ParquetClassLibrary.Characters
         public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this <see cref="Being"/> avoids, if any.</summary>
-        // TODO These should probably be made a part of the behavior script?
         public IReadOnlyList<EntityID> Avoids { get; }
 
         /// <summary>Types of parquets this <see cref="Being"/> seeks out, if any.</summary>
-        // TODO These should probably be made a part of the behavior script?
         public IReadOnlyList<EntityID> Seeks { get; }
         #endregion
 

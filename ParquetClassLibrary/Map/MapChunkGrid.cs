@@ -95,7 +95,6 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_orientation">The orientation to set.</param>
         /// <param name="in_position">The position at which to set it.</param>
         /// <returns><c>true</c> if the position was valid, <c>false</c> otherwise.</returns>
-        // TODO Do we actually need this return value?
         public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2D in_position)
         {
             var valid = IsValidPosition(in_position);
@@ -129,7 +128,6 @@ namespace ParquetClassLibrary.Map
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(this, Formatting.None);
-        // TODO Should this class track revisions?
 
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.
@@ -159,7 +157,7 @@ namespace ParquetClassLibrary.Map
             }
             catch (JsonReaderException exception)
             {
-                LibraryError.Handle($"Error reading string while deserializing a MapChunkGrid: {exception}");
+                throw new JsonReaderException($"Error reading string while deserializing a MapChunkGrid: {exception}");
             }
 
             return result;
@@ -172,12 +170,8 @@ namespace ParquetClassLibrary.Map
         /// </summary>
         /// <param name="in_position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        // TODO Make this an extension to ChunkType[,].
-        public static bool IsValidPosition(Vector2D in_position)
-            => in_position.X > -1
-            && in_position.Y > -1
-            && in_position.X < DimensionsInChunks.X
-            && in_position.Y < DimensionsInChunks.Y;
+        public bool IsValidPosition(Vector2D in_position)
+            => _chunkTypes.IsValidPosition(in_position);
 
         /// <summary>
         /// Describes the <see cref="MapChunkGrid"/>'s basic information.

@@ -1,5 +1,5 @@
 using System;
-using ParquetClassLibrary.Map.SpecialPoints;
+using ParquetClassLibrary.Map;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 

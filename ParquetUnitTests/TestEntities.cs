@@ -50,7 +50,7 @@ namespace ParquetUnitTests
         /// <summary>Used in test patterns in QA routines.</summary>
         public static CraftingRecipe TestCraftingRecipe { get; }
 
-        // TODO Update this once Quests are implemented.  Also update type initializer.
+        // TODO Update this once Quests are implemented.
         /// <summary>Used in test patterns in QA routines.</summary>
         //public static Quest TestQuest { get; }
 
@@ -67,8 +67,13 @@ namespace ParquetUnitTests
         public static List<RoomRecipe> RoomRecipes { get; }
         #endregion
 
+        /// <summary>
+        /// Initializes unit test example entities.
+        /// Sets up <see cref="All"/> so that bounds can be checked in various constructors.
+        /// </summary>
         static TestEntities()
         {
+            #region Initialize Entities
             TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
@@ -89,16 +94,20 @@ namespace ParquetUnitTests
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
                                                                     Rules.Dimensions.PanelsPerPatternWidth]);
+            // TODO Update this once Quests are implemented.
             //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test");
             TestBiome = new Biome(-All.BiomeIDs.Minimum, "10 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);
             TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", "Test", "Test",
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
+            #endregion
 
-            // Sets up All so that bounds can be checked in various constructors.
+            #region Set up All bounds checking.
             Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
+            // TODO Replace these nulls once implementation is complete.
             All.InitializeCollections(null, Parquets, RoomRecipes, null, null, null, null);
+            #endregion
         }
     }
 }

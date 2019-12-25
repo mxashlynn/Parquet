@@ -147,27 +147,11 @@ namespace ParquetClassLibrary.Parquets
         /// <seealso cref="IsWalkableEntry"/>
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsEnclosingEntry(ParquetStack[,] in_subregion, MapSpaceCollection in_walkableArea)
-        
-        {
-            var result = false;
-
-            // NOTE This logic fails when evaluated as a single if-statement, incorrectly reporting
-            // that a neighbor2 exists that is not a part of in_walkableArea.  I have not yet
-            // tracked down the cause of this failure.
-            // TODO Re-test this once we have answered the TODO logic/operator questions in ParquetStack.
-            if (All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
-                && Content.IsEnclosing
-                && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1)))
-            {
-                if (Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
-                                                          && neighbor2.Content.IsWalkable))
-                {
-                    result = true;
-                }
-            }
-
-            return result;
-        }
+            => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
+            && Content.IsEnclosing
+            && Neighbors(in_subregion).Any(neighbor1 => in_walkableArea.Contains(neighbor1))
+            && Neighbors(in_subregion).Any(neighbor2 => !in_walkableArea.Contains(neighbor2)
+                                                     && neighbor2.Content.IsWalkable);
         #endregion
 
         #region IEquatable Implementation
