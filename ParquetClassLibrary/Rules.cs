@@ -1,3 +1,5 @@
+using ParquetClassLibrary.Utilities;
+
 namespace ParquetClassLibrary
 {
     /// <summary>
@@ -37,10 +39,24 @@ namespace ParquetClassLibrary
             Justification = "No adequate alternative in this instance.")]
         public static class Recipes
         {
-            // TODO Add class for crafting rules here.
+            /// <summary>
+            /// Provides crafting recipe requirements for the game.
+            /// </summary>
+            public static class Craft
+            {
+                /// <summary>
+                /// Number of ingredient categories per recipe.
+                /// </summary>
+                public static Range<int> IngredientCount { get; } = new Range<int>(1, 5);
+
+                /// <summary>
+                /// Number of product categories per recipe.
+                /// </summary>
+                public static Range<int> ProductCount { get; } = new Range<int>(1, 5);
+            }
 
             /// <summary>
-            /// Provides recipe requirements for the game.
+            /// Provides room recipe requirements for the game.
             /// </summary>
             public static class Room
             {

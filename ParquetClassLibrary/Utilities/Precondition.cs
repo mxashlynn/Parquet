@@ -15,6 +15,22 @@ namespace ParquetClassLibrary.Utilities
         #endregion
 
         /// <summary>
+        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{int}"/>.
+        /// </summary>
+        /// <param name="in_int">The integer to test.</param>
+        /// <param name="in_bounds">The range it must fall within.</param>
+        /// <param name="in_argumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the integer is not in range.</exception>
+        public static void IsInRange(int in_int, Range<int> in_bounds,
+                                     string in_argumentName = DefaultArgumentName)
+        {
+            if (!in_bounds.ContainsValue(in_int))
+            {
+                throw new ArgumentOutOfRangeException($"{in_argumentName}: {in_int} is not within {in_bounds}.");
+            }
+        }
+
+        /// <summary>
         /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{T}"/>.
         /// </summary>
         /// <param name="in_id">The identifier to test.</param>
