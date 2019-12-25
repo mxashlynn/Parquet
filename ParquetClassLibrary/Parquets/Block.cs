@@ -18,8 +18,6 @@ namespace ParquetClassLibrary.Parquets
         public const int DefaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
-        // TODO Test if we can remove this ignore tag.
-        [JsonIgnore]
         public static Range<EntityID> Bounds => All.BlockIDs;
         #endregion
 

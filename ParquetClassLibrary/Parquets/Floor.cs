@@ -15,8 +15,6 @@ namespace ParquetClassLibrary.Parquets
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
-        // TODO Test if we can remove this ignore tag.
-        [JsonIgnore]
         public static Range<EntityID> Bounds => All.FloorIDs;
         #endregion
 
