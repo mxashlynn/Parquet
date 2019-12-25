@@ -49,6 +49,6 @@ To work with this repository you will need:
 
 # Credits
 - Primary coding and design by Paige Ashlynn.
-- Special thanks for code help to Isabelle Gould and Ashley Hauck.
-- Special thanks for design help to Caidence Stone and Lillian Harris.
-- Special thanks for math help to Caidence Stone.
+- Special thanks for code help to [Mint Gould](https://github.com/WispyMouse), [Ashley Hauck](https://github.com/khyperia), and [Emma Maassen](https://github.com/Enichan).
+- Special thanks for design help to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), and Lillian Harris.
+- Special thanks for math help to [Caidence Stone](https://github.com/caidencestone).
