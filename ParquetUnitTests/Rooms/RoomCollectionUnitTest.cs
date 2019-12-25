@@ -16,7 +16,6 @@ namespace ParquetUnitTests.Rooms
         private static readonly ParquetStack TTile = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
         private static readonly ParquetStack TStep = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
         private static readonly ParquetStack TWell = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestLiquid.ID, EntityID.None, EntityID.None);
-        private static readonly ParquetStack FStep = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestLiquid.ID, TestEntities.TestFurnishing.ID, EntityID.None);
 
         #region Valid Subregions
         private static readonly ParquetStack[,] OneMinimalRoomMap =
@@ -368,19 +367,6 @@ namespace ParquetUnitTests.Rooms
             { TVoid, TWall, TWall, TWall, TWall, TVoid, TVoid, },
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
         };
-        // IDEA: If flooded entries become a problem, uncomment this test.
-        /*
-        private static readonly ParquetStack[,] FloodedStepMap =
-        {
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
-            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TWall, TWell, TWell, TTile, TWall, TVoid, },
-            { TVoid, TWall, TWell, FStep, TTile, TWall, TVoid, },
-            { TVoid, TWall, TTile, TTile, TTile, TWall, TVoid, },
-            { TVoid, TWall, TWall, TWall, TWall, TWall, TVoid, },
-            { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
-        };
-        */
         private static readonly ParquetStack[,] DisconectedEntryMap =
         {
             { TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, TVoid, },
@@ -763,17 +749,6 @@ namespace ParquetUnitTests.Rooms
 
             Assert.Empty(collection);
         }
-
-        // IDEA If flooded entries become a problem, uncomment this test.
-        /*
-        [Fact]
-        internal void FloodedStepYieldsNoRoomsTest()
-        {
-            var collection = RoomCollection.CreateFromSubregion(FloodedStepMap);
-
-            Assert.Equal(0, collection.Count);
-        }
-        */
 
         [Fact]
         internal void IncompletePerimeterYieldsNoRoomsTest()

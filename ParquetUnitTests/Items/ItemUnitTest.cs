@@ -11,7 +11,6 @@ namespace ParquetUnitTests
         /// <summary>Identifier used when creating a new block.</summary>
         private static readonly EntityID newItemID = TestEntities.TestItem.ID - 1;
 
-        // TODO: If Inventory provides a default for this, use it instead.
         /// <summary>A valid number of <see cref="Item"/>s to stack.</summary>
         private const int goodStackMax = 99;
         #endregion
@@ -60,23 +59,5 @@ namespace ParquetUnitTests
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeZero);
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegativeOne);
         }
-
-        /* TODO This check is a good idea but it's current implementation in Item.cs is improper.
-         * See note in that file for details.
-
-        [Fact]
-        public void RecipeForGivenItemMustProduceGivenItemTest()
-        {
-            var recipeForOtherItem = TestEntities.TestCraftingRecipe;
-
-            void TestCode()
-            {
-                var _ = new Item(newItemID, ItemType.Consumable, "will fail", "", "", 1, 1, goodStackMax, 0, 0,
-                                 TestEntities.TestBlock.ID, KeyItem.None, TestEntities.TestCraftingRecipe.ID);
-            }
-
-            Assert.Throws<ArgumentException>(TestCode);
-        }
-        */
     }
 }
