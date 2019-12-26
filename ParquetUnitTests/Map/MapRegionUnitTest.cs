@@ -3,6 +3,7 @@ using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Map;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -90,6 +91,7 @@ namespace ParquetUnitTests.Map
             var result = region.TrySetFloorDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
+            Assert.Equal(parquet, region.GetDefinitionAtPosition(Vector2D.Zero).Floor);
         }
 
         [Fact]
@@ -112,6 +114,7 @@ namespace ParquetUnitTests.Map
             var result = region.TrySetBlockDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
+            Assert.Equal(parquet, region.GetDefinitionAtPosition(Vector2D.Zero).Block);
         }
 
         [Fact]
@@ -134,6 +137,7 @@ namespace ParquetUnitTests.Map
             var result = region.TrySetFurnishingDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
+            Assert.Equal(parquet, region.GetDefinitionAtPosition(Vector2D.Zero).Furnishing);
         }
 
         [Fact]
@@ -156,6 +160,23 @@ namespace ParquetUnitTests.Map
             var result = region.TrySetCollectibleDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
+            Assert.Equal(parquet, region.GetDefinitionAtPosition(Vector2D.Zero).Collectible);
+        }
+
+        [Fact]
+        public void TrySetParquetDefinitionSucceedsWithMapSpaceTest()
+        {
+            var region = new MapRegion();
+            var stack = new ParquetStack(TestEntities.TestFloor.ID,
+                                         TestEntities.TestBlock.ID,
+                                         TestEntities.TestFurnishing.ID,
+                                         TestEntities.TestCollectible.ID);
+            var space = new MapSpace(Vector2D.Zero, stack);
+
+            var result = region.TrySetParquetDefinition(space);
+
+            Assert.True(result);
+            Assert.Equal(stack, region.GetDefinitionAtPosition(Vector2D.Zero));
         }
         #endregion
 

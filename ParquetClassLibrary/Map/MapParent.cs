@@ -86,6 +86,16 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
+        /// <param name="in_space">IDs and position to set.</param>
+        /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
+        public bool TrySetParquetDefinition(MapSpace in_space)
+            => TrySetParquetDefinition(in_space.Content.Floor, in_space.Content.Block,
+                                       in_space.Content.Furnishing, in_space.Content.Collectible,
+                                       new Vector2D(in_space.Position.X, in_space.Position.Y));
+
+        /// <summary>
+        /// Attempts to update the parquet at the given position in the given layer.
+        /// </summary>
         /// <param name="in_floorID">ID for the new floor to set.</param>
         /// <param name="in_blockID">ID for the new block to set.</param>
         /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
