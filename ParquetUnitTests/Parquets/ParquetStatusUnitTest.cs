@@ -1,3 +1,4 @@
+using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using Xunit;
 
@@ -6,15 +7,13 @@ namespace ParquetUnitTests.Parquets
     public class ParquetStatusUnitTest
     {
         #region Test Values
-        private static readonly ParquetStack ValidStack =
-            new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, TestEntities.TestFurnishing.ID,
-                             TestEntities.TestCollectible.ID);
+        private static readonly int TestMaxToughness = All.Parquets.Get<Block>(TestEntities.TestBlock.ID).MaxToughness;
         #endregion
 
         [Fact]
         public void ToughnessCannotBeSetBelowZeroTest()
         {
-            var testStatus = new ParquetStatus(ValidStack);
+            var testStatus = new ParquetStatus();
 
             testStatus.Toughness = int.MinValue;
 
@@ -24,13 +23,11 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
-            var testStatus = new ParquetStatus(ValidStack);
-
-            var priorToughness = testStatus.Toughness;
+            var testStatus = new ParquetStatus(false, TestMaxToughness, TestMaxToughness);
 
             testStatus.Toughness = int.MaxValue;
 
-            Assert.Equal(priorToughness, testStatus.Toughness);
+            Assert.Equal(TestMaxToughness, testStatus.Toughness);
         }
     }
 }

@@ -8,25 +8,22 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class ParquetStatus
     {
-        /// <summary>The parquets whose statuses this instance is tracking.</summary>
-        [JsonProperty(PropertyName = "in_thisStack")]
-        private readonly ParquetStack _thisStack;
+        /// <summary>The <see cref="Block"/>'s native toughness.</summary>
+        [JsonProperty(PropertyName = "in_maxToughness")]
+        private readonly int _maxToughness;
 
-        /// <summary>The block's current toughness.</summary>
+        /// <summary>The <see cref="Block"/>'s current toughness.</summary>
         [JsonIgnore]
         private int _toughness;
 
         /// <summary>
-        /// The block's current toughness, from <see cref="Block.LowestPossibleToughness"/>
-        /// to <see cref="Block.MaxToughness"/>.
+        /// The <see cref="Block"/>'s current toughness, from <see cref="Block.LowestPossibleToughness"/> to <see cref="Block.MaxToughness"/>.
         /// </summary>
         [JsonProperty(PropertyName = "in_toughness")]
         public int Toughness
         {
             get => _toughness;
-            set => _toughness =
-                value.Normalize(Block.LowestPossibleToughness,
-                                All.Parquets.Get<Block>(_thisStack.Block)?.MaxToughness ?? Block.DefaultMaxToughness);
+            set => _toughness = value.Normalize(Block.LowestPossibleToughness, _maxToughness);
         }
 
         /// <summary>If the floor has been dug out.</summary>
@@ -37,16 +34,15 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
         /// </summary>
-        /// <param name="in_thisStack">The parquets whose status this instance is tracking.</param>
         /// <param name="in_isTrench">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
         /// <param name="in_toughness">The toughness of the <see cref="Block"/> associated with this status.</param>
+        /// <param name="in_maxToughness">The native toughness of the <see cref="Block"/> associated with this status.</param>
         [JsonConstructor]
-        public ParquetStatus(ParquetStack in_thisStack, bool in_isTrench = false, int? in_toughness = null)
+        public ParquetStatus(bool in_isTrench = false, int? in_toughness = null, int in_maxToughness = Block.DefaultMaxToughness)
         {
-            _thisStack = in_thisStack;
             IsTrench = in_isTrench;
-            Toughness = in_toughness ?? All.Parquets.Get<Block>(in_thisStack.Block)?.MaxToughness 
-                                     ?? Block.DefaultMaxToughness;
+            Toughness = in_toughness ?? in_maxToughness;
+            _maxToughness = in_maxToughness;
         }
         #endregion
 
