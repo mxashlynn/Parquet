@@ -25,6 +25,7 @@ namespace ParquetClassLibrary
         /// <summary>The number of <see cref="Item"/>s.</summary>
         public int ElementAmount { get; }
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> struct.
         /// </summary>
@@ -37,6 +38,7 @@ namespace ParquetClassLibrary
             ElementTag = in_elementTag;
             ElementAmount = in_elementAmount;
         }
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>

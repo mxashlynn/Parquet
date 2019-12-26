@@ -27,7 +27,8 @@ namespace ParquetClassLibrary
     /// valid ranges for IDs and these are checked by library code.
     /// <see cref="ParquetClassLibrary.All"/>
     /// </remarks>
-    /// TODO: Include this explanation in the Wiki.
+    // TODO Include this explanation in the Wiki.
+    // TODO Should this be a readonly struct?
     public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
     {
         /// <summary>Indicates the lack of an <see cref="Entity"/>.</summary>

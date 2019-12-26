@@ -44,14 +44,10 @@ namespace ParquetClassLibrary
             /// </summary>
             public static class Craft
             {
-                /// <summary>
-                /// Number of ingredient categories per recipe.
-                /// </summary>
+                /// <summary>Number of ingredient categories per recipe.</summary>
                 public static Range<int> IngredientCount { get; } = new Range<int>(1, 5);
 
-                /// <summary>
-                /// Number of product categories per recipe.
-                /// </summary>
+                /// <summary>Number of product categories per recipe.</summary>
                 public static Range<int> ProductCount { get; } = new Range<int>(1, 5);
             }
 
@@ -60,19 +56,13 @@ namespace ParquetClassLibrary
             /// </summary>
             public static class Room
             {
-                /// <summary>
-                /// Minimum number of open walkable spaces needed for any room to register.
-                /// </summary>
+                /// <summary>Minimum number of open walkable spaces needed for any room to register.</summary>
                 public const int MinWalkableSpaces = 4;
 
-                /// <summary>
-                /// Maximum number of open walkable spaces needed for any room to register.
-                /// </summary>
+                /// <summary>Maximum number of open walkable spaces needed for any room to register.</summary>
                 public const int MaxWalkableSpaces = 121;
 
-                /// <summary>
-                /// Minimum number of enclosing spaces needed for any room to register.
-                /// </summary>
+                /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
                 public const int MinPerimeterSpaces = MinWalkableSpaces * 3;
             }
         }
