@@ -11,13 +11,17 @@ namespace ParquetClassLibrary
     /// <remarks>
     /// The intent is that definitional narrative and mechanical features
     /// of each game <see cref="Entity"/> be taggable.
+    /// 
     /// This means that more than one <see cref="EntityTag"/> can coexist
-    /// on a specific Entity within the same category.
+    /// on a specific Entity within the same entity category (parquets,
+    /// beings, etc.).
+    /// 
     /// This allows for flexible definition of Entities such that a loose
     /// category of entities may answer a particular functional need; e.g.,
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".
     /// </remarks>
-    // TODO Include this explanation in the Wiki.
+    /// <seealso cref="EntityID"/>
+    /// <seealso cref="All"/>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
         Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]

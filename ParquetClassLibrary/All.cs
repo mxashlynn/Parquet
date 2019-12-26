@@ -15,6 +15,13 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Provides content and identifiers for the game.
     /// </summary>
+    /// <remarks>
+    /// This is the source of truth about game objects whose definitions do not change during play.
+    ///
+    /// For more details, see remarks on <see cref="Entity"/>.
+    /// </remarks>
+    /// <seealso cref="EntityID"/>
+    /// <seealso cref="EntityCollection{T}"/>
     public static class All
     {
         #region EntityID Ranges

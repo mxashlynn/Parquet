@@ -13,11 +13,16 @@ namespace ParquetClassLibrary
     /// Provides bounds-checking and type-checking against <typeparamref name="TParentType"/>.
     /// </summary>
     /// <remarks>
-    /// All Collections of Entities implicitly contain the None Entity.
-    /// 
+    /// All <see cref="EntityCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
+    ///
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
+    ///
+    /// For more details, see remarks on <see cref="Entity"/>.
     /// </remarks>
+    /// <seealso cref="EntityID"/>
+    /// <seealso cref="EntityTag"/>
+    /// <seealso cref="All"/>
     public class EntityCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : Entity
     {
         /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
@@ -195,8 +200,12 @@ namespace ParquetClassLibrary
     /// Provides bounds-checking and type-checking against <see cref="Entity"/>.
     /// </summary>
     /// <remarks>
+    /// All <see cref="EntityCollection"/>s implicitly contain <see cref="EntityID.None"/>.
+    /// 
     /// This version supports collections that do not rely heavily on
     /// multiple incompatible subclasses of <see cref="Entity"/>.
+    ///
+    /// For more details, see remarks on <see cref="Entity"/>.
     /// </remarks>
     public class EntityCollection : EntityCollection<Entity>
     {

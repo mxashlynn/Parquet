@@ -11,24 +11,43 @@ namespace ParquetClassLibrary
     /// Uniquely identifies every <see cref="Entity"/>.
     /// </summary>
     /// <remarks>
-    /// Multiple identicle parquet IDs may be assigned to MapChunks
-    /// or MapRegions, and multiple duplicate item IDs may exist in
-    /// the Inventory.  These IDs provide a means for the library to
-    /// look up the game entity definition when other game elements
-    /// interact with it.
+    /// <see cref="EntityID"/>s provide a means for the library
+    /// to track and rapidly update large numbers of equivalent
+    /// game objects.
     /// 
-    /// To be clear: there are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
-    /// <see cref="Items.Item"/>, etc.), and each of these subtypes
+    /// For example, multiple identical parquet IDs may be assigned
+    /// to <see cref="Map.MapChunk"/>s or <see cref="Map.MapRegions"/>,
+    /// and multiple duplicate <see cref="Item"/> IDs may exist in
+    /// accross various <see cref="Characters.Character"/> inventories.
+    /// 
+    /// Using EntityID the library looks up the game object definitions
+    /// for each of these when other game elements interact with them,
+    /// without filling RAM with numerous duplicate Entities.
+    /// 
+    /// There are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
+    /// <see cref="Characters.Being"/>, etc.), and each of these subtypes
     /// has multiple definitions.  The definitions are purely data-driven,
-    /// read in from JSON or CSV files, and not type-checked by the compiler.
+    /// read in from CSV or other files, and not type-checked by the compiler.
     /// 
-    /// Although the compiler does not provide type-checking for
-    /// IDs, within the scope of their usage the library defines
-    /// valid ranges for IDs and these are checked by library code.
-    /// <see cref="ParquetClassLibrary.All"/>
+    /// Although the compiler does not provide type-checking for IDs,
+    /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
+    /// and these are checked by library code.
+    ///
+    /// A note on implementation as of January 1st, 2020.
+    /// 
+    /// EntityID is implemented as a mutable struct because, under the hood,
+    /// it is simply an Int32.  EntityID is designed to be implicitly
+    /// interoperable with and implcity castable to and from integer types.
+    /// 
+    /// Since the entire point of this ID system is to provide a way for the
+    /// library to rapidly track changes in large arrays of identical game
+    /// objects, it must be a light-weight mutable value type.  This is
+    /// analagous to the use case for C# 7 tuples, which are also light-weight
+    /// mutable value types.
+    /// 
+    /// If the implementation were ever to become more complex, EntityID
+    /// would need to become a class.
     /// </remarks>
-    // TODO Include this explanation in the Wiki.
-    // TODO Should this be a readonly struct?
     public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
     {
         /// <summary>Indicates the lack of an <see cref="Entity"/>.</summary>

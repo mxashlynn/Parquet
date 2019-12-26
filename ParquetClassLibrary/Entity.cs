@@ -11,20 +11,23 @@ namespace ParquetClassLibrary
     /// All <see cref="Entity"/>s are identified with an <see cref="EntityID"/>,
     /// and are considered equal if and only if their respective EntityIDs are equal.
     /// 
-    /// Entity is intended to model the parts of a game object that do not change from one
-    /// instance to another.  In this sense, it can be thought of as analagous to a <see langword="class"/>.
-    /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
-    /// within collections in other classes.  Their definitions are found by submitting their
-    /// EntityID to the appropriate <see cref="EntityCollection{T}"/>.  Many such collections
-    /// are contained in <see cref="All"/>.
+    /// Entity is intended to model the parts of a game object that do not change
+    /// from one instance to another.  In this sense, it can be thought of as
+    /// analogous to a C# <see langword="class"/>.
     /// 
-    /// If individual game objects must have mutable state then a separate wrapper class,
-    /// such as <see cref="Parquets.ParquetStatus"/>, models that state.
+    /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
+    /// within <see cref="EntityCollection{T}"/>s in other classes.  Like a class instance,
+    /// the Entity definition for a given EntityID is looked up from a singular definition,
+    /// in this case via <see cref="EntityCollection{T}.Get{T}(EntityID)"/>.
     ///
-    /// This class could be considered the fundamental class of the entire library.
+    /// Collections of the definitions used during play are contained in <see cref="All"/>.
+    /// 
+    /// If individual game objects must have mutable state then a separate partner class,
+    /// such as <see cref="Parquets.ParquetStatus"/> or <see cref="Characters.BeingStatus"/>,
+    /// models that state.
+    ///
+    /// Entity could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
-    /// <seealso cref="Parquets.ParquetStatus"/>
-    /// <seealso cref="Items.Item"/>
     public abstract class Entity : IEquatable<Entity>
     {
         /// <summary>Game-wide unique identifier.</summary>
