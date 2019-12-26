@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Map
     /// </summary>
     /// <remarks>
     /// Since only one Exit Point can exist in a given location, exit points are considered e</remarks>
-    public struct ExitPoint : IEquatable<ExitPoint>
+    public readonly struct ExitPoint : IEquatable<ExitPoint>
     {
         /// <summary>Location of this exit point.</summary>
         public Vector2D Position { get; }
