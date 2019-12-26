@@ -7,7 +7,7 @@ namespace ParquetUnitTests.Parquets
     public class ParquetStatusUnitTest
     {
         #region Test Values
-        private static readonly int TestMaxToughness = All.Parquets.Get<Block>(TestEntities.TestBlock.ID).MaxToughness;
+        private static readonly int TestMaxToughness = TestEntities.TestBlock.MaxToughness;
         #endregion
 
         [Fact]
