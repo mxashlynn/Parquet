@@ -17,7 +17,7 @@ namespace ParquetClassLibrary
     /// category of entities may answer a particular functional need; e.g.,
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".
     /// </remarks>
-    /// TODO: Include this explanation in the Wiki.
+    // TODO Include this explanation in the Wiki.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
         Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]
