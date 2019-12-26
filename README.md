@@ -48,7 +48,7 @@ To work with this repository you will need:
 - [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1 (Only if you want to use the CSV tools.)
 
 # Credits
-- Primary coding and design by Paige Ashlynn.
+- Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).
 - Special thanks for code help to [Mint Gould](https://github.com/WispyMouse), [Ashley Hauck](https://github.com/khyperia), and [Emma Maassen](https://github.com/Enichan).
 - Special thanks for design help to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), and Lillian Harris.
 - Special thanks for math help to [Caidence Stone](https://github.com/caidencestone).
