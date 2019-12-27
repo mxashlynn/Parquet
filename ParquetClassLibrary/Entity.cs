@@ -28,6 +28,7 @@ namespace ParquetClassLibrary
     ///
     /// Entity could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
+    /// <seealso cref="EntityTag"/>
     public abstract class Entity : IEquatable<Entity>
     {
         /// <summary>Game-wide unique identifier.</summary>
