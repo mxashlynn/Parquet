@@ -38,14 +38,45 @@ Parquet targets the following features:
 
     8) Data-driven design with all key game entities customizable from CSV files.
 
+# Solution Structure
+
+The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.
+
+- ParquetClassLibrary
+    - The library itself. The root namespace contains classes for working with generic [Entities](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects))
+    - Beings
+        - Classes for working with Being Entities, including players and NPCs.
+    - Biomes
+        - Classes for working with Biome Entities.
+    - Crafting
+        - Classes for working with Crafting Entities.
+    - Items
+        - Classes for working with Item Entities.
+    - Maps
+        - Classes for working with Map Entities.
+    - Parquets
+        - Classes for working with [Parquet Entities](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
+    - Quests
+        - Classes for working with Quest Entities.
+    - Rooms
+        - Classes for working with [Room Entities](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
+    - Utilities
+        - Helper classes.  Range, Vector2D, and Precondition are all very frequently used.
+- ParquetCSVTool
+    - A command line tool for working with CSV files containing game definitions.
+- ParquetRunner
+    - A simple app for use in library development.  If you are not developing the library itself, just ignore this.
+- ParquetUnitTests
+    - Unit tests for ParquetClassLibrary.
+
 # Requirements
 
 To work with this repository you will need:
 
-- [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.0
+- [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.1
 - [XUnit](https://github.com/xunit/xunit) >= 2.4
 - [JSON.Net](https://www.newtonsoft.com/) >= 12.0
-- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1 (Only if you want to use the CSV tools.)
+- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1
 
 # Credits
 - Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).
