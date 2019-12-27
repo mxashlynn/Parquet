@@ -42,31 +42,31 @@ Parquet targets the following features:
 
 The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.
 
-- ParquetClassLibrary
+- **ParquetClassLibrary**
     - The library itself. The root namespace contains classes for working with generic [Entities](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects))
-    - Beings
+    - **Beings**
         - Classes for working with Being Entities, including players and NPCs.
-    - Biomes
+    - **Biomes**
         - Classes for working with Biome Entities.
-    - Crafting
+    - **Crafting**
         - Classes for working with Crafting Entities.
-    - Items
+    - **Items**
         - Classes for working with Item Entities.
-    - Maps
+    - **Maps**
         - Classes for working with Map Entities.
-    - Parquets
+    - **Parquets**
         - Classes for working with [Parquet Entities](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
-    - Quests
+    - **Quests**
         - Classes for working with Quest Entities.
-    - Rooms
+    - **Rooms**
         - Classes for working with [Room Entities](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
-    - Utilities
+    - **Utilities**
         - Helper classes.  Range, Vector2D, and Precondition are all very frequently used.
-- ParquetCSVTool
+- **ParquetCSVTool**
     - A command line tool for working with CSV files containing game definitions.
-- ParquetRunner
+- **ParquetRunner**
     - A simple app for use in library development.  If you are not developing the library itself, just ignore this.
-- ParquetUnitTests
+- **ParquetUnitTests**
     - Unit tests for ParquetClassLibrary.
 
 # Requirements
