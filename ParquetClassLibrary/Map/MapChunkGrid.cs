@@ -42,13 +42,8 @@ namespace ParquetClassLibrary.Map
         #endregion
 
         #region Grid Contents
-        // TODO These are begging to be collapsed into a single struct, says I.
-        // !! Do this at the same time that we revise ChunkType !!
-        /// <summary>The type of chunks which make up the grid.</summary>
+        /// <summary>The types of chunks which make up the grid.</summary>
         private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
-
-        /// <summary>The orientation of the chunks which make up the grid.</summary>
-        private readonly ChunkOrientation[,] _chunkOrientations = new ChunkOrientation[DimensionsInChunks.Y, DimensionsInChunks.X];
         #endregion
 
         #region Initialization
@@ -92,21 +87,11 @@ namespace ParquetClassLibrary.Map
         /// Places the given chunk type at the given position and orients it.
         /// </summary>
         /// <param name="in_type">The new chunk type to set.</param>
-        /// <param name="in_orientation">The orientation to set.</param>
         /// <param name="in_position">The position at which to set it.</param>
-        /// <returns><c>true</c> if the position was valid, <c>false</c> otherwise.</returns>
-        public bool SetChunk(ChunkType in_type, ChunkOrientation in_orientation, Vector2D in_position)
-        {
-            var valid = IsValidPosition(in_position);
-
-            if (valid)
-            {
-                _chunkTypes[in_position.Y, in_position.X] = in_type;
-                _chunkOrientations[in_position.Y, in_position.X] = in_orientation;
-            }
-
-            return valid;
-        }
+        public void SetChunk(ChunkType in_type, Vector2D in_position)
+            => _chunkTypes[in_position.Y, in_position.X] = IsValidPosition(in_position)
+                ? in_type
+                : _chunkTypes[in_position.Y, in_position.X];
 
         /// <summary>
         /// Gets chunk type and orientation at the given position.
@@ -115,10 +100,10 @@ namespace ParquetClassLibrary.Map
         /// <returns>
         /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
         /// </returns>
-        public (ChunkType type, ChunkOrientation orientation) GetChunk(Vector2D in_position)
+        public ChunkType GetChunk(Vector2D in_position)
             => IsValidPosition(in_position)
-                ? (_chunkTypes[in_position.Y, in_position.X], _chunkOrientations[in_position.Y, in_position.X])
-                : (ChunkType.Empty, ChunkOrientation.None);
+                ? _chunkTypes[in_position.Y, in_position.X]
+                : ChunkType.Empty;
         #endregion
 
         #region Serialization Methods
