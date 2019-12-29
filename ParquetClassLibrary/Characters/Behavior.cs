@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// The way a <see cref="Being"/> acts.

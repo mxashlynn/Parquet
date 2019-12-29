@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Rooms
     public class Room : IEquatable<Room>
     {
         /// <summary>
-        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
         public MapSpaceCollection WalkableArea { get; }
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
         /// <param name="in_walkableArea">
-        /// The <see cref="MapSpace"/>s on which a <see cref="Characters.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.Being"/>
         /// may walk within this <see cref="Room"/>.
         /// </param>
         /// <param name="in_perimeter">

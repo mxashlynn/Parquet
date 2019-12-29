@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// Represents a specific position within a specific <see cref="MapRegion"/>.

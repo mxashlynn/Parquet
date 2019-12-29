@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Biomes
         public IReadOnlyList<EntityTag> ParquetCriteria { get; }
 
         /// <summary>
-        /// Describes the <see cref="Item"/>s a <see cref="Characters.PlayerCharacter"/> needs to
+        /// Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacter"/> needs to
         /// safely access this <see cref="Biome"/>.
         /// </summary>
         public IReadOnlyList<EntityTag> EntryRequirements { get; }

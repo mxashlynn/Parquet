@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// Models the definitions shared by in-game actors that take part in the narrative.

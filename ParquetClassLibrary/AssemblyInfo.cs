@@ -50,7 +50,7 @@ namespace ParquetClassLibrary
         public const string SupportedMapDataVersion = "0.1.0";
 
         /// <summary>
-        /// Describes the version of the serialized <see cref="Characters.PlayerCharacter"/>
+        /// Describes the version of the serialized <see cref="Beings.PlayerCharacter"/>
         /// data that the class library understands.
         /// </summary>
         /// <remarks>

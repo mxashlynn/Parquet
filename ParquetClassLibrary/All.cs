@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Characters;
+using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
@@ -26,25 +26,25 @@ namespace ParquetClassLibrary
     {
         #region EntityID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.PlayerCharacter"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacter"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
         public static readonly Range<EntityID> PlayerCharacterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.Critter"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.Critter"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
         public static readonly Range<EntityID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Characters.NPC"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.NPC"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
         public static readonly Range<EntityID> NpcIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Characters.Being"/>s.
+        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.Being"/>s.
         /// </summary>
         public static readonly List<Range<EntityID>> BeingIDs;
 

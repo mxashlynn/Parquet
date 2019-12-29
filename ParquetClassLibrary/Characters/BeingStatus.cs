@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     public class BeingStatus
     {

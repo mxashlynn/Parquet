@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Characters;
+using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;

@@ -4,7 +4,7 @@ using System.Linq;
 namespace ParquetClassLibrary.Quests
 {
     /// <summary>
-    /// Models a quest that an <see cref="Characters.NPC"/> may give to a <see cref="Characters.PlayerCharacter"/> embodies.
+    /// Models a quest that an <see cref="Beings.NPC"/> may give to a <see cref="Beings.PlayerCharacter"/> embodies.
     /// </summary>
     public class Quest : Entity
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// Models the definition for a non-player character, such as a shop keeper.

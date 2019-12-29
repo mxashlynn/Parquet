@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// Models the definition for a player character, the game object that represents the player during play.

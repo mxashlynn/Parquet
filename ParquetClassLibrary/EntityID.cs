@@ -18,14 +18,14 @@ namespace ParquetClassLibrary
     /// For example, multiple identical parquet IDs may be assigned
     /// to <see cref="Map.MapChunk"/>s or <see cref="Map.MapRegions"/>,
     /// and multiple duplicate <see cref="Item"/> IDs may exist in
-    /// accross various <see cref="Characters.Character"/> inventories.
+    /// accross various <see cref="Beings.Character"/> inventories.
     /// 
     /// Using EntityID the library looks up the game object definitions
     /// for each of these when other game elements interact with them,
     /// without filling RAM with numerous duplicate Entities.
     /// 
     /// There are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
-    /// <see cref="Characters.Being"/>, etc.), and each of these subtypes
+    /// <see cref="Beings.Being"/>, etc.), and each of these subtypes
     /// has multiple definitions.  The definitions are purely data-driven,
     /// read in from CSV or other files, and not type-checked by the compiler.
     /// 

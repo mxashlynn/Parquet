@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Characters
+namespace ParquetClassLibrary.Beings
 {
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.

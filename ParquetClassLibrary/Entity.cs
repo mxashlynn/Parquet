@@ -23,7 +23,7 @@ namespace ParquetClassLibrary
     /// Collections of the definitions used during play are contained in <see cref="All"/>.
     /// 
     /// If individual game objects must have mutable state then a separate partner class,
-    /// such as <see cref="Parquets.ParquetStatus"/> or <see cref="Characters.BeingStatus"/>,
+    /// such as <see cref="Parquets.ParquetStatus"/> or <see cref="Beings.BeingStatus"/>,
     /// models that state.
     ///
     /// Entity could be considered the fundamental class of the entire Parquet library.
