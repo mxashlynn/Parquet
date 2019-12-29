@@ -50,71 +50,71 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Attempts to update the <see cref="Floor"/> parquet at the given position.
         /// </summary>
-        /// <param name="in_floorID">ID for the new floor to set.</param>
-        /// <param name="in_position">The position to set.</param>
+        /// <param name="inFloorID">ID for the new floor to set.</param>
+        /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFloorDefinition(EntityID in_floorID, Vector2D in_position)
-            => TrySetParquetDefinition(in_floorID, null, null, null, in_position);
+        public bool TrySetFloorDefinition(EntityID inFloorID, Vector2D inPosition)
+            => TrySetParquetDefinition(inFloorID, null, null, null, inPosition);
 
         /// <summary>
         /// Attempts to update the <see cref="Block"/> at the given position.
         /// </summary>
-        /// <param name="in_blockID">ID for the new block to set.</param>
-        /// <param name="in_position">The position to set.</param>
+        /// <param name="inBlockID">ID for the new block to set.</param>
+        /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
-        public bool TrySetBlockDefinition(EntityID in_blockID, Vector2D in_position)
-            => TrySetParquetDefinition(null, in_blockID, null, null, in_position);
+        public bool TrySetBlockDefinition(EntityID inBlockID, Vector2D inPosition)
+            => TrySetParquetDefinition(null, inBlockID, null, null, inPosition);
 
         /// <summary>
         /// Attempts to update the <see cref="Furnishing"/> at the given position.
         /// </summary>
-        /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
-        /// <param name="in_position">The position to set.</param>
+        /// <param name="inFurnishingID">ID for the new furnishing to set.</param>
+        /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFurnishingDefinition(EntityID in_furnishingID, Vector2D in_position)
-            => TrySetParquetDefinition(null, null, in_furnishingID, null, in_position);
+        public bool TrySetFurnishingDefinition(EntityID inFurnishingID, Vector2D inPosition)
+            => TrySetParquetDefinition(null, null, inFurnishingID, null, inPosition);
 
         /// <summary>
         /// Attempts to update the <see cref="Collectible"/> at the given position.
         /// </summary>
-        /// <param name="in_collectibleID">ID for the new collectible to set.</param>
-        /// <param name="in_position">The position to set.</param>
+        /// <param name="inCollectibleID">ID for the new collectible to set.</param>
+        /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the collectible was set, <c>false</c> otherwise.</returns>
-        public bool TrySetCollectibleDefinition(EntityID in_collectibleID, Vector2D in_position)
-            => TrySetParquetDefinition(null, null, null, in_collectibleID, in_position);
+        public bool TrySetCollectibleDefinition(EntityID inCollectibleID, Vector2D inPosition)
+            => TrySetParquetDefinition(null, null, null, inCollectibleID, inPosition);
 
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
-        /// <param name="in_space">IDs and position to set.</param>
+        /// <param name="inSpace">IDs and position to set.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(MapSpace in_space)
-            => TrySetParquetDefinition(in_space.Content.Floor, in_space.Content.Block,
-                                       in_space.Content.Furnishing, in_space.Content.Collectible,
-                                       new Vector2D(in_space.Position.X, in_space.Position.Y));
+        public bool TrySetParquetDefinition(MapSpace inSpace)
+            => TrySetParquetDefinition(inSpace.Content.Floor, inSpace.Content.Block,
+                                       inSpace.Content.Furnishing, inSpace.Content.Collectible,
+                                       new Vector2D(inSpace.Position.X, inSpace.Position.Y));
 
         /// <summary>
         /// Attempts to update the parquet at the given position in the given layer.
         /// </summary>
-        /// <param name="in_floorID">ID for the new floor to set.</param>
-        /// <param name="in_blockID">ID for the new block to set.</param>
-        /// <param name="in_furnishingID">ID for the new furnishing to set.</param>
-        /// <param name="in_collectibleID">ID for the new collectible to set.</param>
-        /// <param name="in_position">The position to put the parquet in.</param>
+        /// <param name="inFloorID">ID for the new floor to set.</param>
+        /// <param name="inBlockID">ID for the new block to set.</param>
+        /// <param name="inFurnishingID">ID for the new furnishing to set.</param>
+        /// <param name="inCollectibleID">ID for the new collectible to set.</param>
+        /// <param name="inPosition">The position to put the parquet in.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(EntityID? in_floorID, EntityID? in_blockID,
-                                            EntityID? in_furnishingID, EntityID? in_collectibleID,
-                                            Vector2D in_position)
+        public bool TrySetParquetDefinition(EntityID? inFloorID, EntityID? inBlockID,
+                                            EntityID? inFurnishingID, EntityID? inCollectibleID,
+                                            Vector2D inPosition)
         {
             var result = false;
-            if (ParquetDefintion.IsValidPosition(in_position))
+            if (ParquetDefintion.IsValidPosition(inPosition))
             {
-                ParquetDefintion[in_position.Y, in_position.X] =
+                ParquetDefintion[inPosition.Y, inPosition.X] =
                     new ParquetStack(
-                        in_floorID ?? ParquetDefintion[in_position.Y, in_position.X].Floor,
-                        in_blockID ?? ParquetDefintion[in_position.Y, in_position.X].Block,
-                        in_furnishingID ?? ParquetDefintion[in_position.Y, in_position.X].Furnishing,
-                        in_collectibleID ?? ParquetDefintion[in_position.Y, in_position.X].Collectible);
+                        inFloorID ?? ParquetDefintion[inPosition.Y, inPosition.X].Floor,
+                        inBlockID ?? ParquetDefintion[inPosition.Y, inPosition.X].Block,
+                        inFurnishingID ?? ParquetDefintion[inPosition.Y, inPosition.X].Furnishing,
+                        inCollectibleID ?? ParquetDefintion[inPosition.Y, inPosition.X].Collectible);
                 result = true;
             }
             return result;
@@ -126,17 +126,17 @@ namespace ParquetClassLibrary.Maps
         /// Attempts to assign the given exit point.
         /// If an exit point already exists at this location, it is replaced.
         /// </summary>
-        /// <param name="in_point">The point to set.</param>
+        /// <param name="inPoint">The point to set.</param>
         /// <returns><c>true</c>, if the point was set, <c>false</c> otherwise.</returns>
-        public bool TrySetExitPoint(ExitPoint in_point)
+        public bool TrySetExitPoint(ExitPoint inPoint)
         {
             var result = true;
 
-            if (ExitPoints.Contains(in_point))
+            if (ExitPoints.Contains(inPoint))
             {
-                result = TryRemoveExitPoint(in_point);
+                result = TryRemoveExitPoint(inPoint);
             }
-            ExitPoints.Add(in_point);
+            ExitPoints.Add(inPoint);
 
             return result;
         }
@@ -144,41 +144,41 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Attempts to remove the given exit point.
         /// </summary>
-        /// <param name="in_point">The point to remove.</param>
+        /// <param name="inPoint">The point to remove.</param>
         /// <returns><c>true</c>, if the point was found and removed, <c>false</c> otherwise.</returns>
-        public bool TryRemoveExitPoint(ExitPoint in_point)
-            => ParquetDefintion.IsValidPosition(in_point.Position)
-            && ExitPoints.Remove(in_point);
+        public bool TryRemoveExitPoint(ExitPoint inPoint)
+            => ParquetDefintion.IsValidPosition(inPoint.Position)
+            && ExitPoints.Remove(inPoint);
         #endregion
 
         #region State Query Methods
         /// <summary>
         /// Gets the statuses of any parquets at the position.
         /// </summary>
-        /// <param name="in_position">The position whose status is sought.</param>
+        /// <param name="inPosition">The position whose status is sought.</param>
         /// <returns>The status of parquets at the given position.</returns>
-        public ParquetStatus GetStatusAtPosition(Vector2D in_position)
-            => ParquetStatuses.IsValidPosition(in_position)
-                ? ParquetStatuses[in_position.Y, in_position.X]
-                : throw new ArgumentOutOfRangeException(nameof(in_position));
+        public ParquetStatus GetStatusAtPosition(Vector2D inPosition)
+            => ParquetStatuses.IsValidPosition(inPosition)
+                ? ParquetStatuses[inPosition.Y, inPosition.X]
+                : throw new ArgumentOutOfRangeException(nameof(inPosition));
 
         /// <summary>
         /// Gets any floor parquet at the position.
         /// </summary>
-        /// <param name="in_position">The position whose floor is sought.</param>
+        /// <param name="inPosition">The position whose floor is sought.</param>
         /// <returns>The floor at the given position.</returns>
-        public ParquetStack GetDefinitionAtPosition(Vector2D in_position)
-            => ParquetDefintion.IsValidPosition(in_position)
-                ? ParquetDefintion[in_position.Y, in_position.X]
-                : throw new ArgumentOutOfRangeException(nameof(in_position));
+        public ParquetStack GetDefinitionAtPosition(Vector2D inPosition)
+            => ParquetDefintion.IsValidPosition(inPosition)
+                ? ParquetDefintion[inPosition.Y, inPosition.X]
+                : throw new ArgumentOutOfRangeException(nameof(inPosition));
 
         /// <summary>
         /// Gets any <see cref="ExitPoint"/>s at the given position, if any.
         /// </summary>
-        /// <param name="in_position">The position whose data is sought.</param>
+        /// <param name="inPosition">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
-        public List<ExitPoint> GetExitsAtPosition(Vector2D in_position)
-            => ExitPoints.FindAll(in_point => in_point.Position.Equals(in_position));
+        public List<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
+            => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 
         #region Serialization Methods
@@ -198,10 +198,10 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Determines if the given position corresponds to a point in the region.
         /// </summary>
-        /// <param name="in_position">The position to validate.</param>
+        /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D in_position)
-            => ParquetDefintion.IsValidPosition(in_position);
+        public bool IsValidPosition(Vector2D inPosition)
+            => ParquetDefintion.IsValidPosition(inPosition);
 
         /// <summary>
         /// Provides all parquet definitions within the current map.
@@ -213,34 +213,34 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Provides all parquet definitions within the specified rectangular subsection of the current map.
         /// </summary>
-        /// <param name="in_upperLeft">The position of the upper-leftmost corner of the subregion.</param>
-        /// <param name="in_lowerRight">The position of the lower-rightmost corner of the subregion.</param>
+        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
+        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion(Vector2D in_upperLeft, Vector2D in_lowerRight)
+        public ParquetStack[,] GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
-            if (!ParquetDefintion.IsValidPosition(in_upperLeft))
+            if (!ParquetDefintion.IsValidPosition(inUpperLeft))
             {
-                throw new ArgumentOutOfRangeException(nameof(in_upperLeft));
+                throw new ArgumentOutOfRangeException(nameof(inUpperLeft));
             }
-            else if (!ParquetDefintion.IsValidPosition(in_lowerRight))
+            else if (!ParquetDefintion.IsValidPosition(inLowerRight))
             {
-                throw new ArgumentOutOfRangeException(nameof(in_lowerRight));
+                throw new ArgumentOutOfRangeException(nameof(inLowerRight));
             }
-            else if (in_lowerRight.X < in_upperLeft.X && in_lowerRight.Y < in_upperLeft.Y)
+            else if (inLowerRight.X < inUpperLeft.X && inLowerRight.Y < inUpperLeft.Y)
             {
-                throw new ArgumentException("Improper vector order.", nameof(in_lowerRight));
+                throw new ArgumentException("Improper vector order.", nameof(inLowerRight));
             }
             else
             {
-                var subregion = new ParquetStack[in_lowerRight.X - in_upperLeft.X + 1,
-                                                 in_lowerRight.Y - in_upperLeft.Y + 1];
+                var subregion = new ParquetStack[inLowerRight.X - inUpperLeft.X + 1,
+                                                 inLowerRight.Y - inUpperLeft.Y + 1];
 
-                for (var x = in_upperLeft.X; x <= in_lowerRight.X; x++)
+                for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
                 {
-                    for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
+                    for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
                     {
                         var temp = ParquetDefintion[y, x];
-                        subregion[y - in_upperLeft.Y, x - in_upperLeft.X] = temp;
+                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = temp;
                     }
                 }
 

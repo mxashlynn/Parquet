@@ -53,48 +53,49 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="Character"/> class.
         /// </summary>
-        /// <param name="in_bounds">
+        /// <param name="inBounds">
         /// The bounds within which the <see cref="Character"/>'s <see cref="EntityID"/> is defined.
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
-        /// <param name="in_id">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
-        /// <param name="in_description">Player-friendly description of the <see cref="Character"/>.</param>
-        /// <param name="in_comment">Comment of, on, or by the <see cref="Character"/>.</param>
-        /// <param name="in_personalName">Personal name of the <see cref="Character"/>.  Cannot be null or empty.</param>
-        /// <param name="in_familyName">Family name of the <see cref="Character"/>.  Cannot be null or empty.</param>
-        /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
-        /// <param name="in_avoids">Any parquets this <see cref="Character"/> avoids.</param>
-        /// <param name="in_seeks">Any parquets this <see cref="Character"/> seeks.</param>
-        /// <param name="in_pronoun">How to refer to this <see cref="Character"/>.</param>
-        /// <param name="in_storyCharacterID">A means of identifying this <see cref="Character"/> across multiple shipped game titles.</param>
-        /// <param name="in_startingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
-        /// <param name="in_dialogue">All dialogue this <see cref="Character"/> may say.</param>
-        /// <param name="in_startingInventory">Any items this <see cref="Character"/> possesses at the outset.</param>
-        protected Character(Range<EntityID> in_bounds, EntityID in_id,
-                            string in_personalName, string in_familyName,
-                            string in_description, string in_comment, EntityID in_nativeBiome,
-                            Behavior in_primaryBehavior, List<EntityID> in_avoids = null,
-                            List<EntityID> in_seeks = null, string in_pronoun = DefaultPronoun,
-                            string in_storyCharacterID = "", List<EntityID> in_startingQuests = null,
-                            List<string> in_dialogue = null, List<EntityID> in_startingInventory = null)
-            : base(in_bounds, in_id, $"{in_personalName} {in_familyName}", in_description, in_comment,
-                   in_nativeBiome, in_primaryBehavior, in_avoids, in_seeks)
+        /// <param name="inID">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
+        /// <param name="inPersonalName">Personal name of the <see cref="Character"/>.  Cannot be null or empty.</param>
+        /// <param name="inFamilyName">Family name of the <see cref="Character"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="Character"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="Character"/>.</param>
+        /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
+        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
+        /// <param name="inAvoids">Any parquets this <see cref="Character"/> avoids.</param>
+        /// <param name="inSeeks">Any parquets this <see cref="Character"/> seeks.</param>
+        /// <param name="inPronoun">How to refer to this <see cref="Character"/>.</param>
+        /// <param name="inStoryCharacterID">A means of identifying this <see cref="Character"/> across multiple shipped game titles.</param>
+        /// <param name="inStartingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
+        /// <param name="inDialogue">All dialogue this <see cref="Character"/> may say.</param>
+        /// <param name="inStartingInventory">Any items this <see cref="Character"/> possesses at the outset.</param>
+        protected Character(Range<EntityID> inBounds, EntityID inID,
+                            string inPersonalName, string inFamilyName,
+                            string inDescription, string inComment, EntityID inNativeBiome,
+                            Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
+                            List<EntityID> inSeeks = null, string inPronoun = DefaultPronoun,
+                            string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
+                            List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
+            : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
+                   inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
-            var nonNullPronoun = string.IsNullOrEmpty(in_pronoun) ? DefaultPronoun : in_pronoun;
-            var nonNullQuests = in_startingQuests ?? Enumerable.Empty<EntityID>();
-            var nonNullInventory = in_startingInventory ?? Enumerable.Empty<EntityID>();
+            var nonNullPronoun = string.IsNullOrEmpty(inPronoun) ? DefaultPronoun : inPronoun;
+            var nonNullQuests = inStartingQuests ?? Enumerable.Empty<EntityID>();
+            var nonNullInventory = inStartingInventory ?? Enumerable.Empty<EntityID>();
 
-            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(in_startingQuests));
-            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(in_startingInventory));
-            Precondition.IsNotNullOrEmpty(in_personalName, nameof(in_personalName));
-            Precondition.IsNotNullOrEmpty(in_familyName, nameof(in_familyName));
+            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(inStartingQuests));
+            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inStartingInventory));
+            Precondition.IsNotNullOrEmpty(inPersonalName, nameof(inPersonalName));
+            Precondition.IsNotNullOrEmpty(inFamilyName, nameof(inFamilyName));
 
-            PersonalName = in_personalName;
-            FamilyName = in_familyName;
+            PersonalName = inPersonalName;
+            FamilyName = inFamilyName;
             Pronoun = nonNullPronoun;
-            StoryCharacterID = in_storyCharacterID;
+            StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();
-            Dialogue = (in_dialogue ?? Enumerable.Empty<string>()).ToList();
+            Dialogue = (inDialogue ?? Enumerable.Empty<string>()).ToList();
             StartingInventory = nonNullInventory.ToList();
         }
         #endregion

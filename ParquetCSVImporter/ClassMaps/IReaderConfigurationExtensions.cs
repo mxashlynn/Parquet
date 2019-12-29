@@ -13,39 +13,40 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>
         /// Registers the ClassMap that corresponds to the given Class.
         /// </summary>
-        /// <param name="in_configuration">The CSV Reader Configuration.</param>
+        /// <param name="inConfiguration">The CSV Reader Configuration.</param>
         /// <typeparam name="T">The class to map.</typeparam>
         /// <returns>The class map for the given type.</returns>
-        public static void RegisterClassMapFor<T>(this IReaderConfiguration in_configuration) where T : Entity
+        public static void RegisterClassMapFor<T>(this IReaderConfiguration inConfiguration) where T : Entity
         {
             /*
             if (typeof(T) == typeof(PlayerCharacter))
             {
-                in_configuration.RegisterClassMap<PlayerCharacterClassMap>();
+                inConfiguration.RegisterClassMap<PlayerCharacterClassMap>();
             }
             else if (typeof(T) == typeof(NPC))
             {
-                in_configuration.RegisterClassMap<NPCClassMap>();
+                inConfiguration.RegisterClassMap<NPCClassMap>();
             }
             else if (typeof(T) == typeof(Critter))
             {
-                in_configuration.RegisterClassMap<CritterClassMap>();
+                inConfiguration.RegisterClassMap<CritterClassMap>();
             }
-            else */if (typeof(T) == typeof(Floor))
+            else */
+            if (typeof(T) == typeof(Floor))
             {
-                in_configuration.RegisterClassMap<FloorClassMap>();
+                inConfiguration.RegisterClassMap<FloorClassMap>();
             }
             else if (typeof(T) == typeof(Block))
             {
-                in_configuration.RegisterClassMap<BlockClassMap>();
+                inConfiguration.RegisterClassMap<BlockClassMap>();
             }
             else if (typeof(T) == typeof(Furnishing))
             {
-                in_configuration.RegisterClassMap<FurnishingClassMap>();
+                inConfiguration.RegisterClassMap<FurnishingClassMap>();
             }
             else if (typeof(T) == typeof(Collectible))
             {
-                in_configuration.RegisterClassMap<CollectibleClassMap>();
+                inConfiguration.RegisterClassMap<CollectibleClassMap>();
             }
             else
             {

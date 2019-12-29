@@ -35,12 +35,12 @@ namespace ParquetUnitTests.Utilities
         [InlineData(128, 128, 128)]
         [InlineData(192, 192, 192)]
         [InlineData(255, 255, 255)]
-        public void NewSolidColorTest(int in_r, int in_g, int in_b)
+        public void NewSolidColorTest(int inR, int inG, int inB)
         {
-            var testVector = new PCLColor(in_r, in_g, in_b);
-            Assert.Equal(in_r, testVector.R);
-            Assert.Equal(in_g, testVector.G);
-            Assert.Equal(in_b, testVector.B);
+            var testVector = new PCLColor(inR, inG, inB);
+            Assert.Equal(inR, testVector.R);
+            Assert.Equal(inG, testVector.G);
+            Assert.Equal(inB, testVector.B);
             Assert.Equal(255, testVector.A);
         }
 
@@ -49,13 +49,13 @@ namespace ParquetUnitTests.Utilities
         [InlineData(255, 255, 255, 85)]
         [InlineData(255, 255, 255, 170)]
         [InlineData(255, 255, 255, 255)]
-        public void NewTranslucentColorTest(int in_r, int in_g, int in_b, int in_a)
+        public void NewTranslucentColorTest(int inR, int inG, int inB, int inA)
         {
-            var testVector = new PCLColor(in_r, in_g, in_b, in_a);
-            Assert.Equal(in_r, testVector.R);
-            Assert.Equal(in_g, testVector.G);
-            Assert.Equal(in_b, testVector.B);
-            Assert.Equal(in_a, testVector.A);
+            var testVector = new PCLColor(inR, inG, inB, inA);
+            Assert.Equal(inR, testVector.R);
+            Assert.Equal(inG, testVector.G);
+            Assert.Equal(inB, testVector.B);
+            Assert.Equal(inA, testVector.A);
         }
     }
 }

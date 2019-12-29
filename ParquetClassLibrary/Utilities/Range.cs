@@ -18,19 +18,19 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Initializes a new instance of the <see cref="Range{T}"/> struct.
         /// </summary>
-        /// <param name="in_minimum">The lower end of the range.</param>
-        /// <param name="in_maximum">The upper end of the range.</param>
+        /// <param name="inMinimum">The lower end of the range.</param>
+        /// <param name="inMaximum">The upper end of the range.</param>
         /// <exception cref="ArgumentException">
         /// Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.
         /// </exception>
-        public Range(T in_minimum, T in_maximum)
+        public Range(T inMinimum, T inMaximum)
         {
-            Minimum = in_minimum;
-            Maximum = in_maximum;
+            Minimum = inMinimum;
+            Maximum = inMaximum;
 
             if (!IsValid())
             {
-                throw new InvalidOperationException($"{nameof(in_minimum)} must be less than or equal to {nameof(in_maximum)}.");
+                throw new InvalidOperationException($"{nameof(inMinimum)} must be less than or equal to {nameof(inMaximum)}.");
             }
         }
 
@@ -42,16 +42,16 @@ namespace ParquetClassLibrary.Utilities
             => Minimum.CompareTo(Maximum) <= 0;
 
         /// <summary>Determines if the given <see cref="Range{T}"/> is equal to or entirely contained within the current Range.</summary>
-        /// <param name="in_range">The <see cref="Range{T}"/> to test.</param>
+        /// <param name="inRange">The <see cref="Range{T}"/> to test.</param>
         /// <returns><c>true</c>, if the given range is within the current range, <c>false</c> otherwise.</returns>
-        public bool ContainsRange(Range<T> in_range)
-            => ContainsValue(in_range.Minimum) && ContainsValue(in_range.Maximum);
+        public bool ContainsRange(Range<T> inRange)
+            => ContainsValue(inRange.Minimum) && ContainsValue(inRange.Maximum);
 
         /// <summary>Determines if the given value is within the range, inclusive.</summary>
-        /// <param name="in_value">The value to test.</param>
+        /// <param name="inValue">The value to test.</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
-        public bool ContainsValue(T in_value)
-            => Minimum.CompareTo(in_value) <= 0 && Maximum.CompareTo(in_value) >= 0;
+        public bool ContainsValue(T inValue)
+            => Minimum.CompareTo(inValue) <= 0 && Maximum.CompareTo(inValue) >= 0;
 
         #region IEquatable Implementation
         /// <summary>
@@ -66,11 +66,11 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Determines whether the specified <see cref="Range{T}"/> is equal to the current <see cref="Range{T}"/>.
         /// </summary>
-        /// <param name="in_range">The <see cref="Range{T}"/> to compare with the current.</param>
+        /// <param name="inRange">The <see cref="Range{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Range<T> in_range)
-            => Minimum.Equals(in_range.Minimum)
-            && Maximum.Equals(in_range.Maximum);
+        public bool Equals(Range<T> inRange)
+            => Minimum.Equals(inRange.Minimum)
+            && Maximum.Equals(inRange.Maximum);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Range{T}"/>.
@@ -83,20 +83,20 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Determines whether a specified instance of <see cref="Range{T}"/> is equal to another specified instance of <see cref="Range{T}"/>.
         /// </summary>
-        /// <param name="in_range1">The first <see cref="Range{T}"/> to compare.</param>
-        /// <param name="in_range2">The second <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Range<T> in_range1, Range<T> in_range2)
-            => in_range1.Equals(in_range2);
+        public static bool operator ==(Range<T> inRange1, Range<T> inRange2)
+            => inRange1.Equals(inRange2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Range{T}"/> is not equal to another specified instance of <see cref="Range{T}"/>.
         /// </summary>
-        /// <param name="in_range1">The first <see cref="Range{T}"/> to compare.</param>
-        /// <param name="in_range2">The second <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Range<T> in_range1, Range<T> in_range2)
-            => !in_range1.Equals(in_range2);
+        public static bool operator !=(Range<T> inRange1, Range<T> inRange2)
+            => !inRange1.Equals(inRange2);
         #endregion
 
         #region Utilities
@@ -118,13 +118,13 @@ namespace ParquetClassLibrary.Utilities
         /// Determines if all of the given <see cref="Range{T}"/>s are well defined; that is, if Minima are less than or equal to Maxima.
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValid<T>(this IEnumerable<Range<T>> in_rangeCollection)
+        public static bool IsValid<T>(this IEnumerable<Range<T>> inRangeCollection)
             where T : IComparable<T>, IEquatable<T>
         {
-            Precondition.IsNotNull(in_rangeCollection, nameof(in_rangeCollection));
+            Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var isValid = true;
-            foreach (var range in in_rangeCollection)
+            foreach (var range in inRangeCollection)
             {
                 isValid &= range.IsValid();
             }
@@ -132,25 +132,25 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Determines if the given <paramref name="in_value"/> is contained by any of the <see cref="Range{T}"/>s
+        /// Determines if the given <paramref name="inValue"/> is contained by any of the <see cref="Range{T}"/>s
         /// in the current <see cref="IEnumerable{Range{Type}}"/>.
         /// </summary>
-        /// <param name="in_rangeCollection">The range collection in which to search.</param>
-        /// <param name="in_value">The value to search for.</param>
+        /// <param name="inRangeCollection">The range collection in which to search.</param>
+        /// <param name="inValue">The value to search for.</param>
         /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
         /// <returns>
-        /// <c>true</c>, if the <paramref name="in_value"/> was containsed in <paramref name="in_rangeCollection"/>,
+        /// <c>true</c>, if the <paramref name="inValue"/> was containsed in <paramref name="inRangeCollection"/>,
         /// <c>false</c> otherwise.
         /// </returns>
-        public static bool ContainsValue<T>(this IEnumerable<Range<T>> in_rangeCollection, T in_value)
+        public static bool ContainsValue<T>(this IEnumerable<Range<T>> inRangeCollection, T inValue)
             where T : IComparable<T>, IEquatable<T>
         {
-            Precondition.IsNotNull(in_rangeCollection, nameof(in_rangeCollection));
+            Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var foundRange = false;
-            foreach (var range in in_rangeCollection)
+            foreach (var range in inRangeCollection)
             {
-                if (range.ContainsValue(in_value))
+                if (range.ContainsValue(inValue))
                 {
                     foundRange = true;
                     break;
@@ -163,19 +163,19 @@ namespace ParquetClassLibrary.Utilities
         /// Determines if the given <see cref="Range{T}"/> is contained by any of the ranges
         /// in the current <see cref="IEnumerable{Range{Type}}"/>.
         /// </summary>
-        /// <param name="in_rangeCollection">The range collection in which to search.</param>
-        /// <param name="in_range">The range to search for.</param>
+        /// <param name="inRangeCollection">The range collection in which to search.</param>
+        /// <param name="inRange">The range to search for.</param>
         /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
         /// <returns><c>true</c>, if the given range was containsed in the list, <c>false</c> otherwise.</returns>
-        public static bool ContainsRange<T>(this IEnumerable<Range<T>> in_rangeCollection, Range<T> in_range)
+        public static bool ContainsRange<T>(this IEnumerable<Range<T>> inRangeCollection, Range<T> inRange)
             where T : IComparable<T>, IEquatable<T>
         {
-            Precondition.IsNotNull(in_rangeCollection, nameof(in_rangeCollection));
+            Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var foundRange = false;
-            foreach (var range in in_rangeCollection)
+            foreach (var range in inRangeCollection)
             {
-                if (range.ContainsRange(in_range))
+                if (range.ContainsRange(inRange))
                 {
                     foundRange = true;
                     break;

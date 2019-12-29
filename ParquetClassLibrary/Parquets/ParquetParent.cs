@@ -12,14 +12,14 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
-        [JsonProperty(PropertyName = "in_itemID")]
+        [JsonProperty(PropertyName = "inItemID")]
         public EntityID ItemID { get; }
 
         /// <summary>
         /// Describes the <see cref="Biome"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
-        [JsonProperty(PropertyName = "in_addsToBiome")]
+        [JsonProperty(PropertyName = "inAddsToBiome")]
         public EntityTag AddsToBiome { get; }
 
         /// <summary>
@@ -29,31 +29,31 @@ namespace ParquetClassLibrary.Parquets
         /// <remarks>
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
-        [JsonProperty(PropertyName = "in_addsToRoom")]
+        [JsonProperty(PropertyName = "inAddsToRoom")]
         public EntityTag AddsToRoom { get; }
 
         #region Initialization
         /// <summary>
         /// Used by children of the <see cref="ParquetParent"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the derived parquet type's EntityID is defined.</param>
-        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
-        /// <param name="in_description">Player-friendly description of the parquet.</param>
-        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
-        /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.</param>
-        /// <param name="in_addsToBiome">Describes which, if any, <see cref="Biome"/>(s) this parquet helps form.</param>
-        /// <param name="in_addsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
+        /// <param name="inBounds">The bounds within which the derived parquet type's EntityID is defined.</param>
+        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the parquet.</param>
+        /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.</param>
+        /// <param name="inAddsToBiome">Describes which, if any, <see cref="Biome"/>(s) this parquet helps form.</param>
+        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         [JsonConstructor]
-        protected ParquetParent(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
-                                string in_comment, EntityID in_itemID, EntityTag in_addsToBiome, EntityTag in_addsToRoom)
-            : base(in_bounds, in_id, in_name, in_description, in_comment)
+        protected ParquetParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
+                                string inComment, EntityID inItemID, EntityTag inAddsToBiome, EntityTag inAddsToRoom)
+            : base(inBounds, inID, inName, inDescription, inComment)
         {
-            Precondition.IsInRange(in_itemID, All.ItemIDs, nameof(in_itemID));
+            Precondition.IsInRange(inItemID, All.ItemIDs, nameof(inItemID));
 
-            ItemID = in_itemID;
-            AddsToBiome = string.IsNullOrEmpty(in_addsToBiome) ? EntityTag.None : in_addsToBiome;
-            AddsToRoom = string.IsNullOrEmpty(in_addsToRoom) ? EntityTag.None : in_addsToRoom;
+            ItemID = inItemID;
+            AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? EntityTag.None : inAddsToBiome;
+            AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? EntityTag.None : inAddsToRoom;
         }
         #endregion
     }

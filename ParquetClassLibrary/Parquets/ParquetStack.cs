@@ -33,21 +33,21 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStack"/> struct.
         /// </summary>
-        /// <param name="in_floor">The floor-layer parquet.</param>
-        /// <param name="in_block">The The floor-layer parquet-layer parquet.</param>
-        /// <param name="in_furnishing">The furnishing-layer parquet.</param>
-        /// <param name="in_collectible">The collectible-layer parquet.</param>
-        public ParquetStack(EntityID in_floor, EntityID in_block, EntityID in_furnishing, EntityID in_collectible)
+        /// <param name="inFloor">The floor-layer parquet.</param>
+        /// <param name="inBlock">The The floor-layer parquet-layer parquet.</param>
+        /// <param name="inFurnishing">The furnishing-layer parquet.</param>
+        /// <param name="inCollectible">The collectible-layer parquet.</param>
+        public ParquetStack(EntityID inFloor, EntityID inBlock, EntityID inFurnishing, EntityID inCollectible)
         {
-            Precondition.IsInRange(in_floor, All.FloorIDs, nameof(in_floor));
-            Precondition.IsInRange(in_block, All.BlockIDs, nameof(in_block));
-            Precondition.IsInRange(in_furnishing, All.FurnishingIDs, nameof(in_furnishing));
-            Precondition.IsInRange(in_collectible, All.CollectibleIDs, nameof(in_collectible));
+            Precondition.IsInRange(inFloor, All.FloorIDs, nameof(inFloor));
+            Precondition.IsInRange(inBlock, All.BlockIDs, nameof(inBlock));
+            Precondition.IsInRange(inFurnishing, All.FurnishingIDs, nameof(inFurnishing));
+            Precondition.IsInRange(inCollectible, All.CollectibleIDs, nameof(inCollectible));
 
-            Floor = in_floor;
-            Block = in_block;
-            Furnishing = in_furnishing;
-            Collectible = in_collectible;
+            Floor = inFloor;
+            Block = inBlock;
+            Furnishing = inFurnishing;
+            Collectible = inCollectible;
         }
 
         #region Gameplay Algorithm Support
@@ -107,13 +107,13 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStack"/> is equal to the current <see cref="ParquetStack"/>.
         /// </summary>
-        /// <param name="in_stack">The <see cref="ParquetStack"/> to compare with the current.</param>
+        /// <param name="inStack">The <see cref="ParquetStack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(ParquetStack in_stack)
-            => Floor == in_stack.Floor
-            && Block == in_stack.Block
-            && Furnishing == in_stack.Furnishing
-            && Collectible == in_stack.Collectible;
+        public bool Equals(ParquetStack inStack)
+            => Floor == inStack.Floor
+            && Block == inStack.Block
+            && Furnishing == inStack.Furnishing
+            && Collectible == inStack.Collectible;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStack"/>.
@@ -126,26 +126,26 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is equal to another specified instance of <see cref="ParquetStack"/>.
         /// </summary>
-        /// <param name="in_stack1">The first <see cref="ParquetStack"/> to compare.</param>
-        /// <param name="in_stack2">The second <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="inStack1">The first <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetStack in_stack1, ParquetStack in_stack2)
-            => in_stack1.Floor == in_stack2.Floor
-            && in_stack1.Block == in_stack2.Block
-            && in_stack1.Furnishing == in_stack2.Furnishing
-            && in_stack1.Collectible == in_stack2.Collectible;
+        public static bool operator ==(ParquetStack inStack1, ParquetStack inStack2)
+            => inStack1.Floor == inStack2.Floor
+            && inStack1.Block == inStack2.Block
+            && inStack1.Furnishing == inStack2.Furnishing
+            && inStack1.Collectible == inStack2.Collectible;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
         /// </summary>
-        /// <param name="in_stack1">The first <see cref="ParquetStack"/> to compare.</param>
-        /// <param name="in_stack2">The second <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="inStack1">The first <see cref="ParquetStack"/> to compare.</param>
+        /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetStack in_stack1, ParquetStack in_stack2)
-            => in_stack1.Floor != in_stack2.Floor
-            || in_stack1.Block != in_stack2.Block
-            || in_stack1.Furnishing != in_stack2.Furnishing
-            || in_stack1.Collectible != in_stack2.Collectible;
+        public static bool operator !=(ParquetStack inStack1, ParquetStack inStack2)
+            => inStack1.Floor != inStack2.Floor
+            || inStack1.Block != inStack2.Block
+            || inStack1.Furnishing != inStack2.Furnishing
+            || inStack1.Collectible != inStack2.Collectible;
         #endregion
 
         #region Utility Methods
@@ -166,36 +166,36 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="in_position">The position to validate.</param>
+        /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ParquetStack[,] in_subregion, Vector2D in_position)
+        public static bool IsValidPosition(this ParquetStack[,] inSubregion, Vector2D inPosition)
         {
-            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
-            return in_position.X > -1
-                && in_position.Y > -1
-                && in_position.X < in_subregion.GetLength(1)
-                && in_position.Y < in_subregion.GetLength(0);
+            return inPosition.X > -1
+                && inPosition.Y > -1
+                && inPosition.X < inSubregion.GetLength(1)
+                && inPosition.Y < inSubregion.GetLength(0);
         }
 
         /// <summary>
         /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
         /// </summary>
-        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
+        /// <param name="inSubregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
         /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
-        public static MapSpaceCollection GetSpaces(this ParquetStack[,] in_subregion)
+        public static MapSpaceCollection GetSpaces(this ParquetStack[,] inSubregion)
         {
-            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
             var uniqueResults = new HashSet<MapSpace>();
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
+            var subregionRows = inSubregion.GetLength(0);
+            var subregionCols = inSubregion.GetLength(1);
 
             for (var y = 0; y < subregionRows; y++)
             {
                 for (var x = 0; x < subregionCols; x++)
                 {
-                    var currentSpace = new MapSpace(x, y, in_subregion[y, x]);
+                    var currentSpace = new MapSpace(x, y, inSubregion[y, x]);
                     uniqueResults.Add(currentSpace);
                 }
             }

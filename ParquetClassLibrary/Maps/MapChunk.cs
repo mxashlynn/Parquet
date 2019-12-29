@@ -34,27 +34,27 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunk"/> from the given string.
         /// </summary>
-        /// <param name="in_serializedMap">The serialized <see cref="MapChunk"/>.</param>
-        /// <param name="out_map">
+        /// <param name="inSerializedMap">The serialized <see cref="MapChunk"/>.</param>
+        /// <param name="outMap">
         /// The deserialized <see cref="MapChunk"/>, or null if deserialization was impossible.
         /// </param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap, out MapChunk out_map)
+        public static bool TryDeserializeFromString(string inSerializedMap, out MapChunk outMap)
         {
-            Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
+            Precondition.IsNotNullOrEmpty(inSerializedMap, nameof(inSerializedMap));
             var result = false;
-            out_map = Empty;
+            outMap = Empty;
 
             // Determine what version of map was serialized.
             try
             {
-                var document = JObject.Parse(in_serializedMap);
+                var document = JObject.Parse(inSerializedMap);
                 var version = document?.Value<string>(nameof(DataVersion));
 
                 // Deserialize only if this class supports the version given.
                 if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    out_map = JsonConvert.DeserializeObject<MapChunk>(in_serializedMap);
+                    outMap = JsonConvert.DeserializeObject<MapChunk>(inSerializedMap);
                     result = true;
                 }
             }

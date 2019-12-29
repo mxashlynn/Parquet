@@ -42,27 +42,27 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkType"/> class.
         /// </summary>
-        /// <param name="in_baseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
-        /// <param name="in_baseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
-        /// <param name="in_modifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
-        /// <param name="in_modifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
-        public ChunkType(ChunkTopography? in_baseTopography, EntityTag in_baseComposition,
-                         ChunkTopography? in_modifierTopography, EntityTag in_modifierComposition)
+        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
+        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
+        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
+        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
+        public ChunkType(ChunkTopography? inBaseTopography, EntityTag inBaseComposition,
+                         ChunkTopography? inModifierTopography, EntityTag inModifierComposition)
         {
             Handmade = false;
-            BaseTopography = in_baseTopography ?? ChunkTopography.Empty;
-            BaseComposition = in_baseComposition ?? EntityTag.None;
-            ModifierTopography = in_modifierTopography ?? ChunkTopography.Empty;
-            ModifierConstituents = in_modifierComposition ?? EntityTag.None;
+            BaseTopography = inBaseTopography ?? ChunkTopography.Empty;
+            BaseComposition = inBaseComposition ?? EntityTag.None;
+            ModifierTopography = inModifierTopography ?? ChunkTopography.Empty;
+            ModifierConstituents = inModifierComposition ?? EntityTag.None;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkType"/> class.
         /// </summary>
-        /// <param name="in_isHandmade">If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</param>
-        public ChunkType(bool in_isHandmade)
+        /// <param name="inIsHandmade">If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</param>
+        public ChunkType(bool inIsHandmade)
         {
-            Handmade = in_isHandmade;
+            Handmade = inIsHandmade;
             BaseTopography = ChunkTopography.Empty;
             BaseComposition = EntityTag.None;
             ModifierTopography = ChunkTopography.Empty;
@@ -81,13 +81,13 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Determines whether the specified <see cref="ChunkType"/> is equal to the current <see cref="ChunkType"/>.
         /// </summary>
-        /// <param name="in_chunkType">The <see cref="ChunkType"/> to compare with the current.</param>
+        /// <param name="inChunkType">The <see cref="ChunkType"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="ChunkType"/>s are equal.</returns>
-        public bool Equals(ChunkType in_chunkType)
-            => BaseTopography == in_chunkType.BaseTopography
-            && BaseComposition == in_chunkType.BaseComposition
-            && ModifierTopography == in_chunkType.ModifierTopography
-            && ModifierConstituents == in_chunkType.ModifierConstituents;
+        public bool Equals(ChunkType inChunkType)
+            => BaseTopography == inChunkType.BaseTopography
+            && BaseComposition == inChunkType.BaseComposition
+            && ModifierTopography == inChunkType.ModifierTopography
+            && ModifierConstituents == inChunkType.ModifierConstituents;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkType"/>.
@@ -101,21 +101,21 @@ namespace ParquetClassLibrary.Maps
         /// Determines whether a specified instance of <see cref="ChunkType"/> is equal to
         /// another specified instance of <see cref="ChunkType"/>.
         /// </summary>
-        /// <param name="in_chunkType1">The first <see cref="ChunkType"/> to compare.</param>
-        /// <param name="in_chunkType2">The second <see cref="ChunkType"/> to compare.</param>
+        /// <param name="inChunkType1">The first <see cref="ChunkType"/> to compare.</param>
+        /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ChunkType in_chunkType1, ChunkType in_chunkType2)
-            => in_chunkType1.Equals(in_chunkType2.BaseTopography);
+        public static bool operator ==(ChunkType inChunkType1, ChunkType inChunkType2)
+            => inChunkType1.Equals(inChunkType2.BaseTopography);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ChunkType"/> is unequal to
         /// another specified instance of <see cref="ChunkType"/>.
         /// </summary>
-        /// <param name="in_chunkType1">The first <see cref="ChunkType"/> to compare.</param>
-        /// <param name="in_chunkType2">The second <see cref="ChunkType"/> to compare.</param>
+        /// <param name="inChunkType1">The first <see cref="ChunkType"/> to compare.</param>
+        /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ChunkType in_chunkType1, ChunkType in_chunkType2)
-            => !in_chunkType1.Equals(in_chunkType2.BaseTopography);
+        public static bool operator !=(ChunkType inChunkType1, ChunkType inChunkType2)
+            => !inChunkType1.Equals(inChunkType2.BaseTopography);
         #endregion
 
         #region Utility Methods
@@ -136,16 +136,16 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="in_position">The position to validate.</param>
+        /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ChunkType[,] in_chunkArray, Vector2D in_position)
+        public static bool IsValidPosition(this ChunkType[,] inChunkTypeArray, Vector2D inPosition)
         {
-            Precondition.IsNotNull(in_chunkArray, nameof(in_chunkArray));
+            Precondition.IsNotNull(inChunkTypeArray, nameof(inChunkTypeArray));
 
-            return in_position.X > -1
-                && in_position.Y > -1
-                && in_position.X < in_chunkArray.GetLength(1)
-                && in_position.Y < in_chunkArray.GetLength(0);
+            return inPosition.X > -1
+                && inPosition.Y > -1
+                && inPosition.X < inChunkTypeArray.GetLength(1)
+                && inPosition.Y < inChunkTypeArray.GetLength(0);
         }
     }
 }

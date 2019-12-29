@@ -15,42 +15,42 @@ namespace ParquetCSVImporter.ClassMaps
         /// <summary>
         /// Gets a set of records from the CSV Reader using the shim class that corresponds to the given type.
         /// </summary>
-        /// <param name="in_csv">In CSV Reader.</param>
+        /// <param name="inCSV">In CSV Reader.</param>
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <returns>The records.</returns>
-        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader in_csv) where T : ParquetParent
+        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : ParquetParent
         {
             var result = new List<T>();
             IEnumerable<ParquetParentShim> shims;
             /*
             if (typeof(T) == typeof(PlayerCharacter))
             {
-                shims = in_csv.GetRecords<PlayerCharacterShim>();
+                shims = inCSV.GetRecords<PlayerCharacterShim>();
             }
             else if (typeof(T) == typeof(NPC))
             {
-                shims = in_csv.GetRecords<PNCShim>();
+                shims = inCSV.GetRecords<PNCShim>();
             }
             else if (typeof(T) == typeof(Critter))
             {
-                shims = in_csv.GetRecords<CritterShim>();
+                shims = inCSV.GetRecords<CritterShim>();
             }
-
-            else */if (typeof(T) == typeof(Floor))
+            else */
+            if (typeof(T) == typeof(Floor))
             {
-                shims = in_csv.GetRecords<FloorShim>();
+                shims = inCSV.GetRecords<FloorShim>();
             }
             else if (typeof(T) == typeof(Block))
             {
-                shims = in_csv.GetRecords<BlockShim>();
+                shims = inCSV.GetRecords<BlockShim>();
             }
             else if (typeof(T) == typeof(Furnishing))
             {
-                shims = in_csv.GetRecords<FurnishingShim>();
+                shims = inCSV.GetRecords<FurnishingShim>();
             }
             else if (typeof(T) == typeof(Collectible))
             {
-                shims = in_csv.GetRecords<CollectibleShim>();
+                shims = inCSV.GetRecords<CollectibleShim>();
             }
             else
             {

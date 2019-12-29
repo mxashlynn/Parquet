@@ -59,31 +59,31 @@ namespace ParquetClassLibrary
         /// to support human-readable design documents and <see cref="Range{T}"/> validation.
         /// </remarks>
         [JsonProperty]
-        private int _id;
+        private int id;
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityID"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="in_value">Any valid identifier value.</param>
+        /// <param name="inValue">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator EntityID(int in_value)
-            => new EntityID { _id = in_value };
+        public static implicit operator EntityID(int inValue)
+            => new EntityID { id = inValue };
 
         /// <summary>
         /// Enables <see cref="EntityID"/> to be treated as their backing type.
         /// </summary>
-        /// <param name="in_identifier">Any identifier.</param>
+        /// <param name="inIDentifier">Any identifier.</param>
         /// <returns>The identifier's value.</returns>
-        public static implicit operator int(EntityID in_identifier)
-            => in_identifier._id;
+        public static implicit operator int(EntityID inIDentifier)
+            => inIDentifier.id;
         #endregion
 
         #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="EntityID"/> to be compared to one another.
         /// </summary>
-        /// <param name="in_identifier">Any <see cref="EntityID"/>.</param>
+        /// <param name="inIDentifier">Any <see cref="EntityID"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="EntityID"/>s being compared.
         /// The return value has these meanings:
@@ -91,46 +91,46 @@ namespace ParquetClassLibrary
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityID"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityID"/> in the sort order.
         /// </returns>
-        public readonly int CompareTo(EntityID in_identifier)
-            => _id.CompareTo(in_identifier._id);
+        public readonly int CompareTo(EntityID inIDentifier)
+            => id.CompareTo(inIDentifier.id);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> strictly precedes another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier strictly precedes the second; otherwise, <c>false</c>.</returns>
-        public static bool operator <(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id < in_identifier2._id;
+        public static bool operator <(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id < inIDentifier2.id;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> precedes or is ordinally equivalent with
         /// another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier precedes or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
-        public static bool operator <=(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id <= in_identifier2._id;
+        public static bool operator <=(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id <= inIDentifier2.id;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> strictly follows another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier strictly followa the second; otherwise, <c>false</c>.</returns>
-        public static bool operator >(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id > in_identifier2._id;
+        public static bool operator >(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id > inIDentifier2.id;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> follows or is ordinally equivalent with
         /// another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier follows or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
-        public static bool operator >=(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id >= in_identifier2._id;
+        public static bool operator >=(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id >= inIDentifier2.id;
         #endregion
 
         #region IEquatable Implementation
@@ -141,15 +141,15 @@ namespace ParquetClassLibrary
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override readonly int GetHashCode()
-            => _id.GetHashCode();
+            => id.GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="EntityID"/> is equal to the current <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier">The <see cref="EntityID"/> to compare with the current.</param>
+        /// <param name="inIDentifier">The <see cref="EntityID"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public readonly bool Equals(EntityID in_identifier)
-            => _id == in_identifier._id;
+        public readonly bool Equals(EntityID inIDentifier)
+            => id == inIDentifier.id;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="EntityID"/>.
@@ -162,20 +162,20 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> is equal to another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id == in_identifier2._id;
+        public static bool operator ==(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id == inIDentifier2.id;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> is not equal to another specified instance of <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_identifier1">The first <see cref="EntityID"/> to compare.</param>
-        /// <param name="in_identifier2">The second <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier1">The first <see cref="EntityID"/> to compare.</param>
+        /// <param name="inIDentifier2">The second <see cref="EntityID"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(EntityID in_identifier1, EntityID in_identifier2)
-            => in_identifier1._id != in_identifier2._id;
+        public static bool operator !=(EntityID inIDentifier1, EntityID inIDentifier2)
+            => inIDentifier1.id != inIDentifier2.id;
         #endregion
 
         #region Utility Methods
@@ -185,13 +185,13 @@ namespace ParquetClassLibrary
         ///     1) it is <see cref="None"/>
         ///     2) it is defined within the given <see cref="Range{T}"/>, regardless of sign.
         /// </summary>
-        /// <param name="in_range">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
+        /// <param name="inRange">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
         /// <returns>
         /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public readonly bool IsValidForRange(Range<EntityID> in_range)
-            => _id == None || in_range.ContainsValue(Math.Abs(_id));
+        public readonly bool IsValidForRange(Range<EntityID> inRange)
+            => id == None || inRange.ContainsValue(Math.Abs(id));
 
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="IEnumerable{Range{EntityID}}"/>.
@@ -199,19 +199,19 @@ namespace ParquetClassLibrary
         ///     1) it is <see cref="None"/>
         ///     2) it is defined within any of the <see cref="Range{T}"/> in the given <see cref="IEnumerable{T}"/>, regardless of sign.
         /// </summary>
-        /// <param name="in_ranges">
+        /// <param name="inRanges">
         /// The <see cref="IEnumerable{Range{T}}"/> within which the <see cref="EntityID"/> must fall.
         /// </param>
         /// <returns>
         /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{T}}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public readonly bool IsValidForRange(IEnumerable<Range<EntityID>> in_ranges)
+        public readonly bool IsValidForRange(IEnumerable<Range<EntityID>> inRanges)
         {
-            Precondition.IsNotNull(in_ranges, nameof(in_ranges));
+            Precondition.IsNotNull(inRanges, nameof(inRanges));
             var result = false;
 
-            foreach (var idRange in in_ranges)
+            foreach (var idRange in inRanges)
             {
                 if (IsValidForRange(idRange))
                 {
@@ -228,7 +228,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override readonly string ToString()
-            => _id.ToString(CultureInfo.InvariantCulture);
+            => id.ToString(CultureInfo.InvariantCulture);
         #endregion
     }
 }

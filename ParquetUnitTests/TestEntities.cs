@@ -79,13 +79,13 @@ namespace ParquetUnitTests
                                       All.BiomeIDs.Minimum, Behavior.Still);
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
                               All.BiomeIDs.Minimum, Behavior.Still);
-            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", in_addsToRoom: TestTag);
-            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", in_addsToRoom: TestTag);
-            TestLiquid = new Block(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", in_isLiquid: true, in_addsToRoom: TestTag);
+            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
+            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
+            TestLiquid = new Block(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
             TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
-                                            in_isEntry: true, in_addsToRoom: TestTag);
+                                            inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
-                                              in_addsToRoom: TestTag);
+                                              inAddsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);

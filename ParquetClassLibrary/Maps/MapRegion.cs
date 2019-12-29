@@ -64,29 +64,29 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
-        /// <param name="in_title">The player-facing name of the new region.</param>
-        /// <param name="in_background">A color to show in the new region when no parquet is present.</param>
-        /// <param name="in_localElevation">The absolute elevation of this region.</param>
-        /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_id">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
-        public MapRegion(string in_title = null, PCLColor? in_background = null,
-                         Elevation in_localElevation = Elevation.LevelGround,
-                         int in_globalElevation = DefaultGlobalElevation, Guid? in_id = null)
+        /// <param name="inTitle">The player-facing name of the new region.</param>
+        /// <param name="inBackground">A color to show in the new region when no parquet is present.</param>
+        /// <param name="inLocalElevation">The absolute elevation of this region.</param>
+        /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="inID">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
+        public MapRegion(string inTitle = null, PCLColor? inBackground = null,
+                         Elevation inLocalElevation = Elevation.LevelGround,
+                         int inGlobalElevation = DefaultGlobalElevation, Guid? inID = null)
         {
-            Title = string.IsNullOrEmpty(in_title)
+            Title = string.IsNullOrEmpty(inTitle)
                 ? DefaultTitle
-                : in_title;
-            Background = in_background ?? PCLColor.White;
-            RegionID = in_id ?? Guid.NewGuid();
-            ElevationLocal = in_localElevation;
-            ElevationGlobal = in_globalElevation;
+                : inTitle;
+            Background = inBackground ?? PCLColor.White;
+            RegionID = inID ?? Guid.NewGuid();
+            ElevationLocal = inLocalElevation;
+            ElevationGlobal = inGlobalElevation;
         }
 
         /// <summary>
         /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
-        public MapRegion(bool in_generateID)
+        /// <param name="inGenerateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
+        public MapRegion(bool inGenerateID)
         {
             Title = DefaultTitle;
             Background = PCLColor.White;
@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Maps
             ElevationGlobal = 0;
 
             // Overwrite default behavior for tests.
-            RegionID = in_generateID
+            RegionID = inGenerateID
                 ? Guid.NewGuid()
                 : Guid.Empty;
         }
@@ -104,25 +104,25 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Tries to deserialize a <see cref="MapRegion"/> from the given string.
         /// </summary>
-        /// <param name="in_serializedMap">The serialized <see cref="MapRegion"/>.</param>
-        /// <param name="out_map">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
+        /// <param name="inSerializedMap">The serialized <see cref="MapRegion"/>.</param>
+        /// <param name="outMap">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMap, out MapRegion out_map)
+        public static bool TryDeserializeFromString(string inSerializedMap, out MapRegion outMap)
         {
-            Precondition.IsNotNullOrEmpty(in_serializedMap, nameof(in_serializedMap));
+            Precondition.IsNotNullOrEmpty(inSerializedMap, nameof(inSerializedMap));
             var result = false;
-            out_map = Empty;
+            outMap = Empty;
 
             // Determine what version of region map was serialized.
             try
             {
-                var document = JObject.Parse(in_serializedMap);
+                var document = JObject.Parse(inSerializedMap);
                 var version = document?.Value<string>(nameof(DataVersion));
 
                 // Deserialize only if this class supports the version given.
                 if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    out_map = JsonConvert.DeserializeObject<MapRegion>(in_serializedMap);
+                    outMap = JsonConvert.DeserializeObject<MapRegion>(inSerializedMap);
                     result = true;
                 }
             }

@@ -37,12 +37,12 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2D"/> struct.
         /// </summary>
-        /// <param name="in_x">Offset in x.</param>
-        /// <param name="in_y">Offset in y.</param>
-        public Vector2D(int in_x, int in_y)
+        /// <param name="inX">Offset in x.</param>
+        /// <param name="inY">Offset in y.</param>
+        public Vector2D(int inX, int inY)
         {
-            X = in_x;
-            Y = in_y;
+            X = inX;
+            Y = inY;
             Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
         }
 
@@ -50,29 +50,29 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Sums the given vectors.
         /// </summary>
-        /// <param name="in_vector1">First operand.</param>
-        /// <param name="in_vector2">Second operand.</param>
+        /// <param name="inVector1">First operand.</param>
+        /// <param name="inVector2">Second operand.</param>
         /// <returns>A vector representing the sum of the given vectors.</returns>
-        public static Vector2D operator +(Vector2D in_vector1, Vector2D in_vector2)
-            => new Vector2D(in_vector1.X + in_vector2.X, in_vector1.Y + in_vector2.Y);
+        public static Vector2D operator +(Vector2D inVector1, Vector2D inVector2)
+            => new Vector2D(inVector1.X + inVector2.X, inVector1.Y + inVector2.Y);
 
         /// <summary>
         /// Finds the difference between the given vectors.
         /// </summary>
-        /// <param name="in_vector1">First operand.</param>
-        /// <param name="in_vector2">Second operand.</param>
+        /// <param name="inVector1">First operand.</param>
+        /// <param name="inVector2">Second operand.</param>
         /// <returns>A vector representing the difference of the given vectors.</returns>
-        public static Vector2D operator -(Vector2D in_vector1, Vector2D in_vector2)
-            => new Vector2D(in_vector1.X - in_vector2.X, in_vector1.Y - in_vector2.Y);
+        public static Vector2D operator -(Vector2D inVector1, Vector2D inVector2)
+            => new Vector2D(inVector1.X - inVector2.X, inVector1.Y - inVector2.Y);
 
         /// <summary>
         /// Scales a vector.
         /// </summary>
-        /// <param name="in_scalar">The scalar.</param>
-        /// <param name="in_vector">The vector.</param>
+        /// <param name="inScalar">The scalar.</param>
+        /// <param name="inVector">The vector.</param>
         /// <returns>A scaled vector.</returns>
-        public static Vector2D operator *(int in_scalar, Vector2D in_vector)
-            => new Vector2D(in_scalar * in_vector.X, in_scalar * in_vector.Y);
+        public static Vector2D operator *(int inScalar, Vector2D inVector)
+            => new Vector2D(inScalar * inVector.X, inScalar * inVector.Y);
         #endregion
 
         #region IEquatable Implementation
@@ -86,11 +86,11 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Determines whether the specified <see cref="Vector2D"/> is equal to the current <see cref="Vector2D"/>.
         /// </summary>
-        /// <param name="in_vector">The <see cref="Vector2D"/> to compare with the current.</param>
+        /// <param name="inVector">The <see cref="Vector2D"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="Vector2D"/>s are equal.</returns>
-        public bool Equals(Vector2D in_vector)
-            => X == in_vector.X
-            && Y == in_vector.Y;
+        public bool Equals(Vector2D inVector)
+            => X == inVector.X
+            && Y == inVector.Y;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Vector2D"/>.
@@ -104,23 +104,23 @@ namespace ParquetClassLibrary.Utilities
         /// Determines whether a specified instance of <see cref="Vector2D"/> is equal to
         /// another specified instance of <see cref="Vector2D"/>.
         /// </summary>
-        /// <param name="in_vector1">The first <see cref="Vector2D"/> to compare.</param>
-        /// <param name="in_vector2">The second <see cref="Vector2D"/> to compare.</param>
+        /// <param name="inVector1">The first <see cref="Vector2D"/> to compare.</param>
+        /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Vector2D in_vector1, Vector2D in_vector2)
-            => in_vector1.X == in_vector2.X
-            && in_vector1.Y == in_vector2.Y;
+        public static bool operator ==(Vector2D inVector1, Vector2D inVector2)
+            => inVector1.X == inVector2.X
+            && inVector1.Y == inVector2.Y;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Vector2D"/> is not equal
         /// to another specified instance of <see cref="Vector2D"/>.
         /// </summary>
-        /// <param name="in_vector1">The first <see cref="Vector2D"/> to compare.</param>
-        /// <param name="in_vector2">The second <see cref="Vector2D"/> to compare.</param>
+        /// <param name="inVector1">The first <see cref="Vector2D"/> to compare.</param>
+        /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Vector2D in_vector1, Vector2D in_vector2)
-            => in_vector1.X != in_vector2.X
-            || in_vector1.Y != in_vector2.Y;
+        public static bool operator !=(Vector2D inVector1, Vector2D inVector2)
+            => inVector1.X != inVector2.X
+            || inVector1.Y != inVector2.Y;
         #endregion
 
         #region Utility Methods

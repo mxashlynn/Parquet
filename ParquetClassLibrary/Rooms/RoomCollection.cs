@@ -29,46 +29,46 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>
         /// Determines whether the <see cref="RoomCollection"/> contains the specified <see cref="Room"/>.
         /// </summary>
-        /// <param name="in_room">The <see cref="Room"/> to find.</param>
+        /// <param name="inRoom">The <see cref="Room"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Room"/> was found; <c>false</c> otherwise.</returns>
-        public bool Contains(Room in_room)
-            => Rooms.Contains(in_room);
+        public bool Contains(Room inRoom)
+            => Rooms.Contains(inRoom);
 
         /// <summary>
         /// Returns the <see cref="Room"/> at the given position, if there is one.
         /// </summary>
-        /// <param name="in_position">An in-bounds position to search for a <see cref="Room"/>.</param>
+        /// <param name="inPosition">An in-bounds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
-        public Room GetRoomAt(Vector2D in_position)
-            => Rooms.FirstOrDefault(room => room.ContainsPosition(in_position));
+        public Room GetRoomAt(Vector2D inPosition)
+            => Rooms.FirstOrDefault(room => room.ContainsPosition(inPosition));
 
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
         /// <remarks>Private so that empty <see cref="RoomCollection"/>s are not made in client code.</remarks>
-        private RoomCollection(IEnumerable<Room> in_rooms)
+        private RoomCollection(IEnumerable<Room> inRooms)
         {
-            Rooms = in_rooms.ToList();
+            Rooms = inRooms.ToList();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.
         /// </summary>
-        /// <param name="in_subregion">The collection of parquets to search for <see cref="Room"/>s.</param>
+        /// <param name="inSubregion">The collection of parquets to search for <see cref="Room"/>s.</param>
         /// <returns>An initialized <see cref="RoomCollection"/>.</returns>
-        public static RoomCollection CreateFromSubregion(ParquetStack[,] in_subregion)
+        public static RoomCollection CreateFromSubregion(ParquetStack[,] inSubregion)
         {
-            Precondition.IsNotNull(in_subregion, nameof(in_subregion));
+            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
-            var walkableAreas = in_subregion.GetWalkableAreas();
+            var walkableAreas = inSubregion.GetWalkableAreas();
 
             MapSpaceCollection perimeter = MapSpaceCollection.Empty;
             var rooms = walkableAreas
-                        .Where(walkableArea => walkableArea.TryGetPerimeter(in_subregion, out perimeter)
+                        .Where(walkableArea => walkableArea.TryGetPerimeter(inSubregion, out perimeter)
                                             && walkableArea.Concat(perimeter).Any(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false)
                                             && walkableArea.Any(space => space.IsWalkableEntry
-                                                                      || space.Neighbors(in_subregion).Any(neighbor => neighbor.IsEnclosingEntry(in_subregion, walkableArea))))
+                                                                      || space.Neighbors(inSubregion).Any(neighbor => neighbor.IsEnclosingEntry(inSubregion, walkableArea))))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
             return new RoomCollection(rooms);
@@ -111,27 +111,27 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <summary>
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
-        /// <param name="in_subregion">The collection of <see cref="ParquetStack"/>s to search.</param>
+        /// <param name="inSubregion">The collection of <see cref="ParquetStack"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStack[,] in_subregion)
+        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStack[,] inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
-            var subregionRows = in_subregion.GetLength(0);
-            var subregionCols = in_subregion.GetLength(1);
+            var subregionRows = inSubregion.GetLength(0);
+            var subregionCols = inSubregion.GetLength(1);
 
             for (var y = 0; y < subregionRows; y++)
             {
                 for (var x = 0; x < subregionCols; x++)
                 {
-                    if (in_subregion[y, x].IsWalkable)
+                    if (inSubregion[y, x].IsWalkable)
                     {
-                        var currentSpace = new MapSpace(x, y, in_subregion[y, x]);
+                        var currentSpace = new MapSpace(x, y, inSubregion[y, x]);
 
-                        var northSpace = y > 0 && in_subregion[y - 1, x].IsWalkable
-                            ? new MapSpace(x, y - 1, in_subregion[y - 1, x])
+                        var northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
+                            ? new MapSpace(x, y - 1, inSubregion[y - 1, x])
                             : MapSpace.Empty;
-                        var westSpace = x > 0 && in_subregion[y, x - 1].IsWalkable
-                            ? new MapSpace(x - 1, y, in_subregion[y, x - 1])
+                        var westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
+                            ? new MapSpace(x - 1, y, inSubregion[y, x - 1])
                             : MapSpace.Empty;
 
                         if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
             var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Room.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Room.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(in_subregion, space => space.Content.IsWalkable)));
+            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(inSubregion, space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
             return results.ConvertAll(hashOfSpaces => new MapSpaceCollection(hashOfSpaces));

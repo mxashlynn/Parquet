@@ -165,25 +165,25 @@ namespace ParquetUnitTests.Utilities
                   { 1, 1, 1, 1, 1, 1 } };
             var start = new Vector2D(location, location);
 
-            bool IsVaild(Vector2D in_position)
+            bool IsVaild(Vector2D inPosition)
             {
-                return in_position.X >= 0
-                       && in_position.X <= fillLayer.Length
-                       && in_position.Y >= 0
-                       && in_position.Y <= fillLayer.Length;
+                return inPosition.X >= 0
+                       && inPosition.X <= fillLayer.Length
+                       && inPosition.Y >= 0
+                       && inPosition.Y <= fillLayer.Length;
             }
 
-            bool Matches<T>(Vector2D in_position, T in_matchAgainst) where T : struct
+            bool Matches<T>(Vector2D inPosition, T inMatchAgainst) where T : struct
             {
-                var matchAgainst = Convert.ToInt32(in_matchAgainst);
-                return fillLayer[in_position.Y, in_position.X] == matchAgainst;
+                var matchAgainst = Convert.ToInt32(inMatchAgainst);
+                return fillLayer[inPosition.Y, inPosition.X] == matchAgainst;
             }
 
-            int CountAllTargets(int[,] in_array)
+            int CountAllTargets(int[,] inArray)
             {
                 var count = 0;
 
-                foreach (var item in in_array)
+                foreach (var item in inArray)
                 {
                     if (item == target)
                     {

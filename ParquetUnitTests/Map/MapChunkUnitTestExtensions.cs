@@ -1,4 +1,4 @@
-﻿using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetUnitTests.Map
@@ -9,27 +9,27 @@ namespace ParquetUnitTests.Map
     internal static class MapChunkUnitTestExtensions
     {
         /// <summary>Fills the chunk with a test pattern.</summary>
-        public static MapChunk FillTestPattern(this MapChunk in_mapChunk)
+        public static MapChunk FillTestPattern(this MapChunk inMapChunk)
         {
-            for (var y = 0; y < in_mapChunk.DimensionsInParquets.Y; y++)
+            for (var y = 0; y < inMapChunk.DimensionsInParquets.Y; y++)
             {
-                for (var x = 0; x < in_mapChunk.DimensionsInParquets.X; x++)
+                for (var x = 0; x < inMapChunk.DimensionsInParquets.X; x++)
                 {
-                    in_mapChunk.TrySetFloorDefinition(TestEntities.TestFloor.ID, new Vector2D(x, y));
+                    inMapChunk.TrySetFloorDefinition(TestEntities.TestFloor.ID, new Vector2D(x, y));
                 }
 
-                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(0, y));
-                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(in_mapChunk.DimensionsInParquets.X - 1, y));
+                inMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(0, y));
+                inMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(inMapChunk.DimensionsInParquets.X - 1, y));
             }
-            for (var x = 0; x < in_mapChunk.DimensionsInParquets.X; x++)
+            for (var x = 0; x < inMapChunk.DimensionsInParquets.X; x++)
             {
-                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, 0));
-                in_mapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, in_mapChunk.DimensionsInParquets.Y - 1));
+                inMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, 0));
+                inMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, inMapChunk.DimensionsInParquets.Y - 1));
             }
-            in_mapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2D(1, 2));
-            in_mapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2D(3, 3));
+            inMapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2D(1, 2));
+            inMapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2D(3, 3));
 
-            return in_mapChunk;
+            return inMapChunk;
         }
     }
 }

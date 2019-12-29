@@ -19,12 +19,12 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="in_position">The location of this point on its containing region.</param>
-        /// <param name="in_guid">The region this exit leads to.</param>
-        public ExitPoint(Vector2D in_position, Guid in_guid)
+        /// <param name="inPosition">The location of this point on its containing region.</param>
+        /// <param name="inGuid">The region this exit leads to.</param>
+        public ExitPoint(Vector2D inPosition, Guid inGuid)
         {
-            Destination = in_guid;
-            Position = in_position;
+            Destination = inGuid;
+            Position = inPosition;
         }
 
         #region IEquatable Implementation
@@ -38,10 +38,10 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Determines whether the specified <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="in_point">The <see cref="ExitPoint"/> to compare with.</param>
+        /// <param name="inPoint">The <see cref="ExitPoint"/> to compare with.</param>
         /// <returns><c>true</c> if the given <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>; otherwise, <c>false</c>.</returns>
-        public bool Equals(ExitPoint in_point)
-            => null != in_point && Position == in_point.Position;
+        public bool Equals(ExitPoint inPoint)
+            => null != inPoint && Position == inPoint.Position;
 
         /// <summary>
         /// Determines whether the given <see cref="object"/> is equal to this <see cref="ExitPoint"/>.
@@ -55,23 +55,23 @@ namespace ParquetClassLibrary.Maps
         /// Determines whether a specified instance of <see cref="SpecialPoint"/>
         /// is equal to another specified instance of <see cref="SpecialPoint"/>.
         /// </summary>
-        /// <param name="in_point1">The first <see cref="SpecialPoint"/> to compare.</param>
-        /// <param name="in_point2">The second <see cref="SpecialPoint"/> to compare.</param>
-        /// <returns><c>true</c> if <c>in_point1</c> and <c>in_point2</c> are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ExitPoint in_point1, ExitPoint in_point2)
-            => in_point1.Position == in_point2.Position;
+        /// <param name="inPoint1">The first <see cref="SpecialPoint"/> to compare.</param>
+        /// <param name="inPoint2">The second <see cref="SpecialPoint"/> to compare.</param>
+        /// <returns><c>true</c> if the two points are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(ExitPoint inPoint1, ExitPoint inPoint2)
+            => inPoint1.Position == inPoint2.Position;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="SpecialPoint"/>
         /// is not equal to another specified <see cref="SpecialPoint"/>.
         /// </summary>
-        /// <param name="in_point1">The first <see cref="SpecialPoint"/> to compare.</param>
-        /// <param name="in_point2">The second <see cref="SpecialPoint"/> to compare.</param>
+        /// <param name="inPoint1">The first <see cref="SpecialPoint"/> to compare.</param>
+        /// <param name="inPoint2">The second <see cref="SpecialPoint"/> to compare.</param>
         /// <returns>
-        /// <c>true</c> if <c>in_point1</c> and <c>in_point2</c> are not equal; otherwise, <c>false</c>.
+        /// <c>true</c> if the two points are not equal; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator !=(ExitPoint in_point1, ExitPoint in_point2)
-            => in_point1.Position != in_point2.Position;
+        public static bool operator !=(ExitPoint inPoint1, ExitPoint inPoint2)
+            => inPoint1.Position != inPoint2.Position;
         #endregion
     }
 }
