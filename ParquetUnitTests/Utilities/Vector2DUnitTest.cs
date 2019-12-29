@@ -33,13 +33,13 @@ namespace ParquetUnitTests.Utilities
         [InlineData(0,  0)]
         [InlineData(1, -1)]
         [InlineData(4096, 4096)]
-        public void NewVectorTest(int in_x, int in_y)
+        public void NewVectorTest(int inX, int inY)
         {
-            var testVector = new Vector2D(in_x, in_y);
+            var testVector = new Vector2D(inX, inY);
 
-            Assert.Equal(in_x, testVector.X);
-            Assert.Equal(in_y, testVector.Y);
-            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(in_x * in_x + in_y * in_y)));
+            Assert.Equal(inX, testVector.X);
+            Assert.Equal(inY, testVector.Y);
+            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(inX * inX + inY * inY)));
             Assert.Equal(magnitude, testVector.Magnitude);
         }
 

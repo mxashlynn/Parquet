@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Map;
+using ParquetClassLibrary.Maps;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Indicates that the encapsulated info corresponding to a particular position in the current map
@@ -32,13 +32,13 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Triggered when the information about a specific map location is ready to be displayed.
         /// </summary>
-        /// <param name="in_parquets">Any and all parquets at the location.</param>
-        /// <param name="in_points">Any and all special points at the location.</param>
-        public PositionInfoEventArgs(ParquetStack in_parquets, ParquetStatus in_statuses, List<ExitPoint> in_points)
+        /// <param name="inParquets">Any and all parquets at the location.</param>
+        /// <param name="inPoints">Any and all special points at the location.</param>
+        public PositionInfoEventArgs(ParquetStack inParquets, ParquetStatus inStatuses, List<ExitPoint> inPoints)
         {
-            Stack = in_parquets;
-            Status = in_statuses;
-            SpecialPoints = in_points;
+            Stack = inParquets;
+            Status = inStatuses;
+            SpecialPoints = inPoints;
         }
     }
 }

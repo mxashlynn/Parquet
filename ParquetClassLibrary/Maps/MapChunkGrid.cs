@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox-mode.
@@ -43,40 +43,40 @@ namespace ParquetClassLibrary.Map
 
         #region Grid Contents
         /// <summary>The types of chunks which make up the grid.</summary>
-        private readonly ChunkType[,] _chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
+        private readonly ChunkType[,] chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
         #endregion
 
         #region Initialization
         /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="in_title">The name of the new region.</param>
-        /// <param name="in_background">Background color for the new region.</param>
-        /// <param name="in_globalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="in_id">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string in_title = null, PCLColor? in_background = null,
-                            int in_globalElevation = MapRegion.DefaultGlobalElevation, Guid? in_id = null)
+        /// <param name="inTitle">The name of the new region.</param>
+        /// <param name="inBackground">Background color for the new region.</param>
+        /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="inID">A pre-existing RegionID; if null, a new RegionID is generated.</param>
+        public MapChunkGrid(string inTitle = null, PCLColor? inBackground = null,
+                            int inGlobalElevation = MapRegion.DefaultGlobalElevation, Guid? inID = null)
         {
-            Title = string.IsNullOrEmpty(in_title)
+            Title = string.IsNullOrEmpty(inTitle)
                 ? MapRegion.DefaultTitle
-                : in_title;
-            Background = in_background ?? MapRegion.DefaultColor;
-            GlobalElevation = in_globalElevation;
-            RegionID = in_id ?? Guid.NewGuid();
+                : inTitle;
+            Background = inBackground ?? MapRegion.DefaultColor;
+            GlobalElevation = inGlobalElevation;
+            RegionID = inID ?? Guid.NewGuid();
         }
 
         /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="in_generateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
-        public MapChunkGrid(bool in_generateID)
+        /// <param name="inGenerateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
+        public MapChunkGrid(bool inGenerateID)
         {
             Title = MapRegion.DefaultTitle;
             Background = MapRegion.DefaultColor;
             GlobalElevation = 0;
 
             // Overwrite default behavior for tests.
-            RegionID = in_generateID
+            RegionID = inGenerateID
                 ? Guid.NewGuid()
                 : Guid.Empty;
         }
@@ -86,26 +86,26 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Places the given chunk type at the given position and orients it.
         /// </summary>
-        /// <param name="in_type">The new chunk type to set.</param>
-        /// <param name="in_position">The position at which to set it.</param>
-        public void SetChunk(ChunkType in_type, Vector2D in_position)
+        /// <param name="inChunkType">The new chunk type to set.</param>
+        /// <param name="inPosition">The position at which to set it.</param>
+        public void SetChunk(ChunkType inChunkType, Vector2D inPosition)
         {
-            if (IsValidPosition(in_position))
+            if (IsValidPosition(inPosition))
             {
-                _chunkTypes[in_position.Y, in_position.X] = in_type;
+                chunkTypes[inPosition.Y, inPosition.X] = inChunkType;
             }
         }
 
         /// <summary>
         /// Gets chunk type and orientation at the given position.
         /// </summary>
-        /// <param name="in_position">The position whose chunk data is sought.</param>
+        /// <param name="inPosition">The position whose chunk data is sought.</param>
         /// <returns>
-        /// If <paramref name="in_position"/> is valid, the chunk type and orientation; null otherwise.
+        /// If <paramref name="inPosition"/> is valid, the chunk type and orientation; null otherwise.
         /// </returns>
-        public ChunkType GetChunk(Vector2D in_position)
-            => IsValidPosition(in_position)
-                ? _chunkTypes[in_position.Y, in_position.X]
+        public ChunkType GetChunk(Vector2D inPosition)
+            => IsValidPosition(inPosition)
+                ? chunkTypes[inPosition.Y, inPosition.X]
                 : ChunkType.Empty;
         #endregion
 
@@ -120,26 +120,26 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunkGrid"/> from the given string.
         /// </summary>
-        /// <param name="in_serializedMapChunkGrid">The serialized region map.</param>
-        /// <param name="out_mapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
+        /// <param name="inSerializedMapChunkGrid">The serialized region map.</param>
+        /// <param name="outMapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string in_serializedMapChunkGrid,
-                                                    out MapChunkGrid out_mapChunkGrid)
+        public static bool TryDeserializeFromString(string inSerializedMapChunkGrid,
+                                                    out MapChunkGrid outMapChunkGrid)
         {
-            Precondition.IsNotNullOrEmpty(in_serializedMapChunkGrid, nameof(in_serializedMapChunkGrid));
+            Precondition.IsNotNullOrEmpty(inSerializedMapChunkGrid, nameof(inSerializedMapChunkGrid));
             var result = false;
-            out_mapChunkGrid = Empty;
+            outMapChunkGrid = Empty;
 
             // Determine what version of region map was serialized.
             try
             {
-                var document = JObject.Parse(in_serializedMapChunkGrid);
+                var document = JObject.Parse(inSerializedMapChunkGrid);
                 var version = document?.Value<string>(nameof(DataVersion));
 
                 // Deserialize only if this class supports the version given.
                 if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    out_mapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(in_serializedMapChunkGrid);
+                    outMapChunkGrid = JsonConvert.DeserializeObject<MapChunkGrid>(inSerializedMapChunkGrid);
                     result = true;
                 }
             }
@@ -156,10 +156,10 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Determines if the given position corresponds to a point on the grid.
         /// </summary>
-        /// <param name="in_position">The position to validate.</param>
+        /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D in_position)
-            => _chunkTypes.IsValidPosition(in_position);
+        public bool IsValidPosition(Vector2D inPosition)
+            => chunkTypes.IsValidPosition(inPosition);
 
         /// <summary>
         /// Describes the <see cref="MapChunkGrid"/>'s basic information.

@@ -32,15 +32,15 @@ namespace ParquetClassLibrary
     public abstract class Entity : IEquatable<Entity>
     {
         /// <summary>Game-wide unique identifier.</summary>
-        [JsonProperty(PropertyName = "in_ID")]
+        [JsonProperty(PropertyName = "inID")]
         public EntityID ID { get; }
 
         /// <summary>Player-facing name.</summary>
-        [JsonProperty(PropertyName = "in_name")]
+        [JsonProperty(PropertyName = "inName")]
         public string Name { get; }
 
         /// <summary>Player-facing description.</summary>
-        [JsonProperty(PropertyName = "in_description")]
+        [JsonProperty(PropertyName = "inDescription")]
         public string Description { get; }
 
         /// <summary>Optional comment.</summary>
@@ -48,28 +48,28 @@ namespace ParquetClassLibrary
         /// Could be used for designer notes or to implement an in-game dialogue
         /// with or on the <see cref="Entity"/>.
         /// </remarks>
-        [JsonProperty(PropertyName = "in_comment")]
+        [JsonProperty(PropertyName = "inComment")]
         public string Comment { get; }
 
         #region Initialization
         /// <summary>
         /// Initializes a new instance of concrete implementations of the <see cref="Entity"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the derived type's <see cref="EntityID"/> is defined.</param>
-        /// <param name="in_id">Unique identifier for the <see cref="Entity"/>.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the <see cref="Entity"/>.  Cannot be null or empty.</param>
-        /// <param name="in_description">Player-friendly description of the <see cref="Entity"/>.</param>
-        /// <param name="in_comment">Comment of, on, or by the <see cref="Entity"/>.</param>
+        /// <param name="inBounds">The bounds within which the derived type's <see cref="EntityID"/> is defined.</param>
+        /// <param name="inID">Unique identifier for the <see cref="Entity"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="Entity"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="Entity"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="Entity"/>.</param>
         [JsonConstructor]
-        protected Entity(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description, string in_comment)
+        protected Entity(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment)
         {
-            Precondition.IsInRange(in_id, in_bounds, nameof(in_id));
-            Precondition.IsNotNullOrEmpty(in_name, nameof(in_name));
+            Precondition.IsInRange(inID, inBounds, nameof(inID));
+            Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
-            ID = in_id;
-            Name = in_name;
-            Description = in_description ?? "";
-            Comment = in_comment ?? "";
+            ID = inID;
+            Name = inName;
+            Description = inDescription ?? "";
+            Comment = inComment ?? "";
         }
         #endregion
 
@@ -86,10 +86,10 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Determines whether the specified <see cref="Entity"/> is equal to the current <see cref="Entity"/>.
         /// </summary>
-        /// <param name="in_entity">The <see cref="Entity"/> to compare with the current.</param>
+        /// <param name="inEntity">The <see cref="Entity"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Entity in_entity)
-            => null != in_entity && ID == in_entity.ID;
+        public bool Equals(Entity inEntity)
+            => null != inEntity && ID == inEntity.ID;
 
         /// <summary>
         /// Determines whether the specified <see langword="object"/> is equal to the current <see cref="Entity"/>.
@@ -102,23 +102,23 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Determines whether a specified instance of <see cref="Entity"/> is equal to another specified instance of <see cref="Entity"/>.
         /// </summary>
-        /// <param name="in_entity1">The first <see cref="Entity"/> to compare.</param>
-        /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
+        /// <param name="inEntity1">The first <see cref="Entity"/> to compare.</param>
+        /// <param name="inEntity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Entity in_entity1, Entity in_entity2)
-            => (in_entity1 is null && in_entity2 is null)
-            || (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID == in_entity2.ID);
+        public static bool operator ==(Entity inEntity1, Entity inEntity2)
+            => (inEntity1 is null && inEntity2 is null)
+            || (!(inEntity1 is null) && !(inEntity2 is null) && inEntity1.ID == inEntity2.ID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Entity"/> is not equal to another specified instance of <see cref="Entity"/>.
         /// </summary>
-        /// <param name="in_entity1">The first <see cref="Entity"/> to compare.</param>
-        /// <param name="in_entity2">The second <see cref="Entity"/> to compare.</param>
+        /// <param name="inEntity1">The first <see cref="Entity"/> to compare.</param>
+        /// <param name="inEntity2">The second <see cref="Entity"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Entity in_entity1, Entity in_entity2)
-            => (!(in_entity1 is null) && !(in_entity2 is null) && in_entity1.ID != in_entity2.ID)
-            || (!(in_entity1 is null) && in_entity2 is null)
-            || (in_entity1 is null && !(in_entity2 is null));
+        public static bool operator !=(Entity inEntity1, Entity inEntity2)
+            => (!(inEntity1 is null) && !(inEntity2 is null) && inEntity1.ID != inEntity2.ID)
+            || (!(inEntity1 is null) && inEntity2 is null)
+            || (inEntity1 is null && !(inEntity2 is null));
         #endregion
 
         #region Utility Methods

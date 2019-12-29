@@ -23,27 +23,27 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
-        [JsonProperty(PropertyName = "in_gatherTool")]
+        [JsonProperty(PropertyName = "inGatherTool")]
         public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "in_gatherEffect")]
+        [JsonProperty(PropertyName = "inGatherEffect")]
         public GatherEffect GatherEffect { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "in_collectibleID")]
+        [JsonProperty(PropertyName = "inCollectibleID")]
         public EntityID CollectibleID { get; }
 
         /// <summary>Whether or not the block is flammable.</summary>
-        [JsonProperty(PropertyName = "in_isFlammable")]
+        [JsonProperty(PropertyName = "inIsFlammable")]
         public bool IsFlammable { get; }
 
         /// <summary>Whether or not the block is a liquid.</summary>
-        [JsonProperty(PropertyName = "in_isLiquid")]
+        [JsonProperty(PropertyName = "inIsLiquid")]
         public bool IsLiquid { get; }
 
         /// <summary>The block's native toughness.</summary>
-        [JsonProperty(PropertyName = "in_maxToughness")]
+        [JsonProperty(PropertyName = "inMaxToughness")]
         public int MaxToughness { get; }
         #endregion
 
@@ -51,39 +51,39 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="Block"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_description">Player-friendly description of the parquet.</param>
-        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
-        /// <param name="in_itemID">The item that this collectible corresponds to, if any.</param>
-        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_gatherTool">The tool used to gather this block.</param>
-        /// <param name="in_gatherEffect">Effect of this block when gathered.</param>
-        /// <param name="in_collectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>
-        /// <param name="in_isFlammable">If <c>true</c> this block may burn.</param>
-        /// <param name="in_isLiquid">If <c>true</c> this block will flow.</param>
-        /// <param name="in_maxToughness">Representation of the difficulty involved in gathering this block.</param>
+        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the parquet.</param>
+        /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inItemID">The item that this collectible corresponds to, if any.</param>
+        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inGatherTool">The tool used to gather this block.</param>
+        /// <param name="inGatherEffect">Effect of this block when gathered.</param>
+        /// <param name="inCollectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>
+        /// <param name="inIsFlammable">If <c>true</c> this block may burn.</param>
+        /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
+        /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
         [JsonConstructor]
-        public Block(EntityID in_id, string in_name, string in_description, string in_comment,
-                     EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
-                     EntityTag in_addsToRoom = null,
-                     GatheringTool in_gatherTool = GatheringTool.None,
-                     GatherEffect in_gatherEffect = GatherEffect.None,
-                     EntityID? in_collectibleID = null, bool in_isFlammable = false,
-                     bool in_isLiquid = false, int in_maxToughness = DefaultMaxToughness)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
-                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
+        public Block(EntityID inID, string inName, string inDescription, string inComment,
+                     EntityID? inItemID = null, EntityTag inAddsToBiome = null,
+                     EntityTag inAddsToRoom = null,
+                     GatheringTool inGatherTool = GatheringTool.None,
+                     GatherEffect inGatherEffect = GatherEffect.None,
+                     EntityID? inCollectibleID = null, bool inIsFlammable = false,
+                     bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
+                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
         {
-            var nonNullCollectibleID = in_collectibleID ?? EntityID.None;
+            var nonNullCollectibleID = inCollectibleID ?? EntityID.None;
 
-            Precondition.IsInRange(nonNullCollectibleID, All.CollectibleIDs, nameof(in_collectibleID));
+            Precondition.IsInRange(nonNullCollectibleID, All.CollectibleIDs, nameof(inCollectibleID));
 
-            GatherTool = in_gatherTool;
-            GatherEffect = in_gatherEffect;
+            GatherTool = inGatherTool;
+            GatherEffect = inGatherEffect;
             CollectibleID = nonNullCollectibleID;
-            IsFlammable = in_isFlammable;
-            IsLiquid = in_isLiquid;
-            MaxToughness = in_maxToughness;
+            IsFlammable = inIsFlammable;
+            IsLiquid = inIsLiquid;
+            MaxToughness = inMaxToughness;
         }
         #endregion
     }

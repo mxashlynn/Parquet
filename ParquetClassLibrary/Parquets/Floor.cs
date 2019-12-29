@@ -20,11 +20,11 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        [JsonProperty(PropertyName = "in_modTool")]
+        [JsonProperty(PropertyName = "inModTool")]
         public ModificationTool ModTool { get; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-        [JsonProperty(PropertyName = "in_trenchName")]
+        [JsonProperty(PropertyName = "inTrenchName")]
         public string TrenchName { get; }
         #endregion
 
@@ -32,25 +32,25 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="Floor"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_description">Player-friendly description of the parquet.</param>
-        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
-        /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers this parquet.</param>
-        /// <param name="in_addsToBiome">Which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_modTool">The tool used to modify this floor.</param>
-        /// <param name="in_trenchName">The name to use for this floor when it has been dug out.</param>
-        /// <param name="in_isWalkable">If <c>true</c> this floor may be walked on.</param>
+        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the parquet.</param>
+        /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers this parquet.</param>
+        /// <param name="inAddsToBiome">Which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
+        /// <param name="inModTool">The tool used to modify this floor.</param>
+        /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>
         [JsonConstructor]
-        public Floor(EntityID in_id, string in_name, string in_description, string in_comment,
-                     EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
-                     EntityTag in_addsToRoom = null, ModificationTool in_modTool = ModificationTool.None,
-                     string in_trenchName = defaultTrenchName)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
-                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
+        public Floor(EntityID inID, string inName, string inDescription, string inComment,
+                     EntityID? inItemID = null, EntityTag inAddsToBiome = null,
+                     EntityTag inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
+                     string inTrenchName = defaultTrenchName)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
+                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
         {
-            ModTool = in_modTool;
-            TrenchName = in_trenchName;
+            ModTool = inModTool;
+            TrenchName = inTrenchName;
         }
         #endregion
     }

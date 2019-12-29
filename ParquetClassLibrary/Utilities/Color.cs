@@ -19,45 +19,45 @@ namespace ParquetClassLibrary.Utilities
         public int B { get; }
         public int A { get; }
 
-        public PCLColor(int in_r, int in_g, int in_b, int in_a = 255)
+        public PCLColor(int inR, int inG, int inB, int inA = 255)
         {
-            R = in_r.Normalize(0, 255);
-            G = in_g.Normalize(0, 255);
-            B = in_b.Normalize(0, 255);
-            A = in_a.Normalize(0, 255);
+            R = inR.Normalize(0, 255);
+            G = inG.Normalize(0, 255);
+            B = inB.Normalize(0, 255);
+            A = inA.Normalize(0, 255);
         }
 
         #region IEquatable Implementation
         public override int GetHashCode()
             => (R, G, B, A).GetHashCode();
 
-        public bool Equals(PCLColor in_color)
-            => R == in_color.R
-            && G == in_color.G
-            && B == in_color.B
-            && A == in_color.A;
+        public bool Equals(PCLColor inColor)
+            => R == inColor.R
+            && G == inColor.G
+            && B == inColor.B
+            && A == inColor.A;
 
         public override bool Equals(object obj)
             => obj is PCLColor color && Equals(color);
 
-        public static bool operator ==(PCLColor in_color1, PCLColor in_color2)
-            => in_color2.R == in_color1.R
-            && in_color2.G == in_color1.G
-            && in_color2.B == in_color1.B
-            && in_color2.A == in_color1.A;
+        public static bool operator ==(PCLColor inColor1, PCLColor inColor2)
+            => inColor2.R == inColor1.R
+            && inColor2.G == inColor1.G
+            && inColor2.B == inColor1.B
+            && inColor2.A == inColor1.A;
 
-        public static bool operator !=(PCLColor in_color1, PCLColor in_color2)
-            => in_color2.R != in_color1.R
-            || in_color2.G != in_color1.G
-            || in_color2.B != in_color1.B
-            || in_color2.A != in_color1.A;
+        public static bool operator !=(PCLColor inColor1, PCLColor inColor2)
+            => inColor2.R != inColor1.R
+            || inColor2.G != inColor1.G
+            || inColor2.B != inColor1.B
+            || inColor2.A != inColor1.A;
         #endregion
 
         #region Conversion Methods
-        public static implicit operator PCLColor(ConsoleColor in_color)
+        public static implicit operator PCLColor(ConsoleColor inColor)
         {
             PCLColor result;
-            switch (in_color)
+            switch (inColor)
             {
                 case ConsoleColor.Black:
                     result = Black;
@@ -91,27 +91,27 @@ namespace ParquetClassLibrary.Utilities
             return result;
         }
 
-        public static implicit operator ConsoleColor(PCLColor in_color)
+        public static implicit operator ConsoleColor(PCLColor inColor)
         {
             ConsoleColor result;
 
-            if (in_color == White)
+            if (inColor == White)
             {
                 result = ConsoleColor.White;
             }
-            else if (in_color == Grey)
+            else if (inColor == Grey)
             {
                 result = ConsoleColor.Gray;
             }
-            else if (in_color == Black)
+            else if (inColor == Black)
             {
                 result = ConsoleColor.Black;
             }
-            else if (in_color == SkyBlue)
+            else if (inColor == SkyBlue)
             {
                 result = ConsoleColor.Cyan;
             }
-            else if (in_color == Brown)
+            else if (inColor == Brown)
             {
                 result = ConsoleColor.DarkYellow;
             }

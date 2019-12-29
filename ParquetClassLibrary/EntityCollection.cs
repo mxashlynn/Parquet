@@ -43,17 +43,17 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(List<Range<EntityID>> in_bounds, IEnumerable<Entity> in_entities)
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inEntities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(List<Range<EntityID>> inBounds, IEnumerable<Entity> inEntities)
         {
-            Precondition.IsNotNull(in_entities, nameof(in_entities));
+            Precondition.IsNotNull(inEntities, nameof(inEntities));
 
             // All Collections of Entities implicitly contain the None Entity.
             var baseDictionary = new Dictionary<EntityID, Entity> { { EntityID.None, null } };
-            foreach (var entity in in_entities)
+            foreach (var entity in inEntities)
             {
-                Precondition.IsInRange(entity.ID, in_bounds, nameof(in_entities));
+                Precondition.IsInRange(entity.ID, inBounds, nameof(inEntities));
 
                 if (entity.ID == EntityID.None)
                 {
@@ -69,31 +69,31 @@ namespace ParquetClassLibrary
                 }
             }
 
-            Bounds = in_bounds;
+            Bounds = inBounds;
             Entities = baseDictionary;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities) :
-            this(new List<Range<EntityID>> { in_bounds }, in_entities) { }
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inEntities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(Range<EntityID> inBounds, IEnumerable<Entity> inEntities) :
+            this(new List<Range<EntityID>> { inBounds }, inEntities) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_serializedParquets">The serialized parquets.</param>
-        public EntityCollection(List<Range<EntityID>> in_bounds, string in_serializedParquets)
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inSerializedParquets">The serialized parquets.</param>
+        public EntityCollection(List<Range<EntityID>> inBounds, string inSerializedParquets)
         {
-            Precondition.IsNotNullOrEmpty(in_serializedParquets, nameof(in_serializedParquets));
+            Precondition.IsNotNullOrEmpty(inSerializedParquets, nameof(inSerializedParquets));
 
             Dictionary<EntityID, Entity> baseCollection;
             try
             {
-                baseCollection = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(in_serializedParquets);
+                baseCollection = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(inSerializedParquets);
             }
             catch (JsonReaderException exception)
             {
@@ -101,7 +101,7 @@ namespace ParquetClassLibrary
                     $"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}", exception);
             }
 
-            Bounds = in_bounds;
+            Bounds = inBounds;
             Entities = baseCollection;
         }
         #endregion
@@ -110,41 +110,41 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="Entity"/>.
         /// </summary>
-        /// <param name="in_entity">The <see cref="Entity"/> to find.</param>
+        /// <param name="inEntity">The <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Entity"/> was found; <c>false</c> otherwise.</returns>
-        public bool Contains(Entity in_entity)
+        public bool Contains(Entity inEntity)
         {
-            Precondition.IsNotNull(in_entity);
+            Precondition.IsNotNull(inEntity);
 
-            return Entities.ContainsKey(in_entity.ID);
+            return Entities.ContainsKey(inEntity.ID);
         }
 
         /// <summary>
         /// Determines whether the <see cref="EntityCollection{T}"/> contains an <see cref="Entity"/> with the specified <see cref="EntityID"/>.
         /// </summary>
-        /// <param name="in_id">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
+        /// <param name="inID">The <see cref="EntityID"/> of the <see cref="Entity"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
-        public bool Contains(EntityID in_id)
+        public bool Contains(EntityID inID)
         {
             // TODO Remove this test after debugging.
-            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
+            Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return Entities.ContainsKey(in_id);
+            return Entities.ContainsKey(inID);
         }
 
         /// <summary>
         /// Returns the specified <typeparamref name="T"/>.
         /// </summary>
-        /// <param name="in_id">A valid, defined <typeparamref name="T"/> identifier.</param>
+        /// <param name="inID">A valid, defined <typeparamref name="T"/> identifier.</param>
         /// <typeparam name="T">
-        /// The type of <typeparamref name="TParentType"/> sought.  Must correspond to the given <paramref name="in_id"/>.
+        /// The type of <typeparamref name="TParentType"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
         /// <returns>The specified <typeparamref name="T"/>.</returns>
-        public T Get<T>(EntityID in_id) where T : TParentType
+        public T Get<T>(EntityID inID) where T : TParentType
         {
-            Precondition.IsInRange(in_id, Bounds, nameof(in_id));
+            Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return (T)Entities[in_id];
+            return (T)Entities[inID];
         }
 
         /// <summary>
@@ -216,25 +216,25 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_entities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(Range<EntityID> in_bounds, IEnumerable<Entity> in_entities)
-            : base(new List<Range<EntityID>> { in_bounds }, in_entities) { }
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inEntities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
+        public EntityCollection(Range<EntityID> inBounds, IEnumerable<Entity> inEntities)
+            : base(new List<Range<EntityID>> { inBounds }, inEntities) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityCollection"/> class.
         /// </summary>
-        /// <param name="in_bounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="in_serializedParquets">The serialized parquets.</param>
-        public EntityCollection(Range<EntityID> in_bounds, string in_serializedParquets)
-            : base(new List<Range<EntityID>> { in_bounds }, in_serializedParquets) { }
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inSerializedParquets">The serialized parquets.</param>
+        public EntityCollection(Range<EntityID> inBounds, string inSerializedParquets)
+            : base(new List<Range<EntityID>> { inBounds }, inSerializedParquets) { }
 
         /// <summary>
         /// Returns the specified <see cref="Entity"/>.
         /// </summary>
-        /// <param name="in_id">A valid, defined <see cref="Entity"/> identifier.</param>
+        /// <param name="inID">A valid, defined <see cref="Entity"/> identifier.</param>
         /// <returns>The specified <see cref="Entity"/>.</returns>
-        public Entity Get(EntityID in_id)
-            => Get<Entity>(in_id);
+        public Entity Get(EntityID inID)
+            => Get<Entity>(inID);
     }
 }

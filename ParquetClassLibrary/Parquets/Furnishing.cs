@@ -16,19 +16,19 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>Indicates whether this <see cref="Furnishing"/> may be walked on.</summary>
-        [JsonProperty(PropertyName = "in_isWalkable")]
+        [JsonProperty(PropertyName = "inIsWalkable")]
         public bool IsWalkable { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</summary>
-        [JsonProperty(PropertyName = "in_isEntry")]
+        [JsonProperty(PropertyName = "inIsEntry")]
         public bool IsEntry { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</summary>
-        [JsonProperty(PropertyName = "in_isEnclosing")]
+        [JsonProperty(PropertyName = "inIsEnclosing")]
         public bool IsEnclosing { get; }
 
         /// <summary>The <see cref="Furnishing"/> to swap with this Furnishing on an open/close action.</summary>
-        [JsonProperty(PropertyName = "in_swapID")]
+        [JsonProperty(PropertyName = "inSwapID")]
         public EntityID SwapID { get; }
         #endregion
 
@@ -36,30 +36,31 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="Furnishing"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the <see cref="Furnishing"/>.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the <see cref="Furnishing"/>.  Cannot be null or empty.</param>
-        /// <param name="in_itemID">The <see cref="EntityID"/> that represents this <see cref="Furnishing"/> in the <see cref="Inventory"/>.</param>
-        /// <param name="in_description">Player-friendly description of the parquet.</param>
-        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
-        /// <param name="in_addsToBiome">Indicates which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_isWalkable">If <c>true</c> this <see cref="Furnishing"/> may be walked on.</param>
-        /// <param name="in_isEntry">If <c>true</c> this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</param>
-        /// <param name="in_isEnclosing">If <c>true</c> this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
-        /// <param name="in_swapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
+        /// <param name="inID">Unique identifier for the <see cref="Furnishing"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="Furnishing"/>.  Cannot be null or empty.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> that represents this <see cref="Furnishing"/> in the <see cref="Inventory"/>.</param>
+        /// <param name="inDescription">Player-friendly description of the parquet.</param>
+        /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inAddsToBiome">Indicates which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
+        /// <param name="inIsWalkable">If <c>true</c> this <see cref="Furnishing"/> may be walked on.</param>
+        /// <param name="inIsEntry">If <c>true</c> this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</param>
+        /// <param name="inIsEnclosing">If <c>true</c> this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
+        /// <param name="inSwapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
         [JsonConstructor]
-        public Furnishing(EntityID in_id, string in_name, string in_description, string in_comment,
-                          EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
-                          EntityTag in_addsToRoom = null, bool in_isWalkable = false,
-                          bool in_isEntry = false, bool in_isEnclosing = false, EntityID? in_swapID = null)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
-                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
+        public Furnishing(EntityID inID, string inName, string inDescription, string inComment,
+                          EntityID? inItemID = null, EntityTag inAddsToBiome = null,
+                          EntityTag inAddsToRoom = null, bool inIsWalkable = false,
+                          bool inIsEntry = false, bool inIsEnclosing = false, EntityID? inSwapID = null)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
+                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
         {
-            var nonNullSwapID = in_swapID ?? EntityID.None;
-            Precondition.IsInRange(nonNullSwapID, Bounds, nameof(in_swapID));
+            var nonNullSwapID = inSwapID ?? EntityID.None;
+            Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
 
-            IsWalkable = in_isWalkable;
-            IsEntry = in_isEntry;
-            IsEnclosing = in_isEnclosing;
+            IsWalkable = inIsWalkable;
+            IsEntry = inIsEntry;
+            IsEnclosing = inIsEnclosing;
             SwapID = nonNullSwapID;
         }
         #endregion

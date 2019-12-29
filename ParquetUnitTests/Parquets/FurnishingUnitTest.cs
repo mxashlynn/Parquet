@@ -61,7 +61,7 @@ namespace ParquetUnitTests.Parquets
         {
             var goodSwapID = newFurnishingID - 1;
 
-            var testBlock = new Furnishing(newFurnishingID, "will be created", "", "", in_swapID: goodSwapID);
+            var testBlock = new Furnishing(newFurnishingID, "will be created", "", "", inSwapID: goodSwapID);
 
             Assert.NotNull(testBlock);
         }
@@ -73,7 +73,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Furnishing(newFurnishingID, "will fail", "", "", in_swapID: badSwapID);
+                var _ = new Furnishing(newFurnishingID, "will fail", "", "", inSwapID: badSwapID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

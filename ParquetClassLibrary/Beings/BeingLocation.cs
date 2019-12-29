@@ -27,11 +27,11 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Determines whether the specified <see cref="BeingLocation"/> is equal to the current <see cref="BeingLocation"/>.
         /// </summary>
-        /// <param name="in_location">The <see cref="BeingLocation"/> to compare with the current.</param>
+        /// <param name="inLocation">The <see cref="BeingLocation"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(BeingLocation in_location)
-            => RegionID == in_location.RegionID
-            && Position == in_location.Position;
+        public bool Equals(BeingLocation inLocation)
+            => RegionID == inLocation.RegionID
+            && Position == inLocation.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="BeingLocation"/>.
@@ -44,24 +44,20 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Determines whether a specified instance of <see cref="BeingLocation"/> is equal to another specified instance of <see cref="BeingLocation"/>.
         /// </summary>
-        /// <param name="in_location1">The first <see cref="BeingLocation"/> to compare.</param>
-        /// <param name="in_location2">The second <see cref="BeingLocation"/> to compare.</param>
+        /// <param name="inLocation1">The first <see cref="BeingLocation"/> to compare.</param>
+        /// <param name="inLocation2">The second <see cref="BeingLocation"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(BeingLocation in_location1, BeingLocation in_location2)
-            => in_location1.RegionID == in_location2.RegionID
-            && in_location1.Position == in_location2.Position;
-
+        public static bool operator ==(BeingLocation inLocation1, BeingLocation inLocation2)
+            => inLocation1.Equals(inLocation2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="BeingLocation"/> is not equal to another specified instance of <see cref="BeingLocation"/>.
         /// </summary>
-        /// <param name="in_location1">The first <see cref="BeingLocation"/> to compare.</param>
-        /// <param name="in_location2">The second <see cref="BeingLocation"/> to compare.</param>
+        /// <param name="inLocation1">The first <see cref="BeingLocation"/> to compare.</param>
+        /// <param name="inLocation2">The second <see cref="BeingLocation"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(BeingLocation in_location1, BeingLocation in_location2)
-            => in_location1.RegionID != in_location2.RegionID
-            || in_location1.Position != in_location2.Position;
-
+        public static bool operator !=(BeingLocation inLocation1, BeingLocation inLocation2)
+            => !inLocation1.Equals(inLocation2);
         #endregion
 
         #region Utilities

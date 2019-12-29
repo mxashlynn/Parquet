@@ -16,14 +16,14 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        [JsonProperty(PropertyName = "in_effect")]
+        [JsonProperty(PropertyName = "inEffect")]
         public CollectEffect Effect { get; }
 
         /// <summary>
         /// The scale in points of the effect.  For example, how much to alter a stat if the
         /// <see cref="CollectEffect"/> is set to alter a stat.
         /// </summary>
-        [JsonProperty(PropertyName = "in_effectAmount")]
+        [JsonProperty(PropertyName = "inEffectAmount")]
         public int EffectAmount { get; }
         #endregion
 
@@ -31,30 +31,30 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="Collectible"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="in_description">Player-friendly description of the parquet.</param>
-        /// <param name="in_comment">Comment of, on, or by the parquet.</param>
-        /// <param name="in_itemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="Collectible"/> corresponds to, if any.</param>
-        /// <param name="in_addsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
-        /// <param name="in_effect">Effect of this collectible.</param>
-        /// <param name="in_effectAmount">
+        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the parquet.</param>
+        /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="Collectible"/> corresponds to, if any.</param>
+        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inEffect">Effect of this collectible.</param>
+        /// <param name="inEffectAmount">
         /// The scale in points of the effect.
-        /// For example, how much to alter a stat if in_effect is set to alter a stat.
+        /// For example, how much to alter a stat if inEffect is set to alter a stat.
         /// </param>
         [JsonConstructor]
-        public Collectible(EntityID in_id, string in_name, string in_description, string in_comment,
-                           EntityID? in_itemID = null, EntityTag in_addsToBiome = null,
-                           EntityTag in_addsToRoom = null, CollectEffect in_effect = CollectEffect.None,
-                           int in_effectAmount = 0)
-            : base(Bounds, in_id, in_name, in_description, in_comment, in_itemID ?? EntityID.None,
-                   in_addsToBiome ?? EntityTag.None, in_addsToRoom ?? EntityTag.None)
+        public Collectible(EntityID inID, string inName, string inDescription, string inComment,
+                           EntityID? inItemID = null, EntityTag inAddsToBiome = null,
+                           EntityTag inAddsToRoom = null, CollectEffect inEffect = CollectEffect.None,
+                           int inEffectAmount = 0)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
+                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
         {
-            var nonNullItemID = in_itemID ?? EntityID.None;
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(in_itemID));
+            var nonNullItemID = inItemID ?? EntityID.None;
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
 
-            Effect = in_effect;
-            EffectAmount = in_effectAmount;
+            Effect = inEffect;
+            EffectAmount = inEffectAmount;
         }
         #endregion
     }

@@ -32,31 +32,31 @@ namespace ParquetClassLibrary
 
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
         [JsonProperty]
-        private string _tagName = "";
+        private string tagName = "";
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="in_value">Any valid tag value.</param>
+        /// <param name="inValue">Any valid tag value.</param>
         /// <returns>The given value as a tag.</returns>
-        public static implicit operator EntityTag(string in_value)
-            => new EntityTag { _tagName = in_value };
+        public static implicit operator EntityTag(string inValue)
+            => new EntityTag { tagName = inValue };
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="in_tag">Any tag.</param>
+        /// <param name="inTag">Any tag.</param>
         /// <returns>The tag's value.</returns>
-        public static implicit operator string(EntityTag in_tag)
-            => in_tag?._tagName ?? "";
+        public static implicit operator string(EntityTag inTag)
+            => inTag?.tagName ?? "";
         #endregion
 
         #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be compared one another.
         /// </summary>
-        /// <param name="in_tag">Any valid <see cref="EntityTag"/>.</param>
+        /// <param name="inTag">Any valid <see cref="EntityTag"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="EntityTag"/>s being compared.
         /// The return value has these meanings:
@@ -64,8 +64,8 @@ namespace ParquetClassLibrary
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="EntityTag"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
         /// </returns>
-        public int CompareTo(EntityTag in_tag)
-            => string.Compare(_tagName, in_tag?._tagName ?? "", StringComparison.Ordinal);
+        public int CompareTo(EntityTag inTag)
+            => string.Compare(tagName, inTag?.tagName ?? "", StringComparison.Ordinal);
         #endregion
 
         #region Utility Methods
@@ -74,7 +74,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => _tagName;
+            => tagName;
         #endregion
     }
 }

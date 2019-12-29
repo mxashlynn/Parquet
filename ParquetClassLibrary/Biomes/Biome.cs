@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -6,7 +6,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Models the biome that a <see cref="Map.MapRegion"/> embodies.
+    /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
     public class Biome : Entity
     {
@@ -43,28 +43,28 @@ namespace ParquetClassLibrary.Biomes
         /// <summary>
         /// Initializes a new instance of the <see cref="Biome"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the <see cref="Biome"/>.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the <see cref="Biome"/>.  Cannot be null or empty.</param>
-        /// <param name="in_description">Player-friendly description of the <see cref="Biome"/>.</param>
-        /// <param name="in_comment">Comment of, on, or by the <see cref="Biome"/>.</param>
-        /// <param name="in_tier">A rating indicating where in the progression this <see cref="Biome"/> falls.</param>
-        /// <param name="in_elevationCategory">Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</param>
-        /// <param name="in_isLiquidBased">Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</param>
-        /// <param name="in_parquetCriteria">Describes the parquets that make up this <see cref="Biome"/>.</param>
-        /// <param name="in_entryRequirements">Describes the <see cref="Item"/>s needed to access this <see cref="Biome"/>.</param>
-        public Biome(EntityID in_id, string in_name, string in_description, string in_comment,
-                     int in_tier, Elevation in_elevationCategory,
-                     bool in_isLiquidBased, List<EntityTag> in_parquetCriteria,
-                     List<EntityTag> in_entryRequirements)
-            : base(All.BiomeIDs, in_id, in_name, in_description, in_comment)
+        /// <param name="inID">Unique identifier for the <see cref="Biome"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="Biome"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="Biome"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="Biome"/>.</param>
+        /// <param name="inTier">A rating indicating where in the progression this <see cref="Biome"/> falls.</param>
+        /// <param name="inElevationCategory">Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</param>
+        /// <param name="inIsLiquidBased">Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</param>
+        /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="Biome"/>.</param>
+        /// <param name="inEntryRequirements">Describes the <see cref="Item"/>s needed to access this <see cref="Biome"/>.</param>
+        public Biome(EntityID inID, string inName, string inDescription, string inComment,
+                     int inTier, Elevation inElevationCategory,
+                     bool inIsLiquidBased, List<EntityTag> inParquetCriteria,
+                     List<EntityTag> inEntryRequirements)
+            : base(All.BiomeIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.MustBeNonNegative(in_tier, nameof(in_tier));
+            Precondition.MustBeNonNegative(inTier, nameof(inTier));
 
-            Tier = in_tier;
-            ElevationCategory = in_elevationCategory;
-            IsLiquidBased = in_isLiquidBased;
-            ParquetCriteria = (in_parquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
-            EntryRequirements = (in_entryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
+            Tier = inTier;
+            ElevationCategory = inElevationCategory;
+            IsLiquidBased = inIsLiquidBased;
+            ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
+            EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
         }
         #endregion
     }

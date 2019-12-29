@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetStack"/>s for use in <see cref="MapParent"/> and derived classes.
@@ -39,19 +39,19 @@ namespace ParquetClassLibrary.Map
         /// <summary>
         /// Initializes a new <see cref="ParquetStack2DCollection"/>.
         /// </summary>
-        /// <param name="in_dimensions">The length of each dimension of the collection.</param>
-        public ParquetStack2DCollection(int in_dimensions)
+        /// <param name="inDimensions">The length of each dimension of the collection.</param>
+        public ParquetStack2DCollection(int inDimensions)
         {
-            ParquetStacks = new ParquetStack[in_dimensions, in_dimensions];
+            ParquetStacks = new ParquetStack[inDimensions, inDimensions];
         }
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="in_position">The position to validate.</param>
+        /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D in_position)
-            => ParquetStacks.IsValidPosition(in_position);
+        public bool IsValidPosition(Vector2D inPosition)
+            => ParquetStacks.IsValidPosition(inPosition);
 
         /// <summary>Access to any <see cref="ParquetStack"/> in the 2D collection.</summary>
         public ref ParquetStack this[int y, int x]

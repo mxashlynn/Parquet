@@ -61,7 +61,7 @@ namespace ParquetUnitTests.Parquets
         {
             var goodCollectibleID = TestEntities.TestCollectible.ID;
 
-            var testBlock = new Block(newBlockID, "will be created", "", "", in_collectibleID: goodCollectibleID);
+            var testBlock = new Block(newBlockID, "will be created", "", "", inCollectibleID: goodCollectibleID);
 
             Assert.NotNull(testBlock);
         }
@@ -73,7 +73,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Block(newBlockID, "will fail", "", "", in_collectibleID: badCollectibleID);
+                var _ = new Block(newBlockID, "will fail", "", "", inCollectibleID: badCollectibleID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

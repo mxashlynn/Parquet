@@ -42,38 +42,38 @@ namespace ParquetClassLibrary.Crafting
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
         /// </summary>
-        /// <param name="in_id">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
-        /// <param name="in_description">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
-        /// <param name="in_comment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
-        /// <param name="in_products">The types and quantities of <see cref="Items.Item"/>s created by following this recipe once.</param>
-        /// <param name="in_ingredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
-        /// <param name="in_panelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
+        /// <param name="inID">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
+        /// <param name="inProducts">The types and quantities of <see cref="Items.Item"/>s created by following this recipe once.</param>
+        /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
+        /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
-        /// Thrown when <paramref name="in_panelPattern"/> has zero-dimensions or dimensions larger than those given by
+        /// Thrown when <paramref name="inPanelPattern"/> has zero-dimensions or dimensions larger than those given by
         /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
-        public CraftingRecipe(EntityID in_id, string in_name, string in_description, string in_comment,
-                              IEnumerable<RecipeElement> in_products,
-                              IEnumerable<RecipeElement> in_ingredients, StrikePanel[,] in_panelPattern)
-            : base(All.CraftingRecipeIDs, in_id, in_name, in_description, in_comment)
+        public CraftingRecipe(EntityID inID, string inName, string inDescription, string inComment,
+                              IEnumerable<RecipeElement> inProducts,
+                              IEnumerable<RecipeElement> inIngredients, StrikePanel[,] inPanelPattern)
+            : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.IsNotNullOrEmpty(in_products, nameof(in_products));
-            Precondition.IsInRange(in_products.Count(), Rules.Recipes.Craft.ProductCount);
-            Precondition.IsNotNullOrEmpty(in_ingredients, nameof(in_ingredients));
-            Precondition.IsInRange(in_ingredients.Count(), Rules.Recipes.Craft.IngredientCount);
-            Precondition.IsNotNull(in_panelPattern, nameof(in_panelPattern));
-            if (in_panelPattern.GetLength(0) > Rules.Dimensions.PanelsPerPatternHeight
-                || in_panelPattern.GetLength(1) > Rules.Dimensions.PanelsPerPatternWidth
-                || in_panelPattern.GetLength(0) < 1
-                || in_panelPattern.GetLength(1) < 1)
+            Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
+            Precondition.IsInRange(inProducts.Count(), Rules.Recipes.Craft.ProductCount);
+            Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
+            Precondition.IsInRange(inIngredients.Count(), Rules.Recipes.Craft.IngredientCount);
+            Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
+            if (inPanelPattern.GetLength(0) > Rules.Dimensions.PanelsPerPatternHeight
+                || inPanelPattern.GetLength(1) > Rules.Dimensions.PanelsPerPatternWidth
+                || inPanelPattern.GetLength(0) < 1
+                || inPanelPattern.GetLength(1) < 1)
             {
-                throw new IndexOutOfRangeException($"Dimension outside specification: {nameof(in_panelPattern)}");
+                throw new IndexOutOfRangeException($"Dimension outside specification: {nameof(inPanelPattern)}");
             }
 
-            Products = in_products.ToList();
-            Ingredients = in_ingredients.ToList();
-            PanelPattern = in_panelPattern;
+            Products = inProducts.ToList();
+            Ingredients = inIngredients.ToList();
+            PanelPattern = inPanelPattern;
         }
     }
 }

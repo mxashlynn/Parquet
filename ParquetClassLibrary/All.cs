@@ -258,42 +258,42 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes the <see cref="EntityCollection{T}s"/> from the given collections.
         /// </summary>
-        /// <param name="in_beings">All beings to be used in the game.</param>
-        /// <param name="in_parquets">All parquets to be used in the game.</param>
-        /// <param name="in_roomRecipes">All room recipes to be used in the game.</param>
-        /// <param name="in_craftingRecipes">All crafting recipes to be used in the game.</param>
-        /// <param name="in_quests">All quests to be used in the game.</param>
-        /// <param name="in_biomes">All biomes to be used in the game.</param>
-        /// <param name="in_items">All items to be used in the game.</param>
+        /// <param name="inBeings">All beings to be used in the game.</param>
+        /// <param name="inParquets">All parquets to be used in the game.</param>
+        /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
+        /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
+        /// <param name="inQuests">All quests to be used in the game.</param>
+        /// <param name="inBiomes">All biomes to be used in the game.</param>
+        /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        public static void InitializeCollections(IEnumerable<Being> in_beings,
-                                                 IEnumerable<ParquetParent> in_parquets,
-                                                 IEnumerable<RoomRecipe> in_roomRecipes,
-                                                 IEnumerable<CraftingRecipe> in_craftingRecipes,
-                                                 IEnumerable<Quest> in_quests,
-                                                 IEnumerable<Biome> in_biomes,
-                                                 IEnumerable<Item> in_items)
+        public static void InitializeCollections(IEnumerable<Being> inBeings,
+                                                 IEnumerable<ParquetParent> inParquets,
+                                                 IEnumerable<RoomRecipe> inRoomRecipes,
+                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
+                                                 IEnumerable<Quest> inQuests,
+                                                 IEnumerable<Biome> inBiomes,
+                                                 IEnumerable<Item> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
-            //Precondition.IsNotNull(in_parquets, nameof(in_beings));
-            Precondition.IsNotNull(in_parquets, nameof(in_parquets));
-            //Precondition.IsNotNull(in_parquets, nameof(in_roomRecipes));
-            //Precondition.IsNotNull(in_parquets, nameof(in_craftingRecipes));
-            //Precondition.IsNotNull(in_parquets, nameof(in_quests));
-            //Precondition.IsNotNull(in_parquets, nameof(in_biomes));
-            //Precondition.IsNotNull(in_parquets, nameof(in_items));
+            //Precondition.IsNotNull(inBeings, nameof(inBeings));
+            Precondition.IsNotNull(inParquets, nameof(inParquets));
+            //Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
+            //Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
+            //Precondition.IsNotNull(inQuests, nameof(inQuests));
+            //Precondition.IsNotNull(inBiomes, nameof(inBiomes));
+            //Precondition.IsNotNull(inItems, nameof(inItems));
 
-            //Beings = new EntityCollection<Being>(BeingIDs, in_beings);
-            Parquets = new EntityCollection<ParquetParent>(ParquetIDs, in_parquets);
-            //RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, in_roomRecipes);
-            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, in_craftingRecipes);
-            //Quests = new EntityCollection<Quest>(QuestIDs, in_quests);
-            //Biomes = new EntityCollection<Biome>(BiomeIDs, in_biomes);
-            //Items = new EntityCollection<Item>(ItemIDs, in_items);
+            //Beings = new EntityCollection<Being>(BeingIDs, inBeings);
+            Parquets = new EntityCollection<ParquetParent>(ParquetIDs, inParquets);
+            //RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
+            //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
+            //Quests = new EntityCollection<Quest>(QuestIDs, inQuests);
+            //Biomes = new EntityCollection<Biome>(BiomeIDs, inBiomes);
+            //Items = new EntityCollection<Item>(ItemIDs, inItems);
 
             CollectionsHaveBeenInitialized = true;
         }

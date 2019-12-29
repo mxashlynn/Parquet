@@ -4,7 +4,7 @@ using System.Text;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Facilitates editing of <see cref="MapRegion"/> characteristics from design tools while maintaining a read-only face for use during play.

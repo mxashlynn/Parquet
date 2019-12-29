@@ -11,24 +11,24 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Approximates a line segment between two positions.
         /// </summary>
-        /// <param name="in_start">One end of the line segment.</param>
-        /// <param name="in_end">The other end of the line segment.</param>
-        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <param name="inStart">One end of the line segment.</param>
+        /// <param name="inEend">The other end of the line segment.</param>
+        /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The line segment.</returns>
-        public static List<Vector2D> PlotLine(Vector2D in_start, Vector2D in_end,
-                                                Predicate<Vector2D> in_isValid)
+        public static List<Vector2D> PlotLine(Vector2D inStart, Vector2D inEend,
+                                                Predicate<Vector2D> inIsValid)
         {
             // Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
 
             // Uses Bressenham's algorithm.
-            var deltaX = Math.Abs(in_end.X - in_start.X);
-            var xStep = in_start.X < in_end.X
+            var deltaX = Math.Abs(inEend.X - inStart.X);
+            var xStep = inStart.X < inEend.X
                     ? 1
                     : -1;
 
-            var deltaY = Math.Abs(in_end.Y - in_start.Y);
-            var yStep = in_start.Y < in_end.Y
+            var deltaY = Math.Abs(inEend.Y - inStart.Y);
+            var yStep = inStart.Y < inEend.Y
                     ? 1
                     : -1;
 
@@ -37,12 +37,12 @@ namespace ParquetClassLibrary.Utilities
                     : -deltaY;
             var error = largestDifference / 2;
 
-            var x = in_start.X;
-            var y = in_start.Y;
+            var x = inStart.X;
+            var y = inStart.Y;
             do
             {
                 var position = new Vector2D(x, y);
-                if (in_isValid(position))
+                if (inIsValid(position))
                 {
                     deduplicationList.Add(position);
                 }
@@ -59,9 +59,9 @@ namespace ParquetClassLibrary.Utilities
                     y += yStep;
                 }
             }
-            while (x != in_end.X || y != in_end.Y);
+            while (x != inEend.X || y != inEend.Y);
 
-            deduplicationList.Add(in_end);
+            deduplicationList.Add(inEend);
 
             return new List<Vector2D>(deduplicationList);
         }
@@ -69,23 +69,23 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Plots a rectangular region including all points contained on and within the rectanle.
         /// </summary>
-        /// <param name="in_upperLeft">The upper left corner of the rectangle.</param>
-        /// <param name="in_lowerRight">The lower right corner of the rectangle.</param>
-        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <param name="inUpperLeft">The upper left corner of the rectangle.</param>
+        /// <param name="inLowerRight">The lower right corner of the rectangle.</param>
+        /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The filled rectangle.</returns>
-        public static List<Vector2D> PlotFilledRectangle(Vector2D in_upperLeft, Vector2D in_lowerRight,
-                                                           Predicate<Vector2D> in_isValid)
+        public static List<Vector2D> PlotFilledRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
+                                                           Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
 
             // By scanline, by position.
-            for (var y = in_upperLeft.Y; y <= in_lowerRight.Y; y++)
+            for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
             {
-                for (var x = in_upperLeft.X; x <= in_lowerRight.X; x++)
+                for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
                 {
                     var position = new Vector2D(x, y);
-                    if (in_isValid(position))
+                    if (inIsValid(position))
                     {
                         deduplicationList.Add(position);
                     }
@@ -98,24 +98,24 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Plots a rectangular region including all points contained on the rectanle but none within it.
         /// </summary>
-        /// <param name="in_upperLeft">The upper left corner of the rectangle.</param>
-        /// <param name="in_lowerRight">The lower right corner of the rectangle.</param>
-        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <param name="inUpperLeft">The upper left corner of the rectangle.</param>
+        /// <param name="inLowerRight">The lower right corner of the rectangle.</param>
+        /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The rectangle.</returns>
-        public static List<Vector2D> PlotEmptyRectangle(Vector2D in_upperLeft, Vector2D in_lowerRight,
-                                                          Predicate<Vector2D> in_isValid)
+        public static List<Vector2D> PlotEmptyRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
+                                                          Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
 
             // Outline the edges.
-            var upperRight = new Vector2D(in_lowerRight.X, in_upperLeft.Y);
-            var lowerLeft = new Vector2D(in_upperLeft.X, in_lowerRight.Y);
+            var upperRight = new Vector2D(inLowerRight.X, inUpperLeft.Y);
+            var lowerLeft = new Vector2D(inUpperLeft.X, inLowerRight.Y);
 
-            deduplicationList.UnionWith(PlotLine(in_upperLeft, upperRight, in_isValid));
-            deduplicationList.UnionWith(PlotLine(upperRight, in_lowerRight, in_isValid));
-            deduplicationList.UnionWith(PlotLine(in_lowerRight, lowerLeft, in_isValid));
-            deduplicationList.UnionWith(PlotLine(lowerLeft, in_upperLeft, in_isValid));
+            deduplicationList.UnionWith(PlotLine(inUpperLeft, upperRight, inIsValid));
+            deduplicationList.UnionWith(PlotLine(upperRight, inLowerRight, inIsValid));
+            deduplicationList.UnionWith(PlotLine(inLowerRight, lowerLeft, inIsValid));
+            deduplicationList.UnionWith(PlotLine(lowerLeft, inUpperLeft, inIsValid));
 
             return new List<Vector2D>(deduplicationList);
         }
@@ -123,32 +123,32 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Plots a circular region including all points contained on the circle but none within it.
         /// </summary>
-        /// <param name="in_center">The circle's center.</param>
-        /// <param name="in_radius">The circle's radius.</param>
-        /// <param name="in_isFilled">If set to <c>true</c> in is filled.</param>
-        /// <param name="in_isValid">Tests if plotted points are useable in their intended domain.</param>
+        /// <param name="inCenter">The circle's center.</param>
+        /// <param name="inRadius">The circle's radius.</param>
+        /// <param name="inIsFilled">If set to <c>true</c> in is filled.</param>
+        /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The circle.</returns>
-        public static List<Vector2D> PlotCircle(Vector2D in_center, int in_radius, bool in_isFilled,
-                                                  Predicate<Vector2D> in_isValid)
+        public static List<Vector2D> PlotCircle(Vector2D inCenter, int inRadius, bool inIsFilled,
+                                                  Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
 
             // Brute force.
-            var circleLimit = in_radius * in_radius + in_radius;
-            var outlineLimit = in_radius * in_radius - in_radius;
-            for (var y = -in_radius; y <= in_radius; y++)
+            var circleLimit = inRadius * inRadius + inRadius;
+            var outlineLimit = inRadius * inRadius - inRadius;
+            for (var y = -inRadius; y <= inRadius; y++)
             {
-                for (var x = -in_radius; x <= in_radius; x++)
+                for (var x = -inRadius; x <= inRadius; x++)
                 {
                     if (x * x + y * y < circleLimit
                         // Plot positions within the circle only if:
                         // (1) the circle is filled, or
                         // (2) the position is on the circle proper (that is, the circle's outline).
-                        && (in_isFilled || x * x + y * y > outlineLimit))
+                        && (inIsFilled || x * x + y * y > outlineLimit))
                     {
-                        var position = new Vector2D(in_center.X + x, in_center.Y + y);
-                        if (in_isValid(position))
+                        var position = new Vector2D(inCenter.X + x, inCenter.Y + y);
+                        if (inIsValid(position))
                         {
                             deduplicationList.Add(position);
                         }
@@ -164,26 +164,26 @@ namespace ParquetClassLibrary.Utilities
         /// Plots all valid positions adjacent to the given position, provided that they match
         /// the parquets at the given position according to the provided matching criteria.
         /// </summary>
-        /// <param name="in_start">The position on which to base the fill.</param>
-        /// <param name="in_target">The parquet type(s) to replace.</param>
-        /// <param name="in_isValid">In rule for determining a valid position.</param>
-        /// <param name="in_matches">The rule for determining matching parquets.</param>
+        /// <param name="inStart">The position on which to base the fill.</param>
+        /// <param name="inTarget">The parquet type(s) to replace.</param>
+        /// <param name="inIsValid">In rule for determining a valid position.</param>
+        /// <param name="inMatches">The rule for determining matching parquets.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         /// <returns>A selection of contiguous positions.</returns>
-        public static List<Vector2D> PlotFloodFill<T>(Vector2D in_start, T in_target,
-                                                        Predicate<Vector2D> in_isValid,
-                                                        Func<Vector2D, T, bool> in_matches)
+        public static List<Vector2D> PlotFloodFill<T>(Vector2D inStart, T inTarget,
+                                                        Predicate<Vector2D> inIsValid,
+                                                        Func<Vector2D, T, bool> inMatches)
         {
             var results = new HashSet<Vector2D>();
             var queue = new Queue<Vector2D>();
-            queue.Enqueue(in_start);
+            queue.Enqueue(inStart);
 
             while (queue.Count > 0)
             {
                 var position = queue.Dequeue();
                 if (!results.Contains(position)
-                    && in_isValid(position)
-                    && in_matches(position, in_target))
+                    && inIsValid(position)
+                    && inMatches(position, inTarget))
                 {
                     results.Add(position);
                     queue.Enqueue(new Vector2D(position.X - 1, position.Y));

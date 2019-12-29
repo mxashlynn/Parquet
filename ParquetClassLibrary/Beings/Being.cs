@@ -27,32 +27,32 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Used by <see cref="Being"/> subtypes.
         /// </summary>
-        /// <param name="in_bounds">
+        /// <param name="inBounds">
         /// The bounds within which the <see cref="Being"/>'s <see cref="EntityID"/> is defined.
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
-        /// <param name="in_id">Unique identifier for the <see cref="Being"/>.  Cannot be null.</param>
-        /// <param name="in_name">Player-friendly name of the <see cref="Being"/>.  Cannot be null or empty.</param>
-        /// <param name="in_description">Player-friendly description of the <see cref="Being"/>.</param>
-        /// <param name="in_comment">Comment of, on, or by the <see cref="Being"/>.</param>
-        /// <param name="in_nativeBiome">The <see cref="EntityID"/> for the <see cref="Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
-        /// <param name="in_primaryBehavior">The rules that govern how this <see cref="Being"/> acts.  Cannot be null.</param>
-        /// <param name="in_avoids">Any parquets this <see cref="Being"/> avoids.</param>
-        /// <param name="in_seeks">Any parquets this <see cref="Being"/> seeks.</param>
-        protected Being(Range<EntityID> in_bounds, EntityID in_id, string in_name, string in_description,
-                        string in_comment, EntityID in_nativeBiome, Behavior in_primaryBehavior,
-                        List<EntityID> in_avoids = null, List<EntityID> in_seeks = null)
-            : base(in_bounds, in_id, in_name, in_description, in_comment)
+        /// <param name="inID">Unique identifier for the <see cref="Being"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="Being"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="Being"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="Being"/>.</param>
+        /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
+        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="Being"/> acts.  Cannot be null.</param>
+        /// <param name="inAvoids">Any parquets this <see cref="Being"/> avoids.</param>
+        /// <param name="inSeeks">Any parquets this <see cref="Being"/> seeks.</param>
+        protected Being(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
+                        string inComment, EntityID inNativeBiome, Behavior inPrimaryBehavior,
+                        List<EntityID> inAvoids = null, List<EntityID> inSeeks = null)
+            : base(inBounds, inID, inName, inDescription, inComment)
         {
-            Precondition.IsInRange(in_bounds, All.BeingIDs, nameof(in_bounds));
-            Precondition.IsInRange(in_nativeBiome, All.BiomeIDs, nameof(in_nativeBiome));
-            Precondition.AreInRange(in_avoids, All.ParquetIDs, nameof(in_avoids));
-            Precondition.AreInRange(in_seeks, All.ParquetIDs, nameof(in_seeks));
+            Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));
+            Precondition.IsInRange(inNativeBiome, All.BiomeIDs, nameof(inNativeBiome));
+            Precondition.AreInRange(inAvoids, All.ParquetIDs, nameof(inAvoids));
+            Precondition.AreInRange(inSeeks, All.ParquetIDs, nameof(inSeeks));
 
-            NativeBiome = in_nativeBiome;
-            PrimaryBehavior = in_primaryBehavior;
-            Avoids = (in_avoids ?? Enumerable.Empty<EntityID>()).ToList();
-            Seeks = (in_seeks ?? Enumerable.Empty<EntityID>()).ToList();
+            NativeBiome = inNativeBiome;
+            PrimaryBehavior = inPrimaryBehavior;
+            Avoids = (inAvoids ?? Enumerable.Empty<EntityID>()).ToList();
+            Seeks = (inSeeks ?? Enumerable.Empty<EntityID>()).ToList();
         }
         #endregion
     }
