@@ -16,7 +16,7 @@ namespace ParquetClassLibrary
     /// game objects.
     /// 
     /// For example, multiple identical parquet IDs may be assigned
-    /// to <see cref="Map.MapChunk"/>s or <see cref="Map.MapRegions"/>,
+    /// to <see cref="Maps.MapChunk"/>s or <see cref="Maps.MapRegions"/>,
     /// and multiple duplicate <see cref="Item"/> IDs may exist in
     /// accross various <see cref="Beings.Character"/> inventories.
     /// 

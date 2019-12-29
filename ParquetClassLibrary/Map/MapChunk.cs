@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Models details of a playable chunk in sandbox-mode.

@@ -2,7 +2,7 @@ using System;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Indicates which parquets constitute this <see cref="MapChunk"/> and how they are arranged.

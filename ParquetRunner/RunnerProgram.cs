@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Map;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;

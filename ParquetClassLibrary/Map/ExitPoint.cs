@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// A location at which the player moves from one <see cref="MapRegion"/> to another.

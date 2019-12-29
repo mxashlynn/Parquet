@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Map;
+using ParquetClassLibrary.Maps;
 
-namespace ParquetClassLibrary.Map
+namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Indicates that the encapsulated info corresponding to a particular position in the current map
