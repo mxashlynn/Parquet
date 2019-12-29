@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Map
         private static readonly int fluidThreshold = (int)Math.Floor(parquetsPerLayer * 0.75);
         #endregion
 
-        #region Biome Analysis Methods
+        #region Biome Analysis
         /// <summary>
         /// Determines which <see cref="Biome"/> the given <see cref="MapRegion"/> corresponds to.
         /// </summary>
@@ -188,7 +188,7 @@ namespace ParquetClassLibrary.Map
         }
         #endregion
 
-        #region Buildings Analysis Methods
+        #region Buildings Analysis
         /// <summary>
         /// Determines if the region has enough buildings to qualify as a town.
         /// </summary>

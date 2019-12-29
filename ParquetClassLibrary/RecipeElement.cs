@@ -85,7 +85,7 @@ namespace ParquetClassLibrary
             => inElement1.ElementTag != inElement2.ElementTag || inElement1.ElementAmount != inElement2.ElementAmount;
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="RecipeElement"/>.
         /// </summary>

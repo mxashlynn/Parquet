@@ -68,7 +68,7 @@ namespace ParquetClassLibrary
             => string.Compare(tagName, inTag?.tagName ?? "", StringComparison.Ordinal);
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="EntityTag"/>.
         /// </summary>

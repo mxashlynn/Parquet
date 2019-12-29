@@ -171,7 +171,7 @@ namespace ParquetClassLibrary
             => Entities.Values.GetEnumerator();
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Serializes all defined parquets to a string.
         /// </summary>

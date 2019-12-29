@@ -123,7 +123,7 @@ namespace ParquetClassLibrary.Utilities
             || inVector1.Y != inVector2.Y;
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="Vector2D"/>.
         /// </summary>

@@ -88,7 +88,7 @@ namespace ParquetClassLibrary.Parquets
             => new MapSpaceCollection(inSpaces);
         #endregion
 
-        #region Room Analysis Methods
+        #region Room Analysis
         /// <summary>
         /// Finds a walkable area's perimiter in a given subregion.
         /// </summary>
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Parquets
 
             return outPerimeter.Count >= Rules.Recipes.Room.MinPerimeterSpaces;
 
-            #region TryGetSeed Helper Method
+            #region Algorithm Helper Methods
             /// <summary>
             /// Finds a <see cref="MapSpace"/> that can be used to search for the perimeter.
             /// </summary>
@@ -203,9 +203,7 @@ namespace ParquetClassLibrary.Parquets
 
                 return found;
             }
-            #endregion
 
-            #region GetPotentialPerimeter Helper Method
             /// <summary>
             /// Finds all 4-connected <see cref="MapSpace"/>s in the given subregion whose <see cref="MapSpace.Content"/>
             /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="MapSpace.Position"/>.
@@ -328,7 +326,7 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="MapSpaceCollection"/>.
         /// </summary>

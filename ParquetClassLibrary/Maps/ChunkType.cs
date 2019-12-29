@@ -118,7 +118,7 @@ namespace ParquetClassLibrary.Maps
             => !inChunkType1.Equals(inChunkType2.BaseTopography);
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
         /// </summary>

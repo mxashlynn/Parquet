@@ -202,7 +202,7 @@ namespace ParquetClassLibrary.Parquets
             && inSpace1.Content != inSpace2.Content;
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
         /// </summary>

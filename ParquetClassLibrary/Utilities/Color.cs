@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Utilities
             || inColor2.A != inColor1.A;
         #endregion
 
-        #region Conversion Methods
+        #region Implicit Conversion
         public static implicit operator PCLColor(ConsoleColor inColor)
         {
             PCLColor result;

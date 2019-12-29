@@ -91,7 +91,7 @@ namespace ParquetClassLibrary.Rooms
             => Rooms.GetEnumerator();
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="RoomCollection"/>.
         /// </summary>

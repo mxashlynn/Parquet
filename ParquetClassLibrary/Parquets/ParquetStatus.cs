@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStatus"/>.
         /// </summary>

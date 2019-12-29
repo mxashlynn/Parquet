@@ -178,7 +178,7 @@ namespace ParquetClassLibrary
             => inIDentifier1.id != inIDentifier2.id;
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="Range{EntityID}"/>.
         /// An <see cref="EntityID"/> is valid if:

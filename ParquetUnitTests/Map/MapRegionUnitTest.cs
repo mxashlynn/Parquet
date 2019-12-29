@@ -70,7 +70,7 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region Parquets Replacement Methods
+        #region Parquets Replacement
         [Fact]
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
@@ -180,7 +180,7 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region Special Location Methods
+        #region Special Location
         [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
@@ -237,7 +237,7 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region State Query Methods
+        #region State Queries
         [Fact]
         public void GetDefinitionReturnsThrowsOnInvalidPositionTest()
         {
@@ -265,7 +265,7 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region Subregion Methods
+        #region Subregions
         [Fact]
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {

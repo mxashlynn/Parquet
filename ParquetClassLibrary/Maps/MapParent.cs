@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Maps
         protected int ParquetsCount => ParquetDefintion.Count;
         #endregion
 
-        #region Parquets Replacement Methods
+        #region Parquets Replacement
         /// <summary>
         /// Attempts to update the <see cref="Floor"/> parquet at the given position.
         /// </summary>
@@ -151,7 +151,7 @@ namespace ParquetClassLibrary.Maps
             && ExitPoints.Remove(inPoint);
         #endregion
 
-        #region State Query Methods
+        #region State Queries
         /// <summary>
         /// Gets the statuses of any parquets at the position.
         /// </summary>
@@ -181,7 +181,7 @@ namespace ParquetClassLibrary.Maps
             => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 
-        #region Serialization Methods
+        #region Serialization
         /// <summary>
         /// Serializes the current Map to a string,
         /// incrementing the revision number in the process.
@@ -194,7 +194,7 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Determines if the given position corresponds to a point in the region.
         /// </summary>

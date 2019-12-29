@@ -121,7 +121,7 @@ namespace ParquetClassLibrary
             || (inEntity1 is null && !(inEntity2 is null));
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="Entity"/>.
         /// </summary>

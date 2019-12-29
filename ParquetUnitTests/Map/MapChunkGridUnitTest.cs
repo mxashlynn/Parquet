@@ -47,7 +47,7 @@ namespace ParquetUnitTests.Map
         }
         #endregion
 
-        #region Chunk Methods
+        #region Chunks
         [Fact]
         public void SetGetChunkFailsOnInvalidPositionTest()
         {

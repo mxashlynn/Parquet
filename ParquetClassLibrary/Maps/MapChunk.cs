@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Maps
         protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerChunk);
         #endregion
 
-        #region Serialization Methods
+        #region Serialization
         /// <summary>
         /// Tries to deserialize a <see cref="MapChunk"/> from the given string.
         /// </summary>
@@ -67,7 +67,7 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
-        #region Utility Methods
+        #region Utilities
         /// <summary>
         /// Describes the <see cref="MapChunk"/> as a <see langword="string"/> containing basic information.
         /// </summary>
