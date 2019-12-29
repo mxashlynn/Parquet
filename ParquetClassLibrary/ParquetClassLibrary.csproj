@@ -25,18 +25,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Biomes\" />
-    <Folder Include="Beings\" />
-    <Folder Include="Crafting\" />
-    <Folder Include="Items\" />
-    <Folder Include="Map\" />
-    <Folder Include="Parquets\" />
-    <Folder Include="Quests\" />
-    <Folder Include="Rooms\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
