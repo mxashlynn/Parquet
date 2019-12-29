@@ -13,6 +13,7 @@ namespace ParquetUnitTests.Map
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
         private static readonly Guid testID = Guid.Parse("ead51b96-21d5-4619-86e9-462a52564089");
+        private static readonly ChunkType testChunk = new ChunkType(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
         #endregion
 
         #region Initialization
@@ -48,52 +49,25 @@ namespace ParquetUnitTests.Map
 
         #region Chunk Methods
         [Fact]
-        public void SetChunkFailsOnInvalidPositionTest()
+        public void SetGetChunkFailsOnInvalidPositionTest()
         {
             var grid = new MapChunkGrid();
+            grid.SetChunk(testChunk, invalidPosition);
 
-            var wasSet = grid.SetChunk(ChunkType.Handmade, ChunkOrientation.EastWest, invalidPosition);
+            var returnedChunk = grid.GetChunk(invalidPosition);
 
-            Assert.False(wasSet);
+            Assert.NotEqual(testChunk, returnedChunk);
         }
 
         [Fact]
-        public void SetChunkSucceedsOnOriginPositionTest()
+        public void SetGetChunkSucceedsOnOriginPositionTest()
         {
             var grid = new MapChunkGrid();
-            var chunkType = ChunkType.Handmade;
-            var chunkOrientation = ChunkOrientation.EastWest;
+            grid.SetChunk(testChunk, Vector2D.Zero);
 
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
+            var returnedChunk = grid.GetChunk(Vector2D.Zero);
 
-            Assert.True(wasSet);
-        }
-
-        [Fact]
-        public void GetChunkFailsOnInvalidPositionTest()
-        {
-            var grid = new MapChunkGrid();
-
-            var chunkData = grid.GetChunk(invalidPosition);
-
-            Assert.Equal(ChunkType.Empty, chunkData.type);
-            Assert.Equal(ChunkOrientation.None, chunkData.orientation);
-        }
-
-        [Fact]
-        public void GetChunkSucceedsOnOriginPositionTest()
-        {
-            var grid = new MapChunkGrid();
-            var chunkType = ChunkType.Handmade;
-            var chunkOrientation = ChunkOrientation.EastWest;
-
-            var wasSet = grid.SetChunk(chunkType, chunkOrientation, Vector2D.Zero);
-
-            var chunkData = grid.GetChunk(Vector2D.Zero);
-
-            Assert.True(wasSet);
-            Assert.Equal(chunkType, chunkData.type);
-            Assert.Equal(chunkOrientation, chunkData.orientation);
+            Assert.Equal(testChunk, returnedChunk);
         }
         #endregion
     }

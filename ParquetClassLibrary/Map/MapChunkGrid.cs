@@ -89,9 +89,12 @@ namespace ParquetClassLibrary.Map
         /// <param name="in_type">The new chunk type to set.</param>
         /// <param name="in_position">The position at which to set it.</param>
         public void SetChunk(ChunkType in_type, Vector2D in_position)
-            => _chunkTypes[in_position.Y, in_position.X] = IsValidPosition(in_position)
-                ? in_type
-                : _chunkTypes[in_position.Y, in_position.X];
+        {
+            if (IsValidPosition(in_position))
+            {
+                _chunkTypes[in_position.Y, in_position.X] = in_type;
+            }
+        }
 
         /// <summary>
         /// Gets chunk type and orientation at the given position.
