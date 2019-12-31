@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// A square, two-dimensional collection of <see cref="ParquetStack"/>s for use in <see cref="MapParent"/> and derived classes.
     /// The intent is that this class function much like a read-only array.
     /// </summary>
-    public class ParquetStack2DCollection : IReadOnlyCollection<ParquetStack>
+    public class ParquetStackGridCollection : IReadOnlyCollection<ParquetStack>
     {
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
         private ParquetStack[,] ParquetStacks { get; }
@@ -37,10 +37,10 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStack2DCollection"/>.
+        /// Initializes a new <see cref="ParquetStackGridCollection"/>.
         /// </summary>
         /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStack2DCollection(int inDimensions)
+        public ParquetStackGridCollection(int inDimensions)
         {
             ParquetStacks = new ParquetStack[inDimensions, inDimensions];
         }
@@ -67,7 +67,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ParquetStack>)ParquetStacks.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStack2DCollection"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetStackGridCollection"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()

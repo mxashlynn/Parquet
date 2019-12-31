@@ -34,13 +34,13 @@ namespace ParquetClassLibrary.Maps
         protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatus2DCollection ParquetStatuses { get; }
+        protected abstract ParquetStatusGridCollection ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
         /// and <see cref="Collectible"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStack2DCollection ParquetDefintion { get; }
+        protected abstract ParquetStackGridCollection ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
         protected int ParquetsCount => ParquetDefintion.Count;
