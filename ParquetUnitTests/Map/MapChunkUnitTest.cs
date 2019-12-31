@@ -114,7 +114,7 @@ namespace ParquetUnitTests.Map
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
             var chunk = new MapChunk(EntityID.None, "Local Chunk");
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TrySetExitPoint(point);
 
@@ -125,7 +125,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
             var chunk = new MapChunk(EntityID.None, "Local Chunk");
-            var point = new ExitPoint(invalidPosition, new Guid());
+            var point = new ExitPoint(invalidPosition, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TryRemoveExitPoint(point);
 
@@ -136,7 +136,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
             var chunk = new MapChunk(EntityID.None, "Local Chunk");
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TryRemoveExitPoint(point);
 
@@ -147,7 +147,7 @@ namespace ParquetUnitTests.Map
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
             var chunk = new MapChunk(EntityID.None, "Local Chunk");
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
             chunk.TrySetExitPoint(point);
 
             var result = chunk.TryRemoveExitPoint(point);

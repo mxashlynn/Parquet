@@ -1,4 +1,4 @@
-using System;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 using Xunit;
@@ -10,10 +10,10 @@ namespace ParquetUnitTests.Map.SpecialPoints
         [Fact]
         public void ExitPointKnowsWhereItLeadsTest()
         {
-            var arbitraryGUID = new Guid();
-            var exitPoint = new ExitPoint(Vector2D.Zero, arbitraryGUID);
+            EntityID arbitraryID = TestEntities.TestMapRegion.ID + 3;
+            var exitPoint = new ExitPoint(Vector2D.Zero, arbitraryID);
 
-            Assert.Equal(arbitraryGUID, exitPoint.Destination);
+            Assert.Equal(arbitraryID, exitPoint.Destination);
         }
     }
 }

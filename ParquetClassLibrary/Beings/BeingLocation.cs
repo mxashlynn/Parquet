@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Beings
     public readonly struct BeingLocation : IEquatable<BeingLocation>
     {
         /// <summary>The identifier for the <see cref="MapRegion"/> this <see cref="Being"/> is located in.</summary>
-        public Guid RegionID { get; }
+        public EntityID RegionID { get; }
 
         /// <summary>The position within the current <see cref="MapRegion"/> where this <see cref="Being"/> is located.</summary>
         public Vector2D Position { get; }

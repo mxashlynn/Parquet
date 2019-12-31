@@ -14,7 +14,7 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            var region = new MapRegion();
+            var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");
         }
