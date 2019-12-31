@@ -6,6 +6,9 @@ using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetUnitTests
 {
@@ -17,6 +20,7 @@ namespace ParquetUnitTests
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
         public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
+        public static readonly List<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
         #endregion
 
         #region Test Values
@@ -50,12 +54,17 @@ namespace ParquetUnitTests
         /// <summary>Used in test patterns in QA routines.</summary>
         public static CraftingRecipe TestCraftingRecipe { get; }
 
-        // TODO Update this once Quests are implemented.
         /// <summary>Used in test patterns in QA routines.</summary>
-        //public static Quest TestQuest { get; }
+        public static Quest TestQuest { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static Biome TestBiome { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static MapChunk TestMapChunk { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static MapRegion TestMapRegion { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static Item TestItem { get; }
@@ -95,9 +104,30 @@ namespace ParquetUnitTests
                                                     new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
                                                                     Rules.Dimensions.PanelsPerPatternWidth]);
             // TODO Update this once Quests are implemented.
-            //TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test");
+            TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList);
             TestBiome = new Biome(-All.BiomeIDs.Minimum, "10 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);
+            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk");
+            #region Initialize TestMapChunk
+            for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
+            {
+                for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
+                {
+                    TestMapChunk.TrySetFloorDefinition(TestEntities.TestFloor.ID, new Vector2D(x, y));
+                }
+
+                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(0, y));
+                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(TestMapChunk.DimensionsInParquets.X - 1, y));
+            }
+            for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
+            {
+                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, 0));
+                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, TestMapChunk.DimensionsInParquets.Y - 1));
+            }
+            TestMapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2D(1, 2));
+            TestMapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2D(3, 3));
+            #endregion
+            //TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region");
             TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", "Test", "Test",
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
             #endregion
