@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -46,7 +45,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlockDefinition(parquetID, invalidPosition);
@@ -57,7 +56,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlockDefinition(parquetID, Vector2D.Zero);
@@ -68,7 +67,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishingDefinition(parquetID, invalidPosition);
@@ -79,7 +78,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishingDefinition(parquetID, Vector2D.Zero);
@@ -90,7 +89,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetCollectibleFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectibleDefinition(parquetID, invalidPosition);
@@ -101,7 +100,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetCollectibleSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectibleDefinition(parquetID, Vector2D.Zero);
@@ -114,7 +113,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var point = new ExitPoint(Vector2D.Zero, new Guid());
 
             var result = chunk.TrySetExitPoint(point);
@@ -125,7 +124,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var point = new ExitPoint(invalidPosition, new Guid());
 
             var result = chunk.TryRemoveExitPoint(point);
@@ -136,7 +135,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var point = new ExitPoint(Vector2D.Zero, new Guid());
 
             var result = chunk.TryRemoveExitPoint(point);
@@ -147,7 +146,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var point = new ExitPoint(Vector2D.Zero, new Guid());
             chunk.TrySetExitPoint(point);
 
@@ -159,7 +158,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
 
             var specialData = chunk.GetExitsAtPosition(invalidPosition);
 
@@ -171,11 +170,9 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetDefinitionReturnsNoneOnInvalidPositionTest()
         {
-            var chunk = new MapChunk().FillTestPattern();
-
             void TestCode()
             {
-                var _ = chunk.GetDefinitionAtPosition(invalidPosition);
+                var _ = TestEntities.TestMapChunk.GetDefinitionAtPosition(invalidPosition);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -184,7 +181,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetDefinitionReturnsNoneOnEmptyMapTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
 
             var result = chunk.GetDefinitionAtPosition(Vector2D.Zero);
 
