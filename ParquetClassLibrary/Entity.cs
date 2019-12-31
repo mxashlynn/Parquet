@@ -29,7 +29,7 @@ namespace ParquetClassLibrary
     /// Entity could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class Entity : IEquatable<Entity>
+    public abstract class Entity : IEntityEdit, IEquatable<Entity>
     {
         /// <summary>Game-wide unique identifier.</summary>
         [JsonProperty(PropertyName = "inID")]
@@ -37,11 +37,13 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         [JsonProperty(PropertyName = "inName")]
-        public string Name { get; }
+        public string Name { get; private set; }
+        string IEntityEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
         [JsonProperty(PropertyName = "inDescription")]
-        public string Description { get; }
+        public string Description { get; private set; }
+        string IEntityEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
         /// <remarks>
@@ -49,7 +51,8 @@ namespace ParquetClassLibrary
         /// with or on the <see cref="Entity"/>.
         /// </remarks>
         [JsonProperty(PropertyName = "inComment")]
-        public string Comment { get; }
+        public string Comment { get; private set; }
+        string IEntityEdit.Comment { get => Comment; set => Comment = value; }
 
         #region Initialization
         /// <summary>

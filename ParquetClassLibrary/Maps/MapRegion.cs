@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -14,12 +13,15 @@ namespace ParquetClassLibrary.Maps
     public sealed class MapRegion : MapParent, IMapRegionEdit
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegion Empty = new MapRegion(false);
+        public static readonly MapRegion Empty = new MapRegion(EntityID.None, "Empty Region");
 
         #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
-                                                                                  Rules.Dimensions.ParquetsPerRegion);
+                                                                              Rules.Dimensions.ParquetsPerRegion);
+
+        /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="EntityID"/>s.</summary>
+        public static Range<EntityID> Bounds => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -32,12 +34,17 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Whole-Map Characteristics
-        /// <summary>The region identifier, used when referencing unloaded regions.</summary>
-        public Guid RegionID { get; }
-
         /// <summary>What the region is called in-game.</summary>
-        public string Title { get; private set; }
-        string IMapRegionEdit.Title { get => Title; set => Title = value; }
+        public string Title { get => Name; }
+        string IMapRegionEdit.Title
+        {
+            get => Name;
+            set
+            {
+                IEntityEdit editableThis = this;
+                editableThis.Name = value;
+            }
+        }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         public PCLColor Background { get; private set; }
@@ -64,39 +71,22 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
+        /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inTitle">The player-facing name of the new region.</param>
+        /// <param name="inDescription">Player-friendly description of the map.</param>
+        /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inBackground">A color to show in the new region when no parquet is present.</param>
         /// <param name="inLocalElevation">The absolute elevation of this region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="inID">An identifier derived from a <see cref="MapChunkGrid"/>; if null, a new <see cref="RegionID"/> is generated.</param>
-        public MapRegion(string inTitle = null, PCLColor? inBackground = null,
-                         Elevation inLocalElevation = Elevation.LevelGround,
-                         int inGlobalElevation = DefaultGlobalElevation, Guid? inID = null)
+        public MapRegion(EntityID inID, string inTitle = null,
+                         string inDescription = null, string inComment = null,
+                         PCLColor? inBackground = null, Elevation inLocalElevation = Elevation.LevelGround,
+                         int inGlobalElevation = DefaultGlobalElevation)
+            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment)
         {
-            Title = string.IsNullOrEmpty(inTitle)
-                ? DefaultTitle
-                : inTitle;
             Background = inBackground ?? PCLColor.White;
-            RegionID = inID ?? Guid.NewGuid();
             ElevationLocal = inLocalElevation;
             ElevationGlobal = inGlobalElevation;
-        }
-
-        /// <summary>
-        /// Constructs a new instance of the <see cref="MapRegion"/> class.
-        /// </summary>
-        /// <param name="inGenerateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
-        public MapRegion(bool inGenerateID)
-        {
-            Title = DefaultTitle;
-            Background = PCLColor.White;
-            ElevationLocal = Elevation.LevelGround;
-            ElevationGlobal = 0;
-
-            // Overwrite default behavior for tests.
-            RegionID = inGenerateID
-                ? Guid.NewGuid()
-                : Guid.Empty;
         }
         #endregion
 
