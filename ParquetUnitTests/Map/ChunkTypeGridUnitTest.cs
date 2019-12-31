@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ParquetUnitTests.Map
 {
-    public class MapChunkGridUnitTest
+    public class ChunkTypeGridUnitTest
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);

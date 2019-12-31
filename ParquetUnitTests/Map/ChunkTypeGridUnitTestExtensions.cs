@@ -7,7 +7,7 @@ namespace ParquetUnitTests.Map
     /// <summary>
     /// Provides extension methods for <see cref="ChunkTypeGrid"/> used in unit testing.
     /// </summary>
-    internal static class MapChunkGridUnitTestExtensions
+    internal static class ChunkTypeGridUnitTestExtensions
     {
         private static readonly ChunkType grassyChunk = new ChunkType(ChunkTopography.Solid, "grassy", ChunkTopography.Empty, "");
         private static readonly ChunkType sandyLakeChunk = new ChunkType(ChunkTopography.Solid, "sandy", ChunkTopography.Central, "watery");
