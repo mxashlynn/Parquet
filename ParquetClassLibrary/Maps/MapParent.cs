@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Maps
     /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="MapChunkGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapParent
+    public abstract class MapParent : Entity
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
@@ -44,6 +44,20 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The total number of parquets in the entire map.</summary>
         protected int ParquetsCount => ParquetDefintion.Count;
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Used by children of the <see cref="MapParent"/> class.
+        /// </summary>
+        /// <param name="inBounds">The bounds within which the derived map type's EntityID is defined.</param>
+        /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the map.</param>
+        /// <param name="inComment">Comment of, on, or by the map.</param>
+        [JsonConstructor]
+        protected MapParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment)
+            : base(inBounds, inID, inName, inDescription, inComment) { }
         #endregion
 
         #region Parquets Replacement
