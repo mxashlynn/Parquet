@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
@@ -20,26 +20,26 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly HashSet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
-            new MapSpace(0, 0, TestWall),
-            new MapSpace(1, 0, TestWall),
-            new MapSpace(2, 0, TestWall),
-            new MapSpace(3, 0, TestWall),
-            new MapSpace(0, 1, TestWall),
-            new MapSpace(3, 1, TestWall),
-            new MapSpace(0, 2, TestWall),
-            new MapSpace(3, 2, TestWall),
-            new MapSpace(0, 3, TestWall),
-            new MapSpace(1, 3, TestWall),
-            new MapSpace(2, 3, TestWall),
-            new MapSpace(3, 3, TestWall),
+            new MapSpace(0, 0, TestWall, null),
+            new MapSpace(1, 0, TestWall, null),
+            new MapSpace(2, 0, TestWall, null),
+            new MapSpace(3, 0, TestWall, null),
+            new MapSpace(0, 1, TestWall, null),
+            new MapSpace(3, 1, TestWall, null),
+            new MapSpace(0, 2, TestWall, null),
+            new MapSpace(3, 2, TestWall, null),
+            new MapSpace(0, 3, TestWall, null),
+            new MapSpace(1, 3, TestWall, null),
+            new MapSpace(2, 3, TestWall, null),
+            new MapSpace(3, 3, TestWall, null),
         };
 
         private static readonly HashSet<MapSpace> TestWalkableArea = new HashSet<MapSpace>
         {
-            new MapSpace(1, 1, TestWalk),
-            new MapSpace(2, 1, TestWalk),
-            new MapSpace(1, 2, TestWalk),
-            new MapSpace(2, 2, TestEntry),
+            new MapSpace(1, 1, TestWalk, null),
+            new MapSpace(2, 1, TestWalk, null),
+            new MapSpace(1, 2, TestWalk, null),
+            new MapSpace(2, 2, TestEntry, null),
         };
 
         private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
@@ -94,10 +94,10 @@ namespace ParquetUnitTests.Rooms
         {
             var walkableAreaWithNoExit = new HashSet<MapSpace>
             {
-                new MapSpace(1, 1, TestWalk),
-                new MapSpace(2, 1, TestWalk),
-                new MapSpace(1, 2, TestWalk),
-                new MapSpace(2, 2, TestWalk),
+                new MapSpace(1, 1, TestWalk, null),
+                new MapSpace(2, 1, TestWalk, null),
+                new MapSpace(1, 2, TestWalk, null),
+                new MapSpace(2, 2, TestWalk, null),
             };
 
             void BadWalkableAre()
@@ -139,10 +139,10 @@ namespace ParquetUnitTests.Rooms
         {
             var otherWalkableArea = new HashSet<MapSpace>
             {
-                new MapSpace(1, 1, TestEntry),
-                new MapSpace(2, 1, TestWalk),
-                new MapSpace(1, 2, TestWalk),
-                new MapSpace(2, 2, TestWalk),
+                new MapSpace(1, 1, TestEntry, null),
+                new MapSpace(2, 1, TestWalk, null),
+                new MapSpace(1, 2, TestWalk, null),
+                new MapSpace(2, 2, TestWalk, null),
             };
 
             var room1 = new Room(TestWalkableArea, TestPerimeter);
