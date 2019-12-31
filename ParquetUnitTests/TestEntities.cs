@@ -106,7 +106,7 @@ namespace ParquetUnitTests
             Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             // TODO Replace these nulls once implementation is complete.
-            All.InitializeCollections(null, Parquets, RoomRecipes, null, null, null, null);
+            All.InitializeCollections(null, Parquets, RoomRecipes, null, null, null, null, null, null);
             #endregion
         }
     }
