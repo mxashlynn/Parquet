@@ -14,12 +14,15 @@ namespace ParquetClassLibrary.Maps
     public sealed class MapChunk : MapParent
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk();
+        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk");
 
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
                                                                               Rules.Dimensions.ParquetsPerChunk);
+
+        /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="EntityID"/>s.</summary>
+        public static Range<EntityID> Bounds => All.MapChunkIDs;
         #endregion
 
         #region Chunk Contents
@@ -28,6 +31,17 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerChunk);
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Used by children of the <see cref="MapParent"/> class.
+        /// </summary>
+        /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
+        [JsonConstructor]
+        public MapChunk(EntityID inID, string inName)
+            : base(Bounds, inID, inName, "", "") { }
         #endregion
 
         #region Serialization

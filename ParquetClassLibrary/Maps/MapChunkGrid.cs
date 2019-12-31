@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Maps
     public class MapChunkGrid
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunkGrid Empty = new MapChunkGrid(false);
+        public static readonly MapChunkGrid Empty = new MapChunkGrid();
 
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Maps
         public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>The identifier for the region that this grid will generate.</summary>
-        public Guid RegionID { get; set; }
+        public EntityID RegionID { get; set; }
 
         /// <summary>What the region that this grid generates will be called in-game.</summary>
         public string Title { get; set; }
@@ -50,35 +50,19 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
+        /// <param name="inID">A pre-existing RegionID; if null, the ID is set to <see cref="EntityID.None"/>.</param>
         /// <param name="inTitle">The name of the new region.</param>
         /// <param name="inBackground">Background color for the new region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        /// <param name="inID">A pre-existing RegionID; if null, a new RegionID is generated.</param>
-        public MapChunkGrid(string inTitle = null, PCLColor? inBackground = null,
-                            int inGlobalElevation = MapRegion.DefaultGlobalElevation, Guid? inID = null)
+        public MapChunkGrid(EntityID? inID = null, string inTitle = null, PCLColor? inBackground = null,
+                            int inGlobalElevation = MapRegion.DefaultGlobalElevation)
         {
+            RegionID = inID ?? EntityID.None;
             Title = string.IsNullOrEmpty(inTitle)
                 ? MapRegion.DefaultTitle
                 : inTitle;
             Background = inBackground ?? MapRegion.DefaultColor;
             GlobalElevation = inGlobalElevation;
-            RegionID = inID ?? Guid.NewGuid();
-        }
-
-        /// <summary>
-        /// Constructs a new instance of the <see cref="MapChunk"/> class.
-        /// </summary>
-        /// <param name="inGenerateID">For unit testing, if set to <c>false</c> the <see cref="RegionID"/> is set to a default value.</param>
-        public MapChunkGrid(bool inGenerateID)
-        {
-            Title = MapRegion.DefaultTitle;
-            Background = MapRegion.DefaultColor;
-            GlobalElevation = 0;
-
-            // Overwrite default behavior for tests.
-            RegionID = inGenerateID
-                ? Guid.NewGuid()
-                : Guid.Empty;
         }
         #endregion
 

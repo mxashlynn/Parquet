@@ -9,6 +9,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Maps;
 
 namespace ParquetClassLibrary
 {
@@ -90,16 +91,28 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> CraftingRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Quests.Quest"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Quest"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> QuestIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biomes.Biome"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biome"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
         public static readonly Range<EntityID> BiomeIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapChunk"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> MapChunkIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapRegion"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> MapRegionIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Item"/>s.
@@ -161,6 +174,22 @@ namespace ParquetClassLibrary
         public static EntityCollection<Biome> Biomes { get; private set; }
 
         /// <summary>
+        /// A collection of all defined <see cref="MapChunks"/>s.
+        /// This collection is the source of truth about biome for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<Biome> MapChunks { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="MapRegions"/>s.
+        /// This collection is the source of truth about biome for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        public static EntityCollection<Biome> MapRegions { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="Item"/>s.
         /// This collection is the source of truth about items for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -213,6 +242,9 @@ namespace ParquetClassLibrary
             QuestIDs = new Range<EntityID>(90000, 99000);
 
             BiomeIDs = new Range<EntityID>(100000, 109000);
+
+            MapChunkIDs = new Range<EntityID>(110000, 119000);
+            MapRegionIDs = new Range<EntityID>(120000, 129000);
             #endregion
 
             #region Define Range Collections
@@ -273,6 +305,8 @@ namespace ParquetClassLibrary
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<Quest> inQuests,
                                                  IEnumerable<Biome> inBiomes,
+                                                 IEnumerable<MapChunk> inMapChunks,
+                                                 IEnumerable<MapRegion> inMapRegions,
                                                  IEnumerable<Item> inItems)
         {
             if (CollectionsHaveBeenInitialized)
@@ -285,6 +319,8 @@ namespace ParquetClassLibrary
             //Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
             //Precondition.IsNotNull(inQuests, nameof(inQuests));
             //Precondition.IsNotNull(inBiomes, nameof(inBiomes));
+            //Precondition.IsNotNull(inMapChunks, nameof(inMapChunks));
+            //Precondition.IsNotNull(inMapRegions, nameof(inMapRegions));
             //Precondition.IsNotNull(inItems, nameof(inItems));
 
             //Beings = new EntityCollection<Being>(BeingIDs, inBeings);
@@ -293,6 +329,8 @@ namespace ParquetClassLibrary
             //CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             //Quests = new EntityCollection<Quest>(QuestIDs, inQuests);
             //Biomes = new EntityCollection<Biome>(BiomeIDs, inBiomes);
+            //Biomes = new EntityCollection<Biome>(inMapChunks, inMapChunks);
+            //Biomes = new EntityCollection<Biome>(inMapRegions, inMapRegions);
             //Items = new EntityCollection<Item>(ItemIDs, inItems);
 
             CollectionsHaveBeenInitialized = true;

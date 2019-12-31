@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -12,14 +11,13 @@ namespace ParquetUnitTests.Map
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly MapChunk defaultChunk = new MapChunk().FillTestPattern();
         #endregion
 
         #region Initialization
         [Fact]
         public void NewDefaultMapChunkTest()
         {
-            Assert.Equal(0, defaultChunk.Revision);
+            Assert.Equal(0, new MapChunk(EntityID.None, "Throwaway Chunk").Revision);
         }
         #endregion
 
@@ -27,10 +25,9 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
             var parquetID = TestEntities.TestFloor.ID;
 
-            var result = chunk.TrySetFloorDefinition(parquetID, invalidPosition);
+            var result = TestEntities.TestMapChunk.TrySetFloorDefinition(parquetID, invalidPosition);
 
             Assert.False(result);
         }
@@ -38,10 +35,9 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
             var parquetID = TestEntities.TestFloor.ID;
 
-            var result = chunk.TrySetFloorDefinition(parquetID, Vector2D.Zero);
+            var result = TestEntities.TestMapChunk.TrySetFloorDefinition(parquetID, Vector2D.Zero);
 
             Assert.True(result);
         }
@@ -49,7 +45,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlockDefinition(parquetID, invalidPosition);
@@ -60,7 +56,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestBlock.ID;
 
             var result = chunk.TrySetBlockDefinition(parquetID, Vector2D.Zero);
@@ -71,7 +67,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishingDefinition(parquetID, invalidPosition);
@@ -82,7 +78,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestFurnishing.ID;
 
             var result = chunk.TrySetFurnishingDefinition(parquetID, Vector2D.Zero);
@@ -93,7 +89,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetCollectibleFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectibleDefinition(parquetID, invalidPosition);
@@ -104,7 +100,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetCollectibleSucceedsOnDefaultParquetAndPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
             var parquetID = TestEntities.TestCollectible.ID;
 
             var result = chunk.TrySetCollectibleDefinition(parquetID, Vector2D.Zero);
@@ -117,8 +113,8 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
-            var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TrySetExitPoint(point);
 
@@ -128,8 +124,8 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
-            var point = new ExitPoint(invalidPosition, new Guid());
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
+            var point = new ExitPoint(invalidPosition, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TryRemoveExitPoint(point);
 
@@ -139,8 +135,8 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
-            var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
 
             var result = chunk.TryRemoveExitPoint(point);
 
@@ -150,8 +146,8 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
-            var chunk = new MapChunk();
-            var point = new ExitPoint(Vector2D.Zero, new Guid());
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
+            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
             chunk.TrySetExitPoint(point);
 
             var result = chunk.TryRemoveExitPoint(point);
@@ -162,7 +158,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
 
             var specialData = chunk.GetExitsAtPosition(invalidPosition);
 
@@ -174,11 +170,9 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetDefinitionReturnsNoneOnInvalidPositionTest()
         {
-            var chunk = new MapChunk().FillTestPattern();
-
             void TestCode()
             {
-                var _ = chunk.GetDefinitionAtPosition(invalidPosition);
+                var _ = TestEntities.TestMapChunk.GetDefinitionAtPosition(invalidPosition);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -187,7 +181,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void GetDefinitionReturnsNoneOnEmptyMapTest()
         {
-            var chunk = new MapChunk();
+            var chunk = new MapChunk(EntityID.None, "Local Chunk");
 
             var result = chunk.GetDefinitionAtPosition(Vector2D.Zero);
 
@@ -203,12 +197,12 @@ namespace ParquetUnitTests.Map
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {
             var invalidUpperLeft = invalidPosition;
-            var validLowerRight = new Vector2D(defaultChunk.DimensionsInParquets.X - 1,
-                                                 defaultChunk.DimensionsInParquets.Y - 1);
+            var validLowerRight = new Vector2D(TestEntities.TestMapChunk.DimensionsInParquets.X - 1,
+                                               TestEntities.TestMapChunk.DimensionsInParquets.Y - 1);
 
             void InvalidSubregion()
             {
-                var _ = defaultChunk.GetSubregion(invalidUpperLeft, validLowerRight);
+                var _ = TestEntities.TestMapChunk.GetSubregion(invalidUpperLeft, validLowerRight);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
@@ -218,11 +212,11 @@ namespace ParquetUnitTests.Map
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
             var validUpperLeft = Vector2D.Zero;
-            var invalidLowerRight = defaultChunk.DimensionsInParquets;
+            var invalidLowerRight = TestEntities.TestMapChunk.DimensionsInParquets;
 
             void InvalidSubregion()
             {
-                var _ = defaultChunk.GetSubregion(validUpperLeft, invalidLowerRight);
+                var _ = TestEntities.TestMapChunk.GetSubregion(validUpperLeft, invalidLowerRight);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
@@ -232,12 +226,12 @@ namespace ParquetUnitTests.Map
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
             var validUpperLeft = Vector2D.Zero;
-            var validLowerRight = new Vector2D(defaultChunk.DimensionsInParquets.X - 1,
-                                                 defaultChunk.DimensionsInParquets.Y - 1);
+            var validLowerRight = new Vector2D(TestEntities.TestMapChunk.DimensionsInParquets.X - 1,
+                                               TestEntities.TestMapChunk.DimensionsInParquets.Y - 1);
 
             void InvalidSubregion()
             {
-                var _ = defaultChunk.GetSubregion(validLowerRight, validUpperLeft);
+                var _ = TestEntities.TestMapChunk.GetSubregion(validLowerRight, validUpperLeft);
             }
 
             Assert.Throws<ArgumentException>(InvalidSubregion);
@@ -248,11 +242,11 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapChunk)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultChunk) as ParquetStack2DCollection;
+                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStack2DCollection;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            var subregion = defaultChunk.GetSubregion();
+            var subregion = TestEntities.TestMapChunk.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -268,13 +262,13 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapChunk)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultChunk) as ParquetStack2DCollection;
+                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStack2DCollection;
 
-            var subregion = defaultChunk.GetSubregion();
+            var subregion = TestEntities.TestMapChunk.GetSubregion();
 
-            for (var x = 0; x < defaultChunk.DimensionsInParquets.X; x++)
+            for (var x = 0; x < TestEntities.TestMapChunk.DimensionsInParquets.X; x++)
             {
-                for (var y = 0; y < defaultChunk.DimensionsInParquets.Y; y++)
+                for (var y = 0; y < TestEntities.TestMapChunk.DimensionsInParquets.Y; y++)
                 {
                     Assert.Equal(originalChunk[y, x], subregion[y, x]);
                 }

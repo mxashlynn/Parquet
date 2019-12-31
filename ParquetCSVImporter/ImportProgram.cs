@@ -14,6 +14,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Rooms;
 using ParquetCSVImporter.ClassMaps;
+using ParquetClassLibrary.Maps;
 
 namespace ParquetCSVImporter
 {
@@ -48,6 +49,12 @@ namespace ParquetCSVImporter
 
         /// <summary>All <see cref="Biome"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Biome> Biomes = new HashSet<Biome>();
+
+        /// <summary>All <see cref="MapChunk"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<MapChunk> MapChunks = new HashSet<MapChunk>();
+
+        /// <summary>All <see cref="MapRegion"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<MapRegion> MapRegions = new HashSet<MapRegion>();
 
         /// <summary>All <see cref="Item"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Item> Items = new HashSet<Item>();
@@ -89,12 +96,18 @@ namespace ParquetCSVImporter
             Biomes.Clear();
             //Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
 
+            MapChunks.Clear();
+            //MapChunks.UnionWith(GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
+
+            MapRegions.Clear();
+            //MapRegions.UnionWith(GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
+
             Items.Clear();
             //Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
             #endregion
 
             #region Reserialize as JSON
-            All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, Items);
+            All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, MapChunks, MapRegions, Items);
             var recordsToJSON = All.Parquets.SerializeToString();
             var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))

@@ -14,16 +14,16 @@ namespace ParquetClassLibrary.Maps
         public Vector2D Position { get; }
 
         /// <summary>The region this exit leads to.</summary>
-        public Guid Destination { get; }
+        public EntityID Destination { get; }
 
         /// <summary>
         /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
         /// <param name="inPosition">The location of this point on its containing region.</param>
-        /// <param name="inGuid">The region this exit leads to.</param>
-        public ExitPoint(Vector2D inPosition, Guid inGuid)
+        /// <param name="inDestinationID">The region this exit leads to.</param>
+        public ExitPoint(Vector2D inPosition, EntityID inDestinationID)
         {
-            Destination = inGuid;
+            Destination = inDestinationID;
             Position = inPosition;
         }
 
