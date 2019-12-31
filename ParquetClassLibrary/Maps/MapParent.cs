@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Provides methods that are used by all parquet-based map models
     /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
-    /// but contrast <see cref="ChunkTypeGridCollection"/> which is not parquet-based).
+    /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent : Entity
     {
@@ -34,13 +34,13 @@ namespace ParquetClassLibrary.Maps
         protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatusGridCollection ParquetStatuses { get; }
+        protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
         /// and <see cref="Collectible"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStackGridCollection ParquetDefintion { get; }
+        protected abstract ParquetStackGrid ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
         protected int ParquetsCount => ParquetDefintion.Count;

@@ -9,13 +9,18 @@ namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox-mode.
-    /// Regions in the editor are stored as <see cref="ChunkTypeGridCollection"/>s before being fleshed out on load in-game.
     /// </summary>
+    /// <remarks>
+    /// Regions in the editor are stored as <see cref="ChunkTypeGrid"/>s before being fleshed out on load in-game.
+    /// </remarks>
     [JsonObject(MemberSerialization.Fields)]
-    public class ChunkTypeGridCollection : IReadOnlyCollection<ChunkType>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
+    public class ChunkTypeGrid : IReadOnlyCollection<ChunkType>
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly ChunkTypeGridCollection Empty = new ChunkTypeGridCollection();
+        public static readonly ChunkTypeGrid Empty = new ChunkTypeGrid();
 
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
@@ -59,7 +64,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inTitle">The name of the new region.</param>
         /// <param name="inBackground">Background color for the new region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        public ChunkTypeGridCollection(EntityID? inID = null, string inTitle = null, PCLColor? inBackground = null,
+        public ChunkTypeGrid(EntityID? inID = null, string inTitle = null, PCLColor? inBackground = null,
                             int inGlobalElevation = MapRegion.DefaultGlobalElevation)
         {
             RegionID = inID ?? EntityID.None;
@@ -105,7 +110,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ChunkType>)chunkTypes.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStatusGridCollection"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
@@ -114,20 +119,20 @@ namespace ParquetClassLibrary.Maps
 
         #region Serialization
         /// <summary>
-        /// Serializes to the current <see cref="ChunkTypeGridCollection"/> to a string.
+        /// Serializes to the current <see cref="ChunkTypeGrid"/> to a string.
         /// </summary>
         /// <returns>The serialized MapRegion.</returns>
         public string SerializeToString()
             => JsonConvert.SerializeObject(this, Formatting.None);
 
         /// <summary>
-        /// Tries to deserialize a <see cref="ChunkTypeGridCollection"/> from the given string.
+        /// Tries to deserialize a <see cref="ChunkTypeGrid"/> from the given string.
         /// </summary>
         /// <param name="inSerializedMapChunkGrid">The serialized region map.</param>
         /// <param name="outMapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
         /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
         public static bool TryDeserializeFromString(string inSerializedMapChunkGrid,
-                                                    out ChunkTypeGridCollection outMapChunkGrid)
+                                                    out ChunkTypeGrid outMapChunkGrid)
         {
             Precondition.IsNotNullOrEmpty(inSerializedMapChunkGrid, nameof(inSerializedMapChunkGrid));
             var result = false;
@@ -142,7 +147,7 @@ namespace ParquetClassLibrary.Maps
                 // Deserialize only if this class supports the version given.
                 if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
                 {
-                    outMapChunkGrid = JsonConvert.DeserializeObject<ChunkTypeGridCollection>(inSerializedMapChunkGrid);
+                    outMapChunkGrid = JsonConvert.DeserializeObject<ChunkTypeGrid>(inSerializedMapChunkGrid);
                     result = true;
                 }
             }
@@ -165,9 +170,9 @@ namespace ParquetClassLibrary.Maps
             => chunkTypes.IsValidPosition(inPosition);
 
         /// <summary>
-        /// Describes the <see cref="ChunkTypeGridCollection"/>'s basic information.
+        /// Describes the <see cref="ChunkTypeGrid"/>'s basic information.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="ChunkTypeGridCollection"/>.</returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="ChunkTypeGrid"/>.</returns>
         public override string ToString()
             => $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
         #endregion

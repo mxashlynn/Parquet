@@ -9,7 +9,10 @@ namespace ParquetClassLibrary.Maps
     /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="MapParent"/> and derived classes.
     /// The intent is that this class function much like a read-only array.
     /// </summary>
-    public class ParquetStatusGridCollection : IReadOnlyCollection<ParquetStatus>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
+    public class ParquetStatusGrid : IReadOnlyCollection<ParquetStatus>
     {
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
@@ -21,10 +24,10 @@ namespace ParquetClassLibrary.Maps
         public int Count => DimensionsInParquets.Y * DimensionsInParquets.X;
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatusGridCollection"/>.
+        /// Initializes a new <see cref="ParquetStatusGrid"/>.
         /// </summary>
         /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStatusGridCollection(int inDimensions)
+        public ParquetStatusGrid(int inDimensions)
         {
             ParquetStatuses = new ParquetStatus[inDimensions, inDimensions];
         }
@@ -51,7 +54,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ParquetStatus>)ParquetStatuses.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStatusGridCollection"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()

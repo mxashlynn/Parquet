@@ -9,7 +9,10 @@ namespace ParquetClassLibrary.Maps
     /// A square, two-dimensional collection of <see cref="ParquetStack"/>s for use in <see cref="MapParent"/> and derived classes.
     /// The intent is that this class function much like a read-only array.
     /// </summary>
-    public class ParquetStackGridCollection : IReadOnlyCollection<ParquetStack>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
+    public class ParquetStackGrid : IReadOnlyCollection<ParquetStack>
     {
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
         private ParquetStack[,] ParquetStacks { get; }
@@ -37,10 +40,10 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStackGridCollection"/>.
+        /// Initializes a new <see cref="ParquetStackGrid"/>.
         /// </summary>
         /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStackGridCollection(int inDimensions)
+        public ParquetStackGrid(int inDimensions)
         {
             ParquetStacks = new ParquetStack[inDimensions, inDimensions];
         }
@@ -67,7 +70,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ParquetStack>)ParquetStacks.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStackGridCollection"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetStackGrid"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()

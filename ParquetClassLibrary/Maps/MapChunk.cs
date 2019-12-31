@@ -27,10 +27,10 @@ namespace ParquetClassLibrary.Maps
 
         #region Chunk Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatusGridCollection ParquetStatuses { get; } = new ParquetStatusGridCollection(Rules.Dimensions.ParquetsPerChunk);
+        protected override ParquetStatusGrid ParquetStatuses { get; } = new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk);
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        protected override ParquetStackGridCollection ParquetDefintion { get; } = new ParquetStackGridCollection(Rules.Dimensions.ParquetsPerChunk);
+        protected override ParquetStackGrid ParquetDefintion { get; } = new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk);
         #endregion
 
         #region Initialization

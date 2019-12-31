@@ -20,7 +20,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewDefaultMapChunkGridTest()
         {
-            var defaultGrid = new ChunkTypeGridCollection();
+            var defaultGrid = new ChunkTypeGrid();
 
             Assert.Equal(MapRegion.DefaultTitle, defaultGrid.Title);
             Assert.Equal(MapRegion.DefaultColor, defaultGrid.Background);
@@ -29,7 +29,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewNullMapChunkGridTest()
         {
-            var nulledGrid = new ChunkTypeGridCollection(null);
+            var nulledGrid = new ChunkTypeGrid(null);
 
             Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
             Assert.Equal(MapRegion.DefaultColor, nulledGrid.Background);
@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewCustomMapChunkGridTest()
         {
-            var customRegion = new ChunkTypeGridCollection(testID, testTitle, testColor, testElevation);
+            var customRegion = new ChunkTypeGrid(testID, testTitle, testColor, testElevation);
 
             Assert.Equal(testID, customRegion.RegionID);
             Assert.Equal(testTitle, customRegion.Title);
@@ -51,7 +51,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void SetGetChunkFailsOnInvalidPositionTest()
         {
-            var grid = new ChunkTypeGridCollection();
+            var grid = new ChunkTypeGrid();
             grid.SetChunk(testChunk, invalidPosition);
 
             var returnedChunk = grid.GetChunk(invalidPosition);
@@ -62,7 +62,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void SetGetChunkSucceedsOnOriginPositionTest()
         {
-            var grid = new ChunkTypeGridCollection();
+            var grid = new ChunkTypeGrid();
             grid.SetChunk(testChunk, Vector2D.Zero);
 
             var returnedChunk = grid.GetChunk(Vector2D.Zero);

@@ -242,7 +242,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapChunk)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStackGridCollection;
+                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
@@ -262,7 +262,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapChunk)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStackGridCollection;
+                                ?.GetValue(TestEntities.TestMapChunk) as ParquetStackGrid;
 
             var subregion = TestEntities.TestMapChunk.GetSubregion();
 
