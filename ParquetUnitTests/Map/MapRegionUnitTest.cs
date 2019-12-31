@@ -171,7 +171,7 @@ namespace ParquetUnitTests.Map
                                          TestEntities.TestBlock.ID,
                                          TestEntities.TestFurnishing.ID,
                                          TestEntities.TestCollectible.ID);
-            var space = new MapSpace(Vector2D.Zero, stack);
+            var space = new MapSpace(Vector2D.Zero, stack, null);
 
             var result = region.TrySetParquetDefinition(space);
 

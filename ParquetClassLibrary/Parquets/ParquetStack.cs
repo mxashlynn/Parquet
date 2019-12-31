@@ -195,7 +195,7 @@ namespace ParquetClassLibrary.Parquets
             {
                 for (var x = 0; x < subregionCols; x++)
                 {
-                    var currentSpace = new MapSpace(x, y, inSubregion[y, x]);
+                    var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
                     uniqueResults.Add(currentSpace);
                 }
             }

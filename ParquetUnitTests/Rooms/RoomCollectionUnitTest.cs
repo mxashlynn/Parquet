@@ -476,49 +476,49 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly HashSet<MapSpace> ExtantPerimeter = new HashSet<MapSpace>
         {
-            new MapSpace(0, 0, TWall),
-            new MapSpace(1, 0, TWall),
-            new MapSpace(2, 0, TWall),
-            new MapSpace(3, 0, TWall),
-            new MapSpace(0, 1, TWall),
-            new MapSpace(3, 1, TWall),
-            new MapSpace(0, 2, TWall),
-            new MapSpace(3, 2, TDoor),
-            new MapSpace(0, 3, TWall),
-            new MapSpace(1, 3, TWall),
-            new MapSpace(2, 3, TWall),
-            new MapSpace(3, 3, TWall),
+            new MapSpace(0, 0, TWall, null),
+            new MapSpace(1, 0, TWall, null),
+            new MapSpace(2, 0, TWall, null),
+            new MapSpace(3, 0, TWall, null),
+            new MapSpace(0, 1, TWall, null),
+            new MapSpace(3, 1, TWall, null),
+            new MapSpace(0, 2, TWall, null),
+            new MapSpace(3, 2, TDoor, null),
+            new MapSpace(0, 3, TWall, null),
+            new MapSpace(1, 3, TWall, null),
+            new MapSpace(2, 3, TWall, null),
+            new MapSpace(3, 3, TWall, null),
         };
         private static readonly HashSet<MapSpace> ExtantWalkableArea = new HashSet<MapSpace>
         {
-            new MapSpace(1, 1, TTile),
-            new MapSpace(2, 1, TTile),
-            new MapSpace(1, 2, TTile),
-            new MapSpace(2, 2, TTile),
+            new MapSpace(1, 1, TTile, null),
+            new MapSpace(2, 1, TTile, null),
+            new MapSpace(1, 2, TTile, null),
+            new MapSpace(2, 2, TTile, null),
         };
         private static readonly Room ExtantRoom = new Room(ExtantWalkableArea, ExtantPerimeter);
 
         private static readonly HashSet<MapSpace> NonextantPerimeter = new HashSet<MapSpace>
         {
-            new MapSpace(10, 10, TWall),
-            new MapSpace(11, 10, TWall),
-            new MapSpace(12, 10, TWall),
-            new MapSpace(13, 10, TWall),
-            new MapSpace(10, 11, TWall),
-            new MapSpace(13, 11, TWall),
-            new MapSpace(10, 12, TWall),
-            new MapSpace(13, 12, TDoor),
-            new MapSpace(10, 13, TWall),
-            new MapSpace(11, 13, TWall),
-            new MapSpace(12, 13, TWall),
-            new MapSpace(13, 13, TWall),
+            new MapSpace(10, 10, TWall, null),
+            new MapSpace(11, 10, TWall, null),
+            new MapSpace(12, 10, TWall, null),
+            new MapSpace(13, 10, TWall, null),
+            new MapSpace(10, 11, TWall, null),
+            new MapSpace(13, 11, TWall, null),
+            new MapSpace(10, 12, TWall, null),
+            new MapSpace(13, 12, TDoor, null),
+            new MapSpace(10, 13, TWall, null),
+            new MapSpace(11, 13, TWall, null),
+            new MapSpace(12, 13, TWall, null),
+            new MapSpace(13, 13, TWall, null),
         };
         private static readonly HashSet<MapSpace> NonextantWalkableArea = new HashSet<MapSpace>
         {
-            new MapSpace(11, 11, TTile),
-            new MapSpace(12, 11, TTile),
-            new MapSpace(11, 12, TTile),
-            new MapSpace(12, 12, TTile),
+            new MapSpace(11, 11, TTile, null),
+            new MapSpace(12, 11, TTile, null),
+            new MapSpace(11, 12, TTile, null),
+            new MapSpace(12, 12, TTile, null),
         };
         private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
         #endregion
