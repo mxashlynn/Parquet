@@ -127,7 +127,7 @@ namespace ParquetUnitTests
             TestMapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2D(1, 2));
             TestMapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2D(3, 3));
             #endregion
-            //TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region");
+            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region");
             TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", "Test", "Test",
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
             #endregion
