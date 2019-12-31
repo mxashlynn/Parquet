@@ -15,10 +15,10 @@ namespace ParquetClassLibrary
             Justification = "No adequate alternative in this instance.")]
         public static class Dimensions
         {
-            /// <summary>The length of each <see cref="Maps.MapChunkGrid"/> dimension in parquets.</summary>
+            /// <summary>The length of each <see cref="Maps.ChunkTypeGridCollection"/> dimension in parquets.</summary>
             public const int ParquetsPerChunk = 16;
 
-            /// <summary>The length of each <see cref="Maps.MapRegion"/> dimension in <see cref="Maps.MapChunkGrid"/>s.</summary>
+            /// <summary>The length of each <see cref="Maps.MapRegion"/> dimension in <see cref="Maps.ChunkTypeGridCollection"/>s.</summary>
             public const int ChunksPerRegion = 4;
 
             /// <summary>The length of each <see cref="Maps.MapRegion"/> dimension in parquets.</summary>

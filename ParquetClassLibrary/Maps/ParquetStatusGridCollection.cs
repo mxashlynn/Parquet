@@ -18,8 +18,7 @@ namespace ParquetClassLibrary.Maps
         private Vector2D DimensionsInParquets { get; }
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count
-            => DimensionsInParquets.Y * DimensionsInParquets.X;
+        public int Count => DimensionsInParquets.Y * DimensionsInParquets.X;
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGridCollection"/>.
