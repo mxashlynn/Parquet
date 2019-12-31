@@ -62,13 +62,13 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
             var walkableAreas = inSubregion.GetWalkableAreas();
-
             MapSpaceCollection perimeter = MapSpaceCollection.Empty;
+
             var rooms = walkableAreas
-                        .Where(walkableArea => walkableArea.TryGetPerimeter(inSubregion, out perimeter)
+                        .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
                                             && walkableArea.Concat(perimeter).Any(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false)
                                             && walkableArea.Any(space => space.IsWalkableEntry
-                                                                      || space.Neighbors(inSubregion).Any(neighbor => neighbor.IsEnclosingEntry(inSubregion, walkableArea))))
+                                                                      || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                         .Select(walkableArea => new Room(walkableArea, perimeter));
 
             return new RoomCollection(rooms);
@@ -104,7 +104,7 @@ namespace ParquetClassLibrary.Rooms
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>
-    /// Extension methods used in analyzing subregions.
+    /// Extension methods used only by <see cref="RoomCollection"/> when analyzing subregions of <see cref="MapSpace"/>s.
     /// </summary>
     internal static class ParquetStackExtensions
     {
@@ -125,13 +125,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 {
                     if (inSubregion[y, x].IsWalkable)
                     {
-                        var currentSpace = new MapSpace(x, y, inSubregion[y, x]);
+                        var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
 
                         var northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
-                            ? new MapSpace(x, y - 1, inSubregion[y - 1, x])
+                            ? new MapSpace(x, y - 1, inSubregion[y - 1, x], inSubregion)
                             : MapSpace.Empty;
                         var westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
-                            ? new MapSpace(x - 1, y, inSubregion[y, x - 1])
+                            ? new MapSpace(x - 1, y, inSubregion[y, x - 1], inSubregion)
                             : MapSpace.Empty;
 
                         if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
 
             var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Room.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Room.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(inSubregion, space => space.Content.IsWalkable)));
+            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
             return results.ConvertAll(hashOfSpaces => new MapSpaceCollection(hashOfSpaces));

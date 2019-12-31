@@ -11,7 +11,10 @@ namespace ParquetClassLibrary.Parquets
     public readonly struct MapSpace : IEquatable<MapSpace>
     {
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        public static readonly MapSpace Empty = new MapSpace(new Vector2D(0, 0), ParquetStack.Empty);
+        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
+
+        /// <summary>The subregion containing this <see cref="MapSpace"/>.</param>
+        public ParquetStack[,] Subregion { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
         public Vector2D Position { get; }
@@ -25,10 +28,11 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        public MapSpace(Vector2D inPosition, ParquetStack inContent)
+        public MapSpace(Vector2D inPosition, ParquetStack inContent, ParquetStack[,] inSubregion)
         {
             Position = inPosition;
             Content = inContent;
+            Subregion = inSubregion;
         }
 
         /// <summary>
@@ -37,57 +41,52 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inX">X-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        public MapSpace(int inX, int inY, ParquetStack inContent) : this(new Vector2D(inX, inY), inContent) { }
+        public MapSpace(int inX, int inY, ParquetStack inContent, ParquetStack[,] inSubregion)
+            : this(new Vector2D(inX, inY), inContent, inSubregion) { }
         #endregion
 
         #region Position Offsets
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace Neighbor(ParquetStack[,] inSubregion, Vector2D inOffset)
+        public MapSpace Neighbor(Vector2D inOffset)
         {
-            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
+            Precondition.IsNotNull(Subregion, nameof(Subregion));
 
             var offsetPosition = Position + inOffset;
-            return inSubregion.IsValidPosition(offsetPosition)
-                ? new MapSpace(offsetPosition, inSubregion[offsetPosition.Y, offsetPosition.X])
+            return Subregion.IsValidPosition(offsetPosition)
+                ? new MapSpace(offsetPosition, Subregion[offsetPosition.Y, offsetPosition.X], Subregion)
                 : Empty;
         }
 
         /// <summary>Finds the <see cref="MapSpace"/> to the north of the given space, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace NorthNeighbor(ParquetStack[,] inSubregion)
-            => Neighbor(inSubregion, Vector2D.North);
+        public MapSpace NorthNeighbor()
+            => Neighbor(Vector2D.North);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the south of the given space, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace SouthNeighbor(ParquetStack[,] inSubregion)
-            => Neighbor(inSubregion, Vector2D.South);
+        public MapSpace SouthNeighbor()
+            => Neighbor(Vector2D.South);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the east of the given space, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace EastNeighbor(ParquetStack[,] inSubregion)
-            => Neighbor(inSubregion, Vector2D.East);
+        public MapSpace EastNeighbor()
+            => Neighbor(Vector2D.East);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the west of the given space, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace WestNeighbor(ParquetStack[,] inSubregion)
-            => Neighbor(inSubregion, Vector2D.West);
+        public MapSpace WestNeighbor()
+            => Neighbor(Vector2D.West);
 
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
-        /// <param name="inSubregion">The subregion containing the <see cref="MapSpace"/>s.</param>
-        /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public List<MapSpace> Neighbors(ParquetStack[,] inSubregion)
+        /// <returns>A list of four <see cref="MapSpace"/>s, some or all of which may be <see cref="Empty"/>.</returns>
+        public List<MapSpace> Neighbors()
             => new List<MapSpace>
             {
-                NorthNeighbor(inSubregion),
-                SouthNeighbor(inSubregion),
-                EastNeighbor(inSubregion),
-                WestNeighbor(inSubregion),
+                NorthNeighbor(),
+                SouthNeighbor(),
+                EastNeighbor(),
+                WestNeighbor(),
             };
         #endregion
 
@@ -137,21 +136,21 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as a walkable entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsWalkableEntry
             => IsEntry && IsWalkable;
-        
+
         /// <summary>
         /// Determines if this <see cref="MapSpace"/> is:
         /// 1) <see cref="IsEntry"/>
         /// 2) <see cref="IsEnclosing"/>
         /// 3) has one walkable neighbor that is within the given <see cref="MapSpaceCollection"/> and one not within it.
         /// </summary>
-        /// <seealso cref="IsWalkableEntry"/>
+        /// <param name="inWalkableArea">The <see cref="MapSpaceCollection"/> used to define this <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
-        internal bool IsEnclosingEntry(ParquetStack[,] inSubregion, MapSpaceCollection inWalkableArea)
+        internal bool IsEnclosingEntry(MapSpaceCollection inWalkableArea)
             => All.Parquets.Get<Furnishing>(Content.Furnishing)?.IsEntry ?? false
             && Content.IsEnclosing
-            && Neighbors(inSubregion).Any(neighbor1 => inWalkableArea.Contains(neighbor1))
-            && Neighbors(inSubregion).Any(neighbor2 => !inWalkableArea.Contains(neighbor2)
-                                                     && neighbor2.Content.IsWalkable);
+            && Neighbors().Any(neighbor1 => inWalkableArea.Contains(neighbor1))
+            && Neighbors().Any(neighbor2 => !inWalkableArea.Contains(neighbor2)
+                                         && neighbor2.Content.IsWalkable);
         #endregion
 
         #region IEquatable Implementation
