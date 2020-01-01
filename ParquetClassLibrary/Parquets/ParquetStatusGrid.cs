@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Maps
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="MapParent"/> and derived classes.

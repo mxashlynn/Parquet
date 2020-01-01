@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps

@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
