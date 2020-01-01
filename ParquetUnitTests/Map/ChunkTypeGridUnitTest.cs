@@ -1,3 +1,4 @@
+using System;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
@@ -5,7 +6,7 @@ using Xunit;
 
 namespace ParquetUnitTests.Map
 {
-    public class MapChunkGridUnitTest
+    public class ChunkTypeGridUnitTest
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
@@ -20,7 +21,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewDefaultMapChunkGridTest()
         {
-            var defaultGrid = new MapChunkGrid();
+            var defaultGrid = new ChunkTypeGrid();
 
             Assert.Equal(MapRegion.DefaultTitle, defaultGrid.Title);
             Assert.Equal(MapRegion.DefaultColor, defaultGrid.Background);
@@ -29,7 +30,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewNullMapChunkGridTest()
         {
-            var nulledGrid = new MapChunkGrid(null);
+            var nulledGrid = new ChunkTypeGrid(null);
 
             Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
             Assert.Equal(MapRegion.DefaultColor, nulledGrid.Background);
@@ -38,7 +39,7 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void NewCustomMapChunkGridTest()
         {
-            var customRegion = new MapChunkGrid(testID, testTitle, testColor, testElevation);
+            var customRegion = new ChunkTypeGrid(testID, testTitle, testColor, testElevation);
 
             Assert.Equal(testID, customRegion.RegionID);
             Assert.Equal(testTitle, customRegion.Title);
@@ -51,21 +52,23 @@ namespace ParquetUnitTests.Map
         [Fact]
         public void SetGetChunkFailsOnInvalidPositionTest()
         {
-            var grid = new MapChunkGrid();
-            grid.SetChunk(testChunk, invalidPosition);
+            var grid = new ChunkTypeGrid();
 
-            var returnedChunk = grid.GetChunk(invalidPosition);
+            void TestCode()
+            {
+                grid[invalidPosition.Y, invalidPosition.X] = testChunk;
+            }
 
-            Assert.NotEqual(testChunk, returnedChunk);
+            Assert.Throws<IndexOutOfRangeException>(TestCode);
         }
 
         [Fact]
         public void SetGetChunkSucceedsOnOriginPositionTest()
         {
-            var grid = new MapChunkGrid();
-            grid.SetChunk(testChunk, Vector2D.Zero);
+            var grid = new ChunkTypeGrid();
+            grid[Vector2D.Zero.Y, Vector2D.Zero.X] = testChunk;
 
-            var returnedChunk = grid.GetChunk(Vector2D.Zero);
+            var returnedChunk = grid[Vector2D.Zero.Y, Vector2D.Zero.Y];
 
             Assert.Equal(testChunk, returnedChunk);
         }

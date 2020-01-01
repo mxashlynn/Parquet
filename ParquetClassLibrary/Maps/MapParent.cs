@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Provides methods that are used by all parquet-based map models
     /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
-    /// but contrast <see cref="MapChunkGrid"/> which is not parquet-based).
+    /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent : Entity
     {
@@ -34,16 +34,16 @@ namespace ParquetClassLibrary.Maps
         protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatus2DCollection ParquetStatuses { get; }
+        protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
         /// and <see cref="Collectible"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStack2DCollection ParquetDefintion { get; }
+        protected abstract ParquetStackGrid ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
-        protected int ParquetsCount => ParquetDefintion.Count;
+        protected int ParquetsCount => ParquetDefintion?.Count ?? 0;
         #endregion
 
         #region Initialization
@@ -102,7 +102,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inSpace">IDs and position to set.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(MapSpace inSpace)
+        public bool TrySetParquetDefinition(Rooms.MapSpace inSpace)
             => TrySetParquetDefinition(inSpace.Content.Floor, inSpace.Content.Block,
                                        inSpace.Content.Furnishing, inSpace.Content.Collectible,
                                        new Vector2D(inSpace.Position.X, inSpace.Position.Y));
@@ -221,7 +221,7 @@ namespace ParquetClassLibrary.Maps
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion()
+        public ParquetStackGrid GetSubregion()
             => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1, DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefintion.IsValidPosition(inUpperLeft))
             {
@@ -258,7 +258,7 @@ namespace ParquetClassLibrary.Maps
                     }
                 }
 
-                return subregion;
+                return new ParquetStackGrid(subregion);
             }
         }
 

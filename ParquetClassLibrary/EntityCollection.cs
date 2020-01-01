@@ -37,7 +37,7 @@ namespace ParquetClassLibrary
         private List<Range<EntityID>> Bounds { get; }
 
         /// <summary>The number of <see cref="Entity"/>s in the <see cref="EntityCollection{T}"/>.</summary>
-        public int Count => Entities.Count;
+        public int Count => Entities?.Count ?? 0;
 
         #region Initialization
         /// <summary>

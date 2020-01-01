@@ -25,8 +25,8 @@ namespace ParquetUnitTests
         };
 
         /// <summary>A trivial panel pattern.</summary>
-        private static readonly StrikePanel[,] emptyPanelPattern = new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
-                                                                                   Rules.Dimensions.PanelsPerPatternWidth];
+        private static readonly StrikePanelGrid emptyPanelPattern = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
+                                                                                        Rules.Dimensions.PanelsPerPatternWidth);
         #endregion
 
         [Fact]
@@ -109,7 +109,7 @@ namespace ParquetUnitTests
         [Fact]
         public void PanelTooNarrowPatternsThrowTest()
         {
-            var patternTooNarrow = new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight, 0];
+            var patternTooNarrow = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight, 0);
 
             void TestCodeTooNarrow()
             {
@@ -123,7 +123,7 @@ namespace ParquetUnitTests
         [Fact]
         public void PanelTooShortPatternsThrowTest()
         {
-            var patternTooShort = new StrikePanel[0, Rules.Dimensions.PanelsPerPatternWidth];
+            var patternTooShort = new StrikePanelGrid(0, Rules.Dimensions.PanelsPerPatternWidth);
 
             void TestCodeTooShort()
             {
@@ -137,8 +137,8 @@ namespace ParquetUnitTests
         [Fact]
         public void PanelTooHighPatternsThrowTest()
         {
-            var patternTooHigh = new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight + 1,
-                                                 Rules.Dimensions.PanelsPerPatternWidth];
+            var patternTooHigh = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight + 1,
+                                                     Rules.Dimensions.PanelsPerPatternWidth);
 
             void TestCodeTooHigh()
             {
@@ -152,8 +152,8 @@ namespace ParquetUnitTests
         [Fact]
         public void PanelTooWidePatternsThrowTest()
         {
-            var patternTooWide = new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
-                                                 Rules.Dimensions.PanelsPerPatternWidth + 1];
+            var patternTooWide = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
+                                                     Rules.Dimensions.PanelsPerPatternWidth + 1);
 
             void TestCodeTooWide()
             {

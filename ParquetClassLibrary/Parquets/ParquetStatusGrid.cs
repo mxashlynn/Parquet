@@ -1,34 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Maps
+namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="MapParent"/> and derived classes.
     /// The intent is that this class function much like a read-only array.
     /// </summary>
-    public class ParquetStatus2DCollection : IReadOnlyCollection<ParquetStatus>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
+    public class ParquetStatusGrid : IGrid<ParquetStatus>
     {
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
 
-        /// <summary>Dimensions in parquets.</summary>
-        private Vector2D DimensionsInParquets { get; }
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Rows => ParquetStatuses?.GetLength(0) ?? 0;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Columns => ParquetStatuses?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count
-            => DimensionsInParquets.Y * DimensionsInParquets.X;
+        public int Count => Rows * Columns;
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatus2DCollection"/>.
+        /// Initializes a new <see cref="ParquetStatusGrid"/>.
         /// </summary>
-        /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStatus2DCollection(int inDimensions)
-        {
-            ParquetStatuses = new ParquetStatus[inDimensions, inDimensions];
-        }
+        /// <param name="inRows">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumns">The length of the X dimension of the collection.</param>
+        public ParquetStatusGrid(int inRows, int inColumns)
+            => ParquetStatuses = new ParquetStatus[inRows, inColumns];
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
@@ -38,7 +41,7 @@ namespace ParquetClassLibrary.Maps
         public bool IsValidPosition(Vector2D inPosition)
             => ParquetStatuses.IsValidPosition(inPosition);
 
-        /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
+        /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]
         {
             get => ref ParquetStatuses[y, x];
@@ -52,7 +55,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ParquetStatus>)ParquetStatuses.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStatus2DCollection"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()

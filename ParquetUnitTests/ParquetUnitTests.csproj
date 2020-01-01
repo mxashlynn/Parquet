@@ -29,18 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Biomes\" />
-    <Folder Include="Characters\" />
-    <Folder Include="Crafting\" />
-    <Folder Include="Items\" />
-    <Folder Include="Map\" />
-    <Folder Include="Parquets\" />
-    <Folder Include="Quests\" />
-    <Folder Include="Rooms\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
   </ItemGroup>
 </Project>

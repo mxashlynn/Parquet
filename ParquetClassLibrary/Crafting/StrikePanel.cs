@@ -137,4 +137,25 @@ namespace ParquetClassLibrary.Crafting
                 : WorkingRange.ToString();
         #endregion
     }
+
+    /// <summary>
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="StrikePanel"/>s.
+    /// </summary>
+    public static class StrikePanelArrayExtensions
+    {
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the current array.
+        /// </summary>
+        /// <param name="inPosition">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValidPosition(this StrikePanel[,] inStrikePanels, Vector2D inPosition)
+        {
+            Precondition.IsNotNull(inStrikePanels, nameof(inStrikePanels));
+
+            return inPosition.X > -1
+                && inPosition.Y > -1
+                && inPosition.X < inStrikePanels.GetLength(1)
+                && inPosition.Y < inStrikePanels.GetLength(0);
+        }
+    }
 }

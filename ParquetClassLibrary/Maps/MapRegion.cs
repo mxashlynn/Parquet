@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -61,10 +62,12 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatus2DCollection ParquetStatuses { get; } = new ParquetStatus2DCollection(Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStatusGrid ParquetStatuses { get; } =
+            new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override ParquetStack2DCollection ParquetDefintion { get; } = new ParquetStack2DCollection(Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStackGrid ParquetDefintion { get; } =
+            new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
         #endregion
 
         #region Initialization

@@ -4,6 +4,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -286,7 +287,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapRegion)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultRegion) as ParquetStack2DCollection;
+                                ?.GetValue(defaultRegion) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
@@ -306,7 +307,7 @@ namespace ParquetUnitTests.Map
         {
             var originalChunk = typeof(MapRegion)
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
-                                ?.GetValue(defaultRegion) as ParquetStack2DCollection;
+                                ?.GetValue(defaultRegion) as ParquetStackGrid;
 
             var subregion = defaultRegion.GetSubregion();
 

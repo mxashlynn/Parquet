@@ -2,23 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Parquets
+namespace ParquetClassLibrary.Rooms
 {
+    // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
+    using ParquetClassLibrary.Rooms.RegionAnalysis;
+
     /// <summary>
     /// Stores a collection of <see cref="MapSpace"/>s.
     /// Provides bounds-checking and various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
     public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
-        /// <summary>The internal collection mechanism.</summary>
+        /// <summary>The canonical empty collection.</summary>
         public static HashSet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
 
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<MapSpace> Spaces { get; }
 
-        /// <summary>The first <see cref="MapSpace"/>s in the sequence, if any.</summary>
+        /// <summary>The first <see cref="MapSpace"/> in the sequence, if any.</summary>
         public MapSpace First => Spaces?.First() ?? MapSpace.Empty;
 
         /// <summary>The number of <see cref="MapSpace"/>s in the <see cref="MapSpaceCollection"/>.</summary>
@@ -97,7 +102,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="outPerimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        public bool TryGetPerimeter(out MapSpaceCollection outPerimeter)
+        internal bool TryGetPerimeter(out MapSpaceCollection outPerimeter)
         {
             var subregion = First.Subregion;
             Precondition.IsNotNull(subregion);
@@ -124,8 +129,8 @@ namespace ParquetClassLibrary.Parquets
             // Only continue if perimeter is within the subregion.
             if (leastXValue > 0
                 && leastYValue > 0
-                && greatestXValue < subregion.GetLength(1)
-                && greatestYValue < subregion.GetLength(0))
+                && greatestXValue < subregion.Columns
+                && greatestYValue < subregion.Rows)
             {
                 #region Find Positions of Walkable Extrema
                 var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
@@ -150,7 +155,7 @@ namespace ParquetClassLibrary.Parquets
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
                     // TODO Remove this test after debugging.
-                    var maxPerimeterCount = subregion.GetLength(0) * subregion.GetLength(1) - Rules.Recipes.Room.MinWalkableSpaces;
+                    var maxPerimeterCount = subregion.Rows * subregion.Columns - Rules.Recipes.Room.MinWalkableSpaces;
                     if (potentialPerimeter.Count > maxPerimeterCount)
                     {
                         throw new Exception("Perimeter is larger than it should be.");
@@ -166,7 +171,7 @@ namespace ParquetClassLibrary.Parquets
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
-                        : (MapSpaceCollection) Empty;
+                        : (MapSpaceCollection)Empty;
                 }
             }
 
@@ -335,5 +340,35 @@ namespace ParquetClassLibrary.Parquets
         public override string ToString()
             => $"{Spaces.Count} spaces";
         #endregion
+    }
+}
+
+namespace ParquetClassLibrary.Rooms.RegionAnalysis
+{
+    /// <summary>
+    /// Provides extension methods for deriving <see cref="MapSpaceCollection"/>s from <see cref="ParquetStackGrid"/>s.
+    /// </summary>
+    internal static class ParquetStackGridExtensions
+    {
+        /// <summary>
+        /// Returns the <see cref="MapSpaceCollection"/> corresponding to the <see cref="ParquetStackGrid"/>.
+        /// </summary>
+        /// <returns>A collection of <see cref="MapSpace"/>s.</returns>
+        internal static MapSpaceCollection GetSpaces(this ParquetStackGrid inParquetStacks)
+        {
+            Precondition.IsNotNull(inParquetStacks, nameof(inParquetStacks));
+
+            var uniqueResults = new HashSet<MapSpace>();
+            for (var y = 0; y < inParquetStacks.Rows; y++)
+            {
+                for (var x = 0; x < inParquetStacks.Columns; x++)
+                {
+                    var currentSpace = new MapSpace(x, y, inParquetStacks[y, x], inParquetStacks);
+                    uniqueResults.Add(currentSpace);
+                }
+            }
+
+            return new MapSpaceCollection(uniqueResults);
+        }
     }
 }

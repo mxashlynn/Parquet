@@ -101,8 +101,8 @@ namespace ParquetUnitTests
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "8 Test Crafting Recipe",
                                                     "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
-                                                                    Rules.Dimensions.PanelsPerPatternWidth]);
+                                                    new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
+                                                                        Rules.Dimensions.PanelsPerPatternWidth));
             // TODO Update this once Quests are implemented.
             TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList);
             TestBiome = new Biome(-All.BiomeIDs.Minimum, "10 Test Biome", "Test", "Test",
