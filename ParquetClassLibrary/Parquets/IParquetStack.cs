@@ -2,8 +2,10 @@ namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
-    /// Supports injecting <see cref="ParquetStack"/> into <see cref="Utilities.Rasterization"/> methods.
     /// </summary>
+    /// <remarks>
+    /// Supports injecting <see cref="ParquetStack"/> into <see cref="Utilities.Rasterization"/> methods.
+    /// </remarks>
     public interface IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>

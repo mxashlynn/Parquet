@@ -80,6 +80,7 @@ namespace ParquetClassLibrary.Maps
         /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
         /// </summary>
         /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
+        // TODO Move this to MapSpaceCollection ?
         public MapSpaceCollection GetSpaces()
         {
             Precondition.IsNotNull(ParquetStacks, nameof(ParquetStacks));
