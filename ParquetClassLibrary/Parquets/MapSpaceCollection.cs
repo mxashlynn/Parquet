@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
 {
+    // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
+    using ParquetClassLibrary.Rooms.RegionAnalysis;
+
     /// <summary>
     /// Stores a collection of <see cref="MapSpace"/>s.
     /// Provides bounds-checking and various routines useful when dealing with <see cref="Room"/>s.
@@ -166,7 +171,7 @@ namespace ParquetClassLibrary.Parquets
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
-                        : (MapSpaceCollection) Empty;
+                        : (MapSpaceCollection)Empty;
                 }
             }
 
@@ -335,5 +340,35 @@ namespace ParquetClassLibrary.Parquets
         public override string ToString()
             => $"{Spaces.Count} spaces";
         #endregion
+    }
+}
+
+namespace ParquetClassLibrary.Rooms.RegionAnalysis
+{
+    /// <summary>
+    /// Provides extension methods for deriving <see cref="MapSpaceCollection"/>s from <see cref="ParquetStackGrid"/>s.
+    /// </summary>
+    internal static class ParquetStackGridExtensions
+    {
+        /// <summary>
+        /// Returns the <see cref="MapSpaceCollection"/> corresponding to the <see cref="ParquetStackGrid"/>.
+        /// </summary>
+        /// <returns>A collection of <see cref="MapSpace"/>s.</returns>
+        internal static MapSpaceCollection GetSpaces(this ParquetStackGrid inParquetStacks)
+        {
+            Precondition.IsNotNull(inParquetStacks, nameof(inParquetStacks));
+
+            var uniqueResults = new HashSet<MapSpace>();
+            for (var y = 0; y < inParquetStacks.Rows; y++)
+            {
+                for (var x = 0; x < inParquetStacks.Columns; x++)
+                {
+                    var currentSpace = new MapSpace(x, y, inParquetStacks[y, x], inParquetStacks);
+                    uniqueResults.Add(currentSpace);
+                }
+            }
+
+            return new MapSpaceCollection(uniqueResults);
+        }
     }
 }

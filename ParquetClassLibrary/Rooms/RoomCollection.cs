@@ -101,6 +101,7 @@ namespace ParquetClassLibrary.Rooms
         #endregion
     }
 }
+
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
     /// <summary>

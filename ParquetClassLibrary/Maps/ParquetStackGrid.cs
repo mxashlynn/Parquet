@@ -74,28 +74,6 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>
-        /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
-        /// </summary>
-        /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
-        // TODO Move this to MapSpaceCollection ?
-        public MapSpaceCollection GetSpaces()
-        {
-            Precondition.IsNotNull(ParquetStacks, nameof(ParquetStacks));
-
-            var uniqueResults = new HashSet<MapSpace>();
-            for (var y = 0; y < Rows; y++)
-            {
-                for (var x = 0; x < Columns; x++)
-                {
-                    var currentSpace = new MapSpace(x, y, ParquetStacks[y, x], this);
-                    uniqueResults.Add(currentSpace);
-                }
-            }
-
-            return new MapSpaceCollection(uniqueResults);
-        }
-
-        /// <summary>
         /// Exposes an <see cref="IEnumerator{ParquetStack}"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
