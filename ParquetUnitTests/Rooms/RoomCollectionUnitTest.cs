@@ -4,6 +4,7 @@ using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary;
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Maps;
 
 namespace ParquetUnitTests.Rooms
 {
@@ -472,7 +473,7 @@ namespace ParquetUnitTests.Rooms
         };
         #endregion
 
-        private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(TestRoomMap);
+        private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TestRoomMap));
 
         private static readonly HashSet<MapSpace> ExtantPerimeter = new HashSet<MapSpace>
         {
@@ -527,7 +528,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DistinctRoomsHaveDistinctWalkableAreasTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoSimpleRoomsMap));
 
             var walkableArea1 = collection.GetRoomAt(new Vector2D(2, 2)).WalkableArea;
             var walkableArea2 = collection.GetRoomAt(new Vector2D(8, 2)).WalkableArea;
@@ -538,7 +539,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DistinctRoomsHaveDistinctPerimetersTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoSimpleRoomsMap));
 
             var perimeter1 = collection.GetRoomAt(new Vector2D(2, 2)).Perimeter;
             var perimeter2 = collection.GetRoomAt(new Vector2D(8, 2)).Perimeter;
@@ -551,7 +552,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneMinimalRoomFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneMinimalRoomMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneMinimalRoomMap));
 
             Assert.Single(collection);
         }
@@ -559,7 +560,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneSimpleRoomFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneSimpleRoomMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneSimpleRoomMap));
 
             Assert.Single(collection);
         }
@@ -567,7 +568,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomCentralPillarFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomCentralPillarMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomCentralPillarMap));
 
             Assert.Single(collection);
         }
@@ -575,7 +576,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomCentralVoidFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomCentralVoidMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomCentralVoidMap));
 
             Assert.Single(collection);
         }
@@ -583,7 +584,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomCentralWellFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomCentralWellMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomCentralWellMap));
 
             Assert.Single(collection);
         }
@@ -591,7 +592,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomCornerLakeFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomCornerLakeMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomCornerLakeMap));
 
             Assert.Single(collection);
         }
@@ -599,7 +600,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomCrossFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomCrossMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomCrossMap));
 
             Assert.Single(collection);
         }
@@ -607,7 +608,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomDonoughtShapeFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomDonoughtShapeMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomDonoughtShapeMap));
 
             Assert.Single(collection);
         }
@@ -615,7 +616,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomExtrusionFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomExtrusionMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomExtrusionMap));
 
             Assert.Single(collection);
         }
@@ -623,7 +624,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomInaccessibleFloorFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomInaccessibleFloorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomInaccessibleFloorMap));
 
             Assert.Single(collection);
         }
@@ -631,7 +632,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomInnerMoatFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomInnerMoatMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomInnerMoatMap));
 
             Assert.Single(collection);
         }
@@ -639,7 +640,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomIntrusionFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomIntrusionMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomIntrusionMap));
 
             Assert.Single(collection);
         }
@@ -647,7 +648,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomThickWalsFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomThickWallsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomThickWallsMap));
 
             Assert.Single(collection);
         }
@@ -655,7 +656,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void OneRoomUShapeFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(OneRoomUShapeMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(OneRoomUShapeMap));
 
             Assert.Single(collection);
         }
@@ -663,7 +664,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void TwoJoinedRoomsFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(TwoJoinedRoomsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoJoinedRoomsMap));
 
             Assert.Equal(2, collection.Count);
         }
@@ -671,7 +672,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void TwoSimpleRoomsFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(TwoSimpleRoomsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoSimpleRoomsMap));
 
             Assert.Equal(2, collection.Count);
         }
@@ -679,7 +680,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void SixSimpleRoomsFoundTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(SixSimpleRoomsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(SixSimpleRoomsMap));
 
             Assert.Equal(6, collection.Count);
         }
@@ -689,7 +690,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void AllFloorYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(AllFloorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(AllFloorMap));
 
             Assert.Empty(collection);
         }
@@ -697,7 +698,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void AllVoidYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(AllVoidMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(AllVoidMap));
 
             Assert.Empty(collection);
         }
@@ -705,7 +706,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void AllWallsYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(AllWallsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(AllWallsMap));
 
             Assert.Empty(collection);
         }
@@ -713,7 +714,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void BlockedEntryYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(BlockedEntryMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(BlockedEntryMap));
 
             Assert.Empty(collection);
         }
@@ -721,7 +722,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DisconectedEntryYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(DisconectedEntryMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(DisconectedEntryMap));
 
             Assert.Empty(collection);
         }
@@ -729,7 +730,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DisconectedFloorYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(DisconectedFloorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(DisconectedFloorMap));
 
             Assert.Empty(collection);
         }
@@ -737,7 +738,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void FloodedDoorYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(FloodedDoorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(FloodedDoorMap));
 
             Assert.Empty(collection);
         }
@@ -745,7 +746,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void FloodedYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(FloodedMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(FloodedMap));
 
             Assert.Empty(collection);
         }
@@ -753,7 +754,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void IncompletePerimeterYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(IncompletePerimeterMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(IncompletePerimeterMap));
 
             Assert.Empty(collection);
         }
@@ -761,7 +762,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void IslandStepYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(IslandStepMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(IslandStepMap));
 
             Assert.Empty(collection);
         }
@@ -769,7 +770,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MissingWallYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(MissingWallMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(MissingWallMap));
 
             Assert.Empty(collection);
         }
@@ -777,7 +778,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MoatInsteadOfWallsYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(MoatInsteadOfWallsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(MoatInsteadOfWallsMap));
 
             Assert.Empty(collection);
         }
@@ -785,7 +786,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NoDoorYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(NoDoorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(NoDoorMap));
 
             Assert.Empty(collection);
         }
@@ -793,7 +794,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NoFloorYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(NoFloorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(NoFloorMap));
 
             Assert.Empty(collection);
         }
@@ -801,7 +802,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NoWallsYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(NoWallsMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(NoWallsMap));
 
             Assert.Empty(collection);
         }
@@ -809,7 +810,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void RoomTooSmallYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(RoomTooSmallMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(RoomTooSmallMap));
 
             Assert.Empty(collection);
         }
@@ -817,7 +818,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void WrongEntryYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(WrongEntryMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(WrongEntryMap));
 
             Assert.Empty(collection);
         }
@@ -825,7 +826,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MoatWallYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(MoatWallMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(MoatWallMap));
 
             Assert.Empty(collection);
         }
@@ -833,7 +834,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void PerforatedWallYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(PerforatedWallMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(PerforatedWallMap));
 
             Assert.Empty(collection);
         }
@@ -841,7 +842,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void InvertedMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(InvertedMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(InvertedMap));
 
             Assert.Empty(collection);
         }
@@ -849,7 +850,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void IncompleteMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(IncompleteMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(IncompleteMap));
 
             Assert.Empty(collection);
         }
@@ -857,7 +858,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void LoopNotEnclosingMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(LoopNotEnclosingMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(LoopNotEnclosingMap));
 
             Assert.Empty(collection);
         }
@@ -865,7 +866,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void InaccessibleExitMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(InaccessibleExitMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(InaccessibleExitMap));
 
             Assert.Empty(collection);
         }
@@ -873,7 +874,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DoughnutNotEnclosingMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(DoughnutNotEnclosingMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(DoughnutNotEnclosingMap));
 
             Assert.Empty(collection);
         }
@@ -881,7 +882,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DoorUsedAsStepMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(DoorUsedAsStepMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(DoorUsedAsStepMap));
 
             Assert.Empty(collection);
         }
@@ -889,7 +890,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void StepUsedAsDoorMapYieldsNoRoomsTest()
         {
-            var collection = RoomCollection.CreateFromSubregion(StepUsedAsDoorMap);
+            var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(StepUsedAsDoorMap));
 
             Assert.Empty(collection);
         }
