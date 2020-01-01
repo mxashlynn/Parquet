@@ -18,8 +18,8 @@ namespace ParquetClassLibrary.Crafting
         public static CraftingRecipe NotCraftable { get; } =
             new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
                                EmptyCraftingElementList, EmptyCraftingElementList,
-                               new StrikePanel[Rules.Dimensions.PanelsPerPatternHeight,
-                                               Rules.Dimensions.PanelsPerPatternWidth]);
+                               new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
+                                                   Rules.Dimensions.PanelsPerPatternWidth));
 
         /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }
@@ -27,17 +27,8 @@ namespace ParquetClassLibrary.Crafting
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
-        /// <summary>Backing field for the arrangment of panels encompassed by this recipe.</summary>
-        private StrikePanel[,] PanelPattern { get; }
-
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-        public StrikePanel this[int y, int x]
-        {
-            get
-            {
-                return PanelPattern[y, x];
-            }
-        }
+        public StrikePanelGrid PanelPattern { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
@@ -55,7 +46,7 @@ namespace ParquetClassLibrary.Crafting
         /// </exception>
         public CraftingRecipe(EntityID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts,
-                              IEnumerable<RecipeElement> inIngredients, StrikePanel[,] inPanelPattern)
+                              IEnumerable<RecipeElement> inIngredients, StrikePanelGrid inPanelPattern)
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
@@ -63,10 +54,10 @@ namespace ParquetClassLibrary.Crafting
             Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
             Precondition.IsInRange(inIngredients.Count(), Rules.Recipes.Craft.IngredientCount);
             Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
-            if (inPanelPattern.GetLength(0) > Rules.Dimensions.PanelsPerPatternHeight
-                || inPanelPattern.GetLength(1) > Rules.Dimensions.PanelsPerPatternWidth
-                || inPanelPattern.GetLength(0) < 1
-                || inPanelPattern.GetLength(1) < 1)
+            if (inPanelPattern.Rows > Rules.Dimensions.PanelsPerPatternHeight
+                || inPanelPattern.Columns > Rules.Dimensions.PanelsPerPatternWidth
+                || inPanelPattern.Rows < 1
+                || inPanelPattern.Columns < 1)
             {
                 throw new IndexOutOfRangeException($"Dimension outside specification: {nameof(inPanelPattern)}");
             }
