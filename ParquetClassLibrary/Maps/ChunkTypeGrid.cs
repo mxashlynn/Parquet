@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
-        #region Chunk Access
+        #region Collection Access
         /// <summary>
         /// Places the given chunk type at the given position and orients it.
         /// </summary>

@@ -221,7 +221,7 @@ namespace ParquetClassLibrary.Maps
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion()
+        public ParquetStackGrid GetSubregion()
             => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1, DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
-        public ParquetStack[,] GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefintion.IsValidPosition(inUpperLeft))
             {
@@ -258,7 +258,7 @@ namespace ParquetClassLibrary.Maps
                     }
                 }
 
-                return subregion;
+                return new ParquetStackGrid(subregion);
             }
         }
 

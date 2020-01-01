@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -57,7 +58,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="inSubregion">The collection of parquets to search for <see cref="Room"/>s.</param>
         /// <returns>An initialized <see cref="RoomCollection"/>.</returns>
-        public static RoomCollection CreateFromSubregion(ParquetStack[,] inSubregion)
+        public static RoomCollection CreateFromSubregion(ParquetStackGrid inSubregion)
         {
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
@@ -111,13 +112,13 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// <summary>
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
-        /// <param name="inSubregion">The collection of <see cref="ParquetStack"/>s to search.</param>
+        /// <param name="inSubregion">The <see cref="ParquetStackGrid"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStack[,] inSubregion)
+        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
-            var subregionRows = inSubregion.GetLength(0);
-            var subregionCols = inSubregion.GetLength(1);
+            var subregionRows = inSubregion.Rows;
+            var subregionCols = inSubregion.Columns;
 
             for (var y = 0; y < subregionRows; y++)
             {

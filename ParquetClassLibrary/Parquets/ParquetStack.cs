@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -176,31 +175,6 @@ namespace ParquetClassLibrary.Parquets
                 && inPosition.Y > -1
                 && inPosition.X < inSubregion.GetLength(1)
                 && inPosition.Y < inSubregion.GetLength(0);
-        }
-
-        /// <summary>
-        /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
-        /// </summary>
-        /// <param name="inSubregion">The collection of <see cref="ParquetStack"/>s to consider.</param>
-        /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
-        public static MapSpaceCollection GetSpaces(this ParquetStack[,] inSubregion)
-        {
-            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
-
-            var uniqueResults = new HashSet<MapSpace>();
-            var subregionRows = inSubregion.GetLength(0);
-            var subregionCols = inSubregion.GetLength(1);
-
-            for (var y = 0; y < subregionRows; y++)
-            {
-                for (var x = 0; x < subregionCols; x++)
-                {
-                    var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
-                    uniqueResults.Add(currentSpace);
-                }
-            }
-
-            return new MapSpaceCollection(uniqueResults);
         }
     }
 }

@@ -20,17 +20,22 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Dimensions in parquets.</summary>
         private Vector2D DimensionsInParquets { get; }
 
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Rows => ParquetStatuses.GetLength(0);
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Columns => ParquetStatuses.GetLength(1);
+
         /// <summary>The total number of parquets collected.</summary>
         public int Count => DimensionsInParquets.Y * DimensionsInParquets.X;
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.
         /// </summary>
-        /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStatusGrid(int inDimensions)
-        {
-            ParquetStatuses = new ParquetStatus[inDimensions, inDimensions];
-        }
+        /// <param name="inRows">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumns">The length of the X dimension of the collection.</param>
+        public ParquetStatusGrid(int inRows, int inColumns)
+            => ParquetStatuses = new ParquetStatus[inRows, inColumns];
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.

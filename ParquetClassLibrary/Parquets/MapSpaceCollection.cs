@@ -124,8 +124,8 @@ namespace ParquetClassLibrary.Parquets
             // Only continue if perimeter is within the subregion.
             if (leastXValue > 0
                 && leastYValue > 0
-                && greatestXValue < subregion.GetLength(1)
-                && greatestYValue < subregion.GetLength(0))
+                && greatestXValue < subregion.Columns
+                && greatestYValue < subregion.Rows)
             {
                 #region Find Positions of Walkable Extrema
                 var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
@@ -150,7 +150,7 @@ namespace ParquetClassLibrary.Parquets
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
                     // TODO Remove this test after debugging.
-                    var maxPerimeterCount = subregion.GetLength(0) * subregion.GetLength(1) - Rules.Recipes.Room.MinWalkableSpaces;
+                    var maxPerimeterCount = subregion.Rows * subregion.Columns - Rules.Recipes.Room.MinWalkableSpaces;
                     if (potentialPerimeter.Count > maxPerimeterCount)
                     {
                         throw new Exception("Perimeter is larger than it should be.");

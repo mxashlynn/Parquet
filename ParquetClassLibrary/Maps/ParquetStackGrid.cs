@@ -20,6 +20,12 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Dimensions in parquets.</summary>
         private Vector2D DimensionsInParquets { get; }
 
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Rows => ParquetStacks.GetLength(0);
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Columns => ParquetStacks.GetLength(1);
+
         /// <summary>The total number of parquets collected.</summary>
         public int Count
         {
@@ -40,12 +46,20 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStackGrid"/>.
+        /// Initializes a new empty <see cref="ParquetStackGrid"/>.
         /// </summary>
-        /// <param name="inDimensions">The length of each dimension of the collection.</param>
-        public ParquetStackGrid(int inDimensions)
+        /// <param name="inRows">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumns">The length of the X dimension of the collection.</param>
+        public ParquetStackGrid(int inRows, int inColumns)
+            => ParquetStacks = new ParquetStack[inRows, inColumns];
+
+        /// <summary>
+        /// Initializes a new <see cref="ParquetStackGrid"/> from the given 2D <see cref="ParquetStack"/> array.
+        /// </summary>
+        /// <param name="inParquetStackArray">The array containing the subregion.</param>
+        public ParquetStackGrid(ParquetStack[,] inParquetStackArray)
         {
-            ParquetStacks = new ParquetStack[inDimensions, inDimensions];
+            ParquetStacks = inParquetStackArray;
         }
 
         /// <summary>
@@ -60,6 +74,27 @@ namespace ParquetClassLibrary.Maps
         public ref ParquetStack this[int y, int x]
         {
             get => ref ParquetStacks[y, x];
+        }
+
+        /// <summary>
+        /// Returns the set of <see cref="MapSpace"/>s corresponding to the subregion.
+        /// </summary>
+        /// <returns>The <see cref="MapSpace"/>s defined by this subregion.</returns>
+        public MapSpaceCollection GetSpaces()
+        {
+            Precondition.IsNotNull(ParquetStacks, nameof(ParquetStacks));
+
+            var uniqueResults = new HashSet<MapSpace>();
+            for (var y = 0; y < Rows; y++)
+            {
+                for (var x = 0; x < Columns; x++)
+                {
+                    var currentSpace = new MapSpace(x, y, ParquetStacks[y, x], this);
+                    uniqueResults.Add(currentSpace);
+                }
+            }
+
+            return new MapSpaceCollection(uniqueResults);
         }
 
         /// <summary>

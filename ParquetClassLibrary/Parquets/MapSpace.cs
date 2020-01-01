@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -14,7 +15,7 @@ namespace ParquetClassLibrary.Parquets
         public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
 
         /// <summary>The subregion containing this <see cref="MapSpace"/>.</param>
-        public ParquetStack[,] Subregion { get; }
+        public ParquetStackGrid Subregion { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
         public Vector2D Position { get; }
@@ -28,7 +29,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        public MapSpace(Vector2D inPosition, ParquetStack inContent, ParquetStack[,] inSubregion)
+        public MapSpace(Vector2D inPosition, ParquetStack inContent, ParquetStackGrid inSubregion)
         {
             Position = inPosition;
             Content = inContent;
@@ -41,7 +42,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inX">X-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        public MapSpace(int inX, int inY, ParquetStack inContent, ParquetStack[,] inSubregion)
+        public MapSpace(int inX, int inY, ParquetStack inContent, ParquetStackGrid inSubregion)
             : this(new Vector2D(inX, inY), inContent, inSubregion) { }
         #endregion
 
