@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Maps
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
-    public class ChunkTypeGrid : IReadOnlyCollection<ChunkType>
+    public class ChunkTypeGrid : IGrid<ChunkType>
     {
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly ChunkTypeGrid Empty = new ChunkTypeGrid();
@@ -52,6 +52,12 @@ namespace ParquetClassLibrary.Maps
         /// <summary>The types of chunks which make up the grid.</summary>
         private readonly ChunkType[,] chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
 
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Rows => DimensionsInChunks.Y;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Columns => DimensionsInChunks.X;
+
         /// <summary>The total number of chunks collected.</summary>
         public int Count => DimensionsInChunks.Y * DimensionsInChunks.X;
         #endregion
@@ -77,30 +83,11 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Collection Access
-        /// <summary>
-        /// Places the given chunk type at the given position and orients it.
-        /// </summary>
-        /// <param name="inChunkType">The new chunk type to set.</param>
-        /// <param name="inPosition">The position at which to set it.</param>
-        public void SetChunk(ChunkType inChunkType, Vector2D inPosition)
+        /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
+        public ref ChunkType this[int y, int x]
         {
-            if (IsValidPosition(inPosition))
-            {
-                chunkTypes[inPosition.Y, inPosition.X] = inChunkType;
-            }
+            get => ref chunkTypes[y, x];
         }
-
-        /// <summary>
-        /// Gets chunk type and orientation at the given position.
-        /// </summary>
-        /// <param name="inPosition">The position whose chunk data is sought.</param>
-        /// <returns>
-        /// If <paramref name="inPosition"/> is valid, the chunk type and orientation; null otherwise.
-        /// </returns>
-        public ChunkType GetChunk(Vector2D inPosition)
-            => IsValidPosition(inPosition)
-                ? chunkTypes[inPosition.Y, inPosition.X]
-                : ChunkType.Empty;
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ChunkType}"/>, which supports simple iteration.

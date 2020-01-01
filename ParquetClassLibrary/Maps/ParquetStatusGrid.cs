@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
-    public class ParquetStatusGrid : IReadOnlyCollection<ParquetStatus>
+    public class ParquetStatusGrid : IGrid<ParquetStatus>
     {
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Maps
         public bool IsValidPosition(Vector2D inPosition)
             => ParquetStatuses.IsValidPosition(inPosition);
 
-        /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
+        /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]
         {
             get => ref ParquetStatuses[y, x];

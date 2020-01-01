@@ -1,6 +1,5 @@
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetUnitTests.Map
 {
@@ -20,14 +19,14 @@ namespace ParquetUnitTests.Map
             {
                 for (var x = 0; x < Rules.Dimensions.ChunksPerRegion; x++)
                 {
-                    inMapChunkGrid.SetChunk(grassyChunk, new Vector2D(x, y));
+                    inMapChunkGrid[y, x] = grassyChunk;
                 }
             }
 
-            inMapChunkGrid.SetChunk(sandyLakeChunk, new Vector2D(1, 1));
-            inMapChunkGrid.SetChunk(sandyLakeChunk, new Vector2D(2, 2));
-            inMapChunkGrid.SetChunk(sandyLakeChunk, new Vector2D(3, 2));
-            inMapChunkGrid.SetChunk(icyChunk, new Vector2D(4, 2));
+            inMapChunkGrid[1, 1] = sandyLakeChunk;
+            inMapChunkGrid[2, 2] = sandyLakeChunk;
+            inMapChunkGrid[3, 2] = sandyLakeChunk;
+            inMapChunkGrid[4, 2] = icyChunk;
 
             return inMapChunkGrid;
         }

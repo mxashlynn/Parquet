@@ -1,3 +1,4 @@
+using System;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
@@ -52,20 +53,22 @@ namespace ParquetUnitTests.Map
         public void SetGetChunkFailsOnInvalidPositionTest()
         {
             var grid = new ChunkTypeGrid();
-            grid.SetChunk(testChunk, invalidPosition);
 
-            var returnedChunk = grid.GetChunk(invalidPosition);
+            void TestCode()
+            {
+                grid[invalidPosition.Y, invalidPosition.X] = testChunk;
+            }
 
-            Assert.NotEqual(testChunk, returnedChunk);
+            Assert.Throws<IndexOutOfRangeException>(TestCode);
         }
 
         [Fact]
         public void SetGetChunkSucceedsOnOriginPositionTest()
         {
             var grid = new ChunkTypeGrid();
-            grid.SetChunk(testChunk, Vector2D.Zero);
+            grid[Vector2D.Zero.Y, Vector2D.Zero.X] = testChunk;
 
-            var returnedChunk = grid.GetChunk(Vector2D.Zero);
+            var returnedChunk = grid[Vector2D.Zero.Y, Vector2D.Zero.Y];
 
             Assert.Equal(testChunk, returnedChunk);
         }

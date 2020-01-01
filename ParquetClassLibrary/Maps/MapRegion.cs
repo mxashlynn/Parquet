@@ -61,10 +61,12 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatusGrid ParquetStatuses { get; } = new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStatusGrid ParquetStatuses { get; } =
+            new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>Floors and walkable terrain in the region.</summary>
-        protected override ParquetStackGrid ParquetDefintion { get; } = new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStackGrid ParquetDefintion { get; } =
+            new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
         #endregion
 
         #region Initialization
