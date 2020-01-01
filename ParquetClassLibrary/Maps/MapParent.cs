@@ -102,7 +102,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inSpace">IDs and position to set.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(MapSpace inSpace)
+        public bool TrySetParquetDefinition(Rooms.MapSpace inSpace)
             => TrySetParquetDefinition(inSpace.Content.Floor, inSpace.Content.Block,
                                        inSpace.Content.Furnishing, inSpace.Content.Collectible,
                                        new Vector2D(inSpace.Position.X, inSpace.Position.Y));

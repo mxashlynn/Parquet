@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Parquets
+namespace ParquetClassLibrary.Rooms
 {
     // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
     using ParquetClassLibrary.Rooms.RegionAnalysis;

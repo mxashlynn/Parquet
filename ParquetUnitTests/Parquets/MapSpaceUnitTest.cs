@@ -1,6 +1,7 @@
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 

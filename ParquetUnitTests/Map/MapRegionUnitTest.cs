@@ -4,6 +4,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
