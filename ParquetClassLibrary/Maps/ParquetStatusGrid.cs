@@ -17,17 +17,14 @@ namespace ParquetClassLibrary.Maps
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
 
-        /// <summary>Dimensions in parquets.</summary>
-        private Vector2D DimensionsInParquets { get; }
-
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
-        public int Rows => ParquetStatuses.GetLength(0);
+        public int Rows => ParquetStatuses?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
-        public int Columns => ParquetStatuses.GetLength(1);
+        public int Columns => ParquetStatuses?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count => DimensionsInParquets.Y * DimensionsInParquets.X;
+        public int Count => Rows * Columns;
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.

@@ -24,8 +24,7 @@ namespace ParquetClassLibrary.Rooms
         private IReadOnlyList<Room> Rooms { get; }
 
         /// <summary>The number of <see cref="Entity"/>s in the <see cref="RoomCollection"/>.</summary>
-        public int Count
-            => Rooms.Count;
+        public int Count => Rooms?.Count ?? 0;
 
         /// <summary>
         /// Determines whether the <see cref="RoomCollection"/> contains the specified <see cref="Room"/>.

@@ -17,14 +17,11 @@ namespace ParquetClassLibrary.Maps
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
         private ParquetStack[,] ParquetStacks { get; }
 
-        /// <summary>Dimensions in parquets.</summary>
-        private Vector2D DimensionsInParquets { get; }
-
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => ParquetStacks.GetLength(0);
+        public int Rows => ParquetStacks?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => ParquetStacks.GetLength(1);
+        public int Columns => ParquetStacks?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count
@@ -33,9 +30,9 @@ namespace ParquetClassLibrary.Maps
             {
                 var count = 0;
 
-                for (var y = 0; y < DimensionsInParquets.Y; y++)
+                for (var y = 0; y < Rows; y++)
                 {
-                    for (var x = 0; x < DimensionsInParquets.X; x++)
+                    for (var x = 0; x < Columns; x++)
                     {
                         count += ParquetStacks[y, x].Count;
                     }

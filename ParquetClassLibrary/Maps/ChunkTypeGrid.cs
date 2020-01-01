@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Maps
         public int Columns => DimensionsInChunks.X;
 
         /// <summary>The total number of chunks collected.</summary>
-        public int Count => DimensionsInChunks.Y * DimensionsInChunks.X;
+        public int Count => Rows * Columns;
         #endregion
 
         #region Initialization

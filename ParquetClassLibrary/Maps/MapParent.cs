@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Maps
         protected abstract ParquetStackGrid ParquetDefintion { get; }
 
         /// <summary>The total number of parquets in the entire map.</summary>
-        protected int ParquetsCount => ParquetDefintion.Count;
+        protected int ParquetsCount => ParquetDefintion?.Count ?? 0;
         #endregion
 
         #region Initialization

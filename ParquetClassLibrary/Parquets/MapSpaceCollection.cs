@@ -12,13 +12,13 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
-        /// <summary>The internal collection mechanism.</summary>
+        /// <summary>The canonical empty collection.</summary>
         public static HashSet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
 
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<MapSpace> Spaces { get; }
 
-        /// <summary>The first <see cref="MapSpace"/>s in the sequence, if any.</summary>
+        /// <summary>The first <see cref="MapSpace"/> in the sequence, if any.</summary>
         public MapSpace First => Spaces?.First() ?? MapSpace.Empty;
 
         /// <summary>The number of <see cref="MapSpace"/>s in the <see cref="MapSpaceCollection"/>.</summary>
@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="outPerimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        public bool TryGetPerimeter(out MapSpaceCollection outPerimeter)
+        internal bool TryGetPerimeter(out MapSpaceCollection outPerimeter)
         {
             var subregion = First.Subregion;
             Precondition.IsNotNull(subregion);

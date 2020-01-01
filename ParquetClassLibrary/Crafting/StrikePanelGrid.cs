@@ -16,17 +16,14 @@ namespace ParquetClassLibrary.Crafting
         /// <summary>The backing collection of <see cref="StrikePanel"/>es.</summary>
         private StrikePanel[,] StrikePanels { get; }
 
-        /// <summary>Dimensions in parquets.</summary>
-        private Vector2D DimensionsInParquets { get; }
-
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="StrikePanelGrid"/>.</summary>
-        public int Rows => StrikePanels.GetLength(0);
+        public int Rows => StrikePanels?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="StrikePanelGrid"/>.</summary>
-        public int Columns => StrikePanels.GetLength(1);
+        public int Columns => StrikePanels?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count => DimensionsInParquets.Y * DimensionsInParquets.X;
+        public int Count => Rows * Columns;
 
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
