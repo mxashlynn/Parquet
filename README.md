@@ -6,7 +6,7 @@ This is an attempt to answer the question:  "What would Dragon Quest Builders pl
 
 Design and usage will be fully documented in [the wiki](https://github.com/mxashlynn/Parquet/wiki) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
 
-Right now, there are no deadlines set for any development milestone.
+Development milestone deadlines are tentative right now.
 
 # Version 0.1.0 Warning
 
