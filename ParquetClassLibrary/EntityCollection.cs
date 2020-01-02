@@ -148,13 +148,6 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Serializes all defined parquets to a string.
-        /// </summary>
-        /// <returns>The serialized parquets.</returns>
-        public string SerializeToString()
-            => JsonConvert.SerializeObject(Entities, Formatting.None);
-
-        /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection{T}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
@@ -195,14 +188,6 @@ namespace ParquetClassLibrary
         /// <param name="inEntities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
         public EntityCollection(Range<EntityID> inBounds, IEnumerable<Entity> inEntities)
             : base(new List<Range<EntityID>> { inBounds }, inEntities) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="inSerializedParquets">The serialized parquets.</param>
-        public EntityCollection(Range<EntityID> inBounds, string inSerializedParquets)
-            : base(new List<Range<EntityID>> { inBounds }, inSerializedParquets) { }
 
         /// <summary>
         /// Returns the specified <see cref="Entity"/>.
