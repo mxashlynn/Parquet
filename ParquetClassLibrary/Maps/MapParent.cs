@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -55,7 +54,6 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        [JsonConstructor]
         protected MapParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment)
             : base(inBounds, inID, inName, inDescription, inComment) { }
         #endregion
@@ -196,16 +194,7 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
-        /// <summary>
-        /// Serializes the current Map to a string,
-        /// incrementing the revision number in the process.
-        /// </summary>
-        /// <returns>The serialized Map.</returns>
-        public string SerializeToString()
-        {
-            Revision++;
-            return JsonConvert.SerializeObject(this, Formatting.None);
-        }
+
         #endregion
 
         #region Utilities

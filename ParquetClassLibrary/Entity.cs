@@ -1,5 +1,4 @@
 using System;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -32,17 +31,16 @@ namespace ParquetClassLibrary
     public abstract class Entity : IEntityEdit, IEquatable<Entity>
     {
         /// <summary>Game-wide unique identifier.</summary>
-        [JsonProperty(PropertyName = "inID")]
         public EntityID ID { get; }
 
         /// <summary>Player-facing name.</summary>
-        [JsonProperty(PropertyName = "inName")]
         public string Name { get; private set; }
+        /// <summary>Player-facing name.</summary>
         string IEntityEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
-        [JsonProperty(PropertyName = "inDescription")]
         public string Description { get; private set; }
+        /// <summary>Player-facing description.</summary>
         string IEntityEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
@@ -50,7 +48,6 @@ namespace ParquetClassLibrary
         /// Could be used for designer notes or to implement an in-game dialogue
         /// with or on the <see cref="Entity"/>.
         /// </remarks>
-        [JsonProperty(PropertyName = "inComment")]
         public string Comment { get; private set; }
         string IEntityEdit.Comment { get => Comment; set => Comment = value; }
 
@@ -63,7 +60,6 @@ namespace ParquetClassLibrary
         /// <param name="inName">Player-friendly name of the <see cref="Entity"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="Entity"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="Entity"/>.</param>
-        [JsonConstructor]
         protected Entity(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment)
         {
             Precondition.IsInRange(inID, inBounds, nameof(inID));

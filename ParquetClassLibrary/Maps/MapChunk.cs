@@ -1,6 +1,4 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -10,7 +8,6 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a playable chunk in sandbox-mode.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
     public sealed class MapChunk : MapParent
     {
         /// <summary>Used to indicate an empty grid.</summary>
@@ -39,46 +36,12 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
-        [JsonConstructor]
         public MapChunk(EntityID inID, string inName)
             : base(Bounds, inID, inName, "", "") { }
         #endregion
 
         #region Serialization
-        /// <summary>
-        /// Tries to deserialize a <see cref="MapChunk"/> from the given string.
-        /// </summary>
-        /// <param name="inSerializedMap">The serialized <see cref="MapChunk"/>.</param>
-        /// <param name="outMap">
-        /// The deserialized <see cref="MapChunk"/>, or null if deserialization was impossible.
-        /// </param>
-        /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string inSerializedMap, out MapChunk outMap)
-        {
-            Precondition.IsNotNullOrEmpty(inSerializedMap, nameof(inSerializedMap));
-            var result = false;
-            outMap = Empty;
 
-            // Determine what version of map was serialized.
-            try
-            {
-                var document = JObject.Parse(inSerializedMap);
-                var version = document?.Value<string>(nameof(DataVersion));
-
-                // Deserialize only if this class supports the version given.
-                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                {
-                    outMap = JsonConvert.DeserializeObject<MapChunk>(inSerializedMap);
-                    result = true;
-                }
-            }
-            catch (JsonReaderException exception)
-            {
-                throw new JsonReaderException($"Error reading string while deserializing a MapChunk: {exception}");
-            }
-
-            return result;
-        }
         #endregion
 
         #region Utilities

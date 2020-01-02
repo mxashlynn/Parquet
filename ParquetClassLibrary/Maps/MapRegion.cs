@@ -1,6 +1,3 @@
-using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
@@ -10,7 +7,6 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A playable region in sandbox-mode.
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
     public sealed class MapRegion : MapParent, IMapRegionEdit
     {
         /// <summary>Used to indicate an empty grid.</summary>
@@ -94,38 +90,7 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
-        /// <summary>
-        /// Tries to deserialize a <see cref="MapRegion"/> from the given string.
-        /// </summary>
-        /// <param name="inSerializedMap">The serialized <see cref="MapRegion"/>.</param>
-        /// <param name="outMap">The deserialized <see cref="MapRegion"/>, or null if deserialization was impossible.</param>
-        /// <returns><c>true</c>, if deserialization was successful, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string inSerializedMap, out MapRegion outMap)
-        {
-            Precondition.IsNotNullOrEmpty(inSerializedMap, nameof(inSerializedMap));
-            var result = false;
-            outMap = Empty;
 
-            // Determine what version of region map was serialized.
-            try
-            {
-                var document = JObject.Parse(inSerializedMap);
-                var version = document?.Value<string>(nameof(DataVersion));
-
-                // Deserialize only if this class supports the version given.
-                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                {
-                    outMap = JsonConvert.DeserializeObject<MapRegion>(inSerializedMap);
-                    result = true;
-                }
-            }
-            catch (JsonReaderException exception)
-            {
-                throw new JsonReaderException($"Error reading string while deserializing a MapRegion: {exception}");
-            }
-
-            return result;
-        }
         #endregion
 
         #region Utilities

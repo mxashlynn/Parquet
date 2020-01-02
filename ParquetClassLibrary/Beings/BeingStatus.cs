@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -20,73 +19,57 @@ namespace ParquetClassLibrary.Beings
 
         #region Identity
         /// <summary>The <see cref="Being"/> whose status is being tracked.</summary>
-        [JsonProperty(PropertyName = "inBeingDefinition")]
         public Being BeingDefinition { get; }
         #endregion
 
         #region Stats
         /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="Being"/> occupies.</summary>
-        [JsonProperty(PropertyName = "inPosition")]
         public BeingLocation Position { get; set; }
 
         /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="Being"/> will next spawn at.</summary>
         /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
-        [JsonProperty(PropertyName = "inSpawnAt")]
         public BeingLocation SpawnAt { get; set; }
 
         /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
-        [JsonProperty(PropertyName = "inCurrentBehavior")]
         public Behavior CurrentBehavior { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="Being"/> can safely remain in the current <see cref="Biomes.Biome"/>.</summary>
         /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacter"/>.</remarks>
-        [JsonProperty(PropertyName = "inBiomeTimeRemaining")]
         public int BiomeTimeRemaining { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="Being"/> to place new parquets.</summary>
-        [JsonProperty(PropertyName = "inBuildingSpeed")]
         public float BuildingSpeed { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="Being"/> to modify existing parquets.</summary>
-        [JsonProperty(PropertyName = "inModificationSpeed")]
         public float ModificationSpeed { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="Being"/> to gather existing parquets.</summary>
-        [JsonProperty(PropertyName = "inGatheringSpeed")]
         public float GatheringSpeed { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="Being"/> to walk from one <see cref="BeingLocation"/> to another.</summary>
-        [JsonProperty(PropertyName = "inMovementSpeed")]
         public float MovementSpeed { get; set; }
         #endregion
 
         #region Collections
         /// <summary>The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</summary>
-        [JsonProperty(PropertyName = "inKnownCritters")]
         public List<EntityID> KnownCritters { get; }
 
         /// <summary>The <see cref="NPC"/>s that this <see cref="Character"/> has met.</summary>
-        [JsonProperty(PropertyName = "inKnownCharacters")]
         public List<EntityID> KnownNPCs { get; }
 
         /// <summary>The parquets that this <see cref="Character"/> has encountered.</summary>
-        [JsonProperty(PropertyName = "inKnownParquets")]
         public List<EntityID> KnownParquets { get; }
 
         /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</summary>
-        [JsonProperty(PropertyName = "inKnownRoomRecipes")]
         public List<EntityID> KnownRoomRecipes { get; }
 
         /// <summary>The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</summary>
-        [JsonProperty(PropertyName = "inKnownCraftingRecipes")]
         public List<EntityID> KnownCraftingRecipes { get; }
 
         /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</summary>
-        [JsonProperty(PropertyName = "inQuests")]
         public List<EntityID> Quests { get; }
 
         /// <summary>This <see cref="Character"/>'s set of belongings.</summary>
-        [JsonProperty(PropertyName = "inInventory")]
         public List<EntityID> Inventory { get; }
         #endregion
 
@@ -110,7 +93,6 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
         /// <param name="inQuests">The <see cref="Quests.Quest"/>s that this <see cref="Character"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="Character"/>'s set of belongings.</param>
-        [JsonConstructor]
         public BeingStatus(Being inBeingDefinition, Behavior inCurrentBehavior,
                            BeingLocation inPosition, BeingLocation inSpawnAt,
                            int inBiomeTimeRemaining,

@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -20,11 +19,9 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
-        [JsonProperty(PropertyName = "inModTool")]
         public ModificationTool ModTool { get; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-        [JsonProperty(PropertyName = "inTrenchName")]
         public string TrenchName { get; }
         #endregion
 
@@ -41,7 +38,6 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inModTool">The tool used to modify this floor.</param>
         /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>
-        [JsonConstructor]
         public Floor(EntityID inID, string inName, string inDescription, string inComment,
                      EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                      EntityTag inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,

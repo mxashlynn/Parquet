@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -58,7 +57,6 @@ namespace ParquetClassLibrary
         /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
         /// to support human-readable design documents and <see cref="Range{T}"/> validation.
         /// </remarks>
-        [JsonProperty]
         private int id;
 
         #region Implicit Conversion To/From Underlying Type

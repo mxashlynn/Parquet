@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -80,30 +79,6 @@ namespace ParquetClassLibrary
         /// <param name="inEntities">The <see cref="Entity"/>s to collect.  Cannot be null.</param>
         public EntityCollection(Range<EntityID> inBounds, IEnumerable<Entity> inEntities) :
             this(new List<Range<EntityID>> { inBounds }, inEntities) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
-        /// <param name="inSerializedParquets">The serialized parquets.</param>
-        public EntityCollection(List<Range<EntityID>> inBounds, string inSerializedParquets)
-        {
-            Precondition.IsNotNullOrEmpty(inSerializedParquets, nameof(inSerializedParquets));
-
-            Dictionary<EntityID, Entity> baseCollection;
-            try
-            {
-                baseCollection = JsonConvert.DeserializeObject<Dictionary<EntityID, Entity>>(inSerializedParquets);
-            }
-            catch (JsonReaderException exception)
-            {
-                throw new System.Runtime.Serialization.SerializationException(
-                    $"Error reading string while deserializing an {nameof(Entity)} or {nameof(EntityID)}", exception);
-            }
-
-            Bounds = inBounds;
-            Entities = baseCollection;
-        }
         #endregion
 
         #region Collection Access

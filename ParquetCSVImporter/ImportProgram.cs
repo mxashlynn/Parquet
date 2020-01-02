@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
@@ -19,7 +18,7 @@ using ParquetClassLibrary.Maps;
 namespace ParquetCSVImporter
 {
     /// <summary>
-    /// A program that reads in game definitions from CSV files, and outputs them as JSON.
+    /// A tool that reads in game definitions from CSV files, verifies, modifies, and outputs them.
     /// </summary>
     internal class ImportProgram
     {
@@ -30,7 +29,6 @@ namespace ParquetCSVImporter
 #else
             Directory.GetCurrentDirectory().FullName;
 #endif
-
 
         /// <summary>All <see cref="Being"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Being> Beings = new HashSet<Being>();
@@ -108,12 +106,12 @@ namespace ParquetCSVImporter
 
             #region Reserialize as JSON
             All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, MapChunks, MapRegions, Items);
-            var recordsToJSON = All.Parquets.SerializeToString();
-            var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
-            using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
-            {
-                writer.Write(recordsToJSON);
-            }
+            //var recordsToJSON = All.Parquets.SerializeToString();
+            //var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
+            //using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
+            //{
+            //    writer.Write(recordsToJSON);
+            //}
             #endregion
         }
 

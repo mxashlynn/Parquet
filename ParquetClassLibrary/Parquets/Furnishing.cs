@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -16,19 +15,15 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>Indicates whether this <see cref="Furnishing"/> may be walked on.</summary>
-        [JsonProperty(PropertyName = "inIsWalkable")]
         public bool IsWalkable { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</summary>
-        [JsonProperty(PropertyName = "inIsEntry")]
         public bool IsEntry { get; }
 
         /// <summary>Indicates whether this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</summary>
-        [JsonProperty(PropertyName = "inIsEnclosing")]
         public bool IsEnclosing { get; }
 
         /// <summary>The <see cref="Furnishing"/> to swap with this Furnishing on an open/close action.</summary>
-        [JsonProperty(PropertyName = "inSwapID")]
         public EntityID SwapID { get; }
         #endregion
 
@@ -47,7 +42,6 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsEntry">If <c>true</c> this <see cref="Furnishing"/> serves as an entry to a <see cref="Room"/>.</param>
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="Furnishing"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
         /// <param name="inSwapID">A <see cref="Furnishing"/> to swap with this furnishing on open/close actions.</param>
-        [JsonConstructor]
         public Furnishing(EntityID inID, string inName, string inDescription, string inComment,
                           EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                           EntityTag inAddsToRoom = null, bool inIsWalkable = false,

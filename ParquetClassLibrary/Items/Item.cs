@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using ParquetClassLibrary.Crafting;
 using ParquetClassLibrary.Utilities;
 
@@ -12,39 +11,30 @@ namespace ParquetClassLibrary.Items
     public class Item : Entity
     {
         /// <summary>The type of item this is.</summary>
-        [JsonProperty(PropertyName = "inSubtype")]
         public ItemType Subtype { get; }
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
-        [JsonProperty(PropertyName = "inPrice")]
         public int Price { get; }
 
         /// <summary>How relatively rare this item is.</summary>
-        [JsonProperty(PropertyName = "inRarity")]
         public int Rarity { get; }
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
-        [JsonProperty(PropertyName = "inStackMax")]
         public int StackMax { get; }
 
         /// <summary>An in-game effect caused by keeping the item in a character's inventory.</summary>
-        [JsonProperty(PropertyName = "inEffectWhileHeld")]
         public int EffectWhileHeld { get; }
 
         /// <summary>An in-game effect caused by using (consuming) the item.</summary>
-        [JsonProperty(PropertyName = "inEffectWhenUsed")]
         public int EffectWhenUsed { get; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
-        [JsonProperty(PropertyName = "inAsParquet")]
         public EntityID AsParquet { get; }
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</summary>
-        [JsonProperty(PropertyName = "inItemTags")]
         public IReadOnlyList<EntityTag> ItemTags { get; }
 
         /// <summary>How this item is crafted.</summary>
-        [JsonProperty(PropertyName = "inRecipe")]
         public EntityID Recipe { get; }
 
         #region Initialization
@@ -64,7 +54,6 @@ namespace ParquetClassLibrary.Items
         /// <param name="inAsParquet">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</param>
         /// <param name="inRecipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="Item"/>.</param>
-        [JsonConstructor]
         public Item(EntityID inID, ItemType inSubtype, string inName, string inDescription, string inComment,
                     int inPrice, int inRarity, int inStackMax, int inEffectWhileHeld,
                     int inEffectWhenUsed, EntityID inAsParquet,

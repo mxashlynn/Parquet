@@ -1,5 +1,4 @@
 using System;
-using Newtonsoft.Json;
 
 namespace ParquetClassLibrary
 {
@@ -31,7 +30,6 @@ namespace ParquetClassLibrary
         public static readonly EntityTag None = string.Empty;
 
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
-        [JsonProperty]
         private string tagName = "";
 
         #region Implicit Conversion To/From Underlying Type

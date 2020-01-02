@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -9,17 +8,14 @@ namespace ParquetClassLibrary.Parquets
     public class ParquetStatus
     {
         /// <summary>The <see cref="Block"/>'s native toughness.</summary>
-        [JsonProperty(PropertyName = "inMaxToughness")]
         private readonly int maxToughness;
 
         /// <summary>The <see cref="Block"/>'s current toughness.</summary>
-        [JsonIgnore]
         private int toughness;
 
         /// <summary>
         /// The <see cref="Block"/>'s current toughness, from <see cref="Block.LowestPossibleToughness"/> to <see cref="Block.MaxToughness"/>.
         /// </summary>
-        [JsonProperty(PropertyName = "inToughness")]
         public int Toughness
         {
             get => toughness;
@@ -27,7 +23,6 @@ namespace ParquetClassLibrary.Parquets
         }
 
         /// <summary>If the floor has been dug out.</summary>
-        [JsonProperty(PropertyName = "inIsTrench")]
         public bool IsTrench { get; set; }
 
         #region Initialization
@@ -37,7 +32,6 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsTrench">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
         /// <param name="inToughness">The toughness of the <see cref="Block"/> associated with this status.</param>
         /// <param name="inMaxToughness">The native toughness of the <see cref="Block"/> associated with this status.</param>
-        [JsonConstructor]
         public ParquetStatus(bool inIsTrench = false, int? inToughness = null, int inMaxToughness = Block.DefaultMaxToughness)
         {
             IsTrench = inIsTrench;

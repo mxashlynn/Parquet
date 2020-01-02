@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -23,27 +22,21 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The tool used to remove the block.</summary>
-        [JsonProperty(PropertyName = "inGatherTool")]
         public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "inGatherEffect")]
         public GatherEffect GatherEffect { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
-        [JsonProperty(PropertyName = "inCollectibleID")]
         public EntityID CollectibleID { get; }
 
         /// <summary>Whether or not the block is flammable.</summary>
-        [JsonProperty(PropertyName = "inIsFlammable")]
         public bool IsFlammable { get; }
 
         /// <summary>Whether or not the block is a liquid.</summary>
-        [JsonProperty(PropertyName = "inIsLiquid")]
         public bool IsLiquid { get; }
 
         /// <summary>The block's native toughness.</summary>
-        [JsonProperty(PropertyName = "inMaxToughness")]
         public int MaxToughness { get; }
         #endregion
 
@@ -63,7 +56,6 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
-        [JsonConstructor]
         public Block(EntityID inID, string inName, string inDescription, string inComment,
                      EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                      EntityTag inAddsToRoom = null,

@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -16,14 +15,12 @@ namespace ParquetClassLibrary.Parquets
 
         #region Parquet Mechanics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        [JsonProperty(PropertyName = "inEffect")]
         public CollectEffect Effect { get; }
 
         /// <summary>
         /// The scale in points of the effect.  For example, how much to alter a stat if the
         /// <see cref="CollectEffect"/> is set to alter a stat.
         /// </summary>
-        [JsonProperty(PropertyName = "inEffectAmount")]
         public int EffectAmount { get; }
         #endregion
 
@@ -42,7 +39,6 @@ namespace ParquetClassLibrary.Parquets
         /// The scale in points of the effect.
         /// For example, how much to alter a stat if inEffect is set to alter a stat.
         /// </param>
-        [JsonConstructor]
         public Collectible(EntityID inID, string inName, string inDescription, string inComment,
                            EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                            EntityTag inAddsToRoom = null, CollectEffect inEffect = CollectEffect.None,

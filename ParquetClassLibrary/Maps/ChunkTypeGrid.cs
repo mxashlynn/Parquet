@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -13,7 +10,6 @@ namespace ParquetClassLibrary.Maps
     /// <remarks>
     /// Regions in the editor are stored as <see cref="ChunkTypeGrid"/>s before being fleshed out on load in-game.
     /// </remarks>
-    [JsonObject(MemberSerialization.Fields)]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
@@ -105,46 +101,7 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
-        /// <summary>
-        /// Serializes to the current <see cref="ChunkTypeGrid"/> to a string.
-        /// </summary>
-        /// <returns>The serialized MapRegion.</returns>
-        public string SerializeToString()
-            => JsonConvert.SerializeObject(this, Formatting.None);
 
-        /// <summary>
-        /// Tries to deserialize a <see cref="ChunkTypeGrid"/> from the given string.
-        /// </summary>
-        /// <param name="inSerializedMapChunkGrid">The serialized region map.</param>
-        /// <param name="outMapChunkGrid">The deserialized region map, or null if deserialization was impossible.</param>
-        /// <returns><c>true</c>, if deserialize was posibile, <c>false</c> otherwise.</returns>
-        public static bool TryDeserializeFromString(string inSerializedMapChunkGrid,
-                                                    out ChunkTypeGrid outMapChunkGrid)
-        {
-            Precondition.IsNotNullOrEmpty(inSerializedMapChunkGrid, nameof(inSerializedMapChunkGrid));
-            var result = false;
-            outMapChunkGrid = Empty;
-
-            // Determine what version of region map was serialized.
-            try
-            {
-                var document = JObject.Parse(inSerializedMapChunkGrid);
-                var version = document?.Value<string>(nameof(DataVersion));
-
-                // Deserialize only if this class supports the version given.
-                if (AssemblyInfo.SupportedMapDataVersion.Equals(version, StringComparison.OrdinalIgnoreCase))
-                {
-                    outMapChunkGrid = JsonConvert.DeserializeObject<ChunkTypeGrid>(inSerializedMapChunkGrid);
-                    result = true;
-                }
-            }
-            catch (JsonReaderException exception)
-            {
-                throw new JsonReaderException($"Error reading string while deserializing a MapChunkGrid: {exception}");
-            }
-
-            return result;
-        }
         #endregion
 
         #region Utilities
