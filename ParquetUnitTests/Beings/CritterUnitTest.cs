@@ -4,7 +4,7 @@ using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
 using Xunit;
 
-namespace ParquetUnitTests.Characters
+namespace ParquetUnitTests.Beings
 {
     public class CritterUnitTest
     {

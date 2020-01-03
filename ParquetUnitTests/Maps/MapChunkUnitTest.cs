@@ -6,7 +6,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     public class MapChunkUnitTest
     {

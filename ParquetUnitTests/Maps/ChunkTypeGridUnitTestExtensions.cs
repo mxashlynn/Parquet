@@ -1,7 +1,7 @@
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     /// <summary>
     /// Provides extension methods for <see cref="ChunkTypeGrid"/> used in unit testing.

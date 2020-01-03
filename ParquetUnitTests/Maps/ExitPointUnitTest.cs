@@ -3,7 +3,7 @@ using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
-namespace ParquetUnitTests.Map.SpecialPoints
+namespace ParquetUnitTests.Maps.SpecialPoints
 {
     public class ExitPointUnitTest
     {

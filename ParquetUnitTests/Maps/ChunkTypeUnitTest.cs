@@ -1,7 +1,7 @@
 using ParquetClassLibrary.Maps;
 using Xunit;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     public class ChunkTypeUnitTest
     {

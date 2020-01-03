@@ -2,7 +2,7 @@ using System;
 using ParquetClassLibrary.Parquets;
 using Xunit;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     public class ParquetMaskUnitTest
     {

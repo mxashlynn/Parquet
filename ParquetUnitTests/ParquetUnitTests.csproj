@@ -30,4 +30,9 @@
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dialogue\" />
+    <Folder Include="Quests\" />
+  </ItemGroup>
 </Project>

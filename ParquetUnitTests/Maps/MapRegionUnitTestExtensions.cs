@@ -2,7 +2,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     /// <summary>
     /// Provides extension methods for the <see cref="MapRegion"/> used in unit testing.

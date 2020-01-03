@@ -3,7 +3,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using Xunit;
 
-namespace ParquetUnitTests.Characters
+namespace ParquetUnitTests.Beings
 {
     public class PlayerCharacterUnitTest
     {

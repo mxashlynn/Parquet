@@ -8,7 +8,7 @@ using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
-namespace ParquetUnitTests.Map
+namespace ParquetUnitTests.Maps
 {
     public class MapRegionUnitTest
     {
