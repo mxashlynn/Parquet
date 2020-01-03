@@ -30,6 +30,9 @@ namespace ParquetClassLibrary.Beings
         /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
         public BeingLocation SpawnAt { get; set; }
 
+        /// <summary>The <see cref="BeingLocation"/> the <see cref="Rooms.Room"/> assigned to this <see cref="Being"/>.</summary>
+        public BeingLocation RoomAssignment { get; set; }
+
         /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="Being"/>.</summary>
         public Behavior CurrentBehavior { get; set; }
 
