@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Dialogue
+namespace ParquetClassLibrary.Dialogues
 {
     /// <summary>
     /// Models dialogue that an <see cref="Beings.NPC"/> may communicate.

@@ -54,10 +54,10 @@ namespace ParquetClassLibrary.Parquets
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
-        public bool IsEmpty => EntityID.None == Floor &&
-                               EntityID.None == Block &&
-                               EntityID.None == Furnishing &&
-                               EntityID.None == Collectible;
+        public bool IsEmpty => EntityID.None == Floor
+                            && EntityID.None == Block
+                            && EntityID.None == Furnishing
+                            && EntityID.None == Collectible;
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is Enclosing iff:
