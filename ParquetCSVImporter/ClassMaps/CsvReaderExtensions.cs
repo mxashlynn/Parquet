@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetCSVImporter.Shims;
 
@@ -18,7 +19,7 @@ namespace ParquetCSVImporter.ClassMaps
         /// <param name="inCSV">In CSV Reader.</param>
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <returns>The records.</returns>
-        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : ParquetParent
+        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : Entity
         {
             var result = new List<T>();
             IEnumerable<ParquetParentShim> shims;
