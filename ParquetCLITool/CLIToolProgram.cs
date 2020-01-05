@@ -21,7 +21,7 @@ namespace ParquetCLITool
     /// <summary>
     /// A command line tool that reads in game definitions from CSV files, verifies, modifies, and write them out.
     /// </summary>
-    internal class ImportProgram
+    internal class CLIToolProgram
     {
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
