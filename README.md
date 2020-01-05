@@ -2,7 +2,7 @@
 
 This class library implements mechanics and models for a 2D sandbox game focused on building, crafting, and narrative, more or less in that priority order.
 
-A game built with this system offers many of the features of contemporary quest-driven building games but in a simple, single-layer top-down world and without the combat.
+A game built with this system offers many of the features of contemporary quest-driven building games but in a simple, single-layer, top-down world and without the combat.
 
 # Version 0.1.0 Warning
 
