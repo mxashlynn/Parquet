@@ -1,18 +1,18 @@
 # Parquet
 
-This class library implements core game mechanics and data models for a sandbox game focused on building, crafting, and narrative, more or less in that priority order.
+This class library implements mechanics and models for a 2D sandbox game focused on building, crafting, and narrative, more or less in that priority order.
 
-This is an attempt to answer the question:  "What would Dragon Quest Builders play like if it were constrained to the 2D presentation of Dragon Quest 4?"
-
-Design and usage will be fully documented in [the wiki](https://github.com/mxashlynn/Parquet/wiki) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
-
-Development milestone deadlines are tentative right now.
+A game built with this system might be something like "Dragon Quest Builders gameplay in a Dragon Quest 4 world".
 
 # Version 0.1.0 Warning
 
 Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been hit the project should be much more usable.
 
 ![An image of the milestones planned for 2020\.](https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png "Parquet Development Roadmap 2020")
+
+Design and usage will be fully documented in [the wiki](https://github.com/mxashlynn/Parquet/wiki) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
+
+Development milestone deadlines are tentative right now.
 
 # Goals
 
