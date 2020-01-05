@@ -2,7 +2,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Parent class for all shims of parquet definitions.

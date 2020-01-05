@@ -4,9 +4,9 @@ using System.Linq;
 using CsvHelper;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
-using ParquetCSVImporter.Shims;
+using ParquetCLITool.Shims;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCLITool.ClassMaps
 {
     /// <summary>
     /// Provides extensions to the <see cref="CsvReader"/>.

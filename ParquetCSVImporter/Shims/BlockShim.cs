@@ -3,7 +3,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a

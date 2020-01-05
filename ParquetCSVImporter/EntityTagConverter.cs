@@ -4,7 +4,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
 
-namespace ParquetCSVImporter
+namespace ParquetCLITool
 {
     /// <summary>
     /// Type converter for <see cref="EntityTag"/>.

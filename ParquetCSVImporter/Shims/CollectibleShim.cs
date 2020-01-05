@@ -3,7 +3,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a <see cref="Collectible"/>-like

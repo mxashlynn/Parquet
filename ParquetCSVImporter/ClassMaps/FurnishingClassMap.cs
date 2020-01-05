@@ -1,8 +1,8 @@
 using CsvHelper.Configuration;
-using ParquetCSVImporter.Shims;
+using ParquetCLITool.Shims;
 
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCLITool.ClassMaps
 {
     /// <summary>
     /// Maps the values in a <see cref="FurnishingShim"/> to records that CSVHelper recognizes.

@@ -12,14 +12,14 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Rooms;
-using ParquetCSVImporter.ClassMaps;
+using ParquetCLITool.ClassMaps;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Dialogues;
 
-namespace ParquetCSVImporter
+namespace ParquetCLITool
 {
     /// <summary>
-    /// A tool that reads in game definitions from CSV files, verifies, modifies, and outputs them.
+    /// A command line tool that reads in game definitions from CSV files, verifies, modifies, and write them out.
     /// </summary>
     internal class ImportProgram
     {
@@ -66,7 +66,7 @@ namespace ParquetCSVImporter
         };
 
         /// <summary>
-        /// The entry point of the Importer, where program control starts and ends.
+        /// A command line tool for working with Parquet configuration files.
         /// </summary>
         public static void Main()
         {
