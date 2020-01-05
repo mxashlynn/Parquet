@@ -1,17 +1,17 @@
 using CsvHelper.Configuration;
-using ParquetCSVImporter.Shims;
+using ParquetCLITool.Shims;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCLITool.ClassMaps
 {
     /// <summary>
-    /// Maps the values in a <see cref="CollectibleShim"/> to records that CSVHelper recognizes.
+    /// Maps the values in a <see cref="FloorShim"/> to records that CSVHelper recognizes.
     /// </summary>
-    public sealed class CollectibleClassMap : ClassMap<CollectibleShim>
+    public sealed class FloorClassMap : ClassMap<FloorShim>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectibleClassMap"/> class.
+        /// Initializes a new instance of the <see cref="FloorClassMap"/> class.
         /// </summary>
-        public CollectibleClassMap()
+        public FloorClassMap()
         {
             // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
@@ -22,8 +22,8 @@ namespace ParquetCSVImporter.ClassMaps
             Map(m => m.AddsToBiome).Index(5);
             Map(m => m.AddsToRoom).Index(6);
 
-            Map(m => m.Effect).Index(7);
-            Map(m => m.EffectAmount).Index(8);
+            Map(m => m.ModTool).Index(7);
+            Map(m => m.TrenchName).Index(8);
         }
     }
 }

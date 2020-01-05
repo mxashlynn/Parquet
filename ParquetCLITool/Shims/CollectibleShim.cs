@@ -3,7 +3,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a <see cref="Collectible"/>-like
@@ -28,8 +28,8 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Collectible>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Collectible(ID, Name, Description, Comment, ItemID,
-                                                              AddsToBiome, AddsToRoom, Effect, EffectAmount);
+            return (TargetType)(Entity)new Collectible(ID, Name, Description, Comment, ItemID,
+                                                       AddsToBiome, AddsToRoom, Effect, EffectAmount);
         }
     }
 }

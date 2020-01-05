@@ -1,8 +1,9 @@
+using ParquetClassLibrary;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a <see cref="Floor"/>-like
@@ -27,8 +28,8 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Floor>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                        AddsToRoom, ModTool, TrenchName);
+            return (TargetType)(Entity)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                                 AddsToRoom, ModTool, TrenchName);
         }
     }
 }

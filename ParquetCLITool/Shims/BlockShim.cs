@@ -3,7 +3,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
@@ -40,9 +40,9 @@ namespace ParquetCSVImporter.Shims
         {
             Precondition.IsOfType<TargetType, Block>(typeof(TargetType).ToString());
 
-            return (TargetType)(ParquetParent)new Block(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                        AddsToRoom, GatherTool, GatherEffect, CollectibleID,
-                                                        IsFlammable, IsLiquid, MaxToughness);
+            return (TargetType)(Entity)new Block(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                                 AddsToRoom, GatherTool, GatherEffect, CollectibleID,
+                                                 IsFlammable, IsLiquid, MaxToughness);
         }
     }
 }

@@ -12,15 +12,16 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Rooms;
-using ParquetCSVImporter.ClassMaps;
+using ParquetCLITool.ClassMaps;
 using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Dialogues;
 
-namespace ParquetCSVImporter
+namespace ParquetCLITool
 {
     /// <summary>
-    /// A tool that reads in game definitions from CSV files, verifies, modifies, and outputs them.
+    /// A command line tool that reads in game definitions from CSV files, verifies, modifies, and write them out.
     /// </summary>
-    internal class ImportProgram
+    internal class CLIToolProgram
     {
         /// <summary>The location of the Designer files.</summary>
         public static readonly string SearchPath =
@@ -33,26 +34,26 @@ namespace ParquetCSVImporter
         /// <summary>All <see cref="Being"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Being> Beings = new HashSet<Being>();
 
-        /// <summary>All parquets defined in the CSV files.</summary>
-        public static readonly HashSet<ParquetParent> Parquets = new HashSet<ParquetParent>();
-
-        /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
-        public static readonly HashSet<RoomRecipe> RoomRecipes = new HashSet<RoomRecipe>();
+        /// <summary>All <see cref="Biome"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Biome> Biomes = new HashSet<Biome>();
 
         /// <summary>All <see cref="CraftingRecipe"/>s defined in the CSV files.</summary>
         public static readonly HashSet<CraftingRecipe> CraftingRecipes = new HashSet<CraftingRecipe>();
 
+        /// <summary>All <see cref="Dialogue"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<Dialogue> Dialogues = new HashSet<Dialogue>();
+
+        /// <summary>All <see cref="MapParent"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<MapParent> Maps = new HashSet<MapParent>();
+
+        /// <summary>All parquets defined in the CSV files.</summary>
+        public static readonly HashSet<ParquetParent> Parquets = new HashSet<ParquetParent>();
+
         /// <summary>All <see cref="Quest"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Quest> Quests = new HashSet<Quest>();
 
-        /// <summary>All <see cref="Biome"/>s defined in the CSV files.</summary>
-        public static readonly HashSet<Biome> Biomes = new HashSet<Biome>();
-
-        /// <summary>All <see cref="MapChunk"/>s defined in the CSV files.</summary>
-        public static readonly HashSet<MapChunk> MapChunks = new HashSet<MapChunk>();
-
-        /// <summary>All <see cref="MapRegion"/>s defined in the CSV files.</summary>
-        public static readonly HashSet<MapRegion> MapRegions = new HashSet<MapRegion>();
+        /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
+        public static readonly HashSet<RoomRecipe> RoomRecipes = new HashSet<RoomRecipe>();
 
         /// <summary>All <see cref="Item"/>s defined in the CSV files.</summary>
         public static readonly HashSet<Item> Items = new HashSet<Item>();
@@ -65,16 +66,29 @@ namespace ParquetCSVImporter
         };
 
         /// <summary>
-        /// The entry point of the Importer, where program control starts and ends.
+        /// A command line tool for working with Parquet configuration files.
         /// </summary>
         public static void Main()
         {
-            #region Deserialization from CSV
+            #region Deserialize from CSV
             Beings.Clear();
             // NOTE Player Characters are not designed in CSVs but at run-time in-game.
             Beings.UnionWith(Enumerable.Empty<PlayerCharacter>());
-            //Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
-            //Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
+            Beings.UnionWith(GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
+            Beings.UnionWith(GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
+
+            Biomes.Clear();
+            Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
+
+            CraftingRecipes.Clear();
+            CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
+
+            Dialogues.Clear();
+            Dialogues.UnionWith(GetRecordsForType<Dialogue>() ?? Enumerable.Empty<Dialogue>());
+
+            Maps.Clear();
+            Maps.UnionWith(GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
+            Maps.UnionWith(GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
 
             Parquets.Clear();
             Parquets.UnionWith(GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
@@ -82,30 +96,19 @@ namespace ParquetCSVImporter
             Parquets.UnionWith(GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
             Parquets.UnionWith(GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
 
-            RoomRecipes.Clear();
-            //RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
-
-            CraftingRecipes.Clear();
-            //CraftingRecipes.UnionWith(GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
-
             Quests.Clear();
-            //Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
+            Quests.UnionWith(GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
 
-            Biomes.Clear();
-            //Biomes.UnionWith(GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
-
-            MapChunks.Clear();
-            //MapChunks.UnionWith(GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
-
-            MapRegions.Clear();
-            //MapRegions.UnionWith(GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
+            RoomRecipes.Clear();
+            RoomRecipes.UnionWith(GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
 
             Items.Clear();
-            //Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
+            Items.UnionWith(GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
             #endregion
 
-            #region Reserialize as JSON
-            All.InitializeCollections(Beings, Parquets, RoomRecipes, CraftingRecipes, Quests, Biomes, MapChunks, MapRegions, Items);
+            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Dialogues, Maps, Parquets, Quests, RoomRecipes, Items);
+
+            #region Reserialize to CSV
             //var recordsToJSON = All.Parquets.SerializeToString();
             //var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
             //using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
@@ -121,7 +124,7 @@ namespace ParquetCSVImporter
         /// <typeparam name="T">The type of records to read.</typeparam>
         /// <returns>The records read.</returns>
         private static IEnumerable<T> GetRecordsForType<T>()
-            where T : ParquetParent
+            where T : Entity
         {
             IEnumerable<T> records;
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");

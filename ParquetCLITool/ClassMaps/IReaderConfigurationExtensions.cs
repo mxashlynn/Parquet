@@ -3,7 +3,7 @@ using CsvHelper.Configuration;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 
-namespace ParquetCSVImporter.ClassMaps
+namespace ParquetCLITool.ClassMaps
 {
     /// <summary>
     /// Provides extensions to the <see cref="CsvHelper.Configuration.IReaderConfigurationExtension"/>.

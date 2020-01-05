@@ -2,7 +2,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
-namespace ParquetCSVImporter.Shims
+namespace ParquetCLITool.Shims
 {
     /// <summary>
     /// Parent class for all shims of parquet definitions.
@@ -36,7 +36,7 @@ namespace ParquetCSVImporter.Shims
         /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
-        public abstract T To<T>() where T : ParquetParent;
+        /// <returns>An instance of a child class of <see cref="Entity"/>.</returns>
+        public abstract T To<T>() where T : Entity;
     }
 }
