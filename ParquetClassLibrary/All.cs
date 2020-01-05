@@ -246,23 +246,23 @@ namespace ParquetClassLibrary
             CritterIDs = new Range<EntityID>(10000, 19000);
             NpcIDs = new Range<EntityID>(20000, 29000);
 
-            BiomeIDs = new Range<EntityID>(30000, 39000);  // OLD: (100000, 109000);
+            BiomeIDs = new Range<EntityID>(30000, 39000);
 
-            CraftingRecipeIDs = new Range<EntityID>(40000, 49000);  // OLD (80000, 89000);
+            CraftingRecipeIDs = new Range<EntityID>(40000, 49000);
 
             DialogueIDs = new Range<EntityID>(50000, 59000);
 
             MapChunkIDs = new Range<EntityID>(60000, 69000);
             MapRegionIDs = new Range<EntityID>(70000, 79000);
 
-            FloorIDs = new Range<EntityID>(80000, 89000);  // OLD (30000, 39000);
-            BlockIDs = new Range<EntityID>(90000, 99000);  // OLD (40000, 49000);
-            FurnishingIDs = new Range<EntityID>(100000, 109000);  // (50000, 59000);
-            CollectibleIDs = new Range<EntityID>(110000, 119000);  // (60000, 69000);
+            FloorIDs = new Range<EntityID>(80000, 89000);
+            BlockIDs = new Range<EntityID>(90000, 99000);
+            FurnishingIDs = new Range<EntityID>(100000, 109000);
+            CollectibleIDs = new Range<EntityID>(110000, 119000);
 
-            QuestIDs = new Range<EntityID>(120000, 129000);  // OLD (90000, 99000);
+            QuestIDs = new Range<EntityID>(120000, 129000);
 
-            RoomRecipeIDs = new Range<EntityID>(130000, 139000);  // OLD (70000, 79000);
+            RoomRecipeIDs = new Range<EntityID>(130000, 139000);
             #endregion
 
             #region Define Range Collections
