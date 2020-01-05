@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Dialogues
         /// <param name="inDescription">Player-friendly description of the <see cref="Dialogue"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="Dialogue"/>.</param>
         public Dialogue(EntityID inID, string inName, string inDescription, string inComment)
-            : base(All.QuestIDs, inID, inName, inDescription, inComment)
+            : base(All.DialogueIDs, inID, inName, inDescription, inComment)
         { }
         #endregion
     }

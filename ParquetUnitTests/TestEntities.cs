@@ -160,7 +160,7 @@ namespace ParquetUnitTests
             #endregion
             #endregion
 
-            #region Set up All bounds checking.
+            #region Initialize All
             Beings = new List<Being> { TestCritter, TestNPC, TestPlayer };
             Biomes = new List<Biome> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
