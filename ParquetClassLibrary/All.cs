@@ -285,20 +285,20 @@ namespace ParquetClassLibrary
             // Since ItemIDs is being defined at runtime, its Range.Minimum must be chosen well above existing maxima.
             var ItemLowerBound = TargetMultiple * ((MaximumIDNotCountingItems + (TargetMultiple - 1)) / TargetMultiple);
 
-            // The largest Range.Maximum of any parquet IDs.
-            int MaximumParquetID = ParquetIDs
-                .Select(range => range.Maximum)
-                .Max();
-
             // The smallest Range.Minimum of any parquet IDs.
             int MinimumParquetID = ParquetIDs
                 .Select(range => range.Minimum)
                 .Min();
 
+            // The largest Range.Maximum of any parquet IDs.
+            int MaximumParquetID = ParquetIDs
+                .Select(range => range.Maximum)
+                .Max();
+
             // Since it is possible for every parquet to have a corresponding item, this range must be at least
             // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
             // ranges of all parquets.
-            var ItemUpperBound = ItemLowerBound + 2 * (TargetMultiple / 10 + MaximumParquetID - MinimumParquetID);
+            var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + 2 * (MaximumParquetID - MinimumParquetID);
 
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
