@@ -12,6 +12,8 @@ Development milestone deadlines are tentative right now.
 
 Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been hit the project should be much more usable.
 
+![An image of the milestones planned for 2020\.](https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png "Parquet Development Roadmap 2020")
+
 # Goals
 
 This project has two goals:
