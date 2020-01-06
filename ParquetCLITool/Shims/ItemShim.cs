@@ -14,31 +14,31 @@ namespace ParquetCLITool.Shims
     public class ItemShim : EntityShim
     {
         /// <summary>The type of item this is.</summary>
-        public ItemType Subtype { get; }
+        public ItemType Subtype;
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
-        public int Price { get; }
+        public int Price;
 
         /// <summary>How relatively rare this item is.</summary>
-        public int Rarity { get; }
+        public int Rarity;
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
-        public int StackMax { get; }
+        public int StackMax;
 
         /// <summary>An in-game effect caused by keeping the item in a character's inventory.</summary>
-        public int EffectWhileHeld { get; }
+        public int EffectWhileHeld;
 
         /// <summary>An in-game effect caused by using (consuming) the item.</summary>
-        public int EffectWhenUsed { get; }
+        public int EffectWhenUsed;
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
-        public EntityID AsParquet { get; }
+        public EntityID AsParquet;
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</summary>
-        public List<EntityTag> ItemTags { get; }
+        public List<EntityTag> ItemTags;
 
         /// <summary>How this item is crafted.</summary>
-        public EntityID Recipe { get; }
+        public EntityID Recipe;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

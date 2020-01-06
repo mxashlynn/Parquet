@@ -14,14 +14,14 @@ namespace ParquetCLITool.Shims
     public class CraftingRecipeShim : EntityShim
     {
         /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
-        public IReadOnlyList<RecipeElement> Products { get; }
+        public IReadOnlyList<RecipeElement> Products;
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        public IReadOnlyList<RecipeElement> Ingredients { get; }
+        public IReadOnlyList<RecipeElement> Ingredients;
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         // TODO How do we handle this?
-        public StrikePanelGrid PanelPattern { get; }
+        public StrikePanelGrid PanelPattern;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

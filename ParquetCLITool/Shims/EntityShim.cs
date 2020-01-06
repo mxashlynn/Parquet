@@ -14,10 +14,10 @@ namespace ParquetCLITool.Shims
         public string Name;
 
         /// <summary>Player-facing description.</summary>
-        public string Description { get; }
+        public string Description;
 
         /// <summary>Optional comment.</summary>
-        public string Comment { get; }
+        public string Comment;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

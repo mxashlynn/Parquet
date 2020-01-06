@@ -14,7 +14,7 @@ namespace ParquetCLITool.Shims
     public class QuestShim : EntityShim
     {
         /// <summary>Describes the criteria for completing this <see cref="Quest"/>.</summary>
-        public List<EntityTag> CompletionRequirements { get; }
+        public List<EntityTag> CompletionRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

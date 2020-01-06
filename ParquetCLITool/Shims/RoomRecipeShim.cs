@@ -14,16 +14,16 @@ namespace ParquetCLITool.Shims
     public class RoomRecipeShim : EntityShim
     {
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
-        public int MinimumWalkableSpaces { get; }
+        public int MinimumWalkableSpaces;
 
         /// <summary>An optional list of <see cref="Parquets.Floor"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public List<RecipeElement> RequiredFloors { get; }
+        public List<RecipeElement> RequiredFloors;
 
         /// <summary>An optional list of <see cref="Parquets.Block"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public List<RecipeElement> RequiredPerimeterBlocks { get; }
+        public List<RecipeElement> RequiredPerimeterBlocks;
 
         /// <summary>A list of <see cref="Parquets.Furnishing"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public List<RecipeElement> RequiredFurnishings { get; }
+        public List<RecipeElement> RequiredFurnishings;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

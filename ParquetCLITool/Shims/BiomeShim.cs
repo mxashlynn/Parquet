@@ -17,20 +17,20 @@ namespace ParquetCLITool.Shims
         /// A rating indicating where in the progression this <see cref="Biome"/> falls.
         /// Must be non-negative.  Higher values indicate later Biomes.
         /// </summary>
-        public int Tier { get; }
+        public int Tier;
 
         /// <summary>Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</summary>
-        public Elevation ElevationCategory { get; }
+        public Elevation ElevationCategory;
 
         /// <summary>Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</summary>
-        public bool IsLiquidBased { get; }
+        public bool IsLiquidBased;
 
         /// <summary>Describes the parquets that make up this <see cref="Biome"/>.</summary>
-        public List<EntityTag> ParquetCriteria { get; }
+        public List<EntityTag> ParquetCriteria;
 
         /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacter"/> needs to safely access this <see cref="Biome"/>.
         /// </summary>
-        public List<EntityTag> EntryRequirements { get; }
+        public List<EntityTag> EntryRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.
