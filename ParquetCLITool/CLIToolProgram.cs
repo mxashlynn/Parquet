@@ -12,7 +12,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Rooms;
-using ParquetCLITool.ClassMaps;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Dialogues;
 
