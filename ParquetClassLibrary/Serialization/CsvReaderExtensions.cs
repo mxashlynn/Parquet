@@ -2,7 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Dialogues;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Serialization.Shims;
 using ParquetClassLibrary.Utilities;
 
@@ -24,22 +32,41 @@ namespace ParquetClassLibrary.Serialization
             Precondition.IsNotNull(inCSV, nameof(inCSV));
 
             var result = new List<T>();
-            IEnumerable<ParquetParentShim> shims;
-            /*
+            IEnumerable<EntityShim> shims;
+
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 shims = inCSV.GetRecords<PlayerCharacterShim>();
             }
             else if (typeof(T) == typeof(NPC))
             {
-                shims = inCSV.GetRecords<PNCShim>();
+                shims = inCSV.GetRecords<NPCShim>();
             }
             else if (typeof(T) == typeof(Critter))
             {
                 shims = inCSV.GetRecords<CritterShim>();
             }
-            else */
-            if (typeof(T) == typeof(Floor))
+            else if (typeof(T) == typeof(Biome))
+            {
+                shims = inCSV.GetRecords<BiomeShim>();
+            }
+            else if (typeof(T) == typeof(CraftingRecipe))
+            {
+                shims = inCSV.GetRecords<CraftingRecipeShim>();
+            }
+            else if (typeof(T) == typeof(Dialogue))
+            {
+                shims = inCSV.GetRecords<DialogueShim>();
+            }
+            else if (typeof(T) == typeof(MapChunk))
+            {
+                shims = inCSV.GetRecords<MapChunkShim>();
+            }
+            else if (typeof(T) == typeof(MapRegion))
+            {
+                shims = inCSV.GetRecords<MapRegionShim>();
+            }
+            else if (typeof(T) == typeof(Floor))
             {
                 shims = inCSV.GetRecords<FloorShim>();
             }
@@ -55,9 +82,21 @@ namespace ParquetClassLibrary.Serialization
             {
                 shims = inCSV.GetRecords<CollectibleShim>();
             }
+            else if (typeof(T) == typeof(Quest))
+            {
+                shims = inCSV.GetRecords<QuestShim>();
+            }
+            else if (typeof(T) == typeof(RoomRecipe))
+            {
+                shims = inCSV.GetRecords<RoomRecipeShim>();
+            }
+            else if (typeof(T) == typeof(Item))
+            {
+                shims = inCSV.GetRecords<ItemShim>();
+            }
             else
             {
-                shims = Enumerable.Empty<ParquetParentShim>();
+                shims = Enumerable.Empty<EntityShim>();
                 Console.WriteLine($"No shim exists for {typeof(T)}");
             }
 

@@ -4,15 +4,17 @@ using ParquetClassLibrary.Serialization.Shims;
 namespace ParquetClassLibrary.Serialization.ClassMaps
 {
     /// <summary>
-    /// Maps the values in a <see cref="DialogueShim"/> to records that CSVHelper recognizes.
+    /// Maps the values in a <see cref="MapChunkShim"/> to records that CSVHelper recognizes.
     /// </summary>
-    public sealed class DialogueClassMap : ClassMap<DialogueShim>
+    public sealed class MapChunkClassMap : ClassMap<MapChunkShim>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DialogueClassMap"/> class.
+        /// Initializes a new instance of the <see cref="MapChunkClassMap"/> class.
         /// </summary>
-        public DialogueClassMap()
+        public MapChunkClassMap()
         {
+            // TODO This is a stub.
+
             // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
             Map(m => m.Name).Index(1);

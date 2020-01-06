@@ -1,6 +1,14 @@
 using System;
 using CsvHelper.Configuration;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Dialogues;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Serialization.ClassMaps;
 using ParquetClassLibrary.Utilities;
 
@@ -21,7 +29,6 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
 
-            /*
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 inConfiguration.RegisterClassMap<PlayerCharacterClassMap>();
@@ -34,8 +41,27 @@ namespace ParquetClassLibrary.Serialization
             {
                 inConfiguration.RegisterClassMap<CritterClassMap>();
             }
-            else */
-            if (typeof(T) == typeof(Floor))
+            else if (typeof(T) == typeof(Biome))
+            {
+                inConfiguration.RegisterClassMap<BiomeClassMap>();
+            }
+            else if (typeof(T) == typeof(CraftingRecipe))
+            {
+                inConfiguration.RegisterClassMap<CraftingRecipeClassMap>();
+            }
+            else if (typeof(T) == typeof(Dialogue))
+            {
+                inConfiguration.RegisterClassMap<DialogueClassMap>();
+            }
+            else if (typeof(T) == typeof(MapChunk))
+            {
+                inConfiguration.RegisterClassMap<MapChunkClassMap>();
+            }
+            else if (typeof(T) == typeof(MapRegion))
+            {
+                inConfiguration.RegisterClassMap<MapRegionClassMap>();
+            }
+            else if (typeof(T) == typeof(Floor))
             {
                 inConfiguration.RegisterClassMap<FloorClassMap>();
             }
@@ -50,6 +76,18 @@ namespace ParquetClassLibrary.Serialization
             else if (typeof(T) == typeof(Collectible))
             {
                 inConfiguration.RegisterClassMap<CollectibleClassMap>();
+            }
+            else if (typeof(T) == typeof(Quest))
+            {
+                inConfiguration.RegisterClassMap<QuestClassMap>();
+            }
+            else if (typeof(T) == typeof(RoomRecipe))
+            {
+                inConfiguration.RegisterClassMap<RoomRecipeClassMap>();
+            }
+            else if (typeof(T) == typeof(Item))
+            {
+                inConfiguration.RegisterClassMap<ItemClassMap>();
             }
             else
             {
