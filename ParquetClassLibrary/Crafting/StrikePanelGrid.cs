@@ -6,8 +6,10 @@ namespace ParquetClassLibrary.Crafting
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="StrikePanel"/>s for use in <see cref="CraftingRecipe"/>s.
-    /// The intent is that this class function much like a read-only array.
     /// </summary>
+    /// <remark>
+    /// The intent is that this class function much like a read-only array.
+    /// </remark>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]

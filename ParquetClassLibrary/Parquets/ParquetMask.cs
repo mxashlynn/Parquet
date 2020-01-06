@@ -3,8 +3,9 @@ using System;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Models which, if any, parquet layers have been selected (for instance in the map editor).
+    /// Models which, if any, parquet layers have been selected (for instance in a map editor).
     /// </summary>
+    // TODO Move this class into client code.
     [Flags]
     internal enum ParquetMask
     {

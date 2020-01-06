@@ -3,7 +3,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Models the status of a stack of sandbox-mode parquets.
+    /// Models the status of a stack of sandbox parquets.
     /// </summary>
     public class ParquetStatus
     {

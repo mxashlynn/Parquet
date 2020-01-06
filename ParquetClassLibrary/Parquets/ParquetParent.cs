@@ -4,7 +4,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Models a sandbox-mode parquet.
+    /// Models a sandbox parquet.
     /// </summary>
     public abstract class ParquetParent : Entity
     {

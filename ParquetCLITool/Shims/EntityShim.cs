@@ -1,5 +1,4 @@
 using ParquetClassLibrary;
-using ParquetClassLibrary.Biomes;
 
 namespace ParquetCLITool.Shims
 {

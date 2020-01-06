@@ -18,8 +18,7 @@ namespace ParquetClassLibrary
     /// Provides content and identifiers for the game.
     /// </summary>
     /// <remarks>
-    /// This is the source of truth about game objects whose definitions do not change during play.
-    ///
+    /// This is the source of truth about game objects whose definitions do not change during play.<para />
     /// For more details, see remarks on <see cref="Entity"/>.
     /// </remarks>
     /// <seealso cref="EntityID"/>

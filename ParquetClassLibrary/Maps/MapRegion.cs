@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A playable region in sandbox-mode.
+    /// A playable region in sandbox.
     /// </summary>
     public sealed class MapRegion : MapParent, IMapRegionEdit
     {

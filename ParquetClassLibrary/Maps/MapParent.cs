@@ -6,8 +6,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Provides methods that are used by all parquet-based map models
-    /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
+    /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent : Entity

@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Models details of a playable chunk in sandbox-mode.
+    /// Models details of a playable chunk in sandbox.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
     public sealed class MapChunk : MapParent

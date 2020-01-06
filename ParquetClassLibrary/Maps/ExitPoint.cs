@@ -7,7 +7,8 @@ namespace ParquetClassLibrary.Maps
     /// A location at which the player moves from one <see cref="MapRegion"/> to another.
     /// </summary>
     /// <remarks>
-    /// Since only one Exit Point can exist in a given location, exit points are considered e</remarks>
+    /// Since only one Exit Point can exist in a given location, exit points are considered equal according to their position only.
+    /// </remarks>
     public readonly struct ExitPoint : IEquatable<ExitPoint>
     {
         /// <summary>Location of this exit point.</summary>

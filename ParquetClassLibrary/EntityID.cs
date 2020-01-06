@@ -12,38 +12,38 @@ namespace ParquetClassLibrary
     /// <remarks>
     /// <see cref="EntityID"/>s provide a means for the library
     /// to track and rapidly update large numbers of equivalent
-    /// game objects.
-    /// 
+    /// game objects.<para />
+    /// <para />
     /// For example, multiple identical parquet IDs may be assigned
     /// to <see cref="Maps.MapChunk"/>s or <see cref="Maps.MapRegions"/>,
     /// and multiple duplicate <see cref="Item"/> IDs may exist in
-    /// accross various <see cref="Beings.Character"/> inventories.
-    /// 
+    /// accross various <see cref="Beings.Character"/> inventories.<para />
+    /// <para />
     /// Using EntityID the library looks up the game object definitions
     /// for each of these when other game elements interact with them,
-    /// without filling RAM with numerous duplicate Entities.
-    /// 
+    /// without filling RAM with numerous duplicate Entities.<para />
+    /// <para />
     /// There are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
     /// <see cref="Beings.Being"/>, etc.), and each of these subtypes
     /// has multiple definitions.  The definitions are purely data-driven,
-    /// read in from CSV or other files, and not type-checked by the compiler.
-    /// 
+    /// read in from CSV or other files, and not type-checked by the compiler.<para />
+    /// <para />
     /// Although the compiler does not provide type-checking for IDs,
     /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
-    /// and these are checked by library code.
-    ///
-    /// A note on implementation as of January 1st, 2020.
-    /// 
+    /// and these are checked by library code.<para />
+    /// <para />
+    /// A note on implementation as of January 1st, 2020.<para />
+    /// <para />
     /// EntityID is implemented as a mutable struct because, under the hood,
     /// it is simply an Int32.  EntityID is designed to be implicitly
-    /// interoperable with and implcity castable to and from integer types.
-    /// 
+    /// interoperable with and implcity castable to and from integer types.<para />
+    /// <para />
     /// Since the entire point of this ID system is to provide a way for the
     /// library to rapidly track changes in large arrays of identical game
     /// objects, it must be a light-weight mutable value type.  This is
     /// analagous to the use case for C# 7 tuples, which are also light-weight
-    /// mutable value types.
-    /// 
+    /// mutable value types.<para />
+    /// <para />
     /// If the implementation were ever to become more complex, EntityID
     /// would need to become a class.
     /// </remarks>

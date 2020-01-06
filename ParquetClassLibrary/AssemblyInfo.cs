@@ -39,13 +39,17 @@ namespace ParquetClassLibrary
     {
         /// <summary>
         /// Describes the version of the serialized <see cref="Maps.MapParent"/>
-        /// data that the class library understands.
+        /// data that the class library understands.<para/>
         /// </summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Build}".
-        /// - Major ⇒ Breaking changes resulting in lost saves.
-        /// - Minor ⇒ Backwards-compatible changes, preserving existing saves.
-        /// - Build ⇒ Procedural updates that do not imply any changes.
+        /// <list type="number">
+        /// <item><term>Major</term>
+        /// <description>Breaking changes resulting in lost saves.</description></item>
+        /// <item><term>Minor</term>
+        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
+        /// <item><term>Build</term>
+        /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
         public const string SupportedMapDataVersion = "0.1.0";
 
@@ -55,19 +59,28 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Build}".
-        /// - Major ⇒ Breaking changes resulting in lost saves.
-        /// - Minor ⇒ Backwards-compatible changes, preserving existing saves.
-        /// - Build ⇒ Procedural updates that do not imply any changes.
+        /// <list type="number">
+        /// <item><term>Major</term>
+        /// <description>Breaking changes resulting in lost saves.</description></item>
+        /// <item><term>Minor</term>
+        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
+        /// <item><term>Build</term>
+        /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
         public const string SupportedBeingDataVersion = "0.1.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Patch}.{Build}".
-        /// - Major ⇒ Enhancements or fixes that break the API or its serialized data.
-        /// - Minor ⇒ Enhancements that do not break the API or its serialized data.
-        /// - Patch ⇒ Fixes that do not break the API or its serialized data.
-        /// - Build ⇒ Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.
+        /// <list type="number">
+        /// <item><term>Major</term>
+        /// <description>Enhancements or fixes that break the API or its serialized data.</description></item>
+        /// <item><term>Minor</term>
+        /// <description>Enhancements that do not break the API or its serialized data.</description></item>
+        /// <item><term>Patch</term>
+        /// <description>Fixes that do not break the API or its serialized data.</description></item>
+        /// <item><term>Build</term>
+        /// <description>Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.</description></item>
         /// </remarks>
         public const string LibraryVersion = "0.1.0.0";
     }
