@@ -36,7 +36,7 @@ namespace ParquetCLITool.Shims
         /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
+        /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override TargetType To<TargetType>()
         {
             Precondition.IsOfType<TargetType, Biome>(typeof(TargetType).ToString());

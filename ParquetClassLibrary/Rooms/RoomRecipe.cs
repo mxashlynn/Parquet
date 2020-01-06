@@ -12,9 +12,7 @@ namespace ParquetClassLibrary.Rooms
     public class RoomRecipe : Entity
     {
         #region Recipe Requirements
-        /// <summary>
-        /// Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.
-        /// </summary>
+        /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         public int MinimumWalkableSpaces { get; }
 
         /// <summary>An optional list of <see cref="Parquets.Floor"/> categories this <see cref="RoomRecipe"/> requires.</summary>
@@ -26,14 +24,6 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>A list of <see cref="Parquets.Furnishing"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public IReadOnlyList<RecipeElement> RequiredFurnishings { get; }
         #endregion
-
-        /// <summary>
-        /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
-        /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
-        /// the room is asigned the type of the most demanding recipe.
-        /// </summary>
-        public int Priority
-            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
 
         #region Initialization
         /// <summary>
@@ -67,6 +57,14 @@ namespace ParquetClassLibrary.Rooms
             RequiredFurnishings = inRequiredFurnishings;
         }
         #endregion
+
+        /// <summary>
+        /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
+        /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
+        /// the room is asigned the type of the most demanding recipe.
+        /// </summary>
+        public int Priority
+            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
 
         /// <summary>
         /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
