@@ -18,7 +18,7 @@ namespace ParquetUnitTests
         [Fact]
         public void ValidCritterIDsArePermittedTest()
         {
-            var newItem = new Item(newItemID, ItemType.Consumable, "will be created", "", "",
+            var newItem = new Item(newItemID, "will be created", "", "", ItemType.Consumable,
                                    1, 1, goodStackMax, 0, 0, TestEntities.TestBlock.ID);
 
             Assert.NotNull(newItem);
@@ -31,7 +31,7 @@ namespace ParquetUnitTests
 
             void TestCode()
             {
-                var _ = new Item(badItemID, ItemType.Consumable, "will fail", "", "",
+                var _ = new Item(badItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, goodStackMax, 0, 0, TestEntities.TestBlock.ID);
             }
 
@@ -46,13 +46,13 @@ namespace ParquetUnitTests
 
             void TestCodeZero()
             {
-                var _ = new Item(newItemID, ItemType.Consumable, "will fail", "", "",
+                var _ = new Item(newItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, badStackMaxZero, 0, 0, TestEntities.TestBlock.ID);
             }
 
             void TestCodeNegativeOne()
             {
-                var _ = new Item(newItemID, ItemType.Consumable, "will fail", "", "",
+                var _ = new Item(newItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, badStackMaxNegativeOne, 0, 0, TestEntities.TestBlock.ID);
             }
 

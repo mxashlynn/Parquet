@@ -10,7 +10,7 @@ namespace ParquetRunner
     internal class MainClass
     {
         /// <summary>
-        /// Entry point for the program.
+        /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
         /// </summary>
         public static void Main()
         {

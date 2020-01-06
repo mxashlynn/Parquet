@@ -88,7 +88,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inLocalElevation">The absolute elevation of this region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
         public MapRegion(EntityID inID, string inTitle = null,
-                         string inDescription = null, string inComment = null, int inRevision,
+                         string inDescription = null, string inComment = null, int inRevision = 0,
                          PCLColor? inBackground = null, Elevation inLocalElevation = Elevation.LevelGround,
                          int inGlobalElevation = DefaultGlobalElevation)
             : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision)

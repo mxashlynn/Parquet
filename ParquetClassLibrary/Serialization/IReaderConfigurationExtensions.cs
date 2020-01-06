@@ -1,6 +1,8 @@
 using System;
 using CsvHelper.Configuration;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Serialization.ClassMaps;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -17,6 +19,8 @@ namespace ParquetClassLibrary.Serialization
         /// <returns>The class map for the given type.</returns>
         public static void RegisterClassMapFor<T>(this IReaderConfiguration inConfiguration) where T : Entity
         {
+            Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
+
             /*
             if (typeof(T) == typeof(PlayerCharacter))
             {

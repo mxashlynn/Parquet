@@ -24,9 +24,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>
         /// Converts a shim into the class it corresponds to.
         /// </summary>
-        /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
+        /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
-        public override TargetType To<TargetType>()
+        public override T ToEntity<T>()
         {
             return null;
             /* TODO Update this once map serialization format has been decided.

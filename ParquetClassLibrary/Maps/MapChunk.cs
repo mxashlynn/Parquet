@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Maps
     public sealed class MapChunk : MapParent
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk");
+        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "");
 
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>

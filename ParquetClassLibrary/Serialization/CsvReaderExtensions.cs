@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Serialization.Shims
+using ParquetClassLibrary.Serialization.Shims;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -20,6 +21,8 @@ namespace ParquetClassLibrary.Serialization
         /// <returns>The records.</returns>
         public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : Entity
         {
+            Precondition.IsNotNull(inCSV, nameof(inCSV));
+
             var result = new List<T>();
             IEnumerable<ParquetParentShim> shims;
             /*
@@ -60,7 +63,7 @@ namespace ParquetClassLibrary.Serialization
 
             foreach (var shim in shims)
             {
-                result.Add(shim.To<T>());
+                result.Add(shim.ToEntity<T>());
             }
 
             return result;

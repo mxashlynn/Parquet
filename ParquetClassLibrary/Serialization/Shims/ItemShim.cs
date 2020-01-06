@@ -42,13 +42,13 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>
         /// Converts a shim into the class it corresponds to.
         /// </summary>
-        /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
+        /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
-        public override TargetType To<TargetType>()
+        public override T ToEntity<T>()
         {
-            Precondition.IsOfType<TargetType, Item>(typeof(TargetType).ToString());
+            Precondition.IsOfType<T, Item>(typeof(T).ToString());
 
-            return (TargetType)(Entity)new Item(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
+            return (T)(Entity)new Item(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
                                                 EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
         }
     }

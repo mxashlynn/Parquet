@@ -21,13 +21,13 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>
         /// Converts a shim into the class it corresponds to.
         /// </summary>
-        /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
+        /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
-        public override TargetType To<TargetType>()
+        public override T ToEntity<T>()
         {
-            Precondition.IsOfType<TargetType, Floor>(typeof(TargetType).ToString());
+            Precondition.IsOfType<T, Floor>(typeof(T).ToString());
 
-            return (TargetType)(Entity)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
+            return (T)(Entity)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
                                                  AddsToRoom, ModTool, TrenchName);
         }
     }

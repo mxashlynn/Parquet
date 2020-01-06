@@ -22,6 +22,6 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="Entity"/>.</returns>
-        public abstract T To<T>() where T : Entity;
+        public abstract T ToEntity<T>() where T : Entity;
     }
 }
