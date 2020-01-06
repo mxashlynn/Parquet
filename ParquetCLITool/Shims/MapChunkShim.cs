@@ -19,6 +19,9 @@ namespace ParquetCLITool.Shims
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override TargetType To<TargetType>()
         {
+            return null;
+
+            /* TODO Update this once map serialization format has been decided.
             Precondition.IsOfType<TargetType, MapChunk>(typeof(TargetType).ToString());
             if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion))
             {
@@ -26,8 +29,9 @@ namespace ParquetCLITool.Shims
                     $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
             }
 
-            return (TargetType)(Entity)new MapChunk(ID, Name, Description, Comment, Revision);
-            // TODO ExitPoints, ParquetStatuses, ParquetDefintion);
+            return (TargetType)(Entity)new MapChunk(ID, Name, Description, Comment, Revision,
+                                                    ExitPoints, ParquetStatuses, ParquetDefintion);
+                                                    */
         }
     }
 }
