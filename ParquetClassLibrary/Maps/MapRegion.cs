@@ -83,14 +83,15 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inTitle">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackground">A color to show in the new region when no parquet is present.</param>
         /// <param name="inLocalElevation">The absolute elevation of this region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
         public MapRegion(EntityID inID, string inTitle = null,
-                         string inDescription = null, string inComment = null,
+                         string inDescription = null, string inComment = null, int inRevision,
                          PCLColor? inBackground = null, Elevation inLocalElevation = Elevation.LevelGround,
                          int inGlobalElevation = DefaultGlobalElevation)
-            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment)
+            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision)
         {
             Background = inBackground ?? PCLColor.White;
             ElevationLocal = inLocalElevation;
