@@ -17,25 +17,16 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         public int Tier { get; }
 
-        /// <summary>
-        /// Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.
-        /// </summary>
+        /// <summary>Describes where this <see cref="Biome"/> falls in terms of the game world's overall topography.</summary>
         public Elevation ElevationCategory { get; }
 
-        /// <summary>
-        /// Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.
-        /// </summary>
+        /// <summary>Determines whether or not this <see cref="Biome"/> is defined in terms of liquid parquets.</summary>
         public bool IsLiquidBased { get; }
 
-        /// <summary>
-        /// Describes the parquets that make up this <see cref="Biome"/>.
-        /// </summary>
+        /// <summary>Describes the parquets that make up this <see cref="Biome"/>.</summary>
         public IReadOnlyList<EntityTag> ParquetCriteria { get; }
 
-        /// <summary>
-        /// Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacter"/> needs to
-        /// safely access this <see cref="Biome"/>.
-        /// </summary>
+        /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacter"/> needs to safely access this <see cref="Biome"/>.</summary>
         public IReadOnlyList<EntityTag> EntryRequirements { get; }
         #endregion
 
