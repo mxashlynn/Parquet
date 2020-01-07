@@ -27,6 +27,7 @@ namespace ParquetClassLibrary.Serialization
         /// <param name="inCSV">In CSV Reader.</param>
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <returns>The records.</returns>
+        /// <exception cref="ArgumentException">When there is no shim matching the requested type.</exception>
         public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : Entity
         {
             Precondition.IsNotNull(inCSV, nameof(inCSV));
@@ -96,8 +97,7 @@ namespace ParquetClassLibrary.Serialization
             }
             else
             {
-                shims = Enumerable.Empty<EntityShim>();
-                Console.WriteLine($"No shim exists for {typeof(T)}");
+                throw new ArgumentException($"No shim exists for {typeof(T)}");
             }
 
             foreach (var shim in shims)

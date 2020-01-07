@@ -25,6 +25,7 @@ namespace ParquetClassLibrary.Serialization
         /// <param name="inConfiguration">The CSV Reader Configuration.</param>
         /// <typeparam name="T">The class to map.</typeparam>
         /// <returns>The class map for the given type.</returns>
+        /// <exception cref="ArgumentException">When there is no <see cref="ClassMap"/> matching the requested type.</exception>
         public static void RegisterClassMapFor<T>(this IReaderConfiguration inConfiguration) where T : Entity
         {
             Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
@@ -91,7 +92,7 @@ namespace ParquetClassLibrary.Serialization
             }
             else
             {
-                Console.WriteLine($"No class map exists for {typeof(T)}");
+                throw new ArgumentException($"No class map exists for {typeof(T)}");
             }
         }
     }
