@@ -31,6 +31,7 @@ namespace ParquetClassLibrary.Serialization
             Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
 
             // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
+            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the Entity class hierarchy.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 inConfiguration.RegisterClassMap<PlayerCharacterClassMap>();

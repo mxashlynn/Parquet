@@ -32,10 +32,11 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inCSV, nameof(inCSV));
 
-            var result = new List<T>();
+            var entities = new List<T>();
             IEnumerable<EntityShim> shims;
 
             // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
+            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the Entity class hierarchy.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 shims = inCSV.GetRecords<PlayerCharacterShim>();
@@ -103,10 +104,10 @@ namespace ParquetClassLibrary.Serialization
 
             foreach (var shim in shims)
             {
-                result.Add(shim.ToEntity<T>());
+                entities.Add(shim.ToEntity<T>());
             }
 
-            return result;
+            return entities;
         }
     }
 }
