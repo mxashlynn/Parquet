@@ -30,6 +30,7 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
 
+            // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 inConfiguration.RegisterClassMap<PlayerCharacterClassMap>();

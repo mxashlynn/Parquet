@@ -35,6 +35,7 @@ namespace ParquetClassLibrary.Serialization
             var result = new List<T>();
             IEnumerable<EntityShim> shims;
 
+            // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 shims = inCSV.GetRecords<PlayerCharacterShim>();
