@@ -13,11 +13,11 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// All <see cref="EntityCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
-    ///
+    /// <para />
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
-    ///
-    /// For more details, see remarks on <see cref="Entity"/>.
+    /// <para />
+    /// For more details, see remarks on <see cref="Entity"/>.<para />
     /// </remarks>
     /// <seealso cref="EntityID"/>
     /// <seealso cref="EntityTag"/>

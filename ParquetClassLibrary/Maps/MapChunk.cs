@@ -1,17 +1,16 @@
-using System;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Models details of a playable chunk in sandbox-mode.
+    /// Models details of a playable chunk in sandbox.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
     public sealed class MapChunk : MapParent
     {
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk");
+        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "");
 
         #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
@@ -36,8 +35,12 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
-        public MapChunk(EntityID inID, string inName)
-            : base(Bounds, inID, inName, "", "") { }
+        /// <param name="inDescription">Player-friendly description of the map.</param>
+        /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inRevision">An option revision count.</param>
+        // TODO We need set the Grid variables from the serializer.
+        public MapChunk(EntityID inID, string inName, string inDescription, string inComment, int inRevision = 0)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision) { }
         #endregion
 
         #region Serialization

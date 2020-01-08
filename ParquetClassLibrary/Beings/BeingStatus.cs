@@ -4,6 +4,9 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
 {
+    /// <summary>
+    /// Models the status of a <see cref="Being"/>.
+    /// </summary>
     public class BeingStatus
     {
         #region Metadata

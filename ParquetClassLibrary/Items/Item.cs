@@ -42,10 +42,10 @@ namespace ParquetClassLibrary.Items
         /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="Item"/>.  Cannot be null.</param>
-        /// <param name="inSubtype">The type of <see cref="Item"/>.</param>
         /// <param name="inName">Player-friendly name of the <see cref="Item"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="Item"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="Item"/>.</param>
+        /// <param name="inSubtype">The type of <see cref="Item"/>.</param>
         /// <param name="inPrice"><see cref="Item"/> cost.</param>
         /// <param name="inRarity"><see cref="Item"/> rarity.</param>
         /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
@@ -54,9 +54,9 @@ namespace ParquetClassLibrary.Items
         /// <param name="inAsParquet">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</param>
         /// <param name="inRecipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="Item"/>.</param>
-        public Item(EntityID inID, ItemType inSubtype, string inName, string inDescription, string inComment,
-                    int inPrice, int inRarity, int inStackMax, int inEffectWhileHeld,
-                    int inEffectWhenUsed, EntityID inAsParquet,
+        public Item(EntityID inID, string inName, string inDescription, string inComment,
+                    ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
+                    int inEffectWhileHeld, int inEffectWhenUsed, EntityID inAsParquet,
                     List<EntityTag> inItemTags = null, EntityID? inRecipeID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {

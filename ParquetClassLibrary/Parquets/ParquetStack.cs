@@ -4,7 +4,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Simple container for one of each overlapping layer of parquet.
+    /// Simple container for one of each overlapping layer of parquets.
     /// </summary>
     public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
     {

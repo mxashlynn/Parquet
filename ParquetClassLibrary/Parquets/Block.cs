@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Configurations for a sandbox-mode parquet block.
+    /// Configurations for a sandbox parquet block.
     /// </summary>
     public sealed class Block : ParquetParent
     {

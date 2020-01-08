@@ -1,7 +1,7 @@
 using CsvHelper.Configuration;
-using ParquetCLITool.Shims;
+using ParquetClassLibrary.Serialization.Shims;
 
-namespace ParquetCLITool.ClassMaps
+namespace ParquetClassLibrary.Serialization.ClassMaps
 {
     /// <summary>
     /// Maps the values in a <see cref="BlockShim"/> to records that CSVHelper recognizes.
@@ -18,6 +18,7 @@ namespace ParquetCLITool.ClassMaps
             Map(m => m.Name).Index(1);
             Map(m => m.Description).Index(2);
             Map(m => m.Comment).Index(3);
+
             Map(m => m.ItemID).Index(4);
             Map(m => m.AddsToBiome).Index(5);
             Map(m => m.AddsToRoom).Index(6);

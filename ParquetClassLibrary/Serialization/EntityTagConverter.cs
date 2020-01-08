@@ -1,10 +1,8 @@
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary;
 
-namespace ParquetCLITool
+namespace ParquetClassLibrary.Serialization
 {
     /// <summary>
     /// Type converter for <see cref="EntityTag"/>.

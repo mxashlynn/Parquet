@@ -4,7 +4,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Configurations for a sandbox-mode Furniture and similar items.
+    /// Configurations for large sandbox parquet items, such as furniture or plants.
     /// </summary>
     public sealed class Furnishing : ParquetParent
     {

@@ -122,8 +122,8 @@ namespace ParquetUnitTests
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
             // TODO Update this once Dialogue is implemented.
             TestDialogue = new Dialogue(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test");
-            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk");
-            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region");
+            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
+            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
             TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
             TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new Block(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
@@ -136,7 +136,7 @@ namespace ParquetUnitTests
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
-            TestItem = new Item(-All.ItemIDs.Minimum, ItemType.Other, "11 Test Item", "Test", "Test",
+            TestItem = new Item(-All.ItemIDs.Minimum, "11 Test Item", "Test", "Test", ItemType.Other,
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
 
             #region Initialize TestMapChunk

@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Configurations for a sandbox-mode parquet floor.
+    /// Configurations for a sandbox parquet walking surface.
     /// </summary>
     public sealed class Floor : ParquetParent
     {

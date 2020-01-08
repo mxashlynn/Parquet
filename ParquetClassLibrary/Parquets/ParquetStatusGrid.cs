@@ -6,8 +6,10 @@ namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="MapParent"/> and derived classes.
-    /// The intent is that this class function much like a read-only array.
     /// </summary>
+    /// <remarks>
+    /// The intent is that this class function much like a read-only array.
+    /// </remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]

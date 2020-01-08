@@ -10,11 +10,11 @@ namespace ParquetClassLibrary
     /// <remarks>
     /// The intent is that definitional narrative and mechanical features
     /// of each game <see cref="Entity"/> be taggable.
-    /// 
+    /// <para />
     /// This means that more than one <see cref="EntityTag"/> can coexist
     /// on a specific Entity within the same entity category (parquets,
     /// beings, etc.).
-    /// 
+    /// <para />
     /// This allows for flexible definition of Entities such that a loose
     /// category of entities may answer a particular functional need; e.g.,
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".

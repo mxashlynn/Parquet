@@ -1,9 +1,7 @@
-using ParquetClassLibrary;
-
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetCLITool.Shims
+namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a <see cref="Collectible"/>-like
@@ -22,13 +20,13 @@ namespace ParquetCLITool.Shims
         /// <summary>
         /// Converts a shim into the class it corresponds to.
         /// </summary>
-        /// <typeparam name="TargetType">The type to convert this shim to.</typeparam>
+        /// <typeparam name="T">The type to convert this shim to.</typeparam>
         /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
-        public override TargetType To<TargetType>()
+        public override T ToEntity<T>()
         {
-            Precondition.IsOfType<TargetType, Collectible>(typeof(TargetType).ToString());
+            Precondition.IsOfType<T, Collectible>(typeof(T).ToString());
 
-            return (TargetType)(Entity)new Collectible(ID, Name, Description, Comment, ItemID,
+            return (T)(Entity)new Collectible(ID, Name, Description, Comment, ItemID,
                                                        AddsToBiome, AddsToRoom, Effect, EffectAmount);
         }
     }

@@ -6,8 +6,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Provides methods that are used by all parquet-based map models
-    /// (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
+    /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapParent : Entity
@@ -54,8 +53,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        protected MapParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment)
-            : base(inBounds, inID, inName, inDescription, inComment) { }
+        /// <param name="inRevision">How many times this map has been serialized.</param>
+        protected MapParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment, int inRevision)
+            : base(inBounds, inID, inName, inDescription, inComment)
+        {
+            Revision = inRevision;
+        }
         #endregion
 
         #region Parquets Replacement

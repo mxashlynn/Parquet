@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox-mode.
+    /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox.
     /// </summary>
     /// <remarks>
     /// Regions in the editor are stored as <see cref="ChunkTypeGrid"/>s before being fleshed out on load in-game.

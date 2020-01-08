@@ -8,23 +8,23 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// All <see cref="Entity"/>s are identified with an <see cref="EntityID"/>,
-    /// and are considered equal if and only if their respective EntityIDs are equal.
-    /// 
+    /// and are considered equal if and only if their respective EntityIDs are equal.<para />
+    /// <para />
     /// Entity is intended to model the parts of a game object that do not change
     /// from one instance to another.  In this sense, it can be thought of as
-    /// analogous to a C# <see langword="class"/>.
-    /// 
+    /// analogous to a C# <see langword="class"/>.<para />
+    /// <para />
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
     /// within <see cref="EntityCollection{T}"/>s in other classes.  Like a class instance,
     /// the Entity definition for a given EntityID is looked up from a singular definition,
-    /// in this case via <see cref="EntityCollection{T}.Get{T}(EntityID)"/>.
-    ///
-    /// Collections of the definitions used during play are contained in <see cref="All"/>.
-    /// 
+    /// in this case via <see cref="EntityCollection{T}.Get{T}(EntityID)"/>.<para />
+    /// <para />
+    /// Collections of the definitions used during play are contained in <see cref="All"/>.<para />
+    /// <para />
     /// If individual game objects must have mutable state then a separate partner class,
     /// such as <see cref="Parquets.ParquetStatus"/> or <see cref="Beings.BeingStatus"/>,
-    /// models that state.
-    ///
+    /// models that state.<para />
+    /// <para />
     /// Entity could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
@@ -44,9 +44,7 @@ namespace ParquetClassLibrary
         string IEntityEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
-        /// <remarks>
-        /// Could be used for designer notes or to implement an in-game dialogue
-        /// with or on the <see cref="Entity"/>.
+        /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="Entity"/>.
         /// </remarks>
         public string Comment { get; private set; }
         string IEntityEdit.Comment { get => Comment; set => Comment = value; }

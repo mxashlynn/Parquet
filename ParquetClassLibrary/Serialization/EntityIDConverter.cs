@@ -2,9 +2,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary;
+using ParquetClassLibrary.Utilities;
 
-namespace ParquetCLITool
+namespace ParquetClassLibrary.Serialization
 {
     /// <summary>
     /// Type converter for <see cref="EntityID"/>.
@@ -20,6 +20,8 @@ namespace ParquetCLITool
         /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
 
             if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))

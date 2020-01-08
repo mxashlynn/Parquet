@@ -1,7 +1,5 @@
 // This file is used by Code Analysis to maintain SuppressMessage
-// attributes that are applied to this project.
-// Project-level suppressions either have no target or are given
-// a specific target and scoped to a namespace, type, member, etc.
+// attributes.  Project-level suppressions have no target.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization",
     "CA1303:Do not pass literals as localized parameters",
@@ -17,3 +15,8 @@
     "CA2225:Operator overloads have named alternates",
     Justification = "This would defeat the purpose of making these classes implicitly interchangeable.",
     Scope = "namespaceanddescendants", Target = "ParquetClassLibrary")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+    "CA1051:Do not declare visible instance fields",
+    Justification = "This is required for the shims to function properly.  In fact it is the point of the shim classes.",
+    Scope = "namespaceanddescendants", Target = "ParquetClassLibrary.Serialization.Shims")]

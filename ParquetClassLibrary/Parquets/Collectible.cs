@@ -4,7 +4,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// Configurations for a sandbox-mode Characters, Furnishings, Crafting Materils, etc.
+    /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
     public sealed class Collectible : ParquetParent
     {

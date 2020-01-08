@@ -1,5 +1,4 @@
 using System;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -8,15 +7,19 @@ namespace ParquetClassLibrary.Maps
     /// Indicates which parquets constitute this <see cref="MapChunk"/> and how they are arranged.
     /// </summary>
     /// <remarks>
-    /// Every chunk is either handmade or procedurally generated.
-    ///
+    /// Every chunk is either handmade or procedurally generated.<para />
+    ///<para />
     /// Chunks that are not hand made are instead composed of two layers: a base and a modifier.
     /// The base is the underlying structure of the chunk and the modifier overlays it to
     /// produce more complex arrangements than would otherwise be possible.  For example:
-    ///
-    /// Forest = Base:Grassy Solid, Modifier:Scattered Trees
-    /// Seaside = Base:Watery Solid, Modifier:Eastern Sandy
-    /// Ruins, Town = Handmade
+    /// <list type="bullet">
+    /// <item><term>Forest</term>
+    /// <description>Base:Grassy Solid, Modifier:Scattered Trees</description></item>
+    /// <item><term>Seaside</term>
+    /// <description>Base:Watery Solid, Modifier:Eastern Sandy</description></item>
+    /// <item><term>Town</term>
+    /// <description>Handmade</description></item>
+    /// </list>
     /// </remarks>
     public readonly struct ChunkType : IEquatable<ChunkType>
     {
