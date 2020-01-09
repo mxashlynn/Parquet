@@ -18,8 +18,8 @@ Development milestone deadlines are tentative right now.
 
 This project has two goals:
 
-    1) To provide a foundation for games developed in C# stacks (probably FNA+Nez and Unity);
-    2) To provide a learning exercise for the lead developer.
+1. To provide a foundation for games developed in C# stacks (probably FNA+Nez and Unity);
+2. To provide a learning exercise for the lead developer.
 
 Due to goal 2, no attempt has been made to design the most elegant, effecient, general-purpose, or powerful library possible.
 What has been attempted is a cleanly-coded, clearly-documented, easily maintainable class library.
@@ -28,15 +28,14 @@ What has been attempted is a cleanly-coded, clearly-documented, easily maintaina
 
 Parquet targets the following features:
 
-    1) A peaceful 2D top-down overworld map that may be explored.
-    2) Simple free-form building mechanics allowing player characters to create homes in the world.
-    3) Resource collection mechanics allowing players to upgrade their homes and tools.
-    4) A simple crafting system allowing players to unlock new tools and building materials.
-    5) Interactive noncombatant NPCs.
-    6) A quest system encouraging players to build particular building types.
-    7) Dialogue and narrative delivery.
-
-    8) Data-driven design with all key game entities customizable from CSV files.
+1. A peaceful 2D top-down overworld map that may be explored.
+2. Simple free-form building mechanics allowing player characters to create homes in the world.
+3. Resource collection mechanics allowing players to upgrade their homes and tools.
+4. A simple crafting system allowing players to unlock new tools and building materials.
+5. Interactive noncombatant NPCs.
+6. A quest system encouraging players to build particular building types.
+7. Dialogue and narrative delivery.
+8. Data-driven design with all key game entities customizable from CSV files.
 
 # Solution Structure
 

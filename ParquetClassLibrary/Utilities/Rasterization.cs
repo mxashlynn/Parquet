@@ -143,8 +143,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     if (x * x + y * y < circleLimit
                         // Plot positions within the circle only if:
-                        // (1) the circle is filled, or
-                        // (2) the position is on the circle proper (that is, the circle's outline).
+                        // 1, the circle is filled, or
+                        // 2, the position is on the circle proper (that is, the circle's outline).
                         && (inIsFilled || x * x + y * y > outlineLimit))
                     {
                         var position = new Vector2D(inCenter.X + x, inCenter.Y + y);

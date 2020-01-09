@@ -16,7 +16,7 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void ValidCritterIDsArePermittedTest()
+        public void ValidItemIDsArePermittedTest()
         {
             var newItem = new ItemModel(newItemID, "will be created", "", "", ItemType.Consumable,
                                    1, 1, goodStackMax, 0, 0, TestModels.TestBlock.ID);
@@ -25,7 +25,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void InvalidCritterIDsRaiseExceptionTest()
+        public void InvalidItemIDsRaiseExceptionTest()
         {
             var badItemID = TestModels.TestBlock.ID - 1;
 
