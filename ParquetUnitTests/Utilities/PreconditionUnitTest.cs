@@ -168,6 +168,30 @@ namespace ParquetUnitTests.Utilities
         }
 
         [Fact]
+        public void IsNotNoneTest()
+        {
+            var testValue0 = int.MaxValue;
+            var testValue1 = int.MinValue;
+            var testValue2 = 1;
+
+            var exception0 = Record.Exception(() => Precondition.MustBeNonNegative(testValue0));
+            var exception1 = Record.Exception(() => Precondition.MustBeNonNegative(testValue1));
+            var exception2 = Record.Exception(() => Precondition.MustBeNonNegative(testValue2));
+
+            Assert.Null(exception0);
+            Assert.Null(exception1);
+            Assert.Null(exception2);
+        }
+
+        [Fact]
+        public void IsNotNoneThrowsOnNoneTest()
+        {
+            var testValue = EntityID.None;
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.IsNotNone(testValue));
+        }
+
+        [Fact]
         public void MustBeNonNegativeTest()
         {
             var testValue0 = 0;
