@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Utilities
         #endregion
 
         /// <summary>
-        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{int}"/>.
+        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{int}"/>, inclusive.
         /// </summary>
         /// <param name="inInt">The integer to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{T}"/>.
+        /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{T}"/>, inclusive.
         /// </summary>
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Checks if the first given <see cref="Range{T}"/> falls within the second given <see cref="Range{T}"/>.
+        /// Checks if the first given <see cref="Range{T}"/> falls within the second given <see cref="Range{T}"/>, inclusive.
         /// </summary>
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inOuterBounds">The range it must fall within.</param>
@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Checks if the first given <see cref="EntityID"/> falls within at least one of the
-        /// given collection of <see cref="Range{T}"/>s.
+        /// given collection of <see cref="Range{T}"/>s, inclusive.
         /// </summary>
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
@@ -91,7 +91,7 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Checks if the given <see cref="Range{T}"/> falls within at least one of the
-        /// given collection of <see cref="Range{T}"/>s.
+        /// given collection of <see cref="Range{T}"/>s, inclusive.
         /// </summary>
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
@@ -128,7 +128,8 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Verifies that all of the given <see cref="EntityID"/>s fall within the given <see cref="Range{T}"/>.
+        /// Verifies that all of the given <see cref="EntityID"/>s fall within the given
+        /// <see cref="Range{T}"/>, inclusive.
         /// </summary>
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBounds">The range they must fall within.</param>
@@ -148,7 +149,7 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Verifies that all of the given <see cref="EntityID"/>s fall within the given 
-        /// collection of <see cref="Range{T}"/>s.
+        /// collection of <see cref="Range{T}"/>s, inclusive.
         /// </summary>
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges they must fall within.</param>
@@ -163,6 +164,20 @@ namespace ParquetClassLibrary.Utilities
                 {
                     throw new ArgumentOutOfRangeException($"{inArgumentName}: {id} is not within {inBoundsCollection}.");
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Verifies that the given <see cref="EntityID"/> is not <see cref="EntityID.None"/>.
+        /// </summary>
+        /// <param name="inID">The number to test.</param>
+        /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When the number is -1 or less.</exception>
+        public static void IsNotNone(EntityID inID, string inArgumentName = DefaultArgumentName)
+        {
+            if (inID == EntityID.None)
+            {
+                throw new ArgumentOutOfRangeException($"{inArgumentName} cannot be None.");
             }
         }
 
