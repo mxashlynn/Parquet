@@ -174,9 +174,9 @@ namespace ParquetUnitTests.Utilities
             var testValue1 = int.MinValue;
             var testValue2 = 1;
 
-            var exception0 = Record.Exception(() => Precondition.MustBeNonNegative(testValue0));
-            var exception1 = Record.Exception(() => Precondition.MustBeNonNegative(testValue1));
-            var exception2 = Record.Exception(() => Precondition.MustBeNonNegative(testValue2));
+            var exception0 = Record.Exception(() => Precondition.IsNotNone(testValue0));
+            var exception1 = Record.Exception(() => Precondition.IsNotNone(testValue1));
+            var exception2 = Record.Exception(() => Precondition.IsNotNone(testValue2));
 
             Assert.Null(exception0);
             Assert.Null(exception1);
