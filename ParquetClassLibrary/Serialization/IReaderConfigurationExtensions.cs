@@ -26,12 +26,12 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="T">The class to map.</typeparam>
         /// <returns>The class map for the given type.</returns>
         /// <exception cref="ArgumentException">When there is no <see cref="ClassMap"/> matching the requested type.</exception>
-        public static void RegisterClassMapFor<T>(this IReaderConfiguration inConfiguration) where T : Entity
+        public static void RegisterClassMapFor<T>(this IReaderConfiguration inConfiguration) where T : EntityModel
         {
             Precondition.IsNotNull(inConfiguration, nameof(inConfiguration));
 
             // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
-            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the Entity class hierarchy.
+            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the EntityModel class hierarchy.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 inConfiguration.RegisterClassMap<PlayerCharacterClassMap>();

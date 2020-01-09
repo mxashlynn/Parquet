@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new collectible.</summary>
-        private static readonly EntityID newCollectibleID = TestEntities.TestCollectible.ID - 1;
+        private static readonly EntityID newCollectibleID = TestModels.TestCollectible.ID - 1;
         #endregion
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidCollectibleIDsRaiseExceptionTest()
         {
-            var badCollectibleID = TestEntities.TestBlock.ID;
+            var badCollectibleID = TestModels.TestBlock.ID;
 
             void TestCode()
             {
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidItemIDsRaiseExceptionTest()
         {
-            var badItemID = TestEntities.TestBlock.ID;
+            var badItemID = TestModels.TestBlock.ID;
 
             void TestCode()
             {

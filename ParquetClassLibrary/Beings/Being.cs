@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    public abstract class Being : Entity
+    public abstract class Being : EntityModel
     {
         #region Characteristics
         /// <summary>The <see cref="EntityID"/> of the <see cref="Biome"/> in which this character is at home.</summary>

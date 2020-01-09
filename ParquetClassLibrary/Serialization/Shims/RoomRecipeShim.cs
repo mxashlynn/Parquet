@@ -33,8 +33,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, RoomRecipe>(typeof(T).ToString());
 
-            return (T)(Entity)new RoomRecipe(ID, Name, Description, Comment, RequiredFloors,
-                                                      MinimumWalkableSpaces, RequiredPerimeterBlocks, RequiredFurnishings);
+            return (T)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, RequiredFloors,
+                                                  MinimumWalkableSpaces, RequiredPerimeterBlocks, RequiredFurnishings);
         }
     }
 }

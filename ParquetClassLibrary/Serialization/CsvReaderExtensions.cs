@@ -28,15 +28,15 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="T">The type of the record.</typeparam>
         /// <returns>The records.</returns>
         /// <exception cref="ArgumentException">When there is no shim matching the requested type.</exception>
-        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : Entity
+        public static IEnumerable<T> GetRecordsViaShim<T>(this CsvReader inCSV) where T : EntityModel
         {
             Precondition.IsNotNull(inCSV, nameof(inCSV));
 
-            var entities = new List<T>();
+            var models = new List<T>();
             IEnumerable<EntityShim> shims;
 
             // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
-            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the Entity class hierarchy.
+            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the EntityModel class hierarchy.
             if (typeof(T) == typeof(PlayerCharacter))
             {
                 shims = inCSV.GetRecords<PlayerCharacterShim>();
@@ -104,10 +104,10 @@ namespace ParquetClassLibrary.Serialization
 
             foreach (var shim in shims)
             {
-                entities.Add(shim.ToEntity<T>());
+                models.Add(shim.ToEntity<T>());
             }
 
-            return entities;
+            return models;
         }
     }
 }

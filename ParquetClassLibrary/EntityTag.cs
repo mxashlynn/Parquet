@@ -3,20 +3,20 @@ using System;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Identifies functional characteristics of <see cref="Entity"/>s,
+    /// Identifies functional characteristics of <see cref="EntityModel"/>s,
     /// such as their role in <see cref="Crafting.CraftingRecipe"/>s or
     /// <see cref="Biomes.Biome"/>s.
     /// </summary>
     /// <remarks>
     /// The intent is that definitional narrative and mechanical features
-    /// of each game <see cref="Entity"/> be taggable.
+    /// of each game <see cref="EntityModel"/> be taggable.
     /// <para />
     /// This means that more than one <see cref="EntityTag"/> can coexist
-    /// on a specific Entity within the same entity category (parquets,
-    /// beings, etc.).
+    /// on a specific <see cref="EntityModel"/> within the same entity
+    /// category (parquets, beings, etc.).
     /// <para />
-    /// This allows for flexible definition of Entities such that a loose
-    /// category of entities may answer a particular functional need; e.g.,
+    /// This allows for flexible definition of EntityModels such that a loose
+    /// category of models may answer a particular functional need; e.g.,
     /// "any parquet that has the Volcanic tag" or "any item that is a Key".
     /// </remarks>
     /// <seealso cref="EntityID"/>

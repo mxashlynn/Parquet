@@ -40,8 +40,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Biome>(typeof(T).ToString());
 
-            return (T)(Entity)new Biome(ID, Name, Description, Comment, Tier, ElevationCategory,
-                                                 IsLiquidBased, ParquetCriteria, EntryRequirements);
+            return (T)(EntityModel)new Biome(ID, Name, Description, Comment, Tier, ElevationCategory,
+                                             IsLiquidBased, ParquetCriteria, EntryRequirements);
         }
     }
 }

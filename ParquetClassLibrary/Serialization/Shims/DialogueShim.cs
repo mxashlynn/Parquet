@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Dialogue>(typeof(T).ToString());
 
-            return (T)(Entity)new Dialogue(ID, Name, Description, Comment);
+            return (T)(EntityModel)new Dialogue(ID, Name, Description, Comment);
         }
     }
 }

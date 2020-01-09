@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Models the category and amount of an <see cref="Entity"/> from a recipe, e.g. <see cref="Crafting.CraftingRecipe"/>
+    /// Models the category and amount of an <see cref="EntityModel"/> from a recipe, e.g. <see cref="Crafting.CraftingRecipe"/>
     /// or <see cref="Rooms.RoomRecipe"/>.  The <see cref="RecipeElement"/> may either be consumed as an ingredient
     /// or returned as the final product.
     /// </summary>
@@ -17,7 +17,7 @@ namespace ParquetClassLibrary
     /// representing that element.
     /// </description></item>
     /// <item><term /><description>
-    /// It allows various Entities to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
+    /// It allows various EntityModels to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
     /// </description></item>
     /// </remarks>
     public readonly struct RecipeElement : IEquatable<RecipeElement>

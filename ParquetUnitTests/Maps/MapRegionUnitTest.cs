@@ -18,8 +18,8 @@ namespace ParquetUnitTests.Maps
         private const string testTitle = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
-        private static readonly EntityID testID = TestEntities.TestMapRegion.ID;
-        private static readonly MapRegion defaultRegion = new MapRegion(TestEntities.TestMapRegion.ID - 2, "", "", "");
+        private static readonly EntityID testID = TestModels.TestMapRegion.ID;
+        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 2, "", "", "");
         #endregion
 
         #region Region Map Initialization
@@ -33,7 +33,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestEntities.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
 
             Assert.Equal(testTitle, customRegion.Title);
             Assert.Equal(testColor, customRegion.Background);
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestEntities.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
             IMapRegionEdit editableRegion = customRegion;
 
             editableRegion.Title = testTitle;
@@ -65,9 +65,9 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetFloorFailsOnInvalidPositionTest()
         {
-            var parquet = TestEntities.TestFloor.ID;
+            var parquet = TestModels.TestFloor.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetFloorDefinition(parquet, invalidPosition);
+            var result = TestModels.TestMapRegion.TrySetFloorDefinition(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -75,20 +75,20 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetFloorSucceedsOnDefaultParquetAndPositionTest()
         {
-            var parquet = TestEntities.TestFloor.ID;
+            var parquet = TestModels.TestFloor.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetFloorDefinition(parquet, Vector2D.Zero);
+            var result = TestModels.TestMapRegion.TrySetFloorDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
-            Assert.Equal(parquet, TestEntities.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Floor);
+            Assert.Equal(parquet, TestModels.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Floor);
         }
 
         [Fact]
         public void TrySetBlockFailsOnInvalidPositionTest()
         {
-            var parquet = TestEntities.TestBlock.ID;
+            var parquet = TestModels.TestBlock.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetBlockDefinition(parquet, invalidPosition);
+            var result = TestModels.TestMapRegion.TrySetBlockDefinition(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -96,20 +96,20 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetBlockSucceedsOnDefaultParquetAndPositionTest()
         {
-            var parquet = TestEntities.TestBlock.ID;
+            var parquet = TestModels.TestBlock.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetBlockDefinition(parquet, Vector2D.Zero);
+            var result = TestModels.TestMapRegion.TrySetBlockDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
-            Assert.Equal(parquet, TestEntities.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Block);
+            Assert.Equal(parquet, TestModels.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Block);
         }
 
         [Fact]
         public void TrySetFurnishingFailsOnInvalidPositionTest()
         {
-            var parquet = TestEntities.TestFurnishing.ID;
+            var parquet = TestModels.TestFurnishing.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetFurnishingDefinition(parquet, invalidPosition);
+            var result = TestModels.TestMapRegion.TrySetFurnishingDefinition(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -117,20 +117,20 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetFurnishingSucceedsOnDefaultParquetAndPositionTest()
         {
-            var parquet = TestEntities.TestFurnishing.ID;
+            var parquet = TestModels.TestFurnishing.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetFurnishingDefinition(parquet, Vector2D.Zero);
+            var result = TestModels.TestMapRegion.TrySetFurnishingDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
-            Assert.Equal(parquet, TestEntities.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Furnishing);
+            Assert.Equal(parquet, TestModels.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Furnishing);
         }
 
         [Fact]
         public void TrySetCollectibleFailsOnInvalidPositionTest()
         {
-            var parquet = TestEntities.TestCollectible.ID;
+            var parquet = TestModels.TestCollectible.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetCollectibleDefinition(parquet, invalidPosition);
+            var result = TestModels.TestMapRegion.TrySetCollectibleDefinition(parquet, invalidPosition);
 
             Assert.False(result);
         }
@@ -138,27 +138,27 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetCollectibleSucceedsOnDefaultParquetAndPositionTest()
         {
-            var parquet = TestEntities.TestCollectible.ID;
+            var parquet = TestModels.TestCollectible.ID;
 
-            var result = TestEntities.TestMapRegion.TrySetCollectibleDefinition(parquet, Vector2D.Zero);
+            var result = TestModels.TestMapRegion.TrySetCollectibleDefinition(parquet, Vector2D.Zero);
 
             Assert.True(result);
-            Assert.Equal(parquet, TestEntities.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Collectible);
+            Assert.Equal(parquet, TestModels.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero).Collectible);
         }
 
         [Fact]
         public void TrySetParquetDefinitionSucceedsWithMapSpaceTest()
         {
-            var stack = new ParquetStack(TestEntities.TestFloor.ID,
-                                         TestEntities.TestBlock.ID,
-                                         TestEntities.TestFurnishing.ID,
-                                         TestEntities.TestCollectible.ID);
+            var stack = new ParquetStack(TestModels.TestFloor.ID,
+                                         TestModels.TestBlock.ID,
+                                         TestModels.TestFurnishing.ID,
+                                         TestModels.TestCollectible.ID);
             var space = new MapSpace(Vector2D.Zero, stack, null);
 
-            var result = TestEntities.TestMapRegion.TrySetParquetDefinition(space);
+            var result = TestModels.TestMapRegion.TrySetParquetDefinition(space);
 
             Assert.True(result);
-            Assert.Equal(stack, TestEntities.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero));
+            Assert.Equal(stack, TestModels.TestMapRegion.GetDefinitionAtPosition(Vector2D.Zero));
         }
         #endregion
 
@@ -166,9 +166,9 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TrySetExitPointSucceedsOnValidPositionTest()
         {
-            var point = new ExitPoint(Vector2D.Zero, TestEntities.TestMapRegion.ID);
+            var point = new ExitPoint(Vector2D.Zero, TestModels.TestMapRegion.ID);
 
-            var result = TestEntities.TestMapRegion.TrySetExitPoint(point);
+            var result = TestModels.TestMapRegion.TrySetExitPoint(point);
 
             Assert.True(result);
         }
@@ -178,7 +178,7 @@ namespace ParquetUnitTests.Maps
         {
             var point = new ExitPoint(invalidPosition, testID);
 
-            var result = TestEntities.TestMapRegion.TryRemoveExitPoint(point);
+            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -188,7 +188,7 @@ namespace ParquetUnitTests.Maps
         {
             var point = new ExitPoint(Vector2D.Zero, testID);
 
-            var result = TestEntities.TestMapRegion.TryRemoveExitPoint(point);
+            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -197,9 +197,9 @@ namespace ParquetUnitTests.Maps
         public void TryRemoveExitPointSucceedsOnExitPointExistsTest()
         {
             var point = new ExitPoint(Vector2D.Zero, testID);
-            TestEntities.TestMapRegion.TrySetExitPoint(point);
+            TestModels.TestMapRegion.TrySetExitPoint(point);
 
-            var result = TestEntities.TestMapRegion.TryRemoveExitPoint(point);
+            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
 
             Assert.True(result);
         }
@@ -207,7 +207,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
-            var specialData = TestEntities.TestMapRegion.GetExitsAtPosition(invalidPosition);
+            var specialData = TestModels.TestMapRegion.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }
@@ -219,7 +219,7 @@ namespace ParquetUnitTests.Maps
         {
             void TestCode()
             {
-                var _ = TestEntities.TestMapRegion.GetDefinitionAtPosition(invalidPosition);
+                var _ = TestModels.TestMapRegion.GetDefinitionAtPosition(invalidPosition);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

@@ -23,7 +23,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyList<Room> Rooms { get; }
 
-        /// <summary>The number of <see cref="Entity"/>s in the <see cref="RoomCollection"/>.</summary>
+        /// <summary>The number of <see cref="Room"/>s in the <see cref="RoomCollection"/>.</summary>
         public int Count => Rooms?.Count ?? 0;
 
         /// <summary>

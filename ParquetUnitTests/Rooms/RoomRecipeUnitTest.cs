@@ -11,11 +11,11 @@ namespace ParquetUnitTests.Rooms
     public class RoomRecipeUnitTest
     {
         #region Test Values
-        private static readonly ParquetStack TestWall = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TestWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestWalk = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TestWalk = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
 
-        private static readonly ParquetStack TestEntry = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, TestEntities.TestFurnishing.ID, EntityID.None);
+        private static readonly ParquetStack TestEntry = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, TestModels.TestFurnishing.ID, EntityID.None);
 
         private static readonly HashSet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(2, 2, TestEntry, null),
         };
 
-        private static readonly List<RecipeElement> TestRequiredFurnishings = TestEntities.TestRecipeElementList;
+        private static readonly List<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
             new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", TestRequiredFurnishings);
@@ -103,7 +103,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void StricterRoomRequirementsGenerateHigherPriorityTest()
         {
-            var stricterRecipe = TestEntities.TestRoomRecipe;
+            var stricterRecipe = TestModels.TestRoomRecipe;
 
             Assert.True(MinimalRecipe.Priority < stricterRecipe.Priority);
         }
@@ -111,7 +111,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void KnownMismatchReturnsFalse()
         {
-            var stricterRecipe = TestEntities.TestRoomRecipe;
+            var stricterRecipe = TestModels.TestRoomRecipe;
 
             Assert.False(stricterRecipe.Matches(MinimalRoom));
         }

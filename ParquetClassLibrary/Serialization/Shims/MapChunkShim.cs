@@ -27,9 +27,9 @@ namespace ParquetClassLibrary.Serialization.Shims
                     $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
             }
 
-            return (TargetType)(Entity)new MapChunk(ID, Name, Description, Comment, Revision,
-                                                    ExitPoints, ParquetStatuses, ParquetDefintion);
-                                                    */
+            return (TargetType)(EntityModel)new MapChunk(ID, Name, Description, Comment, Revision,
+                                                         ExitPoints, ParquetStatuses, ParquetDefintion);
+            */
         }
     }
 }

@@ -11,9 +11,9 @@ namespace ParquetUnitTests.Rooms
     {
         #region Test Values
         private static readonly ParquetStack TVoid = ParquetStack.Empty;
-        private static readonly ParquetStack TWall = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, EntityID.None, EntityID.None);
-        private static readonly ParquetStack TDoor = new ParquetStack(TestEntities.TestFloor.ID, TestEntities.TestBlock.ID, TestEntities.TestFurnishing.ID, EntityID.None);
-        private static readonly ParquetStack TTile = new ParquetStack(TestEntities.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, EntityID.None);
+        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
 
         private static readonly ParquetStack[,] TestRoomMap =
         {
@@ -35,10 +35,10 @@ namespace ParquetUnitTests.Rooms
         {
             var x = 10;
             var y = 30;
-            var testStack = new ParquetStack(TestEntities.TestFloor.ID,
-                                             TestEntities.TestBlock.ID,
-                                             TestEntities.TestFurnishing.ID,
-                                             TestEntities.TestCollectible.ID);
+            var testStack = new ParquetStack(TestModels.TestFloor.ID,
+                                             TestModels.TestBlock.ID,
+                                             TestModels.TestFurnishing.ID,
+                                             TestModels.TestCollectible.ID);
 
             var space1 = new MapSpace(new Vector2D(x, y), testStack, null);
             var space2 = new MapSpace(new Vector2D(x, y), testStack, null);
@@ -53,10 +53,10 @@ namespace ParquetUnitTests.Rooms
             var y1 = 30;
             var x2 = 20;
             var y2 = 20;
-            var testStack = new ParquetStack(TestEntities.TestFloor.ID,
-                                             TestEntities.TestBlock.ID,
-                                             TestEntities.TestFurnishing.ID,
-                                             TestEntities.TestCollectible.ID);
+            var testStack = new ParquetStack(TestModels.TestFloor.ID,
+                                             TestModels.TestBlock.ID,
+                                             TestModels.TestFurnishing.ID,
+                                             TestModels.TestCollectible.ID);
 
             var space1 = new MapSpace(new Vector2D(x1, y1), testStack, null);
             var space2 = new MapSpace(new Vector2D(x2, y2), testStack, null);
@@ -69,14 +69,14 @@ namespace ParquetUnitTests.Rooms
         {
             var x = 10;
             var y = 30;
-            var testStack1 = new ParquetStack(TestEntities.TestFloor.ID,
-                                             TestEntities.TestBlock.ID,
-                                             TestEntities.TestFurnishing.ID,
-                                             TestEntities.TestCollectible.ID);
-            var testStack2 = new ParquetStack(TestEntities.TestFloor.ID - 1,
-                                             TestEntities.TestBlock.ID - 1,
-                                             TestEntities.TestFurnishing.ID - 1,
-                                             TestEntities.TestCollectible.ID - 1);
+            var testStack1 = new ParquetStack(TestModels.TestFloor.ID,
+                                             TestModels.TestBlock.ID,
+                                             TestModels.TestFurnishing.ID,
+                                             TestModels.TestCollectible.ID);
+            var testStack2 = new ParquetStack(TestModels.TestFloor.ID - 1,
+                                             TestModels.TestBlock.ID - 1,
+                                             TestModels.TestFurnishing.ID - 1,
+                                             TestModels.TestCollectible.ID - 1);
 
             var space1 = new MapSpace(new Vector2D(x, y), testStack1, null);
             var space2 = new MapSpace(new Vector2D(x, y), testStack2, null);

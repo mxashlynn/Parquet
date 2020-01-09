@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Quests
     /// <summary>
     /// Models a quest that an <see cref="Beings.NPC"/> may give to a <see cref="Beings.PlayerCharacter"/> embodies.
     /// </summary>
-    public sealed class Quest : Entity
+    public sealed class Quest : EntityModel
     {
         #region Characteristics
         /// <summary>

@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Beings
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newCritterID = TestEntities.TestCritter.ID - 1;
+        private static readonly EntityID newCritterID = TestModels.TestCritter.ID - 1;
         #endregion
 
         [Fact]
@@ -25,7 +25,7 @@ namespace ParquetUnitTests.Beings
         [Fact]
         public void InvalidCritterIDsRaiseExceptionTest()
         {
-            var badCritterID = TestEntities.TestBlock.ID - 1;
+            var badCritterID = TestModels.TestBlock.ID - 1;
 
             void TestCode()
             {

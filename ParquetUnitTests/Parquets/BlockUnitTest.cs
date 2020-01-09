@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newBlockID = TestEntities.TestBlock.ID - 1;
+        private static readonly EntityID newBlockID = TestModels.TestBlock.ID - 1;
         #endregion
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidBlockIDsRaiseExceptionTest()
         {
-            var badBlockID = TestEntities.TestFloor.ID;
+            var badBlockID = TestModels.TestFloor.ID;
 
             void TestCode()
             {
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidItemIDsRaiseExceptionTest()
         {
-            var badItemID = TestEntities.TestBlock.ID;
+            var badItemID = TestModels.TestBlock.ID;
 
             void TestCode()
             {
@@ -59,7 +59,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidCollectibleIDsArePermittedTest()
         {
-            var goodCollectibleID = TestEntities.TestCollectible.ID;
+            var goodCollectibleID = TestModels.TestCollectible.ID;
 
             var testBlock = new Block(newBlockID, "will be created", "", "", inCollectibleID: goodCollectibleID);
 
@@ -69,7 +69,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidCollectibleIDsRaiseExceptionTest()
         {
-            var badCollectibleID = TestEntities.TestBlock.ID;
+            var badCollectibleID = TestModels.TestBlock.ID;
 
             void TestCode()
             {

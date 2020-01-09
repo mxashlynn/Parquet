@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, CraftingRecipe>(typeof(T).ToString());
 
-            return (T)(Entity)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
+            return (T)(EntityModel)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
         }
     }
 }

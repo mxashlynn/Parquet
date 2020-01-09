@@ -39,9 +39,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Block>(typeof(T).ToString());
 
-            return (T)(Entity)new Block(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                 AddsToRoom, GatherTool, GatherEffect, CollectibleID,
-                                                 IsFlammable, IsLiquid, MaxToughness);
+            return (T)(EntityModel)new Block(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                             AddsToRoom, GatherTool, GatherEffect, CollectibleID,
+                                             IsFlammable, IsLiquid, MaxToughness);
         }
     }
 }

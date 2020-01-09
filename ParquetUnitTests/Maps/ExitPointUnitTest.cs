@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Maps.SpecialPoints
         [Fact]
         public void ExitPointKnowsWhereItLeadsTest()
         {
-            EntityID arbitraryID = TestEntities.TestMapRegion.ID + 3;
+            EntityID arbitraryID = TestModels.TestMapRegion.ID + 3;
             var exitPoint = new ExitPoint(Vector2D.Zero, arbitraryID);
 
             Assert.Equal(arbitraryID, exitPoint.Destination);

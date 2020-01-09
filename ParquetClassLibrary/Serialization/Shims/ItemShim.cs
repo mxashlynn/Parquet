@@ -48,8 +48,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Item>(typeof(T).ToString());
 
-            return (T)(Entity)new Item(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
-                                                EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
+            return (T)(EntityModel)new Item(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
+                                            EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
         }
     }
 }

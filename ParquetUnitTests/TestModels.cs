@@ -14,9 +14,9 @@ using ParquetClassLibrary.Dialogues;
 namespace ParquetUnitTests
 {
     /// <summary>
-    /// Stores <see cref="Entity"/> and <see cref="EntityID"/> for use in unit testing.
+    /// Stores <see cref="EntityModel"/>s for use in unit testing.
     /// </summary>
-    public static class TestEntities
+    public static class TestModels
     {
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
@@ -102,12 +102,12 @@ namespace ParquetUnitTests
         #endregion
 
         /// <summary>
-        /// Initializes unit test example entities.
+        /// Initializes unit test example models.
         /// Sets up <see cref="All"/> so that bounds can be checked in various constructors.
         /// </summary>
-        static TestEntities()
+        static TestModels()
         {
-            #region Initialize Entities
+            #region Initialize EntityModels
             TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
             TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
@@ -144,19 +144,19 @@ namespace ParquetUnitTests
             {
                 for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
                 {
-                    TestMapChunk.TrySetFloorDefinition(TestEntities.TestFloor.ID, new Vector2D(x, y));
+                    TestMapChunk.TrySetFloorDefinition(TestModels.TestFloor.ID, new Vector2D(x, y));
                 }
 
-                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(0, y));
-                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(TestMapChunk.DimensionsInParquets.X - 1, y));
+                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(0, y));
+                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(TestMapChunk.DimensionsInParquets.X - 1, y));
             }
             for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
             {
-                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, 0));
-                TestMapChunk.TrySetBlockDefinition(TestEntities.TestBlock.ID, new Vector2D(x, TestMapChunk.DimensionsInParquets.Y - 1));
+                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(x, 0));
+                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(x, TestMapChunk.DimensionsInParquets.Y - 1));
             }
-            TestMapChunk.TrySetFurnishingDefinition(TestEntities.TestFurnishing.ID, new Vector2D(1, 2));
-            TestMapChunk.TrySetCollectibleDefinition(TestEntities.TestCollectible.ID, new Vector2D(3, 3));
+            TestMapChunk.TrySetFurnishingDefinition(TestModels.TestFurnishing.ID, new Vector2D(1, 2));
+            TestMapChunk.TrySetCollectibleDefinition(TestModels.TestCollectible.ID, new Vector2D(3, 3));
             #endregion
             #endregion
 

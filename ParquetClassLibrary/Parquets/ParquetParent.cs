@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract class ParquetParent : Entity
+    public abstract class ParquetParent : EntityModel
     {
         /// <summary>
         /// The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.

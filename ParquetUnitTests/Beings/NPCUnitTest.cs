@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Beings
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newNpcID = TestEntities.TestNPC.ID - 1;
+        private static readonly EntityID newNpcID = TestModels.TestNPC.ID - 1;
         #endregion
 
         [Fact]
@@ -24,7 +24,7 @@ namespace ParquetUnitTests.Beings
         [Fact]
         public void InvalidNpcIDsRaiseExceptionTest()
         {
-            var badNpcID = TestEntities.TestBlock.ID - 1;
+            var badNpcID = TestModels.TestBlock.ID - 1;
 
             void TestCode()
             {

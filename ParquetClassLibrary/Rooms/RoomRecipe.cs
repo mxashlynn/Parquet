@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
-    public sealed class RoomRecipe : Entity
+    public sealed class RoomRecipe : EntityModel
     {
         #region Recipe Requirements
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>

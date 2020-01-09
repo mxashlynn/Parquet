@@ -21,8 +21,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, PlayerCharacter>(typeof(T).ToString());
 
-            return (T)(Entity)new PlayerCharacter(ID, PersonalName, FamilyName, Description, Comment,
-                                                           Pronoun, StoryCharacterID, StartingQuests, StartingInventory);
+            return (T)(EntityModel)new PlayerCharacter(ID, PersonalName, FamilyName, Description, Comment,
+                                                       Pronoun, StoryCharacterID, StartingQuests, StartingInventory);
         }
     }
 }

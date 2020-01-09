@@ -32,8 +32,8 @@ namespace ParquetUnitTests
         public void MinimumIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var entity = range.Minimum;
-            var result = entity.IsValidForRange(range);
+            var id = range.Minimum;
+            var result = id.IsValidForRange(range);
 
             Assert.True(result);
         }
@@ -42,8 +42,8 @@ namespace ParquetUnitTests
         public void AverageIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var entity = range.Minimum;
-            var result = entity.IsValidForRange(range);
+            var id = range.Minimum;
+            var result = id.IsValidForRange(range);
 
             Assert.True(result);
         }
@@ -52,8 +52,8 @@ namespace ParquetUnitTests
         public void MaximumIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var entity = range.Minimum;
-            var result = entity.IsValidForRange(range);
+            var id = range.Minimum;
+            var result = id.IsValidForRange(range);
 
             Assert.True(result);
         }

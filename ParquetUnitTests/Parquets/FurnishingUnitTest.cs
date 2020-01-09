@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new furnishing.</summary>
-        private static readonly EntityID newFurnishingID = TestEntities.TestFurnishing.ID - 1;
+        private static readonly EntityID newFurnishingID = TestModels.TestFurnishing.ID - 1;
         #endregion
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidCollectibleIDsRaiseExceptionTest()
         {
-            var badFurnishingID = TestEntities.TestBlock.ID;
+            var badFurnishingID = TestModels.TestBlock.ID;
 
             void TestCode()
             {
@@ -46,7 +46,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidItemIDsRaiseExceptionTest()
         {
-            var badItemID = TestEntities.TestBlock.ID;
+            var badItemID = TestModels.TestBlock.ID;
 
             void TestCode()
             {
@@ -69,7 +69,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void InvalidSwapIDsRaiseExceptionTest()
         {
-            var badSwapID = TestEntities.TestBlock.ID;
+            var badSwapID = TestModels.TestBlock.ID;
 
             void TestCode()
             {

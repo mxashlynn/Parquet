@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Critter>(typeof(T).ToString());
 
-            return (T)(Entity)new Critter(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
+            return (T)(EntityModel)new Critter(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
         }
     }
 }

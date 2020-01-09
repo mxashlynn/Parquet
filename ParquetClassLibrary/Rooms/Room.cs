@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         private EntityID FindBestMatch()
             => All.RoomRecipes
-                  .Where(entity => entity?.Matches(this) ?? false)
+                  .Where(model => model?.Matches(this) ?? false)
                   .Select(recipe => recipe.Priority)
                   .DefaultIfEmpty<int>(EntityID.None).Max();
 
@@ -128,7 +128,7 @@ namespace ParquetClassLibrary.Rooms
             => obj is Room room && Equals(room);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Entity"/>.
+        /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Room"/>.
         /// </summary>
         /// <param name="inRoom1">The first <see cref="Room"/> to compare.</param>
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
@@ -142,7 +142,7 @@ namespace ParquetClassLibrary.Rooms
                 && inRoom1.Perimeter.SetEquals(inRoom2.Perimeter));
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Entity"/>.
+        /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Room"/>.
         /// </summary>
         /// <param name="inRoom1">The first <see cref="Room"/> to compare.</param>
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>

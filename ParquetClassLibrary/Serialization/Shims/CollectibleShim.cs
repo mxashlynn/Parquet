@@ -26,8 +26,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Collectible>(typeof(T).ToString());
 
-            return (T)(Entity)new Collectible(ID, Name, Description, Comment, ItemID,
-                                                       AddsToBiome, AddsToRoom, Effect, EffectAmount);
+            return (T)(EntityModel)new Collectible(ID, Name, Description, Comment, ItemID,
+                                                   AddsToBiome, AddsToRoom, Effect, EffectAmount);
         }
     }
 }

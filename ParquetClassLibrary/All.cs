@@ -19,7 +19,7 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// This is the source of truth about game objects whose definitions do not change during play.<para />
-    /// For more details, see remarks on <see cref="Entity"/>.
+    /// For more details, see remarks on <see cref="EntityModel"/>.
     /// </remarks>
     /// <seealso cref="EntityID"/>
     /// <seealso cref="EntityCollection{T}"/>

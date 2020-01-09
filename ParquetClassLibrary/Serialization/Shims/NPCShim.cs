@@ -20,8 +20,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, NPC>(typeof(T).ToString());
 
-            return (T)(Entity)new NPC(ID, Name, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
-                                               Avoids, Seeks, Pronoun, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
+            return (T)(EntityModel)new NPC(ID, Name, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+                                           Avoids, Seeks, Pronoun, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
         }
     }
 }

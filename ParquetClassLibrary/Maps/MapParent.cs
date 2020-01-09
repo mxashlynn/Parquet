@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapParent : Entity
+    public abstract class MapParent : EntityModel
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>

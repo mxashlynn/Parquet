@@ -13,7 +13,7 @@ namespace ParquetUnitTests.Maps
         private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
-        private static readonly EntityID testID = TestEntities.TestMapRegion.ID + 3;
+        private static readonly EntityID testID = TestModels.TestMapRegion.ID + 3;
         private static readonly ChunkType testChunk = new ChunkType(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
         #endregion
 

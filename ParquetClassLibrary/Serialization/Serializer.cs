@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="T">The type of records to read.</typeparam>
         /// <returns>The records read.</returns>
         public static IEnumerable<T> GetRecordsForType<T>()
-            where T : Entity
+            where T : EntityModel
         {
             IEnumerable<T> records;
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");

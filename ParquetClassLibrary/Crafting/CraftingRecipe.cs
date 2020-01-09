@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Crafting
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    public sealed class CraftingRecipe : Entity
+    public sealed class CraftingRecipe : EntityModel
     {
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =

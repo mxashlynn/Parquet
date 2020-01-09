@@ -27,8 +27,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, Floor>(typeof(T).ToString());
 
-            return (T)(Entity)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                 AddsToRoom, ModTool, TrenchName);
+            return (T)(EntityModel)new Floor(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                             AddsToRoom, ModTool, TrenchName);
         }
     }
 }

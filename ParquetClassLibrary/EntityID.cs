@@ -7,7 +7,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Uniquely identifies every <see cref="Entity"/>.
+    /// Uniquely identifies every <see cref="EntityModel"/>.
     /// </summary>
     /// <remarks>
     /// <see cref="EntityID"/>s provide a means for the library
@@ -21,12 +21,13 @@ namespace ParquetClassLibrary
     /// <para />
     /// Using EntityID the library looks up the game object definitions
     /// for each of these when other game elements interact with them,
-    /// without filling RAM with numerous duplicate Entities.<para />
+    /// without filling RAM with numerous duplicate EntityModels.<para />
     /// <para />
-    /// There are multiple entity subtypes (<see cref="Parquets.ParquetParent"/>,
-    /// <see cref="Beings.Being"/>, etc.), and each of these subtypes
-    /// has multiple definitions.  The definitions are purely data-driven,
-    /// read in from CSV or other files, and not type-checked by the compiler.<para />
+    /// There are multiple <see cref="EntityModel"/> subtypes
+    /// (<see cref="Parquets.ParquetParent"/>, <see cref="Beings.Being"/>,
+    /// etc.), and each of these subtypes has multiple definitions.
+    /// The definitions are purely data-driven, read in from CSV or
+    /// other files, and not type-checked by the compiler.<para />
     /// <para />
     /// Although the compiler does not provide type-checking for IDs,
     /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
@@ -49,7 +50,7 @@ namespace ParquetClassLibrary
     /// </remarks>
     public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
     {
-        /// <summary>Indicates the lack of an <see cref="Entity"/>.</summary>
+        /// <summary>Indicates the lack of an <see cref="EntityModel"/>.</summary>
         public static readonly EntityID None = 0;
 
         /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
