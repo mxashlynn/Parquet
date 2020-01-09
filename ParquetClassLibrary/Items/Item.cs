@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public class Item : Entity
+    public sealed class Item : Entity
     {
         /// <summary>The type of item this is.</summary>
         public ItemType Subtype { get; }

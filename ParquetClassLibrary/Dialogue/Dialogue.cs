@@ -3,7 +3,7 @@ namespace ParquetClassLibrary.Dialogues
     /// <summary>
     /// Models dialogue that an <see cref="Beings.NPC"/> may communicate.
     /// </summary>
-    public class Dialogue : Entity
+    public sealed class Dialogue : Entity
     {
         // TODO: This is a stub.
         #region Characteristics

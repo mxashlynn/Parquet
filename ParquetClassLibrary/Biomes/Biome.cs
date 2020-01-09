@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public class Biome : Entity
+    public sealed class Biome : Entity
     {
         #region Characteristics
         /// <summary>
