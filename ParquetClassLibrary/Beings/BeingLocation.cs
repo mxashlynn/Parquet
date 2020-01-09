@@ -8,10 +8,10 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     public readonly struct BeingLocation : IEquatable<BeingLocation>
     {
-        /// <summary>The identifier for the <see cref="MapRegion"/> this <see cref="Being"/> is located in.</summary>
+        /// <summary>The identifier for the <see cref="MapRegion"/> this <see cref="BeingModel"/> is located in.</summary>
         public EntityID RegionID { get; }
 
-        /// <summary>The position within the current <see cref="MapRegion"/> where this <see cref="Being"/> is located.</summary>
+        /// <summary>The position within the current <see cref="MapRegion"/> where this <see cref="BeingModel"/> is located.</summary>
         public Vector2D Position { get; }
 
         #region IEquatable Implementation

@@ -6,9 +6,9 @@ namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="Item"/>-like class that CSVHelper can instantiate.
+    /// <see cref="ItemModel"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="Item"/> from this class.
+    /// Provides the ability to generate a <see cref="ItemModel"/> from this class.
     /// </summary>
     public class ItemShim : EntityShim
     {
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         public EntityID AsParquet;
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
         public List<EntityTag> ItemTags;
 
         /// <summary>How this item is crafted.</summary>
@@ -46,9 +46,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override T ToEntity<T>()
         {
-            Precondition.IsOfType<T, Item>(typeof(T).ToString());
+            Precondition.IsOfType<T, ItemModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new Item(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
+            return (T)(EntityModel)new ItemModel(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
                                             EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
         }
     }

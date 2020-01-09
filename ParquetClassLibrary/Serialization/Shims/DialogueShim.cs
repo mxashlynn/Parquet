@@ -5,9 +5,9 @@ namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="Dialogue"/>-like class that CSVHelper can instantiate.
+    /// <see cref="DialogueModel"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="Dialogue"/> from this class.
+    /// Provides the ability to generate a <see cref="DialogueModel"/> from this class.
     /// </summary>
     public class DialogueShim : EntityShim
     {
@@ -20,9 +20,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override T ToEntity<T>()
         {
-            Precondition.IsOfType<T, Dialogue>(typeof(T).ToString());
+            Precondition.IsOfType<T, DialogueModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new Dialogue(ID, Name, Description, Comment);
+            return (T)(EntityModel)new DialogueModel(ID, Name, Description, Comment);
         }
     }
 }

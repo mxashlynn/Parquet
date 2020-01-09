@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A playable region in sandbox.
     /// </summary>
-    public sealed class MapRegion : MapParent, IMapRegionEdit
+    public sealed class MapRegion : MapModel, IMapRegionEdit
     {
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapRegion Empty = new MapRegion(EntityID.None, "Empty Region");

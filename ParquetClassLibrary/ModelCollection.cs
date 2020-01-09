@@ -12,7 +12,7 @@ namespace ParquetClassLibrary
     /// Provides bounds-checking and type-checking against <typeparamref name="TParentType"/>.
     /// </summary>
     /// <remarks>
-    /// All <see cref="EntityCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
+    /// All <see cref="ModelCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
     /// <para />
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
@@ -22,10 +22,10 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityID"/>
     /// <seealso cref="EntityTag"/>
     /// <seealso cref="All"/>
-    public class EntityCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : EntityModel
+    public class ModelCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : EntityModel
     {
-        /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
-        public static readonly EntityCollection<TParentType> Default = new EntityCollection<TParentType>(
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
+        public static readonly ModelCollection<TParentType> Default = new ModelCollection<TParentType>(
             new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<EntityModel>());
 
@@ -35,16 +35,16 @@ namespace ParquetClassLibrary
         /// <summary>The bounds within which all collected <see cref="EntityModel"/>s must be defined.</summary>
         private List<Range<EntityID>> Bounds { get; }
 
-        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="EntityCollection{T}"/>.</summary>
+        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{T}"/>.</summary>
         public int Count => Models?.Count ?? 0;
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
         {
             Precondition.IsNotNull(inModels, nameof(inModels));
 
@@ -73,17 +73,17 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels) :
+        public ModelCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels) :
             this(new List<Range<EntityID>> { inBounds }, inModels) { }
         #endregion
 
         #region Collection Access
         /// <summary>
-        /// Determines whether the <see cref="EntityCollection{T}"/> contains the specified <see cref="EntityModel"/>.
+        /// Determines whether the <see cref="ModelCollection{T}"/> contains the specified <see cref="EntityModel"/>.
         /// </summary>
         /// <param name="inModel">The <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityModel"/> was found; <c>false</c> otherwise.</returns>
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Determines whether the <see cref="EntityCollection{T}"/> contains an <see cref="EntityModel"/> with the specified <see cref="EntityID"/>.
+        /// Determines whether the <see cref="ModelCollection{T}"/> contains an <see cref="EntityModel"/> with the specified <see cref="EntityID"/>.
         /// </summary>
         /// <param name="inID">The <see cref="EntityID"/> of the <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
@@ -139,7 +139,7 @@ namespace ParquetClassLibrary
             => Models.Values.GetEnumerator();
 
         /// <summary>
-        /// Retrieves an enumerator for the <see cref="EntityCollection{T}"/>.
+        /// Retrieves an enumerator for the <see cref="ModelCollection{T}"/>.
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<EntityModel> GetEnumerator()
@@ -148,7 +148,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="EntityCollection{T}"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{T}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -168,25 +168,25 @@ namespace ParquetClassLibrary
     /// Provides bounds-checking and type-checking against <see cref="EntityModel"/>.
     /// </summary>
     /// <remarks>
-    /// All <see cref="EntityCollection"/>s implicitly contain <see cref="EntityID.None"/>.
+    /// All <see cref="ModelCollection"/>s implicitly contain <see cref="EntityID.None"/>.
     /// 
     /// This version supports collections that do not rely heavily on
     /// multiple incompatible subclasses of <see cref="EntityModel"/>.
     ///
     /// For more details, see remarks on <see cref="EntityModel"/>.
     /// </remarks>
-    public class EntityCollection : EntityCollection<EntityModel>
+    public class ModelCollection : ModelCollection<EntityModel>
     {
-        /// <summary>A value to use in place of uninitialized <see cref="EntityCollection{T}"/>s.</summary>
-        public static new readonly EntityCollection Default =
-            new EntityCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<EntityModel>());
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
+        public static new readonly ModelCollection Default =
+            new ModelCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<EntityModel>());
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityCollection"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public EntityCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels)
             : base(new List<Range<EntityID>> { inBounds }, inModels) { }
 
         /// <summary>

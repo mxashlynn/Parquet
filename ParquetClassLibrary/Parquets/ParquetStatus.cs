@@ -7,19 +7,19 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class ParquetStatus
     {
-        /// <summary>The <see cref="Block"/>'s native toughness.</summary>
+        /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
 
-        /// <summary>The <see cref="Block"/>'s current toughness.</summary>
+        /// <summary>The <see cref="BlockModel"/>'s current toughness.</summary>
         private int toughness;
 
         /// <summary>
-        /// The <see cref="Block"/>'s current toughness, from <see cref="Block.LowestPossibleToughness"/> to <see cref="Block.MaxToughness"/>.
+        /// The <see cref="BlockModel"/>'s current toughness, from <see cref="BlockModel.LowestPossibleToughness"/> to <see cref="BlockModel.MaxToughness"/>.
         /// </summary>
         public int Toughness
         {
             get => toughness;
-            set => toughness = value.Normalize(Block.LowestPossibleToughness, maxToughness);
+            set => toughness = value.Normalize(BlockModel.LowestPossibleToughness, maxToughness);
         }
 
         /// <summary>If the floor has been dug out.</summary>
@@ -29,10 +29,10 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
         /// </summary>
-        /// <param name="inIsTrench">Whether or not the <see cref="Floor"/> associated with this status has been dug out.</param>
-        /// <param name="inToughness">The toughness of the <see cref="Block"/> associated with this status.</param>
-        /// <param name="inMaxToughness">The native toughness of the <see cref="Block"/> associated with this status.</param>
-        public ParquetStatus(bool inIsTrench = false, int? inToughness = null, int inMaxToughness = Block.DefaultMaxToughness)
+        /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
+        /// <param name="inToughness">The toughness of the <see cref="BlockModel"/> associated with this status.</param>
+        /// <param name="inMaxToughness">The native toughness of the <see cref="BlockModel"/> associated with this status.</param>
+        public ParquetStatus(bool inIsTrench = false, int? inToughness = null, int inMaxToughness = BlockModel.DefaultMaxToughness)
         {
             IsTrench = inIsTrench;
             Toughness = inToughness ?? inMaxToughness;

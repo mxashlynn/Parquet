@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definitions shared by in-game actors that take part in the narrative.
     /// </summary>
-    public abstract class Character : Being
+    public abstract class Character : BeingModel
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Beings
         /// </remarks>
         public string StoryCharacterID { get; }
 
-        /// <summary>The <see cref="Quests.Quest"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
+        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
         /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inFamilyName">Family name of the <see cref="Character"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="Character"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="Character"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.Biome"/> in which this <see cref="Being"/> is most comfortable.</param>
+        /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.BiomeModel"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="Character"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="Character"/> seeks.</param>

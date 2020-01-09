@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Serialization.Shims
     /// </summary>
     public class CraftingRecipeShim : EntityShim
     {
-        /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
+        /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products;
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>

@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet block.
     /// </summary>
-    public sealed class Block : ParquetParent
+    public sealed class BlockModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>Minimum toughness value for any Block.</summary>
@@ -42,21 +42,21 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="Block"/> class.
+        /// Initializes a new instance of the <see cref="BlockModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
         /// <param name="inItemID">The item that this collectible corresponds to, if any.</param>
-        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
         /// <param name="inGatherTool">The tool used to gather this block.</param>
         /// <param name="inGatherEffect">Effect of this block when gathered.</param>
         /// <param name="inCollectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>
         /// <param name="inIsFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
-        public Block(EntityID inID, string inName, string inDescription, string inComment,
+        public BlockModel(EntityID inID, string inName, string inDescription, string inComment,
                      EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                      EntityTag inAddsToRoom = null,
                      GatheringTool inGatherTool = GatheringTool.None,

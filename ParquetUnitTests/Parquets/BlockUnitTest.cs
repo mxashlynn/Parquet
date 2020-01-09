@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidBlockIDsArePermittedTest()
         {
-            var testBlock = new Block(newBlockID, "will be created", "", "");
+            var testBlock = new BlockModel(newBlockID, "will be created", "", "");
 
             Assert.NotNull(testBlock);
         }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Block(badBlockID, "will fail", "", "");
+                var _ = new BlockModel(badBlockID, "will fail", "", "");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Parquets
         {
             EntityID goodItemID = -All.ItemIDs.Minimum;
 
-            var testBlock = new Block(newBlockID, "will be created", "", "", goodItemID);
+            var testBlock = new BlockModel(newBlockID, "will be created", "", "", goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Block(newBlockID, "will fail", "", "", badItemID);
+                var _ = new BlockModel(newBlockID, "will fail", "", "", badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -61,7 +61,7 @@ namespace ParquetUnitTests.Parquets
         {
             var goodCollectibleID = TestModels.TestCollectible.ID;
 
-            var testBlock = new Block(newBlockID, "will be created", "", "", inCollectibleID: goodCollectibleID);
+            var testBlock = new BlockModel(newBlockID, "will be created", "", "", inCollectibleID: goodCollectibleID);
 
             Assert.NotNull(testBlock);
         }
@@ -73,7 +73,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Block(newBlockID, "will fail", "", "", inCollectibleID: badCollectibleID);
+                var _ = new BlockModel(newBlockID, "will fail", "", "", inCollectibleID: badCollectibleID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

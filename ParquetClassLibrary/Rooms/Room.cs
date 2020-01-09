@@ -12,27 +12,27 @@ namespace ParquetClassLibrary.Rooms
     public class Room : IEquatable<Room>
     {
         /// <summary>
-        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
         public MapSpaceCollection WalkableArea { get; }
 
         /// <summary>
-        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="BlockModel"/>s and <see cref="FurnishingModel"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
         public MapSpaceCollection Perimeter { get; }
 
         /// <summary>
-        /// The <see cref="EntityID"/>s for every <see cref="Furnishing"/> found in this <see cref="Room"/>
+        /// The <see cref="EntityID"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
         public IEnumerable<EntityTag> FurnishingTags
             => WalkableArea
                .Concat(Perimeter)
                .Where(space => EntityID.None != space.Content.Furnishing
-                            && EntityTag.None != All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom)
-               .Select(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing).AddsToRoom);
+                            && EntityTag.None != All.Parquets.Get<FurnishingModel>(space.Content.Furnishing).AddsToRoom)
+               .Select(space => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing).AddsToRoom);
 
         /// <summary>
         /// A location with the least X and Y coordinates of every <see cref="MapSpace"/> in this <see cref="Room"/>.
@@ -53,11 +53,11 @@ namespace ParquetClassLibrary.Rooms
         /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
         /// <param name="inWalkableArea">
-        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.Being"/>
+        /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.
         /// </param>
         /// <param name="inPerimeter">
-        /// The <see cref="MapSpace"/>s whose <see cref="Block"/>s and <see cref="Furnishing"/>s
+        /// The <see cref="MapSpace"/>s whose <see cref="BlockModel"/>s and <see cref="FurnishingModel"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
         public Room(MapSpaceCollection inWalkableArea, MapSpaceCollection inPerimeter)
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Rooms
             }
 
             if (!inWalkableArea.Concat(inPerimeter).Any(space
-                => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false))
+                => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(inWalkableArea)} or {nameof(inPerimeter)}.");
             }

@@ -7,13 +7,13 @@ namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="Quest"/>-like class that CSVHelper can instantiate.
+    /// <see cref="QuestModel"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="Quest"/> from this class.
+    /// Provides the ability to generate a <see cref="QuestModel"/> from this class.
     /// </summary>
     public class QuestShim : EntityShim
     {
-        /// <summary>Describes the criteria for completing this <see cref="Quest"/>.</summary>
+        /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
         public List<EntityTag> CompletionRequirements;
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override T ToEntity<T>()
         {
-            Precondition.IsOfType<T, Quest>(typeof(T).ToString());
+            Precondition.IsOfType<T, QuestModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new Quest(ID, Name, Description, Comment, CompletionRequirements);
+            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements);
         }
     }
 }

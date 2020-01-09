@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    public sealed class Collectible : ParquetParent
+    public sealed class CollectibleModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -26,20 +26,20 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="Collectible"/> class.
+        /// Initializes a new instance of the <see cref="CollectibleModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="Collectible"/> corresponds to, if any.</param>
-        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="Biome"/> this parquet helps to generate.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Item"/> that this <see cref="CollectibleModel"/> corresponds to, if any.</param>
+        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
         /// <param name="inEffect">Effect of this collectible.</param>
         /// <param name="inEffectAmount">
         /// The scale in points of the effect.
         /// For example, how much to alter a stat if inEffect is set to alter a stat.
         /// </param>
-        public Collectible(EntityID inID, string inName, string inDescription, string inComment,
+        public CollectibleModel(EntityID inID, string inName, string inDescription, string inComment,
                            EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                            EntityTag inAddsToRoom = null, CollectEffect inEffect = CollectEffect.None,
                            int inEffectAmount = 0)

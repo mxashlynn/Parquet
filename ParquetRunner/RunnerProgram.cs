@@ -28,24 +28,24 @@ namespace ParquetRunner
         {
             #region Deserialize from CSV
             #region Local Variables
-            /// <summary>All <see cref="Being"/>s defined in the CSV files.</summary>
-            var Beings = new HashSet<Being>();
-            /// <summary>All <see cref="Biome"/>s defined in the CSV files.</summary>
-            var Biomes = new HashSet<Biome>();
+            /// <summary>All <see cref="BeingModel"/>s defined in the CSV files.</summary>
+            var Beings = new HashSet<BeingModel>();
+            /// <summary>All <see cref="BiomeModel"/>s defined in the CSV files.</summary>
+            var Biomes = new HashSet<BiomeModel>();
             /// <summary>All <see cref="CraftingRecipe"/>s defined in the CSV files.</summary>
             var CraftingRecipes = new HashSet<CraftingRecipe>();
-            /// <summary>All <see cref="Dialogue"/>s defined in the CSV files.</summary>
-            var Dialogues = new HashSet<Dialogue>();
-            /// <summary>All <see cref="MapParent"/>s defined in the CSV files.</summary>
-            var Maps = new HashSet<MapParent>();
+            /// <summary>All <see cref="DialogueModel"/>s defined in the CSV files.</summary>
+            var Dialogues = new HashSet<DialogueModel>();
+            /// <summary>All <see cref="MapModel"/>s defined in the CSV files.</summary>
+            var Maps = new HashSet<MapModel>();
             /// <summary>All parquets defined in the CSV files.</summary>
-            var Parquets = new HashSet<ParquetParent>();
-            /// <summary>All <see cref="Quest"/>s defined in the CSV files.</summary>
-            var Quests = new HashSet<Quest>();
+            var Parquets = new HashSet<ParquetModel>();
+            /// <summary>All <see cref="QuestModel"/>s defined in the CSV files.</summary>
+            var Quests = new HashSet<QuestModel>();
             /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
             var RoomRecipes = new HashSet<RoomRecipe>();
-            /// <summary>All <see cref="Item"/>s defined in the CSV files.</summary>
-            var Items = new HashSet<Item>();
+            /// <summary>All <see cref="ItemModel"/>s defined in the CSV files.</summary>
+            var Items = new HashSet<ItemModel>();
             #endregion
 
             // Set the working directory depending on build.
@@ -59,18 +59,18 @@ namespace ParquetRunner
             // NOTE Player Characters are not designed in CSVs but at run-time in-game.
             Beings.UnionWith(Serializer.GetRecordsForType<Critter>() ?? Enumerable.Empty<Critter>());
             Beings.UnionWith(Serializer.GetRecordsForType<NPC>() ?? Enumerable.Empty<NPC>());
-            Biomes.UnionWith(Serializer.GetRecordsForType<Biome>() ?? Enumerable.Empty<Biome>());
+            Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>() ?? Enumerable.Empty<BiomeModel>());
             CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
-            Dialogues.UnionWith(Serializer.GetRecordsForType<Dialogue>() ?? Enumerable.Empty<Dialogue>());
+            Dialogues.UnionWith(Serializer.GetRecordsForType<DialogueModel>() ?? Enumerable.Empty<DialogueModel>());
             Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
             Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<Floor>() ?? Enumerable.Empty<Floor>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<Block>() ?? Enumerable.Empty<Block>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<Furnishing>() ?? Enumerable.Empty<Furnishing>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<Collectible>() ?? Enumerable.Empty<Collectible>());
-            Quests.UnionWith(Serializer.GetRecordsForType<Quest>() ?? Enumerable.Empty<Quest>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>() ?? Enumerable.Empty<FloorModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>() ?? Enumerable.Empty<BlockModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>() ?? Enumerable.Empty<FurnishingModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>() ?? Enumerable.Empty<CollectibleModel>());
+            Quests.UnionWith(Serializer.GetRecordsForType<QuestModel>() ?? Enumerable.Empty<QuestModel>());
             RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
-            Items.UnionWith(Serializer.GetRecordsForType<Item>() ?? Enumerable.Empty<Item>());
+            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>() ?? Enumerable.Empty<ItemModel>());
             #endregion
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Dialogues, Maps, Parquets, Quests, RoomRecipes, Items);

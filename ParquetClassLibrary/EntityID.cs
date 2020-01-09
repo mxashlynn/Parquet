@@ -24,7 +24,7 @@ namespace ParquetClassLibrary
     /// without filling RAM with numerous duplicate EntityModels.<para />
     /// <para />
     /// There are multiple <see cref="EntityModel"/> subtypes
-    /// (<see cref="Parquets.ParquetParent"/>, <see cref="Beings.Being"/>,
+    /// (<see cref="Parquets.ParquetModel"/>, <see cref="Beings.BeingModel"/>,
     /// etc.), and each of these subtypes has multiple definitions.
     /// The definitions are purely data-driven, read in from CSV or
     /// other files, and not type-checked by the compiler.<para />

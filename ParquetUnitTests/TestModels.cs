@@ -35,13 +35,13 @@ namespace ParquetUnitTests
         public static NPC TestNPC { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Biome TestBiome { get; }
+        public static BiomeModel TestBiome { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static CraftingRecipe TestCraftingRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Dialogue TestDialogue { get; }
+        public static DialogueModel TestDialogue { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static MapChunk TestMapChunk { get; }
@@ -50,55 +50,55 @@ namespace ParquetUnitTests
         public static MapRegion TestMapRegion { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Floor TestFloor { get; }
+        public static FloorModel TestFloor { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Block TestBlock { get; }
+        public static BlockModel TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Block TestLiquid { get; }
+        public static BlockModel TestLiquid { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Furnishing TestFurnishing { get; }
+        public static FurnishingModel TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Collectible TestCollectible { get; }
+        public static CollectibleModel TestCollectible { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Quest TestQuest { get; }
+        public static QuestModel TestQuest { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Item TestItem { get; }
+        public static ItemModel TestItem { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<Being> Beings { get; }
+        public static List<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<Biome> Biomes { get; }
+        public static List<BiomeModel> Biomes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<Dialogue> Dialogues { get; }
+        public static List<DialogueModel> Dialogues { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<MapParent> Maps { get; }
+        public static List<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ParquetParent> Parquets { get; }
+        public static List<ParquetModel> Parquets { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<Quest> Quests { get; }
+        public static List<QuestModel> Quests { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<RoomRecipe> RoomRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<Item> Items { get; }
+        public static List<ItemModel> Items { get; }
         #endregion
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace ParquetUnitTests
                                       All.BiomeIDs.Minimum, Behavior.Still);
             TestNPC = new NPC(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
                               All.BiomeIDs.Minimum, Behavior.Still);
-            TestBiome = new Biome(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
+            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe",
                                                     "Test", "Test",
@@ -121,22 +121,22 @@ namespace ParquetUnitTests
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
             // TODO Update this once Dialogue is implemented.
-            TestDialogue = new Dialogue(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test");
+            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test");
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
-            TestFloor = new Floor(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
-            TestBlock = new Block(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
-            TestLiquid = new Block(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
-            TestFurnishing = new Furnishing(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
+            TestFloor = new FloorModel(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
+            TestBlock = new BlockModel(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
+            TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
+            TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
                                             inIsEntry: true, inAddsToRoom: TestTag);
-            TestCollectible = new Collectible(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
+            TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
                                               inAddsToRoom: TestTag);
             // TODO Update this once Quests are implemented.
-            TestQuest = new Quest(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList);
+            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
-            TestItem = new Item(-All.ItemIDs.Minimum, "11 Test Item", "Test", "Test", ItemType.Other,
+            TestItem = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item", "Test", "Test", ItemType.Other,
                                 1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
 
             #region Initialize TestMapChunk
@@ -161,15 +161,15 @@ namespace ParquetUnitTests
             #endregion
 
             #region Initialize All
-            Beings = new List<Being> { TestCritter, TestNPC, TestPlayer };
-            Biomes = new List<Biome> { TestBiome };
+            Beings = new List<BeingModel> { TestCritter, TestNPC, TestPlayer };
+            Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
-            Dialogues = new List<Dialogue> { TestDialogue };
-            Maps = new List<MapParent> { TestMapChunk, TestMapRegion };
-            Parquets = new List<ParquetParent> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
-            Quests = new List<Quest> { TestQuest };
+            Dialogues = new List<DialogueModel> { TestDialogue };
+            Maps = new List<MapModel> { TestMapChunk, TestMapRegion };
+            Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
+            Quests = new List<QuestModel> { TestQuest };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
-            Items = new List<Item> { TestItem };
+            Items = new List<ItemModel> { TestItem };
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Dialogues, Maps, Parquets, Quests, RoomRecipes, Items);
             #endregion

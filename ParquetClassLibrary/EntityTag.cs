@@ -5,7 +5,7 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Identifies functional characteristics of <see cref="EntityModel"/>s,
     /// such as their role in <see cref="Crafting.CraftingRecipe"/>s or
-    /// <see cref="Biomes.Biome"/>s.
+    /// <see cref="Biomes.BiomeModel"/>s.
     /// </summary>
     /// <remarks>
     /// The intent is that definitional narrative and mechanical features

@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 inConfiguration.RegisterClassMap<CritterClassMap>();
             }
-            else if (typeof(T) == typeof(Biome))
+            else if (typeof(T) == typeof(BiomeModel))
             {
                 inConfiguration.RegisterClassMap<BiomeClassMap>();
             }
@@ -52,7 +52,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 inConfiguration.RegisterClassMap<CraftingRecipeClassMap>();
             }
-            else if (typeof(T) == typeof(Dialogue))
+            else if (typeof(T) == typeof(DialogueModel))
             {
                 inConfiguration.RegisterClassMap<DialogueClassMap>();
             }
@@ -64,23 +64,23 @@ namespace ParquetClassLibrary.Serialization
             {
                 inConfiguration.RegisterClassMap<MapRegionClassMap>();
             }
-            else if (typeof(T) == typeof(Floor))
+            else if (typeof(T) == typeof(FloorModel))
             {
                 inConfiguration.RegisterClassMap<FloorClassMap>();
             }
-            else if (typeof(T) == typeof(Block))
+            else if (typeof(T) == typeof(BlockModel))
             {
                 inConfiguration.RegisterClassMap<BlockClassMap>();
             }
-            else if (typeof(T) == typeof(Furnishing))
+            else if (typeof(T) == typeof(FurnishingModel))
             {
                 inConfiguration.RegisterClassMap<FurnishingClassMap>();
             }
-            else if (typeof(T) == typeof(Collectible))
+            else if (typeof(T) == typeof(CollectibleModel))
             {
                 inConfiguration.RegisterClassMap<CollectibleClassMap>();
             }
-            else if (typeof(T) == typeof(Quest))
+            else if (typeof(T) == typeof(QuestModel))
             {
                 inConfiguration.RegisterClassMap<QuestClassMap>();
             }
@@ -88,7 +88,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 inConfiguration.RegisterClassMap<RoomRecipeClassMap>();
             }
-            else if (typeof(T) == typeof(Item))
+            else if (typeof(T) == typeof(ItemModel))
             {
                 inConfiguration.RegisterClassMap<ItemClassMap>();
             }

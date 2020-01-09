@@ -38,7 +38,7 @@ namespace ParquetClassLibrary
     public readonly struct AssemblyInfo
     {
         /// <summary>
-        /// Describes the version of the serialized <see cref="Maps.MapParent"/>
+        /// Describes the version of the serialized <see cref="Maps.MapModel"/>
         /// data that the class library understands.<para/>
         /// </summary>
         /// <remarks>

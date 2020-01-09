@@ -5,10 +5,10 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
-    /// Provides a default public parameterless constructor for a <see cref="Furnishing"/>-like
+    /// Provides a default public parameterless constructor for a <see cref="FurnishingModel"/>-like
     /// class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="Furnishing"/> from this class.
+    /// Provides the ability to generate a <see cref="FurnishingModel"/> from this class.
     /// </summary>
     public class FurnishingShim : ParquetParentShim
     {
@@ -28,12 +28,12 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="ParquetParent"/>.</returns>
+        /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
         public override T ToEntity<T>()
         {
-            Precondition.IsOfType<T, Furnishing>(typeof(T).ToString());
+            Precondition.IsOfType<T, FurnishingModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new Furnishing(ID, Name, Description, Comment, ItemID, AddsToBiome,
+            return (T)(EntityModel)new FurnishingModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
                                                   AddsToBiome, IsWalkable, IsEntry, IsEnclosing, SwapID);
         }
     }

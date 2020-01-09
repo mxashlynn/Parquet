@@ -15,13 +15,13 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         public int MinimumWalkableSpaces;
 
-        /// <summary>An optional list of <see cref="Parquets.Floor"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public List<RecipeElement> RequiredFloors;
 
-        /// <summary>An optional list of <see cref="Parquets.Block"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
+        /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         public List<RecipeElement> RequiredPerimeterBlocks;
 
-        /// <summary>A list of <see cref="Parquets.Furnishing"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public List<RecipeElement> RequiredFurnishings;
 
         /// <summary>

@@ -15,9 +15,9 @@ namespace ParquetClassLibrary
     /// analogous to a C# <see langword="class"/>.<para />
     /// <para />
     /// Individual game objects are represented and referenced as instances of <see cref="EntityID"/>
-    /// within <see cref="EntityCollection{T}"/>s in other classes.  Like a class instance,
+    /// within <see cref="ModelCollection{T}"/>s in other classes.  Like a class instance,
     /// the EntityModel for a given EntityID is looked up from a singular definition,
-    /// in this case via <see cref="EntityCollection{T}.Get{T}(EntityID)"/>.<para />
+    /// in this case via <see cref="ModelCollection{T}.Get{T}(EntityID)"/>.<para />
     /// <para />
     /// Collections of the definitions used during play are contained in <see cref="All"/>.<para />
     /// <para />

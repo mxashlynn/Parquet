@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapParent : EntityModel
+    public abstract class MapModel : EntityModel
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
@@ -35,8 +35,8 @@ namespace ParquetClassLibrary.Maps
         protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
-        /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
-        /// and <see cref="Collectible"/> that makes up this part of the game world.
+        /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
+        /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
         protected abstract ParquetStackGrid ParquetDefintion { get; }
 
@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="MapParent"/> class.
+        /// Used by children of the <see cref="MapModel"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived map type's EntityID is defined.</param>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        protected MapParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment, int inRevision)
+        protected MapModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment, int inRevision)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Revision = inRevision;
@@ -63,7 +63,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Parquets Replacement
         /// <summary>
-        /// Attempts to update the <see cref="Floor"/> parquet at the given position.
+        /// Attempts to update the <see cref="FloorModel"/> parquet at the given position.
         /// </summary>
         /// <param name="inFloorID">ID for the new floor to set.</param>
         /// <param name="inPosition">The position to set.</param>
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Maps
             => TrySetParquetDefinition(inFloorID, null, null, null, inPosition);
 
         /// <summary>
-        /// Attempts to update the <see cref="Block"/> at the given position.
+        /// Attempts to update the <see cref="BlockModel"/> at the given position.
         /// </summary>
         /// <param name="inBlockID">ID for the new block to set.</param>
         /// <param name="inPosition">The position to set.</param>
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Maps
             => TrySetParquetDefinition(null, inBlockID, null, null, inPosition);
 
         /// <summary>
-        /// Attempts to update the <see cref="Furnishing"/> at the given position.
+        /// Attempts to update the <see cref="FurnishingModel"/> at the given position.
         /// </summary>
         /// <param name="inFurnishingID">ID for the new furnishing to set.</param>
         /// <param name="inPosition">The position to set.</param>
@@ -90,7 +90,7 @@ namespace ParquetClassLibrary.Maps
             => TrySetParquetDefinition(null, null, inFurnishingID, null, inPosition);
 
         /// <summary>
-        /// Attempts to update the <see cref="Collectible"/> at the given position.
+        /// Attempts to update the <see cref="CollectibleModel"/> at the given position.
         /// </summary>
         /// <param name="inCollectibleID">ID for the new collectible to set.</param>
         /// <param name="inPosition">The position to set.</param>

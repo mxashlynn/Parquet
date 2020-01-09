@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public sealed class Item : EntityModel
+    public sealed class ItemModel : EntityModel
     {
         /// <summary>The type of item this is.</summary>
         public ItemType Subtype { get; }
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         public EntityID AsParquet { get; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
         public IReadOnlyList<EntityTag> ItemTags { get; }
 
         /// <summary>How this item is crafted.</summary>
@@ -39,22 +39,22 @@ namespace ParquetClassLibrary.Items
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="ItemModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="Item"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="Item"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="Item"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="Item"/>.</param>
-        /// <param name="inSubtype">The type of <see cref="Item"/>.</param>
-        /// <param name="inPrice"><see cref="Item"/> cost.</param>
-        /// <param name="inRarity"><see cref="Item"/> rarity.</param>
+        /// <param name="inID">Unique identifier for the <see cref="ItemModel"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="ItemModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="ItemModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="ItemModel"/>.</param>
+        /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
+        /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
+        /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
         /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
-        /// <param name="inEffectWhileHeld"><see cref="Item"/>'s passive effect.</param>
-        /// <param name="inEffectWhenUsed"><see cref="Item"/>'s active effect.</param>
+        /// <param name="inEffectWhileHeld"><see cref="ItemModel"/>'s passive effect.</param>
+        /// <param name="inEffectWhenUsed"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inAsParquet">The parquet represented, if any.</param>
-        /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.Biome"/>.</param>
-        /// <param name="inRecipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="Item"/>.</param>
-        public Item(EntityID inID, string inName, string inDescription, string inComment,
+        /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</param>
+        /// <param name="inRecipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
+        public ItemModel(EntityID inID, string inName, string inDescription, string inComment,
                     ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
                     int inEffectWhileHeld, int inEffectWhenUsed, EntityID inAsParquet,
                     List<EntityTag> inItemTags = null, EntityID? inRecipeID = null)

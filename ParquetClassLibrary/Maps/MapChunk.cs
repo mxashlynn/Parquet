@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a playable chunk in sandbox.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
-    public sealed class MapChunk : MapParent
+    public sealed class MapChunk : MapModel
     {
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "");
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="MapParent"/> class.
+        /// Used by children of the <see cref="MapModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>

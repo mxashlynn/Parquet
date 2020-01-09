@@ -17,7 +17,7 @@ namespace ParquetUnitTests.Parquets
 
             testStatus.Toughness = int.MinValue;
 
-            Assert.Equal(Block.LowestPossibleToughness, testStatus.Toughness);
+            Assert.Equal(BlockModel.LowestPossibleToughness, testStatus.Toughness);
         }
 
         [Fact]

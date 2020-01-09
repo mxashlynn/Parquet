@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 shims = inCSV.GetRecords<CritterShim>();
             }
-            else if (typeof(T) == typeof(Biome))
+            else if (typeof(T) == typeof(BiomeModel))
             {
                 shims = inCSV.GetRecords<BiomeShim>();
             }
@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 shims = inCSV.GetRecords<CraftingRecipeShim>();
             }
-            else if (typeof(T) == typeof(Dialogue))
+            else if (typeof(T) == typeof(DialogueModel))
             {
                 shims = inCSV.GetRecords<DialogueShim>();
             }
@@ -69,23 +69,23 @@ namespace ParquetClassLibrary.Serialization
             {
                 shims = inCSV.GetRecords<MapRegionShim>();
             }
-            else if (typeof(T) == typeof(Floor))
+            else if (typeof(T) == typeof(FloorModel))
             {
                 shims = inCSV.GetRecords<FloorShim>();
             }
-            else if (typeof(T) == typeof(Block))
+            else if (typeof(T) == typeof(BlockModel))
             {
                 shims = inCSV.GetRecords<BlockShim>();
             }
-            else if (typeof(T) == typeof(Furnishing))
+            else if (typeof(T) == typeof(FurnishingModel))
             {
                 shims = inCSV.GetRecords<FurnishingShim>();
             }
-            else if (typeof(T) == typeof(Collectible))
+            else if (typeof(T) == typeof(CollectibleModel))
             {
                 shims = inCSV.GetRecords<CollectibleShim>();
             }
-            else if (typeof(T) == typeof(Quest))
+            else if (typeof(T) == typeof(QuestModel))
             {
                 shims = inCSV.GetRecords<QuestShim>();
             }
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Serialization
             {
                 shims = inCSV.GetRecords<RoomRecipeShim>();
             }
-            else if (typeof(T) == typeof(Item))
+            else if (typeof(T) == typeof(ItemModel))
             {
                 shims = inCSV.GetRecords<ItemShim>();
             }

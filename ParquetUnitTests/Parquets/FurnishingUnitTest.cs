@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidCollectibleIDsArePermittedTest()
         {
-            var testFurnishing = new Furnishing(newFurnishingID, "will be created", "", "");
+            var testFurnishing = new FurnishingModel(newFurnishingID, "will be created", "", "");
 
             Assert.NotNull(testFurnishing);
         }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Furnishing(badFurnishingID, "will fail", "", "");
+                var _ = new FurnishingModel(badFurnishingID, "will fail", "", "");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Parquets
         {
             EntityID goodItemID = -All.ItemIDs.Minimum;
 
-            var testBlock = new Furnishing(newFurnishingID, "will be created", "", "", goodItemID);
+            var testBlock = new FurnishingModel(newFurnishingID, "will be created", "", "", goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Furnishing(newFurnishingID, "will fail", "", "", badItemID);
+                var _ = new FurnishingModel(newFurnishingID, "will fail", "", "", badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -61,7 +61,7 @@ namespace ParquetUnitTests.Parquets
         {
             var goodSwapID = newFurnishingID - 1;
 
-            var testBlock = new Furnishing(newFurnishingID, "will be created", "", "", inSwapID: goodSwapID);
+            var testBlock = new FurnishingModel(newFurnishingID, "will be created", "", "", inSwapID: goodSwapID);
 
             Assert.NotNull(testBlock);
         }
@@ -73,7 +73,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new Furnishing(newFurnishingID, "will fail", "", "", inSwapID: badSwapID);
+                var _ = new FurnishingModel(newFurnishingID, "will fail", "", "", inSwapID: badSwapID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

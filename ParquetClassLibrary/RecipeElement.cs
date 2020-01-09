@@ -25,10 +25,10 @@ namespace ParquetClassLibrary
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(EntityTag.None, 1);
 
-        /// <summary>An <see cref="EntityTag"/> describing the <see cref="Item"/>.</summary>
+        /// <summary>An <see cref="EntityTag"/> describing the <see cref="ItemModel"/>.</summary>
         public EntityTag ElementTag { get; }
 
-        /// <summary>The number of <see cref="Item"/>s.</summary>
+        /// <summary>The number of <see cref="ItemModel"/>s.</summary>
         public int ElementAmount { get; }
 
         #region Initialization

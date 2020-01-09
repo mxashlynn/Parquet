@@ -14,14 +14,14 @@ namespace ParquetClassLibrary.Crafting
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
             new List<RecipeElement> { RecipeElement.None };
 
-        /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.Item"/>s.</summary>
+        /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
         public static CraftingRecipe NotCraftable { get; } =
             new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
                                EmptyCraftingElementList, EmptyCraftingElementList,
                                new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                    Rules.Dimensions.PanelsPerPatternWidth));
 
-        /// <summary>The types and amounts of <see cref="Items.Item"/>s created by following this recipe.</summary>
+        /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Crafting
         /// <param name="inName">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
-        /// <param name="inProducts">The types and quantities of <see cref="Items.Item"/>s created by following this recipe once.</param>
+        /// <param name="inProducts">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">

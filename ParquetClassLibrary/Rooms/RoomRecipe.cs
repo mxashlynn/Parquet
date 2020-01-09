@@ -15,13 +15,13 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         public int MinimumWalkableSpaces { get; }
 
-        /// <summary>An optional list of <see cref="Parquets.Floor"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public IReadOnlyList<RecipeElement> RequiredFloors { get; }
 
-        /// <summary>An optional list of <see cref="Parquets.Block"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
+        /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks { get; }
 
-        /// <summary>A list of <see cref="Parquets.Furnishing"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public IReadOnlyList<RecipeElement> RequiredFurnishings { get; }
         #endregion
 
@@ -79,10 +79,10 @@ namespace ParquetClassLibrary.Rooms
             && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
             && RequiredPerimeterBlocks.All(element =>
                 inRoom.Perimeter.Count(space =>
-                    All.Parquets.Get<Block>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                    All.Parquets.Get<BlockModel>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
             && RequiredFloors.All(element =>
                 inRoom.WalkableArea.Count(space =>
-                    All.Parquets.Get<Floor>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                    All.Parquets.Get<FloorModel>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
             && RequiredFurnishings.All(element =>
                 inRoom.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);

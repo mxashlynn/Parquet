@@ -6,15 +6,15 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract class ParquetParent : EntityModel
+    public abstract class ParquetModel : EntityModel
     {
         /// <summary>
-        /// The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.
+        /// The <see cref="EntityID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
         public EntityID ItemID { get; }
 
         /// <summary>
-        /// Describes the <see cref="Biome"/>(s) that this parquet helps form.
+        /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         public EntityTag AddsToBiome { get; }
@@ -30,17 +30,17 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="ParquetParent"/> class.
+        /// Used by children of the <see cref="ParquetModel"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived parquet type's EntityID is defined.</param>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the parquet.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Items.Item"/> awarded to the player when a character gathers or collects this parquet.</param>
-        /// <param name="inAddsToBiome">Describes which, if any, <see cref="Biome"/>(s) this parquet helps form.</param>
+        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
+        /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeModel"/>(s) this parquet helps form.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
-        protected ParquetParent(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
+        protected ParquetModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
                                 string inComment, EntityID inItemID, EntityTag inAddsToBiome, EntityTag inAddsToRoom)
             : base(inBounds, inID, inName, inDescription, inComment)
         {

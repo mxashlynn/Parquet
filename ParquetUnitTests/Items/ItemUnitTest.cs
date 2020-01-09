@@ -11,14 +11,14 @@ namespace ParquetUnitTests
         /// <summary>Identifier used when creating a new block.</summary>
         private static readonly EntityID newItemID = TestModels.TestItem.ID - 1;
 
-        /// <summary>A valid number of <see cref="Item"/>s to stack.</summary>
+        /// <summary>A valid number of <see cref="ItemModel"/>s to stack.</summary>
         private const int goodStackMax = 99;
         #endregion
 
         [Fact]
         public void ValidCritterIDsArePermittedTest()
         {
-            var newItem = new Item(newItemID, "will be created", "", "", ItemType.Consumable,
+            var newItem = new ItemModel(newItemID, "will be created", "", "", ItemType.Consumable,
                                    1, 1, goodStackMax, 0, 0, TestModels.TestBlock.ID);
 
             Assert.NotNull(newItem);
@@ -31,7 +31,7 @@ namespace ParquetUnitTests
 
             void TestCode()
             {
-                var _ = new Item(badItemID, "will fail", "", "", ItemType.Consumable,
+                var _ = new ItemModel(badItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, goodStackMax, 0, 0, TestModels.TestBlock.ID);
             }
 
@@ -46,13 +46,13 @@ namespace ParquetUnitTests
 
             void TestCodeZero()
             {
-                var _ = new Item(newItemID, "will fail", "", "", ItemType.Consumable,
+                var _ = new ItemModel(newItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, badStackMaxZero, 0, 0, TestModels.TestBlock.ID);
             }
 
             void TestCodeNegativeOne()
             {
-                var _ = new Item(newItemID, "will fail", "", "", ItemType.Consumable,
+                var _ = new ItemModel(newItemID, "will fail", "", "", ItemType.Consumable,
                                  1, 1, badStackMaxNegativeOne, 0, 0, TestModels.TestBlock.ID);
             }
 

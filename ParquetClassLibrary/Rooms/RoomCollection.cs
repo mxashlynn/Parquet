@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Rooms
 
             var rooms = walkableAreas
                         .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
-                                            && walkableArea.Concat(perimeter).Any(space => All.Parquets.Get<Furnishing>(space.Content.Furnishing)?.IsEntry ?? false)
+                                            && walkableArea.Concat(perimeter).Any(space => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)
                                             && walkableArea.Any(space => space.IsWalkableEntry
                                                                       || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                         .Select(walkableArea => new Room(walkableArea, perimeter));

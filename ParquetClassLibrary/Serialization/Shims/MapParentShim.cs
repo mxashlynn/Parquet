@@ -22,8 +22,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         public ParquetStatusGrid ParquetStatuses;
 
         /// <summary>
-        /// Definitions for every <see cref="Floor"/>, <see cref="Block"/>, <see cref="Furnishing"/>,
-        /// and <see cref="Collectible"/> that makes up this part of the game world.
+        /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
+        /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
         public ParquetStackGrid ParquetDefintion;
     }

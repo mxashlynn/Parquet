@@ -22,7 +22,7 @@ namespace ParquetClassLibrary
     /// For more details, see remarks on <see cref="EntityModel"/>.
     /// </remarks>
     /// <seealso cref="EntityID"/>
-    /// <seealso cref="EntityCollection{T}"/>
+    /// <seealso cref="ModelCollection{T}"/>
     public static class All
     {
         #region EntityID Ranges
@@ -45,12 +45,12 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> NpcIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.Being"/>s.
+        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.BeingModel"/>s.
         /// </summary>
         public static readonly List<Range<EntityID>> BeingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Biome"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BiomeModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
         public static readonly Range<EntityID> BiomeIDs;
@@ -62,7 +62,7 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> CraftingRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Dialogue"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="DialogueModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<EntityID> DialogueIDs;
@@ -80,31 +80,31 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> MapRegionIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapParent"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly List<Range<EntityID>> MapIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Floor"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FloorModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> FloorIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Block"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BlockModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> BlockIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Furnishing"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FurnishingModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> FurnishingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Collectible"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CollectibleModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
         public static readonly Range<EntityID> CollectibleIDs;
@@ -115,7 +115,7 @@ namespace ParquetClassLibrary
         public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Quest"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="QuestModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> QuestIDs;
@@ -127,7 +127,7 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> RoomRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Item"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="ItemModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<EntityID> ItemIDs;
@@ -138,20 +138,20 @@ namespace ParquetClassLibrary
         public static bool CollectionsHaveBeenInitialized { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Being"/>s.
+        /// A collection of all defined <see cref="BeingModel"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Being> Beings { get; private set; }
+        public static ModelCollection<BeingModel> Beings { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Biome"/>s.
+        /// A collection of all defined <see cref="BiomeModel"/>s.
         /// This collection is the source of truth about biome for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Biome> Biomes { get; private set; }
+        public static ModelCollection<BiomeModel> Biomes { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="CraftingRecipe"/>s.
@@ -159,23 +159,23 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<CraftingRecipe> CraftingRecipes { get; private set; }
+        public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Dialogue"/>s.
+        /// A collection of all defined <see cref="DialogueModel"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Dialogue> Dialogues { get; private set; }
+        public static ModelCollection<DialogueModel> Dialogues { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="MapParent"/>s.
+        /// A collection of all defined <see cref="MapModel"/>s.
         /// This collection is the source of truth about biome for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<MapParent> Maps { get; private set; }
+        public static ModelCollection<MapModel> Maps { get; private set; }
 
         /// <summary>
         /// A collection of all defined parquets of all subtypes.
@@ -183,15 +183,15 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<ParquetParent> Parquets { get; private set; }
+        public static ModelCollection<ParquetModel> Parquets { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Quest"/>s.
+        /// A collection of all defined <see cref="QuestModel"/>s.
         /// This collection is the source of truth about quests for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Quest> Quests { get; private set; }
+        public static ModelCollection<QuestModel> Quests { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
@@ -199,20 +199,20 @@ namespace ParquetClassLibrary
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<RoomRecipe> RoomRecipes { get; private set; }
+        public static ModelCollection<RoomRecipe> RoomRecipes { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="Item"/>s.
+        /// A collection of all defined <see cref="ItemModel"/>s.
         /// This collection is the source of truth about items for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static EntityCollection<Item> Items { get; private set; }
+        public static ModelCollection<ItemModel> Items { get; private set; }
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes the <see cref="Range{T}"/>s and <see cref="EntityCollection{T}"/>s defined in <see cref="All"/>.
+        /// Initializes the <see cref="Range{T}"/>s and <see cref="ModelCollection{T}"/>s defined in <see cref="All"/>.
         /// </summary>
         /// <remarks>
         /// This supports defining ItemIDs in terms of the other Ranges.
@@ -224,15 +224,15 @@ namespace ParquetClassLibrary
         {
             #region Default Values for Enitity Collections
             CollectionsHaveBeenInitialized = false;
-            Beings = EntityCollection<Being>.Default;
-            Biomes = EntityCollection<Biome>.Default;
-            CraftingRecipes = EntityCollection<CraftingRecipe>.Default;
-            Dialogues = EntityCollection<Dialogue>.Default;
-            Maps = EntityCollection<MapParent>.Default;
-            Parquets = EntityCollection<ParquetParent>.Default;
-            Quests = EntityCollection<Quest>.Default;
-            RoomRecipes = EntityCollection<RoomRecipe>.Default;
-            Items = EntityCollection<Item>.Default;
+            Beings = ModelCollection<BeingModel>.Default;
+            Biomes = ModelCollection<BiomeModel>.Default;
+            CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
+            Dialogues = ModelCollection<DialogueModel>.Default;
+            Maps = ModelCollection<MapModel>.Default;
+            Parquets = ModelCollection<ParquetModel>.Default;
+            Quests = ModelCollection<QuestModel>.Default;
+            RoomRecipes = ModelCollection<RoomRecipe>.Default;
+            Items = ModelCollection<ItemModel>.Default;
             #endregion
 
             #region Initialize Ranges
@@ -305,7 +305,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Initializes the <see cref="EntityCollection{T}s"/> from the given collections.
+        /// Initializes the <see cref="ModelCollection{T}s"/> from the given collections.
         /// </summary>
         /// <param name="inBeings">All beings to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
@@ -318,15 +318,15 @@ namespace ParquetClassLibrary
         /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        public static void InitializeCollections(IEnumerable<Being> inBeings,
-                                                 IEnumerable<Biome> inBiomes,
+        public static void InitializeCollections(IEnumerable<BeingModel> inBeings,
+                                                 IEnumerable<BiomeModel> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
-                                                 IEnumerable<Dialogue> inDialogues,
-                                                 IEnumerable<MapParent> inMaps,
-                                                 IEnumerable<ParquetParent> inParquets,
-                                                 IEnumerable<Quest> inQuests,
+                                                 IEnumerable<DialogueModel> inDialogues,
+                                                 IEnumerable<MapModel> inMaps,
+                                                 IEnumerable<ParquetModel> inParquets,
+                                                 IEnumerable<QuestModel> inQuests,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<Item> inItems)
+                                                 IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
@@ -342,15 +342,15 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
-            Beings = new EntityCollection<Being>(BeingIDs, inBeings);
-            Biomes = new EntityCollection<Biome>(BiomeIDs, inBiomes);
-            CraftingRecipes = new EntityCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
-            Dialogues = new EntityCollection<Dialogue>(DialogueIDs, inDialogues);
-            Maps = new EntityCollection<MapParent>(MapIDs, inMaps);
-            Parquets = new EntityCollection<ParquetParent>(ParquetIDs, inParquets);
-            Quests = new EntityCollection<Quest>(QuestIDs, inQuests);
-            RoomRecipes = new EntityCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
-            Items = new EntityCollection<Item>(ItemIDs, inItems);
+            Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
+            Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
+            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
+            Dialogues = new ModelCollection<DialogueModel>(DialogueIDs, inDialogues);
+            Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
+            Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
+            Quests = new ModelCollection<QuestModel>(QuestIDs, inQuests);
+            RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
+            Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
             CollectionsHaveBeenInitialized = true;
         }
         #endregion
