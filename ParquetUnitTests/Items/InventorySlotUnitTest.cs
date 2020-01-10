@@ -29,7 +29,7 @@ namespace ParquetUnitTests
         {
             void TestCode()
             {
-                var _ = new InventorySlot(TestModels.TestItem.ID, None);
+                var _ = new InventorySlot(TestModels.TestItem1.ID, None);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
@@ -50,7 +50,7 @@ namespace ParquetUnitTests
         [Fact]
         public void CountMatchesItemsStoredTest()
         {
-            var slot = new InventorySlot(TestModels.TestItem.ID, Some);
+            var slot = new InventorySlot(TestModels.TestItem1.ID, Some);
 
             Assert.Equal(Some, slot.Count);
         }
@@ -58,23 +58,23 @@ namespace ParquetUnitTests
         [Fact]
         public void SlotAddTest()
         {
-            var slot = new InventorySlot(TestModels.TestItem.ID, One);
+            var slot = new InventorySlot(TestModels.TestItem1.ID, One);
             var remainder1 = 0;
             var remainder2 = One + Some;
 
             Assert.Equal(remainder1, slot.Give(Some));
-            Assert.Equal(remainder2, slot.Give(TestModels.TestItem.StackMax));
+            Assert.Equal(remainder2, slot.Give(TestModels.TestItem1.StackMax));
         }
 
         [Fact]
         public void SlotRemoveTest()
         {
-            var slot = new InventorySlot(TestModels.TestItem.ID, Some);
+            var slot = new InventorySlot(TestModels.TestItem1.ID, Some);
             var remainder1 = 0;
-            var remainder2 = TestModels.TestItem.StackMax - (Some - One);
+            var remainder2 = TestModels.TestItem1.StackMax - (Some - One);
 
             Assert.Equal(remainder1, slot.Take(One));
-            Assert.Equal(remainder2, slot.Take(TestModels.TestItem.StackMax));
+            Assert.Equal(remainder2, slot.Take(TestModels.TestItem1.StackMax));
         }
     }
 }

@@ -16,11 +16,11 @@ namespace ParquetClassLibrary.Items
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; }
 
-        /// <summary>How many inventory slots exits.</summary>
+        /// <summary>How many <see cref="InventorySlot"/>s exits.</summary>
         public int Capacity { get; }
 
-        /// <summary>How many inventory are currently occupied.</summary>
-        public int Count { get; }
+        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
+        public int Count { get => Slots.Count; }
 
         #region Initialization
         /// <summary>
@@ -178,7 +178,10 @@ namespace ParquetClassLibrary.Items
                         break;
                     }
                 }
-                remainder = slotToAddTo.Give(remainder);
+                else
+                {
+                    remainder = slotToAddTo.Give(remainder);
+                }
             }
 
             return remainder;

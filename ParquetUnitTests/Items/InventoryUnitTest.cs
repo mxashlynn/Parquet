@@ -24,12 +24,11 @@ namespace ParquetUnitTests
         public void NewInventoryContainsOneSlotsForEachItemTest()
         {
             var inventory = new Inventory(TestCapacity);
+            inventory.Give(TestModels.TestItem1.ID);
+            inventory.Give(TestModels.TestItem2.ID);
+            inventory.Give(TestModels.TestItem3.ID);
+            inventory.Give(TestModels.TestItem4.ID);
             var numberOfItemTypes = 4;
-            // TODO ERROR The IDs used here need to actually be in All.
-            for (var i = 0; i < numberOfItemTypes; i++)
-            {
-                inventory.Give(All.ItemIDs.Minimum + i);
-            }
 
             Assert.Equal(numberOfItemTypes, inventory.Count);
         }
@@ -39,29 +38,20 @@ namespace ParquetUnitTests
         {
             var inventory = new Inventory(TestCapacity);
             var numberOfItems = 6;
-            var numberOfItemTypes = 4;
-            // TODO ERROR The IDs used here need to actually be in All.
-            for (var i = 0; i < numberOfItemTypes; i++)
-            {
-                inventory.Give(All.ItemIDs.Minimum + i, numberOfItems);
-            }
+            inventory.Give(TestModels.TestItem1.ID, numberOfItems);
 
-            for (var i = 0; i < numberOfItemTypes; i++)
-            {
-                Assert.Equal(numberOfItems, inventory.Contains(All.ItemIDs.Minimum + i));
-            }
+            Assert.Equal(numberOfItems, inventory.Contains(TestModels.TestItem1.ID));
         }
 
         [Fact]
         public void InventoryHasGivenItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
-            // TODO ERROR The IDs used here need to actually be in All.
             var slots = new List<InventorySlot>
             {
-                new InventorySlot(All.ItemIDs.Minimum + 1,   4),
-                new InventorySlot(All.ItemIDs.Minimum + 10,  40),
-                new InventorySlot(All.ItemIDs.Minimum + 100, 400),
+                new InventorySlot(TestModels.TestItem2.ID,   4),
+                new InventorySlot(TestModels.TestItem3.ID,  40),
+                new InventorySlot(TestModels.TestItem4.ID, 400),
             };
             foreach (var slot in slots)
             {
@@ -75,19 +65,21 @@ namespace ParquetUnitTests
         public void InventoryReturnsCorrectRemainderAfterTakingItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
-            // TODO ERROR The IDs used here need to actually be in All.
             var slots = new List<InventorySlot>
             {
-                new InventorySlot(All.ItemIDs.Minimum + 1,   4),
-                new InventorySlot(All.ItemIDs.Minimum + 10,  40),
-                new InventorySlot(All.ItemIDs.Minimum + 100, 400),
+                new InventorySlot(TestModels.TestItem2.ID,   4),
+                new InventorySlot(TestModels.TestItem3.ID,  40),
+                new InventorySlot(TestModels.TestItem4.ID, 400),
             };
             var amountToTake = 10;
 
             foreach (var slot in slots)
             {
                 inventory.Give(slot);
-                Assert.Equal(Math.Abs(amountToTake - slot.Count), inventory.Take(slot.ItemID, amountToTake));
+                var expectedRemainder = slot.Count > amountToTake
+                    ? 0
+                    : amountToTake - slot.Count;
+                Assert.Equal(expectedRemainder, inventory.Take(slot.ItemID, amountToTake));
             }
         }
 
@@ -97,9 +89,9 @@ namespace ParquetUnitTests
             var inventory = new Inventory(TestCapacity);
             var slots = new List<InventorySlot>
             {
-                new InventorySlot(TestModels.TestItem.ID, 4),
-                new InventorySlot(TestModels.TestItem.ID, 40),
-                new InventorySlot(TestModels.TestItem.ID, 400),
+                new InventorySlot(TestModels.TestItem1.ID, 4),
+                new InventorySlot(TestModels.TestItem1.ID, 40),
+                new InventorySlot(TestModels.TestItem1.ID, 400),
             };
             var total = 444;
             foreach (var slot in slots)
@@ -107,15 +99,15 @@ namespace ParquetUnitTests
                 inventory.Give(slot);
             }
 
-            Assert.Equal(total, inventory.Contains(TestModels.TestItem.ID));
+            Assert.Equal(total, inventory.Contains(TestModels.TestItem1.ID));
         }
 
         [Fact]
         public void InventoryDoesNotContainItemsNotGivenTest()
         {
             var inventory = new Inventory(TestCapacity);
-            inventory.Give(TestModels.TestItem.ID, 4);
-            var notInInventoryID = TestModels.TestItem.ID + 10;
+            inventory.Give(TestModels.TestItem1.ID, 4);
+            var notInInventoryID = TestModels.TestItem1.ID + 10;
 
             Assert.Equal(0, inventory.Contains(notInInventoryID));
         }

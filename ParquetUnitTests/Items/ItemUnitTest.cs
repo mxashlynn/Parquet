@@ -9,7 +9,7 @@ namespace ParquetUnitTests
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newItemID = TestModels.TestItem.ID - 1;
+        private static readonly EntityID newItemID = TestModels.TestItem1.ID - 1;
 
         /// <summary>A valid number of <see cref="ItemModel"/>s to stack.</summary>
         private const int goodStackMax = 99;

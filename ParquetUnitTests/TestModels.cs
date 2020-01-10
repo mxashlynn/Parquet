@@ -71,7 +71,16 @@ namespace ParquetUnitTests
         public static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ItemModel TestItem { get; }
+        public static ItemModel TestItem1 { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static ItemModel TestItem2 { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static ItemModel TestItem3 { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<BeingModel> Beings { get; }
@@ -136,8 +145,14 @@ namespace ParquetUnitTests
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
-            TestItem = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item", "Test", "Test", ItemType.Other,
-                                1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
+            TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item 1", "Test", "Test", ItemType.Other,
+                                      1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
+            TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "11 Test Item 2", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 1);
+            TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "11 Test Item 3", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 2);
+            TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "11 Test Item 4", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 3);
 
             #region Initialize TestMapChunk
             for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
@@ -169,7 +184,7 @@ namespace ParquetUnitTests
             Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             Quests = new List<QuestModel> { TestQuest };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
-            Items = new List<ItemModel> { TestItem };
+            Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Dialogues, Maps, Parquets, Quests, RoomRecipes, Items);
             #endregion
