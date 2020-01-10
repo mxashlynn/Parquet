@@ -42,9 +42,9 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Increases the number of items stored by the given amount.
         /// </summary>
-        /// <param name="inHowMany">How many of the item to add.  Must be positive.</param>
+        /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
         /// <returns>The number of items still needing to be stored if this stack is full.</returns>
-        public int Add(int inHowMany = 1)
+        public int Give(int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
@@ -66,12 +66,12 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Decreases the number of items stored by the given amount.
         /// </summary>
-        /// <param name="inHowMany">How many of the item to remove.  Must be positive.</param>
+        /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
         /// <returns>
         /// The number of items still needing to be removed from another
         /// <see cref="InventorySlot"/> once this one is emptied.
         /// </returns>
-        public int Remove(int inHowMany = 1)
+        public int Take(int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 

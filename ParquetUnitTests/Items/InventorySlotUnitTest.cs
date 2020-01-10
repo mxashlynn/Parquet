@@ -62,8 +62,8 @@ namespace ParquetUnitTests
             var remainder1 = 0;
             var remainder2 = One + Some;
 
-            Assert.Equal(remainder1, slot.Add(Some));
-            Assert.Equal(remainder2, slot.Add(TestModels.TestItem.StackMax));
+            Assert.Equal(remainder1, slot.Give(Some));
+            Assert.Equal(remainder2, slot.Give(TestModels.TestItem.StackMax));
         }
 
         [Fact]
@@ -73,8 +73,8 @@ namespace ParquetUnitTests
             var remainder1 = 0;
             var remainder2 = TestModels.TestItem.StackMax - (Some - One);
 
-            Assert.Equal(remainder1, slot.Remove(One));
-            Assert.Equal(remainder2, slot.Remove(TestModels.TestItem.StackMax));
+            Assert.Equal(remainder1, slot.Take(One));
+            Assert.Equal(remainder2, slot.Take(TestModels.TestItem.StackMax));
         }
     }
 }
