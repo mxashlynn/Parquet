@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Dialogues
     /// </summary>
     public sealed class DialogueModel : EntityModel
     {
-        // TODO: This is a stub.
+        // TODO This is a stub.
         #region Characteristics
 
         #endregion
