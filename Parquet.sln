@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParquetUnitTests", "Parquet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParquetRunner", "ParquetRunner\ParquetRunner.csproj", "{BD78B49F-9E73-4D20-91C2-99F9E417AC93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParquetCLITool", "ParquetCLITool\ParquetCLITool.csproj", "{8A0F350A-B775-4129-AAC4-FF6FD58CD7A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParquetRoller", "ParquetRoller\ParquetRoller.csproj", "{8A0F350A-B775-4129-AAC4-FF6FD58CD7A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33AB7F7D-6D20-4F53-AC7F-386C8E1144C3}"
 	ProjectSection(SolutionItems) = preProject
@@ -61,7 +61,6 @@ Global
 		$0.StandardHeader = $4
 		$0.VersionControlPolicy = $5
 		$5.CommitMessageStyle = $6
-		$6.FirstFilePrefix =
 		$6.FileSeparator = ", "
 		$6.LineAlign = 0
 		$6.InterMessageLines = 0
