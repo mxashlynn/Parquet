@@ -45,7 +45,7 @@ The solution contains several related projects, each of which is structured so t
     - The library itself. The root namespace contains classes for working with [EntityModels](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects).
     - **Beings**, including players and NPCs.
     - **Biomes**.
-    - **Crafting**.
+    - **Crafts**.
     - **Items**.
     - **Maps**.
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
