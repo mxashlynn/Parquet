@@ -4,7 +4,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Items;
 using Xunit;
 
-namespace ParquetUnitTests
+namespace ParquetUnitTests.Items
 {
     public class InventoryUnitTest
     {

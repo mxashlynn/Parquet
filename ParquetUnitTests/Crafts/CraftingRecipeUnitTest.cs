@@ -4,7 +4,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Crafts;
 using Xunit;
 
-namespace ParquetUnitTests
+namespace ParquetUnitTests.Crafts
 {
     public class CraftingRecipeUnitTest
     {
