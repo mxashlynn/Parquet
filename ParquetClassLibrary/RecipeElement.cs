@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Models the category and amount of an <see cref="EntityModel"/> from a recipe, e.g. <see cref="Crafting.CraftingRecipe"/>
+    /// Models the category and amount of an <see cref="EntityModel"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>
     /// or <see cref="Rooms.RoomRecipe"/>.  The <see cref="RecipeElement"/> may either be consumed as an ingredient
     /// or returned as the final product.
     /// </summary>

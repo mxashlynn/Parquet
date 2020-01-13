@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Crafting
+namespace ParquetClassLibrary.Crafts
 {
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.

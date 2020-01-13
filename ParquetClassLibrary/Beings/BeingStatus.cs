@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</summary>
         public List<EntityID> KnownRoomRecipes { get; }
 
-        /// <summary>The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</summary>
+        /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="Character"/> knows.</summary>
         public List<EntityID> KnownCraftingRecipes { get; }
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> offers or has undertaken.</summary>
@@ -96,7 +96,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inKnownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
         /// <param name="inKnownParquets">The parquets that this <see cref="Character"/> has encountered.</param>
         /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</param>
-        /// <param name="inKnownCraftingRecipes">The <see cref="Crafting.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
+        /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
         /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="Character"/>'s set of belongings.</param>
         public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior,

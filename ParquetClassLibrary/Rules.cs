@@ -24,10 +24,10 @@ namespace ParquetClassLibrary
             /// <summary>The length of each <see cref="Maps.MapRegion"/> dimension in parquets.</summary>
             public const int ParquetsPerRegion = ChunksPerRegion * ParquetsPerChunk;
 
-            /// <summary>Width of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
+            /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
             public const int PanelsPerPatternWidth = 2;
 
-            /// <summary>Height of the <see cref="Crafting.StrikePanel"/> pattern in <see cref="Crafting.CraftingRecipe"/>.</summary>
+            /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
             public const int PanelsPerPatternHeight = 8;
         }
 

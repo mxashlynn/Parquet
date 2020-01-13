@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;

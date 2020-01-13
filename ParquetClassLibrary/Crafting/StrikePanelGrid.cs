@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Crafting
+namespace ParquetClassLibrary.Crafts
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="StrikePanel"/>s for use in <see cref="CraftingRecipe"/>s.

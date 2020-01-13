@@ -1,7 +1,7 @@
 using System;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Crafting
+namespace ParquetClassLibrary.Crafts
 {
     /// <summary>
     /// Models the panels that the player must strike during item crafting.

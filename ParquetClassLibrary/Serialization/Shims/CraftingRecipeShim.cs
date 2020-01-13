@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization.Shims

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items

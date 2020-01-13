@@ -5,7 +5,7 @@ using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Crafting;
+using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Dialogues;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
