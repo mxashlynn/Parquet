@@ -14,25 +14,22 @@ namespace ParquetRoller
         /// <summary>
         /// Represents an action that the user may ask <see cref="Roller"/> to perform.
         /// </summary>
-        /// <param name="inSubcommand">Any subordinate action needed.</param>
-        /// <param name="inWorkload">Any <see cref="ModelCollection" /> that the action may work on.</param>
-        /// <returns></returns>
-        internal delegate ExitCode Command(Subcommand inSubcommand, ModelCollection inWorkload);
+        /// <param name="inWorkload">The <see cref="ModelCollection" /> to act on, if any.</param>
+        /// <returns>A value indicating success or the manner of failure.</returns>
+        internal delegate ExitCode Command(ModelCollection inWorkload);
 
-        // TODO Is it possible to express subcommands as commands, thus simplifying the architecture?
         /// <summary>
-        /// Represents a subordinate action that the user may ask <see cref="Roller"/> to perform.
+        /// A flag indicating that a subcommand must be executed.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="ModelCollection" /> that the subordinate action works on.</param>
-        /// <returns></returns>
-        internal delegate ExitCode Subcommand(ModelCollection inWorkload);
+        private static Command ListPropertyForCategory { get; } = null;
+
 
         #region Console Messages
-        private static string DefaultMessage { get; } = "Usage: roller [option]\nUsage: roller list [property] [category]\n\nOptions:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -l|list [property] [category]   Inspect CSV properties and echo results.\n\n    For information on properties and categories consult the detailed help.\n";
+        private static string DefaultMessage { get; } = "Usage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\n    For information on properties and categories consult the detailed help.\n";
 
         private static string VersionMessage { get; } = $"Version:\n    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}\n    Parquet     {AssemblyInfo.LibraryVersion}\n    Map Data    {AssemblyInfo.SupportedMapDataVersion}\n    Being Data  {AssemblyInfo.SupportedBeingDataVersion}\n";
 
-        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller [option]\nUsage: roller list [property] [category]\n\nOptions:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -l|list [property] [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Entity ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      npcs            Only NPC beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors if IDs are not hand-assigned.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
+        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Entity ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      npcs            Only NPC beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
         #endregion
 
         /// <summary>
@@ -41,7 +38,7 @@ namespace ParquetRoller
         /// <param name="args">Command line arguments passed in to the tool.</param>
         internal static int Main(string[] args)
         {
-            var option = args.Length > 0
+            var optionText = args.Length > 0
                 ? args[0].ToLower()
                 : "";
             var property = args.Length > 1
@@ -51,27 +48,29 @@ namespace ParquetRoller
                 ? args[2].ToLower()
                 : "";
 
-            var command = ParseOption(option);
-            var subcommand = command == ListPropertyForCategory
-                ? ParseProperty(property)
-                : DisplayBadArguments;
-            var workload = subcommand != DisplayBadArguments
-                ? ParseCategory(category)
-                : null;
+            Command command = ParseCommand(optionText);
+            ModelCollection workload = null;
 
-            return (int)command(subcommand, workload);
+            if (command == ListPropertyForCategory)
+            {
+                command = ParseProperty(property);
+                if (command != DisplayBadArguments)
+                {
+                    workload = ParseCategory(category);
+                }
+            }
+
+            return (int)command(workload);
         }
 
         /// <summary>
-        /// Takes a single argument corresponding to the "option" selection and determines which command it corresponds to.
+        /// Takes a single argument corresponding to the "command" selection and determines which command it corresponds to.
         /// </summary>
-        /// <param name="inOption">The first command line argument.</param>
+        /// <param name="inCommandText">The first command line argument.</param>
         /// <returns>An action for <see cref="Roller"/> to take.</returns>
-        private static Command ParseOption(string inOption)
+        private static Command ParseCommand(string inCommandText)
         {
-            // Advertise -[character] but also accept /[character]
-            // Advertise [verb] but also accept --[verb]
-            switch (inOption)
+            switch (inCommandText)
             {
                 case "/?":
                 case "-?":
@@ -80,24 +79,17 @@ namespace ParquetRoller
                 case "--help":
                 case "help":
                     return DisplayHelp;
-                case "/v":
                 case "-v":
-                case "--version":
                 case "version":
                     return DisplayVersion;
-                case "/t":
                 case "-t":
-                case "--templates":
+                case "template":
                 case "templates":
                     return CreateTemplates;
-                case "/r":
                 case "-r":
-                case "--roll":
                 case "roll":
                     return RollCSVs;
-                case "/l":
                 case "-l":
-                case "--list":
                 case "list":
                     return ListPropertyForCategory;
                 default:
@@ -110,7 +102,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inProperty">The second command line argument.</param>
         /// <returns>An action for <see cref="Roller"/> to take.</returns>
-        private static Subcommand ParseProperty(string inProperty)
+        private static Command ParseProperty(string inProperty)
         {
             switch (inProperty)
             {
@@ -130,7 +122,7 @@ namespace ParquetRoller
                 case "collisions":
                     return ListCollisions;
                 default:
-                    // Unrecognized input.
+                    Console.WriteLine($"Unrecognized property {inProperty}");
                     return DisplayBadArguments;
             }
         }
@@ -144,7 +136,7 @@ namespace ParquetRoller
         {
             ModelCollection workload = null;
 
-            // Default is everything.
+            // Default to everything.
             if (string.IsNullOrEmpty(inCategory))
             {
                 inCategory = "all";
@@ -161,7 +153,6 @@ namespace ParquetRoller
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.CraftingRecipes)
                                                                                 .Concat(All.Dialogues)
-                                                                                /*.Concat(All.Maps)*/  // TODO Should we include these?
                                                                                 .Concat(All.Parquets)
                                                                                 .Concat(All.Quests)
                                                                                 .Concat(All.RoomRecipes)
@@ -249,8 +240,7 @@ namespace ParquetRoller
                     workload = new ModelCollection(All.RoomRecipeIDs, All.RoomRecipes);
                     break;
                 default:
-                    // Unrecognized input.
-                    workload = null;
+                    Console.WriteLine($"Unrecognized category {inCategory}");
                     break;
             }
 
@@ -261,10 +251,9 @@ namespace ParquetRoller
         /// <summary>
         /// Displays the default message to the user.
         /// </summary>
-        /// <param name="inSubcommand">Ignored.</param>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayDefault(Subcommand inSubcommand, ModelCollection inWorkload)
+        private static ExitCode DisplayDefault(ModelCollection inWorkload)
         {
             Console.WriteLine(DefaultMessage);
             return ExitCode.Success;
@@ -273,10 +262,9 @@ namespace ParquetRoller
         /// <summary>
         /// Displays a detailed help message to the user.
         /// </summary>
-        /// <param name="inSubcommand">Ignored.</param>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayHelp(Subcommand inSubcommand, ModelCollection inWorkload)
+        private static ExitCode DisplayHelp(ModelCollection inWorkload)
         {
             Console.WriteLine(HelpMessage);
             return ExitCode.Success;
@@ -285,10 +273,9 @@ namespace ParquetRoller
         /// <summary>
         /// Displays version information to the user.
         /// </summary>
-        /// <param name="inSubcommand">Ignored.</param>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayVersion(Subcommand inSubcommand, ModelCollection inWorkload)
+        private static ExitCode DisplayVersion(ModelCollection inWorkload)
         {
             Console.WriteLine(VersionMessage);
             return ExitCode.Success;
@@ -297,9 +284,11 @@ namespace ParquetRoller
         /// <summary>
         /// Write CSV templates to current directory.
         /// </summary>
+        /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode CreateTemplates(Subcommand inSubcommand, ModelCollection inWorkload)
+        private static ExitCode CreateTemplates(ModelCollection inWorkload)
         {
+            // TODO This is a stub.
             Console.WriteLine("> Create templates.");
             return ExitCode.Success;
         }
@@ -307,21 +296,14 @@ namespace ParquetRoller
         /// <summary>
         /// Prepare CSVs in current directory for use.
         /// </summary>
+        /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode RollCSVs(Subcommand inSubcommand, ModelCollection inWorkload)
+        private static ExitCode RollCSVs(ModelCollection inWorkload)
         {
+            // TODO This is a stub.
             Console.WriteLine("> Roll CSVs.");
             return ExitCode.Success;
         }
-
-        /// <summary>
-        /// Inspect CSV properties and echo results.
-        /// </summary>
-        /// <param name="inSubcommand">A subcommand indicating which property to inspect.</param>
-        /// <param name="inWorkload">A collection corresponding to the category to inspect.</param>
-        /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode ListPropertyForCategory(Subcommand inSubcommand, ModelCollection inWorkload)
-            => inSubcommand(inWorkload);
         #endregion
 
         #region Subcommands
@@ -332,7 +314,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode DisplayBadArguments(ModelCollection inWorkload)
         {
-            DisplayHelp(null, null);
+            DisplayHelp(null);
             return ExitCode.BadArguments;
         }
 
