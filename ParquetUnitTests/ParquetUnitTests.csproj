@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dialogue\" />
-    <Folder Include="Quests\" />
+    <Folder Include="Interactions\" />
   </ItemGroup>
 </Project>

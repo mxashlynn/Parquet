@@ -1,4 +1,4 @@
-using ParquetClassLibrary.Dialogues;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization.Shims
@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Serialization.Shims
     /// </summary>
     public class DialogueShim : EntityShim
     {
+        // TODO Derive this from InteractionStub
         // TODO This is a stub.
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, DialogueModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new DialogueModel(ID, Name, Description, Comment);
+            return (T)(EntityModel)new DialogueModel(ID, Name, Description, Comment, null, null, null); // TODO fill in these nulls.
         }
     }
 }

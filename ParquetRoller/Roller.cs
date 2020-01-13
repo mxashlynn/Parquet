@@ -160,9 +160,8 @@ namespace ParquetRoller
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.CraftingRecipes)
-                                                                                .Concat(All.Dialogues)
+                                                                                .Concat(All.Interactions)
                                                                                 .Concat(All.Parquets)
-                                                                                .Concat(All.Quests)
                                                                                 .Concat(All.RoomRecipes)
                                                                                 .Concat(All.Items));
                     break;
@@ -190,20 +189,17 @@ namespace ParquetRoller
                     break;
                 case "interaction":
                 case "interactions":
-                    // TODO Update this part after fixing Interactions.
-                    //workingCollection = new ModelCollection<EntityModel>(All.InteractionIDs, All.Interactions);
+                    workload = new ModelCollection(All.InteractionIDs, All.Interactions);
                     break;
                 case "dialgoue":
                 case "dialgoues":
-                    // TODO Update this part after fixing Interactions.
-                    //var dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
-                    //workingCollection = new ModelCollection<EntityModel>(All.DialogueIDs, dialogues);
+                    var dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
+                    workload = new ModelCollection(All.DialogueIDs, dialogues);
                     break;
                 case "quest":
                 case "quests":
-                    // TODO Update this part after fixing Interactions.
-                    //var quests = All.Interactions.Where(model => model.ID.IsValidForRange(All.QuestIDs));
-                    //workingCollection = new ModelCollection<EntityModel>(All.QuestIDs, quests);
+                    var quests = All.Interactions.Where(model => model.ID.IsValidForRange(All.QuestIDs));
+                    workload = new ModelCollection(All.QuestIDs, quests);
                     break;
                 case "item":
                 case "items":

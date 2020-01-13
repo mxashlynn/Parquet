@@ -4,13 +4,12 @@ using System.Linq;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Quests;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Dialogues;
 
 namespace ParquetClassLibrary
 {
@@ -68,6 +67,18 @@ namespace ParquetClassLibrary
         public static readonly Range<EntityID> DialogueIDs;
 
         /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="QuestModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<EntityID> QuestIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="InteractionModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly List<Range<EntityID>> InteractionIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapChunk"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
@@ -115,12 +126,6 @@ namespace ParquetClassLibrary
         public static readonly List<Range<EntityID>> ParquetIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="QuestModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<EntityID> QuestIDs;
-
-        /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
@@ -162,12 +167,12 @@ namespace ParquetClassLibrary
         public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="DialogueModel"/>s.
+        /// A collection of all defined <see cref="InteractionModel"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static ModelCollection<DialogueModel> Dialogues { get; private set; }
+        public static ModelCollection<InteractionModel> Interactions { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="MapModel"/>s.
@@ -184,14 +189,6 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
         public static ModelCollection<ParquetModel> Parquets { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="QuestModel"/>s.
-        /// This collection is the source of truth about quests for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
-        public static ModelCollection<QuestModel> Quests { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
@@ -227,10 +224,9 @@ namespace ParquetClassLibrary
             Beings = ModelCollection<BeingModel>.Default;
             Biomes = ModelCollection<BiomeModel>.Default;
             CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
-            Dialogues = ModelCollection<DialogueModel>.Default;
+            Interactions = ModelCollection<InteractionModel>.Default;
             Maps = ModelCollection<MapModel>.Default;
             Parquets = ModelCollection<ParquetModel>.Default;
-            Quests = ModelCollection<QuestModel>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
             #endregion
@@ -250,22 +246,22 @@ namespace ParquetClassLibrary
             CraftingRecipeIDs = new Range<EntityID>(40000, 49000);
 
             DialogueIDs = new Range<EntityID>(50000, 59000);
+            QuestIDs = new Range<EntityID>(60000, 69000);
 
-            MapChunkIDs = new Range<EntityID>(60000, 69000);
-            MapRegionIDs = new Range<EntityID>(70000, 79000);
+            MapChunkIDs = new Range<EntityID>(70000, 79000);
+            MapRegionIDs = new Range<EntityID>(80000, 89000);
 
-            FloorIDs = new Range<EntityID>(80000, 89000);
-            BlockIDs = new Range<EntityID>(90000, 99000);
-            FurnishingIDs = new Range<EntityID>(100000, 109000);
-            CollectibleIDs = new Range<EntityID>(110000, 119000);
-
-            QuestIDs = new Range<EntityID>(120000, 129000);
+            FloorIDs = new Range<EntityID>(90000, 99000);
+            BlockIDs = new Range<EntityID>(100000, 109000);
+            FurnishingIDs = new Range<EntityID>(110000, 119000);
+            CollectibleIDs = new Range<EntityID>(120000, 129000);
 
             RoomRecipeIDs = new Range<EntityID>(130000, 139000);
             #endregion
 
             #region Define Range Collections
             BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            InteractionIDs = new List<Range<EntityID>> { DialogueIDs, QuestIDs };
             MapIDs = new List<Range<EntityID>> { MapChunkIDs, MapRegionIDs };
             ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             #endregion
@@ -310,10 +306,9 @@ namespace ParquetClassLibrary
         /// <param name="inBeings">All beings to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
-        /// <param name="inDialogues">All dialgoues to be used in the game.</param>
+        /// <param name="inInteractions">All interactions to be used in the game.</param>
         /// <param name="inMaps">All maps to be used in the game.</param>
         /// <param name="inParquets">All parquets to be used in the game.</param>
-        /// <param name="inQuests">All quests to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
@@ -321,10 +316,9 @@ namespace ParquetClassLibrary
         public static void InitializeCollections(IEnumerable<BeingModel> inBeings,
                                                  IEnumerable<BiomeModel> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
-                                                 IEnumerable<DialogueModel> inDialogues,
+                                                 IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
-                                                 IEnumerable<QuestModel> inQuests,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
                                                  IEnumerable<ItemModel> inItems)
         {
@@ -335,20 +329,18 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inBeings, nameof(inBeings));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
-            Precondition.IsNotNull(inDialogues, nameof(inDialogues));
+            Precondition.IsNotNull(inInteractions, nameof(inInteractions));
             Precondition.IsNotNull(inMaps, nameof(inMaps));
             Precondition.IsNotNull(inParquets, nameof(inParquets));
-            Precondition.IsNotNull(inQuests, nameof(inQuests));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
             Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
-            Dialogues = new ModelCollection<DialogueModel>(DialogueIDs, inDialogues);
+            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
-            Quests = new ModelCollection<QuestModel>(QuestIDs, inQuests);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
             CollectionsHaveBeenInitialized = true;

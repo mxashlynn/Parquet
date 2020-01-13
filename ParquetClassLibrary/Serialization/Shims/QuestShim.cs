@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization.Shims
@@ -13,6 +12,8 @@ namespace ParquetClassLibrary.Serialization.Shims
     /// </summary>
     public class QuestShim : EntityShim
     {
+        // TODO Derive this from InteractionStub
+
         /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
         public List<EntityTag> CompletionRequirements;
 
@@ -25,7 +26,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, QuestModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements);
+            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null); // TODO Fill in these stubs.
         }
     }
 }
