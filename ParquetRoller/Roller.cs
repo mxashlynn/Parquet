@@ -122,7 +122,14 @@ namespace ParquetRoller
                 case "collisions":
                     return ListCollisions;
                 default:
-                    Console.WriteLine($"Unrecognized property {inProperty}");
+                    if (string.IsNullOrEmpty(inProperty))
+                    {
+                        Console.WriteLine("Specify property.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Unrecognized property {inProperty}.\n");
+                    }
                     return DisplayBadArguments;
             }
         }
@@ -142,13 +149,14 @@ namespace ParquetRoller
                 inCategory = "all";
             }
 
+            // TODO We have to read the files here and initialize All.
+
             // Advertise plural categories but accept singular
             switch (inCategory)
             {
                 case "all":
                     var entireRange = new Range<EntityID>(All.PlayerCharacterIDs.Minimum, All.ItemIDs.Maximum);
-                    workload = new ModelCollection(entireRange,
-                                                                ((IEnumerable<EntityModel>)All.Beings.GetEnumerator())
+                    workload = new ModelCollection(entireRange, ((IEnumerable<EntityModel>)All.Beings.GetEnumerator()) // TODO This cast fails.
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.CraftingRecipes)
