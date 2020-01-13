@@ -190,6 +190,14 @@ namespace ParquetClassLibrary
             : base(new List<Range<EntityID>> { inBounds }, inModels) { }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
+        /// </summary>
+        /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
+        /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
+        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+            : base(inBounds, inModels) { }
+
+        /// <summary>
         /// Returns the specified <see cref="EntityModel"/>.
         /// </summary>
         /// <param name="inID">A valid, defined <see cref="EntityModel"/> identifier.</param>
