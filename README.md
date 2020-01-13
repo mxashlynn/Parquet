@@ -52,7 +52,7 @@ The solution contains several related projects, each of which is structured so t
     - **Quests**.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
     - **Utilities** of which Range, Vector2D, and Precondition are all very frequently used.
-- **ParquetCLITool**
+- **ParquetRoller**
     - A command line tool for working with CSV files containing game definitions.
 - **ParquetRunner**
     - A simple app for use in library development.  If you are not developing the library itself, just ignore this.
