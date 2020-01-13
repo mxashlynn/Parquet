@@ -9,11 +9,6 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     public abstract class Character : BeingModel
     {
-        #region Class Defaults
-        /// <summary>A pronoun to use when none is specified.</summary>
-        public const string DefaultPronoun = "they";
-        #endregion
-
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
         public string PersonalName { get; }
@@ -25,7 +20,7 @@ namespace ParquetClassLibrary.Beings
         public string FullName => Name;
 
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
-        public string Pronoun { get; }
+        public PronounGroup Pronoun { get; }
 
         /// <summary>The story character that this <see cref="Character"/> represents.</summary>
         /// <remarks>
@@ -75,13 +70,12 @@ namespace ParquetClassLibrary.Beings
                             string inPersonalName, string inFamilyName,
                             string inDescription, string inComment, EntityID inNativeBiome,
                             Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
-                            List<EntityID> inSeeks = null, string inPronoun = DefaultPronoun,
+                            List<EntityID> inSeeks = null, PronounGroup inPronoun = null,
                             string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
                             List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
-            var nonNullPronoun = string.IsNullOrEmpty(inPronoun) ? DefaultPronoun : inPronoun;
             var nonNullQuests = inStartingQuests ?? Enumerable.Empty<EntityID>();
             var nonNullInventory = inStartingInventory ?? Enumerable.Empty<EntityID>();
 
@@ -92,7 +86,7 @@ namespace ParquetClassLibrary.Beings
 
             PersonalName = inPersonalName;
             FamilyName = inFamilyName;
-            Pronoun = nonNullPronoun;
+            Pronoun = inPronoun ?? PronounGroup.Default;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();
             Dialogue = (inDialogue ?? Enumerable.Empty<string>()).ToList();

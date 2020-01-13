@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingQuests">Any quests this <see cref="PlayerCharacter"/> has to offer or has undertaken.</param>
         /// <param name="inStartingInventory">Any items this <see cref="PlayerCharacter"/> owns at the outset.</param>
         public PlayerCharacter(EntityID inID, string inPersonalName, string inFamilyName, string inDescription, string inComment,
-                               string inPronoun = DefaultPronoun, string inStoryCharacterID = "",
+                               PronounGroup inPronoun = null, string inStoryCharacterID = "",
                                List<EntityID> inStartingQuests = null, List<EntityID> inStartingInventory = null)
             : base(All.PlayerCharacterIDs, inID, inPersonalName, inFamilyName, inDescription, inComment,
                    EntityID.None, Behavior.PlayerControlled, null, null, inPronoun, inStoryCharacterID,

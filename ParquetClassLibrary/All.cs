@@ -24,6 +24,9 @@ namespace ParquetClassLibrary
     /// <seealso cref="ModelCollection{T}"/>
     public static class All
     {
+        /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
+        public static bool CollectionsHaveBeenInitialized { get; private set; }
+
         #region EntityID Ranges
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacter"/>s.
@@ -139,9 +142,6 @@ namespace ParquetClassLibrary
         #endregion
 
         #region EntityCollections
-        /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
-        public static bool CollectionsHaveBeenInitialized { get; private set; }
-
         /// <summary>
         /// A collection of all defined <see cref="BeingModel"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
@@ -207,6 +207,14 @@ namespace ParquetClassLibrary
         public static ModelCollection<ItemModel> Items { get; private set; }
         #endregion
 
+        #region Other Collections
+        /// <summary>
+        /// A collection of all defined <see cref="PronounGroup"/>s.
+        /// This collection is the source of truth about pronouns for the rest of the library.
+        /// </summary>
+        public static IReadOnlyCollection<PronounGroup> Pronouns { get; private set; }
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes the <see cref="Range{T}"/>s and <see cref="ModelCollection{T}"/>s defined in <see cref="All"/>.
@@ -219,7 +227,7 @@ namespace ParquetClassLibrary
             Justification = "Inline initializers would notably complicate the code in this instance.")]
         static All()
         {
-            #region Default Values for Enitity Collections
+            #region Default Values for Collections
             CollectionsHaveBeenInitialized = false;
             Beings = ModelCollection<BeingModel>.Default;
             Biomes = ModelCollection<BiomeModel>.Default;
@@ -229,6 +237,9 @@ namespace ParquetClassLibrary
             Parquets = ModelCollection<ParquetModel>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
+
+            // TODO There has to be a better way to set this up.
+            Pronouns = new HashSet<PronounGroup>(new List<PronounGroup>{ PronounGroup.Default });
             #endregion
 
             #region Initialize Ranges
@@ -311,6 +322,7 @@ namespace ParquetClassLibrary
         /// <param name="inParquets">All parquets to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
+        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<BeingModel> inBeings,
@@ -320,12 +332,14 @@ namespace ParquetClassLibrary
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<ItemModel> inItems)
+                                                 IEnumerable<ItemModel> inItems,
+                                                 IEnumerable<PronounGroup> inPronouns)
         {
             if (CollectionsHaveBeenInitialized)
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
+            // TODO Should these allow empties?
             Precondition.IsNotNull(inBeings, nameof(inBeings));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
@@ -334,6 +348,7 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inParquets, nameof(inParquets));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
+            Precondition.IsNotNullOrEmpty(inPronouns, nameof(inPronouns));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
             Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
@@ -343,6 +358,7 @@ namespace ParquetClassLibrary
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
+            Pronouns = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
         }
         #endregion

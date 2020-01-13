@@ -27,7 +27,9 @@ namespace ParquetClassLibrary.Interactions
         public DialogueModel(EntityID inID, string inName, string inDescription, string inComment,
             List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome, string inStatus)
             : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome, inStatus)
-        { }
+        {
+            // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
+        }
         #endregion
     }
 }

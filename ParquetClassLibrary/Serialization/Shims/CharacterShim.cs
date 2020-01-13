@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         public string FullName => Name;
 
         /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
-        public string Pronoun;
+        public PronounGroup Pronoun;
 
         /// <summary>The story character that this <see cref="Character"/> represents.</summary>
         public string StoryCharacterID;
