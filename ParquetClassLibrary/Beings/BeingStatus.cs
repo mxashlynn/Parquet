@@ -26,15 +26,15 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region Stats
-        /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="BeingModel"/> occupies.</summary>
-        public BeingLocation Position { get; set; }
+        /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</summary>
+        public Location Position { get; set; }
 
-        /// <summary>The <see cref="BeingLocation"/> the tracked <see cref="BeingModel"/> will next spawn at.</summary>
+        /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</summary>
         /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
-        public BeingLocation SpawnAt { get; set; }
+        public Location SpawnAt { get; set; }
 
-        /// <summary>The <see cref="BeingLocation"/> the <see cref="Rooms.Room"/> assigned to this <see cref="BeingModel"/>.</summary>
-        public BeingLocation RoomAssignment { get; set; }
+        /// <summary>The <see cref="Location"/> the <see cref="Rooms.Room"/> assigned to this <see cref="BeingModel"/>.</summary>
+        public Location RoomAssignment { get; set; }
 
         /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="BeingModel"/>.</summary>
         public Behavior CurrentBehavior { get; set; }
@@ -52,7 +52,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The time it takes the tracked <see cref="BeingModel"/> to gather existing parquets.</summary>
         public float GatheringSpeed { get; set; }
 
-        /// <summary>The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="BeingLocation"/> to another.</summary>
+        /// <summary>The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="Location"/> to another.</summary>
         public float MovementSpeed { get; set; }
         #endregion
 
@@ -84,14 +84,14 @@ namespace ParquetClassLibrary.Beings
         /// Initializes a new instance of the <see cref="BeingStatus"/> class.
         /// </summary>
         /// <param name="inBeingDefinition">The <see cref="BeingModel"/> whose status is being tracked.</param>
-        /// <param name="inPosition">The <see cref="BeingLocation"/> the tracked <see cref="BeingModel"/> occupies.</param>
-        /// <param name="inSpawnAt">The <see cref="BeingLocation"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
+        /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</param>
+        /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
         /// <param name="inCurrentBehavior">The <see cref="Behavior"/> currently governing the tracked <see cref="BeingModel"/>.</param>
         /// <param name="inBiomeTimeRemaining"></param>
         /// <param name="inBuildingSpeed">The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</param>
         /// <param name="inModificationSpeed">The time it takes the tracked <see cref="BeingModel"/> to modify existing parquets.</param>
         /// <param name="inGatheringSpeed">The time it takes the tracked <see cref="BeingModel"/> to gather existing parquets.</param>
-        /// <param name="inMovementSpeed">The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="BeingLocation"/> to another.</param>
+        /// <param name="inMovementSpeed">The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="Location"/> to another.</param>
         /// <param name="inKnownCritters">The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</param>
         /// <param name="inKnownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
         /// <param name="inKnownParquets">The parquets that this <see cref="Character"/> has encountered.</param>
@@ -100,7 +100,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="Character"/>'s set of belongings.</param>
         public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior,
-                           BeingLocation inPosition, BeingLocation inSpawnAt,
+                           Location inPosition, Location inSpawnAt,
                            int inBiomeTimeRemaining,
                            float inBuildingSpeed, float inModificationSpeed,
                            float inGatheringSpeed, float inMovementSpeed,
