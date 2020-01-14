@@ -20,19 +20,19 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>Player-facing full name.</summary>
         public string FullName => Name;
 
-        /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
+        /// <summary>The pronouns the <see cref="CharacterModel"/> uses.</summary>
         public PronounGroup Pronoun;
 
-        /// <summary>The story character that this <see cref="Character"/> represents.</summary>
+        /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         public string StoryCharacterID;
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
+        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         public List<EntityID> StartingQuests;
 
-        /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         public List<string> Dialogue;
 
-        /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
+        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         public List<EntityID> StartingInventory;
     }
 }

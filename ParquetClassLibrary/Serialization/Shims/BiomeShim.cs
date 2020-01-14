@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
         public List<EntityTag> ParquetCriteria;
 
-        /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacter"/> needs to safely access this <see cref="BiomeModel"/>.
+        /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.
         /// </summary>
         public List<EntityTag> EntryRequirements;
 

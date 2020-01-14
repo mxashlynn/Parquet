@@ -29,19 +29,19 @@ namespace ParquetClassLibrary
 
         #region EntityID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacter"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
         public static readonly Range<EntityID> PlayerCharacterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.Critter"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.CritterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
         public static readonly Range<EntityID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.NPC"/>s.
+        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.NPCModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
         public static readonly Range<EntityID> NpcIDs;

@@ -26,13 +26,13 @@ namespace ParquetUnitTests
 
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static PlayerCharacter TestPlayer { get; }
+        public static PlayerCharacterModel TestPlayer { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static Critter TestCritter { get; }
+        public static CritterModel TestCritter { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static NPC TestNPC { get; }
+        public static NPCModel TestNPC { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static BiomeModel TestBiome { get; }
@@ -117,10 +117,10 @@ namespace ParquetUnitTests
         static TestModels()
         {
             #region Initialize EntityModels
-            TestPlayer = new PlayerCharacter(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
-            TestCritter = new Critter(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
+            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
-            TestNPC = new NPC(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
+            TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
                               All.BiomeIDs.Minimum, Behavior.Still);
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);

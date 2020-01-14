@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Biomes
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
         public IReadOnlyList<EntityTag> ParquetCriteria { get; }
 
-        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.PlayerCharacter"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
+        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
         public IReadOnlyList<EntityTag> EntryRequirements { get; }
         #endregion
 

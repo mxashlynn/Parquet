@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definitions shared by in-game actors that take part in the narrative.
     /// </summary>
-    public abstract class Character : BeingModel
+    public abstract class CharacterModel : BeingModel
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
@@ -19,54 +19,54 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Player-facing full name.</summary>
         public string FullName => Name;
 
-        /// <summary>The pronouns the <see cref="Character"/> uses.</summary>
+        /// <summary>The pronouns the <see cref="CharacterModel"/> uses.</summary>
         public PronounGroup Pronoun { get; }
 
-        /// <summary>The story character that this <see cref="Character"/> represents.</summary>
+        /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
         /// This identifier provides a link between software character <see langword="class"/>es
         /// and the characters written of in a game's narrative that they represent.  The goal
         /// is that these identifiers be able to span any number of shipped titles, allowing a
-        /// sequel title to import data from prior titles in such a way that one game's <see cref="NPC"/>
-        /// can become another game's <see cref="PlayerCharacter"/>.
+        /// sequel title to import data from prior titles in such a way that one game's <see cref="NPCModel"/>
+        /// can become another game's <see cref="PlayerCharacterModel"/>.
         /// </remarks>
         public string StoryCharacterID { get; }
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> either offers or has undertaken.</summary>
-        /// <remarks><see cref="NPC"/>s offer quests, <see cref="PlayerCharacter"/>s undertake them.</remarks>
+        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <remarks><see cref="NPCModel"/>s offer quests, <see cref="PlayerCharacterModel"/>s undertake them.</remarks>
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
-        /// <summary>Dialogue lines this <see cref="Character"/> can say.</summary>
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         public IReadOnlyList<string> Dialogue { get; }
 
-        /// <summary>The set of belongings that this <see cref="Character"/> begins with.</summary>
+        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
         public IReadOnlyList<EntityID> StartingInventory { get; }
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="Character"/> class.
+        /// Initializes a new instance of the <see cref="CharacterModel"/> class.
         /// </summary>
         /// <param name="inBounds">
-        /// The bounds within which the <see cref="Character"/>'s <see cref="EntityID"/> is defined.
+        /// The bounds within which the <see cref="CharacterModel"/>'s <see cref="EntityID"/> is defined.
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
-        /// <param name="inID">Unique identifier for the <see cref="Character"/>.  Cannot be null.</param>
-        /// <param name="inPersonalName">Personal name of the <see cref="Character"/>.  Cannot be null or empty.</param>
-        /// <param name="inFamilyName">Family name of the <see cref="Character"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="Character"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="Character"/>.</param>
+        /// <param name="inID">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>
+        /// <param name="inPersonalName">Personal name of the <see cref="CharacterModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inFamilyName">Family name of the <see cref="CharacterModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
         /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.BiomeModel"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
-        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="Character"/> acts.  Cannot be null.</param>
-        /// <param name="inAvoids">Any parquets this <see cref="Character"/> avoids.</param>
-        /// <param name="inSeeks">Any parquets this <see cref="Character"/> seeks.</param>
-        /// <param name="inPronoun">How to refer to this <see cref="Character"/>.</param>
-        /// <param name="inStoryCharacterID">A means of identifying this <see cref="Character"/> across multiple shipped game titles.</param>
-        /// <param name="inStartingQuests">Any quests this <see cref="Character"/> has to offer or has undertaken.</param>
-        /// <param name="inDialogue">All dialogue this <see cref="Character"/> may say.</param>
-        /// <param name="inStartingInventory">Any items this <see cref="Character"/> possesses at the outset.</param>
-        protected Character(Range<EntityID> inBounds, EntityID inID,
+        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
+        /// <param name="inAvoids">Any parquets this <see cref="CharacterModel"/> avoids.</param>
+        /// <param name="inSeeks">Any parquets this <see cref="CharacterModel"/> seeks.</param>
+        /// <param name="inPronoun">How to refer to this <see cref="CharacterModel"/>.</param>
+        /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
+        /// <param name="inStartingQuests">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
+        /// <param name="inDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
+        /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
+        protected CharacterModel(Range<EntityID> inBounds, EntityID inID,
                             string inPersonalName, string inFamilyName,
                             string inDescription, string inComment, EntityID inNativeBiome,
                             Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,

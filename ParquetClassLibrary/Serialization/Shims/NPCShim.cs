@@ -5,9 +5,9 @@ namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="NPC"/>-like class that CSVHelper can instantiate.
+    /// <see cref="NPCModel"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="NPC"/> from this class.
+    /// Provides the ability to generate a <see cref="NPCModel"/> from this class.
     /// </summary>
     public class NPCShim : CharacterShim
     {
@@ -18,9 +18,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
         public override T ToEntity<T>()
         {
-            Precondition.IsOfType<T, NPC>(typeof(T).ToString());
+            Precondition.IsOfType<T, NPCModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new NPC(ID, Name, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+            return (T)(EntityModel)new NPCModel(ID, Name, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
                                            Avoids, Seeks, Pronoun, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
         }
     }
