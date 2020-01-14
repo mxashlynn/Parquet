@@ -26,12 +26,11 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inStartCriteria">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
-        /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         /// <param name="inCompletionRequirements">Describes the criteria for completing this <see cref="QuestModel"/>.</param>
         public QuestModel(EntityID inID, string inName, string inDescription, string inComment,
                           List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome,
-                          string inStatus, List<EntityTag> inCompletionRequirements)
-            : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome, inStatus)
+                          List<EntityTag> inCompletionRequirements)
+            : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             CompletionRequirements = (inCompletionRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
         }

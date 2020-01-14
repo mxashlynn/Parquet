@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models an interaction between <see cref="Beings.Being"/>s.
+    /// Models input, output, and process of an interaction between <see cref="Beings.BeingModel"/>s.
     /// </summary>
     public abstract class InteractionModel : EntityModel
     {
@@ -26,12 +26,6 @@ namespace ParquetClassLibrary.Interactions
         /// </summary>
         // TODO This is not actually a string, not sure how we're going to handle this yet.
         public string Outcome { get; }
-
-        /// <summary>
-        /// The current status of this interaction.
-        /// </summary>
-        // TODO This is not actually a string, we need an enum for this.
-        public string Status { get; }
         #endregion
 
         #region Initialization
@@ -47,13 +41,12 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                                   List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome, string inStatus)
+                                   List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             StartCriteria = (inStartCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
             Steps = (inSteps ?? Enumerable.Empty<string>()).ToList();
             Outcome = inOutcome ?? "";
-            Status = inStatus ?? "";
         }
         #endregion
     }

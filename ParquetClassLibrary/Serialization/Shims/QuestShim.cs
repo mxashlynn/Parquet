@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, QuestModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null, null); // TODO Fill in these stubs.
+            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null); // TODO Fill in these stubs.
         }
     }
 }

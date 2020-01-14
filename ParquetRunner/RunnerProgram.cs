@@ -130,7 +130,7 @@ namespace ParquetRunner
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
-            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null, null); // TODO Fill in these nulls.
+            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null); // TODO Fill in these nulls.
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
@@ -140,7 +140,7 @@ namespace ParquetRunner
                                             inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
                                               inAddsToRoom: TestTag);
-            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null, null); // TODO Fill in these nulls.
+            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null); // TODO Fill in these nulls.
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);

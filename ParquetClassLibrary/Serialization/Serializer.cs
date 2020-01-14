@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Serialization
             where T : EntityModel
         {
             IEnumerable<T> records;
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}.csv");
+            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}s.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using var csv = new CsvReader(reader);

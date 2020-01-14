@@ -23,10 +23,9 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inStartCriteria">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
-        /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         public DialogueModel(EntityID inID, string inName, string inDescription, string inComment,
-            List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome, string inStatus)
-            : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome, inStatus)
+            List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
+            : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
         }
