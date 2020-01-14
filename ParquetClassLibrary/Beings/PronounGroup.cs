@@ -1,10 +1,9 @@
-using System;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
 {
     /// <summary>
-    /// 
+    /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
     public class PronounGroup
     {
@@ -20,11 +19,11 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Indicates the <see cref="Objective"/> should be used.</summary>
         public const string ObjectiveTag = "%them%";
 
-        /// <summary>Indicates the <see cref="PossessiveDeterminer"/> should be used.</summary>
-        public const string PossessiveDeterminerTag = "%their%";
+        /// <summary>Indicates the <see cref="Determiner"/> should be used.</summary>
+        public const string DeterminerTag = "%their%";
 
-        /// <summary>Indicates the <see cref="PossessivePronoun"/> should be used.</summary>
-        public const string PossessivePronounTag = "%theirs%";
+        /// <summary>Indicates the <see cref="Possessive"/> should be used.</summary>
+        public const string PossessiveTag = "%theirs%";
 
         /// <summary>Indicates the <see cref="Reflexive"/> should be used.</summary>
         public const string ReflexiveTag = "%themselves%";
@@ -37,13 +36,13 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
         public string Objective { get; }
 
-        /// <summary>Personal pronoun used to modify a noun attributing possession.</summary>
-        public string PossessiveDeterminer { get; }
+        /// <summary>Personal pronoun used to attribute possession.</summary>
+        public string Determiner { get; }
 
-        /// <summary>Personal pronoun used to indicate a relationship in a broad sense.</summary>
-        public string PossessivePronoun { get; }
+        /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        public string Possessive { get; }
 
-        /// <summary>Personal pronoun used as a coreferential to indicate the user.</summary>
+        /// <summary>Personal pronoun used to indicate the user.</summary>
         public string Reflexive { get; }
         #endregion
 
@@ -67,8 +66,8 @@ namespace ParquetClassLibrary.Beings
 
             Subjective = inSubjective;
             Objective = inObjective;
-            PossessiveDeterminer = inPossessiveDeterminer;
-            PossessivePronoun = inPossessivePronoun;
+            Determiner = inPossessiveDeterminer;
+            Possessive = inPossessivePronoun;
             Reflexive = inReflexive;
         }
         #endregion
@@ -79,7 +78,7 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{Subjective}/{Objective}/{PossessiveDeterminer}/{PossessivePronoun}/{Reflexive}";
+            => $"{Subjective}/{Objective}/{Determiner}/{Possessive}/{Reflexive}";
         #endregion
     }
 }
