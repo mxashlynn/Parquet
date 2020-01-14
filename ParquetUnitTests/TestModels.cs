@@ -6,10 +6,9 @@ using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Quests;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Dialogues;
 
 namespace ParquetUnitTests
 {
@@ -92,7 +91,7 @@ namespace ParquetUnitTests
         public static List<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<DialogueModel> Dialogues { get; }
+        public static List<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static List<MapModel> Maps { get; }
@@ -130,7 +129,7 @@ namespace ParquetUnitTests
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
             // TODO Update this once Dialogue is implemented.
-            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test");
+            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null, null);
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
@@ -141,7 +140,7 @@ namespace ParquetUnitTests
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
                                               inAddsToRoom: TestTag);
             // TODO Update this once Quests are implemented.
-            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList);
+            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null, null);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
                                             TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
                                             TestRecipeElementList, TestRecipeElementList);
@@ -179,14 +178,14 @@ namespace ParquetUnitTests
             Beings = new List<BeingModel> { TestCritter, TestNPC, TestPlayer };
             Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
-            Dialogues = new List<DialogueModel> { TestDialogue };
+            Interactions = new List<InteractionModel> { TestDialogue, TestQuest };
             Maps = new List<MapModel> { TestMapChunk, TestMapRegion };
             Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
-            Quests = new List<QuestModel> { TestQuest };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
 
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Dialogues, Maps, Parquets, Quests, RoomRecipes, Items);
+            // TODO Replace this null with pronouns.
+            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
             #endregion
         }
     }

@@ -67,12 +67,12 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
         protected CharacterModel(Range<EntityID> inBounds, EntityID inID,
-                            string inPersonalName, string inFamilyName,
-                            string inDescription, string inComment, EntityID inNativeBiome,
-                            Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
-                            List<EntityID> inSeeks = null, PronounGroup inPronoun = null,
-                            string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
-                            List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
+                                 string inPersonalName, string inFamilyName,
+                                 string inDescription, string inComment, EntityID inNativeBiome,
+                                 Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
+                                 List<EntityID> inSeeks = null, PronounGroup inPronoun = null,
+                                 string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
+                                 List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {

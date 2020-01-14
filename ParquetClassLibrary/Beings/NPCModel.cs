@@ -29,12 +29,12 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inDialogue">All dialogue this <see cref="NPCModel"/> may say.</param>
         /// <param name="inInventory">Any items this <see cref="NPCModel"/> owns.</param>
         public NPCModel(EntityID inID, string inPersonalName, string inFamilyName,
-                   string inDescription, string inComment,
-                   EntityID inNativeBiome, Behavior inCurrentBehavior,
-                   List<EntityID> inAvoids = null, List<EntityID> inSeeks = null,
-                   PronounGroup inPronoun = null, string inStoryCharacterID = "",
-                   List<EntityID> inQuests = null, List<string> inDialogue = null,
-                   List<EntityID> inInventory = null)
+                        string inDescription, string inComment,
+                        EntityID inNativeBiome, Behavior inCurrentBehavior,
+                        List<EntityID> inAvoids = null, List<EntityID> inSeeks = null,
+                        PronounGroup inPronoun = null, string inStoryCharacterID = "",
+                        List<EntityID> inQuests = null, List<string> inDialogue = null,
+                        List<EntityID> inInventory = null)
             : base(All.NpcIDs, inID, inPersonalName, inFamilyName, inDescription,
                    inComment, inNativeBiome, inCurrentBehavior, inAvoids, inSeeks,
                    inPronoun, inStoryCharacterID, inQuests, inDialogue, inInventory)

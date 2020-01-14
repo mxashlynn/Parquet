@@ -184,7 +184,8 @@ namespace ParquetRunner
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
 
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items);
+            // TODO Replace this null with pronouns.
+            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
             #endregion
         }
     }
@@ -245,7 +246,8 @@ namespace ParquetRunner
             Items.UnionWith(Serializer.GetRecordsForType<ItemModel>() ?? Enumerable.Empty<ItemModel>());
             #endregion
 
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items);
+            // TODO Replace this null with pronouns.
+            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
 
             #region Reserialize to CSV
             //var recordsToJSON = All.Parquets.SerializeToString();
