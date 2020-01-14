@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Beings
                    string inDescription, string inComment,
                    EntityID inNativeBiome, Behavior inCurrentBehavior,
                    List<EntityID> inAvoids = null, List<EntityID> inSeeks = null,
-                   string inPronoun = DefaultPronouns, string inStoryCharacterID = "",
+                   PronounGroup inPronoun = null, string inStoryCharacterID = "",
                    List<EntityID> inQuests = null, List<string> inDialogue = null,
                    List<EntityID> inInventory = null)
             : base(All.NpcIDs, inID, inPersonalName, inFamilyName, inDescription,
