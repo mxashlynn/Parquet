@@ -36,15 +36,15 @@ namespace ParquetClassLibrary.Serialization
 
             // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
             // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the EntityModel class hierarchy.
-            if (typeof(T) == typeof(PlayerCharacter))
+            if (typeof(T) == typeof(PlayerCharacterModel))
             {
                 shims = inCSV.GetRecords<PlayerCharacterShim>();
             }
-            else if (typeof(T) == typeof(NPC))
+            else if (typeof(T) == typeof(NPCModel))
             {
                 shims = inCSV.GetRecords<NPCShim>();
             }
-            else if (typeof(T) == typeof(Critter))
+            else if (typeof(T) == typeof(CritterModel))
             {
                 shims = inCSV.GetRecords<CritterShim>();
             }

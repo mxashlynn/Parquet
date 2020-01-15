@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Beings
         public Location Position { get; set; }
 
         /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</summary>
-        /// <remarks>For example, for <see cref="PlayerCharacter"/>s this is their last save spot.</remarks>
+        /// <remarks>For example, for <see cref="PlayerCharacterModel"/>s this is their last save spot.</remarks>
         public Location SpawnAt { get; set; }
 
         /// <summary>The <see cref="Location"/> the <see cref="Rooms.Room"/> assigned to this <see cref="BeingModel"/>.</summary>
@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Beings
         public Behavior CurrentBehavior { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="BeingModel"/> can safely remain in the current <see cref="Biomes.BiomeModel"/>.</summary>
-        /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacter"/>.</remarks>
+        /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacterModel"/>.</remarks>
         public int BiomeTimeRemaining { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</summary>
@@ -57,25 +57,25 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region Collections
-        /// <summary>The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</summary>
+        /// <summary>The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</summary>
         public List<EntityID> KnownCritters { get; }
 
-        /// <summary>The <see cref="NPC"/>s that this <see cref="Character"/> has met.</summary>
+        /// <summary>The <see cref="NPCModel"/>s that this <see cref="CharacterModel"/> has met.</summary>
         public List<EntityID> KnownNPCs { get; }
 
-        /// <summary>The parquets that this <see cref="Character"/> has encountered.</summary>
+        /// <summary>The parquets that this <see cref="CharacterModel"/> has encountered.</summary>
         public List<EntityID> KnownParquets { get; }
 
-        /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</summary>
+        /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
         public List<EntityID> KnownRoomRecipes { get; }
 
-        /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="Character"/> knows.</summary>
+        /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
         public List<EntityID> KnownCraftingRecipes { get; }
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> offers or has undertaken.</summary>
+        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</summary>
         public List<EntityID> Quests { get; }
 
-        /// <summary>This <see cref="Character"/>'s set of belongings.</summary>
+        /// <summary>This <see cref="CharacterModel"/>'s set of belongings.</summary>
         public List<EntityID> Inventory { get; }
         #endregion
 
@@ -92,13 +92,13 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inModificationSpeed">The time it takes the tracked <see cref="BeingModel"/> to modify existing parquets.</param>
         /// <param name="inGatheringSpeed">The time it takes the tracked <see cref="BeingModel"/> to gather existing parquets.</param>
         /// <param name="inMovementSpeed">The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="Location"/> to another.</param>
-        /// <param name="inKnownCritters">The <see cref="Critter"/>s that this <see cref="Character"/> has encountered.</param>
-        /// <param name="inKnownNPCs">The <see cref="NPC"/>s that this <see cref="Character"/> has met.</param>
-        /// <param name="inKnownParquets">The parquets that this <see cref="Character"/> has encountered.</param>
-        /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="Character"/> knows.</param>
-        /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="Character"/> knows.</param>
-        /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="Character"/> offers or has undertaken.</param>
-        /// <param name="inInventory">This <see cref="Character"/>'s set of belongings.</param>
+        /// <param name="inKnownCritters">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
+        /// <param name="inKnownNPCs">The <see cref="NPCModel"/>s that this <see cref="CharacterModel"/> has met.</param>
+        /// <param name="inKnownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
+        /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
+        /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
+        /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
+        /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
         public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior,
                            Location inPosition, Location inSpawnAt,
                            int inBiomeTimeRemaining,

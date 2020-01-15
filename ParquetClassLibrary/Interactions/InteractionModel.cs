@@ -5,7 +5,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models an interaction between <see cref="Beings.Being"/>s.
+    /// Models input, output, and process of an interaction between <see cref="Beings.BeingModel"/>s.
     /// </summary>
     public abstract class InteractionModel : EntityModel
     {
@@ -39,9 +39,9 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
         /// <param name="inStartCriteria">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        /// <param name="inOutcome">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
+        /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                                List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
+                                   List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             StartCriteria = (inStartCriteria ?? Enumerable.Empty<EntityTag>()).ToList();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models dialogue that an <see cref="Beings.NPC"/> may communicate.
+    /// Models dialogue that an <see cref="Beings.NPCModel"/> may communicate.
     /// </summary>
     public sealed class DialogueModel : InteractionModel
     {
@@ -26,7 +26,9 @@ namespace ParquetClassLibrary.Interactions
         public DialogueModel(EntityID inID, string inName, string inDescription, string inComment,
             List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
             : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
-        { }
+        {
+            // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
+        }
         #endregion
     }
 }
