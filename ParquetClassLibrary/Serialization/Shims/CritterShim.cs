@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// Converts a shim into the class it corresponds to.
         /// </summary>
         /// <typeparam name="T">The type to convert this shim to.</typeparam>
-        /// <returns>An instance of a child class of <see cref="Enity"/>.</returns>
+        /// <returns>An instance of a child class of <see cref="BeingModel"/>.</returns>
         public override T ToEntity<T>()
         {
             Precondition.IsOfType<T, CritterModel>(typeof(T).ToString());
