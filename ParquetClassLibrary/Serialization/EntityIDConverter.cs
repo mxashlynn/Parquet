@@ -22,8 +22,14 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            // IDEA Assign IDs to unassigned here?
+            // Might be hard to figure out what kind of ID this is.
+            if (string.IsNullOrEmpty(inText))
+            {
+                return EntityID.None;
+            }
 
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
             if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))
             {
                 return (EntityID)id;
