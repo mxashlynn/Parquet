@@ -204,6 +204,15 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
+            #region Set the working directory depending on build.
+            Serializer.SearchPath =
+#if DEBUG
+            $"{Directory.GetCurrentDirectory()}/../../../../";
+#else
+            Directory.GetCurrentDirectory().FullName;
+#endif
+            #endregion
+
             #region Local Variables
             /// <summary>All <see cref="BeingModel"/>s defined in the CSV files.</summary>
             var Beings = new HashSet<BeingModel>();
@@ -224,36 +233,27 @@ namespace ParquetRunner
 
             var PronounGroups = new HashSet<PronounGroup>();
             #endregion
+
             #region Deserialize from CSV
-            // Set the working directory depending on build.
-            Serializer.SearchPath =
-#if DEBUG
-            $"{Directory.GetCurrentDirectory()}/../../../../";
-#else
-            Directory.GetCurrentDirectory().FullName;
-#endif
-            /*
-            // NOTE Player Characters are not designed in CSVs but at run-time in-game.
-            Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>() ?? Enumerable.Empty<CritterModel>());
-            Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>() ?? Enumerable.Empty<NPCModel>());
-            Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>() ?? Enumerable.Empty<BiomeModel>());
-            CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>() ?? Enumerable.Empty<DialogueModel>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>() ?? Enumerable.Empty<QuestModel>());
-            Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
-            Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>() ?? Enumerable.Empty<FloorModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>() ?? Enumerable.Empty<BlockModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>() ?? Enumerable.Empty<FurnishingModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>() ?? Enumerable.Empty<CollectibleModel>());
-            RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
-            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>() ?? Enumerable.Empty<ItemModel>());
-            */
+            Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
+            Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
+            Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
+            CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
+            Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
+            Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
+            Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>());
+            Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
+            RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
+            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
             PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
             #endregion
 
-            // TODO Replace this null with pronouns.
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);
+
             /*
             #region Reserialize to CSV
             //var recordsToJSON = All.Parquets.SerializeToString();
@@ -264,6 +264,7 @@ namespace ParquetRunner
             //}
             #endregion
             */
+
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");
