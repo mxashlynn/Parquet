@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Serialization.ClassMaps
             Map(m => m.Avoids).Index(7);
             Map(m => m.Seeks).Index(8);
 
-            Map(m => m.Pronoun).Index(9);
+            Map(m => m.Pronouns).Index(9);
             Map(m => m.StoryCharacterID).Index(10);
             Map(m => m.StartingQuests).Index(11);
             Map(m => m.StartingInventory).Index(12);

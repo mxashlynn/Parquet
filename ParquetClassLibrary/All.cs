@@ -238,8 +238,8 @@ namespace ParquetClassLibrary
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
 
-            // TODO There has to be a better way to set this up.
-            PronounGroups = new HashSet<PronounGroup>(new List<PronounGroup>{ PronounGroup.Default });
+            // TODO Is this the right way to set this up?
+            PronounGroups = new HashSet<PronounGroup>();
             #endregion
 
             #region Initialize Ranges
