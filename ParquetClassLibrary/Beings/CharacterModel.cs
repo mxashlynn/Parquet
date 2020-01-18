@@ -19,8 +19,11 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Player-facing full name.</summary>
         public string FullName => Name;
 
-        /// <summary>The pronouns the <see cref="CharacterModel"/> uses.</summary>
-        public PronounGroup Pronoun { get; }
+        /// <summary>
+        /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
+        /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
+        /// </summary>
+        public string Pronouns { get; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
@@ -61,7 +64,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="CharacterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CharacterModel"/> seeks.</param>
-        /// <param name="inPronoun">How to refer to this <see cref="CharacterModel"/>.</param>
+        /// <param name="inPronouns">How to refer to this <see cref="CharacterModel"/>.</param>
         /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
         /// <param name="inStartingQuests">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
@@ -70,7 +73,7 @@ namespace ParquetClassLibrary.Beings
                                  string inPersonalName, string inFamilyName,
                                  string inDescription, string inComment, EntityID inNativeBiome,
                                  Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
-                                 List<EntityID> inSeeks = null, PronounGroup inPronoun = null,
+                                 List<EntityID> inSeeks = null, string inPronouns = null,
                                  string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
                                  List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
@@ -86,7 +89,7 @@ namespace ParquetClassLibrary.Beings
 
             PersonalName = inPersonalName;
             FamilyName = inFamilyName;
-            Pronoun = inPronoun ?? PronounGroup.Default;
+            Pronouns = inPronouns ?? PronounGroup.Default;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();
             Dialogue = (inDialogue ?? Enumerable.Empty<string>()).ToList();

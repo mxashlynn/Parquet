@@ -20,8 +20,11 @@ namespace ParquetClassLibrary.Serialization.Shims
         /// <summary>Player-facing full name.</summary>
         public string FullName => Name;
 
-        /// <summary>The pronouns the <see cref="CharacterModel"/> uses.</summary>
-        public PronounGroup Pronoun;
+        /// <summary>
+        /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
+        /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
+        /// </summary>
+        public string Pronouns;
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         public string StoryCharacterID;

@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Beings
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
-        public static readonly PronounGroup Default = new PronounGroup("they", "them", "their", "theirs", "themselves");
+        public static readonly string Default = "they/them";
         #endregion
 
         #region Textual Tags
