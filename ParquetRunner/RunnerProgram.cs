@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CsvHelper;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -12,6 +13,8 @@ using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Serialization;
+using ParquetClassLibrary.Serialization.Shims;
+using ParquetClassLibrary.Serialization.ClassMaps;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetRunner
@@ -201,7 +204,6 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            #region Deserialize from CSV
             #region Local Variables
             /// <summary>All <see cref="BeingModel"/>s defined in the CSV files.</summary>
             var Beings = new HashSet<BeingModel>();
@@ -219,8 +221,10 @@ namespace ParquetRunner
             var RoomRecipes = new HashSet<RoomRecipe>();
             /// <summary>All <see cref="ItemModel"/>s defined in the CSV files.</summary>
             var Items = new HashSet<ItemModel>();
-            #endregion
 
+            var PronounGroups = new HashSet<PronounGroup>();
+            #endregion
+            #region Deserialize from CSV
             // Set the working directory depending on build.
             Serializer.SearchPath =
 #if DEBUG
@@ -228,7 +232,7 @@ namespace ParquetRunner
 #else
             Directory.GetCurrentDirectory().FullName;
 #endif
-
+            /*
             // NOTE Player Characters are not designed in CSVs but at run-time in-game.
             Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>() ?? Enumerable.Empty<CritterModel>());
             Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>() ?? Enumerable.Empty<NPCModel>());
@@ -244,11 +248,13 @@ namespace ParquetRunner
             Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>() ?? Enumerable.Empty<CollectibleModel>());
             RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
             Items.UnionWith(Serializer.GetRecordsForType<ItemModel>() ?? Enumerable.Empty<ItemModel>());
+            */
+            PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
             #endregion
 
             // TODO Replace this null with pronouns.
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
-
+            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);
+            /*
             #region Reserialize to CSV
             //var recordsToJSON = All.Parquets.SerializeToString();
             //var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
@@ -257,10 +263,11 @@ namespace ParquetRunner
             //    writer.Write(recordsToJSON);
             //}
             #endregion
-
+            */
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");
+            Console.WriteLine($"PronounGroups.Count = {All.PronounGroups.Count}");
         }
     }
 }

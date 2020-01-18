@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Maps
             get => Name;
             set
             {
-                IEntityEdit editableThis = this;
+                IEntityModelEdit editableThis = this;
                 editableThis.Name = value;
             }
         }

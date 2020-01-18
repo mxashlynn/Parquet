@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public class PronounGroup
+    public sealed class PronounGroup : IPronounGroupEdit
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -31,19 +31,34 @@ namespace ParquetClassLibrary.Beings
 
         #region Pronoun Properties
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
-        public string Subjective { get; }
+        public string Subjective { get; private set; }
+
+        /// <summary>Personal pronoun used as the subject of a verb.</summary>
+        string IPronounGroupEdit.Subjective { get => Subjective; set => Subjective = value; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
-        public string Objective { get; }
+        public string Objective { get; private set; }
+
+        /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+        string IPronounGroupEdit.Objective { get => Objective; set => Objective = value; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
-        public string Determiner { get; }
+        public string Determiner { get; private set; }
+
+        /// <summary>Personal pronoun used to attribute possession.</summary>
+        string IPronounGroupEdit.Determiner { get => Determiner; set => Determiner = value; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
-        public string Possessive { get; }
+        public string Possessive { get; private set; }
+
+        /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        string IPronounGroupEdit.Possessive { get => Possessive; set => Possessive = value; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
-        public string Reflexive { get; }
+        public string Reflexive { get; private set; }
+
+        /// <summary>Personal pronoun used to indicate the user.</summary>
+        string IPronounGroupEdit.Reflexive { get => Reflexive; set => Reflexive = value; }
         #endregion
 
         #region Initialization

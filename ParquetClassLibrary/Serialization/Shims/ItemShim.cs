@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Serialization.Shims
             Precondition.IsOfType<T, ItemModel>(typeof(T).ToString());
 
             return (T)(EntityModel)new ItemModel(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
-                                            EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
+                                                 EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
         }
     }
 }

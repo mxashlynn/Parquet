@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Serialization.ClassMaps;
+using ParquetClassLibrary.Serialization.Shims;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -39,6 +43,28 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMapFor<T>();
                 records = csv.GetRecordsViaShim<T>();
+            }
+
+            return records ?? Enumerable.Empty<T>();
+        }
+
+        /// <summary>
+        /// Reads all records of <see cref="PronounGroup"/>s from the appropriate file.
+        /// </summary>
+        /// <returns>The records read.</returns>
+        public static HashSet<PronounGroup> GetRecordsForPronounGroup()
+        {
+            var records = new HashSet<PronounGroup>();
+            var filenameAndPath = Path.Combine(SearchPath, $"Designer/PronounGroups.csv");
+            using (var reader = new StreamReader(filenameAndPath))
+            {
+                using var csv = new CsvReader(reader);
+                csv.Configuration.RegisterClassMap<PronounGroupClassMap>();
+                var shims = csv.GetRecords<PronounGroupShim>();
+                foreach (var shim in shims)
+                {
+                    records.Add(shim.ToPronounGroup());
+                }
             }
 
             return records;

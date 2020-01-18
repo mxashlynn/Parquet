@@ -28,7 +28,7 @@ namespace ParquetClassLibrary
     /// EntityModel could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class EntityModel : IEntityEdit, IEquatable<EntityModel>
+    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
         /// <summary>Game-wide unique identifier.</summary>
         public EntityID ID { get; }
@@ -36,18 +36,18 @@ namespace ParquetClassLibrary
         /// <summary>Player-facing name.</summary>
         public string Name { get; private set; }
         /// <summary>Player-facing name.</summary>
-        string IEntityEdit.Name { get => Name; set => Name = value; }
+        string IEntityModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
         public string Description { get; private set; }
         /// <summary>Player-facing description.</summary>
-        string IEntityEdit.Description { get => Description; set => Description = value; }
+        string IEntityModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
         /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="EntityModel"/>.
         /// </remarks>
         public string Comment { get; private set; }
-        string IEntityEdit.Comment { get => Comment; set => Comment = value; }
+        string IEntityModelEdit.Comment { get => Comment; set => Comment = value; }
 
         #region Initialization
         /// <summary>

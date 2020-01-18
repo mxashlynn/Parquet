@@ -212,7 +212,7 @@ namespace ParquetClassLibrary
         /// A collection of all defined <see cref="PronounGroup"/>s.
         /// This collection is the source of truth about pronouns for the rest of the library.
         /// </summary>
-        public static IReadOnlyCollection<PronounGroup> Pronouns { get; private set; }
+        public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
         #endregion
 
         #region Initialization
@@ -239,7 +239,7 @@ namespace ParquetClassLibrary
             Items = ModelCollection<ItemModel>.Default;
 
             // TODO There has to be a better way to set this up.
-            Pronouns = new HashSet<PronounGroup>(new List<PronounGroup>{ PronounGroup.Default });
+            PronounGroups = new HashSet<PronounGroup>(new List<PronounGroup>{ PronounGroup.Default });
             #endregion
 
             #region Initialize Ranges
@@ -339,7 +339,6 @@ namespace ParquetClassLibrary
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
-            // TODO Should these allow empties?
             Precondition.IsNotNull(inBeings, nameof(inBeings));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
@@ -348,7 +347,7 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inParquets, nameof(inParquets));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
-            Precondition.IsNotNullOrEmpty(inPronouns, nameof(inPronouns));
+            Precondition.IsNotNull(inPronouns, nameof(inPronouns));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
             Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
@@ -358,7 +357,7 @@ namespace ParquetClassLibrary
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
-            Pronouns = new HashSet<PronounGroup>(inPronouns);
+            PronounGroups = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
         }
         #endregion
