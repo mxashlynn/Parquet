@@ -73,7 +73,7 @@ namespace ParquetClassLibrary.Beings
                                  string inPersonalName, string inFamilyName,
                                  string inDescription, string inComment, EntityID inNativeBiome,
                                  Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
-                                 List<EntityID> inSeeks = null, string inPronouns = null,
+                                 List<EntityID> inSeeks = null, string inPronouns = PronounGroup.Default,
                                  string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
                                  List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
@@ -89,7 +89,7 @@ namespace ParquetClassLibrary.Beings
 
             PersonalName = inPersonalName;
             FamilyName = inFamilyName;
-            Pronouns = inPronouns ?? PronounGroup.Default;
+            Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();
             Dialogue = (inDialogue ?? Enumerable.Empty<string>()).ToList();

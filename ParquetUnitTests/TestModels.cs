@@ -116,7 +116,8 @@ namespace ParquetUnitTests
         static TestModels()
         {
             #region Initialize EntityModels
-            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
+            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test",
+                                                  All.BiomeIDs.Minimum, Behavior.PlayerControlled);
             TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
             TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",

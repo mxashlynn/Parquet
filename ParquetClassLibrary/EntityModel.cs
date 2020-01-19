@@ -35,11 +35,13 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         public string Name { get; private set; }
+
         /// <summary>Player-facing name.</summary>
         string IEntityModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
         public string Description { get; private set; }
+
         /// <summary>Player-facing description.</summary>
         string IEntityModelEdit.Description { get => Description; set => Description = value; }
 

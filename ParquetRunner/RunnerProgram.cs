@@ -121,11 +121,12 @@ namespace ParquetRunner
         static TestModels()
         {
             #region Initialize EntityModels
-            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
+            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test",
+                                                  All.BiomeIDs.Minimum, Behavior.PlayerControlled);
             TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
                                       All.BiomeIDs.Minimum, Behavior.Still);
             TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
-                              All.BiomeIDs.Minimum, Behavior.Still);
+                                   All.BiomeIDs.Minimum, Behavior.Still);
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe",
@@ -238,6 +239,7 @@ namespace ParquetRunner
             PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
             Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
             Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
+            Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
             Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
             CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
             Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());

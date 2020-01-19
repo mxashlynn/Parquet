@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Beings
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
-        public static readonly string Default = "they/them";
+        public const string Default = "they/them";
         #endregion
 
         #region Textual Tags

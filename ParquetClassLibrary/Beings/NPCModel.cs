@@ -20,24 +20,24 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inDescription">Player-friendly description of the <see cref="NPCModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="NPCModel"/>.</param>
         /// <param name="inNativeBiome">The <see cref="EntityID"/> of the <see cref="Biome"/> in which this <see cref="NPCModel"/> is most comfortable.</param>
-        /// <param name="inCurrentBehavior">The rules that govern how this <see cref="NPCModel"/> acts.  Cannot be null.</param>
+        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="NPCModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="NPCModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="NPCModel"/> seeks.</param>
         /// <param name="inPronouns">How to refer to this <see cref="NPCModel"/>.</param>
-        /// <param name="inStoryCharacterID">A means of identifying this <see cref="PlayerCharacterModel"/> across multiple shipped game titles.</param>
-        /// <param name="inQuests">Any quests this <see cref="NPCModel"/> has to offer.</param>
+        /// <param name="inStoryCharacterID">A means of identifying this <see cref="NPCModel"/> across multiple shipped game titles.</param>
+        /// <param name="inStartingQuests">Any quests this <see cref="NPCModel"/> has to offer.</param>
         /// <param name="inDialogue">All dialogue this <see cref="NPCModel"/> may say.</param>
-        /// <param name="inInventory">Any items this <see cref="NPCModel"/> owns.</param>
+        /// <param name="inStartingInventory">Any items this <see cref="NPCModel"/> owns.</param>
         public NPCModel(EntityID inID, string inPersonalName, string inFamilyName,
                         string inDescription, string inComment,
-                        EntityID inNativeBiome, Behavior inCurrentBehavior,
+                        EntityID inNativeBiome, Behavior inPrimaryBehavior,
                         List<EntityID> inAvoids = null, List<EntityID> inSeeks = null,
                         string inPronouns = null, string inStoryCharacterID = "",
-                        List<EntityID> inQuests = null, List<string> inDialogue = null,
-                        List<EntityID> inInventory = null)
+                        List<EntityID> inStartingQuests = null, List<string> inDialogue = null,
+                        List<EntityID> inStartingInventory = null)
             : base(All.NpcIDs, inID, inPersonalName, inFamilyName, inDescription,
-                   inComment, inNativeBiome, inCurrentBehavior, inAvoids, inSeeks,
-                   inPronouns, inStoryCharacterID, inQuests, inDialogue, inInventory)
+                   inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks,
+                   inPronouns, inStoryCharacterID, inStartingQuests, inDialogue, inStartingInventory)
         {
             Precondition.IsInRange(inID, All.NpcIDs, nameof(inID));
         }
