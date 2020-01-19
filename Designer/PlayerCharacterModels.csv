@@ -1,2 +1,2 @@
 ID,PersonalName,FamilyName,Description,Comment,NativeBiome,PrimaryBehavior,Avoids,Seeks,Pronouns,StoryCharacterID,StartingQuests,Dialogue,StartingInventory
-1,DotDot,,Loves to understand how things work.,,Town,PlayerControlled,,,they/them,DOTDOT,,,
+1,DotDot,Deet,Loves to understand how things work.,,30010,PlayerControlled,,,they/them,DOTDOT,,,
