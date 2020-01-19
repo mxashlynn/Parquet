@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Utilities;
 
@@ -20,7 +21,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, CritterModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
+            return (T)(EntityModel)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior,
+                                                    new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks });
         }
     }
 }

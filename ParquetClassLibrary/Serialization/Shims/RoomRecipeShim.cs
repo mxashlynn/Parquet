@@ -16,13 +16,16 @@ namespace ParquetClassLibrary.Serialization.Shims
         public int MinimumWalkableSpaces;
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public List<RecipeElement> RequiredFloors;
+        public RecipeElement RequiredFloors;
+        // TODO public List<RecipeElement> RequiredFloors;
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public List<RecipeElement> RequiredPerimeterBlocks;
+        public RecipeElement RequiredPerimeterBlocks;
+        // TODO public List<RecipeElement> RequiredPerimeterBlocks;
 
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public List<RecipeElement> RequiredFurnishings;
+        public RecipeElement RequiredFurnishings;
+        // TODO public List<RecipeElement> RequiredFurnishings;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.
@@ -33,8 +36,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, RoomRecipe>(typeof(T).ToString());
 
-            return (T)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, RequiredFloors,
-                                                  MinimumWalkableSpaces, RequiredPerimeterBlocks, RequiredFurnishings);
+            return (T)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, new List<RecipeElement>() { RequiredFloors },
+                                                  MinimumWalkableSpaces, new List<RecipeElement>() { RequiredPerimeterBlocks },
+                                                  new List<RecipeElement>() { RequiredFurnishings });
         }
     }
 }

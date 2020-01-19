@@ -25,11 +25,13 @@ namespace ParquetClassLibrary.Serialization.Shims
         public bool IsLiquidBased;
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
-        public List<EntityTag> ParquetCriteria;
+        public EntityTag ParquetCriteria;
+        // TODO public List<EntityTag> ParquetCriteria;
 
         /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.
         /// </summary>
-        public List<EntityTag> EntryRequirements;
+        public EntityTag EntryRequirements;
+        // TODO public List<EntityTag> EntryRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.
@@ -41,7 +43,8 @@ namespace ParquetClassLibrary.Serialization.Shims
             Precondition.IsOfType<T, BiomeModel>(typeof(T).ToString());
 
             return (T)(EntityModel)new BiomeModel(ID, Name, Description, Comment, Tier, ElevationCategory,
-                                             IsLiquidBased, ParquetCriteria, EntryRequirements);
+                                                  IsLiquidBased, new List<EntityTag>() { ParquetCriteria },
+                                                  new List<EntityTag>() { EntryRequirements });
         }
     }
 }

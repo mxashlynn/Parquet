@@ -34,7 +34,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         public EntityID AsParquet;
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
-        public List<EntityTag> ItemTags;
+        public EntityTag ItemTags;
+        // TODO public List<EntityTag> ItemTags;
 
         /// <summary>How this item is crafted.</summary>
         public EntityID Recipe;
@@ -49,7 +50,7 @@ namespace ParquetClassLibrary.Serialization.Shims
             Precondition.IsOfType<T, ItemModel>(typeof(T).ToString());
 
             return (T)(EntityModel)new ItemModel(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
-                                                 EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
+                                                 EffectWhileHeld, EffectWhenUsed, AsParquet, new List<EntityTag>() { ItemTags }, Recipe);
         }
     }
 }

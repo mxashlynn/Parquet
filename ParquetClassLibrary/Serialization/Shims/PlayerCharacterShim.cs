@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Utilities;
 
@@ -20,8 +21,10 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, PlayerCharacterModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new PlayerCharacterModel(ID, PersonalName, FamilyName, Description, Comment,
-                                                            Pronouns, StoryCharacterID, StartingQuests, StartingInventory);
+            return (T)(EntityModel)new PlayerCharacterModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+                                                            new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks },
+                                                            Pronouns, StoryCharacterID, new List<EntityID>() { StartingQuests },
+                                                            new List<string>() { Dialogue }, new List<EntityID>() { StartingInventory });
         }
     }
 }

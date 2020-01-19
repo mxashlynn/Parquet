@@ -13,10 +13,12 @@ namespace ParquetClassLibrary.Serialization.Shims
     public class CraftingRecipeShim : EntityShim
     {
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-        public IReadOnlyList<RecipeElement> Products;
+        public RecipeElement Products;
+        // TODO public IReadOnlyList<RecipeElement> Products;
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        public IReadOnlyList<RecipeElement> Ingredients;
+        public RecipeElement Ingredients;
+        // TODO public IReadOnlyList<RecipeElement> Ingredients;
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         // TODO How do we handle this?
@@ -31,7 +33,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, CraftingRecipe>(typeof(T).ToString());
 
-            return (T)(EntityModel)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
+            return (T)(EntityModel)new CraftingRecipe(ID, Name, Description, Comment, new List<RecipeElement>() { Products },
+                                                      new List<RecipeElement>() { Ingredients }, PanelPattern);
         }
     }
 }

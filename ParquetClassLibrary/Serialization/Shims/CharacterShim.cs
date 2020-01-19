@@ -5,9 +5,9 @@ namespace ParquetClassLibrary.Serialization.Shims
 {
     /// <summary>
     /// Provides a default public parameterless constructor for a
-    /// <see cref="BeingModel"/>-like class that CSVHelper can instantiate.
+    /// <see cref="CharacterModel"/>-like class that CSVHelper can instantiate.
     /// 
-    /// Provides the ability to generate a <see cref="BeingModel"/> from this class.
+    /// Provides the ability to generate a <see cref="CharacterModel"/> from this class.
     /// </summary>
     public abstract class CharacterShim : BeingShim
     {
@@ -30,12 +30,15 @@ namespace ParquetClassLibrary.Serialization.Shims
         public string StoryCharacterID;
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
-        public List<EntityID> StartingQuests;
+        public EntityID StartingQuests;
+        // TODO public List<EntityID> StartingQuests;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-        public List<string> Dialogue;
+        public string Dialogue;
+        // TODO public List<string> Dialogue;
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        public List<EntityID> StartingInventory;
+        public EntityID StartingInventory;
+        // TODO public List<EntityID> StartingInventory;
     }
 }

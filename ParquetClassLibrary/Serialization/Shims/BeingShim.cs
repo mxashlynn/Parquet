@@ -18,9 +18,11 @@ namespace ParquetClassLibrary.Serialization.Shims
         public Behavior PrimaryBehavior;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-        public List<EntityID> Avoids;
+        public EntityID Avoids;
+        // TODO public List<EntityID> Avoids;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-        public List<EntityID> Seeks;
+        public EntityID Seeks;
+        // TODO public List<EntityID> Seeks;
     }
 }

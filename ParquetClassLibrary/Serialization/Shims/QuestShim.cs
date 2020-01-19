@@ -15,7 +15,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         // TODO Derive this from InteractionStub
 
         /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
-        public List<EntityTag> CompletionRequirements;
+        public EntityTag CompletionRequirements;
+        // TODO public List<EntityTag> CompletionRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.
@@ -26,7 +27,9 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, QuestModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null); // TODO Fill in these stubs.
+            // TODO Fill in these stubs.
+            return (T)(EntityModel)new QuestModel(ID, Name, Description, Comment, new List<EntityTag>() { CompletionRequirements },
+                                                  null, null, null);
         }
     }
 }

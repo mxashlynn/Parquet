@@ -23,7 +23,8 @@ namespace ParquetClassLibrary.Serialization.Shims
         {
             Precondition.IsOfType<T, DialogueModel>(typeof(T).ToString());
 
-            return (T)(EntityModel)new DialogueModel(ID, Name, Description, Comment, null, null, null); // TODO fill in these nulls.
+            // TODO fill in these nulls.
+            return (T)(EntityModel)new DialogueModel(ID, Name, Description, Comment, null, null, null);
         }
     }
 }
