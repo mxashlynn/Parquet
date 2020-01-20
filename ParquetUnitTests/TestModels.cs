@@ -19,7 +19,7 @@ namespace ParquetUnitTests
     {
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
-        public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
+        public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         public static readonly IReadOnlyList<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
         #endregion
 

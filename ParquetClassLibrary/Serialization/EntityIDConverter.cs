@@ -22,10 +22,9 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
 
-            // IDEA Assign IDs to unassigned here?
-            // Might be hard to figure out what kind of ID this is.
             if (string.IsNullOrEmpty(inText))
             {
+                // TODO This might not work.  If needed, make a new value indicating an unasigned state.
                 return EntityID.None;
             }
 

@@ -23,26 +23,26 @@ namespace ParquetClassLibrary
     public readonly struct RecipeElement : IEquatable<RecipeElement>
     {
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
-        public static readonly RecipeElement None = new RecipeElement(EntityTag.None, 1);
-
-        /// <summary>An <see cref="EntityTag"/> describing the <see cref="ItemModel"/>.</summary>
-        public EntityTag ElementTag { get; }
+        public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
 
         /// <summary>The number of <see cref="ItemModel"/>s.</summary>
         public int ElementAmount { get; }
+
+        /// <summary>An <see cref="EntityTag"/> describing the <see cref="ItemModel"/>.</summary>
+        public EntityTag ElementTag { get; }
 
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> struct.
         /// </summary>
-        /// <param name="inElementTag">An <see cref="EntityTag"/> describing the element.</param>
         /// <param name="inElementAmount">The amount of the element.  Must be positive.</param>
-        public RecipeElement(EntityTag inElementTag, int inElementAmount)
+        /// <param name="inElementTag">An <see cref="EntityTag"/> describing the element.</param>
+        public RecipeElement(int inElementAmount, EntityTag inElementTag)
         {
             Precondition.MustBePositive(inElementAmount, nameof(inElementAmount));
 
-            ElementTag = inElementTag;
             ElementAmount = inElementAmount;
+            ElementTag = inElementTag;
         }
         #endregion
 

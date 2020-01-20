@@ -15,6 +15,12 @@ namespace ParquetClassLibrary.Serialization
     /// </summary>
     public static class Serializer
     {
+        /// <summary>Used to separate fields.</summary>
+        public const string PrimaryDelimiter = ",";
+
+        /// <summary>Used to separate objects within collections.</summary>
+        public const string SecondaryDelimiter = ";";
+
         /// <summary>Instructions for handling integer type conversion when reading in identifiers.</summary>
         internal static readonly TypeConverterOptions IdentifierOptions = new TypeConverterOptions
         {
@@ -38,6 +44,7 @@ namespace ParquetClassLibrary.Serialization
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElementConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);

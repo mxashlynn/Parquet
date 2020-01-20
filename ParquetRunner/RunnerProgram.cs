@@ -23,7 +23,7 @@ namespace ParquetRunner
     {
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
-        public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
+        public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         public static readonly List<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
         #endregion
 

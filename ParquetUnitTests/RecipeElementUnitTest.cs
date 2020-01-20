@@ -11,7 +11,7 @@ namespace ParquetUnitTests
         {
             void TestCodeZero()
             {
-                var _ = new RecipeElement("test", 0);
+                var _ = new RecipeElement(0, "test");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeZero);
@@ -22,7 +22,7 @@ namespace ParquetUnitTests
         {
             void TestCodeNegative()
             {
-                var _ = new RecipeElement("test", -1);
+                var _ = new RecipeElement(-1, "test");
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCodeNegative);
