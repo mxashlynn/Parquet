@@ -255,25 +255,5 @@ namespace ParquetClassLibrary.Utilities
                 throw new ArgumentNullException($"{inArgumentName} is null.");
             }
         }
-
-        /// <summary>
-        /// Verifies that the given <see langword="string"/> does not contain the given forbidden <see langword="string"/>s.
-        /// </summary>
-        /// <param name="inText">The string to test.</param>
-        /// <param name="inForbiddenText">The substrings to prevent.</param>
-        /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="FormatException">Thrown when <paramref name="inText"/> contains one of <paramref name="inForbiddenText"/>.</exception>
-        public static void DoesNotContain(string inText, IEnumerable<string> inForbiddenText, string inArgumentName = DefaultArgumentName)
-        {
-            IsNotNull(inText);
-            IsNotNullOrEmpty(inForbiddenText);
-            foreach (var text in inForbiddenText)
-            {
-                if (inText.Contains(text, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    throw new FormatException($"{inArgumentName} cannot contain {text}.");
-                }
-            }
-        }
     }
 }
