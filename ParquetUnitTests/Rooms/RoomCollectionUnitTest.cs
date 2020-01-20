@@ -4,7 +4,6 @@ using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary;
 using System.Collections.Generic;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Maps;
 
 namespace ParquetUnitTests.Rooms
 {
