@@ -23,7 +23,7 @@ namespace ParquetClassLibrary.Serialization
         {
             Precondition.IsNotNull(inText, nameof(inText));
             Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-            if (!inText.Contains(Serializer.PrimaryDelimiter, StringComparison.InvariantCultureIgnoreCase))
+            if (!inText.Contains(Serializer.SecondaryDelimiter, StringComparison.InvariantCultureIgnoreCase))
             {
                 throw new FormatException($"Could not parse recipe element '{inText}' as it does not contain '{Serializer.SecondaryDelimiter}'.");
             }
