@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Serialization
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}s.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
-                using var csv = new CsvReader(reader);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
@@ -58,7 +58,7 @@ namespace ParquetClassLibrary.Serialization
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/PronounGroups.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
-                using var csv = new CsvReader(reader);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Configuration.RegisterClassMap<PronounGroupClassMap>();
                 var shims = csv.GetRecords<PronounGroupShim>();
                 foreach (var shim in shims)
