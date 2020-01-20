@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using ParquetClassLibrary.Serialization;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {
@@ -32,14 +35,23 @@ namespace ParquetClassLibrary
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
         private string tagName = "";
 
+        /// <summary>Text elements that are not permitted in an <see cref="EntityTag"/>.</summary>
+        private static List<string> Delimiters = new List<string> { Serializer.PrimaryDelimiter, Serializer.SecondaryDelimiter };
+
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">Any valid tag value.</param>
+        /// <param name="inValue">
+        /// Any valid tag value.
+        /// A string containing <see cref="Serializer.PrimaryDelimiter"/> or <see cref=Serializer.SecondaryDelimiter"/> is not a valid tag value.
+        /// </param>
         /// <returns>The given value as a tag.</returns>
         public static implicit operator EntityTag(string inValue)
-            => new EntityTag { tagName = inValue };
+        {
+            Precondition.DoesNotContain(inValue, Delimiters, nameof(EntityTag));
+            return new EntityTag { tagName = inValue };
+        }
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
