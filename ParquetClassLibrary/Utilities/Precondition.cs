@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="inBoundsCollection"/> is null.</exception>
-        public static void IsInRange(EntityID inID, List<Range<EntityID>> inBoundsCollection,
+        public static void IsInRange(EntityID inID, IEnumerable<Range<EntityID>> inBoundsCollection,
                                      string inArgumentName = DefaultArgumentName)
         {
             IsNotNull(inBoundsCollection, nameof(inBoundsCollection));
@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
-        public static void IsInRange(Range<EntityID> inInnerBounds, List<Range<EntityID>> inBoundsCollection,
+        public static void IsInRange(Range<EntityID> inInnerBounds, IEnumerable<Range<EntityID>> inBoundsCollection,
                                      string inArgumentName = DefaultArgumentName)
         {
             if (!inBoundsCollection.ContainsRange(inInnerBounds))

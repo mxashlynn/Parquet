@@ -17,15 +17,15 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public RecipeElement RequiredFloors;
-        // TODO public List<RecipeElement> RequiredFloors;
+        // TODO public IReadOnlyList<RecipeElement> RequiredFloors;
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         public RecipeElement RequiredPerimeterBlocks;
-        // TODO public List<RecipeElement> RequiredPerimeterBlocks;
+        // TODO public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks;
 
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public RecipeElement RequiredFurnishings;
-        // TODO public List<RecipeElement> RequiredFurnishings;
+        // TODO public IReadOnlyList<RecipeElement> RequiredFurnishings;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

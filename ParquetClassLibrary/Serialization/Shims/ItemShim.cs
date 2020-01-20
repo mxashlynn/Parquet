@@ -35,7 +35,7 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
         public EntityTag ItemTags;
-        // TODO public List<EntityTag> ItemTags;
+        // TODO public IReadOnlyList<EntityTag> ItemTags;
 
         /// <summary>How this item is crafted.</summary>
         public EntityID Recipe;

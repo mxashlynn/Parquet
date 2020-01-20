@@ -26,12 +26,12 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
         public EntityTag ParquetCriteria;
-        // TODO public List<EntityTag> ParquetCriteria;
+        // TODO public IReadOnlyList<EntityTag> ParquetCriteria;
 
         /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.
         /// </summary>
         public EntityTag EntryRequirements;
-        // TODO public List<EntityTag> EntryRequirements;
+        // TODO public IReadOnlyList<EntityTag> EntryRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

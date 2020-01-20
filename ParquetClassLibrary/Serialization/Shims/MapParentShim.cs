@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Serialization.Shims
         public int Revision;
 
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-        public List<ExitPoint> ExitPoints;
+        public IReadOnlyList<ExitPoint> ExitPoints;
 
         /// <summary>Floors and walkable terrain on the map.</summary>
         public ParquetStatusGrid ParquetStatuses;

@@ -31,14 +31,14 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         public EntityID StartingQuests;
-        // TODO public List<EntityID> StartingQuests;
+        // TODO public IReadOnlyList<EntityID> StartingQuests;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         public string Dialogue;
-        // TODO public List<string> Dialogue;
+        // TODO public IReadOnlyList<string> Dialogue;
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         public EntityID StartingInventory;
-        // TODO public List<EntityID> StartingInventory;
+        // TODO public IReadOnlyList<EntityID> StartingInventory;
     }
 }

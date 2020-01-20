@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
         /// <returns>A list of four <see cref="MapSpace"/>s, some or all of which may be <see cref="Empty"/>.</returns>
-        public List<MapSpace> Neighbors()
+        public IReadOnlyList<MapSpace> Neighbors()
             => new List<MapSpace>
             {
                 NorthNeighbor(),

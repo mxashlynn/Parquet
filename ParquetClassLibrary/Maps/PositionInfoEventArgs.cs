@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Maps
         /// Special points at the given position.
         /// </summary>
         /// <value>The special points.</value>
-        public List<ExitPoint> SpecialPoints { get; }
+        public IReadOnlyList<ExitPoint> SpecialPoints { get; }
 
         /// <summary>
         /// Triggered when the information about a specific map location is ready to be displayed.

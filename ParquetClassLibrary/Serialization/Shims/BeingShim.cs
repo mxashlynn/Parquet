@@ -19,10 +19,10 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         public EntityID Avoids;
-        // TODO public List<EntityID> Avoids;
+        // TODO public IReadOnlyList<EntityID> Avoids;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         public EntityID Seeks;
-        // TODO public List<EntityID> Seeks;
+        // TODO public IReadOnlyList<EntityID> Seeks;
     }
 }

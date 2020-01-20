@@ -192,7 +192,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inPosition">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
-        public List<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
+        public IReadOnlyList<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
             => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 

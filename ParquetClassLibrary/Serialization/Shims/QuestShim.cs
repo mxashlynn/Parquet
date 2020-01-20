@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Serialization.Shims
 
         /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
         public EntityTag CompletionRequirements;
-        // TODO public List<EntityTag> CompletionRequirements;
+        // TODO public IReadOnlyList<EntityTag> CompletionRequirements;
 
         /// <summary>
         /// Converts a shim into the class it corresponds to.

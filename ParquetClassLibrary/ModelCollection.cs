@@ -33,7 +33,7 @@ namespace ParquetClassLibrary
         private IReadOnlyDictionary<EntityID, EntityModel> Models { get; }
 
         /// <summary>The bounds within which all collected <see cref="EntityModel"/>s must be defined.</summary>
-        private List<Range<EntityID>> Bounds { get; }
+        private IReadOnlyList<Range<EntityID>> Bounds { get; }
 
         /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{T}"/>.</summary>
         public int Count => Models?.Count ?? 0;
