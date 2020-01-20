@@ -45,8 +45,8 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeModel"/>.</param>
         public BiomeModel(EntityID inID, string inName, string inDescription, string inComment,
                      int inTier, Elevation inElevationCategory,
-                     bool inIsLiquidBased, List<EntityTag> inParquetCriteria,
-                     List<EntityTag> inEntryRequirements)
+                     bool inIsLiquidBased, IEnumerable<EntityTag> inParquetCriteria,
+                     IEnumerable<EntityTag> inEntryRequirements)
             : base(All.BiomeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.MustBeNonNegative(inTier, nameof(inTier));

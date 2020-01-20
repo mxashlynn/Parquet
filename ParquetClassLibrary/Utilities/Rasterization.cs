@@ -15,8 +15,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inEend">The other end of the line segment.</param>
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The line segment.</returns>
-        public static List<Vector2D> PlotLine(Vector2D inStart, Vector2D inEend,
-                                                Predicate<Vector2D> inIsValid)
+        public static List<Vector2D> PlotLine(Vector2D inStart, Vector2D inEend, Predicate<Vector2D> inIsValid)
         {
             // Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
@@ -74,7 +73,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The filled rectangle.</returns>
         public static List<Vector2D> PlotFilledRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
-                                                           Predicate<Vector2D> inIsValid)
+                                                         Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
@@ -103,7 +102,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The rectangle.</returns>
         public static List<Vector2D> PlotEmptyRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
-                                                          Predicate<Vector2D> inIsValid)
+                                                        Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
@@ -129,7 +128,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The circle.</returns>
         public static List<Vector2D> PlotCircle(Vector2D inCenter, int inRadius, bool inIsFilled,
-                                                  Predicate<Vector2D> inIsValid)
+                                                Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
@@ -171,8 +170,8 @@ namespace ParquetClassLibrary.Utilities
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         /// <returns>A selection of contiguous positions.</returns>
         public static List<Vector2D> PlotFloodFill<T>(Vector2D inStart, T inTarget,
-                                                        Predicate<Vector2D> inIsValid,
-                                                        Func<Vector2D, T, bool> inMatches)
+                                                      Predicate<Vector2D> inIsValid,
+                                                      Func<Vector2D, T, bool> inMatches)
         {
             var results = new HashSet<Vector2D>();
             var queue = new Queue<Vector2D>();

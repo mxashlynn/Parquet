@@ -114,7 +114,7 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
         /// </summary>
         /// <param name="inSubregion">The <see cref="ParquetStackGrid"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        internal static List<MapSpaceCollection> GetWalkableAreas(this ParquetStackGrid inSubregion)
+        internal static IReadOnlyList<MapSpaceCollection> GetWalkableAreas(this ParquetStackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
             var subregionRows = inSubregion.Rows;

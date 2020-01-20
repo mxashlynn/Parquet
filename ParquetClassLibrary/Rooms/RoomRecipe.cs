@@ -38,10 +38,10 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(EntityID inID, string inName, string inDescription, string inComment,
-                          List<RecipeElement> inRequiredFurnishings,
+                          IEnumerable<RecipeElement> inRequiredFurnishings,
                           int inMinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
-                          List<RecipeElement> inOptionallyRequiredWalkableFloors = null,
-                          List<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
+                          IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
+                          IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsNotNullOrEmpty(inRequiredFurnishings, nameof(inRequiredFurnishings));
@@ -52,9 +52,9 @@ namespace ParquetClassLibrary.Rooms
             }
 
             MinimumWalkableSpaces = inMinimumWalkableSpaces;
-            RequiredFloors = inOptionallyRequiredWalkableFloors ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredFurnishings = inRequiredFurnishings;
+            RequiredFloors = inOptionallyRequiredWalkableFloors.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            RequiredFurnishings = inRequiredFurnishings.ToList();
         }
         #endregion
 

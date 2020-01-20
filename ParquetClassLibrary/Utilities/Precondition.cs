@@ -155,7 +155,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBoundsCollection">The collection of ranges they must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
-        public static void AreInRange(IEnumerable<EntityID> inEnumerable, List<Range<EntityID>> inBoundsCollection,
+        public static void AreInRange(IEnumerable<EntityID> inEnumerable, IEnumerable<Range<EntityID>> inBoundsCollection,
                                       string inArgumentName = DefaultArgumentName)
         {
             foreach (var id in inEnumerable ?? Enumerable.Empty<EntityID>())

@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(2, 2, TestEntry, null),
         };
 
-        private static readonly List<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
+        private static readonly IReadOnlyList<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
             new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", TestRequiredFurnishings);

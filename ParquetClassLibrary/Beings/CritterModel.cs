@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inSeeks">Any parquets this <see cref="CritterModel"/> seeks.</param>
         public CritterModel(EntityID inID, string inName, string inDescription, string inComment,
                             EntityID inNativeBiome, Behavior inPrimaryBehavior,
-                            List<EntityID> inAvoids = null, List<EntityID> inSeeks = null)
+                            IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null)
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
             Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));

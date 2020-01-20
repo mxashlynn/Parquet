@@ -19,8 +19,8 @@ namespace ParquetUnitTests
     {
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
-        public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
-        public static readonly List<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
+        public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
+        public static readonly IReadOnlyList<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
         #endregion
 
         #region Test Values
@@ -82,31 +82,31 @@ namespace ParquetUnitTests
         public static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BeingModel> Beings { get; }
+        public static IReadOnlyList<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BiomeModel> Biomes { get; }
+        public static IReadOnlyList<BiomeModel> Biomes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<CraftingRecipe> CraftingRecipes { get; }
+        public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<InteractionModel> Interactions { get; }
+        public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<MapModel> Maps { get; }
+        public static IReadOnlyList<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ParquetModel> Parquets { get; }
+        public static IReadOnlyList<ParquetModel> Parquets { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<QuestModel> Quests { get; }
+        public static IReadOnlyList<QuestModel> Quests { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<RoomRecipe> RoomRecipes { get; }
+        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ItemModel> Items { get; }
+        public static IReadOnlyList<ItemModel> Items { get; }
         #endregion
 
         /// <summary>

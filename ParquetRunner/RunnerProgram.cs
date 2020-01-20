@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using CsvHelper;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -13,8 +11,6 @@ using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Serialization;
-using ParquetClassLibrary.Serialization.Shims;
-using ParquetClassLibrary.Serialization.ClassMaps;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetRunner
@@ -90,28 +86,28 @@ namespace ParquetRunner
         public static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BeingModel> Beings { get; }
+        public static IReadOnlyList<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BiomeModel> Biomes { get; }
+        public static IReadOnlyList<BiomeModel> Biomes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<CraftingRecipe> CraftingRecipes { get; }
+        public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<InteractionModel> Interactions { get; }
+        public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<MapModel> Maps { get; }
+        public static IReadOnlyList<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ParquetModel> Parquets { get; }
+        public static IReadOnlyList<ParquetModel> Parquets { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<RoomRecipe> RoomRecipes { get; }
+        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ItemModel> Items { get; }
+        public static IReadOnlyList<ItemModel> Items { get; }
         #endregion
 
         /// <summary>

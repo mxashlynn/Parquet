@@ -44,7 +44,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(IEnumerable<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
         {
             Precondition.IsNotNull(inModels, nameof(inModels));
 
@@ -68,7 +68,7 @@ namespace ParquetClassLibrary
                 }
             }
 
-            Bounds = inBounds;
+            Bounds = inBounds.ToList();
             Models = baseDictionary;
         }
 
@@ -194,7 +194,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(IEnumerable<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
             : base(inBounds, inModels) { }
 
         /// <summary>

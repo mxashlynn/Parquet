@@ -72,10 +72,10 @@ namespace ParquetClassLibrary.Beings
         protected CharacterModel(Range<EntityID> inBounds, EntityID inID,
                                  string inPersonalName, string inFamilyName,
                                  string inDescription, string inComment, EntityID inNativeBiome,
-                                 Behavior inPrimaryBehavior, List<EntityID> inAvoids = null,
-                                 List<EntityID> inSeeks = null, string inPronouns = PronounGroup.Default,
-                                 string inStoryCharacterID = "", List<EntityID> inStartingQuests = null,
-                                 List<string> inDialogue = null, List<EntityID> inStartingInventory = null)
+                                 Behavior inPrimaryBehavior, IEnumerable<EntityID> inAvoids = null,
+                                 IEnumerable<EntityID> inSeeks = null, string inPronouns = PronounGroup.Default,
+                                 string inStoryCharacterID = "", IEnumerable<EntityID> inStartingQuests = null,
+                                 IEnumerable<string> inDialogue = null, IEnumerable<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {

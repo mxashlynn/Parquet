@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inSeeks">Any parquets this <see cref="BeingModel"/> seeks.</param>
         protected BeingModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
                         string inComment, EntityID inNativeBiome, Behavior inPrimaryBehavior,
-                        List<EntityID> inAvoids = null, List<EntityID> inSeeks = null)
+                        IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));

@@ -31,10 +31,10 @@ namespace ParquetClassLibrary.Beings
         public PlayerCharacterModel(EntityID inID, string inPersonalName, string inFamilyName,
                                     string inDescription, string inComment,
                                     EntityID inNativeBiome, Behavior inPrimaryBehavior,
-                                    List<EntityID> inAvoids = null, List<EntityID> inSeeks = null,
+                                    IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null,
                                     string inPronouns = null, string inStoryCharacterID = "",
-                                    List<EntityID> inStartingQuests = null, List<string> inDialogue = null,
-                                    List<EntityID> inStartingInventory = null)
+                                    IEnumerable<EntityID> inStartingQuests = null, IEnumerable<string> inDialogue = null,
+                                    IEnumerable<EntityID> inStartingInventory = null)
             : base(All.PlayerCharacterIDs, inID, inPersonalName, inFamilyName, inDescription,
                    inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks,
                    inPronouns, inStoryCharacterID, inStartingQuests, inDialogue, inStartingInventory)

@@ -13,13 +13,13 @@ namespace ParquetUnitTests.Crafts
         private static readonly EntityID newCraftingRecipeID = TestModels.TestCraftingRecipe.ID - 1;
 
         /// <summary>A valid minimal list of test ingredients.</summary>
-        private static readonly List<RecipeElement> ingredientList = new List<RecipeElement>
+        private static readonly IReadOnlyList<RecipeElement> ingredientList = new List<RecipeElement>
         {
             new RecipeElement( "ingredient", 1 ),
         };
 
         /// <summary>A valid minimal list of test products.</summary>
-        private static readonly List<RecipeElement> productList = new List<RecipeElement>
+        private static readonly IReadOnlyList<RecipeElement> productList = new List<RecipeElement>
         {
             new RecipeElement( "product", 1 ),
         };

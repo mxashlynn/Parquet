@@ -28,8 +28,8 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inCompletionRequirements">Describes the criteria for completing this <see cref="QuestModel"/>.</param>
         public QuestModel(EntityID inID, string inName, string inDescription, string inComment,
-                          List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome,
-                          List<EntityTag> inCompletionRequirements)
+                          IEnumerable<EntityTag> inStartCriteria, IEnumerable<string> inSteps, string inOutcome,
+                          IEnumerable<EntityTag> inCompletionRequirements)
             : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             CompletionRequirements = (inCompletionRequirements ?? Enumerable.Empty<EntityTag>()).ToList();

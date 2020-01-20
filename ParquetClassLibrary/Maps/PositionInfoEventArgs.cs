@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Maps;
+using System.Linq;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -34,11 +34,11 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inParquets">Any and all parquets at the location.</param>
         /// <param name="inPoints">Any and all special points at the location.</param>
-        public PositionInfoEventArgs(ParquetStack inParquets, ParquetStatus inStatuses, List<ExitPoint> inPoints)
+        public PositionInfoEventArgs(ParquetStack inParquets, ParquetStatus inStatuses, IEnumerable<ExitPoint> inPoints)
         {
             Stack = inParquets;
             Status = inStatuses;
-            SpecialPoints = inPoints;
+            SpecialPoints = inPoints.ToList();
         }
     }
 }

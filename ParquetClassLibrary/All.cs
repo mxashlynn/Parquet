@@ -49,7 +49,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.BeingModel"/>s.
         /// </summary>
-        public static readonly List<Range<EntityID>> BeingIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> BeingIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BiomeModel"/>s.
@@ -79,7 +79,7 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="InteractionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly List<Range<EntityID>> InteractionIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> InteractionIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapChunk"/>s.
@@ -97,7 +97,7 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly List<Range<EntityID>> MapIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> MapIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FloorModel"/>s.
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquets.
         /// </summary>
-        public static readonly List<Range<EntityID>> ParquetIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> ParquetIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.

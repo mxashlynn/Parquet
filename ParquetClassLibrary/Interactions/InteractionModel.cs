@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                                   List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
+                                   IEnumerable<EntityTag> inStartCriteria, IEnumerable<string> inSteps, string inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             StartCriteria = (inStartCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
