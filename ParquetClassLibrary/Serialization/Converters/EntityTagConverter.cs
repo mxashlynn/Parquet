@@ -2,7 +2,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace ParquetClassLibrary.Serialization
+namespace ParquetClassLibrary.Serialization.Converters
 {
     /// <summary>
     /// Type converter for <see cref="EntityTag"/>.

@@ -6,6 +6,7 @@ using CsvHelper;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Serialization.ClassMaps;
+using ParquetClassLibrary.Serialization.Converters;
 using ParquetClassLibrary.Serialization.Shims;
 
 namespace ParquetClassLibrary.Serialization

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
-namespace ParquetClassLibrary.Serialization
+namespace ParquetClassLibrary.Serialization.Converters
 {
     /// <summary>
-    /// Type converter for <see cref="IEnumerable{EntityTag}"/>.
+    /// Type converter for <see cref="IEnumerable{string}"/>.
     /// </summary>
-    public class EntityTagEnumerableConverter : EntityTagConverter
+    public class StringEnumerableConverter : DefaultTypeConverter
     {
         /// <summary>
         /// Converts the given record column to <see cref="EntityTagEnumerableConverter"/>.
@@ -22,21 +23,21 @@ namespace ParquetClassLibrary.Serialization
         {
             if (string.IsNullOrEmpty(inText))
             {
-                return Enumerable.Empty<EntityTag>();
+                return Enumerable.Empty<string>();
             }
             else if (!inText.Contains(Serializer.SecondaryDelimiter, StringComparison.InvariantCultureIgnoreCase))
             {
-                return new List<EntityTag> { (EntityTag)base.ConvertFromString(inText, inRow, inMemberMapData) };
+                return new List<string> { (string)base.ConvertFromString(inText, inRow, inMemberMapData) };
             }
             else
             {
                 var splitText = inText.Split(Serializer.SecondaryDelimiter);
-                var tags = new List<EntityTag>();
+                var strings = new List<string>();
                 foreach(var tagText in splitText)
                 {
-                    tags.Add((EntityTag)base.ConvertFromString(tagText, inRow, inMemberMapData));
+                    strings.Add((string)base.ConvertFromString(tagText, inRow, inMemberMapData));
                 }
-                return tags;
+                return strings;
             }
         }
     }

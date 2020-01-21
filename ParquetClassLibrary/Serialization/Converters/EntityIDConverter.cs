@@ -4,7 +4,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Serialization
+namespace ParquetClassLibrary.Serialization.Converters
 {
     /// <summary>
     /// Type converter for <see cref="EntityID"/>.
