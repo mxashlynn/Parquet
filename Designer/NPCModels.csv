@@ -1,3 +1,3 @@
 ID,PersonalName,FamilyName,Description,Comment,NativeBiome,PrimaryBehavior,Avoids,Seeks,Pronouns,StoryCharacterID,StartingQuests,Dialogue,StartingInventory
--20000,Test,NPC,Test,Test,0,Still,0,0,thon/thon,TEST_NPC,,,
-20000,Missy,Titan,Sharp and sweet.,"Come on in!",30004,Homebody,0,0,she/her,MISSY_TITAN,,,
+-20000,Test,NPC,Test,Test,0,Still,0,0,xe/xem,TEST_NPC,,,
+20000,Missy,Titan,Sharp and sweet.,Come on in!,30004,Homebody,0,0,she/her,MISSY_TITAN,,,
