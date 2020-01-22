@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Serialization.Converters
     /// </summary>
     public class GridConverter<TInner, TOuter> : DefaultTypeConverter
         where TOuter : IGrid<TInner>, new()
+        where TInner : ITypeConverter, new()
     {
         /// <summary>
         /// Converts the given record column to a 2D collection.
@@ -26,6 +27,7 @@ namespace ParquetClassLibrary.Serialization.Converters
             // IDEA:  If this works, rewrite the EnumerableConverters in this fashion!
 
             var grid = new TOuter();
+            var inner = new TInner();
             if (string.IsNullOrEmpty(inText))
             {
                 return grid;
@@ -44,7 +46,7 @@ namespace ParquetClassLibrary.Serialization.Converters
 
                     var currentText = (string)textCollectionEnumerator.Current;
                     // TODO It might be better if each serializable class provided their own ConvertFromBase implementation.
-                    grid[x, y] = (TInner)base.ConvertFromString(currentText, inRow, inMemberMapData);
+                    grid[x, y] = (TInner)inner.ConvertFromString(currentText, inRow, inMemberMapData);
                 }
             }
             return grid;
