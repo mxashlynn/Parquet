@@ -24,16 +24,12 @@ namespace ParquetClassLibrary.Serialization.Converters
         {
             Precondition.IsNotNullOrEmpty(inText);
 
-            if (string.IsNullOrEmpty(inText))
-            {
-                return new TOuter();
-            }
-            else
+            var grid = new TOuter();
+            if (!string.IsNullOrEmpty(inText))
             {
                 var textCollection = inText.Split(Serializer.SecondaryDelimiter);
                 var textCollectionEnumerator = textCollection.GetEnumerator();
-                var nextFound = true;  // QUESTION: Do I need to call textCollectionEnumerator.MoveNext() before using the iterator the first time?
-                var grid = new TOuter();
+                var nextFound = true;  // QUESTION: Do I need to call textCollectionEnumerator.MoveNext() before using .Current the first time?
                 for (var y = 0; y < grid.Rows; y++)
                 {
                     if (!nextFound)
@@ -55,8 +51,8 @@ namespace ParquetClassLibrary.Serialization.Converters
                         }
                     }
                 }
-                return grid;
             }
+            return grid;
         }
     }
 }
