@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Serialization.Converters
         /// <param name="inText">The record column to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="IEnumerable{EntityTag}"/> created from the record column.</returns>
+        /// <returns>The <see cref="IGrid{TInner}"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             Precondition.IsNotNullOrEmpty(inText);
