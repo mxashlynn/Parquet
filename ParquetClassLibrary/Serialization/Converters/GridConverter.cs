@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -24,32 +23,28 @@ namespace ParquetClassLibrary.Serialization.Converters
         {
             Precondition.IsNotNullOrEmpty(inText);
 
+            // IDEA:  If this works, rewrite the EnumerableConverters in this fashion!
+
             var grid = new TOuter();
-            if (!string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText))
             {
-                var textCollection = inText.Split(Serializer.SecondaryDelimiter);
-                var textCollectionEnumerator = textCollection.GetEnumerator();
-                var nextFound = true;  // QUESTION: Do I need to call textCollectionEnumerator.MoveNext() before using .Current the first time?
-                for (var y = 0; y < grid.Rows; y++)
+                return grid;
+            }
+
+            var textCollection = inText.Split(Serializer.SecondaryDelimiter);
+            var textCollectionEnumerator = textCollection.GetEnumerator();
+            for (var y = 0; y < grid.Rows; y++)
+            {
+                for (var x = 0; x < grid.Columns; x++)
                 {
-                    if (!nextFound)
+                    if (!textCollectionEnumerator.MoveNext())
                     {
-                        break;
+                        return grid;
                     }
-                    for (var x = 0; x < grid.Columns; x++)
-                    {
-                        nextFound = textCollectionEnumerator.MoveNext();
-                        if (!nextFound)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            var currentText = (string)textCollectionEnumerator.Current;
-                            // TODO It might be better if each serializable class provided their own ConvertFromBase implementation.
-                            grid[x, y] = (TInner)base.ConvertFromString(currentText, inRow, inMemberMapData);
-                        }
-                    }
+
+                    var currentText = (string)textCollectionEnumerator.Current;
+                    // TODO It might be better if each serializable class provided their own ConvertFromBase implementation.
+                    grid[x, y] = (TInner)base.ConvertFromString(currentText, inRow, inMemberMapData);
                 }
             }
             return grid;
