@@ -47,7 +47,10 @@ namespace ParquetClassLibrary.Serialization
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElementConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new EntityTagEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMapFor<T>();
                 records = csv.GetRecordsViaShim<T>();
