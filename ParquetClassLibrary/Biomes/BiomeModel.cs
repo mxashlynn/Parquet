@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
+using ParquetClassLibrary.Serialization.ClassMaps;
+using ParquetClassLibrary.Serialization.Shims;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Biomes
@@ -8,7 +12,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : EntityModel
+    public sealed class BiomeModel : EntityModel, ISerialMapper
     {
         #region Characteristics
         /// <summary>
@@ -57,6 +61,32 @@ namespace ParquetClassLibrary.Biomes
             ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
             EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
         }
+        #endregion
+
+        #region ISerialMapper Implementation
+        /// <summary>Singleton provides access to instance members in a static context.</summary>
+        private static ISerialMapper throwaway;
+
+        /// <summary>Caches a class mapper.</summary>
+        private static BiomeClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of <see cref="BiomeModel"/> to a CSV file.
+        /// </summary>
+        /// <param typeparam="TClass">The class to map.</param>
+        /// <returns>The member mapping.</returns>
+        ClassMap ISerialMapper.InstanceGetClassMap()
+            => classMapCache
+            ?? (classMapCache = new BiomeClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of <see cref="BiomeModel"/> to a CSV file.
+        /// </summary>
+        /// <param typeparam="TClass">The class to map.</param>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => throwaway?.InstanceGetClassMap()
+            ?? (throwaway = new BiomeModel(EntityID.None, "None", "", "", 0, Elevation.LevelGround, false, null, null)).InstanceGetClassMap();
         #endregion
     }
 }

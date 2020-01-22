@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Serialization.ClassMaps;
@@ -29,19 +31,25 @@ namespace ParquetClassLibrary.Serialization
                           NumberStyles.Integer
         };
 
+        /// <summary>Mappings for all serializable classes.</summary>
+        internal static Dictionary<Type, ClassMap> Mapper = new Dictionary<Type, ClassMap>
+        {
+            { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetClassMap() },
+        };
+
         /// <summary>The location of the designer CSV files.</summary>
         public static string SearchPath { get; set; }
 
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
-        /// <typeparam name="T">The type of records to read.</typeparam>
+        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
         /// <returns>The records read.</returns>
-        public static IEnumerable<T> GetRecordsForType<T>()
-            where T : EntityModel
+        public static IEnumerable<TRecord> GetRecordsForType<TRecord>()
+            where TRecord : EntityModel, ISerialMapper
         {
-            IEnumerable<T> records;
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(T).Name}s.csv");
+            IEnumerable<TRecord> records;
+            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(TRecord).Name}s.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
@@ -52,11 +60,11 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                csv.Configuration.RegisterClassMapFor<T>();
-                records = csv.GetRecordsViaShim<T>();
+                csv.Configuration.RegisterClassMapFor<TRecord>();
+                records = csv.GetRecordsViaShim<TRecord>();
             }
 
-            return records ?? Enumerable.Empty<T>();
+            return records ?? Enumerable.Empty<TRecord>();
         }
 
         /// <summary>

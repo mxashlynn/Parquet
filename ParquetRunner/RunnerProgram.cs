@@ -233,10 +233,13 @@ namespace ParquetRunner
 
             #region Deserialize from CSV
             PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
+            /*
             Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
             Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
             Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
+            */
             Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
+            /*
             CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
             Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
             Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
@@ -248,6 +251,7 @@ namespace ParquetRunner
             Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
             RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
             Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
+            */
             #endregion
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);
