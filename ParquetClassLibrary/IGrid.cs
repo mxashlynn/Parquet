@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// A two-dimensional collection of that functions much like an array.
+    /// A two-dimensional collection that functions much like an array.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
