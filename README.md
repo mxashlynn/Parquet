@@ -2,7 +2,7 @@
 
 This class library implements mechanics and models for a 2D sandbox game focused on building, crafting, and narrative, more or less in that priority order.
 
-A game built with this system offers many of the features of contemporary quest-driven building games but in a simple, single-layer, top-down world and without the combat.
+A game built with this system offers many of the features of contemporary quest-driven building games but in a simple, single-layer, top-down world and without combat.
 
 # Version 0.1.0 Warning
 
@@ -18,7 +18,7 @@ Development milestone deadlines are tentative right now.
 
 This project has two goals:
 
-1. To provide a foundation for games developed in C# stacks (probably FNA+Nez and Unity);
+1. To provide a foundation for games developed in C# stacks (hopefully FNA+Nez, Godot, and Unity);
 2. To provide a learning exercise for the lead developer.
 
 Due to goal 2, no attempt has been made to design the most elegant, effecient, general-purpose, or powerful library possible.
