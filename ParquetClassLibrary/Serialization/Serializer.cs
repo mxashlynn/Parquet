@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="TRecord">The type to deserialize.</typeparam>
         /// <returns>The records read.</returns>
         public static IEnumerable<TRecord> GetRecordsForType<TRecord>()
-            where TRecord : EntityModel, ISerialMapper
+            where TRecord : EntityModel
         {
             IEnumerable<TRecord> records;
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(TRecord).Name}s.csv");
@@ -55,12 +55,12 @@ namespace ParquetClassLibrary.Serialization
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElementConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new EntityTagEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new EntityTagEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                csv.Configuration.RegisterClassMapFor<TRecord>();
+                csv.Configuration.RegisterClassMap(Mapper[typeof(TRecord)]); ;
                 records = csv.GetRecordsViaShim<TRecord>();
             }
 

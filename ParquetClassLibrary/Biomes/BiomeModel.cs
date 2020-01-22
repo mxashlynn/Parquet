@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : EntityModel, ISerialMapper
+    public sealed class BiomeModel : EntityModel
     {
         #region Characteristics
         /// <summary>
@@ -64,9 +64,6 @@ namespace ParquetClassLibrary.Biomes
         #endregion
 
         #region ISerialMapper Implementation
-        /// <summary>Singleton provides access to instance members in a static context.</summary>
-        private static ISerialMapper throwaway;
-
         /// <summary>Caches a class mapper.</summary>
         private static BiomeClassMap classMapCache;
 
@@ -75,18 +72,9 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         /// <param typeparam="TClass">The class to map.</param>
         /// <returns>The member mapping.</returns>
-        ClassMap ISerialMapper.InstanceGetClassMap()
+        internal static ClassMap GetClassMap()
             => classMapCache
             ?? (classMapCache = new BiomeClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of <see cref="BiomeModel"/> to a CSV file.
-        /// </summary>
-        /// <param typeparam="TClass">The class to map.</param>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => throwaway?.InstanceGetClassMap()
-            ?? (throwaway = new BiomeModel(EntityID.None, "None", "", "", 0, Elevation.LevelGround, false, null, null)).InstanceGetClassMap();
         #endregion
     }
 }

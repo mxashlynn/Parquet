@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Serialization
         /// <returns>The records.</returns>
         /// <exception cref="ArgumentException">When there is no shim matching the requested type.</exception>
         public static IEnumerable<TRecord> GetRecordsViaShim<TRecord>(this CsvReader inCSV)
-            where TRecord : EntityModel, ISerialMapper
+            where TRecord : EntityModel
         {
             Precondition.IsNotNull(inCSV, nameof(inCSV));
 
