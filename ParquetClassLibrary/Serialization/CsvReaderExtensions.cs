@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CsvHelper;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -50,7 +51,7 @@ namespace ParquetClassLibrary.Serialization
             }
             else if (typeof(TRecord) == typeof(BiomeModel))
             {
-                shims = inCSV.GetRecords<BiomeShim>();
+                shims = inCSV.GetRecords(BiomeModel.GetShimType()).Cast<EntityShim>();
             }
             else if (typeof(TRecord) == typeof(CraftingRecipe))
             {
