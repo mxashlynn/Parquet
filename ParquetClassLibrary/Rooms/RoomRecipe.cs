@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public sealed class RoomRecipe : EntityModel
     {
-        #region Mechanics
+        #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         public int MinimumWalkableSpaces { get; }
 

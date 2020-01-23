@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.FurnishingIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         public bool IsWalkable { get; }
 

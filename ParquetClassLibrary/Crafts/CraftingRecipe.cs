@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// </summary>
     public sealed class CraftingRecipe : EntityModel
     {
-        #region Mechanics
+        #region Characteristics
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
             new List<RecipeElement> { RecipeElement.None };

@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.BlockIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>The tool used to remove the block.</summary>
         public GatheringTool GatherTool { get; }
 

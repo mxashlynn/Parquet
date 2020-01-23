@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public sealed class ItemModel : EntityModel
     {
-        #region Mechanics
+        #region Characteristics
         /// <summary>The type of item this is.</summary>
         public ItemType Subtype { get; }
 

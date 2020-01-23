@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Interactions
     public sealed class DialogueModel : InteractionModel
     {
         // TODO This is a stub.
-        #region Mechanics
+        #region Characteristics
 
         #endregion
 

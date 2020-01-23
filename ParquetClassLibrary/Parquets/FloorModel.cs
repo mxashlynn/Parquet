@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.FloorIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         public ModificationTool ModTool { get; }
 

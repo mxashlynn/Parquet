@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Interactions
     /// </summary>
     public sealed class QuestModel : InteractionModel
     {
-        #region Mechanics
+        #region Characteristics
         /// <summary>
         /// Describes the criteria for completing this <see cref="QuestModel"/>.
         /// </summary>

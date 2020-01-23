@@ -9,10 +9,10 @@ namespace ParquetClassLibrary.Maps
     /// </summary>
     public sealed class MapChunk : MapModel
     {
+        #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "");
 
-        #region Class Defaults
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
                                                                               Rules.Dimensions.ParquetsPerChunk);
@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Maps
         public static Range<EntityID> Bounds => All.MapChunkIDs;
         #endregion
 
-        #region Chunk Contents
+        #region Characteristics
         /// <summary>The statuses of parquets in the chunk.</summary>
         protected override ParquetStatusGrid ParquetStatuses { get; } = new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
 

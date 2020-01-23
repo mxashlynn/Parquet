@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Beings
         public const string ReflexiveTag = "%themselves%";
         #endregion
 
-        #region Pronoun Properties
+        #region Pronouns
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
         public string Subjective { get; private set; }
 

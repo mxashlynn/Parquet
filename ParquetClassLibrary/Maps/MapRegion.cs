@@ -9,10 +9,10 @@ namespace ParquetClassLibrary.Maps
     /// </summary>
     public sealed class MapRegion : MapModel, IMapRegionEdit
     {
+        #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapRegion Empty = new MapRegion(EntityID.None, "Empty Region");
 
-        #region Class Defaults
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
                                                                               Rules.Dimensions.ParquetsPerRegion);
@@ -30,6 +30,7 @@ namespace ParquetClassLibrary.Maps
         internal static readonly PCLColor DefaultColor = PCLColor.White;
         #endregion
 
+        #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>What the region is called in-game.</summary>
         public string Title { get => Name; }
@@ -73,6 +74,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         protected override ParquetStackGrid ParquetDefintion { get; } =
             new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        #endregion
         #endregion
 
         #region Initialization

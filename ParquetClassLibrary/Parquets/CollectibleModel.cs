@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.CollectibleIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         public CollectEffect Effect { get; }
 

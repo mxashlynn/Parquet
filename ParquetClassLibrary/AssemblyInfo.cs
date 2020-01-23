@@ -7,7 +7,7 @@ using ParquetClassLibrary;
 
 // Set assembly values.
 [assembly: AssemblyTitle("Parquet Class Library")]
-[assembly: AssemblyDescription("Core game mechanics for Parquet.")]
+[assembly: AssemblyDescription("Mechanics and models for 2D building, crafting, and narrative sandbox games.")]
 [assembly: AssemblyCompany("Queertet")]
 [assembly: AssemblyCopyright("2018-2020 Paige Ashlynn")]
 [assembly: AssemblyProduct("ParquetClassLibrary")]
