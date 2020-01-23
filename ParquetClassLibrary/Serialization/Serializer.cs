@@ -32,9 +32,15 @@ namespace ParquetClassLibrary.Serialization
         };
 
         /// <summary>Mappings for all serializable classes.</summary>
-        internal static Dictionary<Type, ClassMap> Mapper = new Dictionary<Type, ClassMap>
+        internal static Dictionary<Type, ClassMap> ClassMapper = new Dictionary<Type, ClassMap>
         {
             { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetClassMap() },
+        };
+
+        /// <summary>Mappings for all serialization shims.</summary>
+        internal static Dictionary<Type, Type> ShimMapper = new Dictionary<Type, Type>
+        {
+            { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetShimType() },
         };
 
         /// <summary>The location of the designer CSV files.</summary>
@@ -60,7 +66,7 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                csv.Configuration.RegisterClassMap(Mapper[typeof(TRecord)]); ;
+                csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]); ;
                 records = csv.GetRecordsViaShim<TRecord>();
             }
 

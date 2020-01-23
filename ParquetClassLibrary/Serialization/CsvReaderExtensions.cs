@@ -35,73 +35,7 @@ namespace ParquetClassLibrary.Serialization
             var models = new List<TRecord>();
             IEnumerable<EntityShim> shims;
 
-            // This is a wonky faux static dispatch, as C# does not provide a clean way to associate two types.
-            // IDEA It would be nice to replace this with CRTP if that doesn't overly complicate the EntityModel class hierarchy.
-            if (typeof(TRecord) == typeof(PlayerCharacterModel))
-            {
-                shims = inCSV.GetRecords<PlayerCharacterShim>();
-            }
-            else if (typeof(TRecord) == typeof(NPCModel))
-            {
-                shims = inCSV.GetRecords<NPCShim>();
-            }
-            else if (typeof(TRecord) == typeof(CritterModel))
-            {
-                shims = inCSV.GetRecords<CritterShim>();
-            }
-            else if (typeof(TRecord) == typeof(BiomeModel))
-            {
-                shims = inCSV.GetRecords(BiomeModel.GetShimType()).Cast<EntityShim>();
-            }
-            else if (typeof(TRecord) == typeof(CraftingRecipe))
-            {
-                shims = inCSV.GetRecords<CraftingRecipeShim>();
-            }
-            else if (typeof(TRecord) == typeof(DialogueModel))
-            {
-                shims = inCSV.GetRecords<DialogueShim>();
-            }
-            else if (typeof(TRecord) == typeof(MapChunk))
-            {
-                shims = inCSV.GetRecords<MapChunkShim>();
-            }
-            else if (typeof(TRecord) == typeof(MapRegion))
-            {
-                shims = inCSV.GetRecords<MapRegionShim>();
-            }
-            else if (typeof(TRecord) == typeof(FloorModel))
-            {
-                shims = inCSV.GetRecords<FloorShim>();
-            }
-            else if (typeof(TRecord) == typeof(BlockModel))
-            {
-                shims = inCSV.GetRecords<BlockShim>();
-            }
-            else if (typeof(TRecord) == typeof(FurnishingModel))
-            {
-                shims = inCSV.GetRecords<FurnishingShim>();
-            }
-            else if (typeof(TRecord) == typeof(CollectibleModel))
-            {
-                shims = inCSV.GetRecords<CollectibleShim>();
-            }
-            else if (typeof(TRecord) == typeof(QuestModel))
-            {
-                shims = inCSV.GetRecords<QuestShim>();
-            }
-            else if (typeof(TRecord) == typeof(RoomRecipe))
-            {
-                shims = inCSV.GetRecords<RoomRecipeShim>();
-            }
-            else if (typeof(TRecord) == typeof(ItemModel))
-            {
-                shims = inCSV.GetRecords<ItemShim>();
-            }
-            else
-            {
-                throw new ArgumentException($"No shim exists for {typeof(TRecord)}");
-            }
-
+            shims = inCSV.GetRecords(Serializer.ShimMapper[typeof(TRecord)]).Cast<EntityShim>();
             foreach (var shim in shims)
             {
                 models.Add(shim.ToEntity<TRecord>());
