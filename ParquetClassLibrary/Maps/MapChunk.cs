@@ -1,3 +1,5 @@
+using System;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -44,7 +46,75 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a
+        /// <see cref="MapChunk"/>-like class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="MapChunk"/> from this class.
+        /// </summary>
+        internal class MapChunkShim : MapModelShim
+        {
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="MapModel"/>.</returns>
+            public override TModel ToEntity<TModel>()
+            {
+                Precondition.IsOfType<TModel, MapChunk>(typeof(TModel).ToString());
+                if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    throw new NotSupportedException(
+                        $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
+                }
 
+                return (TModel)(EntityModel)new MapChunk(ID, Name, Description, Comment, Revision
+                                                         // TODO ExitPoints, ParquetStatuses, ParquetDefintion
+                                                         );
+            }
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="MapChunkShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class MapChunkClassMap : ClassMap<MapChunkShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MapChunkClassMap"/> class.
+            /// </summary>
+            public MapChunkClassMap()
+            {
+                // TODO This is a stub.
+
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.ID).Index(0);
+                Map(m => m.Name).Index(1);
+                Map(m => m.Description).Index(2);
+                Map(m => m.Comment).Index(3);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static MapChunkClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new MapChunkClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(MapChunkShim);
         #endregion
 
         #region Utilities

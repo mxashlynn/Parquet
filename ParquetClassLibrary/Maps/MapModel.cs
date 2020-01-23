@@ -16,6 +16,7 @@ namespace ParquetClassLibrary.Maps
         public abstract Vector2D DimensionsInParquets { get; }
         #endregion
 
+        #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>
         /// Describes the version of serialized data.
@@ -42,6 +43,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The total number of parquets in the entire map.</summary>
         protected int ParquetsCount => ParquetDefintion?.Count ?? 0;
+        #endregion
         #endregion
 
         #region Initialization
@@ -197,7 +199,29 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
+        /// <summary>
+        /// Parent class for all shims of map definitions.
+        /// </summary>
+        internal abstract class MapModelShim : Serialization.Shims.EntityShim
+        {
+            /// <summary>Describes the version of serialized data.  Allows selecting data files that can be successfully deserialized.</summary>
+            public string DataVersion;
 
+            /// <summary>Tracks how many times the data structure has been serialized.</summary>
+            public int Revision;
+
+            /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
+            public IReadOnlyList<ExitPoint> ExitPoints;
+
+            /// <summary>Floors and walkable terrain on the map.</summary>
+            public ParquetStatusGrid ParquetStatuses;
+
+            /// <summary>
+            /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
+            /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
+            /// </summary>
+            public ParquetStackGrid ParquetDefintion;
+        }
         #endregion
 
         #region Utilities

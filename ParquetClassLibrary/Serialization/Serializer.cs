@@ -48,9 +48,8 @@ namespace ParquetClassLibrary.Serialization
             { typeof(CraftingRecipe), CraftingRecipe.GetClassMap() },
             { typeof(DialogueModel), DialogueModel.GetClassMap() },
             { typeof(QuestModel), QuestModel.GetClassMap() },
-            // TODO Implement this once Map serialization is decided.
-            // { typeof(MapChunk), MapChunk.GetClassMap() },
-            // { typeof(MapRegion), MapRegion.GetClassMap() },
+            { typeof(MapChunk), MapChunk.GetClassMap() },
+            { typeof(MapRegion), MapRegion.GetClassMap() },
             { typeof(FloorModel), FloorModel.GetClassMap() },
             { typeof(BlockModel), BlockModel.GetClassMap() },
             { typeof(FurnishingModel), FurnishingModel.GetClassMap() },
@@ -69,9 +68,8 @@ namespace ParquetClassLibrary.Serialization
             { typeof(CraftingRecipe), CraftingRecipe.GetShimType() },
             { typeof(DialogueModel), DialogueModel.GetShimType() },
             { typeof(QuestModel), QuestModel.GetShimType() },
-            // TODO Implement this once Map serialization is decided.
-            // { typeof(MapChunk), MapChunk.GetShimType() },
-            // { typeof(MapRegion), MapRegion.GetShimType() },
+            { typeof(MapChunk), MapChunk.GetShimType() },
+            { typeof(MapRegion), MapRegion.GetShimType() },
             { typeof(FloorModel), FloorModel.GetShimType() },
             { typeof(BlockModel), BlockModel.GetShimType() },
             { typeof(FurnishingModel), FurnishingModel.GetShimType() },

@@ -1,3 +1,5 @@
+using System;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
@@ -102,7 +104,84 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a
+        /// <see cref="MapRegion"/>-like class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="MapRegion"/> from this class.
+        /// </summary>
+        internal class MapRegionShim : MapModelShim
+        {
+            /// <summary>A color to display in any empty areas of the region.</summary>
+            public PCLColor Background;
 
+            /// <summary>The region's elevation in absolute terms.</summary>
+            public Elevation ElevationLocal;
+
+            /// <summary>The region's elevation relative to all other regions.</summary>
+            public int ElevationGlobal;
+
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="MapModel"/>.</returns>
+            public override TModel ToEntity<TModel>()
+            {
+                Precondition.IsOfType<TModel, MapRegion>(typeof(TModel).ToString());
+                if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    throw new NotSupportedException(
+                        $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
+                }
+
+                return (TModel)(EntityModel)new MapRegion(ID, Name, Description, Comment, Revision, Background,
+                                                          // TODO ExitPoints, ParquetStatuses, ParquetDefintion, Background,
+                                                          ElevationLocal, ElevationGlobal);
+            }
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="MapRegionShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class MapRegionClassMap : ClassMap<MapRegionShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MapRegionClassMap"/> class.
+            /// </summary>
+            public MapRegionClassMap()
+            {
+                // TODO This is a stub.
+
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.ID).Index(0);
+                Map(m => m.Name).Index(1);
+                Map(m => m.Description).Index(2);
+                Map(m => m.Comment).Index(3);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static MapRegionClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new MapRegionClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(MapRegionShim);
         #endregion
 
         #region Utilities
