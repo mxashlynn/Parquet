@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Rooms
             if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces
                 || inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
             {
-                throw new IndexOutOfRangeException(nameof(inWalkableArea));
+                throw new IndexOutOfRangeException($"{nameof(inWalkableArea)} violates {nameof(Rules.Recipes.Room)}.");
             }
 
             if (!inWalkableArea.Concat(inPerimeter).Any(space

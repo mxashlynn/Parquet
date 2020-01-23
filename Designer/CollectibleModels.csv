@@ -1,11 +1,11 @@
 ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,Effect,EffectAmount
--110000,4 Collectible Test Parquet,Test,Test,-110000,None,None,None,0
-110000,Flower,,"",110000,None,None,Item,0
-110001,Pinecone,,"",110001,Forested,None,Item,0
-110002,Seeds,,"",110002,Swampy,None,Item,0
-110003,Bones,,"",110003,Deserted,Grave,Item,0
-110004,Ice Crystal,,"",110004,Frozen,None,Item,0
-110005,Copper Ore,,"",110005,None,None,Item,0
-110006,Heart,,"",0,None,None,BiomeTime,10
-110007,Star,,"",0,None,None,BiomeTime,10
-110008,Water Bottle,,"",0,None,None,BiomeTime,10
+-120000,4 Collectible Test Parquet,Test,Test,-140000,None,None,None,0
+120000,Flower,,,140000,None,None,Item,0
+120001,Pinecone,,,140001,Forested,None,Item,0
+120002,Seeds,,,140002,Swampy,None,Item,0
+120003,Bones,,,140003,Deserted,Grave,Item,0
+120004,Ice Crystal,,,140004,Frozen,None,Item,0
+120005,Copper Ore,,,140005,None,None,Item,0
+120006,Heart,,,0,None,None,BiomeTime,10
+120007,Star,,,0,None,None,BiomeTime,10
+120008,Water Bottle,,,0,None,None,BiomeTime,10

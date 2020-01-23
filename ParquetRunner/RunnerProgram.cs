@@ -233,21 +233,21 @@ namespace ParquetRunner
 
             #region Deserialize from CSV
             PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
-            //Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
-            //Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
-            //Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
+            Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
+            Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
+            Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
             Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
-            //CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
-            //Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
-            //Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
-            //Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>());
-            //Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>());
-            //Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>());
-            //Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>());
-            //Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>());
-            //Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
-            //RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
-            //Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
+            // TODO Needs PanelPaternConverter --> CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
+            Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
+            Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
+            // TODO Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>());
+            // TODO Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>());
+            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
+            RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
+            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
             #endregion
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);

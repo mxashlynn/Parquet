@@ -244,7 +244,6 @@ namespace ParquetClassLibrary
 
             #region Initialize Ranges
             ///<summary>By convention, the first EntityID in each Range is a multiple of this number.</summary>
-            ///<remarks>An exception is made for PlayerCharacters as these values are undefined at designtime.</remarks>
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges

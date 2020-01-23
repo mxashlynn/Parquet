@@ -1,3 +1,3 @@
 ID,Name,Description,Comment,Subtype,Price,Rarity,StackMax,EffectWhileHeld,EffectWhenUsed,AsParquet,ItemTags,RecipeID
--140000,Item Test,Test,Test,Consumable,10,3,99,None,42,0,,0
-140000,Apple,Red and tasty!,"",Consumable,2,1,30,None,13,0,,0
+-140000,Item Test,Test,Test,Consumable,10,3,99,0,1,0,,0
+140000,Apple,Red and tasty!,,Consumable,2,1,30,8,53,0,,0
