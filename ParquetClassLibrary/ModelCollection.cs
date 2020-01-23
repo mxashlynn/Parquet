@@ -9,7 +9,7 @@ namespace ParquetClassLibrary
 {
     /// <summary>
     /// Collects a group of <see cref="EntityModel"/>s.
-    /// Provides bounds-checking and type-checking against <typeparamref name="TParentType"/>.
+    /// Provides bounds-checking and type-checking against <typeparamref name="TModel"/>.
     /// </summary>
     /// <remarks>
     /// All <see cref="ModelCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
@@ -22,10 +22,11 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityID"/>
     /// <seealso cref="EntityTag"/>
     /// <seealso cref="All"/>
-    public class ModelCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : EntityModel
+    /// <typeparam name="TModel">The type collected, typically a decendent of <see cref="EntityModel"/>.</typeparam>
+    public class ModelCollection<TModel> : IReadOnlyCollection<TModel> where TModel : EntityModel
     {
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
-        public static readonly ModelCollection<TParentType> Default = new ModelCollection<TParentType>(
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModelType}"/>s.</summary>
+        public static readonly ModelCollection<TModel> Default = new ModelCollection<TModel>(
             new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<EntityModel>());
 
@@ -35,12 +36,12 @@ namespace ParquetClassLibrary
         /// <summary>The bounds within which all collected <see cref="EntityModel"/>s must be defined.</summary>
         private IReadOnlyList<Range<EntityID>> Bounds { get; }
 
-        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{T}"/>.</summary>
+        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
         public int Count => Models?.Count ?? 0;
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
@@ -73,7 +74,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
@@ -83,7 +84,7 @@ namespace ParquetClassLibrary
 
         #region Collection Access
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{T}"/> contains the specified <see cref="EntityModel"/>.
+        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="EntityModel"/>.
         /// </summary>
         /// <param name="inModel">The <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityModel"/> was found; <c>false</c> otherwise.</returns>
@@ -95,7 +96,8 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{T}"/> contains an <see cref="EntityModel"/> with the specified <see cref="EntityID"/>.
+        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains an <see cref="EntityModel"/>
+        /// with the specified <see cref="EntityID"/>.
         /// </summary>
         /// <param name="inID">The <see cref="EntityID"/> of the <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
@@ -108,27 +110,27 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns the specified <typeparamref name="T"/>.
+        /// Returns the specified <typeparamref name="TModel"/>.
         /// </summary>
-        /// <param name="inID">A valid, defined <typeparamref name="T"/> identifier.</param>
-        /// <typeparam name="T">
-        /// The type of <typeparamref name="TParentType"/> sought.  Must correspond to the given <paramref name="inID"/>.
+        /// <param name="inID">A valid, defined <typeparamref name="TModel"/> identifier.</param>
+        /// <typeparam name="TTarget">
+        /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
-        /// <returns>The specified <typeparamref name="T"/> model.</returns>
-        public T Get<T>(EntityID inID) where T : TParentType
+        /// <returns>The specified <typeparamref name="TTarget"/> model.</returns>
+        public TTarget Get<TTarget>(EntityID inID) where TTarget : TModel
         {
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return (T)Models[inID];
+            return (TTarget)Models[inID];
         }
 
         /// <summary>
-        /// Exposes an <see cref="IEnumerator{ParentType}"/> to support simple iteration.
+        /// Exposes an <see cref="IEnumerator{TModelType}"/> to support simple iteration.
         /// </summary>
         /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
-        IEnumerator<TParentType> IEnumerable<TParentType>.GetEnumerator()
-            => Models.Values.Cast<TParentType>().GetEnumerator();
+        IEnumerator<TModel> IEnumerable<TModel>.GetEnumerator()
+            => Models.Values.Cast<TModel>().GetEnumerator();
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
@@ -139,7 +141,7 @@ namespace ParquetClassLibrary
             => Models.Values.GetEnumerator();
 
         /// <summary>
-        /// Retrieves an enumerator for the <see cref="ModelCollection{T}"/>.
+        /// Retrieves an enumerator for the <see cref="ModelCollection{EntityModel}"/>.
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<EntityModel> GetEnumerator()
@@ -148,7 +150,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{T}"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -158,7 +160,7 @@ namespace ParquetClassLibrary
             {
                 allBounds.Append($"{bound.ToString()} ");
             }
-            return $"Collects {typeof(TParentType)} over {allBounds}.";
+            return $"Collects {typeof(TModel)} over {allBounds}.";
         }
         #endregion
     }
@@ -177,7 +179,7 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class ModelCollection : ModelCollection<EntityModel>
     {
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{EntityModel}"/>s.</summary>
         public static new readonly ModelCollection Default =
             new ModelCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<EntityModel>());
 

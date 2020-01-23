@@ -56,7 +56,7 @@ namespace ParquetClassLibrary
         /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
         /// <remarks>
         /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
-        /// to support human-readable design documents and <see cref="Range{T}"/> validation.
+        /// to support human-readable design documents and <see cref="Range{EntityID}"/> validation.
         /// </remarks>
         private int id;
 
@@ -184,12 +184,12 @@ namespace ParquetClassLibrary
         /// <item><term>1</term>
         /// <description>It is <see cref="None"/>.</description></item>
         /// <item><term>2</term>
-        /// <description>It is defined within the given <see cref="Range{T}"/>, inclusive, regardless of sign.</description></item>
+        /// <description>It is defined within the given <see cref="Range{EntityID}"/>, inclusive, regardless of sign.</description></item>
         /// </list>
         /// </summary>
-        /// <param name="inRange">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
+        /// <param name="inRange">The <see cref="Range{EntityID}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{EntityID}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(Range<EntityID> inRange)
@@ -202,14 +202,14 @@ namespace ParquetClassLibrary
         /// <item><term>1</term>
         /// <description>It is <see cref="None"/>.</description></item>
         /// <item><term>2</term>
-        /// <description>It is defined within any of the <see cref="Range{T}"/>a in the given <see cref="IEnumerable{T}"/>, inclusive, regardless of sign.</description></item>
+        /// <description>It is defined within any of the <see cref="Range{EntityID}"/>a in the given <see cref="IEnumerable{EntityID}"/>, inclusive, regardless of sign.</description></item>
         /// </list>
         /// </summary>
         /// <param name="inRanges">
-        /// The <see cref="IEnumerable{Range{T}}"/> within which the <see cref="EntityID"/> must fall.
+        /// The <see cref="IEnumerable{Range{EntityID}}"/> within which the <see cref="EntityID"/> must fall.
         /// </param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{T}}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{EntityID}}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(IEnumerable<Range<EntityID>> inRanges)

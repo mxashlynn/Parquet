@@ -178,7 +178,7 @@ namespace ParquetUnitTests.Utilities
                 return fillLayer[inPosition.Y, inPosition.X] == matchAgainst;
             }
 
-            int CountAllTargets(int[,] inArray)
+            static int CountAllTargets(int[,] inArray)
             {
                 var count = 0;
 

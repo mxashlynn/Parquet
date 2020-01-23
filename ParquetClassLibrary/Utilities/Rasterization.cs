@@ -164,14 +164,14 @@ namespace ParquetClassLibrary.Utilities
         /// the parquets at the given position according to the provided matching criteria.
         /// </summary>
         /// <param name="inStart">The position on which to base the fill.</param>
-        /// <param name="inTarget">The parquet type(s) to replace.</param>
+        /// <param name="inTarget">The element to replace.</param>
         /// <param name="inIsValid">In rule for determining a valid position.</param>
         /// <param name="inMatches">The rule for determining matching parquets.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        /// <typeparam name="TTarget">The type of the target element.</typeparam>
         /// <returns>A selection of contiguous positions.</returns>
-        public static List<Vector2D> PlotFloodFill<T>(Vector2D inStart, T inTarget,
-                                                      Predicate<Vector2D> inIsValid,
-                                                      Func<Vector2D, T, bool> inMatches)
+        public static List<Vector2D> PlotFloodFill<TTarget>(Vector2D inStart, TTarget inTarget,
+                                                            Predicate<Vector2D> inIsValid,
+                                                            Func<Vector2D, TTarget, bool> inMatches)
         {
             var results = new HashSet<Vector2D>();
             var queue = new Queue<Vector2D>();

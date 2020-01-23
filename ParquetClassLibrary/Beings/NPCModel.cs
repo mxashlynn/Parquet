@@ -59,16 +59,16 @@ namespace ParquetClassLibrary.Beings
             /// <summary>
             /// Converts a shim into the class it corresponds to.
             /// </summary>
-            /// <typeparam name="T">The type to convert this shim to.</typeparam>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="CharacterModel"/>.</returns>
-            public override T ToEntity<T>()
+            public override TModel ToEntity<TModel>()
             {
-                Precondition.IsOfType<T, NPCModel>(typeof(T).ToString());
+                Precondition.IsOfType<TModel, NPCModel>(typeof(TModel).ToString());
 
-                return (T)(EntityModel)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
-                                                    new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks },
-                                                    Pronouns, StoryCharacterID, new List<EntityID>() { StartingQuests },
-                                                    new List<string>() { Dialogue }, new List<EntityID>() { StartingInventory });
+                return (TModel)(EntityModel)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+                                                         new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks },
+                                                         Pronouns, StoryCharacterID, new List<EntityID>() { StartingQuests },
+                                                         new List<string>() { Dialogue }, new List<EntityID>() { StartingInventory });
             }
         }
         #endregion

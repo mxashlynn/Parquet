@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Utilities
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="Range{T}"/> struct.
+        /// Initializes a new instance of the <see cref="Range{TElement}"/> struct.
         /// </summary>
         /// <param name="inMinimum">The lower end of the range.</param>
         /// <param name="inMaximum">The upper end of the range.</param>
@@ -41,14 +41,14 @@ namespace ParquetClassLibrary.Utilities
 
         #region State Queries
         /// <summary>
-        /// Determines if the <see cref="Range{T}"/> is well defined; that is, if Minimum is less than or equal to Maximum.
+        /// Determines if the <see cref="Range{TTElement"/> is well defined; that is, if Minimum is less than or equal to Maximum.
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
         public bool IsValid()
             => Minimum.CompareTo(Maximum) <= 0;
 
-        /// <summary>Determines if the given <see cref="Range{T}"/> is equal to or entirely contained within the current Range.</summary>
-        /// <param name="inRange">The <see cref="Range{T}"/> to test.</param>
+        /// <summary>Determines if the given <see cref="Range{TElement}"/> is equal to or entirely contained within the current Range.</summary>
+        /// <param name="inRange">The <see cref="Range{TElement}"/> to test.</param>
         /// <returns><c>true</c>, if the given range is within the current range, <c>false</c> otherwise.</returns>
         public bool ContainsRange(Range<TElement> inRange)
             => ContainsValue(inRange.Minimum) && ContainsValue(inRange.Maximum);
@@ -64,11 +64,12 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>
         /// Maps the values in a <see cref="Range{TComparable}"/> to records that CSVHelper recognizes.
         /// </summary>
-        internal sealed class RangeClassMap<TComparable> : ClassMap<Range<TComparable>>
-            where TComparable : IComparable<TComparable>, IEquatable<TComparable>
+        /// <typeparam name="TElements">The type over which the range is spread.</typeparam>
+        internal sealed class RangeClassMap<TElements> : ClassMap<Range<TElements>>
+            where TElements : IComparable<TElements>, IEquatable<TElements>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="RangeClassMap{T}"/> class.
+            /// Initializes a new instance of the <see cref="RangeClassMap{TElement}"/> class.
             /// </summary>
             public RangeClassMap()
             {
@@ -80,7 +81,7 @@ namespace ParquetClassLibrary.Utilities
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="Range{T}"/>.
+        /// Serves as a hash function for a <see cref="Range{TElement}"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
@@ -89,36 +90,38 @@ namespace ParquetClassLibrary.Utilities
             => (Minimum, Maximum).GetHashCode();
 
         /// <summary>
-        /// Determines whether the specified <see cref="Range{T}"/> is equal to the current <see cref="Range{T}"/>.
+        /// Determines whether the specified <see cref="Range{TElement}"/> is equal to the current <see cref="Range{TElement}"/>.
         /// </summary>
-        /// <param name="inRange">The <see cref="Range{T}"/> to compare with the current.</param>
+        /// <param name="inRange">The <see cref="Range{TElement}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(Range<TElement> inRange)
             => Minimum.Equals(inRange.Minimum)
             && Maximum.Equals(inRange.Maximum);
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Range{T}"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Range{TElement}"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Range{T}"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Range{TElement}"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
             => obj is Range<TElement> rangel && Equals(rangel);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Range{T}"/> is equal to another specified instance of <see cref="Range{T}"/>.
+        /// Determines whether a specified instance of <see cref="Range{TElement}"/>
+        /// is equal to another specified instance of <see cref="Range{TElement}"/>.
         /// </summary>
-        /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
-        /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange1">The first <see cref="Range{TElement}"/> to compare.</param>
+        /// <param name="inRange2">The second <see cref="Range{TElement}"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Range<TElement> inRange1, Range<TElement> inRange2)
             => inRange1.Equals(inRange2);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Range{T}"/> is not equal to another specified instance of <see cref="Range{T}"/>.
+        /// Determines whether a specified instance of <see cref="Range{TElement}"/>
+        /// is not equal to another specified instance of <see cref="Range{TElement}"/>.
         /// </summary>
-        /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
-        /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
+        /// <param name="inRange1">The first <see cref="Range{TElement}"/> to compare.</param>
+        /// <param name="inRange2">The second <see cref="Range{TElement}"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Range<TElement> inRange1, Range<TElement> inRange2)
             => !inRange1.Equals(inRange2);
@@ -126,7 +129,7 @@ namespace ParquetClassLibrary.Utilities
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="Range{T}"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="Range{TElement}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -135,16 +138,17 @@ namespace ParquetClassLibrary.Utilities
     }
 
     /// <summary>
-    /// Provides extension methods to <see cref="IEnumerable{T}"/> collections of <see cref="Range{T}"/>.
+    /// Provides extension methods to <see cref="IEnumerable{TElement}"/> collections of <see cref="Range{TElement}"/>.
     /// </summary>
     public static class RangeCollectionExtensions
     {
         /// <summary>
-        /// Determines if all of the given <see cref="Range{T}"/>s are well defined; that is, if Minima are less than or equal to Maxima.
+        /// Determines if all of the given <see cref="Range{TElement}"/>s are well defined;
+        /// that is, if Minima are less than or equal to Maxima.
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValid<T>(this IEnumerable<Range<T>> inRangeCollection)
-            where T : IComparable<T>, IEquatable<T>
+        public static bool IsValid<TElement>(this IEnumerable<Range<TElement>> inRangeCollection)
+            where TElement : IComparable<TElement>, IEquatable<TElement>
         {
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
@@ -157,18 +161,18 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Determines if the given <paramref name="inValue"/> is contained by any of the <see cref="Range{T}"/>s
-        /// in the current <see cref="IEnumerable{Range{Type}}"/>.
+        /// Determines if the given <paramref name="inValue"/> is contained by any of the <see cref="Range{TElement}"/>s
+        /// in the current <see cref="IEnumerable{Range}"/>.
         /// </summary>
         /// <param name="inRangeCollection">The range collection in which to search.</param>
         /// <param name="inValue">The value to search for.</param>
-        /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
+        /// <typeparam name="TElement">The type over which the Ranges are defined.</typeparam>
         /// <returns>
         /// <c>true</c>, if the <paramref name="inValue"/> was containsed in <paramref name="inRangeCollection"/>,
         /// <c>false</c> otherwise.
         /// </returns>
-        public static bool ContainsValue<T>(this IEnumerable<Range<T>> inRangeCollection, T inValue)
-            where T : IComparable<T>, IEquatable<T>
+        public static bool ContainsValue<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, TElement inValue)
+            where TElement : IComparable<TElement>, IEquatable<TElement>
         {
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
@@ -185,15 +189,15 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Determines if the given <see cref="Range{T}"/> is contained by any of the ranges
-        /// in the current <see cref="IEnumerable{Range{Type}}"/>.
+        /// Determines if the given <see cref="Range{TElement}"/> is contained by any of the ranges
+        /// in the current <see cref="IEnumerable{Range}"/>.
         /// </summary>
         /// <param name="inRangeCollection">The range collection in which to search.</param>
         /// <param name="inRange">The range to search for.</param>
-        /// <typeparam name="T">The type over which the Ranges are defined.</typeparam>
+        /// <typeparam name="TElement">The type over which the Ranges are defined.</typeparam>
         /// <returns><c>true</c>, if the given range was containsed in the list, <c>false</c> otherwise.</returns>
-        public static bool ContainsRange<T>(this IEnumerable<Range<T>> inRangeCollection, Range<T> inRange)
-            where T : IComparable<T>, IEquatable<T>
+        public static bool ContainsRange<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, Range<TElement> inRange)
+            where TElement : IComparable<TElement>, IEquatable<TElement>
         {
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 

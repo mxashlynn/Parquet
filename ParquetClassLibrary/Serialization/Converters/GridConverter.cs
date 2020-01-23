@@ -9,6 +9,8 @@ namespace ParquetClassLibrary.Serialization.Converters
     /// <summary>
     /// Type converter for any collection that implements <see cref="IGrid"/>.
     /// </summary>
+    /// <typeparam name="TElement">The type collected.</typeparam>
+    /// <typeparam name="TGrid">The type of the collection.</typeparam>
     public class GridConverter<TElement, TGrid> : DefaultTypeConverter
         where TGrid : IGrid<TElement>, new()
         where TElement : ITypeConverter, new()
