@@ -23,14 +23,14 @@ namespace ParquetClassLibrary.Serialization.Converters
         {
             Precondition.IsNotNull(inText, nameof(inText));
             Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-            if (!inText.Contains(Serializer.SecondaryDelimiter, StringComparison.InvariantCultureIgnoreCase))
-            {
-                throw new FormatException($"Could not parse recipe element '{inText}' as it does not contain '{Serializer.SecondaryDelimiter}'.");
-            }
 
             if (string.IsNullOrEmpty(inText))
             {
                 return RecipeElement.None;
+            }
+            else if (!inText.Contains(Serializer.SecondaryDelimiter, StringComparison.InvariantCultureIgnoreCase))
+            {
+                throw new FormatException($"Could not parse {nameof(RecipeElement)} '{inText}' as it does not contain '{Serializer.SecondaryDelimiter}'.");
             }
 
             var splitText = inText.Split(Serializer.SecondaryDelimiter);
