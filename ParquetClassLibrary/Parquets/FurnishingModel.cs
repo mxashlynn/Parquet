@@ -1,3 +1,5 @@
+using System;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -57,6 +59,91 @@ namespace ParquetClassLibrary.Parquets
             IsEnclosing = inIsEnclosing;
             SwapID = nonNullSwapID;
         }
+        #endregion
+
+        #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a <see cref="FurnishingModel"/>-like
+        /// class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="FurnishingModel"/> from this class.
+        /// </summary>
+        internal class FurnishingShim : Serialization.Shims.ParquetParentShim
+        {
+            /// <summary>Indicates if the furnishing may be walked on.</summary>
+            public bool IsWalkable;
+
+            /// <summary>Indicates if the furnishing may be entered through.</summary>
+            public bool IsEntry;
+
+            /// <summary>Indicates if the furnishing acts like a wall.</summary>
+            public bool IsEnclosing;
+
+            /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
+            public EntityID SwapID;
+
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
+            public override TModel ToEntity<TModel>()
+            {
+                Precondition.IsOfType<TModel, FurnishingModel>(typeof(TModel).ToString());
+
+                return (TModel)(EntityModel)new FurnishingModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                                                AddsToBiome, IsWalkable, IsEntry, IsEnclosing, SwapID);
+            }
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="FurnishingShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class FurnishingClassMap : ClassMap<FurnishingShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FurnishingClassMap"/> class.
+            /// </summary>
+            public FurnishingClassMap()
+            {
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.ID).Index(0);
+                Map(m => m.Name).Index(1);
+                Map(m => m.Description).Index(2);
+                Map(m => m.Comment).Index(3);
+
+                Map(m => m.ItemID).Index(4);
+                Map(m => m.AddsToBiome).Index(5);
+                Map(m => m.AddsToRoom).Index(6);
+
+                Map(m => m.IsWalkable).Index(7);
+                Map(m => m.IsEntry).Index(8);
+                Map(m => m.IsEnclosing).Index(9);
+                Map(m => m.SwapID).Index(10);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static FurnishingClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new FurnishingClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(FurnishingShim);
         #endregion
     }
 }

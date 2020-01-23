@@ -7,6 +7,13 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Interactions;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Serialization.ClassMaps;
 using ParquetClassLibrary.Serialization.Converters;
 using ParquetClassLibrary.Serialization.Shims;
@@ -34,13 +41,43 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Mappings for all serializable classes.</summary>
         private static Dictionary<Type, ClassMap> ClassMapper { get; } = new Dictionary<Type, ClassMap>
         {
-            { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetClassMap() },
+            { typeof(CritterModel), CritterModel.GetClassMap() },
+            { typeof(NPCModel), NPCModel.GetClassMap() },
+            { typeof(PlayerCharacterModel), PlayerCharacterModel.GetClassMap() },
+            { typeof(BiomeModel), BiomeModel.GetClassMap() },
+            { typeof(CraftingRecipe), CraftingRecipe.GetClassMap() },
+            { typeof(DialogueModel), DialogueModel.GetClassMap() },
+            { typeof(QuestModel), QuestModel.GetClassMap() },
+            // TODO Implement this once Map serialization is decided.
+            // { typeof(MapChunk), MapChunk.GetClassMap() },
+            // { typeof(MapRegion), MapRegion.GetClassMap() },
+            { typeof(FloorModel), FloorModel.GetClassMap() },
+            { typeof(BlockModel), BlockModel.GetClassMap() },
+            { typeof(FurnishingModel), FurnishingModel.GetClassMap() },
+            { typeof(CollectibleModel), CollectibleModel.GetClassMap() },
+            { typeof(RoomRecipe), RoomRecipe.GetClassMap() },
+            { typeof(ItemModel), ItemModel.GetClassMap() },
         };
 
         /// <summary>Mappings for all serialization shims.</summary>
         private static Dictionary<Type, Type> ShimMapper { get; } = new Dictionary<Type, Type>
         {
-            { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetShimType() },
+            { typeof(CritterModel), CritterModel.GetShimType() },
+            { typeof(NPCModel), NPCModel.GetShimType() },
+            { typeof(PlayerCharacterModel), PlayerCharacterModel.GetShimType() },
+            { typeof(BiomeModel), BiomeModel.GetShimType() },
+            { typeof(CraftingRecipe), CraftingRecipe.GetShimType() },
+            { typeof(DialogueModel), DialogueModel.GetShimType() },
+            { typeof(QuestModel), QuestModel.GetShimType() },
+            // TODO Implement this once Map serialization is decided.
+            // { typeof(MapChunk), MapChunk.GetShimType() },
+            // { typeof(MapRegion), MapRegion.GetShimType() },
+            { typeof(FloorModel), FloorModel.GetShimType() },
+            { typeof(BlockModel), BlockModel.GetShimType() },
+            { typeof(FurnishingModel), FurnishingModel.GetShimType() },
+            { typeof(CollectibleModel), CollectibleModel.GetShimType() },
+            { typeof(RoomRecipe), RoomRecipe.GetShimType() },
+            { typeof(ItemModel), ItemModel.GetShimType() },
         };
 
         /// <summary>The location of the designer CSV files.</summary>

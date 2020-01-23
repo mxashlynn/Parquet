@@ -138,18 +138,16 @@ namespace ParquetClassLibrary.Biomes
         private static BiomeClassMap classMapCache;
 
         /// <summary>
-        /// Provides the means to map all members of <see cref="BiomeModel"/> to a CSV file.
+        /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
-        /// <param typeparam="TClass">The class to map.</param>
         /// <returns>The member mapping.</returns>
         internal static ClassMap GetClassMap()
             => classMapCache
             ?? (classMapCache = new BiomeClassMap());
 
         /// <summary>
-        /// Provides the means to map all members of <see cref="BiomeModel"/> to a CSV file.
+        /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
-        /// <param typeparam="TClass">The class to map.</param>
         /// <returns>The member mapping.</returns>
         internal static Type GetShimType()
             => typeof(BiomeShim);

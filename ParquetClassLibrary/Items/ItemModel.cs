@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Utilities;
 
@@ -10,6 +12,7 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public sealed class ItemModel : EntityModel
     {
+        #region Mechanics
         /// <summary>The type of item this is.</summary>
         public ItemType Subtype { get; }
 
@@ -36,6 +39,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>How this item is crafted.</summary>
         public EntityID Recipe { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -76,6 +80,108 @@ namespace ParquetClassLibrary.Items
             ItemTags = nonNullItemTags;
             Recipe = nonNullCraftingRecipeID;
         }
+        #endregion
+
+        #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a
+        /// <see cref="ItemModel"/>-like class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="ItemModel"/> from this class.
+        /// </summary>
+        internal class ItemShim : Serialization.Shims.EntityShim
+        {
+            /// <summary>The type of item this is.</summary>
+            public ItemType Subtype;
+
+            /// <summary>In-game value of the item.  Must be non-negative.</summary>
+            public int Price;
+
+            /// <summary>How relatively rare this item is.</summary>
+            public int Rarity;
+
+            /// <summary>How many of the item may share a single inventory slot.</summary>
+            public int StackMax;
+
+            /// <summary>An in-game effect caused by keeping the item in a character's inventory.</summary>
+            public int EffectWhileHeld;
+
+            /// <summary>An in-game effect caused by using (consuming) the item.</summary>
+            public int EffectWhenUsed;
+
+            /// <summary>The parquet that corresponds to this item, if any.</summary>
+            public EntityID AsParquet;
+
+            /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
+            public EntityTag ItemTags;
+            // TODO public IReadOnlyList<EntityTag> ItemTags;
+
+            /// <summary>How this item is crafted.</summary>
+            public EntityID Recipe;
+
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="EntityModel"/>.</returns>
+            public override TModel ToEntity<TModel>()
+            {
+                Precondition.IsOfType<TModel, ItemModel>(typeof(TModel).ToString());
+
+                return (TModel)(EntityModel)new ItemModel(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
+                                                          EffectWhileHeld, EffectWhenUsed, AsParquet, new List<EntityTag>() { ItemTags }, Recipe);
+            }
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="ItemShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class ItemClassMap : ClassMap<ItemShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ItemClassMap"/> class.
+            /// </summary>
+            public ItemClassMap()
+            {
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.ID).Index(0);
+                Map(m => m.Name).Index(1);
+                Map(m => m.Description).Index(2);
+                Map(m => m.Comment).Index(3);
+
+                Map(m => m.Subtype).Index(4);
+                Map(m => m.Price).Index(5);
+                Map(m => m.Rarity).Index(6);
+                Map(m => m.StackMax).Index(7);
+                Map(m => m.EffectWhileHeld).Index(8);
+                Map(m => m.EffectWhenUsed).Index(9);
+                Map(m => m.AsParquet).Index(10);
+                Map(m => m.ItemTags).Index(11);
+                Map(m => m.Recipe).Index(12);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static ItemClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new ItemClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(ItemShim);
         #endregion
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -8,6 +10,7 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     public sealed class NPCModel : CharacterModel
     {
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="NPCModel"/> class.
         /// </summary>
@@ -41,5 +44,84 @@ namespace ParquetClassLibrary.Beings
         {
             Precondition.IsInRange(inID, All.NpcIDs, nameof(inID));
         }
+        #endregion
+
+        #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a
+        /// <see cref="NPCModel"/>-like class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="NPCModel"/> from this class.
+        /// </summary>
+        internal class NPCShim : Serialization.Shims.CharacterShim
+        {
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="T">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="CharacterModel"/>.</returns>
+            public override T ToEntity<T>()
+            {
+                Precondition.IsOfType<T, NPCModel>(typeof(T).ToString());
+
+                return (T)(EntityModel)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+                                                    new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks },
+                                                    Pronouns, StoryCharacterID, new List<EntityID>() { StartingQuests },
+                                                    new List<string>() { Dialogue }, new List<EntityID>() { StartingInventory });
+            }
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="NPCShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class NPCClassMap : ClassMap<NPCShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="NPCClassMap"/> class.
+            /// </summary>
+            public NPCClassMap()
+            {
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.ID).Index(0);
+                Map(m => m.PersonalName).Index(1);
+                Map(m => m.FamilyName).Index(2);
+                Map(m => m.Description).Index(3);
+                Map(m => m.Comment).Index(4);
+
+                Map(m => m.NativeBiome).Index(5);
+                Map(m => m.PrimaryBehavior).Index(6);
+                Map(m => m.Avoids).Index(7);
+                Map(m => m.Seeks).Index(8);
+
+                Map(m => m.Pronouns).Index(9);
+                Map(m => m.StoryCharacterID).Index(10);
+                Map(m => m.StartingQuests).Index(11);
+                Map(m => m.Dialogue).Index(12);
+                Map(m => m.StartingInventory).Index(13);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static NPCClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new NPCClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(NPCShim);
+        #endregion
     }
 }
