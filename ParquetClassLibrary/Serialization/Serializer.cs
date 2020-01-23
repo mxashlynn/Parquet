@@ -14,9 +14,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Serialization.ClassMaps;
 using ParquetClassLibrary.Serialization.Converters;
-using ParquetClassLibrary.Serialization.Shims;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -103,7 +101,7 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);
 
-                IEnumerable<EntityShim> shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<EntityShim>();
+                IEnumerable<EntityModel.EntityShim> shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<EntityModel.EntityShim>();
                 foreach (var shim in shims)
                 {
                     records.Add(shim.ToEntity<TRecord>());
@@ -124,8 +122,8 @@ namespace ParquetClassLibrary.Serialization
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                csv.Configuration.RegisterClassMap<PronounGroupClassMap>();
-                var shims = csv.GetRecords<PronounGroupShim>();
+                csv.Configuration.RegisterClassMap<PronounGroup.PronounGroupClassMap>();
+                var shims = csv.GetRecords<PronounGroup.PronounGroupShim>();
                 foreach (var shim in shims)
                 {
                     records.Add(shim.ToPronounGroup());

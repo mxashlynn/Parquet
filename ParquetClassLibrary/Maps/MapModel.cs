@@ -202,7 +202,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Parent class for all shims of map definitions.
         /// </summary>
-        internal abstract class MapModelShim : Serialization.Shims.EntityShim
+        internal abstract class MapModelShim : EntityShim
         {
             /// <summary>Describes the version of serialized data.  Allows selecting data files that can be successfully deserialized.</summary>
             public string DataVersion;

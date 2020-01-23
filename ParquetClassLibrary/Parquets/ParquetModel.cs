@@ -8,6 +8,7 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public abstract class ParquetModel : EntityModel
     {
+        #region Characteristics
         /// <summary>
         /// The <see cref="EntityID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
@@ -27,6 +28,7 @@ namespace ParquetClassLibrary.Parquets
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
         public EntityTag AddsToRoom { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -49,6 +51,23 @@ namespace ParquetClassLibrary.Parquets
             ItemID = inItemID;
             AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? EntityTag.None : inAddsToBiome;
             AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? EntityTag.None : inAddsToRoom;
+        }
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Parent class for all shims of parquet definitions.
+        /// </summary>
+        internal abstract class ParquetModelShim : EntityShim
+        {
+            /// <summary>The <see cref="EntityID"/> of the item that corresponds to this parquet.</summary>
+            public EntityID ItemID;
+
+            /// <summary>The <see cref="BiomeModel"/>(s) this parquet helps form.</summary>
+            public EntityTag AddsToBiome;
+
+            /// <summary>The <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</summary>
+            public EntityTag AddsToRoom;
         }
         #endregion
     }

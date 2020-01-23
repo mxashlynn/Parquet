@@ -30,6 +30,7 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityTag"/>
     public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
+        #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
         public EntityID ID { get; }
 
@@ -50,6 +51,7 @@ namespace ParquetClassLibrary
         /// </remarks>
         public string Comment { get; private set; }
         string IEntityModelEdit.Comment { get => Comment; set => Comment = value; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -69,6 +71,33 @@ namespace ParquetClassLibrary
             Name = inName;
             Description = inDescription ?? "";
             Comment = inComment ?? "";
+        }
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Parent class for all shims.
+        /// </summary>
+        internal abstract class EntityShim
+        {
+            /// <summary>Unique identifier of the parquet.</summary>
+            public EntityID ID;
+
+            /// <summary>Player-facing name of the parquet.</summary>
+            public string Name;
+
+            /// <summary>Player-facing description.</summary>
+            public string Description;
+
+            /// <summary>Optional comment.</summary>
+            public string Comment;
+
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
+            /// <returns>An instance of a child class of <see cref="EntityModel"/>.</returns>
+            public abstract TModel ToEntity<TModel>() where TModel : EntityModel;
         }
         #endregion
 

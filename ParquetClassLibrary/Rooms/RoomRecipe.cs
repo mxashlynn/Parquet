@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Rooms
         /// 
         /// Provides the ability to generate a <see cref="RoomRecipe"/> from this class.
         /// </summary>
-        internal class RoomRecipeShim : Serialization.Shims.EntityShim
+        internal class RoomRecipeShim : EntityShim
         {
             /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
             public int MinimumWalkableSpaces;

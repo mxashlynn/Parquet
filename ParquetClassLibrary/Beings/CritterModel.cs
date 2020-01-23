@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Beings
         /// 
         /// Provides the ability to generate a <see cref="CritterModel"/> from this class.
         /// </summary>
-        internal class CritterShim : Serialization.Shims.BeingShim
+        internal class CritterShim : BeingShim
         {
             /// <summary>
             /// Converts a shim into the class it corresponds to.

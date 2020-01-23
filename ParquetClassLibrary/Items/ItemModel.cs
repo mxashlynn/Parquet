@@ -90,7 +90,7 @@ namespace ParquetClassLibrary.Items
         /// 
         /// Provides the ability to generate a <see cref="ItemModel"/> from this class.
         /// </summary>
-        internal class ItemShim : Serialization.Shims.EntityShim
+        internal class ItemShim : EntityShim
         {
             /// <summary>The type of item this is.</summary>
             public ItemType Subtype;

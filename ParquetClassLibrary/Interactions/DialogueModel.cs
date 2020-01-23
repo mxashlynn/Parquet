@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Interactions
         /// 
         /// Provides the ability to generate a <see cref="DialogueModel"/> from this class.
         /// </summary>
-        internal class DialogueShim : Serialization.Shims.EntityShim
+        internal class DialogueShim : EntityShim
         {
             // TODO Derive this from InteractionStub
             // TODO This is a stub.

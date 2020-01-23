@@ -1,20 +1,24 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper.Configuration;
 
 namespace ParquetClassLibrary.Utilities
 {
     /// <summary>
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.
     /// </summary>
-    /// <typeparam name="T">The type over which the range is spread.</typeparam>
-    public readonly struct Range<T> : IEquatable<Range<T>> where T : IComparable<T>, IEquatable<T>
+    /// <typeparam name="TElement">The type over which the range is spread.</typeparam>
+    public readonly struct Range<TElement> : IEquatable<Range<TElement>> where TElement : IComparable<TElement>, IEquatable<TElement>
     {
+        #region Characteristics
         /// <summary>Minimum value of the range.</summary>
-        public T Minimum { get; }
+        public TElement Minimum { get; }
 
         /// <summary>Maximum value of the range.</summary>
-        public T Maximum { get; }
+        public TElement Maximum { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="Range{T}"/> struct.
         /// </summary>
@@ -23,7 +27,7 @@ namespace ParquetClassLibrary.Utilities
         /// <exception cref="ArgumentException">
         /// Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.
         /// </exception>
-        public Range(T inMinimum, T inMaximum)
+        public Range(TElement inMinimum, TElement inMaximum)
         {
             Minimum = inMinimum;
             Maximum = inMaximum;
@@ -33,7 +37,9 @@ namespace ParquetClassLibrary.Utilities
                 throw new InvalidOperationException($"{nameof(inMinimum)} must be less than or equal to {nameof(inMaximum)}.");
             }
         }
+        #endregion
 
+        #region State Queries
         /// <summary>
         /// Determines if the <see cref="Range{T}"/> is well defined; that is, if Minimum is less than or equal to Maximum.
         /// </summary>
@@ -44,14 +50,33 @@ namespace ParquetClassLibrary.Utilities
         /// <summary>Determines if the given <see cref="Range{T}"/> is equal to or entirely contained within the current Range.</summary>
         /// <param name="inRange">The <see cref="Range{T}"/> to test.</param>
         /// <returns><c>true</c>, if the given range is within the current range, <c>false</c> otherwise.</returns>
-        public bool ContainsRange(Range<T> inRange)
+        public bool ContainsRange(Range<TElement> inRange)
             => ContainsValue(inRange.Minimum) && ContainsValue(inRange.Maximum);
 
         /// <summary>Determines if the given value is within the range, inclusive.</summary>
         /// <param name="inValue">The value to test.</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
-        public bool ContainsValue(T inValue)
+        public bool ContainsValue(TElement inValue)
             => Minimum.CompareTo(inValue) <= 0 && Maximum.CompareTo(inValue) >= 0;
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Maps the values in a <see cref="Range{TComparable}"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class RangeClassMap<TComparable> : ClassMap<Range<TComparable>>
+            where TComparable : IComparable<TComparable>, IEquatable<TComparable>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="RangeClassMap{T}"/> class.
+            /// </summary>
+            public RangeClassMap()
+            {
+                Map(m => m.Maximum);
+                Map(m => m.Minimum);
+            }
+        }
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>
@@ -68,7 +93,7 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="inRange">The <see cref="Range{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Range<T> inRange)
+        public bool Equals(Range<TElement> inRange)
             => Minimum.Equals(inRange.Minimum)
             && Maximum.Equals(inRange.Maximum);
 
@@ -78,7 +103,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Range{T}"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Range<T> rangel && Equals(rangel);
+            => obj is Range<TElement> rangel && Equals(rangel);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Range{T}"/> is equal to another specified instance of <see cref="Range{T}"/>.
@@ -86,7 +111,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
         /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Range<T> inRange1, Range<T> inRange2)
+        public static bool operator ==(Range<TElement> inRange1, Range<TElement> inRange2)
             => inRange1.Equals(inRange2);
 
         /// <summary>
@@ -95,7 +120,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inRange1">The first <see cref="Range{T}"/> to compare.</param>
         /// <param name="inRange2">The second <see cref="Range{T}"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Range<T> inRange1, Range<T> inRange2)
+        public static bool operator !=(Range<TElement> inRange1, Range<TElement> inRange2)
             => !inRange1.Equals(inRange2);
         #endregion
 

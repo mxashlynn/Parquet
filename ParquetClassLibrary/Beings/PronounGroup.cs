@@ -1,3 +1,5 @@
+using System;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -85,6 +87,80 @@ namespace ParquetClassLibrary.Beings
             Possessive = inPossessivePronoun;
             Reflexive = inReflexive;
         }
+        #endregion
+
+        #region Serialization
+        #region Serializer Shim
+        /// <summary>
+        /// Provides a default public parameterless constructor for a
+        /// <see cref="PronounGroup"/>-like class that CSVHelper can instantiate.
+        /// 
+        /// Provides the ability to generate a <see cref="PronounGroup"/> from this class.
+        /// </summary>
+        internal class PronounGroupShim
+        {
+            /// <summary>Personal pronoun used as the subject of a verb.</summary>
+            public string Subjective;
+
+            /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+            public string Objective;
+
+            /// <summary>Personal pronoun used to attribute possession.</summary>
+            public string Determiner;
+
+            /// <summary>Personal pronoun used to indicate a relationship.</summary>
+            public string Possessive;
+
+            /// <summary>Personal pronoun used to indicate the user.</summary>
+            public string Reflexive;
+
+            /// <summary>
+            /// Converts a shim into the class it corresponds to.
+            /// </summary>
+            /// <returns>An instance corresponding to this shim.</returns>
+            public PronounGroup ToPronounGroup()
+                => new PronounGroup(Subjective, Objective, Determiner, Possessive, Reflexive);
+        }
+        #endregion
+
+        #region Class Map
+        /// <summary>
+        /// Maps the values in a <see cref="PronounGroupShim"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class PronounGroupClassMap : ClassMap<PronounGroupShim>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PronounGroupClassMap"/> class.
+            /// </summary>
+            public PronounGroupClassMap()
+            {
+                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
+                Map(m => m.Subjective).Index(0);
+                Map(m => m.Objective).Index(1);
+                Map(m => m.Determiner).Index(2);
+                Map(m => m.Possessive).Index(3);
+                Map(m => m.Reflexive).Index(4);
+            }
+        }
+        #endregion
+
+        /// <summary>Caches a class mapper.</summary>
+        private static PronounGroupClassMap classMapCache;
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static ClassMap GetClassMap()
+            => classMapCache
+            ?? (classMapCache = new PronounGroupClassMap());
+
+        /// <summary>
+        /// Provides the means to map all members of this class to a CSV file.
+        /// </summary>
+        /// <returns>The member mapping.</returns>
+        internal static Type GetShimType()
+            => typeof(PronounGroupShim);
         #endregion
 
         #region Utilities

@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Interactions
         /// 
         /// Provides the ability to generate a <see cref="QuestModel"/> from this class.
         /// </summary>
-        internal class QuestShim : Serialization.Shims.EntityShim
+        internal class QuestShim : EntityShim
         {
             // TODO Derive this from InteractionStub
 

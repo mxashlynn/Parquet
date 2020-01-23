@@ -1,5 +1,7 @@
 using System;
+using CsvHelper.Configuration;
 using ParquetClassLibrary.Utilities;
+using Range = ParquetClassLibrary.Utilities.Range<int>;
 
 namespace ParquetClassLibrary.Crafts
 {
@@ -8,6 +10,7 @@ namespace ParquetClassLibrary.Crafts
     /// </summary>
     public class StrikePanel : IEquatable<StrikePanel>
     {
+        #region Characteristics
         /// <summary><c>true</c> if this panel is not used in the current crafting recipe; otherwise, <c>false</c>.</summary>
         public bool IsVoid { get; set; }
 
@@ -18,7 +21,7 @@ namespace ParquetClassLibrary.Crafts
         private Range<int> idealRange;
 
         /// <summary>
-        /// The range of values this panel can take on while being worked.  <see cref="Range{T}.Minimum"/> is normally 0.
+        /// The range of values this panel can take on while being worked.  <see cref="Range{int}.Minimum"/> is normally 0.
         /// This range constricts that given by <c see="IdealRange"/>.
         /// </summary>
         public Range<int> WorkingRange
@@ -60,6 +63,7 @@ namespace ParquetClassLibrary.Crafts
                 idealRange = value;
             }
         }
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>
@@ -123,6 +127,24 @@ namespace ParquetClassLibrary.Crafts
             return inStrikePanel1.IsVoid != inStrikePanel2.IsVoid
                 || inStrikePanel1.workingRange != inStrikePanel2.workingRange
                 || inStrikePanel1.idealRange != inStrikePanel2.idealRange;
+        }
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Maps the values in a <see cref="StrikePanelClassMap"/> to records that CSVHelper recognizes.
+        /// </summary>
+        internal sealed class StrikePanelClassMap : ClassMap<StrikePanel>
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="StrikePanelClassMap"/> class.
+            /// </summary>
+            public StrikePanelClassMap()
+            {
+                Map(m => m.IsVoid);
+                References<Range.RangeClassMap<int>>(m => m.WorkingRange);
+                References<Range.RangeClassMap<int>>(m => m.IdealRange);
+            }
         }
         #endregion
 

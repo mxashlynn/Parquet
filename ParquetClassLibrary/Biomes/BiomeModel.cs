@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Biomes
         /// 
         /// Provides the ability to generate a <see cref="BiomeModel"/> from this class.
         /// </summary>
-        internal class BiomeShim : Serialization.Shims.EntityShim
+        internal class BiomeShim : EntityShim
         {
             /// <summary>
             /// A rating indicating where in the progression this <see cref="BiomeModel"/> falls.

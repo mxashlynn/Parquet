@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Parquets
         /// 
         /// Provides the ability to generate a <see cref="FloorModel"/> from this class.
         /// </summary>
-        internal class FloorShim : Serialization.Shims.ParquetParentShim
+        internal class FloorShim : ParquetModelShim
         {
             /// <summary>The tool used to dig out or fill in the floor.</summary>
             public ModificationTool ModTool;

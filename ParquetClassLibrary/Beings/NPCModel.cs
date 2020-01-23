@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Beings
         /// 
         /// Provides the ability to generate a <see cref="NPCModel"/> from this class.
         /// </summary>
-        internal class NPCShim : Serialization.Shims.CharacterShim
+        internal class NPCShim : CharacterShim
         {
             /// <summary>
             /// Converts a shim into the class it corresponds to.

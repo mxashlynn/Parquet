@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Parquets
         /// 
         /// Provides the ability to generate a <see cref="FurnishingModel"/> from this class.
         /// </summary>
-        internal class FurnishingShim : Serialization.Shims.ParquetParentShim
+        internal class FurnishingShim : ParquetModelShim
         {
             /// <summary>Indicates if the furnishing may be walked on.</summary>
             public bool IsWalkable;

@@ -64,7 +64,7 @@ namespace ParquetClassLibrary.Parquets
         /// 
         /// Provides the ability to generate a <see cref="CollectibleModel"/> from this class.
         /// </summary>
-        internal class CollectibleShim : Serialization.Shims.ParquetParentShim
+        internal class CollectibleShim : ParquetModelShim
         {
             /// <summary>The effect generated when a character encounters this collectible.</summary>
             public CollectEffect Effect;

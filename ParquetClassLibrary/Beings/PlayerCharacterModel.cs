@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Beings
         /// 
         /// Provides the ability to generate a <see cref="PlayerCharacterModel"/> from this class.
         /// </summary>
-        internal class PlayerCharacterShim : Serialization.Shims.CharacterShim
+        internal class PlayerCharacterShim : CharacterShim
         {
             /// <summary>
             /// Converts a shim into the class it corresponds to.

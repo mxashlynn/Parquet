@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Crafts
         /// 
         /// Provides the ability to generate a <see cref="CraftingRecipe"/> from this class.
         /// </summary>
-        internal class CraftingRecipeShim : Serialization.Shims.EntityShim
+        internal class CraftingRecipeShim : EntityShim
         {
             /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
             public RecipeElement Products;

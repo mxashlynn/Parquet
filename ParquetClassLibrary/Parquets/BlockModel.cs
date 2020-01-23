@@ -89,7 +89,7 @@ namespace ParquetClassLibrary.Parquets
         /// 
         /// Provides the ability to generate a <see cref="BlockModel"/> from this class.
         /// </summary>
-        internal class BlockShim : Serialization.Shims.ParquetParentShim
+        internal class BlockShim : ParquetModelShim
         {
             /// <summary>The tool used to remove the block.</summary>
             public GatheringTool GatherTool;
