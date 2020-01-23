@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Serialization
         public static IEnumerable<TRecord> GetRecordsForType<TRecord>()
             where TRecord : EntityModel
         {
-            IEnumerable<TRecord> records;
+            var records = new List<TRecord>();
             var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(TRecord).Name}s.csv");
             using (var reader = new StreamReader(filenameAndPath))
             {
@@ -66,11 +66,16 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]); ;
-                records = csv.GetRecordsViaShim<TRecord>();
+                csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);
+
+                IEnumerable<EntityShim> shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<EntityShim>();
+                foreach (var shim in shims)
+                {
+                    records.Add(shim.ToEntity<TRecord>());
+                }
             }
 
-            return records ?? Enumerable.Empty<TRecord>();
+            return records;
         }
 
         /// <summary>
