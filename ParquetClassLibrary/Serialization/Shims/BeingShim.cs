@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ParquetClassLibrary.Beings;
 
 namespace ParquetClassLibrary.Serialization.Shims

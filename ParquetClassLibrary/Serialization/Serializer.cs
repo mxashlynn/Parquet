@@ -25,20 +25,20 @@ namespace ParquetClassLibrary.Serialization
         public const string SecondaryDelimiter = ";";
 
         /// <summary>Instructions for handling integer type conversion when reading in identifiers.</summary>
-        internal static readonly TypeConverterOptions IdentifierOptions = new TypeConverterOptions
+        private static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
         {
             NumberStyle = NumberStyles.AllowLeadingSign &
                           NumberStyles.Integer
         };
 
         /// <summary>Mappings for all serializable classes.</summary>
-        internal static Dictionary<Type, ClassMap> ClassMapper = new Dictionary<Type, ClassMap>
+        private static Dictionary<Type, ClassMap> ClassMapper { get; } = new Dictionary<Type, ClassMap>
         {
             { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetClassMap() },
         };
 
         /// <summary>Mappings for all serialization shims.</summary>
-        internal static Dictionary<Type, Type> ShimMapper = new Dictionary<Type, Type>
+        private static Dictionary<Type, Type> ShimMapper { get; } = new Dictionary<Type, Type>
         {
             { typeof(Biomes.BiomeModel), Biomes.BiomeModel.GetShimType() },
         };
