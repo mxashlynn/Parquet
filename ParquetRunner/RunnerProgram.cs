@@ -245,19 +245,24 @@ namespace ParquetRunner
             Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
             RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
             Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
-            #endregion
 
             All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);
-
-            #region Reserialize to CSV
-            //var recordsToJSON = All.Parquets.SerializeToString();
-            //var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
-            //using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
-            //{
-            //    writer.Write(recordsToJSON);
-            //}
             #endregion
 
+            #region Reserialize to CSV
+            Serializer.SearchPath += "Output/";
+            //Serializer.PutRecordsForPronounGroup(All.PronounGroups);
+            //Serializer.PutRecordsForType<BeingModel>(All.Beings);
+            //Serializer.PutRecordsForType<BiomeModel>(All.Biomes);
+            //Serializer.PutRecordsForType<CraftingRecipe>(All.CraftingRecipes);
+            //Serializer.PutRecordsForType<InteractionModel>(All.Interactions);
+            //Serializer.PutRecordsForType<MapModel>(All.Maps);
+            //Serializer.PutRecordsForType<ParquetModel>(All.Parquets);
+            //Serializer.PutRecordsForType<RoomRecipe>(All.RoomRecipes);
+            //Serializer.PutRecordsForType<ItemModel>(All.Items);
+            #endregion
+
+            // Test Display
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");

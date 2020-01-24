@@ -207,19 +207,19 @@ namespace ParquetClassLibrary.Crafts
                 var panelSplitText = inText.Split(rangeDelimiter);
 
                 var workingSplitText = panelSplitText[0].Split(intDelimiter);
-                var workingLowerText = workingSplitText[0];
-                var workingUpperText = workingSplitText[1];
+                var workingMinText = workingSplitText[0];
+                var workingMaxText = workingSplitText[1];
 
                 var idealSplitText = panelSplitText[1].Split(intDelimiter);
-                var idealLowerText = idealSplitText[0];
-                var idealUpperText = idealSplitText[1];
+                var idealMinText = idealSplitText[0];
+                var idealMaxText = idealSplitText[1];
 
-                if (int.TryParse(workingLowerText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingLower)
-                    && int.TryParse(workingUpperText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingUpper)
-                    && int.TryParse(idealLowerText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealLower)
-                    && int.TryParse(idealUpperText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealUpper))
+                if (int.TryParse(workingMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMin)
+                    && int.TryParse(workingMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMax)
+                    && int.TryParse(idealMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMin)
+                    && int.TryParse(idealMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMax))
                 {
-                    return new StrikePanel(new Range<int>(workingLower, workingUpper), new Range<int>(idealLower, idealUpper));
+                    return new StrikePanel(new Range<int>(workingMin, workingMax), new Range<int>(idealMin, idealMax));
                 }
                 else
                 {
