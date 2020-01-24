@@ -65,7 +65,7 @@ To work with this repository you will need:
 
 - [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.1
 - [XUnit](https://github.com/xunit/xunit) >= 2.4
-- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1
+- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 13.0
 
 # Credits
 - Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).
