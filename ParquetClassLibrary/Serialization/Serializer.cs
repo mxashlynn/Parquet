@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new EntityTagEnumerableConverter());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<string>), new StringEnumerableConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);
 

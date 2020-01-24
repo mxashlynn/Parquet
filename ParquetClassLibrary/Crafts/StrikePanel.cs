@@ -1,5 +1,8 @@
 using System;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 using Range = ParquetClassLibrary.Utilities.Range<int>;
 
@@ -8,17 +11,31 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the panels that the player must strike during item crafting.
     /// </summary>
-    public class StrikePanel : IEquatable<StrikePanel>
+    public class StrikePanel : ITypeConverter, IEquatable<StrikePanel>
     {
-        #region Characteristics
-        /// <summary><c>true</c> if this panel is not used in the current crafting recipe; otherwise, <c>false</c>.</summary>
-        public bool IsVoid { get; set; }
+        #region Class Defaults
+        /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
+        private static readonly Range<int> defaultWorkingRange = new Range<int>(0, 3);
 
+        /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
+        private static readonly Range<int> defaultIdealRange = new Range<int>(0, 3);
+
+        /// <summary>Indicates an space in a <see cref="StrikePanelGrid"/>.</summary>
+        public static readonly StrikePanel Unused = new StrikePanel(defaultWorkingRange, defaultIdealRange);
+
+        /// <summary>Separates the two <see cref="Range"/>s when serializing.</summary>
+        private const string rangeDelimiter = "|";
+
+        /// <summary>Separates values within a <see cref="Range"/> when serializing.</summary>
+        private const string intDelimiter = "-";
+        #endregion
+
+        #region Characteristics
         /// <summary>Backing value for <see cref="WorkingRange"/>.</summary>
-        private Range<int> workingRange;
+        private Range<int> workingRangeBackingStruct;
 
         /// <summary>Backing value for <see cref="IdealRange"/>.</summary>
-        private Range<int> idealRange;
+        private Range<int> idealRangeBackingStruct;
 
         /// <summary>
         /// The range of values this panel can take on while being worked.  <see cref="Range{int}.Minimum"/> is normally 0.
@@ -26,18 +43,18 @@ namespace ParquetClassLibrary.Crafts
         /// </summary>
         public Range<int> WorkingRange
         {
-            get => workingRange;
+            get => workingRangeBackingStruct;
             set
             {
-                workingRange = value;
+                workingRangeBackingStruct = value;
 
                 if (IdealRange.Maximum > value.Maximum)
                 {
-                    idealRange = new Range<int>(idealRange.Minimum, value.Maximum);
+                    idealRangeBackingStruct = new Range<int>(idealRangeBackingStruct.Minimum, value.Maximum);
                 }
                 if (IdealRange.Minimum < value.Minimum)
                 {
-                    idealRange = new Range<int>(value.Minimum, idealRange.Maximum);
+                    idealRangeBackingStruct = new Range<int>(value.Minimum, idealRangeBackingStruct.Maximum);
                 }
             }
         }
@@ -48,7 +65,7 @@ namespace ParquetClassLibrary.Crafts
         /// </summary>
         public Range<int> IdealRange
         {
-            get => idealRange;
+            get => idealRangeBackingStruct;
             set
             {
                 if (value.Maximum > WorkingRange.Maximum)
@@ -60,8 +77,28 @@ namespace ParquetClassLibrary.Crafts
                     value = new Range<int>(WorkingRange.Minimum, value.Maximum);
                 }
 
-                idealRange = value;
+                idealRangeBackingStruct = value;
             }
+        }
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikePanel"/> class with default values.
+        /// </summary>
+        public StrikePanel()
+            : this(defaultWorkingRange, defaultIdealRange) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrikePanel"/> class.
+        /// </summary>
+        /// <param name="inWorkingRange"></param>
+        /// <param name="inIdealRange"></param>
+        public StrikePanel(Range<int> inWorkingRange, Range<int> inIdealRange)
+        {
+            // Note the use of the backing struct to avoid preinitialized range-checking.
+            workingRangeBackingStruct = inWorkingRange;
+            IdealRange = inIdealRange;
         }
         #endregion
 
@@ -73,7 +110,7 @@ namespace ParquetClassLibrary.Crafts
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-            => (IsVoid, workingRange, idealRange).GetHashCode();
+            => (workingRangeBackingStruct, idealRangeBackingStruct).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="StrikePanel"/> is equal to the current <see cref="StrikePanel"/>.
@@ -84,9 +121,8 @@ namespace ParquetClassLibrary.Crafts
         {
             Precondition.IsNotNull(inStrikePanel, nameof(inStrikePanel));
 
-            return IsVoid == inStrikePanel.IsVoid
-                && workingRange == inStrikePanel.workingRange
-                && idealRange == inStrikePanel.idealRange;
+            return workingRangeBackingStruct == inStrikePanel.workingRangeBackingStruct
+                && idealRangeBackingStruct == inStrikePanel.idealRangeBackingStruct;
         }
 
         /// <summary>
@@ -108,9 +144,8 @@ namespace ParquetClassLibrary.Crafts
             Precondition.IsNotNull(inStrikePanel1, nameof(inStrikePanel1));
             Precondition.IsNotNull(inStrikePanel2, nameof(inStrikePanel2));
 
-            return inStrikePanel1.IsVoid == inStrikePanel2.IsVoid
-                && inStrikePanel1.workingRange == inStrikePanel2.workingRange
-                && inStrikePanel1.idealRange == inStrikePanel2.idealRange;
+            return inStrikePanel1.workingRangeBackingStruct == inStrikePanel2.workingRangeBackingStruct
+                && inStrikePanel1.idealRangeBackingStruct == inStrikePanel2.idealRangeBackingStruct;
         }
 
         /// <summary>
@@ -124,13 +159,13 @@ namespace ParquetClassLibrary.Crafts
             Precondition.IsNotNull(inStrikePanel1, nameof(inStrikePanel1));
             Precondition.IsNotNull(inStrikePanel2, nameof(inStrikePanel2));
 
-            return inStrikePanel1.IsVoid != inStrikePanel2.IsVoid
-                || inStrikePanel1.workingRange != inStrikePanel2.workingRange
-                || inStrikePanel1.idealRange != inStrikePanel2.idealRange;
+            return inStrikePanel1.workingRangeBackingStruct != inStrikePanel2.workingRangeBackingStruct
+                || inStrikePanel1.idealRangeBackingStruct != inStrikePanel2.idealRangeBackingStruct;
         }
         #endregion
 
         #region Serialization
+        #region Class Map
         /// <summary>
         /// Maps the values in a <see cref="StrikePanelClassMap"/> to records that CSVHelper recognizes.
         /// </summary>
@@ -141,11 +176,75 @@ namespace ParquetClassLibrary.Crafts
             /// </summary>
             public StrikePanelClassMap()
             {
-                Map(m => m.IsVoid);
                 References<Range.RangeClassMap<int>>(m => m.WorkingRange);
                 References<Range.RangeClassMap<int>>(m => m.IdealRange);
             }
         }
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>
+        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// </summary>
+        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            Precondition.IsNotNull(inText, nameof(inText));
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Unused), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                return Unused;
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+
+                var panelSplitText = inText.Split(rangeDelimiter);
+
+                var workingSplitText = panelSplitText[0].Split(intDelimiter);
+                var workingLowerText = workingSplitText[0];
+                var workingUpperText = workingSplitText[1];
+
+                var idealSplitText = panelSplitText[1].Split(intDelimiter);
+                var idealLowerText = idealSplitText[0];
+                var idealUpperText = idealSplitText[1];
+
+                if (int.TryParse(workingLowerText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingLower)
+                    && int.TryParse(workingUpperText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingUpper)
+                    && int.TryParse(idealLowerText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealLower)
+                    && int.TryParse(idealUpperText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealUpper))
+                {
+                    return new StrikePanel(new Range<int>(workingLower, workingUpper), new Range<int>(idealLower, idealUpper));
+                }
+                else
+                {
+                    throw new FormatException($"Could not parse {nameof(StrikePanel)} '{inText}' into {nameof(Range<int>)}s.");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse {nameof(StrikePanel)} '{inText}': {e}", e);
+            }
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="StrikePanel"/> to a record column.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => this == Unused
+                ? nameof(Unused)
+                : $"{WorkingRange.Minimum}{intDelimiter}{WorkingRange.Maximum}{rangeDelimiter}{IdealRange.Minimum}{intDelimiter}{IdealRange.Maximum}";
+        #endregion
         #endregion
 
         #region Utilities
@@ -154,9 +253,9 @@ namespace ParquetClassLibrary.Crafts
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => IsVoid
-                ? "[Void - Void]"
-                : WorkingRange.ToString();
+            => this == Unused
+                ? nameof(Unused)
+                : $"{WorkingRange.ToString()}{rangeDelimiter}{IdealRange.ToString()}";
         #endregion
     }
 

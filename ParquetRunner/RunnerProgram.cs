@@ -234,7 +234,7 @@ namespace ParquetRunner
             Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
             Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
             Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
-            // TODO Needs PanelPaternConverter --> CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
+            CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
             Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
             Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
             // TODO Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>());

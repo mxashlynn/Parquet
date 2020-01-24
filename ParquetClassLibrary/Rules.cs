@@ -28,7 +28,7 @@ namespace ParquetClassLibrary
             public const int PanelsPerPatternWidth = 2;
 
             /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
-            public const int PanelsPerPatternHeight = 8;
+            public const int PanelsPerPatternHeight = 2;
         }
 
         /// <summary>
