@@ -72,12 +72,10 @@ namespace ParquetClassLibrary.Beings
             public Behavior PrimaryBehavior;
 
             /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-            public EntityID Avoids;
-            // TODO public IReadOnlyList<EntityID> Avoids;
+            public IReadOnlyList<EntityID> Avoids;
 
             /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-            public EntityID Seeks;
-            // TODO public IReadOnlyList<EntityID> Seeks;
+            public IReadOnlyList<EntityID> Seeks;
         }
         #endregion
     }

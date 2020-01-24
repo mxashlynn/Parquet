@@ -143,7 +143,7 @@ namespace ParquetUnitTests
             // TODO Update this once Quests are implemented.
             TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
-                                            TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
+                                            Rules.Recipes.Room.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
             TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item 1", "Test", "Test", ItemType.Other,
                                       1, 0, 99, 1, 1, -All.BlockIDs.Minimum);

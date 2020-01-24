@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Beings
                                     EntityID inNativeBiome, Behavior inPrimaryBehavior,
                                     IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null,
                                     string inPronouns = null, string inStoryCharacterID = "",
-                                    IEnumerable<EntityID> inStartingQuests = null, IEnumerable<string> inDialogue = null,
+                                    IEnumerable<EntityID> inStartingQuests = null, IEnumerable<EntityID> inDialogue = null,
                                     IEnumerable<EntityID> inStartingInventory = null)
             : base(All.PlayerCharacterIDs, inID, inPersonalName, inFamilyName, inDescription,
                    inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks,
@@ -66,9 +66,8 @@ namespace ParquetClassLibrary.Beings
                 Precondition.IsOfType<TModel, PlayerCharacterModel>(typeof(TModel).ToString());
 
                 return (TModel)(EntityModel)new PlayerCharacterModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
-                                                                     new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks },
-                                                                     Pronouns, StoryCharacterID, new List<EntityID>() { StartingQuests },
-                                                                     new List<string>() { Dialogue }, new List<EntityID>() { StartingInventory });
+                                                                     Avoids, Seeks, Pronouns, StoryCharacterID, StartingQuests, Dialogue,
+                                                                     StartingInventory);
             }
         }
         #endregion

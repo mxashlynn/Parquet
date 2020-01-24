@@ -24,13 +24,13 @@ namespace ParquetClassLibrary.Serialization
         /// <returns>The <see cref="ICollection{TElement}"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            var collection = new TCollection();
             if (string.IsNullOrEmpty(inText))
             {
-                return Enumerable.Empty<TElement>();
+                return collection;
             }
 
             var elementFactory = new TElement();
-            var collection = new TCollection();
             var textCollection = inText.Split(Serializer.SecondaryDelimiter);
             foreach (var currentText in textCollection)
             {

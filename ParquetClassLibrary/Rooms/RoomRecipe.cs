@@ -16,15 +16,15 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         public int MinimumWalkableSpaces { get; }
 
+        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        public IReadOnlyList<RecipeElement> RequiredFurnishings { get; }
+
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         public IReadOnlyList<RecipeElement> RequiredFloors { get; }
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks { get; }
 
-        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public IReadOnlyList<RecipeElement> RequiredFurnishings { get; }
-        /// <summary>
         /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
         /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
         /// the room is asigned the type of the most demanding recipe.
@@ -62,18 +62,17 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inName">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inRequiredFurnishings">A list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inMinimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
+        /// <param name="inOptionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(EntityID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<RecipeElement> inRequiredFurnishings,
                           int inMinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
+                          IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
             : base (All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.IsNotNullOrEmpty(inRequiredFurnishings, nameof(inRequiredFurnishings));
             if (inMinimumWalkableSpaces < Rules.Recipes.Room.MinWalkableSpaces
                 || inMinimumWalkableSpaces > Rules.Recipes.Room.MaxWalkableSpaces)
             {
@@ -81,9 +80,9 @@ namespace ParquetClassLibrary.Rooms
             }
 
             MinimumWalkableSpaces = inMinimumWalkableSpaces;
+            RequiredFurnishings = inOptionallyRequiredFurnishings.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
             RequiredFloors = inOptionallyRequiredWalkableFloors.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
             RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredFurnishings = inRequiredFurnishings.ToList();
         }
         #endregion
 
@@ -101,16 +100,13 @@ namespace ParquetClassLibrary.Rooms
             public int MinimumWalkableSpaces;
 
             /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-            public RecipeElement RequiredFloors;
-            // TODO public IReadOnlyList<RecipeElement> RequiredFloors;
+            public IReadOnlyList<RecipeElement> RequiredFloors;
 
             /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-            public RecipeElement RequiredPerimeterBlocks;
-            // TODO public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks;
+            public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks;
 
             /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-            public RecipeElement RequiredFurnishings;
-            // TODO public IReadOnlyList<RecipeElement> RequiredFurnishings;
+            public IReadOnlyList<RecipeElement> RequiredFurnishings;
 
             /// <summary>
             /// Converts a shim into the class it corresponds to.
@@ -121,9 +117,8 @@ namespace ParquetClassLibrary.Rooms
             {
                 Precondition.IsOfType<TModel, RoomRecipe>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, new List<RecipeElement>() { RequiredFloors },
-                                                           MinimumWalkableSpaces, new List<RecipeElement>() { RequiredPerimeterBlocks },
-                                                           new List<RecipeElement>() { RequiredFurnishings });
+                return (TModel)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, MinimumWalkableSpaces, RequiredFloors,
+                                                           RequiredPerimeterBlocks, RequiredFurnishings);
             }
         }
         #endregion

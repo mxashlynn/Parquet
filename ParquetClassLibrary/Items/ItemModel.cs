@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Items
         public ItemModel(EntityID inID, string inName, string inDescription, string inComment,
                     ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
                     int inEffectWhileHeld, int inEffectWhenUsed, EntityID inAsParquet,
-                    List<EntityTag> inItemTags = null, EntityID? inRecipeID = null)
+                    IEnumerable<EntityTag> inItemTags = null, EntityID? inRecipeID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inAsParquet, All.ParquetIDs, nameof(inAsParquet));
@@ -77,7 +77,7 @@ namespace ParquetClassLibrary.Items
             EffectWhileHeld = inEffectWhileHeld;
             EffectWhenUsed = inEffectWhenUsed;
             AsParquet = inAsParquet;
-            ItemTags = nonNullItemTags;
+            ItemTags = nonNullItemTags.ToList();
             Recipe = nonNullCraftingRecipeID;
         }
         #endregion
@@ -114,8 +114,7 @@ namespace ParquetClassLibrary.Items
             public EntityID AsParquet;
 
             /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
-            public EntityTag ItemTags;
-            // TODO public IReadOnlyList<EntityTag> ItemTags;
+            public IReadOnlyList<EntityTag> ItemTags;
 
             /// <summary>How this item is crafted.</summary>
             public EntityID Recipe;
@@ -130,7 +129,7 @@ namespace ParquetClassLibrary.Items
                 Precondition.IsOfType<TModel, ItemModel>(typeof(TModel).ToString());
 
                 return (TModel)(EntityModel)new ItemModel(ID, Name, Description, Comment, Subtype, Price, Rarity, StackMax,
-                                                          EffectWhileHeld, EffectWhenUsed, AsParquet, new List<EntityTag>() { ItemTags }, Recipe);
+                                                          EffectWhileHeld, EffectWhenUsed, AsParquet, ItemTags, Recipe);
             }
         }
         #endregion

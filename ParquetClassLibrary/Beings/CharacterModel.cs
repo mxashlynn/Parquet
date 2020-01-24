@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Beings
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-        public IReadOnlyList<string> Dialogue { get; }
+        public IReadOnlyList<EntityID> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
@@ -75,11 +75,12 @@ namespace ParquetClassLibrary.Beings
                                  Behavior inPrimaryBehavior, IEnumerable<EntityID> inAvoids = null,
                                  IEnumerable<EntityID> inSeeks = null, string inPronouns = PronounGroup.Default,
                                  string inStoryCharacterID = "", IEnumerable<EntityID> inStartingQuests = null,
-                                 IEnumerable<string> inDialogue = null, IEnumerable<EntityID> inStartingInventory = null)
+                                 IEnumerable<EntityID> inDialogue = null, IEnumerable<EntityID> inStartingInventory = null)
             : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
             var nonNullQuests = inStartingQuests ?? Enumerable.Empty<EntityID>();
+            var nonNullDialogue = inDialogue ?? Enumerable.Empty<EntityID>();
             var nonNullInventory = inStartingInventory ?? Enumerable.Empty<EntityID>();
 
             Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(inStartingQuests));
@@ -92,7 +93,7 @@ namespace ParquetClassLibrary.Beings
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();
-            Dialogue = (inDialogue ?? Enumerable.Empty<string>()).ToList();
+            Dialogue = nonNullDialogue.ToList();
             StartingInventory = nonNullInventory.ToList();
         }
         #endregion
@@ -125,16 +126,13 @@ namespace ParquetClassLibrary.Beings
             public string StoryCharacterID;
 
             /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
-            public EntityID StartingQuests;
-            // TODO public IReadOnlyList<EntityID> StartingQuests;
+            public IReadOnlyList<EntityID> StartingQuests;
 
             /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-            public string Dialogue;
-            // TODO public IReadOnlyList<string> Dialogue;
+            public IReadOnlyList<EntityID> Dialogue;
 
             /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-            public EntityID StartingInventory;
-            // TODO public IReadOnlyList<EntityID> StartingInventory;
+            public IReadOnlyList<EntityID> StartingInventory;
         }
         #endregion
     }

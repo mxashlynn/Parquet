@@ -84,13 +84,11 @@ namespace ParquetClassLibrary.Biomes
             public bool IsLiquidBased;
 
             /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
-            public EntityTag ParquetCriteria;
-            // TODO public IReadOnlyList<EntityTag> ParquetCriteria;
+            public IReadOnlyList<EntityTag> ParquetCriteria;
 
             /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.
             /// </summary>
-            public EntityTag EntryRequirements;
-            // TODO public IReadOnlyList<EntityTag> EntryRequirements;
+            public IReadOnlyList<EntityTag> EntryRequirements;
 
             /// <summary>
             /// Converts a shim into the class it corresponds to.
@@ -102,8 +100,7 @@ namespace ParquetClassLibrary.Biomes
                 Precondition.IsOfType<TModel, BiomeModel>(typeof(TModel).ToString());
 
                 return (TModel)(EntityModel)new BiomeModel(ID, Name, Description, Comment, Tier, ElevationCategory,
-                                                           IsLiquidBased, new List<EntityTag>() { ParquetCriteria },
-                                                           new List<EntityTag>() { EntryRequirements });
+                                                           IsLiquidBased, ParquetCriteria , EntryRequirements);
             }
         }
         #endregion

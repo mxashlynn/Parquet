@@ -54,8 +54,7 @@ namespace ParquetClassLibrary.Beings
             {
                 Precondition.IsOfType<TModel, CritterModel>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior,
-                                                             new List<EntityID>() { Avoids }, new List<EntityID>() { Seeks });
+                return (TModel)(EntityModel)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
             }
         }
         #endregion

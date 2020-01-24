@@ -52,8 +52,7 @@ namespace ParquetClassLibrary.Interactions
             // TODO Derive this from InteractionStub
 
             /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
-            public EntityTag CompletionRequirements;
-            // TODO public IReadOnlyList<EntityTag> CompletionRequirements;
+            public IReadOnlyList<EntityTag> CompletionRequirements;
 
             /// <summary>
             /// Converts a shim into the class it corresponds to.
@@ -65,8 +64,7 @@ namespace ParquetClassLibrary.Interactions
                 Precondition.IsOfType<TModel, QuestModel>(typeof(TModel).ToString());
 
                 // TODO Fill in these stubs.
-                return (TModel)(EntityModel)new QuestModel(ID, Name, Description, Comment, new List<EntityTag>() { CompletionRequirements },
-                                                           null, null, null);
+                return (TModel)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null);
             }
         }
         #endregion
