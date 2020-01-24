@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -48,7 +51,7 @@ namespace ParquetClassLibrary
     /// If the implementation were ever to become more complex, EntityID
     /// would need to become a class.
     /// </remarks>
-    public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
+    public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>, ITypeConverter
     {
         /// <summary>Indicates the lack of an <see cref="EntityModel"/>.</summary>
         public static readonly EntityID None = 0;
@@ -175,6 +178,49 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(EntityID inIDentifier1, EntityID inIDentifier2)
             => inIDentifier1.id != inIDentifier2.id;
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>
+        /// Converts the given record column to <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="inText">The record column to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                // TODO This might not work.  If needed, make a new value indicating an unasigned state.
+                return None;
+            }
+
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))
+            {
+                return (EntityID)id;
+            }
+            else
+            {
+                throw new FormatException($"Could not parse {nameof(EntityID)} '{inText}'.");
+            }
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="EntityID"/> to a record column.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="EntityID"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null == inValue || ((EntityID)inValue) == None
+                ? nameof(None)
+                : ((EntityID)inValue).ToString();
         #endregion
 
         #region Utilities

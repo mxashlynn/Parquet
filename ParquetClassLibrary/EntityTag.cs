@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
@@ -27,13 +30,13 @@ namespace ParquetClassLibrary
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
         Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]
-    public class EntityTag : IComparable<EntityTag>
+    public class EntityTag : IComparable<EntityTag>, ITypeConverter
     {
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>
         public static readonly EntityTag None = string.Empty;
 
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
-        private string tagName = "";
+        private string tagContent = "";
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
@@ -45,7 +48,7 @@ namespace ParquetClassLibrary
         /// </param>
         /// <returns>The given value as a tag.</returns>
         public static implicit operator EntityTag(string inValue)
-            => new EntityTag { tagName = inValue };
+            => new EntityTag { tagContent = inValue };
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
@@ -53,7 +56,7 @@ namespace ParquetClassLibrary
         /// <param name="inTag">Any tag.</param>
         /// <returns>The tag's value.</returns>
         public static implicit operator string(EntityTag inTag)
-            => inTag?.tagName ?? "";
+            => inTag?.tagContent ?? "";
         #endregion
 
         #region IComparable Implementation
@@ -69,7 +72,41 @@ namespace ParquetClassLibrary
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityTag inTag)
-            => string.Compare(tagName, inTag?.tagName ?? "", StringComparison.Ordinal);
+            => string.Compare(tagContent, inTag?.tagContent ?? "", StringComparison.Ordinal);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>
+        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// </summary>
+        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                return None;
+            }
+
+            return(EntityTag)inText;
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="EntityTag"/> to a record column.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue == None || string.IsNullOrEmpty((string)inValue)
+                ? nameof(None)
+                : (string)inValue;
         #endregion
 
         #region Utilities
@@ -78,7 +115,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => tagName;
+            => tagContent;
         #endregion
     }
 }

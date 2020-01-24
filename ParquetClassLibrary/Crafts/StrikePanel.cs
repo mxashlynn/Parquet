@@ -192,7 +192,6 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inText, nameof(inText));
             Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
 
             if (string.IsNullOrEmpty(inText)
@@ -241,9 +240,9 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => this == Unused
+            => null == inValue || (StrikePanel)inValue == Unused
                 ? nameof(Unused)
-                : $"{WorkingRange.Minimum}{intDelimiter}{WorkingRange.Maximum}{rangeDelimiter}{IdealRange.Minimum}{intDelimiter}{IdealRange.Maximum}";
+                : $"{((StrikePanel)inValue).WorkingRange.Minimum}{intDelimiter}{((StrikePanel)inValue).WorkingRange.Maximum}{rangeDelimiter}{((StrikePanel)inValue).IdealRange.Minimum}{intDelimiter}{((StrikePanel)inValue).IdealRange.Maximum}";
         #endregion
         #endregion
 

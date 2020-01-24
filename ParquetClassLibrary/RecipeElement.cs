@@ -1,4 +1,8 @@
 using System;
+using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
@@ -20,16 +24,22 @@ namespace ParquetClassLibrary
     /// It allows various EntityModels to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
     /// </description></item>
     /// </remarks>
-    public readonly struct RecipeElement : IEquatable<RecipeElement>
+    public readonly struct RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
 
+        private const string internalDelimiter = "|";
+        #endregion
+
+        #region Characteristics
         /// <summary>The number of <see cref="ItemModel"/>s.</summary>
         public int ElementAmount { get; }
 
         /// <summary>An <see cref="EntityTag"/> describing the <see cref="ItemModel"/>.</summary>
         public EntityTag ElementTag { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -89,6 +99,62 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(RecipeElement inElement1, RecipeElement inElement2)
             => inElement1.ElementTag != inElement2.ElementTag || inElement1.ElementAmount != inElement2.ElementAmount;
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>
+        /// Converts the given record column to <see cref="RecipeElement"/>.
+        /// </summary>
+        /// <param name="inText">The record column to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="EntityTag"/> created from the record column.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                return None;
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+
+                var elementSplitText = inText.Split(internalDelimiter);
+                var elementAmountText = elementSplitText[0];
+                var elementTagText = elementSplitText[1];
+
+                if (int.TryParse(elementAmountText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var amount))
+                {
+                    var tag = (EntityTag)EntityTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
+                    return new RecipeElement(amount, tag);
+                }
+                else
+                {
+                    throw new FormatException(
+                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{internalDelimiter}{nameof(ElementTag)}s.");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse {nameof(RecipeElement)} '{inText}': {e}", e);
+            }
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="RecipeElement"/> to a record column.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null == inValue || (RecipeElement)inValue == None
+                ? nameof(None)
+                : $"{((RecipeElement)inValue).ElementAmount}{internalDelimiter}{((RecipeElement)inValue).ElementTag}";
         #endregion
 
         #region Utilities

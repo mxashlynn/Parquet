@@ -14,7 +14,6 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Serialization.Converters;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -23,9 +22,6 @@ namespace ParquetClassLibrary.Serialization
     /// </summary>
     public static class Serializer
     {
-        /// <summary>Used to separate fields.</summary>
-        public const string PrimaryDelimiter = ",";
-
         /// <summary>Used to separate objects within collections.</summary>
         public const string SecondaryDelimiter = ";";
 
@@ -92,11 +88,12 @@ namespace ParquetClassLibrary.Serialization
             using (var reader = new StreamReader(filenameAndPath))
             {
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElementConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTagConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityIDConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new EntityTagEnumerableConverter());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new EntityIDEnumerableConverter());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
+                csv.Configuration.TypeConverterCache.AddConverter(typeof(IEnumerable<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);

@@ -1,0 +1,42 @@
+using System.Collections.Generic;
+using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+
+namespace ParquetClassLibrary.Serialization
+{
+    /// <summary>
+    /// Type converter for any collection that implements <see cref="ICollection{T}"/>.
+    /// </summary>
+    /// <typeparam name="TElement">The type collected.</typeparam>
+    /// <typeparam name="TCollection">The type of the collection.</typeparam>
+    public class SeriesConverter<TElement, TCollection> : CollectionGenericConverter
+        where TCollection : ICollection<TElement>, new()
+        where TElement : ITypeConverter, new()
+    {
+        /// <summary>
+        /// Converts the given record column to a 2D collection.
+        /// </summary>
+        /// <param name="inText">The record column to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="ICollection{TElement}"/> created from the record column.</returns>
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                return Enumerable.Empty<TElement>();
+            }
+
+            var elementFactory = new TElement();
+            var collection = new TCollection();
+            var textCollection = inText.Split(Serializer.SecondaryDelimiter);
+            foreach (var currentText in textCollection)
+            {
+                collection.Add((TElement)elementFactory.ConvertFromString(currentText, inRow, inMemberMapData));
+            }
+            return collection;
+        }
+    }
+}
