@@ -17,11 +17,9 @@ namespace ParquetClassLibrary.Crafts
             new List<RecipeElement> { RecipeElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
-        public static CraftingRecipe NotCraftable { get; } =
-            new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
-                               EmptyCraftingElementList, EmptyCraftingElementList,
-                               new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                   Rules.Dimensions.PanelsPerPatternWidth));
+        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
+                                                                                EmptyCraftingElementList, EmptyCraftingElementList,
+                                                                                new StrikePanelGrid());
 
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }

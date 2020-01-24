@@ -125,11 +125,8 @@ namespace ParquetRunner
                                    All.BiomeIDs.Minimum, Behavior.Still);
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
                                   1, Elevation.LevelGround, false, null, null);
-            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe",
-                                                    "Test", "Test",
-                                                    TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                                        Rules.Dimensions.PanelsPerPatternWidth));
+            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
+                                                    TestRecipeElementList, TestRecipeElementList, new StrikePanelGrid());
             TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null); // TODO Fill in these nulls.
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");

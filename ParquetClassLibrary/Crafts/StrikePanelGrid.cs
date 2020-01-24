@@ -28,6 +28,12 @@ namespace ParquetClassLibrary.Crafts
         public int Count => Rows * Columns;
 
         /// <summary>
+        /// Initializes a new <see cref="StrikePanelGrid"/> with dimensions as specifid in <see cref="Rules.Dimensions"/>.
+        /// </summary>
+        public StrikePanelGrid()
+            : this(Rules.Dimensions.PanelsPerPatternHeight, Rules.Dimensions.PanelsPerPatternWidth) { }
+
+        /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
         /// </summary>
         /// <param name="inRows">The length of the Y dimension of the collection.</param>
