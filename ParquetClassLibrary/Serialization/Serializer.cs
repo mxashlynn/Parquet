@@ -35,6 +35,7 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Mappings for all serializable classes.</summary>
         private static Dictionary<Type, ClassMap> ClassMapper { get; } = new Dictionary<Type, ClassMap>
         {
+            { typeof(PronounGroup), PronounGroup.GetClassMap() },
             { typeof(CritterModel), CritterModel.GetClassMap() },
             { typeof(NPCModel), NPCModel.GetClassMap() },
             { typeof(PlayerCharacterModel), PlayerCharacterModel.GetClassMap() },
@@ -55,6 +56,7 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Mappings for all serialization shims.</summary>
         private static Dictionary<Type, Type> ShimMapper { get; } = new Dictionary<Type, Type>
         {
+            { typeof(PronounGroup), PronounGroup.GetShimType() },
             { typeof(CritterModel), CritterModel.GetShimType() },
             { typeof(NPCModel), NPCModel.GetShimType() },
             { typeof(PlayerCharacterModel), PlayerCharacterModel.GetShimType() },
@@ -72,8 +74,17 @@ namespace ParquetClassLibrary.Serialization
             { typeof(ItemModel), ItemModel.GetShimType() },
         };
 
-        /// <summary>The location of the designer CSV files.</summary>
-        public static string SearchPath { get; set; }
+        /// <summary>
+        /// The location of the designer CSV files, set to either the working directory
+        /// or a predefined designer directory, depending on build type.
+        /// </summary>
+        public static string SearchPath { get; set; } =
+#if DEBUG
+            $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+#else
+            Directory.GetCurrentDirectory();
+#endif
+
 
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
@@ -81,11 +92,10 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="TRecord">The type to deserialize.</typeparam>
         /// <returns>The records read.</returns>
         public static IEnumerable<TRecord> GetRecordsForType<TRecord>()
-            where TRecord : EntityModel
+            where TRecord : ShimProvider
         {
-            var records = new List<TRecord>();
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/{typeof(TRecord).Name}s.csv");
-            using (var reader = new StreamReader(filenameAndPath))
+            var records = new HashSet<TRecord>();
+            using (var reader = new StreamReader($"{SearchPath}/{typeof(TRecord).Name}s.csv"))
             {
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
@@ -98,32 +108,10 @@ namespace ParquetClassLibrary.Serialization
                 csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
                 csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);
 
-                IEnumerable<EntityModel.EntityShim> shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<EntityModel.EntityShim>();
+                var shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<ShimProvider.Shim>();
                 foreach (var shim in shims)
                 {
-                    records.Add(shim.ToEntity<TRecord>());
-                }
-            }
-
-            return records;
-        }
-
-        /// <summary>
-        /// Reads all records of <see cref="PronounGroup"/>s from the appropriate file.
-        /// </summary>
-        /// <returns>The records read.</returns>
-        public static HashSet<PronounGroup> GetRecordsForPronounGroup()
-        {
-            var records = new HashSet<PronounGroup>();
-            var filenameAndPath = Path.Combine(SearchPath, $"Designer/PronounGroups.csv");
-            using (var reader = new StreamReader(filenameAndPath))
-            {
-                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                csv.Configuration.RegisterClassMap<PronounGroup.PronounGroupClassMap>();
-                var shims = csv.GetRecords<PronounGroup.PronounGroupShim>();
-                foreach (var shim in shims)
-                {
-                    records.Add(shim.ToPronounGroup());
+                    records.Add(shim.ToInstance<TRecord>());
                 }
             }
 

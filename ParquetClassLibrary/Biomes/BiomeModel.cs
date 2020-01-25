@@ -95,12 +95,12 @@ namespace ParquetClassLibrary.Biomes
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a parquet enity model.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, BiomeModel>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new BiomeModel(ID, Name, Description, Comment, Tier, ElevationCategory,
-                                                           IsLiquidBased, ParquetCriteria , EntryRequirements);
+                return (TModel)(ShimProvider)new BiomeModel(ID, Name, Description, Comment, Tier, ElevationCategory,
+                                                            IsLiquidBased, ParquetCriteria , EntryRequirements);
             }
         }
         #endregion
@@ -146,7 +146,7 @@ namespace ParquetClassLibrary.Biomes
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(BiomeShim);
         #endregion
     }

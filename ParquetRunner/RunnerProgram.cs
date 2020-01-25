@@ -198,69 +198,10 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            #region Set the working directory depending on build.
-            Serializer.SearchPath =
-#if DEBUG
-            $"{Directory.GetCurrentDirectory()}/../../../../";
-#else
-            Directory.GetCurrentDirectory().FullName;
-#endif
-            #endregion
-
-            #region Local Variables
-            /// <summary>All <see cref="BeingModel"/>s defined in the CSV files.</summary>
-            var Beings = new HashSet<BeingModel>();
-            /// <summary>All <see cref="BiomeModel"/>s defined in the CSV files.</summary>
-            var Biomes = new HashSet<BiomeModel>();
-            /// <summary>All <see cref="CraftingRecipe"/>s defined in the CSV files.</summary>
-            var CraftingRecipes = new HashSet<CraftingRecipe>();
-            /// <summary>All <see cref="InteractionModel"/>s defined in the CSV files.</summary>
-            var Interactions = new HashSet<InteractionModel>();
-            /// <summary>All <see cref="MapModel"/>s defined in the CSV files.</summary>
-            var Maps = new HashSet<MapModel>();
-            /// <summary>All parquets defined in the CSV files.</summary>
-            var Parquets = new HashSet<ParquetModel>();
-            /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
-            var RoomRecipes = new HashSet<RoomRecipe>();
-            /// <summary>All <see cref="ItemModel"/>s defined in the CSV files.</summary>
-            var Items = new HashSet<ItemModel>();
-
-            var PronounGroups = new HashSet<PronounGroup>();
-            #endregion
-
-            #region Deserialize from CSV
-            PronounGroups.UnionWith(Serializer.GetRecordsForPronounGroup());
-            Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>());
-            Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>());
-            Beings.UnionWith(Serializer.GetRecordsForType<PlayerCharacterModel>());
-            Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>());
-            CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>());
-            // TODO Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>());
-            // TODO Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>());
-            RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>());
-            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>());
-
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, PronounGroups);
-            #endregion
-
-            #region Reserialize to CSV
-            Serializer.SearchPath += "Output/";
-            //Serializer.PutRecordsForPronounGroup(All.PronounGroups);
-            //Serializer.PutRecordsForType<BeingModel>(All.Beings);
-            //Serializer.PutRecordsForType<BiomeModel>(All.Biomes);
-            //Serializer.PutRecordsForType<CraftingRecipe>(All.CraftingRecipes);
-            //Serializer.PutRecordsForType<InteractionModel>(All.Interactions);
-            //Serializer.PutRecordsForType<MapModel>(All.Maps);
-            //Serializer.PutRecordsForType<ParquetModel>(All.Parquets);
-            //Serializer.PutRecordsForType<RoomRecipe>(All.RoomRecipes);
-            //Serializer.PutRecordsForType<ItemModel>(All.Items);
-            #endregion
+            // Deserialize from CSV
+            All.LoadFromCSV();
+            Serializer.SearchPath += "/Output";
+            All.SaveToCSV();
 
             // Test Display
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");

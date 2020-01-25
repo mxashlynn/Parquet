@@ -59,12 +59,12 @@ namespace ParquetClassLibrary.Interactions
             /// </summary>
             /// <typeparam name="T">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="InteractionModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, QuestModel>(typeof(TModel).ToString());
 
                 // TODO Fill in these stubs.
-                return (TModel)(EntityModel)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null);
+                return (TModel)(ShimProvider)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null);
             }
         }
         #endregion
@@ -106,7 +106,7 @@ namespace ParquetClassLibrary.Interactions
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(QuestShim);
         #endregion
     }

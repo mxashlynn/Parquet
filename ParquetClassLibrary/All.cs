@@ -10,6 +10,7 @@ using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary
 {
@@ -358,6 +359,50 @@ namespace ParquetClassLibrary
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
             PronounGroups = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
+        }
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Initializes <see cref="All"/> based on the values in design-time CSV files.
+        /// </summary>
+        /// <seealso cref="Serializer"/>
+        public static void LoadFromCSV()
+        {
+            var pronounGroups = Serializer.GetRecordsForType<PronounGroup>();
+
+            InitializeCollections(Serializer.GetRecordsForType<CritterModel>()
+                                  .Concat<BeingModel>(Serializer.GetRecordsForType<NPCModel>())
+                                  .Concat<BeingModel>(Serializer.GetRecordsForType<PlayerCharacterModel>()),
+                                  Serializer.GetRecordsForType<BiomeModel>(),
+                                  Serializer.GetRecordsForType<CraftingRecipe>(),
+                                  Serializer.GetRecordsForType<DialogueModel>()
+                                  .Concat<InteractionModel>(Serializer.GetRecordsForType<QuestModel>()),
+                                  Enumerable.Empty<MapModel>(),
+                                  // TODO Serializer.GetRecordsForType<MapChunk>()
+                                  // TODO .Concat<MapModel>(Serializer.GetRecordsForType<MapRegion>()),
+                                  Serializer.GetRecordsForType<FloorModel>()
+                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<BlockModel>())
+                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<FurnishingModel>())
+                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<CollectibleModel>()),
+                                  Serializer.GetRecordsForType<RoomRecipe>(),
+                                  Serializer.GetRecordsForType<ItemModel>(), pronounGroups);
+        }
+
+        /// <summary>
+        /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
+        /// </summary>
+        public static void SaveToCSV()
+        {
+            //Serializer.PutRecordsForPronounGroup(All.PronounGroups);
+            //Serializer.PutRecordsForType<BeingModel>(All.Beings);
+            //Serializer.PutRecordsForType<BiomeModel>(All.Biomes);
+            //Serializer.PutRecordsForType<CraftingRecipe>(All.CraftingRecipes);
+            //Serializer.PutRecordsForType<InteractionModel>(All.Interactions);
+            //Serializer.PutRecordsForType<MapModel>(All.Maps);
+            //Serializer.PutRecordsForType<ParquetModel>(All.Parquets);
+            //Serializer.PutRecordsForType<RoomRecipe>(All.RoomRecipes);
+            //Serializer.PutRecordsForType<ItemModel>(All.Items);
         }
         #endregion
     }

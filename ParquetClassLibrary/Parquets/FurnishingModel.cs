@@ -88,12 +88,12 @@ namespace ParquetClassLibrary.Parquets
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, FurnishingModel>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new FurnishingModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                                AddsToBiome, IsWalkable, IsEntry, IsEnclosing, SwapID);
+                return (TModel)(ShimProvider)new FurnishingModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
+                                                                 AddsToBiome, IsWalkable, IsEntry, IsEnclosing, SwapID);
             }
         }
         #endregion
@@ -142,7 +142,7 @@ namespace ParquetClassLibrary.Parquets
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(FurnishingShim);
         #endregion
     }

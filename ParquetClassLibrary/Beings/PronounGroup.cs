@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public sealed class PronounGroup : IPronounGroupEdit
+    public sealed class PronounGroup : ShimProvider, IPronounGroupEdit
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Beings
         /// 
         /// Provides the ability to generate a <see cref="PronounGroup"/> from this class.
         /// </summary>
-        internal class PronounGroupShim
+        internal class PronounGroupShim : Shim
         {
             /// <summary>Personal pronoun used as the subject of a verb.</summary>
             public string Subjective;
@@ -118,8 +118,9 @@ namespace ParquetClassLibrary.Beings
             /// Converts a shim into the class it corresponds to.
             /// </summary>
             /// <returns>An instance corresponding to this shim.</returns>
-            public PronounGroup ToPronounGroup()
-                => new PronounGroup(Subjective, Objective, Determiner, Possessive, Reflexive);
+            /// <typeparam name="TInstance">The type to convert this shim to.</typeparam>
+            public override TInstance ToInstance<TInstance>()
+                => (TInstance)(ShimProvider)new PronounGroup(Subjective, Objective, Determiner, Possessive, Reflexive);
         }
         #endregion
 
@@ -159,7 +160,7 @@ namespace ParquetClassLibrary.Beings
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(PronounGroupShim);
         #endregion
 

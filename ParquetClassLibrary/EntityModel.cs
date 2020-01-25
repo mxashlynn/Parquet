@@ -28,7 +28,7 @@ namespace ParquetClassLibrary
     /// EntityModel could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
+    public abstract class EntityModel : ShimProvider, IEntityModelEdit, IEquatable<EntityModel>
     {
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
@@ -76,9 +76,9 @@ namespace ParquetClassLibrary
 
         #region Serialization
         /// <summary>
-        /// Parent class for all shims.
+        /// Parent class for all <see cref="EntityModel"/> shims.
         /// </summary>
-        internal abstract class EntityShim
+        internal abstract class EntityShim : Shim
         {
             /// <summary>Unique identifier of the parquet.</summary>
             public EntityID ID;
@@ -91,13 +91,6 @@ namespace ParquetClassLibrary
 
             /// <summary>Optional comment.</summary>
             public string Comment;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="EntityModel"/>.</returns>
-            public abstract TModel ToEntity<TModel>() where TModel : EntityModel;
         }
         #endregion
 

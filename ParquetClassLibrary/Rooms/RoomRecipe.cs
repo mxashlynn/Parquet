@@ -113,12 +113,12 @@ namespace ParquetClassLibrary.Rooms
             /// </summary>
             /// <typeparam name="T">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="EnityModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, RoomRecipe>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new RoomRecipe(ID, Name, Description, Comment, MinimumWalkableSpaces, RequiredFloors,
-                                                           RequiredPerimeterBlocks, RequiredFurnishings);
+                return (TModel)(ShimProvider)new RoomRecipe(ID, Name, Description, Comment, MinimumWalkableSpaces, RequiredFloors,
+                                                            RequiredPerimeterBlocks, RequiredFurnishings);
             }
         }
         #endregion
@@ -163,7 +163,7 @@ namespace ParquetClassLibrary.Rooms
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(RoomRecipeShim);
         #endregion
     }

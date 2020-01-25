@@ -61,12 +61,12 @@ namespace ParquetClassLibrary.Beings
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="CharacterModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, NPCModel>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
-                                                         Avoids, Seeks, Pronouns, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
+                return (TModel)(ShimProvider)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
+                                                          Avoids, Seeks, Pronouns, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
             }
         }
         #endregion
@@ -118,7 +118,7 @@ namespace ParquetClassLibrary.Beings
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(NPCShim);
         #endregion
     }

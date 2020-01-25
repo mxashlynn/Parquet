@@ -93,12 +93,12 @@ namespace ParquetClassLibrary.Crafts
             /// Converts a shim into the class it corresponds to.
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="EnityModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            /// <returns>An instance of a child class of <see cref=""/>.</returns>
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, CraftingRecipe>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
+                return (TModel)(ShimProvider)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
             }
         }
         #endregion
@@ -142,7 +142,7 @@ namespace ParquetClassLibrary.Crafts
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(CraftingRecipeShim);
         #endregion
     }

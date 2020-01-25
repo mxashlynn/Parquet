@@ -127,7 +127,7 @@ namespace ParquetClassLibrary.Maps
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="MapModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, MapRegion>(typeof(TModel).ToString());
                 if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion, StringComparison.InvariantCultureIgnoreCase))
@@ -136,9 +136,9 @@ namespace ParquetClassLibrary.Maps
                         $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
                 }
 
-                return (TModel)(EntityModel)new MapRegion(ID, Name, Description, Comment, Revision, Background,
-                                                          // TODO ExitPoints, ParquetStatuses, ParquetDefintion, Background,
-                                                          ElevationLocal, ElevationGlobal);
+                return (TModel)(ShimProvider)new MapRegion(ID, Name, Description, Comment, Revision, Background,
+                                                           // TODO ExitPoints, ParquetStatuses, ParquetDefintion, Background,
+                                                           ElevationLocal, ElevationGlobal);
             }
         }
         #endregion
@@ -180,7 +180,7 @@ namespace ParquetClassLibrary.Maps
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(MapRegionShim);
         #endregion
 

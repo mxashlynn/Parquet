@@ -50,11 +50,11 @@ namespace ParquetClassLibrary.Beings
             /// </summary>
             /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
             /// <returns>An instance of a child class of <see cref="BeingModel"/>.</returns>
-            public override TModel ToEntity<TModel>()
+            public override TModel ToInstance<TModel>()
             {
                 Precondition.IsOfType<TModel, CritterModel>(typeof(TModel).ToString());
 
-                return (TModel)(EntityModel)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
+                return (TModel)(ShimProvider)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
             }
         }
         #endregion
@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Beings
         /// Provides the means to map all members of this class to a CSV file.
         /// </summary>
         /// <returns>The member mapping.</returns>
-        internal static Type GetShimType()
+        internal new static Type GetShimType()
             => typeof(CritterShim);
         #endregion
     }
