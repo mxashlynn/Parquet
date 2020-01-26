@@ -1,5 +1,4 @@
-using System;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -9,7 +8,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet block.
     /// </summary>
-    public sealed class BlockModel : ParquetModel
+    public sealed class BlockModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Minimum toughness value for any Block.</summary>
@@ -81,98 +80,8 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="BlockModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="BlockModel"/> from this class.
-        /// </summary>
-        internal class BlockShim : ParquetModelShim
-        {
-            /// <summary>The tool used to remove the block.</summary>
-            public GatheringTool GatherTool;
+        #region ITypeConverter Implementation
 
-            /// <summary>The effect generated when a character gathers this Block.</summary>
-            public GatherEffect GatherEffect;
-
-            /// <summary>The collectible spawned when a character gathers this Block.</summary>
-            public EntityID CollectibleID;
-
-            /// <summary>The block is flammable.</summary>
-            public bool IsFlammable;
-
-            /// <summary>The block is a liquid.</summary>
-            public bool IsLiquid;
-
-            /// <summary>The block's native toughness.</summary>
-            public int MaxToughness;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, BlockModel>(typeof(TModel).ToString());
-
-                return (TModel)(ShimProvider)new BlockModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                            AddsToRoom, GatherTool, GatherEffect, CollectibleID,
-                                                            IsFlammable, IsLiquid, MaxToughness);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="BlockShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class BlockClassMap : ClassMap<BlockShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="BlockClassMap"/> class.
-            /// </summary>
-            public BlockClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.GatherTool).Index(7);
-                Map(m => m.GatherEffect).Index(8);
-                Map(m => m.CollectibleID).Index(9);
-                Map(m => m.IsFlammable).Index(10);
-                Map(m => m.IsLiquid).Index(11);
-                Map(m => m.MaxToughness).Index(12);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static BlockClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new BlockClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(BlockShim);
         #endregion
     }
 }

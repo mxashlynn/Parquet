@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -7,7 +11,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definitions shared by in-game actors that take part in the narrative.
     /// </summary>
-    public abstract class CharacterModel : BeingModel
+    public abstract class CharacterModel : BeingModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
@@ -98,42 +102,26 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
+        #region ITypeConverter Implementation
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="CharacterModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CharacterModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal abstract class CharacterShim : BeingShim
-        {
-            /// <summary>Player-facing personal name.</summary>
-            public string PersonalName;
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(CharacterModel)} class.");
 
-            /// <summary>Player-facing family name.</summary>
-            public string FamilyName;
-
-            /// <summary>Player-facing full name.</summary>
-            public string FullName => Name;
-
-            /// <summary>
-            /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
-            /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
-            /// </summary>
-            public string Pronouns;
-
-            /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
-            public string StoryCharacterID;
-
-            /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
-            public IReadOnlyList<EntityID> StartingQuests;
-
-            /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-            public IReadOnlyList<EntityID> Dialogue;
-
-            /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-            public IReadOnlyList<EntityID> StartingInventory;
-        }
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(CharacterModel)} class.");
         #endregion
     }
 }

@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
-    public sealed class RoomRecipe : EntityModel
+    public sealed class RoomRecipe : EntityModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
@@ -86,85 +85,8 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="RoomRecipe"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="RoomRecipe"/> from this class.
-        /// </summary>
-        internal class RoomRecipeShim : EntityShim
-        {
-            /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
-            public int MinimumWalkableSpaces;
+        #region ITypeConverter Implementation
 
-            /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-            public IReadOnlyList<RecipeElement> RequiredFloors;
-
-            /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-            public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks;
-
-            /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-            public IReadOnlyList<RecipeElement> RequiredFurnishings;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="T">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="EnityModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, RoomRecipe>(typeof(TModel).ToString());
-
-                return (TModel)(ShimProvider)new RoomRecipe(ID, Name, Description, Comment, MinimumWalkableSpaces, RequiredFloors,
-                                                            RequiredPerimeterBlocks, RequiredFurnishings);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="RoomRecipeShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class RoomRecipeClassMap : ClassMap<RoomRecipeShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="RoomRecipeClassMap"/> class.
-            /// </summary>
-            public RoomRecipeClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.RequiredFloors).Index(4);
-                Map(m => m.MinimumWalkableSpaces).Index(5);
-                Map(m => m.RequiredPerimeterBlocks).Index(6);
-                Map(m => m.RequiredFurnishings).Index(7);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static RoomRecipeClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new RoomRecipeClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(RoomRecipeShim);
         #endregion
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    public sealed class CraftingRecipe : EntityModel
+    public sealed class CraftingRecipe : EntityModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
@@ -70,80 +70,8 @@ namespace ParquetClassLibrary.Crafts
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="CraftingRecipe"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CraftingRecipe"/> from this class.
-        /// </summary>
-        internal class CraftingRecipeShim : EntityShim
-        {
-            /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-            public IReadOnlyList<RecipeElement> Products;
+        #region ITypeConverter Implementation
 
-            /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-            public IReadOnlyList<RecipeElement> Ingredients;
-
-            /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-            public StrikePanelGrid PanelPattern;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref=""/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, CraftingRecipe>(typeof(TModel).ToString());
-
-                return (TModel)(ShimProvider)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CraftingRecipeShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CraftingRecipeClassMap : ClassMap<CraftingRecipeShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CraftingRecipeClassMap"/> class.
-            /// </summary>
-            public CraftingRecipeClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.Products).Index(4);
-                Map(m => m.Ingredients).Index(5);
-                Map(m => m.PanelPattern).Index(6);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CraftingRecipeClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CraftingRecipeClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CraftingRecipeShim);
         #endregion
     }
 }

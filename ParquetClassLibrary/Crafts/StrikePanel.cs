@@ -164,24 +164,6 @@ namespace ParquetClassLibrary.Crafts
         }
         #endregion
 
-        #region Serialization
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="StrikePanelClassMap"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class StrikePanelClassMap : ClassMap<StrikePanel>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="StrikePanelClassMap"/> class.
-            /// </summary>
-            public StrikePanelClassMap()
-            {
-                References<Range.RangeClassMap<int>>(m => m.WorkingRange);
-                References<Range.RangeClassMap<int>>(m => m.IdealRange);
-            }
-        }
-        #endregion
-
         #region ITypeConverter Implementation
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
@@ -243,7 +225,6 @@ namespace ParquetClassLibrary.Crafts
             => null == inValue || (StrikePanel)inValue == Unused
                 ? nameof(Unused)
                 : $"{((StrikePanel)inValue).WorkingRange.Minimum}{intDelimiter}{((StrikePanel)inValue).WorkingRange.Maximum}{rangeDelimiter}{((StrikePanel)inValue).IdealRange.Minimum}{intDelimiter}{((StrikePanel)inValue).IdealRange.Maximum}";
-        #endregion
         #endregion
 
         #region Utilities

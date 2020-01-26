@@ -1,3 +1,7 @@
+using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -6,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract class ParquetModel : EntityModel
+    public abstract class ParquetModel : EntityModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>
@@ -54,21 +58,26 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
+        #region ITypeConverter Implementation
         /// <summary>
-        /// Parent class for all shims of parquet definitions.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal abstract class ParquetModelShim : EntityShim
-        {
-            /// <summary>The <see cref="EntityID"/> of the item that corresponds to this parquet.</summary>
-            public EntityID ItemID;
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
 
-            /// <summary>The <see cref="BiomeModel"/>(s) this parquet helps form.</summary>
-            public EntityTag AddsToBiome;
-
-            /// <summary>The <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</summary>
-            public EntityTag AddsToRoom;
-        }
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
         #endregion
     }
 }

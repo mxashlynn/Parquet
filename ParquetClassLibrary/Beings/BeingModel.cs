@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -7,7 +11,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    public abstract class BeingModel : EntityModel
+    public abstract class BeingModel : EntityModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>The <see cref="EntityID"/> of the <see cref="Biome"/> in which this character is at home.</summary>
@@ -56,27 +60,26 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
+        #region ITypeConverter Implementation
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="BeingModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="BeingModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal abstract class BeingShim : EntityShim
-        {
-            /// <summary>The <see cref="EntityID"/> of the <see cref="Biome"/> in which this character is at home.</summary>
-            public EntityID NativeBiome;
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(BeingModel)} class.");
 
-            /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
-            public Behavior PrimaryBehavior;
-
-            /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-            public IReadOnlyList<EntityID> Avoids;
-
-            /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-            public IReadOnlyList<EntityID> Seeks;
-        }
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(BeingModel)} class.");
         #endregion
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -9,7 +10,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
     /// </summary>
-    public sealed class CritterModel : BeingModel
+    public sealed class CritterModel : BeingModel, ITypeConverter
     {
         #region Initialization
         /// <summary>
@@ -35,72 +36,8 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="CritterModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CritterModel"/> from this class.
-        /// </summary>
-        internal class CritterShim : BeingShim
-        {
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="BeingModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, CritterModel>(typeof(TModel).ToString());
+        #region ITypeConverter Implementation
 
-                return (TModel)(ShimProvider)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CritterShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CritterClassMap : ClassMap<CritterShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CritterClassMap"/> class.
-            /// </summary>
-            public CritterClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.NativeBiome).Index(4);
-                Map(m => m.PrimaryBehavior).Index(5);
-                Map(m => m.Avoids).Index(6);
-                Map(m => m.Seeks).Index(7);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CritterClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CritterClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CritterShim);
         #endregion
     }
 }

@@ -1,19 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using CsvHelper;
-using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.Interactions;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -30,48 +21,6 @@ namespace ParquetClassLibrary.Serialization
         {
             NumberStyle = NumberStyles.AllowLeadingSign &
                           NumberStyles.Integer
-        };
-
-        /// <summary>Mappings for all serializable classes.</summary>
-        private static Dictionary<Type, ClassMap> ClassMapper { get; } = new Dictionary<Type, ClassMap>
-        {
-            { typeof(PronounGroup), PronounGroup.GetClassMap() },
-            { typeof(CritterModel), CritterModel.GetClassMap() },
-            { typeof(NPCModel), NPCModel.GetClassMap() },
-            { typeof(PlayerCharacterModel), PlayerCharacterModel.GetClassMap() },
-            { typeof(BiomeModel), BiomeModel.GetClassMap() },
-            { typeof(CraftingRecipe), CraftingRecipe.GetClassMap() },
-            { typeof(DialogueModel), DialogueModel.GetClassMap() },
-            { typeof(QuestModel), QuestModel.GetClassMap() },
-            { typeof(MapChunk), MapChunk.GetClassMap() },
-            { typeof(MapRegion), MapRegion.GetClassMap() },
-            { typeof(FloorModel), FloorModel.GetClassMap() },
-            { typeof(BlockModel), BlockModel.GetClassMap() },
-            { typeof(FurnishingModel), FurnishingModel.GetClassMap() },
-            { typeof(CollectibleModel), CollectibleModel.GetClassMap() },
-            { typeof(RoomRecipe), RoomRecipe.GetClassMap() },
-            { typeof(ItemModel), ItemModel.GetClassMap() },
-        };
-
-        /// <summary>Mappings for all serialization shims.</summary>
-        private static Dictionary<Type, Type> ShimMapper { get; } = new Dictionary<Type, Type>
-        {
-            { typeof(PronounGroup), PronounGroup.GetShimType() },
-            { typeof(CritterModel), CritterModel.GetShimType() },
-            { typeof(NPCModel), NPCModel.GetShimType() },
-            { typeof(PlayerCharacterModel), PlayerCharacterModel.GetShimType() },
-            { typeof(BiomeModel), BiomeModel.GetShimType() },
-            { typeof(CraftingRecipe), CraftingRecipe.GetShimType() },
-            { typeof(DialogueModel), DialogueModel.GetShimType() },
-            { typeof(QuestModel), QuestModel.GetShimType() },
-            { typeof(MapChunk), MapChunk.GetShimType() },
-            { typeof(MapRegion), MapRegion.GetShimType() },
-            { typeof(FloorModel), FloorModel.GetShimType() },
-            { typeof(BlockModel), BlockModel.GetShimType() },
-            { typeof(FurnishingModel), FurnishingModel.GetShimType() },
-            { typeof(CollectibleModel), CollectibleModel.GetShimType() },
-            { typeof(RoomRecipe), RoomRecipe.GetShimType() },
-            { typeof(ItemModel), ItemModel.GetShimType() },
         };
 
         /// <summary>
@@ -91,41 +40,11 @@ namespace ParquetClassLibrary.Serialization
         /// <typeparam name="TRecord">The type to deserialize.</typeparam>
         /// <returns>The records read.</returns>
         public static IEnumerable<TRecord> GetRecordsForType<TRecord>()
-            where TRecord : ShimProvider
+            where TRecord : ITypeConverter
         {
-            var records = new HashSet<TRecord>();
-            using (var reader = new StreamReader($"{SearchPath}/{typeof(TRecord).Name}s.csv"))
-            {
-                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
-                csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
-                csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-                csv.Configuration.RegisterClassMap(ClassMapper[typeof(TRecord)]);
-
-                var shims = csv.GetRecords(ShimMapper[typeof(TRecord)]).Cast<ShimProvider.Shim>();
-                foreach (var shim in shims)
-                {
-                    records.Add(shim.ToInstance<TRecord>());
-                }
-            }
-
-            return records;
-        }
-
-        /// <summary>
-        /// Writes all of the given type to records in the appropriate file.
-        /// </summary>
-        /// <typeparam name="TInstance">The type to serialize, must be a <see cref="ShimProvider"/>.</typeparam>
-        internal static void PutRecordsForType<TInstance>(IEnumerable<TInstance> inInstances)
-            where TInstance : ShimProvider
-        {
-            using var writer = new StreamWriter($"{SearchPath}/{typeof(TInstance).Name}s.csv");
-            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            using var reader = new StreamReader($"{SearchPath}/{typeof(TRecord).Name}s.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
             csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
             csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
             csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
@@ -133,10 +52,31 @@ namespace ParquetClassLibrary.Serialization
             csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
             csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
             csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
+            csv.Configuration.RegisterClassMap(typeof(Range<EntityID>.RangeClassMap<EntityID>));
+            csv.Configuration.RegisterClassMap(typeof(Range<int>.RangeClassMap<int>));
+            return csv.GetRecords<TRecord>();
+        }
+
+        /// <summary>
+        /// Writes all of the given type to records in the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to serialize.</typeparam>
+        internal static void PutRecordsForType<TRecord>(IEnumerable<TRecord> inInstances)
+            where TRecord : ITypeConverter
+        {
+            using var writer = new StreamWriter($"{SearchPath}/{typeof(TRecord).Name}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-            csv.Configuration.RegisterClassMap(ClassMapper[typeof(TInstance)]);
-            var shim = ShimMapper[typeof(TInstance)];
-            csv.WriteHeader(shim);
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
+            csv.Configuration.RegisterClassMap(typeof(Range<EntityID>.RangeClassMap<EntityID>));
+            csv.Configuration.RegisterClassMap(typeof(Range<int>.RangeClassMap<int>));
+            csv.WriteHeader<TRecord>();
             csv.NextRecord();
             csv.WriteRecords(inInstances);
         }

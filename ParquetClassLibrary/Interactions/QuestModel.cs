@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using CsvHelper.Configuration;
-using ParquetClassLibrary.Utilities;
+using CsvHelper.TypeConversion;
 
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
     /// Models a quest that an <see cref="Beings.NPCModel"/> may give to a <see cref="Beings.PlayerCharacterModel"/> embodies.
     /// </summary>
-    public sealed class QuestModel : InteractionModel
+    public sealed class QuestModel : InteractionModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>
@@ -39,75 +37,8 @@ namespace ParquetClassLibrary.Interactions
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="QuestModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="QuestModel"/> from this class.
-        /// </summary>
-        internal class QuestShim : EntityShim
-        {
-            // TODO Derive this from InteractionStub
+        #region ITypeConverter Implementation
 
-            /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
-            public IReadOnlyList<EntityTag> CompletionRequirements;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="T">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="InteractionModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, QuestModel>(typeof(TModel).ToString());
-
-                // TODO Fill in these stubs.
-                return (TModel)(ShimProvider)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="QuestShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class QuestClassMap : ClassMap<QuestShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="QuestClassMap"/> class.
-            /// </summary>
-            public QuestClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.CompletionRequirements).Index(4);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static QuestClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new QuestClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(QuestShim);
         #endregion
     }
 }

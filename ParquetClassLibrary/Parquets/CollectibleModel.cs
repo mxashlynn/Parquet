@@ -1,5 +1,4 @@
-using System;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -8,7 +7,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    public sealed class CollectibleModel : ParquetModel
+    public sealed class CollectibleModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -56,81 +55,8 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a <see cref="CollectibleModel"/>-like
-        /// class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CollectibleModel"/> from this class.
-        /// </summary>
-        internal class CollectibleShim : ParquetModelShim
-        {
-            /// <summary>The effect generated when a character encounters this collectible.</summary>
-            public CollectEffect Effect;
+        #region ITypeConverter Implementation
 
-            /// <summary>The scale in points of the effect.</summary>
-            public int EffectAmount;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, CollectibleModel>(typeof(TModel).ToString());
-
-                return (TModel)(ShimProvider)new CollectibleModel(ID, Name, Description, Comment, ItemID,
-                                                                  AddsToBiome, AddsToRoom, Effect, EffectAmount);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CollectibleShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CollectibleClassMap : ClassMap<CollectibleShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CollectibleClassMap"/> class.
-            /// </summary>
-            public CollectibleClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.Effect).Index(7);
-                Map(m => m.EffectAmount).Index(8);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CollectibleClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CollectibleClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CollectibleShim);
         #endregion
     }
 }

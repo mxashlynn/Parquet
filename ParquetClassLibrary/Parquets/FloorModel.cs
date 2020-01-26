@@ -1,5 +1,4 @@
-using System;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -9,7 +8,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet walking surface.
     /// </summary>
-    public sealed class FloorModel : ParquetModel
+    public sealed class FloorModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
@@ -52,81 +51,8 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a <see cref="FloorModel"/>-like
-        /// class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="FloorModel"/> from this class.
-        /// </summary>
-        internal class FloorShim : ParquetModelShim
-        {
-            /// <summary>The tool used to dig out or fill in the floor.</summary>
-            public ModificationTool ModTool;
+        #region ITypeConverter Implementation
 
-            /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-            public string TrenchName;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, FloorModel>(typeof(TModel).ToString());
-
-                return (TModel)(ShimProvider)new FloorModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                            AddsToRoom, ModTool, TrenchName);
-            }
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="FloorShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class FloorClassMap : ClassMap<FloorShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FloorClassMap"/> class.
-            /// </summary>
-            public FloorClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.ModTool).Index(7);
-                Map(m => m.TrenchName).Index(8);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static FloorClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new FloorClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(FloorShim);
         #endregion
     }
 }

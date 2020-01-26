@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Utilities;
 
@@ -9,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapModel : EntityModel
+    public abstract class MapModel : EntityModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
@@ -198,30 +201,26 @@ namespace ParquetClassLibrary.Maps
             => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 
-        #region Serialization
+        #region ITypeConverter Implementation
         /// <summary>
-        /// Parent class for all shims of map definitions.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal abstract class MapModelShim : EntityShim
-        {
-            /// <summary>Describes the version of serialized data.  Allows selecting data files that can be successfully deserialized.</summary>
-            public string DataVersion;
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(MapModel)} class.");
 
-            /// <summary>Tracks how many times the data structure has been serialized.</summary>
-            public int Revision;
-
-            /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-            public IReadOnlyList<ExitPoint> ExitPoints;
-
-            /// <summary>Floors and walkable terrain on the map.</summary>
-            public ParquetStatusGrid ParquetStatuses;
-
-            /// <summary>
-            /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
-            /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
-            /// </summary>
-            public ParquetStackGrid ParquetDefintion;
-        }
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(MapModel)} class.");
         #endregion
 
         #region Utilities

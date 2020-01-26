@@ -1,5 +1,4 @@
-using System;
-using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -7,7 +6,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public sealed class PronounGroup : ShimProvider, IPronounGroupEdit
+    public sealed class PronounGroup : IPronounGroupEdit, ITypeConverter
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -89,79 +88,8 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="PronounGroup"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="PronounGroup"/> from this class.
-        /// </summary>
-        internal class PronounGroupShim : Shim
-        {
-            /// <summary>Personal pronoun used as the subject of a verb.</summary>
-            public string Subjective;
+        #region ITypeConverter Implementation
 
-            /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
-            public string Objective;
-
-            /// <summary>Personal pronoun used to attribute possession.</summary>
-            public string Determiner;
-
-            /// <summary>Personal pronoun used to indicate a relationship.</summary>
-            public string Possessive;
-
-            /// <summary>Personal pronoun used to indicate the user.</summary>
-            public string Reflexive;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <returns>An instance corresponding to this shim.</returns>
-            /// <typeparam name="TInstance">The type to convert this shim to.</typeparam>
-            public override TInstance ToInstance<TInstance>()
-                => (TInstance)(ShimProvider)new PronounGroup(Subjective, Objective, Determiner, Possessive, Reflexive);
-        }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="PronounGroupShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class PronounGroupClassMap : ClassMap<PronounGroupShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="PronounGroupClassMap"/> class.
-            /// </summary>
-            public PronounGroupClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.Subjective).Index(0);
-                Map(m => m.Objective).Index(1);
-                Map(m => m.Determiner).Index(2);
-                Map(m => m.Possessive).Index(3);
-                Map(m => m.Reflexive).Index(4);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static PronounGroupClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new PronounGroupClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(PronounGroupShim);
         #endregion
 
         #region Utilities
