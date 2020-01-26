@@ -1,3 +1,3 @@
-ID,Name,Description,Comment,StartCriteria,Steps,Outcome
--50000,Dialogue Test,Test,Test,Test Tag,OXOX,Test Tag
-50000,01:01,"","",HaveHat,"It's mighty cold out; take this with you, dearie.",GetScarf
+ID,Name,Description,Comment
+-50000,Dialogue Test,Test,Test
+ 50000,Scarf Quest,Get a scarf!,It's mighty cold out; take this with you.

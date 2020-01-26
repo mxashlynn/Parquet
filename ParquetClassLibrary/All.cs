@@ -394,15 +394,22 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void SaveToCSV()
         {
-            //Serializer.PutRecordsForPronounGroup(All.PronounGroups);
-            //Serializer.PutRecordsForType<BeingModel>(All.Beings);
-            //Serializer.PutRecordsForType<BiomeModel>(All.Biomes);
-            //Serializer.PutRecordsForType<CraftingRecipe>(All.CraftingRecipes);
-            //Serializer.PutRecordsForType<InteractionModel>(All.Interactions);
-            //Serializer.PutRecordsForType<MapModel>(All.Maps);
-            //Serializer.PutRecordsForType<ParquetModel>(All.Parquets);
-            //Serializer.PutRecordsForType<RoomRecipe>(All.RoomRecipes);
-            //Serializer.PutRecordsForType<ItemModel>(All.Items);
+            Serializer.PutRecordsForType<PronounGroup>(PronounGroups);
+            //Serializer.PutRecordsForType<CritterModel>(Beings.Where(being => being is CritterModel));
+            //Serializer.PutRecordsForType<NPCModel>(Beings.Where(being => being is NPCModel));
+            //Serializer.PutRecordsForType<PlayerCharacterModel>(Beings.Where(being => being is PlayerCharacterModel));
+            //Serializer.PutRecordsForType<BiomeModel>(Biomes);
+            //Serializer.PutRecordsForType<CraftingRecipe>(CraftingRecipes);
+            Serializer.PutRecordsForType<DialogueModel>(Interactions.Where(interaction => interaction is DialogueModel).Cast<DialogueModel>());
+            //Serializer.PutRecordsForType<QuestModel>(Interactions.Where(interaction => interaction is QuestModel));
+            //Serializer.PutRecordsForType<MapChunk>(Maps.Where(map => map is MapChunk));
+            //Serializer.PutRecordsForType<MapRegion>(Maps.Where(map => map is MapRegion));
+            //Serializer.PutRecordsForType<FloorModel>(Parquets.Where(parquet => parquet is FloorModel));
+            //Serializer.PutRecordsForType<BlockModel>(Parquets.Where(parquet => parquet is BlockModel));
+            //Serializer.PutRecordsForType<FurnishingModel>(Parquets.Where(parquet => parquet is FurnishingModel));
+            //Serializer.PutRecordsForType<CollectibleModel>(Parquets.Where(parquet => parquet is CollectibleModel));
+            //Serializer.PutRecordsForType<RoomRecipe>(RoomRecipes);
+            //Serializer.PutRecordsForType<ItemModel>(Items);
         }
         #endregion
     }

@@ -85,7 +85,6 @@ namespace ParquetClassLibrary.Serialization
             Directory.GetCurrentDirectory();
 #endif
 
-
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
@@ -116,6 +115,30 @@ namespace ParquetClassLibrary.Serialization
             }
 
             return records;
+        }
+
+        /// <summary>
+        /// Writes all of the given type to records in the appropriate file.
+        /// </summary>
+        /// <typeparam name="TInstance">The type to serialize, must be a <see cref="ShimProvider"/>.</typeparam>
+        internal static void PutRecordsForType<TInstance>(IEnumerable<TInstance> inInstances)
+            where TInstance : ShimProvider
+        {
+            using var writer = new StreamWriter($"{SearchPath}/{typeof(TInstance).Name}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
+            csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
+            csv.Configuration.RegisterClassMap(ClassMapper[typeof(TInstance)]);
+            var shim = ShimMapper[typeof(TInstance)];
+            csv.WriteHeader(shim);
+            csv.NextRecord();
+            csv.WriteRecords(inInstances);
         }
     }
 }
