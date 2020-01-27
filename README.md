@@ -67,6 +67,6 @@ To work with this repository you will need:
 - [XUnit](https://github.com/xunit/xunit) >= 2.4
 - [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1
 
-# Credits
+# Contributors
 - Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).
 - Special thanks to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), [Ashley Hauck](https://github.com/khyperia), [Emma Maassen](https://github.com/Enichan), and Lillian Harris for help with code reviews, mathematics, algorithms, game design quandries, and understanding the finer points of C#.
