@@ -6,9 +6,13 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
@@ -38,9 +42,26 @@ namespace ParquetClassLibrary.Serialization
             { typeof(EntityTag), EntityTag.ConverterFactory },
             { typeof(RecipeElement), RecipeElement.ConverterFactory },
             { typeof(PronounGroup), PronounGroup.ConverterFactory },
-            { typeof(InventorySlot), InventorySlot.ConverterFactory },
+            { typeof(CritterModel), CritterModel.ConverterFactory },
             { typeof(NPCModel), NPCModel.ConverterFactory },
-            // TODO Finish these
+            { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
+            { typeof(StrikePanel), StrikePanel.ConverterFactory },
+            { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
+            { typeof(DialogueModel), DialogueModel.ConverterFactory },
+            { typeof(QuestModel), QuestModel.ConverterFactory },
+            { typeof(InventorySlot), InventorySlot.ConverterFactory },
+            { typeof(ItemModel), ItemModel.ConverterFactory },
+            { typeof(ChunkType), ChunkType.ConverterFactory },
+            { typeof(ExitPoint), ExitPoint.ConverterFactory },
+            { typeof(MapChunk), MapChunk.ConverterFactory },
+            { typeof(MapRegion), MapRegion.ConverterFactory },
+            { typeof(FloorModel), FloorModel.ConverterFactory },
+            { typeof(BlockModel), BlockModel.ConverterFactory },
+            { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
+            { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
+            { typeof(ParquetStack), ParquetStack.ConverterFactory },
+            { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+            { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
             #endregion
 
             #region Linear Series Types
