@@ -1,3 +1,6 @@
+using System;
+using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
@@ -68,11 +71,11 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <param name="inSubjective">Personal pronoun used as the subject of a verb.  Cannot be null or empty.</param>
         /// <param name="inObjective">Personal pronoun used as the indirect object of a preposition or verb.  Cannot be null or empty.</param>
-        /// <param name="inPossessiveDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
-        /// <param name="inPossessivePronoun">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
+        /// <param name="inDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
+        /// <param name="inPossessive">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
         /// <param name="inReflexive">Personal pronoun used as a coreferential to indicate the user.  Cannot be null or empty.</param>
-        public PronounGroup(string inSubjective, string inObjective, string inPossessiveDeterminer,
-                        string inPossessivePronoun, string inReflexive)
+        public PronounGroup(string inSubjective, string inObjective, string inDeterminer,
+                            string inPossessive, string inReflexive)
         {
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
@@ -82,14 +85,38 @@ namespace ParquetClassLibrary.Beings
 
             Subjective = inSubjective;
             Objective = inObjective;
-            Determiner = inPossessiveDeterminer;
-            Possessive = inPossessivePronoun;
+            Determiner = inDeterminer;
+            Possessive = inPossessive;
             Reflexive = inReflexive;
         }
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly PronounGroup ConverterFactory =
+            new PronounGroup(nameof(Subjective), nameof(Objective), nameof(Determiner), nameof(Possessive), nameof(Reflexive));
 
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+        {
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+        }
         #endregion
 
         #region Utilities

@@ -1,4 +1,5 @@
 using System;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -9,7 +10,7 @@ namespace ParquetClassLibrary.Maps
     /// <remarks>
     /// Since only one Exit Point can exist in a given location, exit points are considered equal according to their position only.
     /// </remarks>
-    public readonly struct ExitPoint : IEquatable<ExitPoint>
+    public readonly struct ExitPoint : IEquatable<ExitPoint>, ITypeConverter
     {
         /// <summary>Location of this exit point.</summary>
         public Vector2D Position { get; }
@@ -73,6 +74,34 @@ namespace ParquetClassLibrary.Maps
         /// </returns>
         public static bool operator !=(ExitPoint inPoint1, ExitPoint inPoint2)
             => inPoint1.Position != inPoint2.Position;
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly ExitPoint ConverterFactory =
+            new NotImplementedException();
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+        {
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+        }
         #endregion
     }
 }

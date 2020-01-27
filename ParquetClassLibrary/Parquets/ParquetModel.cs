@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract class ParquetModel : EntityModel, ITypeConverter
+    public abstract class ParquetModel : EntityModel
     {
         #region Characteristics
         /// <summary>
@@ -56,28 +56,6 @@ namespace ParquetClassLibrary.Parquets
             AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? EntityTag.None : inAddsToBiome;
             AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? EntityTag.None : inAddsToRoom;
         }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
         #endregion
     }
 }

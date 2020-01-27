@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapModel : EntityModel, ITypeConverter
+    public abstract class MapModel : EntityModel
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
@@ -199,28 +199,6 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The special points at the position.</returns>
         public IReadOnlyList<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
             => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(MapModel)} class.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(MapModel)} class.");
         #endregion
 
         #region Utilities

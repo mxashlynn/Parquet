@@ -1,3 +1,4 @@
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -5,7 +6,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models the status of a stack of sandbox parquets.
     /// </summary>
-    public class ParquetStatus
+    public class ParquetStatus : ITypeConverter
     {
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
@@ -37,6 +38,34 @@ namespace ParquetClassLibrary.Parquets
             IsTrench = inIsTrench;
             Toughness = inToughness ?? inMaxToughness;
             maxToughness = inMaxToughness;
+        }
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly ParquetStatus ConverterFactory =
+            new System.NotImplementedException();
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+        {
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
         }
         #endregion
 

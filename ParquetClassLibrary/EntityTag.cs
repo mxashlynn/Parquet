@@ -76,6 +76,10 @@ namespace ParquetClassLibrary
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly EntityTag ConverterFactory =
+            None;
+
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
         /// </summary>

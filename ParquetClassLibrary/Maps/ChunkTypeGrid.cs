@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -98,10 +99,6 @@ namespace ParquetClassLibrary.Maps
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => chunkTypes.GetEnumerator();
-        #endregion
-
-        #region Serialization
-
         #endregion
 
         #region Utilities

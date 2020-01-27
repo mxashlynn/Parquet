@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.TypeConversion;
@@ -62,7 +61,31 @@ namespace ParquetClassLibrary.Biomes
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly BiomeModel ConverterFactory =
+            new BiomeModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
 
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+        {
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+        }
         #endregion
     }
 }

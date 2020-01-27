@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the panels that the player must strike during item crafting.
     /// </summary>
-    public class StrikePanel : ITypeConverter, IEquatable<StrikePanel>
+    public class StrikePanel : IEquatable<StrikePanel>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
@@ -165,6 +165,10 @@ namespace ParquetClassLibrary.Crafts
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly StrikePanel ConverterFactory =
+            new NotImplementedException();
+
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
         /// </summary>

@@ -31,7 +31,7 @@ namespace ParquetClassLibrary
     /// EntityModel could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>, ITypeConverter
+    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
@@ -123,28 +123,6 @@ namespace ParquetClassLibrary
             => (!(inModel1 is null) && !(inModel2 is null) && inModel1.ID != inModel2.ID)
             || (!(inModel1 is null) && inModel2 is null)
             || (inModel1 is null && !(inModel2 is null));
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(EntityModel)} class.");
         #endregion
 
         #region Utilities

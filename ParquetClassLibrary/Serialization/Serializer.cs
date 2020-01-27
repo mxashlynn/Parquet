@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
@@ -21,6 +26,44 @@ namespace ParquetClassLibrary.Serialization
         {
             NumberStyle = NumberStyles.AllowLeadingSign &
                           NumberStyles.Integer
+        };
+
+        /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
+        private static Dictionary<Type, ITypeConverter> ConversionMapper { get; } = new Dictionary<Type, ITypeConverter>
+        {
+            // TODO Question -- should this functionality be split between All and ModelCollection??
+
+            #region ITypeConverters
+            { typeof(EntityID), EntityID.ConverterFactory },
+            { typeof(EntityTag), EntityTag.ConverterFactory },
+            { typeof(RecipeElement), RecipeElement.ConverterFactory },
+            { typeof(PronounGroup), PronounGroup.ConverterFactory },
+            { typeof(InventorySlot), InventorySlot.ConverterFactory },
+            { typeof(NPCModel), NPCModel.ConverterFactory },
+            // TODO Finish these
+            #endregion
+
+            #region Linear Series Types
+            { typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>() },
+            { typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>() },
+            { typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>() },
+            { typeof(IReadOnlyList<ExitPoint>), new SeriesConverter<ExitPoint, List<ExitPoint>>() },
+            { typeof(Inventory), new SeriesConverter<InventorySlot, Inventory>() },
+            // TODO Finish these
+            #endregion
+
+            #region 2D Grid Types
+            { typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>() },
+            { typeof(ChunkTypeGrid), new GridConverter<ChunkType, ChunkTypeGrid>() },
+            // TODO Finish these
+            #endregion
+        };
+
+        /// <summary>Mappings for all classes serialized via <see cref="ClassMap"/>.</summary>
+        private static List<ClassMap> ClassMapper { get; } = new List<ClassMap>
+        {
+            new Range<EntityID>.RangeClassMap<EntityID>(),
+            new Range<int>.RangeClassMap<int>(),
         };
 
         /// <summary>
@@ -45,15 +88,15 @@ namespace ParquetClassLibrary.Serialization
             using var reader = new StreamReader($"{SearchPath}/{typeof(TRecord).Name}s.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
-            csv.Configuration.RegisterClassMap(typeof(Range<EntityID>.RangeClassMap<EntityID>));
-            csv.Configuration.RegisterClassMap(typeof(Range<int>.RangeClassMap<int>));
+            foreach (var kvp in ConversionMapper)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+            foreach (var map in ClassMapper)
+            {
+                csv.Configuration.RegisterClassMap(map);
+            }
+
             return csv.GetRecords<TRecord>();
         }
 
@@ -67,15 +110,15 @@ namespace ParquetClassLibrary.Serialization
             using var writer = new StreamWriter($"{SearchPath}/{typeof(TRecord).Name}s.csv");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), IdentifierOptions);
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityID), new EntityID());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(EntityTag), new EntityTag());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(RecipeElement), new RecipeElement());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>());
-            csv.Configuration.TypeConverterCache.AddConverter(typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>());
-            csv.Configuration.RegisterClassMap(typeof(Range<EntityID>.RangeClassMap<EntityID>));
-            csv.Configuration.RegisterClassMap(typeof(Range<int>.RangeClassMap<int>));
+            foreach (var kvp in ConversionMapper)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+            foreach (var map in ClassMapper)
+            {
+                csv.Configuration.RegisterClassMap(map);
+            }
+
             csv.WriteHeader<TRecord>();
             csv.NextRecord();
             csv.WriteRecords(inInstances);

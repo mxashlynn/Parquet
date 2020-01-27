@@ -1,4 +1,5 @@
 using System;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -6,7 +7,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each overlapping layer of parquets.
     /// </summary>
-    public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
+    public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
@@ -145,6 +146,34 @@ namespace ParquetClassLibrary.Parquets
             || inStack1.Block != inStack2.Block
             || inStack1.Furnishing != inStack2.Furnishing
             || inStack1.Collectible != inStack2.Collectible;
+        #endregion
+
+        #region ITypeConverter
+        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        internal static readonly ParquetStack ConverterFactory =
+            new NotImplementedException();
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+        {
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+        }
         #endregion
 
         #region Utilities

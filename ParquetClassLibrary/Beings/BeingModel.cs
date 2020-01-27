@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -11,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    public abstract class BeingModel : EntityModel, ITypeConverter
+    public abstract class BeingModel : EntityModel
     {
         #region Characteristics
         /// <summary>The <see cref="EntityID"/> of the <see cref="Biome"/> in which this character is at home.</summary>
@@ -58,28 +54,6 @@ namespace ParquetClassLibrary.Beings
             Avoids = (inAvoids ?? Enumerable.Empty<EntityID>()).ToList();
             Seeks = (inSeeks ?? Enumerable.Empty<EntityID>()).ToList();
         }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(BeingModel)} class.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(BeingModel)} class.");
         #endregion
     }
 }
