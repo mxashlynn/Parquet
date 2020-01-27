@@ -1,3 +1,5 @@
+using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -82,8 +84,8 @@ namespace ParquetClassLibrary.Parquets
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
-        internal static readonly CraftingRecipe ConverterFactory =
-            new Block();
+        internal static readonly BlockModel ConverterFactory =
+            new BlockModel();
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

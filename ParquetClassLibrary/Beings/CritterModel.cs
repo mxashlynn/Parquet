@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
@@ -39,7 +40,7 @@ namespace ParquetClassLibrary.Beings
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
         internal static readonly CritterModel ConverterFactory =
-            new CritterModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
+            new CritterModel();// CritterModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

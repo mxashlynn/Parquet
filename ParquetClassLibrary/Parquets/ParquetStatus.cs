@@ -1,3 +1,5 @@
+using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
@@ -8,6 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class ParquetStatus : ITypeConverter
     {
+        #region Status
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
 
@@ -25,8 +28,16 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>If the floor has been dug out.</summary>
         public bool IsTrench { get; set; }
+        #endregion
 
         #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParquetStatus"/> class with default values.
+        /// </summary>
+        public ParquetStatus()
+            // This version of the constructor exists to make the generic new() constraint happy.
+            : this(false, null, BlockModel.DefaultMaxToughness) { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
         /// </summary>
@@ -44,7 +55,7 @@ namespace ParquetClassLibrary.Parquets
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
         internal static readonly ParquetStatus ConverterFactory =
-            new System.NotImplementedException();
+            new ParquetStatus();
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

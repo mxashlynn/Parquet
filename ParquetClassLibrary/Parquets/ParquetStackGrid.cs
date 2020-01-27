@@ -43,6 +43,19 @@ namespace ParquetClassLibrary.Parquets
             }
         }
 
+        #region Initialization
+        /// <summary>
+        /// Initializes a new <see cref="ParquetStackGrid"/> with unusable dimensions.
+        /// </summary>
+        /// <remarks>
+        /// For this class, there are no reasonable default values.
+        /// However, this version of the constructor exists to make the generic new() constraint happy
+        /// and is used in the library in a context where its limitations are understood.
+        /// You probably don't want to use this constructor in your own code.
+        ///</remarks>
+        public ParquetStackGrid()
+            : this(1, 1) { }
+
         /// <summary>
         /// Initializes a new empty <see cref="ParquetStackGrid"/>.
         /// </summary>
@@ -59,6 +72,7 @@ namespace ParquetClassLibrary.Parquets
         {
             ParquetStacks = inParquetStackArray;
         }
+        #endregion
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.

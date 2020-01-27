@@ -61,6 +61,13 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
+        /// Initializes a new <see cref="ChunkTypeGrid"/> with default values.
+        /// </summary>
+        public ChunkTypeGrid()
+            // This version of the constructor exists to make the generic new() constraint happy.
+            : this(null, null, null, MapRegion.DefaultGlobalElevation) { }
+
+        /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
         /// <param name="inID">A pre-existing RegionID; if null, the ID is set to <see cref="EntityID.None"/>.</param>

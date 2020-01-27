@@ -76,7 +76,8 @@ namespace ParquetClassLibrary.Serialization
             #region 2D Grid Types
             { typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>() },
             { typeof(ChunkTypeGrid), new GridConverter<ChunkType, ChunkTypeGrid>() },
-            // TODO Finish these
+            { typeof(ParquetStackGrid), new GridConverter<ParquetStack, ParquetStackGrid>() },
+            { typeof(ParquetStatusGrid), new GridConverter<ParquetStatus, ParquetStatusGrid>() },
             #endregion
         };
 

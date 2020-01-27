@@ -27,6 +27,19 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>The total number of parquets collected.</summary>
         public int Count => Rows * Columns;
 
+        #region Initialization
+        /// <summary>
+        /// Initializes a new <see cref="ParquetStatusGrid"/> with unusable dimensions.
+        /// </summary>
+        /// <remarks>
+        /// For this class, there are no reasonable default values.
+        /// However, this version of the constructor exists to make the generic new() constraint happy
+        /// and is used in the library in a context where its limitations are understood.
+        /// You probably don't want to use this constructor in your own code.
+        ///</remarks>
+        public ParquetStatusGrid()
+            : this(1, 1) { }
+
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.
         /// </summary>
@@ -34,6 +47,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inColumns">The length of the X dimension of the collection.</param>
         public ParquetStatusGrid(int inRows, int inColumns)
             => ParquetStatuses = new ParquetStatus[inRows, inColumns];
+        #endregion
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.

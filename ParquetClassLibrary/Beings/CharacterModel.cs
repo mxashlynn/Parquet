@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definitions shared by in-game actors that take part in the narrative.
     /// </summary>
-    public abstract class CharacterModel : BeingModel, ITypeConverter
+    public abstract class CharacterModel : BeingModel
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
@@ -100,28 +100,6 @@ namespace ParquetClassLibrary.Beings
             Dialogue = nonNullDialogue.ToList();
             StartingInventory = nonNullInventory.ToList();
         }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(CharacterModel)} class.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            => throw new InvalidOperationException($"No conversion exists on abstract {nameof(CharacterModel)} class.");
         #endregion
     }
 }
