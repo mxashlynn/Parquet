@@ -15,6 +15,10 @@ namespace ParquetClassLibrary.Serialization
         where TCollection : ICollection<TElement>, new()
         where TElement : ITypeConverter, new()
     {
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly SeriesConverter<TElement, TCollection> ConverterFactory =
+            new SeriesConverter<TElement, TCollection>();
+
         /// <summary>
         /// Converts the given record column to a 2D collection.
         /// </summary>

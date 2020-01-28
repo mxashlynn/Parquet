@@ -13,6 +13,10 @@ namespace ParquetClassLibrary.Serialization
         where TEnumerable : IGrid<TElement>, new()
         where TElement : ITypeConverter, new()
     {
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly GridConverter<TElement, TEnumerable> ConverterFactory =
+            new GridConverter<TElement, TEnumerable>();
+
         /// <summary>
         /// Converts the given record column to a 2D collection.
         /// </summary>

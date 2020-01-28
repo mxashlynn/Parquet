@@ -65,19 +65,19 @@ namespace ParquetClassLibrary.Serialization
             #endregion
 
             #region Linear Series Types
-            { typeof(IReadOnlyList<EntityID>), new SeriesConverter<EntityID, List<EntityID>>() },
-            { typeof(IReadOnlyList<EntityTag>), new SeriesConverter<EntityTag, List<EntityTag>>() },
-            { typeof(IReadOnlyList<RecipeElement>), new SeriesConverter<RecipeElement, List<RecipeElement>>() },
-            { typeof(IReadOnlyList<ExitPoint>), new SeriesConverter<ExitPoint, List<ExitPoint>>() },
-            { typeof(Inventory), new SeriesConverter<InventorySlot, Inventory>() },
+            { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+            { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+            { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+            { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+            { typeof(Inventory), SeriesConverter<InventorySlot, Inventory>.ConverterFactory },
             // TODO Finish these
             #endregion
 
             #region 2D Grid Types
-            { typeof(StrikePanelGrid), new GridConverter<StrikePanel, StrikePanelGrid>() },
-            { typeof(ChunkTypeGrid), new GridConverter<ChunkType, ChunkTypeGrid>() },
-            { typeof(ParquetStackGrid), new GridConverter<ParquetStack, ParquetStackGrid>() },
-            { typeof(ParquetStatusGrid), new GridConverter<ParquetStatus, ParquetStatusGrid>() },
+            { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
+            { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+            { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
+            { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
             #endregion
         };
 
