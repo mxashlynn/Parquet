@@ -33,6 +33,11 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityTag"/>
     public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
+        #region Class Defaults
+        /// <summary>Used by child classes to implenent serialization.</summary>
+        protected const string modelDelimiter = "|";
+        #endregion
+
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
         public EntityID ID { get; }

@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Biomes
@@ -65,7 +67,7 @@ namespace ParquetClassLibrary.Biomes
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
         internal static readonly BiomeModel ConverterFactory =
-            new BiomeModel();// (EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
+            new BiomeModel(EntityID.None, nameof(ConverterFactory), "", "", 0, 0, false, null, null);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -75,17 +77,52 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+                    => value is BiomeModel model
+                        ? null == model || model.ID == EntityID.None
+                            ? ""
+                            : $"{model.ID}{modelDelimiter}" +
+                              $"{model.Name}{modelDelimiter}" +
+                              $"{model.Description}{modelDelimiter}" +
+                              $"{model.Comment}{modelDelimiter}" +
+                              $"{model.Tier}{modelDelimiter}" +
+                              $"{model.ElevationCategory}{modelDelimiter}" +
+                              $"{model.IsLiquidBased}{modelDelimiter}" +
+                              $"{model.ParquetCriteria.JoinAll()}{modelDelimiter}" +
+                              $"{model.EntryRequirements.JoinAll()}"
+                        : throw new ArgumentException($"Could not convert {value} to {nameof(BiomeModel)}.");
 
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        /*{
+            // Throws if wrong type passed in.
+            var model = (BiomeModel)value;
+
+            if(null == model || model.ID == EntityID.None)
+            {
+                return "";
+            }
+            else
+            {
+                return $"{model.ID}{modelDelimiter}" +
+                    $"{model.Name}{modelDelimiter}" +
+                    $"{model.Description}{modelDelimiter}" +
+                    $"{model.Comment}{modelDelimiter}" +
+                    $"{model.Tier}{modelDelimiter}" +
+                    $"{model.ElevationCategory}{modelDelimiter}" +
+                    $"{model.IsLiquidBased}{modelDelimiter}" +
+                    $"{model.ParquetCriteria.JoinAll()}{modelDelimiter}" +
+                    $"{model.EntryRequirements.JoinAll()}";
+            }
+        }*/
+        #endregion
+    }
+
+    /// <summary>
+    /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+    /// </summary>
+    /// <param name="text">The text to convert.</param>
+    /// <param name="row">The current context and configuration.</param>
+    /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+    /// <returns>The given instance deserialized.</returns>
+    public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
         }
         #endregion
