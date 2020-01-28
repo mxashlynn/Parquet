@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        /// <summary>Allows the converter to construct statically.</summary>
         internal static readonly NPCModel ConverterFactory =
             new NPCModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
 

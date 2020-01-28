@@ -165,7 +165,7 @@ namespace ParquetClassLibrary.Crafts
         #endregion
 
         #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself without exposing a public parameterless constructor.</summary>
+        /// <summary>Allows the converter to construct itself statically.</summary>
         internal static readonly StrikePanel ConverterFactory =
             new NotImplementedException();
 
