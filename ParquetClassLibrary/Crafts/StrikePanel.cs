@@ -226,9 +226,11 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null == inValue || (StrikePanel)inValue == Unused
-                ? nameof(Unused)
-                : $"{((StrikePanel)inValue).WorkingRange.Minimum}{intDelimiter}{((StrikePanel)inValue).WorkingRange.Maximum}{rangeDelimiter}{((StrikePanel)inValue).IdealRange.Minimum}{intDelimiter}{((StrikePanel)inValue).IdealRange.Maximum}";
+            => inValue is StrikePanel panel
+                ? null == panel || panel == Unused
+                    ? nameof(Unused)
+                    : $"{panel.WorkingRange.Minimum}{intDelimiter}{panel.WorkingRange.Maximum}{rangeDelimiter}{panel.IdealRange.Minimum}{intDelimiter}{panel.IdealRange.Maximum}"
+                : throw new ArgumentException($"Could not convert {inValue} to {nameof(StrikePanel)}.");
         #endregion
 
         #region Utilities
