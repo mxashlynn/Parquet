@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -56,13 +58,29 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is NPCModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{modelDelimiter}" +
+                  $"{model.PersonalName}{modelDelimiter}" +
+                  $"{model.FamilyName}{modelDelimiter}" +
+                  $"{model.Description}{modelDelimiter}" +
+                  $"{model.Comment}{modelDelimiter}" +
+                  $"{model.NativeBiome}{modelDelimiter}" +
+                  $"{model.PrimaryBehavior}{modelDelimiter}" +
+                  $"{model.Avoids.JoinAll()}{modelDelimiter}" +
+                  $"{model.Seeks.JoinAll()}{modelDelimiter}" +
+                  $"{model.Pronouns}{modelDelimiter}" +
+                  $"{model.StoryCharacterID}{modelDelimiter}" +
+                  $"{model.StartingQuests.JoinAll()}{modelDelimiter}" +
+                  $"{model.Dialogue.JoinAll()}{modelDelimiter}" +
+                  $"{model.StartingInventory.JoinAll()}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -71,8 +89,47 @@ namespace ParquetClassLibrary.Beings
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(NPCModel)}.");
+            }
+
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var parameterText = inText.Split(modelDelimiter);
+            try
+            {
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var personalName = parameterText[1];
+                var familyName = parameterText[2];
+                var description = parameterText[3];
+                var comment = parameterText[4];
+                var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[6]);
+                var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData);
+                var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData);
+                var pronouns = parameterText[9];
+                var storyID = parameterText[10];
+                var startingQuests = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[10], inRow, inMemberMapData);
+                var dialogue = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData);
+                var startingInventory = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[12], inRow, inMemberMapData);
+
+                return new NPCModel(id, personalName, familyName, description, comment, biome, behavior, avoids, seeks,
+                                    pronouns, storyID, startingQuests, dialogue, startingInventory);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(NPCModel)}: {e}");
+            }
         }
         #endregion
     }

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -24,7 +25,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inName">Player-friendly name of the <see cref="CritterModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CritterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CritterModel"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="BiomeModel"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
+        /// <param name="inNativeBiome">The <see cref="Biomes.BiomeModel"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CritterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="CritterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CritterModel"/> seeks.</param>
@@ -40,18 +41,28 @@ namespace ParquetClassLibrary.Beings
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static readonly CritterModel ConverterFactory =
-            new CritterModel();// CritterModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
+            new CritterModel(EntityID.None, nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is CritterModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{modelDelimiter}" +
+                  $"{model.Name}{modelDelimiter}" +
+                  $"{model.Description}{modelDelimiter}" +
+                  $"{model.Comment}{modelDelimiter}" +
+                  $"{model.NativeBiome}{modelDelimiter}" +
+                  $"{model.PrimaryBehavior}{modelDelimiter}" +
+                  $"{model.Avoids.JoinAll()}{modelDelimiter}" +
+                  $"{model.Seeks.JoinAll()}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CritterModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -60,8 +71,37 @@ namespace ParquetClassLibrary.Beings
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CritterModel)}.");
+            }
+
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var parameterText = inText.Split(modelDelimiter);
+            try
+            {
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[5]);
+                var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData);
+
+                return new CritterModel(id, name, description, comment, biome, behavior, avoids, seeks);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(CritterModel)}: {e}");
+            }
         }
         #endregion
     }
