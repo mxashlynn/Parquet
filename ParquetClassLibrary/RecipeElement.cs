@@ -30,6 +30,7 @@ namespace ParquetClassLibrary
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
 
+        /// <summary>Used to separate characterustics when serializaed.</summary>
         private const string internalDelimiter = "|";
         #endregion
 

@@ -14,12 +14,16 @@ namespace ParquetClassLibrary.Maps
     /// </remarks>
     public readonly struct ExitPoint : IEquatable<ExitPoint>, ITypeConverter
     {
+
+        #region Characteristics
         /// <summary>Location of this exit point.</summary>
         public Vector2D Position { get; }
 
         /// <summary>The region this exit leads to.</summary>
         public EntityID Destination { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
@@ -30,6 +34,7 @@ namespace ParquetClassLibrary.Maps
             Destination = inDestinationID;
             Position = inPosition;
         }
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>
