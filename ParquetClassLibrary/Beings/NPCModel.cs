@@ -66,19 +66,19 @@ namespace ParquetClassLibrary.Beings
             => null != inValue
             && inValue is NPCModel model
             && model.ID != EntityID.None
-                ? $"{model.ID}{modelDelimiter}" +
-                  $"{model.PersonalName}{modelDelimiter}" +
-                  $"{model.FamilyName}{modelDelimiter}" +
-                  $"{model.Description}{modelDelimiter}" +
-                  $"{model.Comment}{modelDelimiter}" +
-                  $"{model.NativeBiome}{modelDelimiter}" +
-                  $"{model.PrimaryBehavior}{modelDelimiter}" +
-                  $"{model.Avoids.JoinAll()}{modelDelimiter}" +
-                  $"{model.Seeks.JoinAll()}{modelDelimiter}" +
-                  $"{model.Pronouns}{modelDelimiter}" +
-                  $"{model.StoryCharacterID}{modelDelimiter}" +
-                  $"{model.StartingQuests.JoinAll()}{modelDelimiter}" +
-                  $"{model.Dialogue.JoinAll()}{modelDelimiter}" +
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.PersonalName}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.FamilyName}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Avoids.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Seeks.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Pronouns}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.StoryCharacterID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.StartingQuests.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Dialogue.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.StartingInventory.JoinAll()}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
 
@@ -100,7 +100,7 @@ namespace ParquetClassLibrary.Beings
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(modelDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

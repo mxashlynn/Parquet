@@ -15,9 +15,6 @@ namespace ParquetClassLibrary.Parquets
         #region Class Defaults
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
-
-        /// <summary>Used to separate characterustics when serializaed.</summary>
-        private const string internalDelimiter = "|";
         #endregion
 
         #region Characteristics
@@ -175,9 +172,9 @@ namespace ParquetClassLibrary.Parquets
             => null != inValue
             && inValue is ParquetStack stack
             && stack != Empty
-                ? $"{stack.Floor}{internalDelimiter}" +
-                  $"{stack.Block}{internalDelimiter}" +
-                  $"{stack.Furnishing}{internalDelimiter}" +
+                ? $"{stack.Floor}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Collectible}"
             : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStack)}.");
 
@@ -198,7 +195,7 @@ namespace ParquetClassLibrary.Parquets
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(internalDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var floor = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

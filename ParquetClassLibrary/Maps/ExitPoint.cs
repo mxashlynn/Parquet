@@ -14,7 +14,6 @@ namespace ParquetClassLibrary.Maps
     /// </remarks>
     public readonly struct ExitPoint : IEquatable<ExitPoint>, ITypeConverter
     {
-
         #region Characteristics
         /// <summary>Location of this exit point.</summary>
         public Vector2D Position { get; }

@@ -22,9 +22,6 @@ namespace ParquetClassLibrary.Serialization
     /// </summary>
     public static class Serializer
     {
-        /// <summary>Used to separate objects within collections.</summary>
-        public const string SecondaryDelimiter = ";";
-
         /// <summary>Instructions for handling integer type conversion when reading in identifiers.</summary>
         private static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
         {

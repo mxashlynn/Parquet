@@ -53,15 +53,19 @@ namespace ParquetClassLibrary
     /// </remarks>
     public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of an <see cref="EntityModel"/>.</summary>
         public static readonly EntityID None = 0;
+        #endregion
 
+        #region Characteristics
         /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
         /// <remarks>
         /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
         /// to support human-readable design documents and <see cref="Range{EntityID}"/> validation.
         /// </remarks>
         private int id;
+        #endregion
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>

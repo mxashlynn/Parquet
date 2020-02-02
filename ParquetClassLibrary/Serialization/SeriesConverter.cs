@@ -35,7 +35,7 @@ namespace ParquetClassLibrary.Serialization
             }
 
             var elementFactory = new TElement();
-            var textCollection = inText.Split(Serializer.SecondaryDelimiter);
+            var textCollection = inText.Split(Rules.Delimiters.SecondaryDelimiter);
             foreach (var currentText in textCollection)
             {
                 collection.Add((TElement)elementFactory.ConvertFromString(currentText, inRow, inMemberMapData));

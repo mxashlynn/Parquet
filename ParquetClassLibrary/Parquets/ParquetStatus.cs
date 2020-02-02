@@ -12,11 +12,6 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class ParquetStatus : ITypeConverter
     {
-        #region Class Defaults
-        /// <summary>Used to separate characterustics when serializaed.</summary>
-        private const string internalDelimiter = "|";
-        #endregion
-
         #region Status
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
@@ -73,8 +68,8 @@ namespace ParquetClassLibrary.Parquets
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => null != inValue
             && inValue is ParquetStatus status
-                ? $"{status.IsTrench}{internalDelimiter}" +
-                  $"{status.Toughness}{internalDelimiter}" +
+                ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
             : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStatus)}.");
 
@@ -95,7 +90,7 @@ namespace ParquetClassLibrary.Parquets
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(internalDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var isTrench = bool.Parse(parameterText[0]);

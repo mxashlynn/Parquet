@@ -101,18 +101,18 @@ namespace ParquetClassLibrary.Parquets
             => null != inValue
             && inValue is BlockModel model
             && model.ID != EntityID.None
-                ? $"{model.ID}{modelDelimiter}" +
-                  $"{model.Name}{modelDelimiter}" +
-                  $"{model.Description}{modelDelimiter}" +
-                  $"{model.Comment}{modelDelimiter}" +
-                  $"{model.ItemID}{modelDelimiter}" +
-                  $"{model.AddsToBiome}{modelDelimiter}" +
-                  $"{model.AddsToRoom}{modelDelimiter}" +
-                  $"{model.GatherTool}{modelDelimiter}" +
-                  $"{model.GatherEffect}{modelDelimiter}" +
-                  $"{model.CollectibleID}{modelDelimiter}" +
-                  $"{model.IsFlammable}{modelDelimiter}" +
-                  $"{model.IsLiquid}{modelDelimiter}" +
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.GatherTool}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.GatherEffect}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.CollectibleID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsLiquid}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.MaxToughness}"
             : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BlockModel)}.");
 
@@ -134,7 +134,7 @@ namespace ParquetClassLibrary.Parquets
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(modelDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

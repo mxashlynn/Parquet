@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -32,23 +30,28 @@ namespace ParquetClassLibrary
         Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]
     public class EntityTag : IComparable<EntityTag>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>
         public static readonly EntityTag None = string.Empty;
 
+        /// <summary>Replaces any <see cref="Rules.Delimiters"/> in <see cref="EntityTag"/>s.</summary>
+        public const string SanitarySeparator = "/";
+        #endregion
+
+        #region Characteristics
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
         private string tagContent = "";
+        #endregion
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">
-        /// Any valid tag value.
-        /// A string containing <see cref="Serializer.PrimaryDelimiter"/> or <see cref=Serializer.SecondaryDelimiter"/> is not a valid tag value.
-        /// </param>
+        /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
+        /// <seealso cref="Sanitize(string)"/>
         public static implicit operator EntityTag(string inValue)
-            => new EntityTag { tagContent = inValue };
+            => new EntityTag { tagContent = Sanitize(inValue) };
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
@@ -57,6 +60,23 @@ namespace ParquetClassLibrary
         /// <returns>The tag's value.</returns>
         public static implicit operator string(EntityTag inTag)
             => inTag?.tagContent ?? "";
+        #endregion
+
+        #region Validation
+        /// <summary>
+        /// Sanitizes a <see langword="string"/> to be used as an <see cref="EntityTag"/>.
+        /// </summary>
+        /// <remarks>
+        /// Instances of any <see cref="Rules.Delimiters"/> will be replaced with <see cref="SanitarySeparator"/>.
+        /// </remarks>
+        /// <param name="inValue">The string to sanitize.</param>
+        /// <returns>The sanitized version.</returns>
+        public static string Sanitize(string inValue)
+            => string.IsNullOrEmpty(inValue)
+                ? ""
+                : inValue.Replace(Rules.Delimiters.SecondaryDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
+                         .Replace(Rules.Delimiters.InternalDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
+                         .Replace(Rules.Delimiters.ElementDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase);
         #endregion
 
         #region IComparable Implementation

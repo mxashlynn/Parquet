@@ -22,12 +22,6 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>Indicates an space in a <see cref="StrikePanelGrid"/>.</summary>
         public static readonly StrikePanel Unused = new StrikePanel(defaultWorkingRange, defaultIdealRange);
-
-        /// <summary>Separates the two <see cref="Range"/>s when serializing.</summary>
-        private const string rangeDelimiter = "|";
-
-        /// <summary>Separates values within a <see cref="Range"/> when serializing.</summary>
-        private const string intDelimiter = "-";
         #endregion
 
         #region Characteristics
@@ -227,9 +221,12 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is StrikePanel panel
-                ? null == panel || panel == Unused
+                ? null == panel || Unused == panel
                     ? nameof(Unused)
-                    : $"{panel.WorkingRange.Minimum}{intDelimiter}{panel.WorkingRange.Maximum}{rangeDelimiter}{panel.IdealRange.Minimum}{intDelimiter}{panel.IdealRange.Maximum}"
+                    : $"{panel.WorkingRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
+                      $"{panel.WorkingRange.Maximum}{Rules.Delimiters.RangeDelimiter}" +
+                      $"{panel.IdealRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
+                      $"{panel.IdealRange.Maximum}"
                 : throw new ArgumentException($"Could not convert {inValue} to {nameof(StrikePanel)}.");
         #endregion
 
@@ -241,7 +238,7 @@ namespace ParquetClassLibrary.Crafts
         public override string ToString()
             => this == Unused
                 ? nameof(Unused)
-                : $"{WorkingRange.ToString()}{rangeDelimiter}{IdealRange.ToString()}";
+                : $"{WorkingRange.ToString()}{Rules.Delimiters.ElementDelimiter}{IdealRange.ToString()}";
         #endregion
     }
 

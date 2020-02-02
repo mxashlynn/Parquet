@@ -85,17 +85,17 @@ namespace ParquetClassLibrary.Parquets
             => null != inValue
             && inValue is FurnishingModel model
             && model.ID != EntityID.None
-                ? $"{model.ID}{modelDelimiter}" +
-                  $"{model.Name}{modelDelimiter}" +
-                  $"{model.Description}{modelDelimiter}" +
-                  $"{model.Comment}{modelDelimiter}" +
-                  $"{model.ItemID}{modelDelimiter}" +
-                  $"{model.AddsToBiome}{modelDelimiter}" +
-                  $"{model.AddsToRoom}{modelDelimiter}" +
-                  $"{model.IsWalkable}{modelDelimiter}" +
-                  $"{model.IsEntry}{modelDelimiter}" +
-                  $"{model.IsEnclosing}{modelDelimiter}" +
-                  $"{model.IsFlammable}{modelDelimiter}" +
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsWalkable}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsEntry}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsEnclosing}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.SwapID}"
             : throw new ArgumentException($"Could not serialize {inValue} as {nameof(FurnishingModel)}.");
 
@@ -117,7 +117,7 @@ namespace ParquetClassLibrary.Parquets
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(modelDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

@@ -29,9 +29,6 @@ namespace ParquetClassLibrary
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
-
-        /// <summary>Used to separate characterustics when serializaed.</summary>
-        private const string internalDelimiter = "|";
         #endregion
 
         #region Characteristics
@@ -128,7 +125,7 @@ namespace ParquetClassLibrary
             {
                 var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
 
-                var elementSplitText = inText.Split(internalDelimiter);
+                var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
 
@@ -140,7 +137,7 @@ namespace ParquetClassLibrary
                 else
                 {
                     throw new FormatException(
-                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{internalDelimiter}{nameof(ElementTag)}s.");
+                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{Rules.Delimiters.InternalDelimiter}{nameof(ElementTag)}s.");
                 }
             }
             catch (Exception e)
@@ -159,7 +156,7 @@ namespace ParquetClassLibrary
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => null == inValue || (RecipeElement)inValue == None
                 ? nameof(None)
-                : $"{((RecipeElement)inValue).ElementAmount}{internalDelimiter}{((RecipeElement)inValue).ElementTag}";
+                : $"{((RecipeElement)inValue).ElementAmount}{Rules.Delimiters.InternalDelimiter}{((RecipeElement)inValue).ElementTag}";
         #endregion
 
         #region Utilities

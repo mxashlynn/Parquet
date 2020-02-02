@@ -81,14 +81,14 @@ namespace ParquetClassLibrary.Biomes
             => null != inValue
             && inValue is BiomeModel model
             && model.ID != EntityID.None
-                ? $"{model.ID}{modelDelimiter}" +
-                  $"{model.Name}{modelDelimiter}" +
-                  $"{model.Description}{modelDelimiter}" +
-                  $"{model.Comment}{modelDelimiter}" +
-                  $"{model.Tier}{modelDelimiter}" +
-                  $"{model.ElevationCategory}{modelDelimiter}" +
-                  $"{model.IsLiquidBased}{modelDelimiter}" +
-                  $"{model.ParquetCriteria.JoinAll()}{modelDelimiter}" +
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Tier}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ElevationCategory}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsLiquidBased}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ParquetCriteria.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.EntryRequirements.JoinAll()}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BiomeModel)}.");
 
@@ -110,7 +110,7 @@ namespace ParquetClassLibrary.Biomes
             }
 
             var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(modelDelimiter);
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
