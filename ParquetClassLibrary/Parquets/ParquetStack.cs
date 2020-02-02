@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -11,15 +12,15 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
 
-        /// <summary>The number of parquets actually present in this stack.</summary>
-        public int Count => EntityID.None != Floor ? 1 : 0
-                          + EntityID.None != Block ? 1 : 0
-                          + EntityID.None != Furnishing ? 1 : 0
-                          + EntityID.None != Collectible ? 1 : 0;
+        /// <summary>Used to separate characterustics when serializaed.</summary>
+        private const string internalDelimiter = "|";
+        #endregion
 
+        #region Characteristics
         /// <summary>The floor contained in this stack.</summary>
         public EntityID Floor { get; }
 
@@ -31,7 +32,9 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The collectible contained in this stack.</summary>
         public EntityID Collectible { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStack"/> struct.
         /// </summary>
@@ -51,8 +54,15 @@ namespace ParquetClassLibrary.Parquets
             Furnishing = inFurnishing;
             Collectible = inCollectible;
         }
+        #endregion
 
-        #region Gameplay Algorithm Support
+        #region Queries
+        /// <summary>The number of parquets actually present in this stack.</summary>
+        public int Count => EntityID.None != Floor ? 1 : 0
+                          + EntityID.None != Block ? 1 : 0
+                          + EntityID.None != Furnishing ? 1 : 0
+                          + EntityID.None != Collectible ? 1 : 0;
+
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
@@ -152,19 +162,24 @@ namespace ParquetClassLibrary.Parquets
 
         #region ITypeConverter
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ParquetStack ConverterFactory =
-            new NotImplementedException();
+        internal static readonly ParquetStack ConverterFactory = Empty;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is ParquetStack stack
+            && stack != Empty
+                ? $"{stack.Floor}{internalDelimiter}" +
+                  $"{stack.Block}{internalDelimiter}" +
+                  $"{stack.Furnishing}{internalDelimiter}" +
+                  $"{stack.Collectible}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStack)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -173,8 +188,30 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStack)}.");
+            }
+
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var parameterText = inText.Split(internalDelimiter);
+            try
+            {
+                var floor = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var block = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var furnishing = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
+                var collectible = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+
+                return new ParquetStack(floor, block, furnishing, collectible);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ParquetStack)}: {e}");
+            }
         }
         #endregion
 

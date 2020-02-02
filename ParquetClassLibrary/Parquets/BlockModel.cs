@@ -105,6 +105,9 @@ namespace ParquetClassLibrary.Parquets
                   $"{model.Name}{modelDelimiter}" +
                   $"{model.Description}{modelDelimiter}" +
                   $"{model.Comment}{modelDelimiter}" +
+                  $"{model.ItemID}{modelDelimiter}" +
+                  $"{model.AddsToBiome}{modelDelimiter}" +
+                  $"{model.AddsToRoom}{modelDelimiter}" +
                   $"{model.GatherTool}{modelDelimiter}" +
                   $"{model.GatherEffect}{modelDelimiter}" +
                   $"{model.CollectibleID}{modelDelimiter}" +
