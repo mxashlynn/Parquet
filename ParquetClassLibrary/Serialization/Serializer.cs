@@ -78,13 +78,6 @@ namespace ParquetClassLibrary.Serialization
             #endregion
         };
 
-        /// <summary>Mappings for all classes serialized via <see cref="ClassMap"/>.</summary>
-        private static List<ClassMap> ClassMapper { get; } = new List<ClassMap>
-        {
-            new Range<EntityID>.RangeClassMap<EntityID>(),
-            new Range<int>.RangeClassMap<int>(),
-        };
-
         /// <summary>
         /// The location of the designer CSV files, set to either the working directory
         /// or a predefined designer directory, depending on build type.
@@ -111,10 +104,6 @@ namespace ParquetClassLibrary.Serialization
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
-            foreach (var map in ClassMapper)
-            {
-                csv.Configuration.RegisterClassMap(map);
-            }
 
             return csv.GetRecords<TRecord>();
         }
@@ -132,10 +121,6 @@ namespace ParquetClassLibrary.Serialization
             foreach (var kvp in ConversionMapper)
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
-            }
-            foreach (var map in ClassMapper)
-            {
-                csv.Configuration.RegisterClassMap(map);
             }
 
             csv.WriteHeader<TRecord>();

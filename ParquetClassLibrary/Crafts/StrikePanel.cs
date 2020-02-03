@@ -160,8 +160,7 @@ namespace ParquetClassLibrary.Crafts
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly StrikePanel ConverterFactory =
-            new NotImplementedException();
+        internal static readonly StrikePanel ConverterFactory = new StrikePanel();
 
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
@@ -172,8 +171,6 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(Unused), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -182,29 +179,11 @@ namespace ParquetClassLibrary.Crafts
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var panelSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
+                var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
 
-                var panelSplitText = inText.Split(rangeDelimiter);
-
-                var workingSplitText = panelSplitText[0].Split(intDelimiter);
-                var workingMinText = workingSplitText[0];
-                var workingMaxText = workingSplitText[1];
-
-                var idealSplitText = panelSplitText[1].Split(intDelimiter);
-                var idealMinText = idealSplitText[0];
-                var idealMaxText = idealSplitText[1];
-
-                if (int.TryParse(workingMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMin)
-                    && int.TryParse(workingMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMax)
-                    && int.TryParse(idealMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMin)
-                    && int.TryParse(idealMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMax))
-                {
-                    return new StrikePanel(new Range<int>(workingMin, workingMax), new Range<int>(idealMin, idealMax));
-                }
-                else
-                {
-                    throw new FormatException($"Could not parse {nameof(StrikePanel)} '{inText}' into {nameof(Range<int>)}s.");
-                }
+                return new StrikePanel(workingRangeDeserialized, idealRangeDeserialized);
             }
             catch (Exception e)
             {
@@ -224,7 +203,7 @@ namespace ParquetClassLibrary.Crafts
                 ? null == panel || Unused == panel
                     ? nameof(Unused)
                     : $"{panel.WorkingRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
-                      $"{panel.WorkingRange.Maximum}{Rules.Delimiters.RangeDelimiter}" +
+                      $"{panel.WorkingRange.Maximum}{Rules.Delimiters.InternalDelimiter}" +
                       $"{panel.IdealRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
                       $"{panel.IdealRange.Maximum}"
                 : throw new ArgumentException($"Could not convert {inValue} to {nameof(StrikePanel)}.");

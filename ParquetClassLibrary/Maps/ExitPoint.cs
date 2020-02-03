@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -84,8 +85,7 @@ namespace ParquetClassLibrary.Maps
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ExitPoint ConverterFactory =
-            new NotImplementedException();
+        internal static readonly ExitPoint ConverterFactory = new ExitPoint(Vector2D.Zero, EntityID.None);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -94,9 +94,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is ExitPoint exit
+                ? $"{exit.Position}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{exit.Destination}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ExitPoint)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -105,9 +108,38 @@ namespace ParquetClassLibrary.Maps
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
+
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ExitPoint)}.");
+            }
+
+            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+            try
+            {
+                var position = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var destination = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+
+                return new ExitPoint(position, destination);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ExitPoint)}: {e}");
+            }
         }
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="ExitPoint"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"{Position}->{Destination} ";
         #endregion
     }
 }
