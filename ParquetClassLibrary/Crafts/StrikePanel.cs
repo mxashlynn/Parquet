@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>
         /// The range of values this panel can take on while being worked.  <see cref="Range{int}.Minimum"/> is normally 0.
-        /// This range constricts that given by <c see="IdealRange"/>.
+        /// This range constricts that given by <see cref="IdealRange"/>.
         /// </summary>
         public Range<int> WorkingRange
         {
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>
         /// The range of values this panel targets for a completed craft.
-        /// This range expands that given by <c see="WorkingRange"/> if necessary.
+        /// This range expands that given by <see cref="WorkingRange"/> if necessary.
         /// </summary>
         public Range<int> IdealRange
         {
@@ -86,8 +86,8 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikePanel"/> class.
         /// </summary>
-        /// <param name="inWorkingRange"></param>
-        /// <param name="inIdealRange"></param>
+        /// <param name="inWorkingRange">The range of values this panel can take on while being worked.</param>
+        /// <param name="inIdealRange">The range of values this panel targets for a completed craft.</param>
         public StrikePanel(Range<int> inWorkingRange, Range<int> inIdealRange)
         {
             // Note the use of the backing struct to avoid preinitialized range-checking.
@@ -194,7 +194,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Converts the given <see cref="StrikePanel"/> to a record column.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>

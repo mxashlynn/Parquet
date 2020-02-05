@@ -149,7 +149,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Converts the given <see cref="RecipeElement"/> to a record column.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
