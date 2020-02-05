@@ -18,8 +18,8 @@ namespace ParquetClassLibrary.Interactions
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        // TODO This is not actually a list of strings, we need a new InteractionStep class.
-        public IReadOnlyList<string> Steps { get; }
+        // TODO This is may actually be a list of EntityTags, we need a new InteractionStep class.
+        public IReadOnlyList<EntityTag> Steps { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
@@ -41,11 +41,11 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                                   IEnumerable<EntityTag> inStartCriteria, IEnumerable<string> inSteps, string inOutcome)
+                                   IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             StartCriteria = (inStartCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
-            Steps = (inSteps ?? Enumerable.Empty<string>()).ToList();
+            Steps = (inSteps ?? Enumerable.Empty<EntityTag>()).ToList();
             Outcome = inOutcome ?? "";
         }
         #endregion

@@ -4,6 +4,7 @@ using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -13,7 +14,7 @@ namespace ParquetClassLibrary.Crafts
     /// </summary>
     public sealed class CraftingRecipe : EntityModel, ITypeConverter
     {
-        #region Characteristics
+        #region Class Defaults
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
             new List<RecipeElement> { RecipeElement.None };
@@ -22,7 +23,9 @@ namespace ParquetClassLibrary.Crafts
         public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
                                                                                 EmptyCraftingElementList, EmptyCraftingElementList,
                                                                                 new StrikePanelGrid());
+        #endregion
 
+        #region Characteristics
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }
 
@@ -74,29 +77,63 @@ namespace ParquetClassLibrary.Crafts
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly CraftingRecipe ConverterFactory =
-            new CraftingRecipe();
+        internal static readonly CraftingRecipe ConverterFactory = NotCraftable;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="value">The instance to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-        {
-        }
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is CraftingRecipe recipe
+                ? $"{recipe.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.Products, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.Ingredients, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory.ConvertToString(recipe.PanelPattern, inRow, inMemberMapData)}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CraftingRecipe)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CraftingRecipe)}.");
+            }
+
+            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+            try
+            {
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var products = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var ingredients = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var pattern = (StrikePanelGrid)GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
+
+                return new CraftingRecipe(id, name, description, comment, products, ingredients, pattern);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(CraftingRecipe)}: {e}");
+            }
         }
         #endregion
     }
