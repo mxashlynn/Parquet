@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
         private static Dictionary<Type, ITypeConverter> ConversionMapper { get; } = new Dictionary<Type, ITypeConverter>
         {
-            // TODO This functionality be split between All and ModelCollection.
+            // TODO This functionality should be split between All and ModelCollection.
 
             #region ITypeConverters
             { typeof(EntityID), EntityID.ConverterFactory },

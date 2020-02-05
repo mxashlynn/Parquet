@@ -90,15 +90,12 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(FloorModel)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
             var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {

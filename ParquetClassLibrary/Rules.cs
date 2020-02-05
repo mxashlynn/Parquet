@@ -78,7 +78,7 @@ namespace ParquetClassLibrary
             /// <summary>Separates objects within collections.</summary>
             public const string SecondaryDelimiter = "\\";
 
-            /// <summary>Separates <see cref="EntityModel"/>s from one another in serialization.</summary>
+            /// <summary>Separates properties within a class when in serialization.</summary>
             public const string InternalDelimiter = "|";
 
             /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
