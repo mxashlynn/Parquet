@@ -98,7 +98,7 @@ namespace ParquetClassLibrary.Crafts
                   $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.Ingredients, inRow, inMemberMapData)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
                   $"{GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory.ConvertToString(recipe.PanelPattern, inRow, inMemberMapData)}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CraftingRecipe)}.");
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CraftingRecipe)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Interactions
                   $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(dialogue.Steps, inRow, inMemberMapData)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
                   $"{dialogue.Outcome}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

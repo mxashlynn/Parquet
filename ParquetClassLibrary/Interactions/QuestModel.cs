@@ -67,7 +67,7 @@ namespace ParquetClassLibrary.Interactions
                   $"{Rules.Delimiters.InternalDelimiter}" +
                   $"{quest.Outcome}{Rules.Delimiters.InternalDelimiter}" +
                   $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(quest.CompletionRequirements, inRow, inMemberMapData)}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
