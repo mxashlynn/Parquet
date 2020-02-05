@@ -96,6 +96,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ChunkType}"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ChunkType> IEnumerable<ChunkType>.GetEnumerator()
             => (IEnumerator<ChunkType>)chunkTypes.GetEnumerator();
@@ -103,6 +104,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => chunkTypes.GetEnumerator();

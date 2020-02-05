@@ -91,6 +91,7 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ParquetStack}"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParquetStack> IEnumerable<ParquetStack>.GetEnumerator()
             => (IEnumerator<ParquetStack>)ParquetStacks.GetEnumerator();
@@ -98,6 +99,7 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStackGrid"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStacks.GetEnumerator();

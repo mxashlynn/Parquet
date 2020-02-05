@@ -6,6 +6,8 @@ namespace ParquetClassLibrary
     /// <summary>
     /// A two-dimensional collection that functions much like an array.
     /// </summary>
+    // TODO Is it possible to write a unit test to enforce this for library code?
+    /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",

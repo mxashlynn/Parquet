@@ -60,8 +60,9 @@ namespace ParquetClassLibrary.Beings
                   $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Avoids.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Seeks.JoinAll()}"
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CritterModel)}.");
 
         /// <summary>

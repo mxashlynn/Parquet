@@ -73,13 +73,17 @@ namespace ParquetClassLibrary.Beings
                   $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Avoids.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Seeks.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.Pronouns}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.StoryCharacterID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.StartingQuests.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Dialogue.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.StartingInventory.JoinAll()}"
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingQuests, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Dialogue, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingInventory, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
 
         /// <summary>

@@ -18,8 +18,29 @@ namespace ParquetClassLibrary.Serialization
         internal static readonly GridConverter<TElement, TEnumerable> ConverterFactory =
             new GridConverter<TElement, TEnumerable>();
 
+        /// <summary>
+        /// Converts the given 2D collection into a record column.
+        /// </summary>
+        /// <param name="inValue">The collection to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given collection serialized.</returns>
         public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => throw new NotImplementedException();
+            => ConvertToString(inValue, inRow, inMemberMapData, Rules.Delimiters.SecondaryDelimiter);
+
+        /// <summary>
+        /// Converts the given 2D collection into a record column.
+        /// </summary>
+        /// <param name="inValue">The collection to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inDelimiter">The string to use to separate elements in the series.</param>
+        /// <returns>The given collection serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData, string inDelimiter)
+            => null != inValue
+            && inValue is IGrid<TElement> grid
+                ? string.Join(inDelimiter, grid)
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(IGrid<TElement>)}.");
 
         /// <summary>
         /// Converts the given record column to a 2D collection.

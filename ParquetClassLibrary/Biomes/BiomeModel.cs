@@ -88,8 +88,9 @@ namespace ParquetClassLibrary.Biomes
                   $"{model.Tier}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.ElevationCategory}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.IsLiquidBased}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ParquetCriteria.JoinAll()}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.EntryRequirements.JoinAll()}"
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.ParquetCriteria, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.EntryRequirements, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BiomeModel)}.");
 
         /// <summary>
@@ -121,9 +122,9 @@ namespace ParquetClassLibrary.Biomes
                 var elevation = (Elevation)Enum.Parse(typeof(Elevation), parameterText[5]);
                 var liquid = bool.Parse(parameterText[6]);
                 var criteria = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
-                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var requirements = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
-                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
 
                 return new BiomeModel(id, name, description, comment, tier, elevation, liquid, criteria, requirements);
             }
