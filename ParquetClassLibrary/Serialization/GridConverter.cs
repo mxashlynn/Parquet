@@ -1,3 +1,4 @@
+using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -16,6 +17,9 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static readonly GridConverter<TElement, TEnumerable> ConverterFactory =
             new GridConverter<TElement, TEnumerable>();
+
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => throw new NotImplementedException();
 
         /// <summary>
         /// Converts the given record column to a 2D collection.

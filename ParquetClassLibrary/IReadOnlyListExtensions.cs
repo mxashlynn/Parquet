@@ -12,13 +12,15 @@ namespace ParquetClassLibrary
         /// <summary>Concatenates all contained <see cref="EntityTag"/>s into a single <see langword="string"/>.</summary>
         /// <param name="inList">The list to concatenate.</param>
         /// <returns>The concatendated list.</returns>
-        public static string JoinAll(this IReadOnlyList<EntityTag> inList)
-            => string.Join(Serializer.SecondaryDelimiter, inList);
+        // TODO Fix this, we should be going through ITypeConverter instead
+        //public static string JoinAll(this IReadOnlyList<EntityTag> inList)
+        //    => string.Join(Rules.Delimiters.ElementDelimiter, inList);
 
         /// <summary>Concatenates all contained <see cref="EntityID"/>s into a single <see langword="string"/>.</summary>
         /// <param name="inList">The list to concatenate.</param>
         /// <returns>The concatendated list.</returns>
-        public static string JoinAll(this IReadOnlyList<EntityID> inList)
-            => string.Join(Serializer.SecondaryDelimiter, inList);
+        // TODO Fix this, we should be going through ITypeConverter instead
+        //public static string JoinAll(this IReadOnlyList<EntityID> inList)
+        //    => string.Join(Rules.Delimiters.ElementDelimiter, inList);
     }
 }
