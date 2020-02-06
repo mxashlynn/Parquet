@@ -12,6 +12,7 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
 {
@@ -36,10 +37,14 @@ namespace ParquetClassLibrary.Serialization
             // TODO This functionality should be split between All and ModelCollection.
 
             #region ITypeConverters
+            { typeof(Range<int>), Range<int>.ConverterFactory },
+            { typeof(Vector2D), Vector2D.ConverterFactory },
             { typeof(EntityID), EntityID.ConverterFactory },
+            { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
             { typeof(EntityTag), EntityTag.ConverterFactory },
             { typeof(RecipeElement), RecipeElement.ConverterFactory },
             { typeof(PronounGroup), PronounGroup.ConverterFactory },
+            { typeof(BiomeModel), BiomeModel.ConverterFactory },
             { typeof(CritterModel), CritterModel.ConverterFactory },
             { typeof(NPCModel), NPCModel.ConverterFactory },
             { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
