@@ -165,7 +165,7 @@ namespace ParquetClassLibrary.Utilities
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(Vector2D)}.");
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
             if (int.TryParse(parameterText[0], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var x)
                 && int.TryParse(parameterText[1], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var y))

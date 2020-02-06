@@ -89,7 +89,7 @@ namespace ParquetClassLibrary.Parquets
 
             try
             {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);

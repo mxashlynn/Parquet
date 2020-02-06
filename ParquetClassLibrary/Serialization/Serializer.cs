@@ -20,11 +20,14 @@ namespace ParquetClassLibrary.Serialization
     /// </summary>
     public static class Serializer
     {
-        /// <summary>Instructions for handling integer type conversion when reading in identifiers.</summary>
+        #region Class Defaults
+        /// <summary>Instructions for integer parsing.</summary>
+        public const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
+
+        /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
         private static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
         {
-            NumberStyle = NumberStyles.AllowLeadingSign &
-                          NumberStyles.Integer
+            NumberStyle = SerializedNumberStyle
         };
 
         /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
@@ -86,7 +89,9 @@ namespace ParquetClassLibrary.Serialization
 #else
             Directory.GetCurrentDirectory();
 #endif
+        #endregion
 
+        #region Serialization
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
@@ -125,5 +130,6 @@ namespace ParquetClassLibrary.Serialization
             csv.NextRecord();
             csv.WriteRecords(inInstances);
         }
+        #endregion
     }
 }

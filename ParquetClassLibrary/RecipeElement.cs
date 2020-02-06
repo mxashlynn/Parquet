@@ -121,7 +121,7 @@ namespace ParquetClassLibrary
 
             try
             {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];
