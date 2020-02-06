@@ -104,8 +104,14 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-        {
-        }
+            => null != inValue
+            && inValue is PronounGroup group
+                ? $"{group.Subjective}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Objective}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Determiner}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Possessive}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Reflexive}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(PronounGroup)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -116,6 +122,27 @@ namespace ParquetClassLibrary.Beings
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(PronounGroup)}.");
+            }
+
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var subjective = parameterText[0];
+                var objective = parameterText[1];
+                var determiner = parameterText[2];
+                var possesive = parameterText[3];
+                var reflexive = parameterText[4];
+
+                return new PronounGroup(subjective, objective, determiner, possesive, reflexive);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(PronounGroup)}: {e}");
+            }
         }
         #endregion
 
