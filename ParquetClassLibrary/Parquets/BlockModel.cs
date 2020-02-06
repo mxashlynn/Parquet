@@ -133,10 +133,11 @@ namespace ParquetClassLibrary.Parquets
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(BlockModel)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var name = parameterText[1];
                 var description = parameterText[2];

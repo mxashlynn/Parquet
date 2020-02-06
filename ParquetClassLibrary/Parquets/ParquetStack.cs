@@ -194,10 +194,11 @@ namespace ParquetClassLibrary.Parquets
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStack)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var floor = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var block = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
                 var furnishing = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);

@@ -75,9 +75,10 @@ namespace ParquetClassLibrary.Interactions
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(DialogueModel)}.");
             }
 
-            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var name = parameterText[1];
                 var description = parameterText[2];

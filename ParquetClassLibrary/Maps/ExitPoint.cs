@@ -117,10 +117,11 @@ namespace ParquetClassLibrary.Maps
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(ExitPoint)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var position = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var destination = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
 

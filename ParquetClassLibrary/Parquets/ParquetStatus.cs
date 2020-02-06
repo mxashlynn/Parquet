@@ -89,10 +89,11 @@ namespace ParquetClassLibrary.Parquets
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStatus)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
             try
             {
+                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var isTrench = bool.Parse(parameterText[0]);
                 var toughness = int.Parse(parameterText[1], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
                 var maxToughness = int.Parse(parameterText[2], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);

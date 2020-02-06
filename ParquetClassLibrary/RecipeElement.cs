@@ -124,8 +124,8 @@ namespace ParquetClassLibrary
             try
             {
                 var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
 
