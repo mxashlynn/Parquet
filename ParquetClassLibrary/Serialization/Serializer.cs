@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using CsvHelper;
-using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -13,7 +12,6 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Serialization
 {

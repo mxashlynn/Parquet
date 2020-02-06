@@ -113,8 +113,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="EntityTag"/> created from the record column.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -123,7 +121,7 @@ namespace ParquetClassLibrary
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];

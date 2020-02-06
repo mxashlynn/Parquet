@@ -207,7 +207,7 @@ namespace ParquetClassLibrary
                 return None;
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
             if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))
             {
                 return (EntityID)id;

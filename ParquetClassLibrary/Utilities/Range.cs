@@ -91,14 +91,12 @@ namespace ParquetClassLibrary.Utilities
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText))
             {
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(Range<TElement>)}.");
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
             if (int.TryParse(parameterText[0], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var x)
                 && int.TryParse(parameterText[1], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var y))

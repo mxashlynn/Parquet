@@ -82,8 +82,6 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText))
             {
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStatus)}.");
@@ -91,7 +89,7 @@ namespace ParquetClassLibrary.Parquets
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);

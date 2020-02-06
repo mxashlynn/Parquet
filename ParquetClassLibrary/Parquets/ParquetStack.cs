@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -196,7 +195,6 @@ namespace ParquetClassLibrary.Parquets
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var floor = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

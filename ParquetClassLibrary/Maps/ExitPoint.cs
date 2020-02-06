@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -119,7 +118,6 @@ namespace ParquetClassLibrary.Maps
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var position = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

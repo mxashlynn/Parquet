@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -74,8 +73,6 @@ namespace ParquetClassLibrary.Beings
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -84,7 +81,6 @@ namespace ParquetClassLibrary.Beings
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);

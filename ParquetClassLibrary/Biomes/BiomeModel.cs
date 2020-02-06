@@ -102,8 +102,6 @@ namespace ParquetClassLibrary.Biomes
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -112,7 +110,7 @@ namespace ParquetClassLibrary.Biomes
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? NumberStyles.Integer;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
