@@ -4,6 +4,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -122,12 +123,13 @@ namespace ParquetClassLibrary
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
 
-                if (int.TryParse(elementAmountText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var amount))
+                if (int.TryParse(elementAmountText, numberStyle, cultureInfo, out var amount))
                 {
                     var tag = (EntityTag)EntityTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
                     return new RecipeElement(amount, tag);

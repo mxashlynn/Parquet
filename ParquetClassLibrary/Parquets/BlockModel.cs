@@ -5,6 +5,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -132,6 +133,7 @@ namespace ParquetClassLibrary.Parquets
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
@@ -146,7 +148,7 @@ namespace ParquetClassLibrary.Parquets
                 var collectibleID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[9], inRow, inMemberMapData);
                 var flammable = bool.Parse(parameterText[10]);
                 var liquid = bool.Parse(parameterText[11]);
-                var toughness = int.Parse(parameterText[12], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
+                var toughness = int.Parse(parameterText[12], numberStyle, cultureInfo);
 
                 return new BlockModel(id, name, description, comment, ItemID, biome, room, tool, effect, collectibleID, flammable, liquid, toughness);
             }

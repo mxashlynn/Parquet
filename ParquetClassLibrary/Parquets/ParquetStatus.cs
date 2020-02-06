@@ -3,6 +3,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -90,11 +91,12 @@ namespace ParquetClassLibrary.Parquets
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);
-                var toughness = int.Parse(parameterText[1], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
-                var maxToughness = int.Parse(parameterText[2], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
+                var toughness = int.Parse(parameterText[1], numberStyle, cultureInfo);
+                var maxToughness = int.Parse(parameterText[2], numberStyle, cultureInfo);
 
                 return new ParquetStatus(isTrench, toughness, maxToughness);
             }

@@ -3,6 +3,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Utilities
 {
@@ -166,9 +167,11 @@ namespace ParquetClassLibrary.Utilities
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
-            if (int.TryParse(parameterText[0], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var x)
-                && int.TryParse(parameterText[1], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var y))
+
+            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
+                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
             {
                 return new Vector2D(x, y);
             }

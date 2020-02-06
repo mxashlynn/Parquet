@@ -4,6 +4,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -103,6 +104,7 @@ namespace ParquetClassLibrary.Parquets
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
@@ -113,7 +115,7 @@ namespace ParquetClassLibrary.Parquets
                 var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
                 var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
                 var effect = Enum.Parse<CollectingEffect>(parameterText[7], true);
-                var amount = int.Parse(parameterText[8], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
+                var amount = int.Parse(parameterText[8], numberStyle, cultureInfo);
 
                 return new CollectibleModel(id, name, description, comment, itemID, biome, room, effect, amount);
             }

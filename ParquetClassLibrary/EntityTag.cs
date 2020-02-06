@@ -109,8 +109,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {

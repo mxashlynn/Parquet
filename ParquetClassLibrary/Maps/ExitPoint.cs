@@ -109,8 +109,6 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText))
             {
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(ExitPoint)}.");

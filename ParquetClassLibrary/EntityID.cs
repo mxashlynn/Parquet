@@ -5,6 +5,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -198,8 +199,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -208,7 +207,8 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
-            if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+            if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
             {
                 return (EntityID)id;
             }

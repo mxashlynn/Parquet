@@ -25,10 +25,14 @@ namespace ParquetClassLibrary.Serialization
         /// <summary>Instructions for integer parsing.</summary>
         public const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
 
+        /// <summary>Instructions for string parsing.</summary>
+        public static CultureInfo SerializedCultureInfo { get; } = CultureInfo.InvariantCulture;
+
         /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
         private static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
         {
-            NumberStyle = SerializedNumberStyle
+            NumberStyle = SerializedNumberStyle,
+            CultureInfo = SerializedCultureInfo,
         };
 
         /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>

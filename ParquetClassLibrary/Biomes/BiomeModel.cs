@@ -111,13 +111,14 @@ namespace ParquetClassLibrary.Biomes
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var name = parameterText[1];
                 var description = parameterText[2];
                 var comment = parameterText[3];
-                var tier = int.Parse(parameterText[4], numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo);
+                var tier = int.Parse(parameterText[4], numberStyle, cultureInfo);
                 var elevation = (Elevation)Enum.Parse(typeof(Elevation), parameterText[5]);
                 var liquid = bool.Parse(parameterText[6]);
                 var criteria = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
