@@ -5,6 +5,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Rooms
 {
@@ -25,34 +26,6 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks { get; }
-
-        /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
-        /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
-        /// the room is asigned the type of the most demanding recipe.
-        /// </summary>
-        public int Priority
-            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
-
-        /// <summary>
-        /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
-        /// </summary>
-        /// <param name="inRoom">The <see cref="Room"/> to check.</param>
-        /// <returns>
-        /// <c>ture</c> if <paramref name="inRoom"/> is an instance of this <see cref="RoomRecipe"/>;
-        /// <c>false</c> otherwise.
-        /// </returns>
-        public bool Matches(Room inRoom)
-            => null != inRoom
-            && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
-            && RequiredPerimeterBlocks.All(element =>
-                inRoom.Perimeter.Count(space =>
-                    All.Parquets.Get<BlockModel>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-            && RequiredFloors.All(element =>
-                inRoom.WalkableArea.Count(space =>
-                    All.Parquets.Get<FloorModel>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-            && RequiredFurnishings.All(element =>
-                inRoom.FurnishingTags.Count(tag =>
-                    tag == element.ElementTag) >= element.ElementAmount);
         #endregion
 
         #region Initialization
@@ -87,10 +60,39 @@ namespace ParquetClassLibrary.Rooms
         }
         #endregion
 
+        #region Derived Details
+        /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
+        /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
+        /// the room is asigned the type of the most demanding recipe.
+        /// </summary>
+        public int Priority
+            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
+
+        /// <summary>
+        /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
+        /// </summary>
+        /// <param name="inRoom">The <see cref="Room"/> to check.</param>
+        /// <returns>
+        /// <c>ture</c> if <paramref name="inRoom"/> is an instance of this <see cref="RoomRecipe"/>;
+        /// <c>false</c> otherwise.
+        /// </returns>
+        public bool Matches(Room inRoom)
+            => null != inRoom
+            && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
+            && RequiredPerimeterBlocks.All(element =>
+                inRoom.Perimeter.Count(space =>
+                    All.Parquets.Get<BlockModel>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+            && RequiredFloors.All(element =>
+                inRoom.WalkableArea.Count(space =>
+                    All.Parquets.Get<FloorModel>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+            && RequiredFurnishings.All(element =>
+                inRoom.FurnishingTags.Count(tag =>
+                    tag == element.ElementTag) >= element.ElementAmount);
+        #endregion
+
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly RoomRecipe ConverterFactory =
-            new RoomRecipe();
+        internal static readonly RoomRecipe ConverterFactory = new RoomRecipe(EntityID.None, nameof(ConverterFactory), "", "");
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -100,8 +102,19 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-        {
-        }
+            => null != inValue
+            && inValue is RoomRecipe recipe
+                ? $"{recipe.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.MinimumWalkableSpaces}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredFurnishings, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredFloors, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredPerimeterBlocks, inRow, inMemberMapData)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(RoomRecipe)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -112,6 +125,35 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(RoomRecipe)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var walkable = int.Parse(parameterText[4], numberStyle, cultureInfo);
+                var furnishings = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var floors = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var perimiter = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[7], inRow, inMemberMapData);
+
+                return new RoomRecipe(id, name, description, comment, walkable, furnishings, floors, perimiter);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(RoomRecipe)}: {e}");
+            }
         }
         #endregion
     }
