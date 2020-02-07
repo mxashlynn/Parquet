@@ -88,9 +88,9 @@ namespace ParquetClassLibrary.Biomes
                   $"{model.Tier}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.ElevationCategory}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.IsLiquidBased}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.ParquetCriteria, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.ParquetCriteria, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.EntryRequirements, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.EntryRequirements, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BiomeModel)}.");
 
         /// <summary>

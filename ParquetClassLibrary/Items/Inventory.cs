@@ -275,7 +275,7 @@ namespace ParquetClassLibrary.Items
             => null != inValue
             && inValue is Inventory inventory
                 ? $"{inventory.Capacity}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory.ConvertToString(inventory.Slots, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
+                  $"{SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory.ConvertToString(inventory.Slots, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(Inventory)}.");
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace ParquetClassLibrary.Items
 
                 var capacity = int.Parse(parameterText[12], numberStyle, cultureInfo);
                 var slots = (List<InventorySlot>)SeriesConverter<InventorySlot, List<InventorySlot>>
-                    .ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
 
                 return new Inventory(slots, capacity);
             }

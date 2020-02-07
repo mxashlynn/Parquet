@@ -59,9 +59,9 @@ namespace ParquetClassLibrary.Beings
                   $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CritterModel)}.");
 
         /// <summary>
@@ -90,9 +90,9 @@ namespace ParquetClassLibrary.Beings
                 var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
                 var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[5]);
                 var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
 
                 return new CritterModel(id, name, description, comment, biome, behavior, avoids, seeks);
             }

@@ -72,17 +72,17 @@ namespace ParquetClassLibrary.Beings
                   $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.Pronouns}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.StoryCharacterID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingQuests, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingQuests, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Dialogue, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Dialogue, Rules.Delimiters.ElementDelimiter)}" +
                   $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingInventory, inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter)}"
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingInventory, Rules.Delimiters.ElementDelimiter)}"
                 : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
 
         /// <summary>
@@ -112,17 +112,17 @@ namespace ParquetClassLibrary.Beings
                 var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
                 var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[6]);
                 var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var pronouns = parameterText[9];
                 var storyID = parameterText[10];
                 var startingQuests = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[10], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[10], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var dialogue = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
                 var startingInventory = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[12], inRow, inMemberMapData);
+                    .ConverterFactory.ConvertFromString(parameterText[12], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
 
                 return new NPCModel(id, personalName, familyName, description, comment, biome, behavior, avoids, seeks,
                                     pronouns, storyID, startingQuests, dialogue, startingInventory);

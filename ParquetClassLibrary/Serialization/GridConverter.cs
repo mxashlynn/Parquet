@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Serialization
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given collection serialized.</returns>
         public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => ConvertToString(inValue, inRow, inMemberMapData, Rules.Delimiters.SecondaryDelimiter);
+            => ConvertToString(inValue, Rules.Delimiters.SecondaryDelimiter);
 
         /// <summary>
         /// Converts the given 2D collection into a record column.
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Serialization
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <param name="inDelimiter">The string to use to separate elements in the series.</param>
         /// <returns>The given collection serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData, string inDelimiter)
+        public string ConvertToString(object inValue, string inDelimiter)
             => null != inValue
             && inValue is IGrid<TElement> grid
                 ? string.Join(inDelimiter, grid)
