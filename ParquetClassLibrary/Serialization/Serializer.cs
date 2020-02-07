@@ -41,50 +41,49 @@ namespace ParquetClassLibrary.Serialization
             // TODO This functionality should be split between All and ModelCollection.
 
             #region ITypeConverters
-            { typeof(Range<int>), Range<int>.ConverterFactory },
-            { typeof(Vector2D), Vector2D.ConverterFactory },
-            { typeof(EntityID), EntityID.ConverterFactory },
-            { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
-            { typeof(EntityTag), EntityTag.ConverterFactory },
-            { typeof(RecipeElement), RecipeElement.ConverterFactory },
-            { typeof(PronounGroup), PronounGroup.ConverterFactory },
             { typeof(BiomeModel), BiomeModel.ConverterFactory },
-            { typeof(CritterModel), CritterModel.ConverterFactory },
-            { typeof(NPCModel), NPCModel.ConverterFactory },
-            { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
-            { typeof(StrikePanel), StrikePanel.ConverterFactory },
-            { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
-            { typeof(DialogueModel), DialogueModel.ConverterFactory },
-            { typeof(QuestModel), QuestModel.ConverterFactory },
-            { typeof(InventorySlot), InventorySlot.ConverterFactory },
-            { typeof(ItemModel), ItemModel.ConverterFactory },
+            { typeof(BlockModel), BlockModel.ConverterFactory },
             { typeof(ChunkType), ChunkType.ConverterFactory },
+            { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
+            { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
+            { typeof(CritterModel), CritterModel.ConverterFactory },
+            { typeof(DialogueModel), DialogueModel.ConverterFactory },
+            { typeof(EntityID), EntityID.ConverterFactory },
+            { typeof(EntityTag), EntityTag.ConverterFactory },
             { typeof(ExitPoint), ExitPoint.ConverterFactory },
+            { typeof(FloorModel), FloorModel.ConverterFactory },
+            { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
+            { typeof(InventorySlot), InventorySlot.ConverterFactory },
+            { typeof(Inventory), Inventory.ConverterFactory },
+            { typeof(ItemModel), ItemModel.ConverterFactory },
             { typeof(MapChunk), MapChunk.ConverterFactory },
             { typeof(MapRegion), MapRegion.ConverterFactory },
-            { typeof(FloorModel), FloorModel.ConverterFactory },
-            { typeof(BlockModel), BlockModel.ConverterFactory },
-            { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
-            { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
+            { typeof(NPCModel), NPCModel.ConverterFactory },
             { typeof(ParquetStack), ParquetStack.ConverterFactory },
             { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+            { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
+            { typeof(PronounGroup), PronounGroup.ConverterFactory },
+            { typeof(QuestModel), QuestModel.ConverterFactory },
+            { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
+            { typeof(Range<int>), Range<int>.ConverterFactory },
+            { typeof(RecipeElement), RecipeElement.ConverterFactory },
             { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
+            { typeof(StrikePanel), StrikePanel.ConverterFactory },
+            { typeof(Vector2D), Vector2D.ConverterFactory },
             #endregion
 
             #region Linear Series Types
             { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
             { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
-            { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
             { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
-            { typeof(Inventory), SeriesConverter<InventorySlot, Inventory>.ConverterFactory },
-            // TODO Finish these
+            { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
             #endregion
 
             #region 2D Grid Types
-            { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
             { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
             { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
             { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+            { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
             #endregion
         };
 
