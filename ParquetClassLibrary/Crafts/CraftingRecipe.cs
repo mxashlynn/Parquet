@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -9,9 +12,9 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    public sealed class CraftingRecipe : EntityModel
+    public sealed class CraftingRecipe : EntityModel, ITypeConverter
     {
-        #region Characteristics
+        #region Class Defaults
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
             new List<RecipeElement> { RecipeElement.None };
@@ -20,7 +23,9 @@ namespace ParquetClassLibrary.Crafts
         public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
                                                                                 EmptyCraftingElementList, EmptyCraftingElementList,
                                                                                 new StrikePanelGrid());
+        #endregion
 
+        #region Characteristics
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         public IReadOnlyList<RecipeElement> Products { get; }
 
@@ -70,80 +75,67 @@ namespace ParquetClassLibrary.Crafts
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly CraftingRecipe ConverterFactory = NotCraftable;
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="CraftingRecipe"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CraftingRecipe"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class CraftingRecipeShim : EntityShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is CraftingRecipe recipe
+                ? $"{recipe.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{recipe.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.Products, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.Ingredients, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory.ConvertToString(recipe.PanelPattern, inRow, inMemberMapData)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CraftingRecipe)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-            public IReadOnlyList<RecipeElement> Products;
-
-            /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-            public IReadOnlyList<RecipeElement> Ingredients;
-
-            /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-            public StrikePanelGrid PanelPattern;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref=""/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText))
             {
-                Precondition.IsOfType<TModel, CraftingRecipe>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CraftingRecipe)}.");
+            }
 
-                return (TModel)(ShimProvider)new CraftingRecipe(ID, Name, Description, Comment, Products, Ingredients, PanelPattern);
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var products = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var ingredients = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
+                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var pattern = (StrikePanelGrid)GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
+
+                return new CraftingRecipe(id, name, description, comment, products, ingredients, pattern);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(CraftingRecipe)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CraftingRecipeShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CraftingRecipeClassMap : ClassMap<CraftingRecipeShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CraftingRecipeClassMap"/> class.
-            /// </summary>
-            public CraftingRecipeClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.Products).Index(4);
-                Map(m => m.Ingredients).Index(5);
-                Map(m => m.PanelPattern).Index(6);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CraftingRecipeClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CraftingRecipeClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CraftingRecipeShim);
         #endregion
     }
 }

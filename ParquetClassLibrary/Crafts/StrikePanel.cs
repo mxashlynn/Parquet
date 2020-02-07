@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the panels that the player must strike during item crafting.
     /// </summary>
-    public class StrikePanel : ITypeConverter, IEquatable<StrikePanel>
+    public class StrikePanel : IEquatable<StrikePanel>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
@@ -22,12 +22,6 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>Indicates an space in a <see cref="StrikePanelGrid"/>.</summary>
         public static readonly StrikePanel Unused = new StrikePanel(defaultWorkingRange, defaultIdealRange);
-
-        /// <summary>Separates the two <see cref="Range"/>s when serializing.</summary>
-        private const string rangeDelimiter = "|";
-
-        /// <summary>Separates values within a <see cref="Range"/> when serializing.</summary>
-        private const string intDelimiter = "-";
         #endregion
 
         #region Characteristics
@@ -39,7 +33,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>
         /// The range of values this panel can take on while being worked.  <see cref="Range{int}.Minimum"/> is normally 0.
-        /// This range constricts that given by <c see="IdealRange"/>.
+        /// This range constricts that given by <see cref="IdealRange"/>.
         /// </summary>
         public Range<int> WorkingRange
         {
@@ -61,7 +55,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>
         /// The range of values this panel targets for a completed craft.
-        /// This range expands that given by <c see="WorkingRange"/> if necessary.
+        /// This range expands that given by <see cref="WorkingRange"/> if necessary.
         /// </summary>
         public Range<int> IdealRange
         {
@@ -92,8 +86,8 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikePanel"/> class.
         /// </summary>
-        /// <param name="inWorkingRange"></param>
-        /// <param name="inIdealRange"></param>
+        /// <param name="inWorkingRange">The range of values this panel can take on while being worked.</param>
+        /// <param name="inIdealRange">The range of values this panel targets for a completed craft.</param>
         public StrikePanel(Range<int> inWorkingRange, Range<int> inIdealRange)
         {
             // Note the use of the backing struct to avoid preinitialized range-checking.
@@ -164,25 +158,10 @@ namespace ParquetClassLibrary.Crafts
         }
         #endregion
 
-        #region Serialization
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="StrikePanelClassMap"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class StrikePanelClassMap : ClassMap<StrikePanel>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="StrikePanelClassMap"/> class.
-            /// </summary>
-            public StrikePanelClassMap()
-            {
-                References<Range.RangeClassMap<int>>(m => m.WorkingRange);
-                References<Range.RangeClassMap<int>>(m => m.IdealRange);
-            }
-        }
-        #endregion
-
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly StrikePanel ConverterFactory = new StrikePanel();
+
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
         /// </summary>
@@ -192,8 +171,6 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(Unused), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -202,29 +179,11 @@ namespace ParquetClassLibrary.Crafts
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var panelSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
+                var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
 
-                var panelSplitText = inText.Split(rangeDelimiter);
-
-                var workingSplitText = panelSplitText[0].Split(intDelimiter);
-                var workingMinText = workingSplitText[0];
-                var workingMaxText = workingSplitText[1];
-
-                var idealSplitText = panelSplitText[1].Split(intDelimiter);
-                var idealMinText = idealSplitText[0];
-                var idealMaxText = idealSplitText[1];
-
-                if (int.TryParse(workingMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMin)
-                    && int.TryParse(workingMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var workingMax)
-                    && int.TryParse(idealMinText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMin)
-                    && int.TryParse(idealMaxText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var idealMax))
-                {
-                    return new StrikePanel(new Range<int>(workingMin, workingMax), new Range<int>(idealMin, idealMax));
-                }
-                else
-                {
-                    throw new FormatException($"Could not parse {nameof(StrikePanel)} '{inText}' into {nameof(Range<int>)}s.");
-                }
+                return new StrikePanel(workingRangeDeserialized, idealRangeDeserialized);
             }
             catch (Exception e)
             {
@@ -235,15 +194,19 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Converts the given <see cref="StrikePanel"/> to a record column.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null == inValue || (StrikePanel)inValue == Unused
-                ? nameof(Unused)
-                : $"{((StrikePanel)inValue).WorkingRange.Minimum}{intDelimiter}{((StrikePanel)inValue).WorkingRange.Maximum}{rangeDelimiter}{((StrikePanel)inValue).IdealRange.Minimum}{intDelimiter}{((StrikePanel)inValue).IdealRange.Maximum}";
-        #endregion
+            => inValue is StrikePanel panel
+                ? null == panel || Unused == panel
+                    ? nameof(Unused)
+                    : $"{panel.WorkingRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
+                      $"{panel.WorkingRange.Maximum}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{panel.IdealRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
+                      $"{panel.IdealRange.Maximum}"
+                : throw new ArgumentException($"Could not convert {inValue} to {nameof(StrikePanel)}.");
         #endregion
 
         #region Utilities
@@ -254,7 +217,7 @@ namespace ParquetClassLibrary.Crafts
         public override string ToString()
             => this == Unused
                 ? nameof(Unused)
-                : $"{WorkingRange.ToString()}{rangeDelimiter}{IdealRange.ToString()}";
+                : $"{WorkingRange.ToString()}{Rules.Delimiters.ElementDelimiter}{IdealRange.ToString()}";
         #endregion
     }
 

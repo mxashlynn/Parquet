@@ -1,6 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -11,16 +16,15 @@ namespace ParquetClassLibrary.Items
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Inventory imples Collection.")]
-    public sealed class Inventory : IReadOnlyCollection<InventorySlot>
+    public sealed class Inventory : IReadOnlyCollection<InventorySlot>, ITypeConverter
     {
+        #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; }
 
         /// <summary>How many <see cref="InventorySlot"/>s exits.</summary>
         public int Capacity { get; }
-
-        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
-        public int Count { get => Slots.Count; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -57,6 +61,9 @@ namespace ParquetClassLibrary.Items
 
         #region Slot Access
         // TODO We might need to make versions of these accessors that work with RecipeElements.
+
+        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
+        public int Count { get => Slots.Count; }
 
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
@@ -253,15 +260,65 @@ namespace ParquetClassLibrary.Items
             => Slots.GetEnumerator();
         #endregion
 
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly Inventory ConverterFactory = new Inventory(1);
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is Inventory inventory
+                ? $"{inventory.Capacity}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory.ConvertToString(inventory.Slots, Rules.Delimiters.ElementDelimiter)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(Inventory)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Inventory)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var capacity = int.Parse(parameterText[12], numberStyle, cultureInfo);
+                var slots = (List<InventorySlot>)SeriesConverter<InventorySlot, List<InventorySlot>>
+                    .ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+
+                return new Inventory(slots, capacity);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(Inventory)}: {e}");
+            }
+        }
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="Inventory"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"{Count} / {Capacity} Items";
-        }
+            => $"{Count} / {Capacity} Items";
         #endregion
     }
 }

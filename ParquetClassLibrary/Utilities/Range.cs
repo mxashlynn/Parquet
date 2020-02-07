@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Utilities
 {
@@ -8,7 +12,8 @@ namespace ParquetClassLibrary.Utilities
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.
     /// </summary>
     /// <typeparam name="TElement">The type over which the range is spread.</typeparam>
-    public readonly struct Range<TElement> : IEquatable<Range<TElement>> where TElement : IComparable<TElement>, IEquatable<TElement>
+    public readonly struct Range<TElement> : IEquatable<Range<TElement>>, ITypeConverter
+        where TElement : IComparable<TElement>, IEquatable<TElement>
     {
         #region Characteristics
         /// <summary>Minimum value of the range.</summary>
@@ -60,21 +65,63 @@ namespace ParquetClassLibrary.Utilities
             => Minimum.CompareTo(inValue) <= 0 && Maximum.CompareTo(inValue) >= 0;
         #endregion
 
-        #region Serialization
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly Range<TElement> ConverterFactory = new Range<TElement>();
+
         /// <summary>
-        /// Maps the values in a <see cref="Range{TComparable}"/> to records that CSVHelper recognizes.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <typeparam name="TElements">The type over which the range is spread.</typeparam>
-        internal sealed class RangeClassMap<TElements> : ClassMap<Range<TElements>>
-            where TElements : IComparable<TElements>, IEquatable<TElements>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is Vector2D vector
+                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
+                  $"{vector.Y}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(Vector2D)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="RangeClassMap{TElement}"/> class.
-            /// </summary>
-            public RangeClassMap()
+            if (string.IsNullOrEmpty(inText))
             {
-                Map(m => m.Maximum);
-                Map(m => m.Minimum);
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Range<TElement>)}.");
+            }
+
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+
+            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
+                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
+            {
+                // TODO Find a generic way to handle Range deserialization.
+                var implementingType = typeof(TElement);
+                if (implementingType == typeof(int))
+                {
+                    return new Range<int>(x, y);
+                }
+                else if (implementingType == typeof(EntityID))
+                {
+                    return new Range<EntityID>(x, y);
+                }
+                else
+                {
+                    throw new NotImplementedException($"Cannot deserialize {nameof(Range<TElement>)} yet.");
+                }
+            }
+            else
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(Range<TElement>)}.");
             }
         }
         #endregion

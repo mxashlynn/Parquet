@@ -198,12 +198,12 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            // Deserialize from CSV
-            All.LoadFromCSV();
-            Serializer.SearchPath += "/Output";
-            All.SaveToCSV();
+            // Serialization
+            //All.LoadFromCSV();
+            //Serializer.SearchPath += "/Output";
+            //All.SaveToCSV();
 
-            // Test Display
+            // Display
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");

@@ -1,5 +1,8 @@
 using System;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -9,7 +12,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet walking surface.
     /// </summary>
-    public sealed class FloorModel : ParquetModel
+    public sealed class FloorModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
@@ -52,81 +55,68 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly FloorModel ConverterFactory = new FloorModel(EntityID.None, nameof(ConverterFactory), "", "");
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a <see cref="FloorModel"/>-like
-        /// class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="FloorModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class FloorShim : ParquetModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is FloorModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ModTool}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.TrenchName}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(FloorModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>The tool used to dig out or fill in the floor.</summary>
-            public ModificationTool ModTool;
-
-            /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-            public string TrenchName;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                Precondition.IsOfType<TModel, FloorModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(FloorModel)}.");
+            }
 
-                return (TModel)(ShimProvider)new FloorModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                            AddsToRoom, ModTool, TrenchName);
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var mod = Enum.Parse<ModificationTool>(parameterText[7], true);
+                var trenchName = parameterText[8];
+
+                return new FloorModel(id, name, description, comment, itemID, biome, room, mod, trenchName);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(FloorModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="FloorShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class FloorClassMap : ClassMap<FloorShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FloorClassMap"/> class.
-            /// </summary>
-            public FloorClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.ModTool).Index(7);
-                Map(m => m.TrenchName).Index(8);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static FloorClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new FloorClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(FloorShim);
         #endregion
     }
 }

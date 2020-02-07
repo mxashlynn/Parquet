@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -9,7 +13,7 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a playable chunk in sandbox.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
-    public sealed class MapChunk : MapModel
+    public sealed class MapChunk : MapModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -25,10 +29,10 @@ namespace ParquetClassLibrary.Maps
 
         #region Characteristics
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatusGrid ParquetStatuses { get; } = new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+        protected override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        protected override ParquetStackGrid ParquetDefintion { get; } = new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+        protected override ParquetStackGrid ParquetDefintion { get; }
         #endregion
 
         #region Initialization
@@ -40,81 +44,90 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        // TODO We need set the Grid variables from the serializer.
-        public MapChunk(EntityID inID, string inName, string inDescription, string inComment, int inRevision = 0)
-            : base(Bounds, inID, inName, inDescription, inComment, inRevision) { }
+        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
+        /// <param name="inStatuses">The statuses of the collected parquets.</param>
+        /// <param name="inDefintions">The definitions of the collected parquets.</param>
+        public MapChunk(EntityID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefintions = null)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
+        {
+            ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+            ParquetDefintion = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+        }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly MapChunk ConverterFactory = Empty;
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="MapChunk"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="MapChunk"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class MapChunkShim : MapModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is MapChunk map
+                ? $"{map.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.DataVersion}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Revision++}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory.ConvertToString(map.ExitPoints, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory.ConvertToString(map.ParquetStatuses, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory.ConvertToString(map.ParquetDefintion, inRow, inMemberMapData)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(MapChunk)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="MapModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText))
             {
-                Precondition.IsOfType<TModel, MapChunk>(typeof(TModel).ToString());
-                if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion, StringComparison.InvariantCultureIgnoreCase))
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(MapChunk)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var dataVersion = parameterText[4];
+                if (dataVersion != DataVersion)
                 {
-                    throw new NotSupportedException(
-                        $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
+                    throw new FormatException($"Unsupported saved data version: ${dataVersion}.");
                 }
 
-                return (TModel)(ShimProvider)new MapChunk(ID, Name, Description, Comment, Revision
-                                                          // TODO ExitPoints, ParquetStatuses, ParquetDefintion
-                                                          );
-            }
-        }
-        #endregion
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var revision = int.Parse(parameterText[5], numberStyle, cultureInfo);
+                var exits = (IReadOnlyList<ExitPoint>)SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory
+                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var statuses = (ParquetStatusGrid)GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[7], inRow, inMemberMapData);
+                var stacks = (ParquetStackGrid)GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[8], inRow, inMemberMapData);
 
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="MapChunkShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class MapChunkClassMap : ClassMap<MapChunkShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="MapChunkClassMap"/> class.
-            /// </summary>
-            public MapChunkClassMap()
+                return new MapChunk(id, name, description, comment, revision, exits, statuses, stacks);
+            }
+            catch (Exception e)
             {
-                // TODO This is a stub.
-
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
+                throw new FormatException($"Could not parse '{inText}' as {nameof(MapChunk)}: {e}");
             }
         }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static MapChunkClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new MapChunkClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(MapChunkShim);
         #endregion
 
         #region Utilities

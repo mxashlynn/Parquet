@@ -4,6 +4,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -29,8 +30,6 @@ namespace ParquetClassLibrary
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
         public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
-
-        private const string internalDelimiter = "|";
         #endregion
 
         #region Characteristics
@@ -102,6 +101,10 @@ namespace ParquetClassLibrary
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly RecipeElement ConverterFactory =
+            None;
+
         /// <summary>
         /// Converts the given record column to <see cref="RecipeElement"/>.
         /// </summary>
@@ -111,8 +114,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="EntityTag"/> created from the record column.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -121,13 +122,14 @@ namespace ParquetClassLibrary
 
             try
             {
-                var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
-                var elementSplitText = inText.Split(internalDelimiter);
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
 
-                if (int.TryParse(elementAmountText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var amount))
+                if (int.TryParse(elementAmountText, numberStyle, cultureInfo, out var amount))
                 {
                     var tag = (EntityTag)EntityTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
                     return new RecipeElement(amount, tag);
@@ -135,7 +137,7 @@ namespace ParquetClassLibrary
                 else
                 {
                     throw new FormatException(
-                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{internalDelimiter}{nameof(ElementTag)}s.");
+                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{Rules.Delimiters.InternalDelimiter}{nameof(ElementTag)}s.");
                 }
             }
             catch (Exception e)
@@ -147,14 +149,14 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Converts the given <see cref="RecipeElement"/> to a record column.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => null == inValue || (RecipeElement)inValue == None
                 ? nameof(None)
-                : $"{((RecipeElement)inValue).ElementAmount}{internalDelimiter}{((RecipeElement)inValue).ElementTag}";
+                : $"{((RecipeElement)inValue).ElementAmount}{Rules.Delimiters.InternalDelimiter}{((RecipeElement)inValue).ElementTag}";
         #endregion
 
         #region Utilities

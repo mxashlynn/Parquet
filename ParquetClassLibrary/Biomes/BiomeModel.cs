@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Biomes
@@ -10,7 +14,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : EntityModel
+    public sealed class BiomeModel : EntityModel, ITypeConverter
     {
         #region Characteristics
         /// <summary>
@@ -46,9 +50,9 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="BiomeModel"/>.</param>
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeModel"/>.</param>
         public BiomeModel(EntityID inID, string inName, string inDescription, string inComment,
-                     int inTier, Elevation inElevationCategory,
-                     bool inIsLiquidBased, IEnumerable<EntityTag> inParquetCriteria,
-                     IEnumerable<EntityTag> inEntryRequirements)
+                          int inTier, Elevation inElevationCategory,
+                          bool inIsLiquidBased, IEnumerable<EntityTag> inParquetCriteria,
+                          IEnumerable<EntityTag> inEntryRequirements)
             : base(All.BiomeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.MustBeNonNegative(inTier, nameof(inTier));
@@ -61,93 +65,74 @@ namespace ParquetClassLibrary.Biomes
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly BiomeModel ConverterFactory =
+            new BiomeModel(EntityID.None, nameof(ConverterFactory), "", "", 0, 0, false, null, null);
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="BiomeModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="BiomeModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class BiomeShim : EntityShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is BiomeModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Tier}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ElevationCategory}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsLiquidBased}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.ParquetCriteria, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.EntryRequirements, Rules.Delimiters.ElementDelimiter)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BiomeModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>
-            /// A rating indicating where in the progression this <see cref="BiomeModel"/> falls.
-            /// Must be non-negative.  Higher values indicate later Biomes.
-            /// </summary>
-            public int Tier;
-
-            /// <summary>Describes where this <see cref="BiomeModel"/> falls in terms of the game world's overall topography.</summary>
-            public Elevation ElevationCategory;
-
-            /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</summary>
-            public bool IsLiquidBased;
-
-            /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
-            public IReadOnlyList<EntityTag> ParquetCriteria;
-
-            /// <summary>Describes the <see cref="Item"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.
-            /// </summary>
-            public IReadOnlyList<EntityTag> EntryRequirements;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a parquet enity model.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                Precondition.IsOfType<TModel, BiomeModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(BiomeModel)}.");
+            }
 
-                return (TModel)(ShimProvider)new BiomeModel(ID, Name, Description, Comment, Tier, ElevationCategory,
-                                                            IsLiquidBased, ParquetCriteria , EntryRequirements);
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var tier = int.Parse(parameterText[4], numberStyle, cultureInfo);
+                var elevation = (Elevation)Enum.Parse(typeof(Elevation), parameterText[5]);
+                var liquid = bool.Parse(parameterText[6]);
+                var criteria = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var requirements = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
+                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+
+                return new BiomeModel(id, name, description, comment, tier, elevation, liquid, criteria, requirements);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(BiomeModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="BiomeShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class BiomeClassMap : ClassMap<BiomeShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="BiomeClassMap"/> class.
-            /// </summary>
-            public BiomeClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.Tier).Index(4);
-                Map(m => m.ElevationCategory).Index(5);
-                Map(m => m.IsLiquidBased).Index(6);
-                Map(m => m.ParquetCriteria).Index(7);
-                Map(m => m.EntryRequirements).Index(8);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static BiomeClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new BiomeClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(BiomeShim);
         #endregion
     }
 }

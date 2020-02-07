@@ -58,6 +58,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Exposes an <see cref="IEnumerator{StrikePanel}"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<StrikePanel> IEnumerable<StrikePanel>.GetEnumerator()
             => (IEnumerator<StrikePanel>)StrikePanels.GetEnumerator();
@@ -65,6 +66,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Exposes an enumerator for the <see cref="StrikePanelGrid"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => StrikePanels.GetEnumerator();

@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Utilities;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
     /// Models dialogue that an <see cref="Beings.NPCModel"/> may communicate.
     /// </summary>
-    public sealed class DialogueModel : InteractionModel
+    public sealed class DialogueModel : InteractionModel, ITypeConverter
     {
-        // TODO This is a stub.
         #region Characteristics
-
+        // TODO This is a stub.
         #endregion
 
         #region Initialization
@@ -27,80 +28,74 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         public DialogueModel(EntityID inID, string inName, string inDescription, string inComment,
-            IEnumerable<EntityTag> inStartCriteria, IEnumerable<string> inSteps, string inOutcome)
+            IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome)
             : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly DialogueModel ConverterFactory =
+            new DialogueModel(EntityID.None, nameof(ConverterFactory), "", "", null, null, "");
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="DialogueModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="DialogueModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class DialogueShim : EntityShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is DialogueModel dialogue
+                ? $"{dialogue.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{dialogue.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{dialogue.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{dialogue.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(dialogue.StartCriteria, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(dialogue.Steps, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{dialogue.Outcome}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            // TODO Derive this from InteractionStub
-            // TODO This is a stub.
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="T">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="InteractionModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText))
             {
-                Precondition.IsOfType<TModel, DialogueModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(DialogueModel)}.");
+            }
 
-                // TODO fill in these nulls.
-                return (TModel)(ShimProvider)new DialogueModel(ID, Name, Description, Comment, null, null, null);
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var criteria = (IReadOnlyList<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory
+                    .ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var steps = (IReadOnlyList<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory
+                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var outcome = parameterText[6];
+
+                return new DialogueModel(id, name, description, comment, criteria, steps, outcome);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(DialogueModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="DialogueShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class DialogueClassMap : ClassMap<DialogueShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DialogueClassMap"/> class.
-            /// </summary>
-            public DialogueClassMap()
-            {
-                // TODO This is a stub.
-
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static DialogueClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new DialogueClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(DialogueShim);
         #endregion
     }
 }

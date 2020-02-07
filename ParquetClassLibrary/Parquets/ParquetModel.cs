@@ -1,3 +1,7 @@
+using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -51,23 +55,6 @@ namespace ParquetClassLibrary.Parquets
             ItemID = inItemID;
             AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? EntityTag.None : inAddsToBiome;
             AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? EntityTag.None : inAddsToRoom;
-        }
-        #endregion
-
-        #region Serialization
-        /// <summary>
-        /// Parent class for all shims of parquet definitions.
-        /// </summary>
-        internal abstract class ParquetModelShim : EntityShim
-        {
-            /// <summary>The <see cref="EntityID"/> of the item that corresponds to this parquet.</summary>
-            public EntityID ItemID;
-
-            /// <summary>The <see cref="BiomeModel"/>(s) this parquet helps form.</summary>
-            public EntityTag AddsToBiome;
-
-            /// <summary>The <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</summary>
-            public EntityTag AddsToRoom;
         }
         #endregion
     }

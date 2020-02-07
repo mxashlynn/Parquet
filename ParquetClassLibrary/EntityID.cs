@@ -5,6 +5,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -53,15 +54,19 @@ namespace ParquetClassLibrary
     /// </remarks>
     public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of an <see cref="EntityModel"/>.</summary>
         public static readonly EntityID None = 0;
+        #endregion
 
+        #region Characteristics
         /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
         /// <remarks>
         /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
         /// to support human-readable design documents and <see cref="Range{EntityID}"/> validation.
         /// </remarks>
         private int id;
+        #endregion
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
@@ -181,6 +186,10 @@ namespace ParquetClassLibrary
         #endregion
 
         #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly EntityID ConverterFactory =
+            None;
+
         /// <summary>
         /// Converts the given record column to <see cref="EntityID"/>.
         /// </summary>
@@ -190,8 +199,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            Precondition.IsNotNull(inMemberMapData, nameof(inMemberMapData));
-
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -199,8 +206,9 @@ namespace ParquetClassLibrary
                 return None;
             }
 
-            var numberStyle = inMemberMapData.TypeConverterOptions.NumberStyle ?? NumberStyles.Integer;
-            if (int.TryParse(inText, numberStyle, inMemberMapData.TypeConverterOptions.CultureInfo, out var id))
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+            if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
             {
                 return (EntityID)id;
             }
@@ -213,7 +221,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Converts the given <see cref="EntityID"/> to a record column.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="EntityID"/> as a CSV record.</returns>

@@ -1,12 +1,18 @@
 using System;
+using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Utilities
 {
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
-    public readonly struct Vector2D : IEquatable<Vector2D>
+    public readonly struct Vector2D : IEquatable<Vector2D>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>The zero vector.</summary>
         public static readonly Vector2D Zero = new Vector2D(0, 0);
 
@@ -24,7 +30,9 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>The vector offset to the West.</summary>
         public static readonly Vector2D West = new Vector2D(-1, 0);
+        #endregion
 
+        #region Characteristics
         /// <summary>Offset from origin in x.</summary>
         public int X { get; }
 
@@ -33,7 +41,9 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>Provides the magnitude of the vector as an integer, rounded-down.</summary>
         public int Magnitude { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2D"/> struct.
         /// </summary>
@@ -45,6 +55,7 @@ namespace ParquetClassLibrary.Utilities
             Y = inY;
             Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
         }
+        #endregion
 
         #region Vector Math
         /// <summary>
@@ -121,6 +132,54 @@ namespace ParquetClassLibrary.Utilities
         public static bool operator !=(Vector2D inVector1, Vector2D inVector2)
             => inVector1.X != inVector2.X
             || inVector1.Y != inVector2.Y;
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly Vector2D ConverterFactory = Zero;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is Vector2D vector
+                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
+                  $"{vector.Y}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(Vector2D)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Vector2D)}.");
+            }
+
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+
+            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
+                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
+            {
+                return new Vector2D(x, y);
+            }
+            else
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(Vector2D)}.");
+            }
+        }
         #endregion
 
         #region Utilities

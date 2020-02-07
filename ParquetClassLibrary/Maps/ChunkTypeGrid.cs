@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -60,6 +61,13 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
+        /// Initializes a new <see cref="ChunkTypeGrid"/> with default values.
+        /// </summary>
+        public ChunkTypeGrid()
+            // This version of the constructor exists to make the generic new() constraint happy.
+            : this(null, null, null, MapRegion.DefaultGlobalElevation) { }
+
+        /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
         /// </summary>
         /// <param name="inID">A pre-existing RegionID; if null, the ID is set to <see cref="EntityID.None"/>.</param>
@@ -88,6 +96,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ChunkType}"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ChunkType> IEnumerable<ChunkType>.GetEnumerator()
             => (IEnumerator<ChunkType>)chunkTypes.GetEnumerator();
@@ -95,13 +104,10 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => chunkTypes.GetEnumerator();
-        #endregion
-
-        #region Serialization
-
         #endregion
 
         #region Utilities

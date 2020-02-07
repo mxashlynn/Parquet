@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper;
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Utilities;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
     /// Models a quest that an <see cref="Beings.NPCModel"/> may give to a <see cref="Beings.PlayerCharacterModel"/> embodies.
     /// </summary>
-    public sealed class QuestModel : InteractionModel
+    public sealed class QuestModel : InteractionModel, ITypeConverter
     {
         #region Characteristics
+        // TODO Is this completely implemented?  Check paper notes.
         /// <summary>
         /// Describes the criteria for completing this <see cref="QuestModel"/>.
         /// </summary>
@@ -31,7 +34,7 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inCompletionRequirements">Describes the criteria for completing this <see cref="QuestModel"/>.</param>
         public QuestModel(EntityID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<EntityTag> inStartCriteria, IEnumerable<string> inSteps, string inOutcome,
+                          IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome,
                           IEnumerable<EntityTag> inCompletionRequirements)
             : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
@@ -39,75 +42,70 @@ namespace ParquetClassLibrary.Interactions
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly QuestModel ConverterFactory =
+            new QuestModel(EntityID.None, nameof(ConverterFactory), "", "", null, null, "", null);
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="QuestModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="QuestModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class QuestShim : EntityShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is QuestModel quest
+                ? $"{quest.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{quest.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{quest.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{quest.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(quest.StartCriteria, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(quest.Steps, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{quest.Outcome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(quest.CompletionRequirements, inRow, inMemberMapData)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(DialogueModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            // TODO Derive this from InteractionStub
-
-            /// <summary>Describes the criteria for completing this <see cref="QuestModel"/>.</summary>
-            public IReadOnlyList<EntityTag> CompletionRequirements;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="T">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="InteractionModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText))
             {
-                Precondition.IsOfType<TModel, QuestModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(QuestModel)}.");
+            }
 
-                // TODO Fill in these stubs.
-                return (TModel)(ShimProvider)new QuestModel(ID, Name, Description, Comment, CompletionRequirements, null, null, null);
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var criteria = (IReadOnlyList<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory
+                    .ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var steps = (IReadOnlyList<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory
+                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var outcome = parameterText[6];
+                var requirements = (IReadOnlyList<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory
+                    .ConvertFromString(parameterText[7], inRow, inMemberMapData);
+
+                return new QuestModel(id, name, description, comment, criteria, steps, outcome, requirements);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(QuestModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="QuestShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class QuestClassMap : ClassMap<QuestShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="QuestClassMap"/> class.
-            /// </summary>
-            public QuestClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.CompletionRequirements).Index(4);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static QuestClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new QuestClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(QuestShim);
         #endregion
     }
 }

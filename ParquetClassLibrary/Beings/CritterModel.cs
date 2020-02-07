@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Biomes;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -9,7 +11,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
     /// </summary>
-    public sealed class CritterModel : BeingModel
+    public sealed class CritterModel : BeingModel, ITypeConverter
     {
         #region Initialization
         /// <summary>
@@ -22,7 +24,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inName">Player-friendly name of the <see cref="CritterModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CritterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CritterModel"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="BiomeModel"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
+        /// <param name="inNativeBiome">The <see cref="Biomes.BiomeModel"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CritterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="CritterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CritterModel"/> seeks.</param>
@@ -35,72 +37,70 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="CritterModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CritterModel"/> from this class.
-        /// </summary>
-        internal class CritterShim : BeingShim
-        {
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="BeingModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, CritterModel>(typeof(TModel).ToString());
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly CritterModel ConverterFactory =
+            new CritterModel(EntityID.None, nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
 
-                return (TModel)(ShimProvider)new CritterModel(ID, Name, Description, Comment, NativeBiome, PrimaryBehavior, Avoids, Seeks);
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is CritterModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, Rules.Delimiters.ElementDelimiter)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CritterModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CritterModel)}.");
+            }
+
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[5]);
+                var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+
+                return new CritterModel(id, name, description, comment, biome, behavior, avoids, seeks);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(CritterModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CritterShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CritterClassMap : ClassMap<CritterShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CritterClassMap"/> class.
-            /// </summary>
-            public CritterClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.NativeBiome).Index(4);
-                Map(m => m.PrimaryBehavior).Index(5);
-                Map(m => m.Avoids).Index(6);
-                Map(m => m.Seeks).Index(7);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CritterClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CritterClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CritterShim);
         #endregion
     }
 }

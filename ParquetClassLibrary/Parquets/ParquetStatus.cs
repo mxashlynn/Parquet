@@ -1,3 +1,9 @@
+using System;
+using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -5,8 +11,9 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models the status of a stack of sandbox parquets.
     /// </summary>
-    public class ParquetStatus
+    public class ParquetStatus : ITypeConverter
     {
+        #region Status
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
 
@@ -24,8 +31,16 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>If the floor has been dug out.</summary>
         public bool IsTrench { get; set; }
+        #endregion
 
         #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParquetStatus"/> class with default values.
+        /// </summary>
+        public ParquetStatus()
+            // This version of the constructor exists to make the generic new() constraint happy.
+            : this(false, null, BlockModel.DefaultMaxToughness) { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
         /// </summary>
@@ -37,6 +52,58 @@ namespace ParquetClassLibrary.Parquets
             IsTrench = inIsTrench;
             Toughness = inToughness ?? inMaxToughness;
             maxToughness = inMaxToughness;
+        }
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly ParquetStatus ConverterFactory = new ParquetStatus();
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is ParquetStatus status
+                ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{status.maxToughness}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStatus)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStatus)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var isTrench = bool.Parse(parameterText[0]);
+                var toughness = int.Parse(parameterText[1], numberStyle, cultureInfo);
+                var maxToughness = int.Parse(parameterText[2], numberStyle, cultureInfo);
+
+                return new ParquetStatus(isTrench, toughness, maxToughness);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ParquetStatus)}: {e}");
+            }
         }
         #endregion
 

@@ -1,4 +1,7 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -28,7 +31,7 @@ namespace ParquetClassLibrary
     /// EntityModel could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class EntityModel : ShimProvider, IEntityModelEdit, IEquatable<EntityModel>
+    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
@@ -71,26 +74,6 @@ namespace ParquetClassLibrary
             Name = inName;
             Description = inDescription ?? "";
             Comment = inComment ?? "";
-        }
-        #endregion
-
-        #region Serialization
-        /// <summary>
-        /// Parent class for all <see cref="EntityModel"/> shims.
-        /// </summary>
-        internal abstract class EntityShim : Shim
-        {
-            /// <summary>Unique identifier of the parquet.</summary>
-            public EntityID ID;
-
-            /// <summary>Player-facing name of the parquet.</summary>
-            public string Name;
-
-            /// <summary>Player-facing description.</summary>
-            public string Description;
-
-            /// <summary>Optional comment.</summary>
-            public string Comment;
         }
         #endregion
 

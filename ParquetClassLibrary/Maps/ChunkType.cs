@@ -1,4 +1,7 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -21,11 +24,14 @@ namespace ParquetClassLibrary.Maps
     /// <description>Handmade</description></item>
     /// </list>
     /// </remarks>
-    public readonly struct ChunkType : IEquatable<ChunkType>
+    public readonly struct ChunkType : IEquatable<ChunkType>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>The null <see cref="ChunkType"/>, which generates an empty <see cref="MapChunk"/>.</summary>
         public static readonly ChunkType Empty = new ChunkType();
+        #endregion
 
+        #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         public bool Handmade { get; }
 
@@ -40,6 +46,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>Indicates the type of parquets modifying the <see cref="MapChunk"/>.</summary>
         public EntityTag ModifierConstituents { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -119,6 +126,63 @@ namespace ParquetClassLibrary.Maps
         /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ChunkType inChunkType1, ChunkType inChunkType2)
             => !inChunkType1.Equals(inChunkType2.BaseTopography);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly ChunkType ConverterFactory = Empty;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is ChunkType chunk
+                ? chunk.Handmade
+                    ? nameof(Handmade)
+                    : $"{chunk.BaseTopography}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierConstituents}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ChunkType)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ChunkType)}.");
+            }
+            else if (string.Compare(nameof(Handmade), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                return new ChunkType(true);
+            }
+            else try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
+                var baseComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
+                var modifierComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+
+                return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkType)}: {e}");
+            }
+        }
         #endregion
 
         #region Utilities

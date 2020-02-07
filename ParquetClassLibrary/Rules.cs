@@ -66,5 +66,23 @@ namespace ParquetClassLibrary
                 public const int MinPerimeterSpaces = MinWalkableSpaces * 3;
             }
         }
+
+        /// <summary>
+        /// Provides a unified source of serialization separators for the library.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+            "CA1034:Nested types should not be visible",
+            Justification = "No adequate alternative in this instance.")]
+        public static class Delimiters
+        {
+            /// <summary>Separates objects within collections.</summary>
+            public const string SecondaryDelimiter = "\\";
+
+            /// <summary>Separates properties within a class when in serialization.</summary>
+            public const string InternalDelimiter = "|";
+
+            /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
+            public const string ElementDelimiter = "__";
+        }
     }
 }

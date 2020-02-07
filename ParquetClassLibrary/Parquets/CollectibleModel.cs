@@ -1,6 +1,10 @@
 using System;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -8,7 +12,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    public sealed class CollectibleModel : ParquetModel
+    public sealed class CollectibleModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -17,11 +21,11 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        public CollectEffect Effect { get; }
+        public CollectingEffect CollectionEffect { get; }
 
         /// <summary>
-        /// The scale in points of the effect.  For example, how much to alter a stat if the
-        /// <see cref="CollectEffect"/> is set to alter a stat.
+        /// The scale in points of the effect.
+        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
         public int EffectAmount { get; }
         #endregion
@@ -43,7 +47,7 @@ namespace ParquetClassLibrary.Parquets
         /// </param>
         public CollectibleModel(EntityID inID, string inName, string inDescription, string inComment,
                            EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                           EntityTag inAddsToRoom = null, CollectEffect inEffect = CollectEffect.None,
+                           EntityTag inAddsToRoom = null, CollectingEffect inEffect = CollectingEffect.None,
                            int inEffectAmount = 0)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
                    inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
@@ -51,86 +55,75 @@ namespace ParquetClassLibrary.Parquets
             var nonNullItemID = inItemID ?? EntityID.None;
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
 
-            Effect = inEffect;
+            CollectionEffect = inEffect;
             EffectAmount = inEffectAmount;
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly CollectibleModel ConverterFactory = new CollectibleModel(EntityID.None, nameof(ConverterFactory), "", "");
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a <see cref="CollectibleModel"/>-like
-        /// class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="CollectibleModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class CollectibleShim : ParquetModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is CollectibleModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.CollectionEffect}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.EffectAmount}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CollectibleModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>The effect generated when a character encounters this collectible.</summary>
-            public CollectEffect Effect;
-
-            /// <summary>The scale in points of the effect.</summary>
-            public int EffectAmount;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                Precondition.IsOfType<TModel, CollectibleModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CollectibleModel)}.");
+            }
 
-                return (TModel)(ShimProvider)new CollectibleModel(ID, Name, Description, Comment, ItemID,
-                                                                  AddsToBiome, AddsToRoom, Effect, EffectAmount);
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var effect = Enum.Parse<CollectingEffect>(parameterText[7], true);
+                var amount = int.Parse(parameterText[8], numberStyle, cultureInfo);
+
+                return new CollectibleModel(id, name, description, comment, itemID, biome, room, effect, amount);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(CollectibleModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="CollectibleShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class CollectibleClassMap : ClassMap<CollectibleShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CollectibleClassMap"/> class.
-            /// </summary>
-            public CollectibleClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.Effect).Index(7);
-                Map(m => m.EffectAmount).Index(8);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static CollectibleClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new CollectibleClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(CollectibleShim);
         #endregion
     }
 }

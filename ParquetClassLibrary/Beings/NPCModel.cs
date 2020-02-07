@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -8,7 +11,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definition for a non-player character, such as a shop keeper.
     /// </summary>
-    public sealed class NPCModel : CharacterModel
+    public sealed class NPCModel : CharacterModel, ITypeConverter
     {
         #region Initialization
         /// <summary>
@@ -46,80 +49,89 @@ namespace ParquetClassLibrary.Beings
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
-        /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="NPCModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="NPCModel"/> from this class.
-        /// </summary>
-        internal class NPCShim : CharacterShim
-        {
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="CharacterModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
-            {
-                Precondition.IsOfType<TModel, NPCModel>(typeof(TModel).ToString());
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct statically.</summary>
+        internal static readonly NPCModel ConverterFactory =
+            new NPCModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
 
-                return (TModel)(ShimProvider)new NPCModel(ID, PersonalName, FamilyName, Description, Comment, NativeBiome, PrimaryBehavior,
-                                                          Avoids, Seeks, Pronouns, StoryCharacterID, StartingQuests, Dialogue, StartingInventory);
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is NPCModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.PersonalName}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.FamilyName}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Pronouns}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.StoryCharacterID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingQuests, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Dialogue, Rules.Delimiters.ElementDelimiter)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingInventory, Rules.Delimiters.ElementDelimiter)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(NPCModel)}.");
+            }
+
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var personalName = parameterText[1];
+                var familyName = parameterText[2];
+                var description = parameterText[3];
+                var comment = parameterText[4];
+                var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[6]);
+                var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var pronouns = parameterText[9];
+                var storyID = parameterText[10];
+                var startingQuests = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[10], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var dialogue = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+                var startingInventory = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
+                    .ConverterFactory.ConvertFromString(parameterText[12], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
+
+                return new NPCModel(id, personalName, familyName, description, comment, biome, behavior, avoids, seeks,
+                                    pronouns, storyID, startingQuests, dialogue, startingInventory);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(NPCModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="NPCShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class NPCClassMap : ClassMap<NPCShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="NPCClassMap"/> class.
-            /// </summary>
-            public NPCClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.PersonalName).Index(1);
-                Map(m => m.FamilyName).Index(2);
-                Map(m => m.Description).Index(3);
-                Map(m => m.Comment).Index(4);
-
-                Map(m => m.NativeBiome).Index(5);
-                Map(m => m.PrimaryBehavior).Index(6);
-                Map(m => m.Avoids).Index(7);
-                Map(m => m.Seeks).Index(8);
-
-                Map(m => m.Pronouns).Index(9);
-                Map(m => m.StoryCharacterID).Index(10);
-                Map(m => m.StartingQuests).Index(11);
-                Map(m => m.Dialogue).Index(12);
-                Map(m => m.StartingInventory).Index(13);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static NPCClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new NPCClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(NPCShim);
         #endregion
     }
 }

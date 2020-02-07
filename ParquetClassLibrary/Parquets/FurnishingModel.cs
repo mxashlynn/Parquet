@@ -1,5 +1,8 @@
 using System;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -8,7 +11,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for large sandbox parquet items, such as furniture or plants.
     /// </summary>
-    public sealed class FurnishingModel : ParquetModel
+    public sealed class FurnishingModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
@@ -24,6 +27,9 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Room"/>.</summary>
         public bool IsEnclosing { get; }
+
+        /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        public bool IsFlammable { get; }
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
         public EntityID SwapID { get; }
@@ -43,11 +49,13 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsWalkable">If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</param>
         /// <param name="inIsEntry">If <c>true</c> this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Room"/>.</param>
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
+        /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
         /// <param name="inSwapID">A <see cref="FurnishingModel"/> to swap with this furnishing on open/close actions.</param>
         public FurnishingModel(EntityID inID, string inName, string inDescription, string inComment,
                           EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                           EntityTag inAddsToRoom = null, bool inIsWalkable = false,
-                          bool inIsEntry = false, bool inIsEnclosing = false, EntityID? inSwapID = null)
+                          bool inIsEntry = false, bool inIsEnclosing = false,
+                          bool inIsFlammable = false, EntityID? inSwapID = null)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
                    inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
         {
@@ -57,93 +65,79 @@ namespace ParquetClassLibrary.Parquets
             IsWalkable = inIsWalkable;
             IsEntry = inIsEntry;
             IsEnclosing = inIsEnclosing;
+            IsFlammable = inIsFlammable;
             SwapID = nonNullSwapID;
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly FurnishingModel ConverterFactory = new FurnishingModel(EntityID.None, nameof(ConverterFactory), "", "");
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a <see cref="FurnishingModel"/>-like
-        /// class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="FurnishingModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class FurnishingShim : ParquetModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is FurnishingModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsWalkable}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsEntry}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsEnclosing}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.SwapID}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(FurnishingModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>Indicates if the furnishing may be walked on.</summary>
-            public bool IsWalkable;
-
-            /// <summary>Indicates if the furnishing may be entered through.</summary>
-            public bool IsEntry;
-
-            /// <summary>Indicates if the furnishing acts like a wall.</summary>
-            public bool IsEnclosing;
-
-            /// <summary>The furnishing to swap with this furnishing on an open/close action.</summary>
-            public EntityID SwapID;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                Precondition.IsOfType<TModel, FurnishingModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(FurnishingModel)}.");
+            }
 
-                return (TModel)(ShimProvider)new FurnishingModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                                 AddsToBiome, IsWalkable, IsEntry, IsEnclosing, SwapID);
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var walkable = bool.Parse(parameterText[7]);
+                var entry = bool.Parse(parameterText[8]);
+                var enclosing = bool.Parse(parameterText[9]);
+                var flammable = bool.Parse(parameterText[10]);
+                var swapID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData);
+
+                return new FurnishingModel(id, name, description, comment, itemID, biome, room, walkable, entry, enclosing, flammable, swapID);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(FurnishingModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="FurnishingShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class FurnishingClassMap : ClassMap<FurnishingShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FurnishingClassMap"/> class.
-            /// </summary>
-            public FurnishingClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.IsWalkable).Index(7);
-                Map(m => m.IsEntry).Index(8);
-                Map(m => m.IsEnclosing).Index(9);
-                Map(m => m.SwapID).Index(10);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static FurnishingClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new FurnishingClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(FurnishingShim);
         #endregion
     }
 }

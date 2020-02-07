@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -9,7 +13,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A playable region in sandbox.
     /// </summary>
-    public sealed class MapRegion : MapModel, IMapRegionEdit
+    public sealed class MapRegion : MapModel, IMapRegionEdit, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -47,7 +51,7 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public PCLColor Background { get; private set; }
+        public PCLColor Background { get; private set; } // TODO Replace this with a string value.
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         PCLColor IMapRegionEdit.Background { get => Background; set => Background = value; }
@@ -67,15 +71,13 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatusGrid ParquetStatuses { get; } =
-            new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
         /// </summary>
-        protected override ParquetStackGrid ParquetDefintion { get; } =
-            new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        protected override ParquetStackGrid ParquetDefintion { get; }
         #endregion
         #endregion
 
@@ -91,97 +93,102 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inBackground">A color to show in the new region when no parquet is present.</param>
         /// <param name="inLocalElevation">The absolute elevation of this region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        public MapRegion(EntityID inID, string inTitle = null,
-                         string inDescription = null, string inComment = null, int inRevision = 0,
+        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
+        /// <param name="inStatuses">The statuses of the collected parquets.</param>
+        /// <param name="inDefintions">The definitions of the collected parquets.</param>
+        public MapRegion(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
                          PCLColor? inBackground = null, Elevation inLocalElevation = Elevation.LevelGround,
-                         int inGlobalElevation = DefaultGlobalElevation)
-            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision)
+                         int inGlobalElevation = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
+                         ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefintions = null)
+
+            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision, inExits)
         {
             Background = inBackground ?? PCLColor.White;
             ElevationLocal = inLocalElevation;
             ElevationGlobal = inGlobalElevation;
+            ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+            ParquetDefintion = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly MapRegion ConverterFactory = Empty;
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="MapRegion"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="MapRegion"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class MapRegionShim : MapModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is MapRegion map
+                ? $"{map.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.DataVersion}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Revision++}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.Background}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.ElevationLocal}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.ElevationGlobal}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory.ConvertToString(map.ExitPoints, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory.ConvertToString(map.ParquetStatuses, inRow, inMemberMapData)}" +
+                  $"{Rules.Delimiters.InternalDelimiter}" +
+                  $"{GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory.ConvertToString(map.ParquetDefintion, inRow, inMemberMapData)}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(MapRegion)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>A color to display in any empty areas of the region.</summary>
-            public PCLColor Background;
-
-            /// <summary>The region's elevation in absolute terms.</summary>
-            public Elevation ElevationLocal;
-
-            /// <summary>The region's elevation relative to all other regions.</summary>
-            public int ElevationGlobal;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="MapModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText))
             {
-                Precondition.IsOfType<TModel, MapRegion>(typeof(TModel).ToString());
-                if (!DataVersion.Equals(AssemblyInfo.SupportedMapDataVersion, StringComparison.InvariantCultureIgnoreCase))
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(MapRegion)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var dataVersion = parameterText[4];
+                if (dataVersion != DataVersion)
                 {
-                    throw new NotSupportedException(
-                        $"Parquet supports map chunk data version {AssemblyInfo.SupportedMapDataVersion}; cannot deserialize version {DataVersion}.");
+                    throw new FormatException($"Unsupported saved data version: ${dataVersion}.");
                 }
 
-                return (TModel)(ShimProvider)new MapRegion(ID, Name, Description, Comment, Revision, Background,
-                                                           // TODO ExitPoints, ParquetStatuses, ParquetDefintion, Background,
-                                                           ElevationLocal, ElevationGlobal);
-            }
-        }
-        #endregion
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var title = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var revision = int.Parse(parameterText[5], numberStyle, cultureInfo);
+                var background = parameterText[6];  // TODO Replace this with a string value.
+                var localElevation = Enum.Parse<Elevation>(parameterText[7], true);
+                var globalElevation = int.Parse(parameterText[8], numberStyle, cultureInfo);
+                var exits = (IReadOnlyList<ExitPoint>)SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory
+                    .ConvertFromString(parameterText[9], inRow, inMemberMapData);
+                var statuses = (ParquetStatusGrid)GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[10], inRow, inMemberMapData);
+                var stacks = (ParquetStackGrid)GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory
+                    .ConvertFromString(parameterText[11], inRow, inMemberMapData);
 
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="MapRegionShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class MapRegionClassMap : ClassMap<MapRegionShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="MapRegionClassMap"/> class.
-            /// </summary>
-            public MapRegionClassMap()
+                return new MapRegion(id, title, description, comment, revision, /*background*/null, localElevation, globalElevation, exits, statuses, stacks);
+            }
+            catch (Exception e)
             {
-                // TODO This is a stub.
-
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
+                throw new FormatException($"Could not parse '{inText}' as {nameof(MapRegion)}: {e}");
             }
         }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static MapRegionClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new MapRegionClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(MapRegionShim);
         #endregion
 
         #region Utilities

@@ -1,5 +1,7 @@
 using System;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -7,7 +9,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public sealed class PronounGroup : ShimProvider, IPronounGroupEdit
+    public sealed class PronounGroup : IPronounGroupEdit, ITypeConverter
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -69,11 +71,11 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <param name="inSubjective">Personal pronoun used as the subject of a verb.  Cannot be null or empty.</param>
         /// <param name="inObjective">Personal pronoun used as the indirect object of a preposition or verb.  Cannot be null or empty.</param>
-        /// <param name="inPossessiveDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
-        /// <param name="inPossessivePronoun">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
+        /// <param name="inDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
+        /// <param name="inPossessive">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
         /// <param name="inReflexive">Personal pronoun used as a coreferential to indicate the user.  Cannot be null or empty.</param>
-        public PronounGroup(string inSubjective, string inObjective, string inPossessiveDeterminer,
-                        string inPossessivePronoun, string inReflexive)
+        public PronounGroup(string inSubjective, string inObjective, string inDeterminer,
+                            string inPossessive, string inReflexive)
         {
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
@@ -83,85 +85,65 @@ namespace ParquetClassLibrary.Beings
 
             Subjective = inSubjective;
             Objective = inObjective;
-            Determiner = inPossessiveDeterminer;
-            Possessive = inPossessivePronoun;
+            Determiner = inDeterminer;
+            Possessive = inPossessive;
             Reflexive = inReflexive;
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly PronounGroup ConverterFactory =
+            new PronounGroup(nameof(Subjective), nameof(Objective), nameof(Determiner), nameof(Possessive), nameof(Reflexive));
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="PronounGroup"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="PronounGroup"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class PronounGroupShim : Shim
-        {
-            /// <summary>Personal pronoun used as the subject of a verb.</summary>
-            public string Subjective;
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is PronounGroup group
+                ? $"{group.Subjective}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Objective}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Determiner}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Possessive}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{group.Reflexive}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(PronounGroup)}.");
 
-            /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
-            public string Objective;
-
-            /// <summary>Personal pronoun used to attribute possession.</summary>
-            public string Determiner;
-
-            /// <summary>Personal pronoun used to indicate a relationship.</summary>
-            public string Possessive;
-
-            /// <summary>Personal pronoun used to indicate the user.</summary>
-            public string Reflexive;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <returns>An instance corresponding to this shim.</returns>
-            /// <typeparam name="TInstance">The type to convert this shim to.</typeparam>
-            public override TInstance ToInstance<TInstance>()
-                => (TInstance)(ShimProvider)new PronounGroup(Subjective, Objective, Determiner, Possessive, Reflexive);
-        }
-        #endregion
-
-        #region Class Map
         /// <summary>
-        /// Maps the values in a <see cref="PronounGroupShim"/> to records that CSVHelper recognizes.
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        internal sealed class PronounGroupClassMap : ClassMap<PronounGroupShim>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="PronounGroupClassMap"/> class.
-            /// </summary>
-            public PronounGroupClassMap()
+            if (string.IsNullOrEmpty(inText))
             {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.Subjective).Index(0);
-                Map(m => m.Objective).Index(1);
-                Map(m => m.Determiner).Index(2);
-                Map(m => m.Possessive).Index(3);
-                Map(m => m.Reflexive).Index(4);
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(PronounGroup)}.");
+            }
+
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var subjective = parameterText[0];
+                var objective = parameterText[1];
+                var determiner = parameterText[2];
+                var possesive = parameterText[3];
+                var reflexive = parameterText[4];
+
+                return new PronounGroup(subjective, objective, determiner, possesive, reflexive);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(PronounGroup)}: {e}");
             }
         }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static PronounGroupClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new PronounGroupClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(PronounGroupShim);
         #endregion
 
         #region Utilities

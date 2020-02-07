@@ -1,7 +1,11 @@
 using System;
+using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -9,7 +13,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet block.
     /// </summary>
-    public sealed class BlockModel : ParquetModel
+    public sealed class BlockModel : ParquetModel, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Minimum toughness value for any Block.</summary>
@@ -27,7 +31,7 @@ namespace ParquetClassLibrary.Parquets
         public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        public GatherEffect GatherEffect { get; }
+        public GatheringEffect GatherEffect { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         public EntityID CollectibleID { get; }
@@ -62,7 +66,7 @@ namespace ParquetClassLibrary.Parquets
                      EntityID? inItemID = null, EntityTag inAddsToBiome = null,
                      EntityTag inAddsToRoom = null,
                      GatheringTool inGatherTool = GatheringTool.None,
-                     GatherEffect inGatherEffect = GatherEffect.None,
+                     GatheringEffect inGatherEffect = GatheringEffect.None,
                      EntityID? inCollectibleID = null, bool inIsFlammable = false,
                      bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
@@ -81,98 +85,78 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        #region Serialization
-        #region Serializer Shim
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly BlockModel ConverterFactory = new BlockModel(EntityID.None, nameof(ConverterFactory), "", "");
+
         /// <summary>
-        /// Provides a default public parameterless constructor for a
-        /// <see cref="BlockModel"/>-like class that CSVHelper can instantiate.
-        /// 
-        /// Provides the ability to generate a <see cref="BlockModel"/> from this class.
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        internal class BlockShim : ParquetModelShim
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => null != inValue
+            && inValue is BlockModel model
+            && model.ID != EntityID.None
+                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.GatherTool}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.GatherEffect}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.CollectibleID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.IsLiquid}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{model.MaxToughness}"
+            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BlockModel)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            /// <summary>The tool used to remove the block.</summary>
-            public GatheringTool GatherTool;
-
-            /// <summary>The effect generated when a character gathers this Block.</summary>
-            public GatherEffect GatherEffect;
-
-            /// <summary>The collectible spawned when a character gathers this Block.</summary>
-            public EntityID CollectibleID;
-
-            /// <summary>The block is flammable.</summary>
-            public bool IsFlammable;
-
-            /// <summary>The block is a liquid.</summary>
-            public bool IsLiquid;
-
-            /// <summary>The block's native toughness.</summary>
-            public int MaxToughness;
-
-            /// <summary>
-            /// Converts a shim into the class it corresponds to.
-            /// </summary>
-            /// <typeparam name="TModel">The type to convert this shim to.</typeparam>
-            /// <returns>An instance of a child class of <see cref="ParquetModel"/>.</returns>
-            public override TModel ToInstance<TModel>()
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                Precondition.IsOfType<TModel, BlockModel>(typeof(TModel).ToString());
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(BlockModel)}.");
+            }
 
-                return (TModel)(ShimProvider)new BlockModel(ID, Name, Description, Comment, ItemID, AddsToBiome,
-                                                            AddsToRoom, GatherTool, GatherEffect, CollectibleID,
-                                                            IsFlammable, IsLiquid, MaxToughness);
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var name = parameterText[1];
+                var description = parameterText[2];
+                var comment = parameterText[3];
+                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
+                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
+                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
+                var tool = Enum.Parse<GatheringTool>(parameterText[7], true);
+                var effect = Enum.Parse<GatheringEffect>(parameterText[8], true);
+                var collectibleID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[9], inRow, inMemberMapData);
+                var flammable = bool.Parse(parameterText[10]);
+                var liquid = bool.Parse(parameterText[11]);
+                var toughness = int.Parse(parameterText[12], numberStyle, cultureInfo);
+
+                return new BlockModel(id, name, description, comment, ItemID, biome, room, tool, effect, collectibleID, flammable, liquid, toughness);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(BlockModel)}: {e}");
             }
         }
-        #endregion
-
-        #region Class Map
-        /// <summary>
-        /// Maps the values in a <see cref="BlockShim"/> to records that CSVHelper recognizes.
-        /// </summary>
-        internal sealed class BlockClassMap : ClassMap<BlockShim>
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="BlockClassMap"/> class.
-            /// </summary>
-            public BlockClassMap()
-            {
-                // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
-                Map(m => m.ID).Index(0);
-                Map(m => m.Name).Index(1);
-                Map(m => m.Description).Index(2);
-                Map(m => m.Comment).Index(3);
-
-                Map(m => m.ItemID).Index(4);
-                Map(m => m.AddsToBiome).Index(5);
-                Map(m => m.AddsToRoom).Index(6);
-
-                Map(m => m.GatherTool).Index(7);
-                Map(m => m.GatherEffect).Index(8);
-                Map(m => m.CollectibleID).Index(9);
-                Map(m => m.IsFlammable).Index(10);
-                Map(m => m.IsLiquid).Index(11);
-                Map(m => m.MaxToughness).Index(12);
-            }
-        }
-        #endregion
-
-        /// <summary>Caches a class mapper.</summary>
-        private static BlockClassMap classMapCache;
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal static ClassMap GetClassMap()
-            => classMapCache
-            ?? (classMapCache = new BlockClassMap());
-
-        /// <summary>
-        /// Provides the means to map all members of this class to a CSV file.
-        /// </summary>
-        /// <returns>The member mapping.</returns>
-        internal new static Type GetShimType()
-            => typeof(BlockShim);
         #endregion
     }
 }
