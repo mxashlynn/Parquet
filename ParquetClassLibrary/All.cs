@@ -371,6 +371,8 @@ namespace ParquetClassLibrary
         {
             var pronounGroups = Serializer.GetRecordsForType<PronounGroup>();
 
+            // TODO Some of this functionality should be in ModelCollection.
+
             InitializeCollections(Serializer.GetRecordsForType<CritterModel>()
                                   .Concat<BeingModel>(Serializer.GetRecordsForType<NPCModel>())
                                   .Concat<BeingModel>(Serializer.GetRecordsForType<PlayerCharacterModel>()),
@@ -378,9 +380,8 @@ namespace ParquetClassLibrary
                                   Serializer.GetRecordsForType<CraftingRecipe>(),
                                   Serializer.GetRecordsForType<DialogueModel>()
                                   .Concat<InteractionModel>(Serializer.GetRecordsForType<QuestModel>()),
-                                  Enumerable.Empty<MapModel>(),
-                                  // TODO Serializer.GetRecordsForType<MapChunk>()
-                                  // TODO .Concat<MapModel>(Serializer.GetRecordsForType<MapRegion>()),
+                                  Serializer.GetRecordsForType<MapChunk>()
+                                  .Concat<MapModel>(Serializer.GetRecordsForType<MapRegion>()),
                                   Serializer.GetRecordsForType<FloorModel>()
                                   .Concat<ParquetModel>(Serializer.GetRecordsForType<BlockModel>())
                                   .Concat<ParquetModel>(Serializer.GetRecordsForType<FurnishingModel>())
