@@ -1,6 +1,8 @@
+using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -11,6 +13,7 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public class InventorySlot : ITypeConverter
     {
+        #region Characteristics
         /// <summary>What <see cref="ItemModel"/>s are stored in this slot.</summary>
         public EntityID ItemID { get; }
 
@@ -18,9 +21,15 @@ namespace ParquetClassLibrary.Items
         public int Count { get; private set; }
 
         /// <summary>How many of the item may share this slow, cached.</summary>
-        private int StackMax;
+        private readonly int StackMax;
+        #endregion
 
         #region Initialization
+        /// <summary>
+        /// Creates a dummy slot for serialization purposes.
+        /// </summary>
+        public InventorySlot() : this(EntityID.None) { }
+
         /// <summary>
         /// Creates a new slot to store the given item type.
         /// </summary>
@@ -97,8 +106,7 @@ namespace ParquetClassLibrary.Items
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly InventorySlot ConverterFactory =
-            new InventorySlot();
+        internal static readonly InventorySlot ConverterFactory = new InventorySlot();
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -108,18 +116,42 @@ namespace ParquetClassLibrary.Items
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-        {
-        }
+            => null != inValue
+            && inValue is InventorySlot slot
+                ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{slot.Count}"
+                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(InventorySlot)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(InventorySlot)}.");
+            }
+
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var count = int.Parse(parameterText[1], numberStyle, cultureInfo);
+
+                return new InventorySlot(id, count);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(InventorySlot)}: {e}");
+            }
         }
         #endregion
 
