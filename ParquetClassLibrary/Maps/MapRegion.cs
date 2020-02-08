@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Maps
         internal const int DefaultGlobalElevation = 0;
 
         /// <summary>Default color for new regions.</summary>
-        internal static readonly PCLColor DefaultColor = PCLColor.White;
+        internal const string DefaultColor = "#FFFFFFFF";
         #endregion
 
         #region Characteristics
@@ -51,10 +51,10 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        public PCLColor Background { get; private set; } // TODO Replace this with a string value.
+        public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        PCLColor IMapRegionEdit.Background { get => Background; set => Background = value; }
+        string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         public Elevation ElevationLocal { get; private set; }
@@ -97,13 +97,13 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inStatuses">The statuses of the collected parquets.</param>
         /// <param name="inDefintions">The definitions of the collected parquets.</param>
         public MapRegion(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
-                         PCLColor? inBackground = null, Elevation inLocalElevation = Elevation.LevelGround,
+                         string inBackground = DefaultColor, Elevation inLocalElevation = Elevation.LevelGround,
                          int inGlobalElevation = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
                          ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefintions = null)
 
             : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision, inExits)
         {
-            Background = inBackground ?? PCLColor.White;
+            BackgroundColor = inBackground;
             ElevationLocal = inLocalElevation;
             ElevationGlobal = inGlobalElevation;
             ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
@@ -131,7 +131,7 @@ namespace ParquetClassLibrary.Maps
                   $"{map.Comment}{Rules.Delimiters.InternalDelimiter}" +
                   $"{map.DataVersion}{Rules.Delimiters.InternalDelimiter}" +
                   $"{map.Revision++}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.Background}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{map.BackgroundColor}{Rules.Delimiters.InternalDelimiter}" +
                   $"{map.ElevationLocal}{Rules.Delimiters.InternalDelimiter}" +
                   $"{map.ElevationGlobal}{Rules.Delimiters.InternalDelimiter}" +
                   $"{SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory.ConvertToString(map.ExitPoints, inRow, inMemberMapData)}" +

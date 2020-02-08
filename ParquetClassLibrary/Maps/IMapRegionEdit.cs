@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
         string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        PCLColor Background { get; set; }
+        string BackgroundColor { get; set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         Elevation ElevationLocal { get; set; }

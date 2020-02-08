@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Maps
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
+        private const string testColor = "#FF8822EE";
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
         private static readonly EntityID testID = TestModels.TestMapRegion.ID + 3;
@@ -24,7 +24,7 @@ namespace ParquetUnitTests.Maps
             var defaultGrid = new ChunkTypeGrid();
 
             Assert.Equal(MapRegion.DefaultTitle, defaultGrid.Title);
-            Assert.Equal(MapRegion.DefaultColor, defaultGrid.Background);
+            Assert.Equal(MapRegion.DefaultColor, defaultGrid.BackgroundColor);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace ParquetUnitTests.Maps
             var nulledGrid = new ChunkTypeGrid(null);
 
             Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
-            Assert.Equal(MapRegion.DefaultColor, nulledGrid.Background);
+            Assert.Equal(MapRegion.DefaultColor, nulledGrid.BackgroundColor);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace ParquetUnitTests.Maps
 
             Assert.Equal(testID, customRegion.RegionID);
             Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testElevation, customRegion.GlobalElevation);
         }
         #endregion

@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Maps
         public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
-        public PCLColor Background { get; set; }
+        public string BackgroundColor { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
         public int GlobalElevation { get; set; }
@@ -74,14 +74,14 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inTitle">The name of the new region.</param>
         /// <param name="inBackground">Background color for the new region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        public ChunkTypeGrid(EntityID? inID = null, string inTitle = null, PCLColor? inBackground = null,
-                            int inGlobalElevation = MapRegion.DefaultGlobalElevation)
+        public ChunkTypeGrid(EntityID? inID = null, string inTitle = null, string inBackground = MapRegion.DefaultColor,
+                             int inGlobalElevation = MapRegion.DefaultGlobalElevation)
         {
             RegionID = inID ?? EntityID.None;
             Title = string.IsNullOrEmpty(inTitle)
                 ? MapRegion.DefaultTitle
                 : inTitle;
-            Background = inBackground ?? MapRegion.DefaultColor;
+            BackgroundColor = inBackground ?? MapRegion.DefaultColor;
             GlobalElevation = inGlobalElevation;
         }
         #endregion
@@ -124,7 +124,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="ChunkTypeGrid"/>.</returns>
         public override string ToString()
-            => $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
+            => $"Chunk Grid {Title} is ({BackgroundColor}) at {GlobalElevation}.";
         #endregion
     }
 }

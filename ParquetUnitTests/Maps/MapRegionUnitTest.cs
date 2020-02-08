@@ -14,7 +14,7 @@ namespace ParquetUnitTests.Maps
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
+        private const string testColor = "#FF8822EE";
         private const string testTitle = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Maps
         public void NewDefaultMapRegionTest()
         {
             Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(MapRegion.DefaultColor, defaultRegion.Background);
+            Assert.Equal(MapRegion.DefaultColor, defaultRegion.BackgroundColor);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace ParquetUnitTests.Maps
             var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
 
             Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
@@ -50,12 +50,12 @@ namespace ParquetUnitTests.Maps
             IMapRegionEdit editableRegion = customRegion;
 
             editableRegion.Title = testTitle;
-            editableRegion.Background = testColor;
+            editableRegion.BackgroundColor = testColor;
             editableRegion.ElevationLocal = testStory;
             editableRegion.ElevationGlobal = testElevation;
 
             Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
