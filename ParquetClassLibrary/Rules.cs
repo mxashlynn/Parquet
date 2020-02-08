@@ -8,11 +8,29 @@ namespace ParquetClassLibrary
     public static class Rules
     {
         /// <summary>
-        /// Provides dimensional parameters for the game.
+        /// Provides rules for determining a <see cref="Maps.MapRegion"/>'s <see cref="Biomes.BiomeModel"/>.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
             "CA1034:Nested types should not be visible",
             Justification = "No adequate alternative in this instance.")]
+        public static class BiomeCriteria
+        {
+            /// <summary>Used in computing thresholds.</summary>
+            public const int ParquetsPerLayer = Dimensions.ParquetsPerRegion * Dimensions.ParquetsPerRegion;
+
+            /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="Biomes.BiomeModel"/>.</summary>
+            public const int LandThreshold = ParquetsPerLayer * 5 / 4;
+
+            /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="Biomes.BiomeModel"/>.</summary>
+            public const int FluidThreshold = ParquetsPerLayer / 4;
+        }
+
+        /// <summary>
+        /// Provides dimensional parameters for the game.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+        "CA1034:Nested types should not be visible",
+        Justification = "No adequate alternative in this instance.")]
         public static class Dimensions
         {
             /// <summary>The length of each <see cref="Maps.ChunkTypeGrid"/> dimension in parquets.</summary>
