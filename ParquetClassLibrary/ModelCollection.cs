@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using CsvHelper;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -23,21 +27,23 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityTag"/>
     /// <seealso cref="All"/>
     /// <typeparam name="TModel">The type collected, typically a decendent of <see cref="EntityModel"/>.</typeparam>
-    public class ModelCollection<TModel> : IReadOnlyCollection<TModel> where TModel : EntityModel
+    public class ModelCollection<TModel> : IReadOnlyCollection<TModel>
+        where TModel : EntityModel
     {
+        #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModelType}"/>s.</summary>
         public static readonly ModelCollection<TModel> Default = new ModelCollection<TModel>(
             new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<EntityModel>());
+        #endregion
 
+        #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<EntityID, EntityModel> Models { get; }
 
         /// <summary>The bounds within which all collected <see cref="EntityModel"/>s must be defined.</summary>
         private IReadOnlyList<Range<EntityID>> Bounds { get; }
-
-        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
-        public int Count => Models?.Count ?? 0;
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -83,6 +89,9 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Collection Access
+        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
+        public int Count => Models?.Count ?? 0;
+
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="EntityModel"/>.
         /// </summary>
@@ -117,7 +126,8 @@ namespace ParquetClassLibrary
         /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
         /// <returns>The specified <typeparamref name="TTarget"/> model.</returns>
-        public TTarget Get<TTarget>(EntityID inID) where TTarget : TModel
+        public TTarget Get<TTarget>(EntityID inID)
+            where TTarget : TModel
         {
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
@@ -146,6 +156,61 @@ namespace ParquetClassLibrary
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<EntityModel> GetEnumerator()
             => Models.Values.GetEnumerator();
+        #endregion
+
+        #region Self Serialization
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static readonly ModelCollection<TModel> ConverterFactory = Default;
+
+        /// <summary>
+        /// Reads all records of the given type from the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <returns>The instances read.</returns>
+        public ModelCollection<TModel> GetRecordsForType<TRecord>(Range<EntityID> inBounds)
+            where TRecord : TModel, ITypeConverter
+            => GetRecordsForType<TRecord>(new List<Range<EntityID>> { inBounds });
+
+        /// <summary>
+        /// Reads all records of the given type from the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <returns>The instances read.</returns>
+        public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<EntityID>> inBounds)
+            where TRecord : TModel, ITypeConverter
+        {
+            using var reader = new StreamReader($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new ModelCollection<TModel>(inBounds, csv.GetRecords<TRecord>());
+        }
+
+        /// <summary>
+        /// Writes all of the given type to records to the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to serialize.</typeparam>
+        internal void PutRecordsForType<TRecord>()
+            where TRecord : TModel, ITypeConverter
+        {
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<TRecord>();
+            csv.NextRecord();
+            csv.WriteRecords(Models.Values.Where(model => model.GetType() == typeof(TRecord)));
+        }
         #endregion
 
         #region Utilities

@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -143,6 +146,45 @@ namespace ParquetClassLibrary.Beings
             {
                 throw new FormatException($"Could not parse '{inText}' as {nameof(PronounGroup)}: {e}");
             }
+        }
+        #endregion
+
+        #region Self Serialization
+        /// <summary>
+        /// Reads all <see cref="PronounGroup"/> records from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static HashSet<PronounGroup> GetRecords()
+        {
+            using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new HashSet<PronounGroup>(csv.GetRecords<PronounGroup>());
+        }
+
+        /// <summary>
+        /// Writes all <see cref="PronounGroup"/> records to the appropriate file.
+        /// </summary>
+        public static void PutRecords(IEnumerable<PronounGroup> inGroups)
+        {
+            Precondition.IsNotNull(inGroups);
+
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<PronounGroup>();
+            csv.NextRecord();
+            csv.WriteRecords(inGroups);
         }
         #endregion
 

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Crafts;
@@ -11,6 +13,7 @@ using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Serialization;
+using System.Globalization;
 
 namespace ParquetClassLibrary
 {
@@ -314,6 +317,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes the <see cref="ModelCollection{T}s"/> from the given collections.
         /// </summary>
+        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <param name="inBeings">All beings to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
@@ -322,18 +326,17 @@ namespace ParquetClassLibrary
         /// <param name="inParquets">All parquets to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
-        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        public static void InitializeCollections(IEnumerable<BeingModel> inBeings,
+        public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
+                                                 IEnumerable<BeingModel> inBeings,
                                                  IEnumerable<BiomeModel> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<ItemModel> inItems,
-                                                 IEnumerable<PronounGroup> inPronouns)
+                                                 IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
@@ -363,54 +366,122 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Serialization
+        /// <summary>Instructions for integer parsing.</summary>
+        internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
+
+        /// <summary>Instructions for string parsing.</summary>
+        internal static CultureInfo SerializedCultureInfo { get; } = CultureInfo.InvariantCulture;
+
+        /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
+        internal static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
+        {
+            NumberStyle = SerializedNumberStyle,
+            CultureInfo = SerializedCultureInfo,
+        };
+
+        /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
+        internal static Dictionary<Type, ITypeConverter> ConversionConverters { get; } = new Dictionary<Type, ITypeConverter>
+        {
+            #region ITypeConverters
+            { typeof(BiomeModel), BiomeModel.ConverterFactory },
+            { typeof(BlockModel), BlockModel.ConverterFactory },
+            { typeof(ChunkType), ChunkType.ConverterFactory },
+            { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
+            { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
+            { typeof(CritterModel), CritterModel.ConverterFactory },
+            { typeof(DialogueModel), DialogueModel.ConverterFactory },
+            { typeof(EntityID), EntityID.ConverterFactory },
+            { typeof(EntityTag), EntityTag.ConverterFactory },
+            { typeof(ExitPoint), ExitPoint.ConverterFactory },
+            { typeof(FloorModel), FloorModel.ConverterFactory },
+            { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
+            { typeof(InventorySlot), InventorySlot.ConverterFactory },
+            { typeof(Inventory), Inventory.ConverterFactory },
+            { typeof(ItemModel), ItemModel.ConverterFactory },
+            { typeof(MapChunk), MapChunk.ConverterFactory },
+            { typeof(MapRegion), MapRegion.ConverterFactory },
+            { typeof(NPCModel), NPCModel.ConverterFactory },
+            { typeof(ParquetStack), ParquetStack.ConverterFactory },
+            { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+            { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
+            { typeof(PronounGroup), PronounGroup.ConverterFactory },
+            { typeof(QuestModel), QuestModel.ConverterFactory },
+            { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
+            { typeof(Range<int>), Range<int>.ConverterFactory },
+            { typeof(RecipeElement), RecipeElement.ConverterFactory },
+            { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
+            { typeof(StrikePanel), StrikePanel.ConverterFactory },
+            { typeof(Vector2D), Vector2D.ConverterFactory },
+            #endregion
+
+            #region Linear Series Types
+            { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+            { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+            { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+            { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+            #endregion
+
+            #region 2D Grid Types
+            { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+            { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
+            { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+            { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
+            #endregion
+        };
+
+        /// <summary>
+        /// The location of the designer CSV files, set to either the working directory
+        /// or a predefined designer directory, depending on build type.
+        /// </summary>
+        public static string WorkingDirectory { get; } =
+#if DEBUG
+            $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+#else
+            Directory.GetCurrentDirectory();
+#endif
+
         /// <summary>
         /// Initializes <see cref="All"/> based on the values in design-time CSV files.
         /// </summary>
-        /// <seealso cref="Serializer"/>
         public static void LoadFromCSV()
-        {
-            var pronounGroups = Serializer.GetRecordsForType<PronounGroup>();
-
-            // TODO Some of this functionality should be in ModelCollection.
-
-            InitializeCollections(Serializer.GetRecordsForType<CritterModel>()
-                                  .Concat<BeingModel>(Serializer.GetRecordsForType<NPCModel>())
-                                  .Concat<BeingModel>(Serializer.GetRecordsForType<PlayerCharacterModel>()),
-                                  Serializer.GetRecordsForType<BiomeModel>(),
-                                  Serializer.GetRecordsForType<CraftingRecipe>(),
-                                  Serializer.GetRecordsForType<DialogueModel>()
-                                  .Concat<InteractionModel>(Serializer.GetRecordsForType<QuestModel>()),
-                                  Serializer.GetRecordsForType<MapChunk>()
-                                  .Concat<MapModel>(Serializer.GetRecordsForType<MapRegion>()),
-                                  Serializer.GetRecordsForType<FloorModel>()
-                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<BlockModel>())
-                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<FurnishingModel>())
-                                  .Concat<ParquetModel>(Serializer.GetRecordsForType<CollectibleModel>()),
-                                  Serializer.GetRecordsForType<RoomRecipe>(),
-                                  Serializer.GetRecordsForType<ItemModel>(), pronounGroups);
-        }
+            => InitializeCollections(PronounGroup.GetRecords(),
+                                     ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
+                                         .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<NPCModel>(BeingIDs))
+                                         .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<PlayerCharacterModel>(BeingIDs)),
+                                     ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs),
+                                     ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs),
+                                     ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
+                                         .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
+                                     ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                                         .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
+                                     ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
+                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
+                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
+                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs)),
+                                     ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs),
+                                     ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs));
 
         /// <summary>
         /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
         /// </summary>
         public static void SaveToCSV()
         {
-            Serializer.PutRecordsForType<PronounGroup>(PronounGroups);
-            //Serializer.PutRecordsForType<CritterModel>(Beings.Where(being => being is CritterModel));
-            //Serializer.PutRecordsForType<NPCModel>(Beings.Where(being => being is NPCModel));
-            //Serializer.PutRecordsForType<PlayerCharacterModel>(Beings.Where(being => being is PlayerCharacterModel));
-            //Serializer.PutRecordsForType<BiomeModel>(Biomes);
-            //Serializer.PutRecordsForType<CraftingRecipe>(CraftingRecipes);
-            Serializer.PutRecordsForType<DialogueModel>(Interactions.Where(interaction => interaction is DialogueModel).Cast<DialogueModel>());
-            //Serializer.PutRecordsForType<QuestModel>(Interactions.Where(interaction => interaction is QuestModel));
-            //Serializer.PutRecordsForType<MapChunk>(Maps.Where(map => map is MapChunk));
-            //Serializer.PutRecordsForType<MapRegion>(Maps.Where(map => map is MapRegion));
-            //Serializer.PutRecordsForType<FloorModel>(Parquets.Where(parquet => parquet is FloorModel));
-            //Serializer.PutRecordsForType<BlockModel>(Parquets.Where(parquet => parquet is BlockModel));
-            //Serializer.PutRecordsForType<FurnishingModel>(Parquets.Where(parquet => parquet is FurnishingModel));
-            //Serializer.PutRecordsForType<CollectibleModel>(Parquets.Where(parquet => parquet is CollectibleModel));
-            //Serializer.PutRecordsForType<RoomRecipe>(RoomRecipes);
-            //Serializer.PutRecordsForType<ItemModel>(Items);
+            PronounGroup.PutRecords(PronounGroups);
+            Beings.PutRecordsForType<CritterModel>();
+            Beings.PutRecordsForType<NPCModel>();
+            Beings.PutRecordsForType<PlayerCharacterModel>();
+            Biomes.PutRecordsForType<BiomeModel>();
+            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            Interactions.PutRecordsForType<DialogueModel>();
+            Interactions.PutRecordsForType<QuestModel>();
+            Maps.PutRecordsForType<MapChunk>();
+            Maps.PutRecordsForType<MapRegion>();
+            Parquets.PutRecordsForType<FloorModel>();
+            Parquets.PutRecordsForType<BlockModel>();
+            Parquets.PutRecordsForType<FurnishingModel>();
+            Parquets.PutRecordsForType<CollectibleModel>();
+            RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Items.PutRecordsForType<ItemModel>();
         }
         #endregion
     }
