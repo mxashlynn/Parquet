@@ -4,7 +4,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace ParquetClassLibrary.Serialization
+namespace ParquetClassLibrary
 {
     /// <summary>
     /// Type converter for any collection that implements <see cref="ICollection{T}"/>.

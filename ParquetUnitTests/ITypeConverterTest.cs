@@ -5,7 +5,7 @@ using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using Xunit;
 
-namespace ParquetUnitTests.Serialization
+namespace ParquetUnitTests
 {
     public class ITypeConverterTest
     {

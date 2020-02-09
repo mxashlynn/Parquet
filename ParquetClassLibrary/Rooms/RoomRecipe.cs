@@ -5,7 +5,6 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Rooms
 {

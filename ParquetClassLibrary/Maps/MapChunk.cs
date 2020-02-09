@@ -4,8 +4,6 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Serialization;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {

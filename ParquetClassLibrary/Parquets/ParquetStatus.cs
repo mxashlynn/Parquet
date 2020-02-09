@@ -1,9 +1,7 @@
 using System;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets

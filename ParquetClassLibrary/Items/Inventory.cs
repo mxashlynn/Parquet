@@ -5,7 +5,6 @@ using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Serialization;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Serialization;
 
 namespace ParquetClassLibrary.Interactions
 {
