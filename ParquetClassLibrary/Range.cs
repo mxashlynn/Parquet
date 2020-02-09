@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Serialization;
 
-namespace ParquetClassLibrary.Utilities
+namespace ParquetClassLibrary
 {
     /// <summary>
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.

@@ -1,11 +1,10 @@
 using System;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Serialization;
 
-namespace ParquetClassLibrary.Utilities
+namespace ParquetClassLibrary
 {
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.

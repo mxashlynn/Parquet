@@ -1,4 +1,5 @@
 using System;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
 using Xunit;
 
@@ -172,7 +173,8 @@ namespace ParquetUnitTests.Utilities
                        && inPosition.Y <= fillLayer.Length;
             }
 
-            bool Matches<T>(Vector2D inPosition, T inMatchAgainst) where T : struct
+            bool Matches<T>(Vector2D inPosition, T inMatchAgainst)
+                where T : struct
             {
                 var matchAgainst = Convert.ToInt32(inMatchAgainst);
                 return fillLayer[inPosition.Y, inPosition.X] == matchAgainst;
