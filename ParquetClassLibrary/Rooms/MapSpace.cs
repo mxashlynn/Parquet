@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNull(Subregion, nameof(Subregion));
 
-            var offsetPosition = Position + inOffset;
+            Vector2D offsetPosition = Position + inOffset;
             return Subregion.IsValidPosition(offsetPosition)
                 ? new MapSpace(offsetPosition, Subregion[offsetPosition.Y, offsetPosition.X], Subregion)
                 : Empty;

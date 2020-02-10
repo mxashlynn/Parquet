@@ -8,9 +8,9 @@ namespace ParquetUnitTests.Items
     public class InventorySlotUnitTest
     {
         #region Test Values
-        private int None = 0;
-        private int One = 1;
-        private int Some = 10;
+        private const int None = 0;
+        private const int One = 1;
+        private const int Some = 10;
         #endregion
 
         [Fact]

@@ -62,7 +62,7 @@ dotnet_style_collection_initializer = true:suggestion
 dotnet_style_explicit_tuple_names = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_object_initializer = true:suggestion
-dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_prefer_auto_properties = false:suggestion
 dotnet_style_prefer_compound_assignment = true:suggestion
 dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
 dotnet_style_prefer_conditional_expression_over_return = true:suggestion
@@ -86,16 +86,16 @@ dotnet_style_readonly_field = true:suggestion
 dotnet_code_quality_unused_parameters = all:suggestion
 
 # Var
-csharp_style_var_elsewhere = false:suggestion
+csharp_style_var_elsewhere = true:silent
 csharp_style_var_for_built_in_types = true:silent
 csharp_style_var_when_type_is_apparent = true:suggestion
 
 # Expression-Bodied Members
 csharp_style_expression_bodied_accessors = true:suggestion
-csharp_style_expression_bodied_constructors = true:suggestion
+csharp_style_expression_bodied_constructors = false:suggestion
 csharp_style_expression_bodied_indexers = true:suggestion
 csharp_style_expression_bodied_lambdas = true:suggestion
-csharp_style_expression_bodied_local_functions = true:suggestion
+csharp_style_expression_bodied_local_functions = false:suggestion
 csharp_style_expression_bodied_methods = true:suggestion
 csharp_style_expression_bodied_operators = true:suggestion
 csharp_style_expression_bodied_properties = true:suggestion

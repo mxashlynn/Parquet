@@ -67,7 +67,7 @@ namespace ParquetUnitTests.Maps
             var grid = new ChunkTypeGrid();
             grid[Vector2D.Zero.Y, Vector2D.Zero.X] = testChunk;
 
-            var returnedChunk = grid[Vector2D.Zero.Y, Vector2D.Zero.Y];
+            ChunkType returnedChunk = grid[Vector2D.Zero.Y, Vector2D.Zero.Y];
 
             Assert.Equal(testChunk, returnedChunk);
         }

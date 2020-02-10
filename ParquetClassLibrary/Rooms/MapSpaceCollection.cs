@@ -103,7 +103,7 @@ namespace ParquetClassLibrary.Rooms
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
         internal bool TryGetPerimeter(out MapSpaceCollection outPerimeter)
         {
-            var subregion = First.Subregion;
+            ParquetStackGrid subregion = First.Subregion;
             Precondition.IsNotNull(subregion);
 
             var stepCount = 0;
@@ -132,18 +132,18 @@ namespace ParquetClassLibrary.Rooms
                 && greatestYValue < subregion.Rows)
             {
                 #region Find Positions of Walkable Extrema
-                var northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
-                var southWalkableExtreme = Spaces.First(space => space.Position.Y == greatestYValue).Position;
-                var eastWalkableExtreme = Spaces.First(space => space.Position.X == greatestXValue).Position;
-                var westWalkableExtreme = Spaces.First(space => space.Position.X == leastXValue).Position;
+                Vector2D northWalkableExtreme = Spaces.First(space => space.Position.Y == leastYValue).Position;
+                Vector2D southWalkableExtreme = Spaces.First(space => space.Position.Y == greatestYValue).Position;
+                Vector2D eastWalkableExtreme = Spaces.First(space => space.Position.X == greatestXValue).Position;
+                Vector2D westWalkableExtreme = Spaces.First(space => space.Position.X == leastXValue).Position;
                 #endregion
 
                 // Only continue if all four seeds are found.
                 var perimiterSeeds = new List<Vector2D>();
-                if (TryGetSeed(northWalkableExtreme, position => position + Vector2D.North, out var northSeed)
-                    && TryGetSeed(southWalkableExtreme, position => position + Vector2D.South, out var southSeed)
-                    && TryGetSeed(eastWalkableExtreme, position => position + Vector2D.East, out var eastSeed)
-                    && TryGetSeed(westWalkableExtreme, position => position + Vector2D.West, out var westSeed))
+                if (TryGetSeed(northWalkableExtreme, position => position + Vector2D.North, out Vector2D northSeed)
+                    && TryGetSeed(southWalkableExtreme, position => position + Vector2D.South, out Vector2D southSeed)
+                    && TryGetSeed(eastWalkableExtreme, position => position + Vector2D.East, out Vector2D eastSeed)
+                    && TryGetSeed(westWalkableExtreme, position => position + Vector2D.West, out Vector2D westSeed))
                 {
                     perimiterSeeds.Add(northSeed);
                     perimiterSeeds.Add(southSeed);
@@ -187,8 +187,8 @@ namespace ParquetClassLibrary.Rooms
             bool TryGetSeed(Vector2D inStart, Func<Vector2D, Vector2D> inAdjust, out Vector2D outFinal)
             {
                 var found = false;
-                var position = inStart;
-                var subregion = First.Subregion;
+                Vector2D position = inStart;
+                ParquetStackGrid subregion = First.Subregion;
 
                 Precondition.IsNotNull(subregion, nameof(subregion));
 

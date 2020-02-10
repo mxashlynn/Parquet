@@ -179,7 +179,7 @@ namespace ParquetClassLibrary.Utilities
 
             while (queue.Count > 0)
             {
-                var position = queue.Dequeue();
+                Vector2D position = queue.Dequeue();
                 if (!results.Contains(position)
                     && inIsValid(position)
                     && inMatches(position, inTarget))

@@ -7,7 +7,7 @@ namespace ParquetUnitTests.Items
     public class InventoryUnitTest
     {
         #region Test Values
-        private int TestCapacity = 30;
+        private const int TestCapacity = 30;
         #endregion
 
         [Fact]

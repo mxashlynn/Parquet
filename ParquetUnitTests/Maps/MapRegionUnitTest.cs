@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
@@ -206,7 +207,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
-            var specialData = TestModels.TestMapRegion.GetExitsAtPosition(invalidPosition);
+            IReadOnlyList<ExitPoint> specialData = TestModels.TestMapRegion.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }
@@ -227,7 +228,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetDefinitionReturnsNoneOnEmptyMapTest()
         {
-            var result = MapRegion.Empty.GetDefinitionAtPosition(Vector2D.Zero);
+            ParquetStack result = MapRegion.Empty.GetDefinitionAtPosition(Vector2D.Zero);
 
             Assert.Equal(EntityID.None, result.Floor);
             Assert.Equal(EntityID.None, result.Block);
@@ -240,7 +241,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {
-            var invalidUpperLeft = invalidPosition;
+            Vector2D invalidUpperLeft = invalidPosition;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -255,8 +256,8 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
-            var validUpperLeft = Vector2D.Zero;
-            var invalidLowerRight = defaultRegion.DimensionsInParquets;
+            Vector2D validUpperLeft = Vector2D.Zero;
+            Vector2D invalidLowerRight = defaultRegion.DimensionsInParquets;
 
             void InvalidSubregion()
             {
@@ -269,7 +270,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
-            var validUpperLeft = Vector2D.Zero;
+            Vector2D validUpperLeft = Vector2D.Zero;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -290,7 +291,7 @@ namespace ParquetUnitTests.Maps
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            var subregion = defaultRegion.GetSubregion();
+            ParquetStackGrid subregion = defaultRegion.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -308,7 +309,7 @@ namespace ParquetUnitTests.Maps
                                 .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
 
-            var subregion = defaultRegion.GetSubregion();
+            ParquetStackGrid subregion = defaultRegion.GetSubregion();
 
             for (var x = 0; x < defaultRegion.DimensionsInParquets.X; x++)
             {

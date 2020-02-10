@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CsvHelper.TypeConversion;
@@ -15,11 +16,12 @@ namespace ParquetUnitTests
         [Fact]
         public void AllTypeConvertersProvideFactoriesTest()
         {
-            var converterProviders = AppDomain.CurrentDomain.GetAssemblies()
-                                              .SelectMany(x => x.GetTypes())
-                                              .Where(x => typeof(ITypeConverter).IsAssignableFrom(x)
-                                                       && !x.IsInterface
-                                                       && !x.IsAbstract);
+            IEnumerable<Type> converterProviders = AppDomain.CurrentDomain
+                                                            .GetAssemblies()
+                                                            .SelectMany(x => x.GetTypes())
+                                                            .Where(x => typeof(ITypeConverter).IsAssignableFrom(x)
+                                                                     && !x.IsInterface
+                                                                     && !x.IsAbstract);
 
             foreach (var provider in converterProviders)
             {

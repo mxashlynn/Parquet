@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Interactions;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Parquets;
 
 namespace ParquetRoller
 {
@@ -177,17 +181,17 @@ namespace ParquetRoller
                     break;
                 case "critter":
                 case "critters":
-                    var critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
+                    IEnumerable<BeingModel> critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
                     workload = new ModelCollection(All.CritterIDs, critters);
                     break;
                 case "player":
                 case "players":
-                    var players = All.Beings.Where(model => model.ID.IsValidForRange(All.PlayerCharacterIDs));
+                    IEnumerable<BeingModel> players = All.Beings.Where(model => model.ID.IsValidForRange(All.PlayerCharacterIDs));
                     workload = new ModelCollection(All.NpcIDs, players);
                     break;
                 case "npc":
                 case "npcs":
-                    var npcs = All.Beings.Where(model => model.ID.IsValidForRange(All.NpcIDs));
+                    IEnumerable<BeingModel> npcs = All.Beings.Where(model => model.ID.IsValidForRange(All.NpcIDs));
                     workload = new ModelCollection(All.NpcIDs, npcs);
                     break;
                 case "biome":
@@ -204,12 +208,12 @@ namespace ParquetRoller
                     break;
                 case "dialgoue":
                 case "dialgoues":
-                    var dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
+                    IEnumerable<InteractionModel> dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
                     workload = new ModelCollection(All.DialogueIDs, dialogues);
                     break;
                 case "quest":
                 case "quests":
-                    var quests = All.Interactions.Where(model => model.ID.IsValidForRange(All.QuestIDs));
+                    IEnumerable<InteractionModel> quests = All.Interactions.Where(model => model.ID.IsValidForRange(All.QuestIDs));
                     workload = new ModelCollection(All.QuestIDs, quests);
                     break;
                 case "item":
@@ -218,12 +222,12 @@ namespace ParquetRoller
                     break;
                 case "p-item":
                 case "p-items":
-                    var pitems = All.Items.Where(model => model.AsParquet != EntityID.None);
+                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.AsParquet != EntityID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "n-item":
                 case "n-items":
-                    var nitems = All.Items.Where(model => model.AsParquet == EntityID.None);
+                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.AsParquet == EntityID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "parquet":
@@ -232,22 +236,22 @@ namespace ParquetRoller
                     break;
                 case "floor":
                 case "floors":
-                    var floors = All.Parquets.Where(model => model.ID.IsValidForRange(All.FloorIDs));
+                    IEnumerable<ParquetModel> floors = All.Parquets.Where(model => model.ID.IsValidForRange(All.FloorIDs));
                     workload = new ModelCollection(All.FloorIDs, floors);
                     break;
                 case "block":
                 case "blocks":
-                    var blocks = All.Parquets.Where(model => model.ID.IsValidForRange(All.BlockIDs));
+                    IEnumerable<ParquetModel> blocks = All.Parquets.Where(model => model.ID.IsValidForRange(All.BlockIDs));
                     workload = new ModelCollection(All.BlockIDs, blocks);
                     break;
                 case "furnishing":
                 case "furnishings":
-                    var furnishings = All.Parquets.Where(model => model.ID.IsValidForRange(All.FurnishingIDs));
+                    IEnumerable<ParquetModel> furnishings = All.Parquets.Where(model => model.ID.IsValidForRange(All.FurnishingIDs));
                     workload = new ModelCollection(All.FurnishingIDs, furnishings);
                     break;
                 case "collectible":
                 case "collectibles":
-                    var Collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
+                    IEnumerable<ParquetModel> Collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
                     workload = new ModelCollection(All.CollectibleIDs, Collectibles);
                     break;
                 case "room":

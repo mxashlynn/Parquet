@@ -246,8 +246,7 @@ namespace ParquetClassLibrary.Maps
                 {
                     for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
                     {
-                        var temp = ParquetDefintion[y, x];
-                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = temp;
+                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetDefintion[y, x];
                     }
                 }
 

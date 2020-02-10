@@ -3,7 +3,6 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
-using Range = ParquetClassLibrary.Range<int>;
 
 namespace ParquetClassLibrary.Crafts
 {

@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Facilitates editing of <see cref="MapRegion"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    interface IMapRegionEdit
+    internal interface IMapRegionEdit
     {
         /// <summary>What the region is called in-game.</summary>
         string Title { get; set; }

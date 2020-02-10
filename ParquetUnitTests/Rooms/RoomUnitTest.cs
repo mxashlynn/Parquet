@@ -110,7 +110,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void ContainedPositionIsFoundTest()
         {
-            var ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
+            Vector2D ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
 
             Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
         }
