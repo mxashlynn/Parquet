@@ -1,5 +1,4 @@
 using System;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {

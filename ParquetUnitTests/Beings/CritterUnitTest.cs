@@ -1,6 +1,5 @@
 using System;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
 using Xunit;
 

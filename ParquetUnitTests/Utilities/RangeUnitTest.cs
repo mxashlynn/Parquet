@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Utilities

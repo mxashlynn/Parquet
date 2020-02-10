@@ -166,7 +166,7 @@ namespace ParquetClassLibrary.Utilities
                 }
             }
         }
-        
+
         /// <summary>
         /// Verifies that the given <see cref="EntityID"/> is not <see cref="EntityID.None"/>.
         /// </summary>

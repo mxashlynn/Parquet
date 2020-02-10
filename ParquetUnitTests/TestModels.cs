@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Interactions;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetUnitTests
 {

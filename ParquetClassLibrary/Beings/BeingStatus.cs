@@ -114,7 +114,7 @@ namespace ParquetClassLibrary.Beings
             var nonNullCritters = inKnownCritters ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullNPCs = inKnownNPCs ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullRoomRecipes = inKnownRoomRecipes  ?? Enumerable.Empty<EntityID>().ToList();
+            var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullQuests = inQuests ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullInventory = inInventory ?? Enumerable.Empty<EntityID>().ToList();

@@ -1,7 +1,6 @@
 using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Parquets

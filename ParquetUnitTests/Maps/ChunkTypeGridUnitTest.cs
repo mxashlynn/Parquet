@@ -1,7 +1,6 @@
 using System;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Maps

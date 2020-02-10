@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Rooms
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
-            : base (All.RoomRecipeIDs, inID, inName, inDescription, inComment)
+            : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
             if (inMinimumWalkableSpaces < Rules.Recipes.Room.MinWalkableSpaces
                 || inMinimumWalkableSpaces > Rules.Recipes.Room.MaxWalkableSpaces)

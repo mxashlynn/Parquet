@@ -85,7 +85,8 @@ namespace ParquetClassLibrary
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
         public ModelCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels) :
-            this(new List<Range<EntityID>> { inBounds }, inModels) { }
+            this(new List<Range<EntityID>> { inBounds }, inModels)
+        { }
         #endregion
 
         #region Collection Access

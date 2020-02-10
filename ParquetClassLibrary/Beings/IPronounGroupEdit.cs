@@ -1,5 +1,3 @@
-using ParquetClassLibrary.Utilities;
-
 namespace ParquetClassLibrary.Beings
 {
     /// <summary>

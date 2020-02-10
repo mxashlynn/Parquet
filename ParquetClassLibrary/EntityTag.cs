@@ -2,7 +2,6 @@ using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {
@@ -115,7 +114,7 @@ namespace ParquetClassLibrary
                 return None;
             }
 
-            return(EntityTag)inText;
+            return (EntityTag)inText;
         }
 
         /// <summary>
