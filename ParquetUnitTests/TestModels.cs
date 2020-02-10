@@ -24,6 +24,9 @@ namespace ParquetUnitTests
 
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static PronounGroup TestPronounGroup { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static PlayerCharacterModel TestPlayer { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -81,6 +84,9 @@ namespace ParquetUnitTests
         public static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<PronounGroup> PronounGroups { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
@@ -114,7 +120,8 @@ namespace ParquetUnitTests
         /// </summary>
         static TestModels()
         {
-            #region Initialize EntityModels
+            #region Initialize Instances
+            TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
             TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test",
                                                   All.BiomeIDs.Minimum, Behavior.PlayerControlled);
             TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
@@ -175,6 +182,7 @@ namespace ParquetUnitTests
             #endregion
 
             #region Initialize All
+            PronounGroups = new List<PronounGroup> { TestPronounGroup };
             Beings = new List<BeingModel> { TestCritter, TestNPC, TestPlayer };
             Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
@@ -184,8 +192,7 @@ namespace ParquetUnitTests
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
 
-            // TODO Replace this null with pronouns.
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
+            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items);
             #endregion
         }
     }
