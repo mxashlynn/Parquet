@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Items
         /// As this is referenced before <see cref="All"/> is initialized, reflection cannot be used to determine this value.
         /// Therefore it must be updated by hand when <see cref="EntityID"/> ranges chage.
         /// </remarks>
-        private const int ShamID = -140000;
+        private const int ShamID = -219000;
 
         /// <summary>
         /// Model used when constructing a sham <see cref="InventorySlot"/>.

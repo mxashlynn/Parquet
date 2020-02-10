@@ -19,7 +19,7 @@ namespace ParquetUnitTests.Maps
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly EntityID testID = TestModels.TestMapRegion.ID;
-        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 2, "", "", "");
+        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
         #endregion
 
         #region Region Map Initialization
@@ -176,9 +176,10 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
+            var map = new MapRegion(-All.MapRegionIDs.Minimum - 1, "Unused Region 1", "Test", "Test");
             var point = new ExitPoint(invalidPosition, testID);
 
-            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
+            var result = map.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -186,9 +187,10 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
-            var point = new ExitPoint(Vector2D.Zero, testID);
+            var map = new MapRegion(-All.MapRegionIDs.Minimum - 2, "Unused Region 2", "Test", "Test");
+            var point = new ExitPoint(Vector2D.Zero, testID - 1);
 
-            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
+            var result = map.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
