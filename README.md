@@ -51,7 +51,7 @@ The solution contains several related projects, each of which is structured so t
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
     - **Quests**.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
-    - **Utilities** of which Range, Vector2D, and Precondition are all very frequently used.
+    - **Utilities** of which Precondition is very frequently used.
 - **ParquetRoller**
     - A command line tool for working with CSV files containing game definitions.
 - **ParquetRunner**
