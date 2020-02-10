@@ -30,6 +30,26 @@ namespace ParquetClassLibrary
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
         public static bool CollectionsHaveBeenInitialized { get; private set; }
 
+        #region Serialization Values and Lookup Tables
+        /// <summary>
+        /// The location of the designer CSV files, set to either the working directory
+        /// or a predefined designer directory, depending on build type.
+        /// </summary>
+        public static string WorkingDirectory { get; }
+
+        /// <summary>Instructions for integer parsing.</summary>
+        internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
+
+        /// <summary>Instructions for string parsing.</summary>
+        internal static CultureInfo SerializedCultureInfo { get; }
+
+        /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
+        internal static TypeConverterOptions IdentifierOptions { get; }
+
+        /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
+        internal static Dictionary<Type, ITypeConverter> ConversionConverters { get; }
+        #endregion
+
         #region EntityID Ranges
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacterModel"/>s.
@@ -311,6 +331,72 @@ namespace ParquetClassLibrary
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
             #endregion
+
+            #region Initialize Serialization
+            WorkingDirectory =
+#if DEBUG
+                $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+#else
+                Directory.GetCurrentDirectory();
+#endif
+
+            SerializedCultureInfo = CultureInfo.InvariantCulture;
+
+            IdentifierOptions = new TypeConverterOptions
+            {
+                NumberStyle = SerializedNumberStyle,
+                CultureInfo = SerializedCultureInfo,
+            };
+
+            ConversionConverters = new Dictionary<Type, ITypeConverter>
+            {
+                #region ITypeConverters
+                { typeof(BiomeModel), BiomeModel.ConverterFactory },
+                { typeof(BlockModel), BlockModel.ConverterFactory },
+                { typeof(ChunkType), ChunkType.ConverterFactory },
+                { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
+                { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
+                { typeof(CritterModel), CritterModel.ConverterFactory },
+                { typeof(DialogueModel), DialogueModel.ConverterFactory },
+                { typeof(EntityID), EntityID.ConverterFactory },
+                { typeof(EntityTag), EntityTag.ConverterFactory },
+                { typeof(ExitPoint), ExitPoint.ConverterFactory },
+                { typeof(FloorModel), FloorModel.ConverterFactory },
+                { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
+                { typeof(InventorySlot), InventorySlot.ConverterFactory },
+                { typeof(Inventory), Inventory.ConverterFactory },
+                { typeof(ItemModel), ItemModel.ConverterFactory },
+                { typeof(MapChunk), MapChunk.ConverterFactory },
+                { typeof(MapRegion), MapRegion.ConverterFactory },
+                { typeof(NPCModel), NPCModel.ConverterFactory },
+                { typeof(ParquetStack), ParquetStack.ConverterFactory },
+                { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+                { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
+                { typeof(PronounGroup), PronounGroup.ConverterFactory },
+                { typeof(QuestModel), QuestModel.ConverterFactory },
+                { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
+                { typeof(Range<int>), Range<int>.ConverterFactory },
+                { typeof(RecipeElement), RecipeElement.ConverterFactory },
+                { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
+                { typeof(StrikePanel), StrikePanel.ConverterFactory },
+                { typeof(Vector2D), Vector2D.ConverterFactory },
+                #endregion
+
+                #region Linear Series Types
+                { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+                { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                #endregion
+
+                #region 2D Grid Types
+                { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+                { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
+                { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
+                #endregion
+            };
+            #endregion
         }
 
         /// <summary>
@@ -328,14 +414,14 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
-                                                 IEnumerable<BeingModel> inBeings,
-                                                 IEnumerable<BiomeModel> inBiomes,
-                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
-                                                 IEnumerable<InteractionModel> inInteractions,
-                                                 IEnumerable<MapModel> inMaps,
-                                                 IEnumerable<ParquetModel> inParquets,
-                                                 IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<ItemModel> inItems)
+                                                     IEnumerable<BeingModel> inBeings,
+                                                     IEnumerable<BiomeModel> inBiomes,
+                                                     IEnumerable<CraftingRecipe> inCraftingRecipes,
+                                                     IEnumerable<InteractionModel> inInteractions,
+                                                     IEnumerable<MapModel> inMaps,
+                                                     IEnumerable<ParquetModel> inParquets,
+                                                     IEnumerable<RoomRecipe> inRoomRecipes,
+                                                     IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
@@ -365,80 +451,6 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Serialization
-        /// <summary>Instructions for integer parsing.</summary>
-        internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
-
-        /// <summary>Instructions for string parsing.</summary>
-        internal static CultureInfo SerializedCultureInfo { get; } = CultureInfo.InvariantCulture;
-
-        /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
-        internal static TypeConverterOptions IdentifierOptions { get; } = new TypeConverterOptions
-        {
-            NumberStyle = SerializedNumberStyle,
-            CultureInfo = SerializedCultureInfo,
-        };
-
-        /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
-        internal static Dictionary<Type, ITypeConverter> ConversionConverters { get; } = new Dictionary<Type, ITypeConverter>
-        {
-            #region ITypeConverters
-            { typeof(BiomeModel), BiomeModel.ConverterFactory },
-            { typeof(BlockModel), BlockModel.ConverterFactory },
-            { typeof(ChunkType), ChunkType.ConverterFactory },
-            { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
-            { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
-            { typeof(CritterModel), CritterModel.ConverterFactory },
-            { typeof(DialogueModel), DialogueModel.ConverterFactory },
-            { typeof(EntityID), EntityID.ConverterFactory },
-            { typeof(EntityTag), EntityTag.ConverterFactory },
-            { typeof(ExitPoint), ExitPoint.ConverterFactory },
-            { typeof(FloorModel), FloorModel.ConverterFactory },
-            { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
-            { typeof(InventorySlot), InventorySlot.ConverterFactory },
-            { typeof(Inventory), Inventory.ConverterFactory },
-            { typeof(ItemModel), ItemModel.ConverterFactory },
-            { typeof(MapChunk), MapChunk.ConverterFactory },
-            { typeof(MapRegion), MapRegion.ConverterFactory },
-            { typeof(NPCModel), NPCModel.ConverterFactory },
-            { typeof(ParquetStack), ParquetStack.ConverterFactory },
-            { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
-            { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
-            { typeof(PronounGroup), PronounGroup.ConverterFactory },
-            { typeof(QuestModel), QuestModel.ConverterFactory },
-            { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
-            { typeof(Range<int>), Range<int>.ConverterFactory },
-            { typeof(RecipeElement), RecipeElement.ConverterFactory },
-            { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
-            { typeof(StrikePanel), StrikePanel.ConverterFactory },
-            { typeof(Vector2D), Vector2D.ConverterFactory },
-            #endregion
-
-            #region Linear Series Types
-            { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
-            { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
-            { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
-            { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
-            #endregion
-
-            #region 2D Grid Types
-            { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
-            { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
-            { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
-            { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
-            #endregion
-        };
-
-        /// <summary>
-        /// The location of the designer CSV files, set to either the working directory
-        /// or a predefined designer directory, depending on build type.
-        /// </summary>
-        public static string WorkingDirectory { get; } =
-#if DEBUG
-            $"{Directory.GetCurrentDirectory()}/../../../../Designer";
-#else
-            Directory.GetCurrentDirectory();
-#endif
-
         /// <summary>
         /// Initializes <see cref="All"/> based on the values in design-time CSV files.
         /// </summary>
