@@ -1,7 +1,8 @@
 using System;
+using ParquetClassLibrary;
 using Xunit;
 
-namespace ParquetUnitTests.Utilities
+namespace ParquetUnitTests
 {
     public class Vector2DUnitTest
     {

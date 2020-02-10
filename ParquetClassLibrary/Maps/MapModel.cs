@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Maps
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Revision = inRevision;
-            ExitPoints = inExits.ToList() ?? new List<ExitPoint>();
+            ExitPoints = inExits?.ToList() ?? new List<ExitPoint>();
         }
         #endregion
 

@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Beings
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct statically.</summary>
         internal static readonly PlayerCharacterModel ConverterFactory =
-            new PlayerCharacterModel(EntityID.None, nameof(ConverterFactory), "", "", "", EntityID.None, Behavior.Still);
+            new PlayerCharacterModel(EntityID.None, nameof(ConverterFactory), nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

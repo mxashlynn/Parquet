@@ -53,9 +53,9 @@ namespace ParquetClassLibrary.Rooms
             }
 
             MinimumWalkableSpaces = inMinimumWalkableSpaces;
-            RequiredFurnishings = inOptionallyRequiredFurnishings.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredFloors = inOptionallyRequiredWalkableFloors.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            RequiredFurnishings = inOptionallyRequiredFurnishings?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            RequiredFloors = inOptionallyRequiredWalkableFloors?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
         }
         #endregion
 
