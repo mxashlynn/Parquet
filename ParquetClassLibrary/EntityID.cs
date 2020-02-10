@@ -205,8 +205,8 @@ namespace ParquetClassLibrary
                 return None;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? Serializer.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? Serializer.SerializedCultureInfo;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
             if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
             {
                 return (EntityID)id;
