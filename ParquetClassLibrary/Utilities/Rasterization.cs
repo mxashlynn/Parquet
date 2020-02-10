@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inEend">The other end of the line segment.</param>
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The line segment.</returns>
-        public static List<Vector2D> PlotLine(Vector2D inStart, Vector2D inEend, Predicate<Vector2D> inIsValid)
+        public static IEnumerable<Vector2D> PlotLine(Vector2D inStart, Vector2D inEend, Predicate<Vector2D> inIsValid)
         {
             // Ensures we do not return duplicate positions.
             var deduplicationList = new HashSet<Vector2D>();
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inLowerRight">The lower right corner of the rectangle.</param>
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The filled rectangle.</returns>
-        public static List<Vector2D> PlotFilledRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
+        public static IEnumerable<Vector2D> PlotFilledRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
                                                          Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
@@ -101,7 +101,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inLowerRight">The lower right corner of the rectangle.</param>
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The rectangle.</returns>
-        public static List<Vector2D> PlotEmptyRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
+        public static IEnumerable<Vector2D> PlotEmptyRectangle(Vector2D inUpperLeft, Vector2D inLowerRight,
                                                         Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
@@ -127,7 +127,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inIsFilled">If set to <c>true</c> in is filled.</param>
         /// <param name="inIsValid">Tests if plotted points are useable in their intended domain.</param>
         /// <returns>The circle.</returns>
-        public static List<Vector2D> PlotCircle(Vector2D inCenter, int inRadius, bool inIsFilled,
+        public static IEnumerable<Vector2D> PlotCircle(Vector2D inCenter, int inRadius, bool inIsFilled,
                                                 Predicate<Vector2D> inIsValid)
         {
             //Ensures we do not return duplicate positions.
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inMatches">The rule for determining matching parquets.</param>
         /// <typeparam name="TTarget">The type of the target element.</typeparam>
         /// <returns>A selection of contiguous positions.</returns>
-        public static List<Vector2D> PlotFloodFill<TTarget>(Vector2D inStart, TTarget inTarget,
+        public static IEnumerable<Vector2D> PlotFloodFill<TTarget>(Vector2D inStart, TTarget inTarget,
                                                             Predicate<Vector2D> inIsValid,
                                                             Func<Vector2D, TTarget, bool> inMatches)
         {

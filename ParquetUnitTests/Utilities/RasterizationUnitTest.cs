@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Utilities;
 using Xunit;
@@ -14,7 +15,7 @@ namespace ParquetUnitTests.Utilities
             const int rightBound = 10;
             var leftEnd = new Vector2D(leftBound, 0);
             var rightEnd = new Vector2D(rightBound, 0);
-            var vectors = Rasterization.PlotLine(leftEnd, rightEnd, a => true);
+            var vectors = Rasterization.PlotLine(leftEnd, rightEnd, a => true).ToList();
 
             for (var x = leftBound; x <= rightBound; x++)
             {
@@ -32,7 +33,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerBound = 10;
             var top = new Vector2D(0, upperBound);
             var bottom = new Vector2D(0, lowerBound);
-            var vectors = Rasterization.PlotLine(top, bottom, a => { return true; });
+            var vectors = Rasterization.PlotLine(top, bottom, a => true).ToList();
 
             for (var y = upperBound; y <= lowerBound; y++)
             {
@@ -50,7 +51,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 10;
             var upperLeftEnd = new Vector2D(upperLeftBound, upperLeftBound);
             var lowerRightEnd = new Vector2D(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotLine(upperLeftEnd, lowerRightEnd, a => { return true; });
+            var vectors = Rasterization.PlotLine(upperLeftEnd, lowerRightEnd, a => true).ToList();
 
             for (var i = upperLeftBound; i <= lowerRightBound; i++)
             {
@@ -68,7 +69,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 9;
             var upperLeftCorner = new Vector2D(upperLeftBound, upperLeftBound);
             var lowerRightCorner = new Vector2D(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotFilledRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
+            var vectors = Rasterization.PlotFilledRectangle(upperLeftCorner, lowerRightCorner, a => { return true; }).ToList();
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
@@ -89,7 +90,7 @@ namespace ParquetUnitTests.Utilities
             const int lowerRightBound = 9;
             var upperLeftCorner = new Vector2D(upperLeftBound, upperLeftBound);
             var lowerRightCorner = new Vector2D(lowerRightBound, lowerRightBound);
-            var vectors = Rasterization.PlotEmptyRectangle(upperLeftCorner, lowerRightCorner, a => { return true; });
+            var vectors = Rasterization.PlotEmptyRectangle(upperLeftCorner, lowerRightCorner, a => { return true; }).ToList();
 
             for (var x = upperLeftBound; x <= lowerRightBound; x++)
             {
@@ -120,7 +121,7 @@ namespace ParquetUnitTests.Utilities
             var rightOfCenter = new Vector2D(location + 1, location);
             var belowCenter = new Vector2D(location, location + 1);
 
-            var vectors = Rasterization.PlotCircle(center, radius, true, a => { return true; });
+            var vectors = Rasterization.PlotCircle(center, radius, true, a => { return true; }).ToList();
 
             Assert.True(vectors.Remove(center));
             Assert.True(vectors.Remove(aboveCenter));
@@ -141,7 +142,7 @@ namespace ParquetUnitTests.Utilities
             var rightOfCenter = new Vector2D(location + 1, location);
             var belowCenter = new Vector2D(location, location + 1);
 
-            var vectors = Rasterization.PlotCircle(center, radius, false, a => { return true; });
+            var vectors = Rasterization.PlotCircle(center, radius, false, a => { return true; }).ToList();
 
             Assert.False(vectors.Remove(center));
             Assert.True(vectors.Remove(aboveCenter));
@@ -195,7 +196,7 @@ namespace ParquetUnitTests.Utilities
                 return count;
             }
 
-            var vectors = Rasterization.PlotFloodFill(start, target, IsVaild, Matches);
+            var vectors = Rasterization.PlotFloodFill(start, target, IsVaild, Matches).ToList();
 
             Assert.Equal(CountAllTargets(fillLayer), vectors.Count);
             foreach (var vector in vectors)
