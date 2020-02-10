@@ -12,6 +12,13 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public class InventorySlot : ITypeConverter
     {
+        #region Class Defaults
+        /// <summary>
+        /// Stack maximum assumed when none is defined.
+        /// </summary>
+        public const int DefaultStackMax = 999;
+        #endregion
+
         #region Characteristics
         /// <summary>What <see cref="ItemModel"/>s are stored in this slot.</summary>
         public EntityID ItemID { get; }
@@ -25,9 +32,9 @@ namespace ParquetClassLibrary.Items
 
         #region Initialization
         /// <summary>
-        /// Creates a dummy slot for serialization purposes.
+        /// Creates a sham slot for serialization purposes.
         /// </summary>
-        public InventorySlot() : this(EntityID.None) { }
+        public InventorySlot() : this(ItemModel.ShamModel.ID) { }
 
         /// <summary>
         /// Creates a new slot to store the given item type.
@@ -45,7 +52,7 @@ namespace ParquetClassLibrary.Items
 
             ItemID = inItemToStore;
             Count = inHowMany;
-            StackMax = All.Items.Get<ItemModel>(ItemID).StackMax;
+            StackMax = All.Items?.Get<ItemModel>(ItemID)?.StackMax ?? DefaultStackMax;
         }
         #endregion
 

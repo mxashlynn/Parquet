@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -132,7 +133,10 @@ namespace ParquetClassLibrary
         {
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return (TTarget)Models[inID];
+            // TODO This is a hack to support deserializing InventorySlots before All is initialized.  Find a better way.
+            return inID == ItemModel.ShamModel.ID
+                ? (TTarget)(EntityModel)ItemModel.ShamModel
+                : (TTarget)Models[inID];
         }
 
         /// <summary>
