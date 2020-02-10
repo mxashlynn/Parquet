@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Beings
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly PronounGroup ConverterFactory =
+        internal static PronounGroup ConverterFactory { get; } =
             new PronounGroup(nameof(Subjective), nameof(Objective), nameof(Determiner), nameof(Possessive), nameof(Reflexive));
 
         /// <summary>

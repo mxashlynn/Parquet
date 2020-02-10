@@ -261,7 +261,7 @@ namespace ParquetClassLibrary.Items
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly Inventory ConverterFactory = new Inventory(1);
+        internal static Inventory ConverterFactory { get; } = new Inventory(1);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

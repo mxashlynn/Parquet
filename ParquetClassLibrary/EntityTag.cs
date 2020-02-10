@@ -96,7 +96,7 @@ namespace ParquetClassLibrary
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly EntityTag ConverterFactory =
+        internal static EntityTag ConverterFactory { get; } =
             None;
 
         /// <summary>

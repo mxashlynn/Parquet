@@ -158,7 +158,7 @@ namespace ParquetClassLibrary.Crafts
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly StrikePanel ConverterFactory = new StrikePanel();
+        internal static StrikePanel ConverterFactory { get; } = new StrikePanel();
 
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.

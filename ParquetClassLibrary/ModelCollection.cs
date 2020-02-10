@@ -165,7 +165,7 @@ namespace ParquetClassLibrary
 
         #region Self Serialization
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ModelCollection<TModel> ConverterFactory = Default;
+        internal static ModelCollection<TModel> ConverterFactory { get; } = Default;
 
         /// <summary>
         /// Reads all records of the given type from the appropriate file.

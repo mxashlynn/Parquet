@@ -100,8 +100,7 @@ namespace ParquetClassLibrary
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly RecipeElement ConverterFactory =
-            None;
+        internal static RecipeElement ConverterFactory { get; } = None;
 
         /// <summary>
         /// Converts the given record column to <see cref="RecipeElement"/>.

@@ -105,7 +105,7 @@ namespace ParquetClassLibrary.Items
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ItemModel ConverterFactory = new ItemModel(EntityID.None, nameof(ConverterFactory), "", "", ItemType.Other,
+        internal static ItemModel ConverterFactory { get; } = new ItemModel(EntityID.None, nameof(ConverterFactory), "", "", ItemType.Other,
                                                                             0, 0, 1, 0, 0, EntityID.None, null, CraftingRecipe.NotCraftable.ID);
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace ParquetClassLibrary.Maps
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ExitPoint ConverterFactory = new ExitPoint(Vector2D.Zero, EntityID.None);
+        internal static ExitPoint ConverterFactory { get; } = new ExitPoint(Vector2D.Zero, EntityID.None);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

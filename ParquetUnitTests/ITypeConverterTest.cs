@@ -1,9 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary;
 using Xunit;
 
 namespace ParquetUnitTests
@@ -16,17 +16,26 @@ namespace ParquetUnitTests
         [Fact]
         public void AllTypeConvertersProvideFactoriesTest()
         {
-            IEnumerable<Type> converterProviders = AppDomain.CurrentDomain
-                                                            .GetAssemblies()
-                                                            .SelectMany(x => x.GetTypes())
-                                                            .Where(x => typeof(ITypeConverter).IsAssignableFrom(x)
-                                                                     && !x.IsInterface
-                                                                     && !x.IsAbstract);
+            // This discarded value is here to ensure that ParquetClassLibrary is loaded.
+            var _ = new Vector2D(1, 2);
+            var converterProviders = AppDomain.CurrentDomain
+                                              .GetAssemblies()
+                                              .Where(assembly => assembly.GetName().Name == "ParquetClassLibrary")
+                                              .SelectMany(assembly => assembly.GetExportedTypes())
+                                              .Where(type => typeof(ITypeConverter).IsAssignableFrom(type)
+                                                          && !type.IsInterface
+                                                          && !type.IsAbstract);
+
+            var factoryProviders = AppDomain.CurrentDomain
+                                              .GetAssemblies()
+                                              .Where(assembly => assembly.GetName().Name == "ParquetClassLibrary")
+                                              .SelectMany(assembly => assembly.GetExportedTypes())
+                                              .Where(type => type.GetRuntimeProperties()
+                                                                 .Any(info => info.Name == nameof(PronounGroup.ConverterFactory)));
 
             foreach (var provider in converterProviders)
             {
-                // PronounGroup is taken as a kind of archetype for this behavior.
-                Assert.NotNull(provider.GetProperty(nameof(PronounGroup.ConverterFactory), BindingFlags.Static & BindingFlags.NonPublic));
+                Assert.Contains(provider, factoryProviders);
             }
         }
     }

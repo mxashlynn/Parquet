@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Biomes
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly BiomeModel ConverterFactory =
+        internal static BiomeModel ConverterFactory { get; } =
             new BiomeModel(EntityID.None, nameof(ConverterFactory), "", "", 0, 0, false, null, null);
 
         /// <summary>

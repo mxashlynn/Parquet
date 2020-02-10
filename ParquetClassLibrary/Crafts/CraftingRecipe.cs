@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Crafts
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly CraftingRecipe ConverterFactory = NotCraftable;
+        internal static CraftingRecipe ConverterFactory { get; } = NotCraftable;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

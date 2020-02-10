@@ -158,7 +158,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region ITypeConverter
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly ParquetStack ConverterFactory = Empty;
+        internal static ParquetStack ConverterFactory { get; } = Empty;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

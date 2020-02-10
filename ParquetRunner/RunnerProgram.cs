@@ -1,5 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Maps;
 
 namespace ParquetRunner

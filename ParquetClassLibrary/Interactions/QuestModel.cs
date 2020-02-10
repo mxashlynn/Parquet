@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Interactions
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly QuestModel ConverterFactory =
+        internal static QuestModel ConverterFactory { get; } =
             new QuestModel(EntityID.None, nameof(ConverterFactory), "", "", null, null, "", null);
 
         /// <summary>

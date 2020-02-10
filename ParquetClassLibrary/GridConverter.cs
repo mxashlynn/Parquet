@@ -15,7 +15,7 @@ namespace ParquetClassLibrary
         where TElement : ITypeConverter, new()
     {
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly GridConverter<TElement, TEnumerable> ConverterFactory =
+        internal static GridConverter<TElement, TEnumerable> ConverterFactory { get; } =
             new GridConverter<TElement, TEnumerable>();
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Beings
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly CritterModel ConverterFactory =
+        internal static CritterModel ConverterFactory { get; } =
             new CritterModel(EntityID.None, nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
 
         /// <summary>

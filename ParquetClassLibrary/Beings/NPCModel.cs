@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Beings
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct statically.</summary>
-        internal static readonly NPCModel ConverterFactory =
+        internal static NPCModel ConverterFactory { get; } =
             new NPCModel(EntityID.None, nameof(ConverterFactory), nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace ParquetClassLibrary
         where TElement : ITypeConverter, new()
     {
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly SeriesConverter<TElement, TCollection> ConverterFactory =
+        internal static SeriesConverter<TElement, TCollection> ConverterFactory { get; } =
             new SeriesConverter<TElement, TCollection>();
 
         /// <summary>

@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly FurnishingModel ConverterFactory = new FurnishingModel(EntityID.None, nameof(ConverterFactory), "", "");
+        internal static FurnishingModel ConverterFactory { get; } = new FurnishingModel(EntityID.None, nameof(ConverterFactory), "", "");
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.

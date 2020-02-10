@@ -111,7 +111,7 @@ namespace ParquetClassLibrary.Maps
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static readonly MapRegion ConverterFactory = Empty;
+        internal static MapRegion ConverterFactory { get; } = Empty;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
