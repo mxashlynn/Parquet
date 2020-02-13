@@ -56,8 +56,7 @@ namespace ParquetClassLibrary
         {
             Precondition.IsNotNull(inModels, nameof(inModels));
 
-            // All Collections of EntitieModels implicitly contain the None model.
-            var baseDictionary = new Dictionary<EntityID, EntityModel> { { EntityID.None, null } };
+            var baseDictionary = new Dictionary<EntityID, EntityModel>();
             foreach (var model in inModels)
             {
                 Precondition.IsInRange(model.ID, inBounds, nameof(inModels));
@@ -103,7 +102,8 @@ namespace ParquetClassLibrary
         {
             Precondition.IsNotNull(inModel);
 
-            return Models.ContainsKey(inModel.ID);
+            return inModel.ID == EntityID.None
+                || Models.ContainsKey(inModel.ID);
         }
 
         /// <summary>
@@ -117,7 +117,8 @@ namespace ParquetClassLibrary
             // TODO Remove this test after debugging.
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return Models.ContainsKey(inID);
+            return inID == EntityID.None
+                || Models.ContainsKey(inID);
         }
 
         /// <summary>
@@ -134,8 +135,13 @@ namespace ParquetClassLibrary
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
             // TODO This is a hack to support deserializing InventorySlots before All is initialized.  Find a better way.
-            return inID == ItemModel.ShamModel.ID
-                ? (TTarget)(EntityModel)ItemModel.ShamModel
+            if (inID == ItemModel.ShamModel.ID)
+            {
+                return (TTarget)(EntityModel)ItemModel.ShamModel;
+            }
+
+            return inID == EntityID.None
+                ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {EntityID.None}.")
                 : (TTarget)Models[inID];
         }
 
@@ -197,7 +203,12 @@ namespace ParquetClassLibrary
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            return new ModelCollection<TModel>(inBounds, csv.GetRecords<TRecord>());
+            //var records = csv.GetRecords<TRecord>();
+            var objectRecords = csv.GetRecords(typeof(TRecord));//.Where(record => null != record).Cast<TRecord>();
+            var recordList = objectRecords.ToList();
+            var models = new ModelCollection<TModel>(inBounds, recordList.Cast<TModel>());
+
+            return models;
         }
 
         /// <summary>
