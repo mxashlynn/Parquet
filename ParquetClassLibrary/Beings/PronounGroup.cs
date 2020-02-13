@@ -162,6 +162,9 @@ namespace ParquetClassLibrary.Beings
             using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+                                                                                        ? header.Substring(2).ToUpperInvariant()
+                                                                                        : header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
