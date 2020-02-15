@@ -351,6 +351,8 @@ namespace ParquetClassLibrary
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
                 #region ITypeConverters
+                { typeof(EntityID), EntityID.ConverterFactory },
+                { typeof(EntityTag), EntityTag.ConverterFactory },
                 { typeof(BiomeModel), BiomeModel.ConverterFactory },
                 { typeof(BlockModel), BlockModel.ConverterFactory },
                 { typeof(ChunkType), ChunkType.ConverterFactory },
@@ -358,8 +360,6 @@ namespace ParquetClassLibrary
                 { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
                 { typeof(CritterModel), CritterModel.ConverterFactory },
                 { typeof(DialogueModel), DialogueModel.ConverterFactory },
-                { typeof(EntityID), EntityID.ConverterFactory },
-                { typeof(EntityTag), EntityTag.ConverterFactory },
                 { typeof(ExitPoint), ExitPoint.ConverterFactory },
                 { typeof(FloorModel), FloorModel.ConverterFactory },
                 { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
