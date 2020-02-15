@@ -387,6 +387,10 @@ namespace ParquetClassLibrary
                 { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
                 { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IEnumerable<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+                { typeof(IEnumerable<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 #endregion
 
                 #region 2D Grid Types
