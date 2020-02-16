@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Items
             && inValue is InventorySlot slot
                 ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(InventorySlot)}.");
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(InventorySlot)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

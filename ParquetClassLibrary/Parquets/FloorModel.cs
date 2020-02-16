@@ -77,7 +77,7 @@ namespace ParquetClassLibrary.Parquets
                   $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.ModTool}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.TrenchName}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(FloorModel)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(FloorModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

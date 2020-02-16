@@ -96,7 +96,7 @@ namespace ParquetClassLibrary.Parquets
                   $"{model.IsEnclosing}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.SwapID}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(FurnishingModel)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(FurnishingModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

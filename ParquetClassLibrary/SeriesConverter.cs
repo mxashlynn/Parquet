@@ -42,7 +42,7 @@ namespace ParquetClassLibrary
             && null != inValue
             && inValue is IEnumerable<TElement> list
                 ? string.Join(inDelimiter, list)
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(IEnumerable<TElement>)}.");
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(IEnumerable<TElement>)}.");
 
         /// <summary>
         /// Converts the given record column to a 1D collection.

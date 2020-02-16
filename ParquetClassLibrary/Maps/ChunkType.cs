@@ -148,7 +148,7 @@ namespace ParquetClassLibrary.Maps
                       $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierConstituents}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ChunkType)}.");
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ChunkType)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

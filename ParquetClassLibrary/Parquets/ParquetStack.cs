@@ -175,7 +175,7 @@ namespace ParquetClassLibrary.Parquets
                   $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Collectible}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStack)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ParquetStack)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

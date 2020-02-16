@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Maps
             && inValue is ExitPoint exit
                 ? $"{exit.Position}{Rules.Delimiters.InternalDelimiter}" +
                   $"{exit.Destination}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ExitPoint)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ExitPoint)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

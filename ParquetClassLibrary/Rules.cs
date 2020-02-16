@@ -91,14 +91,20 @@ namespace ParquetClassLibrary
             Justification = "No adequate alternative in this instance.")]
         public static class Delimiters
         {
-            /// <summary>Separates objects within collections.</summary>
-            public const string SecondaryDelimiter = ";";  // Alternative: \
+            /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
+            public const string DimensionalDelimiter = "x";
 
-            /// <summary>Separates properties within a class when in serialization.</summary>
-            public const string InternalDelimiter = ":";  // Alternative: |
+            /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
+            public const string DimensionalTerminator = "=";
 
             /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
-            public const string ElementDelimiter = "-";  // Alternative: __
+            public const string ElementDelimiter = "-";
+
+            /// <summary>Separates properties within a class when in serialization.</summary>
+            public const string InternalDelimiter = ":";
+
+            /// <summary>Separates objects within collections.</summary>
+            public const string SecondaryDelimiter = ";";
         }
     }
 }

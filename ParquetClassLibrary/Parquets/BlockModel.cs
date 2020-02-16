@@ -111,7 +111,7 @@ namespace ParquetClassLibrary.Parquets
                   $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.IsLiquid}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.MaxToughness}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BlockModel)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(BlockModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

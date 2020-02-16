@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Parquets
                 ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(ParquetStatus)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ParquetStatus)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

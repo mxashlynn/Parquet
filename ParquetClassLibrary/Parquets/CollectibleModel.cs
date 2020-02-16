@@ -82,7 +82,7 @@ namespace ParquetClassLibrary.Parquets
                   $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.CollectionEffect}{Rules.Delimiters.InternalDelimiter}" +
                   $"{model.EffectAmount}"
-            : throw new ArgumentException($"Could not serialize {inValue} as {nameof(CollectibleModel)}.");
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(CollectibleModel)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
