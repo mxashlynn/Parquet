@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -33,6 +35,7 @@ namespace ParquetClassLibrary.Maps
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
+        // TODO We should be validating against this.
         public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>The identifier for the region that this grid will generate.</summary>
@@ -42,7 +45,7 @@ namespace ParquetClassLibrary.Maps
         public string Title { get; set; }
 
         /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
-        public string BackgroundColor { get; set; }
+        public string Background { get; set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
         public int GlobalElevation { get; set; }
@@ -73,7 +76,7 @@ namespace ParquetClassLibrary.Maps
 
             RegionID = inID;
             Title = inTitle;
-            BackgroundColor = inBackground;
+            Background = inBackground;
             GlobalElevation = inGlobalElevation;
             ChunkTypes = inChunkTypeArray;
         }
@@ -131,7 +134,7 @@ namespace ParquetClassLibrary.Maps
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            return new HashSet<ChunkTypeGrid>(csv.GetRecords<ChunkTypeGrid>());
+            return new HashSet<ChunkTypeGrid>(csv.GetRecords<ChunkTypeGridShim>().Select(shim => shim.ToGrid()));
         }
 
         /// <summary>
@@ -167,10 +170,11 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="ChunkTypeGrid"/>.</returns>
         public override string ToString()
-            => $"Chunk Grid {Title} is ({BackgroundColor}) at {GlobalElevation}.";
+            => $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
         #endregion
     }
 
+    #region Serialization Helper Classes
     /// <summary>
     /// Maps the values in a <see cref="ChunkTypeGrid"/> to records that CSVHelper recognizes.
     /// </summary>
@@ -190,12 +194,80 @@ namespace ParquetClassLibrary.Maps
         }
     }
 
-    internal class ChunkTypeGridShim
+    /// <summary>
+    /// Provides a <see cref="ChunkTypeGrid"/>-like object that can be easily serialized.
+    /// </summary>
+    internal class ChunkTypeGridShim : ITypeConverter
     {
+        /// <summary>The identifier for the region that this grid will generate.</summary>
         internal EntityID ID;
+
+        /// <summary>What the region that this grid generates will be called in-game.</summary>
         internal string Title;
+
+        /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
         internal string Background;
+
+        /// <summary>The region's elevation relative to all other regions.</summary>
         internal int GlobalElevation;
-        internal ChunkType[] ChunkTypeArray;
+
+        /// <summary>The backing collection of <see cref="ChunkType"/>s.</summary>
+        internal ChunkType[,] ChunkTypeArray;
+
+        /// <summary>
+        /// Converts a <see cref="ChunkTypeGridShim"/> into a <see cref="ChunkTypeGrid"/>.
+        /// </summary>
+        /// <returns>A <see cref="ChunkTypeGrid"/>.</returns>
+        public ChunkTypeGrid ToGrid()
+            => new ChunkTypeGrid(ID, Title, Background, GlobalElevation, ChunkTypeArray);
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static ChunkTypeGridShim ConverterFactory { get; } = new ChunkTypeGridShim();
+
+        /// <summary>
+        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// </summary>
+        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            try
+            {
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+                var splitText = inText.Split(inRow.Configuration.Delimiter);
+
+                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(splitText[0], inRow, inMemberMapData);
+                var title = splitText[1];
+                var background = splitText[2];
+                var globalElevation = int.Parse(splitText[3], numberStyle, cultureInfo);
+                var chunkArray = GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory.ConvertFromString(splitText[4], inRow, inMemberMapData);
+
+                // HERE -- I feel like this approach to serialization for ChunkTypeGrids is hopelessly tangled -- rethinkg this from square 1.
+
+                return new ChunkTypeGrid(id, title, background, globalElevation, chunkArray);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkTypeGrid)}: {e}", e);
+            }
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="EntityTag"/> to a record column.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue == None || string.IsNullOrEmpty((string)inValue)
+                ? nameof(None)
+                : (string)inValue;
+        #endregion
     }
 }
+#endregion
