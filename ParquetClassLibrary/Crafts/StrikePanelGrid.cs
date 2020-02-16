@@ -38,10 +38,10 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
         /// </summary>
-        /// <param name="inRows">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumns">The length of the X dimension of the collection.</param>
-        public StrikePanelGrid(int inRows, int inColumns)
-            => StrikePanels = new StrikePanel[inRows, inColumns];
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        public StrikePanelGrid(int inRowCount, int inColumnCount)
+            => StrikePanels = new StrikePanel[inRowCount, inColumnCount];
 
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.

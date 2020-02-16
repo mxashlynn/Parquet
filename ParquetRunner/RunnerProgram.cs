@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CsvHelper.TypeConversion;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -233,7 +232,7 @@ namespace ParquetRunner
             Console.WriteLine($"Items.Count = {All.Items.Count}");
 
             Console.WriteLine($"Maps.Count = {All.Maps.Count}");
-            foreach (ItemModel model in All.Maps)
+            foreach (MapModel model in All.Maps)
             {
                 Console.WriteLine($" > Map: {model}");
             }

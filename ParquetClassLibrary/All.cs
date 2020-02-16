@@ -452,9 +452,8 @@ namespace ParquetClassLibrary
                 ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs),
                 ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
                     .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
-                Enumerable.Empty<MapModel>(),
-                //ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
-                    //.Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
+                ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                    ,//.Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
                 ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))

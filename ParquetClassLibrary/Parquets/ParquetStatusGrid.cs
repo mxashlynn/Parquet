@@ -33,10 +33,10 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.
         /// </summary>
-        /// <param name="inRows">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumns">The length of the X dimension of the collection.</param>
-        public ParquetStatusGrid(int inRows, int inColumns)
-            => ParquetStatuses = new ParquetStatus[inRows, inColumns];
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        public ParquetStatusGrid(int inRowCount, int inColumnCount)
+            => ParquetStatuses = new ParquetStatus[inRowCount, inColumnCount];
         #endregion
 
         #region IGrid Implementation

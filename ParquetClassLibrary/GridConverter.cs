@@ -51,6 +51,8 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="IGrid{TElement}"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
+            // TODO This isn't going to work as written because we need a constructor that knows the dimensions the IGrid should have.
+            // var grid = new SomeGrid(rowCount, columnCount)
             var grid = new TEnumerable();
             if (string.IsNullOrEmpty(inText))
             {
