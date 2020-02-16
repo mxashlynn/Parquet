@@ -418,14 +418,14 @@ namespace ParquetClassLibrary
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
-                                                     IEnumerable<BeingModel> inBeings,
-                                                     IEnumerable<BiomeModel> inBiomes,
-                                                     IEnumerable<CraftingRecipe> inCraftingRecipes,
-                                                     IEnumerable<InteractionModel> inInteractions,
-                                                     IEnumerable<MapModel> inMaps,
-                                                     IEnumerable<ParquetModel> inParquets,
-                                                     IEnumerable<RoomRecipe> inRoomRecipes,
-                                                     IEnumerable<ItemModel> inItems)
+                                                 IEnumerable<BeingModel> inBeings,
+                                                 IEnumerable<BiomeModel> inBiomes,
+                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
+                                                 IEnumerable<InteractionModel> inInteractions,
+                                                 IEnumerable<MapModel> inMaps,
+                                                 IEnumerable<ParquetModel> inParquets,
+                                                 IEnumerable<RoomRecipe> inRoomRecipes,
+                                                 IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
@@ -460,21 +460,21 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void LoadFromCSV()
             => InitializeCollections(PronounGroup.GetRecords(),
-                                     ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
-                                         .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<NPCModel>(BeingIDs))
-                                         .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<PlayerCharacterModel>(BeingIDs)),
-                                     ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs),
-                                     ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs),
-                                     ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
-                                         .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
-                                     ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
-                                         .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
-                                     ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
-                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
-                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
-                                         .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs)),
-                                     ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs),
-                                     ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs));
+                ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
+                    .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<NPCModel>(BeingIDs))
+                    .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<PlayerCharacterModel>(BeingIDs)),
+                ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs),
+                ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs),
+                ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
+                    .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
+                ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                    ,//.Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
+                ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
+                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
+                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
+                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs)),
+                ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs),
+                ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs));
 
         /// <summary>
         /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
