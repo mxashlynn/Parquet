@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings

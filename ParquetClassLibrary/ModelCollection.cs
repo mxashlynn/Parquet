@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CsvHelper;
-using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
