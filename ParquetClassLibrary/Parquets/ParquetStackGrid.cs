@@ -17,31 +17,6 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
         private ParquetStack[,] ParquetStacks { get; }
 
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => ParquetStacks?.GetLength(0) ?? 0;
-
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => ParquetStacks?.GetLength(1) ?? 0;
-
-        /// <summary>The total number of parquets collected.</summary>
-        public int Count
-        {
-            get
-            {
-                var count = 0;
-
-                for (var y = 0; y < Rows; y++)
-                {
-                    for (var x = 0; x < Columns; x++)
-                    {
-                        count += ParquetStacks[y, x].Count;
-                    }
-                }
-
-                return count;
-            }
-        }
-
         #region Initialization
         /// <summary>
         /// Initializes a new <see cref="ParquetStackGrid"/> with unusable dimensions.
@@ -73,13 +48,31 @@ namespace ParquetClassLibrary.Parquets
         }
         #endregion
 
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the collection.
-        /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
-            => ParquetStacks.IsValidPosition(inPosition);
+        #region IGrid Implementation
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Rows => ParquetStacks?.GetLength(0) ?? 0;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Columns => ParquetStacks?.GetLength(1) ?? 0;
+
+        /// <summary>The total number of parquets collected.</summary>
+        public int Count
+        {
+            get
+            {
+                var count = 0;
+
+                for (var y = 0; y < Rows; y++)
+                {
+                    for (var x = 0; x < Columns; x++)
+                    {
+                        count += ParquetStacks[y, x].Count;
+                    }
+                }
+
+                return count;
+            }
+        }
 
         /// <summary>Access to any <see cref="ParquetStack"/> in the grid.</summary>
         public ref ParquetStack this[int y, int x]
@@ -102,5 +95,16 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStacks.GetEnumerator();
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the collection.
+        /// </summary>
+        /// <param name="inPosition">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public bool IsValidPosition(Vector2D inPosition)
+            => ParquetStacks.IsValidPosition(inPosition);
+        #endregion
     }
 }

@@ -17,6 +17,15 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>The backing collection of <see cref="StrikePanel"/>es.</summary>
         private StrikePanel[,] StrikePanels { get; }
 
+        #region Initialization
+        /// <summary>
+        /// Initializes a new <see cref="StrikePanelGrid"/> with dimensions as specifid in <see cref="Rules.Dimensions"/>.
+        /// </summary>
+        public StrikePanelGrid()
+            : this(Rules.Dimensions.PanelsPerPatternHeight, Rules.Dimensions.PanelsPerPatternWidth) { }
+        #endregion
+
+        #region IGrid Implementation
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="StrikePanelGrid"/>.</summary>
         public int Rows => StrikePanels?.GetLength(0) ?? 0;
 
@@ -25,12 +34,6 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count => Rows * Columns;
-
-        /// <summary>
-        /// Initializes a new <see cref="StrikePanelGrid"/> with dimensions as specifid in <see cref="Rules.Dimensions"/>.
-        /// </summary>
-        public StrikePanelGrid()
-            : this(Rules.Dimensions.PanelsPerPatternHeight, Rules.Dimensions.PanelsPerPatternWidth) { }
 
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
@@ -69,5 +72,6 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => StrikePanels.GetEnumerator();
+        #endregion
     }
 }

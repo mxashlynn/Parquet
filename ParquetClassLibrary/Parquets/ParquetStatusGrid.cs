@@ -17,15 +17,6 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
 
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
-        public int Rows => ParquetStatuses?.GetLength(0) ?? 0;
-
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
-        public int Columns => ParquetStatuses?.GetLength(1) ?? 0;
-
-        /// <summary>The total number of parquets collected.</summary>
-        public int Count => Rows * Columns;
-
         #region Initialization
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/> with unusable dimensions.
@@ -48,13 +39,15 @@ namespace ParquetClassLibrary.Parquets
             => ParquetStatuses = new ParquetStatus[inRows, inColumns];
         #endregion
 
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the collection.
-        /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
-            => ParquetStatuses.IsValidPosition(inPosition);
+        #region IGrid Implementation
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Rows => ParquetStatuses?.GetLength(0) ?? 0;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        public int Columns => ParquetStatuses?.GetLength(1) ?? 0;
+
+        /// <summary>The total number of parquets collected.</summary>
+        public int Count => Rows * Columns;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]
@@ -75,5 +68,17 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStatuses.GetEnumerator();
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the collection.
+        /// </summary>
+        /// <param name="inPosition">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public bool IsValidPosition(Vector2D inPosition)
+            => ParquetStatuses.IsValidPosition(inPosition);
+
+        #endregion
     }
 }
