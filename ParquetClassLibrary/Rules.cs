@@ -92,13 +92,13 @@ namespace ParquetClassLibrary
         public static class Delimiters
         {
             /// <summary>Separates objects within collections.</summary>
-            public const string SecondaryDelimiter = "\\";
+            public const string SecondaryDelimiter = ";";  // Alternative: \
 
             /// <summary>Separates properties within a class when in serialization.</summary>
-            public const string InternalDelimiter = "|";
+            public const string InternalDelimiter = ":";  // Alternative: |
 
             /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
-            public const string ElementDelimiter = "__";
+            public const string ElementDelimiter = "-";  // Alternative: __
         }
     }
 }
