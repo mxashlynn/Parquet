@@ -42,14 +42,15 @@ namespace ParquetRunner
             Console.WriteLine($"Biomes.Count = {All.Biomes.Count}");
             Console.WriteLine($"CraftingRecipes.Count = {All.CraftingRecipes.Count}");
             Console.WriteLine($"Interactions.Count = {All.Interactions.Count}");
+            Console.WriteLine($"Maps.Count = {All.Maps.Count}");
             Console.WriteLine($"Parquets.Count = {All.Parquets.Count}");
             Console.WriteLine($"RoomRecipes.Count = {All.RoomRecipes.Count}");
             Console.WriteLine($"Items.Count = {All.Items.Count}");
 
-            Console.WriteLine($"Maps.Count = {All.Maps.Count}");
-            foreach (MapModel model in All.Maps)
+            Console.WriteLine($"ChunkGrids.Count = {All.ChunkGrids.Count}");
+            foreach (ChunkTypeGrid model in All.ChunkGrids)
             {
-                Console.WriteLine($" > Map: {model}");
+                Console.WriteLine($" > ChunkGrids: {model}");
             }
         }
     }

@@ -1,5 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using CsvHelper;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -14,13 +19,12 @@ namespace ParquetClassLibrary.Maps
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class ChunkTypeGrid : IGrid<ChunkType>
     {
+        #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly ChunkTypeGrid Empty = new ChunkTypeGrid();
 
-        #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion,
-                                                                          Rules.Dimensions.ChunksPerRegion);
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion, Rules.Dimensions.ChunksPerRegion);
         #endregion
 
         #region Whole-Region Characteristics
@@ -43,27 +47,16 @@ namespace ParquetClassLibrary.Maps
         public int GlobalElevation { get; set; }
         #endregion
 
-        #region Grid Contents
-        /// <summary>The types of chunks which make up the grid.</summary>
-        private readonly ChunkType[,] chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
-
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => DimensionsInChunks.Y;
-
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => DimensionsInChunks.X;
-
-        /// <summary>The total number of chunks collected.</summary>
-        public int Count => Rows * Columns;
-        #endregion
+        /// <summary>The backing collection of <see cref="ChunkType"/>s.</summary>
+        private ChunkType[,] ChunkTypes { get; }
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="ChunkTypeGrid"/> with default values.
+        /// Initializes a new empty <see cref="ChunkTypeGrid"/> with default values.
         /// </summary>
         public ChunkTypeGrid()
-            // This version of the constructor exists to make the generic new() constraint happy.
-            : this(null, null, null, MapRegion.DefaultGlobalElevation) { }
+            : this(EntityID.None, MapRegion.DefaultTitle, MapRegion.DefaultColor,
+                   MapRegion.DefaultGlobalElevation, new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X]) { }
 
         /// <summary>
         /// Constructs a new instance of the <see cref="MapChunk"/> class.
@@ -72,23 +65,33 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inTitle">The name of the new region.</param>
         /// <param name="inBackground">Background color for the new region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        public ChunkTypeGrid(EntityID? inID = null, string inTitle = null, string inBackground = MapRegion.DefaultColor,
-                             int inGlobalElevation = MapRegion.DefaultGlobalElevation)
+        /// <param name="inChunkTypeArray">The array containing the subregion.</param>
+        public ChunkTypeGrid(EntityID inID, string inTitle, string inBackground, int inGlobalElevation, ChunkType[,] inChunkTypeArray)
         {
-            RegionID = inID ?? EntityID.None;
-            Title = string.IsNullOrEmpty(inTitle)
-                ? MapRegion.DefaultTitle
-                : inTitle;
-            BackgroundColor = inBackground ?? MapRegion.DefaultColor;
+            Precondition.IsInRange(inID, All.MapRegionIDs, nameof(inID));
+
+            RegionID = inID;
+            Title = inTitle;
+            BackgroundColor = inBackground;
             GlobalElevation = inGlobalElevation;
+            ChunkTypes = inChunkTypeArray;
         }
         #endregion
 
-        #region Collection Access
+        #region IGrid Implementation
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Rows => DimensionsInChunks.Y;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
+        public int Columns => DimensionsInChunks.X;
+
+        /// <summary>The total number of chunks collected.</summary>
+        public int Count => Rows * Columns;
+
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]
         {
-            get => ref chunkTypes[y, x];
+            get => ref ChunkTypes[y, x];
         }
 
         /// <summary>
@@ -97,7 +100,7 @@ namespace ParquetClassLibrary.Maps
         /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ChunkType> IEnumerable<ChunkType>.GetEnumerator()
-            => (IEnumerator<ChunkType>)chunkTypes.GetEnumerator();
+            => (IEnumerator<ChunkType>)ChunkTypes.GetEnumerator();
 
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
@@ -105,7 +108,47 @@ namespace ParquetClassLibrary.Maps
         /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
-            => chunkTypes.GetEnumerator();
+            => ChunkTypes.GetEnumerator();
+        #endregion
+
+        #region Self Serialization
+        /// <summary>
+        /// Reads all records of the given type from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static HashSet<ChunkTypeGrid> GetRecords()
+        {
+            using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(ChunkTypeGrid)}s.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+                                                                                        ? header.Substring(2).ToUpperInvariant()
+                                                                                        : header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new HashSet<ChunkTypeGrid>(csv.GetRecords<ChunkTypeGrid>());
+        }
+
+        /// <summary>
+        /// Writes all of the given type to records to the appropriate file.
+        /// </summary>
+        internal void PutRecords(IEnumerable<ChunkTypeGrid> inGrids)
+        {
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(ChunkTypeGrid)}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<ChunkTypeGrid>();
+            csv.NextRecord();
+            csv.WriteRecords(inGrids);
+        }
         #endregion
 
         #region Utilities
@@ -115,7 +158,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => chunkTypes.IsValidPosition(inPosition);
+            => ChunkTypes.IsValidPosition(inPosition);
 
         /// <summary>
         /// Describes the <see cref="ChunkTypeGrid"/>'s basic information.
