@@ -125,6 +125,7 @@ namespace ParquetClassLibrary.Maps
             csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
                                                                                         ? header.Substring(2).ToUpperInvariant()
                                                                                         : header.ToUpperInvariant();
+            csv.Configuration.RegisterClassMap<ChunkTypeGridClassMap>();
             foreach (var kvp in All.ConversionConverters)
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
@@ -173,7 +174,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Maps the values in a <see cref="ChunkTypeGrid"/> to records that CSVHelper recognizes.
     /// </summary>
-    public sealed class ChunkTypeGridClassMap : ClassMap<ChunkTypeGrid>
+    internal sealed class ChunkTypeGridClassMap : ClassMap<ChunkTypeGridShim>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BiomeClassMap"/> class.
@@ -182,15 +183,19 @@ namespace ParquetClassLibrary.Maps
         {
             // Properties are ordered by index to facilitate a logical layout in spreadsheet apps.
             Map(m => m.ID).Index(0);
-            Map(m => m.Name).Index(1);
-            Map(m => m.Description).Index(2);
-            Map(m => m.Comment).Index(3);
-
-            Map(m => m.Tier).Index(4);
-            Map(m => m.ElevationCategory).Index(5);
-            Map(m => m.IsLiquidBased).Index(6);
-            Map(m => m.ParquetCriteria).Index(7);
-            Map(m => m.EntryRequirements).Index(8);
+            Map(m => m.Title).Index(1);
+            Map(m => m.Background).Index(2);
+            Map(m => m.GlobalElevation).Index(3);
+            Map(m => m.ChunkTypeArray).Index(4);
         }
+    }
+
+    internal class ChunkTypeGridShim
+    {
+        internal EntityID ID;
+        internal string Title;
+        internal string Background;
+        internal int GlobalElevation;
+        internal ChunkType[] ChunkTypeArray;
     }
 }
