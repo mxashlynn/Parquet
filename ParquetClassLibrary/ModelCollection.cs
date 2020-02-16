@@ -180,7 +180,7 @@ namespace ParquetClassLibrary
         /// <param name="inBounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
         public ModelCollection<TModel> GetRecordsForType<TRecord>(Range<EntityID> inBounds)
-            where TRecord : TModel, ITypeConverter
+            where TRecord : TModel
             => GetRecordsForType<TRecord>(new List<Range<EntityID>> { inBounds });
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace ParquetClassLibrary
         /// <param name="inBounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
         public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<EntityID>> inBounds)
-            where TRecord : TModel, ITypeConverter
+            where TRecord : TModel
         {
             using var reader = new StreamReader($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
@@ -203,12 +203,7 @@ namespace ParquetClassLibrary
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            //var records = csv.GetRecords<TRecord>();
-            var objectRecords = csv.GetRecords(typeof(TRecord));//.Where(record => null != record).Cast<TRecord>();
-            var recordList = objectRecords.ToList();
-            var models = new ModelCollection<TModel>(inBounds, recordList.Cast<TModel>());
-
-            return models;
+            return new ModelCollection<TModel>(inBounds, csv.GetRecords<TRecord>());
         }
 
         /// <summary>
@@ -216,7 +211,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <typeparam name="TRecord">The type to serialize.</typeparam>
         internal void PutRecordsForType<TRecord>()
-            where TRecord : TModel, ITypeConverter
+            where TRecord : TModel
         {
             using var writer = new StreamWriter($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);

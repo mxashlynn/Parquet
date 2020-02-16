@@ -351,46 +351,31 @@ namespace ParquetClassLibrary
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
                 #region ITypeConverters
+                { typeof(ChunkType), ChunkType.ConverterFactory },
                 { typeof(EntityID), EntityID.ConverterFactory },
                 { typeof(EntityTag), EntityTag.ConverterFactory },
-                { typeof(BiomeModel), BiomeModel.ConverterFactory },
-                { typeof(BlockModel), BlockModel.ConverterFactory },
-                { typeof(ChunkType), ChunkType.ConverterFactory },
-                { typeof(CollectibleModel), CollectibleModel.ConverterFactory },
-                { typeof(CraftingRecipe), CraftingRecipe.ConverterFactory },
-                { typeof(CritterModel), CritterModel.ConverterFactory },
-                { typeof(DialogueModel), DialogueModel.ConverterFactory },
                 { typeof(ExitPoint), ExitPoint.ConverterFactory },
-                { typeof(FloorModel), FloorModel.ConverterFactory },
-                { typeof(FurnishingModel), FurnishingModel.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
-                { typeof(Inventory), Inventory.ConverterFactory },
-                { typeof(ItemModel), ItemModel.ConverterFactory },
-                { typeof(MapChunk), MapChunk.ConverterFactory },
-                { typeof(MapRegion), MapRegion.ConverterFactory },
-                { typeof(NPCModel), NPCModel.ConverterFactory },
                 { typeof(ParquetStack), ParquetStack.ConverterFactory },
                 { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
-                { typeof(PlayerCharacterModel), PlayerCharacterModel.ConverterFactory },
-                { typeof(PronounGroup), PronounGroup.ConverterFactory },
-                { typeof(QuestModel), QuestModel.ConverterFactory },
                 { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
-                { typeof(RoomRecipe), RoomRecipe.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
-                { typeof(Vector2D), Vector2D.ConverterFactory },
+                { typeof(Vector2D), Vector2D.ConverterFactory },                
                 #endregion
 
                 #region Linear Series Types
-                { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
-                { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
-                { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
-                { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 { typeof(IEnumerable<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
                 { typeof(IEnumerable<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
                 { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+                { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
+                { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 #endregion
 
                 #region 2D Grid Types
@@ -467,8 +452,9 @@ namespace ParquetClassLibrary
                 ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs),
                 ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
                     .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
-                ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
-                    ,//.Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
+                Enumerable.Empty<MapModel>(),
+                //ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                    //.Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
                 ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))

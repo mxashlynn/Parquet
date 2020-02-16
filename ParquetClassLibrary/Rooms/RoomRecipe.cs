@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
-    public sealed class RoomRecipe : EntityModel, ITypeConverter
+    public sealed class RoomRecipe : EntityModel
     {
         #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
@@ -87,73 +87,6 @@ namespace ParquetClassLibrary.Rooms
             && RequiredFurnishings.All(element =>
                 inRoom.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static RoomRecipe ConverterFactory { get; } = new RoomRecipe(EntityID.None, nameof(ConverterFactory), "", "");
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is RoomRecipe recipe
-                ? $"{recipe.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{recipe.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{recipe.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{recipe.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{recipe.MinimumWalkableSpaces}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredFurnishings, inRow, inMemberMapData)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredFloors, inRow, inMemberMapData)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory.ConvertToString(recipe.RequiredPerimeterBlocks, inRow, inMemberMapData)}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(RoomRecipe)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText))
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(RoomRecipe)}.");
-            }
-
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var walkable = int.Parse(parameterText[4], numberStyle, cultureInfo);
-                var furnishings = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
-                    .ConvertFromString(parameterText[5], inRow, inMemberMapData);
-                var floors = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
-                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
-                var perimiter = (IReadOnlyList<RecipeElement>)SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory
-                    .ConvertFromString(parameterText[7], inRow, inMemberMapData);
-
-                return new RoomRecipe(id, name, description, comment, walkable, furnishings, floors, perimiter);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(RoomRecipe)}: {e}");
-            }
-        }
         #endregion
     }
 }

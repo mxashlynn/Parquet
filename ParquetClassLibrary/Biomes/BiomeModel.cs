@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : EntityModel, ITypeConverter
+    public sealed class BiomeModel : EntityModel
     {
         #region Characteristics
         /// <summary>
@@ -60,76 +60,6 @@ namespace ParquetClassLibrary.Biomes
             IsLiquidBased = inIsLiquidBased;
             ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
             EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static BiomeModel ConverterFactory { get; } =
-            new BiomeModel(EntityID.None, nameof(ConverterFactory), "", "", 0, 0, false, null, null);
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is BiomeModel model
-            && model.ID != EntityID.None
-                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Tier}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ElevationCategory}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.IsLiquidBased}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.ParquetCriteria, Rules.Delimiters.ElementDelimiter)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory.ConvertToString(model.EntryRequirements, Rules.Delimiters.ElementDelimiter)}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(BiomeModel)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(BiomeModel)}.");
-            }
-
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var tier = int.Parse(parameterText[4], numberStyle, cultureInfo);
-                var elevation = (Elevation)Enum.Parse(typeof(Elevation), parameterText[5]);
-                var liquid = bool.Parse(parameterText[6]);
-                var criteria = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
-                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-                var requirements = (List<EntityTag>)SeriesConverter<EntityTag, List<EntityTag>>
-                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-
-                return new BiomeModel(id, name, description, comment, tier, elevation, liquid, criteria, requirements);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(BiomeModel)}: {e}");
-            }
         }
         #endregion
     }

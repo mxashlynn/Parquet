@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definition for a non-player character, such as a shop keeper.
     /// </summary>
-    public sealed class NPCModel : CharacterModel, ITypeConverter
+    public sealed class NPCModel : CharacterModel
     {
         #region Initialization
         /// <summary>
@@ -45,91 +45,6 @@ namespace ParquetClassLibrary.Beings
                    inPronouns, inStoryCharacterID, inStartingQuests, inDialogue, inStartingInventory)
         {
             Precondition.IsInRange(inID, All.NpcIDs, nameof(inID));
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct statically.</summary>
-        internal static NPCModel ConverterFactory { get; } =
-            new NPCModel(EntityID.None, nameof(ConverterFactory), nameof(ConverterFactory), "", "", EntityID.None, Behavior.Still);
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is NPCModel model
-            && model.ID != EntityID.None
-                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.PersonalName}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.FamilyName}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.NativeBiome}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.PrimaryBehavior}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Avoids, Rules.Delimiters.ElementDelimiter)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Seeks, Rules.Delimiters.ElementDelimiter)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Pronouns}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.StoryCharacterID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingQuests, Rules.Delimiters.ElementDelimiter)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.Dialogue, Rules.Delimiters.ElementDelimiter)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<EntityID, List<EntityID>>.ConverterFactory.ConvertToString(model.StartingInventory, Rules.Delimiters.ElementDelimiter)}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(NPCModel)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(NPCModel)}.");
-            }
-
-            try
-            {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var personalName = parameterText[1];
-                var familyName = parameterText[2];
-                var description = parameterText[3];
-                var comment = parameterText[4];
-                var biome = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
-                var behavior = (Behavior)Enum.Parse(typeof(Behavior), parameterText[6]);
-                var avoids = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[7], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-                var seeks = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[8], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-                var pronouns = parameterText[9];
-                var storyID = parameterText[10];
-                var startingQuests = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[10], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-                var dialogue = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-                var startingInventory = (List<EntityID>)SeriesConverter<EntityID, List<EntityID>>
-                    .ConverterFactory.ConvertFromString(parameterText[12], inRow, inMemberMapData, Rules.Delimiters.ElementDelimiter);
-
-                return new NPCModel(id, personalName, familyName, description, comment, biome, behavior, avoids, seeks,
-                                    pronouns, storyID, startingQuests, dialogue, startingInventory);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(NPCModel)}: {e}");
-            }
         }
         #endregion
     }

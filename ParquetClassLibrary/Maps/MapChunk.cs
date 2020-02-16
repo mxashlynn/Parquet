@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a playable chunk in sandbox.
     /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
     /// </summary>
-    public sealed class MapChunk : MapModel, ITypeConverter
+    public sealed class MapChunk : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -51,80 +51,6 @@ namespace ParquetClassLibrary.Maps
         {
             ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
             ParquetDefintion = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static MapChunk ConverterFactory { get; } = Empty;
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is MapChunk map
-                ? $"{map.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.DataVersion}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{map.Revision++}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory.ConvertToString(map.ExitPoints, inRow, inMemberMapData)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory.ConvertToString(map.ParquetStatuses, inRow, inMemberMapData)}" +
-                  $"{Rules.Delimiters.InternalDelimiter}" +
-                  $"{GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory.ConvertToString(map.ParquetDefintion, inRow, inMemberMapData)}"
-                : throw new ArgumentException($"Could not serialize {inValue} as {nameof(MapChunk)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText))
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(MapChunk)}.");
-            }
-
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-
-                var dataVersion = parameterText[4];
-                if (dataVersion != DataVersion)
-                {
-                    throw new FormatException($"Unsupported saved data version: ${dataVersion}.");
-                }
-
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var revision = int.Parse(parameterText[5], numberStyle, cultureInfo);
-                var exits = (IReadOnlyList<ExitPoint>)SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory
-                    .ConvertFromString(parameterText[6], inRow, inMemberMapData);
-                var statuses = (ParquetStatusGrid)GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory
-                    .ConvertFromString(parameterText[7], inRow, inMemberMapData);
-                var stacks = (ParquetStackGrid)GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory
-                    .ConvertFromString(parameterText[8], inRow, inMemberMapData);
-
-                return new MapChunk(id, name, description, comment, revision, exits, statuses, stacks);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(MapChunk)}: {e}");
-            }
         }
         #endregion
 
