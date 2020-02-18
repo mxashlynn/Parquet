@@ -72,7 +72,8 @@ namespace ParquetClassLibrary.Rooms
             }
 
             if (!inWalkableArea.Concat(inPerimeter).Any(space
-                => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false))
+                => space.Content.Furnishing != EntityID.None
+                && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(inWalkableArea)} or {nameof(inPerimeter)}.");
             }
