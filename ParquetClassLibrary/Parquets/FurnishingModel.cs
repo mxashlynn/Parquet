@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for large sandbox parquet items, such as furniture or plants.
     /// </summary>
-    public sealed class FurnishingModel : ParquetModel, ITypeConverter
+    public sealed class FurnishingModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
@@ -66,75 +66,6 @@ namespace ParquetClassLibrary.Parquets
             IsEnclosing = inIsEnclosing;
             IsFlammable = inIsFlammable;
             SwapID = nonNullSwapID;
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static FurnishingModel ConverterFactory { get; } = new FurnishingModel(EntityID.None, nameof(ConverterFactory), "", "");
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is FurnishingModel model
-            && model.ID != EntityID.None
-                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.IsWalkable}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.IsEntry}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.IsEnclosing}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.IsFlammable}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.SwapID}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(FurnishingModel)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(FurnishingModel)}.");
-            }
-
-            try
-            {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
-                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
-                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
-                var walkable = bool.Parse(parameterText[7]);
-                var entry = bool.Parse(parameterText[8]);
-                var enclosing = bool.Parse(parameterText[9]);
-                var flammable = bool.Parse(parameterText[10]);
-                var swapID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[11], inRow, inMemberMapData);
-
-                return new FurnishingModel(id, name, description, comment, itemID, biome, room, walkable, entry, enclosing, flammable, swapID);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(FurnishingModel)}: {e}");
-            }
         }
         #endregion
     }

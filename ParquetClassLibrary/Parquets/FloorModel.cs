@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet walking surface.
     /// </summary>
-    public sealed class FloorModel : ParquetModel, ITypeConverter
+    public sealed class FloorModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
@@ -50,70 +50,6 @@ namespace ParquetClassLibrary.Parquets
         {
             ModTool = inModTool;
             TrenchName = inTrenchName;
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static FloorModel ConverterFactory { get; } = new FloorModel(EntityID.None, nameof(ConverterFactory), "", "");
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is FloorModel model
-            && model.ID != EntityID.None
-                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ModTool}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.TrenchName}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(FloorModel)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(FloorModel)}.");
-            }
-
-            try
-            {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
-                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
-                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
-                var mod = Enum.Parse<ModificationTool>(parameterText[7], true);
-                var trenchName = parameterText[8];
-
-                return new FloorModel(id, name, description, comment, itemID, biome, room, mod, trenchName);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(FloorModel)}: {e}");
-            }
         }
         #endregion
     }

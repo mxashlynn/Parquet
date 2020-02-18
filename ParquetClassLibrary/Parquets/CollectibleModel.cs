@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    public sealed class CollectibleModel : ParquetModel, ITypeConverter
+    public sealed class CollectibleModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -55,72 +55,6 @@ namespace ParquetClassLibrary.Parquets
 
             CollectionEffect = inEffect;
             EffectAmount = inEffectAmount;
-        }
-        #endregion
-
-        #region ITypeConverter Implementation
-        /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static CollectibleModel ConverterFactory { get; } = new CollectibleModel(EntityID.None, nameof(ConverterFactory), "", "");
-
-        /// <summary>
-        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
-        /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is CollectibleModel model
-            && model.ID != EntityID.None
-                ? $"{model.ID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Name}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Description}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.Comment}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.ItemID}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToBiome}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.AddsToRoom}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.CollectionEffect}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{model.EffectAmount}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(CollectibleModel)}.");
-
-        /// <summary>
-        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
-        /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(CollectibleModel)}.");
-            }
-
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
-
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var name = parameterText[1];
-                var description = parameterText[2];
-                var comment = parameterText[3];
-                var itemID = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[4], inRow, inMemberMapData);
-                var biome = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[5], inRow, inMemberMapData);
-                var room = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[6], inRow, inMemberMapData);
-                var effect = Enum.Parse<CollectingEffect>(parameterText[7], true);
-                var amount = int.Parse(parameterText[8], numberStyle, cultureInfo);
-
-                return new CollectibleModel(id, name, description, comment, itemID, biome, room, effect, amount);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(CollectibleModel)}: {e}");
-            }
         }
         #endregion
     }
