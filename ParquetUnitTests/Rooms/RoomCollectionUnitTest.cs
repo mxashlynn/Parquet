@@ -924,5 +924,6 @@ namespace ParquetUnitTests.Rooms
         }
         #endregion
 
+        // TODO In order for test assumptions to be valid, the room definitions need valid subregions.
     }
 }
