@@ -16,37 +16,6 @@ namespace ParquetUnitTests.Maps
         private static readonly ChunkType testChunk = new ChunkType(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
         #endregion
 
-        #region Initialization
-        [Fact]
-        public void NewDefaultMapChunkGridTest()
-        {
-            var defaultGrid = new ChunkTypeGrid();
-
-            Assert.Equal(MapRegion.DefaultTitle, defaultGrid.Title);
-            Assert.Equal(MapRegion.DefaultColor, defaultGrid.BackgroundColor);
-        }
-
-        [Fact]
-        public void NewNullMapChunkGridTest()
-        {
-            var nulledGrid = new ChunkTypeGrid(null);
-
-            Assert.Equal(MapRegion.DefaultTitle, nulledGrid.Title);
-            Assert.Equal(MapRegion.DefaultColor, nulledGrid.BackgroundColor);
-        }
-
-        [Fact]
-        public void NewCustomMapChunkGridTest()
-        {
-            var customRegion = new ChunkTypeGrid(testID, testTitle, testColor, testElevation);
-
-            Assert.Equal(testID, customRegion.RegionID);
-            Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.BackgroundColor);
-            Assert.Equal(testElevation, customRegion.GlobalElevation);
-        }
-        #endregion
-
         #region Chunks
         [Fact]
         public void SetGetChunkFailsOnInvalidPositionTest()
