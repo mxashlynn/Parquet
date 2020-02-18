@@ -40,13 +40,13 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inDefintions">The definitions of the collected parquets.</param>
+        /// <param name="inDefinitions">The definitions of the collected parquets.</param>
         public MapChunk(EntityID inID, string inName, string inDescription, string inComment, int inRevision = 0,
-                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefintions = null)
+                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
         {
             ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
-            ParquetDefinitions = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+            ParquetDefinitions = inDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
         }
         #endregion
 
