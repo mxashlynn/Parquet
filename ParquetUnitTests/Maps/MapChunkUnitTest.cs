@@ -242,7 +242,7 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionMatchesPattern()
         {
             var originalChunk = typeof(MapChunk)
-                                .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                .GetProperty("ParquetDefinitions", BindingFlags.NonPublic | BindingFlags.Instance)
                                 ?.GetValue(TestModels.TestMapChunk) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
@@ -262,7 +262,7 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionOnWholeSubregionMatchesPattern()
         {
             var originalChunk = typeof(MapChunk)
-                                .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                .GetProperty("ParquetDefinitions", BindingFlags.NonPublic | BindingFlags.Instance)
                                 ?.GetValue(TestModels.TestMapChunk) as ParquetStackGrid;
 
             ParquetStackGrid subregion = TestModels.TestMapChunk.GetSubregion();
