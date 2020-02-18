@@ -99,6 +99,7 @@ namespace ParquetClassLibrary.Parquets
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None
+            && Furnishing != EntityID.None
             && !(All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false);
         #endregion
 
