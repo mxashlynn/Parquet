@@ -27,15 +27,15 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            // Serialization
             All.LoadFromCSV();
-            Serializer.WorkingDirectory += "/Output";
-            All.SaveToCSV();
 
-            // Display
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");
+
+            All.SaveToCSV();
+
+            Console.WriteLine("Done.");
         }
     }
 }
