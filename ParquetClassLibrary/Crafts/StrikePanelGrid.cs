@@ -43,14 +43,6 @@ namespace ParquetClassLibrary.Crafts
         public StrikePanelGrid(int inRowCount, int inColumnCount)
             => StrikePanels = new StrikePanel[inRowCount, inColumnCount];
 
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the collection.
-        /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
-            => StrikePanels.IsValidPosition(inPosition);
-
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         public ref StrikePanel this[int y, int x]
         {
@@ -72,6 +64,16 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => StrikePanels.GetEnumerator();
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the collection.
+        /// </summary>
+        /// <param name="inPosition">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public bool IsValidPosition(Vector2D inPosition)
+            => StrikePanels.IsValidPosition(inPosition);
         #endregion
     }
 }
