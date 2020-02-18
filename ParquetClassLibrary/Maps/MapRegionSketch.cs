@@ -118,7 +118,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
-            => $"Ungenerated {Title} ({Chunks.Columns}, {Chunks.Rows})";
+            => $"Sketch {Title} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Columns * Chunks.Rows} chunks.";
         #endregion
     }
 }

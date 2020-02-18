@@ -56,7 +56,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
-            => $"Chunk {base.ToString()}";
+            => $"Chunk {Name} {base.ToString()}";
         #endregion
     }
 }

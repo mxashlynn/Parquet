@@ -29,28 +29,13 @@ namespace ParquetRunner
         {
             // Serialization
             All.LoadFromCSV();
-            //Serializer.WorkingDirectory += "/Output";
-            //All.SaveToCSV();
+            Serializer.WorkingDirectory += "/Output";
+            All.SaveToCSV();
 
             // Display
-            //var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
-            //Console.WriteLine(region);
-            //Console.WriteLine($"Item range = {All.ItemIDs}");
-
-            Console.WriteLine($"PronounGroups.Count = {All.PronounGroups.Count}");
-            Console.WriteLine($"Beings.Count = {All.Beings.Count}");
-            Console.WriteLine($"Biomes.Count = {All.Biomes.Count}");
-            Console.WriteLine($"CraftingRecipes.Count = {All.CraftingRecipes.Count}");
-            Console.WriteLine($"Interactions.Count = {All.Interactions.Count}");
-            Console.WriteLine($"Maps.Count = {All.Maps.Count}");
-            Console.WriteLine($"Parquets.Count = {All.Parquets.Count}");
-            Console.WriteLine($"RoomRecipes.Count = {All.RoomRecipes.Count}");
-            Console.WriteLine($"Items.Count = {All.Items.Count}");
-
-            foreach (var model in All.Maps)
-            {
-                Console.WriteLine($" > Maps: {model}");
-            }
+            var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
+            Console.WriteLine(region);
+            Console.WriteLine($"Item range = {All.ItemIDs}");
         }
     }
 }
