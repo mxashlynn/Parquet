@@ -141,7 +141,7 @@ namespace ParquetClassLibrary
             }
 
             return inID == EntityID.None
-                ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {EntityID.None}.")
+                ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {nameof(EntityID.None)}.")
                 : (TTarget)Models[inID];
         }
 
