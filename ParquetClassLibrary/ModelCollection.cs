@@ -191,7 +191,10 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<EntityID>> inBounds)
             where TRecord : TModel
         {
-            using var reader = new StreamReader($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
+            var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
+                ? $"{typeof(TRecord).Name}es.csv"
+                : $"{typeof(TRecord).Name}s.csv";
+            using var reader = new StreamReader($"{All.WorkingDirectory}/{filename}");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
             csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)

@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Maps
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStackGrid ParquetDefintion { get; }
+        protected abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
 
@@ -124,14 +124,14 @@ namespace ParquetClassLibrary.Maps
                                             Vector2D inPosition)
         {
             var result = false;
-            if (ParquetDefintion.IsValidPosition(inPosition))
+            if (ParquetDefinitions.IsValidPosition(inPosition))
             {
-                ParquetDefintion[inPosition.Y, inPosition.X] =
+                ParquetDefinitions[inPosition.Y, inPosition.X] =
                     new ParquetStack(
-                        inFloorID ?? ParquetDefintion[inPosition.Y, inPosition.X].Floor,
-                        inBlockID ?? ParquetDefintion[inPosition.Y, inPosition.X].Block,
-                        inFurnishingID ?? ParquetDefintion[inPosition.Y, inPosition.X].Furnishing,
-                        inCollectibleID ?? ParquetDefintion[inPosition.Y, inPosition.X].Collectible);
+                        inFloorID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Floor,
+                        inBlockID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Block,
+                        inFurnishingID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Furnishing,
+                        inCollectibleID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Collectible);
                 result = true;
             }
             return result;
@@ -164,13 +164,13 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPoint">The point to remove.</param>
         /// <returns><c>true</c>, if the point was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveExitPoint(ExitPoint inPoint)
-            => ParquetDefintion.IsValidPosition(inPoint.Position)
+            => ParquetDefinitions.IsValidPosition(inPoint.Position)
             && ExitPoints.Remove(inPoint);
         #endregion
 
         #region State Queries
         /// <summary>The total number of parquets in the entire map.</summary>
-        protected int ParquetsCount => ParquetDefintion?.Count ?? 0;
+        protected int ParquetsCount => ParquetDefinitions?.Count ?? 0;
 
         /// <summary>
         /// Gets the statuses of any parquets at the position.
@@ -188,8 +188,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position whose floor is sought.</param>
         /// <returns>The floor at the given position.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2D inPosition)
-            => ParquetDefintion.IsValidPosition(inPosition)
-                ? ParquetDefintion[inPosition.Y, inPosition.X]
+            => ParquetDefinitions.IsValidPosition(inPosition)
+                ? ParquetDefinitions[inPosition.Y, inPosition.X]
                 : throw new ArgumentOutOfRangeException(nameof(inPosition));
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => ParquetDefintion.IsValidPosition(inPosition);
+            => ParquetDefinitions.IsValidPosition(inPosition);
 
         /// <summary>
         /// Provides all parquet definitions within the current map.
@@ -225,11 +225,11 @@ namespace ParquetClassLibrary.Maps
         /// <returns>A portion of the map as a subregion.</returns>
         public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
-            if (!ParquetDefintion.IsValidPosition(inUpperLeft))
+            if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
                 throw new ArgumentOutOfRangeException(nameof(inUpperLeft));
             }
-            else if (!ParquetDefintion.IsValidPosition(inLowerRight))
+            else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
                 throw new ArgumentOutOfRangeException(nameof(inLowerRight));
             }
@@ -246,7 +246,7 @@ namespace ParquetClassLibrary.Maps
                 {
                     for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
                     {
-                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetDefintion[y, x];
+                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetDefinitions[y, x];
                     }
                 }
 

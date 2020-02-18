@@ -236,12 +236,6 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about pronouns for the rest of the library.
         /// </summary>
         public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="ChunkTypeGrid"/>s.
-        /// This collection is the source of truth about pronouns for the rest of the library.
-        /// </summary>
-        public static IReadOnlyCollection<ChunkTypeGrid> ChunkGrids { get; private set; }
         #endregion
 
         #region Initialization
@@ -414,7 +408,6 @@ namespace ParquetClassLibrary
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
-                                                 IEnumerable<ChunkTypeGrid> inChunkGrids,
                                                  IEnumerable<ParquetModel> inParquets,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
                                                  IEnumerable<ItemModel> inItems)
@@ -429,7 +422,6 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
             Precondition.IsNotNull(inInteractions, nameof(inInteractions));
             Precondition.IsNotNull(inMaps, nameof(inMaps));
-            Precondition.IsNotNull(inChunkGrids, nameof(inChunkGrids));
             Precondition.IsNotNull(inParquets, nameof(inParquets));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
@@ -439,7 +431,6 @@ namespace ParquetClassLibrary
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
-            ChunkGrids = new HashSet<ChunkTypeGrid>(inChunkGrids);
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
@@ -462,8 +453,8 @@ namespace ParquetClassLibrary
                 ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
                     .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs)),
                 ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
                     .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs)),
-                ChunkTypeGrid.GetRecords(),
                 ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
                     .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))

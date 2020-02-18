@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Maps
         protected override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        protected override ParquetStackGrid ParquetDefintion { get; }
+        protected override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
 
         #region Initialization
@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Maps
             : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
         {
             ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
-            ParquetDefintion = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+            ParquetDefinitions = inDefintions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
         }
         #endregion
 

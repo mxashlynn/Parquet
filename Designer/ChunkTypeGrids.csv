@@ -1,3 +1,0 @@
-ID,Title,Background,GlobalElevation,ChunkTypeArray
--80010,Chunk Grid Test,#000000,LevelGround,4x4=Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty,Empty,,Empty
-80010,Simple Chunk Grid,#FFFFFF,LevelGround,4x4=Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean,Solid,grass,Clustered,trees,Solid,sand,West,ocean

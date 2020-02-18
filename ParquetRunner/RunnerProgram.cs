@@ -47,10 +47,9 @@ namespace ParquetRunner
             Console.WriteLine($"RoomRecipes.Count = {All.RoomRecipes.Count}");
             Console.WriteLine($"Items.Count = {All.Items.Count}");
 
-            Console.WriteLine($"ChunkGrids.Count = {All.ChunkGrids.Count}");
-            foreach (ChunkTypeGrid model in All.ChunkGrids)
+            foreach (var model in All.Maps)
             {
-                Console.WriteLine($" > ChunkGrids: {model}");
+                Console.WriteLine($" > Maps: {model}");
             }
         }
     }

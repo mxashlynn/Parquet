@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
@@ -5,19 +6,22 @@ using ParquetClassLibrary.Parquets;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A playable region in sandbox.
+    /// A pattern and metadata to generate a playable region.
     /// </summary>
-    public sealed class MapRegion : MapModel, IMapRegionEdit
+    /// <remarks>
+    /// <see cref="MapRegion"/>s are stored as <see cref="MapRegionSketch"/>es, for example in an editor tool,
+    /// before being fleshed, for example on load in-game.
+    /// </remarks>
+    public sealed class MapRegionSketch : MapModel, IMapRegionEdit
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegion Empty = new MapRegion(EntityID.None, "Empty Region");
+        public static readonly MapRegionSketch Empty = new MapRegionSketch(EntityID.None, "Empty Ungenerated Region");
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
-                                                                              Rules.Dimensions.ParquetsPerRegion);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
 
-        /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="EntityID"/>s.</summary>
+        /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="EntityID"/>s.</summary>
         public static Range<EntityID> Bounds => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
@@ -64,20 +68,26 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Map Contents
-        /// <summary>The statuses of parquets in the chunk.</summary>
-        protected override ParquetStatusGrid ParquetStatuses { get; }
+        /// <summary>Call <see cref="Generate"/> before accessing parquet statuses.</summary>
+        protected override ParquetStatusGrid ParquetStatuses
+        {
+            get => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
+        }
 
-        /// <summary>
-        /// Parquets that make up the region.  If changing or replacing one of these,
-        /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
-        /// </summary>
-        protected override ParquetStackGrid ParquetDefinitions { get; }
+        /// <summary>Call <see cref="Generate"/> before accessing parquets.</summary>
+        protected override ParquetStackGrid ParquetDefinitions
+        {
+            get => throw new InvalidOperationException($"Cannot access parquets on ungenerated {nameof(MapRegionSketch)}.");
+        }
+
+        /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        private ChunkTypeGrid Chunks { get; }
         #endregion
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="MapRegion"/> class.
+        /// Constructs a new instance of the <see cref="MapRegionSketch"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inTitle">The player-facing name of the new region.</param>
@@ -88,30 +98,27 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inLocalElevation">The absolute elevation of this region.</param>
         /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
-        /// <param name="inStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inDefinitions">The definitions of the collected parquets.</param>
-        public MapRegion(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
-                         string inBackground = DefaultColor, Elevation inLocalElevation = Elevation.LevelGround,
-                         int inGlobalElevation = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
-                         ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefinitions = null)
-
+        /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
+        public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
+                                    string inBackground = DefaultColor, Elevation inLocalElevation = Elevation.LevelGround,
+                                    int inGlobalElevation = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
+                                    ChunkTypeGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision, inExits)
         {
             BackgroundColor = inBackground;
             ElevationLocal = inLocalElevation;
             ElevationGlobal = inGlobalElevation;
-            ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
-            ParquetDefinitions = inDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+            Chunks = inChunks ?? new ChunkTypeGrid();
         }
         #endregion
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapRegion"/>.
+        /// Describes the <see cref="MapRegionSketch"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
+        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
-            => $"Region {Title} {base.ToString()}";
+            => $"Ungenerated {Title} ({Chunks.Columns}, {Chunks.Rows})";
         #endregion
     }
 }
