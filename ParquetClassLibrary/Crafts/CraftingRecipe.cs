@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -23,12 +24,15 @@ namespace ParquetClassLibrary.Crafts
 
         #region Characteristics
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
+        [Index(4)]
         public IReadOnlyList<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
+        [Index(5)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        [Index(6)]
         public StrikePanelGrid PanelPattern { get; }
         #endregion
 

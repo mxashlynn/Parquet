@@ -476,7 +476,7 @@ namespace ParquetClassLibrary
             //Beings.PutRecordsForType<NPCModel>();
             //Beings.PutRecordsForType<PlayerCharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
-            //CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             //Interactions.PutRecordsForType<DialogueModel>();
             //Interactions.PutRecordsForType<QuestModel>();
             //Maps.PutRecordsForType<MapChunk>();
