@@ -227,7 +227,7 @@ namespace ParquetClassLibrary
 
             csv.WriteHeader<TRecord>();
             csv.NextRecord();
-            csv.WriteRecords(Models.Values.Where(model => model.GetType() == typeof(TRecord)));
+            csv.WriteRecords(Models.Values.Where(model => model.GetType() == typeof(TRecord)).Cast<TRecord>());
         }
         #endregion
 
