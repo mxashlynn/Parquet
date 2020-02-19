@@ -472,21 +472,21 @@ namespace ParquetClassLibrary
         public static void SaveToCSV()
         {
             PronounGroup.PutRecords(PronounGroups);
-            Beings.PutRecordsForType<CritterModel>();
-            Beings.PutRecordsForType<NPCModel>();
-            Beings.PutRecordsForType<PlayerCharacterModel>();
+            //Beings.PutRecordsForType<CritterModel>();
+            //Beings.PutRecordsForType<NPCModel>();
+            //Beings.PutRecordsForType<PlayerCharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
-            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
-            Interactions.PutRecordsForType<DialogueModel>();
-            Interactions.PutRecordsForType<QuestModel>();
-            Maps.PutRecordsForType<MapChunk>();
-            Maps.PutRecordsForType<MapRegion>();
-            Parquets.PutRecordsForType<FloorModel>();
-            Parquets.PutRecordsForType<BlockModel>();
-            Parquets.PutRecordsForType<FurnishingModel>();
-            Parquets.PutRecordsForType<CollectibleModel>();
-            RoomRecipes.PutRecordsForType<RoomRecipe>();
-            Items.PutRecordsForType<ItemModel>();
+            //CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            //Interactions.PutRecordsForType<DialogueModel>();
+            //Interactions.PutRecordsForType<QuestModel>();
+            //Maps.PutRecordsForType<MapChunk>();
+            //Maps.PutRecordsForType<MapRegion>();
+            //Parquets.PutRecordsForType<FloorModel>();
+            //Parquets.PutRecordsForType<BlockModel>();
+            //Parquets.PutRecordsForType<FurnishingModel>();
+            //Parquets.PutRecordsForType<CollectibleModel>();
+            //RoomRecipes.PutRecordsForType<RoomRecipe>();
+            //Items.PutRecordsForType<ItemModel>();
         }
         #endregion
     }

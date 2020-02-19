@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
@@ -15,18 +16,23 @@ namespace ParquetClassLibrary.Biomes
         /// A rating indicating where in the progression this <see cref="BiomeModel"/> falls.
         /// Must be non-negative.  Higher values indicate later Biomes.
         /// </summary>
+        [Index(4)]
         public int Tier { get; }
 
         /// <summary>Describes where this <see cref="BiomeModel"/> falls in terms of the game world's overall topography.</summary>
+        [Index(5)]
         public Elevation ElevationCategory { get; }
 
         /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</summary>
+        [Index(6)]
         public bool IsLiquidBased { get; }
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
+        [Index(7)]
         public IReadOnlyList<EntityTag> ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
+        [Index(8)]
         public IReadOnlyList<EntityTag> EntryRequirements { get; }
         #endregion
 

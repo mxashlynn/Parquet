@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -38,32 +39,37 @@ namespace ParquetClassLibrary.Beings
         public const string ReflexiveTag = "%themselves%";
         #endregion
 
-        #region Pronouns
+        #region Characteristics
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
+        [Index(0)]
         public string Subjective { get; private set; }
 
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
         string IPronounGroupEdit.Subjective { get => Subjective; set => Subjective = value; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+        [Index(1)]
         public string Objective { get; private set; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
         string IPronounGroupEdit.Objective { get => Objective; set => Objective = value; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
+        [Index(2)]
         public string Determiner { get; private set; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
         string IPronounGroupEdit.Determiner { get => Determiner; set => Determiner = value; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        [Index(3)]
         public string Possessive { get; private set; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
         string IPronounGroupEdit.Possessive { get => Possessive; set => Possessive = value; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
+        [Index(4)]
         public string Reflexive { get; private set; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>

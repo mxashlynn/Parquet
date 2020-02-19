@@ -1,4 +1,5 @@
 using System;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -32,24 +33,29 @@ namespace ParquetClassLibrary
     {
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
+        [Index(0)]
         public EntityID ID { get; }
 
         /// <summary>Player-facing name.</summary>
+        [Index(1)]
         public string Name { get; private set; }
 
         /// <summary>Player-facing name.</summary>
         string IEntityModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
+        [Index(2)]
         public string Description { get; private set; }
 
         /// <summary>Player-facing description.</summary>
         string IEntityModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
-        /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="EntityModel"/>.
-        /// </remarks>
+        /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="EntityModel"/>.</remarks>
+        [Index(3)]
         public string Comment { get; private set; }
+
+        /// <summary>Optional comment.</summary>
         string IEntityModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion
 
