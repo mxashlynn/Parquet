@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Maps
         public static Range<EntityID> Bounds => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
-        internal const string DefaultTitle = "New Region";
+        internal const string DefaultName = "New Region";
 
         /// <summary>Relative elevation to use if none is provided.</summary>
         internal const int DefaultGlobalElevation = 0;
@@ -85,7 +85,7 @@ namespace ParquetClassLibrary.Maps
         /// Constructs a new instance of the <see cref="MapRegion"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
-        /// <param name="inTitle">The player-facing name of the new region.</param>
+        /// <param name="inName">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
@@ -96,12 +96,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inStatuses">The statuses of the collected parquets.</param>
         /// <param name="inDefinitions">The definitions of the collected parquets.</param>
-        public MapRegion(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null,
+        public MapRegion(EntityID inID, string inName = null, string inDescription = null, string inComment = null,
                          string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
                          Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
                          IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefinitions = null)
 
-            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inDataVersion, inRevision, inExits)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;

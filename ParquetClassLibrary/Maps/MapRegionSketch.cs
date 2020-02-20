@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Maps
         /// Constructs a new instance of the <see cref="MapRegionSketch"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
-        /// <param name="inTitle">The player-facing name of the new region.</param>
+        /// <param name="inName">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
@@ -105,11 +105,11 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
-        public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null,
+        public MapRegionSketch(EntityID inID, string inName = null, string inDescription = null, string inComment = null,
                                string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0,
                                string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
                                int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inDataVersion, inRevision, inExits)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;

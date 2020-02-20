@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Maps
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private const string testColor = "#FF8822EE";
-        private const string testTitle = "Test Region";
+        private const string testName = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly EntityID testID = TestModels.TestMapRegion.ID;
@@ -26,16 +26,17 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewDefaultMapRegionTest()
         {
-            Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
+            Assert.Equal(MapRegion.DefaultName, defaultRegion.Name);
             Assert.Equal(MapRegion.DefaultColor, defaultRegion.BackgroundColor);
         }
 
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
+                                             AssemblyInfo.SupportedMapDataVersion, 0, testColor, testStory, testElevation);
 
-            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
@@ -46,15 +47,16 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", AssemblyInfo.SupportedMapDataVersion,
+                                             0, testColor, testStory, testElevation);
             IMapRegionEdit editableRegion = customRegion;
 
-            editableRegion.Title = testTitle;
+            editableRegion.Name = testName;
             editableRegion.BackgroundColor = testColor;
             editableRegion.ElevationLocal = testStory;
             editableRegion.ElevationGlobal = testElevation;
 
-            Assert.Equal(testTitle, customRegion.Title);
+            Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
