@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParquetClassLibrary.Parquets
 {
@@ -60,7 +61,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParquetStatus> IEnumerable<ParquetStatus>.GetEnumerator()
-            => (IEnumerator<ParquetStatus>)ParquetStatuses.GetEnumerator();
+            => ParquetStatuses.Cast<ParquetStatus>().GetEnumerator();
 
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.

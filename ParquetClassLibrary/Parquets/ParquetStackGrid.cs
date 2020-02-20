@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParquetClassLibrary.Parquets
 {
@@ -86,7 +87,7 @@ namespace ParquetClassLibrary.Parquets
         /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ParquetStack> IEnumerable<ParquetStack>.GetEnumerator()
-            => (IEnumerator<ParquetStack>)ParquetStacks.GetEnumerator();
+            => ParquetStacks.Cast<ParquetStack>().GetEnumerator();
 
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStackGrid"/>, which supports simple iteration.
