@@ -107,15 +107,7 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return None;
-            }
-
-            return (EntityTag)inText;
-        }
+            => (EntityTag)inText;
 
         /// <summary>
         /// Converts the given <see cref="EntityTag"/> to a record column.
@@ -125,9 +117,9 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue == None || string.IsNullOrEmpty((string)inValue)
-                ? nameof(None)
-                : (string)inValue;
+            => inValue is EntityTag tag
+                ? (string)tag
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(EntityTag)}.");
         #endregion
 
         #region Utilities

@@ -146,7 +146,7 @@ namespace ParquetClassLibrary
             && inValue is Vector2D vector
                 ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(Vector2D)}.");
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(Vector2D)}.");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
