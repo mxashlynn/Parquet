@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParquetClassLibrary.Crafts
 {
@@ -55,7 +56,7 @@ namespace ParquetClassLibrary.Crafts
         /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<StrikePanel> IEnumerable<StrikePanel>.GetEnumerator()
-            => (IEnumerator<StrikePanel>)StrikePanels.GetEnumerator();
+            => StrikePanels.Cast<StrikePanel>().GetEnumerator();
 
         /// <summary>
         /// Exposes an enumerator for the <see cref="StrikePanelGrid"/>, which supports simple iteration.

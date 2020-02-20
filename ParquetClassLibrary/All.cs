@@ -332,7 +332,7 @@ namespace ParquetClassLibrary
             #endregion
             #endregion
 
-            #region Initialize Serialization Lookup Tables
+            #region Initialize Serialization Values & Lookup Tables
             WorkingDirectory =
 #if DEBUG
                 $"{Directory.GetCurrentDirectory()}/../../../../Designer";
