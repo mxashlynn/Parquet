@@ -222,12 +222,12 @@ namespace ParquetRoller
                     break;
                 case "p-item":
                 case "p-items":
-                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.AsParquet != EntityID.None);
+                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.ParquetID != EntityID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "n-item":
                 case "n-items":
-                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.AsParquet == EntityID.None);
+                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.ParquetID == EntityID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "parquet":

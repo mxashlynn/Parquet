@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
 namespace ParquetClassLibrary.Rooms
@@ -12,16 +13,20 @@ namespace ParquetClassLibrary.Rooms
     {
         #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
+        [Index(4)]
         public int MinimumWalkableSpaces { get; }
 
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public IReadOnlyList<RecipeElement> RequiredFurnishings { get; }
+        [Index(5)]
+        public IReadOnlyList<RecipeElement> OptionallyRequiredFurnishings { get; }
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public IReadOnlyList<RecipeElement> RequiredFloors { get; }
+        [Index(6)]
+        public IReadOnlyList<RecipeElement> OptionallyRequiredWalkableFloors { get; }
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public IReadOnlyList<RecipeElement> RequiredPerimeterBlocks { get; }
+        [Index(7)]
+        public IReadOnlyList<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
         #endregion
 
         #region Initialization
@@ -50,9 +55,9 @@ namespace ParquetClassLibrary.Rooms
             }
 
             MinimumWalkableSpaces = inMinimumWalkableSpaces;
-            RequiredFurnishings = inOptionallyRequiredFurnishings?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredFloors = inOptionallyRequiredWalkableFloors?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            RequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            OptionallyRequiredFurnishings = inOptionallyRequiredFurnishings?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            OptionallyRequiredWalkableFloors = inOptionallyRequiredWalkableFloors?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            OptionallyRequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
         }
         #endregion
 
@@ -61,8 +66,9 @@ namespace ParquetClassLibrary.Rooms
         /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
         /// the room is asigned the type of the most demanding recipe.
         /// </summary>
+        [Ignore]
         public int Priority
-            => RequiredFloors.Count + RequiredPerimeterBlocks.Count + RequiredFurnishings.Count + MinimumWalkableSpaces;
+            => OptionallyRequiredWalkableFloors.Count + OptionallyRequiredPerimeterBlocks.Count + OptionallyRequiredFurnishings.Count + MinimumWalkableSpaces;
 
         /// <summary>
         /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
@@ -75,13 +81,13 @@ namespace ParquetClassLibrary.Rooms
         public bool Matches(Room inRoom)
             => null != inRoom
             && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
-            && RequiredPerimeterBlocks.All(element =>
+            && OptionallyRequiredPerimeterBlocks.All(element =>
                 inRoom.Perimeter.Count(space =>
                     All.Parquets.Get<BlockModel>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-            && RequiredFloors.All(element =>
+            && OptionallyRequiredWalkableFloors.All(element =>
                 inRoom.WalkableArea.Count(space =>
                     All.Parquets.Get<FloorModel>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
-            && RequiredFurnishings.All(element =>
+            && OptionallyRequiredFurnishings.All(element =>
                 inRoom.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);
         #endregion
