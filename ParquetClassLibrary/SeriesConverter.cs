@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {
@@ -27,22 +29,27 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given collection serialized.</returns>
         public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => ConvertToString(inValue, Rules.Delimiters.SecondaryDelimiter);
+        {
+            if (!(inValue is TCollection series))
+            {
+                throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(TCollection)}.");
+            }
 
-        /// <summary>
-        /// Converts the given 1D collection into a record column.
-        /// </summary>
-        /// <param name="inValue">The collection to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
-        /// <param name="inDelimiter">The string to use to separate elements in the series.</param>
-        /// <returns>The given collection serialized.</returns>
-        public string ConvertToString(object inValue, string inDelimiter)
-            => !string.IsNullOrEmpty(inDelimiter)
-            && null != inValue
-            && inValue is IEnumerable<TElement> list
-                ? string.Join(inDelimiter, list)
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(IEnumerable<TElement>)}.");
+            if (series.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            var result = new StringBuilder();
+            foreach (var element in series)
+            {
+                    result.Append(element.ConvertToString(element, inRow, inMemberMapData));
+                    result.Append(Rules.Delimiters.SecondaryDelimiter);
+            }
+            result.Remove(result.Length - Rules.Delimiters.SecondaryDelimiter.Length, Rules.Delimiters.SecondaryDelimiter.Length);
+
+            return result.ToString();
+        }
 
         /// <summary>
         /// Converts the given record column to a 1D collection.
