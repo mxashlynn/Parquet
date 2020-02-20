@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Parquets
         /// </param>
         public CollectibleModel(EntityID inID, string inName, string inDescription, string inComment,
                            EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                           EntityTag inAddsToRoom = null, CollectingEffect inEffect = CollectingEffect.None,
+                           EntityTag inAddsToRoom = null, CollectingEffect inCollectionEffect = CollectingEffect.None,
                            int inEffectAmount = 0)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
                    inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
@@ -52,7 +52,7 @@ namespace ParquetClassLibrary.Parquets
             var nonNullItemID = inItemID ?? EntityID.None;
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
 
-            CollectionEffect = inEffect;
+            CollectionEffect = inCollectionEffect;
             EffectAmount = inEffectAmount;
         }
         #endregion
