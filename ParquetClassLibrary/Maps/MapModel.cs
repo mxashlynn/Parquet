@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>Describes the version of serialized data, to support versioning.</summary>
         [Index(4)]
-        protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
+        public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
         #endregion
 
         #region Characteristics
