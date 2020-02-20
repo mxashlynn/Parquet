@@ -32,17 +32,15 @@ namespace ParquetClassLibrary.Maps
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
         [Index(6)]
-        protected List<ExitPoint> ExitPoints { get; }
+        protected List<ExitPoint> Exits { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        [Index(7)]
         protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(8)]
         protected abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
@@ -69,7 +67,7 @@ namespace ParquetClassLibrary.Maps
             }
 
             Revision = inRevision;
-            ExitPoints = inExits?.ToList() ?? new List<ExitPoint>();
+            Exits = inExits?.ToList() ?? new List<ExitPoint>();
         }
         #endregion
 
@@ -159,11 +157,11 @@ namespace ParquetClassLibrary.Maps
         {
             var result = true;
 
-            if (ExitPoints.Contains(inPoint))
+            if (Exits.Contains(inPoint))
             {
                 result = TryRemoveExitPoint(inPoint);
             }
-            ExitPoints.Add(inPoint);
+            Exits.Add(inPoint);
 
             return result;
         }
@@ -175,7 +173,7 @@ namespace ParquetClassLibrary.Maps
         /// <returns><c>true</c>, if the point was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveExitPoint(ExitPoint inPoint)
             => ParquetDefinitions.IsValidPosition(inPoint.Position)
-            && ExitPoints.Remove(inPoint);
+            && Exits.Remove(inPoint);
         #endregion
 
         #region State Queries
@@ -208,7 +206,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
         public IReadOnlyList<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
-            => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
+            => Exits.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 
         #region Utilities
@@ -269,7 +267,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {ExitPoints.Count} exits.";
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {Exits.Count} exits.";
         #endregion
     }
 }
