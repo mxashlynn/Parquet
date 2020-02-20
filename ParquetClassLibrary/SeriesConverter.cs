@@ -43,8 +43,11 @@ namespace ParquetClassLibrary
             var result = new StringBuilder();
             foreach (var element in series)
             {
+                if (null != element)
+                {
                     result.Append(element.ConvertToString(element, inRow, inMemberMapData));
-                    result.Append(Rules.Delimiters.SecondaryDelimiter);
+                }
+                result.Append(Rules.Delimiters.SecondaryDelimiter);
             }
             result.Remove(result.Length - Rules.Delimiters.SecondaryDelimiter.Length, Rules.Delimiters.SecondaryDelimiter.Length);
 

@@ -50,7 +50,10 @@ namespace ParquetClassLibrary
             {
                 for (var x = 0; x < grid.Columns; x++)
                 {
-                    result.Append(grid[y,x].ConvertToString(grid[y, x], inRow, inMemberMapData));
+                    if (null != grid[y, x])
+                    {
+                        result.Append(grid[y, x].ConvertToString(grid[y, x], inRow, inMemberMapData));
+                    }
                     result.Append(Rules.Delimiters.SecondaryDelimiter);
                 }
             }
