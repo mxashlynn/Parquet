@@ -128,7 +128,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-            => inStrikePanel1?.Equals(inStrikePanel2) ?? null == inStrikePanel2;
+            => inStrikePanel1?.Equals(inStrikePanel2) ?? inStrikePanel2?.Equals(inStrikePanel1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is not equal to another specified instance of <see cref="StrikePanel"/>.
@@ -137,7 +137,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-            => !inStrikePanel1?.Equals(inStrikePanel2) ?? null != inStrikePanel2;
+            => !(inStrikePanel1 == inStrikePanel2);
         #endregion
 
         #region ITypeConverter Implementation

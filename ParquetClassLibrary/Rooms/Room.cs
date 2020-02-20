@@ -136,7 +136,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Room inRoom1, Room inRoom2)
-            => inRoom1?.Equals(inRoom2) ?? null == inRoom2;
+           => inRoom1?.Equals(inRoom2) ?? inRoom2?.Equals(inRoom1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Room"/>.
@@ -145,7 +145,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Room inRoom1, Room inRoom2)
-            => !inRoom1?.Equals(inRoom2) ?? null != inRoom2;
+           => !(inRoom1 == inRoom2);
         #endregion
     }
 }

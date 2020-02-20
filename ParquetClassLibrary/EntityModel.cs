@@ -113,7 +113,7 @@ namespace ParquetClassLibrary
         /// <param name="inModel2">The second <see cref="EntityModel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(EntityModel inModel1, EntityModel inModel2)
-            => inModel1?.Equals(inModel2) ?? null == inModel2;
+           => inModel1?.Equals(inModel2) ?? inModel2?.Equals(inModel1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityModel"/> is not equal to another specified instance of <see cref="EntityModel"/>.
@@ -122,7 +122,7 @@ namespace ParquetClassLibrary
         /// <param name="inModel2">The second <see cref="EntityModel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(EntityModel inModel1, EntityModel inModel2)
-            => !inModel1?.Equals(inModel2) ?? null != inModel2;
+           => !(inModel1 == inModel2);
         #endregion
 
         #region Utilities
