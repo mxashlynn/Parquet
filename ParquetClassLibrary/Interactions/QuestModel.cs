@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -13,6 +14,7 @@ namespace ParquetClassLibrary.Interactions
         /// <summary>
         /// Describes the criteria for completing this <see cref="QuestModel"/>.
         /// </summary>
+        [Index(7)]
         public IReadOnlyList<EntityTag> CompletionRequirements { get; }
         #endregion
 

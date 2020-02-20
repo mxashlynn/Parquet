@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -12,18 +13,21 @@ namespace ParquetClassLibrary.Interactions
         /// <summary>
         /// Describes the criteria for begining this interaction.
         /// </summary>
+        [Index(4)]
         public IReadOnlyList<EntityTag> StartCriteria { get; }
 
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
         // TODO This is may actually be a list of EntityTags, we need a new InteractionStep class.
+        [Index(5)]
         public IReadOnlyList<EntityTag> Steps { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
         /// </summary>
         // TODO This is not actually a string, not sure how we're going to handle this yet.
+        [Index(6)]
         public string Outcome { get; }
         #endregion
 

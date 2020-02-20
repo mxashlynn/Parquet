@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {

@@ -228,8 +228,7 @@ namespace ParquetClassLibrary
             csv.WriteHeader<TRecord>();
             csv.NextRecord();
             var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TRecord)).Cast<TRecord>();
-            // HERE The records are vanishing somewhere in the CSVHelper code.  Probably time to debug with source again.
-            csv.WriteRecords<TRecord>(recordsToWrite);
+            csv.WriteRecords(recordsToWrite);
         }
         #endregion
 

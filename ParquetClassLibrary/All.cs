@@ -477,16 +477,16 @@ namespace ParquetClassLibrary
             //Beings.PutRecordsForType<PlayerCharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
-            //Interactions.PutRecordsForType<DialogueModel>();
-            //Interactions.PutRecordsForType<QuestModel>();
+            Interactions.PutRecordsForType<DialogueModel>();
+            Interactions.PutRecordsForType<QuestModel>();
             //Maps.PutRecordsForType<MapChunk>();
             //Maps.PutRecordsForType<MapRegion>();
             //Parquets.PutRecordsForType<FloorModel>();
             //Parquets.PutRecordsForType<BlockModel>();
             //Parquets.PutRecordsForType<FurnishingModel>();
             //Parquets.PutRecordsForType<CollectibleModel>();
-            //RoomRecipes.PutRecordsForType<RoomRecipe>();
-            //Items.PutRecordsForType<ItemModel>();
+            RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Items.PutRecordsForType<ItemModel>();
         }
         #endregion
     }
