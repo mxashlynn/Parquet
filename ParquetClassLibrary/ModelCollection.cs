@@ -192,10 +192,7 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<EntityID>> inBounds)
             where TRecord : TModel
         {
-            var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
-                ? $"{typeof(TRecord).Name}es.csv"
-                : $"{typeof(TRecord).Name}s.csv";
-            using var reader = new StreamReader($"{All.WorkingDirectory}/{filename}");
+            using var reader = new StreamReader(GetFilePath<TRecord>());
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
             csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
@@ -216,7 +213,7 @@ namespace ParquetClassLibrary
         internal void PutRecordsForType<TRecord>()
             where TRecord : TModel
         {
-            using var writer = new StreamWriter($"{All.WorkingDirectory}/{typeof(TRecord).Name}s.csv");
+            using var writer = new StreamWriter(GetFilePath<TRecord>());
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
@@ -233,6 +230,20 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Given a type, returns the filename and path associated with that type's designer file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type whose path and filename are sought.</typeparam>
+        /// <returns>A full path to the addociated designer file.</returns>
+        private string GetFilePath<TRecord>()
+            where TRecord : TModel
+        {
+            var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
+                ? $"{typeof(TRecord).Name}es.csv"
+                : $"{typeof(TRecord).Name}s.csv";
+            return $"{All.WorkingDirectory}/{filename}";
+        }
+
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
         /// </summary>
