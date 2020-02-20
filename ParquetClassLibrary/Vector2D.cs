@@ -117,8 +117,7 @@ namespace ParquetClassLibrary
         /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Vector2D inVector1, Vector2D inVector2)
-            => inVector1.X == inVector2.X
-            && inVector1.Y == inVector2.Y;
+            => inVector1.Equals(inVector2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Vector2D"/> is not equal
@@ -128,8 +127,7 @@ namespace ParquetClassLibrary
         /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Vector2D inVector1, Vector2D inVector2)
-            => inVector1.X != inVector2.X
-            || inVector1.Y != inVector2.Y;
+            => !inVector1.Equals(inVector2);
         #endregion
 
         #region ITypeConverter Implementation

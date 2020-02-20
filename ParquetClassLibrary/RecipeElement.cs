@@ -69,7 +69,8 @@ namespace ParquetClassLibrary
         /// <param name="inElement">The <see cref="RecipeElement"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(RecipeElement inElement)
-            => inElement.ElementTag == ElementTag && inElement.ElementAmount == ElementAmount;
+            => inElement.ElementTag == ElementTag
+            && inElement.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.
@@ -77,7 +78,8 @@ namespace ParquetClassLibrary
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="RecipeElement"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is RecipeElement element && Equals(element);
+            => obj is RecipeElement element
+            && Equals(element);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is equal to another specified instance of <see cref="RecipeElement"/>.
@@ -86,7 +88,7 @@ namespace ParquetClassLibrary
         /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(RecipeElement inElement1, RecipeElement inElement2)
-            => inElement1.ElementTag == inElement2.ElementTag && inElement1.ElementAmount == inElement2.ElementAmount;
+            => inElement1.Equals(inElement2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is not equal to another specified instance of <see cref="RecipeElement"/>.
@@ -95,7 +97,7 @@ namespace ParquetClassLibrary
         /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(RecipeElement inElement1, RecipeElement inElement2)
-            => inElement1.ElementTag != inElement2.ElementTag || inElement1.ElementAmount != inElement2.ElementAmount;
+            => !inElement1.Equals(inElement2);
         #endregion
 
         #region ITypeConverter Implementation

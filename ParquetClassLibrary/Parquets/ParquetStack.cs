@@ -139,10 +139,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ParquetStack inStack1, ParquetStack inStack2)
-            => inStack1.Floor == inStack2.Floor
-            && inStack1.Block == inStack2.Block
-            && inStack1.Furnishing == inStack2.Furnishing
-            && inStack1.Collectible == inStack2.Collectible;
+            => inStack1.Equals(inStack2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
@@ -151,10 +148,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ParquetStack inStack1, ParquetStack inStack2)
-            => inStack1.Floor != inStack2.Floor
-            || inStack1.Block != inStack2.Block
-            || inStack1.Furnishing != inStack2.Furnishing
-            || inStack1.Collectible != inStack2.Collectible;
+            => !inStack1.Equals(inStack2);
         #endregion
 
         #region ITypeConverter

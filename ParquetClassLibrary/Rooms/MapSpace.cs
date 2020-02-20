@@ -177,7 +177,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is MapSpace vector && Equals(vector);
+            => obj is MapSpace vector
+            && Equals(vector);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is equal to
@@ -187,8 +188,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(MapSpace inSpace1, MapSpace inSpace2)
-            => inSpace1.Position == inSpace2.Position
-            && inSpace1.Content == inSpace2.Content;
+            => inSpace1.Equals(inSpace2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is unequal to
@@ -198,8 +198,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(MapSpace inSpace1, MapSpace inSpace2)
-            => inSpace1.Position != inSpace2.Position
-            && inSpace1.Content != inSpace2.Content;
+            => !inSpace1.Equals(inSpace2);
         #endregion
 
         #region Utilities

@@ -110,12 +110,8 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inStrikePanel">The <see cref="StrikePanel"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(StrikePanel inStrikePanel)
-        {
-            Precondition.IsNotNull(inStrikePanel, nameof(inStrikePanel));
-
-            return workingRangeBackingStruct == inStrikePanel.workingRangeBackingStruct
-                && idealRangeBackingStruct == inStrikePanel.idealRangeBackingStruct;
-        }
+            => workingRangeBackingStruct == inStrikePanel?.workingRangeBackingStruct
+            && idealRangeBackingStruct == inStrikePanel.idealRangeBackingStruct;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="StrikePanel"/>.
@@ -132,13 +128,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-        {
-            Precondition.IsNotNull(inStrikePanel1, nameof(inStrikePanel1));
-            Precondition.IsNotNull(inStrikePanel2, nameof(inStrikePanel2));
-
-            return inStrikePanel1.workingRangeBackingStruct == inStrikePanel2.workingRangeBackingStruct
-                && inStrikePanel1.idealRangeBackingStruct == inStrikePanel2.idealRangeBackingStruct;
-        }
+            => inStrikePanel1?.Equals(inStrikePanel2) ?? null == inStrikePanel2;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is not equal to another specified instance of <see cref="StrikePanel"/>.
@@ -147,13 +137,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-        {
-            Precondition.IsNotNull(inStrikePanel1, nameof(inStrikePanel1));
-            Precondition.IsNotNull(inStrikePanel2, nameof(inStrikePanel2));
-
-            return inStrikePanel1.workingRangeBackingStruct != inStrikePanel2.workingRangeBackingStruct
-                || inStrikePanel1.idealRangeBackingStruct != inStrikePanel2.idealRangeBackingStruct;
-        }
+            => !inStrikePanel1?.Equals(inStrikePanel2) ?? null != inStrikePanel2;
         #endregion
 
         #region ITypeConverter Implementation

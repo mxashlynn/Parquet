@@ -126,7 +126,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Room"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Room room && Equals(room);
+            => obj is Room room
+            && Equals(room);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Room"/>.
@@ -135,12 +136,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Room inRoom1, Room inRoom2)
-            => (inRoom1 is null
-                && inRoom2 is null)
-            || (!(inRoom1 is null)
-                && !(inRoom2 is null)
-                && inRoom1.WalkableArea.SetEquals(inRoom2.WalkableArea)
-                && inRoom1.Perimeter.SetEquals(inRoom2.Perimeter));
+            => inRoom1?.Equals(inRoom2) ?? null == inRoom2;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Room"/>.
@@ -149,14 +145,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Room inRoom1, Room inRoom2)
-            => (!(inRoom1 is null)
-                && !(inRoom2 is null)
-                && !inRoom1.WalkableArea.SetEquals(inRoom2.WalkableArea)
-                && !inRoom1.Perimeter.SetEquals(inRoom2.Perimeter))
-            || (!(inRoom1 is null)
-                && inRoom2 is null)
-            || (inRoom1 is null
-                && !(inRoom2 is null));
+            => !inRoom1?.Equals(inRoom2) ?? null != inRoom2;
         #endregion
     }
 }

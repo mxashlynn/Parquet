@@ -48,7 +48,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPoint">The <see cref="ExitPoint"/> to compare with.</param>
         /// <returns><c>true</c> if the given <see cref="ExitPoint"/> is equal to the current <see cref="ExitPoint"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(ExitPoint inPoint)
-            => null != inPoint && Position == inPoint.Position;
+            => inPoint.Position == Position;
 
         /// <summary>
         /// Determines whether the given <see cref="object"/> is equal to this <see cref="ExitPoint"/>.
@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPoint2">The second <see cref="SpecialPoint"/> to compare.</param>
         /// <returns><c>true</c> if the two points are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ExitPoint inPoint1, ExitPoint inPoint2)
-            => inPoint1.Position == inPoint2.Position;
+            => inPoint1.Equals(inPoint2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="SpecialPoint"/>
@@ -78,7 +78,7 @@ namespace ParquetClassLibrary.Maps
         /// <c>true</c> if the two points are not equal; otherwise, <c>false</c>.
         /// </returns>
         public static bool operator !=(ExitPoint inPoint1, ExitPoint inPoint2)
-            => inPoint1.Position != inPoint2.Position;
+            => !inPoint1.Equals(inPoint2);
         #endregion
 
         #region ITypeConverter Implementation
