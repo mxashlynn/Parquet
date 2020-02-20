@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
@@ -37,7 +38,10 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>What the region is called in-game.</summary>
+        [Ignore]
         public string Title { get => Name; }
+
+        /// <summary>What the region is called in-game.</summary>
         string IMapRegionEdit.Title
         {
             get => Name;
@@ -49,18 +53,21 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
+        [Index(9)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
+        [Index(10)]
         public Elevation ElevationLocal { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
+        [Index(11)]
         public int ElevationGlobal { get; private set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
@@ -94,20 +101,20 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inBackground">A color to show in the new region when no parquet is present.</param>
-        /// <param name="inLocalElevation">The absolute elevation of this region.</param>
-        /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
+        /// <param name="inElevationLocal">The absolute elevation of this region.</param>
+        /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
-                                    string inBackground = DefaultColor, Elevation inLocalElevation = Elevation.LevelGround,
-                                    int inGlobalElevation = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
-                                    ChunkTypeGrid inChunks = null)
+                               string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
+                               int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
+                               ChunkTypeGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision, inExits)
         {
-            BackgroundColor = inBackground;
-            ElevationLocal = inLocalElevation;
-            ElevationGlobal = inGlobalElevation;
+            BackgroundColor = inBackgroundColor;
+            ElevationLocal = inElevationLocal;
+            ElevationGlobal = inElevationGlobal;
             Chunks = inChunks ?? new ChunkTypeGrid();
         }
         #endregion

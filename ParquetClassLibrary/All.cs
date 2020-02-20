@@ -479,8 +479,9 @@ namespace ParquetClassLibrary
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Interactions.PutRecordsForType<DialogueModel>();
             Interactions.PutRecordsForType<QuestModel>();
-            //Maps.PutRecordsForType<MapChunk>();
-            //Maps.PutRecordsForType<MapRegion>();
+            Maps.PutRecordsForType<MapChunk>();
+            Maps.PutRecordsForType<MapRegionSketch>();
+            Maps.PutRecordsForType<MapRegion>();
             Parquets.PutRecordsForType<FloorModel>();
             Parquets.PutRecordsForType<BlockModel>();
             Parquets.PutRecordsForType<FurnishingModel>();

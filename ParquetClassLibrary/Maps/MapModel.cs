@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
 namespace ParquetClassLibrary.Maps
@@ -22,23 +23,28 @@ namespace ParquetClassLibrary.Maps
         /// Describes the version of serialized data.
         /// Allows selecting data files that can be successfully deserialized.
         /// </summary>
+        [Index(4)]
         protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
 
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
+        [Index(5)]
         public int Revision { get; protected set; }
         #endregion
 
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
+        [Index(6)]
         protected List<ExitPoint> ExitPoints { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
+        [Index(7)]
         protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
+        [Index(8)]
         protected abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
