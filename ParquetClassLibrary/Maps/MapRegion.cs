@@ -45,21 +45,21 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(9)]
+        [Index(7)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        [Index(10)]
+        [Index(8)]
         public Elevation ElevationLocal { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        [Index(11)]
+        [Index(9)]
         public int ElevationGlobal { get; private set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
@@ -68,12 +68,14 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
+        [Index(10)]
         protected override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
         /// </summary>
+        [Index(11)]
         protected override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion

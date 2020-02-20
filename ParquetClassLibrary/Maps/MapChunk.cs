@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
 namespace ParquetClassLibrary.Maps
@@ -22,10 +23,12 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
+        [Ignore]
         /// <summary>The statuses of parquets in the chunk.</summary>
         protected override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
+        [Ignore]
         protected override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
 
