@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -11,18 +12,18 @@ namespace ParquetClassLibrary.Beings
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
+        [Ignore]
         public string PersonalName { get; }
 
         /// <summary>Player-facing family name.</summary>
+        [Ignore]
         public string FamilyName { get; }
-
-        /// <summary>Player-facing full name.</summary>
-        public string FullName => Name;
 
         /// <summary>
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
+        [Index(8)]
         public string Pronouns { get; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
@@ -33,17 +34,21 @@ namespace ParquetClassLibrary.Beings
         /// sequel title to import data from prior titles in such a way that one game's <see cref="NPCModel"/>
         /// can become another game's <see cref="PlayerCharacterModel"/>.
         /// </remarks>
+        [Index(9)]
         public string StoryCharacterID { get; }
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks><see cref="NPCModel"/>s offer quests, <see cref="PlayerCharacterModel"/>s undertake them.</remarks>
+        [Index(10)]
         public IReadOnlyList<EntityID> StartingQuests { get; }
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
+        [Index(11)]
         public IReadOnlyList<EntityID> Dialogue { get; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
+        [Index(12)]
         public IReadOnlyList<EntityID> StartingInventory { get; }
         #endregion
 
@@ -56,8 +61,7 @@ namespace ParquetClassLibrary.Beings
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
         /// <param name="inID">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>
-        /// <param name="inPersonalName">Personal name of the <see cref="CharacterModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inFamilyName">Family name of the <see cref="CharacterModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inName">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
         /// <param name="inNativeBiome">The <see cref="EntityID"/> for the <see cref="Biomes.BiomeModel"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
@@ -69,14 +73,13 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingQuests">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
-        protected CharacterModel(Range<EntityID> inBounds, EntityID inID,
-                                 string inPersonalName, string inFamilyName,
+        protected CharacterModel(Range<EntityID> inBounds, EntityID inID, string inName,
                                  string inDescription, string inComment, EntityID inNativeBiome,
                                  Behavior inPrimaryBehavior, IEnumerable<EntityID> inAvoids = null,
                                  IEnumerable<EntityID> inSeeks = null, string inPronouns = PronounGroup.DefaultKey,
                                  string inStoryCharacterID = "", IEnumerable<EntityID> inStartingQuests = null,
                                  IEnumerable<EntityID> inDialogue = null, IEnumerable<EntityID> inStartingInventory = null)
-            : base(inBounds, inID, $"{inPersonalName} {inFamilyName}", inDescription, inComment,
+            : base(inBounds, inID, inName, inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
             var nonNullQuests = inStartingQuests ?? Enumerable.Empty<EntityID>();
@@ -85,11 +88,11 @@ namespace ParquetClassLibrary.Beings
 
             Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(inStartingQuests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inStartingInventory));
-            Precondition.IsNotNullOrEmpty(inPersonalName, nameof(inPersonalName));
-            Precondition.IsNotNullOrEmpty(inFamilyName, nameof(inFamilyName));
+            Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
-            PersonalName = inPersonalName;
-            FamilyName = inFamilyName;
+            var names = inName.Split(" ");
+            PersonalName = names[0];
+            FamilyName = names[1];
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();

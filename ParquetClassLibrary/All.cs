@@ -472,9 +472,9 @@ namespace ParquetClassLibrary
         public static void SaveToCSV()
         {
             PronounGroup.PutRecords(PronounGroups);
-            //Beings.PutRecordsForType<CritterModel>();
-            //Beings.PutRecordsForType<NPCModel>();
-            //Beings.PutRecordsForType<PlayerCharacterModel>();
+            Beings.PutRecordsForType<CritterModel>();
+            Beings.PutRecordsForType<NPCModel>();
+            Beings.PutRecordsForType<PlayerCharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Interactions.PutRecordsForType<DialogueModel>();
