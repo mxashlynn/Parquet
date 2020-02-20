@@ -100,17 +100,18 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inTitle">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
         /// <param name="inElevationLocal">The absolute elevation of this region.</param>
         /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
-        public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null, int inRevision = 0,
-                               string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
-                               int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null,
-                               ChunkTypeGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inRevision, inExits)
+        public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null,
+                               string inDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
+                               Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
+                               IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
+            : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;

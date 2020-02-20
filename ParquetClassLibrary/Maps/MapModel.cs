@@ -15,17 +15,14 @@ namespace ParquetClassLibrary.Maps
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
         public abstract Vector2D DimensionsInParquets { get; }
+
+        /// <summary>Describes the version of serialized data, to support versioning.</summary>
+        [Index(4)]
+        protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
         #endregion
 
         #region Characteristics
         #region Whole-Map Characteristics
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        [Index(4)]
-        protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
-
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         [Index(5)]
         public int Revision { get; protected set; }
@@ -58,12 +55,18 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         protected MapModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                           int inRevision, IEnumerable<ExitPoint> inExits = null)
+                           string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
+            if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
+            {
+                throw new FormatException($"Cannot deserialize {nameof(MapModel)} data version {inDataVersion}.");
+            }
+
             Revision = inRevision;
             ExitPoints = inExits?.ToList() ?? new List<ExitPoint>();
         }
