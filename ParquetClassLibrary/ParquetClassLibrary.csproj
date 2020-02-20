@@ -36,6 +36,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <!-- TODO Uncomment these and update the API document. -->
+    <!-- AdditionalFiles Include="PublicAPI.Shipped.txt" / -->
+    <!-- AdditionalFiles Include="PublicAPI.Unshipped.txt" / -->
   </ItemGroup>
 
 </Project>
