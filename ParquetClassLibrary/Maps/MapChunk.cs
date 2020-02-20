@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "");
+        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "", AssemblyInfo.SupportedMapDataVersion);
 
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
