@@ -41,6 +41,7 @@ namespace ParquetClassLibrary
         public string Name { get; private set; }
 
         /// <summary>Player-facing name.</summary>
+        [Ignore]
         string IEntityModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
@@ -48,6 +49,7 @@ namespace ParquetClassLibrary
         public string Description { get; private set; }
 
         /// <summary>Player-facing description.</summary>
+        [Ignore]
         string IEntityModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
@@ -56,6 +58,7 @@ namespace ParquetClassLibrary
         public string Comment { get; private set; }
 
         /// <summary>Optional comment.</summary>
+        [Ignore]
         string IEntityModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion
 

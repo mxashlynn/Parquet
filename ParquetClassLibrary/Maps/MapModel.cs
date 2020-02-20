@@ -178,6 +178,7 @@ namespace ParquetClassLibrary.Maps
 
         #region State Queries
         /// <summary>The total number of parquets in the entire map.</summary>
+        [Ignore]
         protected int ParquetsCount => ParquetDefinitions?.Count ?? 0;
 
         /// <summary>

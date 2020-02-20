@@ -34,6 +34,7 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>What the region is called in-game.</summary>
+        [Ignore]
         string IMapRegionEdit.Name
         {
             get => Name;
@@ -49,6 +50,7 @@ namespace ParquetClassLibrary.Maps
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
+        [Ignore]
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
@@ -56,6 +58,7 @@ namespace ParquetClassLibrary.Maps
         public Elevation ElevationLocal { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
+        [Ignore]
         Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
@@ -63,6 +66,7 @@ namespace ParquetClassLibrary.Maps
         public int ElevationGlobal { get; private set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
+        [Ignore]
         int IMapRegionEdit.ElevationGlobal { get => ElevationGlobal; set => ElevationGlobal = value; }
         #endregion
 

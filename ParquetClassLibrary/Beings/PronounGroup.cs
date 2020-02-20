@@ -45,6 +45,7 @@ namespace ParquetClassLibrary.Beings
         public string Subjective { get; private set; }
 
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
+        [Ignore]
         string IPronounGroupEdit.Subjective { get => Subjective; set => Subjective = value; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
@@ -52,6 +53,7 @@ namespace ParquetClassLibrary.Beings
         public string Objective { get; private set; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+        [Ignore]
         string IPronounGroupEdit.Objective { get => Objective; set => Objective = value; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
@@ -59,6 +61,7 @@ namespace ParquetClassLibrary.Beings
         public string Determiner { get; private set; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
+        [Ignore]
         string IPronounGroupEdit.Determiner { get => Determiner; set => Determiner = value; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
@@ -66,6 +69,7 @@ namespace ParquetClassLibrary.Beings
         public string Possessive { get; private set; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        [Ignore]
         string IPronounGroupEdit.Possessive { get => Possessive; set => Possessive = value; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
@@ -73,6 +77,7 @@ namespace ParquetClassLibrary.Beings
         public string Reflexive { get; private set; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
+        [Ignore]
         string IPronounGroupEdit.Reflexive { get => Reflexive; set => Reflexive = value; }
         #endregion
 
