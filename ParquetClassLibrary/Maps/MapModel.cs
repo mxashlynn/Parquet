@@ -35,12 +35,14 @@ namespace ParquetClassLibrary.Maps
         protected List<ExitPoint> Exits { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
+        [Index(10)]
         protected abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
+        [Index(11)]
         protected abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
