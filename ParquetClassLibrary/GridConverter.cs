@@ -34,6 +34,12 @@ namespace ParquetClassLibrary
                 throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(IGrid<TElement>)}.");
             }
 
+            if (grid.Columns < 1
+                || grid.Rows < 1)
+            {
+                throw new InvalidOperationException($"Cannot serialize an {nameof(IGrid<TElement>)} of 0 dimension.");
+            }
+
             var result = new StringBuilder();
             result.Append(grid.Rows);
             result.Append(Rules.Delimiters.DimensionalDelimiter);
