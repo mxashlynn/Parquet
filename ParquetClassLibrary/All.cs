@@ -481,10 +481,10 @@ namespace ParquetClassLibrary
             Interactions.PutRecordsForType<QuestModel>();
             //Maps.PutRecordsForType<MapChunk>();
             //Maps.PutRecordsForType<MapRegion>();
-            //Parquets.PutRecordsForType<FloorModel>();
-            //Parquets.PutRecordsForType<BlockModel>();
-            //Parquets.PutRecordsForType<FurnishingModel>();
-            //Parquets.PutRecordsForType<CollectibleModel>();
+            Parquets.PutRecordsForType<FloorModel>();
+            Parquets.PutRecordsForType<BlockModel>();
+            Parquets.PutRecordsForType<FurnishingModel>();
+            Parquets.PutRecordsForType<CollectibleModel>();
             RoomRecipes.PutRecordsForType<RoomRecipe>();
             Items.PutRecordsForType<ItemModel>();
         }

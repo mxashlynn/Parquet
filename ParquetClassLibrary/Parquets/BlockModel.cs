@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
@@ -22,21 +23,27 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>The tool used to remove the block.</summary>
+        [Index(7)]
         public GatheringTool GatherTool { get; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
+        [Index(8)]
         public GatheringEffect GatherEffect { get; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
+        [Index(9)]
         public EntityID CollectibleID { get; }
 
         /// <summary>Whether or not the block is flammable.</summary>
+        [Index(10)]
         public bool IsFlammable { get; }
 
         /// <summary>Whether or not the block is a liquid.</summary>
+        [Index(11)]
         public bool IsLiquid { get; }
 
         /// <summary>The block's native toughness.</summary>
+        [Index(12)]
         public int MaxToughness { get; }
         #endregion
 

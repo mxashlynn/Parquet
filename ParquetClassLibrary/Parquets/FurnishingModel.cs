@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -15,18 +16,23 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
+        [Index(7)]
         public bool IsWalkable { get; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Room"/>.</summary>
+        [Index(8)]
         public bool IsEntry { get; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Room"/>.</summary>
+        [Index(9)]
         public bool IsEnclosing { get; }
 
         /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        [Index(10)]
         public bool IsFlammable { get; }
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
+        [Index(11)]
         public EntityID SwapID { get; }
         #endregion
 

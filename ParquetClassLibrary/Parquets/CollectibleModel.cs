@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -15,12 +16,14 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
+        [Index(7)]
         public CollectingEffect CollectionEffect { get; }
 
         /// <summary>
         /// The scale in points of the effect.
         /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
+        [Index(8)]
         public int EffectAmount { get; }
         #endregion
 
