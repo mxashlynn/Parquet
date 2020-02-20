@@ -14,6 +14,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
+        [Ignore]
         public abstract Vector2D DimensionsInParquets { get; }
 
         /// <summary>Describes the version of serialized data, to support versioning.</summary>
