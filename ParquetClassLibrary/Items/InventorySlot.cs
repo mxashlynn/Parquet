@@ -122,8 +122,8 @@ namespace ParquetClassLibrary.Items
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is InventorySlot slot
+            => inValue is InventorySlot slot
+            && null != slot
                 ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(InventorySlot)}.");

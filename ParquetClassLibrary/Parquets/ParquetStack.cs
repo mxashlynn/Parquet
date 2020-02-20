@@ -163,9 +163,9 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is ParquetStack stack
-            && stack != Empty
+            => inValue is ParquetStack stack
+            && null != stack
+            && Empty != stack
                 ? $"{stack.Floor}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +

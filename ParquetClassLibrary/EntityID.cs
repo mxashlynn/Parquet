@@ -225,9 +225,12 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="EntityID"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null == inValue || ((EntityID)inValue) == None
-                ? nameof(None)
-                : ((EntityID)inValue).ToString();
+            => inValue is EntityID id
+                ? null != id
+                && None != id
+                    ? id.ToString()
+                    : nameof(None)
+                : throw new ArgumentException($"Cannot convert {inValue} to {nameof(EntityID)}.");
         #endregion
 
         #region Utilities

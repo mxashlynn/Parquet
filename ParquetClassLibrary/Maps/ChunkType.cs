@@ -140,8 +140,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is ChunkType chunk
+            => inValue is ChunkType chunk
+            && null != chunk
                 ? chunk.Handmade
                     ? nameof(Handmade)
                     : $"{chunk.BaseTopography}{Rules.Delimiters.InternalDelimiter}" +

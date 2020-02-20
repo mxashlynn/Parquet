@@ -182,7 +182,8 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is StrikePanel panel
-                ? null == panel || Unused == panel
+                ? null == panel
+                || Unused == panel
                     ? nameof(Unused)
                     : $"{panel.WorkingRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
                       $"{panel.WorkingRange.Maximum}{Rules.Delimiters.InternalDelimiter}" +

@@ -153,12 +153,12 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is RecipeElement rElement
-                ? rElement == None
+            => inValue is RecipeElement recipeElement
+            && null != recipeElement
+                ? recipeElement == None
                     ? nameof(None)
-                    : $"{rElement.ElementAmount}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{rElement.ElementTag}"
+                    : $"{recipeElement.ElementAmount}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{recipeElement.ElementTag}"
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(RecipeElement)}.");
         #endregion
 

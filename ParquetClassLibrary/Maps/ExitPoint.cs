@@ -93,8 +93,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => null != inValue
-            && inValue is ExitPoint exit
+            => inValue is ExitPoint exit
+            && null != exit
                 ? $"{exit.Position}{Rules.Delimiters.InternalDelimiter}" +
                   $"{exit.Destination}"
             : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ExitPoint)}.");
