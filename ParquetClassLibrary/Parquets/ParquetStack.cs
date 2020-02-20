@@ -165,7 +165,6 @@ namespace ParquetClassLibrary.Parquets
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStack stack
             && null != stack
-            && Empty != stack
                 ? $"{stack.Floor}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
                   $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +
