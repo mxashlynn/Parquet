@@ -124,16 +124,12 @@ namespace ParquetRunner
         {
             #region Initialize Instances
             TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
-            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test",
+            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0 Test Player", "Test", "Test",
                                                   All.BiomeIDs.Minimum, Behavior.PlayerControlled);
-            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
-                                      All.BiomeIDs.Minimum, Behavior.Still);
-            TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
-                              All.BiomeIDs.Minimum, Behavior.Still);
-            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
-                                  1, Elevation.LevelGround, false, null, null);
-            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe",
-                                                    "Test", "Test",
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2 Test NPC", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, Elevation.LevelGround, false, null, null);
+            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
@@ -145,9 +141,9 @@ namespace ParquetRunner
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
             TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
-                                            inIsEntry: true, inAddsToRoom: TestTag);
+                                                 inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
-                                              inAddsToRoom: TestTag);
+                                                   inAddsToRoom: TestTag);
             // TODO Update this once Quests are implemented.
             TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
