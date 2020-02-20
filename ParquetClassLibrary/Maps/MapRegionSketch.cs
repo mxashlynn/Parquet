@@ -108,9 +108,9 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(EntityID inID, string inTitle = null, string inDescription = null, string inComment = null,
-                               string inDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
-                               Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
-                               IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
+                               string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0,
+                               string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
+                               int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inTitle) ? DefaultTitle : inTitle, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
