@@ -16,8 +16,7 @@ namespace ParquetClassLibrary.Beings
         /// Unique identifier for the <see cref="NPCModel"/>.  Cannot be null.
         /// Must be a valid <see cref="All.NpcIDs"/>.
         /// </param>
-        /// <param name="inPersonalName">Personal name of the <see cref="NPCModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inFamilyName">Family name of the <see cref="NPCModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inName">Personal and family names of the <see cref="NPCModel"/>, separated by a space.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="NPCModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="NPCModel"/>.</param>
         /// <param name="inNativeBiome">The <see cref="EntityID"/> of the <see cref="Biome"/> in which this <see cref="NPCModel"/> is most comfortable.</param>
@@ -29,14 +28,13 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingQuests">Any quests this <see cref="NPCModel"/> has to offer.</param>
         /// <param name="inDialogue">All dialogue this <see cref="NPCModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="NPCModel"/> owns.</param>
-        public NPCModel(EntityID inID, string inPersonalName, string inFamilyName,
-                        string inDescription, string inComment,
+        public NPCModel(EntityID inID, string inName, string inDescription, string inComment,
                         EntityID inNativeBiome, Behavior inPrimaryBehavior,
                         IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null,
                         string inPronouns = null, string inStoryCharacterID = "",
                         IEnumerable<EntityID> inStartingQuests = null, IEnumerable<EntityID> inDialogue = null,
                         IEnumerable<EntityID> inStartingInventory = null)
-            : base(All.NpcIDs, inID, inPersonalName, inFamilyName, inDescription,
+            : base(All.NpcIDs, inID, inName, inDescription,
                    inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks,
                    inPronouns, inStoryCharacterID, inStartingQuests, inDialogue, inStartingInventory)
         {
