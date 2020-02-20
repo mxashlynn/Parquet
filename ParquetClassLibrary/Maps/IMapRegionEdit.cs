@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Maps
     internal interface IMapRegionEdit
     {
         /// <summary>What the region is called in-game.</summary>
-        string Title { get; set; }
+        string Name { get; set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         string BackgroundColor { get; set; }

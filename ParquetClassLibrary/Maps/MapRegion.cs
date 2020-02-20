@@ -34,11 +34,7 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>What the region is called in-game.</summary>
-        [Ignore]
-        public string Title { get => Name; }
-
-        /// <summary>What the region is called in-game.</summary>
-        string IMapRegionEdit.Title
+        string IMapRegionEdit.Name
         {
             get => Name;
             set
@@ -119,7 +115,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
         public override string ToString()
-            => $"Region {Title} {base.ToString()}";
+            => $"Region {Name} {base.ToString()}";
         #endregion
     }
 }
