@@ -213,8 +213,6 @@ namespace ParquetRunner
             Console.WriteLine($"Item range = {All.ItemIDs}");
 
             All.SaveToCSV();
-
-            Console.WriteLine("Done.");
         }
     }
 }
