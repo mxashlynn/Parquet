@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models the status of a stack of sandbox parquets.
     /// </summary>
-    public class ParquetStatus : ITypeConverter
+    public class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="ParquetStatus"/> class with default values.</summary>
@@ -17,6 +17,9 @@ namespace ParquetClassLibrary.Parquets
         #endregion
 
         #region Status
+        /// <summary>If the floor has been dug out.</summary>
+        public bool IsTrench { get; set; }
+
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
 
@@ -31,18 +34,17 @@ namespace ParquetClassLibrary.Parquets
             get => toughness;
             set => toughness = value.Normalize(BlockModel.LowestPossibleToughness, maxToughness);
         }
-
-        /// <summary>If the floor has been dug out.</summary>
-        public bool IsTrench { get; set; }
         #endregion
 
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class with default values.
         /// </summary>
+        /// <remarks>
+        /// Primarily useful in the context of serialization.
+        /// </remarks>
         public ParquetStatus()
-            // This version of the constructor exists to make the generic new() constraint happy.
-            : this(false, null, BlockModel.DefaultMaxToughness) { }
+            : this(false, BlockModel.DefaultMaxToughness, BlockModel.DefaultMaxToughness) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatus"/> class.
@@ -50,12 +52,60 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
         /// <param name="inToughness">The toughness of the <see cref="BlockModel"/> associated with this status.</param>
         /// <param name="inMaxToughness">The native toughness of the <see cref="BlockModel"/> associated with this status.</param>
-        public ParquetStatus(bool inIsTrench = false, int? inToughness = null, int inMaxToughness = BlockModel.DefaultMaxToughness)
+        public ParquetStatus(bool inIsTrench = false, int inToughness = BlockModel.DefaultMaxToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
         {
             IsTrench = inIsTrench;
-            Toughness = inToughness ?? inMaxToughness;
+            Toughness = inToughness;
             maxToughness = inMaxToughness;
         }
+        #endregion
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for an <see cref="ParquetStatus"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (IsTrench, Toughness, maxToughness).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetStatus"/> is equal to the current <see cref="ParquetStatus"/>.
+        /// </summary>
+        /// <param name="inStatus">The <see cref="ParquetStatus"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public bool Equals(ParquetStatus inStatus)
+            => IsTrench == inStatus?.IsTrench
+            && Toughness == inStatus.Toughness
+            && maxToughness == inStatus.maxToughness;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStatus"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStatus"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+            => obj is ParquetStatus status
+            && Equals(status);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStatus"/> is equal to another specified instance of <see cref="ParquetStatus"/>.
+        /// </summary>
+        /// <param name="inStatus1">The first <see cref="ParquetStatus"/> to compare.</param>
+        /// <param name="inStatus2">The second <see cref="ParquetStatus"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(ParquetStatus inStatus1, ParquetStatus inStatus2)
+            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStatus"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
+        /// </summary>
+        /// <param name="inStatus1">The first <see cref="ParquetStatus"/> to compare.</param>
+        /// <param name="inStatus2">The second <see cref="ParquetStatus"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(ParquetStatus inStatus1, ParquetStatus inStatus2)
+            => !(inStatus1 == inStatus2);
         #endregion
 
         #region ITypeConverter Implementation
