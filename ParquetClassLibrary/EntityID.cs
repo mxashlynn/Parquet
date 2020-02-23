@@ -163,7 +163,8 @@ namespace ParquetClassLibrary
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="EntityID"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override readonly bool Equals(object obj)
-            => obj is EntityID entityID && Equals(entityID);
+            => obj is EntityID entityID
+            && Equals(entityID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> is equal to another specified instance of <see cref="EntityID"/>.

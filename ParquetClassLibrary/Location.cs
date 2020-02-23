@@ -9,7 +9,7 @@ namespace ParquetClassLibrary
     /// While primarily used in-library by <see cref="Beings.BeingModel"/> this class
     /// is made generally available to support it's general use by game client code.
     /// </remarks>
-    public readonly struct Location : IEquatable<Location>
+    public class Location : IEquatable<Location>
     {
         /// <summary>The identifier for the <see cref="MapRegion"/> of this located.</summary>
         public EntityID RegionID { get; }
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary
         /// <param name="inLocation">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(Location inLocation)
-            => RegionID == inLocation.RegionID
+            => RegionID == inLocation?.RegionID
             && Position == inLocation.Position;
 
         /// <summary>
@@ -42,7 +42,8 @@ namespace ParquetClassLibrary
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Location"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Location location && Equals(location);
+            => obj is Location location
+            && Equals(location);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is equal to another specified instance of <see cref="Location"/>.
@@ -51,7 +52,7 @@ namespace ParquetClassLibrary
         /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Location inLocation1, Location inLocation2)
-            => inLocation1.Equals(inLocation2);
+            => inLocation1?.Equals(inLocation2) ?? inLocation2?.Equals(inLocation1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is not equal to another specified instance of <see cref="Location"/>.
@@ -60,7 +61,7 @@ namespace ParquetClassLibrary
         /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Location inLocation1, Location inLocation2)
-            => !inLocation1.Equals(inLocation2);
+            => !(inLocation1 == inLocation2);
         #endregion
 
         #region Utilities

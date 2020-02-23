@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each overlapping layer of parquets.
     /// </summary>
-    public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
+    public class ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
@@ -32,7 +32,17 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParquetStack"/> struct.
+        /// Initializes a new default instance of the <see cref="ParquetStack"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This is primarily useful for serialization as the default values are featureless.
+        /// </remarks>
+        public ParquetStack() :
+            this(EntityID.None, EntityID.None, EntityID.None, EntityID.None)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParquetStack"/> class.
         /// </summary>
         /// <param name="inFloor">The floor-layer parquet.</param>
         /// <param name="inBlock">The The floor-layer parquet-layer parquet.</param>
@@ -119,7 +129,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack">The <see cref="ParquetStack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(ParquetStack inStack)
-            => Floor == inStack.Floor
+            => Floor == inStack?.Floor
             && Block == inStack.Block
             && Furnishing == inStack.Furnishing
             && Collectible == inStack.Collectible;
@@ -130,7 +140,8 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStack"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is ParquetStack stack && Equals(stack);
+            => obj is ParquetStack stack
+            && Equals(stack);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is equal to another specified instance of <see cref="ParquetStack"/>.
@@ -139,7 +150,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ParquetStack inStack1, ParquetStack inStack2)
-            => inStack1.Equals(inStack2);
+            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
@@ -148,7 +159,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ParquetStack inStack1, ParquetStack inStack2)
-            => !inStack1.Equals(inStack2);
+            => !(inStack1 == inStack2);
         #endregion
 
         #region ITypeConverter

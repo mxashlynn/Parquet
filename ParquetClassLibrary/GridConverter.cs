@@ -14,7 +14,7 @@ namespace ParquetClassLibrary
     /// <typeparam name="TGrid">The type of the collection.</typeparam>
     public class GridConverter<TElement, TGrid> : CollectionGenericConverter
         where TGrid : IGrid<TElement>, new()
-        where TElement : ITypeConverter, new()
+        where TElement : class, ITypeConverter, new()
     {
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static GridConverter<TElement, TGrid> ConverterFactory { get; } =

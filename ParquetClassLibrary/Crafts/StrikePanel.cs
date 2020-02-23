@@ -119,7 +119,8 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="StrikePanel"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is StrikePanel strikePanel && Equals(strikePanel);
+            => obj is StrikePanel strikePanel
+            && Equals(strikePanel);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is equal to another specified instance of <see cref="StrikePanel"/>.

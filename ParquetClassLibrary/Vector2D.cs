@@ -107,7 +107,8 @@ namespace ParquetClassLibrary
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Vector2D"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="Vector2D"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Vector2D vector && Equals(vector);
+            => obj is Vector2D vector
+            && Equals(vector);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Vector2D"/> is equal to

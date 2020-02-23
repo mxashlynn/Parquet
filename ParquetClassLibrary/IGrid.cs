@@ -13,7 +13,7 @@ namespace ParquetClassLibrary
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public interface IGrid<TElement> : IReadOnlyCollection<TElement>
-        where TElement : ITypeConverter
+        where TElement : class, ITypeConverter
     {
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IGrid{TElement}"/>.</summary>
         public int Rows { get; }

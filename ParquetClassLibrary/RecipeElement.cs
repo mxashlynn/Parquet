@@ -23,11 +23,11 @@ namespace ParquetClassLibrary
     /// It allows various EntityModels to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
     /// </description></item>
     /// </remarks>
-    public readonly struct RecipeElement : IEquatable<RecipeElement>, ITypeConverter
+    public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
-        public static readonly RecipeElement None = new RecipeElement(1, EntityTag.None);
+        public static readonly RecipeElement None = new RecipeElement();
         #endregion
 
         #region Characteristics
@@ -40,7 +40,16 @@ namespace ParquetClassLibrary
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecipeElement"/> struct.
+        /// Initializes an empty instance of <see cref="RecipeElement"/> with default values.
+        /// </summary>
+        /// <remarks>
+        /// Useful primarily in the context of serialization.
+        /// </remarks>
+        public RecipeElement()
+        : this(1, EntityTag.None) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecipeElement"/> class.
         /// </summary>
         /// <param name="inElementAmount">The amount of the element.  Must be positive.</param>
         /// <param name="inElementTag">An <see cref="EntityTag"/> describing the element.</param>
@@ -69,7 +78,7 @@ namespace ParquetClassLibrary
         /// <param name="inElement">The <see cref="RecipeElement"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(RecipeElement inElement)
-            => inElement.ElementTag == ElementTag
+            => inElement?.ElementTag == ElementTag
             && inElement.ElementAmount == ElementAmount;
 
         /// <summary>
@@ -88,7 +97,7 @@ namespace ParquetClassLibrary
         /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(RecipeElement inElement1, RecipeElement inElement2)
-            => inElement1.Equals(inElement2);
+            => inElement1?.Equals(inElement2) ?? inElement2?.Equals(inElement1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is not equal to another specified instance of <see cref="RecipeElement"/>.
@@ -97,7 +106,7 @@ namespace ParquetClassLibrary
         /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(RecipeElement inElement1, RecipeElement inElement2)
-            => !inElement1.Equals(inElement2);
+            => !(inElement1 == inElement2);
         #endregion
 
         #region ITypeConverter Implementation
