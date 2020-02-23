@@ -67,7 +67,7 @@ namespace ParquetClassLibrary.Parquets
                 {
                     for (var x = 0; x < Columns; x++)
                     {
-                        count += ParquetStacks[y, x].Count;
+                        count += ParquetStacks[y, x]?.Count ?? 0;
                     }
                 }
 
