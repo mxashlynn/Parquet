@@ -32,18 +32,18 @@ namespace ParquetClassLibrary.Maps
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
         [Index(6)]
-        protected List<ExitPoint> Exits { get; }
+        public List<ExitPoint> Exits { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
         [Index(10)]
-        protected abstract ParquetStatusGrid ParquetStatuses { get; }
+        public abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
         [Index(11)]
-        protected abstract ParquetStackGrid ParquetDefinitions { get; }
+        public abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
 
@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Maps
         {
             if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
             {
-                throw new FormatException($"Cannot deserialize {nameof(MapModel)} data version {inDataVersion}.");
+                throw new FormatException($"Unsupported {nameof(MapModel)} data version {inDataVersion}.");
             }
 
             Revision = inRevision;

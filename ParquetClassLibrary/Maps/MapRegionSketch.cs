@@ -78,7 +78,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Call <see cref="Generate"/> before accessing parquet statuses.</summary>
         [Ignore]
         [Index(10)]
-        protected override ParquetStatusGrid ParquetStatuses
+        public override ParquetStatusGrid ParquetStatuses
         {
             get => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
         }
@@ -86,14 +86,14 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Call <see cref="Generate"/> before accessing parquets.</summary>
         [Ignore]
         [Index(11)]
-        protected override ParquetStackGrid ParquetDefinitions
+        public override ParquetStackGrid ParquetDefinitions
         {
             get => throw new InvalidOperationException($"Cannot access parquets on ungenerated {nameof(MapRegionSketch)}.");
         }
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(12)]
-        private ChunkTypeGrid Chunks { get; }
+        public ChunkTypeGrid Chunks { get; }
         #endregion
         #endregion
 
