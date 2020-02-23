@@ -1,10 +1,10 @@
 ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,GatherTool,GatherEffect,CollectibleID,IsFlammable,IsLiquid,MaxToughness
--90000,2 Block Test Parquet,Test,Test,-110000,None,None,None,None,-60000,FALSE,FALSE,10
-90000,bush,,"",0,None,None,Axe,Collectible,60000,TRUE,FALSE,1
-90001,tree,,"",0,Forested,None,Axe,Collectible,60001,TRUE,FALSE,4
-90002,seed pod,,"",0,Swampy,None,Axe,Collectible,60002,TRUE,FALSE,1
-90003,sandstone boulder,,"",0,Deserted,None,Pick,None,0,FALSE,FALSE,10
-90004,ice boulder,,"",0,Frozen,None,Pick,None,0,FALSE,FALSE,8
-90005,grey brick,,"",0,None,Brick,Pick,None,0,FALSE,FALSE,8
-90006,fresh water,,"",110001,None,None,Bucket,Item,0,FALSE,TRUE,1
-90007,lava,,"",110002,Volcanic,None,Bucket,Item,0,FALSE,TRUE,1
+-100000,2 Block Test Parquet,Test,Test,-140000,None,None,None,None,-120000,False,False,10
+100000,bush,,,None,None,None,Axe,Collectible,120000,True,False,1
+100001,tree,,,None,Forested,None,Axe,Collectible,120001,True,False,4
+100002,seed pod,,,None,Swampy,None,Axe,Collectible,120002,True,False,1
+100003,sandstone boulder,,,None,Deserted,None,Pick,None,None,False,False,10
+100004,ice boulder,,,None,Frozen,None,Pick,None,None,False,False,8
+100005,grey brick,,,None,None,Brick,Pick,None,None,False,False,8
+100006,fresh water,,,140001,None,None,Bucket,Item,None,False,True,1
+100007,lava,,,140002,Volcanic,None,Bucket,Item,None,False,True,1

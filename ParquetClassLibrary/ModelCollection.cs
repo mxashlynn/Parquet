@@ -1,15 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using CsvHelper;
+using CsvHelper.Configuration;
+using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {
     /// <summary>
     /// Collects a group of <see cref="EntityModel"/>s.
-    /// Provides bounds-checking and type-checking against <typeparamref name="TParentType"/>.
+    /// Provides bounds-checking and type-checking against <typeparamref name="TModel"/>.
     /// </summary>
     /// <remarks>
     /// All <see cref="ModelCollection{EntityID}"/>s implicitly contain <see cref="EntityID.None"/>.
@@ -22,34 +27,36 @@ namespace ParquetClassLibrary
     /// <seealso cref="EntityID"/>
     /// <seealso cref="EntityTag"/>
     /// <seealso cref="All"/>
-    public class ModelCollection<TParentType> : IReadOnlyCollection<TParentType> where TParentType : EntityModel
+    /// <typeparam name="TModel">The type collected, typically a decendent of <see cref="EntityModel"/>.</typeparam>
+    public class ModelCollection<TModel> : IReadOnlyCollection<TModel>
+        where TModel : EntityModel
     {
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
-        public static readonly ModelCollection<TParentType> Default = new ModelCollection<TParentType>(
+        #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModelType}"/>s.</summary>
+        public static readonly ModelCollection<TModel> Default = new ModelCollection<TModel>(
             new List<Range<EntityID>> { new Range<EntityID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<EntityModel>());
+        #endregion
 
+        #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<EntityID, EntityModel> Models { get; }
 
         /// <summary>The bounds within which all collected <see cref="EntityModel"/>s must be defined.</summary>
-        private List<Range<EntityID>> Bounds { get; }
-
-        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{T}"/>.</summary>
-        public int Count => Models?.Count ?? 0;
+        private IReadOnlyList<Range<EntityID>> Bounds { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(IEnumerable<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
         {
             Precondition.IsNotNull(inModels, nameof(inModels));
 
-            // All Collections of EntitieModels implicitly contain the None model.
-            var baseDictionary = new Dictionary<EntityID, EntityModel> { { EntityID.None, null } };
+            var baseDictionary = new Dictionary<EntityID, EntityModel>();
             foreach (var model in inModels)
             {
                 Precondition.IsInRange(model.ID, inBounds, nameof(inModels));
@@ -68,22 +75,26 @@ namespace ParquetClassLibrary
                 }
             }
 
-            Bounds = inBounds;
+            Bounds = inBounds.ToList();
             Models = baseDictionary;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
         public ModelCollection(Range<EntityID> inBounds, IEnumerable<EntityModel> inModels) :
-            this(new List<Range<EntityID>> { inBounds }, inModels) { }
+            this(new List<Range<EntityID>> { inBounds }, inModels)
+        { }
         #endregion
 
         #region Collection Access
+        /// <summary>The number of <see cref="EntityModel"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
+        public int Count => Models?.Count ?? 0;
+
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{T}"/> contains the specified <see cref="EntityModel"/>.
+        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="EntityModel"/>.
         /// </summary>
         /// <param name="inModel">The <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityModel"/> was found; <c>false</c> otherwise.</returns>
@@ -91,11 +102,13 @@ namespace ParquetClassLibrary
         {
             Precondition.IsNotNull(inModel);
 
-            return Models.ContainsKey(inModel.ID);
+            return inModel.ID == EntityID.None
+                || Models.ContainsKey(inModel.ID);
         }
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{T}"/> contains an <see cref="EntityModel"/> with the specified <see cref="EntityID"/>.
+        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains an <see cref="EntityModel"/>
+        /// with the specified <see cref="EntityID"/>.
         /// </summary>
         /// <param name="inID">The <see cref="EntityID"/> of the <see cref="EntityModel"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="EntityID"/> was found; <c>false</c> otherwise.</returns>
@@ -104,31 +117,41 @@ namespace ParquetClassLibrary
             // TODO Remove this test after debugging.
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return Models.ContainsKey(inID);
+            return inID == EntityID.None
+                || Models.ContainsKey(inID);
         }
 
         /// <summary>
-        /// Returns the specified <typeparamref name="T"/>.
+        /// Returns the specified <typeparamref name="TModel"/>.
         /// </summary>
-        /// <param name="inID">A valid, defined <typeparamref name="T"/> identifier.</param>
-        /// <typeparam name="T">
-        /// The type of <typeparamref name="TParentType"/> sought.  Must correspond to the given <paramref name="inID"/>.
+        /// <param name="inID">A valid, defined <typeparamref name="TModel"/> identifier.</param>
+        /// <typeparam name="TTarget">
+        /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
-        /// <returns>The specified <typeparamref name="T"/> model.</returns>
-        public T Get<T>(EntityID inID) where T : TParentType
+        /// <returns>The specified <typeparamref name="TTarget"/> model.</returns>
+        public TTarget Get<TTarget>(EntityID inID)
+            where TTarget : TModel
         {
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return (T)Models[inID];
+            // TODO This is a hack to support deserializing InventorySlots before All is initialized.  Find a better way.
+            if (inID == ItemModel.ShamModel.ID)
+            {
+                return (TTarget)(EntityModel)ItemModel.ShamModel;
+            }
+
+            return inID == EntityID.None
+                ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {nameof(EntityID.None)}.")
+                : (TTarget)Models[inID];
         }
 
         /// <summary>
-        /// Exposes an <see cref="IEnumerator{ParentType}"/> to support simple iteration.
+        /// Exposes an <see cref="IEnumerator{TModelType}"/> to support simple iteration.
         /// </summary>
         /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
-        IEnumerator<TParentType> IEnumerable<TParentType>.GetEnumerator()
-            => Models.Values.Cast<TParentType>().GetEnumerator();
+        IEnumerator<TModel> IEnumerable<TModel>.GetEnumerator()
+            => Models.Values.Cast<TModel>().GetEnumerator();
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
@@ -139,16 +162,90 @@ namespace ParquetClassLibrary
             => Models.Values.GetEnumerator();
 
         /// <summary>
-        /// Retrieves an enumerator for the <see cref="ModelCollection{T}"/>.
+        /// Retrieves an enumerator for the <see cref="ModelCollection{EntityModel}"/>.
         /// </summary>
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<EntityModel> GetEnumerator()
             => Models.Values.GetEnumerator();
         #endregion
 
+        #region Self Serialization
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static ModelCollection<TModel> ConverterFactory { get; } = Default;
+
+        /// <summary>
+        /// Reads all records of the given type from the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <returns>The instances read.</returns>
+        public ModelCollection<TModel> GetRecordsForType<TRecord>(Range<EntityID> inBounds)
+            where TRecord : TModel
+            => GetRecordsForType<TRecord>(new List<Range<EntityID>> { inBounds });
+
+        /// <summary>
+        /// Reads all records of the given type from the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <returns>The instances read.</returns>
+        public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<EntityID>> inBounds)
+            where TRecord : TModel
+        {
+            using var reader = new StreamReader(GetFilePath<TRecord>());
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+                                                                                        ? header.Substring(2).ToUpperInvariant()
+                                                                                        : header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new ModelCollection<TModel>(inBounds, csv.GetRecords<TRecord>());
+        }
+
+        /// <summary>
+        /// Writes all of the given type to records to the appropriate file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type to serialize.</typeparam>
+        internal void PutRecordsForType<TRecord>()
+            where TRecord : TModel
+        {
+            using var writer = new StreamWriter(GetFilePath<TRecord>());
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.NewLine = NewLine.LF;
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<TRecord>();
+            csv.NextRecord();
+            var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TRecord)).Cast<TRecord>();
+            csv.WriteRecords(recordsToWrite);
+        }
+        #endregion
+
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{T}"/>.
+        /// Given a type, returns the filename and path associated with that type's designer file.
+        /// </summary>
+        /// <typeparam name="TRecord">The type whose path and filename are sought.</typeparam>
+        /// <returns>A full path to the addociated designer file.</returns>
+        private string GetFilePath<TRecord>()
+            where TRecord : TModel
+        {
+            var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
+                ? $"{typeof(TRecord).Name}es.csv"
+                : $"{typeof(TRecord).Name}s.csv";
+            return $"{All.WorkingDirectory}/{filename}";
+        }
+
+        /// <summary>
+        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -158,7 +255,7 @@ namespace ParquetClassLibrary
             {
                 allBounds.Append($"{bound.ToString()} ");
             }
-            return $"Collects {typeof(TParentType)} over {allBounds}.";
+            return $"Collects {typeof(TModel)} over {allBounds}.";
         }
         #endregion
     }
@@ -177,7 +274,7 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class ModelCollection : ModelCollection<EntityModel>
     {
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{T}"/>s.</summary>
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{EntityModel}"/>s.</summary>
         public static new readonly ModelCollection Default =
             new ModelCollection(new Range<EntityID>(int.MinValue, int.MaxValue), Enumerable.Empty<EntityModel>());
 
@@ -194,7 +291,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="EntityID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="EntityModel"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(List<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
+        public ModelCollection(IEnumerable<Range<EntityID>> inBounds, IEnumerable<EntityModel> inModels)
             : base(inBounds, inModels) { }
 
         /// <summary>

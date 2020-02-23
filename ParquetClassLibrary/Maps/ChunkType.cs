@@ -1,4 +1,7 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -21,11 +24,14 @@ namespace ParquetClassLibrary.Maps
     /// <description>Handmade</description></item>
     /// </list>
     /// </remarks>
-    public readonly struct ChunkType : IEquatable<ChunkType>
+    public class ChunkType : IEquatable<ChunkType>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>The null <see cref="ChunkType"/>, which generates an empty <see cref="MapChunk"/>.</summary>
         public static readonly ChunkType Empty = new ChunkType();
+        #endregion
 
+        #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         public bool Handmade { get; }
 
@@ -40,24 +46,17 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>Indicates the type of parquets modifying the <see cref="MapChunk"/>.</summary>
         public EntityTag ModifierConstituents { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChunkType"/> class.
+        /// Initializes a new default instance of the <see cref="ChunkType"/> class.
         /// </summary>
-        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
-        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
-        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
-        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
-        public ChunkType(ChunkTopography? inBaseTopography, EntityTag inBaseComposition,
-                         ChunkTopography? inModifierTopography, EntityTag inModifierComposition)
-        {
-            Handmade = false;
-            BaseTopography = inBaseTopography ?? ChunkTopography.Empty;
-            BaseComposition = inBaseComposition ?? EntityTag.None;
-            ModifierTopography = inModifierTopography ?? ChunkTopography.Empty;
-            ModifierConstituents = inModifierComposition ?? EntityTag.None;
-        }
+        /// <remarks>
+        /// This is primarily useful for serialization as the default values are featureless.
+        /// </remarks>
+        public ChunkType() :
+            this(ChunkTopography.Empty, EntityTag.None, ChunkTopography.Empty, EntityTag.None) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkType"/> class.
@@ -71,11 +70,28 @@ namespace ParquetClassLibrary.Maps
             ModifierTopography = ChunkTopography.Empty;
             ModifierConstituents = EntityTag.None;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChunkType"/> class.
+        /// </summary>
+        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
+        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
+        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
+        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
+        public ChunkType(ChunkTopography inBaseTopography, EntityTag inBaseComposition,
+                         ChunkTopography inModifierTopography, EntityTag inModifierComposition)
+        {
+            Handmade = false;
+            BaseTopography = inBaseTopography;
+            BaseComposition = inBaseComposition ?? EntityTag.None;
+            ModifierTopography = inModifierTopography;
+            ModifierConstituents = inModifierComposition ?? EntityTag.None;
+        }
         #endregion
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="ChunkType"/> struct.
+        /// Serves as a hash function for a <see cref="ChunkType"/> class.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
@@ -87,7 +103,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inChunkType">The <see cref="ChunkType"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="ChunkType"/>s are equal.</returns>
         public bool Equals(ChunkType inChunkType)
-            => BaseTopography == inChunkType.BaseTopography
+            => BaseTopography == inChunkType?.BaseTopography
             && BaseComposition == inChunkType.BaseComposition
             && ModifierTopography == inChunkType.ModifierTopography
             && ModifierConstituents == inChunkType.ModifierConstituents;
@@ -98,7 +114,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ChunkType"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="ChunkType"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is ChunkType chunkType && Equals(chunkType);
+            => obj is ChunkType chunkType
+            && Equals(chunkType);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ChunkType"/> is equal to
@@ -108,7 +125,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ChunkType inChunkType1, ChunkType inChunkType2)
-            => inChunkType1.Equals(inChunkType2.BaseTopography);
+            => inChunkType1?.Equals(inChunkType2) ?? inChunkType2?.Equals(inChunkType1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ChunkType"/> is unequal to
@@ -118,7 +135,64 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ChunkType inChunkType1, ChunkType inChunkType2)
-            => !inChunkType1.Equals(inChunkType2.BaseTopography);
+            => !(inChunkType1 == inChunkType2);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static ChunkType ConverterFactory { get; } = Empty;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is ChunkType chunk
+            && null != chunk
+                ? chunk.Handmade
+                    ? nameof(Handmade)
+                    : $"{chunk.BaseTopography}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierConstituents}"
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ChunkType)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ChunkType)}.");
+            }
+            else if (string.Compare(nameof(Handmade), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                return new ChunkType(true);
+            }
+            else try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
+                var baseComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
+                var modifierComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+
+                return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkType)}: {e}");
+            }
+        }
         #endregion
 
         #region Utilities

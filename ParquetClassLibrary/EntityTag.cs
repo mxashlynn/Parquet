@@ -1,4 +1,7 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace ParquetClassLibrary
 {
@@ -24,22 +27,30 @@ namespace ParquetClassLibrary
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
         Justification = "EntityTag is designed to operate like a string, and string does not implement these operators.")]
-    public class EntityTag : IComparable<EntityTag>
+    public class EntityTag : IComparable<EntityTag>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="EntityTag"/>s.</summary>
         public static readonly EntityTag None = string.Empty;
 
+        /// <summary>Replaces any <see cref="Rules.Delimiters"/> in <see cref="EntityTag"/>s.</summary>
+        public const string SanitarySeparator = "/";
+        #endregion
+
+        #region Characteristics
         /// <summary>Backing type for the <see cref="EntityTag"/>.</summary>
-        private string tagName = "";
+        private string tagContent = "";
+        #endregion
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">Any valid tag value.</param>
+        /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
+        /// <seealso cref="Sanitize(string)"/>
         public static implicit operator EntityTag(string inValue)
-            => new EntityTag { tagName = inValue };
+            => new EntityTag { tagContent = Sanitize(inValue) };
 
         /// <summary>
         /// Enables <see cref="EntityTag"/>s to be treated as their backing type.
@@ -47,7 +58,24 @@ namespace ParquetClassLibrary
         /// <param name="inTag">Any tag.</param>
         /// <returns>The tag's value.</returns>
         public static implicit operator string(EntityTag inTag)
-            => inTag?.tagName ?? "";
+            => inTag?.tagContent ?? "";
+        #endregion
+
+        #region Validation
+        /// <summary>
+        /// Sanitizes a <see langword="string"/> to be used as an <see cref="EntityTag"/>.
+        /// </summary>
+        /// <remarks>
+        /// Instances of any <see cref="Rules.Delimiters"/> will be replaced with <see cref="SanitarySeparator"/>.
+        /// </remarks>
+        /// <param name="inValue">The string to sanitize.</param>
+        /// <returns>The sanitized version.</returns>
+        public static string Sanitize(string inValue)
+            => string.IsNullOrEmpty(inValue)
+                ? ""
+                : inValue.Replace(Rules.Delimiters.SecondaryDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
+                         .Replace(Rules.Delimiters.InternalDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
+                         .Replace(Rules.Delimiters.ElementDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase);
         #endregion
 
         #region IComparable Implementation
@@ -63,7 +91,35 @@ namespace ParquetClassLibrary
         ///     Greater than zero indicates that the current instance follows the given <see cref="EntityTag"/> in the sort order.
         /// </returns>
         public int CompareTo(EntityTag inTag)
-            => string.Compare(tagName, inTag?.tagName ?? "", StringComparison.Ordinal);
+            => string.Compare(tagContent, inTag?.tagContent ?? "", StringComparison.Ordinal);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static EntityTag ConverterFactory { get; } =
+            None;
+
+        /// <summary>
+        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// </summary>
+        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+            => (EntityTag)inText;
+
+        /// <summary>
+        /// Converts the given <see cref="EntityTag"/> to a record column.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is EntityTag tag
+                ? (string)tag
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(EntityTag)}.");
         #endregion
 
         #region Utilities
@@ -72,7 +128,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => tagName;
+            => tagContent;
         #endregion
     }
 }

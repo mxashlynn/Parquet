@@ -3,7 +3,7 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization",
     "CA1303:Do not pass literals as localized parameters",
-    Justification = "Incompatible with nameof().",
+    Justification = "Incompatible with nameof().  See: https://github.com/dotnet/roslyn-analyzers/issues/2950",
     Scope = "namespaceanddescendants", Target = "ParquetClassLibrary")]
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
@@ -15,8 +15,3 @@
     "CA2225:Operator overloads have named alternates",
     Justification = "This would defeat the purpose of making these classes implicitly interchangeable.",
     Scope = "namespaceanddescendants", Target = "ParquetClassLibrary")]
-
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
-    "CA1051:Do not declare visible instance fields",
-    Justification = "This is required for the shims to function properly.  In fact it is the point of the shim classes.",
-    Scope = "namespaceanddescendants", Target = "ParquetClassLibrary.Serialization.Shims")]

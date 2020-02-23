@@ -1,11 +1,10 @@
-using System.Collections.Generic;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Utilities;
-using Xunit;
 using System;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Rooms;
+using System.Collections.Generic;
 using System.Linq;
+using ParquetClassLibrary;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
+using Xunit;
 
 namespace ParquetUnitTests.Rooms
 {
@@ -111,7 +110,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void ContainedPositionIsFoundTest()
         {
-            var ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
+            Vector2D ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
 
             Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
         }

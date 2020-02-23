@@ -15,8 +15,7 @@ namespace ParquetUnitTests.Beings
         [Fact]
         public void ValidNpcIDsArePermittedTest()
         {
-            var newNPC = new NPCModel(newNpcID, "NPC", "will be created", "", "",
-                                 All.BiomeIDs.Minimum, Behavior.Still);
+            var newNPC = new NPCModel(newNpcID, "NPC", "will be created", "", All.BiomeIDs.Minimum, Behavior.Still);
 
             Assert.NotNull(newNPC);
         }
@@ -28,7 +27,7 @@ namespace ParquetUnitTests.Beings
 
             void TestCode()
             {
-                var _ = new NPCModel(badNpcID, "NPC", "will fail", "", "", All.BiomeIDs.Minimum, Behavior.Still);
+                var _ = new NPCModel(badNpcID, "NPC", "will fail", "", All.BiomeIDs.Minimum, Behavior.Still);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

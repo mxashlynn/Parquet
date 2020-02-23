@@ -1,15 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
-using ParquetClassLibrary.Biomes;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Maps;
 
 namespace ParquetClassLibrary
 {
@@ -26,6 +29,26 @@ namespace ParquetClassLibrary
     {
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
         public static bool CollectionsHaveBeenInitialized { get; private set; }
+
+        #region Serialization Lookup Tables
+        /// <summary>
+        /// The location of the designer CSV files, set to either the working directory
+        /// or a predefined designer directory, depending on build type.
+        /// </summary>
+        public static string WorkingDirectory { get; }
+
+        /// <summary>Instructions for integer parsing.</summary>
+        internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
+
+        /// <summary>Instructions for string parsing.</summary>
+        internal static CultureInfo SerializedCultureInfo { get; }
+
+        /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
+        internal static TypeConverterOptions IdentifierOptions { get; }
+
+        /// <summary>Mappings for all classes serialized via <see cref="ITypeConverter"/>.</summary>
+        internal static Dictionary<Type, ITypeConverter> ConversionConverters { get; }
+        #endregion
 
         #region EntityID Ranges
         /// <summary>
@@ -49,7 +72,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.BeingModel"/>s.
         /// </summary>
-        public static readonly List<Range<EntityID>> BeingIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> BeingIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BiomeModel"/>s.
@@ -79,7 +102,7 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="InteractionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly List<Range<EntityID>> InteractionIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> InteractionIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapChunk"/>s.
@@ -97,7 +120,7 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly List<Range<EntityID>> MapIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> MapIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FloorModel"/>s.
@@ -126,7 +149,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquets.
         /// </summary>
-        public static readonly List<Range<EntityID>> ParquetIDs;
+        public static readonly IReadOnlyList<Range<EntityID>> ParquetIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
@@ -212,7 +235,7 @@ namespace ParquetClassLibrary
         /// A collection of all defined <see cref="PronounGroup"/>s.
         /// This collection is the source of truth about pronouns for the rest of the library.
         /// </summary>
-        public static IReadOnlyCollection<PronounGroup> Pronouns { get; private set; }
+        public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
         #endregion
 
         #region Initialization
@@ -238,13 +261,12 @@ namespace ParquetClassLibrary
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
 
-            // TODO There has to be a better way to set this up.
-            Pronouns = new HashSet<PronounGroup>(new List<PronounGroup>{ PronounGroup.Default });
+            // TODO Is this the right way to set this up?
+            PronounGroups = new HashSet<PronounGroup>();
             #endregion
 
             #region Initialize Ranges
             ///<summary>By convention, the first EntityID in each Range is a multiple of this number.</summary>
-            ///<remarks>An exception is made for PlayerCharacters as these values are undefined at designtime.</remarks>
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges
@@ -309,11 +331,68 @@ namespace ParquetClassLibrary
             ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
             #endregion
             #endregion
+
+            #region Initialize Serialization Values & Lookup Tables
+            WorkingDirectory =
+#if DEBUG
+                $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+#else
+                Directory.GetCurrentDirectory();
+#endif
+
+            SerializedCultureInfo = CultureInfo.InvariantCulture;
+
+            IdentifierOptions = new TypeConverterOptions
+            {
+                NumberStyle = SerializedNumberStyle,
+                CultureInfo = SerializedCultureInfo,
+            };
+
+            ConversionConverters = new Dictionary<Type, ITypeConverter>
+            {
+                #region ITypeConverters
+                { typeof(ChunkType), ChunkType.ConverterFactory },
+                { typeof(EntityID), EntityID.ConverterFactory },
+                { typeof(EntityTag), EntityTag.ConverterFactory },
+                { typeof(ExitPoint), ExitPoint.ConverterFactory },
+                { typeof(InventorySlot), InventorySlot.ConverterFactory },
+                { typeof(ParquetStack), ParquetStack.ConverterFactory },
+                { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+                { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
+                { typeof(Range<int>), Range<int>.ConverterFactory },
+                { typeof(RecipeElement), RecipeElement.ConverterFactory },
+                { typeof(StrikePanel), StrikePanel.ConverterFactory },
+                { typeof(Vector2D), Vector2D.ConverterFactory },
+                #endregion
+
+                #region Linear Series Types
+                { typeof(IEnumerable<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+                { typeof(IEnumerable<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
+                { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
+                { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
+                { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(List<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
+                #endregion
+
+                #region 2D Grid Types
+                { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+                { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
+                { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
+                #endregion
+            };
+            #endregion
         }
 
         /// <summary>
         /// Initializes the <see cref="ModelCollection{T}s"/> from the given collections.
         /// </summary>
+        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <param name="inBeings">All beings to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
@@ -322,24 +401,23 @@ namespace ParquetClassLibrary
         /// <param name="inParquets">All parquets to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
-        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
-        public static void InitializeCollections(IEnumerable<BeingModel> inBeings,
+        public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
+                                                 IEnumerable<BeingModel> inBeings,
                                                  IEnumerable<BiomeModel> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<ItemModel> inItems,
-                                                 IEnumerable<PronounGroup> inPronouns)
+                                                 IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
             {
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
-            // TODO Should these allow empties?
+            Precondition.IsNotNull(inPronouns, nameof(inPronouns));
             Precondition.IsNotNull(inBeings, nameof(inBeings));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
@@ -348,7 +426,6 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inParquets, nameof(inParquets));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inItems, nameof(inItems));
-            Precondition.IsNotNullOrEmpty(inPronouns, nameof(inPronouns));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
             Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
@@ -358,8 +435,60 @@ namespace ParquetClassLibrary
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
-            Pronouns = new HashSet<PronounGroup>(inPronouns);
+            PronounGroups = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
+        }
+        #endregion
+
+        #region Serialization
+        /// <summary>
+        /// Initializes <see cref="All"/> based on the values in design-time CSV files.
+        /// </summary>
+        public static void LoadFromCSV()
+        {
+            var pronounGroups = PronounGroup.GetRecords();
+            var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
+                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<NPCModel>(BeingIDs))
+                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<PlayerCharacterModel>(BeingIDs));
+            var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
+            var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
+            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
+                .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs));
+            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs));
+            var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
+            var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
+            var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
+
+            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, items);
+        }
+
+        /// <summary>
+        /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
+        /// </summary>
+        public static void SaveToCSV()
+        {
+            PronounGroup.PutRecords(PronounGroups);
+            Beings.PutRecordsForType<CritterModel>();
+            Beings.PutRecordsForType<NPCModel>();
+            Beings.PutRecordsForType<PlayerCharacterModel>();
+            Biomes.PutRecordsForType<BiomeModel>();
+            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            Interactions.PutRecordsForType<DialogueModel>();
+            Interactions.PutRecordsForType<QuestModel>();
+            Maps.PutRecordsForType<MapChunk>();
+            Maps.PutRecordsForType<MapRegionSketch>();
+            Maps.PutRecordsForType<MapRegion>();
+            Parquets.PutRecordsForType<FloorModel>();
+            Parquets.PutRecordsForType<BlockModel>();
+            Parquets.PutRecordsForType<FurnishingModel>();
+            Parquets.PutRecordsForType<CollectibleModel>();
+            RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Items.PutRecordsForType<ItemModel>();
         }
         #endregion
     }

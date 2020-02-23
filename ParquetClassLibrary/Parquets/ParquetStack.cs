@@ -1,4 +1,7 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -6,17 +9,14 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each overlapping layer of parquets.
     /// </summary>
-    public readonly struct ParquetStack : IParquetStack, IEquatable<ParquetStack>
+    public class ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty => new ParquetStack(EntityID.None, EntityID.None, EntityID.None, EntityID.None);
+        #endregion
 
-        /// <summary>The number of parquets actually present in this stack.</summary>
-        public int Count => EntityID.None != Floor ? 1 : 0
-                          + EntityID.None != Block ? 1 : 0
-                          + EntityID.None != Furnishing ? 1 : 0
-                          + EntityID.None != Collectible ? 1 : 0;
-
+        #region Characteristics
         /// <summary>The floor contained in this stack.</summary>
         public EntityID Floor { get; }
 
@@ -28,9 +28,21 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The collectible contained in this stack.</summary>
         public EntityID Collectible { get; }
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new default instance of the <see cref="ParquetStack"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This is primarily useful for serialization as the default values are featureless.
+        /// </remarks>
+        public ParquetStack() :
+            this(EntityID.None, EntityID.None, EntityID.None, EntityID.None)
+        { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParquetStack"/> struct.
+        /// Initializes a new instance of the <see cref="ParquetStack"/> class.
         /// </summary>
         /// <param name="inFloor">The floor-layer parquet.</param>
         /// <param name="inBlock">The The floor-layer parquet-layer parquet.</param>
@@ -48,8 +60,15 @@ namespace ParquetClassLibrary.Parquets
             Furnishing = inFurnishing;
             Collectible = inCollectible;
         }
+        #endregion
 
-        #region Gameplay Algorithm Support
+        #region Queries
+        /// <summary>The number of parquets actually present in this stack.</summary>
+        public int Count => EntityID.None != Floor ? 1 : 0
+                          + EntityID.None != Block ? 1 : 0
+                          + EntityID.None != Furnishing ? 1 : 0
+                          + EntityID.None != Collectible ? 1 : 0;
+
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
@@ -90,6 +109,7 @@ namespace ParquetClassLibrary.Parquets
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None
+            && Furnishing != EntityID.None
             && !(All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false);
         #endregion
 
@@ -109,7 +129,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack">The <see cref="ParquetStack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(ParquetStack inStack)
-            => Floor == inStack.Floor
+            => Floor == inStack?.Floor
             && Block == inStack.Block
             && Furnishing == inStack.Furnishing
             && Collectible == inStack.Collectible;
@@ -120,7 +140,8 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStack"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is ParquetStack stack && Equals(stack);
+            => obj is ParquetStack stack
+            && Equals(stack);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is equal to another specified instance of <see cref="ParquetStack"/>.
@@ -129,10 +150,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ParquetStack inStack1, ParquetStack inStack2)
-            => inStack1.Floor == inStack2.Floor
-            && inStack1.Block == inStack2.Block
-            && inStack1.Furnishing == inStack2.Furnishing
-            && inStack1.Collectible == inStack2.Collectible;
+            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStack"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
@@ -141,10 +159,59 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack2">The second <see cref="ParquetStack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(ParquetStack inStack1, ParquetStack inStack2)
-            => inStack1.Floor != inStack2.Floor
-            || inStack1.Block != inStack2.Block
-            || inStack1.Furnishing != inStack2.Furnishing
-            || inStack1.Collectible != inStack2.Collectible;
+            => !(inStack1 == inStack2);
+        #endregion
+
+        #region ITypeConverter
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static ParquetStack ConverterFactory { get; } = Empty;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is ParquetStack stack
+            && null != stack
+                ? $"{stack.Floor}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +
+                  $"{stack.Collectible}"
+            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ParquetStack)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStack)}.");
+            }
+
+            try
+            {
+                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+
+                var floor = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var block = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var furnishing = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
+                var collectible = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+
+                return new ParquetStack(floor, block, furnishing, collectible);
+            }
+            catch (Exception e)
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(ParquetStack)}: {e}");
+            }
+        }
         #endregion
 
         #region Utilities

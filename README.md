@@ -51,7 +51,7 @@ The solution contains several related projects, each of which is structured so t
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
     - **Quests**.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
-    - **Utilities** of which Range, Vector2D, and Precondition are all very frequently used.
+    - **Utilities** of which Precondition is very frequently used.
 - **ParquetRoller**
     - A command line tool for working with CSV files containing game definitions.
 - **ParquetRunner**
@@ -65,7 +65,7 @@ To work with this repository you will need:
 
 - [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.1
 - [XUnit](https://github.com/xunit/xunit) >= 2.4
-- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 12.1
+- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 13.0
 
 # Contributors
 - Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).

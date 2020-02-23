@@ -87,7 +87,8 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</param>
         /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
         /// <param name="inCurrentBehavior">The <see cref="Behavior"/> currently governing the tracked <see cref="BeingModel"/>.</param>
-        /// <param name="inBiomeTimeRemaining"></param>
+        // TODO Fill in units bellow.
+        /// <param name="inBiomeTimeRemaining">How long [TODO in what units?] to until being kicked out of the current <see cref="Biomes.BiomeModel"/>.</param>
         /// <param name="inBuildingSpeed">The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</param>
         /// <param name="inModificationSpeed">The time it takes the tracked <see cref="BeingModel"/> to modify existing parquets.</param>
         /// <param name="inGatheringSpeed">The time it takes the tracked <see cref="BeingModel"/> to gather existing parquets.</param>
@@ -113,7 +114,7 @@ namespace ParquetClassLibrary.Beings
             var nonNullCritters = inKnownCritters ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullNPCs = inKnownNPCs ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullRoomRecipes = inKnownRoomRecipes  ?? Enumerable.Empty<EntityID>().ToList();
+            var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullQuests = inQuests ?? Enumerable.Empty<EntityID>().ToList();
             var nonNullInventory = inInventory ?? Enumerable.Empty<EntityID>().ToList();

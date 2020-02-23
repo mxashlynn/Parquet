@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -9,9 +10,11 @@ namespace ParquetClassLibrary.Interactions
     public sealed class QuestModel : InteractionModel
     {
         #region Characteristics
+        // TODO Is this completely implemented?  Check paper notes.
         /// <summary>
         /// Describes the criteria for completing this <see cref="QuestModel"/>.
         /// </summary>
+        [Index(7)]
         public IReadOnlyList<EntityTag> CompletionRequirements { get; }
         #endregion
 
@@ -28,8 +31,8 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inCompletionRequirements">Describes the criteria for completing this <see cref="QuestModel"/>.</param>
         public QuestModel(EntityID inID, string inName, string inDescription, string inComment,
-                          List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome,
-                          List<EntityTag> inCompletionRequirements)
+                          IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome,
+                          IEnumerable<EntityTag> inCompletionRequirements)
             : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             CompletionRequirements = (inCompletionRequirements ?? Enumerable.Empty<EntityTag>()).ToList();

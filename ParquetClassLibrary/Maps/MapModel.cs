@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -13,35 +14,37 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
+        [Ignore]
         public abstract Vector2D DimensionsInParquets { get; }
+
+        /// <summary>Describes the version of serialized data, to support versioning.</summary>
+        [Index(4)]
+        public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
         #endregion
 
+        #region Characteristics
         #region Whole-Map Characteristics
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        protected string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
-
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; private set; }
+        [Index(5)]
+        public int Revision { get; protected set; }
         #endregion
 
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-        protected List<ExitPoint> ExitPoints { get; } = new List<ExitPoint>();
+        [Index(6)]
+        public List<ExitPoint> Exits { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        protected abstract ParquetStatusGrid ParquetStatuses { get; }
+        [Index(10)]
+        public abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        protected abstract ParquetStackGrid ParquetDefintion { get; }
-
-        /// <summary>The total number of parquets in the entire map.</summary>
-        protected int ParquetsCount => ParquetDefintion?.Count ?? 0;
+        [Index(11)]
+        public abstract ParquetStackGrid ParquetDefinitions { get; }
+        #endregion
         #endregion
 
         #region Initialization
@@ -53,11 +56,20 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        protected MapModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment, int inRevision)
+        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
+        protected MapModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
+                           string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
+            if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
+            {
+                throw new FormatException($"Unsupported {nameof(MapModel)} data version {inDataVersion}.");
+            }
+
             Revision = inRevision;
+            Exits = inExits?.ToList() ?? new List<ExitPoint>();
         }
         #endregion
 
@@ -122,14 +134,14 @@ namespace ParquetClassLibrary.Maps
                                             Vector2D inPosition)
         {
             var result = false;
-            if (ParquetDefintion.IsValidPosition(inPosition))
+            if (ParquetDefinitions.IsValidPosition(inPosition))
             {
-                ParquetDefintion[inPosition.Y, inPosition.X] =
+                ParquetDefinitions[inPosition.Y, inPosition.X] =
                     new ParquetStack(
-                        inFloorID ?? ParquetDefintion[inPosition.Y, inPosition.X].Floor,
-                        inBlockID ?? ParquetDefintion[inPosition.Y, inPosition.X].Block,
-                        inFurnishingID ?? ParquetDefintion[inPosition.Y, inPosition.X].Furnishing,
-                        inCollectibleID ?? ParquetDefintion[inPosition.Y, inPosition.X].Collectible);
+                        inFloorID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Floor,
+                        inBlockID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Block,
+                        inFurnishingID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Furnishing,
+                        inCollectibleID ?? ParquetDefinitions[inPosition.Y, inPosition.X].Collectible);
                 result = true;
             }
             return result;
@@ -147,11 +159,11 @@ namespace ParquetClassLibrary.Maps
         {
             var result = true;
 
-            if (ExitPoints.Contains(inPoint))
+            if (Exits.Contains(inPoint))
             {
                 result = TryRemoveExitPoint(inPoint);
             }
-            ExitPoints.Add(inPoint);
+            Exits.Add(inPoint);
 
             return result;
         }
@@ -162,11 +174,15 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPoint">The point to remove.</param>
         /// <returns><c>true</c>, if the point was found and removed, <c>false</c> otherwise.</returns>
         public bool TryRemoveExitPoint(ExitPoint inPoint)
-            => ParquetDefintion.IsValidPosition(inPoint.Position)
-            && ExitPoints.Remove(inPoint);
+            => ParquetDefinitions.IsValidPosition(inPoint.Position)
+            && Exits.Remove(inPoint);
         #endregion
 
         #region State Queries
+        /// <summary>The total number of parquets in the entire map.</summary>
+        [Ignore]
+        protected int ParquetsCount => ParquetDefinitions?.Count ?? 0;
+
         /// <summary>
         /// Gets the statuses of any parquets at the position.
         /// </summary>
@@ -183,8 +199,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position whose floor is sought.</param>
         /// <returns>The floor at the given position.</returns>
         public ParquetStack GetDefinitionAtPosition(Vector2D inPosition)
-            => ParquetDefintion.IsValidPosition(inPosition)
-                ? ParquetDefintion[inPosition.Y, inPosition.X]
+            => ParquetDefinitions.IsValidPosition(inPosition)
+                ? ParquetDefinitions[inPosition.Y, inPosition.X]
                 : throw new ArgumentOutOfRangeException(nameof(inPosition));
 
         /// <summary>
@@ -192,12 +208,8 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <param name="inPosition">The position whose data is sought.</param>
         /// <returns>The special points at the position.</returns>
-        public List<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
-            => ExitPoints.FindAll(inPoint => inPoint.Position.Equals(inPosition));
-        #endregion
-
-        #region Serialization
-
+        public IReadOnlyList<ExitPoint> GetExitsAtPosition(Vector2D inPosition)
+            => Exits.FindAll(inPoint => inPoint.Position.Equals(inPosition));
         #endregion
 
         #region Utilities
@@ -207,7 +219,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => ParquetDefintion.IsValidPosition(inPosition);
+            => ParquetDefinitions.IsValidPosition(inPosition);
 
         /// <summary>
         /// Provides all parquet definitions within the current map.
@@ -224,11 +236,11 @@ namespace ParquetClassLibrary.Maps
         /// <returns>A portion of the map as a subregion.</returns>
         public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
-            if (!ParquetDefintion.IsValidPosition(inUpperLeft))
+            if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
                 throw new ArgumentOutOfRangeException(nameof(inUpperLeft));
             }
-            else if (!ParquetDefintion.IsValidPosition(inLowerRight))
+            else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
                 throw new ArgumentOutOfRangeException(nameof(inLowerRight));
             }
@@ -245,8 +257,7 @@ namespace ParquetClassLibrary.Maps
                 {
                     for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
                     {
-                        var temp = ParquetDefintion[y, x];
-                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = temp;
+                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetDefinitions[y, x];
                     }
                 }
 
@@ -259,7 +270,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see langword="string"/> that represents the current map.</returns>
         public override string ToString()
-            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {ExitPoints.Count} special points.";
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {Exits.Count} exits.";
         #endregion
     }
 }

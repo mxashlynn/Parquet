@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests.Maps
@@ -14,29 +14,30 @@ namespace ParquetUnitTests.Maps
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
-        private static readonly PCLColor testColor = new PCLColor(255, 128, 26, 230);
-        private const string testTitle = "Test Region";
+        private const string testColor = "#FF8822EE";
+        private const string testName = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
         private static readonly EntityID testID = TestModels.TestMapRegion.ID;
-        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 2, "", "", "");
+        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
         #endregion
 
         #region Region Map Initialization
         [Fact]
         public void NewDefaultMapRegionTest()
         {
-            Assert.Equal(MapRegion.DefaultTitle, defaultRegion.Title);
-            Assert.Equal(MapRegion.DefaultColor, defaultRegion.Background);
+            Assert.Equal(MapRegion.DefaultName, defaultRegion.Name);
+            Assert.Equal(MapRegion.DefaultColor, defaultRegion.BackgroundColor);
         }
 
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
+                                             AssemblyInfo.SupportedMapDataVersion, 0, testColor, testStory, testElevation);
 
-            Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testName, customRegion.Name);
+            Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
@@ -46,16 +47,17 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testTitle, "", "", 0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", AssemblyInfo.SupportedMapDataVersion,
+                                             0, testColor, testStory, testElevation);
             IMapRegionEdit editableRegion = customRegion;
 
-            editableRegion.Title = testTitle;
-            editableRegion.Background = testColor;
+            editableRegion.Name = testName;
+            editableRegion.BackgroundColor = testColor;
             editableRegion.ElevationLocal = testStory;
             editableRegion.ElevationGlobal = testElevation;
 
-            Assert.Equal(testTitle, customRegion.Title);
-            Assert.Equal(testColor, customRegion.Background);
+            Assert.Equal(testName, customRegion.Name);
+            Assert.Equal(testColor, customRegion.BackgroundColor);
             Assert.Equal(testStory, customRegion.ElevationLocal);
             Assert.Equal(testElevation, customRegion.ElevationGlobal);
         }
@@ -176,9 +178,10 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TryRemoveExitPointFailsOnInvalidPositionTest()
         {
+            var map = new MapRegion(-All.MapRegionIDs.Minimum - 1, "Unused Region 1", "Test", "Test");
             var point = new ExitPoint(invalidPosition, testID);
 
-            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
+            var result = map.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -186,9 +189,10 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void TryRemoveExitPointFailsOnExitPointMissingTest()
         {
-            var point = new ExitPoint(Vector2D.Zero, testID);
+            var map = new MapRegion(-All.MapRegionIDs.Minimum - 2, "Unused Region 2", "Test", "Test");
+            var point = new ExitPoint(Vector2D.Zero, testID - 1);
 
-            var result = TestModels.TestMapRegion.TryRemoveExitPoint(point);
+            var result = map.TryRemoveExitPoint(point);
 
             Assert.False(result);
         }
@@ -207,7 +211,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetExitsReturnsNullsOnInvalidPositionTest()
         {
-            var specialData = TestModels.TestMapRegion.GetExitsAtPosition(invalidPosition);
+            IReadOnlyList<ExitPoint> specialData = TestModels.TestMapRegion.GetExitsAtPosition(invalidPosition);
 
             Assert.Empty(specialData);
         }
@@ -228,7 +232,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetDefinitionReturnsNoneOnEmptyMapTest()
         {
-            var result = MapRegion.Empty.GetDefinitionAtPosition(Vector2D.Zero);
+            ParquetStack result = MapRegion.Empty.GetDefinitionAtPosition(Vector2D.Zero);
 
             Assert.Equal(EntityID.None, result.Floor);
             Assert.Equal(EntityID.None, result.Block);
@@ -241,7 +245,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {
-            var invalidUpperLeft = invalidPosition;
+            Vector2D invalidUpperLeft = invalidPosition;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -256,8 +260,8 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
-            var validUpperLeft = Vector2D.Zero;
-            var invalidLowerRight = defaultRegion.DimensionsInParquets;
+            Vector2D validUpperLeft = Vector2D.Zero;
+            Vector2D invalidLowerRight = defaultRegion.DimensionsInParquets;
 
             void InvalidSubregion()
             {
@@ -270,7 +274,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
-            var validUpperLeft = Vector2D.Zero;
+            Vector2D validUpperLeft = Vector2D.Zero;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -286,12 +290,12 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionMatchesPattern()
         {
             var originalChunk = typeof(MapRegion)
-                                .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                .GetProperty("ParquetDefinitions", BindingFlags.NonPublic | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            var subregion = defaultRegion.GetSubregion();
+            ParquetStackGrid subregion = defaultRegion.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -306,10 +310,10 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionOnWholeSubregionMatchesPattern()
         {
             var originalChunk = typeof(MapRegion)
-                                .GetProperty("ParquetDefintion", BindingFlags.NonPublic | BindingFlags.Instance)
+                                .GetProperty("ParquetDefinitions", BindingFlags.NonPublic | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
 
-            var subregion = defaultRegion.GetSubregion();
+            ParquetStackGrid subregion = defaultRegion.GetSubregion();
 
             for (var x = 0; x < defaultRegion.DimensionsInParquets.X; x++)
             {

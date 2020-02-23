@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -48,17 +51,21 @@ namespace ParquetClassLibrary
     /// If the implementation were ever to become more complex, EntityID
     /// would need to become a class.
     /// </remarks>
-    public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>
+    public struct EntityID : IComparable<EntityID>, IEquatable<EntityID>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>Indicates the lack of an <see cref="EntityModel"/>.</summary>
         public static readonly EntityID None = 0;
+        #endregion
 
+        #region Characteristics
         /// <summary>Backing type for the <see cref="EntityID"/>.</summary>
         /// <remarks>
         /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
-        /// to support human-readable design documents and <see cref="Range{T}"/> validation.
+        /// to support human-readable design documents and <see cref="Range{EntityID}"/> validation.
         /// </remarks>
         private int id;
+        #endregion
 
         #region Implicit Conversion To/From Underlying Type
         /// <summary>
@@ -155,8 +162,9 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="EntityID"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public readonly override bool Equals(object obj)
-            => obj is EntityID entityID && Equals(entityID);
+        public override readonly bool Equals(object obj)
+            => obj is EntityID entityID
+            && Equals(entityID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityID"/> is equal to another specified instance of <see cref="EntityID"/>.
@@ -177,6 +185,55 @@ namespace ParquetClassLibrary
             => inIDentifier1.id != inIDentifier2.id;
         #endregion
 
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static EntityID ConverterFactory { get; } =
+            None;
+
+        /// <summary>
+        /// Converts the given record column to <see cref="EntityID"/>.
+        /// </summary>
+        /// <param name="inText">The record column to convert to an object.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <returns>The <see cref="EntityID"/> created from the record column.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
+                // TODO This might not work.  If needed, make a new value indicating an unasigned state.
+                return None;
+            }
+
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+            if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
+            {
+                return (EntityID)id;
+            }
+            else
+            {
+                throw new FormatException($"Could not parse {nameof(EntityID)} '{inText}'.");
+            }
+        }
+
+        /// <summary>
+        /// Converts the given <see cref="EntityID"/> to a record column.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <returns>The <see cref="EntityID"/> as a CSV record.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is EntityID id
+                ? null != id
+                && None != id
+                    ? id.ToString()
+                    : nameof(None)
+                : throw new ArgumentException($"Cannot convert {inValue} to {nameof(EntityID)}.");
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Validates the current <see cref="EntityID"/> over a <see cref="Range{EntityID}"/>.
@@ -184,12 +241,12 @@ namespace ParquetClassLibrary
         /// <item><term>1</term>
         /// <description>It is <see cref="None"/>.</description></item>
         /// <item><term>2</term>
-        /// <description>It is defined within the given <see cref="Range{T}"/>, inclusive, regardless of sign.</description></item>
+        /// <description>It is defined within the given <see cref="Range{EntityID}"/>, inclusive, regardless of sign.</description></item>
         /// </list>
         /// </summary>
-        /// <param name="inRange">The <see cref="Range{T}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
+        /// <param name="inRange">The <see cref="Range{EntityID}"/> within which the absolute value of the <see cref="EntityID"/> must fall.</param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{T}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="Range{EntityID}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(Range<EntityID> inRange)
@@ -202,14 +259,14 @@ namespace ParquetClassLibrary
         /// <item><term>1</term>
         /// <description>It is <see cref="None"/>.</description></item>
         /// <item><term>2</term>
-        /// <description>It is defined within any of the <see cref="Range{T}"/>a in the given <see cref="IEnumerable{T}"/>, inclusive, regardless of sign.</description></item>
+        /// <description>It is defined within any of the <see cref="Range{EntityID}"/>a in the given <see cref="IEnumerable{EntityID}"/>, inclusive, regardless of sign.</description></item>
         /// </list>
         /// </summary>
         /// <param name="inRanges">
-        /// The <see cref="IEnumerable{Range{T}}"/> within which the <see cref="EntityID"/> must fall.
+        /// The <see cref="IEnumerable{Range{EntityID}}"/> within which the <see cref="EntityID"/> must fall.
         /// </param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{T}}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="EntityID"/> is valid given the <see cref="IEnumerable{Range{EntityID}}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(IEnumerable<Range<EntityID>> inRanges)

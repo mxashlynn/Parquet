@@ -1,4 +1,4 @@
 ID,Name,Description,Comment,NativeBiome,PrimaryBehavior,Avoids,Seeks
--10000,Test Critter,Test,Test,0,,,
-10000,Ladybug,Dainty and red!,"",30004,crawl,,
-10001,Dark and dutiful!,,"",30003,crawl,,
+-10000,Test Critter,Test,Test,None,Still,,
+10000,Ladybug,Dainty and red!,,30004,Adventurer,,
+10001,Blue Milkweed Beetle,Dark and dutiful!,,30003,Homebody,,

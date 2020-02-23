@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -11,15 +12,19 @@ namespace ParquetClassLibrary.Beings
     {
         #region Characteristics
         /// <summary>The <see cref="EntityID"/> of the <see cref="Biome"/> in which this character is at home.</summary>
+        [Index(4)]
         public EntityID NativeBiome { get; }
 
         /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
+        [Index(5)]
         public Behavior PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
+        [Index(6)]
         public IReadOnlyList<EntityID> Avoids { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
+        [Index(7)]
         public IReadOnlyList<EntityID> Seeks { get; }
         #endregion
 
@@ -41,7 +46,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inSeeks">Any parquets this <see cref="BeingModel"/> seeks.</param>
         protected BeingModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription,
                         string inComment, EntityID inNativeBiome, Behavior inPrimaryBehavior,
-                        List<EntityID> inAvoids = null, List<EntityID> inSeeks = null)
+                        IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));

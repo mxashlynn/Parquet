@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Utilities;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -13,18 +13,21 @@ namespace ParquetClassLibrary.Interactions
         /// <summary>
         /// Describes the criteria for begining this interaction.
         /// </summary>
+        [Index(4)]
         public IReadOnlyList<EntityTag> StartCriteria { get; }
 
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        // TODO This is not actually a list of strings, we need a new InteractionStep class.
-        public IReadOnlyList<string> Steps { get; }
+        // TODO This is may actually be a list of EntityTags, we need a new InteractionStep class.
+        [Index(5)]
+        public IReadOnlyList<EntityTag> Steps { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
         /// </summary>
         // TODO This is not actually a string, not sure how we're going to handle this yet.
+        [Index(6)]
         public string Outcome { get; }
         #endregion
 
@@ -41,11 +44,11 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
-                                   List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
+                                   IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             StartCriteria = (inStartCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
-            Steps = (inSteps ?? Enumerable.Empty<string>()).ToList();
+            Steps = (inSteps ?? Enumerable.Empty<EntityTag>()).ToList();
             Outcome = inOutcome ?? "";
         }
         #endregion

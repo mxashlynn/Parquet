@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -8,15 +9,18 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public abstract class ParquetModel : EntityModel
     {
+        #region Characteristics
         /// <summary>
         /// The <see cref="EntityID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
+        [Index(4)]
         public EntityID ItemID { get; }
 
         /// <summary>
         /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
+        [Index(5)]
         public EntityTag AddsToBiome { get; }
 
         /// <summary>
@@ -26,7 +30,9 @@ namespace ParquetClassLibrary.Parquets
         /// <remarks>
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
+        [Index(6)]
         public EntityTag AddsToRoom { get; }
+        #endregion
 
         #region Initialization
         /// <summary>

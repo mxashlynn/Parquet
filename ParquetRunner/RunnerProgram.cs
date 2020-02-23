@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -11,8 +9,6 @@ using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Serialization;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetRunner
 {
@@ -24,11 +20,14 @@ namespace ParquetRunner
     {
         #region Test Value Components
         public static readonly EntityTag TestTag = "Test Tag";
-        public static readonly List<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(TestTag, 1) };
-        public static readonly List<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
+        public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
+        public static readonly IReadOnlyList<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
         #endregion
 
         #region Test Values
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static PronounGroup TestPronounGroup { get; }
+
         /// <summary>Used in test patterns in QA routines.</summary>
         public static PlayerCharacterModel TestPlayer { get; }
 
@@ -87,28 +86,34 @@ namespace ParquetRunner
         public static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BeingModel> Beings { get; }
+        public static IReadOnlyList<PronounGroup> PronounGroups { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<BiomeModel> Biomes { get; }
+        public static IReadOnlyList<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<CraftingRecipe> CraftingRecipes { get; }
+        public static IReadOnlyList<BiomeModel> Biomes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<InteractionModel> Interactions { get; }
+        public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<MapModel> Maps { get; }
+        public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ParquetModel> Parquets { get; }
+        public static IReadOnlyList<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<RoomRecipe> RoomRecipes { get; }
+        public static IReadOnlyList<ParquetModel> Parquets { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static List<ItemModel> Items { get; }
+        public static IReadOnlyList<QuestModel> Quests { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<ItemModel> Items { get; }
         #endregion
 
         /// <summary>
@@ -117,32 +122,32 @@ namespace ParquetRunner
         /// </summary>
         static TestModels()
         {
-            #region Initialize EntityModels
-            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0", "Test Player", "Test", "Test");
-            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test",
-                                      All.BiomeIDs.Minimum, Behavior.Still);
-            TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2", "Test NPC", "Test", "Test",
-                              All.BiomeIDs.Minimum, Behavior.Still);
-            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test",
-                                  1, Elevation.LevelGround, false, null, null);
-            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe",
-                                                    "Test", "Test",
+            #region Initialize Instances
+            TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
+            TestPlayer = new PlayerCharacterModel(-All.PlayerCharacterIDs.Minimum, "0 Test Player", "Test", "Test",
+                                                  All.BiomeIDs.Minimum, Behavior.PlayerControlled);
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestNPC = new NPCModel(-All.NpcIDs.Minimum, "2 Test NPC", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, Elevation.LevelGround, false, null, null);
+            TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
-            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null); // TODO Fill in these nulls.
-            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test");
+            // TODO Update this once Dialogue is implemented.
+            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null);
+            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test", AssemblyInfo.SupportedMapDataVersion);
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
             TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
-                                            inIsEntry: true, inAddsToRoom: TestTag);
+                                                 inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test",
-                                              inAddsToRoom: TestTag);
-            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null); // TODO Fill in these nulls.
+                                                   inAddsToRoom: TestTag);
+            // TODO Update this once Quests are implemented.
+            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
-                                            TestRecipeElementList, Rules.Recipes.Room.MinWalkableSpaces + 1,
+                                            Rules.Recipes.Room.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
             TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item 1", "Test", "Test", ItemType.Other,
                                       1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
@@ -175,6 +180,7 @@ namespace ParquetRunner
             #endregion
 
             #region Initialize All
+            PronounGroups = new List<PronounGroup> { TestPronounGroup };
             Beings = new List<BeingModel> { TestCritter, TestNPC, TestPlayer };
             Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
@@ -184,8 +190,7 @@ namespace ParquetRunner
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
 
-            // TODO Replace this null with pronouns.
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
+            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items);
             #endregion
         }
     }
@@ -201,66 +206,13 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            #region Deserialize from CSV
-            #region Local Variables
-            /// <summary>All <see cref="BeingModel"/>s defined in the CSV files.</summary>
-            var Beings = new HashSet<BeingModel>();
-            /// <summary>All <see cref="BiomeModel"/>s defined in the CSV files.</summary>
-            var Biomes = new HashSet<BiomeModel>();
-            /// <summary>All <see cref="CraftingRecipe"/>s defined in the CSV files.</summary>
-            var CraftingRecipes = new HashSet<CraftingRecipe>();
-            /// <summary>All <see cref="InteractionModel"/>s defined in the CSV files.</summary>
-            var Interactions = new HashSet<InteractionModel>();
-            /// <summary>All <see cref="MapModel"/>s defined in the CSV files.</summary>
-            var Maps = new HashSet<MapModel>();
-            /// <summary>All parquets defined in the CSV files.</summary>
-            var Parquets = new HashSet<ParquetModel>();
-            /// <summary>All <see cref="RoomRecipe"/>s defined in the CSV files.</summary>
-            var RoomRecipes = new HashSet<RoomRecipe>();
-            /// <summary>All <see cref="ItemModel"/>s defined in the CSV files.</summary>
-            var Items = new HashSet<ItemModel>();
-            #endregion
-
-            // Set the working directory depending on build.
-            Serializer.SearchPath =
-#if DEBUG
-            $"{Directory.GetCurrentDirectory()}/../../../../";
-#else
-            Directory.GetCurrentDirectory().FullName;
-#endif
-
-            // NOTE Player Characters are not designed in CSVs but at run-time in-game.
-            Beings.UnionWith(Serializer.GetRecordsForType<CritterModel>() ?? Enumerable.Empty<CritterModel>());
-            Beings.UnionWith(Serializer.GetRecordsForType<NPCModel>() ?? Enumerable.Empty<NPCModel>());
-            Biomes.UnionWith(Serializer.GetRecordsForType<BiomeModel>() ?? Enumerable.Empty<BiomeModel>());
-            CraftingRecipes.UnionWith(Serializer.GetRecordsForType<CraftingRecipe>() ?? Enumerable.Empty<CraftingRecipe>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<DialogueModel>() ?? Enumerable.Empty<DialogueModel>());
-            Interactions.UnionWith(Serializer.GetRecordsForType<QuestModel>() ?? Enumerable.Empty<QuestModel>());
-            Maps.UnionWith(Serializer.GetRecordsForType<MapChunk>() ?? Enumerable.Empty<MapChunk>());
-            Maps.UnionWith(Serializer.GetRecordsForType<MapRegion>() ?? Enumerable.Empty<MapRegion>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FloorModel>() ?? Enumerable.Empty<FloorModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<BlockModel>() ?? Enumerable.Empty<BlockModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<FurnishingModel>() ?? Enumerable.Empty<FurnishingModel>());
-            Parquets.UnionWith(Serializer.GetRecordsForType<CollectibleModel>() ?? Enumerable.Empty<CollectibleModel>());
-            RoomRecipes.UnionWith(Serializer.GetRecordsForType<RoomRecipe>() ?? Enumerable.Empty<RoomRecipe>());
-            Items.UnionWith(Serializer.GetRecordsForType<ItemModel>() ?? Enumerable.Empty<ItemModel>());
-            #endregion
-
-            // TODO Replace this null with pronouns.
-            All.InitializeCollections(Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items, null);
-
-            #region Reserialize to CSV
-            //var recordsToJSON = All.Parquets.SerializeToString();
-            //var filenameAndPath = Path.Combine(SearchPath, "Designer/Parquets.json");
-            //using (var writer = new StreamWriter(filenameAndPath, false, Encoding.UTF8))
-            //{
-            //    writer.Write(recordsToJSON);
-            //}
-            #endregion
+            All.LoadFromCSV();
 
             var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
             Console.WriteLine(region);
             Console.WriteLine($"Item range = {All.ItemIDs}");
+
+            All.SaveToCSV();
         }
     }
 }

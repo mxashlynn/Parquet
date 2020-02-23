@@ -1,107 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A pattern for generating a playable <see cref="MapRegion"/> in sandbox.
+    /// A pattern for generating a playable <see cref="MapRegion"/>.
     /// </summary>
-    /// <remarks>
-    /// Regions in the editor are stored as <see cref="ChunkTypeGrid"/>s before being fleshed out on load in-game.
-    /// </remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
         "CA1710:Identifiers should have correct suffix",
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class ChunkTypeGrid : IGrid<ChunkType>
     {
-        /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly ChunkTypeGrid Empty = new ChunkTypeGrid();
-
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion,
-                                                                          Rules.Dimensions.ChunksPerRegion);
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion, Rules.Dimensions.ChunksPerRegion);
         #endregion
 
-        #region Whole-Region Characteristics
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
-
-        /// <summary>The identifier for the region that this grid will generate.</summary>
-        public EntityID RegionID { get; set; }
-
-        /// <summary>What the region that this grid generates will be called in-game.</summary>
-        public string Title { get; set; }
-
-        /// <summary>A color to display in any empty areas of the region that this grid will generate.</summary>
-        public PCLColor Background { get; set; }
-
-        /// <summary>The region's elevation relative to all other regions.</summary>
-        public int GlobalElevation { get; set; }
-        #endregion
-
-        #region Grid Contents
-        /// <summary>The types of chunks which make up the grid.</summary>
-        private readonly ChunkType[,] chunkTypes = new ChunkType[DimensionsInChunks.Y, DimensionsInChunks.X];
-
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => DimensionsInChunks.Y;
-
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => DimensionsInChunks.X;
-
-        /// <summary>The total number of chunks collected.</summary>
-        public int Count => Rows * Columns;
-        #endregion
+        /// <summary>The backing collection of <see cref="ChunkType"/>s.</summary>
+        private ChunkType[,] ChunkTypes { get; }
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="MapChunk"/> class.
+        /// Initializes a new <see cref="ParquetStatusGrid"/> with unusable dimensions.
         /// </summary>
-        /// <param name="inID">A pre-existing RegionID; if null, the ID is set to <see cref="EntityID.None"/>.</param>
-        /// <param name="inTitle">The name of the new region.</param>
-        /// <param name="inBackground">Background color for the new region.</param>
-        /// <param name="inGlobalElevation">The relative elevation of this region expressed as a signed integer.</param>
-        public ChunkTypeGrid(EntityID? inID = null, string inTitle = null, PCLColor? inBackground = null,
-                            int inGlobalElevation = MapRegion.DefaultGlobalElevation)
-        {
-            RegionID = inID ?? EntityID.None;
-            Title = string.IsNullOrEmpty(inTitle)
-                ? MapRegion.DefaultTitle
-                : inTitle;
-            Background = inBackground ?? MapRegion.DefaultColor;
-            GlobalElevation = inGlobalElevation;
-        }
+        /// <remarks>
+        /// For this class, there are no reasonable default values.
+        /// However, this version of the constructor exists to make the generic new() constraint happy
+        /// and is used in the library in a context where its limitations are understood.
+        /// You probably don't want to use this constructor in your own code.
+        ///</remarks>
+        public ChunkTypeGrid()
+            : this(1, 1) { }
+
+        /// <summary>
+        /// Initializes a new <see cref="ParquetStatusGrid"/>.
+        /// </summary>
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        public ChunkTypeGrid(int inRowCount, int inColumnCount)
+            => ChunkTypes = new ChunkType[inRowCount, inColumnCount];
         #endregion
 
-        #region Collection Access
+        #region IGrid Implementation
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ChunkTypeGrid"/>.</summary>
+        public int Rows => ChunkTypes?.GetLength(0) ?? 0;
+
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ChunkTypeGrid"/>.</summary>
+        public int Columns => ChunkTypes?.GetLength(1) ?? 0;
+
+        /// <summary>The total number of chunks collected.</summary>
+        public int Count
+            => Columns == 1
+            && Rows == 1
+            && ChunkTypes[0, 0] == null
+                ? 0
+                : Columns * Rows;
+
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]
         {
-            get => ref chunkTypes[y, x];
+            get => ref ChunkTypes[y, x];
         }
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ChunkType}"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         IEnumerator<ChunkType> IEnumerable<ChunkType>.GetEnumerator()
-            => (IEnumerator<ChunkType>)chunkTypes.GetEnumerator();
+            => (IEnumerator<ChunkType>)ChunkTypes.GetEnumerator();
 
         /// <summary>
         /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
+        /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
-            => chunkTypes.GetEnumerator();
-        #endregion
-
-        #region Serialization
-
+            => ChunkTypes.GetEnumerator();
         #endregion
 
         #region Utilities
@@ -111,14 +86,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => chunkTypes.IsValidPosition(inPosition);
-
-        /// <summary>
-        /// Describes the <see cref="ChunkTypeGrid"/>'s basic information.
-        /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="ChunkTypeGrid"/>.</returns>
-        public override string ToString()
-            => $"Chunk Grid {Title} is ({Background}) at {GlobalElevation}.";
+            => ChunkTypes.IsValidPosition(inPosition);
         #endregion
     }
 }

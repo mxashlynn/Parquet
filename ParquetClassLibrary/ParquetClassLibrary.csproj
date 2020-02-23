@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="12.2.3" />
+    <PackageReference Include="CsvHelper" Version="13.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -36,6 +36,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <!-- TODO Uncomment these and update the API document. -->
+    <!-- AdditionalFiles Include="PublicAPI.Shipped.txt" / -->
+    <!-- AdditionalFiles Include="PublicAPI.Unshipped.txt" / -->
   </ItemGroup>
 
 </Project>

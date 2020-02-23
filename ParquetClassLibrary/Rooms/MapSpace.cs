@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Maps.MapRegion"/>.
     /// </summary>
-    public readonly struct MapSpace : IEquatable<MapSpace>
+    public class MapSpace : IEquatable<MapSpace>
     {
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
         public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNull(Subregion, nameof(Subregion));
 
-            var offsetPosition = Position + inOffset;
+            Vector2D offsetPosition = Position + inOffset;
             return Subregion.IsValidPosition(offsetPosition)
                 ? new MapSpace(offsetPosition, Subregion[offsetPosition.Y, offsetPosition.X], Subregion)
                 : Empty;
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
         /// <returns>A list of four <see cref="MapSpace"/>s, some or all of which may be <see cref="Empty"/>.</returns>
-        public List<MapSpace> Neighbors()
+        public IReadOnlyList<MapSpace> Neighbors()
             => new List<MapSpace>
             {
                 NorthNeighbor(),
@@ -156,7 +156,7 @@ namespace ParquetClassLibrary.Rooms
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="MapSpace"/> struct.
+        /// Serves as a hash function for a <see cref="MapSpace"/> class.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
@@ -168,7 +168,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpace">The <see cref="MapSpace"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="MapSpace"/>s are equal.</returns>
         public bool Equals(MapSpace inSpace)
-            => Position == inSpace.Position
+            => Position == inSpace?.Position
             && Content == inSpace.Content;
 
         /// <summary>
@@ -177,7 +177,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is MapSpace vector && Equals(vector);
+            => obj is MapSpace vector
+            && Equals(vector);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is equal to
@@ -187,8 +188,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(MapSpace inSpace1, MapSpace inSpace2)
-            => inSpace1.Position == inSpace2.Position
-            && inSpace1.Content == inSpace2.Content;
+            => inSpace1?.Equals(inSpace2) ?? inSpace2?.Equals(inSpace1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is unequal to
@@ -198,8 +198,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(MapSpace inSpace1, MapSpace inSpace2)
-            => inSpace1.Position != inSpace2.Position
-            && inSpace1.Content != inSpace2.Content;
+            => !(inSpace1 == inSpace2);
         #endregion
 
         #region Utilities

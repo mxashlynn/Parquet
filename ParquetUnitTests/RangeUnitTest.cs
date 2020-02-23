@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary;
 using Xunit;
 
-namespace ParquetUnitTests.Utilities
+namespace ParquetUnitTests
 {
     public class RangeUnitTest
     {

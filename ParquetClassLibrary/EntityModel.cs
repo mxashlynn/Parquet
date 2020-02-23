@@ -1,4 +1,5 @@
 using System;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -28,26 +29,38 @@ namespace ParquetClassLibrary
     /// EntityModel could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="EntityTag"/>
-    public abstract class EntityModel : IEntityEdit, IEquatable<EntityModel>
+    public abstract class EntityModel : IEntityModelEdit, IEquatable<EntityModel>
     {
+        #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
+        [Index(0)]
         public EntityID ID { get; }
 
         /// <summary>Player-facing name.</summary>
+        [Index(1)]
         public string Name { get; private set; }
+
         /// <summary>Player-facing name.</summary>
-        string IEntityEdit.Name { get => Name; set => Name = value; }
+        [Ignore]
+        string IEntityModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
+        [Index(2)]
         public string Description { get; private set; }
+
         /// <summary>Player-facing description.</summary>
-        string IEntityEdit.Description { get => Description; set => Description = value; }
+        [Ignore]
+        string IEntityModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
-        /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="EntityModel"/>.
-        /// </remarks>
+        /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="EntityModel"/>.</remarks>
+        [Index(3)]
         public string Comment { get; private set; }
-        string IEntityEdit.Comment { get => Comment; set => Comment = value; }
+
+        /// <summary>Optional comment.</summary>
+        [Ignore]
+        string IEntityModelEdit.Comment { get => Comment; set => Comment = value; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -86,7 +99,7 @@ namespace ParquetClassLibrary
         /// <param name="inModel">The <see cref="EntityModel"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(EntityModel inModel)
-            => null != inModel && ID == inModel.ID;
+            => inModel?.ID == ID;
 
         /// <summary>
         /// Determines whether the specified <see langword="object"/> is equal to the current <see cref="EntityModel"/>.
@@ -94,7 +107,8 @@ namespace ParquetClassLibrary
         /// <param name="obj">The <see langword="object"/> to compare with the current <see cref="EntityModel"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is EntityModel entity && Equals(entity);
+            => obj is EntityModel entity
+            && Equals(entity);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityModel"/> is equal to another specified instance of <see cref="EntityModel"/>.
@@ -103,8 +117,7 @@ namespace ParquetClassLibrary
         /// <param name="inModel2">The second <see cref="EntityModel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(EntityModel inModel1, EntityModel inModel2)
-            => (inModel1 is null && inModel2 is null)
-            || (!(inModel1 is null) && !(inModel2 is null) && inModel1.ID == inModel2.ID);
+           => inModel1?.Equals(inModel2) ?? inModel2?.Equals(inModel1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="EntityModel"/> is not equal to another specified instance of <see cref="EntityModel"/>.
@@ -113,9 +126,7 @@ namespace ParquetClassLibrary
         /// <param name="inModel2">The second <see cref="EntityModel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(EntityModel inModel1, EntityModel inModel2)
-            => (!(inModel1 is null) && !(inModel2 is null) && inModel1.ID != inModel2.ID)
-            || (!(inModel1 is null) && inModel2 is null)
-            || (inModel1 is null && !(inModel2 is null));
+           => !(inModel1 == inModel2);
         #endregion
 
         #region Utilities

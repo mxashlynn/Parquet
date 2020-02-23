@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -5,11 +12,14 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public class PronounGroup
+    public sealed class PronounGroup : IPronounGroupEdit
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
-        public static readonly PronounGroup Default = new PronounGroup("they", "them", "their", "theirs", "themselves");
+        public const string DefaultKey = "they/them";
+
+        /// <summary>A pronoun to use when none is specified.</summary>
+        public static readonly PronounGroup DefaultGroup = new PronounGroup("they", "them", "their", "theirs", "themself");
         #endregion
 
         #region Textual Tags
@@ -29,21 +39,46 @@ namespace ParquetClassLibrary.Beings
         public const string ReflexiveTag = "%themselves%";
         #endregion
 
-        #region Pronoun Properties
+        #region Characteristics
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
-        public string Subjective { get; }
+        [Index(0)]
+        public string Subjective { get; private set; }
+
+        /// <summary>Personal pronoun used as the subject of a verb.</summary>
+        [Ignore]
+        string IPronounGroupEdit.Subjective { get => Subjective; set => Subjective = value; }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
-        public string Objective { get; }
+        [Index(1)]
+        public string Objective { get; private set; }
+
+        /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+        [Ignore]
+        string IPronounGroupEdit.Objective { get => Objective; set => Objective = value; }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
-        public string Determiner { get; }
+        [Index(2)]
+        public string Determiner { get; private set; }
+
+        /// <summary>Personal pronoun used to attribute possession.</summary>
+        [Ignore]
+        string IPronounGroupEdit.Determiner { get => Determiner; set => Determiner = value; }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
-        public string Possessive { get; }
+        [Index(3)]
+        public string Possessive { get; private set; }
+
+        /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        [Ignore]
+        string IPronounGroupEdit.Possessive { get => Possessive; set => Possessive = value; }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
-        public string Reflexive { get; }
+        [Index(4)]
+        public string Reflexive { get; private set; }
+
+        /// <summary>Personal pronoun used to indicate the user.</summary>
+        [Ignore]
+        string IPronounGroupEdit.Reflexive { get => Reflexive; set => Reflexive = value; }
         #endregion
 
         #region Initialization
@@ -52,11 +87,11 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <param name="inSubjective">Personal pronoun used as the subject of a verb.  Cannot be null or empty.</param>
         /// <param name="inObjective">Personal pronoun used as the indirect object of a preposition or verb.  Cannot be null or empty.</param>
-        /// <param name="inPossessiveDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
-        /// <param name="inPossessivePronoun">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
+        /// <param name="inDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
+        /// <param name="inPossessive">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
         /// <param name="inReflexive">Personal pronoun used as a coreferential to indicate the user.  Cannot be null or empty.</param>
-        public PronounGroup(string inSubjective, string inObjective, string inPossessiveDeterminer,
-                        string inPossessivePronoun, string inReflexive)
+        public PronounGroup(string inSubjective, string inObjective, string inDeterminer,
+                            string inPossessive, string inReflexive)
         {
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
             Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
@@ -66,9 +101,52 @@ namespace ParquetClassLibrary.Beings
 
             Subjective = inSubjective;
             Objective = inObjective;
-            Determiner = inPossessiveDeterminer;
-            Possessive = inPossessivePronoun;
+            Determiner = inDeterminer;
+            Possessive = inPossessive;
             Reflexive = inReflexive;
+        }
+        #endregion
+
+        #region Self Serialization
+        /// <summary>
+        /// Reads all <see cref="PronounGroup"/> records from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static HashSet<PronounGroup> GetRecords()
+        {
+            using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+                                                                                        ? header.Substring(2).ToUpperInvariant()
+                                                                                        : header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new HashSet<PronounGroup>(csv.GetRecords<PronounGroup>());
+        }
+
+        /// <summary>
+        /// Writes all <see cref="PronounGroup"/> records to the appropriate file.
+        /// </summary>
+        public static void PutRecords(IEnumerable<PronounGroup> inGroups)
+        {
+            Precondition.IsNotNull(inGroups);
+
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.NewLine = NewLine.LF;
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<PronounGroup>();
+            csv.NextRecord();
+            csv.WriteRecords(inGroups);
         }
         #endregion
 

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
 namespace ParquetUnitTests
@@ -32,7 +31,7 @@ namespace ParquetUnitTests
         public void MinimumIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var id = range.Minimum;
+            EntityID id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);
@@ -42,7 +41,7 @@ namespace ParquetUnitTests
         public void AverageIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var id = range.Minimum;
+            EntityID id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);
@@ -52,7 +51,7 @@ namespace ParquetUnitTests
         public void MaximumIsValidTest()
         {
             var range = new Range<EntityID>(firstLowerBound, firstUpperBound);
-            var id = range.Minimum;
+            EntityID id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);

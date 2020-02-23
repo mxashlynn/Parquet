@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{T}"/>, inclusive.
+        /// Checks if the given <see cref="EntityID"/> falls within the given <see cref="Range{EntityID}"/>, inclusive.
         /// </summary>
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Checks if the first given <see cref="Range{T}"/> falls within the second given <see cref="Range{T}"/>, inclusive.
+        /// Checks if the first given <see cref="Range{EntityID}"/> falls within the second given <see cref="Range{EntityID}"/>, inclusive.
         /// </summary>
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inOuterBounds">The range it must fall within.</param>
@@ -65,14 +65,14 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Checks if the first given <see cref="EntityID"/> falls within at least one of the
-        /// given collection of <see cref="Range{T}"/>s, inclusive.
+        /// given collection of <see cref="Range{EntityID}"/>s, inclusive.
         /// </summary>
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="inBoundsCollection"/> is null.</exception>
-        public static void IsInRange(EntityID inID, List<Range<EntityID>> inBoundsCollection,
+        public static void IsInRange(EntityID inID, IEnumerable<Range<EntityID>> inBoundsCollection,
                                      string inArgumentName = DefaultArgumentName)
         {
             IsNotNull(inBoundsCollection, nameof(inBoundsCollection));
@@ -90,14 +90,14 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Checks if the given <see cref="Range{T}"/> falls within at least one of the
-        /// given collection of <see cref="Range{T}"/>s, inclusive.
+        /// Checks if the given <see cref="Range{EntityID}"/> falls within at least one of the
+        /// given collection of <see cref="Range{EntityID}"/>s, inclusive.
         /// </summary>
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
-        public static void IsInRange(Range<EntityID> inInnerBounds, List<Range<EntityID>> inBoundsCollection,
+        public static void IsInRange(Range<EntityID> inInnerBounds, IEnumerable<Range<EntityID>> inBoundsCollection,
                                      string inArgumentName = DefaultArgumentName)
         {
             if (!inBoundsCollection.ContainsRange(inInnerBounds))
@@ -129,7 +129,7 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Verifies that all of the given <see cref="EntityID"/>s fall within the given
-        /// <see cref="Range{T}"/>, inclusive.
+        /// <see cref="Range{EntityID}"/>, inclusive.
         /// </summary>
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBounds">The range they must fall within.</param>
@@ -149,13 +149,13 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>
         /// Verifies that all of the given <see cref="EntityID"/>s fall within the given 
-        /// collection of <see cref="Range{T}"/>s, inclusive.
+        /// collection of <see cref="Range{EntityID}"/>s, inclusive.
         /// </summary>
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges they must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
-        public static void AreInRange(IEnumerable<EntityID> inEnumerable, List<Range<EntityID>> inBoundsCollection,
+        public static void AreInRange(IEnumerable<EntityID> inEnumerable, IEnumerable<Range<EntityID>> inBoundsCollection,
                                       string inArgumentName = DefaultArgumentName)
         {
             foreach (var id in inEnumerable ?? Enumerable.Empty<EntityID>())
@@ -166,7 +166,7 @@ namespace ParquetClassLibrary.Utilities
                 }
             }
         }
-        
+
         /// <summary>
         /// Verifies that the given <see cref="EntityID"/> is not <see cref="EntityID.None"/>.
         /// </summary>
@@ -224,13 +224,13 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Verifies that the given <see cref="IEnumerable{T}"/> is not empty.
+        /// Verifies that the given <see cref="IEnumerable{TElement}"/> is not empty.
         /// </summary>
         /// <param name="inEnumerable">The collection to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="inEnumerable"/> is null.</exception>
         /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="inEnumerable"/> is empty.</exception>
-        public static void IsNotNullOrEmpty<T>(IEnumerable<T> inEnumerable, string inArgumentName = DefaultArgumentName)
+        public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName = DefaultArgumentName)
         {
             if (null == inEnumerable)
             {

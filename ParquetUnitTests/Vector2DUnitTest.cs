@@ -1,8 +1,8 @@
 using System;
-using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary;
 using Xunit;
 
-namespace ParquetUnitTests.Utilities
+namespace ParquetUnitTests
 {
     public class Vector2DUnitTest
     {
@@ -30,7 +30,7 @@ namespace ParquetUnitTests.Utilities
         [Theory]
         [InlineData(-4096, -4096)]
         [InlineData(-1, 1)]
-        [InlineData(0,  0)]
+        [InlineData(0, 0)]
         [InlineData(1, -1)]
         [InlineData(4096, 4096)]
         public void NewVectorTest(int inX, int inY)

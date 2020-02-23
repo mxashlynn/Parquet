@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -10,26 +11,32 @@ namespace ParquetClassLibrary.Crafts
     /// </summary>
     public sealed class CraftingRecipe : EntityModel
     {
+        #region Class Defaults
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
         private static IReadOnlyList<RecipeElement> EmptyCraftingElementList { get; } =
             new List<RecipeElement> { RecipeElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
-        public static CraftingRecipe NotCraftable { get; } =
-            new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
-                               EmptyCraftingElementList, EmptyCraftingElementList,
-                               new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                   Rules.Dimensions.PanelsPerPatternWidth));
+        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
+                                                                                EmptyCraftingElementList, EmptyCraftingElementList,
+                                                                                new StrikePanelGrid());
+        #endregion
 
+        #region Characteristics
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
+        [Index(4)]
         public IReadOnlyList<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
+        [Index(5)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        [Index(6)]
         public StrikePanelGrid PanelPattern { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
         /// </summary>
@@ -41,7 +48,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
-        /// Thrown when <paramref name="inPanelPattern"/> has zero-dimensions or dimensions larger than those given by
+        /// Thrown when <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
         /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(EntityID inID, string inName, string inDescription, string inComment,
@@ -66,5 +73,6 @@ namespace ParquetClassLibrary.Crafts
             Ingredients = inIngredients.ToList();
             PanelPattern = inPanelPattern;
         }
+        #endregion
     }
 }

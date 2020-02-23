@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using ParquetClassLibrary;
 using ParquetClassLibrary.Items;
 using Xunit;
 
@@ -9,7 +7,7 @@ namespace ParquetUnitTests.Items
     public class InventoryUnitTest
     {
         #region Test Values
-        private int TestCapacity = 30;
+        private const int TestCapacity = 30;
         #endregion
 
         [Fact]

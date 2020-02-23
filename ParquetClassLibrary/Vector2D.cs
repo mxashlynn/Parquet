@@ -1,12 +1,16 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
-namespace ParquetClassLibrary.Utilities
+namespace ParquetClassLibrary
 {
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
-    public readonly struct Vector2D : IEquatable<Vector2D>
+    public readonly struct Vector2D : IEquatable<Vector2D>, ITypeConverter
     {
+        #region Class Defaults
         /// <summary>The zero vector.</summary>
         public static readonly Vector2D Zero = new Vector2D(0, 0);
 
@@ -24,7 +28,9 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>The vector offset to the West.</summary>
         public static readonly Vector2D West = new Vector2D(-1, 0);
+        #endregion
 
+        #region Characteristics
         /// <summary>Offset from origin in x.</summary>
         public int X { get; }
 
@@ -33,7 +39,9 @@ namespace ParquetClassLibrary.Utilities
 
         /// <summary>Provides the magnitude of the vector as an integer, rounded-down.</summary>
         public int Magnitude { get; }
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2D"/> struct.
         /// </summary>
@@ -45,6 +53,7 @@ namespace ParquetClassLibrary.Utilities
             Y = inY;
             Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
         }
+        #endregion
 
         #region Vector Math
         /// <summary>
@@ -98,7 +107,8 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Vector2D"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="Vector2D"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Vector2D vector && Equals(vector);
+            => obj is Vector2D vector
+            && Equals(vector);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Vector2D"/> is equal to
@@ -108,8 +118,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Vector2D inVector1, Vector2D inVector2)
-            => inVector1.X == inVector2.X
-            && inVector1.Y == inVector2.Y;
+            => inVector1.Equals(inVector2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Vector2D"/> is not equal
@@ -119,8 +128,55 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inVector2">The second <see cref="Vector2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Vector2D inVector1, Vector2D inVector2)
-            => inVector1.X != inVector2.X
-            || inVector1.Y != inVector2.Y;
+            => !inVector1.Equals(inVector2);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static Vector2D ConverterFactory { get; } = Zero;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is Vector2D vector
+            && vector != null
+                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
+                  $"{vector.Y}"
+                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(Vector2D)}.");
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Vector2D)}.");
+            }
+
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+
+            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
+                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
+            {
+                return new Vector2D(x, y);
+            }
+            else
+            {
+                throw new FormatException($"Could not parse '{inText}' as {nameof(Vector2D)}.");
+            }
+        }
         #endregion
 
         #region Utilities

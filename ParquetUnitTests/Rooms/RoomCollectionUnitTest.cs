@@ -1,10 +1,8 @@
-using Xunit;
+using System.Collections.Generic;
+using ParquetClassLibrary;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary;
-using System.Collections.Generic;
-using ParquetClassLibrary.Utilities;
-using ParquetClassLibrary.Maps;
+using Xunit;
 
 namespace ParquetUnitTests.Rooms
 {
@@ -530,8 +528,8 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoSimpleRoomsMap));
 
-            var walkableArea1 = collection.GetRoomAt(new Vector2D(2, 2)).WalkableArea;
-            var walkableArea2 = collection.GetRoomAt(new Vector2D(8, 2)).WalkableArea;
+            MapSpaceCollection walkableArea1 = collection.GetRoomAt(new Vector2D(2, 2)).WalkableArea;
+            MapSpaceCollection walkableArea2 = collection.GetRoomAt(new Vector2D(8, 2)).WalkableArea;
 
             Assert.False(walkableArea1.SetEquals(walkableArea2));
         }
@@ -541,8 +539,8 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TwoSimpleRoomsMap));
 
-            var perimeter1 = collection.GetRoomAt(new Vector2D(2, 2)).Perimeter;
-            var perimeter2 = collection.GetRoomAt(new Vector2D(8, 2)).Perimeter;
+            MapSpaceCollection perimeter1 = collection.GetRoomAt(new Vector2D(2, 2)).Perimeter;
+            MapSpaceCollection perimeter2 = collection.GetRoomAt(new Vector2D(8, 2)).Perimeter;
 
             Assert.False(perimeter1.SetEquals(perimeter2));
         }
@@ -926,5 +924,6 @@ namespace ParquetUnitTests.Rooms
         }
         #endregion
 
+        // TODO In order for test assumptions to be valid, the room definitions need valid subregions.
     }
 }

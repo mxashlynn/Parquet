@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
 
@@ -13,14 +14,16 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.CollectibleIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        public CollectEffect Effect { get; }
+        [Index(7)]
+        public CollectingEffect CollectionEffect { get; }
 
         /// <summary>
-        /// The scale in points of the effect.  For example, how much to alter a stat if the
-        /// <see cref="CollectEffect"/> is set to alter a stat.
+        /// The scale in points of the effect.
+        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
+        [Index(8)]
         public int EffectAmount { get; }
         #endregion
 
@@ -41,7 +44,7 @@ namespace ParquetClassLibrary.Parquets
         /// </param>
         public CollectibleModel(EntityID inID, string inName, string inDescription, string inComment,
                            EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                           EntityTag inAddsToRoom = null, CollectEffect inEffect = CollectEffect.None,
+                           EntityTag inAddsToRoom = null, CollectingEffect inCollectionEffect = CollectingEffect.None,
                            int inEffectAmount = 0)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
                    inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
@@ -49,7 +52,7 @@ namespace ParquetClassLibrary.Parquets
             var nonNullItemID = inItemID ?? EntityID.None;
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
 
-            Effect = inEffect;
+            CollectionEffect = inCollectionEffect;
             EffectAmount = inEffectAmount;
         }
         #endregion

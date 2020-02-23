@@ -1,5 +1,3 @@
-using ParquetClassLibrary.Utilities;
-
 namespace ParquetClassLibrary
 {
     /// <summary>
@@ -8,11 +6,29 @@ namespace ParquetClassLibrary
     public static class Rules
     {
         /// <summary>
-        /// Provides dimensional parameters for the game.
+        /// Provides rules for determining a <see cref="Maps.MapRegion"/>'s <see cref="Biomes.BiomeModel"/>.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
             "CA1034:Nested types should not be visible",
             Justification = "No adequate alternative in this instance.")]
+        public static class BiomeCriteria
+        {
+            /// <summary>Used in computing thresholds.</summary>
+            public const int ParquetsPerLayer = Dimensions.ParquetsPerRegion * Dimensions.ParquetsPerRegion;
+
+            /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="Biomes.BiomeModel"/>.</summary>
+            public const int LandThreshold = ParquetsPerLayer * 5 / 4;
+
+            /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="Biomes.BiomeModel"/>.</summary>
+            public const int FluidThreshold = ParquetsPerLayer / 4;
+        }
+
+        /// <summary>
+        /// Provides dimensional parameters for the game.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+        "CA1034:Nested types should not be visible",
+        Justification = "No adequate alternative in this instance.")]
         public static class Dimensions
         {
             /// <summary>The length of each <see cref="Maps.ChunkTypeGrid"/> dimension in parquets.</summary>
@@ -28,7 +44,7 @@ namespace ParquetClassLibrary
             public const int PanelsPerPatternWidth = 2;
 
             /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
-            public const int PanelsPerPatternHeight = 8;
+            public const int PanelsPerPatternHeight = 2;
         }
 
         /// <summary>
@@ -65,6 +81,30 @@ namespace ParquetClassLibrary
                 /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
                 public const int MinPerimeterSpaces = MinWalkableSpaces * 3;
             }
+        }
+
+        /// <summary>
+        /// Provides a unified source of serialization separators for the library.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+            "CA1034:Nested types should not be visible",
+            Justification = "No adequate alternative in this instance.")]
+        public static class Delimiters
+        {
+            /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
+            public const string DimensionalDelimiter = "x";
+
+            /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
+            public const string DimensionalTerminator = "=";
+
+            /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
+            public const string ElementDelimiter = "-";
+
+            /// <summary>Separates properties within a class when in serialization.</summary>
+            public const string InternalDelimiter = ":";
+
+            /// <summary>Separates objects within collections.</summary>
+            public const string SecondaryDelimiter = ";";
         }
     }
 }

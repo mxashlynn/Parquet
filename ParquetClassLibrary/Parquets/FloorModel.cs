@@ -1,6 +1,6 @@
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
 {
@@ -17,11 +17,13 @@ namespace ParquetClassLibrary.Parquets
         public static Range<EntityID> Bounds => All.FloorIDs;
         #endregion
 
-        #region Parquet Mechanics
+        #region Characteristics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
+        [Index(7)]
         public ModificationTool ModTool { get; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
+        [Index(8)]
         public string TrenchName { get; }
         #endregion
 

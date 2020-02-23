@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -7,9 +8,8 @@ namespace ParquetClassLibrary.Interactions
     /// </summary>
     public sealed class DialogueModel : InteractionModel
     {
-        // TODO This is a stub.
         #region Characteristics
-
+        // TODO This is a stub.
         #endregion
 
         #region Initialization
@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         public DialogueModel(EntityID inID, string inName, string inDescription, string inComment,
-            List<EntityTag> inStartCriteria, List<string> inSteps, string inOutcome)
+            IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome)
             : base(All.DialogueIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
             // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.

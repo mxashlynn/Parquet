@@ -13,14 +13,13 @@ namespace ParquetClassLibrary.Items
         Justification = "Inventory imples Collection.")]
     public sealed class Inventory : IReadOnlyCollection<InventorySlot>
     {
+        #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; }
 
         /// <summary>How many <see cref="InventorySlot"/>s exits.</summary>
         public int Capacity { get; }
-
-        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
-        public int Count { get => Slots.Count; }
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -57,6 +56,9 @@ namespace ParquetClassLibrary.Items
 
         #region Slot Access
         // TODO We might need to make versions of these accessors that work with RecipeElements.
+
+        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
+        public int Count { get => Slots.Count; }
 
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
@@ -255,13 +257,11 @@ namespace ParquetClassLibrary.Items
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{T}"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="Inventory"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-        {
-            return $"{Count} / {Capacity} Items";
-        }
+            => $"{Count} / {Capacity} Items";
         #endregion
     }
 }

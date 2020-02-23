@@ -68,11 +68,12 @@ namespace ParquetClassLibrary.Rooms
             if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces
                 || inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
             {
-                throw new IndexOutOfRangeException(nameof(inWalkableArea));
+                throw new IndexOutOfRangeException($"{nameof(inWalkableArea)} violates {nameof(Rules.Recipes.Room)}.");
             }
 
             if (!inWalkableArea.Concat(inPerimeter).Any(space
-                => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false))
+                => space.Content.Furnishing != EntityID.None
+                && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(inWalkableArea)} or {nameof(inPerimeter)}.");
             }
@@ -125,7 +126,8 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Room"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is Room room && Equals(room);
+            => obj is Room room
+            && Equals(room);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Room"/>.
@@ -134,12 +136,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Room inRoom1, Room inRoom2)
-            => (inRoom1 is null
-                && inRoom2 is null)
-            || (!(inRoom1 is null)
-                && !(inRoom2 is null)
-                && inRoom1.WalkableArea.SetEquals(inRoom2.WalkableArea)
-                && inRoom1.Perimeter.SetEquals(inRoom2.Perimeter));
+           => inRoom1?.Equals(inRoom2) ?? inRoom2?.Equals(inRoom1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Room"/>.
@@ -148,14 +145,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Room inRoom1, Room inRoom2)
-            => (!(inRoom1 is null)
-                && !(inRoom2 is null)
-                && !inRoom1.WalkableArea.SetEquals(inRoom2.WalkableArea)
-                && !inRoom1.Perimeter.SetEquals(inRoom2.Perimeter))
-            || (!(inRoom1 is null)
-                && inRoom2 is null)
-            || (inRoom1 is null
-                && !(inRoom2 is null));
+           => !(inRoom1 == inRoom2);
         #endregion
     }
 }

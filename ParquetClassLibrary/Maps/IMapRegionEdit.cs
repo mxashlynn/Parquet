@@ -1,18 +1,17 @@
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Facilitates editing of <see cref="MapRegion"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    interface IMapRegionEdit
+    internal interface IMapRegionEdit
     {
         /// <summary>What the region is called in-game.</summary>
-        string Title { get; set; }
+        string Name { get; set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        PCLColor Background { get; set; }
+        string BackgroundColor { get; set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         Elevation ElevationLocal { get; set; }
