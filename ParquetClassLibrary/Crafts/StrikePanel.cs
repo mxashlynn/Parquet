@@ -143,7 +143,7 @@ namespace ParquetClassLibrary.Crafts
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static StrikePanel ConverterFactory { get; } = new StrikePanel();
+        internal static StrikePanel ConverterFactory { get; } = Unused;
 
         /// <summary>
         /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
@@ -194,6 +194,13 @@ namespace ParquetClassLibrary.Crafts
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Creates a new instance with the same characteristics as the current instance.
+        /// </summary>
+        /// <returns></returns>
+        public StrikePanel Clone()
+            => new StrikePanel(workingRangeBackingStruct, idealRangeBackingStruct);
+
         /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="StrikePanel"/>.
         /// </summary>

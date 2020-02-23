@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Maps
         public ChunkTopography ModifierTopography { get; }
 
         /// <summary>Indicates the type of parquets modifying the <see cref="MapChunk"/>.</summary>
-        public EntityTag ModifierConstituents { get; }
+        public EntityTag ModifierComposition { get; }
         #endregion
 
         #region Initialization
@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Maps
             BaseTopography = ChunkTopography.Empty;
             BaseComposition = EntityTag.None;
             ModifierTopography = ChunkTopography.Empty;
-            ModifierConstituents = EntityTag.None;
+            ModifierComposition = EntityTag.None;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace ParquetClassLibrary.Maps
             BaseTopography = inBaseTopography;
             BaseComposition = inBaseComposition ?? EntityTag.None;
             ModifierTopography = inModifierTopography;
-            ModifierConstituents = inModifierComposition ?? EntityTag.None;
+            ModifierComposition = inModifierComposition ?? EntityTag.None;
         }
         #endregion
 
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
-            => (BaseTopography, BaseComposition, ModifierTopography, ModifierConstituents).GetHashCode();
+            => (BaseTopography, BaseComposition, ModifierTopography, ModifierComposition).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="ChunkType"/> is equal to the current <see cref="ChunkType"/>.
@@ -106,7 +106,7 @@ namespace ParquetClassLibrary.Maps
             => BaseTopography == inChunkType?.BaseTopography
             && BaseComposition == inChunkType.BaseComposition
             && ModifierTopography == inChunkType.ModifierTopography
-            && ModifierConstituents == inChunkType.ModifierConstituents;
+            && ModifierComposition == inChunkType.ModifierComposition;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkType"/>.
@@ -157,7 +157,7 @@ namespace ParquetClassLibrary.Maps
                     : $"{chunk.BaseTopography}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{chunk.ModifierConstituents}"
+                      $"{chunk.ModifierComposition}"
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ChunkType)}.");
 
         /// <summary>
@@ -197,11 +197,18 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
+        /// Creates a new instance with the same characteristics as the current instance.
+        /// </summary>
+        /// <returns></returns>
+        public ChunkType Clone()
+            => new ChunkType(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
+
+        /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{BaseTopography}{BaseComposition} % {ModifierTopography}{ModifierConstituents}";
+            => $"[{BaseTopography}{BaseComposition} % {ModifierTopography}{ModifierComposition}";
         #endregion
     }
 

@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Crafts
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    StrikePanels[y, x] = new StrikePanel();
+                    StrikePanels[y, x] = StrikePanel.Unused.Clone();
                 }
             }
         }
@@ -54,9 +54,10 @@ namespace ParquetClassLibrary.Crafts
         public int Count
             => Columns == 1
             && Rows == 1
-            && StrikePanels[0, 0] == null
-                ? 0
-                : Columns * Rows;
+            && (StrikePanels[0, 0] == null
+                || StrikePanels[0, 0] == StrikePanel.Unused)
+                    ? 0
+                    : Columns * Rows;
 
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         public ref StrikePanel this[int y, int x]

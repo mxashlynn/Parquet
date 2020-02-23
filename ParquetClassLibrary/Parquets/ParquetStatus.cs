@@ -11,6 +11,11 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public class ParquetStatus : ITypeConverter
     {
+        #region Class Defaults
+        /// <summary>Provides a throwaway instance of the <see cref="ParquetStatus"/> class with default values.</summary>
+        public static ParquetStatus Unused { get; } = new ParquetStatus();
+        #endregion
+
         #region Status
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
         private readonly int maxToughness;
@@ -55,7 +60,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static ParquetStatus ConverterFactory { get; } = new ParquetStatus();
+        internal static ParquetStatus ConverterFactory { get; } = Unused;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -112,6 +117,13 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The representation.</returns>
         public override string ToString()
             => $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
+
+        /// <summary>
+        /// Creates a new instance with the same characteristics as the current instance.
+        /// </summary>
+        /// <returns></returns>
+        public ParquetStatus Clone()
+            => new ParquetStatus(IsTrench, Toughness, maxToughness);
         #endregion
     }
 

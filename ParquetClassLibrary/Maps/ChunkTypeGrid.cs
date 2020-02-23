@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Maps
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    ChunkTypes[y, x] = new ChunkType();
+                    ChunkTypes[y, x] = ChunkType.Empty.Clone();
                 }
             }
         }
@@ -61,9 +61,10 @@ namespace ParquetClassLibrary.Maps
         public int Count
             => Columns == 1
             && Rows == 1
-            && ChunkTypes[0, 0] == null
-                ? 0
-                : Columns * Rows;
+            && (ChunkTypes[0, 0] == null
+                || ChunkTypes[0, 0] == ChunkType.Empty)
+                    ? 0
+                    : Columns * Rows;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]

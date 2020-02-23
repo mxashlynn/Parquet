@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Parquets
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    ParquetStatuses[y, x] = new ParquetStatus();
+                    ParquetStatuses[y, x] = ParquetStatus.Unused.Clone();
                 }
             }
         }
@@ -61,9 +61,10 @@ namespace ParquetClassLibrary.Parquets
         public int Count
             => Columns == 1
             && Rows == 1
-            && ParquetStatuses[0, 0] == null
-                ? 0
-                : Columns * Rows;
+            && (ParquetStatuses[0, 0] == null
+                || ParquetStatuses[0, 0] == ParquetStatus.Unused)
+                    ? 0
+                    : Columns * Rows;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]
@@ -94,7 +95,6 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
             => ParquetStatuses.IsValidPosition(inPosition);
-
         #endregion
     }
 }
