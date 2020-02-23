@@ -43,14 +43,15 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
-        /// <param name="inStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inDefinitions">The definitions of the collected parquets.</param>
+        /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
+        /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
         public MapChunk(EntityID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision = 0,
-                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefinitions = null)
+                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
+                        ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
-            ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
-            ParquetDefinitions = inDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
+            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
         }
         #endregion
 

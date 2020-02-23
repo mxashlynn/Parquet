@@ -98,20 +98,20 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inElevationLocal">The absolute elevation of this region.</param>
         /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
-        /// <param name="inStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inDefinitions">The definitions of the collected parquets.</param>
+        /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
+        /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
         public MapRegion(EntityID inID, string inName = null, string inDescription = null, string inComment = null,
                          string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
                          Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
-                         IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inStatuses = null, ParquetStackGrid inDefinitions = null)
-
+                         IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
+                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inDataVersion, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;
             ElevationGlobal = inElevationGlobal;
-            ParquetStatuses = inStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
-            ParquetDefinitions = inDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
         }
         #endregion
 
