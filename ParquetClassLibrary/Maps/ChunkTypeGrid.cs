@@ -49,7 +49,12 @@ namespace ParquetClassLibrary.Maps
         public int Columns => DimensionsInChunks.X;
 
         /// <summary>The total number of chunks collected.</summary>
-        public int Count => Rows * Columns;
+        public int Count
+            => Columns == 1
+            && Rows == 1
+            && ChunkTypes[0, 0] == null
+                ? 0
+                : Columns * Rows;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]

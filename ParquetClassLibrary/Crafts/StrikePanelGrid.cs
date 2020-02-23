@@ -34,7 +34,12 @@ namespace ParquetClassLibrary.Crafts
         public int Columns => StrikePanels?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count => Rows * Columns;
+        public int Count
+            => Columns == 1
+            && Rows == 1
+            && StrikePanels[0, 0] == null
+                ? 0
+                : Columns * Rows;
 
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.

@@ -48,7 +48,12 @@ namespace ParquetClassLibrary.Parquets
         public int Columns => ParquetStatuses?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
-        public int Count => Rows * Columns;
+        public int Count
+            => Columns == 1
+            && Rows == 1
+            && ParquetStatuses[0, 0] == null
+                ? 0
+                : Columns * Rows;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]
