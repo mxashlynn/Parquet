@@ -107,8 +107,9 @@ namespace ParquetClassLibrary.Maps
             if (inValue is ExitPoint exit
                 && null != exit)
             {
-                return $"{exit.Position}{Rules.Delimiters.InternalDelimiter}" +
-                       $"{exit.Destination}";
+                return $"{exit.Position.ConvertToString(exit.Position, inRow, inMemberMapData)}" +
+                       $"{Rules.Delimiters.InternalDelimiter}" +
+                       $"{exit.Destination.ConvertToString(exit.Destination, inRow, inMemberMapData)}";
             }
             else
             {
