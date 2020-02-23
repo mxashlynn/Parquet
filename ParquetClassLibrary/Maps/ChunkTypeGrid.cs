@@ -38,7 +38,16 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
         public ChunkTypeGrid(int inRowCount, int inColumnCount)
-            => ChunkTypes = new ChunkType[inRowCount, inColumnCount];
+        {
+            ChunkTypes = new ChunkType[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
+            {
+                for (var x = 0; x < inColumnCount; x++)
+                {
+                    ChunkTypes[y, x] = new ChunkType();
+                }
+            }
+        }
         #endregion
 
         #region IGrid Implementation

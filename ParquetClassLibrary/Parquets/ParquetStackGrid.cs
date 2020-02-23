@@ -37,7 +37,16 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
         public ParquetStackGrid(int inRowCount, int inColumnCount)
-            => ParquetStacks = new ParquetStack[inRowCount, inColumnCount];
+        {
+            ParquetStacks = new ParquetStack[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
+            {
+                for (var x = 0; x < inColumnCount; x++)
+                {
+                    ParquetStacks[y, x] = new ParquetStack();
+                }
+            }
+        }
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStackGrid"/> from the given 2D <see cref="ParquetStack"/> array.

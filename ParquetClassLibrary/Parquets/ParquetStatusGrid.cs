@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,16 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
         public ParquetStatusGrid(int inRowCount, int inColumnCount)
-            => ParquetStatuses = new ParquetStatus[inRowCount, inColumnCount];
+        {
+            ParquetStatuses = new ParquetStatus[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
+            {
+                for (var x = 0; x < inColumnCount; x++)
+                {
+                    ParquetStatuses[y, x] = new ParquetStatus();
+                }
+            }
+        }
         #endregion
 
         #region IGrid Implementation

@@ -24,6 +24,23 @@ namespace ParquetClassLibrary.Crafts
         /// </summary>
         public StrikePanelGrid()
             : this(Rules.Dimensions.PanelsPerPatternHeight, Rules.Dimensions.PanelsPerPatternWidth) { }
+
+        /// <summary>
+        /// Initializes a new <see cref="StrikePanelGrid"/>.
+        /// </summary>
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        public StrikePanelGrid(int inRowCount, int inColumnCount)
+        {
+            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
+            {
+                for (var x = 0; x < inColumnCount; x++)
+                {
+                    StrikePanels[y, x] = new StrikePanel();
+                }
+            }
+        }
         #endregion
 
         #region IGrid Implementation
@@ -40,14 +57,6 @@ namespace ParquetClassLibrary.Crafts
             && StrikePanels[0, 0] == null
                 ? 0
                 : Columns * Rows;
-
-        /// <summary>
-        /// Initializes a new <see cref="StrikePanelGrid"/>.
-        /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public StrikePanelGrid(int inRowCount, int inColumnCount)
-            => StrikePanels = new StrikePanel[inRowCount, inColumnCount];
 
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         public ref StrikePanel this[int y, int x]
