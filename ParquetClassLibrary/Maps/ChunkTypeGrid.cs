@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Maps
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ChunkTypeGrid()
-            : this(DimensionsInChunks.X, DimensionsInChunks.Y) { }
+            : this(1, 1) { }
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.
@@ -42,11 +42,11 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region IGrid Implementation
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => DimensionsInChunks.Y;
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ChunkTypeGrid"/>.</summary>
+        public int Rows => ChunkTypes?.GetLength(0) ?? 0;
 
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => DimensionsInChunks.X;
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ChunkTypeGrid"/>.</summary>
+        public int Columns => ChunkTypes?.GetLength(1) ?? 0;
 
         /// <summary>The total number of chunks collected.</summary>
         public int Count
