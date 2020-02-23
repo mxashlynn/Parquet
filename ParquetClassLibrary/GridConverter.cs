@@ -39,6 +39,11 @@ namespace ParquetClassLibrary
                 throw new InvalidOperationException($"Cannot serialize an {nameof(IGrid<TElement>)} of 0 dimension.");
             }
 
+            if (grid.Count < 1)
+            {
+                return string.Empty;
+            }
+
             var result = new StringBuilder();
             result.Append(grid.Rows);
             result.Append(Rules.Delimiters.DimensionalDelimiter);
