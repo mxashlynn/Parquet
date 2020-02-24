@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Rooms
     public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
         /// <summary>The canonical empty collection.</summary>
-        public static HashSet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
+        public static MapSpaceCollection Empty { get; } = new HashSet<MapSpace>();
 
         /// <summary>The internal collection mechanism.</summary>
         private HashSet<MapSpace> Spaces { get; }
@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(subregion);
 
             var stepCount = 0;
-            MapSpaceCollection potentialPerimeter = Empty;
+            var potentialPerimeter = Empty;
             outPerimeter = Empty;
 
             #region Find Extreme Coordinate of Walkable Extrema
@@ -170,7 +170,7 @@ namespace ParquetClassLibrary.Rooms
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
                         ? potentialPerimeter
-                        : (MapSpaceCollection)Empty;
+                        : Empty;
                 }
             }
 

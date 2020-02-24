@@ -721,15 +721,13 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            //All.LoadFromCSV();
+            All.LoadFromCSV();
 
-            //var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
-            //Console.WriteLine(region);
-            //Console.WriteLine($"Item range = {All.ItemIDs}");
+            var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
+            Console.WriteLine(region);
+            Console.WriteLine($"Item range = {All.ItemIDs}");
 
-            //All.SaveToCSV();
-
-            Console.WriteLine(TestCollection.Contains(ExtantRoom));
+            All.SaveToCSV();
         }
     }
 }
