@@ -216,6 +216,13 @@ namespace ParquetClassLibrary.Parquets
 
         #region Utilities
         /// <summary>
+        /// Creates a new instance with the same characteristics as the current instance.
+        /// </summary>
+        /// <returns></returns>
+        public ParquetStack Clone()
+            => new ParquetStack(Floor, Block, Furnishing, Collectible);
+
+        /// <summary>
         /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStack"/>.
         /// </summary>
         /// <returns>The representation.</returns>
