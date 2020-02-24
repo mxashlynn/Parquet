@@ -10,7 +10,7 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 
 ![An image of the milestones planned for 2020\.](https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png "Parquet Development Roadmap 2020")
 
-Design and usage will be fully documented in [the wiki](https://github.com/mxashlynn/Parquet/wiki) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
+Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/Documentation) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
 
 Development milestone deadlines are tentative right now.
 
