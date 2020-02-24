@@ -9,9 +9,9 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         private static readonly ParquetStack TVoid = ParquetStack.Empty;
-        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, EntityID.None, EntityID.None);
-        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, EntityID.None);
-        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
 
         private static readonly ParquetStack[,] TestRoomMap =
         {

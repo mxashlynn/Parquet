@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
-        public static Range<EntityID> Bounds => All.FurnishingIDs;
+        public static Range<ModelID> Bounds => All.FurnishingIDs;
         #endregion
 
         #region Characteristics
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
         [Index(11)]
-        public EntityID SwapID { get; }
+        public ModelID SwapID { get; }
         #endregion
 
         #region Initialization
@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inName">Player-friendly name of the <see cref="FurnishingModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inItemID">The <see cref="EntityID"/> that represents this <see cref="FurnishingModel"/> in the <see cref="Inventory"/>.</param>
+        /// <param name="inItemID">The <see cref="ModelID"/> that represents this <see cref="FurnishingModel"/> in the <see cref="Inventory"/>.</param>
         /// <param name="inAddsToBiome">Indicates which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inIsWalkable">If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</param>
@@ -52,15 +52,15 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Room"/>.</param>
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
         /// <param name="inSwapID">A <see cref="FurnishingModel"/> to swap with this furnishing on open/close actions.</param>
-        public FurnishingModel(EntityID inID, string inName, string inDescription, string inComment,
-                          EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                          EntityTag inAddsToRoom = null, bool inIsWalkable = false,
+        public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
+                          ModelID? inItemID = null, ModelTag inAddsToBiome = null,
+                          ModelTag inAddsToRoom = null, bool inIsWalkable = false,
                           bool inIsEntry = false, bool inIsEnclosing = false,
-                          bool inIsFlammable = false, EntityID? inSwapID = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
-                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
+                          bool inIsFlammable = false, ModelID? inSwapID = null)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
+                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
         {
-            var nonNullSwapID = inSwapID ?? EntityID.None;
+            var nonNullSwapID = inSwapID ?? ModelID.None;
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
 
             IsWalkable = inIsWalkable;

@@ -23,9 +23,9 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CritterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="CritterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CritterModel"/> seeks.</param>
-        public CritterModel(EntityID inID, string inName, string inDescription, string inComment,
-                            EntityID inNativeBiome, Behavior inPrimaryBehavior,
-                            IEnumerable<EntityID> inAvoids = null, IEnumerable<EntityID> inSeeks = null)
+        public CritterModel(ModelID inID, string inName, string inDescription, string inComment,
+                            ModelID inNativeBiome, Behavior inPrimaryBehavior,
+                            IEnumerable<ModelID> inAvoids = null, IEnumerable<ModelID> inSeeks = null)
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
             Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));

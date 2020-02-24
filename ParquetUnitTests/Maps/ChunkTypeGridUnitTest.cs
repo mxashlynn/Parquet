@@ -12,7 +12,7 @@ namespace ParquetUnitTests.Maps
         private const string testColor = "#FF8822EE";
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
-        private static readonly EntityID testID = TestModels.TestMapRegion.ID + 3;
+        private static readonly ModelID testID = TestModels.TestMapRegion.ID + 3;
         private static readonly ChunkType testChunk = new ChunkType(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
         #endregion
 

@@ -58,25 +58,25 @@ namespace ParquetClassLibrary.Beings
 
         #region Collections
         /// <summary>The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</summary>
-        public List<EntityID> KnownCritters { get; }
+        public List<ModelID> KnownCritters { get; }
 
         /// <summary>The <see cref="NPCModel"/>s that this <see cref="CharacterModel"/> has met.</summary>
-        public List<EntityID> KnownNPCs { get; }
+        public List<ModelID> KnownNPCs { get; }
 
         /// <summary>The parquets that this <see cref="CharacterModel"/> has encountered.</summary>
-        public List<EntityID> KnownParquets { get; }
+        public List<ModelID> KnownParquets { get; }
 
         /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
-        public List<EntityID> KnownRoomRecipes { get; }
+        public List<ModelID> KnownRoomRecipes { get; }
 
         /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
-        public List<EntityID> KnownCraftingRecipes { get; }
+        public List<ModelID> KnownCraftingRecipes { get; }
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</summary>
-        public List<EntityID> Quests { get; }
+        public List<ModelID> Quests { get; }
 
         /// <summary>This <see cref="CharacterModel"/>'s set of belongings.</summary>
-        public List<EntityID> Inventory { get; }
+        public List<ModelID> Inventory { get; }
         #endregion
 
         #region Initialization
@@ -105,19 +105,19 @@ namespace ParquetClassLibrary.Beings
                            int inBiomeTimeRemaining,
                            float inBuildingSpeed, float inModificationSpeed,
                            float inGatheringSpeed, float inMovementSpeed,
-                           List<EntityID> inKnownCritters = null, List<EntityID> inKnownNPCs = null,
-                           List<EntityID> inKnownParquets = null, List<EntityID> inKnownRoomRecipes = null,
-                           List<EntityID> inKnownCraftingRecipes = null, List<EntityID> inQuests = null,
-                           List<EntityID> inInventory = null)
+                           List<ModelID> inKnownCritters = null, List<ModelID> inKnownNPCs = null,
+                           List<ModelID> inKnownParquets = null, List<ModelID> inKnownRoomRecipes = null,
+                           List<ModelID> inKnownCraftingRecipes = null, List<ModelID> inQuests = null,
+                           List<ModelID> inInventory = null)
         {
             Precondition.IsNotNull(inBeingDefinition, nameof(inBeingDefinition));
-            var nonNullCritters = inKnownCritters ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullNPCs = inKnownNPCs ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullParquets = inKnownParquets ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullQuests = inQuests ?? Enumerable.Empty<EntityID>().ToList();
-            var nonNullInventory = inInventory ?? Enumerable.Empty<EntityID>().ToList();
+            var nonNullCritters = inKnownCritters ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullNPCs = inKnownNPCs ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullQuests = inQuests ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullInventory = inInventory ?? Enumerable.Empty<ModelID>().ToList();
             Precondition.AreInRange(nonNullCritters, All.CritterIDs, nameof(inKnownCritters));
             Precondition.AreInRange(nonNullNPCs, All.NpcIDs, nameof(inKnownNPCs));
             Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(inKnownParquets));

@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Maps
         public Vector2D Position { get; }
 
         /// <summary>The region this exit leads to.</summary>
-        public EntityID Destination { get; }
+        public ModelID Destination { get; }
         #endregion
 
         #region Initialization
@@ -29,14 +29,14 @@ namespace ParquetClassLibrary.Maps
         /// Iseful primarily in the context of serialization.
         /// </remarks>
         public ExitPoint()
-            : this(Vector2D.Zero, EntityID.None) { }
+            : this(Vector2D.Zero, ModelID.None) { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="ExitPoint"/>.
         /// </summary>
         /// <param name="inPosition">The location of this point on its containing region.</param>
         /// <param name="inDestinationID">The region this exit leads to.</param>
-        public ExitPoint(Vector2D inPosition, EntityID inDestinationID)
+        public ExitPoint(Vector2D inPosition, ModelID inDestinationID)
         {
             Destination = inDestinationID;
             Position = inPosition;
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Maps
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static ExitPoint ConverterFactory { get; } = new ExitPoint(Vector2D.Zero, EntityID.None);
+        internal static ExitPoint ConverterFactory { get; } = new ExitPoint(Vector2D.Zero, ModelID.None);
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -136,7 +136,7 @@ namespace ParquetClassLibrary.Maps
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var position = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var destination = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var destination = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
 
                 return new ExitPoint(position, destination);
             }

@@ -18,7 +18,7 @@ namespace ParquetUnitTests.Items
         {
             void TestCode()
             {
-                var _ = new InventorySlot(EntityID.None, Some);
+                var _ = new InventorySlot(ModelID.None, Some);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

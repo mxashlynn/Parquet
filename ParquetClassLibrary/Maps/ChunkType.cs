@@ -39,13 +39,13 @@ namespace ParquetClassLibrary.Maps
         public ChunkTopography BaseTopography { get; }
 
         /// <summary>Indicates the overall type of parquets in the <see cref="MapChunk"/>.</summary>
-        public EntityTag BaseComposition { get; }
+        public ModelTag BaseComposition { get; }
 
         /// <summary>Indicates a modifier on the <see cref="MapChunk"/> of parquets.</summary>
         public ChunkTopography ModifierTopography { get; }
 
         /// <summary>Indicates the type of parquets modifying the <see cref="MapChunk"/>.</summary>
-        public EntityTag ModifierComposition { get; }
+        public ModelTag ModifierComposition { get; }
         #endregion
 
         #region Initialization
@@ -56,7 +56,7 @@ namespace ParquetClassLibrary.Maps
         /// This is primarily useful for serialization as the default values are featureless.
         /// </remarks>
         public ChunkType() :
-            this(ChunkTopography.Empty, EntityTag.None, ChunkTopography.Empty, EntityTag.None) { }
+            this(ChunkTopography.Empty, ModelTag.None, ChunkTopography.Empty, ModelTag.None) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkType"/> class.
@@ -66,9 +66,9 @@ namespace ParquetClassLibrary.Maps
         {
             Handmade = inIsHandmade;
             BaseTopography = ChunkTopography.Empty;
-            BaseComposition = EntityTag.None;
+            BaseComposition = ModelTag.None;
             ModifierTopography = ChunkTopography.Empty;
-            ModifierComposition = EntityTag.None;
+            ModifierComposition = ModelTag.None;
         }
 
         /// <summary>
@@ -78,14 +78,14 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
         /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
         /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
-        public ChunkType(ChunkTopography inBaseTopography, EntityTag inBaseComposition,
-                         ChunkTopography inModifierTopography, EntityTag inModifierComposition)
+        public ChunkType(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
+                         ChunkTopography inModifierTopography, ModelTag inModifierComposition)
         {
             Handmade = false;
             BaseTopography = inBaseTopography;
-            BaseComposition = inBaseComposition ?? EntityTag.None;
+            BaseComposition = inBaseComposition ?? ModelTag.None;
             ModifierTopography = inModifierTopography;
-            ModifierComposition = inModifierComposition ?? EntityTag.None;
+            ModifierComposition = inModifierComposition ?? ModelTag.None;
         }
         #endregion
 
@@ -182,9 +182,9 @@ namespace ParquetClassLibrary.Maps
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
-                var baseComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
                 var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
-                var modifierComposition = (EntityTag)EntityTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+                var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
                 return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
             }

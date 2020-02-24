@@ -35,14 +35,14 @@ Parquet targets the following features:
 5. Interactive noncombatant NPCs.
 6. A quest system encouraging players to build particular building types.
 7. Dialogue and narrative delivery.
-8. Data-driven design with all key game entities customizable from CSV files.
+8. Data-driven design with all key game models customizable from CSV files.
 
 # Solution Structure
 
 The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.
 
 - **ParquetClassLibrary**
-    - The library itself. The root namespace contains classes for working with [EntityModels](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects).
+    - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects).
     - **Beings**, including players and NPCs.
     - **Biomes**.
     - **Crafts**.

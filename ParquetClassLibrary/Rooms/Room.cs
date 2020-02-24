@@ -24,14 +24,14 @@ namespace ParquetClassLibrary.Rooms
         public MapSpaceCollection Perimeter { get; }
 
         /// <summary>
-        /// The <see cref="EntityID"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
+        /// The <see cref="ModelID"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
         /// together with the number of times that furnishing occurs.
         /// </summary>
-        public IEnumerable<EntityTag> FurnishingTags
+        public IEnumerable<ModelTag> FurnishingTags
             => WalkableArea
                .Concat(Perimeter)
-               .Where(space => EntityID.None != space.Content.Furnishing
-                            && EntityTag.None != All.Parquets.Get<FurnishingModel>(space.Content.Furnishing).AddsToRoom)
+               .Where(space => ModelID.None != space.Content.Furnishing
+                            && ModelTag.None != All.Parquets.Get<FurnishingModel>(space.Content.Furnishing).AddsToRoom)
                .Select(space => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing).AddsToRoom);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Rooms
                               WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
-        public EntityID RecipeID
+        public ModelID RecipeID
             => FindBestMatch();
 
         #region Initialization
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Rooms
             }
 
             if (!inWalkableArea.Concat(inPerimeter).Any(space
-                => space.Content.Furnishing != EntityID.None
+                => space.Content.Furnishing != ModelID.None
                 && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)))
             {
                 throw new ArgumentException($"No entry/exit found in {nameof(inWalkableArea)} or {nameof(inPerimeter)}.");
@@ -92,13 +92,13 @@ namespace ParquetClassLibrary.Rooms
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
 
         /// <summary>
-        /// Finds the <see cref="EntityID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
+        /// Finds the <see cref="ModelID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
         /// </summary>
-        private EntityID FindBestMatch()
+        private ModelID FindBestMatch()
             => All.RoomRecipes
                   .Where(model => model?.Matches(this) ?? false)
                   .Select(recipe => recipe.Priority)
-                  .DefaultIfEmpty<int>(EntityID.None).Max();
+                  .DefaultIfEmpty<int>(ModelID.None).Max();
 
         #region IEquatable Implementation
         /// <summary>

@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Parquets
         public const int DefaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
-        public static Range<EntityID> Bounds => All.BlockIDs;
+        public static Range<ModelID> Bounds => All.BlockIDs;
         #endregion
 
         #region Characteristics
@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         [Index(9)]
-        public EntityID CollectibleID { get; }
+        public ModelID CollectibleID { get; }
 
         /// <summary>Whether or not the block is flammable.</summary>
         [Index(10)]
@@ -63,17 +63,17 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsFlammable">If <c>true</c> this block may burn.</param>
         /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
-        public BlockModel(EntityID inID, string inName, string inDescription, string inComment,
-                     EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                     EntityTag inAddsToRoom = null,
+        public BlockModel(ModelID inID, string inName, string inDescription, string inComment,
+                     ModelID? inItemID = null, ModelTag inAddsToBiome = null,
+                     ModelTag inAddsToRoom = null,
                      GatheringTool inGatherTool = GatheringTool.None,
                      GatheringEffect inGatherEffect = GatheringEffect.None,
-                     EntityID? inCollectibleID = null, bool inIsFlammable = false,
+                     ModelID? inCollectibleID = null, bool inIsFlammable = false,
                      bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
-                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
+                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
         {
-            var nonNullCollectibleID = inCollectibleID ?? EntityID.None;
+            var nonNullCollectibleID = inCollectibleID ?? ModelID.None;
 
             Precondition.IsInRange(nonNullCollectibleID, All.CollectibleIDs, nameof(inCollectibleID));
 

@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
-    public sealed class RoomRecipe : EntityModel
+    public sealed class RoomRecipe : Model
     {
         #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inOptionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
-        public RoomRecipe(EntityID inID, string inName, string inDescription, string inComment,
+        public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
                           int inMinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
@@ -83,11 +83,11 @@ namespace ParquetClassLibrary.Rooms
             && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
             && OptionallyRequiredPerimeterBlocks.All(element =>
                 inRoom.Perimeter.Count(space =>
-                    space.Content.Block != EntityID.None
+                    space.Content.Block != ModelID.None
                     && All.Parquets.Get<BlockModel>(space.Content.Block).AddsToRoom == element.ElementTag) >= element.ElementAmount)
             && OptionallyRequiredWalkableFloors.All(element =>
                 inRoom.WalkableArea.Count(space =>
-                    space.Content.Floor != EntityID.None
+                    space.Content.Floor != ModelID.None
                     && All.Parquets.Get<FloorModel>(space.Content.Floor).AddsToRoom == element.ElementTag) >= element.ElementAmount)
             && OptionallyRequiredFurnishings.All(element =>
                 inRoom.FurnishingTags.Count(tag =>

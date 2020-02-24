@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Parquets
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
-        public static Range<EntityID> Bounds => All.FloorIDs;
+        public static Range<ModelID> Bounds => All.FloorIDs;
         #endregion
 
         #region Characteristics
@@ -35,17 +35,17 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inItemID">The <see cref="EntityID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers this parquet.</param>
+        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers this parquet.</param>
         /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inModTool">The tool used to modify this floor.</param>
         /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>
-        public FloorModel(EntityID inID, string inName, string inDescription, string inComment,
-                     EntityID? inItemID = null, EntityTag inAddsToBiome = null,
-                     EntityTag inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
+        public FloorModel(ModelID inID, string inName, string inDescription, string inComment,
+                     ModelID? inItemID = null, ModelTag inAddsToBiome = null,
+                     ModelTag inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
                      string inTrenchName = defaultTrenchName)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? EntityID.None,
-                   inAddsToBiome ?? EntityTag.None, inAddsToRoom ?? EntityTag.None)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
+                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
         {
             ModTool = inModTool;
             TrenchName = inTrenchName;

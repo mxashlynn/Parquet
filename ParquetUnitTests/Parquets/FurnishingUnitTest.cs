@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new furnishing.</summary>
-        private static readonly EntityID newFurnishingID = TestModels.TestFurnishing.ID - 1;
+        private static readonly ModelID newFurnishingID = TestModels.TestFurnishing.ID - 1;
         #endregion
 
         [Fact]
@@ -36,7 +36,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidItemIDsArePermittedTest()
         {
-            EntityID goodItemID = -All.ItemIDs.Minimum;
+            ModelID goodItemID = -All.ItemIDs.Minimum;
 
             var testBlock = new FurnishingModel(newFurnishingID, "will be created", "", "", goodItemID);
 

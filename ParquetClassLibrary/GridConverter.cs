@@ -88,7 +88,7 @@ namespace ParquetClassLibrary
             if (!int.TryParse(header[0], numberStyle, cultureInfo, out var rowCount)
                 || !int.TryParse(header[1], numberStyle, cultureInfo, out var columnCount))
             {
-                throw new FormatException($"Could not parse {nameof(EntityID)} '{inText}'.");
+                throw new FormatException($"Could not parse {nameof(ModelID)} '{inText}'.");
             }
 
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });

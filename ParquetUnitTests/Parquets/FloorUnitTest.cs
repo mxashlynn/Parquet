@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new floor.</summary>
-        private static readonly EntityID newFloorID = TestModels.TestFloor.ID - 1;
+        private static readonly ModelID newFloorID = TestModels.TestFloor.ID - 1;
         #endregion
 
         [Fact]

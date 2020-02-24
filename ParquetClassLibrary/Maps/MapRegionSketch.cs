@@ -17,13 +17,13 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegionSketch Empty = new MapRegionSketch(EntityID.None, "Empty Ungenerated Region");
+        public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
 
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
 
-        /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="EntityID"/>s.</summary>
-        public static Range<EntityID> Bounds => All.MapRegionIDs;
+        /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
+        public static Range<ModelID> Bounds => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Maps
             get => Name;
             set
             {
-                IEntityModelEdit editableThis = this;
+                IModelEdit editableThis = this;
                 editableThis.Name = value;
             }
         }
@@ -112,7 +112,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
-        public MapRegionSketch(EntityID inID, string inName = null, string inDescription = null, string inComment = null,
+        public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                                string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0,
                                string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
                                int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)

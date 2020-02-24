@@ -18,7 +18,7 @@ namespace ParquetUnitTests.Maps
         private const string testName = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
         private const int testElevation = -3;
-        private static readonly EntityID testID = TestModels.TestMapRegion.ID;
+        private static readonly ModelID testID = TestModels.TestMapRegion.ID;
         private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
         #endregion
 
@@ -234,10 +234,10 @@ namespace ParquetUnitTests.Maps
         {
             ParquetStack result = MapRegion.Empty.GetDefinitionAtPosition(Vector2D.Zero);
 
-            Assert.Equal(EntityID.None, result.Floor);
-            Assert.Equal(EntityID.None, result.Block);
-            Assert.Equal(EntityID.None, result.Furnishing);
-            Assert.Equal(EntityID.None, result.Collectible);
+            Assert.Equal(ModelID.None, result.Floor);
+            Assert.Equal(ModelID.None, result.Block);
+            Assert.Equal(ModelID.None, result.Furnishing);
+            Assert.Equal(ModelID.None, result.Collectible);
         }
         #endregion
 
