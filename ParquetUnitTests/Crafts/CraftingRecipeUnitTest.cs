@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Crafts
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
-        private static readonly EntityID newCraftingRecipeID = TestModels.TestCraftingRecipe.ID - 1;
+        private static readonly ModelID newCraftingRecipeID = TestModels.TestCraftingRecipe.ID - 1;
 
         /// <summary>A valid minimal list of test ingredients.</summary>
         private static readonly IReadOnlyList<RecipeElement> ingredientList = new List<RecipeElement>

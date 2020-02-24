@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ParquetClassLibrary.Beings.BeingModel" Collapsed="true">
-    <Position X="20.5" Y="1.75" Width="1.5" />
+    <Position X="11" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAAAAIAQAAAA=</HashCode>
       <FileName>Beings\BeingModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.BeingStatus" Collapsed="true">
-    <Position X="38.25" Y="0.5" Width="1.5" />
+    <Position X="13.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAhAQIAABEwAAQkhAIAAIAAAEgAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Beings\BeingStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.CharacterModel" Collapsed="true">
-    <Position X="19.25" Y="3.25" Width="1.5" />
+    <Position X="10" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAQAAAAIAAAAAGABAAAAAAEAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAAQAAAAQAAAAAAAAAAGABAAAAAAEAAAAAAAAAAIAAA=</HashCode>
       <FileName>Beings\CharacterModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.CritterModel" Collapsed="true">
-    <Position X="22.75" Y="3.25" Width="1.5" />
+    <Position X="13.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Beings\CritterModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.NPCModel" Collapsed="true">
-    <Position X="18.25" Y="4.75" Width="1.5" />
+    <Position X="8.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Beings\NPCModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.PlayerCharacterModel" Collapsed="true">
-    <Position X="20.5" Y="4.75" Width="1.5" />
+    <Position X="11" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Beings\PlayerCharacterModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Beings.PronounGroup" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41.75" Y="3.5" Width="1.5" />
+    <Position X="11" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AUAEAACAAqABgABEAABBCAAAAgABAAAAAAAAgAQIAAI=</HashCode>
       <FileName>Beings\PronounGroup.cs</FileName>
@@ -51,43 +51,43 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Biomes.BiomeModel" Collapsed="true">
-    <Position X="2.5" Y="1.75" Width="1.5" />
+    <Position X="2" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAACAABAAAAAQAgAAAAAA=</HashCode>
       <FileName>Biomes\BiomeModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions" Collapsed="true">
-    <Position X="43.5" Y="0.5" Width="1.5" />
+    <Position X="35.75" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAACAAAABAAAA=</HashCode>
       <FileName>Biomes\ElevationMask.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Crafts.CraftingRecipe" Collapsed="true">
-    <Position X="27.25" Y="1.75" Width="1.5" />
+    <Position X="26.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAIAAAAAGAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Crafts\CraftingRecipe.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Crafts.StrikePanel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="43.5" Y="4.5" Width="1.5" />
+    <Position X="26.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAQAgAAAAAAgAEgAABgEgEAAEAAIAAAAAAAAAAAiA=</HashCode>
+      <HashCode>ABAAQAgAAAAAAgAEgAABgEgEAAEAAIAAAAAAAAAAAjA=</HashCode>
       <FileName>Crafts\StrikePanel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Crafts.StrikePanelArrayExtensions" Collapsed="true">
-    <Position X="45.25" Y="4.5" Width="1.5" />
+    <Position X="26.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crafts\StrikePanel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Crafts.StrikePanelGrid" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="36.5" Y="5.5" Width="1.5" />
+    <Position X="26.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAFAACAAAAAQAACAAgAAAAAAAAAgAAAA=</HashCode>
       <FileName>Crafts\StrikePanelGrid.cs</FileName>
@@ -95,28 +95,28 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Interactions.DialogueModel" Collapsed="true">
-    <Position X="7" Y="3.25" Width="1.5" />
+    <Position X="6.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interactions\DialogueModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Interactions.InteractionModel" Collapsed="true">
-    <Position X="5.75" Y="1.75" Width="1.5" />
+    <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interactions\InteractionModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Interactions.QuestModel" Collapsed="true">
-    <Position X="4.75" Y="3.25" Width="1.5" />
+    <Position X="4.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Interactions\QuestModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Items.Inventory" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40" Y="1.5" Width="1.5" />
+    <Position X="29" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACABAEAAAAEAQCAAAAAAAECAEAAAAQAAA=</HashCode>
       <FileName>Items\Inventory.cs</FileName>
@@ -124,7 +124,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Items.InventorySlot" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41.75" Y="1.5" Width="1.5" />
+    <Position X="29" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BBAAAAgAAAAAAAAEgAAAAEwAAAAAAAAACAEAAAAAAAA=</HashCode>
       <FileName>Items\InventorySlot.cs</FileName>
@@ -132,111 +132,139 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Items.ItemModel" Collapsed="true">
-    <Position X="29.5" Y="1.75" Width="1.5" />
+    <Position X="29" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAQAAABAIQAAAAAAAAEAAAAAEAAAQAAAAAAAAAEQAgA=</HashCode>
+      <HashCode>BAQAAAAAAQAAAAAAAAEAASAAEAAAQAAAAAAAAAEQAgA=</HashCode>
       <FileName>Items\ItemModel.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ParquetClassLibrary.Maps.ChunkType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAkAgAAAAAAEgAIAAEgIAAAAAIAAAAQAAAAAAjA=</HashCode>
+      <FileName>Maps\ChunkType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ParquetClassLibrary.Maps.ChunkTypeExtensions" Collapsed="true">
-    <Position X="40" Y="0.5" Width="1.5" />
+    <Position X="33.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Maps\ChunkType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Maps.ChunkTypeGrid" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41.75" Y="0.5" Width="1.5" />
+    <Position X="35.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEARFAECAIBAAYAAAAAgAAAAAAgAAgAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABFAACAABAAYAAAAAgAAAAAAAAAgAAAA=</HashCode>
       <FileName>Maps\ChunkTypeGrid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ParquetClassLibrary.Maps.MapChunk" Collapsed="true">
-    <Position X="31.75" Y="3.25" Width="1.5" />
+  <Class Name="ParquetClassLibrary.Maps.ExitPoint" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAIABAAAAAAAAAAAAAAgAAIAAgA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAkgAAAAEgAAAAAAIAEAAAAAAAAAiA=</HashCode>
+      <FileName>Maps\ExitPoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ParquetClassLibrary.Maps.MapChunk" Collapsed="true">
+    <Position X="31.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAIABAAAAAAAAAAAAAAAAAIAAgA=</HashCode>
       <FileName>Maps\MapChunk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Maps.MapModel" Collapsed="true">
-    <Position X="32.75" Y="1.75" Width="1.5" />
+    <Position X="33.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEEIAAAEAIBATAQAAEAggBQAAAAgACIAIBA=</HashCode>
+      <HashCode>AAAEAAAAAEEAAAAEAIBATAQAAEAggBQAAAAAAGIAIBA=</HashCode>
       <FileName>Maps\MapModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Maps.MapRegion" Collapsed="true">
-    <Position X="34" Y="3.25" Width="1.5" />
+    <Position X="33.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QBhAAAAAABAKAEAEAAIABAAACAAAAAAAAAAgBAIAAgA=</HashCode>
+      <HashCode>QBgEAAAAABAIAAAEAAIABAAACAAAAAAAAIAABAIAAgA=</HashCode>
       <FileName>Maps\MapRegion.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="ParquetClassLibrary.Maps.MapRegionSketch" Collapsed="true">
+    <Position X="35.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBgEAEAAABAKAAAEAAIABAAACAAAAAAAAAAABAIAAgA=</HashCode>
+      <FileName>Maps\MapRegionSketch.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="ParquetClassLibrary.Maps.PositionInfoEventArgs" Collapsed="true">
-    <Position X="38.25" Y="3.5" Width="1.5" />
+    <Position X="4" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAggAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Maps\PositionInfoEventArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.BlockModel" Collapsed="true">
-    <Position X="9.25" Y="3.25" Width="1.5" />
+    <Position X="15.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACQkAAEAAAAAAAAAACEgAAgAABAAAAEAAAAAAAgA=</HashCode>
+      <HashCode>AAAACQEAAEAAAAAAAAAACAAAAgAABAAAAEAAAAAAAgA=</HashCode>
       <FileName>Parquets\BlockModel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.CollectibleModel" Collapsed="true">
-    <Position X="11.5" Y="3.25" Width="1.5" />
+    <Position X="17.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAEgAAAAAAAAAAQAAAAEAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAgA=</HashCode>
       <FileName>Parquets\CollectibleModel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.FloorModel" Collapsed="true">
-    <Position X="13.75" Y="3.25" Width="1.5" />
+    <Position X="20" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAEgAAAAAAAAACACAAAAAAgE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAgE=</HashCode>
       <FileName>Parquets\FloorModel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.FurnishingModel" Collapsed="true">
-    <Position X="16" Y="3.25" Width="1.5" />
+    <Position X="22.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAkAAAAAAAAAAAAAAEgAAAgAIAAAAAEAAAIAAgA=</HashCode>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAgAIAAAAAEAAAIAAgA=</HashCode>
       <FileName>Parquets\FurnishingModel.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetSelectionExtensions" Collapsed="true">
-    <Position X="45.25" Y="1.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAACAAAABAAAA=</HashCode>
       <FileName>Parquets\ParquetMask.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetModel" Collapsed="true">
-    <Position X="12.5" Y="1.75" Width="1.5" />
+    <Position X="19" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Parquets\ParquetModel.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ParquetClassLibrary.Parquets.ParquetStack" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBEAAgAAAAAAAgEgEIAAEwAAAgAAIAAAAEAAAIAAjA=</HashCode>
+      <FileName>Parquets\ParquetStack.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetStackArrayExtensions" Collapsed="true">
-    <Position X="36.5" Y="2.5" Width="1.5" />
+    <Position X="15.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parquets\ParquetStack.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetStackGrid" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40" Y="2.5" Width="1.5" />
+    <Position X="20" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAFAACAAAAAQAAAAAgAQAAAAAAAgAAAA=</HashCode>
       <FileName>Parquets\ParquetStackGrid.cs</FileName>
@@ -244,30 +272,38 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetStatus" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="43.5" Y="2.5" Width="1.5" />
+    <Position X="15.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAEAAAAFAAAAAEgAAAAAQAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAgAAAEAAgAFgAAAAEgAAAAAQIAAAAAAAAAAAjA=</HashCode>
       <FileName>Parquets\ParquetStatus.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetStatusArrayExtensions" Collapsed="true">
-    <Position X="45.25" Y="2.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parquets\ParquetStatus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Parquets.ParquetStatusGrid" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="36.5" Y="3.5" Width="1.5" />
+    <Position X="17.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAFAACAAAAAQAAAAAgAAAAAAEAAoAAAA=</HashCode>
       <FileName>Parquets\ParquetStatusGrid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="ParquetClassLibrary.Rooms.MapSpace" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBAAAAgAgAABAAkgAIAAAAAgAgAAIAAKAEgAAIBAiA=</HashCode>
+      <FileName>Rooms\MapSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ParquetClassLibrary.Rooms.MapSpaceCollection" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="43.5" Y="1.5" Width="1.5" />
+    <Position X="33.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAACAAARAEAAIIAASEAAAAAAAAAAAGAIAwAAA=</HashCode>
       <FileName>Rooms\MapSpaceCollection.cs</FileName>
@@ -275,7 +311,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Rooms.Room" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="36.5" Y="4.5" Width="1.5" />
+    <Position X="24.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAQAAAQAAAAAggAAAACEAACAAAIAAAAAAAAAAAiA=</HashCode>
       <FileName>Rooms\Room.cs</FileName>
@@ -283,7 +319,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Rooms.RoomCollection" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="38.25" Y="4.5" Width="1.5" />
+    <Position X="24.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAABAECAAAAAQCAAAAAAAEAAAAAAAQAAA=</HashCode>
       <FileName>Rooms\RoomCollection.cs</FileName>
@@ -291,186 +327,154 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParquetClassLibrary.Rooms.RoomRecipe" Collapsed="true">
-    <Position X="25" Y="1.75" Width="1.5" />
+    <Position X="24.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAQAAAAEAAAAAAAIAAAAAAAAAMAAAAAAAAA=</HashCode>
+      <HashCode>ABAAAAAAAAQAAAAEAAQAAAAAAACAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\RoomRecipe.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackGridExtensions" Collapsed="true">
-    <Position X="41.75" Y="2.5" Width="1.5" />
+    <Position X="22.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\MapSpaceCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackExtensions" Collapsed="true">
-    <Position X="38.25" Y="2.5" Width="1.5" />
+    <Position X="17.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\RoomCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Utilities.Precondition" Collapsed="true">
-    <Position X="40" Y="3.5" Width="1.5" />
+    <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAgAAAAAAAAAAAICAAAAAAAAAQAAAAAAEAAAACg=</HashCode>
       <FileName>Utilities\Precondition.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.Utilities.Rasterization" Collapsed="true">
-    <Position X="45.25" Y="3.5" Width="1.5" />
+    <Position X="2.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAACAAAAACIAgA=</HashCode>
       <FileName>Utilities\Rasterization.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.All" Collapsed="true">
-    <Position X="36.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gABACgKCEABACICAAAABHAAQEQDAkAQIAAgQCCSgwAA=</HashCode>
+      <HashCode>gABACgKCEABACICAAAABHAAQAQDAkAQIAAgQCCSgwAA=</HashCode>
       <FileName>All.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ParquetClassLibrary.EntityModel" Collapsed="true">
-    <Position X="18.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACAABAAEAAAggAAEgAAAAAQAAAAAAIIAAAAAAAAAAiA=</HashCode>
-      <FileName>EntityModel.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ParquetClassLibrary.EntityTag" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="45.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAgAAAAAAAQEAAAAAEgAABIAAAQAAAAAAAEBAAA=</HashCode>
-      <FileName>EntityTag.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ParquetClassLibrary.GridConverter&lt;TElement, TEnumerable&gt;" Collapsed="true">
-    <Position X="36.5" Y="1.5" Width="1.5" />
+  <Class Name="ParquetClassLibrary.GridConverter&lt;TElement, TGrid&gt;" Collapsed="true">
+    <Position X="31.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GridConverter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.IntExtensions" Collapsed="true">
-    <Position X="38.25" Y="1.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IntExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ParquetClassLibrary.ModelCollection&lt;TModel&gt;" Collapsed="true">
-    <Position X="1" Y="3.5" Width="2.25" />
+  <Class Name="ParquetClassLibrary.Location" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABBEAEIAIAwABAAAAAAEAAgAAAAQAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAQAAkgAAAAAAAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ParquetClassLibrary.Model" Collapsed="true">
+    <Position X="19" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAEAAEggAAEgAAAAAQAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Model.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParquetClassLibrary.ModelCollection&lt;TModel&gt;" Collapsed="true">
+    <Position X="21" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABBBEAEIAIAwABAAAAAAEAAgAAAAQAgA=</HashCode>
       <FileName>ModelCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ParquetClassLibrary.ModelCollection" Collapsed="true">
-    <Position X="1" Y="4.75" Width="1.5" />
+    <Position X="21" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ParquetClassLibrary.ModelTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAgAEAAAAAQEAAAAAEgAAAIAAAQAAAAAAAEBAAA=</HashCode>
+      <FileName>ModelTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ParquetClassLibrary.RangeCollectionExtensions" Collapsed="true">
-    <Position X="43.5" Y="3.5" Width="1.5" />
+    <Position X="2.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAQAAAAAAAABA=</HashCode>
       <FileName>Range.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ParquetClassLibrary.RecipeElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgEAAAAAAAEgAAAAEgAAAQAAIAAAAAAAAEAAiA=</HashCode>
+      <FileName>RecipeElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="ParquetClassLibrary.Rules" Collapsed="true">
-    <Position X="40" Y="4.5" Width="1.5" />
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rules.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ParquetClassLibrary.SeriesConverter&lt;TElement, TCollection&gt;" Collapsed="true">
-    <Position X="41.75" Y="4.5" Width="1.5" />
+    <Position X="33.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SeriesConverter.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="ParquetClassLibrary.Maps.ChunkType" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="38.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAiAAAkAgAAAAAAEgAIAAEgAAAAAAIAAAAQAAAAAAiA=</HashCode>
-      <FileName>Maps\ChunkType.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
-  <Struct Name="ParquetClassLibrary.Maps.ExitPoint" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41.75" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAkgAAAAEgAAAAAAIAEAAAAAAAAAiA=</HashCode>
-      <FileName>Maps\ExitPoint.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
-  <Struct Name="ParquetClassLibrary.Parquets.ParquetStack" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="36.5" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgBEAAgAAAAAAAgEgEIAAEwAAAgAAIAAAAEAAAIAAiA=</HashCode>
-      <FileName>Parquets\ParquetStack.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
-  <Struct Name="ParquetClassLibrary.Rooms.MapSpace" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="45.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AIBAAAAgAgAABAAkgAIAAAAAgAgAAIAAKAEgAAIBAiA=</HashCode>
-      <FileName>Rooms\MapSpace.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
   <Struct Name="ParquetClassLibrary.AssemblyInfo" Collapsed="true">
-    <Position X="36.5" Y="6.75" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAgAAAAAAAAAAA=</HashCode>
       <FileName>AssemblyInfo.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="ParquetClassLibrary.EntityID" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40" Y="6.75" Width="1.5" />
+  <Struct Name="ParquetClassLibrary.ModelID" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAwAAAAAAAQEgACAAkgAAAAAAIAAAABAAEEAByA=</HashCode>
-      <FileName>EntityID.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
-  <Struct Name="ParquetClassLibrary.Location" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="43.5" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAkgAAAAAAAAAAAAIAAAAAAAAAAAiA=</HashCode>
-      <FileName>Location.cs</FileName>
+      <HashCode>AAAAAAwAAAAAAAQEgACAAkgAAAAAAIAAAABAAAEAByA=</HashCode>
+      <FileName>ModelID.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
   <Struct Name="ParquetClassLibrary.Range&lt;TElement&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="38.25" Y="7.75" Width="1.5" />
+    <Position X="0.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAiAAAAAAAAEgAgAAEgAAAAAAIAAQAAAAAAAAjA=</HashCode>
       <FileName>Range.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
-  <Struct Name="ParquetClassLibrary.RecipeElement" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAgEAAAAAAAEgAAAAEgAAAQAAIAAAAAAAAEAAiA=</HashCode>
-      <FileName>RecipeElement.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Struct>
   <Struct Name="ParquetClassLibrary.Vector2D" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="41.75" Y="7.75" Width="1.5" />
+    <Position X="0.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAgAAAAAAAAE4AEAAEgAEQAAAIAAAAAAAAEBYiQ=</HashCode>
       <FileName>Vector2D.cs</FileName>
@@ -478,112 +482,112 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
   <Interface Name="ParquetClassLibrary.Beings.IPronounGroupEdit" Collapsed="true">
-    <Position X="43.5" Y="9" Width="1.5" />
+    <Position X="8.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AUAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAIAAI=</HashCode>
       <FileName>Beings\IPronounGroupEdit.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ParquetClassLibrary.Maps.IMapRegionEdit" Collapsed="true">
-    <Position X="40" Y="9" Width="1.5" />
+    <Position X="35.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAEAAAAAAAAAACAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Maps\IMapRegionEdit.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ParquetClassLibrary.Parquets.IParquetStack" Collapsed="true">
-    <Position X="41.75" Y="9" Width="1.5" />
+    <Position X="20" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgBEAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parquets\IParquetStack.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ParquetClassLibrary.IEntityModelEdit" Collapsed="true">
-    <Position X="36.5" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IEntityEdit.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ParquetClassLibrary.IGrid&lt;TElement&gt;" Collapsed="true">
-    <Position X="38.25" Y="9" Width="1.5" />
+    <Position X="31.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAACAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>IGrid.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="ParquetClassLibrary.IModelEdit" Collapsed="true">
+    <Position X="19" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IModelEdit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="ParquetClassLibrary.Beings.Behavior" Collapsed="true">
-    <Position X="36.5" Y="10" Width="1.5" />
+    <Position X="13.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAAgAAAACAAA=</HashCode>
       <FileName>Beings\Behavior.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Biomes.Elevation" Collapsed="true">
-    <Position X="41.75" Y="10" Width="1.5" />
+    <Position X="31.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAA=</HashCode>
       <FileName>Biomes\Elevation.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Biomes.ElevationMask" Collapsed="true">
-    <Position X="43.5" Y="10" Width="1.5" />
+    <Position X="33.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAEAAAA=</HashCode>
       <FileName>Biomes\ElevationMask.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Items.GatheringTool" Collapsed="true">
-    <Position X="38.25" Y="10.75" Width="1.5" />
+    <Position X="22.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAQAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAEIAAA=</HashCode>
       <FileName>Items\GatheringTool.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Items.ItemType" Collapsed="true">
-    <Position X="40" Y="10.75" Width="1.5" />
+    <Position X="29" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BEAAAAEAAAAAAAQAAAAAAAQAAAAAAAAAAAAAQAAAAgA=</HashCode>
       <FileName>Items\ItemType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Items.ModificationTool" Collapsed="true">
-    <Position X="41.75" Y="10.75" Width="1.5" />
+    <Position X="17.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Items\ModificationTool.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Maps.ChunkTopography" Collapsed="true">
-    <Position X="38.25" Y="10" Width="1.5" />
+    <Position X="35.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACCCABABAAACAAAAAAIAAAAAEAAAAAAJCAAAAAABAAQ=</HashCode>
       <FileName>Maps\ChunkTopography.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Parquets.CollectingEffect" Collapsed="true">
-    <Position X="40" Y="10" Width="1.5" />
+    <Position X="15.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAEAAAA=</HashCode>
       <FileName>Parquets\CollectEffect.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Parquets.GatheringEffect" Collapsed="true">
-    <Position X="36.5" Y="10.75" Width="1.5" />
+    <Position X="20" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Parquets\GatherEffect.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetClassLibrary.Parquets.ParquetMask" Collapsed="true">
-    <Position X="43.5" Y="10.75" Width="1.5" />
+    <Position X="21" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAEAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Parquets\ParquetMask.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ParquetRoller.ExitCode" Collapsed="true">
-    <Position X="45.25" Y="10" Width="1.5" />
+    <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAIAAAAAAIAAAAAIAAAgEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ExitCode.cs</FileName>

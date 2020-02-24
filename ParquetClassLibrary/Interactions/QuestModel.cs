@@ -5,7 +5,7 @@ using CsvHelper.Configuration.Attributes;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models a quest that an <see cref="Beings.NPCModel"/> may give to a <see cref="Beings.PlayerCharacterModel"/> embodies.
+    /// Models a quest that a <see cref="Beings.NPCModel"/> may give to a <see cref="Beings.PlayerCharacterModel"/> embodies.
     /// </summary>
     public sealed class QuestModel : InteractionModel
     {
@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Interactions
         /// Describes the criteria for completing this <see cref="QuestModel"/>.
         /// </summary>
         [Index(7)]
-        public IReadOnlyList<EntityTag> CompletionRequirements { get; }
+        public IReadOnlyList<ModelTag> CompletionRequirements { get; }
         #endregion
 
         #region Initialization
@@ -30,12 +30,12 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inOutcome">Describes the criteria for completing this <see cref="DialogueModel"/>.</param>
         /// <param name="inCompletionRequirements">Describes the criteria for completing this <see cref="QuestModel"/>.</param>
-        public QuestModel(EntityID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<EntityTag> inStartCriteria, IEnumerable<EntityTag> inSteps, string inOutcome,
-                          IEnumerable<EntityTag> inCompletionRequirements)
+        public QuestModel(ModelID inID, string inName, string inDescription, string inComment,
+                          IEnumerable<ModelTag> inStartCriteria, IEnumerable<ModelTag> inSteps, string inOutcome,
+                          IEnumerable<ModelTag> inCompletionRequirements)
             : base(All.QuestIDs, inID, inName, inDescription, inComment, inStartCriteria, inSteps, inOutcome)
         {
-            CompletionRequirements = (inCompletionRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
+            CompletionRequirements = (inCompletionRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
         }
         #endregion
     }

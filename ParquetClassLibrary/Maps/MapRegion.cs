@@ -12,14 +12,14 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegion Empty = new MapRegion(EntityID.None, "Empty Region");
+        public static readonly MapRegion Empty = new MapRegion(ModelID.None, "Empty Region");
 
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
                                                                               Rules.Dimensions.ParquetsPerRegion);
 
-        /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="EntityID"/>s.</summary>
-        public static Range<EntityID> Bounds => All.MapRegionIDs;
+        /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="ModelID"/>s.</summary>
+        public static Range<ModelID> Bounds => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultName = "New Region";
@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Maps
             get => Name;
             set
             {
-                IEntityModelEdit editableThis = this;
+                IModelEdit editableThis = this;
                 editableThis.Name = value;
             }
         }
@@ -100,7 +100,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapRegion(EntityID inID, string inName = null, string inDescription = null, string inComment = null,
+        public MapRegion(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                          string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
                          Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
                          IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,

@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : EntityModel
+    public sealed class BiomeModel : Model
     {
         #region Characteristics
         /// <summary>
@@ -29,11 +29,11 @@ namespace ParquetClassLibrary.Biomes
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
         [Index(7)]
-        public IReadOnlyList<EntityTag> ParquetCriteria { get; }
+        public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
         [Index(8)]
-        public IReadOnlyList<EntityTag> EntryRequirements { get; }
+        public IReadOnlyList<ModelTag> EntryRequirements { get; }
         #endregion
 
         #region Initialization
@@ -49,10 +49,10 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="inIsLiquidBased">Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</param>
         /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="BiomeModel"/>.</param>
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeModel"/>.</param>
-        public BiomeModel(EntityID inID, string inName, string inDescription, string inComment,
+        public BiomeModel(ModelID inID, string inName, string inDescription, string inComment,
                           int inTier, Elevation inElevationCategory,
-                          bool inIsLiquidBased, IEnumerable<EntityTag> inParquetCriteria,
-                          IEnumerable<EntityTag> inEntryRequirements)
+                          bool inIsLiquidBased, IEnumerable<ModelTag> inParquetCriteria,
+                          IEnumerable<ModelTag> inEntryRequirements)
             : base(All.BiomeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.MustBeNonNegative(inTier, nameof(inTier));
@@ -60,8 +60,8 @@ namespace ParquetClassLibrary.Biomes
             Tier = inTier;
             ElevationCategory = inElevationCategory;
             IsLiquidBased = inIsLiquidBased;
-            ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<EntityTag>()).ToList();
-            EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<EntityTag>()).ToList();
+            ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<ModelTag>()).ToList();
+            EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
         }
         #endregion
     }

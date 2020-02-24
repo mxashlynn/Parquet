@@ -12,7 +12,7 @@ namespace ParquetClassLibrary
     public class Location : IEquatable<Location>
     {
         /// <summary>The identifier for the <see cref="MapRegion"/> of this located.</summary>
-        public EntityID RegionID { get; }
+        public ModelID RegionID { get; }
 
         /// <summary>The position within the current <see cref="MapRegion"/> of this located.</summary>
         public Vector2D Position { get; }

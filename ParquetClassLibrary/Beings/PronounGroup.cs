@@ -116,7 +116,7 @@ namespace ParquetClassLibrary.Beings
         {
             using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
                                                                                         ? header.Substring(2).ToUpperInvariant()
                                                                                         : header.ToUpperInvariant();
@@ -138,7 +138,7 @@ namespace ParquetClassLibrary.Beings
             using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
-            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(EntityID), All.IdentifierOptions);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             foreach (var kvp in All.ConversionConverters)
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);

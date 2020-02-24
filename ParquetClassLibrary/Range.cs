@@ -109,9 +109,9 @@ namespace ParquetClassLibrary
                 {
                     return new Range<int>(x, y);
                 }
-                else if (implementingType == typeof(EntityID))
+                else if (implementingType == typeof(ModelID))
                 {
-                    return new Range<EntityID>(x, y);
+                    return new Range<ModelID>(x, y);
                 }
                 else
                 {

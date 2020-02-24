@@ -34,7 +34,7 @@ namespace ParquetRoller
         private static string VersionMessage { get; } = $"Version:\n    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}\n    Parquet     {AssemblyInfo.LibraryVersion}\n    Map Data    {AssemblyInfo.SupportedMapDataVersion}\n    Being Data  {AssemblyInfo.SupportedBeingDataVersion}\n";
 
         /// <summary>A detailed help message explaining how to use roller.</summary>
-        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Entity ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      players         Only player character beings.\n      npcs            Only NPC beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
+        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Model ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      players         Only player character beings.\n      npcs            Only NPC beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
         #endregion
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace ParquetRoller
         /// Takes a single argument corresponding to the "category" selection and determines which workload it corresponds to.
         /// </summary>
         /// <param name="inCategory">The third command line argument.</param>
-        /// <returns>A collection of <see cref="EntityModel"/>s to take action on.</returns>
+        /// <returns>A collection of <see cref="Model"/>s to take action on.</returns>
         private static ModelCollection ParseCategory(string inCategory)
         {
             ModelCollection workload = null;
@@ -165,8 +165,8 @@ namespace ParquetRoller
             switch (inCategory)
             {
                 case "all":
-                    var entireRange = new Range<EntityID>(All.PlayerCharacterIDs.Minimum, All.ItemIDs.Maximum);
-                    workload = new ModelCollection(entireRange, ((IEnumerable<EntityModel>)All.Beings.GetEnumerator()) // TODO This cast fails.
+                    var entireRange = new Range<ModelID>(All.PlayerCharacterIDs.Minimum, All.ItemIDs.Maximum);
+                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings.GetEnumerator()) // TODO This cast fails.
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.Biomes)
                                                                                 .Concat(All.CraftingRecipes)
@@ -222,12 +222,12 @@ namespace ParquetRoller
                     break;
                 case "p-item":
                 case "p-items":
-                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.ParquetID != EntityID.None);
+                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.ParquetID != ModelID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "n-item":
                 case "n-items":
-                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.ParquetID == EntityID.None);
+                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "parquet":
@@ -351,9 +351,9 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// Lists the defined ranges for the given <see cref="EntityModel"/>s' <see cref="EntityID"/>s.
+        /// Lists the defined ranges for the given <see cref="Model"/>s' <see cref="ModelID"/>s.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="EntityModel"/>s to inspect.</param>
+        /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListRanges(ModelCollection inWorkload)
         {
@@ -363,9 +363,9 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// Lists the largest <see cref="EntityID"/> actually in use in each of the given categories of <see cref="EntityModel"/>s.
+        /// Lists the largest <see cref="ModelID"/> actually in use in each of the given categories of <see cref="Model"/>s.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="EntityModel"/>s to inspect.</param>
+        /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListMaxIDs(ModelCollection inWorkload)
         {
@@ -375,9 +375,9 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// Lists every unique <see cref="EntityTag"/> in use in each of the given <see cref="EntityModel"/>s.
+        /// Lists every unique <see cref="ModelTag"/> in use in each of the given <see cref="Model"/>s.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="EntityModel"/>s to inspect.</param>
+        /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListTags(ModelCollection inWorkload)
         {
@@ -387,9 +387,9 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// Lists every unique <see cref="EntityModel.Name"/> in use in each of the given <see cref="EntityModel"/>s.
+        /// Lists every unique <see cref="Model.Name"/> in use in each of the given <see cref="Model"/>s.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="EntityModel"/>s to inspect.</param>
+        /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListNames(ModelCollection inWorkload)
         {
@@ -399,9 +399,9 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// If more than one unique <see cref="EntityModel"/> uses the same <see cref="EntityModel.Name"/>, lists that as a name collision.
+        /// If more than one unique <see cref="Model"/> uses the same <see cref="Model.Name"/>, lists that as a name collision.
         /// </summary>
-        /// <param name="inWorkload">The <see cref="EntityModel"/>s to inspect.</param>
+        /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListCollisions(ModelCollection inWorkload)
         {

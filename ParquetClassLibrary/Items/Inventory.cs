@@ -64,9 +64,9 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
         /// </summary>
-        /// <param name="inItems">The item type to check for.  Cannot be <see cref="EntityID.None"/>.</param>
+        /// <param name="inItems">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
         /// <returns>The number of items of the given type contained.</returns>
-        public int Contains(EntityID inItemID)
+        public int Contains(ModelID inItemID)
         {
             Precondition.IsNotNone(inItemID);
 
@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <param name="inItems">The items to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
-        public bool Has(IEnumerable<(EntityID, int)> inItems)
+        public bool Has(IEnumerable<(ModelID, int)> inItems)
         {
             Precondition.IsNotNullOrEmpty(inItems, nameof(inItems));
 
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inItemID">What kind of item to check for.</param>
         /// <param name="inHowMany">How many of the item to check for.  Must be positive.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
-        public bool Has(EntityID inItemID, int inHowMany = 1)
+        public bool Has(ModelID inItemID, int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
             return Contains(inItemID) >= inHowMany;
@@ -155,13 +155,13 @@ namespace ParquetClassLibrary.Items
         /// If everything was stored successfully, <c>0</c>;
         /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
         /// </returns>
-        public int Give(EntityID inItemID, int inHowMany = 1)
+        public int Give(ModelID inItemID, int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
-            if (inItemID == EntityID.None)
+            if (inItemID == ModelID.None)
             {
-                throw new ArgumentException($"Tried to give {nameof(EntityID.None)} to {nameof(Inventory)}.");
+                throw new ArgumentException($"Tried to give {nameof(ModelID.None)} to {nameof(Inventory)}.");
             }
 
             var stackMax = All.Items.Get<ItemModel>(inItemID).StackMax;
@@ -218,7 +218,7 @@ namespace ParquetClassLibrary.Items
         /// If everything was removed successfully, <c>0</c>;
         /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
         /// </returns>
-        public int Take(EntityID inItemID, int inHowMany = 1)
+        public int Take(ModelID inItemID, int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 

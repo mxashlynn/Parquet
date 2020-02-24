@@ -1,7 +1,7 @@
 namespace ParquetClassLibrary.Beings
 {
     /// <summary>
-    /// Facilitates editing of an <see cref="PronounGroup"/> from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of a <see cref="PronounGroup"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     public interface IPronounGroupEdit
     {

@@ -21,9 +21,9 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// This is the source of truth about game objects whose definitions do not change during play.<para />
-    /// For more details, see remarks on <see cref="EntityModel"/>.
+    /// For more details, see remarks on <see cref="Model"/>.
     /// </remarks>
-    /// <seealso cref="EntityID"/>
+    /// <seealso cref="ModelID"/>
     /// <seealso cref="ModelCollection{T}"/>
     public static class All
     {
@@ -50,127 +50,127 @@ namespace ParquetClassLibrary
         internal static Dictionary<Type, ITypeConverter> ConversionConverters { get; }
         #endregion
 
-        #region EntityID Ranges
+        #region ModelID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.PlayerCharacterModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.PlayerCharacterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
-        public static readonly Range<EntityID> PlayerCharacterIDs;
+        public static readonly Range<ModelID> PlayerCharacterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.CritterModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CritterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
-        public static readonly Range<EntityID> CritterIDs;
+        public static readonly Range<ModelID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="Beings.NPCModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.NPCModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
-        public static readonly Range<EntityID> NpcIDs;
+        public static readonly Range<ModelID> NpcIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of <see cref="Beings.BeingModel"/>s.
+        /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="Beings.BeingModel"/>s.
         /// </summary>
-        public static readonly IReadOnlyList<Range<EntityID>> BeingIDs;
+        public static readonly IReadOnlyList<Range<ModelID>> BeingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BiomeModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
-        public static readonly Range<EntityID> BiomeIDs;
+        public static readonly Range<ModelID> BiomeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CraftingRecipe"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CraftingRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
-        public static readonly Range<EntityID> CraftingRecipeIDs;
+        public static readonly Range<ModelID> CraftingRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="DialogueModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="DialogueModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
-        public static readonly Range<EntityID> DialogueIDs;
+        public static readonly Range<ModelID> DialogueIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="QuestModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="QuestModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> QuestIDs;
+        public static readonly Range<ModelID> QuestIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="InteractionModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="InteractionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly IReadOnlyList<Range<EntityID>> InteractionIDs;
+        public static readonly IReadOnlyList<Range<ModelID>> InteractionIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapChunk"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunk"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> MapChunkIDs;
+        public static readonly Range<ModelID> MapChunkIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapRegion"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegion"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> MapRegionIDs;
+        public static readonly Range<ModelID> MapRegionIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="MapModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly IReadOnlyList<Range<EntityID>> MapIDs;
+        public static readonly IReadOnlyList<Range<ModelID>> MapIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FloorModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="FloorModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> FloorIDs;
+        public static readonly Range<ModelID> FloorIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="BlockModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BlockModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> BlockIDs;
+        public static readonly Range<ModelID> BlockIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="FurnishingModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="FurnishingModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> FurnishingIDs;
+        public static readonly Range<ModelID> FurnishingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="CollectibleModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CollectibleModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
-        public static readonly Range<EntityID> CollectibleIDs;
+        public static readonly Range<ModelID> CollectibleIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{EntityID}"/>s of parquets.
+        /// A collection containing all defined <see cref="Range{ModelID}"/>s of parquets.
         /// </summary>
-        public static readonly IReadOnlyList<Range<EntityID>> ParquetIDs;
+        public static readonly IReadOnlyList<Range<ModelID>> ParquetIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="RoomRecipe"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="RoomRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
-        public static readonly Range<EntityID> RoomRecipeIDs;
+        public static readonly Range<ModelID> RoomRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="EntityID"/> set aside for <see cref="ItemModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ItemModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
-        public static readonly Range<EntityID> ItemIDs;
+        public static readonly Range<ModelID> ItemIDs;
         #endregion
 
-        #region EntityCollections
+        #region ModelCollections
         /// <summary>
         /// A collection of all defined <see cref="BeingModel"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<BeingModel> Beings { get; private set; }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about biome for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<BiomeModel> Biomes { get; private set; }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<InteractionModel> Interactions { get; private set; }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about biome for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<MapModel> Maps { get; private set; }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<ParquetModel> Parquets { get; private set; }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<RoomRecipe> RoomRecipes { get; private set; }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace ParquetClassLibrary
         /// This collection is the source of truth about items for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
-        /// <remarks>All <see cref="EntityID"/>s must be unique.</remarks>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<ItemModel> Items { get; private set; }
         #endregion
 
@@ -266,47 +266,47 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Initialize Ranges
-            ///<summary>By convention, the first EntityID in each Range is a multiple of this number.</summary>
+            ///<summary>By convention, the first ModelID in each Range is a multiple of this number.</summary>
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges
-            PlayerCharacterIDs = new Range<EntityID>(1, 9000);
-            CritterIDs = new Range<EntityID>(10000, 19000);
-            NpcIDs = new Range<EntityID>(20000, 29000);
+            PlayerCharacterIDs = new Range<ModelID>(1, 9000);
+            CritterIDs = new Range<ModelID>(10000, 19000);
+            NpcIDs = new Range<ModelID>(20000, 29000);
 
-            BiomeIDs = new Range<EntityID>(30000, 39000);
+            BiomeIDs = new Range<ModelID>(30000, 39000);
 
-            CraftingRecipeIDs = new Range<EntityID>(40000, 49000);
+            CraftingRecipeIDs = new Range<ModelID>(40000, 49000);
 
-            DialogueIDs = new Range<EntityID>(50000, 59000);
-            QuestIDs = new Range<EntityID>(60000, 69000);
+            DialogueIDs = new Range<ModelID>(50000, 59000);
+            QuestIDs = new Range<ModelID>(60000, 69000);
 
-            MapChunkIDs = new Range<EntityID>(70000, 79000);
-            MapRegionIDs = new Range<EntityID>(80000, 89000);
+            MapChunkIDs = new Range<ModelID>(70000, 79000);
+            MapRegionIDs = new Range<ModelID>(80000, 89000);
 
-            FloorIDs = new Range<EntityID>(90000, 99000);
-            BlockIDs = new Range<EntityID>(100000, 109000);
-            FurnishingIDs = new Range<EntityID>(110000, 119000);
-            CollectibleIDs = new Range<EntityID>(120000, 129000);
+            FloorIDs = new Range<ModelID>(90000, 99000);
+            BlockIDs = new Range<ModelID>(100000, 109000);
+            FurnishingIDs = new Range<ModelID>(110000, 119000);
+            CollectibleIDs = new Range<ModelID>(120000, 129000);
 
-            RoomRecipeIDs = new Range<EntityID>(130000, 139000);
+            RoomRecipeIDs = new Range<ModelID>(130000, 139000);
             #endregion
 
             #region Define Range Collections
-            BeingIDs = new List<Range<EntityID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
-            InteractionIDs = new List<Range<EntityID>> { DialogueIDs, QuestIDs };
-            MapIDs = new List<Range<EntityID>> { MapChunkIDs, MapRegionIDs };
-            ParquetIDs = new List<Range<EntityID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
+            BeingIDs = new List<Range<ModelID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            InteractionIDs = new List<Range<ModelID>> { DialogueIDs, QuestIDs };
+            MapIDs = new List<Range<ModelID>> { MapChunkIDs, MapRegionIDs };
+            ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             #endregion
 
             #region Calculate Item Range
             // The largest Range.Maximum defined in All, excluding ItemIDs.
             int MaximumIDNotCountingItems = typeof(All).GetFields()
                 .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
-                    && fieldInfo.FieldType == typeof(Range<EntityID>)
+                    && fieldInfo.FieldType == typeof(Range<ModelID>)
                     && fieldInfo.Name != nameof(ItemIDs))
                 .Select(fieldInfo => fieldInfo.GetValue(null))
-                .Cast<Range<EntityID>>()
+                .Cast<Range<ModelID>>()
                 .Select(range => range.Maximum)
                 .Max();
 
@@ -328,7 +328,7 @@ namespace ParquetClassLibrary
             // ranges of all parquets.
             var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + 2 * (MaximumParquetID - MinimumParquetID);
 
-            ItemIDs = new Range<EntityID>(ItemLowerBound, ItemUpperBound);
+            ItemIDs = new Range<ModelID>(ItemLowerBound, ItemUpperBound);
             #endregion
             #endregion
 
@@ -352,13 +352,13 @@ namespace ParquetClassLibrary
             {
                 #region ITypeConverters
                 { typeof(ChunkType), ChunkType.ConverterFactory },
-                { typeof(EntityID), EntityID.ConverterFactory },
-                { typeof(EntityTag), EntityTag.ConverterFactory },
+                { typeof(ModelID), ModelID.ConverterFactory },
+                { typeof(ModelTag), ModelTag.ConverterFactory },
                 { typeof(ExitPoint), ExitPoint.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
                 { typeof(ParquetStack), ParquetStack.ConverterFactory },
                 { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
-                { typeof(Range<EntityID>), Range<EntityID>.ConverterFactory },
+                { typeof(Range<ModelID>), Range<ModelID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
@@ -366,13 +366,13 @@ namespace ParquetClassLibrary
                 #endregion
 
                 #region Linear Series Types
-                { typeof(IEnumerable<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
-                { typeof(IEnumerable<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IEnumerable<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
+                { typeof(IEnumerable<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
-                { typeof(IReadOnlyList<EntityID>), SeriesConverter<EntityID, List<EntityID>>.ConverterFactory },
-                { typeof(IReadOnlyList<EntityTag>), SeriesConverter<EntityTag, List<EntityTag>>.ConverterFactory },
+                { typeof(IReadOnlyList<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
+                { typeof(IReadOnlyList<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },

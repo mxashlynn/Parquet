@@ -9,7 +9,7 @@ namespace ParquetUnitTests.Parquets
     {
         #region Test Values
         /// <summary>Identifier used when creating a new collectible.</summary>
-        private static readonly EntityID newCollectibleID = TestModels.TestCollectible.ID - 1;
+        private static readonly ModelID newCollectibleID = TestModels.TestCollectible.ID - 1;
         #endregion
 
         [Fact]
@@ -36,7 +36,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ValidItemIDsArePermittedTest()
         {
-            EntityID goodItemID = -All.ItemIDs.Minimum;
+            ModelID goodItemID = -All.ItemIDs.Minimum;
 
             var testBlock = new CollectibleModel(newCollectibleID, "will be created", "", "", goodItemID);
 

@@ -8,7 +8,7 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Models the category and amount of an <see cref="EntityModel"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>
+    /// Models the category and amount of a <see cref="Model"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>
     /// or <see cref="Rooms.RoomRecipe"/>.  The <see cref="RecipeElement"/> may either be consumed as an ingredient
     /// or returned as the final product.
     /// </summary>
@@ -20,7 +20,7 @@ namespace ParquetClassLibrary
     /// representing that element.
     /// </description></item>
     /// <item><term /><description>
-    /// It allows various EntityModels to be used interchangably for the same recipe purpose; see <see cref="EntityTag"/>.
+    /// It allows various Models to be used interchangably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </description></item>
     /// </remarks>
     public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
@@ -34,8 +34,8 @@ namespace ParquetClassLibrary
         /// <summary>The number of <see cref="ItemModel"/>s.</summary>
         public int ElementAmount { get; }
 
-        /// <summary>An <see cref="EntityTag"/> describing the <see cref="ItemModel"/>.</summary>
-        public EntityTag ElementTag { get; }
+        /// <summary>A <see cref="ModelTag"/> describing the <see cref="ItemModel"/>.</summary>
+        public ModelTag ElementTag { get; }
         #endregion
 
         #region Initialization
@@ -46,14 +46,14 @@ namespace ParquetClassLibrary
         /// Useful primarily in the context of serialization.
         /// </remarks>
         public RecipeElement()
-        : this(1, EntityTag.None) { }
+        : this(1, ModelTag.None) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> class.
         /// </summary>
         /// <param name="inElementAmount">The amount of the element.  Must be positive.</param>
-        /// <param name="inElementTag">An <see cref="EntityTag"/> describing the element.</param>
-        public RecipeElement(int inElementAmount, EntityTag inElementTag)
+        /// <param name="inElementTag">A <see cref="ModelTag"/> describing the element.</param>
+        public RecipeElement(int inElementAmount, ModelTag inElementTag)
         {
             Precondition.MustBePositive(inElementAmount, nameof(inElementAmount));
 
@@ -119,7 +119,7 @@ namespace ParquetClassLibrary
         /// <param name="inText">The record column to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="EntityTag"/> created from the record column.</returns>
+        /// <returns>The <see cref="ModelTag"/> created from the record column.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
@@ -139,7 +139,7 @@ namespace ParquetClassLibrary
 
                 if (int.TryParse(elementAmountText, numberStyle, cultureInfo, out var amount))
                 {
-                    var tag = (EntityTag)EntityTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
+                    var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
                     return new RecipeElement(amount, tag);
                 }
                 else

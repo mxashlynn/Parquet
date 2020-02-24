@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Items
 
         #region Characteristics
         /// <summary>What <see cref="ItemModel"/>s are stored in this slot.</summary>
-        public EntityID ItemID { get; }
+        public ModelID ItemID { get; }
 
         /// <summary>How many instances of the items are stores in this slot.</summary>
         public int Count { get; private set; }
@@ -40,19 +40,19 @@ namespace ParquetClassLibrary.Items
         /// Creates a new slot to store the given item type.
         /// </summary>
         /// <param name="inItemToStore">
-        /// The <see cref="EntityID"/> corresponding to the item being stored here.
-        /// Must be in-range and not <see cref="EntityID.None"/>.
+        /// The <see cref="ModelID"/> corresponding to the item being stored here.
+        /// Must be in-range and not <see cref="ModelID.None"/>.
         /// </param>
         /// <param name="inHowMany">How many of the item to store initially.  Must be positive.</param>
-        public InventorySlot(EntityID inItemToStore, int inHowMany = 1)
+        public InventorySlot(ModelID inItemToStore, int inHowMany = 1)
         {
             Precondition.IsNotNone(inItemToStore, nameof(inItemToStore));
             Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
-            if (inItemToStore == EntityID.None)
+            if (inItemToStore == ModelID.None)
             {
-                throw new ArgumentException($"Tried to create {nameof(InventorySlot)} for {nameof(EntityID.None)}.");
+                throw new ArgumentException($"Tried to create {nameof(InventorySlot)} for {nameof(ModelID.None)}.");
             }
 
             ItemID = inItemToStore;
@@ -143,7 +143,7 @@ namespace ParquetClassLibrary.Items
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(EntityID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(ModelID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(InventorySlot)}.");
             }
@@ -154,7 +154,7 @@ namespace ParquetClassLibrary.Items
                 var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
-                var id = (EntityID)EntityID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var count = int.Parse(parameterText[1], numberStyle, cultureInfo);
 
                 return new InventorySlot(id, count);

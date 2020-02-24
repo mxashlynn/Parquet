@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public sealed class ItemModel : EntityModel
+    public sealed class ItemModel : Model
     {
         #region Class Defaults
         /// <summary>
@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <remarks>
         /// As this is referenced before <see cref="All"/> is initialized, reflection cannot be used to determine this value.
-        /// Therefore it must be updated by hand when <see cref="EntityID"/> ranges chage.
+        /// Therefore it must be updated by hand when <see cref="ModelID"/> ranges chage.
         /// </remarks>
         private const int ShamID = -219000;
 
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Items
         public static readonly ItemModel ShamModel = new ItemModel(ShamID, "Sham",
                                                                    "Used in preinitialization to aid in deserialization.",
                                                                    "Should not be used in-game.",
-                                                                   ItemType.Other, 0, 0, InventorySlot.DefaultStackMax, 0, 0, EntityID.None);
+                                                                   ItemType.Other, 0, 0, InventorySlot.DefaultStackMax, 0, 0, ModelID.None);
         #endregion
 
         #region Characteristics
@@ -57,15 +57,15 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         [Index(10)]
-        public EntityID ParquetID { get; }
+        public ModelID ParquetID { get; }
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
         [Index(11)]
-        public IReadOnlyList<EntityTag> ItemTags { get; }
+        public IReadOnlyList<ModelTag> ItemTags { get; }
 
         /// <summary>How this item is crafted.</summary>
         [Index(12)]
-        public EntityID RecipeID { get; }
+        public ModelID RecipeID { get; }
         #endregion
 
         #region Initialization
@@ -84,17 +84,17 @@ namespace ParquetClassLibrary.Items
         /// <param name="inEffectWhenUsed"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</param>
-        /// <param name="inRecipeID">The <see cref="EntityID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
-        public ItemModel(EntityID inID, string inName, string inDescription, string inComment,
+        /// <param name="inRecipeID">The <see cref="ModelID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
+        public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
-                         int inEffectWhileHeld, int inEffectWhenUsed, EntityID inParquetID,
-                         IEnumerable<EntityTag> inItemTags = null, EntityID? inRecipeID = null)
+                         int inEffectWhileHeld, int inEffectWhenUsed, ModelID inParquetID,
+                         IEnumerable<ModelTag> inItemTags = null, ModelID? inRecipeID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inParquetID, All.ParquetIDs, nameof(inParquetID));
             Precondition.MustBePositive(inStackMax, nameof(inStackMax));
 
-            var nonNullItemTags = inItemTags ?? Enumerable.Empty<EntityTag>().ToList();
+            var nonNullItemTags = inItemTags ?? Enumerable.Empty<ModelTag>().ToList();
             var nonNullCraftingRecipeID = inRecipeID ?? CraftingRecipe.NotCraftable.ID;
 
             Subtype = inSubtype;

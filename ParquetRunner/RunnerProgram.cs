@@ -14,14 +14,14 @@ namespace ParquetRunner
 {
     #region Test Stuff
     /// <summary>
-    /// Stores <see cref="EntityModel"/>s for use in unit testing.
+    /// Stores <see cref="Model"/>s for use in unit testing.
     /// </summary>
     public static class TestModels
     {
         #region Test Value Components
-        public static readonly EntityTag TestTag = "Test Tag";
+        public static readonly ModelTag TestTag = "Test Tag";
         public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
-        public static readonly IReadOnlyList<EntityTag> TestQuestRequirementsList = new List<EntityTag> { TestTag };
+        public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
         #endregion
 
         #region Test Values
@@ -202,11 +202,11 @@ namespace ParquetRunner
     {
         #region Room Collection Test Values
         private static readonly ParquetStack TVoid = ParquetStack.Empty;
-        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, EntityID.None, EntityID.None);
-        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, EntityID.None);
-        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
-        private static readonly ParquetStack TStep = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, TestModels.TestFurnishing.ID, EntityID.None);
-        private static readonly ParquetStack TWell = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
+        private static readonly ParquetStack TStep = new ParquetStack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetStack TWell = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, ModelID.None, ModelID.None);
 
         #region Valid Subregions
         private static readonly ParquetStack[,] OneMinimalRoomMap =

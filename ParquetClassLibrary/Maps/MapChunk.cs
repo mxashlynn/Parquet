@@ -12,14 +12,14 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk(EntityID.None, "Empty MapChunk", "", "", AssemblyInfo.SupportedMapDataVersion);
+        public static readonly MapChunk Empty = new MapChunk(ModelID.None, "Empty MapChunk", "", "", AssemblyInfo.SupportedMapDataVersion);
 
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
                                                                               Rules.Dimensions.ParquetsPerChunk);
 
-        /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="EntityID"/>s.</summary>
-        public static Range<EntityID> Bounds => All.MapChunkIDs;
+        /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="ModelID"/>s.</summary>
+        public static Range<ModelID> Bounds => All.MapChunkIDs;
         #endregion
 
         #region Characteristics
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapChunk(EntityID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision = 0,
+        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision = 0,
                         IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inDataVersion, inRevision, inExits)

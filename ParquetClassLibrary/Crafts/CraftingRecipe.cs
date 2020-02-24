@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    public sealed class CraftingRecipe : EntityModel
+    public sealed class CraftingRecipe : Model
     {
         #region Class Defaults
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>
@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Crafts
             new List<RecipeElement> { RecipeElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
-        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(EntityID.None, "Not Craftable", "Not Craftable", "",
+        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(ModelID.None, "Not Craftable", "Not Craftable", "",
                                                                                 EmptyCraftingElementList, EmptyCraftingElementList,
                                                                                 new StrikePanelGrid());
         #endregion
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Crafts
         /// Thrown when <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
         /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
-        public CraftingRecipe(EntityID inID, string inName, string inDescription, string inComment,
+        public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts,
                               IEnumerable<RecipeElement> inIngredients, StrikePanelGrid inPanelPattern)
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)

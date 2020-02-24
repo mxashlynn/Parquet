@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Maps
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
     /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
     /// </summary>
-    public abstract class MapModel : EntityModel
+    public abstract class MapModel : Model
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Used by children of the <see cref="MapModel"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the derived map type's EntityID is defined.</param>
+        /// <param name="inBounds">The bounds within which the derived map type's <see cref="ModelID"/> is defined.</param>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
-        protected MapModel(Range<EntityID> inBounds, EntityID inID, string inName, string inDescription, string inComment,
+        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
                            string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
@@ -80,7 +80,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inFloorID">ID for the new floor to set.</param>
         /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the floor was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFloorDefinition(EntityID inFloorID, Vector2D inPosition)
+        public bool TrySetFloorDefinition(ModelID inFloorID, Vector2D inPosition)
             => TrySetParquetDefinition(inFloorID, null, null, null, inPosition);
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inBlockID">ID for the new block to set.</param>
         /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the block was set, <c>false</c> otherwise.</returns>
-        public bool TrySetBlockDefinition(EntityID inBlockID, Vector2D inPosition)
+        public bool TrySetBlockDefinition(ModelID inBlockID, Vector2D inPosition)
             => TrySetParquetDefinition(null, inBlockID, null, null, inPosition);
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inFurnishingID">ID for the new furnishing to set.</param>
         /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the furnishing was set, <c>false</c> otherwise.</returns>
-        public bool TrySetFurnishingDefinition(EntityID inFurnishingID, Vector2D inPosition)
+        public bool TrySetFurnishingDefinition(ModelID inFurnishingID, Vector2D inPosition)
             => TrySetParquetDefinition(null, null, inFurnishingID, null, inPosition);
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inCollectibleID">ID for the new collectible to set.</param>
         /// <param name="inPosition">The position to set.</param>
         /// <returns><c>true</c>, if the collectible was set, <c>false</c> otherwise.</returns>
-        public bool TrySetCollectibleDefinition(EntityID inCollectibleID, Vector2D inPosition)
+        public bool TrySetCollectibleDefinition(ModelID inCollectibleID, Vector2D inPosition)
             => TrySetParquetDefinition(null, null, null, inCollectibleID, inPosition);
 
         /// <summary>
@@ -129,8 +129,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inCollectibleID">ID for the new collectible to set.</param>
         /// <param name="inPosition">The position to put the parquet in.</param>
         /// <returns><c>true</c>, if the parquet was set, <c>false</c> otherwise.</returns>
-        public bool TrySetParquetDefinition(EntityID? inFloorID, EntityID? inBlockID,
-                                            EntityID? inFurnishingID, EntityID? inCollectibleID,
+        public bool TrySetParquetDefinition(ModelID? inFloorID, ModelID? inBlockID,
+                                            ModelID? inFurnishingID, ModelID? inCollectibleID,
                                             Vector2D inPosition)
         {
             var result = false;

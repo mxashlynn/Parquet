@@ -1,9 +1,9 @@
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Facilitates editing of an <see cref="EntityModel"/> from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of a <see cref="Model"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    internal interface IEntityModelEdit
+    internal interface IModelEdit
     {
         /// <summary>Player-facing name.</summary>
         public string Name { get; set; }
@@ -14,7 +14,7 @@ namespace ParquetClassLibrary
         /// <summary>Optional comment.</summary>
         /// <remarks>
         /// Could be used for designer notes or to implement an in-game dialogue
-        /// with or on the <see cref="EntityModel"/>.
+        /// with or on the <see cref="Model"/>.
         /// </remarks>
         public string Comment { get; set; }
     }

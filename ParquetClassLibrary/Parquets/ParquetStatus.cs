@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for an <see cref="ParquetStatus"/>.
+        /// Serves as a hash function for a <see cref="ParquetStatus"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.

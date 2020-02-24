@@ -31,7 +31,7 @@ namespace ParquetUnitTests
                                               .Where(assembly => assembly.GetName().Name == "ParquetClassLibrary")
                                               .SelectMany(assembly => assembly.GetExportedTypes())
                                               .Where(type => type.GetRuntimeProperties()
-                                                                 .Any(info => info.Name == nameof(EntityTag.ConverterFactory)));
+                                                                 .Any(info => info.Name == nameof(ModelTag.ConverterFactory)));
 
             foreach (var provider in converterProviders)
             {
