@@ -200,18 +200,536 @@ namespace ParquetRunner
     /// </summary>
     internal class MainClass
     {
+        #region Room Collection Test Values
+        private static readonly ParquetStack TVoid = ParquetStack.Empty;
+        private static readonly ParquetStack TWall = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TDoor = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, EntityID.None);
+        private static readonly ParquetStack TTile = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, EntityID.None, EntityID.None);
+        private static readonly ParquetStack TStep = new ParquetStack(TestModels.TestFloor.ID, EntityID.None, TestModels.TestFurnishing.ID, EntityID.None);
+        private static readonly ParquetStack TWell = new ParquetStack(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, EntityID.None, EntityID.None);
+
+        #region Valid Subregions
+        private static readonly ParquetStack[,] OneMinimalRoomMap =
+        {
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] TestRoomMap =
+        {
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TTile.Clone(), TDoor.Clone(), TTile.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneSimpleRoomMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomCentralPillarMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomCentralWellMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomCentralVoidMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TVoid.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomCornerLakeMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomIntrusionMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomExtrusionMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomCrossMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomInnerMoatMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TTile.Clone(), TStep.Clone(), TTile.Clone(), TTile.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomInaccessibleFloorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWell.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TStep.Clone(), TTile.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWell.Clone(), TWell.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomUShapeMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomDonoughtShapeMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] OneRoomThickWallsMap =
+        {
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), },
+        };
+        private static readonly ParquetStack[,] TwoSimpleRoomsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] TwoJoinedRoomsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] SixSimpleRoomsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TDoor.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        #endregion
+
+        #region Invalid Subregions
+        private static readonly ParquetStack[,] RoomTooSmallMap =
+        {
+            { TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), },
+            { TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), },
+        };
+        private static readonly ParquetStack[,] NoDoorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] NoFloorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] FloodedMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] NoWallsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TStep.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] IncompletePerimeterMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] WrongEntryMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TStep.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] MoatInsteadOfWallsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TTile.Clone(), TStep.Clone(), TTile.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] MissingWallMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] MoatWallMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] PerforatedWallMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] InvertedMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] IncompleteMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), },
+            { TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), },
+            { TTile.Clone(), TWall.Clone(), TTile.Clone(), TStep.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), },
+            { TTile.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), },
+            { TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TTile.Clone(), },
+            { TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), },
+        };
+        private static readonly ParquetStack[,] IslandStepMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TStep.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWell.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+
+        private static readonly ParquetStack[,] BlockedEntryMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TDoor.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] FloodedDoorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWell.Clone(), TDoor.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] DisconectedEntryMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TDoor.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] DisconectedFloorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TTile.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TTile.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] AllFloorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] AllWallsMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TDoor.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TDoor.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TDoor.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] AllVoidMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] LoopNotEnclosingMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TDoor.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWell.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWell.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] InaccessibleExitMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TWall.Clone(), TStep.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] DoughnutNotEnclosingMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TStep.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), TVoid.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] DoorUsedAsStepMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TDoor.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        private static readonly ParquetStack[,] StepUsedAsDoorMap =
+        {
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TTile.Clone(), TTile.Clone(), TTile.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TWall.Clone(), TWall.Clone(), TStep.Clone(), TWall.Clone(), TWall.Clone(), TVoid.Clone(), },
+            { TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), TVoid.Clone(), },
+        };
+        #endregion
+
+        private static readonly ParquetStackGrid TestMapSubregion = new ParquetStackGrid(TestRoomMap);
+
+        private static readonly RoomCollection TestCollection = RoomCollection.CreateFromSubregion(new ParquetStackGrid(TestRoomMap));
+
+        private static readonly HashSet<MapSpace> ExtantPerimeter = new HashSet<MapSpace>
+        {
+            new MapSpace(0, 0, TWall, TestMapSubregion),
+            new MapSpace(1, 0, TWall, TestMapSubregion),
+            new MapSpace(2, 0, TWall, TestMapSubregion),
+            new MapSpace(3, 0, TWall, TestMapSubregion),
+            new MapSpace(0, 1, TWall, TestMapSubregion),
+            new MapSpace(3, 1, TWall, TestMapSubregion),
+            new MapSpace(0, 2, TWall, TestMapSubregion),
+            new MapSpace(3, 2, TDoor, TestMapSubregion),
+            new MapSpace(0, 3, TWall, TestMapSubregion),
+            new MapSpace(1, 3, TWall, TestMapSubregion),
+            new MapSpace(2, 3, TWall, TestMapSubregion),
+            new MapSpace(3, 3, TWall, TestMapSubregion),
+        };
+        private static readonly HashSet<MapSpace> ExtantWalkableArea = new HashSet<MapSpace>
+        {
+            new MapSpace(1, 1, TTile, TestMapSubregion),
+            new MapSpace(2, 1, TTile, TestMapSubregion),
+            new MapSpace(1, 2, TTile, TestMapSubregion),
+            new MapSpace(2, 2, TTile, TestMapSubregion),
+        };
+        private static readonly Room ExtantRoom = new Room(ExtantWalkableArea, ExtantPerimeter);
+
+        private static readonly HashSet<MapSpace> NonextantPerimeter = new HashSet<MapSpace>
+        {
+            new MapSpace(10, 10, TWall, null),
+            new MapSpace(11, 10, TWall, null),
+            new MapSpace(12, 10, TWall, null),
+            new MapSpace(13, 10, TWall, null),
+            new MapSpace(10, 11, TWall, null),
+            new MapSpace(13, 11, TWall, null),
+            new MapSpace(10, 12, TWall, null),
+            new MapSpace(13, 12, TDoor, null),
+            new MapSpace(10, 13, TWall, null),
+            new MapSpace(11, 13, TWall, null),
+            new MapSpace(12, 13, TWall, null),
+            new MapSpace(13, 13, TWall, null),
+        };
+        private static readonly HashSet<MapSpace> NonextantWalkableArea = new HashSet<MapSpace>
+        {
+            new MapSpace(11, 11, TTile, null),
+            new MapSpace(12, 11, TTile, null),
+            new MapSpace(11, 12, TTile, null),
+            new MapSpace(12, 12, TTile, null),
+        };
+        private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
+        #endregion
+
         /// <summary>
         /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
         /// </summary>
         public static void Main()
         {
-            All.LoadFromCSV();
+            //All.LoadFromCSV();
 
-            var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
-            Console.WriteLine(region);
-            Console.WriteLine($"Item range = {All.ItemIDs}");
+            //var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
+            //Console.WriteLine(region);
+            //Console.WriteLine($"Item range = {All.ItemIDs}");
 
-            All.SaveToCSV();
+            //All.SaveToCSV();
+
+            Console.WriteLine(TestCollection.Contains(ExtantRoom));
         }
     }
 }
