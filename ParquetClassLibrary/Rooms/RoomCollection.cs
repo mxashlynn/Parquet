@@ -62,17 +62,17 @@ namespace ParquetClassLibrary.Rooms
 
             IReadOnlyList<MapSpaceCollection> walkableAreas = inSubregion.GetWalkableAreas();
             MapSpaceCollection perimeter = MapSpaceCollection.Empty;
-
             IEnumerable<Room> rooms =
                 walkableAreas
                 .Where(walkableArea => walkableArea
-                                       .TryGetPerimeter(out perimeter)
+                                        .TryGetPerimeter(out perimeter)
                                     && walkableArea
-                                       .Concat(perimeter)
-                                       .Any(space => All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)
+                                        .Concat(perimeter)
+                                        .Any(space => space.Content.Furnishing != EntityID.None
+                                                      && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false))
                                     && walkableArea
-                                       .Any(space => space.IsWalkableEntry
-                                                  || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
+                                        .Any(space => space.IsWalkableEntry
+                                                    || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                 .Select(walkableArea => new Room(walkableArea, perimeter));
 
             return new RoomCollection(rooms);

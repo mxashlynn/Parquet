@@ -50,9 +50,14 @@ namespace ParquetClassLibrary.Items
             Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
+            if (inItemToStore == EntityID.None)
+            {
+                throw new ArgumentException($"Tried to create {nameof(InventorySlot)} for {nameof(EntityID.None)}.");
+            }
+
             ItemID = inItemToStore;
             Count = inHowMany;
-            StackMax = All.Items?.Get<ItemModel>(ItemID)?.StackMax ?? DefaultStackMax;
+            StackMax = All.Items?.Get<ItemModel>(inItemToStore)?.StackMax ?? DefaultStackMax;
         }
         #endregion
 

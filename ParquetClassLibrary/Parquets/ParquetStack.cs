@@ -85,8 +85,10 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Enclosing, <c>false</c> otherwise.</returns>
         public bool IsEnclosing
-            => !(All.Parquets.Get<BlockModel>(Block)?.IsLiquid ?? true)
-            || (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false);
+            => (Block != EntityID.None
+                && !(All.Parquets.Get<BlockModel>(Block)?.IsLiquid ?? true))
+            || (Furnishing != EntityID.None
+                && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false));
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is Entry iff:
@@ -95,7 +97,8 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
-            => All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEntry ?? false
+            => Furnishing != EntityID.None
+            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEntry ?? false)
             // Inequality standing in for missing conditional XOR here.
             && (IsWalkable != IsEnclosing);
 
@@ -109,8 +112,8 @@ namespace ParquetClassLibrary.Parquets
         internal bool IsWalkable
             => Floor != EntityID.None
             && Block == EntityID.None
-            && Furnishing != EntityID.None
-            && !(All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false);
+            && (Furnishing == EntityID.None
+                || !(All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false));
         #endregion
 
         #region IEquatable Implementation

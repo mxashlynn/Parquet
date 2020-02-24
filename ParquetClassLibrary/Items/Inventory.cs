@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,6 +158,11 @@ namespace ParquetClassLibrary.Items
         public int Give(EntityID inItemID, int inHowMany = 1)
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+
+            if (inItemID == EntityID.None)
+            {
+                throw new ArgumentException($"Tried to give {nameof(EntityID.None)} to {nameof(Inventory)}.");
+            }
 
             var stackMax = All.Items.Get<ItemModel>(inItemID).StackMax;
             var remainder = inHowMany;
