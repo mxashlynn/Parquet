@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Interactions
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        // TODO This is may actually be a list of ModelTags, we need a new InteractionStep class.
+        // TODO This is not actually be a list of ModelTags, we need a new InteractionStep class.
         [Index(5)]
         public IReadOnlyList<ModelTag> Steps { get; }
 
