@@ -34,7 +34,7 @@ namespace ParquetRoller
         private static string VersionMessage { get; } = $"Version:\n    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}\n    Parquet     {AssemblyInfo.LibraryVersion}\n    Map Data    {AssemblyInfo.SupportedMapDataVersion}\n    Being Data  {AssemblyInfo.SupportedBeingDataVersion}\n";
 
         /// <summary>A detailed help message explaining how to use roller.</summary>
-        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Model ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      players         Only player character beings.\n      npcs            Only NPC beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
+        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Model ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      character       Only character beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n      dialgoues       Only dialogue interactions.\n      quests          Only quest interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
         #endregion
 
         /// <summary>
@@ -165,15 +165,15 @@ namespace ParquetRoller
             switch (inCategory)
             {
                 case "all":
-                    var entireRange = new Range<ModelID>(All.PlayerCharacterIDs.Minimum, All.ItemIDs.Maximum);
+                    var entireRange = new Range<ModelID>(All.CritterIDs.Minimum, All.ItemIDs.Maximum);
                     workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings.GetEnumerator()) // TODO This cast fails.
-                                                                                .Concat(All.Biomes)
-                                                                                .Concat(All.Biomes)
-                                                                                .Concat(All.CraftingRecipes)
-                                                                                .Concat(All.Interactions)
-                                                                                .Concat(All.Parquets)
-                                                                                .Concat(All.RoomRecipes)
-                                                                                .Concat(All.Items));
+                                                   .Concat(All.Biomes)
+                                                   .Concat(All.Biomes)
+                                                   .Concat(All.CraftingRecipes)
+                                                   .Concat(All.Interactions)
+                                                   .Concat(All.Parquets)
+                                                   .Concat(All.RoomRecipes)
+                                                   .Concat(All.Items));
                     break;
                 case "being":
                 case "beings":
@@ -184,15 +184,10 @@ namespace ParquetRoller
                     IEnumerable<BeingModel> critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
                     workload = new ModelCollection(All.CritterIDs, critters);
                     break;
-                case "player":
-                case "players":
-                    IEnumerable<BeingModel> players = All.Beings.Where(model => model.ID.IsValidForRange(All.PlayerCharacterIDs));
-                    workload = new ModelCollection(All.NpcIDs, players);
-                    break;
-                case "npc":
-                case "npcs":
-                    IEnumerable<BeingModel> npcs = All.Beings.Where(model => model.ID.IsValidForRange(All.NpcIDs));
-                    workload = new ModelCollection(All.NpcIDs, npcs);
+                case "character":
+                case "characters":
+                    IEnumerable<BeingModel> characters = All.Beings.Where(model => model.ID.IsValidForRange(All.CharacterIDs));
+                    workload = new ModelCollection(All.CharacterIDs, characters);
                     break;
                 case "biome":
                 case "biomes":

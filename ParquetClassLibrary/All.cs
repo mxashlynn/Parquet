@@ -52,10 +52,10 @@ namespace ParquetClassLibrary
 
         #region ModelID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.PlayerCharacterModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for identifying active players.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
-        public static readonly Range<ModelID> PlayerCharacterIDs;
+        public static readonly Range<ModelID> PlayerIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CritterModel"/>s.
@@ -64,10 +64,10 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.NPCModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CharacterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
-        public static readonly Range<ModelID> NpcIDs;
+        public static readonly Range<ModelID> CharacterIDs;
 
         /// <summary>
         /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="Beings.BeingModel"/>s.
@@ -261,7 +261,6 @@ namespace ParquetClassLibrary
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
 
-            // TODO Is this the right way to set this up?
             PronounGroups = new HashSet<PronounGroup>();
             #endregion
 
@@ -270,9 +269,10 @@ namespace ParquetClassLibrary
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges
-            PlayerCharacterIDs = new Range<ModelID>(1, 9000);
+            PlayerIDs = new Range<ModelID>(1, 9000);
+
             CritterIDs = new Range<ModelID>(10000, 19000);
-            NpcIDs = new Range<ModelID>(20000, 29000);
+            CharacterIDs = new Range<ModelID>(20000, 29000);
 
             BiomeIDs = new Range<ModelID>(30000, 39000);
 
@@ -293,7 +293,7 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Define Range Collections
-            BeingIDs = new List<Range<ModelID>> { PlayerCharacterIDs, CritterIDs, NpcIDs };
+            BeingIDs = new List<Range<ModelID>> { CritterIDs, CharacterIDs };
             InteractionIDs = new List<Range<ModelID>> { DialogueIDs, QuestIDs };
             MapIDs = new List<Range<ModelID>> { MapChunkIDs, MapRegionIDs };
             ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
@@ -448,8 +448,7 @@ namespace ParquetClassLibrary
         {
             var pronounGroups = PronounGroup.GetRecords();
             var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
-                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<NPCModel>(BeingIDs))
-                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<PlayerCharacterModel>(BeingIDs));
+                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
             var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
@@ -474,8 +473,7 @@ namespace ParquetClassLibrary
         {
             PronounGroup.PutRecords(PronounGroups);
             Beings.PutRecordsForType<CritterModel>();
-            Beings.PutRecordsForType<NPCModel>();
-            Beings.PutRecordsForType<PlayerCharacterModel>();
+            Beings.PutRecordsForType<CharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Interactions.PutRecordsForType<DialogueModel>();

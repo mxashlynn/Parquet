@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ParquetClassLibrary.Beings.BeingModel" Collapsed="true">
     <Position X="11" Y="3.25" Width="1.5" />
@@ -28,22 +28,8 @@
       <FileName>Beings\CritterModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ParquetClassLibrary.Beings.NPCModel" Collapsed="true">
-    <Position X="8.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Beings\NPCModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ParquetClassLibrary.Beings.PlayerCharacterModel" Collapsed="true">
-    <Position X="11" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Beings\PlayerCharacterModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ParquetClassLibrary.Beings.PronounGroup" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="7.75" Width="1.5" />
+    <Position X="11" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AUAEAACAAqABgABEAABBCAAAAgABAAAAAAAAgAQIAAI=</HashCode>
       <FileName>Beings\PronounGroup.cs</FileName>

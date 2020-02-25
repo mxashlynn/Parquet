@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Beings
         public Location Position { get; set; }
 
         /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</summary>
-        /// <remarks>For example, for <see cref="PlayerCharacterModel"/>s this is their last save spot.</remarks>
+        /// <remarks>For example, for <see cref="CharacterModel"/>s, this might be the spot the where when the game was last saved.</remarks>
         public Location SpawnAt { get; set; }
 
         /// <summary>The <see cref="Location"/> the <see cref="Rooms.Room"/> assigned to this <see cref="BeingModel"/>.</summary>
@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Beings
         public Behavior CurrentBehavior { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="BeingModel"/> can safely remain in the current <see cref="Biomes.BiomeModel"/>.</summary>
-        /// <remarks>It is likely that this will only be used by <see cref="PlayerCharacterModel"/>.</remarks>
+        /// <remarks>It is likely that this will only be used by <see cref="CharacterModel"/> but may be useful for other beings as well.</remarks>
         public int BiomeTimeRemaining { get; set; }
 
         /// <summary>The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</summary>
@@ -57,11 +57,8 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region Collections
-        /// <summary>The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</summary>
-        public List<ModelID> KnownCritters { get; }
-
-        /// <summary>The <see cref="NPCModel"/>s that this <see cref="CharacterModel"/> has met.</summary>
-        public List<ModelID> KnownNPCs { get; }
+        /// <summary>The <see cref="BeingModel"/>s that this <see cref="CharacterModel"/> has encountered.</summary>
+        public List<ModelID> KnownBeings { get; }
 
         /// <summary>The parquets that this <see cref="CharacterModel"/> has encountered.</summary>
         public List<ModelID> KnownParquets { get; }
@@ -93,33 +90,25 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inModificationSpeed">The time it takes the tracked <see cref="BeingModel"/> to modify existing parquets.</param>
         /// <param name="inGatheringSpeed">The time it takes the tracked <see cref="BeingModel"/> to gather existing parquets.</param>
         /// <param name="inMovementSpeed">The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="Location"/> to another.</param>
-        /// <param name="inKnownCritters">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
-        /// <param name="inKnownNPCs">The <see cref="NPCModel"/>s that this <see cref="CharacterModel"/> has met.</param>
+        /// <param name="inKnownBeings">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
         /// <param name="inKnownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
         /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
-        public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior,
-                           Location inPosition, Location inSpawnAt,
-                           int inBiomeTimeRemaining,
-                           float inBuildingSpeed, float inModificationSpeed,
-                           float inGatheringSpeed, float inMovementSpeed,
-                           List<ModelID> inKnownCritters = null, List<ModelID> inKnownNPCs = null,
-                           List<ModelID> inKnownParquets = null, List<ModelID> inKnownRoomRecipes = null,
-                           List<ModelID> inKnownCraftingRecipes = null, List<ModelID> inQuests = null,
-                           List<ModelID> inInventory = null)
+        public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior, Location inPosition, Location inSpawnAt,
+                           int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed,
+                           List<ModelID> inKnownBeings = null, List<ModelID> inKnownParquets = null, List<ModelID> inKnownRoomRecipes = null,
+                           List<ModelID> inKnownCraftingRecipes = null, List<ModelID> inQuests = null, List<ModelID> inInventory = null)
         {
             Precondition.IsNotNull(inBeingDefinition, nameof(inBeingDefinition));
-            var nonNullCritters = inKnownCritters ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullNPCs = inKnownNPCs ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullBeings = inKnownBeings ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullQuests = inQuests ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullInventory = inInventory ?? Enumerable.Empty<ModelID>().ToList();
-            Precondition.AreInRange(nonNullCritters, All.CritterIDs, nameof(inKnownCritters));
-            Precondition.AreInRange(nonNullNPCs, All.NpcIDs, nameof(inKnownNPCs));
+            Precondition.AreInRange(nonNullBeings, All.CritterIDs, nameof(inKnownBeings));
             Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(inKnownParquets));
             Precondition.AreInRange(nonNullRoomRecipes, All.RoomRecipeIDs, nameof(inKnownRoomRecipes));
             Precondition.AreInRange(nonNullCraftingRecipes, All.CraftingRecipeIDs, nameof(inKnownCraftingRecipes));
@@ -135,8 +124,7 @@ namespace ParquetClassLibrary.Beings
             ModificationSpeed = inModificationSpeed;
             GatheringSpeed = inGatheringSpeed;
             MovementSpeed = inMovementSpeed;
-            KnownCritters = nonNullCritters;
-            KnownNPCs = nonNullNPCs;
+            KnownBeings = nonNullBeings;
             KnownParquets = nonNullParquets;
             KnownRoomRecipes = nonNullRoomRecipes;
             KnownCraftingRecipes = nonNullCraftingRecipes;

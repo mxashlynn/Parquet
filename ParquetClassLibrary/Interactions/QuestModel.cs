@@ -5,7 +5,7 @@ using CsvHelper.Configuration.Attributes;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models a quest that a <see cref="Beings.NPCModel"/> may give to a <see cref="Beings.PlayerCharacterModel"/> embodies.
+    /// Models a quest that a may be offered or undertaken by a <see cref="Beings.CharacterModel"/>.
     /// </summary>
     public sealed class QuestModel : InteractionModel
     {

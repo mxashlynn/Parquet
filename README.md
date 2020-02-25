@@ -43,7 +43,7 @@ The solution contains several related projects, each of which is structured so t
 
 - **ParquetClassLibrary**
     - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects).
-    - **Beings**, including players and NPCs.
+    - **Beings**, including player characters and NPCs.
     - **Biomes**.
     - **Crafts**.
     - **Items**.

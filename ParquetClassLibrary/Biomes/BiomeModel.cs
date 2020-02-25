@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Biomes
         [Index(7)]
         public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
-        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.PlayerCharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
+        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
         [Index(8)]
         public IReadOnlyList<ModelTag> EntryRequirements { get; }
         #endregion

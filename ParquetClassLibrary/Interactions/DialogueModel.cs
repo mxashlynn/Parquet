@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace ParquetClassLibrary.Interactions
 {
     /// <summary>
-    /// Models dialogue that a <see cref="Beings.NPCModel"/> may communicate.
+    /// Models dialogue that a <see cref="Beings.CharacterModel"/> may communicate.
     /// </summary>
     public sealed class DialogueModel : InteractionModel
     {

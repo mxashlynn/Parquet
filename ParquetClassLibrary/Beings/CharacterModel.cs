@@ -6,9 +6,9 @@ using ParquetClassLibrary.Utilities;
 namespace ParquetClassLibrary.Beings
 {
     /// <summary>
-    /// Models the definitions shared by in-game actors that take part in the narrative.
+    /// Models the definitions of in-game actors that take part in the narrative.
     /// </summary>
-    public abstract class CharacterModel : BeingModel
+    public class CharacterModel : BeingModel
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
@@ -31,14 +31,14 @@ namespace ParquetClassLibrary.Beings
         /// This identifier provides a link between software character <see langword="class"/>es
         /// and the characters written of in a game's narrative that they represent.  The goal
         /// is that these identifiers be able to span any number of shipped titles, allowing a
-        /// sequel title to import data from prior titles in such a way that one game's <see cref="NPCModel"/>
-        /// can become another game's <see cref="PlayerCharacterModel"/>.
+        /// sequel title to import data from prior titles in such a way that one game's NPC
+        /// can become another game's protagonist.
         /// </remarks>
         [Index(9)]
         public string StoryCharacterID { get; }
 
         /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
-        /// <remarks><see cref="NPCModel"/>s offer quests, <see cref="PlayerCharacterModel"/>s undertake them.</remarks>
+        /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuests { get; }
 
@@ -56,10 +56,6 @@ namespace ParquetClassLibrary.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="CharacterModel"/> class.
         /// </summary>
-        /// <param name="inBounds">
-        /// The bounds within which the <see cref="CharacterModel"/>'s <see cref="ModelID"/> is defined.
-        /// Must be one of <see cref="All.BeingIDs"/>.
-        /// </param>
         /// <param name="inID">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>
         /// <param name="inName">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
@@ -73,13 +69,12 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingQuests">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
-        protected CharacterModel(Range<ModelID> inBounds, ModelID inID, string inName,
-                                 string inDescription, string inComment, ModelID inNativeBiome,
-                                 Behavior inPrimaryBehavior, IEnumerable<ModelID> inAvoids = null,
-                                 IEnumerable<ModelID> inSeeks = null, string inPronouns = PronounGroup.DefaultKey,
-                                 string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuests = null,
-                                 IEnumerable<ModelID> inDialogue = null, IEnumerable<ModelID> inStartingInventory = null)
-            : base(inBounds, inID, inName, inDescription, inComment,
+        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID inNativeBiome,
+                              Behavior inPrimaryBehavior, IEnumerable<ModelID> inAvoids = null,
+                              IEnumerable<ModelID> inSeeks = null, string inPronouns = PronounGroup.DefaultKey,
+                              string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuests = null,
+                              IEnumerable<ModelID> inDialogue = null, IEnumerable<ModelID> inStartingInventory = null)
+            : base(All.CharacterIDs, inID, inName, inDescription, inComment,
                    inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
             var nonNullQuests = inStartingQuests ?? Enumerable.Empty<ModelID>();
