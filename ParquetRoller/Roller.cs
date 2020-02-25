@@ -159,7 +159,7 @@ namespace ParquetRoller
                 inCategory = "all";
             }
 
-            // TODO We have to read the files here and initialize All.
+            All.LoadFromCSV();
 
             // Advertise plural categories but accept singular
             switch (inCategory)
