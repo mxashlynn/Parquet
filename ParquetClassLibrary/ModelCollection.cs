@@ -134,12 +134,6 @@ namespace ParquetClassLibrary
         {
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            // TODO This is a hack to support deserializing InventorySlots before All is initialized.  Find a better way.
-            if (inID == ItemModel.ShamModel.ID)
-            {
-                return (TTarget)(Model)ItemModel.ShamModel;
-            }
-
             return inID == ModelID.None
                 ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {nameof(ModelID.None)}.")
                 : (TTarget)Models[inID];

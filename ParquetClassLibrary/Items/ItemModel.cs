@@ -11,25 +11,6 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public sealed class ItemModel : Model
     {
-        #region Class Defaults
-        /// <summary>
-        /// ID used when constructing <see cref="ShamModel"/>.
-        /// </summary>
-        /// <remarks>
-        /// As this is referenced before <see cref="All"/> is initialized, reflection cannot be used to determine this value.
-        /// Therefore it must be updated by hand when <see cref="ModelID"/> ranges chage.
-        /// </remarks>
-        private const int ShamID = -219000;
-
-        /// <summary>
-        /// Model used when constructing a sham <see cref="InventorySlot"/>.
-        /// </summary>
-        public static readonly ItemModel ShamModel = new ItemModel(ShamID, "Sham",
-                                                                   "Used in preinitialization to aid in deserialization.",
-                                                                   "Should not be used in-game.",
-                                                                   ItemType.Other, 0, 0, InventorySlot.DefaultStackMax, 0, 0, ModelID.None);
-        #endregion
-
         #region Characteristics
         /// <summary>The type of item this is.</summary>
         [Index(4)]

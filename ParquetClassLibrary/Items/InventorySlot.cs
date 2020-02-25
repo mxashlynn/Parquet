@@ -34,7 +34,12 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Creates a sham slot for serialization purposes.
         /// </summary>
-        public InventorySlot() : this(ItemModel.ShamModel.ID) { }
+        public InventorySlot()
+        {
+            ItemID = ModelID.None;
+            Count = 1;
+            StackMax = DefaultStackMax;
+        }
 
         /// <summary>
         /// Creates a new slot to store the given item type.
