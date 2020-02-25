@@ -160,19 +160,19 @@ namespace ParquetUnitTests
             {
                 for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
                 {
-                    TestMapChunk.TrySetFloorDefinition(TestModels.TestFloor.ID, new Vector2D(x, y));
+                    TestMapChunk.ParquetDefinitions[y, x].Floor = TestFloor.ID;
                 }
 
-                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(0, y));
-                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(TestMapChunk.DimensionsInParquets.X - 1, y));
+                TestMapChunk.ParquetDefinitions[y, 0].Block = TestBlock.ID;
+                TestMapChunk.ParquetDefinitions[y, TestMapChunk.DimensionsInParquets.X - 1].Block = TestBlock.ID;
             }
             for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
             {
-                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(x, 0));
-                TestMapChunk.TrySetBlockDefinition(TestModels.TestBlock.ID, new Vector2D(x, TestMapChunk.DimensionsInParquets.Y - 1));
+                TestMapChunk.ParquetDefinitions[0, x].Block = TestBlock.ID;
+                TestMapChunk.ParquetDefinitions[TestMapChunk.DimensionsInParquets.Y - 1, x].Block = TestBlock.ID;
             }
-            TestMapChunk.TrySetFurnishingDefinition(TestModels.TestFurnishing.ID, new Vector2D(1, 2));
-            TestMapChunk.TrySetCollectibleDefinition(TestModels.TestCollectible.ID, new Vector2D(3, 3));
+            TestMapChunk.ParquetDefinitions[2, 1].Furnishing = TestFurnishing.ID;
+            TestMapChunk.ParquetDefinitions[3, 3].Collectible = TestCollectible.ID;
             #endregion
             #endregion
 

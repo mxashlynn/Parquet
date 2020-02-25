@@ -18,16 +18,16 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>The floor contained in this stack.</summary>
-        public ModelID Floor { get; }
+        public ModelID Floor { get; set; }
 
         /// <summary>The block contained in this stack.</summary>
-        public ModelID Block { get; }
+        public ModelID Block { get; set; }
 
         /// <summary>The furnishing contained in this stack.</summary>
-        public ModelID Furnishing { get; }
+        public ModelID Furnishing { get; set; }
 
         /// <summary>The collectible contained in this stack.</summary>
-        public ModelID Collectible { get; }
+        public ModelID Collectible { get; set; }
         #endregion
 
         #region Initialization
