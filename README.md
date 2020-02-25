@@ -10,7 +10,7 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 
 ![An image of the milestones planned for 2020\.](https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png "Parquet Development Roadmap 2020")
 
-Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/Documentation) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
+Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/tree/master/Documentation) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
 
 Development milestone deadlines are tentative right now.
 
@@ -42,15 +42,15 @@ Parquet targets the following features:
 The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.
 
 - **ParquetClassLibrary**
-    - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/wiki/2.-How-Parquet-Handles-Game-Objects).
+    - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/blob/master/Documentation/2-How_Parquet_Handles_Game_Objects.md).
     - **Beings**, including player characters and NPCs.
     - **Biomes**.
     - **Crafts**.
     - **Items**.
     - **Maps**.
-    - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/wiki/3.-How-Parquets-Work).
+    - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/blob/master/Documentation/3-How_Parquets_Work.md).
     - **Quests**.
-    - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/wiki/4.-Room-Detection-and-Type-Assignment).
+    - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
     - **Utilities** of which Precondition is very frequently used.
 - **ParquetRoller**
     - A command line tool for working with CSV files containing game definitions.
