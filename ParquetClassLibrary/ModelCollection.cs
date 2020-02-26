@@ -186,18 +186,65 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<ModelID>> inBounds)
             where TRecord : TModel
         {
-            using var reader = new StreamReader(GetFilePath<TRecord>());
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+            #region Configure Filesystem CSVHelper
+            using var fileReader = new StreamReader(GetFilePath<TRecord>());
+            using var fileCSV = new CsvReader(fileReader, CultureInfo.InvariantCulture);
+            fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            fileCSV.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
                                                                                         ? header.Substring(2).ToUpperInvariant()
                                                                                         : header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
-                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
+            #endregion
 
-            return new ModelCollection<TModel>(inBounds, csv.GetRecords<TRecord>());
+            var modelsWithIDs = fileCSV.GetRecords<TRecord>().ToList();
+
+            #region Handle Any Unassigned IDs
+            // TODO Is it possible to make the code in this region any cleaner/more succinct?  Can we leverage CSVHelper further?
+            if (ModelID.RecordsWithMissingIDs.Count > 0)
+            {
+                #region Reconstruct Header
+                var recordsWithNewIDs = new StringBuilder();
+                foreach(var columnName in fileCSV.Context.HeaderRecord)
+                {
+                    recordsWithNewIDs.Append($"{columnName},");
+                }
+                recordsWithNewIDs.Remove(recordsWithNewIDs.Length - 1, 1);
+                #endregion
+
+                #region Assign Missing IDs
+                var maxAssignedID = modelsWithIDs.Aggregate((current, next) => next.ID > current.ID
+                                                                                ? next
+                                                                                : current).ID;
+                foreach (var record in ModelID.RecordsWithMissingIDs)
+                {
+                    maxAssignedID++;
+                    recordsWithNewIDs.Append($"\n{maxAssignedID}{record}");
+                }
+                #endregion
+
+                #region Configure String CSVHelper
+                using var stringReader = new StringReader(recordsWithNewIDs.ToString());
+                using var stringCSV = new CsvReader(stringReader, CultureInfo.InvariantCulture);
+                stringCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+                stringCSV.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
+                                                                                            ? header.Substring(2).ToUpperInvariant()
+                                                                                            : header.ToUpperInvariant();
+                foreach (var kvp in All.ConversionConverters)
+                {
+                    stringCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                }
+                #endregion
+
+                var modelsWithNewIDs = stringCSV.GetRecords<TRecord>().ToList();
+                modelsWithIDs.AddRange(modelsWithNewIDs);
+                ModelID.RecordsWithMissingIDs.Clear();
+            }
+            #endregion
+
+            return new ModelCollection<TModel>(inBounds, modelsWithIDs);
         }
 
         /// <summary>
@@ -207,19 +254,19 @@ namespace ParquetClassLibrary
         internal void PutRecordsForType<TRecord>()
             where TRecord : TModel
         {
-            using var writer = new StreamWriter(GetFilePath<TRecord>());
-            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.Configuration.NewLine = NewLine.LF;
-            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            using var fileWriter = new StreamWriter(GetFilePath<TRecord>());
+            using var fileCSV = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            fileCSV.Configuration.NewLine = NewLine.LF;
+            fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             foreach (var kvp in All.ConversionConverters)
             {
-                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            csv.WriteHeader<TRecord>();
-            csv.NextRecord();
+            fileCSV.WriteHeader<TRecord>();
+            fileCSV.NextRecord();
             var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TRecord)).Cast<TRecord>();
-            csv.WriteRecords(recordsToWrite);
+            fileCSV.WriteRecords(recordsToWrite);
         }
         #endregion
 

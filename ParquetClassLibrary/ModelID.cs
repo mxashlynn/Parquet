@@ -190,6 +190,18 @@ namespace ParquetClassLibrary
         internal static ModelID ConverterFactory { get; } =
             None;
 
+        /// <summary>A collection of records that need to have <see cref="ModelID"/>s assigned to them before deserialization.</summary>
+        internal static readonly List<string> RecordsWithMissingIDs =
+            new List<string>();
+
+        /// <summary>
+        /// Registers the given record as a <see cref="Model"/> in need of a <see cref="ModelID"/>.
+        /// </summary>
+        /// <param name="inRawRecord">The record to regiseter.</param>
+        /// <remarks>Used during deserialization to allow the library to generate appropriate IDs.</remarks>
+        private static void RegisterMissingID(string inRawRecord)
+            => RecordsWithMissingIDs.Add(inRawRecord);
+
         /// <summary>
         /// Converts the given record column to <see cref="ModelID"/>.
         /// </summary>
@@ -202,7 +214,10 @@ namespace ParquetClassLibrary
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                // TODO This might not work.  If needed, make a new value indicating an unasigned state.
+                if (inRow?.Context.CurrentIndex == 0)
+                {
+                    RegisterMissingID(inRow.Context.RawRecord);
+                }
                 return None;
             }
 
