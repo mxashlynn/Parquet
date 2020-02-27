@@ -96,32 +96,13 @@ namespace ParquetClassLibrary
                 throw new ArgumentException($"Could not convert '{inText}' to {nameof(Range<TElement>)}.");
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
 
-            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
-                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
-            {
-                // TODO Find a generic way to handle Range deserialization.
-                var implementingType = typeof(TElement);
-                if (implementingType == typeof(int))
-                {
-                    return new Range<int>(x, y);
-                }
-                else if (implementingType == typeof(ModelID))
-                {
-                    return new Range<ModelID>(x, y);
-                }
-                else
-                {
-                    throw new NotImplementedException($"Cannot deserialize {nameof(Range<TElement>)} yet.");
-                }
-            }
-            else
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(Range<TElement>)}.");
-            }
+            // TODO This only works if TElement is convertable to/from ModelID.  Although true in the codebase as of this writing,
+            // this is not what the constraints on Range<> promise.  Either a better way needs to be found or Range<>
+            // should be more strinctly constrained.
+            return new Range<TElement>((TElement)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
+                                       (TElement)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
         }
         #endregion
 
