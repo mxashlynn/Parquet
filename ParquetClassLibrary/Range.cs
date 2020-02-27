@@ -68,6 +68,12 @@ namespace ParquetClassLibrary
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static Range<TElement> ConverterFactory { get; } = new Range<TElement>();
 
+        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see langword="long"/>.</summary>
+        internal static Int32Converter Int32ConverterFactory { get; } = new Int32Converter();
+
+        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see langword="double"/>.</summary>
+        internal static SingleConverter SingleConverterFactory { get; } = new SingleConverter();
+
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
@@ -98,11 +104,54 @@ namespace ParquetClassLibrary
 
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
 
-            // TODO This only works if TElement is convertable to/from ModelID.  Although true in the codebase as of this writing,
-            // this is not what the constraints on Range<> promise.  Either a better way needs to be found or Range<>
-            // should be more strinctly constrained.
-            return new Range<TElement>((TElement)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
-                                       (TElement)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
+            if (IsIntConvertible(default))
+            {
+                return new Range<TElement>((TElement)Int32ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
+                                           (TElement)Int32ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
+            }
+            else if (IsSingleConvertible(default))
+            {
+                return new Range<TElement>((TElement)SingleConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
+                                           (TElement)SingleConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
+            }
+            else
+            {
+                throw new NotImplementedException($"Cannot deserialize {nameof(Range<TElement>)} yet.");
+            }
+
+            /// <summary>
+            /// Determines if the given variable may be deserialized as an <see langword="int"/>.
+            /// </summary>
+            /// <returns><c>true</c> if <typeparamref name="TElement"/> may be deserialized via <see cref="Int32Converter"/>.</returns>
+            static bool IsIntConvertible(TElement inElement)
+            {
+                switch (inElement)
+                {
+                    case sbyte _:
+                    case short _:
+                    case int _:
+                    case long _:
+                    case ModelID _:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+            /// <summary>
+            /// Determines if the given variable may be deserialized as an <see langword="float"/>.
+            /// </summary>
+            /// <returns><c>true</c> if <typeparamref name="TElement"/> may be deserialized via <see cref="SingleConverter"/>.</returns>
+            static bool IsSingleConvertible(TElement inElement)
+            {
+                switch (inElement)
+                {
+                    case float _:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
         }
         #endregion
 

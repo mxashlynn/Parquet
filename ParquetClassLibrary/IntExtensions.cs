@@ -5,7 +5,6 @@ namespace ParquetClassLibrary
     /// </summary>
     internal static class IntExtensions
     {
-
         /// <summary>Ensures an integer falls within the given range.</summary>
         /// <param name="inInt">Integer to normalize.</param>
         /// <param name="inLowerBound">The lowest valid value for the integer.</param>
