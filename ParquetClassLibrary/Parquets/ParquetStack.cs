@@ -13,7 +13,8 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
-        public static ParquetStack Empty => new ParquetStack(ModelID.None, ModelID.None, ModelID.None, ModelID.None);
+        public static ParquetStack Empty
+            => new ParquetStack(ModelID.None, ModelID.None, ModelID.None, ModelID.None);
         #endregion
 
         #region Characteristics

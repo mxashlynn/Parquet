@@ -76,7 +76,8 @@ namespace ParquetClassLibrary.Maps
         #region Utilities
         /// <summary>The total number of parquets in the entire map.</summary>
         [Ignore]
-        protected int ParquetsCount => ParquetDefinitions?.Count ?? 0;
+        protected int ParquetsCount
+            => ParquetDefinitions?.Count ?? 0;
 
         /// <summary>
         /// Determines if the given position corresponds to a point in the region.

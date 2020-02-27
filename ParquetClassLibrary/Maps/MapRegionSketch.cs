@@ -23,7 +23,8 @@ namespace ParquetClassLibrary.Maps
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds => All.MapRegionIDs;
+        public static Range<ModelID> Bounds
+            => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultTitle = "New Region";
@@ -79,17 +80,13 @@ namespace ParquetClassLibrary.Maps
         [Ignore]
         [Index(10)]
         public override ParquetStatusGrid ParquetStatuses
-        {
-            get => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
-        }
+            => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
 
         /// <summary>Call <see cref="Generate"/> before accessing parquets.</summary>
         [Ignore]
         [Index(11)]
         public override ParquetStackGrid ParquetDefinitions
-        {
-            get => throw new InvalidOperationException($"Cannot access parquets on ungenerated {nameof(MapRegionSketch)}.");
-        }
+            => throw new InvalidOperationException($"Cannot access parquets on ungenerated {nameof(MapRegionSketch)}.");
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(12)]

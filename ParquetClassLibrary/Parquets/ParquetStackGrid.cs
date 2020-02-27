@@ -60,10 +60,12 @@ namespace ParquetClassLibrary.Parquets
 
         #region IGrid Implementation
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Rows => ParquetStacks?.GetLength(0) ?? 0;
+        public int Rows
+            => ParquetStacks?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStackGrid"/>.</summary>
-        public int Columns => ParquetStacks?.GetLength(1) ?? 0;
+        public int Columns
+            => ParquetStacks?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count
@@ -86,9 +88,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Access to any <see cref="ParquetStack"/> in the grid.</summary>
         public ref ParquetStack this[int y, int x]
-        {
-            get => ref ParquetStacks[y, x];
-        }
+            => ref ParquetStacks[y, x];
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ParquetStack}"/>, which supports simple iteration.

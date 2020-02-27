@@ -265,7 +265,8 @@ namespace ParquetClassLibrary
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(Range<ModelID> inRange)
-            => id == None || inRange.ContainsValue(Math.Abs(id));
+            => id == None
+            || inRange.ContainsValue(Math.Abs(id));
 
         /// <summary>
         /// Validates the current <see cref="ModelID"/> over a <see cref="IEnumerable{Range{ModelID}}"/>.

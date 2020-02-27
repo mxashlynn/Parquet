@@ -14,7 +14,8 @@ namespace ParquetClassLibrary.Parquets
         private const string defaultTrenchName = "dark hole";
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
-        public static Range<ModelID> Bounds => All.FloorIDs;
+        public static Range<ModelID> Bounds
+            => All.FloorIDs;
         #endregion
 
         #region Characteristics

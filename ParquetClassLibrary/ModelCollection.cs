@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -91,7 +90,8 @@ namespace ParquetClassLibrary
 
         #region Collection Access
         /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
-        public int Count => Models?.Count ?? 0;
+        public int Count
+            => Models?.Count ?? 0;
 
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="Model"/>.
@@ -190,9 +190,11 @@ namespace ParquetClassLibrary
             using var fileReader = new StreamReader(GetFilePath<TRecord>());
             using var fileCSV = new CsvReader(fileReader, CultureInfo.InvariantCulture);
             fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            fileCSV.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
-                                                                                        ? header.Substring(2).ToUpperInvariant()
-                                                                                        : header.ToUpperInvariant();
+            fileCSV.Configuration.PrepareHeaderForMatch =
+                (string header, int index)
+                    => header.StartsWith("in", StringComparison.InvariantCulture)
+                        ? header.Substring(2).ToUpperInvariant()
+                        : header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
                 fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
@@ -207,7 +209,7 @@ namespace ParquetClassLibrary
             {
                 #region Reconstruct Header
                 var recordsWithNewIDs = new StringBuilder();
-                foreach(var columnName in fileCSV.Context.HeaderRecord)
+                foreach (var columnName in fileCSV.Context.HeaderRecord)
                 {
                     recordsWithNewIDs.Append($"{columnName},");
                 }
@@ -229,9 +231,11 @@ namespace ParquetClassLibrary
                 using var stringReader = new StringReader(recordsWithNewIDs.ToString());
                 using var stringCSV = new CsvReader(stringReader, CultureInfo.InvariantCulture);
                 stringCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-                stringCSV.Configuration.PrepareHeaderForMatch = (string header, int index) => header.StartsWith("in", StringComparison.InvariantCulture)
-                                                                                            ? header.Substring(2).ToUpperInvariant()
-                                                                                            : header.ToUpperInvariant();
+                stringCSV.Configuration.PrepareHeaderForMatch =
+                    (string header, int index)
+                        => header.StartsWith("in", StringComparison.InvariantCulture)
+                            ? header.Substring(2).ToUpperInvariant()
+                            : header.ToUpperInvariant();
                 foreach (var kvp in All.ConversionConverters)
                 {
                     stringCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);

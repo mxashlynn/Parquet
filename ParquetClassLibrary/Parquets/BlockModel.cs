@@ -18,7 +18,8 @@ namespace ParquetClassLibrary.Parquets
         public const int DefaultMaxToughness = 10;
 
         /// <summary>The set of values that are allowed for Block IDs.</summary>
-        public static Range<ModelID> Bounds => All.BlockIDs;
+        public static Range<ModelID> Bounds
+            => All.BlockIDs;
         #endregion
 
         #region Characteristics

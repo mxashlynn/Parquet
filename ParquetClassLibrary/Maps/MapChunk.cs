@@ -19,7 +19,8 @@ namespace ParquetClassLibrary.Maps
                                                                               Rules.Dimensions.ParquetsPerChunk);
 
         /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds => All.MapChunkIDs;
+        public static Range<ModelID> Bounds
+            => All.MapChunkIDs;
         #endregion
 
         #region Characteristics

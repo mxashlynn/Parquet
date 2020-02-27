@@ -19,7 +19,8 @@ namespace ParquetClassLibrary.Maps
                                                                               Rules.Dimensions.ParquetsPerRegion);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds => All.MapRegionIDs;
+        public static Range<ModelID> Bounds
+            => All.MapRegionIDs;
 
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultName = "New Region";

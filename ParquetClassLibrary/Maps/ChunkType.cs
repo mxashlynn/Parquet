@@ -56,7 +56,8 @@ namespace ParquetClassLibrary.Maps
         /// This is primarily useful for serialization as the default values are featureless.
         /// </remarks>
         public ChunkType() :
-            this(ChunkTopography.Empty, ModelTag.None, ChunkTopography.Empty, ModelTag.None) { }
+            this(ChunkTopography.Empty, ModelTag.None, ChunkTopography.Empty, ModelTag.None)
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkType"/> class.

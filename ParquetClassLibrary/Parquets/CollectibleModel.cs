@@ -11,7 +11,8 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
-        public static Range<ModelID> Bounds => All.CollectibleIDs;
+        public static Range<ModelID> Bounds
+            => All.CollectibleIDs;
         #endregion
 
         #region Characteristics

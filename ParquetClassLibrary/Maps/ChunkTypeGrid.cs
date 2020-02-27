@@ -52,10 +52,12 @@ namespace ParquetClassLibrary.Maps
 
         #region IGrid Implementation
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ChunkTypeGrid"/>.</summary>
-        public int Rows => ChunkTypes?.GetLength(0) ?? 0;
+        public int Rows
+            => ChunkTypes?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="ChunkTypeGrid"/>.</summary>
-        public int Columns => ChunkTypes?.GetLength(1) ?? 0;
+        public int Columns
+            => ChunkTypes?.GetLength(1) ?? 0;
 
         /// <summary>The total number of chunks collected.</summary>
         public int Count
@@ -68,9 +70,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]
-        {
-            get => ref ChunkTypes[y, x];
-        }
+            => ref ChunkTypes[y, x];
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ChunkType}"/>, which supports simple iteration.

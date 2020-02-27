@@ -11,7 +11,8 @@ namespace ParquetClassLibrary.Parquets
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
-        public static Range<ModelID> Bounds => All.FurnishingIDs;
+        public static Range<ModelID> Bounds
+            => All.FurnishingIDs;
         #endregion
 
         #region Characteristics

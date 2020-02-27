@@ -45,10 +45,12 @@ namespace ParquetClassLibrary.Crafts
 
         #region IGrid Implementation
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="StrikePanelGrid"/>.</summary>
-        public int Rows => StrikePanels?.GetLength(0) ?? 0;
+        public int Rows
+            => StrikePanels?.GetLength(0) ?? 0;
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="StrikePanelGrid"/>.</summary>
-        public int Columns => StrikePanels?.GetLength(1) ?? 0;
+        public int Columns
+            => StrikePanels?.GetLength(1) ?? 0;
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count
@@ -61,9 +63,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         public ref StrikePanel this[int y, int x]
-        {
-            get => ref StrikePanels[y, x];
-        }
+            => ref StrikePanels[y, x];
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{StrikePanel}"/>, which supports simple iteration.

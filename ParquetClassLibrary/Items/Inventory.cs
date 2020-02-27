@@ -59,7 +59,8 @@ namespace ParquetClassLibrary.Items
         // TODO We might need to make versions of these accessors that work with RecipeElements.
 
         /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
-        public int Count { get => Slots.Count; }
+        public int Count
+            => Slots.Count;
 
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
@@ -169,7 +170,8 @@ namespace ParquetClassLibrary.Items
 
             while (remainder > 0)
             {
-                var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID && slot.Count < stackMax);
+                var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID
+                                                  && slot.Count < stackMax);
                 if (null == slotToAddTo)
                 {
                     // If there are no slots of the item type with room, try to make a new one.

@@ -23,10 +23,12 @@ namespace ParquetClassLibrary.Rooms
         private HashSet<MapSpace> Spaces { get; }
 
         /// <summary>The first <see cref="MapSpace"/> in the sequence, if any.</summary>
-        public MapSpace First => Spaces?.First() ?? MapSpace.Empty;
+        public MapSpace First
+            => Spaces?.First() ?? MapSpace.Empty;
 
         /// <summary>The number of <see cref="MapSpace"/>s in the <see cref="MapSpaceCollection"/>.</summary>
-        public int Count => Spaces?.Count ?? 0;
+        public int Count
+            => Spaces?.Count ?? 0;
 
         #region Initialization
         /// <summary>
