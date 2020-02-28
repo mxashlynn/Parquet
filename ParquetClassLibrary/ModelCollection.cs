@@ -186,15 +186,18 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<ModelID>> inBounds)
             where TRecord : TModel
         {
-            #region Configure Filesystem CSVHelper
+            #region Local Helper Method
+            static string RemoveHeaderPrefix(string header, int index)
+                => header.StartsWith("in", StringComparison.InvariantCulture)
+                    ? header.Substring(2).ToUpperInvariant()
+                    : header.ToUpperInvariant();
+            #endregion
+
+            #region Configure Filesystem CSVReader
             using var fileReader = new StreamReader(GetFilePath<TRecord>());
             using var fileCSV = new CsvReader(fileReader, CultureInfo.InvariantCulture);
             fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            fileCSV.Configuration.PrepareHeaderForMatch =
-                (string header, int index)
-                    => header.StartsWith("in", StringComparison.InvariantCulture)
-                        ? header.Substring(2).ToUpperInvariant()
-                        : header.ToUpperInvariant();
+            fileCSV.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
             foreach (var kvp in All.ConversionConverters)
             {
                 fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
@@ -228,21 +231,18 @@ namespace ParquetClassLibrary
                 #endregion
 
                 #region Configure String CSVHelper
+                var test = recordsWithNewIDs.ToString();
                 using var stringReader = new StringReader(recordsWithNewIDs.ToString());
-                using var stringCSV = new CsvReader(stringReader, CultureInfo.InvariantCulture);
-                stringCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-                stringCSV.Configuration.PrepareHeaderForMatch =
-                    (string header, int index)
-                        => header.StartsWith("in", StringComparison.InvariantCulture)
-                            ? header.Substring(2).ToUpperInvariant()
-                            : header.ToUpperInvariant();
+                using var stringCSVReader = new CsvReader(stringReader, CultureInfo.InvariantCulture);
+                stringCSVReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+                stringCSVReader.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
                 foreach (var kvp in All.ConversionConverters)
                 {
-                    stringCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                    stringCSVReader.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
                 }
                 #endregion
 
-                var modelsWithNewIDs = stringCSV.GetRecords<TRecord>().ToList();
+                var modelsWithNewIDs = stringCSVReader.GetRecords<TRecord>().ToList();
                 modelsWithIDs.AddRange(modelsWithNewIDs);
                 ModelID.RecordsWithMissingIDs.Clear();
             }
