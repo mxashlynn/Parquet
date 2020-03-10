@@ -170,95 +170,132 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
-        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <typeparam name="TModelInner">The type to deserialize.</typeparam>
         /// <param name="inBounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
-        public ModelCollection<TModel> GetRecordsForType<TRecord>(Range<ModelID> inBounds)
-            where TRecord : TModel
-            => GetRecordsForType<TRecord>(new List<Range<ModelID>> { inBounds });
+        public ModelCollection<TModel> GetRecordsForType<TModelInner>(Range<ModelID> inBounds)
+            where TModelInner : TModel
+            => GetRecordsForType<TModelInner>(new List<Range<ModelID>> { inBounds });
 
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
-        /// <typeparam name="TRecord">The type to deserialize.</typeparam>
+        /// <typeparam name="TModelInner">The type to deserialize.</typeparam>
         /// <param name="inBounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
-        public ModelCollection<TModel> GetRecordsForType<TRecord>(IEnumerable<Range<ModelID>> inBounds)
-            where TRecord : TModel
+        public ModelCollection<TModel> GetRecordsForType<TModelInner>(IEnumerable<Range<ModelID>> inBounds)
+            where TModelInner : TModel
         {
-            #region Local Helper Method
-            static string RemoveHeaderPrefix(string header, int index)
-                => header.StartsWith("in", StringComparison.InvariantCulture)
-                    ? header.Substring(2).ToUpperInvariant()
-                    : header.ToUpperInvariant();
-            #endregion
+            using var fileReader = new StreamReader(GetFilePath<TModelInner>());
+            using var fileCSV = ConfigureCSVReader(fileReader);
+            var models = fileCSV.GetRecords<TModelInner>().ToList();
+            HandleUnassignedIDs(fileCSV.Context.HeaderRecord, models);
+            return new ModelCollection<TModel>(inBounds, models);
+        }
 
-            #region Configure Filesystem CSVReader
-            using var fileReader = new StreamReader(GetFilePath<TRecord>());
-            using var fileCSV = new CsvReader(fileReader, CultureInfo.InvariantCulture);
-            fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            fileCSV.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
+        #region GetRecordsForType Helper Methods
+        /// <summary>
+        /// Sets up a <see cref="TextReader"/> to work with Parquet's CSV files.
+        /// </summary>
+        /// <param name="inReader">The reader to configure.</param>
+        /// <returns>A new, configured reader that will need to be disposed.</returns>
+        private static CsvReader ConfigureCSVReader(TextReader inReader)
+        {
+            var csvReader = new CsvReader(inReader, CultureInfo.InvariantCulture);
+            csvReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            csvReader.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
             foreach (var kvp in All.ConversionConverters)
             {
-                fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                csvReader.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
-            #endregion
 
-            var modelsWithIDs = fileCSV.GetRecords<TRecord>().ToList();
+            return csvReader;
+        }
 
-            #region Handle Any Unassigned IDs
-            // TODO Is it possible to make the code in this region any cleaner/more succinct?  Can we leverage CSVHelper further?
+        /// <summary>
+        /// Removes the "in" element used in the Parquet C# style from appearing in CSV file headers.
+        /// </summary>
+        /// <param name="inHeaderText">The text to modify.</param>
+        /// <param name="inHeaderIndex">Ignored.</param>
+        /// <returns>The modified text.</returns>
+        private static string RemoveHeaderPrefix(string inHeaderText, int inHeaderIndex)
+            => inHeaderText.StartsWith("in", StringComparison.InvariantCulture)
+                ? inHeaderText.Substring(2).ToUpperInvariant()
+                : inHeaderText.ToUpperInvariant();
+
+        /// <summary>
+        /// Assigns <see cref="ModelID"/>s to any models that need them.
+        /// </summary>
+        /// <remarks>
+        /// Optionally, a subset of deserialized records may not have <see cref="ModelID"/>s.
+        /// This detects such records and assigns an ID to all models created from them.
+        /// </remarks>
+        /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
+        /// <param name="inColumnHeaders">Text indicating which value corresponds to which model member.</param>
+        /// <param name="inModels">Models created by the most recent call to CsvReader.GetRecords.</param>
+        private static void HandleUnassignedIDs<TModelInner>(string[] inColumnHeaders, List<TModelInner> inModels)
+            where TModelInner : TModel
+        {
             if (ModelID.RecordsWithMissingIDs.Count > 0)
             {
-                #region Reconstruct Header
                 var recordsWithNewIDs = new StringBuilder();
-                foreach (var columnName in fileCSV.Context.HeaderRecord)
-                {
-                    recordsWithNewIDs.Append($"{columnName},");
-                }
-                recordsWithNewIDs.Remove(recordsWithNewIDs.Length - 1, 1);
-                #endregion
+                ReconstructHeader(inColumnHeaders, recordsWithNewIDs);
+                AssignMissingIDs(inModels, recordsWithNewIDs);
 
-                #region Assign Missing IDs
-                var maxAssignedID = modelsWithIDs.Aggregate((current, next) => next.ID > current.ID
-                                                                                ? next
-                                                                                : current).ID;
-                foreach (var record in ModelID.RecordsWithMissingIDs)
-                {
-                    maxAssignedID++;
-                    recordsWithNewIDs.Append($"\n{maxAssignedID}{record}");
-                }
-                #endregion
-
-                #region Configure String CSVHelper
-                var test = recordsWithNewIDs.ToString();
                 using var stringReader = new StringReader(recordsWithNewIDs.ToString());
-                using var stringCSVReader = new CsvReader(stringReader, CultureInfo.InvariantCulture);
-                stringCSVReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-                stringCSVReader.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
-                foreach (var kvp in All.ConversionConverters)
-                {
-                    stringCSVReader.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
-                }
-                #endregion
+                using var stringCSVReader = ConfigureCSVReader(stringReader);
 
-                var modelsWithNewIDs = stringCSVReader.GetRecords<TRecord>().ToList();
-                modelsWithIDs.AddRange(modelsWithNewIDs);
+                var modelsWithNewIDs = stringCSVReader.GetRecords<TModelInner>().ToList();
+                inModels.AddRange(modelsWithNewIDs);
                 ModelID.RecordsWithMissingIDs.Clear();
             }
-            #endregion
-
-            return new ModelCollection<TModel>(inBounds, modelsWithIDs);
         }
+
+        /// <summary>
+        /// Reconstructs the header that would be used by <see cref="CsvReader"/> to deserialize models from the given records.
+        /// </summary>
+        /// <param name="inColumnHeaders">Individual header elements.</param>
+        /// <param name="inRecordsWithNewIDs">Data laid out in CSV-fashion in need of a header.</param>
+        private static void ReconstructHeader(string[] inColumnHeaders, StringBuilder inRecordsWithNewIDs)
+        {
+            foreach (var columnName in inColumnHeaders)
+            {
+                inRecordsWithNewIDs.Append($"{columnName},");
+            }
+            inRecordsWithNewIDs.Remove(inRecordsWithNewIDs.Length - 1, 1);
+        }
+
+        /// <summary>
+        /// Assigns <see cref="ModelID"/>s to the given <see cref="Model"/>s and adds them to the given <see cref="List{T}"/>.
+        /// </summary>
+        /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
+        /// <param name="inModelsWithOldIDs">Models that already had IDs.</param>
+        /// <param name="inRecordsNeedingIDs">Records of models that have not yet had their IDs assigned.</param>
+        private static void AssignMissingIDs<TModelInner>(List<TModelInner> inModelsWithOldIDs, StringBuilder inRecordsNeedingIDs)
+            where TModelInner : TModel
+        {
+            var maxAssignedID = inModelsWithOldIDs
+                .Aggregate((current, next) =>
+                    next.ID > current.ID
+                        ? next
+                        : current).ID;
+            foreach (var record in ModelID.RecordsWithMissingIDs)
+            {
+                maxAssignedID++;
+                // TODO Should we be using a bare \n here? Should CSVHelper provide the correct line ending?
+                inRecordsNeedingIDs.Append($"\n{maxAssignedID}{record}");
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Writes all of the given type to records to the appropriate file.
         /// </summary>
-        /// <typeparam name="TRecord">The type to serialize.</typeparam>
-        internal void PutRecordsForType<TRecord>()
-            where TRecord : TModel
+        /// <typeparam name="TModelInner">The type to serialize.</typeparam>
+        internal void PutRecordsForType<TModelInner>()
+            where TModelInner : TModel
         {
-            using var fileWriter = new StreamWriter(GetFilePath<TRecord>());
+            using var fileWriter = new StreamWriter(GetFilePath<TModelInner>());
             using var fileCSV = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
             fileCSV.Configuration.NewLine = NewLine.LF;
             fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
@@ -267,9 +304,9 @@ namespace ParquetClassLibrary
                 fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            fileCSV.WriteHeader<TRecord>();
+            fileCSV.WriteHeader<TModelInner>();
             fileCSV.NextRecord();
-            var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TRecord)).Cast<TRecord>();
+            var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TModelInner)).Cast<TModelInner>();
             fileCSV.WriteRecords(recordsToWrite);
         }
         #endregion
