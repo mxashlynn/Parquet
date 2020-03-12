@@ -56,8 +56,6 @@ namespace ParquetClassLibrary.Items
         #endregion
 
         #region Slot Access
-        // TODO We might need to make versions of these accessors that work with RecipeElements.
-
         /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
         public int Count
             => Slots.Count;

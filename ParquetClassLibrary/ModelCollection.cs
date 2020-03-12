@@ -186,10 +186,10 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TModelInner>(IEnumerable<Range<ModelID>> inBounds)
             where TModelInner : TModel
         {
-            using var fileReader = new StreamReader(GetFilePath<TModelInner>());
-            using var fileCSV = ConfigureCSVReader(fileReader);
-            var models = fileCSV.GetRecords<TModelInner>().ToList();
-            HandleUnassignedIDs(fileCSV.Context.HeaderRecord, models);
+            using var reader = new StreamReader(GetFilePath<TModelInner>());
+            using var csv = ConfigureCSVReader(reader);
+            var models = csv.GetRecords<TModelInner>().ToList();
+            HandleUnassignedIDs(csv.Context.HeaderRecord, models);
             return new ModelCollection<TModel>(inBounds, models);
         }
 
@@ -282,7 +282,6 @@ namespace ParquetClassLibrary
             foreach (var record in ModelID.RecordsWithMissingIDs)
             {
                 maxAssignedID++;
-                // TODO Should we be using a bare \n here? Should CSVHelper provide the correct line ending?
                 inRecordsNeedingIDs.Append($"\n{maxAssignedID}{record}");
             }
         }
