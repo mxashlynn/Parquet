@@ -130,7 +130,6 @@ namespace ParquetClassLibrary
                     case sbyte _:
                     case short _:
                     case int _:
-                    case long _:
                     case ModelID _:
                         return true;
                     default:
