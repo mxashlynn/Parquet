@@ -4,7 +4,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary
+namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
     /// Models the category and amount of a <see cref="Model"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>
