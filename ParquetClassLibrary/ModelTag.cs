@@ -67,6 +67,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// Instances of any <see cref="Rules.Delimiters"/> will be replaced with <see cref="SanitarySeparator"/>.
+        /// This prevents errors that would occur should a user enter a Parquet delimiter character as part of a tag.
         /// </remarks>
         /// <param name="inValue">The string to sanitize.</param>
         /// <returns>The sanitized version.</returns>
