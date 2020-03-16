@@ -10,4 +10,3 @@ using ParquetClassLibrary;
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
-
