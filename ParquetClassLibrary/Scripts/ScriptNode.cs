@@ -2,131 +2,135 @@ using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
-    /// Models the category and amount of a <see cref="Model"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>
-    /// or <see cref="Rooms.RoomRecipe"/>.  The <see cref="RecipeElement"/> may either be consumed as an ingredient
-    /// or returned as the final product.
+    /// Models the an element within a scripted element of gameplay.
+    /// For example, a precondition, postcondition, or step in an <see cref="Interactions.InteractionModel"/>
+    /// or the effect of an <see cref="Items.ItemModel"/>.
     /// </summary>
-    /// <remarks>
-    /// The pairing of ElementTag with an ElementAmount achieves two ends:
-    /// <list type="number">
-    /// <item><term /><description>
-    /// It allows multiple instances of an element to be required without having to store and count multiple objects
-    /// representing that element.
-    /// </description></item>
-    /// <item><term /><description>
-    /// It allows various Models to be used interchangably for the same recipe purpose; see <see cref="ModelTag"/>.
-    /// </description></item>
-    /// </remarks>
-    public class ScriptNode : IEquatable<ScriptNode>, ITypeConverter
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
+        "CA1036:Override methods on comparable types",
+        Justification = "{ScriptNode is designed to operate like a string, and string does not implement these operators.")]
+    public class ScriptNode : IComparable<ScriptNode>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="ScriptNode"/>s.</summary>
-        public static readonly ScriptNode None = new ScriptNode();
+        public static readonly ScriptNode None = string.Empty;
         #endregion
 
         #region Characteristics
+        /// <summary>Backing type for the <see cref="ScriptNode"/>.</summary>
+        private string NodeContent = "";
         #endregion
 
-        #region Initialization
+        #region Construction and Destruction
         /// <summary>
-        /// Initializes an empty instance of <see cref="ScriptNode"/> with default values.
+        /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.
         /// </summary>
-        /// <remarks>
-        /// Useful primarily in the context of serialization.
-        /// </remarks>
-        public ScriptNode()
-        : this(???) { }
+        /// <returns>The action to perform.</returns>
+        public static ScriptNode Construct(string inCommandText, string inSourceText, string inTargetText)
+            => (ScriptNode)
+                $"{inCommandText}{Rules.Delimiters.InternalDelimiter}" +
+                $"{inSourceText}{Rules.Delimiters.InternalDelimiter}" +
+                $"{inTargetText}{Rules.Delimiters.InternalDelimiter}";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ScriptNode"/> class.
-        /// </summary>
-        /// <param name="???">???.</param>
-        public ScriptNode(???)
+        public void Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText)
         {
-            throw new NotImplementedException();
+            var contents = NodeContent.Split(Rules.Delimiters.InternalDelimiter);
+            outCommandText = contents[0];
+            outSourceText = contents[1];
+            outTargetText = contents[2];
         }
         #endregion
 
-        #region IEquatable Implementation
+        #region Parsing
         /// <summary>
-        /// Serves as a hash function for a <see cref="RecipeElement"/>.
+        /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.
         /// </summary>
+        /// <returns>The action to perform.</returns>
+        public Action GetAction()
+        {
+            (var commandText, var sourceText, var targetText) = this;
+            return ParseCommand(commandText.ToUpperInvariant(), sourceText, targetText);
+        }
+
+        /// <summary>
+        /// Transforms the given texts into an <see cref="Action"/> to be invoked.
+        /// </summary>
+        /// <param name="inCommandText">The name of the command.</param>
+        /// <param name="inSourceText">The source or subject of the command.</param>
+        /// <param name="inTargetText">The target or object of the command.</param>
+        /// <returns>The action to perform.</returns>
+        private static Action ParseCommand(string inCommandText, string inSourceText, string inTargetText)
+            => inCommandText switch
+            {
+                Commands.Alert => () => Console.WriteLine($"UI: [{inTargetText}]"),
+                Commands.CharGiveItem => () => Console.WriteLine($"{inTargetText} is awarded the {inSourceText}"),
+                Commands.CharGiveQuest => () => Console.WriteLine($"{inTargetText} is tasked with {inSourceText}"),
+                Commands.CharSetDialogue => () => Console.WriteLine($"{inTargetText} can now say {inSourceText}"),
+                Commands.CharSetBehavior => () => Console.WriteLine($"{inTargetText} begins behaving {inSourceText}"),
+                Commands.CharSetPronoun => () => Console.WriteLine($"{inTargetText} uses the pronouns {inSourceText}"),
+                Commands.Jump => () => Console.WriteLine($"Load the script {inTargetText}."),
+                Commands.JumpIf => () => Console.WriteLine($"If {inSourceText}, then Load the script {inTargetText}."),
+                Commands.Put => () => Console.WriteLine($"Place {inSourceText} at {inTargetText}"),
+                Commands.Say => () => Console.WriteLine($"{inSourceText}: {inTargetText}"),
+                Commands.Set => () => Console.WriteLine($"The variable {inSourceText} is set to {inTargetText}"),
+                Commands.ShowLocation => () => Console.WriteLine($"Highlight {inTargetText}"),
+                _ => throw new InvalidOperationException($"Unknown {nameof(ScriptNode)} {inCommandText}."),
+            };
+        #endregion
+
+        #region Implicit Conversion To/From Underlying Type
+        /// <summary>
+        /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
+        /// </summary>
+        /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
+        /// <returns>The given value as a tag.</returns>
+        /// <seealso cref="Sanitize(string)"/>
+        public static implicit operator ScriptNode(string inValue)
+            => inValue;
+
+        /// <summary>
+        /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
+        /// </summary>
+        /// <param name="inNode">Any tag.</param>
+        /// <returns>The tag's value.</returns>
+        public static implicit operator string(ScriptNode inNode)
+            => inNode?.NodeContent ?? "";
+        #endregion
+
+        #region IComparable Implementation
+        /// <summary>
+        /// Enables <see cref="ScriptNode"/>s to be compared one another.
+        /// </summary>
+        /// <param name="inTag">Any valid <see cref="ScriptNode"/>.</param>
         /// <returns>
-        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// A value indicating the relative ordering of the <see cref="ScriptNode"/>s being compared.
+        /// The return value has these meanings:
+        ///     Less than zero indicates that the current instance precedes the given <see cref="ScriptNode"/> in the sort order.
+        ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ScriptNode"/>.
+        ///     Greater than zero indicates that the current instance follows the given <see cref="ScriptNode"/> in the sort order.
         /// </returns>
-        public override int GetHashCode()
-            => (ElementTag, ElementAmount).GetHashCode();
-
-        /// <summary>
-        /// Determines whether the specified <see cref="RecipeElement"/> is equal to the current <see cref="RecipeElement"/>.
-        /// </summary>
-        /// <param name="inElement">The <see cref="RecipeElement"/> to compare with the current.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(RecipeElement inElement)
-            => inElement?.ElementTag == ElementTag
-            && inElement.ElementAmount == ElementAmount;
-
-        /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.
-        /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="RecipeElement"/>.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
-            => obj is RecipeElement element
-            && Equals(element);
-
-        /// <summary>
-        /// Determines whether a specified instance of <see cref="RecipeElement"/> is equal to another specified instance of <see cref="RecipeElement"/>.
-        /// </summary>
-        /// <param name="inElement1">The first <see cref="RecipeElement"/> to compare.</param>
-        /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(RecipeElement inElement1, RecipeElement inElement2)
-            => inElement1?.Equals(inElement2) ?? inElement2?.Equals(inElement1) ?? true;
-
-        /// <summary>
-        /// Determines whether a specified instance of <see cref="RecipeElement"/> is not equal to another specified instance of <see cref="RecipeElement"/>.
-        /// </summary>
-        /// <param name="inElement1">The first <see cref="RecipeElement"/> to compare.</param>
-        /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
-        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(RecipeElement inElement1, RecipeElement inElement2)
-            => !(inElement1 == inElement2);
+        public int CompareTo(ScriptNode inTag)
+            => string.Compare(NodeContent, inTag?.NodeContent ?? "", StringComparison.Ordinal);
         #endregion
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static ScriptNode ConverterFactory { get; } = None;
+        internal static ScriptNode ConverterFactory { get; } =
+            None;
 
         /// <summary>
-        /// Converts the given record column to <see cref="ScriptNode"/>.
+        /// Converts the given <see langword="string"/> to a <see cref="ScriptNode"/>.
         /// </summary>
-        /// <param name="inText">The record column to convert to an object.</param>
+        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="ModelTag"/> created from the record column.</returns>
+        /// <returns>The <see cref="ScriptNode"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return None;
-            }
-
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse {nameof(ScriptNode)} '{inText}': {e}", e);
-            }
-        }
+            => (ScriptNode)inText?.Trim(inRow?.Configuration.Escape ?? '"');
 
         /// <summary>
         /// Converts the given <see cref="ScriptNode"/> to a record column.
@@ -147,7 +151,7 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => throw new NotImplementedException();
+            => NodeContent;
         #endregion
     }
 }
