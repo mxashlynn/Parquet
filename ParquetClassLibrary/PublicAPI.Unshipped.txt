@@ -1,4 +1,4 @@
-﻿ParquetClassLibrary.All
+ParquetClassLibrary.All
 ParquetClassLibrary.AssemblyInfo
 ParquetClassLibrary.AssemblyInfo.AssemblyInfo() -> void
 ParquetClassLibrary.Beings.Behavior
@@ -42,11 +42,11 @@ ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.set -> void
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.set -> void
 ParquetClassLibrary.Beings.CharacterModel
-ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inNativeBiome, ParquetClassLibrary.Beings.Behavior inPrimaryBehavior, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoids = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeks = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuests = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inDialogue = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingInventory = null) -> void
-ParquetClassLibrary.Beings.CharacterModel.Dialogue.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inNativeBiome, ParquetClassLibrary.Beings.Behavior inPrimaryBehavior, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoids = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeks = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuests = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingDialogue = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingInventory = null) -> void
 ParquetClassLibrary.Beings.CharacterModel.FamilyName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.PersonalName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.Pronouns.get -> string
+ParquetClassLibrary.Beings.CharacterModel.StartingDialogue.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StartingInventory.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StartingQuests.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID.get -> string
@@ -450,6 +450,18 @@ ParquetClassLibrary.Rules.Dimensions
 ParquetClassLibrary.Rules.Recipes
 ParquetClassLibrary.Rules.Recipes.Craft
 ParquetClassLibrary.Rules.Recipes.Room
+ParquetClassLibrary.Scripts.Commands
+ParquetClassLibrary.Scripts.ScriptModel
+ParquetClassLibrary.Scripts.ScriptModel.GetActions() -> System.Collections.Generic.IEnumerable<System.Action>
+ParquetClassLibrary.Scripts.ScriptModel.Nodes.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Scripts.ScriptNode>
+ParquetClassLibrary.Scripts.ScriptModel.ScriptModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptNode> inNodes) -> void
+ParquetClassLibrary.Scripts.ScriptNode
+ParquetClassLibrary.Scripts.ScriptNode.CompareTo(ParquetClassLibrary.Scripts.ScriptNode inTag) -> int
+ParquetClassLibrary.Scripts.ScriptNode.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+ParquetClassLibrary.Scripts.ScriptNode.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+ParquetClassLibrary.Scripts.ScriptNode.Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText) -> void
+ParquetClassLibrary.Scripts.ScriptNode.GetAction() -> System.Action
+ParquetClassLibrary.Scripts.ScriptNode.ScriptNode() -> void
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData, string inDelimiter) -> object
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>.SeriesConverter() -> void
@@ -482,7 +494,6 @@ const ParquetClassLibrary.Beings.PronounGroup.PossessiveTag = "%theirs%" -> stri
 const ParquetClassLibrary.Beings.PronounGroup.ReflexiveTag = "%themselves%" -> string
 const ParquetClassLibrary.Beings.PronounGroup.SubjectiveTag = "%they%" -> string
 const ParquetClassLibrary.Items.InventorySlot.DefaultStackMax = 999 -> int
-const ParquetClassLibrary.ModelTag.SanitarySeparator = "/" -> string
 const ParquetClassLibrary.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
 const ParquetClassLibrary.Parquets.BlockModel.LowestPossibleToughness = 0 -> int
 const ParquetClassLibrary.Rules.BiomeCriteria.FluidThreshold = 1024 -> int
@@ -502,6 +513,19 @@ const ParquetClassLibrary.Rules.Dimensions.ParquetsPerRegion = 64 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MaxWalkableSpaces = 121 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinPerimeterSpaces = 12 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinWalkableSpaces = 4 -> int
+const ParquetClassLibrary.Scripts.Commands.Alert = "ALERT" -> string
+const ParquetClassLibrary.Scripts.Commands.CharGiveItem = "CHARGIVEITEM" -> string
+const ParquetClassLibrary.Scripts.Commands.CharGiveQuest = "CHARGIVEQUEST" -> string
+const ParquetClassLibrary.Scripts.Commands.CharSetBehavior = "CHARSETBEHAVIOR" -> string
+const ParquetClassLibrary.Scripts.Commands.CharSetDialogue = "CHARSETDIALOGUE" -> string
+const ParquetClassLibrary.Scripts.Commands.CharSetPronoun = "CHARSETPRONOUN" -> string
+const ParquetClassLibrary.Scripts.Commands.Jump = "JUMP" -> string
+const ParquetClassLibrary.Scripts.Commands.JumpIf = "JUMPIF" -> string
+const ParquetClassLibrary.Scripts.Commands.None = "" -> string
+const ParquetClassLibrary.Scripts.Commands.Put = "PUT" -> string
+const ParquetClassLibrary.Scripts.Commands.Say = "SAY" -> string
+const ParquetClassLibrary.Scripts.Commands.Set = "SET" -> string
+const ParquetClassLibrary.Scripts.Commands.ShowLocation = "SHOWLOCATION" -> string
 override ParquetClassLibrary.Beings.BeingStatus.ToString() -> string
 override ParquetClassLibrary.Beings.PronounGroup.ToString() -> string
 override ParquetClassLibrary.Crafts.StrikePanel.Equals(object obj) -> bool
@@ -560,6 +584,7 @@ override ParquetClassLibrary.Rooms.MapSpaceCollection.ToString() -> string
 override ParquetClassLibrary.Rooms.Room.Equals(object obj) -> bool
 override ParquetClassLibrary.Rooms.Room.GetHashCode() -> int
 override ParquetClassLibrary.Rooms.RoomCollection.ToString() -> string
+override ParquetClassLibrary.Scripts.ScriptNode.ToString() -> string
 override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override ParquetClassLibrary.Vector2D.Equals(object obj) -> bool
@@ -605,7 +630,6 @@ static ParquetClassLibrary.ModelID.operator <=(ParquetClassLibrary.ModelID inIDe
 static ParquetClassLibrary.ModelID.operator ==(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
 static ParquetClassLibrary.ModelID.operator >(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
 static ParquetClassLibrary.ModelID.operator >=(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
-static ParquetClassLibrary.ModelTag.Sanitize(string inValue) -> string
 static ParquetClassLibrary.ModelTag.implicit operator ParquetClassLibrary.ModelTag(string inValue) -> ParquetClassLibrary.ModelTag
 static ParquetClassLibrary.ModelTag.implicit operator string(ParquetClassLibrary.ModelTag inTag) -> string
 static ParquetClassLibrary.Parquets.BlockModel.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
@@ -637,6 +661,9 @@ static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room
 static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
 static ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount.get -> ParquetClassLibrary.Range<int>
 static ParquetClassLibrary.Rules.Recipes.Craft.ProductCount.get -> ParquetClassLibrary.Range<int>
+static ParquetClassLibrary.Scripts.ScriptNode.Construct(string inCommandText, string inSourceText, string inTargetText) -> ParquetClassLibrary.Scripts.ScriptNode
+static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
+static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
 static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName = "Argument") -> void
@@ -687,6 +714,7 @@ static readonly ParquetClassLibrary.ModelID.None -> ParquetClassLibrary.ModelID
 static readonly ParquetClassLibrary.ModelTag.None -> ParquetClassLibrary.ModelTag
 static readonly ParquetClassLibrary.RecipeElement.None -> ParquetClassLibrary.RecipeElement
 static readonly ParquetClassLibrary.Rooms.MapSpace.Empty -> ParquetClassLibrary.Rooms.MapSpace
+static readonly ParquetClassLibrary.Scripts.ScriptNode.None -> ParquetClassLibrary.Scripts.ScriptNode
 static readonly ParquetClassLibrary.Vector2D.East -> ParquetClassLibrary.Vector2D
 static readonly ParquetClassLibrary.Vector2D.North -> ParquetClassLibrary.Vector2D
 static readonly ParquetClassLibrary.Vector2D.South -> ParquetClassLibrary.Vector2D
