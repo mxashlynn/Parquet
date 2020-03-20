@@ -32,9 +32,6 @@ namespace ParquetClassLibrary
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="ModelTag"/>s.</summary>
         public static readonly ModelTag None = string.Empty;
-
-        /// <summary>Replaces any <see cref="Rules.Delimiters"/> in <see cref="ModelTag"/>s.</summary>
-        public const string SanitarySeparator = "/";
         #endregion
 
         #region Characteristics
@@ -50,7 +47,7 @@ namespace ParquetClassLibrary
         /// <returns>The given value as a tag.</returns>
         /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ModelTag(string inValue)
-            => new ModelTag { tagContent = Sanitize(inValue) };
+            => inValue;
 
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.
@@ -59,24 +56,6 @@ namespace ParquetClassLibrary
         /// <returns>The tag's value.</returns>
         public static implicit operator string(ModelTag inTag)
             => inTag?.tagContent ?? "";
-        #endregion
-
-        #region Validation
-        /// <summary>
-        /// Sanitizes a <see langword="string"/> to be used as a <see cref="ModelTag"/>.
-        /// </summary>
-        /// <remarks>
-        /// Instances of any <see cref="Rules.Delimiters"/> will be replaced with <see cref="SanitarySeparator"/>.
-        /// This prevents errors that would occur should a user enter a Parquet delimiter character as part of a tag.
-        /// </remarks>
-        /// <param name="inValue">The string to sanitize.</param>
-        /// <returns>The sanitized version.</returns>
-        public static string Sanitize(string inValue)
-            => string.IsNullOrEmpty(inValue)
-                ? ""
-                : inValue.Replace(Rules.Delimiters.SecondaryDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
-                         .Replace(Rules.Delimiters.InternalDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
-                         .Replace(Rules.Delimiters.ElementDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase);
         #endregion
 
         #region IComparable Implementation
@@ -108,7 +87,7 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ModelTag)inText;
+            => (ModelTag)inText?.Trim(inRow?.Configuration.Escape ?? '"');
 
         /// <summary>
         /// Converts the given <see cref="ModelTag"/> to a record column.
@@ -119,7 +98,7 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
-                ? (string)tag
+                ? $"{inRow?.Configuration.Escape ?? '"'}{(string)tag}{inRow?.Configuration.Escape ?? '"'}"
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ModelTag)}.");
         #endregion
 

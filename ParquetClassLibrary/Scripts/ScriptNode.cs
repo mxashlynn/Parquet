@@ -134,14 +134,10 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
-        /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
+        /// <returns>The <see cref="ScriptNode"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
-            && null != node
-                ? node == None
-                    ? nameof(None)
-                    : $"{throw new NotImplementedException()}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{throw new NotImplementedException()}"
+                ? $"{inRow?.Configuration.Escape ?? '"'}{(string)node}{inRow?.Configuration.Escape ?? '"'}"
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ScriptNode)}.");
         #endregion
 
