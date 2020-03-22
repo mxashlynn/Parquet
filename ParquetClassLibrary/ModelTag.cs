@@ -47,7 +47,7 @@ namespace ParquetClassLibrary
         /// <returns>The given value as a tag.</returns>
         /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ModelTag(string inValue)
-            => inValue;
+            => new ModelTag { tagContent = inValue };
 
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.
