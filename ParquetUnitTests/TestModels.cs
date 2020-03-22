@@ -119,8 +119,8 @@ namespace ParquetUnitTests
         {
             #region Initialize Instances
             TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
-            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
-            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
+            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, Elevation.LevelGround, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
@@ -142,13 +142,13 @@ namespace ParquetUnitTests
                                             Rules.Recipes.Room.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
             TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item 1", "Test", "Test", ItemType.Other,
-                                      1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
+                                      1, 0, 99, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum);
             TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "11 Test Item 2", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 1);
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 1);
             TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "11 Test Item 3", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 2);
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 2);
             TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "11 Test Item 4", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 3);
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
 
             #region Initialize TestMapChunk
             for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
