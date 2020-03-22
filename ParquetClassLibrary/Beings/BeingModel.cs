@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using ParquetClassLibrary.Scripts;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
@@ -11,13 +12,13 @@ namespace ParquetClassLibrary.Beings
     public abstract class BeingModel : Model
     {
         #region Characteristics
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Biome"/> in which this character is at home.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
         [Index(4)]
         public ModelID NativeBiome { get; }
 
-        /// <summary>The <see cref="Behavior"/> governing the way this character acts.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         [Index(5)]
-        public Behavior PrimaryBehavior { get; }
+        public ModelID PrimaryBehavior { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         [Index(6)]
@@ -45,12 +46,13 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inAvoids">Any parquets this <see cref="BeingModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="BeingModel"/> seeks.</param>
         protected BeingModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
-                        string inComment, ModelID inNativeBiome, Behavior inPrimaryBehavior,
+                        string inComment, ModelID inNativeBiome, ModelID inPrimaryBehavior,
                         IEnumerable<ModelID> inAvoids = null, IEnumerable<ModelID> inSeeks = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));
             Precondition.IsInRange(inNativeBiome, All.BiomeIDs, nameof(inNativeBiome));
+            Precondition.IsInRange(inPrimaryBehavior, All.ScriptIDs, nameof(inPrimaryBehavior));
             Precondition.AreInRange(inAvoids, All.ParquetIDs, nameof(inAvoids));
             Precondition.AreInRange(inSeeks, All.ParquetIDs, nameof(inSeeks));
 

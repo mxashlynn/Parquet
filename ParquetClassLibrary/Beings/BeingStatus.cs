@@ -36,8 +36,8 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="Location"/> the <see cref="Rooms.Room"/> assigned to this <see cref="BeingModel"/>.</summary>
         public Location RoomAssignment { get; set; }
 
-        /// <summary>The <see cref="Behavior"/> currently governing the tracked <see cref="BeingModel"/>.</summary>
-        public Behavior CurrentBehavior { get; set; }
+        /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> currently governing the tracked <see cref="BeingModel"/>.</summary>
+        public ModelID CurrentBehavior { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="BeingModel"/> can safely remain in the current <see cref="Biomes.BiomeModel"/>.</summary>
         /// <remarks>It is likely that this will only be used by <see cref="CharacterModel"/> but may be useful for other beings as well.</remarks>
@@ -96,12 +96,13 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
-        public BeingStatus(BeingModel inBeingDefinition, Behavior inCurrentBehavior, Location inPosition, Location inSpawnAt,
+        public BeingStatus(BeingModel inBeingDefinition, ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
                            int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed,
                            List<ModelID> inKnownBeings = null, List<ModelID> inKnownParquets = null, List<ModelID> inKnownRoomRecipes = null,
                            List<ModelID> inKnownCraftingRecipes = null, List<ModelID> inQuests = null, List<ModelID> inInventory = null)
         {
             Precondition.IsNotNull(inBeingDefinition, nameof(inBeingDefinition));
+            Precondition.IsInRange(inCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));
             var nonNullBeings = inKnownBeings ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();

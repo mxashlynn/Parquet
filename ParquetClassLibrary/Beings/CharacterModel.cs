@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
         public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID inNativeBiome,
-                              Behavior inPrimaryBehavior, IEnumerable<ModelID> inAvoids = null,
+                              ModelID inPrimaryBehavior, IEnumerable<ModelID> inAvoids = null,
                               IEnumerable<ModelID> inSeeks = null, string inPronouns = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuests = null,
                               IEnumerable<ModelID> inStartingDialogue = null, IEnumerable<ModelID> inStartingInventory = null)

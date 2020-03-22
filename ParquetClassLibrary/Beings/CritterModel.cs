@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inAvoids">Any parquets this <see cref="CritterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CritterModel"/> seeks.</param>
         public CritterModel(ModelID inID, string inName, string inDescription, string inComment,
-                            ModelID inNativeBiome, Behavior inPrimaryBehavior,
+                            ModelID inNativeBiome, ModelID inPrimaryBehavior,
                             IEnumerable<ModelID> inAvoids = null, IEnumerable<ModelID> inSeeks = null)
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
         {
