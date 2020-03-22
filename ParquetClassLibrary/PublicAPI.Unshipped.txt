@@ -702,6 +702,7 @@ static readonly ParquetClassLibrary.All.ParquetIDs -> System.Collections.Generic
 static readonly ParquetClassLibrary.All.PlayerIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.QuestIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.RoomRecipeIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
+static readonly ParquetClassLibrary.All.ScriptIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
 static readonly ParquetClassLibrary.Beings.PronounGroup.DefaultGroup -> ParquetClassLibrary.Beings.PronounGroup
 static readonly ParquetClassLibrary.Crafts.StrikePanel.Unused -> ParquetClassLibrary.Crafts.StrikePanel
 static readonly ParquetClassLibrary.Maps.ChunkType.Empty -> ParquetClassLibrary.Maps.ChunkType

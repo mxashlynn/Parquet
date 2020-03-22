@@ -158,6 +158,12 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> RoomRecipeIDs;
 
         /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Scripts.ScriptModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<ModelID> ScriptIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ItemModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
@@ -290,6 +296,8 @@ namespace ParquetClassLibrary
             CollectibleIDs = new Range<ModelID>(120000, 129000);
 
             RoomRecipeIDs = new Range<ModelID>(130000, 139000);
+
+            ScriptIDs = new Range<ModelID>(140000, 149000);
             #endregion
 
             #region Define Range Collections
