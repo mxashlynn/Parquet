@@ -1,3 +1,3 @@
 ID,Name,Description,Comment,StartCriteria,Steps,Outcome,CompletionRequirements
--60000,Quest Test,Test,Test,"""Test Tag""","""TBD""",Test Tag,"""Test Tag"""
-60000,Find A Scarf,Description goes here.,,,"""TBD""",None,"""None"""
+-60000,Quest Test,Test,Test,Test Tag,TBD,Test Tag,Test Tag
+60000,Find A Scarf,Description goes here.,,,TBD,None,None
