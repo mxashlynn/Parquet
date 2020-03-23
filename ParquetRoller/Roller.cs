@@ -43,8 +43,6 @@ namespace ParquetRoller
         /// <param name="args">Command line arguments passed in to the tool.</param>
         internal static int Main(string[] args)
         {
-            args = new string[] { "list", "names", "items" };
-
             var optionText = args.Length > 0
                 ? args[0].ToLower()
                 : "";
