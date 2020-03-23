@@ -43,6 +43,8 @@ namespace ParquetRoller
         /// <param name="args">Command line arguments passed in to the tool.</param>
         internal static int Main(string[] args)
         {
+            args = new string[] { "list", "names", "items" };
+
             var optionText = args.Length > 0
                 ? args[0].ToLower()
                 : "";
@@ -166,8 +168,7 @@ namespace ParquetRoller
             {
                 case "all":
                     var entireRange = new Range<ModelID>(All.CritterIDs.Minimum, All.ItemIDs.Maximum);
-                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings.GetEnumerator()) // TODO This cast fails.
-                                                   .Concat(All.Biomes)
+                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings) // TODO This cast fails.
                                                    .Concat(All.Biomes)
                                                    .Concat(All.CraftingRecipes)
                                                    .Concat(All.Interactions)
@@ -201,8 +202,8 @@ namespace ParquetRoller
                 case "interactions":
                     workload = new ModelCollection(All.InteractionIDs, All.Interactions);
                     break;
-                case "dialgoue":
-                case "dialgoues":
+                case "dialogue":
+                case "dialogues":
                     IEnumerable<InteractionModel> dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
                     workload = new ModelCollection(All.DialogueIDs, dialogues);
                     break;
@@ -327,8 +328,15 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode ListPronouns(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
             Console.WriteLine("> List pronoun groups.");
+
+            All.LoadFromCSV();
+
+            foreach (var pronounGroup in All.PronounGroups)
+            {
+                Console.WriteLine($"{pronounGroup.ToString()}");
+            }
+
             return ExitCode.Success;
         }
         #endregion
@@ -349,24 +357,40 @@ namespace ParquetRoller
         /// Lists the defined ranges for the given <see cref="Model"/>s' <see cref="ModelID"/>s.
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
-        /// <returns><see cref="ExitCode.BadArguments"/></returns>
+        /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListRanges(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            var orderedWorkload = inWorkload.OrderBy(x => x.ID);
+
+            Console.WriteLine($"Minimum: {orderedWorkload.First().ID}");
+            Console.WriteLine($"Maximum: {orderedWorkload.Last().ID}");
+
+            return ExitCode.Success;
         }
 
         /// <summary>
         /// Lists the largest <see cref="ModelID"/> actually in use in each of the given categories of <see cref="Model"/>s.
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
-        /// <returns><see cref="ExitCode.BadArguments"/></returns>
+        /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListMaxIDs(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            var orderedWorkload = inWorkload.OrderBy(x => x.ID);
+            Console.WriteLine(orderedWorkload.Last().ID);
+
+            return ExitCode.Success;
         }
 
         /// <summary>
@@ -385,12 +409,21 @@ namespace ParquetRoller
         /// Lists every unique <see cref="Model.Name"/> in use in each of the given <see cref="Model"/>s.
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
-        /// <returns><see cref="ExitCode.BadArguments"/></returns>
+        /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListNames(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            foreach (var model in inWorkload)
+            {
+                Console.WriteLine(model.Name);
+            }
+
+            return ExitCode.Success;
         }
 
         /// <summary>
