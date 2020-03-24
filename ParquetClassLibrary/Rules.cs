@@ -92,7 +92,7 @@ namespace ParquetClassLibrary
         public static class Delimiters
         {
             /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
-            public const string DimensionalDelimiter = "x";
+            public const string DimensionalDelimiter = "×";
 
             /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
             public const string DimensionalTerminator = "=";
