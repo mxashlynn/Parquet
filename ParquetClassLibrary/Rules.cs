@@ -98,7 +98,7 @@ namespace ParquetClassLibrary
             public const string DimensionalTerminator = "=";
 
             /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
-            public const string ElementDelimiter = "-";
+            public const string ElementDelimiter = "–";
 
             /// <summary>Separates properties within a class when in serialization.</summary>
             public const string InternalDelimiter = ":";
