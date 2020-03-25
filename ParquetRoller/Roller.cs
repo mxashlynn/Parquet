@@ -262,8 +262,8 @@ namespace ParquetRoller
                     break;
                 case "collectible":
                 case "collectibles":
-                    IEnumerable<ParquetModel> Collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
-                    workload = new ModelCollection(All.CollectibleIDs, Collectibles);
+                    IEnumerable<ParquetModel> collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
+                    workload = new ModelCollection(All.CollectibleIDs, collectibles);
                     break;
                 case "room":
                 case "rooms":
