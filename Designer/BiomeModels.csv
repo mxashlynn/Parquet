@@ -1,16 +1,16 @@
 ID,Name,Description,Comment,Tier,ElevationCategory,IsLiquidBased,ParquetCriteria,EntryRequirements
 -30000,Biome Test,Test,Test,1,LevelGround,True,,
-30000,Alpine,,,4,AboveGround,False,,ForestKey;CavernKey;Tier2Key;Tier3Key;SeasideKey;TundraKey;AlpineKey
-30001,Cavern,,,3,BelowGround,False,,ForestKey;CavernKey;Tier2Key;Tier3Key
-30002,Desert,,,2,LevelGround,False,Deserted,SeasideKey;DesertKey;Tier2Key
+30000,Alpine,,,4,AboveGround,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+30001,Cavern,,,3,BelowGround,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
+30002,Desert,,,2,LevelGround,False,Deserted,SeasideKey∟DesertKey∟Tier2Key
 30003,Field,,,0,LevelGround,False,,
 30004,Forest,,,1,LevelGround,False,Forested,ForestKey
 30005,Heavens,,,5,AboveGround,True,Heavenly,HeavenlyKey
 30006,Inferno,,,5,BelowGround,True,Volcanic,InfernalKey
-30007,Ruins,,,4,LevelGround,False,Ruinous,ForestKey;CavernKey;Tier2Key;Tier3Key;ForestKey;SwampKey;RuinsKey
+30007,Ruins,,,4,LevelGround,False,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
 30008,Seaside,,,1,LevelGround,True,Coastal,SeasideKey
-30009,Swamp,,,2,LevelGround,False,Swampy,ForestKey;SwampKey;Tier2Key
+30009,Swamp,,,2,LevelGround,False,Swampy,ForestKey∟SwampKey∟Tier2Key
 30010,Town,,,0,LevelGround,False,HasBuildings,
-30011,Tundra,,,2,LevelGround,False,Frozen,SeasideKey;TundraKey;Tier2Key
-30012,Volcano,,,4,AboveGround,True,Volcanic,ForestKey;CavernKey;Tier2Key;Tier3Key;SeasideKey;DesertKey;VolcanoKey
-30013,Prism,,,4,AboveGround,False,,ForestKey;CavernKey;Tier2Key;Tier3Key;SeasideKey;TundraKey;AlpineKey
+30011,Tundra,,,2,LevelGround,False,Frozen,SeasideKey∟TundraKey∟Tier2Key
+30012,Volcano,,,4,AboveGround,True,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
+30013,Prism,,,4,AboveGround,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey

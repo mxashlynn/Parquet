@@ -107,7 +107,7 @@ namespace ParquetClassLibrary
             public const string NameDelimiter = "|";
 
             /// <summary>Separates objects within collections.</summary>
-            public const string SecondaryDelimiter = ";";
+            public const string SecondaryDelimiter = "∟";
         }
     }
 }
