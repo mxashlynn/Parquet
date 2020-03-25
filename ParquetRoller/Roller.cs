@@ -165,14 +165,31 @@ namespace ParquetRoller
             switch (inCategory)
             {
                 case "all":
-                    var entireRange = new Range<ModelID>(All.CritterIDs.Minimum, All.ItemIDs.Maximum);
-                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings) // TODO This cast fails.
-                                                   .Concat(All.Biomes)
-                                                   .Concat(All.CraftingRecipes)
-                                                   .Concat(All.Interactions)
-                                                   .Concat(All.Parquets)
-                                                   .Concat(All.RoomRecipes)
-                                                   .Concat(All.Items));
+                    var entireRange = new List<Range<ModelID>>
+                    {
+                        // TODO Add new ranges here.
+                        All.CritterIDs,
+                        All.CharacterIDs,
+                        All.BiomeIDs,
+                        All.CraftingRecipeIDs,
+                        All.DialogueIDs,
+                        All.QuestIDs,
+                        All.MapChunkIDs,
+                        All.MapRegionIDs,
+                        All.FloorIDs,
+                        All.BlockIDs,
+                        All.FurnishingIDs,
+                        All.CollectibleIDs,
+                        All.RoomRecipeIDs,
+                        All.ItemIDs
+                    };
+                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings)
+                                                                .Concat(All.Biomes)
+                                                                .Concat(All.CraftingRecipes)
+                                                                .Concat(All.Interactions)
+                                                                .Concat(All.Parquets)
+                                                                .Concat(All.RoomRecipes)
+                                                                .Concat(All.Items));
                     break;
                 case "being":
                 case "beings":
