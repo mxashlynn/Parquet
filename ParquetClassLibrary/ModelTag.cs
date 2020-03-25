@@ -87,7 +87,7 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ModelTag)inText?.Trim(inRow?.Configuration.Escape ?? '"');
+            => (ModelTag)inText;
 
         /// <summary>
         /// Converts the given <see cref="ModelTag"/> to a record column.
@@ -98,7 +98,7 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
-                ? $"{inRow?.Configuration.Escape ?? '"'}{(string)tag}{inRow?.Configuration.Escape ?? '"'}"
+                ? (string)tag
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ModelTag)}.");
         #endregion
 

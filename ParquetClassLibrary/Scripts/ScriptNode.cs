@@ -130,7 +130,7 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ScriptNode"/> created from the <see langword="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ScriptNode)inText?.Trim(inRow?.Configuration.Escape ?? '"');
+            => (ScriptNode)inText;
 
         /// <summary>
         /// Converts the given <see cref="ScriptNode"/> to a record column.
@@ -141,7 +141,7 @@ namespace ParquetClassLibrary.Scripts
         /// <returns>The <see cref="ScriptNode"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
-                ? $"{inRow?.Configuration.Escape ?? '"'}{(string)node}{inRow?.Configuration.Escape ?? '"'}"
+                ? (string)node
                 : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ScriptNode)}.");
         #endregion
 
