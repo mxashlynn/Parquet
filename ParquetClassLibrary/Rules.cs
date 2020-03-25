@@ -95,7 +95,7 @@ namespace ParquetClassLibrary
             public const string DimensionalDelimiter = "×";
 
             /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>
-            public const string DimensionalTerminator = "=";
+            public const string DimensionalTerminator = "≡";
 
             /// <summary>Separates primitives within serialized <see cref="Vector2D"/>s and <see cref="Range{TElement}"/>s.</summary>
             public const string ElementDelimiter = "–";
