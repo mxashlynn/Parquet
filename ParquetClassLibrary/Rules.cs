@@ -101,7 +101,7 @@ namespace ParquetClassLibrary
             public const string ElementDelimiter = "–";
 
             /// <summary>Separates properties within a class when in serialization.</summary>
-            public const string InternalDelimiter = ":";
+            public const string InternalDelimiter = "·";
 
             /// <summary>Separates family and personal names within serialized <see cref="Beings.CharacterModel"/>s.</summary>
             public const string NameDelimiter = "|";
