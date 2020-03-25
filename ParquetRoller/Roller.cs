@@ -364,10 +364,10 @@ namespace ParquetRoller
                 return ExitCode.Success;
             }
 
-            var orderedWorkload = inWorkload.OrderBy(x => x.ID);
-
-            Console.WriteLine($"Minimum: {orderedWorkload.First().ID}");
-            Console.WriteLine($"Maximum: {orderedWorkload.Last().ID}");
+            foreach (var range in inWorkload.Bounds)
+            {
+                Console.WriteLine(range);
+            }
 
             return ExitCode.Success;
         }
