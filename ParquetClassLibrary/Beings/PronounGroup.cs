@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
@@ -137,7 +138,7 @@ namespace ParquetClassLibrary.Beings
         {
             Precondition.IsNotNull(inGroups);
 
-            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv", false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);

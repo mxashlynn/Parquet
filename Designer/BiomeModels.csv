@@ -1,4 +1,4 @@
-ID,Name,Description,Comment,Tier,ElevationCategory,IsLiquidBased,ParquetCriteria,EntryRequirements
+﻿ID,Name,Description,Comment,Tier,ElevationCategory,IsLiquidBased,ParquetCriteria,EntryRequirements
 -30000,Biome Test,Test,Test,1,LevelGround,True,,
 30000,Alpine,,,4,AboveGround,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
 30001,Cavern,,,3,BelowGround,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key

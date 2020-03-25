@@ -1,4 +1,4 @@
-ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,CollectionEffect,EffectAmount
+﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,CollectionEffect,EffectAmount
 -120000,4 Collectible Test Parquet,Test,Test,-150001,None,None,None,0
 120000,Flower,,,150000,None,None,Item,0
 120001,Pinecone,,,150001,Forested,None,Item,0

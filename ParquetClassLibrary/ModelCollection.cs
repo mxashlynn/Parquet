@@ -294,7 +294,7 @@ namespace ParquetClassLibrary
         internal void PutRecordsForType<TModelInner>()
             where TModelInner : TModel
         {
-            using var fileWriter = new StreamWriter(GetFilePath<TModelInner>());
+            using var fileWriter = new StreamWriter(GetFilePath<TModelInner>(), false, new UTF8Encoding(true, true));
             using var fileCSV = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
             fileCSV.Configuration.NewLine = NewLine.LF;
             fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
