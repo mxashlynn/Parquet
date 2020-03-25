@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inRecipeID">The <see cref="ModelID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
-                         int inEffectWhileHeld, int inEffectWhenUsed, ModelID inParquetID,
+                         ModelID inEffectWhileHeld, ModelID inEffectWhenUsed, ModelID inParquetID,
                          IEnumerable<ModelTag> inItemTags = null, ModelID? inRecipeID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
