@@ -446,8 +446,6 @@ ParquetClassLibrary.Rules.Recipes
 ParquetClassLibrary.Rules.Recipes.Craft
 ParquetClassLibrary.Rules.Recipes.Room
 ParquetClassLibrary.Scripts.Commands
-ParquetClassLibrary.Scripts.Commands.LongForm
-ParquetClassLibrary.Scripts.Commands.ShortForm
 ParquetClassLibrary.Scripts.ScriptModel
 ParquetClassLibrary.Scripts.ScriptModel.GetActions() -> System.Collections.Generic.IEnumerable<System.Action>
 ParquetClassLibrary.Scripts.ScriptModel.Nodes.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Scripts.ScriptNode>
@@ -510,31 +508,19 @@ const ParquetClassLibrary.Rules.Dimensions.ParquetsPerRegion = 64 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MaxWalkableSpaces = 121 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinPerimeterSpaces = 12 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinWalkableSpaces = 4 -> int
-const ParquetClassLibrary.Scripts.Commands.LongForm.Alert = "ALERT" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.GiveItem = "GIVEITEM" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.GiveQuest = "GIVEQUEST" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.Jump = "JUMP" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.JumpIf = "JUMPIF" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.Put = "PUT" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.Say = "SAY" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.SetBehavior = "SETBEHAVIOR" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.SetDialogue = "SETDIALOGUE" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.SetPronoun = "SETPRONOUN" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.SetVar = "SETVAR" -> string
-const ParquetClassLibrary.Scripts.Commands.LongForm.ShowLocation = "SHOWLOCATION" -> string
 const ParquetClassLibrary.Scripts.Commands.None = "" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.Alert = "A" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.GiveItem = "I" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.GiveQuest = "Q" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.Jump = "J" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.JumpIf = "F" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.Put = "P" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.Say = "S" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.SetBehavior = "B" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.SetDialogue = "D" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.SetPronoun = "R" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.SetVar = "V" -> string
-const ParquetClassLibrary.Scripts.Commands.ShortForm.ShowLocation = "L" -> string
+const ParquetClassLibrary.Scripts.Commands.Alert = "A" -> string
+const ParquetClassLibrary.Scripts.Commands.GiveItem = "I" -> string
+const ParquetClassLibrary.Scripts.Commands.GiveQuest = "Q" -> string
+const ParquetClassLibrary.Scripts.Commands.Jump = "J" -> string
+const ParquetClassLibrary.Scripts.Commands.JumpIf = "F" -> string
+const ParquetClassLibrary.Scripts.Commands.Put = "P" -> string
+const ParquetClassLibrary.Scripts.Commands.Say = "S" -> string
+const ParquetClassLibrary.Scripts.Commands.SetBehavior = "B" -> string
+const ParquetClassLibrary.Scripts.Commands.SetDialogue = "D" -> string
+const ParquetClassLibrary.Scripts.Commands.SetPronoun = "R" -> string
+const ParquetClassLibrary.Scripts.Commands.SetVar = "V" -> string
+const ParquetClassLibrary.Scripts.Commands.ShowLocation = "L" -> string
 override ParquetClassLibrary.Beings.BeingStatus.ToString() -> string
 override ParquetClassLibrary.Beings.PronounGroup.ToString() -> string
 override ParquetClassLibrary.Crafts.StrikePanel.Equals(object obj) -> bool
