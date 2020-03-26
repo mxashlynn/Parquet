@@ -68,6 +68,7 @@ namespace ParquetClassLibrary.Scripts
             {
                 Commands.None => () => { },
                 Commands.Alert => () => Console.WriteLine($"UI: [{inTargetText}]"),
+                Commands.ClearFlag => () => Console.WriteLine($"The flag {inTargetText} is cleared."),
                 Commands.GiveItem => () => Console.WriteLine($"{inTargetText} is awarded the {inSourceText}"),
                 Commands.GiveQuest => () => Console.WriteLine($"{inTargetText} is tasked with {inSourceText}"),
                 Commands.Jump => () => Console.WriteLine($"Load the script {inTargetText}."),
@@ -77,7 +78,7 @@ namespace ParquetClassLibrary.Scripts
                 Commands.SetBehavior => () => Console.WriteLine($"{inTargetText} begins behaving {inSourceText}"),
                 Commands.SetDialogue => () => Console.WriteLine($"{inTargetText} can now say {inSourceText}"),
                 Commands.SetPronoun => () => Console.WriteLine($"{inTargetText} uses the pronouns {inSourceText}"),
-                Commands.SetVar => () => Console.WriteLine($"The variable {inSourceText} is set to {inTargetText}"),
+                Commands.SetFlag => () => Console.WriteLine($"The flag {inTargetText} is raised."),
                 Commands.ShowLocation => () => Console.WriteLine($"Highlight {inTargetText}"),
                 _ => throw new InvalidOperationException($"Unknown {nameof(ScriptNode)} {inCommandText}."),
             };
