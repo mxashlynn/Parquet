@@ -109,15 +109,29 @@ ParquetClassLibrary.IGrid<TElement>.Columns.get -> int
 ParquetClassLibrary.IGrid<TElement>.Rows.get -> int
 ParquetClassLibrary.IGrid<TElement>.this[int y, int x].get -> TElement
 ParquetClassLibrary.Interactions.DialogueModel
-ParquetClassLibrary.Interactions.DialogueModel.DialogueModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inStartCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inSteps, string inOutcome) -> void
+ParquetClassLibrary.Interactions.DialogueModel.DialogueModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisites, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSteps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcome, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inParticipants) -> void
+ParquetClassLibrary.Interactions.DialogueModel.Participants.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Interactions.InteractionModel
-ParquetClassLibrary.Interactions.InteractionModel.InteractionModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inStartCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inSteps, string inOutcome) -> void
-ParquetClassLibrary.Interactions.InteractionModel.Outcome.get -> string
-ParquetClassLibrary.Interactions.InteractionModel.StartCriteria.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
-ParquetClassLibrary.Interactions.InteractionModel.Steps.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.Interactions.InteractionModel.InteractionModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisites, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSteps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcome) -> void
+ParquetClassLibrary.Interactions.InteractionModel.Outcome.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Interactions.InteractionModel.Prerequisites.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Interactions.InteractionModel.Steps.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Interactions.InteractionStatus
+ParquetClassLibrary.Interactions.InteractionStatus.DataVersion.get -> string
+ParquetClassLibrary.Interactions.InteractionStatus.InteractionDefinition.get -> ParquetClassLibrary.Interactions.InteractionModel
+ParquetClassLibrary.Interactions.InteractionStatus.InteractionStatus(ParquetClassLibrary.Interactions.InteractionModel inInteractionDefinition, ParquetClassLibrary.Interactions.RunState inState, int inProgramCounter) -> void
+ParquetClassLibrary.Interactions.InteractionStatus.ProgramCounter.get -> int
+ParquetClassLibrary.Interactions.InteractionStatus.ProgramCounter.set -> void
+ParquetClassLibrary.Interactions.InteractionStatus.Revision.get -> int
+ParquetClassLibrary.Interactions.InteractionStatus.State.get -> ParquetClassLibrary.Interactions.RunState
+ParquetClassLibrary.Interactions.InteractionStatus.State.set -> void
 ParquetClassLibrary.Interactions.QuestModel
 ParquetClassLibrary.Interactions.QuestModel.CompletionRequirements.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Interactions.QuestModel.QuestModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inStartCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inSteps, string inOutcome, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inCompletionRequirements) -> void
+ParquetClassLibrary.Interactions.RunState
+ParquetClassLibrary.Interactions.RunState.Completed = 2 -> ParquetClassLibrary.Interactions.RunState
+ParquetClassLibrary.Interactions.RunState.InProgress = 1 -> ParquetClassLibrary.Interactions.RunState
+ParquetClassLibrary.Interactions.RunState.Unstarted = 0 -> ParquetClassLibrary.Interactions.RunState
 ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Axe = 2 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Bucket = 4 -> ParquetClassLibrary.Items.GatheringTool
@@ -482,6 +496,7 @@ abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLi
 const ParquetClassLibrary.AssemblyInfo.LibraryVersion = "0.1.0.0" -> string
 const ParquetClassLibrary.AssemblyInfo.SupportedBeingDataVersion = "0.1.0" -> string
 const ParquetClassLibrary.AssemblyInfo.SupportedMapDataVersion = "0.1.0" -> string
+const ParquetClassLibrary.AssemblyInfo.SupportedScriptDataVersion = "0.1.0" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "%their%" -> string
 const ParquetClassLibrary.Beings.PronounGroup.ObjectiveTag = "%them%" -> string
@@ -508,18 +523,19 @@ const ParquetClassLibrary.Rules.Dimensions.ParquetsPerRegion = 64 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MaxWalkableSpaces = 121 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinPerimeterSpaces = 12 -> int
 const ParquetClassLibrary.Rules.Recipes.Room.MinWalkableSpaces = 4 -> int
-const ParquetClassLibrary.Scripts.Commands.None = "" -> string
 const ParquetClassLibrary.Scripts.Commands.Alert = "A" -> string
+const ParquetClassLibrary.Scripts.Commands.ClearFlag = "C" -> string
 const ParquetClassLibrary.Scripts.Commands.GiveItem = "I" -> string
 const ParquetClassLibrary.Scripts.Commands.GiveQuest = "Q" -> string
 const ParquetClassLibrary.Scripts.Commands.Jump = "J" -> string
 const ParquetClassLibrary.Scripts.Commands.JumpIf = "F" -> string
+const ParquetClassLibrary.Scripts.Commands.None = "" -> string
 const ParquetClassLibrary.Scripts.Commands.Put = "P" -> string
 const ParquetClassLibrary.Scripts.Commands.Say = "S" -> string
 const ParquetClassLibrary.Scripts.Commands.SetBehavior = "B" -> string
 const ParquetClassLibrary.Scripts.Commands.SetDialogue = "D" -> string
+const ParquetClassLibrary.Scripts.Commands.SetFlag = "G" -> string
 const ParquetClassLibrary.Scripts.Commands.SetPronoun = "R" -> string
-const ParquetClassLibrary.Scripts.Commands.SetVar = "V" -> string
 const ParquetClassLibrary.Scripts.Commands.ShowLocation = "L" -> string
 override ParquetClassLibrary.Beings.BeingStatus.ToString() -> string
 override ParquetClassLibrary.Beings.PronounGroup.ToString() -> string
@@ -528,6 +544,7 @@ override ParquetClassLibrary.Crafts.StrikePanel.GetHashCode() -> int
 override ParquetClassLibrary.Crafts.StrikePanel.ToString() -> string
 override ParquetClassLibrary.GridConverter<TElement, TGrid>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override ParquetClassLibrary.GridConverter<TElement, TGrid>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override ParquetClassLibrary.Interactions.InteractionStatus.ToString() -> string
 override ParquetClassLibrary.Items.Inventory.ToString() -> string
 override ParquetClassLibrary.Items.InventorySlot.ToString() -> string
 override ParquetClassLibrary.Location.Equals(object obj) -> bool
@@ -656,8 +673,6 @@ static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room
 static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
 static ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount.get -> ParquetClassLibrary.Range<int>
 static ParquetClassLibrary.Rules.Recipes.Craft.ProductCount.get -> ParquetClassLibrary.Range<int>
-static ParquetClassLibrary.Scripts.Commands.ToLongForm(string inCommandText) -> string
-static ParquetClassLibrary.Scripts.Commands.ToShortForm(string inCommandText) -> string
 static ParquetClassLibrary.Scripts.ScriptNode.Construct(string inCommandText, string inSourceText, string inTargetText) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string

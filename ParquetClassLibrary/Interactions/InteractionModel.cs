@@ -39,18 +39,17 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inName">Player-friendly name of the <see cref="InteractionModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="InteractionModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
-        /// <param name="inStartCriteria">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
+        /// <param name="inPrerequisites">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                                   IEnumerable<ModelID> inStartCriteria, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
+                                   IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
-            Precondition.AreInRange(inStartCriteria, All.ScriptIDs, nameof(inStartCriteria));
+            Precondition.AreInRange(inPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
             Precondition.AreInRange(inSteps, All.ScriptIDs, nameof(inSteps));
             Precondition.AreInRange(inOutcome, All.ScriptIDs, nameof(inOutcome));
 
-            Prerequisites = inStartCriteria.ToList();
+            Prerequisites = inPrerequisites.ToList();
             Steps = inSteps.ToList();
             Outcome = inOutcome.ToList();
         }
