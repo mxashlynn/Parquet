@@ -53,8 +53,18 @@ namespace ParquetClassLibrary.Scripts
         public Action GetAction()
         {
             (var commandText, var sourceText, var targetText) = this;
-            return ParseCommand(commandText.ToUpperInvariant(), sourceText, targetText);
+            return ParseCommand(commandText, sourceText, targetText);
         }
+
+        /// <summary>
+        /// Ensures that the command text is compared in shortform.
+        /// </summary>
+        /// <param name="inCommandText">The name of the command.</param>
+        /// <returns>The equivalent short form of the given command name.</returns>
+        private static string NormalizeCommand(string inCommandText)
+            => inCommandText?.Length > 1
+                ? Commands.ToShortForm(inCommandText.ToUpperInvariant())
+                : inCommandText.ToUpperInvariant();
 
         /// <summary>
         /// Transforms the given texts into an <see cref="Action"/> to be invoked.
@@ -64,20 +74,21 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inTargetText">The target or object of the command.</param>
         /// <returns>The action to perform.</returns>
         private static Action ParseCommand(string inCommandText, string inSourceText, string inTargetText)
-            => inCommandText switch
+            => NormalizeCommand(inCommandText) switch
             {
-                Commands.Alert => () => Console.WriteLine($"UI: [{inTargetText}]"),
-                Commands.CharGiveItem => () => Console.WriteLine($"{inTargetText} is awarded the {inSourceText}"),
-                Commands.CharGiveQuest => () => Console.WriteLine($"{inTargetText} is tasked with {inSourceText}"),
-                Commands.CharSetDialogue => () => Console.WriteLine($"{inTargetText} can now say {inSourceText}"),
-                Commands.CharSetBehavior => () => Console.WriteLine($"{inTargetText} begins behaving {inSourceText}"),
-                Commands.CharSetPronoun => () => Console.WriteLine($"{inTargetText} uses the pronouns {inSourceText}"),
-                Commands.Jump => () => Console.WriteLine($"Load the script {inTargetText}."),
-                Commands.JumpIf => () => Console.WriteLine($"If {inSourceText}, then Load the script {inTargetText}."),
-                Commands.Put => () => Console.WriteLine($"Place {inSourceText} at {inTargetText}"),
-                Commands.Say => () => Console.WriteLine($"{inSourceText}: {inTargetText}"),
-                Commands.Set => () => Console.WriteLine($"The variable {inSourceText} is set to {inTargetText}"),
-                Commands.ShowLocation => () => Console.WriteLine($"Highlight {inTargetText}"),
+                Commands.None => () => { },
+                Commands.ShortForm.Alert => () => Console.WriteLine($"UI: [{inTargetText}]"),
+                Commands.ShortForm.GiveItem => () => Console.WriteLine($"{inTargetText} is awarded the {inSourceText}"),
+                Commands.ShortForm.GiveQuest => () => Console.WriteLine($"{inTargetText} is tasked with {inSourceText}"),
+                Commands.ShortForm.Jump => () => Console.WriteLine($"Load the script {inTargetText}."),
+                Commands.ShortForm.JumpIf => () => Console.WriteLine($"If {inSourceText}, then Load the script {inTargetText}."),
+                Commands.ShortForm.Put => () => Console.WriteLine($"Place {inSourceText} at {inTargetText}"),
+                Commands.ShortForm.Say => () => Console.WriteLine($"{inSourceText}: {inTargetText}"),
+                Commands.ShortForm.SetBehavior => () => Console.WriteLine($"{inTargetText} begins behaving {inSourceText}"),
+                Commands.ShortForm.SetDialogue => () => Console.WriteLine($"{inTargetText} can now say {inSourceText}"),
+                Commands.ShortForm.SetPronoun => () => Console.WriteLine($"{inTargetText} uses the pronouns {inSourceText}"),
+                Commands.ShortForm.SetVar => () => Console.WriteLine($"The variable {inSourceText} is set to {inTargetText}"),
+                Commands.ShortForm.ShowLocation => () => Console.WriteLine($"Highlight {inTargetText}"),
                 _ => throw new InvalidOperationException($"Unknown {nameof(ScriptNode)} {inCommandText}."),
             };
         #endregion
