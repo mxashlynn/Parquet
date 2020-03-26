@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Interactions
 {
@@ -14,21 +15,19 @@ namespace ParquetClassLibrary.Interactions
         /// Describes the criteria for begining this interaction.
         /// </summary>
         [Index(4)]
-        public IReadOnlyList<ModelTag> StartCriteria { get; }
+        public IReadOnlyList<ModelID> Prerequisites { get; }
 
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        // TODO This is not actually a list of ModelTags, we need a new InteractionStep class.
         [Index(5)]
-        public IReadOnlyList<ModelTag> Steps { get; }
+        public IReadOnlyList<ModelID> Steps { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
         /// </summary>
-        // TODO This is not actually a string, not sure how we're going to handle this yet.
         [Index(6)]
-        public string Outcome { get; }
+        public IReadOnlyList<ModelID> Outcome { get; }
         #endregion
 
         #region Initialization
@@ -44,12 +43,16 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inStatus">The current status of this <see cref="InteractionModel"/>.</param>
         protected InteractionModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                                   IEnumerable<ModelTag> inStartCriteria, IEnumerable<ModelTag> inSteps, string inOutcome)
+                                   IEnumerable<ModelID> inStartCriteria, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
-            StartCriteria = (inStartCriteria ?? Enumerable.Empty<ModelTag>()).ToList();
-            Steps = (inSteps ?? Enumerable.Empty<ModelTag>()).ToList();
-            Outcome = inOutcome ?? "";
+            Precondition.AreInRange(inStartCriteria, All.ScriptIDs, nameof(inStartCriteria));
+            Precondition.AreInRange(inSteps, All.ScriptIDs, nameof(inSteps));
+            Precondition.AreInRange(inOutcome, All.ScriptIDs, nameof(inOutcome));
+
+            Prerequisites = inStartCriteria.ToList();
+            Steps = inSteps.ToList();
+            Outcome = inOutcome.ToList();
         }
         #endregion
     }
