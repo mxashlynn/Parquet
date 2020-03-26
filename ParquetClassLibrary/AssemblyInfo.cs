@@ -38,6 +38,22 @@ namespace ParquetClassLibrary
     public readonly struct AssemblyInfo
     {
         /// <summary>
+        /// Describes the version of the serialized <see cref="Beings.CharacterModel"/>
+        /// data that the class library understands.
+        /// </summary>
+        /// <remarks>
+        /// The version has the format "{Major}.{Minor}.{Build}".
+        /// <list type="number">
+        /// <item><term>Major</term>
+        /// <description>Breaking changes resulting in lost saves.</description></item>
+        /// <item><term>Minor</term>
+        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
+        /// <item><term>Build</term>
+        /// <description>Procedural updates that do not imply any changes.</description></item>
+        /// </remarks>
+        public const string SupportedBeingDataVersion = "0.1.0";
+
+        /// <summary>
         /// Describes the version of the serialized <see cref="Maps.MapModel"/>
         /// data that the class library understands.<para/>
         /// </summary>
@@ -54,7 +70,7 @@ namespace ParquetClassLibrary
         public const string SupportedMapDataVersion = "0.1.0";
 
         /// <summary>
-        /// Describes the version of the serialized <see cref="Beings.CharacterModel"/>
+        /// Describes the version of the serialized <see cref="Scripts.ScriptNode"/>
         /// data that the class library understands.
         /// </summary>
         /// <remarks>
@@ -67,7 +83,7 @@ namespace ParquetClassLibrary
         /// <item><term>Build</term>
         /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
-        public const string SupportedBeingDataVersion = "0.1.0";
+        public const string SupportedScriptDataVersion = "0.1.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>
