@@ -326,8 +326,6 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode ListPronouns(ModelCollection inWorkload)
         {
-            Console.WriteLine("> List pronoun groups.");
-
             All.LoadFromCSV();
 
             foreach (var pronounGroup in All.PronounGroups)
