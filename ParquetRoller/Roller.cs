@@ -165,14 +165,31 @@ namespace ParquetRoller
             switch (inCategory)
             {
                 case "all":
-                    var entireRange = new Range<ModelID>(All.CritterIDs.Minimum, All.ItemIDs.Maximum);
-                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings) // TODO This cast fails.
-                                                   .Concat(All.Biomes)
-                                                   .Concat(All.CraftingRecipes)
-                                                   .Concat(All.Interactions)
-                                                   .Concat(All.Parquets)
-                                                   .Concat(All.RoomRecipes)
-                                                   .Concat(All.Items));
+                    var entireRange = new List<Range<ModelID>>
+                    {
+                        // TODO Add new ranges here.
+                        All.CritterIDs,
+                        All.CharacterIDs,
+                        All.BiomeIDs,
+                        All.CraftingRecipeIDs,
+                        All.DialogueIDs,
+                        All.QuestIDs,
+                        All.MapChunkIDs,
+                        All.MapRegionIDs,
+                        All.FloorIDs,
+                        All.BlockIDs,
+                        All.FurnishingIDs,
+                        All.CollectibleIDs,
+                        All.RoomRecipeIDs,
+                        All.ItemIDs
+                    };
+                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings)
+                                                                .Concat(All.Biomes)
+                                                                .Concat(All.CraftingRecipes)
+                                                                .Concat(All.Interactions)
+                                                                .Concat(All.Parquets)
+                                                                .Concat(All.RoomRecipes)
+                                                                .Concat(All.Items));
                     break;
                 case "being":
                 case "beings":
@@ -245,8 +262,8 @@ namespace ParquetRoller
                     break;
                 case "collectible":
                 case "collectibles":
-                    IEnumerable<ParquetModel> Collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
-                    workload = new ModelCollection(All.CollectibleIDs, Collectibles);
+                    IEnumerable<ParquetModel> collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
+                    workload = new ModelCollection(All.CollectibleIDs, collectibles);
                     break;
                 case "room":
                 case "rooms":
@@ -362,10 +379,10 @@ namespace ParquetRoller
                 return ExitCode.Success;
             }
 
-            var orderedWorkload = inWorkload.OrderBy(x => x.ID);
-
-            Console.WriteLine($"Minimum: {orderedWorkload.First().ID}");
-            Console.WriteLine($"Maximum: {orderedWorkload.Last().ID}");
+            foreach (var range in inWorkload.Bounds)
+            {
+                Console.WriteLine(range);
+            }
 
             return ExitCode.Success;
         }

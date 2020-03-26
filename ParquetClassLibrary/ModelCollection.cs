@@ -42,7 +42,7 @@ namespace ParquetClassLibrary
         private IReadOnlyDictionary<ModelID, Model> Models { get; }
 
         /// <summary>The bounds within which all collected <see cref="Model"/>s must be defined.</summary>
-        private IReadOnlyList<Range<ModelID>> Bounds { get; }
+        public IReadOnlyList<Range<ModelID>> Bounds { get; }
         #endregion
 
         #region Initialization
