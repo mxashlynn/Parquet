@@ -13,8 +13,11 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>Display the given text as an alert by the user interface.</summary>
         public const string Alert = "A";
 
+        /// <summary>Calls the given <see cref="Beings.CharacterModel"/> to stand near another given <see cref="Beings.CharacterModel"/>.</summary>
+        public const string CallCharacter = "C";
+
         /// <summary>Lower the given flag.</summary>
-        public const string ClearFlag = "C";
+        public const string ClearFlag = "!";
 
         /// <summary>Allot the given number and type of <see cref="Items.ItemModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string GiveItem = "I";
@@ -44,7 +47,7 @@ namespace ParquetClassLibrary.Scripts
         public const string SetPronoun = "R";
 
         /// <summary>Raise the given flag.</summary>
-        public const string SetFlag = "G";
+        public const string SetFlag = "=";
 
         /// <summary>Highlight the given <see cref="Location"/> via the UI, perhaps by camera movement or particle effect.</summary>
         public const string ShowLocation = "L";

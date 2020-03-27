@@ -1,6 +1,6 @@
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Interactions
+namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
     /// Models the status of an <see cref="InteractionModel"/>.

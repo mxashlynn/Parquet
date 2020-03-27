@@ -49,7 +49,6 @@ The solution contains several related projects, each of which is structured so t
     - **Items**.
     - **Maps**.
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/blob/master/Documentation/3-How_Parquets_Work.md).
-    - **Quests**.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
     - **Scripts**, used to define Interactions and Item effect.
     - **Utilities** of which Precondition is very frequently used.

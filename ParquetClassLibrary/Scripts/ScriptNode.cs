@@ -68,6 +68,7 @@ namespace ParquetClassLibrary.Scripts
             {
                 Commands.None => () => { },
                 Commands.Alert => () => Console.WriteLine($"UI: [{inTargetText}]"),
+                Commands.CallCharacter => () => Console.WriteLine($"The character {inSourceText} stands near the character {inTargetText}."),
                 Commands.ClearFlag => () => Console.WriteLine($"The flag {inTargetText} is cleared."),
                 Commands.GiveItem => () => Console.WriteLine($"{inTargetText} is awarded the {inSourceText}"),
                 Commands.GiveQuest => () => Console.WriteLine($"{inTargetText} is tasked with {inSourceText}"),

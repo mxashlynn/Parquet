@@ -3,12 +3,13 @@ using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Utilities;
 
-namespace ParquetClassLibrary.Interactions
+namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
-    /// Models input, output, and process of an interaction between <see cref="Beings.BeingModel"/>s.
+    /// Models input, output, and process of an in-game interaction.
+    /// This could be a quest, cutscene, environmental effect, or dialogue between <see cref="Beings.CharacterModel"/>s
     /// </summary>
-    public abstract class InteractionModel : Model
+    public class InteractionModel : Model
     {
         #region Characteristics
         /// <summary>
@@ -41,8 +42,8 @@ namespace ParquetClassLibrary.Interactions
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
         /// <param name="inPrerequisites">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        protected InteractionModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                                   IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
+        public InteractionModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
+                                IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Precondition.AreInRange(inPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
@@ -52,6 +53,8 @@ namespace ParquetClassLibrary.Interactions
             Prerequisites = inPrerequisites.ToList();
             Steps = inSteps.ToList();
             Outcome = inOutcome.ToList();
+
+            // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
         }
         #endregion
     }
