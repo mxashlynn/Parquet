@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Scripts
 
         #region Characteristics
         /// <summary>Backing type for the <see cref="ScriptNode"/>.</summary>
-        private string NodeContent = "";
+        private string nodeContent = "";
         #endregion
 
         #region Construction and Destruction
@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Scripts
 
         public void Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText)
         {
-            var contents = NodeContent.Split(Rules.Delimiters.InternalDelimiter);
+            var contents = nodeContent.Split(Rules.Delimiters.InternalDelimiter);
             outCommandText = contents[0];
             outSourceText = contents[1];
             outTargetText = contents[2];
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Scripts
         /// <returns>The given value as a tag.</returns>
         /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ScriptNode(string inValue)
-            => inValue;
+            => new ScriptNode { nodeContent = inValue };
 
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
@@ -101,7 +101,7 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inNode">Any tag.</param>
         /// <returns>The tag's value.</returns>
         public static implicit operator string(ScriptNode inNode)
-            => inNode?.NodeContent ?? "";
+            => inNode?.nodeContent ?? "";
         #endregion
 
         #region IComparable Implementation
@@ -117,7 +117,7 @@ namespace ParquetClassLibrary.Scripts
         ///     Greater than zero indicates that the current instance follows the given <see cref="ScriptNode"/> in the sort order.
         /// </returns>
         public int CompareTo(ScriptNode inTag)
-            => string.Compare(NodeContent, inTag?.NodeContent ?? "", StringComparison.Ordinal);
+            => string.Compare(nodeContent, inTag?.nodeContent ?? "", StringComparison.Ordinal);
         #endregion
 
         #region ITypeConverter Implementation
@@ -154,7 +154,7 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => NodeContent;
+            => nodeContent;
         #endregion
     }
 }
