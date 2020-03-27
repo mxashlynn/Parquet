@@ -178,20 +178,23 @@ namespace ParquetClassLibrary.Maps
             {
                 return new ChunkType(true);
             }
-            else try
+            else
             {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                try
+                {
+                    var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
-                var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
-                var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-                var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
-                var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+                    var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
+                    var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                    var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
+                    var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
-                return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkType)}: {e}");
+                    return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
+                }
+                catch (Exception e)
+                {
+                    throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkType)}: {e}");
+                }
             }
         }
         #endregion
