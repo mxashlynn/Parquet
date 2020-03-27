@@ -27,9 +27,7 @@ namespace ParquetClassLibrary.Beings
                             ModelID inNativeBiome, ModelID inPrimaryBehavior,
                             IEnumerable<ModelID> inAvoids = null, IEnumerable<ModelID> inSeeks = null)
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
-        {
-            Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));
-        }
+            => Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));
         #endregion
     }
 }

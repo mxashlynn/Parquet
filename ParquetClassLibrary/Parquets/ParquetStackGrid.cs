@@ -53,9 +53,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <param name="inParquetStackArray">The array containing the subregion.</param>
         public ParquetStackGrid(ParquetStack[,] inParquetStackArray)
-        {
-            ParquetStacks = inParquetStackArray;
-        }
+            => ParquetStacks = inParquetStackArray;
         #endregion
 
         #region IGrid Implementation
