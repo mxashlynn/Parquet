@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
         public List<ModelID> KnownCraftingRecipes { get; }
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</summary>
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</summary>
         public List<ModelID> Quests { get; }
 
         /// <summary>This <see cref="CharacterModel"/>'s set of belongings.</summary>
@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inKnownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
         /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
-        /// <param name="inQuests">The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
+        /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
         public BeingStatus(BeingModel inBeingDefinition, ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
                            int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed,
@@ -113,7 +113,7 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(inKnownParquets));
             Precondition.AreInRange(nonNullRoomRecipes, All.RoomRecipeIDs, nameof(inKnownRoomRecipes));
             Precondition.AreInRange(nonNullCraftingRecipes, All.CraftingRecipeIDs, nameof(inKnownCraftingRecipes));
-            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(inQuests));
+            Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(inQuests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inInventory));
 
             BeingDefinition = inBeingDefinition;

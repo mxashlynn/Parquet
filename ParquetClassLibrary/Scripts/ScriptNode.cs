@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Scripts
             => (ScriptNode)
                 $"{inCommandText}{Rules.Delimiters.InternalDelimiter}" +
                 $"{inSourceText}{Rules.Delimiters.InternalDelimiter}" +
-                $"{inTargetText}{Rules.Delimiters.InternalDelimiter}";
+                $"{inTargetText}";
 
         public void Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText)
         {

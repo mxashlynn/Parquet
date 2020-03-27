@@ -35,16 +35,15 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>
         /// Initializes a new instance of the <see cref="InteractionModel"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the derived type's <see cref="ModelID"/> is defined.</param>
         /// <param name="inID">Unique identifier for the <see cref="InteractionModel"/>.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the <see cref="InteractionModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="InteractionModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
         /// <param name="inPrerequisites">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        public InteractionModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
+        public InteractionModel(ModelID inID, string inName, string inDescription, string inComment,
                                 IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
-            : base(inBounds, inID, inName, inDescription, inComment)
+            : base(All.InteractionIDs, inID, inName, inDescription, inComment)
         {
             Precondition.AreInRange(inPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
             Precondition.AreInRange(inSteps, All.ScriptIDs, nameof(inSteps));

@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inDescription">Player-friendly description of the <see cref="ScriptModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="ScriptModel"/>.</param>
         /// <param name="inNodes">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        protected ScriptModel(ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ScriptNode> inNodes)
+        public ScriptModel(ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ScriptNode> inNodes)
             : base(All.ScriptIDs, inID, inName, inDescription, inComment)
             => Nodes = (inNodes ?? Enumerable.Empty<ScriptNode>()).ToList();
         #endregion

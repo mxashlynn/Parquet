@@ -81,7 +81,8 @@ namespace ParquetClassLibrary.Beings
             var nonNullDialogue = inStartingDialogue ?? Enumerable.Empty<ModelID>();
             var nonNullInventory = inStartingInventory ?? Enumerable.Empty<ModelID>();
 
-            Precondition.AreInRange(nonNullQuests, All.QuestIDs, nameof(inStartingQuests));
+            Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(inStartingQuests));
+            Precondition.AreInRange(inStartingDialogue, All.InteractionIDs, nameof(inStartingDialogue));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inStartingInventory));
             Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
