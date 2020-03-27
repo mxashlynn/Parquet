@@ -469,7 +469,7 @@ namespace ParquetClassLibrary
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
-            var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(RoomRecipeIDs);
+            var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
 
             InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, scripts, items);
