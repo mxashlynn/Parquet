@@ -363,6 +363,7 @@ namespace ParquetClassLibrary
                 { typeof(Range<ModelID>), Range<ModelID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
+                { typeof(ScriptNode), ScriptNode.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
                 { typeof(Vector2D), Vector2D.ConverterFactory },
                 #endregion
@@ -373,11 +374,13 @@ namespace ParquetClassLibrary
                 { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IEnumerable<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IReadOnlyList<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
                 { typeof(List<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 #endregion
 
