@@ -36,7 +36,7 @@ namespace ParquetClassLibrary
 
             if (series.Count == 0)
             {
-                return string.Empty;
+                return "";
             }
 
             var result = new StringBuilder();

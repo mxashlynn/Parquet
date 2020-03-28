@@ -90,7 +90,7 @@ namespace ParquetClassLibrary.Beings
             PersonalName = names[0];
             FamilyName = names.Length > 1
                 ? names[1]
-                : string.Empty;
+                : "";
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuests = nonNullQuests.ToList();

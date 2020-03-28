@@ -31,7 +31,7 @@ namespace ParquetClassLibrary
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="ModelTag"/>s.</summary>
-        public static readonly ModelTag None = string.Empty;
+        public static readonly ModelTag None = "";
         #endregion
 
         #region Characteristics

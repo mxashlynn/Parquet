@@ -41,7 +41,7 @@ namespace ParquetClassLibrary
 
             if (grid.Count < 1)
             {
-                return string.Empty;
+                return "";
             }
 
             var result = new StringBuilder();

@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Scripts
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="ScriptNode"/>s.</summary>
-        public static readonly ScriptNode None = string.Empty;
+        public static readonly ScriptNode None = "";
         #endregion
 
         #region Characteristics
