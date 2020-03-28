@@ -166,13 +166,11 @@ namespace ParquetRoller
                 case "all":
                     var entireRange = new List<Range<ModelID>>
                     {
-                        // TODO Add new ranges here.
                         All.CritterIDs,
                         All.CharacterIDs,
                         All.BiomeIDs,
                         All.CraftingRecipeIDs,
-                        All.DialogueIDs,
-                        All.QuestIDs,
+                        All.InteractionIDs,
                         All.MapChunkIDs,
                         All.MapRegionIDs,
                         All.FloorIDs,
@@ -180,6 +178,7 @@ namespace ParquetRoller
                         All.FurnishingIDs,
                         All.CollectibleIDs,
                         All.RoomRecipeIDs,
+                        All.ScriptIDs,
                         All.ItemIDs
                     };
                     workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings)
