@@ -106,6 +106,9 @@ namespace ParquetClassLibrary
             /// <summary>Separates family and personal names within serialized <see cref="Beings.CharacterModel"/>s.</summary>
             public const string NameDelimiter = "§";
 
+            /// <summary>Marks out tags that need to be replaced with pronouns from a <see cref="Beings.PronounGroup"/>s.</summary>
+            public const string PronounDelimiter = "|";
+
             /// <summary>Separates objects within collections.</summary>
             public const string SecondaryDelimiter = "∟";
         }
