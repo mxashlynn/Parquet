@@ -432,7 +432,7 @@ namespace ParquetRoller
                 }
             }
 
-            foreach (var modelTag in allTags.Distinct())
+            foreach (var modelTag in allTags)
             {
                 Console.WriteLine(modelTag);
             }
