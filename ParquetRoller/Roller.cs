@@ -413,9 +413,31 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListTags(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            HashSet<ModelTag> allTags = new HashSet<ModelTag>();
+
+            foreach (var model in inWorkload)
+            {
+                foreach (var modelTag in model.GetAllTags())
+                {
+                    if (!allTags.Any(tag => tag.CompareTo(modelTag) == 0))
+                    {
+                        allTags.Add(modelTag);
+                    }
+                }
+            }
+
+            foreach (var modelTag in allTags)
+            {
+                Console.WriteLine(modelTag);
+            }
+
+            return ExitCode.Success;
         }
 
         /// <summary>
