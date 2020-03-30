@@ -95,5 +95,16 @@ namespace ParquetClassLibrary.Items
             RecipeID = nonNullCraftingRecipeID;
         }
         #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Returns a collection of all <see cref="ModelTag"/>s the <see cref="Model"/> has applied to it. Classes inheriting from <see cref="Model"/> that include <see cref="ModelTag"/> should override accordingly.
+        /// </summary>
+        /// <returns>List of all <see cref="ModelTag"/>s.</returns>
+        public override IEnumerable<ModelTag> GetAllTags()
+        {
+            return base.GetAllTags().Union(ItemTags);
+        }
+        #endregion
     }
 }

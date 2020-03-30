@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Utilities;
@@ -55,6 +57,17 @@ namespace ParquetClassLibrary.Parquets
             ItemID = inItemID;
             AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? ModelTag.None : inAddsToBiome;
             AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? ModelTag.None : inAddsToRoom;
+        }
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Returns a collection of all <see cref="ModelTag"/>s the <see cref="Model"/> has applied to it. Classes inheriting from <see cref="Model"/> that include <see cref="ModelTag"/> should override accordingly.
+        /// </summary>
+        /// <returns>List of all <see cref="ModelTag"/>s.</returns>
+        public override IEnumerable<ModelTag> GetAllTags()
+        {
+            return base.GetAllTags().Union(new List<ModelTag>() { AddsToBiome, AddsToRoom });
         }
         #endregion
     }

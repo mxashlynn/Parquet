@@ -27,13 +27,79 @@ namespace ParquetRoller
 
         #region Console Messages
         /// <summary>What to display when roller is started without any arguments.</summary>
-        private static string DefaultMessage { get; } = "Usage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\n    For information on properties and categories consult the detailed help.\n";
+        private static string DefaultMessage { get; } =
+@"Usage: roller (command)
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help                         Display detailed help.
+    -v|version                      Display version information.
+    -t|templates                    Write CSV templates to current directory.
+    -r|roll                         Prepare CSVs in current directory for use.
+    -p|pronouns                     List all defined pronoun groups.
+    -l|list (property) [category]   Inspect CSV properties and echo results.
+
+    For information on properties and categories consult the detailed help.
+";
 
         /// <summary>Displays roller's current version, and various library-related version strings.</summary>
-        private static string VersionMessage { get; } = $"Version:\n    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}\n    Parquet     {AssemblyInfo.LibraryVersion}\n    Being Data  {AssemblyInfo.SupportedBeingDataVersion}\n\n    Map Data    {AssemblyInfo.SupportedMapDataVersion}\n    Script Data  {AssemblyInfo.SupportedScriptDataVersion}\n";
+        private static string VersionMessage { get; } =
+$@"Version:
+    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}
+    Parquet     {AssemblyInfo.LibraryVersion}
+    Map Data    {AssemblyInfo.SupportedMapDataVersion}
+    Being Data  {AssemblyInfo.SupportedBeingDataVersion}
+";
 
         /// <summary>A detailed help message explaining how to use roller.</summary>
-        private static string HelpMessage { get; } = $"    Roller is a tool for working with Parquet configuration files.\n    Parquet uses comma-separated value (CSV) files for configuration.\n    Roller provides a quick way to examine the content of existing CSV files, to\n    generate blank CSV files, and to prepare existing CSV files for use in-game.\n\nUsage: roller (command)\nUsage: roller list (property) [category]\n\nCommands:\n    -h|help                         Display detailed help.\n    -v|version                      Display version information.\n    -t|templates                    Write CSV templates to current directory.\n    -r|roll                         Prepare CSVs in current directory for use.\n    -p|pronouns                     List all defined pronoun groups.\n    -l|list (property) [category]   Inspect CSV properties and echo results.\n\nProperties:\n    ranges            Model ID ranges valid for the given category.\n    maxids            The largest entity ID in use in the given category.\n    tags              All entity tags referenced in the given category.\n    names             All entity names referenced in the given category.\n    collisions        Any duplicate names used in the given category.\n\nCategories:\n    all               Everything, the default.  This can be a long listing.\n    beings            All beings.\n      critters        Only critter beings.\n      character       Only character beings.\n    biomes            All biomes.\n    crafts            All crafting recipes.\n    interactions      All interactions.\n    items             All items.\n      p-items         Only items that correspond to parquets.\n      n-items         Only items that don't correspond to parquets.\n    parquets          All parquets.\n      floors          Only floor parquets.\n      blocks          Only block parquets.\n      furnishings     Only furnishing parquets.\n      collectibles    Only collectible parquets.\n    rooms             All room recipes.\n\n    Checking for name collisions is especially useful because they can cause\n    runtime errors.\n\n    \"Roller -- The Best Alternative to a 10-Pound Mallet!\"";
+        private static string HelpMessage { get; } =
+@"    Roller is a tool for working with Parquet configuration files.
+    Parquet uses comma-separated value (CSV) files for configuration.
+    Roller provides a quick way to examine the content of existing CSV files, to
+    generate blank CSV files, and to prepare existing CSV files for use in-game.
+
+Usage: roller (command)
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help                         Display detailed help.
+    -v|version                      Display version information.
+    -t|templates                    Write CSV templates to current directory.
+    -r|roll                         Prepare CSVs in current directory for use.
+    -p|pronouns                     List all defined pronoun groups.
+    -l|list (property) [category]   Inspect CSV properties and echo results.
+
+Properties:
+    ranges            Model ID ranges valid for the given category.
+    maxids            The largest entity ID in use in the given category.
+    tags              All entity tags referenced in the given category.
+    names             All entity names referenced in the given category.
+    collisions        Any duplicate names used in the given category.
+
+Categories:
+    all               Everything, the default.  This can be a long listing.
+    beings            All beings.
+      critters        Only critter beings.
+      characters      Only character beings.
+    biomes            All biomes.
+    crafts            All crafting recipes.
+    interactions      All interactions.
+      dialgoues       Only dialogue interactions.
+      quests          Only quest interactions.
+    items             All items.
+      p-items         Only items that correspond to parquets.
+      n-items         Only items that don't correspond to parquets.
+    parquets          All parquets.
+      floors          Only floor parquets.
+      blocks          Only block parquets.
+      furnishings     Only furnishing parquets.
+      collectibles    Only collectible parquets.
+    rooms             All room recipes.
+
+Checking for name collisions is especially useful because they can cause
+runtime errors.
+
+    'Roller -- The Best Alternative to a 10-Pound Mallet!'";
         #endregion
 
         /// <summary>
@@ -401,9 +467,31 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListTags(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            HashSet<ModelTag> allTags = new HashSet<ModelTag>();
+
+            foreach (var model in inWorkload)
+            {
+                foreach (var modelTag in model.GetAllTags())
+                {
+                    if (!allTags.Any(tag => tag.CompareTo(modelTag) == 0))
+                    {
+                        allTags.Add(modelTag);
+                    }
+                }
+            }
+
+            foreach (var modelTag in allTags)
+            {
+                Console.WriteLine(modelTag);
+            }
+
+            return ExitCode.Success;
         }
 
         /// <summary>
