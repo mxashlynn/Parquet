@@ -84,8 +84,6 @@ Categories:
     biomes            All biomes.
     crafts            All crafting recipes.
     interactions      All interactions.
-      dialgoues       Only dialogue interactions.
-      quests          Only quest interactions.
     items             All items.
       p-items         Only items that correspond to parquets.
       n-items         Only items that don't correspond to parquets.
