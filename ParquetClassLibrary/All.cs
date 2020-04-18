@@ -494,6 +494,7 @@ namespace ParquetClassLibrary
             Parquets.PutRecordsForType<FurnishingModel>();
             Parquets.PutRecordsForType<CollectibleModel>();
             RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Scripts.PutRecordsForType<ScriptModel>();
             Items.PutRecordsForType<ItemModel>();
         }
         #endregion
