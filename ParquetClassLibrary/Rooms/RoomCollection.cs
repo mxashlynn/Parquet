@@ -59,9 +59,9 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
-            IReadOnlyList<MapSpaceCollection> walkableAreas = inSubregion.GetWalkableAreas();
-            MapSpaceCollection perimeter = MapSpaceCollection.Empty;
-            IEnumerable<Room> rooms =
+            var walkableAreas = inSubregion.GetWalkableAreas();
+            var perimeter = MapSpaceCollection.Empty;
+            var rooms =
                 walkableAreas
                 .Where(walkableArea => walkableArea
                                         .TryGetPerimeter(out perimeter)
@@ -131,10 +131,10 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                     {
                         var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
 
-                        MapSpace northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
+                        var northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
                             ? new MapSpace(x, y - 1, inSubregion[y - 1, x], inSubregion)
                             : MapSpace.Empty;
-                        MapSpace westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
+                        var westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
                             ? new MapSpace(x - 1, y, inSubregion[y, x - 1], inSubregion)
                             : MapSpace.Empty;
 
@@ -145,8 +145,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                         }
                         else if (MapSpace.Empty != northSpace && MapSpace.Empty != westSpace)
                         {
-                            HashSet<MapSpace> northPWA = PWAs.Find(pwa => pwa.Contains(northSpace));
-                            HashSet<MapSpace> westPWA = PWAs.Find(pwa => pwa.Contains(westSpace));
+                            var northPWA = PWAs.Find(pwa => pwa.Contains(northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains(westSpace));
                             if (northPWA == westPWA)
                             {
                                 northPWA.Add(currentSpace);

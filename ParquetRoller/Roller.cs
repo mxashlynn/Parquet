@@ -116,7 +116,7 @@ runtime errors.
                 ? args[2].ToLower()
                 : "";
 
-            Command command = ParseCommand(optionText);
+            var command = ParseCommand(optionText);
             ModelCollection workload = null;
 
             if (command == ListPropertyForCategory)
@@ -259,12 +259,12 @@ runtime errors.
                     break;
                 case "critter":
                 case "critters":
-                    IEnumerable<BeingModel> critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
+                    var critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
                     workload = new ModelCollection(All.CritterIDs, critters);
                     break;
                 case "character":
                 case "characters":
-                    IEnumerable<BeingModel> characters = All.Beings.Where(model => model.ID.IsValidForRange(All.CharacterIDs));
+                    var characters = All.Beings.Where(model => model.ID.IsValidForRange(All.CharacterIDs));
                     workload = new ModelCollection(All.CharacterIDs, characters);
                     break;
                 case "biome":
@@ -285,12 +285,12 @@ runtime errors.
                     break;
                 case "p-item":
                 case "p-items":
-                    IEnumerable<ItemModel> pitems = All.Items.Where(model => model.ParquetID != ModelID.None);
+                    var pitems = All.Items.Where(model => model.ParquetID != ModelID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "n-item":
                 case "n-items":
-                    IEnumerable<ItemModel> nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
+                    var nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
                     break;
                 case "parquet":
@@ -299,22 +299,22 @@ runtime errors.
                     break;
                 case "floor":
                 case "floors":
-                    IEnumerable<ParquetModel> floors = All.Parquets.Where(model => model.ID.IsValidForRange(All.FloorIDs));
+                    var floors = All.Parquets.Where(model => model.ID.IsValidForRange(All.FloorIDs));
                     workload = new ModelCollection(All.FloorIDs, floors);
                     break;
                 case "block":
                 case "blocks":
-                    IEnumerable<ParquetModel> blocks = All.Parquets.Where(model => model.ID.IsValidForRange(All.BlockIDs));
+                    var blocks = All.Parquets.Where(model => model.ID.IsValidForRange(All.BlockIDs));
                     workload = new ModelCollection(All.BlockIDs, blocks);
                     break;
                 case "furnishing":
                 case "furnishings":
-                    IEnumerable<ParquetModel> furnishings = All.Parquets.Where(model => model.ID.IsValidForRange(All.FurnishingIDs));
+                    var furnishings = All.Parquets.Where(model => model.ID.IsValidForRange(All.FurnishingIDs));
                     workload = new ModelCollection(All.FurnishingIDs, furnishings);
                     break;
                 case "collectible":
                 case "collectibles":
-                    IEnumerable<ParquetModel> collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
+                    var collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
                     workload = new ModelCollection(All.CollectibleIDs, collectibles);
                     break;
                 case "room":
@@ -474,7 +474,7 @@ runtime errors.
                 return ExitCode.Success;
             }
 
-            HashSet<ModelTag> allTags = new HashSet<ModelTag>();
+            var allTags = new HashSet<ModelTag>();
 
             foreach (var model in inWorkload)
             {
