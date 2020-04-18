@@ -56,8 +56,6 @@ namespace ParquetClassLibrary.Scripts
             Prerequisites = nonNullPrerequisites.ToList();
             Steps = nonNullSteps.ToList();
             Outcomes = nonNullOutcomes.ToList();
-
-            // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
         }
         #endregion
     }
