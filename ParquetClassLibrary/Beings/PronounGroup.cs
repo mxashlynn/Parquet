@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
@@ -24,19 +25,19 @@ namespace ParquetClassLibrary.Beings
 
         #region Textual Tags
         /// <summary>Indicates the <see cref="Subjective"/> should be used.</summary>
-        public const string SubjectiveTag = "%they%";
+        public const string SubjectiveTag = Rules.Delimiters.PronounDelimiter + "they" + Rules.Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Objective"/> should be used.</summary>
-        public const string ObjectiveTag = "%them%";
+        public const string ObjectiveTag = Rules.Delimiters.PronounDelimiter + "them" + Rules.Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Determiner"/> should be used.</summary>
-        public const string DeterminerTag = "%their%";
+        public const string DeterminerTag = Rules.Delimiters.PronounDelimiter + "their" + Rules.Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Possessive"/> should be used.</summary>
-        public const string PossessiveTag = "%theirs%";
+        public const string PossessiveTag = Rules.Delimiters.PronounDelimiter + "theirs" + Rules.Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Reflexive"/> should be used.</summary>
-        public const string ReflexiveTag = "%themselves%";
+        public const string ReflexiveTag = Rules.Delimiters.PronounDelimiter + "themselves" + Rules.Delimiters.PronounDelimiter;
         #endregion
 
         #region Characteristics
@@ -137,7 +138,7 @@ namespace ParquetClassLibrary.Beings
         {
             Precondition.IsNotNull(inGroups);
 
-            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv", false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
@@ -153,6 +154,32 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
+        /// </summary>
+        /// <param name="inText">The text to transform.</param>
+        /// <returns>The updated text.</returns>
+        public StringBuilder UpdatePronouns(StringBuilder inText)
+            => inText?
+                .Replace(SubjectiveTag, Subjective)
+                .Replace(ObjectiveTag, Objective)
+                .Replace(DeterminerTag, Determiner)
+                .Replace(PossessiveTag, Possessive)
+                .Replace(ReflexiveTag, Reflexive);
+
+        /// <summary>
+        /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
+        /// </summary>
+        /// <param name="inText">The text to transform.</param>
+        /// <returns>The updated text.</returns>
+        public StringBuilder UpdatePronouns(string inText)
+            => new StringBuilder(inText)
+                .Replace(SubjectiveTag, Subjective)
+                .Replace(ObjectiveTag, Objective)
+                .Replace(DeterminerTag, Determiner)
+                .Replace(PossessiveTag, Possessive)
+                .Replace(ReflexiveTag, Reflexive);
+
         /// <summary>
         /// Returns a <see langword="string"/> that represents the <see cref="PronounGroup"/>.
         /// </summary>

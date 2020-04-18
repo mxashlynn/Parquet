@@ -28,13 +28,19 @@ namespace ParquetClassLibrary.Items
         [Index(7)]
         public int StackMax { get; }
 
-        /// <summary>An in-game effect caused by keeping the item in a character's inventory.</summary>
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// </summary>
         [Index(8)]
-        public int EffectWhileHeld { get; }
+        public ModelID EffectWhileHeld { get; }
 
-        /// <summary>An in-game effect caused by using (consuming) the item.</summary>
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
+        /// using (consuming) the item.
+        /// </summary>
         [Index(9)]
-        public int EffectWhenUsed { get; }
+        public ModelID EffectWhenUsed { get; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         [Index(10)]
@@ -68,7 +74,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inRecipeID">The <see cref="ModelID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
-                         int inEffectWhileHeld, int inEffectWhenUsed, ModelID inParquetID,
+                         ModelID inEffectWhileHeld, ModelID inEffectWhenUsed, ModelID inParquetID,
                          IEnumerable<ModelTag> inItemTags = null, ModelID? inRecipeID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {

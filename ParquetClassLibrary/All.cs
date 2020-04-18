@@ -7,11 +7,11 @@ using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Scripts;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -87,22 +87,10 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> CraftingRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="DialogueModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="InteractionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
-        public static readonly Range<ModelID> DialogueIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="QuestModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<ModelID> QuestIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="InteractionModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly IReadOnlyList<Range<ModelID>> InteractionIDs;
+        public static readonly Range<ModelID> InteractionIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunk"/>s.
@@ -156,6 +144,12 @@ namespace ParquetClassLibrary
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<ModelID> RoomRecipeIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Scripts.ScriptModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<ModelID> ScriptIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ItemModel"/>s.
@@ -222,6 +216,14 @@ namespace ParquetClassLibrary
         public static ModelCollection<RoomRecipe> RoomRecipes { get; private set; }
 
         /// <summary>
+        /// A collection of all defined <see cref="ScriptModel"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<ScriptModel> Scripts { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="ItemModel"/>s.
         /// This collection is the source of truth about items for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -278,8 +280,7 @@ namespace ParquetClassLibrary
 
             CraftingRecipeIDs = new Range<ModelID>(40000, 49000);
 
-            DialogueIDs = new Range<ModelID>(50000, 59000);
-            QuestIDs = new Range<ModelID>(60000, 69000);
+            InteractionIDs = new Range<ModelID>(50000, 59000);
 
             MapChunkIDs = new Range<ModelID>(70000, 79000);
             MapRegionIDs = new Range<ModelID>(80000, 89000);
@@ -290,11 +291,12 @@ namespace ParquetClassLibrary
             CollectibleIDs = new Range<ModelID>(120000, 129000);
 
             RoomRecipeIDs = new Range<ModelID>(130000, 139000);
+
+            ScriptIDs = new Range<ModelID>(140000, 149000);
             #endregion
 
             #region Define Range Collections
             BeingIDs = new List<Range<ModelID>> { CritterIDs, CharacterIDs };
-            InteractionIDs = new List<Range<ModelID>> { DialogueIDs, QuestIDs };
             MapIDs = new List<Range<ModelID>> { MapChunkIDs, MapRegionIDs };
             ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             #endregion
@@ -361,6 +363,7 @@ namespace ParquetClassLibrary
                 { typeof(Range<ModelID>), Range<ModelID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
+                { typeof(ScriptNode), ScriptNode.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
                 { typeof(Vector2D), Vector2D.ConverterFactory },
                 #endregion
@@ -371,11 +374,13 @@ namespace ParquetClassLibrary
                 { typeof(IEnumerable<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IEnumerable<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IReadOnlyList<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
+                { typeof(IReadOnlyList<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
                 { typeof(List<ExitPoint>), SeriesConverter<ExitPoint, List<ExitPoint>>.ConverterFactory },
                 #endregion
 
@@ -400,6 +405,7 @@ namespace ParquetClassLibrary
         /// <param name="inMaps">All maps to be used in the game.</param>
         /// <param name="inParquets">All parquets to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
+        /// <param name="inScripts">All scripts to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>This initialization routine may be called only once per library execution.</remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
@@ -411,6 +417,7 @@ namespace ParquetClassLibrary
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
+                                                 IEnumerable<ScriptModel> inScripts,
                                                  IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
@@ -425,6 +432,7 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inMaps, nameof(inMaps));
             Precondition.IsNotNull(inParquets, nameof(inParquets));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
+            Precondition.IsNotNull(inScripts, nameof(inScripts));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
@@ -434,6 +442,7 @@ namespace ParquetClassLibrary
             Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
+            Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
             PronounGroups = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
@@ -451,8 +460,7 @@ namespace ParquetClassLibrary
                 .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
             var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
-            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<DialogueModel>(InteractionIDs)
-                .Concat(ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<QuestModel>(InteractionIDs));
+            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
             var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs));
@@ -461,9 +469,10 @@ namespace ParquetClassLibrary
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
+            var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
 
-            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, items);
+            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, scripts, items);
         }
 
         /// <summary>
@@ -476,8 +485,7 @@ namespace ParquetClassLibrary
             Beings.PutRecordsForType<CharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
-            Interactions.PutRecordsForType<DialogueModel>();
-            Interactions.PutRecordsForType<QuestModel>();
+            Interactions.PutRecordsForType<InteractionModel>();
             Maps.PutRecordsForType<MapChunk>();
             Maps.PutRecordsForType<MapRegionSketch>();
             Maps.PutRecordsForType<MapRegion>();

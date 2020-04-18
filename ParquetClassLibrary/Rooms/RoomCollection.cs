@@ -48,9 +48,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <remarks>Private so that empty <see cref="RoomCollection"/>s are not made in client code.</remarks>
         private RoomCollection(IEnumerable<Room> inRooms)
-        {
-            Rooms = inRooms.ToList();
-        }
+            => Rooms = inRooms.ToList();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCollection"/> class.

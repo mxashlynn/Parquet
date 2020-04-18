@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 
@@ -85,8 +84,6 @@ Categories:
     biomes            All biomes.
     crafts            All crafting recipes.
     interactions      All interactions.
-      dialgoues       Only dialogue interactions.
-      quests          Only quest interactions.
     items             All items.
       p-items         Only items that correspond to parquets.
       n-items         Only items that don't correspond to parquets.
@@ -233,13 +230,11 @@ runtime errors.
                 case "all":
                     var entireRange = new List<Range<ModelID>>
                     {
-                        // TODO Add new ranges here.
                         All.CritterIDs,
                         All.CharacterIDs,
                         All.BiomeIDs,
                         All.CraftingRecipeIDs,
-                        All.DialogueIDs,
-                        All.QuestIDs,
+                        All.InteractionIDs,
                         All.MapChunkIDs,
                         All.MapRegionIDs,
                         All.FloorIDs,
@@ -247,6 +242,7 @@ runtime errors.
                         All.FurnishingIDs,
                         All.CollectibleIDs,
                         All.RoomRecipeIDs,
+                        All.ScriptIDs,
                         All.ItemIDs
                     };
                     workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings)
@@ -282,16 +278,6 @@ runtime errors.
                 case "interaction":
                 case "interactions":
                     workload = new ModelCollection(All.InteractionIDs, All.Interactions);
-                    break;
-                case "dialogue":
-                case "dialogues":
-                    IEnumerable<InteractionModel> dialogues = All.Interactions.Where(model => model.ID.IsValidForRange(All.DialogueIDs));
-                    workload = new ModelCollection(All.DialogueIDs, dialogues);
-                    break;
-                case "quest":
-                case "quests":
-                    IEnumerable<InteractionModel> quests = All.Interactions.Where(model => model.ID.IsValidForRange(All.QuestIDs));
-                    workload = new ModelCollection(All.QuestIDs, quests);
                     break;
                 case "item":
                 case "items":

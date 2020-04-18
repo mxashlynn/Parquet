@@ -16,7 +16,7 @@ namespace ParquetUnitTests.Beings
         public void ValidCritterIDsArePermittedTest()
         {
             var newCritter = new CritterModel(newCritterID, "will be created", "", "",
-                                         All.BiomeIDs.Minimum, Behavior.Still);
+                                         All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
 
             Assert.NotNull(newCritter);
         }
@@ -29,7 +29,7 @@ namespace ParquetUnitTests.Beings
             void TestCode()
             {
                 var _ = new CritterModel(badCritterID, "will fail", "", "",
-                                    All.BiomeIDs.Minimum, Behavior.Still);
+                                    All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

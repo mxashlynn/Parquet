@@ -31,10 +31,7 @@ namespace ParquetClassLibrary
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="ModelTag"/>s.</summary>
-        public static readonly ModelTag None = string.Empty;
-
-        /// <summary>Replaces any <see cref="Rules.Delimiters"/> in <see cref="ModelTag"/>s.</summary>
-        public const string SanitarySeparator = "/";
+        public static readonly ModelTag None = "";
         #endregion
 
         #region Characteristics
@@ -50,7 +47,7 @@ namespace ParquetClassLibrary
         /// <returns>The given value as a tag.</returns>
         /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ModelTag(string inValue)
-            => new ModelTag { tagContent = Sanitize(inValue) };
+            => new ModelTag { tagContent = inValue };
 
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.
@@ -59,24 +56,6 @@ namespace ParquetClassLibrary
         /// <returns>The tag's value.</returns>
         public static implicit operator string(ModelTag inTag)
             => inTag?.tagContent ?? "";
-        #endregion
-
-        #region Validation
-        /// <summary>
-        /// Sanitizes a <see langword="string"/> to be used as a <see cref="ModelTag"/>.
-        /// </summary>
-        /// <remarks>
-        /// Instances of any <see cref="Rules.Delimiters"/> will be replaced with <see cref="SanitarySeparator"/>.
-        /// This prevents errors that would occur should a user enter a Parquet delimiter character as part of a tag.
-        /// </remarks>
-        /// <param name="inValue">The string to sanitize.</param>
-        /// <returns>The sanitized version.</returns>
-        public static string Sanitize(string inValue)
-            => string.IsNullOrEmpty(inValue)
-                ? ""
-                : inValue.Replace(Rules.Delimiters.SecondaryDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
-                         .Replace(Rules.Delimiters.InternalDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase)
-                         .Replace(Rules.Delimiters.ElementDelimiter, SanitarySeparator, StringComparison.InvariantCultureIgnoreCase);
         #endregion
 
         #region IComparable Implementation

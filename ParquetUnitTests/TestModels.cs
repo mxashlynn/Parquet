@@ -3,11 +3,11 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.Interactions;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Scripts;
 
 namespace ParquetUnitTests
 {
@@ -18,8 +18,10 @@ namespace ParquetUnitTests
     {
         #region Test Value Components
         public static readonly ModelTag TestTag = "Test Tag";
+        public static readonly ScriptNode TestNode = $"A{Rules.Delimiters.InternalDelimiter}{Rules.Delimiters.InternalDelimiter}Test Alert";
         public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
+        public static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
         #endregion
 
         #region Test Values
@@ -39,7 +41,7 @@ namespace ParquetUnitTests
         public static CraftingRecipe TestCraftingRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static DialogueModel TestDialogue { get; }
+        public static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static MapChunk TestMapChunk { get; }
@@ -63,10 +65,10 @@ namespace ParquetUnitTests
         public static CollectibleModel TestCollectible { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static QuestModel TestQuest { get; }
+        public static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static RoomRecipe TestRoomRecipe { get; }
+        public static ScriptModel TestScript{ get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static ItemModel TestItem1 { get; }
@@ -102,10 +104,10 @@ namespace ParquetUnitTests
         public static IReadOnlyList<ParquetModel> Parquets { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<QuestModel> Quests { get; }
+        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
+        public static IReadOnlyList<ScriptModel> Scripts { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<ItemModel> Items { get; }
@@ -119,36 +121,34 @@ namespace ParquetUnitTests
         {
             #region Initialize Instances
             TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
-            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
-            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeIDs.Minimum, Behavior.Still);
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
+            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, Elevation.LevelGround, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
                                                                         Rules.Dimensions.PanelsPerPatternWidth));
-            // TODO Update this once Dialogue is implemented.
-            TestDialogue = new DialogueModel(-All.DialogueIDs.Minimum, "5 Test Dialogue", "Test", "Test", null, null, null);
-            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "11 Test Map Chunk", "Test", "Test", AssemblyInfo.SupportedMapDataVersion);
-            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "12 Test Map Region", "Test", "Test");
-            TestFloor = new FloorModel(-All.FloorIDs.Minimum, "3 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
-            TestBlock = new BlockModel(-All.BlockIDs.Minimum, "4 Test Block", "Test", "Test", inAddsToRoom: TestTag);
+            TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
+            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", AssemblyInfo.SupportedMapDataVersion);
+            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
+            TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
-            TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "5 Test Furnishing", "Test", "Test",
+            TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "10 Test Furnishing", "Test", "Test",
                                                  inIsEntry: true, inAddsToRoom: TestTag);
-            TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "6 Test Collectible", "Test", "Test", inAddsToRoom: TestTag);
-            // TODO Update this once Quests are implemented.
-            TestQuest = new QuestModel(-All.QuestIDs.Minimum, "9 Test Quest", "Test", "Test", TestQuestRequirementsList, null, null, null);
-            TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "7 Test Room Recipe", "Test", "Test",
+            TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", inAddsToRoom: TestTag);
+            TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test",
                                             Rules.Recipes.Room.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
-            TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "11 Test Item 1", "Test", "Test", ItemType.Other,
-                                      1, 0, 99, 1, 1, -All.BlockIDs.Minimum);
-            TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "11 Test Item 2", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 1);
-            TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "11 Test Item 3", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 2);
-            TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "11 Test Item 4", "Test", "Test", ItemType.Other,
-                                      1, 0, 999, 1, 1, -All.BlockIDs.Minimum - 3);
+            TestScript = new ScriptModel(-All.ScriptIDs.Minimum, "13 Test Script", "Test", "Test", TestNodeList);
+            TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "14 Test Item 1", "Test", "Test", ItemType.Other,
+                                      1, 0, 99, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum);
+            TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "14 Test Item 2", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 1);
+            TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "14 Test Item 3", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 2);
+            TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", ItemType.Other,
+                                      1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
 
             #region Initialize TestMapChunk
             for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
@@ -176,13 +176,14 @@ namespace ParquetUnitTests
             Beings = new List<BeingModel> { TestCritter, TestCharacter };
             Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
-            Interactions = new List<InteractionModel> { TestDialogue, TestQuest };
+            Interactions = new List<InteractionModel> { TestInteraction };
             Maps = new List<MapModel> { TestMapChunk, TestMapRegion };
             Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
+            Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Items);
+            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Scripts, Items);
             #endregion
         }
     }
