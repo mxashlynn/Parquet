@@ -523,9 +523,31 @@ runtime errors.
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListCollisions(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine(inWorkload);
-            return ExitCode.BadArguments;
+            if (inWorkload == null || inWorkload.Count == 0)
+            {
+                Console.WriteLine("No defined content.");
+                return ExitCode.Success;
+            }
+
+            var names = new HashSet<string>();
+            foreach (var range in inWorkload.Bounds)
+            {
+                Console.WriteLine($"Collisions in {range}:");
+                foreach (var model in inWorkload.Where(x => x.ID >= range.Minimum && x.ID <= range.Maximum))
+                {
+                    if (names.Contains(model.Name))
+                    {
+                        Console.WriteLine(model.Name);
+                    }
+                    else
+                    {
+                        names.Add(model.Name);
+                    }
+                }
+                names.Clear();
+            }
+
+            return ExitCode.Success;
         }
         #endregion
     }
