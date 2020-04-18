@@ -453,7 +453,10 @@ runtime errors.
             }
 
             var orderedWorkload = inWorkload.OrderBy(x => x.ID);
-            Console.WriteLine(orderedWorkload.Last().ID);
+            foreach (var range in inWorkload.Bounds)
+            {
+                Console.WriteLine(orderedWorkload.Last(x => x.ID <= range.Maximum).ID);
+            }
 
             return ExitCode.Success;
         }
