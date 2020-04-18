@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Parquets;
 
 namespace ParquetRoller
 {
@@ -29,6 +26,7 @@ namespace ParquetRoller
         /// <summary>What to display when roller is started without any arguments.</summary>
         private static string DefaultMessage { get; } =
 @"Usage: roller (command)
+Usage: roller list pronouns
 Usage: roller list (property) [category]
 
 Commands:
@@ -36,8 +34,8 @@ Commands:
     -v|version                      Display version information.
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
-    -p|pronouns                     List all defined pronoun groups.
-    -l|list (property) [category]   Inspect CSV properties and echo results.
+    -p|list pronouns                List all defined pronoun groups.
+    -l|list (property) [category]   List various parquet properties.
 
     For information on properties and categories consult the detailed help.
 ";
@@ -59,6 +57,7 @@ $@"Version:
     generate blank CSV files, and to prepare existing CSV files for use in-game.
 
 Usage: roller (command)
+Usage: roller list pronouns
 Usage: roller list (property) [category]
 
 Commands:
@@ -66,8 +65,8 @@ Commands:
     -v|version                      Display version information.
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
-    -p|pronouns                     List all defined pronoun groups.
-    -l|list (property) [category]   Inspect CSV properties and echo results.
+    -p|list pronouns                List all defined pronoun groups.
+    -l|list (property) [category]   List various parquet properties.
 
 Properties:
     ranges            Model ID ranges valid for the given category.
@@ -95,9 +94,7 @@ Categories:
     rooms             All room recipes.
 
 Checking for name collisions is especially useful because they can cause
-runtime errors.
-
-    'Roller -- The Best Alternative to a 10-Pound Mallet!'";
+runtime errors.";
         #endregion
 
         /// <summary>
@@ -122,7 +119,8 @@ runtime errors.
             if (command == ListPropertyForCategory)
             {
                 command = ParseProperty(property);
-                if (command != DisplayBadArguments)
+                if (command != ListPronouns
+                    && command != DisplayBadArguments)
                 {
                     workload = ParseCategory(category);
                 }
@@ -159,8 +157,6 @@ runtime errors.
                 case "roll":
                     return RollCSVs;
                 case "-p":
-                case "pronoun":
-                case "pronouns":
                     return ListPronouns;
                 case "-l":
                 case "list":
@@ -179,6 +175,9 @@ runtime errors.
         {
             switch (inProperty)
             {
+                case "pronoun":
+                case "pronouns":
+                    return ListPronouns;
                 case "range":
                 case "ranges":
                     return ListRanges;
@@ -529,19 +528,19 @@ runtime errors.
                 return ExitCode.Success;
             }
 
-            var names = new HashSet<string>();
+            var names = new Dictionary<string, ModelID>();
             foreach (var range in inWorkload.Bounds)
             {
                 Console.WriteLine($"Collisions in {range}:");
                 foreach (var model in inWorkload.Where(x => x.ID >= range.Minimum && x.ID <= range.Maximum))
                 {
-                    if (names.Contains(model.Name))
+                    if (names.ContainsKey(model.Name))
                     {
-                        Console.WriteLine(model.Name);
+                        Console.WriteLine($"{model.Name}: {model.ID} collides with {names[model.Name]}.");
                     }
                     else
                     {
-                        names.Add(model.Name);
+                        names[model.Name] = model.ID;
                     }
                 }
                 names.Clear();
