@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Scripts
         /// Describes the results of finishing this interaction.
         /// </summary>
         [Index(6)]
-        public IReadOnlyList<ModelID> Outcome { get; }
+        public IReadOnlyList<ModelID> Outcomes { get; }
         #endregion
 
         #region Initialization
@@ -41,30 +41,23 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
         /// <param name="inPrerequisites">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
         /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
+        /// <param name="inOutcomes">Describes the results of finishing this <see cref="InteractionModel"/>.</param>
         public InteractionModel(ModelID inID, string inName, string inDescription, string inComment,
-                                IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcome)
+                                IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcomes)
             : base(All.InteractionIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.AreInRange(inPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
-            Precondition.AreInRange(inSteps, All.ScriptIDs, nameof(inSteps));
-            Precondition.AreInRange(inOutcome, All.ScriptIDs, nameof(inOutcome));
+            var nonNullPrerequisites = inPrerequisites ?? Enumerable.Empty<ModelID>();
+            var nonNullSteps = inSteps ?? Enumerable.Empty<ModelID>();
+            var nonNullOutcomes = inOutcomes ?? Enumerable.Empty<ModelID>();
+            Precondition.AreInRange(nonNullPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
+            Precondition.AreInRange(nonNullSteps, All.ScriptIDs, nameof(inSteps));
+            Precondition.AreInRange(nonNullOutcomes, All.ScriptIDs, nameof(inOutcomes));
 
-            Prerequisites = inPrerequisites.ToList();
-            Steps = inSteps.ToList();
-            Outcome = inOutcome.ToList();
+            Prerequisites = nonNullPrerequisites.ToList();
+            Steps = nonNullSteps.ToList();
+            Outcomes = nonNullOutcomes.ToList();
 
             // TODO When implementing dialogue processing (displaying on screen), rememeber to replace a key such as ":they:" with the appropriate pronoun.
-        }
-        #endregion
-
-        #region Utilities
-        /// <summary>
-        /// Returns a collection of all <see cref="ModelTag"/>s the <see cref="Model"/> has applied to it. Classes inheriting from <see cref="Model"/> that include <see cref="ModelTag"/> should override accordingly.
-        /// </summary>
-        /// <returns>List of all <see cref="ModelTag"/>s.</returns>
-        public override IEnumerable<ModelTag> GetAllTags()
-        {
-            return base.GetAllTags().Union(StartCriteria).Union(Steps);
         }
         #endregion
     }
