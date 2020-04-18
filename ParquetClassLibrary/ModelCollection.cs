@@ -334,9 +334,9 @@ namespace ParquetClassLibrary
             var allBounds = new StringBuilder();
             foreach (var bound in Bounds)
             {
-                allBounds.Append($"{bound.ToString()} ");
+                allBounds.Append($"{bound} ");
             }
-            return $"Collects {typeof(TModel)} over {allBounds}.";
+            return $"Collects {typeof(TModel)}s over {allBounds}";
         }
         #endregion
     }
