@@ -16,4 +16,4 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 - Initial commit.
 
 ## [0.0.0] - 2018-12-05
-###Project begun.
+### Project begun.
