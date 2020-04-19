@@ -44,7 +44,7 @@ Commands:
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
     -p|list pronouns                List all defined pronoun groups.
-    -l|list (property) [category]   List various parquet properties.
+    -l|list (property) [category]   List various model properties.
 
     For information on properties and categories consult the detailed help.
 ";
@@ -75,7 +75,7 @@ Commands:
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
     -p|list pronouns                List all defined pronoun groups.
-    -l|list (property) [category]   List various parquet properties.
+    -l|list (property) [category]   List various model properties.
 
 Properties:
     ranges            Model ID ranges valid for the given category.
