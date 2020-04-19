@@ -51,7 +51,7 @@ namespace ParquetClassLibrary
         /// <item><term>Build</term>
         /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
-        public const string SupportedBeingDataVersion = "0.1.0";
+        public const string SupportedBeingDataVersion = "0.2.0";
 
         /// <summary>
         /// Describes the version of the serialized <see cref="Maps.MapModel"/>
@@ -67,7 +67,7 @@ namespace ParquetClassLibrary
         /// <item><term>Build</term>
         /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
-        public const string SupportedMapDataVersion = "0.1.0";
+        public const string SupportedMapDataVersion = "0.2.0";
 
         /// <summary>
         /// Describes the version of the serialized <see cref="Scripts.ScriptNode"/>
@@ -83,7 +83,7 @@ namespace ParquetClassLibrary
         /// <item><term>Build</term>
         /// <description>Procedural updates that do not imply any changes.</description></item>
         /// </remarks>
-        public const string SupportedScriptDataVersion = "0.1.0";
+        public const string SupportedScriptDataVersion = "0.2.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>
@@ -98,6 +98,6 @@ namespace ParquetClassLibrary
         /// <item><term>Build</term>
         /// <description>Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.</description></item>
         /// </remarks>
-        public const string LibraryVersion = "0.1.0.0";
+        public const string LibraryVersion = "0.2.0.0";
     }
 }
