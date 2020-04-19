@@ -138,7 +138,7 @@ namespace ParquetClassLibrary.Beings
         {
             Precondition.IsNotNull(inGroups);
 
-            using var writer = new StreamWriter($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv", false, new UTF8Encoding(true, true));
+            using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
@@ -154,6 +154,13 @@ namespace ParquetClassLibrary.Beings
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Returns the filename and path associated with <see cref="PronounGroup"/>s' designer file.
+        /// </summary>
+        /// <returns>A full path to the associated designer file.</returns>
+        public static string GetFilePath()
+            => $"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv";
+
         /// <summary>
         /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
         /// </summary>

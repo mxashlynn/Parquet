@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
@@ -378,22 +379,71 @@ runtime errors.";
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode CreateTemplates(ModelCollection inWorkload)
         {
-            PronounGroup.PutRecords(Enumerable.Empty<PronounGroup>());
-            new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CritterModel>()).PutRecordsForType<CritterModel>();
-            new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CharacterModel>()).PutRecordsForType<CharacterModel>();
-            new ModelCollection<BiomeModel>(All.BiomeIDs, Enumerable.Empty<BiomeModel>()).PutRecordsForType<BiomeModel>();
-            new ModelCollection<CraftingRecipe>(All.CraftingRecipeIDs, Enumerable.Empty<CraftingRecipe>()).PutRecordsForType<CraftingRecipe>();
-            new ModelCollection<InteractionModel>(All.InteractionIDs, Enumerable.Empty<InteractionModel>()).PutRecordsForType<InteractionModel>();
-            new ModelCollection<MapChunk>(All.MapIDs, Enumerable.Empty<MapChunk>()).PutRecordsForType<MapChunk>();
-            new ModelCollection<MapRegionSketch>(All.MapIDs, Enumerable.Empty<MapRegionSketch>()).PutRecordsForType<MapRegionSketch>();
-            new ModelCollection<MapRegion>(All.MapIDs, Enumerable.Empty<MapRegion>()).PutRecordsForType<MapRegion>();
-            new ModelCollection<FloorModel>(All.ParquetIDs, Enumerable.Empty<FloorModel>()).PutRecordsForType<FloorModel>();
-            new ModelCollection<BlockModel>(All.ParquetIDs, Enumerable.Empty<BlockModel>()).PutRecordsForType<BlockModel>();
-            new ModelCollection<FurnishingModel>(All.ParquetIDs, Enumerable.Empty<FurnishingModel>()).PutRecordsForType<FurnishingModel>();
-            new ModelCollection<CollectibleModel>(All.ParquetIDs, Enumerable.Empty<CollectibleModel>()).PutRecordsForType<CollectibleModel>();
-            new ModelCollection<RoomRecipe>(All.RoomRecipeIDs, Enumerable.Empty<RoomRecipe>()).PutRecordsForType<RoomRecipe>();
-            new ModelCollection<ScriptModel>(All.ScriptIDs, Enumerable.Empty<ScriptModel>()).PutRecordsForType<ScriptModel>();
-            new ModelCollection<ItemModel>(All.ItemIDs, Enumerable.Empty<ItemModel>()).PutRecordsForType<ItemModel>();
+            if (!File.Exists(PronounGroup.GetFilePath()))
+            {
+                PronounGroup.PutRecords(Enumerable.Empty<PronounGroup>());
+            }
+            if (!File.Exists(ModelCollection<BeingModel>.GetFilePath<CritterModel>()))
+            {
+                new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CritterModel>()).PutRecordsForType<CritterModel>();
+            }
+            if (!File.Exists(ModelCollection<BeingModel>.GetFilePath<CharacterModel>()))
+            {
+                new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CharacterModel>()).PutRecordsForType<CharacterModel>();
+            }
+            if (!File.Exists(ModelCollection<BiomeModel>.GetFilePath<BiomeModel>()))
+            {
+                new ModelCollection<BiomeModel>(All.BiomeIDs, Enumerable.Empty<BiomeModel>()).PutRecordsForType<BiomeModel>();
+            }
+            if (!File.Exists(ModelCollection<CraftingRecipe>.GetFilePath<CraftingRecipe>()))
+            {
+                new ModelCollection<CraftingRecipe>(All.CraftingRecipeIDs, Enumerable.Empty<CraftingRecipe>()).PutRecordsForType<CraftingRecipe>();
+            }
+            if (!File.Exists(ModelCollection<InteractionModel>.GetFilePath<InteractionModel>()))
+            {
+                new ModelCollection<InteractionModel>(All.InteractionIDs, Enumerable.Empty<InteractionModel>()).PutRecordsForType<InteractionModel>();
+            }
+            if (!File.Exists(ModelCollection<MapModel>.GetFilePath<MapChunk>()))
+            {
+                new ModelCollection<MapModel>(All.MapIDs, Enumerable.Empty<MapChunk>()).PutRecordsForType<MapChunk>();
+            }
+            if (!File.Exists(ModelCollection<MapModel>.GetFilePath<MapRegionSketch>()))
+            {
+                new ModelCollection<MapModel>(All.MapIDs, Enumerable.Empty<MapRegionSketch>()).PutRecordsForType<MapRegionSketch>();
+            }
+            if (!File.Exists(ModelCollection<MapModel>.GetFilePath<MapRegion>()))
+            {
+                new ModelCollection<MapModel>(All.MapIDs, Enumerable.Empty<MapRegion>()).PutRecordsForType<MapRegion>();
+            }
+            if (!File.Exists(ModelCollection<ParquetModel>.GetFilePath<FloorModel>()))
+            {
+                new ModelCollection<ParquetModel>(All.ParquetIDs, Enumerable.Empty<FloorModel>()).PutRecordsForType<FloorModel>();
+            }
+            if (!File.Exists(ModelCollection<ParquetModel>.GetFilePath<BlockModel>()))
+            {
+                new ModelCollection<ParquetModel>(All.ParquetIDs, Enumerable.Empty<BlockModel>()).PutRecordsForType<BlockModel>();
+            }
+            if (!File.Exists(ModelCollection<ParquetModel>.GetFilePath<FurnishingModel>()))
+            {
+                new ModelCollection<ParquetModel>(All.ParquetIDs, Enumerable.Empty<FurnishingModel>()).PutRecordsForType<FurnishingModel>();
+            }
+            if (!File.Exists(ModelCollection<ParquetModel>.GetFilePath<CollectibleModel>()))
+            {
+                new ModelCollection<ParquetModel>(All.ParquetIDs, Enumerable.Empty<CollectibleModel>()).PutRecordsForType<CollectibleModel>();
+            }
+            if (!File.Exists(ModelCollection<RoomRecipe>.GetFilePath<RoomRecipe>()))
+            {
+                new ModelCollection<RoomRecipe>(All.RoomRecipeIDs, Enumerable.Empty<RoomRecipe>()).PutRecordsForType<RoomRecipe>();
+            }
+            if (!File.Exists(ModelCollection<ScriptModel>.GetFilePath<ScriptModel>()))
+            {
+                new ModelCollection<ScriptModel>(All.ScriptIDs, Enumerable.Empty<ScriptModel>()).PutRecordsForType<ScriptModel>();
+            }
+            if (!File.Exists(ModelCollection<ItemModel>.GetFilePath<ItemModel>()))
+            {
+                new ModelCollection<ItemModel>(All.ItemIDs, Enumerable.Empty<ItemModel>()).PutRecordsForType<ItemModel>();
+            }
+
             return ExitCode.Success;
         }
 
