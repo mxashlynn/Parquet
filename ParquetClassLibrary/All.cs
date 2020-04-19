@@ -453,7 +453,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Initializes <see cref="All"/> based on the values in design-time CSV files.
         /// </summary>
-        public static void LoadFromCSV()
+        public static void LoadFromCSVs()
         {
             var pronounGroups = PronounGroup.GetRecords();
             var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
@@ -478,7 +478,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
         /// </summary>
-        public static void SaveToCSV()
+        public static void SaveToCSVs()
         {
             PronounGroup.PutRecords(PronounGroups);
             Beings.PutRecordsForType<CritterModel>();

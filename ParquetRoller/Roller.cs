@@ -221,7 +221,7 @@ runtime errors.";
                 inCategory = "all";
             }
 
-            All.LoadFromCSV();
+            All.LoadFromCSVs();
 
             // Advertise plural categories but accept singular
             switch (inCategory)
@@ -394,7 +394,7 @@ runtime errors.";
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode ListPronouns(ModelCollection inWorkload)
         {
-            All.LoadFromCSV();
+            All.LoadFromCSVs();
 
             foreach (var pronounGroup in All.PronounGroups)
             {
