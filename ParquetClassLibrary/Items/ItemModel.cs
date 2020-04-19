@@ -49,10 +49,6 @@ namespace ParquetClassLibrary.Items
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
         [Index(11)]
         public IReadOnlyList<ModelTag> ItemTags { get; }
-
-        /// <summary>How this item is crafted.</summary>
-        [Index(12)]
-        public ModelID RecipeID { get; }
         #endregion
 
         #region Initialization
@@ -71,18 +67,16 @@ namespace ParquetClassLibrary.Items
         /// <param name="inEffectWhenUsed"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</param>
-        /// <param name="inRecipeID">The <see cref="ModelID"/> that expresses how to craft this <see cref="ItemModel"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
                          ModelID inEffectWhileHeld, ModelID inEffectWhenUsed, ModelID inParquetID,
-                         IEnumerable<ModelTag> inItemTags = null, ModelID? inRecipeID = null)
+                         IEnumerable<ModelTag> inItemTags = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inParquetID, All.ParquetIDs, nameof(inParquetID));
             Precondition.MustBePositive(inStackMax, nameof(inStackMax));
 
             var nonNullItemTags = inItemTags ?? Enumerable.Empty<ModelTag>().ToList();
-            var nonNullCraftingRecipeID = inRecipeID ?? CraftingRecipe.NotCraftable.ID;
 
             Subtype = inSubtype;
             Price = inPrice;
@@ -92,7 +86,6 @@ namespace ParquetClassLibrary.Items
             EffectWhenUsed = inEffectWhenUsed;
             ParquetID = inParquetID;
             ItemTags = nonNullItemTags.ToList();
-            RecipeID = nonNullCraftingRecipeID;
         }
         #endregion
 
