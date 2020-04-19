@@ -2,6 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Scripts;
 
 namespace ParquetRoller
 {
@@ -370,8 +378,22 @@ runtime errors.";
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode CreateTemplates(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine("> Create templates.");
+            PronounGroup.PutRecords(Enumerable.Empty<PronounGroup>());
+            new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CritterModel>()).PutRecordsForType<CritterModel>();
+            new ModelCollection<BeingModel>(All.BeingIDs, Enumerable.Empty<CharacterModel>()).PutRecordsForType<CharacterModel>();
+            new ModelCollection<BiomeModel>(All.BiomeIDs, Enumerable.Empty<BiomeModel>()).PutRecordsForType<BiomeModel>();
+            new ModelCollection<CraftingRecipe>(All.CraftingRecipeIDs, Enumerable.Empty<CraftingRecipe>()).PutRecordsForType<CraftingRecipe>();
+            new ModelCollection<InteractionModel>(All.InteractionIDs, Enumerable.Empty<InteractionModel>()).PutRecordsForType<InteractionModel>();
+            new ModelCollection<MapChunk>(All.MapIDs, Enumerable.Empty<MapChunk>()).PutRecordsForType<MapChunk>();
+            new ModelCollection<MapRegionSketch>(All.MapIDs, Enumerable.Empty<MapRegionSketch>()).PutRecordsForType<MapRegionSketch>();
+            new ModelCollection<MapRegion>(All.MapIDs, Enumerable.Empty<MapRegion>()).PutRecordsForType<MapRegion>();
+            new ModelCollection<FloorModel>(All.ParquetIDs, Enumerable.Empty<FloorModel>()).PutRecordsForType<FloorModel>();
+            new ModelCollection<BlockModel>(All.ParquetIDs, Enumerable.Empty<BlockModel>()).PutRecordsForType<BlockModel>();
+            new ModelCollection<FurnishingModel>(All.ParquetIDs, Enumerable.Empty<FurnishingModel>()).PutRecordsForType<FurnishingModel>();
+            new ModelCollection<CollectibleModel>(All.ParquetIDs, Enumerable.Empty<CollectibleModel>()).PutRecordsForType<CollectibleModel>();
+            new ModelCollection<RoomRecipe>(All.RoomRecipeIDs, Enumerable.Empty<RoomRecipe>()).PutRecordsForType<RoomRecipe>();
+            new ModelCollection<ScriptModel>(All.ScriptIDs, Enumerable.Empty<ScriptModel>()).PutRecordsForType<ScriptModel>();
+            new ModelCollection<ItemModel>(All.ItemIDs, Enumerable.Empty<ItemModel>()).PutRecordsForType<ItemModel>();
             return ExitCode.Success;
         }
 

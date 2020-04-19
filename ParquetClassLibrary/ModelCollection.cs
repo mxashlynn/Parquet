@@ -291,7 +291,7 @@ namespace ParquetClassLibrary
         /// Writes all of the given type to records to the appropriate file.
         /// </summary>
         /// <typeparam name="TModelInner">The type to serialize.</typeparam>
-        internal void PutRecordsForType<TModelInner>()
+        public void PutRecordsForType<TModelInner>()
             where TModelInner : TModel
         {
             using var fileWriter = new StreamWriter(GetFilePath<TModelInner>(), false, new UTF8Encoding(true, true));
