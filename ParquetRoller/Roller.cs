@@ -454,8 +454,9 @@ runtime errors.";
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode RollCSVs(ModelCollection inWorkload)
         {
-            // TODO This is a stub.
-            Console.WriteLine("> Roll CSVs.");
+            // Currently, all that has to be done is assigning ModelIDs.  Loading and saving will accomplish this.
+            All.LoadFromCSVs();
+            All.SaveToCSVs();
             return ExitCode.Success;
         }
 
