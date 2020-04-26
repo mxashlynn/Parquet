@@ -11,6 +11,9 @@
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Authors>Paige Ashlynn and contibutors</Authors>
+    <PackageLicenseFile></PackageLicenseFile>
+    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
