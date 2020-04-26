@@ -31,7 +31,7 @@ namespace ParquetUnitTests
         public void MinimumIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
-            ModelID id = range.Minimum;
+            var id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);
@@ -41,7 +41,7 @@ namespace ParquetUnitTests
         public void AverageIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
-            ModelID id = range.Minimum;
+            var id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);
@@ -51,7 +51,7 @@ namespace ParquetUnitTests
         public void MaximumIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
-            ModelID id = range.Minimum;
+            var id = range.Minimum;
             var result = id.IsValidForRange(range);
 
             Assert.True(result);
@@ -64,12 +64,12 @@ namespace ParquetUnitTests
             var secondRange = new Range<ModelID>(secondLowerBound, secondUpperBound);
             var discreteRanges = new List<Range<ModelID>> { firstRange, secondRange };
 
-            ModelID firstLower = firstRange.Minimum;
+            var firstLower = firstRange.Minimum;
             ModelID firstAverage = (firstRange.Minimum + firstRange.Maximum) / 2;
-            ModelID firstUpper = firstRange.Maximum;
-            ModelID secondLower = secondRange.Minimum;
+            var firstUpper = firstRange.Maximum;
+            var secondLower = secondRange.Minimum;
             ModelID secondAverage = (secondRange.Minimum + secondRange.Maximum) / 2;
-            ModelID secondUpper = secondRange.Maximum;
+            var secondUpper = secondRange.Maximum;
 
             Assert.True(firstLower.IsValidForRange(discreteRanges));
             Assert.True(firstAverage.IsValidForRange(discreteRanges));
@@ -86,12 +86,12 @@ namespace ParquetUnitTests
             var overlappingRange = new Range<ModelID>(overlapLowerBound, overlapUpperBound);
             var overlappingRanges = new List<Range<ModelID>> { firstRange, overlappingRange };
 
-            ModelID firstLower = firstRange.Minimum;
+            var firstLower = firstRange.Minimum;
             ModelID firstAverage = (firstRange.Minimum + firstRange.Maximum) / 2;
-            ModelID firstUpper = firstRange.Maximum;
-            ModelID secondLower = overlappingRange.Minimum;
+            var firstUpper = firstRange.Maximum;
+            var secondLower = overlappingRange.Minimum;
             ModelID secondAverage = (overlappingRange.Minimum + overlappingRange.Maximum) / 2;
-            ModelID secondUpper = overlappingRange.Maximum;
+            var secondUpper = overlappingRange.Maximum;
 
             Assert.True(firstLower.IsValidForRange(overlappingRanges));
             Assert.True(firstAverage.IsValidForRange(overlappingRanges));

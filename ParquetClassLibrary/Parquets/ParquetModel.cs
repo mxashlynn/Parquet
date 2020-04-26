@@ -66,9 +66,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-        {
-            return base.GetAllTags().Union(new List<ModelTag>() { AddsToBiome, AddsToRoom });
-        }
+            => base.GetAllTags().Union(new List<ModelTag>() { AddsToBiome, AddsToRoom });
         #endregion
     }
 }

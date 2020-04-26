@@ -143,9 +143,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public virtual IEnumerable<ModelTag> GetAllTags()
-        {
-            return new List<ModelTag>() { };
-        }
+            => new List<ModelTag>() { };
         #endregion
     }
 }

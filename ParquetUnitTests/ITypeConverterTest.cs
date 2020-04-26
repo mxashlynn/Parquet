@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Beings;
 using ParquetClassLibrary;
 using Xunit;
 

@@ -86,7 +86,7 @@ namespace ParquetUnitTests.Parquets
             var y = 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.NorthNeighbor();
+            var neighbour = space.NorthNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour.Position.Y, y - 1);
@@ -99,7 +99,7 @@ namespace ParquetUnitTests.Parquets
             var y = 0;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.NorthNeighbor();
+            var neighbour = space.NorthNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour, MapSpace.Empty);
@@ -112,7 +112,7 @@ namespace ParquetUnitTests.Parquets
             var y = 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.SouthNeighbor();
+            var neighbour = space.SouthNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour.Position.Y, y + 1);
@@ -125,7 +125,7 @@ namespace ParquetUnitTests.Parquets
             var y = TestRoomMap.GetLength(0) - 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.SouthNeighbor();
+            var neighbour = space.SouthNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour, MapSpace.Empty);
@@ -138,7 +138,7 @@ namespace ParquetUnitTests.Parquets
             var y = 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.EastNeighbor();
+            var neighbour = space.EastNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour.Position.X, x + 1);
@@ -151,7 +151,7 @@ namespace ParquetUnitTests.Parquets
             var y = 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.EastNeighbor();
+            var neighbour = space.EastNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour, MapSpace.Empty);
@@ -164,7 +164,7 @@ namespace ParquetUnitTests.Parquets
             var y = 1;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.WestNeighbor();
+            var neighbour = space.WestNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour.Position.X, x - 1);
@@ -177,7 +177,7 @@ namespace ParquetUnitTests.Parquets
             var y = 0;
 
             var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetStackGrid(TestRoomMap));
-            MapSpace neighbour = space.WestNeighbor();
+            var neighbour = space.WestNeighbor();
 
             Assert.NotEqual(space, neighbour);
             Assert.Equal(neighbour, MapSpace.Empty);

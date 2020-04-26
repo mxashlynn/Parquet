@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -95,9 +94,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-        {
-            return base.GetAllTags().Union(ItemTags);
-        }
+            => base.GetAllTags().Union(ItemTags);
         #endregion
     }
 }

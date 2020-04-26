@@ -7,8 +7,8 @@ namespace ParquetUnitTests
     public class Vector2DUnitTest
     {
         #region Test Values
-        private Vector2D VectorTwoTwo = new Vector2D(2, 2);
-        private Vector2D VectorNegativeUnit = new Vector2D(-1, -1);
+        private readonly Vector2D VectorTwoTwo = new Vector2D(2, 2);
+        private readonly Vector2D VectorNegativeUnit = new Vector2D(-1, -1);
         #endregion
 
         [Fact]

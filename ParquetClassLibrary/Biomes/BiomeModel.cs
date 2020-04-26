@@ -71,9 +71,7 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-        {
-            return base.GetAllTags().Union(ParquetCriteria).Union(EntryRequirements);
-        }
+             => base.GetAllTags().Union(ParquetCriteria).Union(EntryRequirements);
         #endregion
     }
 }

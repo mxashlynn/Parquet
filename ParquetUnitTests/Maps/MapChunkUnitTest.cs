@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Maps;
@@ -76,7 +75,7 @@ namespace ParquetUnitTests.Maps
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            ParquetStackGrid subregion = TestModels.TestMapChunk.GetSubregion();
+            var subregion = TestModels.TestMapChunk.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -94,7 +93,7 @@ namespace ParquetUnitTests.Maps
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
                                 ?.GetValue(TestModels.TestMapChunk) as ParquetStackGrid;
 
-            ParquetStackGrid subregion = TestModels.TestMapChunk.GetSubregion();
+            var subregion = TestModels.TestMapChunk.GetSubregion();
 
             for (var x = 0; x < TestModels.TestMapChunk.DimensionsInParquets.X; x++)
             {

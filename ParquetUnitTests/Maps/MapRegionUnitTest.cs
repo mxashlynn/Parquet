@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Rooms;
 using Xunit;
 
 namespace ParquetUnitTests.Maps
@@ -67,7 +65,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {
-            Vector2D invalidUpperLeft = invalidPosition;
+            var invalidUpperLeft = invalidPosition;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -82,8 +80,8 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
-            Vector2D validUpperLeft = Vector2D.Zero;
-            Vector2D invalidLowerRight = defaultRegion.DimensionsInParquets;
+            var validUpperLeft = Vector2D.Zero;
+            var invalidLowerRight = defaultRegion.DimensionsInParquets;
 
             void InvalidSubregion()
             {
@@ -96,7 +94,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
-            Vector2D validUpperLeft = Vector2D.Zero;
+            var validUpperLeft = Vector2D.Zero;
             var validLowerRight = new Vector2D(defaultRegion.DimensionsInParquets.X - 1,
                                                  defaultRegion.DimensionsInParquets.Y - 1);
 
@@ -117,7 +115,7 @@ namespace ParquetUnitTests.Maps
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            ParquetStackGrid subregion = defaultRegion.GetSubregion();
+            var subregion = defaultRegion.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -135,7 +133,7 @@ namespace ParquetUnitTests.Maps
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
 
-            ParquetStackGrid subregion = defaultRegion.GetSubregion();
+            var subregion = defaultRegion.GetSubregion();
 
             for (var x = 0; x < defaultRegion.DimensionsInParquets.X; x++)
             {

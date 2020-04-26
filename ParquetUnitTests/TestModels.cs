@@ -68,7 +68,7 @@ namespace ParquetUnitTests
         public static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ScriptModel TestScript{ get; }
+        public static ScriptModel TestScript { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static ItemModel TestItem1 { get; }
