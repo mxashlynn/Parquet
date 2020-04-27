@@ -24,8 +24,8 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
-        [Index(10)]
         /// <summary>The statuses of parquets in the chunk.</summary>
+        [Index(10)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
