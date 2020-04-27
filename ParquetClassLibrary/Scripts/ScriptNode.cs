@@ -25,26 +25,6 @@ namespace ParquetClassLibrary.Scripts
         private string nodeContent = "";
         #endregion
 
-        #region Construction and Destruction
-        /// <summary>
-        /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.
-        /// </summary>
-        /// <returns>The action to perform.</returns>
-        public static ScriptNode Construct(string inCommandText, string inSourceText, string inTargetText)
-            => (ScriptNode)
-                $"{inCommandText}{Rules.Delimiters.InternalDelimiter}" +
-                $"{inSourceText}{Rules.Delimiters.InternalDelimiter}" +
-                $"{inTargetText}";
-
-        public void Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText)
-        {
-            var contents = nodeContent.Split(Rules.Delimiters.InternalDelimiter);
-            outCommandText = contents[0];
-            outSourceText = contents[1];
-            outTargetText = contents[2];
-        }
-        #endregion
-
         #region Parsing
         /// <summary>
         /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.
@@ -52,8 +32,8 @@ namespace ParquetClassLibrary.Scripts
         /// <returns>The action to perform.</returns>
         public Action GetAction()
         {
-            (var commandText, var sourceText, var targetText) = this;
-            return ParseCommand(commandText, sourceText, targetText);
+            var contents = nodeContent.Split(Rules.Delimiters.InternalDelimiter);
+            return ParseCommand(contents[0], contents[1], contents[2]);
         }
 
         /// <summary>
