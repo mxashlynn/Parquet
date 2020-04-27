@@ -25,18 +25,6 @@ namespace ParquetClassLibrary.Scripts
         private string nodeContent = "";
         #endregion
 
-        #region Construction and Destruction
-        /// <summary>
-        /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.
-        /// </summary>
-        /// <returns>The action to perform.</returns>
-        public static ScriptNode Construct(string inCommandText, string inSourceText, string inTargetText)
-            => (ScriptNode)
-                $"{inCommandText}{Rules.Delimiters.InternalDelimiter}" +
-                $"{inSourceText}{Rules.Delimiters.InternalDelimiter}" +
-                $"{inTargetText}";
-        #endregion
-
         #region Parsing
         /// <summary>
         /// Transforms the <see cref="ScriptNode"/> into an <see cref="Action"/> to be invoked.

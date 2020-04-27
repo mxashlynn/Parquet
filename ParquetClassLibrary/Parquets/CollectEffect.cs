@@ -5,8 +5,11 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public enum CollectingEffect
     {
+        /// <summary>Collecting this parquet has no effect.</summary>
         None,
+        /// <summary>Awards the <see cref="Beings.CharacterModel"/> a given <see cref="Items.ItemModel"/>.</summary>
         Item,
+        /// <summary>Allows the <see cref="Beings.CharacterModel"/> to remain safely in the <see cref="Biomes.BiomeModel"/> longer.</summary>
         BiomeTime,
     }
 }

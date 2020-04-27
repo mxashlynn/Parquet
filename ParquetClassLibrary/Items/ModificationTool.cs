@@ -8,8 +8,11 @@ namespace ParquetClassLibrary.Items
     /// </remarks>
     public enum ModificationTool
     {
+        /// <summary>This parquet cannot be modified.</summary>
         None,
+        /// <summary>This parquet can be modified with a shovel-like tool.</summary>
         Shovel,
+        /// <summary>This parquet can be modified with a hammer-like tool.</summary>
         Hammer,
     }
 }
