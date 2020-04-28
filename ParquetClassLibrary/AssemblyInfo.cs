@@ -43,14 +43,9 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Build}".
-        /// <list type="number">
-        /// <item><term>Major</term>
-        /// <description>Breaking changes resulting in lost saves.</description></item>
-        /// <item><term>Minor</term>
-        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
-        /// <item><term>Build</term>
-        /// <description>Procedural updates that do not imply any changes.</description></item>
-        /// </list>
+        /// - Major: Breaking changes resulting in lost saves.
+        /// - Minor: Backwards-compatible changes, preserving existing saves.
+        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
         public const string SupportedBeingDataVersion = "0.2.0";
 
@@ -60,14 +55,9 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Build}".
-        /// <list type="number">
-        /// <item><term>Major</term>
-        /// <description>Breaking changes resulting in lost saves.</description></item>
-        /// <item><term>Minor</term>
-        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
-        /// <item><term>Build</term>
-        /// <description>Procedural updates that do not imply any changes.</description></item>
-        /// </list>
+        /// - Major: Breaking changes resulting in lost saves.
+        /// - Minor: Backwards-compatible changes, preserving existing saves.
+        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
         public const string SupportedMapDataVersion = "0.2.0";
 
@@ -77,30 +67,19 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Build}".
-        /// <list type="number">
-        /// <item><term>Major</term>
-        /// <description>Breaking changes resulting in lost saves.</description></item>
-        /// <item><term>Minor</term>
-        /// <description>Backwards-compatible changes, preserving existing saves.</description></item>
-        /// <item><term>Build</term>
-        /// <description>Procedural updates that do not imply any changes.</description></item>
-        /// </list>
+        /// - Major: Breaking changes resulting in lost saves.
+        /// - Minor: Backwards-compatible changes, preserving existing saves.
+        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
         public const string SupportedScriptDataVersion = "0.2.0";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Patch}.{Build}".
-        /// <list type="number">
-        /// <item><term>Major</term>
-        /// <description>Enhancements or fixes that break the API or its serialized data.</description></item>
-        /// <item><term>Minor</term>
-        /// <description>Enhancements that do not break the API or its serialized data.</description></item>
-        /// <item><term>Patch</term>
-        /// <description>Fixes that do not break the API or its serialized data.</description></item>
-        /// <item><term>Build</term>
-        /// <description>Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.</description></item>
-        /// </list>
+        /// - Major: Enhancements or fixes that break the API or its serialized data.
+        /// - Minor: Enhancements that do not break the API or its serialized data.
+        /// - Patch: Fixes that do not break the API or its serialized data.
+        /// - Build: Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.
         /// </remarks>
         public const string LibraryVersion = "0.2.0.0";
     }
