@@ -29,6 +29,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Vsxmd" Version="1.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
   </ItemGroup>
 
