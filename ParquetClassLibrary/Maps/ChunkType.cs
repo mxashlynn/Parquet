@@ -15,14 +15,9 @@ namespace ParquetClassLibrary.Maps
     /// Chunks that are not hand made are instead composed of two layers: a base and a modifier.
     /// The base is the underlying structure of the chunk and the modifier overlays it to
     /// produce more complex arrangements than would otherwise be possible.  For example:
-    /// <list type="bullet">
-    /// <item><term>Forest</term>
-    /// <description>Base:Grassy Solid, Modifier:Scattered Trees</description></item>
-    /// <item><term>Seaside</term>
-    /// <description>Base:Watery Solid, Modifier:Eastern Sandy</description></item>
-    /// <item><term>Town</term>
-    /// <description>Handmade</description></item>
-    /// </list>
+    /// - Forest: Base·Grassy Solid · Modifier·Scattered Trees
+    /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
+    /// - Town: Handmade
     /// </remarks>
     public class ChunkType : IEquatable<ChunkType>, ITypeConverter
     {
