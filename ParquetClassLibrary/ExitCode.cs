@@ -2,7 +2,7 @@ namespace ParquetRoller
 {
     /// <summary>A value indicating success or the nature of the failure.</summary>
     /// <remarks>Returned when the application terminates to indicate results of the process.</remarks>
-    /// <seealso href="https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes"/>
+    /// See Also: https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes 
     public enum ExitCode : int
     {
         /// <summary>The operation completed successfully.</summary>
