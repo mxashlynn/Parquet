@@ -252,12 +252,8 @@ namespace ParquetClassLibrary
         #region Utilities
         /// <summary>
         /// Validates the current <see cref="ModelID"/> over a <see cref="Range{ModelID}"/>.
-        /// <list type="number">
-        /// <item><term>1</term>
-        /// <description>It is <see cref="None"/>.</description></item>
-        /// <item><term>2</term>
-        /// <description>It is defined within the given <see cref="Range{ModelID}"/>, inclusive, regardless of sign.</description></item>
-        /// </list>
+        /// 1. It is <see cref="None"/>.
+        /// 2. It is defined within the given <see cref="Range{ModelID}"/>, inclusive, regardless of sign.
         /// </summary>
         /// <param name="inRange">The <see cref="Range{ModelID}"/> within which the absolute value of the <see cref="ModelID"/> must fall.</param>
         /// <returns>
@@ -271,12 +267,8 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Validates the current <see cref="ModelID"/> over a <see cref="IEnumerable{T}"/>.
         /// A <see cref="ModelID"/> is valid iff:
-        /// <list type="number">
-        /// <item><term>1</term>
-        /// <description>It is <see cref="None"/>.</description></item>
-        /// <item><term>2</term>
-        /// <description>It is defined within any of the <see cref="Range{ModelID}"/>a in the given <see cref="IEnumerable{ModelID}"/>, inclusive, regardless of sign.</description></item>
-        /// </list>
+        /// 1. It is <see cref="None"/>.
+        /// 2. It is defined within any of the <see cref="Range{ModelID}"/>a in the given <see cref="IEnumerable{ModelID}"/>, inclusive, regardless of sign.
         /// </summary>
         /// <param name="inRanges">
         /// The <see cref="IEnumerable{T}"/> within which the <see cref="ModelID"/> must fall.
