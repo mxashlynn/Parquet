@@ -258,7 +258,6 @@ ParquetClassLibrary.ModelCollection<TModel>.Contains(ParquetClassLibrary.ModelID
 ParquetClassLibrary.ModelCollection<TModel>.Count.get -> int
 ParquetClassLibrary.ModelCollection<TModel>.Get<TTarget>(ParquetClassLibrary.ModelID inID) -> TTarget
 ParquetClassLibrary.ModelCollection<TModel>.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Model>
-ParquetClassLibrary.ModelCollection<TModel>.GetFilePath<TRecord>() -> string
 ParquetClassLibrary.ModelCollection<TModel>.GetRecordsForType<TModelInner>(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds) -> ParquetClassLibrary.ModelCollection<TModel>
 ParquetClassLibrary.ModelCollection<TModel>.GetRecordsForType<TModelInner>(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBounds) -> ParquetClassLibrary.ModelCollection<TModel>
 ParquetClassLibrary.ModelCollection<TModel>.ModelCollection(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Model> inModels) -> void
@@ -638,6 +637,7 @@ static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Rang
 static ParquetClassLibrary.Maps.MapRegionSketch.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Model.operator !=(ParquetClassLibrary.Model inModel1, ParquetClassLibrary.Model inModel2) -> bool
 static ParquetClassLibrary.Model.operator ==(ParquetClassLibrary.Model inModel1, ParquetClassLibrary.Model inModel2) -> bool
+static ParquetClassLibrary.ModelCollection.GetFilePath<TModel>() -> string
 static ParquetClassLibrary.ModelID.implicit operator ParquetClassLibrary.ModelID(int inValue) -> ParquetClassLibrary.ModelID
 static ParquetClassLibrary.ModelID.implicit operator int(ParquetClassLibrary.ModelID inIDentifier) -> int
 static ParquetClassLibrary.ModelID.operator !=(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool

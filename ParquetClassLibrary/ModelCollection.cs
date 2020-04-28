@@ -186,7 +186,7 @@ namespace ParquetClassLibrary
         public ModelCollection<TModel> GetRecordsForType<TModelInner>(IEnumerable<Range<ModelID>> inBounds)
             where TModelInner : TModel
         {
-            using var reader = new StreamReader(GetFilePath<TModelInner>());
+            using var reader = new StreamReader(ModelCollection.GetFilePath<TModelInner>());
             using var csv = ConfigureCSVReader(reader);
             var models = csv.GetRecords<TModelInner>().ToList();
             HandleUnassignedIDs(csv.Context.HeaderRecord, models);
@@ -294,7 +294,7 @@ namespace ParquetClassLibrary
         public void PutRecordsForType<TModelInner>()
             where TModelInner : TModel
         {
-            using var fileWriter = new StreamWriter(GetFilePath<TModelInner>(), false, new UTF8Encoding(true, true));
+            using var fileWriter = new StreamWriter(ModelCollection.GetFilePath<TModelInner>(), false, new UTF8Encoding(true, true));
             using var fileCSV = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
             fileCSV.Configuration.NewLine = NewLine.LF;
             fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
@@ -311,20 +311,6 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Utilities
-        /// <summary>
-        /// Given a type, returns the filename and path associated with that type's designer file.
-        /// </summary>
-        /// <typeparam name="TRecord">The type whose path and filename are sought.</typeparam>
-        /// <returns>A full path to the associated designer file.</returns>
-        public static string GetFilePath<TRecord>()
-            where TRecord : TModel
-        {
-            var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
-                ? $"{typeof(TRecord).Name}es.csv"
-                : $"{typeof(TRecord).Name}s.csv";
-            return $"{All.WorkingDirectory}/{filename}";
-        }
-
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
         /// </summary>
@@ -382,5 +368,19 @@ namespace ParquetClassLibrary
         /// <returns>The specified <see cref="Model"/>.</returns>
         public Model Get(ModelID inID)
             => Get<Model>(inID);
+
+        /// <summary>
+        /// Given a type, returns the filename and path associated with that type's designer file.
+        /// </summary>
+        /// <typeparam name="TModel">The type whose path and filename are sought.</typeparam>
+        /// <returns>A full path to the associated designer file.</returns>
+        public static string GetFilePath<TModel>()
+            where TModel : Model
+        {
+            var filename = typeof(TModel) == typeof(Maps.MapRegionSketch)
+                ? $"{typeof(TModel).Name}es.csv"
+                : $"{typeof(TModel).Name}s.csv";
+            return $"{All.WorkingDirectory}/{filename}";
+        }
     }
 }
