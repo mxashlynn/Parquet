@@ -120,7 +120,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Describes the <see cref="MapRegion"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegion"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegion"/>.</returns>
         public override string ToString()
             => $"Region {Name} {base.ToString()}";
         #endregion

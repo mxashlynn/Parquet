@@ -66,9 +66,9 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="Location"/> as a <see langword="string"/>.
+        /// Describes the <see cref="Location"/> as a <see cref="string"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="Location"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="Location"/>.</returns>
         public override string ToString()
             => $"{Position} in {RegionID}";
         #endregion

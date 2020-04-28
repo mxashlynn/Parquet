@@ -188,7 +188,7 @@ namespace ParquetClassLibrary.Beings
                 .Replace(ReflexiveTag, Reflexive);
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the <see cref="PronounGroup"/>.
+        /// Returns a <see cref="string"/> that represents the <see cref="PronounGroup"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

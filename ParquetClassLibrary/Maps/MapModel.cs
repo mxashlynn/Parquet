@@ -134,7 +134,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Describes the map through general characteristics.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current map.</returns>
+        /// <returns>A <see cref="string"/> that represents the current map.</returns>
         public override string ToString()
             => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {Exits.Count} exits.";
         #endregion

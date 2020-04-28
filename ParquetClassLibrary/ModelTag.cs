@@ -79,12 +79,12 @@ namespace ParquetClassLibrary
             None;
 
         /// <summary>
-        /// Converts the given <see langword="string"/> to a <see cref="ModelTag"/>.
+        /// Converts the given <see cref="string"/> to a <see cref="ModelTag"/>.
         /// </summary>
-        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="ModelTag"/> created from the <see langword="string"/>.</returns>
+        /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
             => (ModelTag)inText;
 
@@ -103,7 +103,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelTag"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelTag"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

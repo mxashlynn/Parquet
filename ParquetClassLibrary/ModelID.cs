@@ -61,7 +61,7 @@ namespace ParquetClassLibrary
         #region Characteristics
         /// <summary>Backing type for the <see cref="ModelID"/>.</summary>
         /// <remarks>
-        /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
+        /// This is implemented as an <see cref="int"/> rather than a <see cref="System.Guid"/>
         /// to support human-readable design documents and <see cref="Range{ModelID}"/> validation.
         /// </remarks>
         private int id;
@@ -303,7 +303,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelID"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override readonly string ToString()

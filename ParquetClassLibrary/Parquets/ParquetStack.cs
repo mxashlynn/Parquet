@@ -227,7 +227,7 @@ namespace ParquetClassLibrary.Parquets
             => new ParquetStack(Floor, Block, Furnishing, Collectible);
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStack"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ParquetStack"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

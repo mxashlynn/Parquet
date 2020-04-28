@@ -146,12 +146,12 @@ namespace ParquetClassLibrary.Crafts
         internal static StrikePanel ConverterFactory { get; } = Unused;
 
         /// <summary>
-        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// Converts the given <see cref="string"/> to a <see cref="StrikePanel"/>.
         /// </summary>
-        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        /// <returns>The <see cref="StrikePanel"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
@@ -202,7 +202,7 @@ namespace ParquetClassLibrary.Crafts
             => new StrikePanel(workingRangeBackingStruct, idealRangeBackingStruct);
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="StrikePanel"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="StrikePanel"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

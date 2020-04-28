@@ -135,7 +135,7 @@ namespace ParquetClassLibrary.Beings
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="BeingStatus"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="BeingStatus"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

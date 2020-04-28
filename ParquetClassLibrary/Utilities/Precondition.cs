@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Utilities
         #endregion
 
         /// <summary>
-        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{T}"/>, inclusive.
+        /// Checks if the given <see cref="int"/> falls within the given <see cref="Range{T}"/>, inclusive.
         /// </summary>
         /// <param name="inInt">The integer to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
@@ -123,8 +123,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Verifies that the first given <see langword="class"/> is or is derived from
-        /// the second given <see langword="class"/>.
+        /// Verifies that the first given class is or is derived from the second given class.
         /// </summary>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <typeparam name="TToCheck">The type to check.</typeparam>
@@ -232,7 +231,7 @@ namespace ParquetClassLibrary.Utilities
         }
 
         /// <summary>
-        /// Verifies that the given <see langword="string"/> is not empty.
+        /// Verifies that the given <see cref="string"/> is not empty.
         /// </summary>
         /// <param name="inString">The string to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>

@@ -206,7 +206,7 @@ namespace ParquetClassLibrary.Rooms
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="MapSpace"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

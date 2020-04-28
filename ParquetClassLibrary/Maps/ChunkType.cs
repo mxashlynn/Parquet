@@ -208,7 +208,7 @@ namespace ParquetClassLibrary.Maps
             => new ChunkType(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="Rooms.MapSpace"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="Rooms.MapSpace"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

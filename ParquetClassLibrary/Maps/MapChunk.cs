@@ -58,9 +58,9 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapChunk"/> as a <see langword="string"/> containing basic information.
+        /// Describes the <see cref="MapChunk"/> as a <see cref="string"/> containing basic information.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunk"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
             => $"Chunk {Name} {base.ToString()}";
         #endregion

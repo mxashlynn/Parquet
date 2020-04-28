@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Scripts
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="InteractionStatus"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="InteractionStatus"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

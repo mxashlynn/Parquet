@@ -162,7 +162,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStatus"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ParquetStatus"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

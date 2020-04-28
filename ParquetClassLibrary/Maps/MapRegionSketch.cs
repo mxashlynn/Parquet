@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Describes the <see cref="MapRegionSketch"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
             => $"Sketch {Name} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Columns * Chunks.Rows} chunks.";
         #endregion

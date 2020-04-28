@@ -326,7 +326,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

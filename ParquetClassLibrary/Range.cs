@@ -68,10 +68,10 @@ namespace ParquetClassLibrary
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static Range<TElement> ConverterFactory { get; } = new Range<TElement>();
 
-        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see langword="long"/>.</summary>
+        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see cref="long"/>.</summary>
         internal static Int32Converter Int32ConverterFactory { get; } = new Int32Converter();
 
-        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see langword="double"/>.</summary>
+        /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see cref="double"/>.</summary>
         internal static SingleConverter SingleConverterFactory { get; } = new SingleConverter();
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="Range{TElement}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="Range{TElement}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
