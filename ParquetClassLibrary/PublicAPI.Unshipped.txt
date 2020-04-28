@@ -1,4 +1,4 @@
-ParquetClassLibrary.All
+﻿ParquetClassLibrary.All
 ParquetClassLibrary.AssemblyInfo
 ParquetClassLibrary.AssemblyInfo.AssemblyInfo() -> void
 ParquetClassLibrary.Beings.BeingModel
@@ -465,7 +465,6 @@ ParquetClassLibrary.Scripts.ScriptNode
 ParquetClassLibrary.Scripts.ScriptNode.CompareTo(ParquetClassLibrary.Scripts.ScriptNode inTag) -> int
 ParquetClassLibrary.Scripts.ScriptNode.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 ParquetClassLibrary.Scripts.ScriptNode.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-ParquetClassLibrary.Scripts.ScriptNode.Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText) -> void
 ParquetClassLibrary.Scripts.ScriptNode.GetAction() -> System.Action
 ParquetClassLibrary.Scripts.ScriptNode.ScriptNode() -> void
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>
@@ -678,7 +677,6 @@ static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room
 static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
 static ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount.get -> ParquetClassLibrary.Range<int>
 static ParquetClassLibrary.Rules.Recipes.Craft.ProductCount.get -> ParquetClassLibrary.Range<int>
-static ParquetClassLibrary.Scripts.ScriptNode.Construct(string inCommandText, string inSourceText, string inTargetText) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
 static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName = "Argument") -> void
