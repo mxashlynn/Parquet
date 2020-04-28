@@ -19,7 +19,7 @@ namespace ParquetUnitTests.Utilities
             var testID = (ModelID)6;
             var testRange = new Range<ModelID>(0, 10);
 
-            var exception = Record.Exception(() => Precondition.IsInRange(testID, testRange));
+            var exception = Record.Exception(() => Precondition.IsInRange(testID, testRange, nameof(testID)));
 
             Assert.Null(exception);
         }
@@ -30,7 +30,7 @@ namespace ParquetUnitTests.Utilities
             var innerRange = new Range<ModelID>(1, 9);
             var outterRange = new Range<ModelID>(0, 10);
 
-            var exception = Record.Exception(() => Precondition.IsInRange(innerRange, outterRange));
+            var exception = Record.Exception(() => Precondition.IsInRange(innerRange, outterRange, nameof(innerRange)));
 
             Assert.Null(exception);
         }
@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Utilities
             var testID = (ModelID)7;
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            var exception = Record.Exception(() => Precondition.IsInRange(testID, testCollection));
+            var exception = Record.Exception(() => Precondition.IsInRange(testID, testCollection, nameof(testID)));
 
             Assert.Null(exception);
         }
@@ -52,7 +52,7 @@ namespace ParquetUnitTests.Utilities
             var innerRange = new Range<ModelID>(1, 4);
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            var exception = Record.Exception(() => Precondition.IsInRange(innerRange, testCollection));
+            var exception = Record.Exception(() => Precondition.IsInRange(innerRange, testCollection, nameof(innerRange)));
 
             Assert.Null(exception);
         }
@@ -63,7 +63,7 @@ namespace ParquetUnitTests.Utilities
             var testID = (ModelID)12;
             var testRange = new Range<ModelID>(0, 10);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testRange); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testRange, nameof(testID)); });
         }
 
         [Fact]
@@ -72,7 +72,7 @@ namespace ParquetUnitTests.Utilities
             var innerRange = new Range<ModelID>(0, 10);
             var outterRange = new Range<ModelID>(1, 9);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, outterRange); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, outterRange, nameof(innerRange)); });
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace ParquetUnitTests.Utilities
             var testID = (ModelID)12;
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testCollection); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testCollection, nameof(testID)); });
         }
 
         [Fact]
@@ -90,7 +90,7 @@ namespace ParquetUnitTests.Utilities
             var innerRange = new Range<ModelID>(0, 10);
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(1, 5), new Range<ModelID>(6, 9) };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, testCollection); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, testCollection, nameof(innerRange)); });
         }
 
         [Fact]
@@ -133,7 +133,7 @@ namespace ParquetUnitTests.Utilities
             var testIDCollection = new List<ModelID> { 0, 1, 5, 6, 9, 10 };
             var testRange = new Range<ModelID>(0, 10);
 
-            var exception = Record.Exception(() => Precondition.AreInRange(testIDCollection, testRange));
+            var exception = Record.Exception(() => Precondition.AreInRange(testIDCollection, testRange, nameof(testIDCollection)));
 
             Assert.Null(exception);
         }
@@ -144,7 +144,7 @@ namespace ParquetUnitTests.Utilities
             var testIDCollection = new List<ModelID> { 0, 1, 2, 7, 8, 10 };
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            var exception = Record.Exception(() => Precondition.AreInRange(testIDCollection, testCollection));
+            var exception = Record.Exception(() => Precondition.AreInRange(testIDCollection, testCollection, nameof(testIDCollection)));
 
             Assert.Null(exception);
         }
@@ -155,7 +155,7 @@ namespace ParquetUnitTests.Utilities
             var testIDCollection = new List<ModelID> { 0, 1, 5, 9, 10, 20 };
             var testRange = new Range<ModelID>(0, 10);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.AreInRange(testIDCollection, testRange));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.AreInRange(testIDCollection, testRange, nameof(testIDCollection)));
         }
 
         [Fact]
@@ -164,7 +164,7 @@ namespace ParquetUnitTests.Utilities
             var testIDCollection = new List<ModelID> { 0, 1, 3, 8, 10, 20 };
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.AreInRange(testIDCollection, testCollection));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.AreInRange(testIDCollection, testCollection, nameof(testIDCollection)));
         }
 
         [Fact]
@@ -244,7 +244,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = new List<ModelID> { 0, 1, 2 };
 
-            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue));
+            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue, nameof(testValue)));
 
             Assert.Null(exception);
         }
@@ -255,7 +255,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = "will pass";
 
-            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue));
+            var exception = Record.Exception(() => Precondition.IsNotNullOrEmpty(testValue, nameof(testValue)));
 
             Assert.Null(exception);
         }
@@ -265,7 +265,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = new List<ModelID>();
 
-            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue));
+            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue, nameof(testValue)));
         }
 
         [Fact]
@@ -273,7 +273,7 @@ namespace ParquetUnitTests.Utilities
         {
             var testValue = "";
 
-            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue));
+            Assert.Throws<IndexOutOfRangeException>(() => Precondition.IsNotNullOrEmpty(testValue, nameof(testValue)));
         }
 
         [Fact]

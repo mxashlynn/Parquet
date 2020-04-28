@@ -14,7 +14,7 @@ namespace ParquetClassLibrary
     /// <para />
     /// Model is intended to represent the parts of a game object that do not change
     /// from one instance to another.  In this sense, it can be thought of as
-    /// analogous to a C# <see langword="class"/>.<para />
+    /// analogous to a C# class.<para />
     /// <para />
     /// Individual game objects are represented and referenced as instances of <see cref="ModelID"/>
     /// within <see cref="ModelCollection{T}"/>s in other classes.  Like a class instance,
@@ -103,9 +103,9 @@ namespace ParquetClassLibrary
             => inModel?.ID == ID;
 
         /// <summary>
-        /// Determines whether the specified <see langword="object"/> is equal to the current <see cref="Model"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Model"/>.
         /// </summary>
-        /// <param name="obj">The <see langword="object"/> to compare with the current <see cref="Model"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Model"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
             => obj is Model model
@@ -132,7 +132,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="Model"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="Model"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

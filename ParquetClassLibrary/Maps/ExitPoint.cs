@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Maps
 
         #region IEquatable Implementation
         /// <summary>
-        /// Hash function for a <see cref="SpecialPoint"/>.
+        /// Hash function for a <see cref="ExitPoint"/>.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
@@ -63,27 +63,27 @@ namespace ParquetClassLibrary.Maps
         /// Determines whether the given <see cref="object"/> is equal to this <see cref="ExitPoint"/>.
         /// </summary>
         /// <param name="obj">The <see cref="object"/> to compare with.</param>
-        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="SpecialPoint"/>; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="ExitPoint"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
             => obj is ExitPoint point
             && Equals(point);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="SpecialPoint"/>
-        /// is equal to another specified instance of <see cref="SpecialPoint"/>.
+        /// Determines whether a specified instance of <see cref="ExitPoint"/>
+        /// is equal to another specified instance of <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="inPoint1">The first <see cref="SpecialPoint"/> to compare.</param>
-        /// <param name="inPoint2">The second <see cref="SpecialPoint"/> to compare.</param>
+        /// <param name="inPoint1">The first <see cref="ExitPoint"/> to compare.</param>
+        /// <param name="inPoint2">The second <see cref="ExitPoint"/> to compare.</param>
         /// <returns><c>true</c> if the two points are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(ExitPoint inPoint1, ExitPoint inPoint2)
             => inPoint1?.Equals(inPoint2) ?? inPoint2?.Equals(inPoint1) ?? true;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="SpecialPoint"/>
-        /// is not equal to another specified <see cref="SpecialPoint"/>.
+        /// Determines whether a specified instance of <see cref="ExitPoint"/>
+        /// is not equal to another specified <see cref="ExitPoint"/>.
         /// </summary>
-        /// <param name="inPoint1">The first <see cref="SpecialPoint"/> to compare.</param>
-        /// <param name="inPoint2">The second <see cref="SpecialPoint"/> to compare.</param>
+        /// <param name="inPoint1">The first <see cref="ExitPoint"/> to compare.</param>
+        /// <param name="inPoint2">The second <see cref="ExitPoint"/> to compare.</param>
         /// <returns>
         /// <c>true</c> if the two points are not equal; otherwise, <c>false</c>.
         /// </returns>
@@ -149,7 +149,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ExitPoint"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ExitPoint"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

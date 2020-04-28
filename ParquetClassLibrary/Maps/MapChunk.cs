@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Models details of a playable chunk in sandbox.
-    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
+    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="ExitPoint"/>s.
     /// </summary>
     public sealed class MapChunk : MapModel
     {
@@ -24,8 +24,8 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
-        [Index(10)]
         /// <summary>The statuses of parquets in the chunk.</summary>
+        [Index(10)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
@@ -58,9 +58,9 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapChunk"/> as a <see langword="string"/> containing basic information.
+        /// Describes the <see cref="MapChunk"/> as a <see cref="string"/> containing basic information.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapChunk"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
             => $"Chunk {Name} {base.ToString()}";
         #endregion

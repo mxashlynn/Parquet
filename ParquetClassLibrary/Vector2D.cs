@@ -181,7 +181,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="Vector2D"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="Vector2D"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

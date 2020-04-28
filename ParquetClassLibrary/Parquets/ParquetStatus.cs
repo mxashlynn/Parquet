@@ -130,9 +130,9 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="text">The text to convert.</param>
-        /// <param name="row">The current context and configuration.</param>
-        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
@@ -162,7 +162,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ParquetStatus"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ParquetStatus"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -185,6 +185,7 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
+        /// <param name="inSubregion">The <see cref="ParquetStatus"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ParquetStatus[,] inSubregion, Vector2D inPosition)

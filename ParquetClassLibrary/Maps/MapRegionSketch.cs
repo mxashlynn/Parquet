@@ -76,13 +76,13 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Map Contents
-        /// <summary>Call <see cref="Generate"/> before accessing parquet statuses.</summary>
+        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
         [Ignore]
         [Index(10)]
         public override ParquetStatusGrid ParquetStatuses
             => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
 
-        /// <summary>Call <see cref="Generate"/> before accessing parquets.</summary>
+        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
         [Index(11)]
         public override ParquetStackGrid ParquetDefinitions
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Describes the <see cref="MapRegionSketch"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
             => $"Sketch {Name} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Columns * Chunks.Rows} chunks.";
         #endregion

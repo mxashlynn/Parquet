@@ -57,9 +57,9 @@ namespace ParquetClassLibrary.Crafts
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
-            Precondition.IsInRange(inProducts.Count(), Rules.Recipes.Craft.ProductCount);
+            Precondition.IsInRange(inProducts.Count(), Rules.Recipes.Craft.ProductCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
-            Precondition.IsInRange(inIngredients.Count(), Rules.Recipes.Craft.IngredientCount);
+            Precondition.IsInRange(inIngredients.Count(), Rules.Recipes.Craft.IngredientCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
             if (inPanelPattern.Rows > Rules.Dimensions.PanelsPerPatternHeight
                 || inPanelPattern.Columns > Rules.Dimensions.PanelsPerPatternWidth

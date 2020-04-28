@@ -3,7 +3,7 @@ using System;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Represents a specific position within a specific <see cref="MapRegion"/>.
+    /// Represents a specific position within a specific <see cref="Maps.MapRegion"/>.
     /// </summary>
     /// <remarks>
     /// While primarily used in-library by <see cref="Beings.BeingModel"/> this class
@@ -11,10 +11,10 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class Location : IEquatable<Location>
     {
-        /// <summary>The identifier for the <see cref="MapRegion"/> of this located.</summary>
+        /// <summary>The identifier for the <see cref="Maps.MapRegion"/> of this located.</summary>
         public ModelID RegionID { get; }
 
-        /// <summary>The position within the current <see cref="MapRegion"/> of this located.</summary>
+        /// <summary>The position within the current <see cref="Maps.MapRegion"/> of this located.</summary>
         public Vector2D Position { get; }
 
         #region IEquatable Implementation
@@ -66,9 +66,9 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="Location"/> as a <see langword="string"/>.
+        /// Describes the <see cref="Location"/> as a <see cref="string"/>.
         /// </summary>
-        /// <returns>A <see langword="string"/> that represents the current <see cref="Location"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="Location"/>.</returns>
         public override string ToString()
             => $"{Position} in {RegionID}";
         #endregion

@@ -22,6 +22,7 @@ namespace ParquetClassLibrary
     /// <item><term /><description>
     /// It allows various Models to be used interchangably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </description></item>
+    /// </list>
     /// </remarks>
     public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {
@@ -173,7 +174,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="RecipeElement"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="RecipeElement"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

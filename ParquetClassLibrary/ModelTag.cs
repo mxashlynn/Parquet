@@ -45,7 +45,6 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
-        /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ModelTag(string inValue)
             => new ModelTag { tagContent = inValue };
 
@@ -80,12 +79,12 @@ namespace ParquetClassLibrary
             None;
 
         /// <summary>
-        /// Converts the given <see langword="string"/> to a <see cref="StrikePanel"/>.
+        /// Converts the given <see cref="string"/> to a <see cref="ModelTag"/>.
         /// </summary>
-        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="StrikePanel"/> created from the <see langword="string"/>.</returns>
+        /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
             => (ModelTag)inText;
 
@@ -95,7 +94,7 @@ namespace ParquetClassLibrary
         /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
-        /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
+        /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
                 ? (string)tag
@@ -104,7 +103,7 @@ namespace ParquetClassLibrary
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelTag"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelTag"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

@@ -1,4 +1,4 @@
-ParquetClassLibrary.All
+﻿ParquetClassLibrary.All
 ParquetClassLibrary.AssemblyInfo
 ParquetClassLibrary.AssemblyInfo.AssemblyInfo() -> void
 ParquetClassLibrary.Beings.BeingModel
@@ -236,7 +236,7 @@ ParquetClassLibrary.Maps.MapRegionSketch.ElevationGlobal.get -> int
 ParquetClassLibrary.Maps.MapRegionSketch.ElevationLocal.get -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, string inDataVersion = "0.2.0", int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs
-ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inParquets, ParquetClassLibrary.Parquets.ParquetStatus inStatuses, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inPoints) -> void
+ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inPoints) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.SpecialPoints.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Maps.ExitPoint>
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Status.get -> ParquetClassLibrary.Parquets.ParquetStatus
@@ -465,7 +465,6 @@ ParquetClassLibrary.Scripts.ScriptNode
 ParquetClassLibrary.Scripts.ScriptNode.CompareTo(ParquetClassLibrary.Scripts.ScriptNode inTag) -> int
 ParquetClassLibrary.Scripts.ScriptNode.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 ParquetClassLibrary.Scripts.ScriptNode.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-ParquetClassLibrary.Scripts.ScriptNode.Deconstruct(out string outCommandText, out string outSourceText, out string outTargetText) -> void
 ParquetClassLibrary.Scripts.ScriptNode.GetAction() -> System.Action
 ParquetClassLibrary.Scripts.ScriptNode.ScriptNode() -> void
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>
@@ -638,7 +637,7 @@ static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Rang
 static ParquetClassLibrary.Maps.MapRegionSketch.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Model.operator !=(ParquetClassLibrary.Model inModel1, ParquetClassLibrary.Model inModel2) -> bool
 static ParquetClassLibrary.Model.operator ==(ParquetClassLibrary.Model inModel1, ParquetClassLibrary.Model inModel2) -> bool
-static ParquetClassLibrary.ModelCollection<TModel>.GetFilePath<TRecord>() -> string
+static ParquetClassLibrary.ModelCollection.GetFilePath<TModel>() -> string
 static ParquetClassLibrary.ModelID.implicit operator ParquetClassLibrary.ModelID(int inValue) -> ParquetClassLibrary.ModelID
 static ParquetClassLibrary.ModelID.implicit operator int(ParquetClassLibrary.ModelID inIDentifier) -> int
 static ParquetClassLibrary.ModelID.operator !=(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
@@ -678,20 +677,19 @@ static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room
 static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
 static ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount.get -> ParquetClassLibrary.Range<int>
 static ParquetClassLibrary.Rules.Recipes.Craft.ProductCount.get -> ParquetClassLibrary.Range<int>
-static ParquetClassLibrary.Scripts.ScriptNode.Construct(string inCommandText, string inSourceText, string inTargetText) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
-static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inOuterBounds, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(int inInt, ParquetClassLibrary.Range<int> inBounds, string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inOuterBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsInRange(int inInt, ParquetClassLibrary.Range<int> inBounds, string inArgumentName) -> void
 static ParquetClassLibrary.Utilities.Precondition.IsNotNone(ParquetClassLibrary.ModelID inID, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Utilities.Precondition.IsNotNull(object inReference, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty(string inString, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty<TElement>(System.Collections.Generic.IEnumerable<TElement> inEnumerable, string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty(string inString, string inArgumentName) -> void
+static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty<TElement>(System.Collections.Generic.IEnumerable<TElement> inEnumerable, string inArgumentName) -> void
 static ParquetClassLibrary.Utilities.Precondition.IsOfType<TToCheck, TTarget>(string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Utilities.Precondition.MustBeNonNegative(int inNumber, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Utilities.Precondition.MustBePositive(int inNumber, string inArgumentName = "Argument") -> void

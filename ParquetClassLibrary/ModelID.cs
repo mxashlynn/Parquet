@@ -18,8 +18,8 @@ namespace ParquetClassLibrary
     /// game objects.<para />
     /// <para />
     /// For example, multiple identical parquet IDs may be assigned
-    /// to <see cref="Maps.MapChunk"/>s or <see cref="Maps.MapRegions"/>,
-    /// and multiple duplicate <see cref="Item"/> IDs may exist in
+    /// to <see cref="Maps.MapChunk"/>s or <see cref="Maps.MapRegion"/>s,
+    /// and multiple duplicate <see cref="Items.ItemModel"/> IDs may exist in
     /// accross various <see cref="Beings.CharacterModel"/> inventories.<para />
     /// <para />
     /// Using ModelID the library looks up the game object definitions
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary
         #region Characteristics
         /// <summary>Backing type for the <see cref="ModelID"/>.</summary>
         /// <remarks>
-        /// This is implemented as an <see langword="int"/> rather than a <see cref="System.Guid"/>
+        /// This is implemented as an <see cref="int"/> rather than a <see cref="System.Guid"/>
         /// to support human-readable design documents and <see cref="Range{ModelID}"/> validation.
         /// </remarks>
         private int id;
@@ -269,7 +269,7 @@ namespace ParquetClassLibrary
             || inRange.ContainsValue(Math.Abs(id));
 
         /// <summary>
-        /// Validates the current <see cref="ModelID"/> over a <see cref="IEnumerable{Range{ModelID}}"/>.
+        /// Validates the current <see cref="ModelID"/> over a <see cref="IEnumerable{T}"/>.
         /// A <see cref="ModelID"/> is valid iff:
         /// <list type="number">
         /// <item><term>1</term>
@@ -279,10 +279,10 @@ namespace ParquetClassLibrary
         /// </list>
         /// </summary>
         /// <param name="inRanges">
-        /// The <see cref="IEnumerable{Range{ModelID}}"/> within which the <see cref="ModelID"/> must fall.
+        /// The <see cref="IEnumerable{T}"/> within which the <see cref="ModelID"/> must fall.
         /// </param>
         /// <returns>
-        /// <c>true</c>, if the <see cref="ModelID"/> is valid given the <see cref="IEnumerable{Range{ModelID}}"/>, <c>false</c> otherwise.
+        /// <c>true</c>, if the <see cref="ModelID"/> is valid given the <see cref="IEnumerable{T}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
         public readonly bool IsValidForRange(IEnumerable<Range<ModelID>> inRanges)
@@ -303,7 +303,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ModelID"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelID"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override readonly string ToString()

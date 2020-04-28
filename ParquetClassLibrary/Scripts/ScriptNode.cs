@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
     /// Models the an element within a scripted element of gameplay.
-    /// For example, a precondition, postcondition, or step in an <see cref="Interactions.InteractionModel"/>
+    /// For example, a precondition, postcondition, or step in an <see cref="InteractionModel"/>
     /// or the effect of an <see cref="Items.ItemModel"/>.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
@@ -71,7 +71,6 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
-        /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ScriptNode(string inValue)
             => new ScriptNode { nodeContent = inValue };
 
@@ -106,12 +105,12 @@ namespace ParquetClassLibrary.Scripts
             None;
 
         /// <summary>
-        /// Converts the given <see langword="string"/> to a <see cref="ScriptNode"/>.
+        /// Converts the given <see cref="string"/> to a <see cref="ScriptNode"/>.
         /// </summary>
-        /// <param name="inText">The <see langword="string"/> to convert to an object.</param>
+        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
         /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <returns>The <see cref="ScriptNode"/> created from the <see langword="string"/>.</returns>
+        /// <returns>The <see cref="ScriptNode"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
             => (ScriptNode)inText;
 
@@ -130,7 +129,7 @@ namespace ParquetClassLibrary.Scripts
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="ScriptNode"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ScriptNode"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

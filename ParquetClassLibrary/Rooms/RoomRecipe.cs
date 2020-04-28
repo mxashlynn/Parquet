@@ -62,6 +62,7 @@ namespace ParquetClassLibrary.Rooms
         #endregion
 
         #region Derived Details
+        /// <summary>
         /// A measure of the stringency of this <see cref="RoomRecipe"/>'s requirements.
         /// If a <see cref="Room"/> corresponds to multiple recipes' requirements,
         /// the room is asigned the type of the most demanding recipe.

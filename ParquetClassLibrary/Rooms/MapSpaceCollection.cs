@@ -179,13 +179,11 @@ namespace ParquetClassLibrary.Rooms
             return outPerimeter.Count >= Rules.Recipes.Room.MinPerimeterSpaces;
 
             #region Algorithm Helper Methods
-            /// <summary>
-            /// Finds a <see cref="MapSpace"/> that can be used to search for the perimeter.
-            /// </summary>
-            /// <param name="inStart">Where to begin looking.</param>
-            /// <param name="inAdjust">How to adjust the position at each step if a seed has not been found.</param>
-            /// <param name="outFinal">The position of the perimeter seed.</param>
-            /// <returns><c>true</c> if a seed was found, <c>false</c> otherwise.</returns>
+            // Finds a MapSpace that can be used to search for the perimeter.
+            // inStart indicates where to begin looking.
+            // inAdjust indicates how to adjust the position at each step if a seed has not been found.
+            // outFinal indicates the position of the perimeter seed.
+            // Returns true if a seed was found, false otherwise.
             bool TryGetSeed(Vector2D inStart, Func<Vector2D, Vector2D> inAdjust, out Vector2D outFinal)
             {
                 var found = false;
@@ -216,12 +214,10 @@ namespace ParquetClassLibrary.Rooms
                 return found;
             }
 
-            /// <summary>
-            /// Finds all 4-connected <see cref="MapSpace"/>s in the given subregion whose <see cref="MapSpace.Content"/>
-            /// <see cref="ParquetStack.IsEnclosing"/> beginning at the given <see cref="MapSpace.Position"/>.
-            /// </summary>
-            /// <param name="inStart">Where to begin the perimeter search.</param>
-            /// <returns>The potential perimeter.</returns>
+            // Finds all 4-connected MapSpaces in the given subregion whose Content is Enclosing,
+            // beginning at the given Position.
+            // inStart indicates where to begin the perimeter search.
+            // Returns the potential perimeter.
             MapSpaceCollection GetPotentialPerimeter(MapSpace inStart)
                 => First.Subregion.GetSpaces().Search(inStart,
                                                       space => space.Content.IsEnclosing,
@@ -263,20 +259,21 @@ namespace ParquetClassLibrary.Rooms
         /// <remarks>
         /// Searches in a preorder, depth-first fashion.
         /// </remarks>
+        /// <param name="inStart">The <see cref="MapSpace"/> to begin searching from.</param>
         /// <param name="inIsApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
         /// <param name="inIsGoal"><c>true</c> if a the search goal has been satisfied.</param>
         /// <returns>Information about the results of the search procedure.</returns>
         private SearchResults Search(MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
         {
-            Precondition.IsNotNullOrEmpty(Spaces);
+            Precondition.IsNotNullOrEmpty(Spaces, nameof(Spaces));
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 
             return new SearchResults(DepthFirstSearch(inStart), cycleFound, new MapSpaceCollection(visited));
 
-            /// <summary>Traverses the given 4-connected grid in a preorder, depth-first fashion.</summary>
-            /// <param name="inSpace">The <see cref="MapSpace"/> under consideration this stack frame.</param>
-            /// <returns><c>true</c> is the goal was found, <c>false</c> otherwise.</returns>
+            // Traverses the given 4-connected grid in a preorder, depth-first fashion.
+            // inSpace indicates the MapSpace under consideration this stack frame.
+            // Returns true is the goal was found, false otherwise.
             bool DepthFirstSearch(MapSpace inSpace)
             {
                 var goalFound = false;
@@ -335,7 +332,7 @@ namespace ParquetClassLibrary.Rooms
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="MapSpaceCollection"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="MapSpaceCollection"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()

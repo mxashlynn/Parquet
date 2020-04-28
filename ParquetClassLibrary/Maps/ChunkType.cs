@@ -208,7 +208,7 @@ namespace ParquetClassLibrary.Maps
             => new ChunkType(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
 
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="MapSpace"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="Rooms.MapSpace"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -224,6 +224,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
+        /// <param name="inChunkTypeArray">The <see cref="ChunkType"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ChunkType[,] inChunkTypeArray, Vector2D inPosition)

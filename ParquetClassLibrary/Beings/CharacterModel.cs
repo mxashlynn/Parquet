@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
-        /// This identifier provides a link between software character <see langword="class"/>es
+        /// This identifier provides a link between software character classes
         /// and the characters written of in a game's narrative that they represent.  The goal
         /// is that these identifiers be able to span any number of shipped titles, allowing a
         /// sequel title to import data from prior titles in such a way that one game's NPC
@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Beings
         [Index(9)]
         public string StoryCharacterID { get; }
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuests { get; }
