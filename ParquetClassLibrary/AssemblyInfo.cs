@@ -45,9 +45,8 @@ namespace ParquetClassLibrary
         /// The version has the format "{Major}.{Minor}.{Build}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
-        public const string SupportedBeingDataVersion = "0.2.0";
+        public const string SupportedBeingDataVersion = "0.2";
 
         /// <summary>
         /// Describes the version of the serialized <see cref="Maps.MapModel"/>
@@ -57,9 +56,8 @@ namespace ParquetClassLibrary
         /// The version has the format "{Major}.{Minor}.{Build}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
-        public const string SupportedMapDataVersion = "0.2.0";
+        public const string SupportedMapDataVersion = "0.2";
 
         /// <summary>
         /// Describes the version of the serialized <see cref="Scripts.ScriptNode"/>
@@ -69,9 +67,8 @@ namespace ParquetClassLibrary
         /// The version has the format "{Major}.{Minor}.{Build}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// - Patch: Fixes that do not break the API or its serialized data.
         /// </remarks>
-        public const string SupportedScriptDataVersion = "0.2.0";
+        public const string SupportedScriptDataVersion = "0.2";
 
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>

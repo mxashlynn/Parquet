@@ -1,4 +1,4 @@
-﻿ParquetClassLibrary.All
+ParquetClassLibrary.All
 ParquetClassLibrary.AssemblyInfo
 ParquetClassLibrary.AssemblyInfo.AssemblyInfo() -> void
 ParquetClassLibrary.Beings.BeingModel
@@ -490,9 +490,9 @@ abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetCl
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 const ParquetClassLibrary.AssemblyInfo.LibraryVersion = "0.2.0.0" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedBeingDataVersion = "0.2.0" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedMapDataVersion = "0.2.0" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedScriptDataVersion = "0.2.0" -> string
+const ParquetClassLibrary.AssemblyInfo.SupportedBeingDataVersion = "0.2" -> string
+const ParquetClassLibrary.AssemblyInfo.SupportedMapDataVersion = "0.2" -> string
+const ParquetClassLibrary.AssemblyInfo.SupportedScriptDataVersion = "0.2" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "|their|" -> string
 const ParquetClassLibrary.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
