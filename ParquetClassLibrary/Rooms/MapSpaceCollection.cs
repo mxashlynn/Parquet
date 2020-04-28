@@ -265,7 +265,7 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>Information about the results of the search procedure.</returns>
         private SearchResults Search(MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
         {
-            Precondition.IsNotNullOrEmpty(Spaces);
+            Precondition.IsNotNullOrEmpty(Spaces, nameof(Spaces));
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 

@@ -316,7 +316,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <typeparam name="TRecord">The type whose path and filename are sought.</typeparam>
         /// <returns>A full path to the associated designer file.</returns>
-        public static string GetFilePath<TRecord>()
+        public string GetFilePath<TRecord>()
             where TRecord : TModel
         {
             var filename = typeof(TRecord) == typeof(Maps.MapRegionSketch)
