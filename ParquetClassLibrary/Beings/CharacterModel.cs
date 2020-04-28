@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Beings
         [Index(9)]
         public string StoryCharacterID { get; }
 
-        /// <summary>The <see cref="Quests.QuestModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuests { get; }

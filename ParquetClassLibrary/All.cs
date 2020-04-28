@@ -267,7 +267,7 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Initialize Ranges
-            ///<summary>By convention, the first ModelID in each Range is a multiple of this number.</summary>
+            // By convention, the first ModelID in each Range is a multiple of this number.
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges
@@ -395,7 +395,7 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Initializes the <see cref="ModelCollection{T}s"/> from the given collections.
+        /// Initializes the <see cref="ModelCollection{T}"/>s from the given collections.
         /// </summary>
         /// <param name="inPronouns">The pronouns that the game knows by default.</param>
         /// <param name="inBeings">All beings to be used in the game.</param>

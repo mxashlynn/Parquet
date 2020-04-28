@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatusGrid"/> with unusable dimensions.
+        /// Initializes a new <see cref="Parquets.ParquetStatusGrid"/> with unusable dimensions.
         /// </summary>
         /// <remarks>
         /// For this class, there are no reasonable default values.
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Maps
             : this(1, 1) { }
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatusGrid"/>.
+        /// Initializes a new <see cref="Parquets.ParquetStatusGrid"/>.
         /// </summary>
         /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Maps
                     ? 0
                     : Columns * Rows;
 
-        /// <summary>Access to any <see cref="ParquetStatus"/> in the 2D collection.</summary>
+        /// <summary>Access to any <see cref="Parquets.ParquetStatus"/> in the 2D collection.</summary>
         public ref ChunkType this[int y, int x]
             => ref ChunkTypes[y, x];
 
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Maps
             => (IEnumerator<ChunkType>)ChunkTypes.GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="Parquets.ParquetStatusGrid"/>, which supports simple iteration.
         /// </summary>
         /// <remarks>For serialization, this guarantees stable iteration order.</remarks>
         /// <returns>An enumerator.</returns>

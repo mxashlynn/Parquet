@@ -63,7 +63,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The parquets that this <see cref="CharacterModel"/> has encountered.</summary>
         public List<ModelID> KnownParquets { get; }
 
-        /// <summary>The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
+        /// <summary>The <see cref="Rooms.RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
         public List<ModelID> KnownRoomRecipes { get; }
 
         /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
@@ -83,8 +83,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inBeingDefinition">The <see cref="BeingModel"/> whose status is being tracked.</param>
         /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</param>
         /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
-        /// <param name="inCurrentBehavior">The <see cref="Behavior"/> currently governing the tracked <see cref="BeingModel"/>.</param>
-        // TODO Fill in units bellow.
+        /// <param name="inCurrentBehavior">The behavior currently governing the tracked <see cref="BeingModel"/>.</param>
         /// <param name="inBiomeTimeRemaining">How long [TODO in what units?] to until being kicked out of the current <see cref="Biomes.BiomeModel"/>.</param>
         /// <param name="inBuildingSpeed">The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</param>
         /// <param name="inModificationSpeed">The time it takes the tracked <see cref="BeingModel"/> to modify existing parquets.</param>
@@ -92,7 +91,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inMovementSpeed">The time it takes the tracked <see cref="BeingModel"/> to walk from one <see cref="Location"/> to another.</param>
         /// <param name="inKnownBeings">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
         /// <param name="inKnownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
-        /// <param name="inKnownRoomRecipes">The <see cref="RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
+        /// <param name="inKnownRoomRecipes">The <see cref="Rooms.RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>

@@ -58,6 +58,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
         /// <param name="inItemID">The item that this collectible corresponds to, if any.</param>
         /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
+        /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
         /// <param name="inGatherTool">The tool used to gather this block.</param>
         /// <param name="inGatherEffect">Effect of this block when gathered.</param>
         /// <param name="inCollectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>

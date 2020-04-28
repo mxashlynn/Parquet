@@ -76,13 +76,13 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Map Contents
-        /// <summary>Call <see cref="Generate"/> before accessing parquet statuses.</summary>
+        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
         [Ignore]
         [Index(10)]
         public override ParquetStatusGrid ParquetStatuses
             => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
 
-        /// <summary>Call <see cref="Generate"/> before accessing parquets.</summary>
+        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
         [Index(11)]
         public override ParquetStackGrid ParquetDefinitions

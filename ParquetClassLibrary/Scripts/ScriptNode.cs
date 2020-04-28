@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
     /// Models the an element within a scripted element of gameplay.
-    /// For example, a precondition, postcondition, or step in an <see cref="Interactions.InteractionModel"/>
+    /// For example, a precondition, postcondition, or step in an <see cref="InteractionModel"/>
     /// or the effect of an <see cref="Items.ItemModel"/>.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
@@ -71,7 +71,6 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
-        /// <seealso cref="Sanitize(string)"/>
         public static implicit operator ScriptNode(string inValue)
             => new ScriptNode { nodeContent = inValue };
 

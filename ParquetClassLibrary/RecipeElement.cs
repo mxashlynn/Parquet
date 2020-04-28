@@ -22,6 +22,7 @@ namespace ParquetClassLibrary
     /// <item><term /><description>
     /// It allows various Models to be used interchangably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </description></item>
+    /// </list>
     /// </remarks>
     public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {

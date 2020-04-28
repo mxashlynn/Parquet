@@ -26,7 +26,6 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Initializes a new empty instance of the <see cref="Inventory"/> class.
         /// </summary>
-        /// <param name="inSlots">The <see cref="InventorySlot"/>s to collect.  Cannot be null.</param>
         /// <param name="inCapacity">How many inventory slots exist.  Must be positive</param>
         public Inventory(int inCapacity)
         {
@@ -63,7 +62,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
         /// </summary>
-        /// <param name="inItems">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
+        /// <param name="inItemID">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
         /// <returns>The number of items of the given type contained.</returns>
         public int Contains(ModelID inItemID)
         {
@@ -94,7 +93,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>
         /// Determines if the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>s.
         /// </summary>
-        /// <param name="inSlot">The slots to check for.  Cannot be null or empty.</param>
+        /// <param name="inSlots">The slots to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
         public bool Has(IEnumerable<InventorySlot> inSlots)
         {

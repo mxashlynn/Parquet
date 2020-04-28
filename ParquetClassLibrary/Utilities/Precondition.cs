@@ -15,17 +15,20 @@ namespace ParquetClassLibrary.Utilities
         #endregion
 
         /// <summary>
-        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{int}"/>, inclusive.
+        /// Checks if the given <see langword="int"/> falls within the given <see cref="Range{T}"/>, inclusive.
         /// </summary>
         /// <param name="inInt">The integer to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the integer is not in range.</exception>
-        public static void IsInRange(int inInt, Range<int> inBounds,
-                                     string inArgumentName = DefaultArgumentName)
+        public static void IsInRange(int inInt, Range<int> inBounds, string inArgumentName)
         {
             if (!inBounds.ContainsValue(inInt))
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new ArgumentOutOfRangeException($"{inArgumentName}: {inInt} is not within {inBounds}.");
             }
         }
@@ -37,11 +40,14 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
-        public static void IsInRange(ModelID inID, Range<ModelID> inBounds,
-                                     string inArgumentName = DefaultArgumentName)
+        public static void IsInRange(ModelID inID, Range<ModelID> inBounds, string inArgumentName)
         {
             if (!inID.IsValidForRange(inBounds))
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new ArgumentOutOfRangeException($"{inArgumentName}: {inID} is not within {inBounds}.");
             }
         }
@@ -53,11 +59,14 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inOuterBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
-        public static void IsInRange(Range<ModelID> inInnerBounds, Range<ModelID> inOuterBounds,
-                                     string inArgumentName = DefaultArgumentName)
+        public static void IsInRange(Range<ModelID> inInnerBounds, Range<ModelID> inOuterBounds, string inArgumentName)
         {
             if (!inOuterBounds.ContainsRange(inInnerBounds))
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new ArgumentOutOfRangeException(
                     $"{inArgumentName}: {inInnerBounds} is not within {inOuterBounds}.");
             }
@@ -72,8 +81,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="inBoundsCollection"/> is null.</exception>
-        public static void IsInRange(ModelID inID, IEnumerable<Range<ModelID>> inBoundsCollection,
-                                     string inArgumentName = DefaultArgumentName)
+        public static void IsInRange(ModelID inID, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
             IsNotNull(inBoundsCollection, nameof(inBoundsCollection));
 
@@ -83,6 +91,10 @@ namespace ParquetClassLibrary.Utilities
                 foreach (var range in inBoundsCollection)
                 {
                     allBounds += range + " ";
+                }
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
                 }
                 throw new ArgumentOutOfRangeException(
                     $"{inArgumentName}: {inID} is not within {allBounds}.");
@@ -97,11 +109,14 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
-        public static void IsInRange(Range<ModelID> inInnerBounds, IEnumerable<Range<ModelID>> inBoundsCollection,
-                                     string inArgumentName = DefaultArgumentName)
+        public static void IsInRange(Range<ModelID> inInnerBounds, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
             if (!inBoundsCollection.ContainsRange(inInnerBounds))
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new ArgumentOutOfRangeException(
                     $"{inArgumentName}: {inInnerBounds} is not within {inBoundsCollection}.");
             }
@@ -135,11 +150,14 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBounds">The range they must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
-        public static void AreInRange(IEnumerable<ModelID> inEnumerable, Range<ModelID> inBounds,
-                                      string inArgumentName = DefaultArgumentName)
+        public static void AreInRange(IEnumerable<ModelID> inEnumerable, Range<ModelID> inBounds, string inArgumentName)
         {
             foreach (var id in inEnumerable ?? Enumerable.Empty<ModelID>())
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 if (!id.IsValidForRange(inBounds))
                 {
                     throw new ArgumentOutOfRangeException($"{inArgumentName}: {id} is not within {inBounds}.");
@@ -156,12 +174,16 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
         public static void AreInRange(IEnumerable<ModelID> inEnumerable, IEnumerable<Range<ModelID>> inBoundsCollection,
-                                      string inArgumentName = DefaultArgumentName)
+                                      string inArgumentName)
         {
             foreach (var id in inEnumerable ?? Enumerable.Empty<ModelID>())
             {
                 if (!id.IsValidForRange(inBoundsCollection))
                 {
+                    if (string.IsNullOrEmpty(inArgumentName))
+                    {
+                        inArgumentName = DefaultArgumentName;
+                    }
                     throw new ArgumentOutOfRangeException($"{inArgumentName}: {id} is not within {inBoundsCollection}.");
                 }
             }
@@ -215,10 +237,14 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inString">The string to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="IndexOutOfRangeException">When <paramref name="inString"/> is null or empty.</exception>
-        public static void IsNotNullOrEmpty(string inString, string inArgumentName = DefaultArgumentName)
+        public static void IsNotNullOrEmpty(string inString, string inArgumentName)
         {
             if (string.IsNullOrEmpty(inString))
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new IndexOutOfRangeException($"{inArgumentName} is null or empty.");
             }
         }
@@ -230,14 +256,22 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="inEnumerable"/> is null.</exception>
         /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="inEnumerable"/> is empty.</exception>
-        public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName = DefaultArgumentName)
+        public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName)
         {
             if (null == inEnumerable)
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new ArgumentNullException($"{inArgumentName} is null.");
             }
             else if (!inEnumerable.Any())
             {
+                if (string.IsNullOrEmpty(inArgumentName))
+                {
+                    inArgumentName = DefaultArgumentName;
+                }
                 throw new IndexOutOfRangeException($"{inArgumentName} is empty.");
             }
         }

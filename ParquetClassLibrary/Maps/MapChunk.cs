@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Models details of a playable chunk in sandbox.
-    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="SpecialPoints.SpecialPoint"/>s.
+    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="ExitPoint"/>s.
     /// </summary>
     public sealed class MapChunk : MapModel
     {

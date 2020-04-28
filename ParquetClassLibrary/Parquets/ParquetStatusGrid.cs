@@ -5,7 +5,7 @@ using System.Linq;
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
-    /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="MapParent"/> and derived classes.
+    /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="Maps.MapModel"/> and derived classes.
     /// </summary>
     /// <remarks>
     /// The intent is that this class function much like a read-only array.

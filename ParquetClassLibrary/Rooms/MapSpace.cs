@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Rooms
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
         public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
 
-        /// <summary>The subregion containing this <see cref="MapSpace"/>.</param>
+        /// <summary>The subregion containing this <see cref="MapSpace"/>.</summary>
         public ParquetStackGrid Subregion { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
@@ -29,6 +29,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
+        /// <param name="inSubregion">The <see cref="ParquetStackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
         public MapSpace(Vector2D inPosition, ParquetStack inContent, ParquetStackGrid inSubregion)
         {
             Position = inPosition;
@@ -42,6 +43,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inX">X-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
+        /// <param name="inSubregion">The subregion in which this <see cref="MapSpace"/> occurs. </param>
         public MapSpace(int inX, int inY, ParquetStack inContent, ParquetStackGrid inSubregion)
             : this(new Vector2D(inX, inY), inContent, inSubregion) { }
         #endregion

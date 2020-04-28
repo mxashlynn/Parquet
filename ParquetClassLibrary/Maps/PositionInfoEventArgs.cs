@@ -32,11 +32,12 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Triggered when the information about a specific map location is ready to be displayed.
         /// </summary>
-        /// <param name="inParquets">Any and all parquets at the location.</param>
+        /// <param name="inStacks">Definition of any and all parquets at the location.</param>
+        /// <param name="inStatuses">Status of any and all parquets at the location.</param>
         /// <param name="inPoints">Any and all special points at the location.</param>
-        public PositionInfoEventArgs(ParquetStack inParquets, ParquetStatus inStatuses, IEnumerable<ExitPoint> inPoints)
+        public PositionInfoEventArgs(ParquetStack inStacks, ParquetStatus inStatuses, IEnumerable<ExitPoint> inPoints)
         {
-            Stack = inParquets;
+            Stack = inStacks;
             Status = inStatuses;
             SpecialPoints = inPoints.ToList();
         }

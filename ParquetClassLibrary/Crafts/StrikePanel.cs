@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Crafts
         private Range<int> idealRangeBackingStruct;
 
         /// <summary>
-        /// The range of values this panel can take on while being worked.  <see cref="Range{int}.Minimum"/> is normally 0.
+        /// The range of values this panel can take on while being worked.  <see cref="Range{T}.Minimum"/> is normally 0.
         /// This range constricts that given by <see cref="IdealRange"/>.
         /// </summary>
         public Range<int> WorkingRange
@@ -220,6 +220,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
+        /// <param name="inStrikePanels">The <see cref="StrikePanel"/> to check against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this StrikePanel[,] inStrikePanels, Vector2D inPosition)

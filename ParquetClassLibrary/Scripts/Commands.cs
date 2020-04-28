@@ -1,7 +1,7 @@
 namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
-    /// IDs for commands used in <see cref="ScriptNodes"/>.
+    /// IDs for commands used in <see cref="ScriptNode"/>s.
     /// </summary>
     public static class Commands
     {
@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>Allot the given number and type of <see cref="Items.ItemModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string GiveItem = "I";
 
-        /// <summary>Allot the given <see cref="Interactions.QuestModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
+        /// <summary>Allot the given <see cref="InteractionModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string GiveQuest = "Q";
 
         /// <summary>Immediately load and begin processing the given <see cref="ScriptModel"/>.</summary>
@@ -35,10 +35,10 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>Display the given text as dialogue spoken by the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string Say = "S";
 
-        /// <summary>Allot the given <see cref="Beings.Behavior"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
+        /// <summary>Allot the given <see cref="InteractionModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string SetBehavior = "B";
 
-        /// <summary>Allot the given <see cref="Interactions.DialogueModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
+        /// <summary>Allot the given <see cref="InteractionModel"/> to the given <see cref="Beings.CharacterModel"/>.</summary>
         public const string SetDialogue = "D";
 
         /// <summary>Allot the given <see cref="Beings.PronounGroup"/> to the given <see cref="Beings.CharacterModel"/>.</summary>

@@ -45,7 +45,7 @@ namespace ParquetClassLibrary
 
         #region State Queries
         /// <summary>
-        /// Determines if the <see cref="Range{TTElement"/> is well defined; that is, if Minimum is less than or equal to Maximum.
+        /// Determines if the <see cref="Range{TTElement}"/> is well defined; that is, if Minimum is less than or equal to Maximum.
         /// </summary>
         /// <returns><c>true</c>, if the range is valid, <c>false</c> otherwise.</returns>
         public bool IsValid()
@@ -91,7 +91,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inText">The instance to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
@@ -119,10 +119,8 @@ namespace ParquetClassLibrary
                 throw new NotImplementedException($"Cannot deserialize {nameof(Range<TElement>)} yet.");
             }
 
-            /// <summary>
-            /// Determines if the given variable may be deserialized as an <see langword="int"/>.
-            /// </summary>
-            /// <returns><c>true</c> if <typeparamref name="TElement"/> may be deserialized via <see cref="Int32Converter"/>.</returns>
+            // Determines if the given variable may be deserialized as an integer.
+            // Returns true if TElement may be deserialized via Int32Converter.
             static bool IsIntConvertible(TElement inElement)
             {
                 switch (inElement)
@@ -137,10 +135,8 @@ namespace ParquetClassLibrary
                 }
             }
 
-            /// <summary>
-            /// Determines if the given variable may be deserialized as an <see langword="float"/>.
-            /// </summary>
-            /// <returns><c>true</c> if <typeparamref name="TElement"/> may be deserialized via <see cref="SingleConverter"/>.</returns>
+            // Determines if the given variable may be deserialized as a single-precision floating point number.
+            // Returns true if TElement may be deserialized via SingleConverter.
             static bool IsSingleConvertible(TElement inElement)
             {
                 switch (inElement)

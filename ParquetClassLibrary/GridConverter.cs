@@ -7,7 +7,7 @@ using CsvHelper.TypeConversion;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Type converter for any collection that implements <see cref="IGrid"/>.
+    /// Type converter for any collection that implements <see cref="IGrid{T}"/>.
     /// </summary>
     /// <typeparam name="TElement">The type collected.</typeparam>
     /// <typeparam name="TGrid">The type of the collection.</typeparam>

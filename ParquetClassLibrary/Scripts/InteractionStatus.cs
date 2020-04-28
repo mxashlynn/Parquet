@@ -19,21 +19,21 @@ namespace ParquetClassLibrary.Scripts
         #endregion
 
         #region Identity
-        /// <summary>The <see cref="BeingModel"/> whose status is being tracked.</summary>
+        /// <summary>The script being tracked.</summary>
         public InteractionModel InteractionDefinition { get; }
         #endregion
 
         #region Stats
-        /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</summary>
+        /// <summary>The current execution status of the tracked script.</summary>
         public RunState State { get; set; }
 
-        /// <summary>The index the tracked <see cref="BeingModel"/> occupies.</summary>
+        /// <summary>The index the script node about to be executed.</summary>
         public int ProgramCounter { get; set; }
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="BeingStatus"/> class.
+        /// Initializes a new instance of the <see cref="InteractionStatus"/> class.
         /// </summary>
         /// <param name="inInteractionDefinition">The <see cref="InteractionModel"/> whose status is being tracked.</param>
         /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="InteractionModel"/>.</param>
@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Scripts
 
         #region Utilities
         /// <summary>
-        /// Returns a <see langword="string"/> that represents the current <see cref="BeingStatus"/>.
+        /// Returns a <see langword="string"/> that represents the current <see cref="InteractionStatus"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
