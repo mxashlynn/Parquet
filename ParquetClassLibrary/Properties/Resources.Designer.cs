@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not convert &apos;{1}&apos; to {2}..
+        ///   Looks up a localized string similar to Could not convert &apos;{0}&apos; to {1}..
         /// </summary>
         internal static string ErrorCannotConvert {
             get {
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not parse &apos;{1}&apos; as {2}..
+        ///   Looks up a localized string similar to Could not parse &apos;{0}&apos; as {1}..
         /// </summary>
         internal static string ErrorCannotParse {
             get {
@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} is of type {2} but must be of type {3}..
+        ///   Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
         /// </summary>
         internal static string ErrorInvalidCast {
             get {
@@ -88,7 +88,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid position: {1} is not within {2}..
+        ///   Looks up a localized string similar to Invalid position: {0} is not within {1}..
         /// </summary>
         internal static string ErrorInvalidPosition {
             get {
@@ -97,7 +97,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No model of type {1} exists for ID {2}..
+        ///   Looks up a localized string similar to No model of type {0} exists for ID {1}..
         /// </summary>
         internal static string ErrorModelNotFound {
             get {
@@ -106,7 +106,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} must be a non-negative number..
+        ///   Looks up a localized string similar to {0} must be a non-negative number..
         /// </summary>
         internal static string ErrorMustBeNonNegative {
             get {
@@ -115,7 +115,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} must be a positive number..
+        ///   Looks up a localized string similar to {0} must be a positive number..
         /// </summary>
         internal static string ErrorMustBePositive {
             get {
@@ -124,7 +124,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} cannot be empty..
+        ///   Looks up a localized string similar to {0} cannot be empty..
         /// </summary>
         internal static string ErrorMustNotBeEmpty {
             get {
@@ -133,7 +133,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} cannot be None..
+        ///   Looks up a localized string similar to {0} cannot be None..
         /// </summary>
         internal static string ErrorMustNotBeNone {
             get {
@@ -142,7 +142,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} cannot be null..
+        ///   Looks up a localized string similar to {0} cannot be null..
         /// </summary>
         internal static string ErrorMustNotBeNull {
             get {
@@ -151,7 +151,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} cannot be null or empty..
+        ///   Looks up a localized string similar to {0} cannot be null or empty..
         /// </summary>
         internal static string ErrorMustNotBeNullEmpty {
             get {
@@ -160,7 +160,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No entry/exit found in {1} or {2}..
+        ///   Looks up a localized string similar to No entry/exit found in {0} or {1}..
         /// </summary>
         internal static string ErrorNoExitFound {
             get {
@@ -169,7 +169,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1}: {2} is not within {3}..
+        ///   Looks up a localized string similar to {0}: {1} is not within {2}..
         /// </summary>
         internal static string ErrorOutOfBounds {
             get {
@@ -178,7 +178,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} must be less than or equal to {2}..
+        ///   Looks up a localized string similar to {0} must be less than or equal to {1}..
         /// </summary>
         internal static string ErrorOutOfOrder {
             get {
@@ -187,7 +187,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot access {1} on ungenerated {2}..
+        ///   Looks up a localized string similar to Cannot access {0} on ungenerated {1}..
         /// </summary>
         internal static string ErrorUngenerated {
             get {
@@ -196,7 +196,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dimension outside specification: {1}.
+        ///   Looks up a localized string similar to Dimension outside specification: {0}.
         /// </summary>
         internal static string ErrorUnsupportedDimension {
             get {
@@ -205,7 +205,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tried to duplicate {1} {2}..
+        ///   Looks up a localized string similar to Tried to duplicate {0} {1}..
         /// </summary>
         internal static string ErrorUnsupportedDuplicate {
             get {
@@ -214,7 +214,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsupported {1} node {2}..
+        ///   Looks up a localized string similar to Unsupported {0} node {1}..
         /// </summary>
         internal static string ErrorUnsupportedNode {
             get {
@@ -223,7 +223,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Serializing or deserializing {1} is not yet supported..
+        ///   Looks up a localized string similar to Serializing or deserializing {0} is not yet supported..
         /// </summary>
         internal static string ErrorUnsupportedSerialization {
             get {
@@ -232,7 +232,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsupported {1} version {2}..
+        ///   Looks up a localized string similar to Unsupported {0} version {1}..
         /// </summary>
         internal static string ErrorUornsupportedVersion {
             get {
@@ -241,7 +241,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tried to give {1} to {2}..
+        ///   Looks up a localized string similar to Tried to give {0} to {1}..
         /// </summary>
         internal static string WarningTriedToGiveNothing {
             get {
@@ -250,7 +250,7 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tried to store {1} in {2}..
+        ///   Looks up a localized string similar to Tried to store {0} in {1}..
         /// </summary>
         internal static string WarningTriedToStoreNothing {
             get {

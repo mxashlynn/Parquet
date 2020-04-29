@@ -118,91 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ErrorCannotConvert" xml:space="preserve">
-    <value>Could not convert '{1}' to {2}.</value>
+    <value>Could not convert '{0}' to {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorCannotParse" xml:space="preserve">
-    <value>Could not parse '{1}' as {2}.</value>
+    <value>Could not parse '{0}' as {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorInvalidCast" xml:space="preserve">
-    <value>{1} is of type {2} but must be of type {3}.</value>
+    <value>{0} is of type {1} but must be of type {2}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorInvalidPosition" xml:space="preserve">
-    <value>Invalid position: {1} is not within {2}.</value>
+    <value>Invalid position: {0} is not within {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorModelNotFound" xml:space="preserve">
-    <value>No model of type {1} exists for ID {2}.</value>
+    <value>No model of type {0} exists for ID {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustBeNonNegative" xml:space="preserve">
-    <value>{1} must be a non-negative number.</value>
+    <value>{0} must be a non-negative number.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustBePositive" xml:space="preserve">
-    <value>{1} must be a positive number.</value>
+    <value>{0} must be a positive number.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustNotBeEmpty" xml:space="preserve">
-    <value>{1} cannot be empty.</value>
+    <value>{0} cannot be empty.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustNotBeNone" xml:space="preserve">
-    <value>{1} cannot be None.</value>
+    <value>{0} cannot be None.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustNotBeNull" xml:space="preserve">
-    <value>{1} cannot be null.</value>
+    <value>{0} cannot be null.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorMustNotBeNullEmpty" xml:space="preserve">
-    <value>{1} cannot be null or empty.</value>
+    <value>{0} cannot be null or empty.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorNoExitFound" xml:space="preserve">
-    <value>No entry/exit found in {1} or {2}.</value>
+    <value>No entry/exit found in {0} or {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorOutOfBounds" xml:space="preserve">
-    <value>{1}: {2} is not within {3}.</value>
+    <value>{0}: {1} is not within {2}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorOutOfOrder" xml:space="preserve">
-    <value>{1} must be less than or equal to {2}.</value>
+    <value>{0} must be less than or equal to {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUngenerated" xml:space="preserve">
-    <value>Cannot access {1} on ungenerated {2}.</value>
+    <value>Cannot access {0} on ungenerated {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUnsupportedDimension" xml:space="preserve">
-    <value>Dimension outside specification: {1}</value>
+    <value>Dimension outside specification: {0}</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUnsupportedDuplicate" xml:space="preserve">
-    <value>Tried to duplicate {1} {2}.</value>
+    <value>Tried to duplicate {0} {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUnsupportedNode" xml:space="preserve">
-    <value>Unsupported {1} node {2}.</value>
+    <value>Unsupported {0} node {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUnsupportedSerialization" xml:space="preserve">
-    <value>Serializing or deserializing {1} is not yet supported.</value>
+    <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUornsupportedVersion" xml:space="preserve">
-    <value>Unsupported {1} version {2}.</value>
+    <value>Unsupported {0} version {1}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="WarningTriedToGiveNothing" xml:space="preserve">
-    <value>Tried to give {1} to {2}.</value>
+    <value>Tried to give {0} to {1}.</value>
     <comment>Warning string.</comment>
   </data>
   <data name="WarningTriedToStoreNothing" xml:space="preserve">
-    <value>Tried to store {1} in {2}.</value>
+    <value>Tried to store {0} in {1}.</value>
     <comment>Warning string.</comment>
   </data>
 </root>

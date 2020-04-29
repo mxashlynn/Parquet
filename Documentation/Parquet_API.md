@@ -9427,140 +9427,140 @@ Overrides the current thread's CurrentUICulture property for all
 
 ##### Summary
 
-Looks up a localized string similar to Could not convert '{1}' to {2}..
+Looks up a localized string similar to Could not convert '{0}' to {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse'></a>
 ### ErrorCannotParse `property`
 
 ##### Summary
 
-Looks up a localized string similar to Could not parse '{1}' as {2}..
+Looks up a localized string similar to Could not parse '{0}' as {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast'></a>
 ### ErrorInvalidCast `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} is of type {2} but must be of type {3}..
+Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition'></a>
 ### ErrorInvalidPosition `property`
 
 ##### Summary
 
-Looks up a localized string similar to Invalid position: {1} is not within {2}..
+Looks up a localized string similar to Invalid position: {0} is not within {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound'></a>
 ### ErrorModelNotFound `property`
 
 ##### Summary
 
-Looks up a localized string similar to No model of type {1} exists for ID {2}..
+Looks up a localized string similar to No model of type {0} exists for ID {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustBeNonNegative'></a>
 ### ErrorMustBeNonNegative `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} must be a non-negative number..
+Looks up a localized string similar to {0} must be a non-negative number..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustBePositive'></a>
 ### ErrorMustBePositive `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} must be a positive number..
+Looks up a localized string similar to {0} must be a positive number..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeEmpty'></a>
 ### ErrorMustNotBeEmpty `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} cannot be empty..
+Looks up a localized string similar to {0} cannot be empty..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNone'></a>
 ### ErrorMustNotBeNone `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} cannot be None..
+Looks up a localized string similar to {0} cannot be None..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNull'></a>
 ### ErrorMustNotBeNull `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} cannot be null..
+Looks up a localized string similar to {0} cannot be null..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNullEmpty'></a>
 ### ErrorMustNotBeNullEmpty `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} cannot be null or empty..
+Looks up a localized string similar to {0} cannot be null or empty..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorNoExitFound'></a>
 ### ErrorNoExitFound `property`
 
 ##### Summary
 
-Looks up a localized string similar to No entry/exit found in {1} or {2}..
+Looks up a localized string similar to No entry/exit found in {0} or {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds'></a>
 ### ErrorOutOfBounds `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1}: {2} is not within {3}..
+Looks up a localized string similar to {0}: {1} is not within {2}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrder'></a>
 ### ErrorOutOfOrder `property`
 
 ##### Summary
 
-Looks up a localized string similar to {1} must be less than or equal to {2}..
+Looks up a localized string similar to {0} must be less than or equal to {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated'></a>
 ### ErrorUngenerated `property`
 
 ##### Summary
 
-Looks up a localized string similar to Cannot access {1} on ungenerated {2}..
+Looks up a localized string similar to Cannot access {0} on ungenerated {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension'></a>
 ### ErrorUnsupportedDimension `property`
 
 ##### Summary
 
-Looks up a localized string similar to Dimension outside specification: {1}.
+Looks up a localized string similar to Dimension outside specification: {0}.
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate'></a>
 ### ErrorUnsupportedDuplicate `property`
 
 ##### Summary
 
-Looks up a localized string similar to Tried to duplicate {1} {2}..
+Looks up a localized string similar to Tried to duplicate {0} {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedNode'></a>
 ### ErrorUnsupportedNode `property`
 
 ##### Summary
 
-Looks up a localized string similar to Unsupported {1} node {2}..
+Looks up a localized string similar to Unsupported {0} node {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedSerialization'></a>
 ### ErrorUnsupportedSerialization `property`
 
 ##### Summary
 
-Looks up a localized string similar to Serializing or deserializing {1} is not yet supported..
+Looks up a localized string similar to Serializing or deserializing {0} is not yet supported..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion'></a>
 ### ErrorUornsupportedVersion `property`
 
 ##### Summary
 
-Looks up a localized string similar to Unsupported {1} version {2}..
+Looks up a localized string similar to Unsupported {0} version {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ResourceManager'></a>
 ### ResourceManager `property`
@@ -9574,14 +9574,14 @@ Returns the cached ResourceManager instance used by this class.
 
 ##### Summary
 
-Looks up a localized string similar to Tried to give {1} to {2}..
+Looks up a localized string similar to Tried to give {0} to {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing'></a>
 ### WarningTriedToStoreNothing `property`
 
 ##### Summary
 
-Looks up a localized string similar to Tried to store {1} in {2}..
+Looks up a localized string similar to Tried to store {0} in {1}..
 
 <a name='T-ParquetClassLibrary-Rooms-Room'></a>
 ## Room `type`
