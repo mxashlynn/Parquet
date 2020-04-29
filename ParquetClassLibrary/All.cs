@@ -422,6 +422,7 @@ namespace ParquetClassLibrary
         {
             if (CollectionsHaveBeenInitialized)
             {
+                // TODO How do we want to handle this.  The collection needs to be updatable for design-time tools.
                 throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
