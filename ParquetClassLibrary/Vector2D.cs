@@ -168,7 +168,7 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
 
             if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)

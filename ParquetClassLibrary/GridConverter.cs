@@ -85,7 +85,7 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
 
             var headerAndGridTexts = inText.Split(Rules.Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Rules.Delimiters.DimensionalDelimiter);

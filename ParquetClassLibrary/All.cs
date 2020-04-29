@@ -41,9 +41,6 @@ namespace ParquetClassLibrary
         /// <summary>Instructions for integer parsing.</summary>
         internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
 
-        /// <summary>Instructions for string parsing.</summary>
-        internal static CultureInfo SerializedCultureInfo { get; }
-
         /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
         internal static TypeConverterOptions IdentifierOptions { get; }
 
@@ -343,12 +340,10 @@ namespace ParquetClassLibrary
                 Directory.GetCurrentDirectory();
 #endif
 
-            SerializedCultureInfo = CultureInfo.InvariantCulture;
-
             IdentifierOptions = new TypeConverterOptions
             {
                 NumberStyle = SerializedNumberStyle,
-                CultureInfo = SerializedCultureInfo,
+                CultureInfo = CultureInfo.InvariantCulture,
             };
 
             ConversionConverters = new Dictionary<Type, ITypeConverter>

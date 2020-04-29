@@ -127,7 +127,7 @@ namespace ParquetClassLibrary
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
+                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];
