@@ -63,6 +63,7 @@ namespace ParquetClassLibrary.Maps
                            string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
+            // TODO Replace this exception with actual version support.
             if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
             {
                 throw new FormatException($"Unsupported {nameof(MapModel)} data version {inDataVersion}.");
@@ -104,11 +105,11 @@ namespace ParquetClassLibrary.Maps
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
-                throw new ArgumentOutOfRangeException(nameof(inUpperLeft));
+                throw new ArgumentOutOfRangeException($"Vector {nameof(inUpperLeft)} cannot exist in {nameof(ParquetDefinitions)}.");
             }
             else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
-                throw new ArgumentOutOfRangeException(nameof(inLowerRight));
+                throw new ArgumentOutOfRangeException($"Vector {nameof(inLowerRight)} cannot exist in {nameof(ParquetDefinitions)}.");
             }
             else if (inLowerRight.X < inUpperLeft.X && inLowerRight.Y < inUpperLeft.Y)
             {

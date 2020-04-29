@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -55,10 +56,7 @@ namespace ParquetClassLibrary.Items
             Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
-            if (inItemToStore == ModelID.None)
-            {
-                throw new ArgumentException($"Tried to create {nameof(InventorySlot)} for {nameof(ModelID.None)}.");
-            }
+            Debug.Assert(inItemToStore == ModelID.None, $"Tried to create {nameof(InventorySlot)} for {nameof(ModelID.None)}.");
 
             ItemID = inItemToStore;
             Count = inHowMany;

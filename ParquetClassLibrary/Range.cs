@@ -28,9 +28,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inMinimum">The lower end of the range.</param>
         /// <param name="inMaximum">The upper end of the range.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.
-        /// </exception>
+        /// <exception cref="ArgumentException">Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.</exception>
         public Range(TElement inMinimum, TElement inMaximum)
         {
             Minimum = inMinimum;

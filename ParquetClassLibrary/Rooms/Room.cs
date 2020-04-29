@@ -64,13 +64,14 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
-
-            if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces
-                || inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
+            if (inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
             {
-                throw new IndexOutOfRangeException($"{nameof(inWalkableArea)} violates {nameof(Rules.Recipes.Room)}.");
+                throw new ArgumentException($"{nameof(inWalkableArea)} is larger than it should be.");
             }
-
+            else if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces)
+            {
+                throw new ArgumentException($"{nameof(inWalkableArea)} is smaller than it should be.");
+            }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.Furnishing != ModelID.None
                 && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)))
