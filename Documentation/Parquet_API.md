@@ -738,6 +738,7 @@
   - [ErrorUornsupportedVersion](#P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion 'ParquetClassLibrary.Properties.Resources.ErrorUornsupportedVersion')
   - [ResourceManager](#P-ParquetClassLibrary-Properties-Resources-ResourceManager 'ParquetClassLibrary.Properties.Resources.ResourceManager')
   - [WarningTriedToGiveNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToGiveNothing')
+  - [WarningTriedToStoreNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToStoreNothing')
 - [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')
 - [Room](#T-ParquetClassLibrary-Rules-Recipes-Room 'ParquetClassLibrary.Rules.Recipes.Room')
   - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-ParquetClassLibrary-Rooms-MapSpaceCollection,ParquetClassLibrary-Rooms-MapSpaceCollection- 'ParquetClassLibrary.Rooms.Room.#ctor(ParquetClassLibrary.Rooms.MapSpaceCollection,ParquetClassLibrary.Rooms.MapSpaceCollection)')
@@ -9574,6 +9575,13 @@ Returns the cached ResourceManager instance used by this class.
 ##### Summary
 
 Looks up a localized string similar to Tried to give {1} to {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing'></a>
+### WarningTriedToStoreNothing `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to store {1} in {2}..
 
 <a name='T-ParquetClassLibrary-Rooms-Room'></a>
 ## Room `type`
