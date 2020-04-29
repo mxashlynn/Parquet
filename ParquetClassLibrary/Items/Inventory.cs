@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ParquetClassLibrary.Utilities;
 
@@ -157,9 +158,12 @@ namespace ParquetClassLibrary.Items
         {
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
+            // In testing we want to alert the developer if they try to give "nothing",
+            // but in production this should probably just silently succeed.
+            Debug.Assert(inItemID != ModelID.None, $"Tried to give {nameof(ModelID.None)} to {nameof(Inventory)}.");
             if (inItemID == ModelID.None)
             {
-                throw new ArgumentException($"Tried to give {nameof(ModelID.None)} to {nameof(Inventory)}.");
+                return 0;
             }
 
             var stackMax = All.Items.Get<ItemModel>(inItemID).StackMax;

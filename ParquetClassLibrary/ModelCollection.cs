@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -114,9 +115,7 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="ModelID"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(ModelID inID)
         {
-            // TODO Remove this test after debugging.
-            Precondition.IsInRange(inID, Bounds, nameof(inID));
-
+            Debug.Assert(inID.IsValidForRange(Bounds), $"{nameof(ModelCollection)}: {inID} is not within {Bounds}.");
             return inID == ModelID.None
                 || Models.ContainsKey(inID);
         }

@@ -7,6 +7,7 @@ using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
 {
+    using System.Diagnostics;
     // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
     using ParquetClassLibrary.Rooms.RegionAnalysis;
 
@@ -155,18 +156,12 @@ namespace ParquetClassLibrary.Rooms
                     // Find the perimeter.
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
-                    // TODO Remove this test after debugging.
-                    var maxPerimeterCount = subregion.Rows * subregion.Columns - Rules.Recipes.Room.MinWalkableSpaces;
-                    if (potentialPerimeter.Count > maxPerimeterCount)
-                    {
-                        throw new Exception("Perimeter is larger than it should be.");
-                    }
-
-                    // TODO Remove this test after debugging.
-                    if (potentialPerimeter.Count < Rules.Recipes.Room.MinPerimeterSpaces)
-                    {
-                        throw new Exception("Perimeter is smaller than it should be.");
-                    }
+                    // Design-time sanity checks.
+                    Debug.Assert(potentialPerimeter.Count >
+                                 (subregion.Rows * subregion.Columns) - Rules.Recipes.Room.MinWalkableSpaces,
+                                 "Perimeter is larger than it should be.");
+                    Debug.Assert(potentialPerimeter.Count < Rules.Recipes.Room.MinPerimeterSpaces,
+                                 "Perimeter is smaller than it should be.");
 
                     // Validate the perimeter.
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
