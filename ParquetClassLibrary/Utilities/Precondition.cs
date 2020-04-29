@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Utilities
 {
@@ -29,7 +31,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException($"{inArgumentName}: {inInt} is not within {inBounds}.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                    inArgumentName, inInt, inBounds));
             }
         }
 
@@ -48,7 +51,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException($"{inArgumentName}: {inID} is not within {inBounds}.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                    inArgumentName, inID, inBounds));
             }
         }
 
@@ -67,8 +71,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(
-                    $"{inArgumentName}: {inInnerBounds} is not within {inOuterBounds}.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                    inArgumentName, inInnerBounds, inOuterBounds));
             }
         }
 
@@ -80,7 +84,7 @@ namespace ParquetClassLibrary.Utilities
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="inBoundsCollection"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="inBoundsCollection"/> is null.</exception>
         public static void IsInRange(ModelID inID, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
             IsNotNull(inBoundsCollection, nameof(inBoundsCollection));
@@ -96,8 +100,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(
-                    $"{inArgumentName}: {inID} is not within {allBounds}.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                    inArgumentName, inID, allBounds));
             }
         }
 
@@ -117,8 +121,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(
-                    $"{inArgumentName}: {inInnerBounds} is not within {inBoundsCollection}.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                    inArgumentName, inInnerBounds, inBoundsCollection));
             }
         }
 
@@ -129,15 +133,15 @@ namespace ParquetClassLibrary.Utilities
         /// <typeparam name="TToCheck">The type to check.</typeparam>
         /// <typeparam name="TTarget">The type of which it must be a subtype.</typeparam>
         /// <exception cref="System.InvalidOperationException">
-        /// Thrown when <typeparamref name="TToCheck"/> does not correspond to <typeparamref name="TTarget"/>.
+        /// When <typeparamref name="TToCheck"/> does not correspond to <typeparamref name="TTarget"/>.
         /// </exception>
         public static void IsOfType<TToCheck, TTarget>(string inArgumentName = DefaultArgumentName)
         {
             if (!typeof(TToCheck).IsSubclassOf(typeof(TTarget))
                 && typeof(TToCheck) != typeof(TTarget))
             {
-                throw new InvalidCastException(
-                    $"{inArgumentName} is of type {typeof(TToCheck)} but must be of type {typeof(TTarget)}.");
+                throw new InvalidCastException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
+                                                             inArgumentName, typeof(TToCheck), typeof(TTarget)));
             }
         }
 
@@ -159,7 +163,8 @@ namespace ParquetClassLibrary.Utilities
                 }
                 if (!id.IsValidForRange(inBounds))
                 {
-                    throw new ArgumentOutOfRangeException($"{inArgumentName}: {id} is not within {inBounds}.");
+                    throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                        inArgumentName, id, inBounds));
                 }
             }
         }
@@ -183,7 +188,8 @@ namespace ParquetClassLibrary.Utilities
                     {
                         inArgumentName = DefaultArgumentName;
                     }
-                    throw new ArgumentOutOfRangeException($"{inArgumentName}: {id} is not within {inBoundsCollection}.");
+                    throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                        inArgumentName, id, inBoundsCollection));
                 }
             }
         }
@@ -198,7 +204,8 @@ namespace ParquetClassLibrary.Utilities
         {
             if (inID == ModelID.None)
             {
-                throw new ArgumentOutOfRangeException($"{inArgumentName} cannot be None.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNone,
+                                                                    inArgumentName));
             }
         }
 
@@ -212,7 +219,8 @@ namespace ParquetClassLibrary.Utilities
         {
             if (inNumber < 0)
             {
-                throw new ArgumentOutOfRangeException($"{inArgumentName} must be a non-negative number.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBeNonNegative,
+                                                                    inArgumentName));
             }
         }
 
@@ -226,7 +234,8 @@ namespace ParquetClassLibrary.Utilities
         {
             if (inNumber < 1)
             {
-                throw new ArgumentOutOfRangeException($"{inArgumentName} must be a positive number.");
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBePositive,
+                                                                    inArgumentName));
             }
         }
 
@@ -244,7 +253,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new IndexOutOfRangeException($"{inArgumentName} is null or empty.");
+                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNullEmpty,
+                                                                 inArgumentName));
             }
         }
 
@@ -253,8 +263,8 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="inEnumerable">The collection to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="inEnumerable"/> is null.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="inEnumerable"/> is empty.</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="inEnumerable"/> is null.</exception>
+        /// <exception cref="IndexOutOfRangeException">When <paramref name="inEnumerable"/> is empty.</exception>
         public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName)
         {
             if (null == inEnumerable)
@@ -263,7 +273,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentNullException($"{inArgumentName} is null.");
+                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
+                                                              inArgumentName));
             }
             else if (!inEnumerable.Any())
             {
@@ -271,7 +282,8 @@ namespace ParquetClassLibrary.Utilities
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new IndexOutOfRangeException($"{inArgumentName} is empty.");
+                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeEmpty,
+                                                                 inArgumentName));
             }
         }
 
@@ -280,12 +292,13 @@ namespace ParquetClassLibrary.Utilities
         /// </summary>
         /// <param name="inReference">The reference to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="inReference"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">When <paramref name="inReference"/> is null.</exception>
         public static void IsNotNull(object inReference, string inArgumentName = DefaultArgumentName)
         {
             if (null == inReference)
             {
-                throw new ArgumentNullException($"{inArgumentName} is null.");
+                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
+                                                              inArgumentName));
             }
         }
     }

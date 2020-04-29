@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -170,7 +172,8 @@ namespace ParquetClassLibrary.Crafts
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse {nameof(StrikePanel)} '{inText}': {e}", e);
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(StrikePanel)), e);
             }
         }
 
@@ -190,7 +193,8 @@ namespace ParquetClassLibrary.Crafts
                       $"{panel.WorkingRange.Maximum}{Rules.Delimiters.InternalDelimiter}" +
                       $"{panel.IdealRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
                       $"{panel.IdealRange.Maximum}"
-                : throw new ArgumentException($"Could not convert {inValue} to {nameof(StrikePanel)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(StrikePanel)));
         #endregion
 
         #region Utilities
@@ -208,7 +212,7 @@ namespace ParquetClassLibrary.Crafts
         public override string ToString()
             => this == Unused
                 ? nameof(Unused)
-                : $"{WorkingRange.ToString()}{Rules.Delimiters.ElementDelimiter}{IdealRange.ToString()}";
+                : WorkingRange.ToString() + Rules.Delimiters.ElementDelimiter + IdealRange.ToString();
         #endregion
     }
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -71,7 +72,8 @@ namespace ParquetClassLibrary
                 }
                 else
                 {
-                    throw new InvalidOperationException($"Tried to duplicate {nameof(ModelID)} {model.ID}.");
+                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
+                                                                      nameof(ModelID), model.ID));
                 }
             }
 
@@ -134,7 +136,8 @@ namespace ParquetClassLibrary
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
             return inID == ModelID.None
-                ? throw new ArgumentException($"No {typeof(TTarget).Name} exists for {nameof(ModelID.None)}.")
+                ? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorModelNotFound,
+                                                            typeof(TTarget).Name, nameof(ModelID.None)))
                 : (TTarget)Models[inID];
         }
 

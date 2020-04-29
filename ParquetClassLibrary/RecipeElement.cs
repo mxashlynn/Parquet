@@ -1,8 +1,10 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -138,13 +140,15 @@ namespace ParquetClassLibrary
                 }
                 else
                 {
-                    throw new FormatException(
-                        $"Could not parse {nameof(RecipeElement)} '{inText}' into {nameof(ElementAmount)}{Rules.Delimiters.InternalDelimiter}{nameof(ElementTag)}s.");
+                    throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                            inText, $"{nameof(ElementAmount)}{Rules.Delimiters.InternalDelimiter}{nameof(ElementTag)}"));
+
                 }
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse {nameof(RecipeElement)} '{inText}': {e}", e);
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(RecipeElement)), e);
             }
         }
 
@@ -162,7 +166,8 @@ namespace ParquetClassLibrary
                     ? nameof(None)
                     : $"{recipeElement.ElementAmount}{Rules.Delimiters.InternalDelimiter}" +
                       $"{recipeElement.ElementTag}"
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(RecipeElement)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(RecipeElement)));
         #endregion
 
         #region Utilities

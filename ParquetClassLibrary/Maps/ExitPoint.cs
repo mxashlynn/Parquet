@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -113,7 +115,8 @@ namespace ParquetClassLibrary.Maps
             }
             else
             {
-                throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ExitPoint)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inValue, nameof(ExitPoint)));
             }
         }
 
@@ -128,7 +131,8 @@ namespace ParquetClassLibrary.Maps
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ExitPoint)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(ExitPoint)));
             }
 
             try
@@ -142,7 +146,8 @@ namespace ParquetClassLibrary.Maps
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(ExitPoint)}: {e}");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(ExitPoint)), e);
             }
         }
         #endregion

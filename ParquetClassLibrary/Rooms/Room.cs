@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Rooms
@@ -66,17 +68,20 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
             if (inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
             {
-                throw new ArgumentException($"{nameof(inWalkableArea)} is larger than it should be.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
+                                                          nameof(inWalkableArea), Rules.Recipes.Room.MaxWalkableSpaces));
             }
             else if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces)
             {
-                throw new ArgumentException($"{nameof(inWalkableArea)} is smaller than it should be.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
+                                                          Rules.Recipes.Room.MinWalkableSpaces, nameof(inWalkableArea)));
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.Furnishing != ModelID.None
                 && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? false)))
             {
-                throw new ArgumentException($"No entry/exit found in {nameof(inWalkableArea)} or {nameof(inPerimeter)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
+                                                          nameof(inWalkableArea), nameof(inPerimeter)));
             }
 
             WalkableArea = inWalkableArea;

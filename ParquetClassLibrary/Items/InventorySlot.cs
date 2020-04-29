@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -134,7 +136,8 @@ namespace ParquetClassLibrary.Items
             && null != slot
                 ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(InventorySlot)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(InventorySlot)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -148,7 +151,8 @@ namespace ParquetClassLibrary.Items
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(ModelID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(InventorySlot)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(InventorySlot)));
             }
 
             try
@@ -164,7 +168,8 @@ namespace ParquetClassLibrary.Items
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(InventorySlot)}: {e}");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(InventorySlot)), e);
             }
         }
         #endregion

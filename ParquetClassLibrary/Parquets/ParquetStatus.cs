@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -125,7 +127,8 @@ namespace ParquetClassLibrary.Parquets
                 ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ParquetStatus)}.");
+            : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                        inValue, nameof(ParquetStatus)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -138,7 +141,8 @@ namespace ParquetClassLibrary.Parquets
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStatus)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(ParquetStatus)));
             }
 
             try
@@ -155,7 +159,8 @@ namespace ParquetClassLibrary.Parquets
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(ParquetStatus)}: {e}");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(ParquetStatus)), e);
             }
         }
         #endregion

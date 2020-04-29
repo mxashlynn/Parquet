@@ -714,6 +714,12 @@
   - [op_Equality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Equality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Equality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
   - [op_Inequality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Inequality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Inequality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
 - [Recipes](#T-ParquetClassLibrary-Rules-Recipes 'ParquetClassLibrary.Rules.Recipes')
+- [Resources](#T-ParquetClassLibrary-Properties-Resources 'ParquetClassLibrary.Properties.Resources')
+  - [CannotConvert](#P-ParquetClassLibrary-Properties-Resources-CannotConvert 'ParquetClassLibrary.Properties.Resources.CannotConvert')
+  - [Culture](#P-ParquetClassLibrary-Properties-Resources-Culture 'ParquetClassLibrary.Properties.Resources.Culture')
+  - [ResourceManager](#P-ParquetClassLibrary-Properties-Resources-ResourceManager 'ParquetClassLibrary.Properties.Resources.ResourceManager')
+  - [UnsupportedDimension](#P-ParquetClassLibrary-Properties-Resources-UnsupportedDimension 'ParquetClassLibrary.Properties.Resources.UnsupportedDimension')
+  - [UnsupportedSerialization](#P-ParquetClassLibrary-Properties-Resources-UnsupportedSerialization 'ParquetClassLibrary.Properties.Resources.UnsupportedSerialization')
 - [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')
 - [Room](#T-ParquetClassLibrary-Rules-Recipes-Room 'ParquetClassLibrary.Rules.Recipes.Room')
   - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-ParquetClassLibrary-Rooms-MapSpaceCollection,ParquetClassLibrary-Rooms-MapSpaceCollection- 'ParquetClassLibrary.Rooms.Room.#ctor(ParquetClassLibrary.Rooms.MapSpaceCollection,ParquetClassLibrary.Rooms.MapSpaceCollection)')
@@ -9377,6 +9383,53 @@ ParquetClassLibrary.Rules
 ##### Summary
 
 Provides recipe requirements for the game.
+
+<a name='T-ParquetClassLibrary-Properties-Resources'></a>
+## Resources `type`
+
+##### Namespace
+
+ParquetClassLibrary.Properties
+
+##### Summary
+
+A strongly-typed resource class, for looking up localized strings, etc.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-CannotConvert'></a>
+### CannotConvert `property`
+
+##### Summary
+
+Looks up a localized string similar to Could not convert '{1}' to {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-Culture'></a>
+### Culture `property`
+
+##### Summary
+
+Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ResourceManager'></a>
+### ResourceManager `property`
+
+##### Summary
+
+Returns the cached ResourceManager instance used by this class.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-UnsupportedDimension'></a>
+### UnsupportedDimension `property`
+
+##### Summary
+
+Looks up a localized string similar to Dimension outside specification: {1}.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-UnsupportedSerialization'></a>
+### UnsupportedSerialization `property`
+
+##### Summary
+
+Looks up a localized string similar to Serializing or deserializing {1} is not yet supported..
 
 <a name='T-ParquetClassLibrary-Rooms-Room'></a>
 ## Room `type`

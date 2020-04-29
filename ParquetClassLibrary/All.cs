@@ -10,6 +10,7 @@ using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Scripts;
 using ParquetClassLibrary.Utilities;
@@ -423,7 +424,8 @@ namespace ParquetClassLibrary
             if (CollectionsHaveBeenInitialized)
             {
                 // TODO How do we want to handle this.  The collection needs to be updatable for design-time tools.
-                throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
+                                                                  nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
             Precondition.IsNotNull(inBeings, nameof(inBeings));

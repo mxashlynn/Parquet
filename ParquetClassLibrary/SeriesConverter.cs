@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
@@ -31,7 +33,8 @@ namespace ParquetClassLibrary
         {
             if (!(inValue is TCollection series))
             {
-                throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(TCollection)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inValue, nameof(TCollection)));
             }
 
             if (series.Count == 0)

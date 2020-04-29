@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
@@ -147,7 +149,8 @@ namespace ParquetClassLibrary
             && vector != null
                 ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(Vector2D)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(Vector2D)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -160,7 +163,8 @@ namespace ParquetClassLibrary
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Vector2D)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(Vector2D)));
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
@@ -174,7 +178,8 @@ namespace ParquetClassLibrary
             }
             else
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(Vector2D)}.");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(Vector2D)));
             }
         }
         #endregion

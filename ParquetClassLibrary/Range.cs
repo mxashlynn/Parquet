@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -28,7 +30,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inMinimum">The lower end of the range.</param>
         /// <param name="inMaximum">The upper end of the range.</param>
-        /// <exception cref="ArgumentException">Thrown when the range is not well-defined.  <seealso cref="IsValid"/>.</exception>
+        /// <exception cref="ArgumentException">When the range is not well-defined.  <seealso cref="IsValid"/>.</exception>
         public Range(TElement inMinimum, TElement inMaximum)
         {
             Minimum = inMinimum;
@@ -36,7 +38,8 @@ namespace ParquetClassLibrary
 
             if (!IsValid())
             {
-                throw new InvalidOperationException($"{nameof(inMinimum)} must be less than or equal to {nameof(inMaximum)}.");
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
+                                                                   nameof(inMinimum), nameof(inMaximum)));
             }
         }
         #endregion
@@ -84,7 +87,8 @@ namespace ParquetClassLibrary
             && null != vector
                 ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(Vector2D)}.");
+            : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                        inValue, nameof(Vector2D)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -97,7 +101,8 @@ namespace ParquetClassLibrary
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(Range<TElement>)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(Range<TElement>)));
             }
 
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
@@ -114,7 +119,8 @@ namespace ParquetClassLibrary
             }
             else
             {
-                throw new NotImplementedException($"Cannot deserialize {nameof(Range<TElement>)} yet.");
+                throw new NotImplementedException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedSerialization,
+                                                                nameof(Range<TElement>)));
             }
 
             // Determines if the given variable may be deserialized as an integer.
