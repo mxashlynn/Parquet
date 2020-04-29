@@ -223,8 +223,7 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
-            if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
+            if (int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var id))
             {
                 return (ModelID)id;
             }

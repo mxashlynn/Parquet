@@ -85,12 +85,11 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
 
             var headerAndGridTexts = inText.Split(Rules.Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Rules.Delimiters.DimensionalDelimiter);
-            if (!int.TryParse(header[0], numberStyle, cultureInfo, out var rowCount)
-                || !int.TryParse(header[1], numberStyle, cultureInfo, out var columnCount))
+            if (!int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var rowCount)
+                || !int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var columnCount))
             {
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         inText, nameof(ModelID)));

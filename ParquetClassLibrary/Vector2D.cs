@@ -168,11 +168,10 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
             var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
 
-            if (int.TryParse(parameterText[0], numberStyle, cultureInfo, out var x)
-                && int.TryParse(parameterText[1], numberStyle, cultureInfo, out var y))
+            if (int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var x)
+                && int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var y))
             {
                 return new Vector2D(x, y);
             }

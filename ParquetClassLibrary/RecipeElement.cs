@@ -127,13 +127,12 @@ namespace ParquetClassLibrary
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
                 var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
 
-                if (int.TryParse(elementAmountText, numberStyle, cultureInfo, out var amount))
+                if (int.TryParse(elementAmountText, numberStyle, CultureInfo.InvariantCulture, out var amount))
                 {
                     var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
                     return new RecipeElement(amount, tag);

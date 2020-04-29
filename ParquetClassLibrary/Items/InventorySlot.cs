@@ -159,11 +159,10 @@ namespace ParquetClassLibrary.Items
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var count = int.Parse(parameterText[1], numberStyle, cultureInfo);
+                var count = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
 
                 return new InventorySlot(id, count);
             }

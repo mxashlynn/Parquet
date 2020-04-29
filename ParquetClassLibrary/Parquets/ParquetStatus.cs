@@ -148,12 +148,11 @@ namespace ParquetClassLibrary.Parquets
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? CultureInfo.InvariantCulture;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);
-                var toughness = int.Parse(parameterText[1], numberStyle, cultureInfo);
-                var maxToughness = int.Parse(parameterText[2], numberStyle, cultureInfo);
+                var toughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
+                var maxToughness = int.Parse(parameterText[2], numberStyle, CultureInfo.InvariantCulture);
 
                 return new ParquetStatus(isTrench, toughness, maxToughness);
             }
