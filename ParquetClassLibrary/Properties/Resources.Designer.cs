@@ -239,5 +239,23 @@ namespace ParquetClassLibrary.Properties {
                 return ResourceManager.GetString("ErrorUornsupportedVersion", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tried to give {1} to {2}..
+        /// </summary>
+        internal static string WarningTriedToGiveNothing {
+            get {
+                return ResourceManager.GetString("WarningTriedToGiveNothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tried to store {1} in {2}..
+        /// </summary>
+        internal static string WarningTriedToStoreNothing {
+            get {
+                return ResourceManager.GetString("WarningTriedToStoreNothing", resourceCulture);
+            }
+        }
     }
 }

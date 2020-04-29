@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -159,7 +161,8 @@ namespace ParquetClassLibrary.Items
 
             // In testing we want to alert the developer if they try to give "nothing",
             // but in production this should probably just silently succeed.
-            Debug.Assert(inItemID != ModelID.None, $"Tried to give {nameof(ModelID.None)} to {nameof(Inventory)}.");
+            Debug.Assert(inItemID != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
+                                                   nameof(ModelID.None), nameof(Inventory)));
             if (inItemID == ModelID.None)
             {
                 return 0;

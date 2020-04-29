@@ -39,7 +39,7 @@ namespace ParquetClassLibrary
             if (!IsValid())
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                                   nameof(inMinimum), nameof(inMaximum)));
+                                                                  nameof(inMinimum), nameof(inMaximum)));
             }
         }
         #endregion

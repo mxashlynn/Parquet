@@ -57,8 +57,9 @@ namespace ParquetClassLibrary.Items
             Precondition.IsNotNone(inItemToStore, nameof(inItemToStore));
             Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Debug.Assert(inItemToStore != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToStoreNothing,
+                                                                      nameof(inItemToStore), nameof(InventorySlot)));
 
-            Debug.Assert(inItemToStore == ModelID.None, $"Tried to create {nameof(InventorySlot)} for {nameof(ModelID.None)}.");
 
             ItemID = inItemToStore;
             Count = inHowMany;

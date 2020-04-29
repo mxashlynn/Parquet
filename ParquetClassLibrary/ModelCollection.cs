@@ -117,7 +117,8 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="ModelID"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(ModelID inID)
         {
-            Debug.Assert(inID.IsValidForRange(Bounds), $"{nameof(ModelCollection)}: {inID} is not within {Bounds}.");
+            Debug.Assert(inID.IsValidForRange(Bounds), string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                     nameof(ModelCollection), inID, Bounds));
             return inID == ModelID.None
                 || Models.ContainsKey(inID);
         }
