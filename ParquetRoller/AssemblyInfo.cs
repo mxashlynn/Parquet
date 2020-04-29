@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Resources;
 using ParquetClassLibrary;
 
 // Set assembly-wide values.
@@ -10,3 +11,6 @@ using ParquetClassLibrary;
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
 [assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
+
+// Declare American English as the fallback language.
+[assembly: NeutralResourcesLanguage("en-US")]
