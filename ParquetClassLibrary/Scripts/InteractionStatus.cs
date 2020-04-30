@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{InteractionDefinition.Name}";
+            => InteractionDefinition.Name;
         #endregion
     }
 }

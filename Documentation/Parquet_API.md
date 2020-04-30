@@ -36,7 +36,6 @@
   - [PronounGroups](#P-ParquetClassLibrary-All-PronounGroups 'ParquetClassLibrary.All.PronounGroups')
   - [RoomRecipes](#P-ParquetClassLibrary-All-RoomRecipes 'ParquetClassLibrary.All.RoomRecipes')
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
-  - [SerializedCultureInfo](#P-ParquetClassLibrary-All-SerializedCultureInfo 'ParquetClassLibrary.All.SerializedCultureInfo')
   - [WorkingDirectory](#P-ParquetClassLibrary-All-WorkingDirectory 'ParquetClassLibrary.All.WorkingDirectory')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
   - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
@@ -714,6 +713,31 @@
   - [op_Equality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Equality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Equality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
   - [op_Inequality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Inequality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Inequality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
 - [Recipes](#T-ParquetClassLibrary-Rules-Recipes 'ParquetClassLibrary.Rules.Recipes')
+- [Resources](#T-ParquetClassLibrary-Properties-Resources 'ParquetClassLibrary.Properties.Resources')
+  - [Culture](#P-ParquetClassLibrary-Properties-Resources-Culture 'ParquetClassLibrary.Properties.Resources.Culture')
+  - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
+  - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
+  - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
+  - [ErrorInvalidPosition](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition 'ParquetClassLibrary.Properties.Resources.ErrorInvalidPosition')
+  - [ErrorModelNotFound](#P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound 'ParquetClassLibrary.Properties.Resources.ErrorModelNotFound')
+  - [ErrorMustBeNonNegative](#P-ParquetClassLibrary-Properties-Resources-ErrorMustBeNonNegative 'ParquetClassLibrary.Properties.Resources.ErrorMustBeNonNegative')
+  - [ErrorMustBePositive](#P-ParquetClassLibrary-Properties-Resources-ErrorMustBePositive 'ParquetClassLibrary.Properties.Resources.ErrorMustBePositive')
+  - [ErrorMustNotBeEmpty](#P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeEmpty 'ParquetClassLibrary.Properties.Resources.ErrorMustNotBeEmpty')
+  - [ErrorMustNotBeNone](#P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNone 'ParquetClassLibrary.Properties.Resources.ErrorMustNotBeNone')
+  - [ErrorMustNotBeNull](#P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNull 'ParquetClassLibrary.Properties.Resources.ErrorMustNotBeNull')
+  - [ErrorMustNotBeNullEmpty](#P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNullEmpty 'ParquetClassLibrary.Properties.Resources.ErrorMustNotBeNullEmpty')
+  - [ErrorNoExitFound](#P-ParquetClassLibrary-Properties-Resources-ErrorNoExitFound 'ParquetClassLibrary.Properties.Resources.ErrorNoExitFound')
+  - [ErrorOutOfBounds](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds 'ParquetClassLibrary.Properties.Resources.ErrorOutOfBounds')
+  - [ErrorOutOfOrder](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrder 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrder')
+  - [ErrorUngenerated](#P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated 'ParquetClassLibrary.Properties.Resources.ErrorUngenerated')
+  - [ErrorUnsupportedDimension](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDimension')
+  - [ErrorUnsupportedDuplicate](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDuplicate')
+  - [ErrorUnsupportedNode](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedNode 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedNode')
+  - [ErrorUnsupportedSerialization](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedSerialization 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedSerialization')
+  - [ErrorUornsupportedVersion](#P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion 'ParquetClassLibrary.Properties.Resources.ErrorUornsupportedVersion')
+  - [ResourceManager](#P-ParquetClassLibrary-Properties-Resources-ResourceManager 'ParquetClassLibrary.Properties.Resources.ResourceManager')
+  - [WarningTriedToGiveNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToGiveNothing')
+  - [WarningTriedToStoreNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToStoreNothing')
 - [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')
 - [Room](#T-ParquetClassLibrary-Rules-Recipes-Room 'ParquetClassLibrary.Rules.Recipes.Room')
   - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-ParquetClassLibrary-Rooms-MapSpaceCollection,ParquetClassLibrary-Rooms-MapSpaceCollection- 'ParquetClassLibrary.Rooms.Room.#ctor(ParquetClassLibrary.Rooms.MapSpaceCollection,ParquetClassLibrary.Rooms.MapSpaceCollection)')
@@ -1155,13 +1179,6 @@ something like a color palette that other classes can paint with.
 ##### Remarks
 
 All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
-
-<a name='P-ParquetClassLibrary-All-SerializedCultureInfo'></a>
-### SerializedCultureInfo `property`
-
-##### Summary
-
-Instructions for string parsing.
 
 <a name='P-ParquetClassLibrary-All-WorkingDirectory'></a>
 ### WorkingDirectory `property`
@@ -2678,7 +2695,7 @@ Initializes a new instance of the [CraftingRecipe](#T-ParquetClassLibrary-Crafts
 
 | Name | Description |
 | ---- | ----------- |
-| [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | Thrown when `inPanelPattern` has dimensions less than `1` or dimensions larger than those given by
+| [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | When `inPanelPattern` has dimensions less than `1` or dimensions larger than those given by
 [PanelsPerPatternWidth](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternWidth 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternWidth') and [PanelsPerPatternHeight](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternHeight 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternHeight'). |
 
 <a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-EmptyCraftingElementList'></a>
@@ -8290,7 +8307,7 @@ given collection of [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibra
 | Name | Description |
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the identifier is not in any of the ranges. |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | Thrown when `inBoundsCollection` is null. |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inBoundsCollection` is null. |
 
 <a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
 ### IsInRange(inInnerBounds,inBoundsCollection,inArgumentName) `method`
@@ -8352,7 +8369,7 @@ Verifies that the given reference is not `null`.
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | Thrown when `inReference` is null. |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inReference` is null. |
 
 <a name='M-ParquetClassLibrary-Utilities-Precondition-IsNotNullOrEmpty-System-String,System-String-'></a>
 ### IsNotNullOrEmpty(inString,inArgumentName) `method`
@@ -8392,8 +8409,8 @@ Verifies that the given [IEnumerable\`1](http://msdn.microsoft.com/query/dev14.q
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | Thrown when `inEnumerable` is null. |
-| [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | Thrown when `inEnumerable` is empty. |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inEnumerable` is null. |
+| [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | When `inEnumerable` is empty. |
 
 <a name='M-ParquetClassLibrary-Utilities-Precondition-IsOfType``2-System-String-'></a>
 ### IsOfType\`\`2(inArgumentName) `method`
@@ -8419,7 +8436,7 @@ Verifies that the first given class is or is derived from the second given class
 
 | Name | Description |
 | ---- | ----------- |
-| [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | Thrown when `TToCheck` does not correspond to `TTarget`. |
+| [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | When `TToCheck` does not correspond to `TTarget`. |
 
 <a name='M-ParquetClassLibrary-Utilities-Precondition-MustBeNonNegative-System-Int32,System-String-'></a>
 ### MustBeNonNegative(inNumber,inArgumentName) `method`
@@ -8811,7 +8828,7 @@ Initializes a new instance of the [Range\`1](#T-ParquetClassLibrary-Range`1 'Par
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | Thrown when the range is not well-defined.  . |
+| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | When the range is not well-defined.  . |
 
 <a name='P-ParquetClassLibrary-Range`1-ConverterFactory'></a>
 ### ConverterFactory `property`
@@ -9377,6 +9394,186 @@ ParquetClassLibrary.Rules
 ##### Summary
 
 Provides recipe requirements for the game.
+
+<a name='T-ParquetClassLibrary-Properties-Resources'></a>
+## Resources `type`
+
+##### Namespace
+
+ParquetClassLibrary.Properties
+
+##### Summary
+
+A strongly-typed resource class, for looking up localized strings, etc.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-Culture'></a>
+### Culture `property`
+
+##### Summary
+
+Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert'></a>
+### ErrorCannotConvert `property`
+
+##### Summary
+
+Looks up a localized string similar to Could not convert '{0}' to {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse'></a>
+### ErrorCannotParse `property`
+
+##### Summary
+
+Looks up a localized string similar to Could not parse '{0}' as {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast'></a>
+### ErrorInvalidCast `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition'></a>
+### ErrorInvalidPosition `property`
+
+##### Summary
+
+Looks up a localized string similar to Invalid position: {0} is not within {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound'></a>
+### ErrorModelNotFound `property`
+
+##### Summary
+
+Looks up a localized string similar to No model of type {0} exists for ID {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustBeNonNegative'></a>
+### ErrorMustBeNonNegative `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} must be a non-negative number..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustBePositive'></a>
+### ErrorMustBePositive `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} must be a positive number..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeEmpty'></a>
+### ErrorMustNotBeEmpty `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} cannot be empty..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNone'></a>
+### ErrorMustNotBeNone `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} cannot be None..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNull'></a>
+### ErrorMustNotBeNull `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} cannot be null..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNullEmpty'></a>
+### ErrorMustNotBeNullEmpty `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} cannot be null or empty..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorNoExitFound'></a>
+### ErrorNoExitFound `property`
+
+##### Summary
+
+Looks up a localized string similar to No entry/exit found in {0} or {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds'></a>
+### ErrorOutOfBounds `property`
+
+##### Summary
+
+Looks up a localized string similar to {0}: {1} is not within {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrder'></a>
+### ErrorOutOfOrder `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} must be less than or equal to {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated'></a>
+### ErrorUngenerated `property`
+
+##### Summary
+
+Looks up a localized string similar to Cannot access {0} on ungenerated {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension'></a>
+### ErrorUnsupportedDimension `property`
+
+##### Summary
+
+Looks up a localized string similar to Dimension outside specification: {0}.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate'></a>
+### ErrorUnsupportedDuplicate `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to duplicate {0} {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedNode'></a>
+### ErrorUnsupportedNode `property`
+
+##### Summary
+
+Looks up a localized string similar to Unsupported {0} node {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedSerialization'></a>
+### ErrorUnsupportedSerialization `property`
+
+##### Summary
+
+Looks up a localized string similar to Serializing or deserializing {0} is not yet supported..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion'></a>
+### ErrorUornsupportedVersion `property`
+
+##### Summary
+
+Looks up a localized string similar to Unsupported {0} version {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ResourceManager'></a>
+### ResourceManager `property`
+
+##### Summary
+
+Returns the cached ResourceManager instance used by this class.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing'></a>
+### WarningTriedToGiveNothing `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to give {0} to {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing'></a>
+### WarningTriedToStoreNothing `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to store {0} in {1}..
 
 <a name='T-ParquetClassLibrary-Rooms-Room'></a>
 ## Room `type`

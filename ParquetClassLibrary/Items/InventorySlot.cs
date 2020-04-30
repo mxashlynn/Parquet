@@ -1,7 +1,10 @@
 using System;
+using System.Diagnostics;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
@@ -54,11 +57,9 @@ namespace ParquetClassLibrary.Items
             Precondition.IsNotNone(inItemToStore, nameof(inItemToStore));
             Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Debug.Assert(inItemToStore != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToStoreNothing,
+                                                                      nameof(inItemToStore), nameof(InventorySlot)));
 
-            if (inItemToStore == ModelID.None)
-            {
-                throw new ArgumentException($"Tried to create {nameof(InventorySlot)} for {nameof(ModelID.None)}.");
-            }
 
             ItemID = inItemToStore;
             Count = inHowMany;
@@ -136,7 +137,8 @@ namespace ParquetClassLibrary.Items
             && null != slot
                 ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(InventorySlot)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(InventorySlot)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -150,23 +152,24 @@ namespace ParquetClassLibrary.Items
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(ModelID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(InventorySlot)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(InventorySlot)));
             }
 
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var count = int.Parse(parameterText[1], numberStyle, cultureInfo);
+                var count = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
 
                 return new InventorySlot(id, count);
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(InventorySlot)}: {e}");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(InventorySlot)), e);
             }
         }
         #endregion

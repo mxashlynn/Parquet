@@ -10,6 +10,7 @@ using ParquetClassLibrary.Crafts;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Scripts;
 using ParquetClassLibrary.Utilities;
@@ -39,9 +40,6 @@ namespace ParquetClassLibrary
 
         /// <summary>Instructions for integer parsing.</summary>
         internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
-
-        /// <summary>Instructions for string parsing.</summary>
-        internal static CultureInfo SerializedCultureInfo { get; }
 
         /// <summary>Instructions for handling type conversion when reading identifiers.</summary>
         internal static TypeConverterOptions IdentifierOptions { get; }
@@ -342,12 +340,10 @@ namespace ParquetClassLibrary
                 Directory.GetCurrentDirectory();
 #endif
 
-            SerializedCultureInfo = CultureInfo.InvariantCulture;
-
             IdentifierOptions = new TypeConverterOptions
             {
                 NumberStyle = SerializedNumberStyle,
-                CultureInfo = SerializedCultureInfo,
+                CultureInfo = CultureInfo.InvariantCulture,
             };
 
             ConversionConverters = new Dictionary<Type, ITypeConverter>
@@ -422,7 +418,9 @@ namespace ParquetClassLibrary
         {
             if (CollectionsHaveBeenInitialized)
             {
-                throw new InvalidOperationException($"Attempted to reinitialize {typeof(All)}.");
+                // TODO How do we want to handle this.  The collection needs to be updatable for design-time tools.
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
+                                                                  nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
             Precondition.IsNotNull(inBeings, nameof(inBeings));

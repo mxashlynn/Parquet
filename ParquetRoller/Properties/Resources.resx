@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorNoProperty" xml:space="preserve">
+    <value>Specify property.
+</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorUnknownCategory" xml:space="preserve">
+    <value>Unrecognized category{0}.
+</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorUnknownProperty" xml:space="preserve">
+    <value>Unrecognized property {0}.
+</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="InfoCollision" xml:space="preserve">
+    <value>{0}: {1} collides with {2}.
+</value>
+    <comment>List the duplicate name, its ID, and the original ID.</comment>
+  </data>
+  <data name="InfoCollisionsHeader" xml:space="preserve">
+    <value>Collisions in {0}:
+</value>
+    <comment>Header for listing collisions.</comment>
+  </data>
+  <data name="InfoNoContent" xml:space="preserve">
+    <value>No defined content.
+</value>
+    <comment>What to display when there are no properties in the given category.</comment>
+  </data>
+  <data name="MessageDefault" xml:space="preserve">
+    <value>Usage: roller (command)
+Usage: roller list pronouns
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help                         Display detailed help.
+    -v|version                      Display version information.
+    -t|templates                    Write CSV templates to current directory.
+    -r|roll                         Prepare CSVs in current directory for use.
+    -p|list pronouns                List all defined pronoun groups.
+    -l|list (property) [category]   List various model properties.
+
+    For information on properties and categories consult the detailed help.
+</value>
+    <comment>What to display when roller is started without any arguments.</comment>
+  </data>
+  <data name="MessageHelp" xml:space="preserve">
+    <value>    Roller is a tool for working with Parquet configuration files.
+    Parquet uses comma-separated value (CSV) files for configuration.
+    Roller provides a quick way to examine the content of existing CSV files, to
+    generate blank CSV files, and to prepare existing CSV files for use in-game.
+
+Usage: roller (command)
+Usage: roller list pronouns
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help                         Display detailed help.
+    -v|version                      Display version information.
+    -t|templates                    Write CSV templates to current directory.
+    -r|roll                         Prepare CSVs in current directory for use.
+    -p|list pronouns                List all defined pronoun groups.
+    -l|list (property) [category]   List various model properties.
+
+Properties:
+    ranges            Model ID ranges valid for the given category.
+    maxids            The largest entity ID in use in the given category.
+    tags              All entity tags referenced in the given category.
+    names             All entity names referenced in the given category.
+    collisions        Any duplicate names used in the given category.
+
+Categories:
+    all               Everything, the default.  This can be a long listing.
+    beings            All beings.
+      critters        Only critter beings.
+      characters      Only character beings.
+    biomes            All biomes.
+    crafts            All crafting recipes.
+    interactions      All interactions.
+    items             All items.
+      p-items         Only items that correspond to parquets.
+      n-items         Only items that don't correspond to parquets.
+    parquets          All parquets.
+      floors          Only floor parquets.
+      blocks          Only block parquets.
+      furnishings     Only furnishing parquets.
+      collectibles    Only collectible parquets.
+    rooms             All room recipes.
+
+Checking for name collisions is especially useful because they can cause
+runtime errors.
+</value>
+    <comment>A detailed help message explaining how to use roller.</comment>
+  </data>
+  <data name="MessageVersion" xml:space="preserve">
+    <value>Version:
+    Roller      {0}
+    Parquet     {1}
+    Being Data  {2}
+    Map Data    {3}
+    Script Data {4}
+</value>
+    <comment>Lists roller's current version, the library version, being data version, map data version, and script data version, in that order.</comment>
+  </data>
+</root>

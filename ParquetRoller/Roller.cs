@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using ParquetClassLibrary;
@@ -11,6 +12,7 @@ using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Scripts;
+using ParquetRoller.Properties;
 
 namespace ParquetRoller
 {
@@ -30,81 +32,6 @@ namespace ParquetRoller
         /// A flag indicating that a subcommand must be executed.
         /// </summary>
         private static Command ListPropertyForCategory { get; } = null;
-
-        #region Console Messages
-        /// <summary>What to display when roller is started without any arguments.</summary>
-        private static string DefaultMessage { get; } =
-@"Usage: roller (command)
-Usage: roller list pronouns
-Usage: roller list (property) [category]
-
-Commands:
-    -h|help                         Display detailed help.
-    -v|version                      Display version information.
-    -t|templates                    Write CSV templates to current directory.
-    -r|roll                         Prepare CSVs in current directory for use.
-    -p|list pronouns                List all defined pronoun groups.
-    -l|list (property) [category]   List various model properties.
-
-    For information on properties and categories consult the detailed help.
-";
-
-        /// <summary>Displays roller's current version, and various library-related version strings.</summary>
-        private static string VersionMessage { get; } =
-$@"Version:
-    Roller      {AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2)}
-    Parquet     {AssemblyInfo.LibraryVersion}
-    Map Data    {AssemblyInfo.SupportedMapDataVersion}
-    Being Data  {AssemblyInfo.SupportedBeingDataVersion}
-";
-
-        /// <summary>A detailed help message explaining how to use roller.</summary>
-        private static string HelpMessage { get; } =
-@"    Roller is a tool for working with Parquet configuration files.
-    Parquet uses comma-separated value (CSV) files for configuration.
-    Roller provides a quick way to examine the content of existing CSV files, to
-    generate blank CSV files, and to prepare existing CSV files for use in-game.
-
-Usage: roller (command)
-Usage: roller list pronouns
-Usage: roller list (property) [category]
-
-Commands:
-    -h|help                         Display detailed help.
-    -v|version                      Display version information.
-    -t|templates                    Write CSV templates to current directory.
-    -r|roll                         Prepare CSVs in current directory for use.
-    -p|list pronouns                List all defined pronoun groups.
-    -l|list (property) [category]   List various model properties.
-
-Properties:
-    ranges            Model ID ranges valid for the given category.
-    maxids            The largest entity ID in use in the given category.
-    tags              All entity tags referenced in the given category.
-    names             All entity names referenced in the given category.
-    collisions        Any duplicate names used in the given category.
-
-Categories:
-    all               Everything, the default.  This can be a long listing.
-    beings            All beings.
-      critters        Only critter beings.
-      characters      Only character beings.
-    biomes            All biomes.
-    crafts            All crafting recipes.
-    interactions      All interactions.
-    items             All items.
-      p-items         Only items that correspond to parquets.
-      n-items         Only items that don't correspond to parquets.
-    parquets          All parquets.
-      floors          Only floor parquets.
-      blocks          Only block parquets.
-      furnishings     Only furnishing parquets.
-      collectibles    Only collectible parquets.
-    rooms             All room recipes.
-
-Checking for name collisions is especially useful because they can cause
-runtime errors.";
-        #endregion
 
         /// <summary>
         /// A command line tool for working with Parquet configuration files.
@@ -205,11 +132,11 @@ runtime errors.";
                 default:
                     if (string.IsNullOrEmpty(inProperty))
                     {
-                        Console.WriteLine("Specify property.\n");
+                        Console.WriteLine(Resources.ErrorNoProperty);
                     }
                     else
                     {
-                        Console.WriteLine($"Unrecognized property {inProperty}.\n");
+                        Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnknownProperty, inProperty));
                     }
                     return DisplayBadArguments;
             }
@@ -330,7 +257,7 @@ runtime errors.";
                     workload = new ModelCollection(All.RoomRecipeIDs, All.RoomRecipes);
                     break;
                 default:
-                    Console.WriteLine($"Unrecognized category {inCategory}");
+                    Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnknownCategory, inCategory));
                     break;
             }
 
@@ -346,7 +273,7 @@ runtime errors.";
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode DisplayDefault(ModelCollection inWorkload)
         {
-            Console.WriteLine(DefaultMessage);
+            Console.WriteLine(Resources.MessageDefault);
             return ExitCode.Success;
         }
 
@@ -357,7 +284,7 @@ runtime errors.";
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode DisplayHelp(ModelCollection inWorkload)
         {
-            Console.WriteLine(HelpMessage);
+            Console.WriteLine(Resources.MessageHelp);
             return ExitCode.Success;
         }
 
@@ -368,7 +295,12 @@ runtime errors.";
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode DisplayVersion(ModelCollection inWorkload)
         {
-            Console.WriteLine(VersionMessage);
+            Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageVersion,
+                                            AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2),
+                                            AssemblyInfo.LibraryVersion,
+                                            AssemblyInfo.SupportedBeingDataVersion,
+                                            AssemblyInfo.SupportedMapDataVersion,
+                                            AssemblyInfo.SupportedScriptDataVersion));
             return ExitCode.Success;
         }
 
@@ -471,7 +403,7 @@ runtime errors.";
 
             foreach (var pronounGroup in All.PronounGroups)
             {
-                Console.WriteLine($"{pronounGroup.ToString()}");
+                Console.WriteLine(pronounGroup);
             }
 
             return ExitCode.Success;
@@ -499,7 +431,7 @@ runtime errors.";
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
-                Console.WriteLine("No defined content.");
+                Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
             }
 
@@ -520,7 +452,7 @@ runtime errors.";
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
-                Console.WriteLine("No defined content.");
+                Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
             }
 
@@ -542,7 +474,7 @@ runtime errors.";
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
-                Console.WriteLine("No defined content.");
+                Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
             }
 
@@ -576,7 +508,7 @@ runtime errors.";
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
-                Console.WriteLine("No defined content.");
+                Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
             }
 
@@ -597,26 +529,27 @@ runtime errors.";
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
-                Console.WriteLine("No defined content.");
+                Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
             }
 
-            var names = new Dictionary<string, ModelID>();
+            var IDs = new Dictionary<string, ModelID>();
             foreach (var range in inWorkload.Bounds)
             {
-                Console.WriteLine($"Collisions in {range}:");
+                Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.InfoCollisionsHeader, range));
                 foreach (var model in inWorkload.Where(x => x.ID >= range.Minimum && x.ID <= range.Maximum))
                 {
-                    if (names.ContainsKey(model.Name))
+                    if (IDs.ContainsKey(model.Name))
                     {
-                        Console.WriteLine($"{model.Name}: {model.ID} collides with {names[model.Name]}.");
+                        Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.InfoCollision,
+                                                        model.Name, model.ID, IDs[model.Name]));
                     }
                     else
                     {
-                        names[model.Name] = model.ID;
+                        IDs[model.Name] = model.ID;
                     }
                 }
-                names.Clear();
+                IDs.Clear();
             }
 
             return ExitCode.Success;

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -80,13 +82,15 @@ namespace ParquetClassLibrary.Maps
         [Ignore]
         [Index(10)]
         public override ParquetStatusGrid ParquetStatuses
-            => throw new InvalidOperationException($"Cannot access parquet statuses on ungenerated {nameof(MapRegionSketch)}.");
+            => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
+                                                                 nameof(ParquetStatuses), nameof(MapRegionSketch)));
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
         [Index(11)]
         public override ParquetStackGrid ParquetDefinitions
-            => throw new InvalidOperationException($"Cannot access parquets on ungenerated {nameof(MapRegionSketch)}.");
+            => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
+                                                                 nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(12)]

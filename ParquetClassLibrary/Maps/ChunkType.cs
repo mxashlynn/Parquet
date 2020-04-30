@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Maps
@@ -154,7 +156,8 @@ namespace ParquetClassLibrary.Maps
                       $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierComposition}"
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ChunkType)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(ChunkType)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -167,7 +170,8 @@ namespace ParquetClassLibrary.Maps
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ChunkType)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(ChunkType)));
             }
             else if (string.Compare(nameof(Handmade), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
@@ -188,7 +192,8 @@ namespace ParquetClassLibrary.Maps
                 }
                 catch (Exception e)
                 {
-                    throw new FormatException($"Could not parse '{inText}' as {nameof(ChunkType)}: {e}");
+                    throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                            inText, nameof(ChunkType)), e);
                 }
             }
         }
@@ -207,7 +212,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{BaseTopography}{BaseComposition} % {ModifierTopography}{ModifierComposition}";
+            => $"[{BaseTopography} {BaseComposition} above {ModifierTopography} {ModifierComposition}]";
         #endregion
     }
 

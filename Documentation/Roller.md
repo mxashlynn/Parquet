@@ -4,11 +4,20 @@
 ## Contents
 
 - [Command](#T-ParquetRoller-Roller-Command 'ParquetRoller.Roller.Command')
+- [Resources](#T-ParquetRoller-Properties-Resources 'ParquetRoller.Properties.Resources')
+  - [Culture](#P-ParquetRoller-Properties-Resources-Culture 'ParquetRoller.Properties.Resources.Culture')
+  - [ErrorNoProperty](#P-ParquetRoller-Properties-Resources-ErrorNoProperty 'ParquetRoller.Properties.Resources.ErrorNoProperty')
+  - [ErrorUnknownCategory](#P-ParquetRoller-Properties-Resources-ErrorUnknownCategory 'ParquetRoller.Properties.Resources.ErrorUnknownCategory')
+  - [ErrorUnknownProperty](#P-ParquetRoller-Properties-Resources-ErrorUnknownProperty 'ParquetRoller.Properties.Resources.ErrorUnknownProperty')
+  - [InfoCollision](#P-ParquetRoller-Properties-Resources-InfoCollision 'ParquetRoller.Properties.Resources.InfoCollision')
+  - [InfoCollisionsHeader](#P-ParquetRoller-Properties-Resources-InfoCollisionsHeader 'ParquetRoller.Properties.Resources.InfoCollisionsHeader')
+  - [InfoNoContent](#P-ParquetRoller-Properties-Resources-InfoNoContent 'ParquetRoller.Properties.Resources.InfoNoContent')
+  - [MessageDefault](#P-ParquetRoller-Properties-Resources-MessageDefault 'ParquetRoller.Properties.Resources.MessageDefault')
+  - [MessageHelp](#P-ParquetRoller-Properties-Resources-MessageHelp 'ParquetRoller.Properties.Resources.MessageHelp')
+  - [MessageVersion](#P-ParquetRoller-Properties-Resources-MessageVersion 'ParquetRoller.Properties.Resources.MessageVersion')
+  - [ResourceManager](#P-ParquetRoller-Properties-Resources-ResourceManager 'ParquetRoller.Properties.Resources.ResourceManager')
 - [Roller](#T-ParquetRoller-Roller 'ParquetRoller.Roller')
-  - [DefaultMessage](#P-ParquetRoller-Roller-DefaultMessage 'ParquetRoller.Roller.DefaultMessage')
-  - [HelpMessage](#P-ParquetRoller-Roller-HelpMessage 'ParquetRoller.Roller.HelpMessage')
   - [ListPropertyForCategory](#P-ParquetRoller-Roller-ListPropertyForCategory 'ParquetRoller.Roller.ListPropertyForCategory')
-  - [VersionMessage](#P-ParquetRoller-Roller-VersionMessage 'ParquetRoller.Roller.VersionMessage')
   - [CreateTemplates(inWorkload)](#M-ParquetRoller-Roller-CreateTemplates-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.CreateTemplates(ParquetClassLibrary.ModelCollection)')
   - [DisplayBadArguments(inWorkload)](#M-ParquetRoller-Roller-DisplayBadArguments-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.DisplayBadArguments(ParquetClassLibrary.ModelCollection)')
   - [DisplayDefault(inWorkload)](#M-ParquetRoller-Roller-DisplayDefault-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.DisplayDefault(ParquetClassLibrary.ModelCollection)')
@@ -47,6 +56,125 @@ A value indicating success or the manner of failure.
 | ---- | ---- | ----------- |
 | inWorkload | [T:ParquetRoller.Roller.Command](#T-T-ParquetRoller-Roller-Command 'T:ParquetRoller.Roller.Command') | The [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') to act on, if any. |
 
+<a name='T-ParquetRoller-Properties-Resources'></a>
+## Resources `type`
+
+##### Namespace
+
+ParquetRoller.Properties
+
+##### Summary
+
+A strongly-typed resource class, for looking up localized strings, etc.
+
+<a name='P-ParquetRoller-Properties-Resources-Culture'></a>
+### Culture `property`
+
+##### Summary
+
+Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+
+<a name='P-ParquetRoller-Properties-Resources-ErrorNoProperty'></a>
+### ErrorNoProperty `property`
+
+##### Summary
+
+Looks up a localized string similar to Specify property.
+.
+
+<a name='P-ParquetRoller-Properties-Resources-ErrorUnknownCategory'></a>
+### ErrorUnknownCategory `property`
+
+##### Summary
+
+Looks up a localized string similar to Unrecognized category{0}.
+.
+
+<a name='P-ParquetRoller-Properties-Resources-ErrorUnknownProperty'></a>
+### ErrorUnknownProperty `property`
+
+##### Summary
+
+Looks up a localized string similar to Unrecognized property {0}.
+.
+
+<a name='P-ParquetRoller-Properties-Resources-InfoCollision'></a>
+### InfoCollision `property`
+
+##### Summary
+
+Looks up a localized string similar to {0}: {1} collides with {2}..
+
+<a name='P-ParquetRoller-Properties-Resources-InfoCollisionsHeader'></a>
+### InfoCollisionsHeader `property`
+
+##### Summary
+
+Looks up a localized string similar to Collisions in {0}:.
+
+<a name='P-ParquetRoller-Properties-Resources-InfoNoContent'></a>
+### InfoNoContent `property`
+
+##### Summary
+
+Looks up a localized string similar to No defined content..
+
+<a name='P-ParquetRoller-Properties-Resources-MessageDefault'></a>
+### MessageDefault `property`
+
+##### Summary
+
+Looks up a localized string similar to Usage: roller (command)
+Usage: roller list pronouns
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help Display detailed help.
+    -v|version          Display version information.
+    -t|templates        Write CSV templates to current directory.
+    -r|roll Prepare CSVs in current directory for use.
+    -p|list pronouns    List all defined pronoun groups.
+    -l|list (property) [category]   List various [rest of string was truncated]";.
+
+<a name='P-ParquetRoller-Properties-Resources-MessageHelp'></a>
+### MessageHelp `property`
+
+##### Summary
+
+Looks up a localized string similar to     Roller is a tool for working with Parquet configuration files.
+    Parquet uses comma-separated value (CSV) files for configuration.
+    Roller provides a quick way to examine the content of existing CSV files, to
+    generate blank CSV files, and to prepare existing CSV files for use in-game.
+
+Usage: roller (command)
+Usage: roller list pronouns
+Usage: roller list (property) [category]
+
+Commands:
+    -h|help Display detailed help.
+    -v|version          Di [rest of string was truncated]";.
+
+<a name='P-ParquetRoller-Properties-Resources-MessageVersion'></a>
+### MessageVersion `property`
+
+##### Summary
+
+Looks up a localized string similar to Version:
+    Roller      {0}
+    Parquet     {1}
+    Being Data  {2}
+    Map Data    {3}
+    Script Data {4}
+.
+
+<a name='P-ParquetRoller-Properties-Resources-ResourceManager'></a>
+### ResourceManager `property`
+
+##### Summary
+
+Returns the cached ResourceManager instance used by this class.
+
 <a name='T-ParquetRoller-Roller'></a>
 ## Roller `type`
 
@@ -58,33 +186,12 @@ ParquetRoller
 
 A command line tool that reads in game definitions from CSV files, verifies, modifies, and writes them out.
 
-<a name='P-ParquetRoller-Roller-DefaultMessage'></a>
-### DefaultMessage `property`
-
-##### Summary
-
-What to display when roller is started without any arguments.
-
-<a name='P-ParquetRoller-Roller-HelpMessage'></a>
-### HelpMessage `property`
-
-##### Summary
-
-A detailed help message explaining how to use roller.
-
 <a name='P-ParquetRoller-Roller-ListPropertyForCategory'></a>
 ### ListPropertyForCategory `property`
 
 ##### Summary
 
 A flag indicating that a subcommand must be executed.
-
-<a name='P-ParquetRoller-Roller-VersionMessage'></a>
-### VersionMessage `property`
-
-##### Summary
-
-Displays roller's current version, and various library-related version strings.
 
 <a name='M-ParquetRoller-Roller-CreateTemplates-ParquetClassLibrary-ModelCollection-'></a>
 ### CreateTemplates(inWorkload) `method`

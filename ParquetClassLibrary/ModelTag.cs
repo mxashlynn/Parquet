@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
@@ -98,7 +100,8 @@ namespace ParquetClassLibrary
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
                 ? (string)tag
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ModelTag)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(ModelTag)));
         #endregion
 
         #region Utilities

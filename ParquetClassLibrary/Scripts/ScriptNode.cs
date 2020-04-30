@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Scripts
 {
@@ -61,7 +63,8 @@ namespace ParquetClassLibrary.Scripts
                 Commands.SetPronoun => () => Console.WriteLine($"{inTargetText} uses the pronouns {inSourceText}"),
                 Commands.SetFlag => () => Console.WriteLine($"The flag {inTargetText} is raised."),
                 Commands.ShowLocation => () => Console.WriteLine($"Highlight {inTargetText}"),
-                _ => throw new InvalidOperationException($"Unknown {nameof(ScriptNode)} {inCommandText}."),
+                _ => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedNode,
+                                                                       nameof(ScriptNode), inCommandText)),
             };
         #endregion
 
@@ -124,7 +127,8 @@ namespace ParquetClassLibrary.Scripts
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
                 ? (string)node
-                : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ScriptNode)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(ScriptNode)));
         #endregion
 
         #region Utilities

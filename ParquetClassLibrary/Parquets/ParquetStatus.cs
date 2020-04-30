@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Parquets
@@ -125,7 +127,8 @@ namespace ParquetClassLibrary.Parquets
                 ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
-            : throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(ParquetStatus)}.");
+            : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                        inValue, nameof(ParquetStatus)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -138,24 +141,25 @@ namespace ParquetClassLibrary.Parquets
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException($"Could not convert '{inText}' to {nameof(ParquetStatus)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inText, nameof(ParquetStatus)));
             }
 
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
                 var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);
-                var toughness = int.Parse(parameterText[1], numberStyle, cultureInfo);
-                var maxToughness = int.Parse(parameterText[2], numberStyle, cultureInfo);
+                var toughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
+                var maxToughness = int.Parse(parameterText[2], numberStyle, CultureInfo.InvariantCulture);
 
                 return new ParquetStatus(isTrench, toughness, maxToughness);
             }
             catch (Exception e)
             {
-                throw new FormatException($"Could not parse '{inText}' as {nameof(ParquetStatus)}: {e}");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(ParquetStatus)), e);
             }
         }
         #endregion

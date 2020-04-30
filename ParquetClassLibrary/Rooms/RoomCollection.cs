@@ -100,7 +100,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{Rooms.Count} Rooms";
+            => $"{Rooms.Count} rooms";
         #endregion
     }
 }

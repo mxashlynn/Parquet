@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
@@ -48,7 +50,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
-        /// Thrown when <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
+        /// When <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
         /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
@@ -66,7 +68,8 @@ namespace ParquetClassLibrary.Crafts
                 || inPanelPattern.Rows < 1
                 || inPanelPattern.Columns < 1)
             {
-                throw new IndexOutOfRangeException($"Dimension outside specification: {nameof(inPanelPattern)}");
+                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDimension,
+                                                                 nameof(inPanelPattern)));
             }
 
             Products = inProducts.ToList();

@@ -1,8 +1,10 @@
 using System;
+using System.Globalization;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
@@ -30,13 +32,15 @@ namespace ParquetClassLibrary
         {
             if (!(inValue is IGrid<TElement> grid))
             {
-                throw new ArgumentException($"Could not serialize '{inValue}' as {nameof(IGrid<TElement>)}.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                          inValue, nameof(IGrid<TElement>)));
             }
 
             if (grid.Columns < 1
                 || grid.Rows < 1)
             {
-                throw new InvalidOperationException($"Cannot serialize an {nameof(IGrid<TElement>)} of 0 dimension.");
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDimension,
+                                                          inValue, nameof(IGrid<TElement>)));
             }
 
             if (grid.Count < 1)
@@ -81,14 +85,14 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
 
             var headerAndGridTexts = inText.Split(Rules.Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Rules.Delimiters.DimensionalDelimiter);
-            if (!int.TryParse(header[0], numberStyle, cultureInfo, out var rowCount)
-                || !int.TryParse(header[1], numberStyle, cultureInfo, out var columnCount))
+            if (!int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var rowCount)
+                || !int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var columnCount))
             {
-                throw new FormatException($"Could not parse {nameof(ModelID)} '{inText}'.");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(ModelID)));
             }
 
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });

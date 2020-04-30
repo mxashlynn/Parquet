@@ -139,7 +139,7 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{BeingDefinition.Name}";
+            => BeingDefinition.Name;
         #endregion
     }
 }

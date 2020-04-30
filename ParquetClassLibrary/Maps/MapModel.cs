@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -63,9 +65,11 @@ namespace ParquetClassLibrary.Maps
                            string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
+            // TODO Replace this exception with actual version support.
             if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
             {
-                throw new FormatException($"Unsupported {nameof(MapModel)} data version {inDataVersion}.");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUornsupportedVersion,
+                                                        nameof(MapModel), inDataVersion));
             }
 
             Revision = inRevision;
@@ -104,15 +108,18 @@ namespace ParquetClassLibrary.Maps
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
-                throw new ArgumentOutOfRangeException(nameof(inUpperLeft));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                                    nameof(inUpperLeft), nameof(ParquetDefinitions)));
             }
             else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
-                throw new ArgumentOutOfRangeException(nameof(inLowerRight));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                                    nameof(inLowerRight), nameof(ParquetDefinitions)));
             }
             else if (inLowerRight.X < inUpperLeft.X && inLowerRight.Y < inUpperLeft.Y)
             {
-                throw new ArgumentException("Improper vector order.", nameof(inLowerRight));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
+                                                                    nameof(inUpperLeft), nameof(inLowerRight)));
             }
             else
             {

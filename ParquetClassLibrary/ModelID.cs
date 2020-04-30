@@ -5,6 +5,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
@@ -222,14 +223,14 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var cultureInfo = inMemberMapData?.TypeConverterOptions?.CultureInfo ?? All.SerializedCultureInfo;
-            if (int.TryParse(inText, numberStyle, cultureInfo, out var id))
+            if (int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var id))
             {
                 return (ModelID)id;
             }
             else
             {
-                throw new FormatException($"Could not parse {nameof(ModelID)} '{inText}'.");
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        inText, nameof(ModelID)));
             }
         }
 
@@ -246,7 +247,8 @@ namespace ParquetClassLibrary
                 && None != id
                     ? id.ToString()
                     : nameof(None)
-                : throw new ArgumentException($"Cannot convert {inValue} to {nameof(ModelID)}.");
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, nameof(ModelID)));
         #endregion
 
         #region Utilities
