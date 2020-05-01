@@ -42,7 +42,7 @@ namespace ParquetClassLibrary
         /// data that the class library understands.
         /// </summary>
         /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
+        /// The version has the format "{Major}.{Minor}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
         /// </remarks>
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary
         /// data that the class library understands.<para/>
         /// </summary>
         /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
+        /// The version has the format "{Major}.{Minor}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
         /// </remarks>
@@ -64,7 +64,7 @@ namespace ParquetClassLibrary
         /// data that the class library understands.
         /// </summary>
         /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
+        /// The version has the format "{Major}.{Minor}".
         /// - Major: Breaking changes resulting in lost saves.
         /// - Minor: Backwards-compatible changes, preserving existing saves.
         /// </remarks>
