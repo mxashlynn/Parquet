@@ -193,10 +193,6 @@
     <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="ErrorUornsupportedVersion" xml:space="preserve">
-    <value>Unsupported {0} version {1}.</value>
-    <comment>Error string.</comment>
-  </data>
   <data name="WarningTriedToGiveNothing" xml:space="preserve">
     <value>Tried to give {0} to {1}.</value>
     <comment>Warning string.</comment>

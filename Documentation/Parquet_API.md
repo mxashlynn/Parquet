@@ -43,9 +43,6 @@
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
 - [AssemblyInfo](#T-ParquetClassLibrary-AssemblyInfo 'ParquetClassLibrary.AssemblyInfo')
   - [LibraryVersion](#F-ParquetClassLibrary-AssemblyInfo-LibraryVersion 'ParquetClassLibrary.AssemblyInfo.LibraryVersion')
-  - [SupportedBeingDataVersion](#F-ParquetClassLibrary-AssemblyInfo-SupportedBeingDataVersion 'ParquetClassLibrary.AssemblyInfo.SupportedBeingDataVersion')
-  - [SupportedMapDataVersion](#F-ParquetClassLibrary-AssemblyInfo-SupportedMapDataVersion 'ParquetClassLibrary.AssemblyInfo.SupportedMapDataVersion')
-  - [SupportedScriptDataVersion](#F-ParquetClassLibrary-AssemblyInfo-SupportedScriptDataVersion 'ParquetClassLibrary.AssemblyInfo.SupportedScriptDataVersion')
 - [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel')
   - [#ctor(inBounds,inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks)](#M-ParquetClassLibrary-Beings-BeingModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.BeingModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [Avoids](#P-ParquetClassLibrary-Beings-BeingModel-Avoids 'ParquetClassLibrary.Beings.BeingModel.Avoids')
@@ -58,7 +55,6 @@
   - [BiomeTimeRemaining](#P-ParquetClassLibrary-Beings-BeingStatus-BiomeTimeRemaining 'ParquetClassLibrary.Beings.BeingStatus.BiomeTimeRemaining')
   - [BuildingSpeed](#P-ParquetClassLibrary-Beings-BeingStatus-BuildingSpeed 'ParquetClassLibrary.Beings.BeingStatus.BuildingSpeed')
   - [CurrentBehavior](#P-ParquetClassLibrary-Beings-BeingStatus-CurrentBehavior 'ParquetClassLibrary.Beings.BeingStatus.CurrentBehavior')
-  - [DataVersion](#P-ParquetClassLibrary-Beings-BeingStatus-DataVersion 'ParquetClassLibrary.Beings.BeingStatus.DataVersion')
   - [GatheringSpeed](#P-ParquetClassLibrary-Beings-BeingStatus-GatheringSpeed 'ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed')
   - [Inventory](#P-ParquetClassLibrary-Beings-BeingStatus-Inventory 'ParquetClassLibrary.Beings.BeingStatus.Inventory')
   - [KnownBeings](#P-ParquetClassLibrary-Beings-BeingStatus-KnownBeings 'ParquetClassLibrary.Beings.BeingStatus.KnownBeings')
@@ -297,7 +293,6 @@
   - [Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-Steps 'ParquetClassLibrary.Scripts.InteractionModel.Steps')
 - [InteractionStatus](#T-ParquetClassLibrary-Scripts-InteractionStatus 'ParquetClassLibrary.Scripts.InteractionStatus')
   - [#ctor(inInteractionDefinition,inState,inProgramCounter)](#M-ParquetClassLibrary-Scripts-InteractionStatus-#ctor-ParquetClassLibrary-Scripts-InteractionModel,ParquetClassLibrary-Scripts-RunState,System-Int32- 'ParquetClassLibrary.Scripts.InteractionStatus.#ctor(ParquetClassLibrary.Scripts.InteractionModel,ParquetClassLibrary.Scripts.RunState,System.Int32)')
-  - [DataVersion](#P-ParquetClassLibrary-Scripts-InteractionStatus-DataVersion 'ParquetClassLibrary.Scripts.InteractionStatus.DataVersion')
   - [InteractionDefinition](#P-ParquetClassLibrary-Scripts-InteractionStatus-InteractionDefinition 'ParquetClassLibrary.Scripts.InteractionStatus.InteractionDefinition')
   - [ProgramCounter](#P-ParquetClassLibrary-Scripts-InteractionStatus-ProgramCounter 'ParquetClassLibrary.Scripts.InteractionStatus.ProgramCounter')
   - [Revision](#P-ParquetClassLibrary-Scripts-InteractionStatus-Revision 'ParquetClassLibrary.Scripts.InteractionStatus.Revision')
@@ -364,16 +359,15 @@
   - [op_Equality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Equality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Equality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
-  - [#ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [Empty](#F-ParquetClassLibrary-Maps-MapChunk-Empty 'ParquetClassLibrary.Maps.MapChunk.Empty')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunk-Bounds 'ParquetClassLibrary.Maps.MapChunk.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets')
+  - [Empty](#P-ParquetClassLibrary-Maps-MapChunk-Empty 'ParquetClassLibrary.Maps.MapChunk.Empty')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapChunk-ParquetStatuses 'ParquetClassLibrary.Maps.MapChunk.ParquetStatuses')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapChunk-ToString 'ParquetClassLibrary.Maps.MapChunk.ToString')
 - [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
-  - [#ctor(inBounds,inID,inName,inDescription,inComment,inDataVersion,inRevision,inExits)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint})')
-  - [DataVersion](#P-ParquetClassLibrary-Maps-MapModel-DataVersion 'ParquetClassLibrary.Maps.MapModel.DataVersion')
+  - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint})')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapModel.DimensionsInParquets')
   - [Exits](#P-ParquetClassLibrary-Maps-MapModel-Exits 'ParquetClassLibrary.Maps.MapModel.Exits')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapModel.ParquetDefinitions')
@@ -385,7 +379,7 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')
-  - [#ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegion-DefaultColor 'ParquetClassLibrary.Maps.MapRegion.DefaultColor')
   - [DefaultGlobalElevation](#F-ParquetClassLibrary-Maps-MapRegion-DefaultGlobalElevation 'ParquetClassLibrary.Maps.MapRegion.DefaultGlobalElevation')
   - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegion-DefaultName 'ParquetClassLibrary.Maps.MapRegion.DefaultName')
@@ -403,7 +397,7 @@
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
-  - [#ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
   - [DefaultGlobalElevation](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultGlobalElevation 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultGlobalElevation')
   - [DefaultTitle](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultTitle 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultTitle')
@@ -734,7 +728,6 @@
   - [ErrorUnsupportedDuplicate](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDuplicate')
   - [ErrorUnsupportedNode](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedNode 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedNode')
   - [ErrorUnsupportedSerialization](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedSerialization 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedSerialization')
-  - [ErrorUornsupportedVersion](#P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion 'ParquetClassLibrary.Properties.Resources.ErrorUornsupportedVersion')
   - [ResourceManager](#P-ParquetClassLibrary-Properties-Resources-ResourceManager 'ParquetClassLibrary.Properties.Resources.ResourceManager')
   - [WarningTriedToGiveNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToGiveNothing')
   - [WarningTriedToStoreNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToStoreNothing')
@@ -1283,48 +1276,6 @@ The version has the format "{Major}.{Minor}.{Patch}.{Build}".
 - Patch: Fixes that do not break the API or its serialized data.
 - Build: Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.
 
-<a name='F-ParquetClassLibrary-AssemblyInfo-SupportedBeingDataVersion'></a>
-### SupportedBeingDataVersion `constants`
-
-##### Summary
-
-Describes the version of the serialized [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')
-data that the class library understands.
-
-##### Remarks
-
-The version has the format "{Major}.{Minor}.{Build}".
-- Major: Breaking changes resulting in lost saves.
-- Minor: Backwards-compatible changes, preserving existing saves.
-
-<a name='F-ParquetClassLibrary-AssemblyInfo-SupportedMapDataVersion'></a>
-### SupportedMapDataVersion `constants`
-
-##### Summary
-
-Describes the version of the serialized [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
-data that the class library understands.
-
-##### Remarks
-
-The version has the format "{Major}.{Minor}.{Build}".
-- Major: Breaking changes resulting in lost saves.
-- Minor: Backwards-compatible changes, preserving existing saves.
-
-<a name='F-ParquetClassLibrary-AssemblyInfo-SupportedScriptDataVersion'></a>
-### SupportedScriptDataVersion `constants`
-
-##### Summary
-
-Describes the version of the serialized [ScriptNode](#T-ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode')
-data that the class library understands.
-
-##### Remarks
-
-The version has the format "{Major}.{Minor}.{Build}".
-- Major: Breaking changes resulting in lost saves.
-- Minor: Backwards-compatible changes, preserving existing saves.
-
 <a name='T-ParquetClassLibrary-Beings-BeingModel'></a>
 ## BeingModel `type`
 
@@ -1455,14 +1406,6 @@ The time it takes the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingMo
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') currently governing the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel').
-
-<a name='P-ParquetClassLibrary-Beings-BeingStatus-DataVersion'></a>
-### DataVersion `property`
-
-##### Summary
-
-Describes the version of serialized data.
-Allows selecting data files that can be successfully deserialized.
 
 <a name='P-ParquetClassLibrary-Beings-BeingStatus-GatheringSpeed'></a>
 ### GatheringSpeed `property`
@@ -3865,14 +3808,6 @@ Initializes a new instance of the [InteractionStatus](#T-ParquetClassLibrary-Scr
 | inState | [ParquetClassLibrary.Scripts.RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState') | The [RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState') of the tracked [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel'). |
 | inProgramCounter | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Index to the current [ScriptNode](#T-ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode') in the tracked [Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-Steps 'ParquetClassLibrary.Scripts.InteractionModel.Steps'). |
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionStatus-DataVersion'></a>
-### DataVersion `property`
-
-##### Summary
-
-Describes the version of serialized data.
-Allows selecting data files that can be successfully deserialized.
-
 <a name='P-ParquetClassLibrary-Scripts-InteractionStatus-InteractionDefinition'></a>
 ### InteractionDefinition `property`
 
@@ -4666,8 +4601,8 @@ ParquetClassLibrary.Maps
 Models details of a playable chunk in sandbox.
 [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s are composed of parquets and [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4681,18 +4616,10 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the map.  Cannot be null or empty. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
-| inDataVersion | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Describes the version of serialized data, to support versioning. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
-
-<a name='F-ParquetClassLibrary-Maps-MapChunk-Empty'></a>
-### Empty `constants`
-
-##### Summary
-
-Used to indicate an empty grid.
 
 <a name='P-ParquetClassLibrary-Maps-MapChunk-Bounds'></a>
 ### Bounds `property`
@@ -4707,6 +4634,13 @@ The set of values that are allowed for [MapChunk](#T-ParquetClassLibrary-Maps-Ma
 ##### Summary
 
 The chunk's dimensions in parquets.
+
+<a name='P-ParquetClassLibrary-Maps-MapChunk-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+Used to indicate an empty grid.
 
 <a name='P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
@@ -4749,8 +4683,8 @@ ParquetClassLibrary.Maps
 Provides methods that are used by all parquet-based map models (for example [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') and [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'),
 but contrast [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') which is not parquet-based).
 
-<a name='M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}-'></a>
-### #ctor(inBounds,inID,inName,inDescription,inComment,inDataVersion,inRevision,inExits) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}-'></a>
+### #ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits) `constructor`
 
 ##### Summary
 
@@ -4765,16 +4699,8 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the map.  Cannot be null or empty. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
-| inDataVersion | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Describes the version of serialized data, to support versioning. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many times this map has been serialized. |
 | inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
-
-<a name='P-ParquetClassLibrary-Maps-MapModel-DataVersion'></a>
-### DataVersion `property`
-
-##### Summary
-
-Describes the version of serialized data, to support versioning.
 
 <a name='P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets'></a>
 ### DimensionsInParquets `property`
@@ -4895,8 +4821,8 @@ ParquetClassLibrary.Maps
 
 A playable region in sandbox.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4910,7 +4836,6 @@ Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The player-facing name of the new region. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
-| inDataVersion | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Describes the version of serialized data, to support versioning. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
 | inElevationLocal | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
@@ -5056,8 +4981,8 @@ A pattern and metadata to generate a playable region.
 [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool,
 before being fleshed, for example on load in-game.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inDataVersion,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks) `constructor`
 
 ##### Summary
 
@@ -5071,7 +4996,6 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The player-facing name of the new region. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
-| inDataVersion | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Describes the version of serialized data, to support versioning. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
 | inElevationLocal | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
@@ -9546,13 +9470,6 @@ Looks up a localized string similar to Unsupported {0} node {1}..
 ##### Summary
 
 Looks up a localized string similar to Serializing or deserializing {0} is not yet supported..
-
-<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUornsupportedVersion'></a>
-### ErrorUornsupportedVersion `property`
-
-##### Summary
-
-Looks up a localized string similar to Unsupported {0} version {1}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ResourceManager'></a>
 ### ResourceManager `property`

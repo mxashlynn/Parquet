@@ -297,10 +297,7 @@ namespace ParquetRoller
         {
             Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageVersion,
                                             AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2),
-                                            AssemblyInfo.LibraryVersion,
-                                            AssemblyInfo.SupportedBeingDataVersion,
-                                            AssemblyInfo.SupportedMapDataVersion,
-                                            AssemblyInfo.SupportedScriptDataVersion));
+                                            AssemblyInfo.LibraryVersion));
             return ExitCode.Success;
         }
 

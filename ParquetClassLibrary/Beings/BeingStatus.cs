@@ -10,12 +10,6 @@ namespace ParquetClassLibrary.Beings
     public class BeingStatus
     {
         #region Metadata
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        public string DataVersion { get; } = AssemblyInfo.SupportedBeingDataVersion;
-
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
         #endregion

@@ -232,15 +232,6 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsupported {0} version {1}..
-        /// </summary>
-        internal static string ErrorUornsupportedVersion {
-            get {
-                return ResourceManager.GetString("ErrorUornsupportedVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tried to give {0} to {1}..
         /// </summary>
         internal static string WarningTriedToGiveNothing {

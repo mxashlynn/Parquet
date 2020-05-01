@@ -8,12 +8,6 @@ namespace ParquetClassLibrary.Scripts
     public class InteractionStatus
     {
         #region Metadata
-        /// <summary>
-        /// Describes the version of serialized data.
-        /// Allows selecting data files that can be successfully deserialized.
-        /// </summary>
-        public string DataVersion { get; } = AssemblyInfo.SupportedScriptDataVersion;
-
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
         public int Revision { get; private set; }
         #endregion

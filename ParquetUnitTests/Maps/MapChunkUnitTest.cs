@@ -17,7 +17,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewDefaultMapChunkTest()
         {
-            Assert.Equal(0, new MapChunk(ModelID.None, "Throwaway Chunk", "", "", AssemblyInfo.SupportedMapDataVersion).Revision);
+            Assert.Equal(0, new MapChunk(ModelID.None, "Throwaway Chunk", "", "").Revision);
         }
         #endregion
 

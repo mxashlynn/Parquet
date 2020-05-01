@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapChunk Empty = new MapChunk(ModelID.None, "Empty MapChunk", "", "", AssemblyInfo.SupportedMapDataVersion);
+        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty MapChunk", "", "");
 
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerChunk,
@@ -25,11 +25,11 @@ namespace ParquetClassLibrary.Maps
 
         #region Characteristics
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(10)]
+        [Index(9)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        [Index(11)]
+        [Index(10)]
         public override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
 
@@ -41,15 +41,14 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision = 0,
+        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
                         IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inDataVersion, inRevision, inExits)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
         {
             ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);
             ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerChunk, Rules.Dimensions.ParquetsPerChunk);

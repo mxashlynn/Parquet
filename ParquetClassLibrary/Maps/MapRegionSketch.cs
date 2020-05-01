@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(7)]
+        [Index(6)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Maps
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        [Index(8)]
+        [Index(7)]
         public Elevation ElevationLocal { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Maps
         Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        [Index(9)]
+        [Index(8)]
         public int ElevationGlobal { get; private set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
@@ -80,20 +80,20 @@ namespace ParquetClassLibrary.Maps
         #region Map Contents
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
         [Ignore]
-        [Index(10)]
+        [Index(9)]
         public override ParquetStatusGrid ParquetStatuses
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetStatuses), nameof(MapRegionSketch)));
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
-        [Index(11)]
+        [Index(10)]
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
-        [Index(12)]
+        [Index(11)]
         public ChunkTypeGrid Chunks { get; }
         #endregion
         #endregion
@@ -106,7 +106,6 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
         /// <param name="inElevationLocal">The absolute elevation of this region.</param>
@@ -114,10 +113,10 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                               string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0,
-                               string inBackgroundColor = DefaultColor, Elevation inElevationLocal = Elevation.LevelGround,
-                               int inElevationGlobal = DefaultGlobalElevation, IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inDataVersion, inRevision, inExits)
+                               int inRevision = 0, string inBackgroundColor = DefaultColor,
+                               Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
+                               IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;

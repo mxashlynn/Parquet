@@ -32,7 +32,7 @@ namespace ParquetUnitTests.Maps
         public void NewCustomMapRegionTest()
         {
             var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
-                                             AssemblyInfo.SupportedMapDataVersion, 0, testColor, testStory, testElevation);
+                                             0, testColor, testStory, testElevation);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
@@ -45,7 +45,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", AssemblyInfo.SupportedMapDataVersion,
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
                                              0, testColor, testStory, testElevation);
             IMapRegionEdit editableRegion = customRegion;
 

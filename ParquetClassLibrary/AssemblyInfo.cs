@@ -37,39 +37,6 @@ namespace ParquetClassLibrary
         Justification = "Comparing two AssemblyInfos is nonsensical.")]
     public readonly struct AssemblyInfo
     {
-        /// <summary>
-        /// Describes the version of the serialized <see cref="Beings.CharacterModel"/>
-        /// data that the class library understands.
-        /// </summary>
-        /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
-        /// - Major: Breaking changes resulting in lost saves.
-        /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// </remarks>
-        public const string SupportedBeingDataVersion = "0.2";
-
-        /// <summary>
-        /// Describes the version of the serialized <see cref="Maps.MapModel"/>
-        /// data that the class library understands.<para/>
-        /// </summary>
-        /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
-        /// - Major: Breaking changes resulting in lost saves.
-        /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// </remarks>
-        public const string SupportedMapDataVersion = "0.2";
-
-        /// <summary>
-        /// Describes the version of the serialized <see cref="Scripts.ScriptNode"/>
-        /// data that the class library understands.
-        /// </summary>
-        /// <remarks>
-        /// The version has the format "{Major}.{Minor}.{Build}".
-        /// - Major: Breaking changes resulting in lost saves.
-        /// - Minor: Backwards-compatible changes, preserving existing saves.
-        /// </remarks>
-        public const string SupportedScriptDataVersion = "0.2";
-
         /// <summary>Describes the version of the class library itself.</summary>
         /// <remarks>
         /// The version has the format "{Major}.{Minor}.{Patch}.{Build}".
