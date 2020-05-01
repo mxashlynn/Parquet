@@ -163,9 +163,6 @@ namespace ParquetRoller.Properties {
         ///   Looks up a localized string similar to Version:
         ///    Roller      {0}
         ///    Parquet     {1}
-        ///    Being Data  {2}
-        ///    Map Data    {3}
-        ///    Script Data {4}
         ///.
         /// </summary>
         internal static string MessageVersion {

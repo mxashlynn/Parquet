@@ -16,7 +16,6 @@ ParquetClassLibrary.Beings.BeingStatus.BuildingSpeed.get -> float
 ParquetClassLibrary.Beings.BeingStatus.BuildingSpeed.set -> void
 ParquetClassLibrary.Beings.BeingStatus.CurrentBehavior.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Beings.BeingStatus.CurrentBehavior.set -> void
-ParquetClassLibrary.Beings.BeingStatus.DataVersion.get -> string
 ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed.get -> float
 ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed.set -> void
 ParquetClassLibrary.Beings.BeingStatus.Inventory.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
@@ -213,14 +212,13 @@ ParquetClassLibrary.Maps.ExitPoint.ExitPoint() -> void
 ParquetClassLibrary.Maps.ExitPoint.ExitPoint(ParquetClassLibrary.Vector2D inPosition, ParquetClassLibrary.ModelID inDestinationID) -> void
 ParquetClassLibrary.Maps.ExitPoint.Position.get -> ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Maps.MapChunk
-ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
-ParquetClassLibrary.Maps.MapModel.DataVersion.get -> string
 ParquetClassLibrary.Maps.MapModel.Exits.get -> System.Collections.Generic.List<ParquetClassLibrary.Maps.ExitPoint>
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D inUpperLeft, ParquetClassLibrary.Vector2D inLowerRight) -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
-ParquetClassLibrary.Maps.MapModel.MapModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, string inDataVersion, int inRevision, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null) -> void
+ParquetClassLibrary.Maps.MapModel.MapModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null) -> void
 ParquetClassLibrary.Maps.MapModel.ParquetsCount.get -> int
 ParquetClassLibrary.Maps.MapModel.Revision.get -> int
 ParquetClassLibrary.Maps.MapModel.Revision.set -> void
@@ -228,13 +226,13 @@ ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.MapRegion.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegion.ElevationGlobal.get -> int
 ParquetClassLibrary.Maps.MapRegion.ElevationLocal.get -> ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, string inDataVersion = "0.2", int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.Maps.ChunkTypeGrid
 ParquetClassLibrary.Maps.MapRegionSketch.ElevationGlobal.get -> int
 ParquetClassLibrary.Maps.MapRegionSketch.ElevationLocal.get -> ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, string inDataVersion = "0.2", int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
+ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs
 ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inPoints) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.SpecialPoints.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Maps.ExitPoint>
@@ -445,7 +443,6 @@ ParquetClassLibrary.Scripts.InteractionModel.Outcomes.get -> System.Collections.
 ParquetClassLibrary.Scripts.InteractionModel.Prerequisites.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Scripts.InteractionModel.Steps.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Scripts.InteractionStatus
-ParquetClassLibrary.Scripts.InteractionStatus.DataVersion.get -> string
 ParquetClassLibrary.Scripts.InteractionStatus.InteractionDefinition.get -> ParquetClassLibrary.Scripts.InteractionModel
 ParquetClassLibrary.Scripts.InteractionStatus.InteractionStatus(ParquetClassLibrary.Scripts.InteractionModel inInteractionDefinition, ParquetClassLibrary.Scripts.RunState inState, int inProgramCounter) -> void
 ParquetClassLibrary.Scripts.InteractionStatus.ProgramCounter.get -> int
@@ -490,9 +487,6 @@ abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetCl
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 const ParquetClassLibrary.AssemblyInfo.LibraryVersion = "0.2.0.0" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedBeingDataVersion = "0.2" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedMapDataVersion = "0.2" -> string
-const ParquetClassLibrary.AssemblyInfo.SupportedScriptDataVersion = "0.2" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "|their|" -> string
 const ParquetClassLibrary.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
@@ -633,6 +627,7 @@ static ParquetClassLibrary.Maps.ChunkTypeGrid.DimensionsInChunks.get -> ParquetC
 static ParquetClassLibrary.Maps.ExitPoint.operator !=(ParquetClassLibrary.Maps.ExitPoint inPoint1, ParquetClassLibrary.Maps.ExitPoint inPoint2) -> bool
 static ParquetClassLibrary.Maps.ExitPoint.operator ==(ParquetClassLibrary.Maps.ExitPoint inPoint1, ParquetClassLibrary.Maps.ExitPoint inPoint2) -> bool
 static ParquetClassLibrary.Maps.MapChunk.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
+static ParquetClassLibrary.Maps.MapChunk.Empty.get -> ParquetClassLibrary.Maps.MapChunk
 static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapRegionSketch.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Model.operator !=(ParquetClassLibrary.Model inModel1, ParquetClassLibrary.Model inModel2) -> bool
@@ -719,7 +714,6 @@ static readonly ParquetClassLibrary.All.ScriptIDs -> ParquetClassLibrary.Range<P
 static readonly ParquetClassLibrary.Beings.PronounGroup.DefaultGroup -> ParquetClassLibrary.Beings.PronounGroup
 static readonly ParquetClassLibrary.Crafts.StrikePanel.Unused -> ParquetClassLibrary.Crafts.StrikePanel
 static readonly ParquetClassLibrary.Maps.ChunkType.Empty -> ParquetClassLibrary.Maps.ChunkType
-static readonly ParquetClassLibrary.Maps.MapChunk.Empty -> ParquetClassLibrary.Maps.MapChunk
 static readonly ParquetClassLibrary.Maps.MapRegion.Empty -> ParquetClassLibrary.Maps.MapRegion
 static readonly ParquetClassLibrary.Maps.MapRegionSketch.Empty -> ParquetClassLibrary.Maps.MapRegionSketch
 static readonly ParquetClassLibrary.ModelCollection.Default -> ParquetClassLibrary.ModelCollection

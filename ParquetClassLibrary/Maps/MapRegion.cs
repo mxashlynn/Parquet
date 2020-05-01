@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(7)]
+        [Index(6)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Maps
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        [Index(8)]
+        [Index(7)]
         public Elevation ElevationLocal { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
@@ -63,7 +63,7 @@ namespace ParquetClassLibrary.Maps
         Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
-        [Index(9)]
+        [Index(8)]
         public int ElevationGlobal { get; private set; }
 
         /// <summary>The region's elevation relative to all other regions.</summary>
@@ -73,14 +73,14 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(10)]
+        [Index(9)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
         /// </summary>
-        [Index(11)]
+        [Index(10)]
         public override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
@@ -93,7 +93,6 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
         /// <param name="inElevationLocal">The absolute elevation of this region.</param>
@@ -102,11 +101,11 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
         public MapRegion(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                         string inDataVersion = AssemblyInfo.SupportedMapDataVersion, int inRevision = 0, string inBackgroundColor = DefaultColor,
+                         int inRevision = 0, string inBackgroundColor = DefaultColor,
                          Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
                          IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
                          ParquetStackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inDataVersion, inRevision, inExits)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;

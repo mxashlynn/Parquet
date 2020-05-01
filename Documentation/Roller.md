@@ -104,21 +104,24 @@ Looks up a localized string similar to Unrecognized property {0}.
 
 ##### Summary
 
-Looks up a localized string similar to {0}: {1} collides with {2}..
+Looks up a localized string similar to {0}: {1} collides with {2}.
+.
 
 <a name='P-ParquetRoller-Properties-Resources-InfoCollisionsHeader'></a>
 ### InfoCollisionsHeader `property`
 
 ##### Summary
 
-Looks up a localized string similar to Collisions in {0}:.
+Looks up a localized string similar to Collisions in {0}:
+.
 
 <a name='P-ParquetRoller-Properties-Resources-InfoNoContent'></a>
 ### InfoNoContent `property`
 
 ##### Summary
 
-Looks up a localized string similar to No defined content..
+Looks up a localized string similar to No defined content.
+.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageDefault'></a>
 ### MessageDefault `property`
@@ -135,7 +138,7 @@ Commands:
     -t|templates        Write CSV templates to current directory.
     -r|roll Prepare CSVs in current directory for use.
     -p|list pronouns    List all defined pronoun groups.
-    -l|list (property) [category]   List various [rest of string was truncated]";.
+    -l|list (property) [category]   List various model pro [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageHelp'></a>
 ### MessageHelp `property`
@@ -153,7 +156,7 @@ Usage: roller list (property) [category]
 
 Commands:
     -h|help Display detailed help.
-    -v|version          Di [rest of string was truncated]";.
+    -v|version          Display versi [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageVersion'></a>
 ### MessageVersion `property`
@@ -163,9 +166,6 @@ Commands:
 Looks up a localized string similar to Version:
     Roller      {0}
     Parquet     {1}
-    Being Data  {2}
-    Map Data    {3}
-    Script Data {4}
 .
 
 <a name='P-ParquetRoller-Properties-Resources-ResourceManager'></a>

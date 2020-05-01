@@ -18,33 +18,29 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
         [Ignore]
         public abstract Vector2D DimensionsInParquets { get; }
-
-        /// <summary>Describes the version of serialized data, to support versioning.</summary>
-        [Index(4)]
-        public string DataVersion { get; } = AssemblyInfo.SupportedMapDataVersion;
         #endregion
 
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        [Index(5)]
+        [Index(4)]
         public int Revision { get; protected set; }
         #endregion
 
         #region Map Contents
         /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-        [Index(6)]
+        [Index(5)]
         public List<ExitPoint> Exits { get; }
 
         /// <summary>Floors and walkable terrain on the map.</summary>
-        [Index(10)]
+        [Index(9)]
         public abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(11)]
+        [Index(10)]
         public abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
@@ -58,20 +54,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inDataVersion">Describes the version of serialized data, to support versioning.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                           string inDataVersion, int inRevision, IEnumerable<ExitPoint> inExits = null)
+                           int inRevision, IEnumerable<ExitPoint> inExits = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
-            // TODO Replace this exception with actual version support.
-            if (!DataVersion.Equals(inDataVersion, StringComparison.InvariantCultureIgnoreCase))
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUornsupportedVersion,
-                                                        nameof(MapModel), inDataVersion));
-            }
-
             Revision = inRevision;
             Exits = inExits?.ToList() ?? new List<ExitPoint>();
         }
