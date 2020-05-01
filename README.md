@@ -18,7 +18,7 @@ Development milestone deadlines are tentative right now.
 
 This project has two goals:
 
-1. To provide a foundation for games developed in C# stacks (hopefully FNA+Nez, Godot, and Unity);
+1. To provide a foundation for games developed in C# stacks;
 2. To provide a learning exercise for the lead developer.
 
 Due to goal 2, no attempt has been made to design the most elegant, effecient, general-purpose, or powerful library possible.
