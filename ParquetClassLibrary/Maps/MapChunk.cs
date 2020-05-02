@@ -63,6 +63,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
+            // TODO Interpolation warning should be fixed when Visual Studio 2019 16.6 drops.
             => $"Chunk {Name} {base.ToString()}";
         #endregion
     }
