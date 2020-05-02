@@ -15,8 +15,8 @@ namespace ParquetClassLibrary.Maps
         public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty MapChunk", "", "");
 
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerChunkDimension,
-                                                                              ParquetsPerChunkDimension);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ChunkTypeGrid.ParquetsPerChunkDimension,
+                                                                              ChunkTypeGrid.ParquetsPerChunkDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
@@ -50,8 +50,10 @@ namespace ParquetClassLibrary.Maps
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
         {
-            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
-            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ChunkTypeGrid.ParquetsPerChunkDimension,
+                                                                         ChunkTypeGrid.ParquetsPerChunkDimension);
+            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ChunkTypeGrid.ParquetsPerChunkDimension,
+                                                                              ChunkTypeGrid.ParquetsPerChunkDimension);
         }
         #endregion
 

@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
         /// When <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
-        /// <see cref="PanelsPerPatternWidth"/> and <see cref="PanelsPerPatternHeight"/>.
+        /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts,
