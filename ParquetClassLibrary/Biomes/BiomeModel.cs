@@ -8,7 +8,7 @@ using ParquetClassLibrary.Maps;
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
+    /// Models the biome that a <see cref="MapRegion"/> embodies.
     /// </summary>
     public sealed class BiomeModel : Model
     {
@@ -77,7 +77,7 @@ namespace ParquetClassLibrary.Biomes
     }
 
     /// <summary>
-    /// Provides rules for determining a <see cref="Maps.MapRegion"/>'s <see cref="Biomes.BiomeModel"/>.
+    /// Provides rules for determining a <see cref="MapRegion"/>'s <see cref="BiomeModel"/>.
     /// </summary>
     // TODO Make this configurable via CSV.
     public static class BiomeAnalysis
@@ -90,21 +90,21 @@ namespace ParquetClassLibrary.Biomes
         // TODO This should be read from a file.
         /// <summary>
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
-        /// <see cref="Maps.MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
+        /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
         internal static int LandThresholdFactor = 5 / 4;
 
-        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="Biomes.BiomeModel"/>.</summary>
+        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
         internal static int LandThreshold = ParquetsPerLayer * LandThresholdFactor;
 
         // TODO This should be read from a file.
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
-        /// <see cref="Maps.MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
+        /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
         internal static int LiquidThresholdFactor = (1 / 4);
 
-        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="Biomes.BiomeModel"/>.</summary>
+        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
         internal static int FluidThreshold = ParquetsPerLayer * LiquidThresholdFactor;
     }
 }

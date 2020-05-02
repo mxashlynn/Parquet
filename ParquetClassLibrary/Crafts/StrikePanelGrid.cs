@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Crafts
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="StrikePanelGrid"/> with dimensions as specifid in <see cref="Rules.Dimensions"/>.
+        /// Initializes a new <see cref="StrikePanelGrid"/> with default dimensions.
         /// </summary>
         public StrikePanelGrid()
             : this(PanelsPerPatternHeight, PanelsPerPatternWidth) { }
