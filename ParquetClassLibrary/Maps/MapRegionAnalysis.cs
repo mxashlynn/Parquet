@@ -4,7 +4,7 @@ using ParquetClassLibrary.Parquets;
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="MapRegion"/> instances.
+    /// TODO Fill this in!!
     /// </summary>
     internal static class MapRegionAnalysis
     {
