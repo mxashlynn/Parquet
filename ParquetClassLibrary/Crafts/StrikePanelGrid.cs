@@ -10,9 +10,6 @@ namespace ParquetClassLibrary.Crafts
     /// <remark>
     /// The intent is that this class function much like a read-only array.
     /// </remark>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class StrikePanelGrid : IGrid<StrikePanel>
     {
         #region Class Defaults

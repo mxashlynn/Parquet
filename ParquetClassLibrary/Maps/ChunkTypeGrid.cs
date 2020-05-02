@@ -6,9 +6,6 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A pattern for generating a playable <see cref="MapRegion"/>.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class ChunkTypeGrid : IGrid<ChunkType>
     {
         #region Class Defaults
