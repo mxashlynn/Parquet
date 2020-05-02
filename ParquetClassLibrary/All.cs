@@ -326,7 +326,7 @@ namespace ParquetClassLibrary
             // Since it is possible for every parquet to have a corresponding item, this range must be at least
             // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
             // ranges of all parquets.
-            var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + 2 * (MaximumParquetID - MinimumParquetID);
+            var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + (2 * (MaximumParquetID - MinimumParquetID));
 
             ItemIDs = new Range<ModelID>(ItemLowerBound, ItemUpperBound);
             #endregion

@@ -36,7 +36,7 @@ namespace ParquetUnitTests
         public void NewVectorTest(int inX, int inY)
         {
             var testVector = new Vector2D(inX, inY);
-            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(inX * inX + inY * inY)));
+            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((inX * inX) + (inY * inY))));
 
             Assert.Equal(inX, testVector.X);
             Assert.Equal(inY, testVector.Y);

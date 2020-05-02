@@ -134,17 +134,17 @@ namespace ParquetClassLibrary.Utilities
             var deduplicationList = new HashSet<Vector2D>();
 
             // Brute force.
-            var circleLimit = inRadius * inRadius + inRadius;
-            var outlineLimit = inRadius * inRadius - inRadius;
+            var circleLimit = (inRadius * inRadius) + inRadius;
+            var outlineLimit = (inRadius * inRadius) - inRadius;
             for (var y = -inRadius; y <= inRadius; y++)
             {
                 for (var x = -inRadius; x <= inRadius; x++)
                 {
-                    if (x * x + y * y < circleLimit
+                    if ((x * x) + (y * y) < circleLimit
                         // Plot positions within the circle only if:
                         // 1, the circle is filled, or
                         // 2, the position is on the circle proper (that is, the circle's outline).
-                        && (inIsFilled || x * x + y * y > outlineLimit))
+                        && (inIsFilled || (x * x) + (y * y) > outlineLimit))
                     {
                         var position = new Vector2D(inCenter.X + x, inCenter.Y + y);
                         if (inIsValid(position))

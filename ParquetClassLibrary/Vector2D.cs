@@ -53,7 +53,7 @@ namespace ParquetClassLibrary
         {
             X = inX;
             Y = inY;
-            Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
+            Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((X * X) + (Y * Y))));
         }
         #endregion
 
