@@ -152,9 +152,9 @@ namespace ParquetClassLibrary.Maps
             && null != chunk
                 ? chunk.Handmade
                     ? nameof(Handmade)
-                    : $"{chunk.BaseTopography}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{chunk.BaseComposition}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{chunk.ModifierTopography}{Rules.Delimiters.InternalDelimiter}" +
+                    : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
+                      $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierComposition}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ChunkType)));
@@ -181,7 +181,7 @@ namespace ParquetClassLibrary.Maps
             {
                 try
                 {
-                    var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                    var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                     var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
                     var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);

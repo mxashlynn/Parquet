@@ -22,7 +22,8 @@ namespace ParquetClassLibrary.Maps
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(MapRegion.ParquetsPerRegionDimension,
+                                                                              MapRegion.ParquetsPerRegionDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds

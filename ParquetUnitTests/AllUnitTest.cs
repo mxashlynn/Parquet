@@ -24,9 +24,9 @@ namespace ParquetUnitTests
         [Fact]
         public void AllDimensionsAreGreaterThanZeroTest()
         {
-            var result = Rules.Dimensions.ParquetsPerChunk > 0
-                         && Rules.Dimensions.ChunksPerRegion > 0
-                         && Rules.Dimensions.ParquetsPerRegion > 0
+            var result = Rules.Dimensions.ParquetsPerChunkDimension > 0
+                         && Rules.Dimensions.ChunksPerRegionDimension > 0
+                         && Rules.Dimensions.ParquetsPerRegionDimension > 0
                          && Rules.Dimensions.PanelsPerPatternWidth > 0
                          && Rules.Dimensions.PanelsPerPatternHeight > 0;
             Assert.True(result);

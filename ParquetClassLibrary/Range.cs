@@ -85,7 +85,7 @@ namespace ParquetClassLibrary
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is Vector2D vector
             && null != vector
-                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
+                ? $"{vector.X}{Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
             : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                         inValue, nameof(Vector2D)));
@@ -105,7 +105,7 @@ namespace ParquetClassLibrary
                                                           inText, nameof(Range<TElement>)));
             }
 
-            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+            var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
             if (IsIntConvertible(default))
             {

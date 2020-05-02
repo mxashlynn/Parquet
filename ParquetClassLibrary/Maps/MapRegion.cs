@@ -14,9 +14,15 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapRegion Empty = new MapRegion(ModelID.None, "Empty Region");
 
+        /// <summary>The length of each <see cref="MapRegion"/> dimension in <see cref="ChunkTypeGrid"/>s.</summary>
+        public const int ChunksPerRegionDimension = 4;
+
+        /// <summary>The length of each <see cref="MapRegion"/> dimension in parquets.</summary>
+        public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ChunkTypeGrid.ParquetsPerChunkDimension;
+
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(Rules.Dimensions.ParquetsPerRegion,
-                                                                              Rules.Dimensions.ParquetsPerRegion);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension,
+                                                                              ParquetsPerRegionDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
@@ -110,8 +116,8 @@ namespace ParquetClassLibrary.Maps
             BackgroundColor = inBackgroundColor;
             ElevationLocal = inElevationLocal;
             ElevationGlobal = inElevationGlobal;
-            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
-            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(Rules.Dimensions.ParquetsPerRegion, Rules.Dimensions.ParquetsPerRegion);
+            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
         }
         #endregion
 

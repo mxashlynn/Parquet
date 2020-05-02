@@ -25,19 +25,19 @@ namespace ParquetClassLibrary.Beings
 
         #region Textual Tags
         /// <summary>Indicates the <see cref="Subjective"/> should be used.</summary>
-        public const string SubjectiveTag = Rules.Delimiters.PronounDelimiter + "they" + Rules.Delimiters.PronounDelimiter;
+        public const string SubjectiveTag = Delimiters.PronounDelimiter + "they" + Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Objective"/> should be used.</summary>
-        public const string ObjectiveTag = Rules.Delimiters.PronounDelimiter + "them" + Rules.Delimiters.PronounDelimiter;
+        public const string ObjectiveTag = Delimiters.PronounDelimiter + "them" + Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Determiner"/> should be used.</summary>
-        public const string DeterminerTag = Rules.Delimiters.PronounDelimiter + "their" + Rules.Delimiters.PronounDelimiter;
+        public const string DeterminerTag = Delimiters.PronounDelimiter + "their" + Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Possessive"/> should be used.</summary>
-        public const string PossessiveTag = Rules.Delimiters.PronounDelimiter + "theirs" + Rules.Delimiters.PronounDelimiter;
+        public const string PossessiveTag = Delimiters.PronounDelimiter + "theirs" + Delimiters.PronounDelimiter;
 
         /// <summary>Indicates the <see cref="Reflexive"/> should be used.</summary>
-        public const string ReflexiveTag = Rules.Delimiters.PronounDelimiter + "themselves" + Rules.Delimiters.PronounDelimiter;
+        public const string ReflexiveTag = Delimiters.PronounDelimiter + "themselves" + Delimiters.PronounDelimiter;
         #endregion
 
         #region Characteristics

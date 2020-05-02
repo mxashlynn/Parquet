@@ -50,9 +50,9 @@ namespace ParquetClassLibrary
 
             var result = new StringBuilder();
             result.Append(grid.Rows);
-            result.Append(Rules.Delimiters.DimensionalDelimiter);
+            result.Append(Delimiters.DimensionalDelimiter);
             result.Append(grid.Columns);
-            result.Append(Rules.Delimiters.DimensionalTerminator);
+            result.Append(Delimiters.DimensionalTerminator);
 
             for (var y = 0; y < grid.Rows; y++)
             {
@@ -62,10 +62,10 @@ namespace ParquetClassLibrary
                     {
                         result.Append(grid[y, x].ConvertToString(grid[y, x], inRow, inMemberMapData));
                     }
-                    result.Append(Rules.Delimiters.SecondaryDelimiter);
+                    result.Append(Delimiters.SecondaryDelimiter);
                 }
             }
-            result.Remove(result.Length - Rules.Delimiters.SecondaryDelimiter.Length, Rules.Delimiters.SecondaryDelimiter.Length);
+            result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
 
             return result.ToString();
         }
@@ -86,8 +86,8 @@ namespace ParquetClassLibrary
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
 
-            var headerAndGridTexts = inText.Split(Rules.Delimiters.DimensionalTerminator);
-            var header = headerAndGridTexts[0].Split(Rules.Delimiters.DimensionalDelimiter);
+            var headerAndGridTexts = inText.Split(Delimiters.DimensionalTerminator);
+            var header = headerAndGridTexts[0].Split(Delimiters.DimensionalDelimiter);
             if (!int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var rowCount)
                 || !int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var columnCount))
             {
@@ -98,7 +98,7 @@ namespace ParquetClassLibrary
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });
             var elementFactory = new TElement();
 
-            var gridTexts = headerAndGridTexts[1].Split(Rules.Delimiters.SecondaryDelimiter);
+            var gridTexts = headerAndGridTexts[1].Split(Delimiters.SecondaryDelimiter);
             var gridTextEnumerator = gridTexts.GetEnumerator();
             for (var y = 0; y < grid.Rows; y++)
             {

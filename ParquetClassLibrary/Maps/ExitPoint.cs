@@ -110,7 +110,7 @@ namespace ParquetClassLibrary.Maps
                 && null != exit)
             {
                 return $"{exit.Position.ConvertToString(exit.Position, inRow, inMemberMapData)}" +
-                       $"{Rules.Delimiters.InternalDelimiter}" +
+                       $"{Delimiters.InternalDelimiter}" +
                        $"{exit.Destination.ConvertToString(exit.Destination, inRow, inMemberMapData)}";
             }
             else
@@ -137,7 +137,7 @@ namespace ParquetClassLibrary.Maps
 
             try
             {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                 var position = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var destination = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);

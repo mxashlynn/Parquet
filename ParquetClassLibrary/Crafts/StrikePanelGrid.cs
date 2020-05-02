@@ -15,6 +15,14 @@ namespace ParquetClassLibrary.Crafts
         Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class StrikePanelGrid : IGrid<StrikePanel>
     {
+        #region Class Defaults
+        /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
+        public const int PanelsPerPatternWidth = 2;
+
+        /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
+        public const int PanelsPerPatternHeight = 2;
+        #endregion
+
         /// <summary>The backing collection of <see cref="StrikePanel"/>es.</summary>
         private StrikePanel[,] StrikePanels { get; }
 
@@ -23,7 +31,7 @@ namespace ParquetClassLibrary.Crafts
         /// Initializes a new <see cref="StrikePanelGrid"/> with dimensions as specifid in <see cref="Rules.Dimensions"/>.
         /// </summary>
         public StrikePanelGrid()
-            : this(Rules.Dimensions.PanelsPerPatternHeight, Rules.Dimensions.PanelsPerPatternWidth) { }
+            : this(PanelsPerPatternHeight, PanelsPerPatternWidth) { }
 
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
@@ -32,6 +40,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
         public StrikePanelGrid(int inRowCount, int inColumnCount)
         {
+            // TODO DO we need to check that parameters don't exceed the defaults?  Or are we scrapping the defaults?
             StrikePanels = new StrikePanel[inRowCount, inColumnCount];
             for (var y = 0; y < inRowCount; y++)
             {

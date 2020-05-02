@@ -49,9 +49,9 @@ namespace ParquetClassLibrary
                 {
                     result.Append(element.ConvertToString(element, inRow, inMemberMapData));
                 }
-                result.Append(Rules.Delimiters.SecondaryDelimiter);
+                result.Append(Delimiters.SecondaryDelimiter);
             }
-            result.Remove(result.Length - Rules.Delimiters.SecondaryDelimiter.Length, Rules.Delimiters.SecondaryDelimiter.Length);
+            result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
 
             return result.ToString();
         }
@@ -64,7 +64,7 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ICollection{TElement}"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => ConvertFromString(inText, inRow, inMemberMapData, Rules.Delimiters.SecondaryDelimiter);
+            => ConvertFromString(inText, inRow, inMemberMapData, Delimiters.SecondaryDelimiter);
 
         /// <summary>
         /// Converts the given record column to a 1D collection.

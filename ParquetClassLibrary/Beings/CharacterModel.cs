@@ -86,7 +86,7 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inStartingInventory));
             Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
-            var names = inName.Split(Rules.Delimiters.NameDelimiter);
+            var names = inName.Split(Delimiters.NameDelimiter);
             PersonalName = names[0];
             FamilyName = names.Length > 1
                 ? names[1]

@@ -127,7 +127,7 @@ namespace ParquetClassLibrary
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var elementSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
 
                 var elementAmountText = elementSplitText[0];
                 var elementTagText = elementSplitText[1];
@@ -140,7 +140,8 @@ namespace ParquetClassLibrary
                 else
                 {
                     throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inText, $"{nameof(ElementAmount)}{Rules.Delimiters.InternalDelimiter}{nameof(ElementTag)}"));
+                                                            inText,
+                                                            $"{nameof(ElementAmount)}{Delimiters.InternalDelimiter}{nameof(ElementTag)}"));
 
                 }
             }
@@ -163,7 +164,7 @@ namespace ParquetClassLibrary
             && null != recipeElement
                 ? recipeElement == None
                     ? nameof(None)
-                    : $"{recipeElement.ElementAmount}{Rules.Delimiters.InternalDelimiter}" +
+                    : $"{recipeElement.ElementAmount}{Delimiters.InternalDelimiter}" +
                       $"{recipeElement.ElementTag}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(RecipeElement)));

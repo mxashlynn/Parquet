@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Scripts
         /// <returns>The action to perform.</returns>
         public Action GetAction()
         {
-            var contents = nodeContent.Split(Rules.Delimiters.InternalDelimiter);
+            var contents = nodeContent.Split(Delimiters.InternalDelimiter);
             return ParseCommand(contents[0], contents[1], contents[2]);
         }
 

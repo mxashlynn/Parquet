@@ -20,7 +20,7 @@ namespace ParquetRunner
     {
         #region Test Value Components
         public static readonly ModelTag TestTag = "Test Tag";
-        public static readonly ScriptNode TestNode = $"A{Rules.Delimiters.InternalDelimiter}{Rules.Delimiters.InternalDelimiter}Test Alert";
+        public static readonly ScriptNode TestNode = $"A{Delimiters.InternalDelimiter}{Delimiters.InternalDelimiter}Test Alert";
         public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
         public static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
@@ -128,8 +128,8 @@ namespace ParquetRunner
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, Elevation.LevelGround, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                                        Rules.Dimensions.PanelsPerPatternWidth));
+                                                    new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
+                                                                        StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test");
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
@@ -140,7 +140,7 @@ namespace ParquetRunner
                                                  inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", inAddsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test",
-                                            Rules.Recipes.Room.MinWalkableSpaces + 1, TestRecipeElementList,
+                                            RoomAnalysis.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
             TestScript = new ScriptModel(-All.ScriptIDs.Minimum, "13 Test Script", "Test", "Test", TestNodeList);
             TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "14 Test Item 1", "Test", "Test", ItemType.Other,

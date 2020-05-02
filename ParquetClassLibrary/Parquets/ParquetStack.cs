@@ -182,9 +182,9 @@ namespace ParquetClassLibrary.Parquets
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStack stack
             && null != stack
-                ? $"{stack.Floor}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{stack.Block}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{stack.Furnishing}{Rules.Delimiters.InternalDelimiter}" +
+                ? $"{stack.Floor}{Delimiters.InternalDelimiter}" +
+                  $"{stack.Block}{Delimiters.InternalDelimiter}" +
+                  $"{stack.Furnishing}{Delimiters.InternalDelimiter}" +
                   $"{stack.Collectible}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ParquetStack)));
@@ -206,7 +206,7 @@ namespace ParquetClassLibrary.Parquets
 
             try
             {
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                 var floor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var block = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);

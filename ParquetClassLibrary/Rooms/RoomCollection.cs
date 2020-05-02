@@ -171,8 +171,8 @@ namespace ParquetClassLibrary.Rooms.RegionAnalysis
                 }
             }
 
-            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < Rules.Recipes.Room.MinWalkableSpaces));
-            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > Rules.Recipes.Room.MaxWalkableSpaces));
+            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < RoomAnalysis.MinWalkableSpaces));
+            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > RoomAnalysis.MaxWalkableSpaces));
             var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
