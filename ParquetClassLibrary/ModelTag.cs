@@ -28,7 +28,7 @@ namespace ParquetClassLibrary
     /// <seealso cref="All"/>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
         "CA1036:Override methods on comparable types",
-        Justification = "{ModelTag is designed to operate like a string, and string does not implement these operators.")]
+        Justification = "ModelTag is designed to operate like a string, and string does not implement these operators.")]
     public class ModelTag : IComparable<ModelTag>, ITypeConverter
     {
         #region Class Defaults
