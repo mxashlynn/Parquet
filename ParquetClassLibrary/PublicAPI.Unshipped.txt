@@ -67,7 +67,6 @@ ParquetClassLibrary.Beings.PronounGroup.Subjective.get -> string
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Biomes.BiomeAnalysis
-ParquetClassLibrary.Biomes.BiomeAnalysis.BiomeAnalysis() -> void
 ParquetClassLibrary.Biomes.BiomeModel
 ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, ParquetClassLibrary.Biomes.Elevation inElevationCategory, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
 ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
