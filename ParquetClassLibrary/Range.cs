@@ -126,31 +126,23 @@ namespace ParquetClassLibrary
             // Determines if the given variable may be deserialized as an integer.
             // Returns true if TElement may be deserialized via Int32Converter.
             static bool IsIntConvertible(TElement inElement)
-            {
-                switch (inElement)
+                => inElement switch
                 {
-                    case sbyte _:
-                    case short _:
-                    case int _:
-                    case ModelID _:
-                        return true;
-                    default:
-                        return false;
-                }
-            }
+                    sbyte _ => true,
+                    short _ => true,
+                    int _ => true,
+                    ModelID _ => true,
+                    _ => false
+                };
 
             // Determines if the given variable may be deserialized as a single-precision floating point number.
             // Returns true if TElement may be deserialized via SingleConverter.
             static bool IsSingleConvertible(TElement inElement)
-            {
-                switch (inElement)
+                => inElement switch
                 {
-                    case float _:
-                        return true;
-                    default:
-                        return false;
-                }
-            }
+                    float _ => true,
+                    _ => false
+                };
         }
         #endregion
 
