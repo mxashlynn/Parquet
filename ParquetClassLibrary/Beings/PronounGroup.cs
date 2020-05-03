@@ -115,7 +115,7 @@ namespace ParquetClassLibrary.Beings
         /// <returns>The instances read.</returns>
         public static HashSet<PronounGroup> GetRecords()
         {
-            using var reader = new StreamReader($"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv");
+            using var reader = new StreamReader(GetFilePath());
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             csv.Configuration.PrepareHeaderForMatch =
@@ -155,7 +155,7 @@ namespace ParquetClassLibrary.Beings
 
         #region Utilities
         /// <summary>
-        /// Returns the filename and path associated with <see cref="PronounGroup"/>s' designer file.
+        /// Returns the filename and path associated with <see cref="PronounGroup"/>'s designer file.
         /// </summary>
         /// <returns>A full path to the associated designer file.</returns>
         public static string GetFilePath()
