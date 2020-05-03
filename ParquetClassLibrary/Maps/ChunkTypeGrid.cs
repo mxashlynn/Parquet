@@ -9,9 +9,6 @@ namespace ParquetClassLibrary.Maps
     public class ChunkTypeGrid : IGrid<ChunkType>
     {
         #region Class Defaults
-        /// <summary>The length of each <see cref="ChunkTypeGrid"/> dimension in parquets.</summary>
-        public const int ParquetsPerChunkDimension = 16;
-
         /// <summary>The grid's dimensions in chunks.</summary>
         public static Vector2D DimensionsInChunks { get; } = new Vector2D(MapRegion.ChunksPerRegionDimension,
                                                                           MapRegion.ChunksPerRegionDimension);

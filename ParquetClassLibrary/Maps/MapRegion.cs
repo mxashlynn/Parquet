@@ -18,11 +18,10 @@ namespace ParquetClassLibrary.Maps
         public const int ChunksPerRegionDimension = 4;
 
         /// <summary>The length of each <see cref="MapRegion"/> dimension in parquets.</summary>
-        public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * ChunkTypeGrid.ParquetsPerChunkDimension;
+        public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * MapChunk.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension,
-                                                                              ParquetsPerRegionDimension);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
