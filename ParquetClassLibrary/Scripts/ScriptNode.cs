@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -12,9 +13,8 @@ namespace ParquetClassLibrary.Scripts
     /// For example, a precondition, postcondition, or step in an <see cref="InteractionModel"/>
     /// or the effect of an <see cref="Items.ItemModel"/>.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
-        "CA1036:Override methods on comparable types",
-        Justification = "{ScriptNode is designed to operate like a string, and string does not implement these operators.")]
+    [SuppressMessage("Design", "CA1036:Override methods on comparable types",
+                     Justification = "Implementing these operators would prevent ScriptNode from operating like a string.")]
     public class ScriptNode : IComparable<ScriptNode>, ITypeConverter
     {
         #region Class Defaults

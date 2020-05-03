@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
@@ -32,9 +33,8 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Provides assembly-wide information.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
-        "CA1815:Override equals and operator equals on value types",
-        Justification = "Comparing two AssemblyInfos is nonsensical.")]
+    [SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types",
+                     Justification = "Comparing two AssemblyInfos is nonsensical.")]
     public readonly struct AssemblyInfo
     {
         /// <summary>Describes the version of the class library itself.</summary>

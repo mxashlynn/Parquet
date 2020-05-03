@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -245,9 +246,8 @@ namespace ParquetClassLibrary
         /// <remarks>
         /// This supports defining ItemIDs in terms of the other Ranges.
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
-            "CA1810:Initialize reference type static fields inline",
-            Justification = "Inline initializers would notably complicate the code in this instance.")]
+        [SuppressMessage("Performance", "CA1810:Initialize reference type static fields inline",
+                         Justification = "Inline initializers would notably complicate the code in this instance.")]
         static All()
         {
             #region Default Values for Collections
