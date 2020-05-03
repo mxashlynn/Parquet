@@ -66,15 +66,15 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
-            if (inWalkableArea.Count > RoomAnalysis.MaxWalkableSpaces)
+            if (inWalkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                          nameof(inWalkableArea), RoomAnalysis.MaxWalkableSpaces));
+                                                          nameof(inWalkableArea), RoomConfiguration.MaxWalkableSpaces));
             }
-            else if (inWalkableArea.Count < RoomAnalysis.MinWalkableSpaces)
+            else if (inWalkableArea.Count < RoomConfiguration.MinWalkableSpaces)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                          RoomAnalysis.MinWalkableSpaces, nameof(inWalkableArea)));
+                                                          RoomConfiguration.MinWalkableSpaces, nameof(inWalkableArea)));
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.Furnishing != ModelID.None
@@ -153,24 +153,5 @@ namespace ParquetClassLibrary.Rooms
         public static bool operator !=(Room inRoom1, Room inRoom2)
            => !(inRoom1 == inRoom2);
         #endregion
-    }
-
-    /// <summary>
-    /// Provides parameters for <see cref="Room"/>s.
-    /// </summary>
-    // TODO Make this configurable via CSV.
-    public static class RoomAnalysis
-    {
-        /// <summary>Minimum number of open walkable spaces needed for any room to register.</summary>
-        // TODO Make this configurable via CSV.
-        public const int MinWalkableSpaces = 4;
-
-        /// <summary>Maximum number of open walkable spaces needed for any room to register.</summary>
-        // TODO Make this configurable via CSV.
-        public const int MaxWalkableSpaces = 121;
-
-        /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
-        // TODO Make this configurable via CSV.
-        public const int MinPerimeterSpaces = MinWalkableSpaces * 3;
     }
 }

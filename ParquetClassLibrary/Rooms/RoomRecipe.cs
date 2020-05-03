@@ -42,14 +42,14 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          int inMinimumWalkableSpaces = RoomAnalysis.MinWalkableSpaces,
+                          int inMinimumWalkableSpaces = RoomConfiguration.MinWalkableSpaces,
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
             : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
-            if (inMinimumWalkableSpaces < RoomAnalysis.MinWalkableSpaces
-                || inMinimumWalkableSpaces > RoomAnalysis.MaxWalkableSpaces)
+            if (inMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
+                || inMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
                 throw new ArgumentOutOfRangeException(nameof(inMinimumWalkableSpaces));
             }

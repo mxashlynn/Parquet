@@ -59,9 +59,9 @@ namespace ParquetClassLibrary.Crafts
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
-            Precondition.IsInRange(inProducts.Count(), Craft.ProductCount, $"{nameof(inProducts)}.Count");
+            Precondition.IsInRange(inProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
-            Precondition.IsInRange(inIngredients.Count(), Craft.IngredientCount, $"{nameof(inProducts)}.Count");
+            Precondition.IsInRange(inIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
             if (inPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || inPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth
@@ -77,20 +77,5 @@ namespace ParquetClassLibrary.Crafts
             PanelPattern = inPanelPattern;
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Provides parameters for <see cref="CraftingRecipe"/>s.
-    /// </summary>
-    // TODO Make this configurable via CSV.
-    public static class Craft
-    {
-        /// <summary>Number of ingredient categories per recipe.</summary>
-        // TODO Make this configurable via CSV.
-        public static Range<int> IngredientCount { get; } = new Range<int>(1, 5);
-
-        /// <summary>Number of product categories per recipe.</summary>
-        // TODO Make this configurable via CSV.
-        public static Range<int> ProductCount { get; } = new Range<int>(1, 5);
     }
 }

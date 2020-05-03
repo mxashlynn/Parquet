@@ -140,7 +140,7 @@ namespace ParquetRunner
                                                  inIsEntry: true, inAddsToRoom: TestTag);
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", inAddsToRoom: TestTag);
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test",
-                                            RoomAnalysis.MinWalkableSpaces + 1, TestRecipeElementList,
+                                            RoomConfiguration.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
             TestScript = new ScriptModel(-All.ScriptIDs.Minimum, "13 Test Script", "Test", "Test", TestNodeList);
             TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "14 Test Item 1", "Test", "Test", ItemType.Other,
