@@ -83,12 +83,12 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Vector2D vector
-            && null != vector
-                ? $"{vector.X}{Delimiters.ElementDelimiter}" +
-                  $"{vector.Y}"
+            => inValue is Range<TElement> range
+            && null != range
+                ? $"{range.Minimum}{Delimiters.ElementDelimiter}" +
+                  $"{range.Maximum}"
             : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                        inValue, nameof(Vector2D)));
+                                                        inValue, nameof(Range<TElement>)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
