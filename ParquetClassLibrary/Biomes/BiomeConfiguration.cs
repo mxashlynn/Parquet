@@ -21,19 +21,19 @@ namespace ParquetClassLibrary.Biomes
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static int LandThresholdFactor { get; private set; }
+        internal static float LandThresholdFactor { get; private set; }
 
         /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
-        internal static int LandThreshold => ParquetsPerLayer * LandThresholdFactor;
+        internal static float LandThreshold => ParquetsPerLayer * LandThresholdFactor;
 
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static int LiquidThresholdFactor { get; private set; }
+        internal static float LiquidThresholdFactor { get; private set; }
 
         /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
-        internal static int FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
+        internal static float FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
 
         #region Self Serialization
         /// <summary>
@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Biomes
             var values = valueLine.Split(Delimiters.PrimaryDelimiter);
 
             // Parse.
-            if (int.TryParse(values[0], out var temp))
+            if (float.TryParse(values[0], out var temp))
             {
                 LandThresholdFactor = temp;
             }
@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Biomes
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         values[0], nameof(LandThresholdFactor)));
             }
-            if (int.TryParse(values[1], out temp))
+            if (float.TryParse(values[1], out temp))
             {
                 LiquidThresholdFactor = temp;
             }
