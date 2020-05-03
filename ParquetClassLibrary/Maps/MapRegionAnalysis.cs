@@ -1,16 +1,17 @@
-// TODO Revisit this when implementing Biome detection.
-/*
 using System;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 
-namespace ParquetClassLibrary.Maps
+namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="MapRegion"/> instances.
+    /// TODO Fill this in!!
     /// </summary>
     internal static class MapRegionAnalysis
     {
+        // TODO This should probably be a part of BiomeModel!
+
+        // TODO Revisit this when implementing Biome detection.
+        /*
         #region Biome Analysis
         /// <summary>
         /// Determines which <see cref="Biome"/> the given <see cref="MapRegion"/> corresponds to.
@@ -174,19 +175,6 @@ namespace ParquetClassLibrary.Maps
             return count >= inThreshold;
         }
         #endregion
-
-        #region Buildings Analysis
-        /// <summary>
-        /// Determines if the region has enough buildings to qualify as a town.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool HasBuildings(this MapRegion inRegion)
-        {
-            // Implement this!
-            return false;
-        }
-        #endregion
+        */
     }
 }
-*/

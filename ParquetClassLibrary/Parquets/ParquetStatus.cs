@@ -124,8 +124,8 @@ namespace ParquetClassLibrary.Parquets
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStatus status
             && null != status
-                ? $"{status.IsTrench}{Rules.Delimiters.InternalDelimiter}" +
-                  $"{status.Toughness}{Rules.Delimiters.InternalDelimiter}" +
+                ? $"{status.IsTrench}{Delimiters.InternalDelimiter}" +
+                  $"{status.Toughness}{Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
             : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                         inValue, nameof(ParquetStatus)));
@@ -148,7 +148,7 @@ namespace ParquetClassLibrary.Parquets
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);
                 var toughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);

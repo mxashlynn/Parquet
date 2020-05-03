@@ -69,10 +69,15 @@
   - [RoomAssignment](#P-ParquetClassLibrary-Beings-BeingStatus-RoomAssignment 'ParquetClassLibrary.Beings.BeingStatus.RoomAssignment')
   - [SpawnAt](#P-ParquetClassLibrary-Beings-BeingStatus-SpawnAt 'ParquetClassLibrary.Beings.BeingStatus.SpawnAt')
   - [ToString()](#M-ParquetClassLibrary-Beings-BeingStatus-ToString 'ParquetClassLibrary.Beings.BeingStatus.ToString')
-- [BiomeCriteria](#T-ParquetClassLibrary-Rules-BiomeCriteria 'ParquetClassLibrary.Rules.BiomeCriteria')
-  - [FluidThreshold](#F-ParquetClassLibrary-Rules-BiomeCriteria-FluidThreshold 'ParquetClassLibrary.Rules.BiomeCriteria.FluidThreshold')
-  - [LandThreshold](#F-ParquetClassLibrary-Rules-BiomeCriteria-LandThreshold 'ParquetClassLibrary.Rules.BiomeCriteria.LandThreshold')
-  - [ParquetsPerLayer](#F-ParquetClassLibrary-Rules-BiomeCriteria-ParquetsPerLayer 'ParquetClassLibrary.Rules.BiomeCriteria.ParquetsPerLayer')
+- [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration')
+  - [ParquetsPerLayer](#F-ParquetClassLibrary-Biomes-BiomeConfiguration-ParquetsPerLayer 'ParquetClassLibrary.Biomes.BiomeConfiguration.ParquetsPerLayer')
+  - [FluidThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-FluidThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.FluidThreshold')
+  - [LandThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.LandThreshold')
+  - [LandThresholdFactor](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThresholdFactor 'ParquetClassLibrary.Biomes.BiomeConfiguration.LandThresholdFactor')
+  - [LiquidThresholdFactor](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThresholdFactor 'ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThresholdFactor')
+  - [GetFilePath()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath')
+  - [GetRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord')
+  - [PutRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord')
 - [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')
   - [#ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Biomes.Elevation,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
   - [ElevationCategory](#P-ParquetClassLibrary-Biomes-BiomeModel-ElevationCategory 'ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory')
@@ -174,9 +179,12 @@
   - [SetFlag](#F-ParquetClassLibrary-Scripts-Commands-SetFlag 'ParquetClassLibrary.Scripts.Commands.SetFlag')
   - [SetPronoun](#F-ParquetClassLibrary-Scripts-Commands-SetPronoun 'ParquetClassLibrary.Scripts.Commands.SetPronoun')
   - [ShowLocation](#F-ParquetClassLibrary-Scripts-Commands-ShowLocation 'ParquetClassLibrary.Scripts.Commands.ShowLocation')
-- [Craft](#T-ParquetClassLibrary-Rules-Recipes-Craft 'ParquetClassLibrary.Rules.Recipes.Craft')
-  - [IngredientCount](#P-ParquetClassLibrary-Rules-Recipes-Craft-IngredientCount 'ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount')
-  - [ProductCount](#P-ParquetClassLibrary-Rules-Recipes-Craft-ProductCount 'ParquetClassLibrary.Rules.Recipes.Craft.ProductCount')
+- [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration')
+  - [IngredientCount](#P-ParquetClassLibrary-Crafts-CraftConfiguration-IngredientCount 'ParquetClassLibrary.Crafts.CraftConfiguration.IngredientCount')
+  - [ProductCount](#P-ParquetClassLibrary-Crafts-CraftConfiguration-ProductCount 'ParquetClassLibrary.Crafts.CraftConfiguration.ProductCount')
+  - [GetFilePath()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-GetFilePath 'ParquetClassLibrary.Crafts.CraftConfiguration.GetFilePath')
+  - [GetRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-GetRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord')
+  - [PutRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-PutRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord')
 - [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')
   - [#ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern)](#M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-Crafts-StrikePanelGrid- 'ParquetClassLibrary.Crafts.CraftingRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},ParquetClassLibrary.Crafts.StrikePanelGrid)')
   - [EmptyCraftingElementList](#P-ParquetClassLibrary-Crafts-CraftingRecipe-EmptyCraftingElementList 'ParquetClassLibrary.Crafts.CraftingRecipe.EmptyCraftingElementList')
@@ -186,20 +194,15 @@
   - [Products](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Products 'ParquetClassLibrary.Crafts.CraftingRecipe.Products')
 - [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel')
   - [#ctor(inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks)](#M-ParquetClassLibrary-Beings-CritterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CritterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
-- [Delimiters](#T-ParquetClassLibrary-Rules-Delimiters 'ParquetClassLibrary.Rules.Delimiters')
-  - [DimensionalDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-DimensionalDelimiter 'ParquetClassLibrary.Rules.Delimiters.DimensionalDelimiter')
-  - [DimensionalTerminator](#F-ParquetClassLibrary-Rules-Delimiters-DimensionalTerminator 'ParquetClassLibrary.Rules.Delimiters.DimensionalTerminator')
-  - [ElementDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-ElementDelimiter 'ParquetClassLibrary.Rules.Delimiters.ElementDelimiter')
-  - [InternalDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-InternalDelimiter 'ParquetClassLibrary.Rules.Delimiters.InternalDelimiter')
-  - [NameDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-NameDelimiter 'ParquetClassLibrary.Rules.Delimiters.NameDelimiter')
-  - [PronounDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-PronounDelimiter 'ParquetClassLibrary.Rules.Delimiters.PronounDelimiter')
-  - [SecondaryDelimiter](#F-ParquetClassLibrary-Rules-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Rules.Delimiters.SecondaryDelimiter')
-- [Dimensions](#T-ParquetClassLibrary-Rules-Dimensions 'ParquetClassLibrary.Rules.Dimensions')
-  - [ChunksPerRegion](#F-ParquetClassLibrary-Rules-Dimensions-ChunksPerRegion 'ParquetClassLibrary.Rules.Dimensions.ChunksPerRegion')
-  - [PanelsPerPatternHeight](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternHeight 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternHeight')
-  - [PanelsPerPatternWidth](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternWidth 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternWidth')
-  - [ParquetsPerChunk](#F-ParquetClassLibrary-Rules-Dimensions-ParquetsPerChunk 'ParquetClassLibrary.Rules.Dimensions.ParquetsPerChunk')
-  - [ParquetsPerRegion](#F-ParquetClassLibrary-Rules-Dimensions-ParquetsPerRegion 'ParquetClassLibrary.Rules.Dimensions.ParquetsPerRegion')
+- [Delimiters](#T-ParquetClassLibrary-Delimiters 'ParquetClassLibrary.Delimiters')
+  - [DimensionalDelimiter](#F-ParquetClassLibrary-Delimiters-DimensionalDelimiter 'ParquetClassLibrary.Delimiters.DimensionalDelimiter')
+  - [DimensionalTerminator](#F-ParquetClassLibrary-Delimiters-DimensionalTerminator 'ParquetClassLibrary.Delimiters.DimensionalTerminator')
+  - [ElementDelimiter](#F-ParquetClassLibrary-Delimiters-ElementDelimiter 'ParquetClassLibrary.Delimiters.ElementDelimiter')
+  - [InternalDelimiter](#F-ParquetClassLibrary-Delimiters-InternalDelimiter 'ParquetClassLibrary.Delimiters.InternalDelimiter')
+  - [NameDelimiter](#F-ParquetClassLibrary-Delimiters-NameDelimiter 'ParquetClassLibrary.Delimiters.NameDelimiter')
+  - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
+  - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
+  - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
 - [Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation')
   - [AboveGround](#F-ParquetClassLibrary-Biomes-Elevation-AboveGround 'ParquetClassLibrary.Biomes.Elevation.AboveGround')
   - [BelowGround](#F-ParquetClassLibrary-Biomes-Elevation-BelowGround 'ParquetClassLibrary.Biomes.Elevation.BelowGround')
@@ -360,6 +363,7 @@
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunk-Bounds 'ParquetClassLibrary.Maps.MapChunk.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets')
   - [Empty](#P-ParquetClassLibrary-Maps-MapChunk-Empty 'ParquetClassLibrary.Maps.MapChunk.Empty')
@@ -380,10 +384,12 @@
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ChunksPerRegionDimension')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegion-DefaultColor 'ParquetClassLibrary.Maps.MapRegion.DefaultColor')
   - [DefaultGlobalElevation](#F-ParquetClassLibrary-Maps-MapRegion-DefaultGlobalElevation 'ParquetClassLibrary.Maps.MapRegion.DefaultGlobalElevation')
   - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegion-DefaultName 'ParquetClassLibrary.Maps.MapRegion.DefaultName')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegion-Empty 'ParquetClassLibrary.Maps.MapRegion.Empty')
+  - [ParquetsPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ParquetsPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ParquetsPerRegionDimension')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.BackgroundColor')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegion-Bounds 'ParquetClassLibrary.Maps.MapRegion.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets')
@@ -396,6 +402,7 @@
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
+- [MapRegionAnalysis](#T-ParquetClassLibrary-Biomes-MapRegionAnalysis 'ParquetClassLibrary.Biomes.MapRegionAnalysis')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
@@ -706,7 +713,6 @@
   - [ToString()](#M-ParquetClassLibrary-RecipeElement-ToString 'ParquetClassLibrary.RecipeElement.ToString')
   - [op_Equality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Equality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Equality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
   - [op_Inequality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Inequality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Inequality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
-- [Recipes](#T-ParquetClassLibrary-Rules-Recipes 'ParquetClassLibrary.Rules.Recipes')
 - [Resources](#T-ParquetClassLibrary-Properties-Resources 'ParquetClassLibrary.Properties.Resources')
   - [Culture](#P-ParquetClassLibrary-Properties-Resources-Culture 'ParquetClassLibrary.Properties.Resources.Culture')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
@@ -732,11 +738,7 @@
   - [WarningTriedToGiveNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToGiveNothing')
   - [WarningTriedToStoreNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToStoreNothing')
 - [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')
-- [Room](#T-ParquetClassLibrary-Rules-Recipes-Room 'ParquetClassLibrary.Rules.Recipes.Room')
   - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-ParquetClassLibrary-Rooms-MapSpaceCollection,ParquetClassLibrary-Rooms-MapSpaceCollection- 'ParquetClassLibrary.Rooms.Room.#ctor(ParquetClassLibrary.Rooms.MapSpaceCollection,ParquetClassLibrary.Rooms.MapSpaceCollection)')
-  - [MaxWalkableSpaces](#F-ParquetClassLibrary-Rules-Recipes-Room-MaxWalkableSpaces 'ParquetClassLibrary.Rules.Recipes.Room.MaxWalkableSpaces')
-  - [MinPerimeterSpaces](#F-ParquetClassLibrary-Rules-Recipes-Room-MinPerimeterSpaces 'ParquetClassLibrary.Rules.Recipes.Room.MinPerimeterSpaces')
-  - [MinWalkableSpaces](#F-ParquetClassLibrary-Rules-Recipes-Room-MinWalkableSpaces 'ParquetClassLibrary.Rules.Recipes.Room.MinWalkableSpaces')
   - [FurnishingTags](#P-ParquetClassLibrary-Rooms-Room-FurnishingTags 'ParquetClassLibrary.Rooms.Room.FurnishingTags')
   - [Perimeter](#P-ParquetClassLibrary-Rooms-Room-Perimeter 'ParquetClassLibrary.Rooms.Room.Perimeter')
   - [Position](#P-ParquetClassLibrary-Rooms-Room-Position 'ParquetClassLibrary.Rooms.Room.Position')
@@ -759,15 +761,21 @@
   - [GetRoomAt(inPosition)](#M-ParquetClassLibrary-Rooms-RoomCollection-GetRoomAt-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Rooms.RoomCollection.GetRoomAt(ParquetClassLibrary.Vector2D)')
   - [System#Collections#IEnumerable#GetEnumerator()](#M-ParquetClassLibrary-Rooms-RoomCollection-System#Collections#IEnumerable#GetEnumerator 'ParquetClassLibrary.Rooms.RoomCollection.System#Collections#IEnumerable#GetEnumerator')
   - [ToString()](#M-ParquetClassLibrary-Rooms-RoomCollection-ToString 'ParquetClassLibrary.Rooms.RoomCollection.ToString')
+- [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration')
+  - [MaxWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomConfiguration-MaxWalkableSpaces 'ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces')
+  - [MinPerimeterSpaces](#P-ParquetClassLibrary-Rooms-RoomConfiguration-MinPerimeterSpaces 'ParquetClassLibrary.Rooms.RoomConfiguration.MinPerimeterSpaces')
+  - [MinWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomConfiguration-MinWalkableSpaces 'ParquetClassLibrary.Rooms.RoomConfiguration.MinWalkableSpaces')
+  - [GetFilePath()](#M-ParquetClassLibrary-Rooms-RoomConfiguration-GetFilePath 'ParquetClassLibrary.Rooms.RoomConfiguration.GetFilePath')
+  - [GetRecord()](#M-ParquetClassLibrary-Rooms-RoomConfiguration-GetRecord 'ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord')
+  - [PutRecord()](#M-ParquetClassLibrary-Rooms-RoomConfiguration-PutRecord 'ParquetClassLibrary.Rooms.RoomConfiguration.PutRecord')
 - [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')
-  - [#ctor(inID,inName,inDescription,inComment,inMinimumWalkableSpaces,inOptionallyRequiredFurnishings,inOptionallyRequiredWalkableFloors,inOptionallyRequiredPerimeterBlocks)](#M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}- 'ParquetClassLibrary.Rooms.RoomRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement})')
+  - [#ctor(inID,inName,inDescription,inComment,inMinimumWalkableSpaces,inOptionallyRequiredFurnishings,inOptionallyRequiredWalkableFloors,inOptionallyRequiredPerimeterBlocks)](#M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{System-Int32},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}- 'ParquetClassLibrary.Rooms.RoomRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement})')
   - [MinimumWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomRecipe-MinimumWalkableSpaces 'ParquetClassLibrary.Rooms.RoomRecipe.MinimumWalkableSpaces')
   - [OptionallyRequiredFurnishings](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredFurnishings 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredFurnishings')
   - [OptionallyRequiredPerimeterBlocks](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredPerimeterBlocks 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredPerimeterBlocks')
   - [OptionallyRequiredWalkableFloors](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredWalkableFloors 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors')
   - [Priority](#P-ParquetClassLibrary-Rooms-RoomRecipe-Priority 'ParquetClassLibrary.Rooms.RoomRecipe.Priority')
   - [Matches(inRoom)](#M-ParquetClassLibrary-Rooms-RoomRecipe-Matches-ParquetClassLibrary-Rooms-Room- 'ParquetClassLibrary.Rooms.RoomRecipe.Matches(ParquetClassLibrary.Rooms.Room)')
-- [Rules](#T-ParquetClassLibrary-Rules 'ParquetClassLibrary.Rules')
 - [RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState')
   - [Completed](#F-ParquetClassLibrary-Scripts-RunState-Completed 'ParquetClassLibrary.Scripts.RunState.Completed')
   - [InProgress](#F-ParquetClassLibrary-Scripts-RunState-InProgress 'ParquetClassLibrary.Scripts.RunState.InProgress')
@@ -822,6 +830,8 @@
 - [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid')
   - [#ctor()](#M-ParquetClassLibrary-Crafts-StrikePanelGrid-#ctor 'ParquetClassLibrary.Crafts.StrikePanelGrid.#ctor')
   - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-Crafts-StrikePanelGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.Crafts.StrikePanelGrid.#ctor(System.Int32,System.Int32)')
+  - [PanelsPerPatternHeight](#F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternHeight 'ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternHeight')
+  - [PanelsPerPatternWidth](#F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternWidth 'ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternWidth')
   - [Columns](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Columns 'ParquetClassLibrary.Crafts.StrikePanelGrid.Columns')
   - [Count](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Count 'ParquetClassLibrary.Crafts.StrikePanelGrid.Count')
   - [Item](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Crafts.StrikePanelGrid.Item(System.Int32,System.Int32)')
@@ -1517,37 +1527,94 @@ The representation.
 
 This method has no parameters.
 
-<a name='T-ParquetClassLibrary-Rules-BiomeCriteria'></a>
-## BiomeCriteria `type`
+<a name='T-ParquetClassLibrary-Biomes-BiomeConfiguration'></a>
+## BiomeConfiguration `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Rules
+ParquetClassLibrary.Biomes
 
 ##### Summary
 
 Provides rules for determining a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')'s [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
 
-<a name='F-ParquetClassLibrary-Rules-BiomeCriteria-FluidThreshold'></a>
-### FluidThreshold `constants`
-
-##### Summary
-
-3/4ths of a layers' worth of parquets must contribute to a fluid-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
-
-<a name='F-ParquetClassLibrary-Rules-BiomeCriteria-LandThreshold'></a>
-### LandThreshold `constants`
-
-##### Summary
-
-1 and 1/4th of a layers' worth of parquets must contribute to a land-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
-
-<a name='F-ParquetClassLibrary-Rules-BiomeCriteria-ParquetsPerLayer'></a>
+<a name='F-ParquetClassLibrary-Biomes-BiomeConfiguration-ParquetsPerLayer'></a>
 ### ParquetsPerLayer `constants`
 
 ##### Summary
 
 Used in computing thresholds.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-FluidThreshold'></a>
+### FluidThreshold `property`
+
+##### Summary
+
+3/4ths of a layers' worth of parquets must contribute to a fluid-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThreshold'></a>
+### LandThreshold `property`
+
+##### Summary
+
+1 and 1/4th of a layers' worth of parquets must contribute to a land-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThresholdFactor'></a>
+### LandThresholdFactor `property`
+
+##### Summary
+
+There must be at least this percentage of non-liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
+[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThresholdFactor'></a>
+### LiquidThresholdFactor `property`
+
+##### Summary
+
+There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
+[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+
+<a name='M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath'></a>
+### GetFilePath() `method`
+
+##### Summary
+
+Returns the filename and path associated with [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration')'s designer file.
+
+##### Returns
+
+A full path to the associated designer file.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord'></a>
+### GetRecord() `method`
+
+##### Summary
+
+Reads [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration') data from the appropriate file.
+
+##### Returns
+
+The instances read.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord'></a>
+### PutRecord() `method`
+
+##### Summary
+
+Writes [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration') data to the appropriate file.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-ParquetClassLibrary-Biomes-BiomeModel'></a>
 ## BiomeModel `type`
@@ -2579,30 +2646,71 @@ Allot the given [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'Parqu
 
 Highlight the given [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') via the UI, perhaps by camera movement or particle effect.
 
-<a name='T-ParquetClassLibrary-Rules-Recipes-Craft'></a>
-## Craft `type`
+<a name='T-ParquetClassLibrary-Crafts-CraftConfiguration'></a>
+## CraftConfiguration `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Rules.Recipes
+ParquetClassLibrary.Crafts
 
 ##### Summary
 
-Provides crafting recipe requirements for the game.
+Provides parameters for [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')s.
 
-<a name='P-ParquetClassLibrary-Rules-Recipes-Craft-IngredientCount'></a>
+<a name='P-ParquetClassLibrary-Crafts-CraftConfiguration-IngredientCount'></a>
 ### IngredientCount `property`
 
 ##### Summary
 
 Number of ingredient categories per recipe.
 
-<a name='P-ParquetClassLibrary-Rules-Recipes-Craft-ProductCount'></a>
+<a name='P-ParquetClassLibrary-Crafts-CraftConfiguration-ProductCount'></a>
 ### ProductCount `property`
 
 ##### Summary
 
 Number of product categories per recipe.
+
+<a name='M-ParquetClassLibrary-Crafts-CraftConfiguration-GetFilePath'></a>
+### GetFilePath() `method`
+
+##### Summary
+
+Returns the filename and path associated with [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration')'s designer file.
+
+##### Returns
+
+A full path to the associated designer file.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Crafts-CraftConfiguration-GetRecord'></a>
+### GetRecord() `method`
+
+##### Summary
+
+Reads [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration') data from the appropriate file.
+
+##### Returns
+
+The instances read.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Crafts-CraftConfiguration-PutRecord'></a>
+### PutRecord() `method`
+
+##### Summary
+
+Writes [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration') data to the appropriate file.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-ParquetClassLibrary-Crafts-CraftingRecipe'></a>
 ## CraftingRecipe `type`
@@ -2639,7 +2747,7 @@ Initializes a new instance of the [CraftingRecipe](#T-ParquetClassLibrary-Crafts
 | Name | Description |
 | ---- | ----------- |
 | [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | When `inPanelPattern` has dimensions less than `1` or dimensions larger than those given by
-[PanelsPerPatternWidth](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternWidth 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternWidth') and [PanelsPerPatternHeight](#F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternHeight 'ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternHeight'). |
+[PanelsPerPatternWidth](#F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternWidth 'ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternWidth') and [PanelsPerPatternHeight](#F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternHeight 'ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternHeight'). |
 
 <a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-EmptyCraftingElementList'></a>
 ### EmptyCraftingElementList `property`
@@ -2708,111 +2816,72 @@ Must be a [CritterIDs](#F-ParquetClassLibrary-All-CritterIDs 'ParquetClassLibrar
 | inAvoids | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') avoids. |
 | inSeeks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') seeks. |
 
-<a name='T-ParquetClassLibrary-Rules-Delimiters'></a>
+<a name='T-ParquetClassLibrary-Delimiters'></a>
 ## Delimiters `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Rules
+ParquetClassLibrary
 
 ##### Summary
 
 Provides a unified source of serialization separators for the library.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-DimensionalDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-DimensionalDelimiter'></a>
 ### DimensionalDelimiter `constants`
 
 ##### Summary
 
 Separator for encoding the dimensions of [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1') implementations.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-DimensionalTerminator'></a>
+<a name='F-ParquetClassLibrary-Delimiters-DimensionalTerminator'></a>
 ### DimensionalTerminator `constants`
 
 ##### Summary
 
 Separator for encoding the dimensions of [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1') implementations.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-ElementDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-ElementDelimiter'></a>
 ### ElementDelimiter `constants`
 
 ##### Summary
 
 Separates primitives within serialized [Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D')s and [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1')s.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-InternalDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-InternalDelimiter'></a>
 ### InternalDelimiter `constants`
 
 ##### Summary
 
 Separates properties within a class when in serialization.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-NameDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-NameDelimiter'></a>
 ### NameDelimiter `constants`
 
 ##### Summary
 
 Separates family and personal names within serialized [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')s.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-PronounDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-PrimaryDelimiter'></a>
+### PrimaryDelimiter `constants`
+
+##### Summary
+
+Separates collections within files.
+
+<a name='F-ParquetClassLibrary-Delimiters-PronounDelimiter'></a>
 ### PronounDelimiter `constants`
 
 ##### Summary
 
 Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')s.
 
-<a name='F-ParquetClassLibrary-Rules-Delimiters-SecondaryDelimiter'></a>
+<a name='F-ParquetClassLibrary-Delimiters-SecondaryDelimiter'></a>
 ### SecondaryDelimiter `constants`
 
 ##### Summary
 
 Separates objects within collections.
-
-<a name='T-ParquetClassLibrary-Rules-Dimensions'></a>
-## Dimensions `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rules
-
-##### Summary
-
-Provides dimensional parameters for the game.
-
-<a name='F-ParquetClassLibrary-Rules-Dimensions-ChunksPerRegion'></a>
-### ChunksPerRegion `constants`
-
-##### Summary
-
-The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') dimension in [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid')s.
-
-<a name='F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternHeight'></a>
-### PanelsPerPatternHeight `constants`
-
-##### Summary
-
-Height of the [StrikePanel](#T-ParquetClassLibrary-Crafts-StrikePanel 'ParquetClassLibrary.Crafts.StrikePanel') pattern in [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
-
-<a name='F-ParquetClassLibrary-Rules-Dimensions-PanelsPerPatternWidth'></a>
-### PanelsPerPatternWidth `constants`
-
-##### Summary
-
-Width of the [StrikePanel](#T-ParquetClassLibrary-Crafts-StrikePanel 'ParquetClassLibrary.Crafts.StrikePanel') pattern in [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
-
-<a name='F-ParquetClassLibrary-Rules-Dimensions-ParquetsPerChunk'></a>
-### ParquetsPerChunk `constants`
-
-##### Summary
-
-The length of each [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') dimension in parquets.
-
-<a name='F-ParquetClassLibrary-Rules-Dimensions-ParquetsPerRegion'></a>
-### ParquetsPerRegion `constants`
-
-##### Summary
-
-The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') dimension in parquets.
 
 <a name='T-ParquetClassLibrary-Biomes-Elevation'></a>
 ## Elevation `type`
@@ -4621,6 +4690,13 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
 
+<a name='F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension'></a>
+### ParquetsPerChunkDimension `constants`
+
+##### Summary
+
+The length of each [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') dimension in parquets.
+
 <a name='P-ParquetClassLibrary-Maps-MapChunk-Bounds'></a>
 ### Bounds `property`
 
@@ -4844,6 +4920,13 @@ Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
 
+<a name='F-ParquetClassLibrary-Maps-MapRegion-ChunksPerRegionDimension'></a>
+### ChunksPerRegionDimension `constants`
+
+##### Summary
+
+The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') dimension in [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid')s.
+
 <a name='F-ParquetClassLibrary-Maps-MapRegion-DefaultColor'></a>
 ### DefaultColor `constants`
 
@@ -4871,6 +4954,13 @@ Default name for new regions.
 ##### Summary
 
 Used to indicate an empty grid.
+
+<a name='F-ParquetClassLibrary-Maps-MapRegion-ParquetsPerRegionDimension'></a>
+### ParquetsPerRegionDimension `constants`
+
+##### Summary
+
+The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') dimension in parquets.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor'></a>
 ### BackgroundColor `property`
@@ -4964,6 +5054,17 @@ A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-ParquetClassLibrary-Biomes-MapRegionAnalysis'></a>
+## MapRegionAnalysis `type`
+
+##### Namespace
+
+ParquetClassLibrary.Biomes
+
+##### Summary
+
+TODO Fill this in!!
 
 <a name='T-ParquetClassLibrary-Maps-MapRegionSketch'></a>
 ## MapRegionSketch `type`
@@ -8554,7 +8655,7 @@ Personal pronoun used as the subject of a verb.
 
 ##### Summary
 
-Returns the filename and path associated with [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')s' designer file.
+Returns the filename and path associated with [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')'s designer file.
 
 ##### Returns
 
@@ -9308,17 +9409,6 @@ Determines whether a specified instance of [RecipeElement](#T-ParquetClassLibrar
 | inElement1 | [ParquetClassLibrary.RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement') | The first [RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement') to compare. |
 | inElement2 | [ParquetClassLibrary.RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement') | The second [RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement') to compare. |
 
-<a name='T-ParquetClassLibrary-Rules-Recipes'></a>
-## Recipes `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rules
-
-##### Summary
-
-Provides recipe requirements for the game.
-
 <a name='T-ParquetClassLibrary-Properties-Resources'></a>
 ## Resources `type`
 
@@ -9503,17 +9593,6 @@ ParquetClassLibrary.Rooms
 
 Models the a constructed [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
 
-<a name='T-ParquetClassLibrary-Rules-Recipes-Room'></a>
-## Room `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rules.Recipes
-
-##### Summary
-
-Provides room recipe requirements for the game.
-
 <a name='M-ParquetClassLibrary-Rooms-Room-#ctor-ParquetClassLibrary-Rooms-MapSpaceCollection,ParquetClassLibrary-Rooms-MapSpaceCollection-'></a>
 ### #ctor(inWalkableArea,inPerimeter) `constructor`
 
@@ -9529,27 +9608,6 @@ Initializes a new instance of the [Room](#T-ParquetClassLibrary-Rooms-Room 'Parq
 may walk within this [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inPerimeter | [ParquetClassLibrary.Rooms.MapSpaceCollection](#T-ParquetClassLibrary-Rooms-MapSpaceCollection 'ParquetClassLibrary.Rooms.MapSpaceCollection') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s whose [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')s and [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')s
 define the limits of this [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
-
-<a name='F-ParquetClassLibrary-Rules-Recipes-Room-MaxWalkableSpaces'></a>
-### MaxWalkableSpaces `constants`
-
-##### Summary
-
-Maximum number of open walkable spaces needed for any room to register.
-
-<a name='F-ParquetClassLibrary-Rules-Recipes-Room-MinPerimeterSpaces'></a>
-### MinPerimeterSpaces `constants`
-
-##### Summary
-
-Minimum number of enclosing spaces needed for any room to register.
-
-<a name='F-ParquetClassLibrary-Rules-Recipes-Room-MinWalkableSpaces'></a>
-### MinWalkableSpaces `constants`
-
-##### Summary
-
-Minimum number of open walkable spaces needed for any room to register.
 
 <a name='P-ParquetClassLibrary-Rooms-Room-FurnishingTags'></a>
 ### FurnishingTags `property`
@@ -9847,6 +9905,79 @@ The representation.
 
 This method has no parameters.
 
+<a name='T-ParquetClassLibrary-Rooms-RoomConfiguration'></a>
+## RoomConfiguration `type`
+
+##### Namespace
+
+ParquetClassLibrary.Rooms
+
+##### Summary
+
+Provides parameters for [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomConfiguration-MaxWalkableSpaces'></a>
+### MaxWalkableSpaces `property`
+
+##### Summary
+
+Maximum number of open walkable spaces needed for any room to register.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomConfiguration-MinPerimeterSpaces'></a>
+### MinPerimeterSpaces `property`
+
+##### Summary
+
+Minimum number of enclosing spaces needed for any room to register.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomConfiguration-MinWalkableSpaces'></a>
+### MinWalkableSpaces `property`
+
+##### Summary
+
+Minimum number of open walkable spaces needed for any room to register.
+
+<a name='M-ParquetClassLibrary-Rooms-RoomConfiguration-GetFilePath'></a>
+### GetFilePath() `method`
+
+##### Summary
+
+Returns the filename and path associated with [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration')'s designer file.
+
+##### Returns
+
+A full path to the associated designer file.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Rooms-RoomConfiguration-GetRecord'></a>
+### GetRecord() `method`
+
+##### Summary
+
+Reads [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration') data from the appropriate file.
+
+##### Returns
+
+The instances read.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Rooms-RoomConfiguration-PutRecord'></a>
+### PutRecord() `method`
+
+##### Summary
+
+Writes [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration') data to the appropriate file.
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-ParquetClassLibrary-Rooms-RoomRecipe'></a>
 ## RoomRecipe `type`
 
@@ -9858,7 +9989,7 @@ ParquetClassLibrary.Rooms
 
 Models the minimum requirements for a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to be recognizable and useful.
 
-<a name='M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}-'></a>
+<a name='M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{System-Int32},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inMinimumWalkableSpaces,inOptionallyRequiredFurnishings,inOptionallyRequiredWalkableFloors,inOptionallyRequiredPerimeterBlocks) `constructor`
 
 ##### Summary
@@ -9873,7 +10004,7 @@ Initializes a new instance of the [RoomRecipe](#T-ParquetClassLibrary-Rooms-Room
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe'). |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe'). |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe'). |
-| inMinimumWalkableSpaces | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The minimum number of walkable [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s required by this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe'). |
+| inMinimumWalkableSpaces | [System.Nullable{System.Int32}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Int32}') | The minimum number of walkable [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s required by this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe'). |
 | inOptionallyRequiredFurnishings | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | An optional list of furnishing categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires. |
 | inOptionallyRequiredWalkableFloors | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | An optional list of floor categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires. |
 | inOptionallyRequiredPerimeterBlocks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | An optional list of block categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires as walls. |
@@ -9932,17 +10063,6 @@ Determines if the given [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLi
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | inRoom | [ParquetClassLibrary.Rooms.Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') | The [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to check. |
-
-<a name='T-ParquetClassLibrary-Rules'></a>
-## Rules `type`
-
-##### Namespace
-
-ParquetClassLibrary
-
-##### Summary
-
-Provides rules, dimensions, and parameters for the game.
 
 <a name='T-ParquetClassLibrary-Scripts-RunState'></a>
 ## RunState `type`
@@ -10609,7 +10729,7 @@ A square, two-dimensional collection of [StrikePanel](#T-ParquetClassLibrary-Cra
 
 ##### Summary
 
-Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid') with dimensions as specifid in [Dimensions](#T-ParquetClassLibrary-Rules-Dimensions 'ParquetClassLibrary.Rules.Dimensions').
+Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid') with default dimensions.
 
 ##### Parameters
 
@@ -10628,6 +10748,20 @@ Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGri
 | ---- | ---- | ----------- |
 | inRowCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the Y dimension of the collection. |
 | inColumnCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the X dimension of the collection. |
+
+<a name='F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternHeight'></a>
+### PanelsPerPatternHeight `constants`
+
+##### Summary
+
+Height of the [StrikePanel](#T-ParquetClassLibrary-Crafts-StrikePanel 'ParquetClassLibrary.Crafts.StrikePanel') pattern in [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
+
+<a name='F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternWidth'></a>
+### PanelsPerPatternWidth `constants`
+
+##### Summary
+
+Width of the [StrikePanel](#T-ParquetClassLibrary-Crafts-StrikePanel 'ParquetClassLibrary.Crafts.StrikePanel') pattern in [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
 
 <a name='P-ParquetClassLibrary-Crafts-StrikePanelGrid-Columns'></a>
 ### Columns `property`

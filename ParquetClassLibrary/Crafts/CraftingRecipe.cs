@@ -51,7 +51,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
         /// When <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
-        /// <see cref="Rules.Dimensions.PanelsPerPatternWidth"/> and <see cref="Rules.Dimensions.PanelsPerPatternHeight"/>.
+        /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts,
@@ -59,12 +59,12 @@ namespace ParquetClassLibrary.Crafts
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
-            Precondition.IsInRange(inProducts.Count(), Rules.Recipes.Craft.ProductCount, $"{nameof(inProducts)}.Count");
+            Precondition.IsInRange(inProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
-            Precondition.IsInRange(inIngredients.Count(), Rules.Recipes.Craft.IngredientCount, $"{nameof(inProducts)}.Count");
+            Precondition.IsInRange(inIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inProducts)}.Count");
             Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
-            if (inPanelPattern.Rows > Rules.Dimensions.PanelsPerPatternHeight
-                || inPanelPattern.Columns > Rules.Dimensions.PanelsPerPatternWidth
+            if (inPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
+                || inPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth
                 || inPanelPattern.Rows < 1
                 || inPanelPattern.Columns < 1)
             {

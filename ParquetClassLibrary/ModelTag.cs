@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -26,9 +27,8 @@ namespace ParquetClassLibrary
     /// </remarks>
     /// <seealso cref="ModelID"/>
     /// <seealso cref="All"/>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design",
-        "CA1036:Override methods on comparable types",
-        Justification = "{ModelTag is designed to operate like a string, and string does not implement these operators.")]
+    [SuppressMessage("Design", "CA1036:Override methods on comparable types",
+                     Justification = "Implementing these operators would prevent ModelTag from operating like a string.")]
     public class ModelTag : IComparable<ModelTag>, ITypeConverter
     {
         #region Class Defaults

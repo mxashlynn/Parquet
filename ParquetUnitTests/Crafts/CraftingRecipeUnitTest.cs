@@ -25,8 +25,8 @@ namespace ParquetUnitTests.Crafts
         };
 
         /// <summary>A trivial panel pattern.</summary>
-        private static readonly StrikePanelGrid emptyPanelPattern = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                                                        Rules.Dimensions.PanelsPerPatternWidth);
+        private static readonly StrikePanelGrid emptyPanelPattern = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
+                                                                                        StrikePanelGrid.PanelsPerPatternWidth);
         #endregion
 
         [Fact]
@@ -57,7 +57,7 @@ namespace ParquetUnitTests.Crafts
         {
             var emptyProductList = new List<RecipeElement>();
 
-            void TestCodeNull()
+            static void TestCodeNull()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
                                            null, ingredientList, emptyPanelPattern);
@@ -78,7 +78,7 @@ namespace ParquetUnitTests.Crafts
         {
             var emptyIngredientList = new List<RecipeElement>();
 
-            void TestCodeNull()
+            static void TestCodeNull()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
                                            productList, null, emptyPanelPattern);
@@ -97,7 +97,7 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void NullPanelPatternsThrowTest()
         {
-            void TestCode()
+            static void TestCode()
             {
                 var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
                                            productList, ingredientList, null);
@@ -109,7 +109,7 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void PanelTooNarrowPatternsThrowTest()
         {
-            var patternTooNarrow = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight, 0);
+            var patternTooNarrow = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, 0);
 
             void TestCodeTooNarrow()
             {
@@ -123,7 +123,7 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void PanelTooShortPatternsThrowTest()
         {
-            var patternTooShort = new StrikePanelGrid(0, Rules.Dimensions.PanelsPerPatternWidth);
+            var patternTooShort = new StrikePanelGrid(0, StrikePanelGrid.PanelsPerPatternWidth);
 
             void TestCodeTooShort()
             {
@@ -137,8 +137,8 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void PanelTooHighPatternsThrowTest()
         {
-            var patternTooHigh = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight + 1,
-                                                     Rules.Dimensions.PanelsPerPatternWidth);
+            var patternTooHigh = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight + 1,
+                                                     StrikePanelGrid.PanelsPerPatternWidth);
 
             void TestCodeTooHigh()
             {
@@ -152,8 +152,8 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void PanelTooWidePatternsThrowTest()
         {
-            var patternTooWide = new StrikePanelGrid(Rules.Dimensions.PanelsPerPatternHeight,
-                                                     Rules.Dimensions.PanelsPerPatternWidth + 1);
+            var patternTooWide = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
+                                                     StrikePanelGrid.PanelsPerPatternWidth + 1);
 
             void TestCodeTooWide()
             {

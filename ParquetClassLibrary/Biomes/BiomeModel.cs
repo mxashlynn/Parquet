@@ -3,11 +3,12 @@ using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Utilities;
+using ParquetClassLibrary.Maps;
 
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Models the biome that a <see cref="Maps.MapRegion"/> embodies.
+    /// Models the biome that a <see cref="MapRegion"/> embodies.
     /// </summary>
     public sealed class BiomeModel : Model
     {

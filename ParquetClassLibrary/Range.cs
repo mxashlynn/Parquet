@@ -83,12 +83,12 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Vector2D vector
-            && null != vector
-                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
-                  $"{vector.Y}"
+            => inValue is Range<TElement> range
+            && null != range
+                ? $"{range.Minimum}{Delimiters.ElementDelimiter}" +
+                  $"{range.Maximum}"
             : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                        inValue, nameof(Vector2D)));
+                                                        inValue, nameof(Range<TElement>)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -105,7 +105,7 @@ namespace ParquetClassLibrary
                                                           inText, nameof(Range<TElement>)));
             }
 
-            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+            var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
             if (IsIntConvertible(default))
             {
@@ -126,31 +126,23 @@ namespace ParquetClassLibrary
             // Determines if the given variable may be deserialized as an integer.
             // Returns true if TElement may be deserialized via Int32Converter.
             static bool IsIntConvertible(TElement inElement)
-            {
-                switch (inElement)
+                => inElement switch
                 {
-                    case sbyte _:
-                    case short _:
-                    case int _:
-                    case ModelID _:
-                        return true;
-                    default:
-                        return false;
-                }
-            }
+                    sbyte _ => true,
+                    short _ => true,
+                    int _ => true,
+                    ModelID _ => true,
+                    _ => false
+                };
 
             // Determines if the given variable may be deserialized as a single-precision floating point number.
             // Returns true if TElement may be deserialized via SingleConverter.
             static bool IsSingleConvertible(TElement inElement)
-            {
-                switch (inElement)
+                => inElement switch
                 {
-                    case float _:
-                        return true;
-                    default:
-                        return false;
-                }
-            }
+                    float _ => true,
+                    _ => false
+                };
         }
         #endregion
 

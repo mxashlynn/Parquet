@@ -135,7 +135,7 @@ namespace ParquetClassLibrary.Items
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is InventorySlot slot
             && null != slot
-                ? $"{slot.ItemID}{Rules.Delimiters.InternalDelimiter}" +
+                ? $"{slot.ItemID}{Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(InventorySlot)));
@@ -159,7 +159,7 @@ namespace ParquetClassLibrary.Items
             try
             {
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-                var parameterText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                 var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
                 var count = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);

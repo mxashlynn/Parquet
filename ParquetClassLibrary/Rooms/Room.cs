@@ -66,15 +66,15 @@ namespace ParquetClassLibrary.Rooms
         {
             Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
-            if (inWalkableArea.Count > Rules.Recipes.Room.MaxWalkableSpaces)
+            if (inWalkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                          nameof(inWalkableArea), Rules.Recipes.Room.MaxWalkableSpaces));
+                                                          nameof(inWalkableArea), RoomConfiguration.MaxWalkableSpaces));
             }
-            else if (inWalkableArea.Count < Rules.Recipes.Room.MinWalkableSpaces)
+            else if (inWalkableArea.Count < RoomConfiguration.MinWalkableSpaces)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                          Rules.Recipes.Room.MinWalkableSpaces, nameof(inWalkableArea)));
+                                                          RoomConfiguration.MinWalkableSpaces, nameof(inWalkableArea)));
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.Furnishing != ModelID.None

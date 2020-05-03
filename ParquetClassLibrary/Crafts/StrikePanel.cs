@@ -164,7 +164,7 @@ namespace ParquetClassLibrary.Crafts
 
             try
             {
-                var panelSplitText = inText.Split(Rules.Delimiters.InternalDelimiter);
+                var panelSplitText = inText.Split(Delimiters.InternalDelimiter);
                 var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
                 var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
 
@@ -189,9 +189,9 @@ namespace ParquetClassLibrary.Crafts
                 ? null == panel
                 || Unused == panel
                     ? nameof(Unused)
-                    : $"{panel.WorkingRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
-                      $"{panel.WorkingRange.Maximum}{Rules.Delimiters.InternalDelimiter}" +
-                      $"{panel.IdealRange.Minimum}{Rules.Delimiters.ElementDelimiter}" +
+                    : $"{panel.WorkingRange.Minimum}{Delimiters.ElementDelimiter}" +
+                      $"{panel.WorkingRange.Maximum}{Delimiters.InternalDelimiter}" +
+                      $"{panel.IdealRange.Minimum}{Delimiters.ElementDelimiter}" +
                       $"{panel.IdealRange.Maximum}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(StrikePanel)));
@@ -212,7 +212,7 @@ namespace ParquetClassLibrary.Crafts
         public override string ToString()
             => this == Unused
                 ? nameof(Unused)
-                : WorkingRange.ToString() + Rules.Delimiters.ElementDelimiter + IdealRange.ToString();
+                : WorkingRange.ToString() + Delimiters.ElementDelimiter + IdealRange.ToString();
         #endregion
     }
 

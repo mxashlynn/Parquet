@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -245,9 +246,8 @@ namespace ParquetClassLibrary
         /// <remarks>
         /// This supports defining ItemIDs in terms of the other Ranges.
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance",
-            "CA1810:Initialize reference type static fields inline",
-            Justification = "Inline initializers would notably complicate the code in this instance.")]
+        [SuppressMessage("Performance", "CA1810:Initialize reference type static fields inline",
+                         Justification = "Inline initializers would notably complicate the code in this instance.")]
         static All()
         {
             #region Default Values for Collections
@@ -326,7 +326,7 @@ namespace ParquetClassLibrary
             // Since it is possible for every parquet to have a corresponding item, this range must be at least
             // as large as all four parquet ranges put together.  Therefore, the Range.Maximum is twice the combined
             // ranges of all parquets.
-            var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + 2 * (MaximumParquetID - MinimumParquetID);
+            var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + (2 * (MaximumParquetID - MinimumParquetID));
 
             ItemIDs = new Range<ModelID>(ItemLowerBound, ItemUpperBound);
             #endregion
@@ -453,7 +453,14 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void LoadFromCSVs()
         {
+            #region Read Configuration
             var pronounGroups = PronounGroup.GetRecords();
+            BiomeConfiguration.GetRecord();
+            CraftConfiguration.GetRecord();
+            RoomConfiguration.GetRecord();
+            #endregion
+
+            #region Read Models
             var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
                 .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
             var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
@@ -469,6 +476,7 @@ namespace ParquetClassLibrary
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
             var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
+            #endregion
 
             InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, scripts, items);
         }
@@ -478,7 +486,14 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void SaveToCSVs()
         {
+            #region Write Configuration
             PronounGroup.PutRecords(PronounGroups);
+            BiomeConfiguration.PutRecord();
+            CraftConfiguration.PutRecord();
+            RoomConfiguration.PutRecord();
+            #endregion
+
+            #region Write Models
             Beings.PutRecordsForType<CritterModel>();
             Beings.PutRecordsForType<CharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
@@ -494,6 +509,7 @@ namespace ParquetClassLibrary
             RoomRecipes.PutRecordsForType<RoomRecipe>();
             Scripts.PutRecordsForType<ScriptModel>();
             Items.PutRecordsForType<ItemModel>();
+            #endregion
         }
         #endregion
     }

@@ -11,9 +11,6 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Inventory imples Collection.")]
     public sealed class Inventory : IReadOnlyCollection<InventorySlot>
     {
         #region Characteristics

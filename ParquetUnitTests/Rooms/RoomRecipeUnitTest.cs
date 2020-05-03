@@ -43,7 +43,7 @@ namespace ParquetUnitTests.Rooms
         private static readonly IReadOnlyList<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
-            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", Rules.Recipes.Room.MinWalkableSpaces, TestRequiredFurnishings);
+            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", RoomConfiguration.MinWalkableSpaces, TestRequiredFurnishings);
 
         private static readonly Room MinimalRoom = new Room(TestWalkableArea, TestPerimeter);
         #endregion
@@ -51,7 +51,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MinimumWalkableSpacesBelowGlobalMinimumThrowsTest()
         {
-            var BadMinimum = Rules.Recipes.Room.MinWalkableSpaces - 1;
+            var BadMinimum = RoomConfiguration.MinWalkableSpaces - 1;
 
             void HasBadRequiredBlocks()
             {
@@ -64,7 +64,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void MinimumWalkableSpacesAboveGlobalMaximumThrowsTest()
         {
-            var BadMinimum = Rules.Recipes.Room.MaxWalkableSpaces + 1;
+            var BadMinimum = RoomConfiguration.MaxWalkableSpaces + 1;
 
             void HasBadRequiredBlocks()
             {

@@ -10,9 +10,6 @@ namespace ParquetClassLibrary.Parquets
     /// <remarks>
     /// The intent is that this class function much like a read-only array.
     /// </remarks>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class ParquetStatusGrid : IGrid<ParquetStatus>
     {
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>

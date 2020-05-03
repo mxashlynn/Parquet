@@ -159,13 +159,13 @@ namespace ParquetClassLibrary.Rooms
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
                     // Design-time sanity checks.
-                    Debug.Assert(potentialPerimeter.Count > (subregion.Rows * subregion.Columns) - Rules.Recipes.Room.MinWalkableSpaces,
+                    Debug.Assert(potentialPerimeter.Count > (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
                                                nameof(potentialPerimeter.Count),
-                                               (subregion.Rows * subregion.Columns) - Rules.Recipes.Room.MinWalkableSpaces));
-                    Debug.Assert(Rules.Recipes.Room.MinPerimeterSpaces > potentialPerimeter.Count,
+                                               (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces));
+                    Debug.Assert(RoomConfiguration.MinPerimeterSpaces > potentialPerimeter.Count,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                               Rules.Recipes.Room.MinPerimeterSpaces, nameof(potentialPerimeter.Count)));
+                                               RoomConfiguration.MinPerimeterSpaces, nameof(potentialPerimeter.Count)));
 
                     // Validate the perimeter.
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
@@ -175,7 +175,7 @@ namespace ParquetClassLibrary.Rooms
                 }
             }
 
-            return outPerimeter.Count >= Rules.Recipes.Room.MinPerimeterSpaces;
+            return outPerimeter.Count >= RoomConfiguration.MinPerimeterSpaces;
 
             #region Algorithm Helper Methods
             // Finds a MapSpace that can be used to search for the perimeter.
@@ -199,7 +199,7 @@ namespace ParquetClassLibrary.Rooms
                         break;
                     }
                     stepCount++;
-                    if (stepCount + Spaces.Count > Rules.Recipes.Room.MaxWalkableSpaces)
+                    if (stepCount + Spaces.Count > RoomConfiguration.MaxWalkableSpaces)
                     {
                         break;
                     }

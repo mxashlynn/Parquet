@@ -42,19 +42,20 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          int inMinimumWalkableSpaces = Rules.Recipes.Room.MinWalkableSpaces,
+                          int? inMinimumWalkableSpaces = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
             : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
-            if (inMinimumWalkableSpaces < Rules.Recipes.Room.MinWalkableSpaces
-                || inMinimumWalkableSpaces > Rules.Recipes.Room.MaxWalkableSpaces)
+            var nonNullMinimumWalkableSpaces = inMinimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
+            if (nonNullMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
+                || nonNullMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
                 throw new ArgumentOutOfRangeException(nameof(inMinimumWalkableSpaces));
             }
 
-            MinimumWalkableSpaces = inMinimumWalkableSpaces;
+            MinimumWalkableSpaces = nonNullMinimumWalkableSpaces;
             OptionallyRequiredFurnishings = inOptionallyRequiredFurnishings?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
             OptionallyRequiredWalkableFloors = inOptionallyRequiredWalkableFloors?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
             OptionallyRequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();

@@ -6,14 +6,12 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A pattern for generating a playable <see cref="MapRegion"/>.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public class ChunkTypeGrid : IGrid<ChunkType>
     {
         #region Class Defaults
         /// <summary>The grid's dimensions in chunks.</summary>
-        public static Vector2D DimensionsInChunks { get; } = new Vector2D(Rules.Dimensions.ChunksPerRegion, Rules.Dimensions.ChunksPerRegion);
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(MapRegion.ChunksPerRegionDimension,
+                                                                          MapRegion.ChunksPerRegionDimension);
         #endregion
 
         /// <summary>The backing collection of <see cref="ChunkType"/>s.</summary>

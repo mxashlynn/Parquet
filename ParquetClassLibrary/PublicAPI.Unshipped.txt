@@ -66,6 +66,7 @@ ParquetClassLibrary.Beings.PronounGroup.Reflexive.get -> string
 ParquetClassLibrary.Beings.PronounGroup.Subjective.get -> string
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
+ParquetClassLibrary.Biomes.BiomeConfiguration
 ParquetClassLibrary.Biomes.BiomeModel
 ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, ParquetClassLibrary.Biomes.Elevation inElevationCategory, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
 ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
@@ -77,6 +78,7 @@ ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Biomes.Elevation.AboveGround = 0 -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Biomes.Elevation.BelowGround = 2 -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Biomes.Elevation.LevelGround = 1 -> ParquetClassLibrary.Biomes.Elevation
+ParquetClassLibrary.Crafts.CraftConfiguration
 ParquetClassLibrary.Crafts.CraftingRecipe
 ParquetClassLibrary.Crafts.CraftingRecipe.CraftingRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inProducts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inIngredients, ParquetClassLibrary.Crafts.StrikePanelGrid inPanelPattern) -> void
 ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
@@ -103,6 +105,7 @@ ParquetClassLibrary.Crafts.StrikePanelGrid.Rows.get -> int
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.this[int y, int x].get -> ParquetClassLibrary.Crafts.StrikePanel
+ParquetClassLibrary.Delimiters
 ParquetClassLibrary.GridConverter<TElement, TGrid>
 ParquetClassLibrary.GridConverter<TElement, TGrid>.GridConverter() -> void
 ParquetClassLibrary.IGrid<TElement>
@@ -421,6 +424,7 @@ ParquetClassLibrary.Rooms.RoomCollection.Contains(ParquetClassLibrary.Rooms.Room
 ParquetClassLibrary.Rooms.RoomCollection.Count.get -> int
 ParquetClassLibrary.Rooms.RoomCollection.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Rooms.Room>
 ParquetClassLibrary.Rooms.RoomCollection.GetRoomAt(ParquetClassLibrary.Vector2D inPosition) -> ParquetClassLibrary.Rooms.Room
+ParquetClassLibrary.Rooms.RoomConfiguration
 ParquetClassLibrary.Rooms.RoomRecipe
 ParquetClassLibrary.Rooms.RoomRecipe.Matches(ParquetClassLibrary.Rooms.Room inRoom) -> bool
 ParquetClassLibrary.Rooms.RoomRecipe.MinimumWalkableSpaces.get -> int
@@ -428,14 +432,7 @@ ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredFurnishings.get -> System
 ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredPerimeterBlocks.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Rooms.RoomRecipe.Priority.get -> int
-ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inMinimumWalkableSpaces = 4, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredFurnishings = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredWalkableFloors = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredPerimeterBlocks = null) -> void
-ParquetClassLibrary.Rules
-ParquetClassLibrary.Rules.BiomeCriteria
-ParquetClassLibrary.Rules.Delimiters
-ParquetClassLibrary.Rules.Dimensions
-ParquetClassLibrary.Rules.Recipes
-ParquetClassLibrary.Rules.Recipes.Craft
-ParquetClassLibrary.Rules.Recipes.Room
+ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int? inMinimumWalkableSpaces = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredFurnishings = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredWalkableFloors = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredPerimeterBlocks = null) -> void
 ParquetClassLibrary.Scripts.Commands
 ParquetClassLibrary.Scripts.InteractionModel
 ParquetClassLibrary.Scripts.InteractionModel.InteractionModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisites, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSteps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcomes) -> void
@@ -493,27 +490,22 @@ const ParquetClassLibrary.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
 const ParquetClassLibrary.Beings.PronounGroup.PossessiveTag = "|theirs|" -> string
 const ParquetClassLibrary.Beings.PronounGroup.ReflexiveTag = "|themselves|" -> string
 const ParquetClassLibrary.Beings.PronounGroup.SubjectiveTag = "|they|" -> string
+const ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternHeight = 2 -> int
+const ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternWidth = 2 -> int
+const ParquetClassLibrary.Delimiters.DimensionalDelimiter = "×" -> string
+const ParquetClassLibrary.Delimiters.DimensionalTerminator = "≡" -> string
+const ParquetClassLibrary.Delimiters.ElementDelimiter = "–" -> string
+const ParquetClassLibrary.Delimiters.InternalDelimiter = "·" -> string
+const ParquetClassLibrary.Delimiters.NameDelimiter = "§" -> string
+const ParquetClassLibrary.Delimiters.PrimaryDelimiter = "," -> string
+const ParquetClassLibrary.Delimiters.PronounDelimiter = "|" -> string
+const ParquetClassLibrary.Delimiters.SecondaryDelimiter = "∟" -> string
 const ParquetClassLibrary.Items.InventorySlot.DefaultStackMax = 999 -> int
+const ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension = 16 -> int
+const ParquetClassLibrary.Maps.MapRegion.ChunksPerRegionDimension = 4 -> int
+const ParquetClassLibrary.Maps.MapRegion.ParquetsPerRegionDimension = 64 -> int
 const ParquetClassLibrary.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
 const ParquetClassLibrary.Parquets.BlockModel.LowestPossibleToughness = 0 -> int
-const ParquetClassLibrary.Rules.BiomeCriteria.FluidThreshold = 1024 -> int
-const ParquetClassLibrary.Rules.BiomeCriteria.LandThreshold = 5120 -> int
-const ParquetClassLibrary.Rules.BiomeCriteria.ParquetsPerLayer = 4096 -> int
-const ParquetClassLibrary.Rules.Delimiters.DimensionalDelimiter = "×" -> string
-const ParquetClassLibrary.Rules.Delimiters.DimensionalTerminator = "≡" -> string
-const ParquetClassLibrary.Rules.Delimiters.ElementDelimiter = "–" -> string
-const ParquetClassLibrary.Rules.Delimiters.InternalDelimiter = "·" -> string
-const ParquetClassLibrary.Rules.Delimiters.NameDelimiter = "§" -> string
-const ParquetClassLibrary.Rules.Delimiters.PronounDelimiter = "|" -> string
-const ParquetClassLibrary.Rules.Delimiters.SecondaryDelimiter = "∟" -> string
-const ParquetClassLibrary.Rules.Dimensions.ChunksPerRegion = 4 -> int
-const ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternHeight = 2 -> int
-const ParquetClassLibrary.Rules.Dimensions.PanelsPerPatternWidth = 2 -> int
-const ParquetClassLibrary.Rules.Dimensions.ParquetsPerChunk = 16 -> int
-const ParquetClassLibrary.Rules.Dimensions.ParquetsPerRegion = 64 -> int
-const ParquetClassLibrary.Rules.Recipes.Room.MaxWalkableSpaces = 121 -> int
-const ParquetClassLibrary.Rules.Recipes.Room.MinPerimeterSpaces = 12 -> int
-const ParquetClassLibrary.Rules.Recipes.Room.MinWalkableSpaces = 4 -> int
 const ParquetClassLibrary.Scripts.Commands.Alert = "A" -> string
 const ParquetClassLibrary.Scripts.Commands.CallCharacter = "C" -> string
 const ParquetClassLibrary.Scripts.Commands.ClearFlag = "!" -> string
@@ -615,6 +607,12 @@ static ParquetClassLibrary.All.WorkingDirectory.get -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetFilePath() -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetRecords() -> System.Collections.Generic.HashSet<ParquetClassLibrary.Beings.PronounGroup>
 static ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inGroups) -> void
+static ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord() -> void
+static ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord() -> void
+static ParquetClassLibrary.Crafts.CraftConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord() -> void
+static ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Crafts.CraftingRecipe.NotCraftable.get -> ParquetClassLibrary.Crafts.CraftingRecipe
 static ParquetClassLibrary.Crafts.StrikePanel.operator !=(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
 static ParquetClassLibrary.Crafts.StrikePanel.operator ==(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
@@ -670,8 +668,12 @@ static ParquetClassLibrary.Rooms.MapSpaceCollection.implicit operator System.Col
 static ParquetClassLibrary.Rooms.Room.operator !=(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
 static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
 static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
-static ParquetClassLibrary.Rules.Recipes.Craft.IngredientCount.get -> ParquetClassLibrary.Range<int>
-static ParquetClassLibrary.Rules.Recipes.Craft.ProductCount.get -> ParquetClassLibrary.Range<int>
+static ParquetClassLibrary.Rooms.RoomConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord() -> void
+static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.get -> int
+static ParquetClassLibrary.Rooms.RoomConfiguration.MinPerimeterSpaces.get -> int
+static ParquetClassLibrary.Rooms.RoomConfiguration.MinWalkableSpaces.get -> int
+static ParquetClassLibrary.Rooms.RoomConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
 static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void

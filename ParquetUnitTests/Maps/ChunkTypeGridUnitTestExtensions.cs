@@ -15,9 +15,9 @@ namespace ParquetUnitTests.Maps
         /// <summary>Fills the chunk grid with a test pattern.</summary>
         public static ChunkTypeGrid FillTestPattern(this ChunkTypeGrid inMapChunkGrid)
         {
-            for (var y = 0; y < Rules.Dimensions.ChunksPerRegion; y++)
+            for (var y = 0; y < MapRegion.ChunksPerRegionDimension; y++)
             {
-                for (var x = 0; x < Rules.Dimensions.ChunksPerRegion; x++)
+                for (var x = 0; x < MapRegion.ChunksPerRegionDimension; x++)
                 {
                     inMapChunkGrid[y, x] = grassyChunk;
                 }

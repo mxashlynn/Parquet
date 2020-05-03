@@ -53,7 +53,7 @@ namespace ParquetClassLibrary
         {
             X = inX;
             Y = inY;
-            Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt(X * X + Y * Y)));
+            Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((X * X) + (Y * Y))));
         }
         #endregion
 
@@ -147,7 +147,7 @@ namespace ParquetClassLibrary
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is Vector2D vector
             && vector != null
-                ? $"{vector.X}{Rules.Delimiters.ElementDelimiter}" +
+                ? $"{vector.X}{Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(Vector2D)));
@@ -168,7 +168,7 @@ namespace ParquetClassLibrary
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
-            var parameterText = inText.Split(Rules.Delimiters.ElementDelimiter);
+            var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
             if (int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var x)
                 && int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var y))
