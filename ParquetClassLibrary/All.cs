@@ -453,7 +453,12 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void LoadFromCSVs()
         {
+            #region Read Configuration
             var pronounGroups = PronounGroup.GetRecords();
+            BiomeConfiguration.GetRecord();
+            #endregion
+
+            #region Read Models
             var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
                 .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
             var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
@@ -469,6 +474,7 @@ namespace ParquetClassLibrary
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
             var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
+            #endregion
 
             InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, scripts, items);
         }
@@ -478,7 +484,12 @@ namespace ParquetClassLibrary
         /// </summary>
         public static void SaveToCSVs()
         {
+            #region Write Configuration
             PronounGroup.PutRecords(PronounGroups);
+            BiomeConfiguration.PutRecord();
+            #endregion
+
+            #region Write Models
             Beings.PutRecordsForType<CritterModel>();
             Beings.PutRecordsForType<CharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
@@ -494,6 +505,7 @@ namespace ParquetClassLibrary
             RoomRecipes.PutRecordsForType<RoomRecipe>();
             Scripts.PutRecordsForType<ScriptModel>();
             Items.PutRecordsForType<ItemModel>();
+            #endregion
         }
         #endregion
     }

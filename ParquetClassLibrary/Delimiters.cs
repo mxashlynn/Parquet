@@ -23,6 +23,9 @@ namespace ParquetClassLibrary
         /// <summary>Marks out tags that need to be replaced with pronouns from a <see cref="Beings.PronounGroup"/>s.</summary>
         public const string PronounDelimiter = "|";
 
+        /// <summary>Separates collections within files.</summary>
+        public const string PrimaryDelimiter = ",";
+
         /// <summary>Separates objects within collections.</summary>
         public const string SecondaryDelimiter = "∟";
     }
