@@ -22,17 +22,6 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void AllDimensionsAreGreaterThanZeroTest()
-        {
-            var result = Rules.Dimensions.ParquetsPerChunkDimension > 0
-                         && Rules.Dimensions.ChunksPerRegionDimension > 0
-                         && Rules.Dimensions.ParquetsPerRegionDimension > 0
-                         && Rules.Dimensions.PanelsPerPatternWidth > 0
-                         && Rules.Dimensions.PanelsPerPatternHeight > 0;
-            Assert.True(result);
-        }
-
-        [Fact]
         public void ItemIDMinimumIsGreaterThanMaximumDefinedRangeUpperBoundTest()
         {
             Assert.True(All.ItemIDs.Minimum > MaximumIDRangeUpperLimit);
