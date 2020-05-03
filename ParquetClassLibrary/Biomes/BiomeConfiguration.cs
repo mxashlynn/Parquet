@@ -35,7 +35,6 @@ namespace ParquetClassLibrary.Biomes
         /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
         internal static int FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
 
-
         #region Self Serialization
         /// <summary>
         /// Reads <see cref="BiomeConfiguration"/> data from the appropriate file.
@@ -78,8 +77,8 @@ namespace ParquetClassLibrary.Biomes
         public static void PutRecord()
         {
             using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
-            writer.WriteLine($"{nameof(LandThresholdFactor)},{nameof(LiquidThresholdFactor)}");
-            writer.WriteLine($"{LandThresholdFactor},{LiquidThresholdFactor}");
+            writer.WriteLine($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}");
+            writer.WriteLine($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}");
         }
 
         /// <summary>
