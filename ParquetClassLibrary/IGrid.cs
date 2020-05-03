@@ -8,9 +8,6 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming",
-        "CA1710:Identifiers should have correct suffix",
-        Justification = "Grid is a custom suffix implying Collection.  See https://github.com/dotnet/roslyn-analyzers/issues/3072")]
     public interface IGrid<TElement> : IReadOnlyCollection<TElement>
         where TElement : class, ITypeConverter
     {
