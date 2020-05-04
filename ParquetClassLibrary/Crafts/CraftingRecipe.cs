@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Properties;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Crafts
 {

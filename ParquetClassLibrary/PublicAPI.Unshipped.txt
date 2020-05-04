@@ -369,6 +369,7 @@ ParquetClassLibrary.Parquets.ParquetStatusGrid.ParquetStatusGrid() -> void
 ParquetClassLibrary.Parquets.ParquetStatusGrid.ParquetStatusGrid(int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Parquets.ParquetStatusGrid.Rows.get -> int
 ParquetClassLibrary.Parquets.ParquetStatusGrid.this[int y, int x].get -> ParquetClassLibrary.Parquets.ParquetStatus
+ParquetClassLibrary.Precondition
 ParquetClassLibrary.Range<TElement>
 ParquetClassLibrary.Range<TElement>.ContainsRange(ParquetClassLibrary.Range<TElement> inRange) -> bool
 ParquetClassLibrary.Range<TElement>.ContainsValue(TElement inValue) -> bool
@@ -464,7 +465,6 @@ ParquetClassLibrary.Scripts.ScriptNode.ScriptNode() -> void
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData, string inDelimiter) -> object
 ParquetClassLibrary.SeriesConverter<TElement, TCollection>.SeriesConverter() -> void
-ParquetClassLibrary.Utilities.Precondition
 ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Vector2D.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 ParquetClassLibrary.Vector2D.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -653,6 +653,20 @@ static ParquetClassLibrary.Parquets.ParquetStatus.Unused.get -> ParquetClassLibr
 static ParquetClassLibrary.Parquets.ParquetStatus.operator !=(ParquetClassLibrary.Parquets.ParquetStatus inStatus1, ParquetClassLibrary.Parquets.ParquetStatus inStatus2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStatus.operator ==(ParquetClassLibrary.Parquets.ParquetStatus inStatus1, ParquetClassLibrary.Parquets.ParquetStatus inStatus2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStatusArrayExtensions.IsValidPosition(this ParquetClassLibrary.Parquets.ParquetStatus[,] inSubregion, ParquetClassLibrary.Vector2D inPosition) -> bool
+static ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inOuterBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsInRange(int inInt, ParquetClassLibrary.Range<int> inBounds, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsNotNone(ParquetClassLibrary.ModelID inID, string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Precondition.IsNotNull(object inReference, string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Precondition.IsNotNullOrEmpty(string inString, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsNotNullOrEmpty<TElement>(System.Collections.Generic.IEnumerable<TElement> inEnumerable, string inArgumentName) -> void
+static ParquetClassLibrary.Precondition.IsOfType<TToCheck, TTarget>(string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Precondition.MustBeNonNegative(int inNumber, string inArgumentName = "Argument") -> void
+static ParquetClassLibrary.Precondition.MustBePositive(int inNumber, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Range<TElement>.operator !=(ParquetClassLibrary.Range<TElement> inRange1, ParquetClassLibrary.Range<TElement> inRange2) -> bool
 static ParquetClassLibrary.Range<TElement>.operator ==(ParquetClassLibrary.Range<TElement> inRange1, ParquetClassLibrary.Range<TElement> inRange2) -> bool
 static ParquetClassLibrary.RangeCollectionExtensions.ContainsRange<TElement>(this System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<TElement>> inRangeCollection, ParquetClassLibrary.Range<TElement> inRange) -> bool
@@ -676,20 +690,6 @@ static ParquetClassLibrary.Rooms.RoomConfiguration.MinWalkableSpaces.get -> int
 static ParquetClassLibrary.Rooms.RoomConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
-static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inOuterBounds, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inInnerBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsInRange(int inInt, ParquetClassLibrary.Range<int> inBounds, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNone(ParquetClassLibrary.ModelID inID, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNull(object inReference, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty(string inString, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty<TElement>(System.Collections.Generic.IEnumerable<TElement> inEnumerable, string inArgumentName) -> void
-static ParquetClassLibrary.Utilities.Precondition.IsOfType<TToCheck, TTarget>(string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.MustBeNonNegative(int inNumber, string inArgumentName = "Argument") -> void
-static ParquetClassLibrary.Utilities.Precondition.MustBePositive(int inNumber, string inArgumentName = "Argument") -> void
 static ParquetClassLibrary.Vector2D.operator !=(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> bool
 static ParquetClassLibrary.Vector2D.operator *(int inScalar, ParquetClassLibrary.Vector2D inVector) -> ParquetClassLibrary.Vector2D
 static ParquetClassLibrary.Vector2D.operator +(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> ParquetClassLibrary.Vector2D

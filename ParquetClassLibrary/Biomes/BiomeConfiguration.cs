@@ -77,8 +77,8 @@ namespace ParquetClassLibrary.Biomes
         public static void PutRecord()
         {
             using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
-            writer.WriteLine($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}");
-            writer.WriteLine($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}");
+            writer.Write($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}\n");
+            writer.Write($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}\n");
         }
 
         /// <summary>

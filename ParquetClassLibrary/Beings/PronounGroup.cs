@@ -6,7 +6,6 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
 {

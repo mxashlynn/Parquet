@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Scripts;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Beings
 {

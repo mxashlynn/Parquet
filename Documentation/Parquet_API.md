@@ -629,22 +629,22 @@
   - [SpecialPoints](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-SpecialPoints 'ParquetClassLibrary.Maps.PositionInfoEventArgs.SpecialPoints')
   - [Stack](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Stack 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack')
   - [Status](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Status 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Status')
-- [Precondition](#T-ParquetClassLibrary-Utilities-Precondition 'ParquetClassLibrary.Utilities.Precondition')
-  - [DefaultArgumentName](#F-ParquetClassLibrary-Utilities-Precondition-DefaultArgumentName 'ParquetClassLibrary.Utilities.Precondition.DefaultArgumentName')
-  - [AreInRange(inEnumerable,inBounds,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
-  - [AreInRange(inEnumerable,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Utilities.Precondition.AreInRange(System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
-  - [IsInRange(inInt,inBounds,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsInRange-System-Int32,ParquetClassLibrary-Range{System-Int32},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsInRange(System.Int32,ParquetClassLibrary.Range{System.Int32},System.String)')
-  - [IsInRange(inID,inBounds,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-ModelID,ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID,ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
-  - [IsInRange(inInnerBounds,inOuterBounds,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
-  - [IsInRange(inID,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
-  - [IsInRange(inInnerBounds,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsInRange(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
-  - [IsNotNone(inID,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsNotNone-ParquetClassLibrary-ModelID,System-String- 'ParquetClassLibrary.Utilities.Precondition.IsNotNone(ParquetClassLibrary.ModelID,System.String)')
-  - [IsNotNull(inReference,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsNotNull-System-Object,System-String- 'ParquetClassLibrary.Utilities.Precondition.IsNotNull(System.Object,System.String)')
-  - [IsNotNullOrEmpty(inString,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsNotNullOrEmpty-System-String,System-String- 'ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty(System.String,System.String)')
-  - [IsNotNullOrEmpty\`\`1(inEnumerable,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsNotNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0},System-String- 'ParquetClassLibrary.Utilities.Precondition.IsNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)')
-  - [IsOfType\`\`2(inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-IsOfType``2-System-String- 'ParquetClassLibrary.Utilities.Precondition.IsOfType``2(System.String)')
-  - [MustBeNonNegative(inNumber,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-MustBeNonNegative-System-Int32,System-String- 'ParquetClassLibrary.Utilities.Precondition.MustBeNonNegative(System.Int32,System.String)')
-  - [MustBePositive(inNumber,inArgumentName)](#M-ParquetClassLibrary-Utilities-Precondition-MustBePositive-System-Int32,System-String- 'ParquetClassLibrary.Utilities.Precondition.MustBePositive(System.Int32,System.String)')
+- [Precondition](#T-ParquetClassLibrary-Precondition 'ParquetClassLibrary.Precondition')
+  - [DefaultArgumentName](#F-ParquetClassLibrary-Precondition-DefaultArgumentName 'ParquetClassLibrary.Precondition.DefaultArgumentName')
+  - [AreInRange(inEnumerable,inBounds,inArgumentName)](#M-ParquetClassLibrary-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
+  - [AreInRange(inEnumerable,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
+  - [IsInRange(inInt,inBounds,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsInRange-System-Int32,ParquetClassLibrary-Range{System-Int32},System-String- 'ParquetClassLibrary.Precondition.IsInRange(System.Int32,ParquetClassLibrary.Range{System.Int32},System.String)')
+  - [IsInRange(inID,inBounds,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-ModelID,ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.ModelID,ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
+  - [IsInRange(inInnerBounds,inOuterBounds,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
+  - [IsInRange(inID,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
+  - [IsInRange(inInnerBounds,inBoundsCollection,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String- 'ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.String)')
+  - [IsNotNone(inID,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsNotNone-ParquetClassLibrary-ModelID,System-String- 'ParquetClassLibrary.Precondition.IsNotNone(ParquetClassLibrary.ModelID,System.String)')
+  - [IsNotNull(inReference,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsNotNull-System-Object,System-String- 'ParquetClassLibrary.Precondition.IsNotNull(System.Object,System.String)')
+  - [IsNotNullOrEmpty(inString,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsNotNullOrEmpty-System-String,System-String- 'ParquetClassLibrary.Precondition.IsNotNullOrEmpty(System.String,System.String)')
+  - [IsNotNullOrEmpty\`\`1(inEnumerable,inArgumentName)](#M-ParquetClassLibrary-Precondition-IsNotNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0},System-String- 'ParquetClassLibrary.Precondition.IsNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)')
+  - [IsOfType\`\`2(inArgumentName)](#M-ParquetClassLibrary-Precondition-IsOfType``2-System-String- 'ParquetClassLibrary.Precondition.IsOfType``2(System.String)')
+  - [MustBeNonNegative(inNumber,inArgumentName)](#M-ParquetClassLibrary-Precondition-MustBeNonNegative-System-Int32,System-String- 'ParquetClassLibrary.Precondition.MustBeNonNegative(System.Int32,System.String)')
+  - [MustBePositive(inNumber,inArgumentName)](#M-ParquetClassLibrary-Precondition-MustBePositive-System-Int32,System-String- 'ParquetClassLibrary.Precondition.MustBePositive(System.Int32,System.String)')
 - [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')
   - [#ctor(inSubjective,inObjective,inDeterminer,inPossessive,inReflexive)](#M-ParquetClassLibrary-Beings-PronounGroup-#ctor-System-String,System-String,System-String,System-String,System-String- 'ParquetClassLibrary.Beings.PronounGroup.#ctor(System.String,System.String,System.String,System.String,System.String)')
   - [DefaultGroup](#F-ParquetClassLibrary-Beings-PronounGroup-DefaultGroup 'ParquetClassLibrary.Beings.PronounGroup.DefaultGroup')
@@ -692,12 +692,6 @@
   - [ToString()](#M-ParquetClassLibrary-Range`1-ToString 'ParquetClassLibrary.Range`1.ToString')
   - [op_Equality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Equality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Equality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
   - [op_Inequality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Inequality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Inequality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
-- [Rasterization](#T-ParquetClassLibrary-Utilities-Rasterization 'ParquetClassLibrary.Utilities.Rasterization')
-  - [PlotCircle(inCenter,inRadius,inIsFilled,inIsValid)](#M-ParquetClassLibrary-Utilities-Rasterization-PlotCircle-ParquetClassLibrary-Vector2D,System-Int32,System-Boolean,System-Predicate{ParquetClassLibrary-Vector2D}- 'ParquetClassLibrary.Utilities.Rasterization.PlotCircle(ParquetClassLibrary.Vector2D,System.Int32,System.Boolean,System.Predicate{ParquetClassLibrary.Vector2D})')
-  - [PlotEmptyRectangle(inUpperLeft,inLowerRight,inIsValid)](#M-ParquetClassLibrary-Utilities-Rasterization-PlotEmptyRectangle-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}- 'ParquetClassLibrary.Utilities.Rasterization.PlotEmptyRectangle(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Vector2D,System.Predicate{ParquetClassLibrary.Vector2D})')
-  - [PlotFilledRectangle(inUpperLeft,inLowerRight,inIsValid)](#M-ParquetClassLibrary-Utilities-Rasterization-PlotFilledRectangle-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}- 'ParquetClassLibrary.Utilities.Rasterization.PlotFilledRectangle(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Vector2D,System.Predicate{ParquetClassLibrary.Vector2D})')
-  - [PlotFloodFill\`\`1(inStart,inTarget,inIsValid,inMatches)](#M-ParquetClassLibrary-Utilities-Rasterization-PlotFloodFill``1-ParquetClassLibrary-Vector2D,``0,System-Predicate{ParquetClassLibrary-Vector2D},System-Func{ParquetClassLibrary-Vector2D,``0,System-Boolean}- 'ParquetClassLibrary.Utilities.Rasterization.PlotFloodFill``1(ParquetClassLibrary.Vector2D,``0,System.Predicate{ParquetClassLibrary.Vector2D},System.Func{ParquetClassLibrary.Vector2D,``0,System.Boolean})')
-  - [PlotLine(inStart,inEend,inIsValid)](#M-ParquetClassLibrary-Utilities-Rasterization-PlotLine-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}- 'ParquetClassLibrary.Utilities.Rasterization.PlotLine(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Vector2D,System.Predicate{ParquetClassLibrary.Vector2D})')
 - [RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement')
   - [#ctor()](#M-ParquetClassLibrary-RecipeElement-#ctor 'ParquetClassLibrary.RecipeElement.#ctor')
   - [#ctor(inElementAmount,inElementTag)](#M-ParquetClassLibrary-RecipeElement-#ctor-System-Int32,ParquetClassLibrary-ModelTag- 'ParquetClassLibrary.RecipeElement.#ctor(System.Int32,ParquetClassLibrary.ModelTag)')
@@ -3686,7 +3680,7 @@ Interface to a simple container for one of each layer of parquet occupying the s
 
 ##### Remarks
 
-Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into [Rasterization](#T-ParquetClassLibrary-Utilities-Rasterization 'ParquetClassLibrary.Utilities.Rasterization') methods.
+Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into [](#!-Utilities-Rasterization 'Utilities.Rasterization') methods.
 
 <a name='P-ParquetClassLibrary-Parquets-IParquetStack-Block'></a>
 ### Block `property`
@@ -8186,25 +8180,25 @@ Parquets at the given position.
 
 Status of parquets at the given position.
 
-<a name='T-ParquetClassLibrary-Utilities-Precondition'></a>
+<a name='T-ParquetClassLibrary-Precondition'></a>
 ## Precondition `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Utilities
+ParquetClassLibrary
 
 ##### Summary
 
 Provides constructors and initialization routines with concise arugment boilerplate.
 
-<a name='F-ParquetClassLibrary-Utilities-Precondition-DefaultArgumentName'></a>
+<a name='F-ParquetClassLibrary-Precondition-DefaultArgumentName'></a>
 ### DefaultArgumentName `constants`
 
 ##### Summary
 
 Text to use when no argument name is provided.
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
 ### AreInRange(inEnumerable,inBounds,inArgumentName) `method`
 
 ##### Summary
@@ -8226,7 +8220,7 @@ Verifies that all of the given [ModelID](#T-ParquetClassLibrary-ModelID 'Parquet
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the identifier is not in range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
 ### AreInRange(inEnumerable,inBoundsCollection,inArgumentName) `method`
 
 ##### Summary
@@ -8248,7 +8242,7 @@ collection of [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Ran
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the identifier is not in range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-System-Int32,ParquetClassLibrary-Range{System-Int32},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsInRange-System-Int32,ParquetClassLibrary-Range{System-Int32},System-String-'></a>
 ### IsInRange(inInt,inBounds,inArgumentName) `method`
 
 ##### Summary
@@ -8269,7 +8263,7 @@ Checks if the given [Int32](http://msdn.microsoft.com/query/dev14.query?appId=De
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the integer is not in range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-ModelID,ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-ModelID,ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
 ### IsInRange(inID,inBounds,inArgumentName) `method`
 
 ##### Summary
@@ -8290,7 +8284,7 @@ Checks if the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrar
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the identifier is not in range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String-'></a>
 ### IsInRange(inInnerBounds,inOuterBounds,inArgumentName) `method`
 
 ##### Summary
@@ -8311,7 +8305,7 @@ Checks if the first given [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClas
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the first range is not in the second range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
 ### IsInRange(inID,inBoundsCollection,inArgumentName) `method`
 
 ##### Summary
@@ -8334,7 +8328,7 @@ given collection of [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibra
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the identifier is not in any of the ranges. |
 | [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inBoundsCollection` is null. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsInRange-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-String-'></a>
 ### IsInRange(inInnerBounds,inBoundsCollection,inArgumentName) `method`
 
 ##### Summary
@@ -8356,7 +8350,7 @@ given collection of [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibra
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the first range is not in the second range. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsNotNone-ParquetClassLibrary-ModelID,System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsNotNone-ParquetClassLibrary-ModelID,System-String-'></a>
 ### IsNotNone(inID,inArgumentName) `method`
 
 ##### Summary
@@ -8376,7 +8370,7 @@ Verifies that the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLi
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the number is -1 or less. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsNotNull-System-Object,System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsNotNull-System-Object,System-String-'></a>
 ### IsNotNull(inReference,inArgumentName) `method`
 
 ##### Summary
@@ -8396,7 +8390,7 @@ Verifies that the given reference is not `null`.
 | ---- | ----------- |
 | [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inReference` is null. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsNotNullOrEmpty-System-String,System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsNotNullOrEmpty-System-String,System-String-'></a>
 ### IsNotNullOrEmpty(inString,inArgumentName) `method`
 
 ##### Summary
@@ -8416,7 +8410,7 @@ Verifies that the given [String](http://msdn.microsoft.com/query/dev14.query?app
 | ---- | ----------- |
 | [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | When `inString` is null or empty. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsNotNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0},System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsNotNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0},System-String-'></a>
 ### IsNotNullOrEmpty\`\`1(inEnumerable,inArgumentName) `method`
 
 ##### Summary
@@ -8437,7 +8431,7 @@ Verifies that the given [IEnumerable\`1](http://msdn.microsoft.com/query/dev14.q
 | [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | When `inEnumerable` is null. |
 | [System.IndexOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IndexOutOfRangeException 'System.IndexOutOfRangeException') | When `inEnumerable` is empty. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-IsOfType``2-System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-IsOfType``2-System-String-'></a>
 ### IsOfType\`\`2(inArgumentName) `method`
 
 ##### Summary
@@ -8463,7 +8457,7 @@ Verifies that the first given class is or is derived from the second given class
 | ---- | ----------- |
 | [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | When `TToCheck` does not correspond to `TTarget`. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-MustBeNonNegative-System-Int32,System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-MustBeNonNegative-System-Int32,System-String-'></a>
 ### MustBeNonNegative(inNumber,inArgumentName) `method`
 
 ##### Summary
@@ -8483,7 +8477,7 @@ Verifies that the given number is zero or positive.
 | ---- | ----------- |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | When the number is -1 or less. |
 
-<a name='M-ParquetClassLibrary-Utilities-Precondition-MustBePositive-System-Int32,System-String-'></a>
+<a name='M-ParquetClassLibrary-Precondition-MustBePositive-System-Int32,System-String-'></a>
 ### MustBePositive(inNumber,inArgumentName) `method`
 
 ##### Summary
@@ -9078,122 +9072,6 @@ is not equal to another specified instance of [Range\`1](#T-ParquetClassLibrary-
 | ---- | ---- | ----------- |
 | inRange1 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The first [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
 | inRange2 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The second [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
-
-<a name='T-ParquetClassLibrary-Utilities-Rasterization'></a>
-## Rasterization `type`
-
-##### Namespace
-
-ParquetClassLibrary.Utilities
-
-##### Summary
-
-Methods and data to assist in rasterization.
-
-<a name='M-ParquetClassLibrary-Utilities-Rasterization-PlotCircle-ParquetClassLibrary-Vector2D,System-Int32,System-Boolean,System-Predicate{ParquetClassLibrary-Vector2D}-'></a>
-### PlotCircle(inCenter,inRadius,inIsFilled,inIsValid) `method`
-
-##### Summary
-
-Plots a circular region including all points contained on the circle but none within it.
-
-##### Returns
-
-The circle.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inCenter | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The circle's center. |
-| inRadius | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The circle's radius. |
-| inIsFilled | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If set to `true` in is filled. |
-| inIsValid | [System.Predicate{ParquetClassLibrary.Vector2D}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Vector2D}') | Tests if plotted points are useable in their intended domain. |
-
-<a name='M-ParquetClassLibrary-Utilities-Rasterization-PlotEmptyRectangle-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}-'></a>
-### PlotEmptyRectangle(inUpperLeft,inLowerRight,inIsValid) `method`
-
-##### Summary
-
-Plots a rectangular region including all points contained on the rectanle but none within it.
-
-##### Returns
-
-The rectangle.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inUpperLeft | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The upper left corner of the rectangle. |
-| inLowerRight | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The lower right corner of the rectangle. |
-| inIsValid | [System.Predicate{ParquetClassLibrary.Vector2D}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Vector2D}') | Tests if plotted points are useable in their intended domain. |
-
-<a name='M-ParquetClassLibrary-Utilities-Rasterization-PlotFilledRectangle-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}-'></a>
-### PlotFilledRectangle(inUpperLeft,inLowerRight,inIsValid) `method`
-
-##### Summary
-
-Plots a rectangular region including all points contained on and within the rectanle.
-
-##### Returns
-
-The filled rectangle.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inUpperLeft | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The upper left corner of the rectangle. |
-| inLowerRight | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The lower right corner of the rectangle. |
-| inIsValid | [System.Predicate{ParquetClassLibrary.Vector2D}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Vector2D}') | Tests if plotted points are useable in their intended domain. |
-
-<a name='M-ParquetClassLibrary-Utilities-Rasterization-PlotFloodFill``1-ParquetClassLibrary-Vector2D,``0,System-Predicate{ParquetClassLibrary-Vector2D},System-Func{ParquetClassLibrary-Vector2D,``0,System-Boolean}-'></a>
-### PlotFloodFill\`\`1(inStart,inTarget,inIsValid,inMatches) `method`
-
-##### Summary
-
-Plots a contiguous section of the positions using a four-way flood fill.
-Plots all valid positions adjacent to the given position, provided that they match
-the parquets at the given position according to the provided matching criteria.
-
-##### Returns
-
-A selection of contiguous positions.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inStart | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The position on which to base the fill. |
-| inTarget | [\`\`0](#T-``0 '``0') | The element to replace. |
-| inIsValid | [System.Predicate{ParquetClassLibrary.Vector2D}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Vector2D}') | In rule for determining a valid position. |
-| inMatches | [System.Func{ParquetClassLibrary.Vector2D,\`\`0,System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{ParquetClassLibrary.Vector2D,``0,System.Boolean}') | The rule for determining matching parquets. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TTarget | The type of the target element. |
-
-<a name='M-ParquetClassLibrary-Utilities-Rasterization-PlotLine-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D,System-Predicate{ParquetClassLibrary-Vector2D}-'></a>
-### PlotLine(inStart,inEend,inIsValid) `method`
-
-##### Summary
-
-Approximates a line segment between two positions.
-
-##### Returns
-
-The line segment.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inStart | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | One end of the line segment. |
-| inEend | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The other end of the line segment. |
-| inIsValid | [System.Predicate{ParquetClassLibrary.Vector2D}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Vector2D}') | Tests if plotted points are useable in their intended domain. |
 
 <a name='T-ParquetClassLibrary-RecipeElement'></a>
 ## RecipeElement `type`

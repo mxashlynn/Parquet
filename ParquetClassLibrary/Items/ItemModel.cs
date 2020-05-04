@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {

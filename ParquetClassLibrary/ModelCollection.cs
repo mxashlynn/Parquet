@@ -9,7 +9,6 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using ParquetClassLibrary.Properties;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary
 {

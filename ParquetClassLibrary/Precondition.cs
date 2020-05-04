@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using ParquetClassLibrary.Properties;
 
-namespace ParquetClassLibrary.Utilities
+namespace ParquetClassLibrary
 {
     /// <summary>
     /// Provides constructors and initialization routines with concise arugment boilerplate.

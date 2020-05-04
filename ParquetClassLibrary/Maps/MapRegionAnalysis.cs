@@ -1,6 +1,3 @@
-using System;
-using ParquetClassLibrary.Parquets;
-
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>

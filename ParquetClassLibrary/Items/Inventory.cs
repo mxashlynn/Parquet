@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using ParquetClassLibrary.Properties;
-using ParquetClassLibrary.Utilities;
 
 namespace ParquetClassLibrary.Items
 {

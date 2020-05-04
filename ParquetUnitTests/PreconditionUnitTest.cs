@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Utilities;
 using Xunit;
 
-namespace ParquetUnitTests.Utilities
+namespace ParquetUnitTests
 {
     public class PreconditionUnitTest
     {

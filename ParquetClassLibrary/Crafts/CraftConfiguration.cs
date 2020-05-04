@@ -2,7 +2,6 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using CsvHelper;
 using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Crafts
@@ -64,11 +63,11 @@ namespace ParquetClassLibrary.Crafts
         public static void PutRecord()
         {
             using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
-            writer.WriteLine($"{nameof(IngredientCount)}{Delimiters.PrimaryDelimiter}{nameof(ProductCount)}");
-            writer.WriteLine($"{IngredientCount.Minimum}{Delimiters.ElementDelimiter}" +
-                             $"{IngredientCount.Maximum}{Delimiters.PrimaryDelimiter}" +
-                             $"{ProductCount.Minimum}{Delimiters.ElementDelimiter}" +
-                             $"{ProductCount.Maximum}");
+            writer.Write($"{nameof(IngredientCount)}{Delimiters.PrimaryDelimiter}{nameof(ProductCount)}\n");
+            writer.Write($"{IngredientCount.Minimum}{Delimiters.ElementDelimiter}" +
+                         $"{IngredientCount.Maximum}{Delimiters.PrimaryDelimiter}" +
+                         $"{ProductCount.Minimum}{Delimiters.ElementDelimiter}" +
+                         $"{ProductCount.Maximum}\n");
         }
 
         /// <summary>

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Utilities;
 using ParquetClassLibrary.Maps;
 
 namespace ParquetClassLibrary.Biomes
