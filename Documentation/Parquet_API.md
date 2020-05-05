@@ -71,18 +71,22 @@
   - [ToString()](#M-ParquetClassLibrary-Beings-BeingStatus-ToString 'ParquetClassLibrary.Beings.BeingStatus.ToString')
 - [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration')
   - [ParquetsPerLayer](#F-ParquetClassLibrary-Biomes-BiomeConfiguration-ParquetsPerLayer 'ParquetClassLibrary.Biomes.BiomeConfiguration.ParquetsPerLayer')
-  - [FluidThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-FluidThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.FluidThreshold')
   - [LandThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.LandThreshold')
   - [LandThresholdFactor](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThresholdFactor 'ParquetClassLibrary.Biomes.BiomeConfiguration.LandThresholdFactor')
+  - [LiquidThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThreshold')
   - [LiquidThresholdFactor](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThresholdFactor 'ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThresholdFactor')
+  - [RoomThreshold](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThreshold 'ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThreshold')
+  - [RoomThresholdFactor](#P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThresholdFactor 'ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThresholdFactor')
   - [GetFilePath()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath')
   - [GetRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord')
 - [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')
-  - [#ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Biomes.Elevation,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
+  - [#ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Biomes.Elevation,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
   - [ElevationCategory](#P-ParquetClassLibrary-Biomes-BiomeModel-ElevationCategory 'ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory')
   - [EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeModel-EntryRequirements 'ParquetClassLibrary.Biomes.BiomeModel.EntryRequirements')
   - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased')
+  - [IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased')
+  - [None](#P-ParquetClassLibrary-Biomes-BiomeModel-None 'ParquetClassLibrary.Biomes.BiomeModel.None')
   - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeModel.ParquetCriteria')
   - [Tier](#P-ParquetClassLibrary-Biomes-BiomeModel-Tier 'ParquetClassLibrary.Biomes.BiomeModel.Tier')
   - [GetAllTags()](#M-ParquetClassLibrary-Biomes-BiomeModel-GetAllTags 'ParquetClassLibrary.Biomes.BiomeModel.GetAllTags')
@@ -401,8 +405,9 @@
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
+  - [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms')
+  - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
-- [MapRegionAnalysis](#T-ParquetClassLibrary-Biomes-MapRegionAnalysis 'ParquetClassLibrary.Biomes.MapRegionAnalysis')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
@@ -1540,19 +1545,12 @@ Provides rules for determining a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 
 Used in computing thresholds.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-FluidThreshold'></a>
-### FluidThreshold `property`
-
-##### Summary
-
-3/4ths of a layers' worth of parquets must contribute to a fluid-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
-
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThreshold'></a>
 ### LandThreshold `property`
 
 ##### Summary
 
-1 and 1/4th of a layers' worth of parquets must contribute to a land-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+How many of a layers' worth of parquets must contribute to a land-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThresholdFactor'></a>
 ### LandThresholdFactor `property`
@@ -1562,8 +1560,30 @@ Used in computing thresholds.
 There must be at least this percentage of non-liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
 [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
 
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThreshold'></a>
+### LiquidThreshold `property`
+
+##### Summary
+
+How many of a layers' worth of parquets must contribute to a Liquid-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThresholdFactor'></a>
 ### LiquidThresholdFactor `property`
+
+##### Summary
+
+There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
+[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThreshold'></a>
+### RoomThreshold `property`
+
+##### Summary
+
+How many of a layers' worth of parquets must contribute to a room-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThresholdFactor'></a>
+### RoomThresholdFactor `property`
 
 ##### Summary
 
@@ -1622,8 +1642,8 @@ ParquetClassLibrary.Biomes
 
 Models the biome that a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') embodies.
 
-<a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
-### #ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
+<a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
+### #ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
 
 ##### Summary
 
@@ -1639,6 +1659,7 @@ Initializes a new instance of the [BiomeModel](#T-ParquetClassLibrary-Biomes-Bio
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
 | inTier | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls. |
 | inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | Describes where this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls in terms of the game world's overall topography. |
+| inIsRoomBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
 | inIsLiquidBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets. |
 | inParquetCriteria | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
 | inEntryRequirements | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s needed to access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
@@ -1663,6 +1684,20 @@ Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLi
 ##### Summary
 
 Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased'></a>
+### IsRoomBased `property`
+
+##### Summary
+
+Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-None'></a>
+### None `property`
+
+##### Summary
+
+Represents the lack of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') for [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s that fail to qualify.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria'></a>
 ### ParquetCriteria `property`
@@ -3681,7 +3716,7 @@ Interface to a simple container for one of each layer of parquet occupying the s
 
 ##### Remarks
 
-Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into [](#!-Utilities-Rasterization 'Utilities.Rasterization') methods.
+Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into game-level methods that performs simple operations, such as rasterization.
 
 <a name='P-ParquetClassLibrary-Parquets-IParquetStack-Block'></a>
 ### Block `property`
@@ -5035,6 +5070,32 @@ remember to update the corresponding element in [ParquetStatuses](#P-ParquetClas
 
 The statuses of parquets in the chunk.
 
+<a name='P-ParquetClassLibrary-Maps-MapRegion-Rooms'></a>
+### Rooms `property`
+
+##### Summary
+
+All of the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s detected in the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+
+<a name='M-ParquetClassLibrary-Maps-MapRegion-GetBiome'></a>
+### GetBiome() `method`
+
+##### Summary
+
+Determines which [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') the given [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') corresponds to.
+
+##### Returns
+
+The appropriate [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID').
+
+##### Parameters
+
+This method has no parameters.
+
+##### Remarks
+
+This method assumes that [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms') has already been populated.
+
 <a name='M-ParquetClassLibrary-Maps-MapRegion-ToString'></a>
 ### ToString() `method`
 
@@ -5049,17 +5110,6 @@ A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&
 ##### Parameters
 
 This method has no parameters.
-
-<a name='T-ParquetClassLibrary-Biomes-MapRegionAnalysis'></a>
-## MapRegionAnalysis `type`
-
-##### Namespace
-
-ParquetClassLibrary.Biomes
-
-##### Summary
-
-TODO Fill this in!!
 
 <a name='T-ParquetClassLibrary-Maps-MapRegionSketch'></a>
 ## MapRegionSketch `type`

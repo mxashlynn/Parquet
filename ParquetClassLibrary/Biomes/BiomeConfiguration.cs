@@ -63,7 +63,7 @@ namespace ParquetClassLibrary.Biomes
             var values = valueLine.Split(Delimiters.PrimaryDelimiter);
 
             // Parse.
-            if (float.TryParse(values[0], out var temp))
+            if (double.TryParse(values[0], out var temp))
             {
                 LandThresholdFactor = temp;
             }
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Biomes
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         values[0], nameof(LandThresholdFactor)));
             }
-            if (float.TryParse(values[1], out temp))
+            if (double.TryParse(values[1], out temp))
             {
                 LiquidThresholdFactor = temp;
             }
@@ -80,6 +80,15 @@ namespace ParquetClassLibrary.Biomes
             {
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         values[1], nameof(LiquidThresholdFactor)));
+            }
+            if (double.TryParse(values[2], out temp))
+            {
+                RoomThresholdFactor = temp;
+            }
+            else
+            {
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        values[2], nameof(RoomThresholdFactor)));
             }
         }
 
@@ -89,8 +98,8 @@ namespace ParquetClassLibrary.Biomes
         public static void PutRecord()
         {
             using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
-            writer.Write($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}\n");
-            writer.Write($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}\n");
+            writer.Write($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(RoomThresholdFactor)}\n");
+            writer.Write($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}{Delimiters.PrimaryDelimiter}{RoomThresholdFactor}\n");
         }
 
         /// <summary>

@@ -1,16 +1,16 @@
 ﻿ID,Name,Description,Comment,Tier,ElevationCategory,IsRoomBased,IsLiquidBased,ParquetCriteria,EntryRequirements
--30000,Biome Test,Test,Test,1,LevelGround,FALSE,TRUE,,
-30000,Alpine,,,4,AboveGround,FALSE,FALSE,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
-30001,Cavern,,,3,BelowGround,FALSE,FALSE,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
-30002,Desert,,,2,LevelGround,FALSE,FALSE,Deserted,SeasideKey∟DesertKey∟Tier2Key
-30003,Field,,,0,LevelGround,FALSE,FALSE,,
-30004,Forest,,,1,LevelGround,FALSE,FALSE,Forested,ForestKey
-30005,Heavens,,,5,AboveGround,FALSE,TRUE,Heavenly,HeavenlyKey
-30006,Inferno,,,5,BelowGround,FALSE,TRUE,Volcanic,InfernalKey
-30007,Ruins,,,4,LevelGround,FALSE,FALSE,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
-30008,Seaside,,,1,LevelGround,FALSE,TRUE,Coastal,SeasideKey
-30009,Swamp,,,2,LevelGround,FALSE,FALSE,Swampy,ForestKey∟SwampKey∟Tier2Key
-30010,Town,,,0,LevelGround,TRUE,FALSE,,
-30011,Tundra,,,2,LevelGround,FALSE,FALSE,Frozen,SeasideKey∟TundraKey∟Tier2Key
-30012,Volcano,,,4,AboveGround,FALSE,TRUE,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
-30013,Prism,,,4,AboveGround,FALSE,FALSE,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+-30000,Biome Test,Test,Test,1,LevelGround,False,True,,
+30000,Alpine,,,4,AboveGround,False,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+30001,Cavern,,,3,BelowGround,False,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
+30002,Desert,,,2,LevelGround,False,False,Deserted,SeasideKey∟DesertKey∟Tier2Key
+30003,Field,,,0,LevelGround,False,False,,
+30004,Forest,,,1,LevelGround,False,False,Forested,ForestKey
+30005,Heavens,,,5,AboveGround,False,True,Heavenly,HeavenlyKey
+30006,Inferno,,,5,BelowGround,False,True,Volcanic,InfernalKey
+30007,Ruins,,,4,LevelGround,False,False,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
+30008,Seaside,,,1,LevelGround,False,True,Coastal,SeasideKey
+30009,Swamp,,,2,LevelGround,False,False,Swampy,ForestKey∟SwampKey∟Tier2Key
+30010,Town,,,0,LevelGround,True,False,,
+30011,Tundra,,,2,LevelGround,False,False,Frozen,SeasideKey∟TundraKey∟Tier2Key
+30012,Volcano,,,4,AboveGround,False,True,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
+30013,Prism,,,4,AboveGround,False,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
