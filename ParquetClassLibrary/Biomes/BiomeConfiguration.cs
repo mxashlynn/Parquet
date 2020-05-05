@@ -21,28 +21,31 @@ namespace ParquetClassLibrary.Biomes
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static float LandThresholdFactor { get; private set; } = 1.25f;
+        internal static double LandThresholdFactor { get; private set; } = 1.25;
 
         /// <summary>How many of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
-        internal static float LandThreshold => ParquetsPerLayer * LandThresholdFactor;
+        internal static int LandThreshold
+            => (int)Math.Round(ParquetsPerLayer * LandThresholdFactor, 0, MidpointRounding.AwayFromZero);
 
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static float LiquidThresholdFactor { get; private set; } = 0.25f;
+        internal static double LiquidThresholdFactor { get; private set; } = 0.25;
 
-        /// <summary>How many of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
-        internal static float FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
+        /// <summary>How many of a layers' worth of parquets must contribute to a Liquid-based <see cref="BiomeModel"/>.</summary>
+        internal static int LiquidThreshold
+            => (int)Math.Round(ParquetsPerLayer * LiquidThresholdFactor, 0, MidpointRounding.AwayFromZero);
 
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static float RoomThresholdFactor { get; private set; } = 0.67f;
+        internal static double RoomThresholdFactor { get; private set; } = 0.67;
 
         /// <summary>How many of a layers' worth of parquets must contribute to a room-based <see cref="BiomeModel"/>.</summary>
-        internal static float RoomThreshold => ParquetsPerLayer * RoomThresholdFactor;
+        internal static int RoomThreshold
+            => (int)Math.Round(ParquetsPerLayer * RoomThresholdFactor, 0, MidpointRounding.AwayFromZero);
 
         #region Self Serialization
         /// <summary>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -83,10 +84,16 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
-        /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
+        /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
         [Index(10)]
         public override ParquetStackGrid ParquetDefinitions { get; }
+
+        /// <summary>
+        /// All of the <see cref="Rooms.Room"/>s detected in the <see cref="MapRegion"/>.
+        /// </summary>
+        [Ignore]
+        public RoomCollection Rooms { get; }
         #endregion
         #endregion
 

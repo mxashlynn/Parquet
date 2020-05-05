@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Biomes
         /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegion"/> corresponds to.
         /// </summary>
         /// <param name="inRegion">The region to investigate.</param>
-        /// <returns>The appropriate <see cref="BiomeModel"/>.</returns>
+        /// <returns>The appropriate <see cref="ModelID"/>.</returns>
         public static ModelID GetBiome(this MapRegion inRegion)
         {
             foreach (BiomeModel biome in All.Biomes)
@@ -28,8 +28,50 @@ namespace ParquetClassLibrary.Biomes
                 }
             }
 
+            // TODO Log a warning here.
+            // This is a degenerate case, as all three Elevations ought to have BiomeModels defined for them.
+            return BiomeModel.None.ID;
+
             #region Local Helper Methods
-            // Determines the number of individual parquets that are present inside rooms in the given MapRegion.
+            // Determines if the given BiomeModel matches the given Region.
+            //     inRegion -> The MapRegion to test.
+            //     inBiome -> The BiomeModel to test against.
+            // Returns the given BiomeModel's ModelID if they match, otherwise returns the ModelID for the default biome.
+            static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
+            {
+                var result = BiomeModel.None.ID;
+
+                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                {
+                    // Prioritization of biome categories is hard-coded in the following way:
+                    //    1 Room-based Biomes supercede
+                    //    2 Liquid-based Biomes supercede
+                    //    3 Land-based Biomes supercede
+                    //    4 the default Biome.
+                    if (inBiome.IsRoomBased
+                        && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
+                        && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                    {
+                        result = inBiome.ID;
+                        break;
+                    }
+                    else if (inBiome.IsLiquidBased
+                             && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
+                    {
+                        result = inBiome.ID;
+                        break;
+                    }
+                    else if (ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
+                    {
+                        result = inBiome.ID;
+                        break;
+                    }
+                }
+
+                return result;
+            }
+
+            // Determines the number of individual parquets that are present inside Rooms in the given MapRegion.
             //     inRegion -> The region to consider.
             // Returns the number of parquets that are part of a known Room.
             static ModelID GetParquetsInRooms(MapRegion inRegion)
@@ -50,17 +92,17 @@ namespace ParquetClassLibrary.Biomes
                 return parquetsInRoom;
             }
 
-            // Determines if the given region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
+            // Determines if the given region has enough parquets contributing to the given biome to exceed the given threshold.
             //     inRegion -> The region to test.
-            //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //     inBiome -> The biome to test against.
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
-            // Returns true if enough parquets satisfy the conditions given, false otherwise.
-            static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, Predicate<ParquetModel> inPredicate, int inThreshold)
+            // Returns true if enough parquets contribute to the biome, false otherwise.
+            static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, int inThreshold)
             {
                 var result = false;
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
-                    if (CountMeetsOrExceedsThreshold(inRegion, inPredicate, inThreshold))
+                    if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
                     {
                         result = true;
                     }
@@ -98,50 +140,6 @@ namespace ParquetClassLibrary.Biomes
                 }
 
                 return count >= inThreshold;
-            }
-
-            static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
-            {
-                var result = BiomeModel.None.ID;
-
-                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
-                {
-                    // Prioritization of biome categories is hard-coded in the following way:
-                    //    1 Room-based Biomes supercede
-                    //    2 Liquid-based Biomes supercede
-                    //    3 Land-based Biomes supercede
-                    //    4 the default Biome.
-                    if (inBiome.IsRoomBased
-                        && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
-                        && ConstitutesBiome(inRegion,
-                                            inBiome,
-                                            parquet => parquet.AddsToBiome == biomeTag,
-                                            BiomeConfiguration.RoomThreshold))
-                    {
-                        result = inBiome.ID;
-                    }
-                    else if (inBiome.IsLiquidBased
-                             && ConstitutesBiome(inRegion,
-                                                 inBiome,
-                                                 parquet => /* TODO We don't actually care if the parquet is a Liquid, though, right?
-                                                                 Like, brimstone contributes to volcanoes and seaweed to seasides?
-                                                                 parquet is BlockModel block
-                                                             && block.IsLiquid
-                                                             && */ parquet.AddsToBiome == biomeTag,
-                                                 BiomeConfiguration.LiquidThreshold))
-                    {
-                        result = inBiome.ID;
-                    }
-                    else if (ConstitutesBiome(inRegion,
-                                              inBiome,
-                                              parquet => parquet.AddsToBiome == biomeTag,
-                                              BiomeConfiguration.LandThreshold))
-                    {
-                        result = inBiome.ID;
-                    }
-                }
-
-                return result;
             }
             #endregion
         }
