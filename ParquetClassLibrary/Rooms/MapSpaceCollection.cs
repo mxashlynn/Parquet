@@ -165,7 +165,7 @@ namespace ParquetClassLibrary.Rooms
                     Debug.Assert(RoomConfiguration.MinPerimeterSpaces > potentialPerimeter.Count,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
                                                RoomConfiguration.MinPerimeterSpaces, nameof(potentialPerimeter.Count)));
-
+                    
                     // Validate the perimeter.
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
                                     && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))

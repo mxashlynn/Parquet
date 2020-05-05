@@ -106,7 +106,7 @@ namespace ParquetClassLibrary.Maps
             }
             else if (inLowerRight.X < inUpperLeft.X && inLowerRight.Y < inUpperLeft.Y)
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
                                                                     nameof(inUpperLeft), nameof(inLowerRight)));
             }
             else
