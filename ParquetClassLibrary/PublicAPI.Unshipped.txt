@@ -68,10 +68,11 @@ ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Biomes.BiomeConfiguration
 ParquetClassLibrary.Biomes.BiomeModel
-ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, ParquetClassLibrary.Biomes.Elevation inElevationCategory, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
+ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, ParquetClassLibrary.Biomes.Elevation inElevationCategory, bool inIsRoomBased, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
 ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Biomes.BiomeModel.EntryRequirements.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased.get -> bool
+ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased.get -> bool
 ParquetClassLibrary.Biomes.BiomeModel.ParquetCriteria.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Biomes.BiomeModel.Tier.get -> int
 ParquetClassLibrary.Biomes.Elevation
@@ -229,7 +230,9 @@ ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.MapRegion.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegion.ElevationGlobal.get -> int
 ParquetClassLibrary.Maps.MapRegion.ElevationLocal.get -> ParquetClassLibrary.Biomes.Elevation
+ParquetClassLibrary.Maps.MapRegion.GetBiome() -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationLocal = ParquetClassLibrary.Biomes.Elevation.LevelGround, int inElevationGlobal = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapRegion.Rooms.get -> ParquetClassLibrary.Rooms.RoomCollection
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.Maps.ChunkTypeGrid
@@ -610,6 +613,7 @@ static ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Gen
 static ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord() -> void
+static ParquetClassLibrary.Biomes.BiomeModel.None.get -> ParquetClassLibrary.Biomes.BiomeModel
 static ParquetClassLibrary.Crafts.CraftConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord() -> void

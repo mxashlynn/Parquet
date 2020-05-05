@@ -4,7 +4,7 @@ namespace ParquetClassLibrary.Parquets
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
     /// </summary>
     /// <remarks>
-    /// Supports injecting <see cref="ParquetStack"/> into <see cref="Utilities.Rasterization"/> methods.
+    /// Supports injecting <see cref="ParquetStack"/> into game-level methods that performs simple operations, such as rasterization.
     /// </remarks>
     public interface IParquetStack
     {

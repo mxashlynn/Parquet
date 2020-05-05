@@ -21,19 +21,31 @@ namespace ParquetClassLibrary.Biomes
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static float LandThresholdFactor { get; private set; } = 1.25f;
+        internal static double LandThresholdFactor { get; private set; } = 1.25;
 
-        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
-        internal static float LandThreshold => ParquetsPerLayer * LandThresholdFactor;
+        /// <summary>How many of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
+        internal static int LandThreshold
+            => (int)Math.Round(ParquetsPerLayer * LandThresholdFactor, 0, MidpointRounding.AwayFromZero);
 
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
         /// </summary>
-        internal static float LiquidThresholdFactor { get; private set; } = 0.25f;
+        internal static double LiquidThresholdFactor { get; private set; } = 0.25;
 
-        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
-        internal static float FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
+        /// <summary>How many of a layers' worth of parquets must contribute to a Liquid-based <see cref="BiomeModel"/>.</summary>
+        internal static int LiquidThreshold
+            => (int)Math.Round(ParquetsPerLayer * LiquidThresholdFactor, 0, MidpointRounding.AwayFromZero);
+
+        /// <summary>
+        /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
+        /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
+        /// </summary>
+        internal static double RoomThresholdFactor { get; private set; } = 0.67;
+
+        /// <summary>How many of a layers' worth of parquets must contribute to a room-based <see cref="BiomeModel"/>.</summary>
+        internal static int RoomThreshold
+            => (int)Math.Round(ParquetsPerLayer * RoomThresholdFactor, 0, MidpointRounding.AwayFromZero);
 
         #region Self Serialization
         /// <summary>
@@ -51,7 +63,7 @@ namespace ParquetClassLibrary.Biomes
             var values = valueLine.Split(Delimiters.PrimaryDelimiter);
 
             // Parse.
-            if (float.TryParse(values[0], out var temp))
+            if (double.TryParse(values[0], out var temp))
             {
                 LandThresholdFactor = temp;
             }
@@ -60,7 +72,7 @@ namespace ParquetClassLibrary.Biomes
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         values[0], nameof(LandThresholdFactor)));
             }
-            if (float.TryParse(values[1], out temp))
+            if (double.TryParse(values[1], out temp))
             {
                 LiquidThresholdFactor = temp;
             }
@@ -68,6 +80,15 @@ namespace ParquetClassLibrary.Biomes
             {
                 throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                         values[1], nameof(LiquidThresholdFactor)));
+            }
+            if (double.TryParse(values[2], out temp))
+            {
+                RoomThresholdFactor = temp;
+            }
+            else
+            {
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                        values[2], nameof(RoomThresholdFactor)));
             }
         }
 
@@ -77,8 +98,8 @@ namespace ParquetClassLibrary.Biomes
         public static void PutRecord()
         {
             using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
-            writer.Write($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}\n");
-            writer.Write($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}\n");
+            writer.Write($"{nameof(LandThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(LiquidThresholdFactor)}{Delimiters.PrimaryDelimiter}{nameof(RoomThresholdFactor)}\n");
+            writer.Write($"{LandThresholdFactor}{Delimiters.PrimaryDelimiter}{LiquidThresholdFactor}{Delimiters.PrimaryDelimiter}{RoomThresholdFactor}\n");
         }
 
         /// <summary>

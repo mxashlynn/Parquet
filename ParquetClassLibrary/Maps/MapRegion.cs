@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 
 namespace ParquetClassLibrary.Maps
 {
@@ -83,10 +86,16 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
-        /// remember to update the corresponding element in <see cref="MapRegion.ParquetStatuses"/>!
+        /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
         [Index(10)]
         public override ParquetStackGrid ParquetDefinitions { get; }
+
+        /// <summary>
+        /// All of the <see cref="Rooms.Room"/>s detected in the <see cref="MapRegion"/>.
+        /// </summary>
+        [Ignore]
+        public RoomCollection Rooms { get; private set; }
         #endregion
         #endregion
 
@@ -117,6 +126,132 @@ namespace ParquetClassLibrary.Maps
             ElevationGlobal = inElevationGlobal;
             ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
             ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+        }
+        #endregion
+
+        #region Analysis
+        /// <summary>
+        /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegion"/> corresponds to.
+        /// </summary>
+        /// <remarks>
+        /// This method assumes that <see cref="MapRegion.Rooms"/> has already been populated.
+        /// </remarks>
+        /// <returns>The appropriate <see cref="ModelID"/>.</returns>
+        public ModelID GetBiome()
+        {
+            foreach (BiomeModel biome in All.Biomes)
+            {
+                if (biome.ElevationCategory == ElevationLocal)
+                {
+                    return FindBiomeByTag(this, biome);
+                }
+            }
+
+            // TODO Log a warning here.
+            // This is a degenerate case, as all three Elevations ought to have BiomeModels defined for them.
+            return BiomeModel.None.ID;
+
+            #region Local Helper Methods
+            // Determines if the given BiomeModel matches the given Region.
+            //     inRegion -> The MapRegion to test.
+            //     inBiome -> The BiomeModel to test against.
+            // Returns the given BiomeModel's ModelID if they match, otherwise returns the ModelID for the default biome.
+            static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
+            {
+                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                {
+                    // Prioritization of biome categories is hard-coded in the following way:
+                    //    1 Room-based Biomes supercede
+                    //    2 Liquid-based Biomes supercede
+                    //    3 Land-based Biomes supercede
+                    //    4 the default Biome.
+                    if ((inBiome.IsRoomBased
+                            && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
+                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                        || (inBiome.IsLiquidBased
+                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
+                        || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
+                    {
+                        return inBiome.ID;
+                    }
+                }
+
+                // TODO We might want to log this result here, too, though if so it whould be an INFO log rather than a warning.
+                return BiomeModel.None.ID;
+            }
+
+            // Determines the number of individual parquets that are present inside Rooms in the given MapRegion.
+            //     inRegion -> The region to consider.
+            // Returns the number of parquets that are part of a known Room.
+            static ModelID GetParquetsInRooms(MapRegion inRegion)
+            {
+                var parquetsInRoom = 0;
+
+                // TODO This might be a good place to optimise.
+                for (var y = 0; y < inRegion.ParquetDefinitions.Rows; y++)
+                {
+                    for (var x = 0; x < inRegion.ParquetDefinitions.Columns; x++)
+                    {
+                        if (inRegion.Rooms.Any(room => room.ContainsPosition(new Vector2D(x, y))))
+                        {
+                            // Note that we are counting every parquet, including collectibles.
+                            parquetsInRoom += inRegion.ParquetDefinitions[y, x].Count;
+                        }
+                    }
+                }
+
+                return parquetsInRoom;
+            }
+
+            // Determines if the given region has enough parquets contributing to the given biome to exceed the given threshold.
+            //     inRegion -> The region to test.
+            //     inBiome -> The biome to test against.
+            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            // Returns true if enough parquets contribute to the biome, false otherwise.
+            static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, int inThreshold)
+            {
+                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                {
+                    if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
+            //     inRegion -> The region to test.
+            //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            // Returns true if enough parquets satisfy the conditions given, false otherwise.
+            static bool CountMeetsOrExceedsThreshold(MapRegion inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
+            {
+                var count = 0;
+
+                foreach (ParquetStack stack in inRegion.ParquetDefinitions)
+                {
+                    if (inPredicate(All.Parquets.Get<FloorModel>(stack.Floor)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<BlockModel>(stack.Block)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<FurnishingModel>(stack.Furnishing)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<CollectibleModel>(stack.Collectible)))
+                    {
+                        count++;
+                    }
+                }
+
+                return count >= inThreshold;
+            }
+            #endregion
         }
         #endregion
 
