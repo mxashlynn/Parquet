@@ -169,8 +169,12 @@
     <value>{0}: {1} is not within {2}.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="ErrorOutOfOrder" xml:space="preserve">
-    <value>{0} must be less than or equal to {1}.</value>
+  <data name="ErrorOutOfOrderGTE" xml:space="preserve">
+    <value>{0} is {1} but must be greater than or equal to {2}.</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorOutOfOrderLTE" xml:space="preserve">
+    <value>{0} is {1} but must be less than or equal to {2}.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUngenerated" xml:space="preserve">

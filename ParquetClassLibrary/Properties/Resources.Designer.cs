@@ -178,11 +178,20 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be less than or equal to {1}..
+        ///   Looks up a localized string similar to {0} is {1} but must be greater than or equal to {2}..
         /// </summary>
-        internal static string ErrorOutOfOrder {
+        internal static string ErrorOutOfOrderGTE {
             get {
-                return ResourceManager.GetString("ErrorOutOfOrder", resourceCulture);
+                return ResourceManager.GetString("ErrorOutOfOrderGTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is {1} but must be less than or equal to {2}..
+        /// </summary>
+        internal static string ErrorOutOfOrderLTE {
+            get {
+                return ResourceManager.GetString("ErrorOutOfOrderLTE", resourceCulture);
             }
         }
         

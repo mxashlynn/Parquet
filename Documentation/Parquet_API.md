@@ -722,7 +722,8 @@
   - [ErrorMustNotBeNullEmpty](#P-ParquetClassLibrary-Properties-Resources-ErrorMustNotBeNullEmpty 'ParquetClassLibrary.Properties.Resources.ErrorMustNotBeNullEmpty')
   - [ErrorNoExitFound](#P-ParquetClassLibrary-Properties-Resources-ErrorNoExitFound 'ParquetClassLibrary.Properties.Resources.ErrorNoExitFound')
   - [ErrorOutOfBounds](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds 'ParquetClassLibrary.Properties.Resources.ErrorOutOfBounds')
-  - [ErrorOutOfOrder](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrder 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrder')
+  - [ErrorOutOfOrderGTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderGTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderGTE')
+  - [ErrorOutOfOrderLTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderLTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderLTE')
   - [ErrorUngenerated](#P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated 'ParquetClassLibrary.Properties.Resources.ErrorUngenerated')
   - [ErrorUnsupportedDimension](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDimension')
   - [ErrorUnsupportedDuplicate](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDuplicate')
@@ -9397,12 +9398,19 @@ Looks up a localized string similar to No entry/exit found in {0} or {1}..
 
 Looks up a localized string similar to {0}: {1} is not within {2}..
 
-<a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrder'></a>
-### ErrorOutOfOrder `property`
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderGTE'></a>
+### ErrorOutOfOrderGTE `property`
 
 ##### Summary
 
-Looks up a localized string similar to {0} must be less than or equal to {1}..
+Looks up a localized string similar to {0} is {1} but must be greater than or equal to {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderLTE'></a>
+### ErrorOutOfOrderLTE `property`
+
+##### Summary
+
+Looks up a localized string similar to {0} is {1} but must be less than or equal to {2}..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated'></a>
 ### ErrorUngenerated `property`

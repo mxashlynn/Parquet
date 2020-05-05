@@ -158,13 +158,14 @@ namespace ParquetClassLibrary.Rooms
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
                     // Design-time sanity checks.
-                    Debug.Assert(potentialPerimeter.Count > (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces,
-                                 string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                               nameof(potentialPerimeter.Count),
+                    Debug.Assert(potentialPerimeter.Count <= (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces,
+                                 string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
+                                               nameof(potentialPerimeter.Count), potentialPerimeter.Count,
                                                (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces));
-                    Debug.Assert(RoomConfiguration.MinPerimeterSpaces > potentialPerimeter.Count,
-                                 string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                               RoomConfiguration.MinPerimeterSpaces, nameof(potentialPerimeter.Count)));
+                    Debug.Assert(potentialPerimeter.Count >= RoomConfiguration.MinPerimeterSpaces,
+                                 string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                               nameof(potentialPerimeter.Count),
+                                               potentialPerimeter.Count, RoomConfiguration.MinPerimeterSpaces));
                     
                     // Validate the perimeter.
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)

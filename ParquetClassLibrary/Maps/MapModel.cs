@@ -97,17 +97,17 @@ namespace ParquetClassLibrary.Maps
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
                 throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                                    nameof(inUpperLeft), nameof(ParquetDefinitions)));
+                                                      nameof(inUpperLeft), nameof(ParquetDefinitions)));
             }
             else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
                 throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                                    nameof(inLowerRight), nameof(ParquetDefinitions)));
+                                                      nameof(inLowerRight), nameof(ParquetDefinitions)));
             }
-            else if (inLowerRight.X < inUpperLeft.X && inLowerRight.Y < inUpperLeft.Y)
+            else if (inLowerRight.X < inUpperLeft.X || inLowerRight.Y < inUpperLeft.Y)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrder,
-                                                                    nameof(inUpperLeft), nameof(inLowerRight)));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                                          nameof(inLowerRight), inLowerRight, inUpperLeft));
             }
             else
             {
