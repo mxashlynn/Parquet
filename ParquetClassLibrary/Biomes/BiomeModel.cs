@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Biomes
     {
         #region Class Defaults
         /// <summary>Represents the lack of a <see cref="BiomeModel"/> for <see cref="MapRegion"/>s that fail to qualify.</summary>
-        public static BiomeModel None { get; } = new BiomeModel(ModelID.None, "Waste", "The default biome.", "",
+        public static BiomeModel None { get; } = new BiomeModel(ModelID.None, "Expanse", "A featureless region.", "The default biome.",
                                                                 0, Elevation.LevelGround, false, false, null, null);
         #endregion
 
