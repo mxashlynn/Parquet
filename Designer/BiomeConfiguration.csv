@@ -1,2 +1,2 @@
-﻿LandThresholdFactor,LiquidThresholdFactor
-1.25,0.25
+﻿LandThresholdFactor,LiquidThresholdFactor,RoomThresholdFactor
+1.25,0.25,0.67

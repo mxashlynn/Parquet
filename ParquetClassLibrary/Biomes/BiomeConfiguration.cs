@@ -23,7 +23,7 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         internal static float LandThresholdFactor { get; private set; } = 1.25f;
 
-        /// <summary>1 and 1/4th of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
+        /// <summary>How many of a layers' worth of parquets must contribute to a land-based <see cref="BiomeModel"/>.</summary>
         internal static float LandThreshold => ParquetsPerLayer * LandThresholdFactor;
 
         /// <summary>
@@ -32,8 +32,17 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         internal static float LiquidThresholdFactor { get; private set; } = 0.25f;
 
-        /// <summary>3/4ths of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
+        /// <summary>How many of a layers' worth of parquets must contribute to a fluid-based <see cref="BiomeModel"/>.</summary>
         internal static float FluidThreshold => ParquetsPerLayer * LiquidThresholdFactor;
+
+        /// <summary>
+        /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
+        /// <see cref="MapRegion"/> to generate the <see cref="BiomeModel"/> associated with them.
+        /// </summary>
+        internal static float RoomThresholdFactor { get; private set; } = 0.67f;
+
+        /// <summary>How many of a layers' worth of parquets must contribute to a room-based <see cref="BiomeModel"/>.</summary>
+        internal static float RoomThreshold => ParquetsPerLayer * RoomThresholdFactor;
 
         #region Self Serialization
         /// <summary>

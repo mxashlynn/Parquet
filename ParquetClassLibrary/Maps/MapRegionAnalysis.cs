@@ -9,9 +9,12 @@ namespace ParquetClassLibrary.Biomes
     /// </summary>
     internal static class MapRegionAnalysis
     {
-        // TODO This should probably be a part of BiomeModel!
+        // TODO This should probably be a part of BiomeModel or MapRegion
+
         // TODO These should employ ModelTags instead of being hard-coded
         // TODO These should probably be configurable -- maybe ModelTags is enough to satisfy that?
+
+        // HARD-CODED RULE:  Room-Based Biomes trump Liquid-Based Biomes trump Land-Based Biomes trump the Empty Biome.
 
         #region Biome Analysis
         /// <summary>
