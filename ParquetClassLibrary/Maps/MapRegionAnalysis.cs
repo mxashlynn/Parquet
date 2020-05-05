@@ -18,6 +18,9 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         /// <param name="inRegion">The region to investigate.</param>
         /// <returns>The appropriate <see cref="ModelID"/>.</returns>
+        /// <remarks>
+        /// This method assumes that the <see cref="Rooms.RoomCollection"/> has already been populated.
+        /// </remarks>
         public static ModelID GetBiome(this MapRegion inRegion)
         {
             foreach (BiomeModel biome in All.Biomes)
@@ -39,8 +42,6 @@ namespace ParquetClassLibrary.Biomes
             // Returns the given BiomeModel's ModelID if they match, otherwise returns the ModelID for the default biome.
             static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
             {
-                var result = BiomeModel.None.ID;
-
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
                     // Prioritization of biome categories is hard-coded in the following way:
@@ -48,27 +49,19 @@ namespace ParquetClassLibrary.Biomes
                     //    2 Liquid-based Biomes supercede
                     //    3 Land-based Biomes supercede
                     //    4 the default Biome.
-                    if (inBiome.IsRoomBased
-                        && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
-                        && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                    if ((inBiome.IsRoomBased
+                            && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
+                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                        || (inBiome.IsLiquidBased
+                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
+                        || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
                     {
-                        result = inBiome.ID;
-                        break;
-                    }
-                    else if (inBiome.IsLiquidBased
-                             && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
-                    {
-                        result = inBiome.ID;
-                        break;
-                    }
-                    else if (ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
-                    {
-                        result = inBiome.ID;
-                        break;
+                        return inBiome.ID;
                     }
                 }
 
-                return result;
+                // TODO We might want to log this result here, too, though if so it whould be an INFO log rather than a warning.
+                return BiomeModel.None.ID;
             }
 
             // Determines the number of individual parquets that are present inside Rooms in the given MapRegion.
@@ -77,6 +70,7 @@ namespace ParquetClassLibrary.Biomes
             static ModelID GetParquetsInRooms(MapRegion inRegion)
             {
                 var parquetsInRoom = 0;
+
                 // TODO This might be a good place to optimise.
                 for (var y = 0; y < inRegion.ParquetDefinitions.Rows; y++)
                 {
@@ -89,6 +83,7 @@ namespace ParquetClassLibrary.Biomes
                         }
                     }
                 }
+
                 return parquetsInRoom;
             }
 
@@ -99,15 +94,14 @@ namespace ParquetClassLibrary.Biomes
             // Returns true if enough parquets contribute to the biome, false otherwise.
             static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, int inThreshold)
             {
-                var result = false;
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
                     if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
                     {
-                        result = true;
+                        return true;
                     }
                 }
-                return result;
+                return false;
             }
 
             // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
