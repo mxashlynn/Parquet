@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
 
 namespace ParquetClassLibrary.Biomes
 {
@@ -11,173 +13,137 @@ namespace ParquetClassLibrary.Biomes
     {
         // TODO This should probably be a part of BiomeModel or MapRegion
 
-        // TODO These should employ ModelTags instead of being hard-coded
-        // TODO These should probably be configurable -- maybe ModelTags is enough to satisfy that?
-
-        // HARD-CODED RULE:  Room-Based Biomes trump Liquid-Based Biomes trump Land-Based Biomes trump the Empty Biome.
-
-        #region Biome Analysis
         /// <summary>
-        /// Determines which <see cref="Biome"/> the given <see cref="MapRegion"/> corresponds to.
+        /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegion"/> corresponds to.
         /// </summary>
         /// <param name="inRegion">The region to investigate.</param>
-        /// <returns>The appropriate <see cref="Biome"/>.</returns>
-        public static BiomeModel GetBiome(this MapRegion inRegion)
+        /// <returns>The appropriate <see cref="BiomeModel"/>.</returns>
+        public static ModelID GetBiome(this MapRegion inRegion)
         {
-            var result = Biome.Field;
-
-            if (inRegion.HasBuildings())
+            foreach (BiomeModel biome in All.Biomes)
             {
-                result = Biome.Town;
-            }
-            else
-            {
-                switch (inRegion.ElevationLocal)
+                if (biome.ElevationCategory == inRegion.ElevationLocal)
                 {
-                    case Elevation.AboveGround:
-                        if (inRegion.IsHeavenly())
-                        {
-                            result = Biome.Heavens;
-                        }
-                        else
-                        {
-                            result = Biome.Alpine;
-                        }
-                        break;
-                    case Elevation.LevelGround:
-                        if (inRegion.IsVolcanic())
-                        {
-                            result = Biome.Volcano;
-                        }
-                        else if (inRegion.IsCoastal())
-                        {
-                            result = Biome.Seaside;
-                        }
-                        else if (inRegion.IsDeserted())
-                        {
-                            result = Biome.Desert;
-                        }
-                        else if (inRegion.IsFrozen())
-                        {
-                            result = Biome.Tundra;
-                        }
-                        else if (inRegion.IsSwampy())
-                        {
-                            result = Biome.Swamp;
-                        }
-                        else if (inRegion.IsForested())
-                        {
-                            result = Biome.Forest;
-                        }
-                        break;
-                    case Elevation.BelowGround:
-                        if (inRegion.IsVolcanic())
-                        {
-                            result = Biome.Inferno;
-                        }
-                        else
-                        {
-                            result = Biome.Cavern;
-                        }
-                        break;
+                    return FindBiomeByTag(inRegion, biome);
                 }
             }
 
-            return result;
-        }
-
-        /// <summary>
-        /// Determines if the region has enough heavenly parquets to qualify as heaven.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsHeavenly(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsHeavenly(),
-                                            BiomeConfiguration.FluidThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough flowing lava to qualify as volcanic.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsVolcanic(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsVolcanic(),
-                                            BiomeConfiguration.FluidThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough flowing water to qualify as oceanic.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsCoastal(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsCoastal(),
-                                            BiomeConfiguration.FluidThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough sandy parquets to qualify as a desert.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsDeserted(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsDeserted(),
-                                            BiomeConfiguration.LandThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough snowy parquets to qualify as tundra.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsFrozen(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsFrozen(),
-                                            BiomeConfiguration.LandThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough marshy parquets to qualify as a swamp.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsSwampy(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsSwampy(),
-                                            BiomeConfiguration.LandThreshold);
-
-        /// <summary>
-        /// Determines if the region has enough trees to qualify as a forest.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
-        internal static bool IsForested(this MapRegion inRegion)
-            => CountMeetsOrExceedsThreshold(inRegion,
-                                            parquet => parquet.AddsToBiome.IsForested(),
-                                            BiomeConfiguration.LandThreshold);
-
-        /// <summary>
-        /// Helper method determines if the region has enough parquets satisfying the given predicate
-        /// to meet or exceed the given threshold.
-        /// </summary>
-        /// <param name="inRegion">The region to test.</param>
-        /// <param name="inPredicate">A predicate indicating if the parquet should be counted.</param>
-        /// <param name="inThreshold">A total number of parquets that must be met for the region to qualify.</param>
-        /// <returns><c>true</c>, if enough parquets satisfy the conditions given, <c>false</c> otherwise.</returns>
-        private static bool CountMeetsOrExceedsThreshold(MapRegion inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
-        {
-            var count = 0;
-
-            foreach (var parquet in inRegion.ParquetDefinitions.GetAllParquets())
+            #region Local Helper Methods
+            // Determines the number of individual parquets that are present inside rooms in the given MapRegion.
+            //     inRegion -> The region to consider.
+            // Returns the number of parquets that are part of a known Room.
+            static ModelID GetParquetsInRooms(MapRegion inRegion)
             {
-                if (inPredicate(parquet))
+                var parquetsInRoom = 0;
+                // TODO This might be a good place to optimise.
+                for (var y = 0; y < inRegion.ParquetDefinitions.Rows; y++)
                 {
-                    count++;
+                    for (var x = 0; x < inRegion.ParquetDefinitions.Columns; x++)
+                    {
+                        if (inRegion.Rooms.Any(room => room.ContainsPosition(new Vector2D(x, y))))
+                        {
+                            // Note that we are counting every parquet, including collectibles.
+                            parquetsInRoom += inRegion.ParquetDefinitions[y, x].Count;
+                        }
+                    }
                 }
+                return parquetsInRoom;
             }
 
-            return count >= inThreshold;
+            // Determines if the given region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
+            //     inRegion -> The region to test.
+            //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            // Returns true if enough parquets satisfy the conditions given, false otherwise.
+            static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, Predicate<ParquetModel> inPredicate, int inThreshold)
+            {
+                var result = false;
+                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                {
+                    if (CountMeetsOrExceedsThreshold(inRegion, inPredicate, inThreshold))
+                    {
+                        result = true;
+                    }
+                }
+                return result;
+            }
+
+            // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
+            //     inRegion -> The region to test.
+            //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //     inThreshold -> A total number of parquets that must be met for the region to qualify.
+            // Returns true if enough parquets satisfy the conditions given, false otherwise.
+            static bool CountMeetsOrExceedsThreshold(MapRegion inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
+            {
+                var count = 0;
+
+                foreach (ParquetStack stack in inRegion.ParquetDefinitions)
+                {
+                    if (inPredicate(All.Parquets.Get<FloorModel>(stack.Floor)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<BlockModel>(stack.Block)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<FurnishingModel>(stack.Furnishing)))
+                    {
+                        count++;
+                    }
+                    if (inPredicate(All.Parquets.Get<CollectibleModel>(stack.Collectible)))
+                    {
+                        count++;
+                    }
+                }
+
+                return count >= inThreshold;
+            }
+
+            static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
+            {
+                var result = BiomeModel.None.ID;
+
+                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                {
+                    // Prioritization of biome categories is hard-coded in the following way:
+                    //    1 Room-based Biomes supercede
+                    //    2 Liquid-based Biomes supercede
+                    //    3 Land-based Biomes supercede
+                    //    4 the default Biome.
+                    if (inBiome.IsRoomBased
+                        && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
+                        && ConstitutesBiome(inRegion,
+                                            inBiome,
+                                            parquet => parquet.AddsToBiome == biomeTag,
+                                            BiomeConfiguration.RoomThreshold))
+                    {
+                        result = inBiome.ID;
+                    }
+                    else if (inBiome.IsLiquidBased
+                             && ConstitutesBiome(inRegion,
+                                                 inBiome,
+                                                 parquet => /* TODO We don't actually care if the parquet is a Liquid, though, right?
+                                                                 Like, brimstone contributes to volcanoes and seaweed to seasides?
+                                                                 parquet is BlockModel block
+                                                             && block.IsLiquid
+                                                             && */ parquet.AddsToBiome == biomeTag,
+                                                 BiomeConfiguration.LiquidThreshold))
+                    {
+                        result = inBiome.ID;
+                    }
+                    else if (ConstitutesBiome(inRegion,
+                                              inBiome,
+                                              parquet => parquet.AddsToBiome == biomeTag,
+                                              BiomeConfiguration.LandThreshold))
+                    {
+                        result = inBiome.ID;
+                    }
+                }
+
+                return result;
+            }
+            #endregion
         }
-        #endregion
     }
 }
