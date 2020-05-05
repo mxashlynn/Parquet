@@ -1,3 +1,7 @@
+using System;
+using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
+
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
@@ -6,9 +10,9 @@ namespace ParquetClassLibrary.Biomes
     internal static class MapRegionAnalysis
     {
         // TODO This should probably be a part of BiomeModel!
+        // TODO These should employ ModelTags instead of being hard-coded
+        // TODO These should probably be configurable -- maybe ModelTags is enough to satisfy that?
 
-        // TODO Revisit this when implementing Biome detection.
-        /*
         #region Biome Analysis
         /// <summary>
         /// Determines which <see cref="Biome"/> the given <see cref="MapRegion"/> corresponds to.
@@ -86,8 +90,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsHeavenly(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsHeavenly(),
-                                            Rules.BiomeCriteria.FluidThreshold);
+                                            parquet => parquet.AddsToBiome.IsHeavenly(),
+                                            BiomeConfiguration.FluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough flowing lava to qualify as volcanic.
@@ -96,8 +100,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsVolcanic(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsVolcanic(),
-                                            Rules.BiomeCriteria.FluidThreshold);
+                                            parquet => parquet.AddsToBiome.IsVolcanic(),
+                                            BiomeConfiguration.FluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough flowing water to qualify as oceanic.
@@ -106,8 +110,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsCoastal(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsCoastal(),
-                                            Rules.BiomeCriteria.FluidThreshold);
+                                            parquet => parquet.AddsToBiome.IsCoastal(),
+                                            BiomeConfiguration.FluidThreshold);
 
         /// <summary>
         /// Determines if the region has enough sandy parquets to qualify as a desert.
@@ -116,8 +120,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsDeserted(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsDeserted(),
-                                            Rules.BiomeCriteria.LandThreshold);
+                                            parquet => parquet.AddsToBiome.IsDeserted(),
+                                            BiomeConfiguration.LandThreshold);
 
         /// <summary>
         /// Determines if the region has enough snowy parquets to qualify as tundra.
@@ -126,8 +130,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsFrozen(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsFrozen(),
-                                            Rules.BiomeCriteria.LandThreshold);
+                                            parquet => parquet.AddsToBiome.IsFrozen(),
+                                            BiomeConfiguration.LandThreshold);
 
         /// <summary>
         /// Determines if the region has enough marshy parquets to qualify as a swamp.
@@ -136,8 +140,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsSwampy(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsSwampy(),
-                                            Rules.BiomeCriteria.LandThreshold);
+                                            parquet => parquet.AddsToBiome.IsSwampy(),
+                                            BiomeConfiguration.LandThreshold);
 
         /// <summary>
         /// Determines if the region has enough trees to qualify as a forest.
@@ -146,8 +150,8 @@ namespace ParquetClassLibrary.Biomes
         /// <returns><c>true</c>, if the region meets the criteria, <c>false</c> otherwise.</returns>
         internal static bool IsForested(this MapRegion inRegion)
             => CountMeetsOrExceedsThreshold(inRegion,
-                                            p => p.AddsToBiome.IsForested(),
-                                            Rules.BiomeCriteria.LandThreshold);
+                                            parquet => parquet.AddsToBiome.IsForested(),
+                                            BiomeConfiguration.LandThreshold);
 
         /// <summary>
         /// Helper method determines if the region has enough parquets satisfying the given predicate
@@ -161,7 +165,7 @@ namespace ParquetClassLibrary.Biomes
         {
             var count = 0;
 
-            foreach (var parquet in inRegion.GetAllParquets())
+            foreach (var parquet in inRegion.ParquetDefinitions.GetAllParquets())
             {
                 if (inPredicate(parquet))
                 {
@@ -172,6 +176,5 @@ namespace ParquetClassLibrary.Biomes
             return count >= inThreshold;
         }
         #endregion
-        */
     }
 }
