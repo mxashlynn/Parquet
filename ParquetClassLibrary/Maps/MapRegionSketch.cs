@@ -9,16 +9,16 @@ using ParquetClassLibrary.Properties;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A pattern and metadata to generate a playable region.
+    /// A pattern and metadata to generate a <see cref="MapRegion"/>.
     /// </summary>
     /// <remarks>
-    /// <see cref="MapRegion"/>s are stored as <see cref="MapRegionSketch"/>es, for example in an editor tool,
-    /// before being fleshed, for example on load in-game.
+    /// Before play begins, <see cref="MapRegion"/>s are stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
+    /// Once loaded in-game they are composited, which often includes procedurally generating contained <see cref="MapChunk"/>s.
     /// </remarks>
     public sealed class MapRegionSketch : MapModel, IMapRegionEdit
     {
         #region Class Defaults
-        /// <summary>Used to indicate an empty grid.</summary>
+        /// <summary>Used to indicate a blank sketch.</summary>
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
 
         /// <summary>The region's dimensions in parquets.</summary>
