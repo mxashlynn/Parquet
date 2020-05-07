@@ -33,9 +33,6 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Default name for new regions.</summary>
         internal const string DefaultName = "New Region";
 
-        /// <summary>Relative elevation to use if none is provided.</summary>
-        internal const int DefaultGlobalElevation = 0;
-
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
         #endregion
@@ -64,31 +61,23 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The region's elevation in absolute terms.</summary>
         [Index(7)]
-        public Elevation ElevationLocal { get; private set; }
+        public Elevation ElevationCategory { get; private set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
         [Ignore]
-        Elevation IMapRegionEdit.ElevationLocal { get => ElevationLocal; set => ElevationLocal = value; }
-
-        /// <summary>The region's elevation relative to all other regions.</summary>
-        [Index(8)]
-        public int ElevationGlobal { get; private set; }
-
-        /// <summary>The region's elevation relative to all other regions.</summary>
-        [Ignore]
-        int IMapRegionEdit.ElevationGlobal { get => ElevationGlobal; set => ElevationGlobal = value; }
+        Elevation IMapRegionEdit.ElevationCategory { get => ElevationCategory; set => ElevationCategory = value; }
         #endregion
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(9)]
+        [Index(8)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
-        [Index(10)]
+        [Index(9)]
         public override ParquetStackGrid ParquetDefinitions { get; }
 
         /// <summary>
@@ -109,21 +98,19 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
-        /// <param name="inElevationLocal">The absolute elevation of this region.</param>
-        /// <param name="inElevationGlobal">The relative elevation of this region expressed as a signed integer.</param>
+        /// <param name="inElevationCategory">The absolute elevation of this region.</param>
         /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
         public MapRegion(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                          int inRevision = 0, string inBackgroundColor = DefaultColor,
-                         Elevation inElevationLocal = Elevation.LevelGround, int inElevationGlobal = DefaultGlobalElevation,
+                         Elevation inElevationCategory = Elevation.LevelGround,
                          IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
                          ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inRevision, inExits)
         {
             BackgroundColor = inBackgroundColor;
-            ElevationLocal = inElevationLocal;
-            ElevationGlobal = inElevationGlobal;
+            ElevationCategory = inElevationCategory;
             ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
             ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
         }
@@ -141,7 +128,7 @@ namespace ParquetClassLibrary.Maps
         {
             foreach (BiomeModel biome in All.Biomes)
             {
-                if (biome.ElevationCategory == ElevationLocal)
+                if (biome.ElevationCategory == ElevationCategory)
                 {
                     return FindBiomeByTag(this, biome);
                 }

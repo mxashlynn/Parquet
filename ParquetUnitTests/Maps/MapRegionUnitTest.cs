@@ -15,8 +15,6 @@ namespace ParquetUnitTests.Maps
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
         private const Elevation testStory = Elevation.AboveGround;
-        private const int testElevation = -3;
-        private static readonly ModelID testID = TestModels.TestMapRegion.ID;
         private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
         #endregion
 
@@ -31,13 +29,11 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
-                                             0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor, testStory);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
-            Assert.Equal(testStory, customRegion.ElevationLocal);
-            Assert.Equal(testElevation, customRegion.ElevationGlobal);
+            Assert.Equal(testStory, customRegion.ElevationCategory);
         }
         #endregion
 
@@ -45,19 +41,16 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "",
-                                             0, testColor, testStory, testElevation);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor, testStory);
             IMapRegionEdit editableRegion = customRegion;
 
             editableRegion.Name = testName;
             editableRegion.BackgroundColor = testColor;
-            editableRegion.ElevationLocal = testStory;
-            editableRegion.ElevationGlobal = testElevation;
+            editableRegion.ElevationCategory = testStory;
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
-            Assert.Equal(testStory, customRegion.ElevationLocal);
-            Assert.Equal(testElevation, customRegion.ElevationGlobal);
+            Assert.Equal(testStory, customRegion.ElevationCategory);
         }
         #endregion
 

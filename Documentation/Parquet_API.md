@@ -272,8 +272,7 @@
   - [Rows](#P-ParquetClassLibrary-IGrid`1-Rows 'ParquetClassLibrary.IGrid`1.Rows')
 - [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-IMapRegionEdit-BackgroundColor 'ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor')
-  - [ElevationGlobal](#P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationGlobal 'ParquetClassLibrary.Maps.IMapRegionEdit.ElevationGlobal')
-  - [ElevationLocal](#P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationLocal 'ParquetClassLibrary.Maps.IMapRegionEdit.ElevationLocal')
+  - [ElevationCategory](#P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationCategory 'ParquetClassLibrary.Maps.IMapRegionEdit.ElevationCategory')
   - [Name](#P-ParquetClassLibrary-Maps-IMapRegionEdit-Name 'ParquetClassLibrary.Maps.IMapRegionEdit.Name')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
@@ -387,21 +386,18 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ChunksPerRegionDimension')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegion-DefaultColor 'ParquetClassLibrary.Maps.MapRegion.DefaultColor')
-  - [DefaultGlobalElevation](#F-ParquetClassLibrary-Maps-MapRegion-DefaultGlobalElevation 'ParquetClassLibrary.Maps.MapRegion.DefaultGlobalElevation')
   - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegion-DefaultName 'ParquetClassLibrary.Maps.MapRegion.DefaultName')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegion-Empty 'ParquetClassLibrary.Maps.MapRegion.Empty')
   - [ParquetsPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ParquetsPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ParquetsPerRegionDimension')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.BackgroundColor')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegion-Bounds 'ParquetClassLibrary.Maps.MapRegion.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets')
-  - [ElevationGlobal](#P-ParquetClassLibrary-Maps-MapRegion-ElevationGlobal 'ParquetClassLibrary.Maps.MapRegion.ElevationGlobal')
-  - [ElevationLocal](#P-ParquetClassLibrary-Maps-MapRegion-ElevationLocal 'ParquetClassLibrary.Maps.MapRegion.ElevationLocal')
+  - [ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegion-ElevationCategory 'ParquetClassLibrary.Maps.MapRegion.ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
@@ -409,20 +405,17 @@
   - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
-  - [DefaultGlobalElevation](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultGlobalElevation 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultGlobalElevation')
   - [DefaultTitle](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultTitle 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultTitle')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegionSketch-Empty 'ParquetClassLibrary.Maps.MapRegionSketch.Empty')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegionSketch-Bounds 'ParquetClassLibrary.Maps.MapRegionSketch.Bounds')
   - [Chunks](#P-ParquetClassLibrary-Maps-MapRegionSketch-Chunks 'ParquetClassLibrary.Maps.MapRegionSketch.Chunks')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets')
-  - [ElevationGlobal](#P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationGlobal 'ParquetClassLibrary.Maps.MapRegionSketch.ElevationGlobal')
-  - [ElevationLocal](#P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationLocal 'ParquetClassLibrary.Maps.MapRegionSketch.ElevationLocal')
+  - [ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationCategory 'ParquetClassLibrary.Maps.MapRegionSketch.ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetStatuses')
@@ -3645,15 +3638,8 @@ Facilitates editing of [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'Parque
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationGlobal'></a>
-### ElevationGlobal `property`
-
-##### Summary
-
-The region's elevation relative to all other regions.
-
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationLocal'></a>
-### ElevationLocal `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationCategory'></a>
+### ElevationCategory `property`
 
 ##### Summary
 
@@ -4927,8 +4913,8 @@ ParquetClassLibrary.Maps
 
 A playable region in sandbox.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4944,8 +4930,7 @@ Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
-| inElevationLocal | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
-| inElevationGlobal | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The relative elevation of this region expressed as a signed integer. |
+| inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
 | inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
@@ -4963,13 +4948,6 @@ The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetCla
 ##### Summary
 
 Default color for new regions.
-
-<a name='F-ParquetClassLibrary-Maps-MapRegion-DefaultGlobalElevation'></a>
-### DefaultGlobalElevation `constants`
-
-##### Summary
-
-Relative elevation to use if none is provided.
 
 <a name='F-ParquetClassLibrary-Maps-MapRegion-DefaultName'></a>
 ### DefaultName `constants`
@@ -5013,15 +4991,8 @@ The set of values that are allowed for [MapRegion](#T-ParquetClassLibrary-Maps-M
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ElevationGlobal'></a>
-### ElevationGlobal `property`
-
-##### Summary
-
-The region's elevation relative to all other regions.
-
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ElevationLocal'></a>
-### ElevationLocal `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ElevationCategory'></a>
+### ElevationCategory `property`
 
 ##### Summary
 
@@ -5034,15 +5005,8 @@ The region's elevation in absolute terms.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal `property`
-
-##### Summary
-
-The region's elevation relative to all other regions.
-
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory `property`
 
 ##### Summary
 
@@ -5120,15 +5084,15 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-A pattern and metadata to generate a playable region.
+A pattern and metadata to generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
 ##### Remarks
 
-[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool,
-before being fleshed, for example on load in-game.
+Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
+Once loaded in-game they are composited, which often includes procedurally generating contained [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationLocal,inElevationGlobal,inExits,inChunks) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inChunks) `constructor`
 
 ##### Summary
 
@@ -5144,8 +5108,7 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
-| inElevationLocal | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
-| inElevationGlobal | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The relative elevation of this region expressed as a signed integer. |
+| inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
 | inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
 | inChunks | [ParquetClassLibrary.Maps.ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') | The pattern from which a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') may be generated. |
 
@@ -5155,13 +5118,6 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 ##### Summary
 
 Default color for new regions.
-
-<a name='F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultGlobalElevation'></a>
-### DefaultGlobalElevation `constants`
-
-##### Summary
-
-Relative elevation to use if none is provided.
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultTitle'></a>
 ### DefaultTitle `constants`
@@ -5175,7 +5131,7 @@ Default name for new regions.
 
 ##### Summary
 
-Used to indicate an empty grid.
+Used to indicate a blank sketch.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-BackgroundColor'></a>
 ### BackgroundColor `property`
@@ -5205,15 +5161,8 @@ The set of values that are allowed for [MapRegionSketch](#T-ParquetClassLibrary-
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationGlobal'></a>
-### ElevationGlobal `property`
-
-##### Summary
-
-The region's elevation relative to all other regions.
-
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationLocal'></a>
-### ElevationLocal `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationCategory'></a>
+### ElevationCategory `property`
 
 ##### Summary
 
@@ -5226,15 +5175,8 @@ The region's elevation in absolute terms.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationGlobal `property`
-
-##### Summary
-
-The region's elevation relative to all other regions.
-
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationLocal `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory `property`
 
 ##### Summary
 

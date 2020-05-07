@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Biomes
     {
         /// <summary>Topmost elevation.</summary>
         AboveGround,
-        /// <summary>Mid-level elevation.</summary>
+        /// <summary>Default elevation.</summary>
         LevelGround,
         /// <summary>Lowest elevation.</summary>
         BelowGround,

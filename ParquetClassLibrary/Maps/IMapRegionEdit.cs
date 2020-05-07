@@ -14,9 +14,6 @@ namespace ParquetClassLibrary.Maps
         string BackgroundColor { get; set; }
 
         /// <summary>The region's elevation in absolute terms.</summary>
-        Elevation ElevationLocal { get; set; }
-
-        /// <summary>The region's elevation relative to all other regions.</summary>
-        int ElevationGlobal { get; set; }
+        Elevation ElevationCategory { get; set; }
     }
 }
