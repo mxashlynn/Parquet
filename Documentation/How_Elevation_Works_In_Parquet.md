@@ -8,6 +8,8 @@ Map Regions are connected to one another via Exit Points.  Exit Points are arbit
 
 However, a Map Region with Above Ground elevation may have another Map Region designated below it.  Likewise, a Below Ground Map Region may have another region above it.  And a Level Ground region may have both.
 
+<img src="https://github.com/mxashlynn/Parquet/blob/master/Documentation/Parquet_Elevation_Chart.png" alt="A chart showing the relationships between map regions of different elevations.">
+
 # Liquid Blocks Flow Down
 
 Liquid Blocks that flow onto an empty space in a Map Region that has another region below it will flow down to that lower elevation Map Region automatically.
