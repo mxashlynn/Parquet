@@ -57,33 +57,25 @@ namespace ParquetClassLibrary.Maps
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Ignore]
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
-
-        /// <summary>The region's elevation in absolute terms.</summary>
-        [Index(7)]
-        public Elevation ElevationCategory { get; private set; }
-
-        /// <summary>The region's elevation in absolute terms.</summary>
-        [Ignore]
-        Elevation IMapRegionEdit.ElevationCategory { get => ElevationCategory; set => ElevationCategory = value; }
         #endregion
 
         #region Map Contents
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
         [Ignore]
-        [Index(8)]
+        [Index(7)]
         public override ParquetStatusGrid ParquetStatuses
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetStatuses), nameof(MapRegionSketch)));
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
-        [Index(9)]
+        [Index(8)]
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
-        [Index(10)]
+        [Index(9)]
         public ChunkTypeGrid Chunks { get; }
         #endregion
         #endregion
@@ -98,17 +90,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
-        /// <param name="inElevationCategory">The absolute elevation of this region.</param>
-        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                               int inRevision = 0, string inBackgroundColor = DefaultColor,
-                               Elevation inElevationCategory = Elevation.LevelGround,
-                               IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision, inExits)
+                               int inRevision = 0, string inBackgroundColor = DefaultColor, ChunkTypeGrid inChunks = null)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
             BackgroundColor = inBackgroundColor;
-            ElevationCategory = inElevationCategory;
             Chunks = inChunks ?? new ChunkTypeGrid();
         }
         #endregion

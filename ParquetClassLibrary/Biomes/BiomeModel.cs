@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Biomes
         #region Class Defaults
         /// <summary>Represents the lack of a <see cref="BiomeModel"/> for <see cref="MapRegion"/>s that fail to qualify.</summary>
         public static BiomeModel None { get; } = new BiomeModel(ModelID.None, "Expanse", "A featureless region.", "The default biome.",
-                                                                0, Elevation.LevelGround, false, false, null, null);
+                                                                0, false, false, null, null);
         #endregion
 
         #region Characteristics
@@ -25,24 +25,20 @@ namespace ParquetClassLibrary.Biomes
         [Index(4)]
         public int Tier { get; }
 
-        /// <summary>Describes where this <see cref="BiomeModel"/> falls in terms of the game world's overall topography.</summary>
-        [Index(5)]
-        public Elevation ElevationCategory { get; }
-
         /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
-        [Index(6)]
+        [Index(5)]
         public bool IsRoomBased { get; }
 
         /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</summary>
-        [Index(7)]
+        [Index(6)]
         public bool IsLiquidBased { get; }
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
-        [Index(8)]
+        [Index(7)]
         public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
-        [Index(9)]
+        [Index(8)]
         public IReadOnlyList<ModelTag> EntryRequirements { get; }
         #endregion
 
@@ -55,14 +51,12 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="inDescription">Player-friendly description of the <see cref="BiomeModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="BiomeModel"/>.</param>
         /// <param name="inTier">A rating indicating where in the progression this <see cref="BiomeModel"/> falls.</param>
-        /// <param name="inElevationCategory">Describes where this <see cref="BiomeModel"/> falls in terms of the game world's overall topography.</param>
         /// <param name="inIsRoomBased">Determines whether or not this <see cref="BiomeModel"/> is defined in terms of <see cref="Rooms.Room"/>s.</param>
         /// <param name="inIsLiquidBased">Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</param>
         /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="BiomeModel"/>.</param>
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeModel"/>.</param>
         public BiomeModel(ModelID inID, string inName, string inDescription, string inComment,
-                          int inTier, Elevation inElevationCategory,
-                          bool inIsRoomBased, bool inIsLiquidBased,
+                          int inTier, bool inIsRoomBased, bool inIsLiquidBased,
                           IEnumerable<ModelTag> inParquetCriteria,
                           IEnumerable<ModelTag> inEntryRequirements)
             : base(All.BiomeIDs, inID, inName, inDescription, inComment)
@@ -70,7 +64,6 @@ namespace ParquetClassLibrary.Biomes
             Precondition.MustBeNonNegative(inTier, nameof(inTier));
 
             Tier = inTier;
-            ElevationCategory = inElevationCategory;
             IsRoomBased = inIsRoomBased;
             IsLiquidBased = inIsLiquidBased;
             ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<ModelTag>()).ToList();

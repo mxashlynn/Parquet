@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using ParquetClassLibrary.Parquets;
 
 namespace ParquetClassLibrary.Maps
@@ -24,22 +22,14 @@ namespace ParquetClassLibrary.Maps
         public ParquetStatus Status { get; }
 
         /// <summary>
-        /// Special points at the given position.
-        /// </summary>
-        /// <value>The special points.</value>
-        public IReadOnlyList<ExitPoint> SpecialPoints { get; }
-
-        /// <summary>
         /// Triggered when the information about a specific map location is ready to be displayed.
         /// </summary>
         /// <param name="inStacks">Definition of any and all parquets at the location.</param>
         /// <param name="inStatuses">Status of any and all parquets at the location.</param>
-        /// <param name="inPoints">Any and all special points at the location.</param>
-        public PositionInfoEventArgs(ParquetStack inStacks, ParquetStatus inStatuses, IEnumerable<ExitPoint> inPoints)
+        public PositionInfoEventArgs(ParquetStack inStacks, ParquetStatus inStatuses)
         {
             Stack = inStacks;
             Status = inStatuses;
-            SpecialPoints = inPoints.ToList();
         }
     }
 }

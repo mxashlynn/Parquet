@@ -12,8 +12,5 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         string BackgroundColor { get; set; }
-
-        /// <summary>The region's elevation in absolute terms.</summary>
-        Elevation ElevationCategory { get; set; }
     }
 }

@@ -68,17 +68,12 @@ ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Biomes.BiomeConfiguration
 ParquetClassLibrary.Biomes.BiomeModel
-ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, ParquetClassLibrary.Biomes.Elevation inElevationCategory, bool inIsRoomBased, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
-ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
+ParquetClassLibrary.Biomes.BiomeModel.BiomeModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier, bool inIsRoomBased, bool inIsLiquidBased, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements) -> void
 ParquetClassLibrary.Biomes.BiomeModel.EntryRequirements.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased.get -> bool
 ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased.get -> bool
 ParquetClassLibrary.Biomes.BiomeModel.ParquetCriteria.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Biomes.BiomeModel.Tier.get -> int
-ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Biomes.Elevation.AboveGround = 0 -> ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Biomes.Elevation.BelowGround = 2 -> ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Biomes.Elevation.LevelGround = 1 -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Crafts.CraftConfiguration
 ParquetClassLibrary.Crafts.CraftingRecipe
 ParquetClassLibrary.Crafts.CraftingRecipe.CraftingRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inProducts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inIngredients, ParquetClassLibrary.Crafts.StrikePanelGrid inPanelPattern) -> void
@@ -207,39 +202,27 @@ ParquetClassLibrary.Maps.ChunkTypeGrid.GetEnumerator() -> System.Collections.IEn
 ParquetClassLibrary.Maps.ChunkTypeGrid.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Maps.ChunkTypeGrid.Rows.get -> int
 ParquetClassLibrary.Maps.ChunkTypeGrid.this[int y, int x].get -> ParquetClassLibrary.Maps.ChunkType
-ParquetClassLibrary.Maps.ExitPoint
-ParquetClassLibrary.Maps.ExitPoint.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-ParquetClassLibrary.Maps.ExitPoint.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-ParquetClassLibrary.Maps.ExitPoint.Destination.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.Maps.ExitPoint.Equals(ParquetClassLibrary.Maps.ExitPoint inPoint) -> bool
-ParquetClassLibrary.Maps.ExitPoint.ExitPoint() -> void
-ParquetClassLibrary.Maps.ExitPoint.ExitPoint(ParquetClassLibrary.Vector2D inPosition, ParquetClassLibrary.ModelID inDestinationID) -> void
-ParquetClassLibrary.Maps.ExitPoint.Position.get -> ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Maps.MapChunk
-ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
-ParquetClassLibrary.Maps.MapModel.Exits.get -> System.Collections.Generic.List<ParquetClassLibrary.Maps.ExitPoint>
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D inUpperLeft, ParquetClassLibrary.Vector2D inLowerRight) -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
-ParquetClassLibrary.Maps.MapModel.MapModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null) -> void
+ParquetClassLibrary.Maps.MapModel.MapModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision) -> void
 ParquetClassLibrary.Maps.MapModel.ParquetsCount.get -> int
 ParquetClassLibrary.Maps.MapModel.Revision.get -> int
 ParquetClassLibrary.Maps.MapModel.Revision.set -> void
 ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.MapRegion.BackgroundColor.get -> string
-ParquetClassLibrary.Maps.MapRegion.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
 ParquetClassLibrary.Maps.MapRegion.GetBiome() -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationCategory = ParquetClassLibrary.Biomes.Elevation.LevelGround, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapRegion.Rooms.get -> ParquetClassLibrary.Rooms.RoomCollection
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.Maps.ChunkTypeGrid
-ParquetClassLibrary.Maps.MapRegionSketch.ElevationCategory.get -> ParquetClassLibrary.Biomes.Elevation
-ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Biomes.Elevation inElevationCategory = ParquetClassLibrary.Biomes.Elevation.LevelGround, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inExits = null, ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
+ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs
-ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.ExitPoint> inPoints) -> void
-ParquetClassLibrary.Maps.PositionInfoEventArgs.SpecialPoints.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Maps.ExitPoint>
+ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Status.get -> ParquetClassLibrary.Parquets.ParquetStatus
 ParquetClassLibrary.Model
@@ -539,9 +522,6 @@ override ParquetClassLibrary.Location.ToString() -> string
 override ParquetClassLibrary.Maps.ChunkType.Equals(object obj) -> bool
 override ParquetClassLibrary.Maps.ChunkType.GetHashCode() -> int
 override ParquetClassLibrary.Maps.ChunkType.ToString() -> string
-override ParquetClassLibrary.Maps.ExitPoint.Equals(object obj) -> bool
-override ParquetClassLibrary.Maps.ExitPoint.GetHashCode() -> int
-override ParquetClassLibrary.Maps.ExitPoint.ToString() -> string
 override ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 override ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 override ParquetClassLibrary.Maps.MapChunk.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
@@ -624,8 +604,6 @@ static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inL
 static ParquetClassLibrary.Maps.ChunkType.operator !=(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkType.operator ==(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkTypeGrid.DimensionsInChunks.get -> ParquetClassLibrary.Vector2D
-static ParquetClassLibrary.Maps.ExitPoint.operator !=(ParquetClassLibrary.Maps.ExitPoint inPoint1, ParquetClassLibrary.Maps.ExitPoint inPoint2) -> bool
-static ParquetClassLibrary.Maps.ExitPoint.operator ==(ParquetClassLibrary.Maps.ExitPoint inPoint1, ParquetClassLibrary.Maps.ExitPoint inPoint2) -> bool
 static ParquetClassLibrary.Maps.MapChunk.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapChunk.Empty.get -> ParquetClassLibrary.Maps.MapChunk
 static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
