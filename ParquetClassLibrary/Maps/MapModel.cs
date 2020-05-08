@@ -51,7 +51,6 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, int inRevision)
             : base(inBounds, inID, inName, inDescription, inComment)
             => Revision = inRevision;
