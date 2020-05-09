@@ -248,6 +248,14 @@
 - [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-IMapRegionEdit-BackgroundColor 'ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor')
   - [Name](#P-ParquetClassLibrary-Maps-IMapRegionEdit-Name 'ParquetClassLibrary.Maps.IMapRegionEdit.Name')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+  - [GetDual(inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDual(System.String)')
+  - [GetDualValue(inMap,inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDualValue-ParquetClassLibrary-Maps-IMapRegionEdit,System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDualValue(ParquetClassLibrary.Maps.IMapRegionEdit,System.String)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
   - [Description](#P-ParquetClassLibrary-IModelEdit-Description 'ParquetClassLibrary.IModelEdit.Description')
@@ -348,7 +356,7 @@
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapChunk-ParquetStatuses 'ParquetClassLibrary.Maps.MapChunk.ParquetStatuses')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapChunk-ToString 'ParquetClassLibrary.Maps.MapChunk.ToString')
 - [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
-  - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32)')
+  - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32)')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapModel.DimensionsInParquets')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapModel.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapModel.ParquetStatuses')
@@ -370,8 +378,20 @@
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-RegionAbove 'ParquetClassLibrary.Maps.MapRegion.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-RegionBelow 'ParquetClassLibrary.Maps.MapRegion.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.RegionToTheWest')
   - [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms')
   - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
@@ -386,8 +406,20 @@
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetStatuses')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionSketch-ToString 'ParquetClassLibrary.Maps.MapRegionSketch.ToString')
 - [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')
   - [#ctor(inPosition,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStackGrid)')
@@ -690,6 +722,7 @@
   - [ErrorOutOfBounds](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds 'ParquetClassLibrary.Properties.Resources.ErrorOutOfBounds')
   - [ErrorOutOfOrderGTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderGTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderGTE')
   - [ErrorOutOfOrderLTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderLTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderLTE')
+  - [ErrorUndefinedDirection](#P-ParquetClassLibrary-Properties-Resources-ErrorUndefinedDirection 'ParquetClassLibrary.Properties.Resources.ErrorUndefinedDirection')
   - [ErrorUngenerated](#P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated 'ParquetClassLibrary.Properties.Resources.ErrorUngenerated')
   - [ErrorUnsupportedDimension](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDimension')
   - [ErrorUnsupportedDuplicate](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDuplicate')
@@ -3272,6 +3305,103 @@ A color to display in any empty areas of the region.
 
 What the region is called in-game.
 
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
+
+<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String-'></a>
+### GetDual(inPropertyName) `method`
+
+##### Summary
+
+Given the name of a directional property, finds the name of the property for the opposite direction.
+
+##### Returns
+
+The name of the property in the opposite direction.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | One of:
+- [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
+- [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
+- [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
+- [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+- [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
+- [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow') |
+
+##### Remarks
+
+Provided to support optional consistency checks for region exits.
+
+<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDualValue-ParquetClassLibrary-Maps-IMapRegionEdit,System-String-'></a>
+### GetDualValue(inMap,inPropertyName) `method`
+
+##### Summary
+
+Given the name of a directional property, finds the value of the property for the opposite direction.
+
+##### Returns
+
+The value of the property in the opposite direction.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inMap | [ParquetClassLibrary.Maps.IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit') | The instance whose property's value is sought. |
+| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | One of:
+- [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
+- [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
+- [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
+- [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+- [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
+- [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow') |
+
+##### Remarks
+
+Provided to support optional consistency checks for region exits.
+
 <a name='T-ParquetClassLibrary-IModelEdit'></a>
 ## IModelEdit `type`
 
@@ -4395,7 +4525,7 @@ Provides methods that are used by all parquet-based map models (for example [Map
 but contrast [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') which is not parquet-based).
 
 <a name='M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32-'></a>
-### #ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits) `constructor`
+### #ctor(inBounds,inID,inName,inDescription,inComment,inRevision) `constructor`
 
 ##### Summary
 
@@ -4614,6 +4744,48 @@ A color to display in any empty areas of the region.
 
 What the region is called in-game.
 
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
+
 <a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
 
@@ -4628,6 +4800,48 @@ remember to update the corresponding element in [ParquetStatuses](#P-ParquetClas
 ##### Summary
 
 The statuses of parquets in the chunk.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegion-Rooms'></a>
 ### Rooms `property`
@@ -4768,6 +4982,48 @@ A color to display in any empty areas of the region.
 
 What the region is called in-game.
 
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
+
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
 
@@ -4781,6 +5037,48 @@ Generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrar
 ##### Summary
 
 Generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') before accessing parquet statuses.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-ToString'></a>
 ### ToString() `method`
@@ -8974,6 +9272,13 @@ Looks up a localized string similar to {0} is {1} but must be greater than or eq
 ##### Summary
 
 Looks up a localized string similar to {0} is {1} but must be less than or equal to {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUndefinedDirection'></a>
+### ErrorUndefinedDirection `property`
+
+##### Summary
+
+Looks up a localized string similar to The direction '{0}' is not defined..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated'></a>
 ### ErrorUngenerated `property`

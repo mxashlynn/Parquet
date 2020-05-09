@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
 
