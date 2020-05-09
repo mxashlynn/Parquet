@@ -177,6 +177,10 @@
     <value>{0} is {1} but must be less than or equal to {2}.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="ErrorUndefinedDirection" xml:space="preserve">
+    <value>The direction '{0}' is not defined.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorUngenerated" xml:space="preserve">
     <value>Cannot access {0} on ungenerated {1}.</value>
     <comment>Error string.</comment>

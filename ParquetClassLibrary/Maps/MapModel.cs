@@ -29,14 +29,14 @@ namespace ParquetClassLibrary.Maps
 
         #region Map Contents
         /// <summary>Floors and walkable terrain on the map.</summary>
-        [Index(8)]
+        [Index(12)]
         public abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(9)]
+        [Index(13)]
         public abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion

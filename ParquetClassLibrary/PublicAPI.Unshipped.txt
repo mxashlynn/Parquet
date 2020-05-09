@@ -216,11 +216,23 @@ ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.MapRegion.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegion.GetBiome() -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapRegion.RegionAbove.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegion.RegionBelow.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegion.RegionToTheEast.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegion.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegion.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegion.RegionToTheWest.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.Rooms.get -> ParquetClassLibrary.Rooms.RoomCollection
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.Maps.ChunkTypeGrid
 ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.Maps.ChunkTypeGrid inChunks = null) -> void
+ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.PositionInfoEventArgs
 ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack

@@ -51,24 +51,74 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(6)]
+        [Index(5)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Ignore]
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
+
+        #region Exit IDs
+        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
+        [Index(6)]
+        public ModelID RegionToTheNorth { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheNorth { get => RegionToTheNorth; set => RegionToTheNorth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
+        [Index(7)]
+        public ModelID RegionToTheEast { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheEast { get => RegionToTheEast; set => RegionToTheEast = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
+        [Index(8)]
+        public ModelID RegionToTheSouth { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheSouth { get => RegionToTheSouth; set => RegionToTheSouth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
+        [Index(9)]
+        public ModelID RegionToTheWest { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheWest { get => RegionToTheWest; set => RegionToTheWest = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
+        [Index(10)]
+        public ModelID RegionAbove { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionAbove { get => RegionAbove; set => RegionAbove = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
+        [Index(11)]
+        public ModelID RegionBelow { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
+        #endregion
         #endregion
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(7)]
+        [Index(12)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
-        [Index(8)]
+        [Index(13)]
         public override ParquetStackGrid ParquetDefinitions { get; }
 
         /// <summary>

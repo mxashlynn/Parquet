@@ -196,6 +196,15 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The direction &apos;{0}&apos; is not defined..
+        /// </summary>
+        internal static string ErrorUndefinedDirection {
+            get {
+                return ResourceManager.GetString("ErrorUndefinedDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot access {0} on ungenerated {1}..
         /// </summary>
         internal static string ErrorUngenerated {
