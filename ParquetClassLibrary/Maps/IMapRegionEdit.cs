@@ -36,6 +36,9 @@ namespace ParquetClassLibrary.Maps
         ModelID RegionBelow { get; set; }
 
         #region Map Analysis
+
+        // TODO This whole section feels over-engineered and can almost certainly be simplified.
+
         /// <summary>
         /// Given the name of a directional property, finds the name of the property for the opposite direction.
         /// </summary>
