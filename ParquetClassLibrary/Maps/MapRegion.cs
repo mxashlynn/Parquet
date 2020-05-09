@@ -113,14 +113,17 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The appropriate <see cref="ModelID"/>.</returns>
         public ModelID GetBiome()
         {
+            var result = BiomeModel.None.ID;
             foreach (BiomeModel biome in All.Biomes)
             {
-                return FindBiomeByTag(this, biome);
+                result = FindBiomeByTag(this, biome);
+                if (result != BiomeModel.None.ID)
+                {
+                    break;
+                }
             }
-
-            // TODO Log a warning here.
-            // This is a degenerate case, as all three Elevations ought to have BiomeModels defined for them.
-            return BiomeModel.None.ID;
+            // TODO Log this result as INFO or WARNING.
+            return result;
 
             #region Local Helper Methods
             // Determines if the given BiomeModel matches the given Region.
@@ -146,8 +149,6 @@ namespace ParquetClassLibrary.Maps
                         return inBiome.ID;
                     }
                 }
-
-                // TODO We might want to log this result here, too, though if so it whould be an INFO log rather than a warning.
                 return BiomeModel.None.ID;
             }
 
