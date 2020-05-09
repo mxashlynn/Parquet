@@ -254,6 +254,8 @@
   - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
   - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
   - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+  - [CheckExitConsistencyForDirection\`\`1(inMap,inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistencyForDirection``1-``0,System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.CheckExitConsistencyForDirection``1(``0,System.String)')
+  - [CheckExitConsistency\`\`1(inMap)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistency``1-``0- 'ParquetClassLibrary.Maps.IMapRegionEdit.CheckExitConsistency``1(``0)')
   - [GetDual(inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDual(System.String)')
   - [GetDualValue(inMap,inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDualValue-ParquetClassLibrary-Maps-IMapRegionEdit,System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDualValue(ParquetClassLibrary.Maps.IMapRegionEdit,System.String)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
@@ -3346,6 +3348,60 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
+
+<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistencyForDirection``1-``0,System-String-'></a>
+### CheckExitConsistencyForDirection\`\`1(inMap,inPropertyName) `method`
+
+##### Summary
+
+Detemines if the region connection to the given region in the given direction itself connects back to the given region
+ in the opposite direction.
+
+ For example, if the player leaves Region 1 by going North and finds themselves in Region 2,
+ they should be able to return to Region 1 by going South from Region 2.  If this is not possible, that is inconsistent.
+
+##### Returns
+
+`true` if the exits are consistent, `false` otherwise.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inMap | [\`\`0](#T-``0 '``0') | The origination and destination region. |
+| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The direction to inspect from which the given region may be exited. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
+
+<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistency``1-``0-'></a>
+### CheckExitConsistency\`\`1(inMap) `method`
+
+##### Summary
+
+Finds exit directions leading to any regions adjacent to the given region for which the given region is not adjacent.
+
+ That is, if the player leaves Region 1 by going North and cannot return to Region 1 by going then south,
+ that is considered inconsistent and will be reported.
+
+##### Returns
+
+A collection of the names of all exit directions leading to regions whose own exits are inconsistent.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inMap | [\`\`0](#T-``0 '``0') | The origination and destination region. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
 
 <a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String-'></a>
 ### GetDual(inPropertyName) `method`
