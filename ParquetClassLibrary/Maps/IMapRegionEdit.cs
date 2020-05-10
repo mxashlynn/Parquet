@@ -77,7 +77,7 @@ namespace ParquetClassLibrary.Maps
                                                     (TMapType map) => map.RegionBelow, "below" ) },
 
                     { new DualDirections<TMapType>( (TMapType map) => map.RegionBelow, "below",
-                                                    (TMapType map) => map.RegionAbove, "anove" ) },
+                                                    (TMapType map) => map.RegionAbove, "above" ) },
                 };
         }
 
