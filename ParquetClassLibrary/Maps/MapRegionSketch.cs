@@ -138,12 +138,44 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
+        /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the region to the north of this one.</param>
+        /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the region to the east of this one.</param>
+        /// <param name="inRegionToTheSouth">The <see cref="ModelID"/> of the region to the south of this one.</param>
+        /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the region to the west of this one.</param>
+        /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
+        /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                               int inRevision = 0, string inBackgroundColor = DefaultColor, ChunkTypeGrid inChunks = null)
+                               int inRevision = 0, string inBackgroundColor = DefaultColor,
+                               ModelID? inRegionToTheNorth = null,
+                               ModelID? inRegionToTheEast = null,
+                               ModelID? inRegionToTheSouth = null,
+                               ModelID? inRegionToTheWest = null,
+                               ModelID? inRegionAbove = null,
+                               ModelID? inRegionBelow = null,
+                               ChunkTypeGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
+            var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
+            var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
+            var nonNullRegionToTheSouth = inRegionToTheSouth ?? ModelID.None;
+            var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
+            var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
+            var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
+            Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
+            Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
+            Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(inRegionToTheSouth));
+            Precondition.IsInRange(nonNullRegionToTheWest, Bounds, nameof(inRegionToTheWest));
+            Precondition.IsInRange(nonNullRegionAbove, Bounds, nameof(inRegionAbove));
+            Precondition.IsInRange(nonNullRegionBelow, Bounds, nameof(inRegionBelow));
+
             BackgroundColor = inBackgroundColor;
+            RegionToTheNorth = nonNullRegionToTheNorth;
+            RegionToTheEast = nonNullRegionToTheEast;
+            RegionToTheSouth = nonNullRegionToTheSouth;
+            RegionToTheWest = nonNullRegionToTheWest;
+            RegionAbove = nonNullRegionAbove;
+            RegionBelow = nonNullRegionBelow;
             Chunks = inChunks ?? new ChunkTypeGrid();
         }
         #endregion
