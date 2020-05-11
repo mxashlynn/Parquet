@@ -81,8 +81,7 @@
   - [GetRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord')
 - [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')
-  - [#ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Biomes.Elevation,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
-  - [ElevationCategory](#P-ParquetClassLibrary-Biomes-BiomeModel-ElevationCategory 'ParquetClassLibrary.Biomes.BiomeModel.ElevationCategory')
+  - [#ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
   - [EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeModel-EntryRequirements 'ParquetClassLibrary.Biomes.BiomeModel.EntryRequirements')
   - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased')
   - [IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased')
@@ -207,30 +206,11 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
-- [Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation')
-  - [AboveGround](#F-ParquetClassLibrary-Biomes-Elevation-AboveGround 'ParquetClassLibrary.Biomes.Elevation.AboveGround')
-  - [BelowGround](#F-ParquetClassLibrary-Biomes-Elevation-BelowGround 'ParquetClassLibrary.Biomes.Elevation.BelowGround')
-  - [LevelGround](#F-ParquetClassLibrary-Biomes-Elevation-LevelGround 'ParquetClassLibrary.Biomes.Elevation.LevelGround')
-- [ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask')
-- [ElevationMaskSelectionExtensions](#T-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions')
-  - [Clear(refEnumVariable,inFlagToClear)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Clear-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.Clear(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [IsSet(inEnumVariable,inFlagToTest)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-IsSet-ParquetClassLibrary-Biomes-ElevationMask,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.IsSet(ParquetClassLibrary.Biomes.ElevationMask,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [Set(refEnumVariable,inFlagToSet)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Set-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.Set(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [SetTo(refEnumVariable,inFlagToTest,inState)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-SetTo-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask,System-Boolean- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.SetTo(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask,System.Boolean)')
-- [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor 'ParquetClassLibrary.Maps.ExitPoint.#ctor')
-  - [#ctor(inPosition,inDestinationID)](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.ExitPoint.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.ModelID)')
-  - [ConverterFactory](#P-ParquetClassLibrary-Maps-ExitPoint-ConverterFactory 'ParquetClassLibrary.Maps.ExitPoint.ConverterFactory')
-  - [Destination](#P-ParquetClassLibrary-Maps-ExitPoint-Destination 'ParquetClassLibrary.Maps.ExitPoint.Destination')
-  - [Position](#P-ParquetClassLibrary-Maps-ExitPoint-Position 'ParquetClassLibrary.Maps.ExitPoint.Position')
-  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ExitPoint-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ExitPoint.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
-  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ExitPoint-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ExitPoint.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
-  - [Equals(inPoint)](#M-ParquetClassLibrary-Maps-ExitPoint-Equals-ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.Equals(ParquetClassLibrary.Maps.ExitPoint)')
-  - [Equals(obj)](#M-ParquetClassLibrary-Maps-ExitPoint-Equals-System-Object- 'ParquetClassLibrary.Maps.ExitPoint.Equals(System.Object)')
-  - [GetHashCode()](#M-ParquetClassLibrary-Maps-ExitPoint-GetHashCode 'ParquetClassLibrary.Maps.ExitPoint.GetHashCode')
-  - [ToString()](#M-ParquetClassLibrary-Maps-ExitPoint-ToString 'ParquetClassLibrary.Maps.ExitPoint.ToString')
-  - [op_Equality(inPoint1,inPoint2)](#M-ParquetClassLibrary-Maps-ExitPoint-op_Equality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.op_Equality(ParquetClassLibrary.Maps.ExitPoint,ParquetClassLibrary.Maps.ExitPoint)')
-  - [op_Inequality(inPoint1,inPoint2)](#M-ParquetClassLibrary-Maps-ExitPoint-op_Inequality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.op_Inequality(ParquetClassLibrary.Maps.ExitPoint,ParquetClassLibrary.Maps.ExitPoint)')
+- [EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType')
+  - [Down](#F-ParquetClassLibrary-Parquets-EntryType-Down 'ParquetClassLibrary.Parquets.EntryType.Down')
+  - [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None')
+  - [Room](#F-ParquetClassLibrary-Parquets-EntryType-Room 'ParquetClassLibrary.Parquets.EntryType.Room')
+  - [Up](#F-ParquetClassLibrary-Parquets-EntryType-Up 'ParquetClassLibrary.Parquets.EntryType.Up')
 - [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inModTool,inTrenchName)](#M-ParquetClassLibrary-Parquets-FloorModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Items-ModificationTool,System-String- 'ParquetClassLibrary.Parquets.FloorModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Items.ModificationTool,System.String)')
   - [defaultTrenchName](#F-ParquetClassLibrary-Parquets-FloorModel-defaultTrenchName 'ParquetClassLibrary.Parquets.FloorModel.defaultTrenchName')
@@ -238,7 +218,7 @@
   - [ModTool](#P-ParquetClassLibrary-Parquets-FloorModel-ModTool 'ParquetClassLibrary.Parquets.FloorModel.ModTool')
   - [TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-TrenchName 'ParquetClassLibrary.Parquets.FloorModel.TrenchName')
 - [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')
-  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,System-Boolean,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
+  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FurnishingModel-Bounds 'ParquetClassLibrary.Parquets.FurnishingModel.Bounds')
   - [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing')
   - [IsEntry](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry 'ParquetClassLibrary.Parquets.FurnishingModel.IsEntry')
@@ -259,14 +239,20 @@
   - [ConverterFactory](#P-ParquetClassLibrary-GridConverter`2-ConverterFactory 'ParquetClassLibrary.GridConverter`2.ConverterFactory')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
+- [IDByDirection](#T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.IDByDirection')
 - [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1')
   - [Columns](#P-ParquetClassLibrary-IGrid`1-Columns 'ParquetClassLibrary.IGrid`1.Columns')
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-IGrid`1-Rows 'ParquetClassLibrary.IGrid`1.Rows')
 - [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-IMapRegionEdit-BackgroundColor 'ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor')
-  - [ElevationCategory](#P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationCategory 'ParquetClassLibrary.Maps.IMapRegionEdit.ElevationCategory')
   - [Name](#P-ParquetClassLibrary-Maps-IMapRegionEdit-Name 'ParquetClassLibrary.Maps.IMapRegionEdit.Name')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
   - [Description](#P-ParquetClassLibrary-IModelEdit-Description 'ParquetClassLibrary.IModelEdit.Description')
@@ -357,8 +343,12 @@
   - [ToString()](#M-ParquetClassLibrary-Location-ToString 'ParquetClassLibrary.Location.ToString')
   - [op_Equality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Equality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Equality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
+- [MapAnalysis](#T-ParquetClassLibrary-Maps-MapAnalysis 'ParquetClassLibrary.Maps.MapAnalysis')
+  - [CheckExitConsistency\`\`1(inRegionID)](#M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency``1(ParquetClassLibrary.ModelID)')
+- [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
+  - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunk-Bounds 'ParquetClassLibrary.Maps.MapChunk.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets')
@@ -367,9 +357,8 @@
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapChunk-ParquetStatuses 'ParquetClassLibrary.Maps.MapChunk.ParquetStatuses')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapChunk-ToString 'ParquetClassLibrary.Maps.MapChunk.ToString')
 - [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
-  - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint})')
+  - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32)')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapModel.DimensionsInParquets')
-  - [Exits](#P-ParquetClassLibrary-Maps-MapModel-Exits 'ParquetClassLibrary.Maps.MapModel.Exits')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapModel.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapModel.ParquetStatuses')
   - [ParquetsCount](#P-ParquetClassLibrary-Maps-MapModel-ParquetsCount 'ParquetClassLibrary.Maps.MapModel.ParquetsCount')
@@ -379,7 +368,7 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ChunksPerRegionDimension')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegion-DefaultColor 'ParquetClassLibrary.Maps.MapRegion.DefaultColor')
   - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegion-DefaultName 'ParquetClassLibrary.Maps.MapRegion.DefaultName')
@@ -388,17 +377,27 @@
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.BackgroundColor')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegion-Bounds 'ParquetClassLibrary.Maps.MapRegion.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets')
-  - [ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegion-ElevationCategory 'ParquetClassLibrary.Maps.MapRegion.ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-RegionAbove 'ParquetClassLibrary.Maps.MapRegion.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-RegionBelow 'ParquetClassLibrary.Maps.MapRegion.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.RegionToTheWest')
   - [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms')
   - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,ParquetClassLibrary.Biomes.Elevation,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint},ParquetClassLibrary.Maps.ChunkTypeGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Maps-ChunkTypeGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Maps.ChunkTypeGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
   - [DefaultTitle](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultTitle 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultTitle')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegionSketch-Empty 'ParquetClassLibrary.Maps.MapRegionSketch.Empty')
@@ -406,12 +405,22 @@
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegionSketch-Bounds 'ParquetClassLibrary.Maps.MapRegionSketch.Bounds')
   - [Chunks](#P-ParquetClassLibrary-Maps-MapRegionSketch-Chunks 'ParquetClassLibrary.Maps.MapRegionSketch.Chunks')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets')
-  - [ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationCategory 'ParquetClassLibrary.Maps.MapRegionSketch.ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetStatuses')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionSketch-ToString 'ParquetClassLibrary.Maps.MapRegionSketch.ToString')
 - [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')
   - [#ctor(inPosition,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStackGrid)')
@@ -616,8 +625,7 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStatusGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator')
 - [PositionInfoEventArgs](#T-ParquetClassLibrary-Maps-PositionInfoEventArgs 'ParquetClassLibrary.Maps.PositionInfoEventArgs')
-  - [#ctor(inStacks,inStatuses,inPoints)](#M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}- 'ParquetClassLibrary.Maps.PositionInfoEventArgs.#ctor(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStatus,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint})')
-  - [SpecialPoints](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-SpecialPoints 'ParquetClassLibrary.Maps.PositionInfoEventArgs.SpecialPoints')
+  - [#ctor(inStacks,inStatuses)](#M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus- 'ParquetClassLibrary.Maps.PositionInfoEventArgs.#ctor(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStatus)')
   - [Stack](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Stack 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack')
   - [Status](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Status 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Status')
 - [Precondition](#T-ParquetClassLibrary-Precondition 'ParquetClassLibrary.Precondition')
@@ -700,6 +708,12 @@
   - [op_Inequality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Inequality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Inequality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
 - [Resources](#T-ParquetClassLibrary-Properties-Resources 'ParquetClassLibrary.Properties.Resources')
   - [Culture](#P-ParquetClassLibrary-Properties-Resources-Culture 'ParquetClassLibrary.Properties.Resources.Culture')
+  - [DirectionAbove](#P-ParquetClassLibrary-Properties-Resources-DirectionAbove 'ParquetClassLibrary.Properties.Resources.DirectionAbove')
+  - [DirectionBelow](#P-ParquetClassLibrary-Properties-Resources-DirectionBelow 'ParquetClassLibrary.Properties.Resources.DirectionBelow')
+  - [DirectionEast](#P-ParquetClassLibrary-Properties-Resources-DirectionEast 'ParquetClassLibrary.Properties.Resources.DirectionEast')
+  - [DirectionNorth](#P-ParquetClassLibrary-Properties-Resources-DirectionNorth 'ParquetClassLibrary.Properties.Resources.DirectionNorth')
+  - [DirectionSouth](#P-ParquetClassLibrary-Properties-Resources-DirectionSouth 'ParquetClassLibrary.Properties.Resources.DirectionSouth')
+  - [DirectionWest](#P-ParquetClassLibrary-Properties-Resources-DirectionWest 'ParquetClassLibrary.Properties.Resources.DirectionWest')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
   - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
@@ -715,6 +729,7 @@
   - [ErrorOutOfBounds](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfBounds 'ParquetClassLibrary.Properties.Resources.ErrorOutOfBounds')
   - [ErrorOutOfOrderGTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderGTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderGTE')
   - [ErrorOutOfOrderLTE](#P-ParquetClassLibrary-Properties-Resources-ErrorOutOfOrderLTE 'ParquetClassLibrary.Properties.Resources.ErrorOutOfOrderLTE')
+  - [ErrorUndefinedDirection](#P-ParquetClassLibrary-Properties-Resources-ErrorUndefinedDirection 'ParquetClassLibrary.Properties.Resources.ErrorUndefinedDirection')
   - [ErrorUngenerated](#P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated 'ParquetClassLibrary.Properties.Resources.ErrorUngenerated')
   - [ErrorUnsupportedDimension](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDimension 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDimension')
   - [ErrorUnsupportedDuplicate](#P-ParquetClassLibrary-Properties-Resources-ErrorUnsupportedDuplicate 'ParquetClassLibrary.Properties.Resources.ErrorUnsupportedDuplicate')
@@ -1628,8 +1643,8 @@ ParquetClassLibrary.Biomes
 
 Models the biome that a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') embodies.
 
-<a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Biomes-Elevation,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
-### #ctor(inID,inName,inDescription,inComment,inTier,inElevationCategory,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
+<a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
+### #ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
 
 ##### Summary
 
@@ -1644,18 +1659,10 @@ Initializes a new instance of the [BiomeModel](#T-ParquetClassLibrary-Biomes-Bio
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
 | inTier | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls. |
-| inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | Describes where this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls in terms of the game world's overall topography. |
 | inIsRoomBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
 | inIsLiquidBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets. |
 | inParquetCriteria | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
 | inEntryRequirements | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s needed to access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
-
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ElevationCategory'></a>
-### ElevationCategory `property`
-
-##### Summary
-
-Describes where this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls in terms of the game world's overall topography.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeModel-EntryRequirements'></a>
 ### EntryRequirements `property`
@@ -2899,338 +2906,44 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 
 Separates objects within collections.
 
-<a name='T-ParquetClassLibrary-Biomes-Elevation'></a>
-## Elevation `type`
+<a name='T-ParquetClassLibrary-Parquets-EntryType'></a>
+## EntryType `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Biomes
+ParquetClassLibrary.Parquets
 
 ##### Summary
 
-The three categories of elevation that the game understands.
-These help determine biome and presentation.
+Whether and how a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') communicates to an adjacent [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
-<a name='F-ParquetClassLibrary-Biomes-Elevation-AboveGround'></a>
-### AboveGround `constants`
-
-##### Summary
-
-Topmost elevation.
-
-<a name='F-ParquetClassLibrary-Biomes-Elevation-BelowGround'></a>
-### BelowGround `constants`
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Down'></a>
+### Down `constants`
 
 ##### Summary
 
-Lowest elevation.
+This furnishing communicates to the map below.
 
-<a name='F-ParquetClassLibrary-Biomes-Elevation-LevelGround'></a>
-### LevelGround `constants`
-
-##### Summary
-
-Default elevation.
-
-<a name='T-ParquetClassLibrary-Biomes-ElevationMask'></a>
-## ElevationMask `type`
-
-##### Namespace
-
-ParquetClassLibrary.Biomes
+<a name='F-ParquetClassLibrary-Parquets-EntryType-None'></a>
+### None `constants`
 
 ##### Summary
 
-Indicates the level of a MapChunk or MapRegion.
+This furnishing does not communicate to another map or room.
 
-<a name='T-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions'></a>
-## ElevationMaskSelectionExtensions `type`
-
-##### Namespace
-
-ParquetClassLibrary.Biomes
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Room'></a>
+### Room `constants`
 
 ##### Summary
 
-Convenience extension methods for concise coding when working with [ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') instances.
+This furnishing communicates between rooms on the same map.
 
-<a name='M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Clear-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask-'></a>
-### Clear(refEnumVariable,inFlagToClear) `method`
-
-##### Summary
-
-Clears the given flag in the specified variable.
-
-##### Returns
-
-The variable with the flag cleared.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| refEnumVariable | [ParquetClassLibrary.Biomes.ElevationMask@](#T-ParquetClassLibrary-Biomes-ElevationMask@ 'ParquetClassLibrary.Biomes.ElevationMask@') | The enum variable under consideration. |
-| inFlagToClear | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The flag to clear. |
-
-<a name='M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-IsSet-ParquetClassLibrary-Biomes-ElevationMask,ParquetClassLibrary-Biomes-ElevationMask-'></a>
-### IsSet(inEnumVariable,inFlagToTest) `method`
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Up'></a>
+### Up `constants`
 
 ##### Summary
 
-Checks if the given flag is set.
-
-##### Returns
-
-`true`, if at least this flag is set, `false` otherwise.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inEnumVariable | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The enum variable under consideration. |
-| inFlagToTest | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The flag to test. |
-
-<a name='M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Set-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask-'></a>
-### Set(refEnumVariable,inFlagToSet) `method`
-
-##### Summary
-
-Sets the given flag in the specified variable.
-
-##### Returns
-
-The variable with the flag set.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| refEnumVariable | [ParquetClassLibrary.Biomes.ElevationMask@](#T-ParquetClassLibrary-Biomes-ElevationMask@ 'ParquetClassLibrary.Biomes.ElevationMask@') | The enum variable under consideration. |
-| inFlagToSet | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The flag to set. |
-
-<a name='M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-SetTo-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask,System-Boolean-'></a>
-### SetTo(refEnumVariable,inFlagToTest,inState) `method`
-
-##### Summary
-
-Sets or clears the given flag in the specified variable, depending on the given boolean.
-
-##### Returns
-
-The variable with the flag modified.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| refEnumVariable | [ParquetClassLibrary.Biomes.ElevationMask@](#T-ParquetClassLibrary-Biomes-ElevationMask@ 'ParquetClassLibrary.Biomes.ElevationMask@') | The enum variable under consideration. |
-| inFlagToTest | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The flag to set or clear. |
-| inState | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the flag will be set; otherwise it will be cleared. |
-
-<a name='T-ParquetClassLibrary-Maps-ExitPoint'></a>
-## ExitPoint `type`
-
-##### Namespace
-
-ParquetClassLibrary.Maps
-
-##### Summary
-
-A location at which the player moves from one [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to another.
-
-##### Remarks
-
-Since only one Exit Point can exist in a given location, exit points are considered equal according to their position only.
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty instance of [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') with default values.
-
-##### Parameters
-
-This constructor has no parameters.
-
-##### Remarks
-
-Iseful primarily in the context of serialization.
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-ModelID-'></a>
-### #ctor(inPosition,inDestinationID) `constructor`
-
-##### Summary
-
-Initializes a new instance of [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The location of this point on its containing region. |
-| inDestinationID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The region this exit leads to. |
-
-<a name='P-ParquetClassLibrary-Maps-ExitPoint-ConverterFactory'></a>
-### ConverterFactory `property`
-
-##### Summary
-
-Allows the converter to construct itself statically.
-
-<a name='P-ParquetClassLibrary-Maps-ExitPoint-Destination'></a>
-### Destination `property`
-
-##### Summary
-
-The region this exit leads to.
-
-<a name='P-ParquetClassLibrary-Maps-ExitPoint-Position'></a>
-### Position `property`
-
-##### Summary
-
-Location of this exit point.
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
-### ConvertFromString(inText,inRow,inMemberMapData) `method`
-
-##### Summary
-
-Converts the given [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') to an [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') as deserialization.
-
-##### Returns
-
-The given instance deserialized.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The text to convert. |
-| inRow | [CsvHelper.IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') | The current context and configuration. |
-| inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData-'></a>
-### ConvertToString(inValue,inRow,inMemberMapData) `method`
-
-##### Summary
-
-Converts the given [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') for serialization.
-
-##### Returns
-
-The given instance serialized.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inValue | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The instance to convert. |
-| inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
-| inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-Equals-ParquetClassLibrary-Maps-ExitPoint-'></a>
-### Equals(inPoint) `method`
-
-##### Summary
-
-Determines whether the specified [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') is equal to the current [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-`true` if the given [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') is equal to the current [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint'); otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPoint | [ParquetClassLibrary.Maps.ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') | The [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') to compare with. |
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-Equals-System-Object-'></a>
-### Equals(obj) `method`
-
-##### Summary
-
-Determines whether the given [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to this [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-`true` if the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint'); otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to compare with. |
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-GetHashCode'></a>
-### GetHashCode() `method`
-
-##### Summary
-
-Hash function for a [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-A hash code for this instance that is suitable for use in hashing algorithms and data structures.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-ToString'></a>
-### ToString() `method`
-
-##### Summary
-
-Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-The representation.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-op_Equality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint-'></a>
-### op_Equality(inPoint1,inPoint2) `method`
-
-##### Summary
-
-Determines whether a specified instance of [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')
-is equal to another specified instance of [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-`true` if the two points are equal; otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPoint1 | [ParquetClassLibrary.Maps.ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') | The first [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') to compare. |
-| inPoint2 | [ParquetClassLibrary.Maps.ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') | The second [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') to compare. |
-
-<a name='M-ParquetClassLibrary-Maps-ExitPoint-op_Inequality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint-'></a>
-### op_Inequality(inPoint1,inPoint2) `method`
-
-##### Summary
-
-Determines whether a specified instance of [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')
-is not equal to another specified [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint').
-
-##### Returns
-
-`true` if the two points are not equal; otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPoint1 | [ParquetClassLibrary.Maps.ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') | The first [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') to compare. |
-| inPoint2 | [ParquetClassLibrary.Maps.ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') | The second [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint') to compare. |
+This furnishing communicates to the map above.
 
 <a name='T-ParquetClassLibrary-Parquets-FloorModel'></a>
 ## FloorModel `type`
@@ -3303,7 +3016,7 @@ ParquetClassLibrary.Parquets
 
 Configurations for large sandbox parquet items, such as furniture or plants.
 
-<a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,System-Boolean,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
+<a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID) `constructor`
 
 ##### Summary
@@ -3322,7 +3035,7 @@ Initializes a new instance of the [FurnishingModel](#T-ParquetClassLibrary-Parqu
 | inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 | inIsWalkable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on. |
-| inIsEntry | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
+| inIsEntry | [ParquetClassLibrary.Parquets.EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsEnclosing | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as part of a perimeter of a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsFlammable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may catch fire. |
 | inSwapID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | A [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') to swap with this furnishing on open/close actions. |
@@ -3346,7 +3059,7 @@ Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-Furnish
 
 ##### Summary
 
-Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
+Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable'></a>
 ### IsFlammable `property`
@@ -3514,6 +3227,17 @@ The given collection serialized.
 | inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection'></a>
+## IDByDirection `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps.MapAnalysis`1
+
+##### Summary
+
+Models a method that takes a map and returns the [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for an adjacent map.
+
 <a name='T-ParquetClassLibrary-IGrid`1'></a>
 ## IGrid\`1 `type`
 
@@ -3574,19 +3298,54 @@ Facilitates editing of [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'Parque
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-ElevationCategory'></a>
-### ElevationCategory `property`
-
-##### Summary
-
-The region's elevation in absolute terms.
-
 <a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-Name'></a>
 ### Name `property`
 
 ##### Summary
 
 What the region is called in-game.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='T-ParquetClassLibrary-IModelEdit'></a>
 ## IModelEdit `type`
@@ -4610,6 +4369,61 @@ Determines whether a specified instance of [Location](#T-ParquetClassLibrary-Loc
 | inLocation1 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The first [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 | inLocation2 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The second [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis'></a>
+## MapAnalysis `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps
+
+##### Summary
+
+Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
+
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID-'></a>
+### CheckExitConsistency\`\`1(inRegionID) `method`
+
+##### Summary
+
+Finds adjacent maps from which the given map is not adjacent in the expected direction.
+
+ That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
+ that is considered inconsistent and will be reported.
+
+##### Returns
+
+A report of all exit directions leading to regions whose own exits are inconsistent.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inRegionID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the origination and destination map. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
+
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1'></a>
+## MapAnalysis\`1 `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps
+
+##### Summary
+
+Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
+
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions'></a>
+### Directions `constants`
+
+##### Summary
+
+A database of directions and their opposites, together with the properties needed to inspect both.
+
 <a name='T-ParquetClassLibrary-Maps-MapChunk'></a>
 ## MapChunk `type`
 
@@ -4620,10 +4434,10 @@ ParquetClassLibrary.Maps
 ##### Summary
 
 Models details of a playable chunk in sandbox.
-[MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s are composed of parquets and [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')s.
+[MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s are composed of parquets.
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4638,7 +4452,6 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
-| inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
 
@@ -4711,8 +4524,8 @@ ParquetClassLibrary.Maps
 Provides methods that are used by all parquet-based map models (for example [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') and [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'),
 but contrast [ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') which is not parquet-based).
 
-<a name='M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}-'></a>
-### #ctor(inBounds,inID,inName,inDescription,inComment,inRevision,inExits) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32-'></a>
+### #ctor(inBounds,inID,inName,inDescription,inComment,inRevision) `constructor`
 
 ##### Summary
 
@@ -4728,7 +4541,6 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many times this map has been serialized. |
-| inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
 
 <a name='P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets'></a>
 ### DimensionsInParquets `property`
@@ -4736,13 +4548,6 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 ##### Summary
 
 Dimensions in parquets.  Defined by child classes.
-
-<a name='P-ParquetClassLibrary-Maps-MapModel-Exits'></a>
-### Exits `property`
-
-##### Summary
-
-Locations on the map at which a something happens that cannot be determined from parquets alone.
 
 <a name='P-ParquetClassLibrary-Maps-MapModel-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
@@ -4849,8 +4654,8 @@ ParquetClassLibrary.Maps
 
 A playable region in sandbox.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4866,8 +4671,12 @@ Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
-| inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
-| inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
+| inRegionToTheNorth | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one. |
+| inRegionToTheEast | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one. |
+| inRegionToTheSouth | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one. |
+| inRegionToTheWest | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one. |
+| inRegionAbove | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one. |
+| inRegionBelow | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
 
@@ -4927,13 +4736,6 @@ The set of values that are allowed for [MapRegion](#T-ParquetClassLibrary-Maps-M
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ElevationCategory'></a>
-### ElevationCategory `property`
-
-##### Summary
-
-The region's elevation in absolute terms.
-
 <a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor `property`
 
@@ -4941,19 +4743,54 @@ The region's elevation in absolute terms.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory `property`
-
-##### Summary
-
-The region's elevation in absolute terms.
-
 <a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#Name `property`
 
 ##### Summary
 
 What the region is called in-game.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
@@ -4969,6 +4806,48 @@ remember to update the corresponding element in [ParquetStatuses](#P-ParquetClas
 ##### Summary
 
 The statuses of parquets in the chunk.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegion-Rooms'></a>
 ### Rooms `property`
@@ -5027,8 +4906,8 @@ A pattern and metadata to generate a [MapRegion](#T-ParquetClassLibrary-Maps-Map
 Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
 Once loaded in-game they are composited, which often includes procedurally generating contained [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,ParquetClassLibrary-Biomes-Elevation,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inElevationCategory,inExits,inChunks) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Maps-ChunkTypeGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks) `constructor`
 
 ##### Summary
 
@@ -5044,8 +4923,12 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
 | inBackgroundColor | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A color to show in the new region when no parquet is present. |
-| inElevationCategory | [ParquetClassLibrary.Biomes.Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation') | The absolute elevation of this region. |
-| inExits | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Locations on the map at which a something happens that cannot be determined from parquets alone. |
+| inRegionToTheNorth | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one. |
+| inRegionToTheEast | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one. |
+| inRegionToTheSouth | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one. |
+| inRegionToTheWest | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one. |
+| inRegionAbove | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one. |
+| inRegionBelow | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one. |
 | inChunks | [ParquetClassLibrary.Maps.ChunkTypeGrid](#T-ParquetClassLibrary-Maps-ChunkTypeGrid 'ParquetClassLibrary.Maps.ChunkTypeGrid') | The pattern from which a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') may be generated. |
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor'></a>
@@ -5097,13 +4980,6 @@ The set of values that are allowed for [MapRegionSketch](#T-ParquetClassLibrary-
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ElevationCategory'></a>
-### ElevationCategory `property`
-
-##### Summary
-
-The region's elevation in absolute terms.
-
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor `property`
 
@@ -5111,19 +4987,54 @@ The region's elevation in absolute terms.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#ElevationCategory `property`
-
-##### Summary
-
-The region's elevation in absolute terms.
-
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#Name'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#Name `property`
 
 ##### Summary
 
 What the region is called in-game.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
@@ -5138,6 +5049,48 @@ Generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrar
 ##### Summary
 
 Generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') before accessing parquet statuses.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove'></a>
+### RegionAbove `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionBelow'></a>
+### RegionBelow `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheEast'></a>
+### RegionToTheEast `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheNorth'></a>
+### RegionToTheNorth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheSouth'></a>
+### RegionToTheSouth `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheWest'></a>
+### RegionToTheWest `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-ToString'></a>
 ### ToString() `method`
@@ -8073,8 +8026,8 @@ ParquetClassLibrary.Maps
 Indicates that the encapsulated info corresponding to a particular position in the current map
 is ready to be displayed.
 
-<a name='M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-ExitPoint}-'></a>
-### #ctor(inStacks,inStatuses,inPoints) `constructor`
+<a name='M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus-'></a>
+### #ctor(inStacks,inStatuses) `constructor`
 
 ##### Summary
 
@@ -8086,14 +8039,6 @@ Triggered when the information about a specific map location is ready to be disp
 | ---- | ---- | ----------- |
 | inStacks | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | Definition of any and all parquets at the location. |
 | inStatuses | [ParquetClassLibrary.Parquets.ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus') | Status of any and all parquets at the location. |
-| inPoints | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.ExitPoint}') | Any and all special points at the location. |
-
-<a name='P-ParquetClassLibrary-Maps-PositionInfoEventArgs-SpecialPoints'></a>
-### SpecialPoints `property`
-
-##### Summary
-
-Special points at the given position.
 
 <a name='P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Stack'></a>
 ### Stack `property`
@@ -9235,6 +9180,48 @@ A strongly-typed resource class, for looking up localized strings, etc.
 Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionAbove'></a>
+### DirectionAbove `property`
+
+##### Summary
+
+Looks up a localized string similar to above.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionBelow'></a>
+### DirectionBelow `property`
+
+##### Summary
+
+Looks up a localized string similar to below.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionEast'></a>
+### DirectionEast `property`
+
+##### Summary
+
+Looks up a localized string similar to east.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionNorth'></a>
+### DirectionNorth `property`
+
+##### Summary
+
+Looks up a localized string similar to north.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionSouth'></a>
+### DirectionSouth `property`
+
+##### Summary
+
+Looks up a localized string similar to south.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionWest'></a>
+### DirectionWest `property`
+
+##### Summary
+
+Looks up a localized string similar to west.
+
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert'></a>
 ### ErrorCannotConvert `property`
 
@@ -9339,6 +9326,13 @@ Looks up a localized string similar to {0} is {1} but must be greater than or eq
 ##### Summary
 
 Looks up a localized string similar to {0} is {1} but must be less than or equal to {2}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorUndefinedDirection'></a>
+### ErrorUndefinedDirection `property`
+
+##### Summary
+
+Looks up a localized string similar to The direction '{0}' is not defined..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorUngenerated'></a>
 ### ErrorUngenerated `property`

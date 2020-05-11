@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
@@ -28,19 +26,15 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Map Contents
-        /// <summary>Locations on the map at which a something happens that cannot be determined from parquets alone.</summary>
-        [Index(5)]
-        public List<ExitPoint> Exits { get; }
-
         /// <summary>Floors and walkable terrain on the map.</summary>
-        [Index(9)]
+        [Index(12)]
         public abstract ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(10)]
+        [Index(13)]
         public abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
@@ -55,14 +49,9 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
-        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                           int inRevision, IEnumerable<ExitPoint> inExits = null)
+        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, int inRevision)
             : base(inBounds, inID, inName, inDescription, inComment)
-        {
-            Revision = inRevision;
-            Exits = inExits?.ToList() ?? new List<ExitPoint>();
-        }
+            => Revision = inRevision;
         #endregion
 
         #region Utilities
@@ -131,7 +120,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current map.</returns>
         public override string ToString()
-            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets and {Exits.Count} exits.";
+            => $"({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets.";
         #endregion
     }
 }

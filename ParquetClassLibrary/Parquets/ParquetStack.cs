@@ -100,7 +100,7 @@ namespace ParquetClassLibrary.Parquets
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => Furnishing != ModelID.None
-            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEntry ?? false)
+            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEntry ?? EntryType.None) != EntryType.None
             // Inequality standing in for missing conditional XOR here.
             && (IsWalkable != IsEnclosing);
 

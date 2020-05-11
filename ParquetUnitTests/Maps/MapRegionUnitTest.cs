@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using ParquetClassLibrary;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using Xunit;
@@ -14,7 +13,6 @@ namespace ParquetUnitTests.Maps
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
-        private const Elevation testStory = Elevation.AboveGround;
         private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
         #endregion
 
@@ -29,11 +27,10 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewCustomMapRegionTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor, testStory);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
-            Assert.Equal(testStory, customRegion.ElevationCategory);
         }
         #endregion
 
@@ -41,16 +38,14 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void MapRegionMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor, testStory);
+            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor);
             IMapRegionEdit editableRegion = customRegion;
 
             editableRegion.Name = testName;
             editableRegion.BackgroundColor = testColor;
-            editableRegion.ElevationCategory = testStory;
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
-            Assert.Equal(testStory, customRegion.ElevationCategory);
         }
         #endregion
 

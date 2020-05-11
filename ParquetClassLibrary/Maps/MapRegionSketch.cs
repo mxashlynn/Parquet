@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
 
@@ -51,39 +49,81 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(6)]
+        [Index(5)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Ignore]
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
-
-        /// <summary>The region's elevation in absolute terms.</summary>
-        [Index(7)]
-        public Elevation ElevationCategory { get; private set; }
-
-        /// <summary>The region's elevation in absolute terms.</summary>
-        [Ignore]
-        Elevation IMapRegionEdit.ElevationCategory { get => ElevationCategory; set => ElevationCategory = value; }
         #endregion
 
         #region Map Contents
+        #region Exit IDs
+        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
+        [Index(6)]
+        public ModelID RegionToTheNorth { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheNorth { get => RegionToTheNorth; set => RegionToTheNorth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
+        [Index(7)]
+        public ModelID RegionToTheEast { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheEast { get => RegionToTheEast; set => RegionToTheEast = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
+        [Index(8)]
+        public ModelID RegionToTheSouth { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheSouth { get => RegionToTheSouth; set => RegionToTheSouth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
+        [Index(9)]
+        public ModelID RegionToTheWest { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheWest { get => RegionToTheWest; set => RegionToTheWest = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
+        [Index(10)]
+        public ModelID RegionAbove { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionAbove { get => RegionAbove; set => RegionAbove = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegion"/> below this one.</summary>
+        [Index(11)]
+        public ModelID RegionBelow { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegion"/> below this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
+        #endregion
+
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
         [Ignore]
-        [Index(8)]
+        // Index(12)
         public override ParquetStatusGrid ParquetStatuses
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetStatuses), nameof(MapRegionSketch)));
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
-        [Index(9)]
+        // Index(13)
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
         /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
-        [Index(10)]
+        [Index(14)]
         public ChunkTypeGrid Chunks { get; }
         #endregion
         #endregion
@@ -98,17 +138,44 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
-        /// <param name="inElevationCategory">The absolute elevation of this region.</param>
-        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
+        /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the region to the north of this one.</param>
+        /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the region to the east of this one.</param>
+        /// <param name="inRegionToTheSouth">The <see cref="ModelID"/> of the region to the south of this one.</param>
+        /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the region to the west of this one.</param>
+        /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
+        /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                                int inRevision = 0, string inBackgroundColor = DefaultColor,
-                               Elevation inElevationCategory = Elevation.LevelGround,
-                               IEnumerable<ExitPoint> inExits = null, ChunkTypeGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision, inExits)
+                               ModelID? inRegionToTheNorth = null,
+                               ModelID? inRegionToTheEast = null,
+                               ModelID? inRegionToTheSouth = null,
+                               ModelID? inRegionToTheWest = null,
+                               ModelID? inRegionAbove = null,
+                               ModelID? inRegionBelow = null,
+                               ChunkTypeGrid inChunks = null)
+            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
+            var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
+            var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
+            var nonNullRegionToTheSouth = inRegionToTheSouth ?? ModelID.None;
+            var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
+            var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
+            var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
+            Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
+            Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
+            Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(inRegionToTheSouth));
+            Precondition.IsInRange(nonNullRegionToTheWest, Bounds, nameof(inRegionToTheWest));
+            Precondition.IsInRange(nonNullRegionAbove, Bounds, nameof(inRegionAbove));
+            Precondition.IsInRange(nonNullRegionBelow, Bounds, nameof(inRegionBelow));
+
             BackgroundColor = inBackgroundColor;
-            ElevationCategory = inElevationCategory;
+            RegionToTheNorth = nonNullRegionToTheNorth;
+            RegionToTheEast = nonNullRegionToTheEast;
+            RegionToTheSouth = nonNullRegionToTheSouth;
+            RegionToTheWest = nonNullRegionToTheWest;
+            RegionAbove = nonNullRegionAbove;
+            RegionBelow = nonNullRegionBelow;
             Chunks = inChunks ?? new ChunkTypeGrid();
         }
         #endregion

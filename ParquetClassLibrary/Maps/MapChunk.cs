@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
@@ -6,7 +5,7 @@ namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Models details of a playable chunk in sandbox.
-    /// <see cref="MapChunk"/>s are composed of parquets and <see cref="ExitPoint"/>s.
+    /// <see cref="MapChunk"/>s are composed of parquets.
     /// </summary>
     public sealed class MapChunk : MapModel
     {
@@ -28,11 +27,11 @@ namespace ParquetClassLibrary.Maps
 
         #region Characteristics
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(9)]
+        [Index(12)]
         public override ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        [Index(10)]
+        [Index(13)]
         public override ParquetStackGrid ParquetDefinitions { get; }
         #endregion
 
@@ -45,13 +44,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inExits">Locations on the map at which a something happens that cannot be determined from parquets alone.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
         public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
-                        IEnumerable<ExitPoint> inExits = null, ParquetStatusGrid inParquetStatuses = null,
+                        ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inRevision, inExits)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
             ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);

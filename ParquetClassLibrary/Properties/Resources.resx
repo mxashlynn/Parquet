@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DirectionAbove" xml:space="preserve">
+    <value>above</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="DirectionBelow" xml:space="preserve">
+    <value>below</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="DirectionEast" xml:space="preserve">
+    <value>east</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="DirectionNorth" xml:space="preserve">
+    <value>north</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="DirectionSouth" xml:space="preserve">
+    <value>south</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="DirectionWest" xml:space="preserve">
+    <value>west</value>
+    <comment>Warning string.</comment>
+  </data>
   <data name="ErrorCannotConvert" xml:space="preserve">
     <value>Could not convert '{0}' to {1}.</value>
     <comment>Error string.</comment>
@@ -175,6 +199,10 @@
   </data>
   <data name="ErrorOutOfOrderLTE" xml:space="preserve">
     <value>{0} is {1} but must be less than or equal to {2}.</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorUndefinedDirection" xml:space="preserve">
+    <value>The direction '{0}' is not defined.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUngenerated" xml:space="preserve">

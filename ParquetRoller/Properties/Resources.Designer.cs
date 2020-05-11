@@ -121,6 +121,15 @@ namespace ParquetRoller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking {0}..
+        /// </summary>
+        internal static string MessageChecking {
+            get {
+                return ResourceManager.GetString("MessageChecking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usage: roller (command)
         ///Usage: roller list pronouns
         ///Usage: roller list (property) [category]
@@ -130,8 +139,8 @@ namespace ParquetRoller.Properties {
         ///    -v|version                      Display version information.
         ///    -t|templates                    Write CSV templates to current directory.
         ///    -r|roll                         Prepare CSVs in current directory for use.
-        ///    -p|list pronouns                List all defined pronoun groups.
-        ///    -l|list (property) [category]   List various model pro [rest of string was truncated]&quot;;.
+        ///    -c|check                        Check that map adjacency is consistent.
+        ///    -p|list pronouns                List  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MessageDefault {
             get {
@@ -151,7 +160,7 @@ namespace ParquetRoller.Properties {
         ///
         ///Commands:
         ///    -h|help                         Display detailed help.
-        ///    -v|version                      Display versi [rest of string was truncated]&quot;;.
+        ///    -v|version                      Di [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MessageHelp {
             get {

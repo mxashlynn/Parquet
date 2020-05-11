@@ -147,6 +147,10 @@
 </value>
     <comment>What to display when there are no properties in the given category.</comment>
   </data>
+  <data name="MessageChecking" xml:space="preserve">
+    <value>Checking {0}.</value>
+    <comment>Status update during map adjacency analysis.</comment>
+  </data>
   <data name="MessageDefault" xml:space="preserve">
     <value>Usage: roller (command)
 Usage: roller list pronouns
@@ -157,6 +161,7 @@ Commands:
     -v|version                      Display version information.
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
+    -c|check                        Check that map adjacency is consistent.
     -p|list pronouns                List all defined pronoun groups.
     -l|list (property) [category]   List various model properties.
 
@@ -179,6 +184,7 @@ Commands:
     -v|version                      Display version information.
     -t|templates                    Write CSV templates to current directory.
     -r|roll                         Prepare CSVs in current directory for use.
+    -c|check                        Check that map adjacency is consistent.
     -p|list pronouns                List all defined pronoun groups.
     -l|list (property) [category]   List various model properties.
 
@@ -200,15 +206,15 @@ Categories:
     items             All items.
       p-items         Only items that correspond to parquets.
       n-items         Only items that don't correspond to parquets.
+    maps              All maps.
+      chunks          Only map chunks.
+      regions         Only map regions and region sketches.
     parquets          All parquets.
       floors          Only floor parquets.
       blocks          Only block parquets.
       furnishings     Only furnishing parquets.
       collectibles    Only collectible parquets.
     rooms             All room recipes.
-
-Checking for name collisions is especially useful because they can cause
-runtime errors.
 </value>
     <comment>A detailed help message explaining how to use roller.</comment>
   </data>

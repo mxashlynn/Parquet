@@ -19,9 +19,10 @@ namespace ParquetClassLibrary.Parquets
         [Index(7)]
         public bool IsWalkable { get; }
 
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/>.</summary>
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegion"/>.</summary>
+        // TODO Do we want to remove the "Is" from this variable name?
         [Index(8)]
-        public bool IsEntry { get; }
+        public EntryType IsEntry { get; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         [Index(9)]
@@ -55,7 +56,7 @@ namespace ParquetClassLibrary.Parquets
         public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
                           ModelID? inItemID = null, ModelTag inAddsToBiome = null,
                           ModelTag inAddsToRoom = null, bool inIsWalkable = false,
-                          bool inIsEntry = false, bool inIsEnclosing = false,
+                          EntryType inIsEntry = EntryType.None, bool inIsEnclosing = false,
                           bool inIsFlammable = false, ModelID? inSwapID = null)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
                    inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
