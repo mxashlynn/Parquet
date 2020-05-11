@@ -206,12 +206,6 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
-- [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String)')
-  - [GetAdjecentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionID')
-  - [GetAdjecentRegionsAdjacentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionsAdjacentRegionID')
-  - [LeavingDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.LeavingDirection')
-  - [ReturningDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-ReturningDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.ReturningDirection')
 - [EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType')
   - [Down](#F-ParquetClassLibrary-Parquets-EntryType-Down 'ParquetClassLibrary.Parquets.EntryType.Down')
   - [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None')
@@ -2911,56 +2905,6 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 ##### Summary
 
 Separates objects within collections.
-
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1'></a>
-## DualDirections\`1 `type`
-
-##### Namespace
-
-ParquetClassLibrary.Maps.MapAnalysis`1
-
-##### Summary
-
-A direction and its opposite, together with the properties needed to inspect both.
-
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an instance of [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1').
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID'></a>
-### GetAdjecentRegionID `constants`
-
-##### Summary
-
-The property identifying the adjacent map if one leaves the original map.
-
-<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID'></a>
-### GetAdjecentRegionsAdjacentRegionID `constants`
-
-##### Summary
-
-The property identifying the map one would find when attempting to return to the the original map.
-
-<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection'></a>
-### LeavingDirection `constants`
-
-##### Summary
-
-The direction in with the to leave.
-
-<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-ReturningDirection'></a>
-### ReturningDirection `constants`
-
-##### Summary
-
-The direction one would expect to take in order to return.
 
 <a name='T-ParquetClassLibrary-Parquets-EntryType'></a>
 ## EntryType `type`
