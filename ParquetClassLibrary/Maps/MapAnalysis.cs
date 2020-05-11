@@ -9,6 +9,19 @@ namespace ParquetClassLibrary.Maps
         where TMapType : MapModel, IMapRegionEdit
     {
         /// <summary>
+        /// The names of the directions that <typeparamref name="TMapType"/> supports.
+        /// </summary>
+        internal enum DirectionName
+        {
+            North,
+            South,
+            East,
+            West,
+            Above,
+            Below
+        }
+
+        /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
         /// </summary>
         internal delegate ModelID IDByDirection(TMapType inMap);
@@ -23,19 +36,19 @@ namespace ParquetClassLibrary.Maps
             public IDByDirection GetAdjecentRegionID;
 
             ///<summary>The direction in with the to leave.</summary>
-            public string LeavingDirection;
+            public DirectionName LeavingDirection;
 
             ///<summary>The property identifying the map one would find when attempting to return to the the original map.</summary>
             public IDByDirection GetAdjecentRegionsAdjacentRegionID;
 
             ///<summary>The direction one would expect to take in order to return.</summary>
-            public string ReturningDirection;
+            public DirectionName ReturningDirection;
 
             ///<summary>Initializes an instance of <see cref="DualDirections{TMapType}"/>.</summary>
             public DualDirections(IDByDirection inGetAdjecentRegionID,
-                                  string inLeavingDirection,
+                                  DirectionName inLeavingDirection,
                                   IDByDirection inGetAdjecentRegionsAdjacentRegionID,
-                                  string inReturningDirection)
+                                  DirectionName inReturningDirection)
             {
                 GetAdjecentRegionID = inGetAdjecentRegionID;
                 LeavingDirection = inLeavingDirection;
@@ -50,23 +63,23 @@ namespace ParquetClassLibrary.Maps
         internal static List<DualDirections<TMapType>> Directions =
             new List<DualDirections<TMapType>>
             {
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheNorth, "north",
-                                                (TMapType map) => map.RegionToTheSouth, "south" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheNorth, DirectionName.North,
+                                                (TMapType map) => map.RegionToTheSouth, DirectionName.South ) },
 
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheEast, "east",
-                                                (TMapType map) => map.RegionToTheWest, "west" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheEast, DirectionName.East,
+                                                (TMapType map) => map.RegionToTheWest, DirectionName.West ) },
 
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheSouth, "south",
-                                                (TMapType map) => map.RegionToTheNorth, "north" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheSouth, DirectionName.South,
+                                                (TMapType map) => map.RegionToTheNorth, DirectionName.North ) },
 
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheWest, "west",
-                                                (TMapType map) => map.RegionToTheEast, "east" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheWest, DirectionName.West,
+                                                (TMapType map) => map.RegionToTheEast, DirectionName.East ) },
 
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionAbove, "above",
-                                                (TMapType map) => map.RegionBelow, "below" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionAbove, DirectionName.Above,
+                                                (TMapType map) => map.RegionBelow, DirectionName.Below ) },
 
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionBelow, "below",
-                                                (TMapType map) => map.RegionAbove, "above" ) },
+                { new DualDirections<TMapType>( (TMapType map) => map.RegionBelow, DirectionName.Below,
+                                                (TMapType map) => map.RegionAbove, DirectionName.Above ) },
             };
     }
 

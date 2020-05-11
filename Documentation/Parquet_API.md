@@ -206,8 +206,9 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
+- [DirectionName](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DirectionName 'ParquetClassLibrary.Maps.MapAnalysis`1.DirectionName')
 - [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String)')
+  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,ParquetClassLibrary.Maps.MapAnalysis{`0}.DirectionName,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,ParquetClassLibrary.Maps.MapAnalysis{`0}.DirectionName)')
   - [GetAdjecentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionID')
   - [GetAdjecentRegionsAdjacentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionsAdjacentRegionID')
   - [LeavingDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.LeavingDirection')
@@ -2906,6 +2907,17 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 
 Separates objects within collections.
 
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DirectionName'></a>
+## DirectionName `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps.MapAnalysis`1
+
+##### Summary
+
+The names of the directions that `TMapType` supports.
+
 <a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1'></a>
 ## DualDirections\`1 `type`
 
@@ -2917,7 +2929,7 @@ ParquetClassLibrary.Maps.MapAnalysis`1
 
 A direction and its opposite, together with the properties needed to inspect both.
 
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName-'></a>
 ### #ctor() `constructor`
 
 ##### Summary
