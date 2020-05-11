@@ -202,6 +202,24 @@ ParquetClassLibrary.Maps.ChunkTypeGrid.GetEnumerator() -> System.Collections.IEn
 ParquetClassLibrary.Maps.ChunkTypeGrid.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Maps.ChunkTypeGrid.Rows.get -> int
 ParquetClassLibrary.Maps.ChunkTypeGrid.this[int y, int x].get -> ParquetClassLibrary.Maps.ChunkType
+ParquetClassLibrary.Maps.IMapRegionEdit
+ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor.get -> string
+ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.Name.get -> string
+ParquetClassLibrary.Maps.IMapRegionEdit.Name.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth.set -> void
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
+ParquetClassLibrary.Maps.MapAnalysis<TMapType>
 ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
@@ -294,9 +312,9 @@ ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID i
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
-ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, bool inIsEntry = false, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
+ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, bool inIsEntry = default(bool), bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
-ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> bool
+ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> EntryType
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.SwapID.get -> ParquetClassLibrary.ModelID
@@ -431,6 +449,11 @@ ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors.get -> Sys
 ParquetClassLibrary.Rooms.RoomRecipe.Priority.get -> int
 ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int? inMinimumWalkableSpaces = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredFurnishings = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredWalkableFloors = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredPerimeterBlocks = null) -> void
 ParquetClassLibrary.Scripts.Commands
+ParquetClassLibrary.Scripts.EntryType
+ParquetClassLibrary.Scripts.EntryType.Down = 3 -> ParquetClassLibrary.Scripts.EntryType
+ParquetClassLibrary.Scripts.EntryType.None = 0 -> ParquetClassLibrary.Scripts.EntryType
+ParquetClassLibrary.Scripts.EntryType.Room = 1 -> ParquetClassLibrary.Scripts.EntryType
+ParquetClassLibrary.Scripts.EntryType.Up = 2 -> ParquetClassLibrary.Scripts.EntryType
 ParquetClassLibrary.Scripts.InteractionModel
 ParquetClassLibrary.Scripts.InteractionModel.InteractionModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisites, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSteps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcomes) -> void
 ParquetClassLibrary.Scripts.InteractionModel.Outcomes.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
@@ -469,13 +492,6 @@ ParquetClassLibrary.Vector2D.Magnitude.get -> int
 ParquetClassLibrary.Vector2D.Vector2D(int inX, int inY) -> void
 ParquetClassLibrary.Vector2D.X.get -> int
 ParquetClassLibrary.Vector2D.Y.get -> int
-ParquetRoller.ExitCode
-ParquetRoller.ExitCode.AccessDenied = 5 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.BadArguments = 160 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.FileNotFound = 1 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.InvalidData = 13 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.NotSupported = 50 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.Success = 0 -> ParquetRoller.ExitCode
 abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
@@ -616,6 +632,7 @@ static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inL
 static ParquetClassLibrary.Maps.ChunkType.operator !=(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkType.operator ==(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkTypeGrid.DimensionsInChunks.get -> ParquetClassLibrary.Vector2D
+static ParquetClassLibrary.Maps.MapAnalysis<TMapType>.CheckExitConsistency(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
 static ParquetClassLibrary.Maps.MapChunk.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapChunk.Empty.get -> ParquetClassLibrary.Maps.MapChunk
 static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>

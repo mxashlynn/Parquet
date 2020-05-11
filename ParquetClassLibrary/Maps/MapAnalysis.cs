@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
         /// </summary>
-        internal delegate ModelID IDByDirection<TMapType>(TMapType inMap)
+        internal delegate ModelID IDByDirection<TMapType>(TMapType inMap);
 
         /// <summary>
         /// A direction and its opposite, together with the properties needed to inspect both.
@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Maps
             ///<summary>The direction one would expect to take in order to return.</summary>
             public string ReturningDirection;
 
-            ///<summary>Initializes an instance of <see cref="DualDirections"/>.</summary>
+            ///<summary>Initializes an instance of <see cref="DualDirections{TMapType}"/>.</summary>
             public DualDirections(IDByDirection<TMapType> inGetAdjecentRegionID,
                                   string inLeavingDirection,
                                   IDByDirection<TMapType> inGetAdjecentRegionsAdjacentRegionID,
@@ -46,7 +46,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
-        public static List<DualDirections<TMapType>> Directions = new List<DualDirections<TMapType>>
+        internal static List<DualDirections<TMapType>> Directions = new List<DualDirections<TMapType>>
             {
                 { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheNorth, "north",
                                                 (TMapType map) => map.RegionToTheSouth, "south" ) },
@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Maps
         /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMapRegionEdit"/>.</typeparam>
         /// <param name="inMap">The origination and destination region.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
-        public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
+        public static List<string> CheckExitConsistency(ModelID inRegionID)
         {
             var inconsistentExitDirections = new List<string>();
 
