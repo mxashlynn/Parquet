@@ -206,30 +206,17 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
-- [Elevation](#T-ParquetClassLibrary-Biomes-Elevation 'ParquetClassLibrary.Biomes.Elevation')
-  - [AboveGround](#F-ParquetClassLibrary-Biomes-Elevation-AboveGround 'ParquetClassLibrary.Biomes.Elevation.AboveGround')
-  - [BelowGround](#F-ParquetClassLibrary-Biomes-Elevation-BelowGround 'ParquetClassLibrary.Biomes.Elevation.BelowGround')
-  - [LevelGround](#F-ParquetClassLibrary-Biomes-Elevation-LevelGround 'ParquetClassLibrary.Biomes.Elevation.LevelGround')
-- [ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask')
-- [ElevationMaskSelectionExtensions](#T-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions')
-  - [Clear(refEnumVariable,inFlagToClear)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Clear-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.Clear(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [IsSet(inEnumVariable,inFlagToTest)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-IsSet-ParquetClassLibrary-Biomes-ElevationMask,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.IsSet(ParquetClassLibrary.Biomes.ElevationMask,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [Set(refEnumVariable,inFlagToSet)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Set-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.Set(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask)')
-  - [SetTo(refEnumVariable,inFlagToTest,inState)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-SetTo-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask,System-Boolean- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.SetTo(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask,System.Boolean)')
-- [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor 'ParquetClassLibrary.Maps.ExitPoint.#ctor')
-  - [#ctor(inPosition,inDestinationID)](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.ExitPoint.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.ModelID)')
-  - [ConverterFactory](#P-ParquetClassLibrary-Maps-ExitPoint-ConverterFactory 'ParquetClassLibrary.Maps.ExitPoint.ConverterFactory')
-  - [Destination](#P-ParquetClassLibrary-Maps-ExitPoint-Destination 'ParquetClassLibrary.Maps.ExitPoint.Destination')
-  - [Position](#P-ParquetClassLibrary-Maps-ExitPoint-Position 'ParquetClassLibrary.Maps.ExitPoint.Position')
-  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ExitPoint-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ExitPoint.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
-  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ExitPoint-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ExitPoint.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
-  - [Equals(inPoint)](#M-ParquetClassLibrary-Maps-ExitPoint-Equals-ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.Equals(ParquetClassLibrary.Maps.ExitPoint)')
-  - [Equals(obj)](#M-ParquetClassLibrary-Maps-ExitPoint-Equals-System-Object- 'ParquetClassLibrary.Maps.ExitPoint.Equals(System.Object)')
-  - [GetHashCode()](#M-ParquetClassLibrary-Maps-ExitPoint-GetHashCode 'ParquetClassLibrary.Maps.ExitPoint.GetHashCode')
-  - [ToString()](#M-ParquetClassLibrary-Maps-ExitPoint-ToString 'ParquetClassLibrary.Maps.ExitPoint.ToString')
-  - [op_Equality(inPoint1,inPoint2)](#M-ParquetClassLibrary-Maps-ExitPoint-op_Equality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.op_Equality(ParquetClassLibrary.Maps.ExitPoint,ParquetClassLibrary.Maps.ExitPoint)')
-  - [op_Inequality(inPoint1,inPoint2)](#M-ParquetClassLibrary-Maps-ExitPoint-op_Inequality-ParquetClassLibrary-Maps-ExitPoint,ParquetClassLibrary-Maps-ExitPoint- 'ParquetClassLibrary.Maps.ExitPoint.op_Inequality(ParquetClassLibrary.Maps.ExitPoint,ParquetClassLibrary.Maps.ExitPoint)')
+- [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1')
+  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection{`1},System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection{`1},System.String)')
+  - [GetAdjecentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionID')
+  - [GetAdjecentRegionsAdjacentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionsAdjacentRegionID')
+  - [LeavingDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.LeavingDirection')
+  - [ReturningDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-ReturningDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.ReturningDirection')
+- [EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType')
+  - [Down](#F-ParquetClassLibrary-Parquets-EntryType-Down 'ParquetClassLibrary.Parquets.EntryType.Down')
+  - [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None')
+  - [Room](#F-ParquetClassLibrary-Parquets-EntryType-Room 'ParquetClassLibrary.Parquets.EntryType.Room')
+  - [Up](#F-ParquetClassLibrary-Parquets-EntryType-Up 'ParquetClassLibrary.Parquets.EntryType.Up')
 - [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inModTool,inTrenchName)](#M-ParquetClassLibrary-Parquets-FloorModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Items-ModificationTool,System-String- 'ParquetClassLibrary.Parquets.FloorModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Items.ModificationTool,System.String)')
   - [defaultTrenchName](#F-ParquetClassLibrary-Parquets-FloorModel-defaultTrenchName 'ParquetClassLibrary.Parquets.FloorModel.defaultTrenchName')
@@ -237,7 +224,7 @@
   - [ModTool](#P-ParquetClassLibrary-Parquets-FloorModel-ModTool 'ParquetClassLibrary.Parquets.FloorModel.ModTool')
   - [TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-TrenchName 'ParquetClassLibrary.Parquets.FloorModel.TrenchName')
 - [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')
-  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,System-Boolean,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
+  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FurnishingModel-Bounds 'ParquetClassLibrary.Parquets.FurnishingModel.Bounds')
   - [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing')
   - [IsEntry](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry 'ParquetClassLibrary.Parquets.FurnishingModel.IsEntry')
@@ -258,6 +245,7 @@
   - [ConverterFactory](#P-ParquetClassLibrary-GridConverter`2-ConverterFactory 'ParquetClassLibrary.GridConverter`2.ConverterFactory')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
+- [IDByDirection\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection`1 'ParquetClassLibrary.Maps.MapAnalysis`1.IDByDirection`1')
 - [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1')
   - [Columns](#P-ParquetClassLibrary-IGrid`1-Columns 'ParquetClassLibrary.IGrid`1.Columns')
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
@@ -271,10 +259,6 @@
   - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
   - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
   - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
-  - [CheckExitConsistencyForDirection\`\`1(inMap,inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistencyForDirection``1-``0,System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.CheckExitConsistencyForDirection``1(``0,System.String)')
-  - [CheckExitConsistency\`\`1(inMap)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistency``1-``0- 'ParquetClassLibrary.Maps.IMapRegionEdit.CheckExitConsistency``1(``0)')
-  - [GetDual(inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDual(System.String)')
-  - [GetDualValue(inMap,inPropertyName)](#M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDualValue-ParquetClassLibrary-Maps-IMapRegionEdit,System-String- 'ParquetClassLibrary.Maps.IMapRegionEdit.GetDualValue(ParquetClassLibrary.Maps.IMapRegionEdit,System.String)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
   - [Description](#P-ParquetClassLibrary-IModelEdit-Description 'ParquetClassLibrary.IModelEdit.Description')
@@ -365,6 +349,9 @@
   - [ToString()](#M-ParquetClassLibrary-Location-ToString 'ParquetClassLibrary.Location.ToString')
   - [op_Equality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Equality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Equality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
+- [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
+  - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
+  - [CheckExitConsistency(inMap)](#M-ParquetClassLibrary-Maps-MapAnalysis`1-CheckExitConsistency-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis`1.CheckExitConsistency(ParquetClassLibrary.ModelID)')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
@@ -2918,62 +2905,94 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 
 Separates objects within collections.
 
-<a name='T-ParquetRoller-ExitCode'></a>
-## ExitCode `type`
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1'></a>
+## DualDirections\`1 `type`
 
 ##### Namespace
 
-ParquetRoller
+ParquetClassLibrary.Maps.MapAnalysis`1
 
 ##### Summary
 
-A value indicating success or the nature of the failure.
+A direction and its opposite, together with the properties needed to inspect both.
 
-##### Remarks
-
-Returned when the application terminates to indicate results of the process.
-
-<a name='F-ParquetRoller-ExitCode-AccessDenied'></a>
-### AccessDenied `constants`
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String-'></a>
+### #ctor() `constructor`
 
 ##### Summary
 
-Access or permission was denied.
+Initializes an instance of [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1').
 
-<a name='F-ParquetRoller-ExitCode-BadArguments'></a>
-### BadArguments `constants`
+##### Parameters
 
-##### Summary
+This constructor has no parameters.
 
-One or more arguments were incorrect.
-
-<a name='F-ParquetRoller-ExitCode-FileNotFound'></a>
-### FileNotFound `constants`
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID'></a>
+### GetAdjecentRegionID `constants`
 
 ##### Summary
 
-An invalid function was specified.
+The property identifying the adjacent map if one leaves the original map.
 
-<a name='F-ParquetRoller-ExitCode-InvalidData'></a>
-### InvalidData `constants`
-
-##### Summary
-
-Invalid data was given.
-
-<a name='F-ParquetRoller-ExitCode-NotSupported'></a>
-### NotSupported `constants`
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID'></a>
+### GetAdjecentRegionsAdjacentRegionID `constants`
 
 ##### Summary
 
-An unsupported request was made.
+The property identifying the map one would find when attempting to return to the the original map.
 
-<a name='F-ParquetRoller-ExitCode-Success'></a>
-### Success `constants`
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection'></a>
+### LeavingDirection `constants`
 
 ##### Summary
 
-The operation completed successfully.
+The direction in with the to leave.
+
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-ReturningDirection'></a>
+### ReturningDirection `constants`
+
+##### Summary
+
+The direction one would expect to take in order to return.
+
+<a name='T-ParquetClassLibrary-Parquets-EntryType'></a>
+## EntryType `type`
+
+##### Namespace
+
+ParquetClassLibrary.Parquets
+
+##### Summary
+
+Whether and how a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') communicates to an adjacent [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Down'></a>
+### Down `constants`
+
+##### Summary
+
+This furnishing communicates to the map below.
+
+<a name='F-ParquetClassLibrary-Parquets-EntryType-None'></a>
+### None `constants`
+
+##### Summary
+
+This furnishing does not communicate to another map or room.
+
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Room'></a>
+### Room `constants`
+
+##### Summary
+
+This furnishing communicates between rooms on the same map.
+
+<a name='F-ParquetClassLibrary-Parquets-EntryType-Up'></a>
+### Up `constants`
+
+##### Summary
+
+This furnishing communicates to the map above.
 
 <a name='T-ParquetClassLibrary-Parquets-FloorModel'></a>
 ## FloorModel `type`
@@ -3046,7 +3065,7 @@ ParquetClassLibrary.Parquets
 
 Configurations for large sandbox parquet items, such as furniture or plants.
 
-<a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,System-Boolean,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
+<a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID) `constructor`
 
 ##### Summary
@@ -3065,7 +3084,7 @@ Initializes a new instance of the [FurnishingModel](#T-ParquetClassLibrary-Parqu
 | inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 | inIsWalkable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on. |
-| inIsEntry | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
+| inIsEntry | [ParquetClassLibrary.Parquets.EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsEnclosing | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as part of a perimeter of a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsFlammable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may catch fire. |
 | inSwapID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | A [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') to swap with this furnishing on open/close actions. |
@@ -3089,7 +3108,7 @@ Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-Furnish
 
 ##### Summary
 
-Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
+Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable'></a>
 ### IsFlammable `property`
@@ -3257,6 +3276,17 @@ The given collection serialized.
 | inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection`1'></a>
+## IDByDirection\`1 `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps.MapAnalysis`1
+
+##### Summary
+
+Models a method that takes a map and returns the [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for an adjacent map.
+
 <a name='T-ParquetClassLibrary-IGrid`1'></a>
 ## IGrid\`1 `type`
 
@@ -3365,115 +3395,6 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
-
-<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistencyForDirection``1-``0,System-String-'></a>
-### CheckExitConsistencyForDirection\`\`1(inMap,inPropertyName) `method`
-
-##### Summary
-
-Detemines if the region connection to the given region in the given direction itself connects back to the given region
- in the opposite direction.
-
- For example, if the player leaves Region 1 by going North and finds themselves in Region 2,
- they should be able to return to Region 1 by going South from Region 2.  If this is not possible, that is inconsistent.
-
-##### Returns
-
-`true` if the exits are consistent, `false` otherwise.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inMap | [\`\`0](#T-``0 '``0') | The origination and destination region. |
-| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The direction to inspect from which the given region may be exited. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
-
-<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-CheckExitConsistency``1-``0-'></a>
-### CheckExitConsistency\`\`1(inMap) `method`
-
-##### Summary
-
-Finds exit directions leading to any regions adjacent to the given region for which the given region is not adjacent.
-
- That is, if the player leaves Region 1 by going North and cannot return to Region 1 by going then south,
- that is considered inconsistent and will be reported.
-
-##### Returns
-
-A collection of the names of all exit directions leading to regions whose own exits are inconsistent.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inMap | [\`\`0](#T-``0 '``0') | The origination and destination region. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
-
-<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDual-System-String-'></a>
-### GetDual(inPropertyName) `method`
-
-##### Summary
-
-Given the name of a directional property, finds the name of the property for the opposite direction.
-
-##### Returns
-
-The name of the property in the opposite direction.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | One of:
-- [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
-- [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
-- [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
-- [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
-- [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
-- [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow') |
-
-##### Remarks
-
-Provided to support optional consistency checks for region exits.
-
-<a name='M-ParquetClassLibrary-Maps-IMapRegionEdit-GetDualValue-ParquetClassLibrary-Maps-IMapRegionEdit,System-String-'></a>
-### GetDualValue(inMap,inPropertyName) `method`
-
-##### Summary
-
-Given the name of a directional property, finds the value of the property for the opposite direction.
-
-##### Returns
-
-The value of the property in the opposite direction.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inMap | [ParquetClassLibrary.Maps.IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit') | The instance whose property's value is sought. |
-| inPropertyName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | One of:
-- [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
-- [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
-- [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
-- [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
-- [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
-- [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow') |
-
-##### Remarks
-
-Provided to support optional consistency checks for region exits.
 
 <a name='T-ParquetClassLibrary-IModelEdit'></a>
 ## IModelEdit `type`
@@ -4496,6 +4417,50 @@ Determines whether a specified instance of [Location](#T-ParquetClassLibrary-Loc
 | ---- | ---- | ----------- |
 | inLocation1 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The first [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 | inLocation2 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The second [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
+
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1'></a>
+## MapAnalysis\`1 `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps
+
+##### Summary
+
+Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
+
+<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions'></a>
+### Directions `constants`
+
+##### Summary
+
+A database of directions and their opposites, together with the properties needed to inspect both.
+
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-CheckExitConsistency-ParquetClassLibrary-ModelID-'></a>
+### CheckExitConsistency(inMap) `method`
+
+##### Summary
+
+Finds adjacent maps from which the given map is not adjacent in the expected direction.
+
+ That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
+ that is considered inconsistent and will be reported.
+
+##### Returns
+
+A report of all exit directions leading to regions whose own exits are inconsistent.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inMap | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The origination and destination region. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
 
 <a name='T-ParquetClassLibrary-Maps-MapChunk'></a>
 ## MapChunk `type`

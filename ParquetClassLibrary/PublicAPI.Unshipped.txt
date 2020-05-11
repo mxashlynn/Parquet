@@ -307,14 +307,19 @@ ParquetClassLibrary.Parquets.CollectingEffect
 ParquetClassLibrary.Parquets.CollectingEffect.BiomeTime = 2 -> ParquetClassLibrary.Parquets.CollectingEffect
 ParquetClassLibrary.Parquets.CollectingEffect.Item = 1 -> ParquetClassLibrary.Parquets.CollectingEffect
 ParquetClassLibrary.Parquets.CollectingEffect.None = 0 -> ParquetClassLibrary.Parquets.CollectingEffect
+ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.EntryType.Down = 3 -> ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.EntryType.None = 0 -> ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.EntryType.Room = 1 -> ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.EntryType.Up = 2 -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FloorModel
 ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, ParquetClassLibrary.Items.ModificationTool inModTool = ParquetClassLibrary.Items.ModificationTool.None, string inTrenchName = "dark hole") -> void
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
-ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, bool inIsEntry = default(bool), bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
+ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inIsEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
-ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> EntryType
+ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.SwapID.get -> ParquetClassLibrary.ModelID
@@ -449,11 +454,6 @@ ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors.get -> Sys
 ParquetClassLibrary.Rooms.RoomRecipe.Priority.get -> int
 ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int? inMinimumWalkableSpaces = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredFurnishings = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredWalkableFloors = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredPerimeterBlocks = null) -> void
 ParquetClassLibrary.Scripts.Commands
-ParquetClassLibrary.Scripts.EntryType
-ParquetClassLibrary.Scripts.EntryType.Down = 3 -> ParquetClassLibrary.Scripts.EntryType
-ParquetClassLibrary.Scripts.EntryType.None = 0 -> ParquetClassLibrary.Scripts.EntryType
-ParquetClassLibrary.Scripts.EntryType.Room = 1 -> ParquetClassLibrary.Scripts.EntryType
-ParquetClassLibrary.Scripts.EntryType.Up = 2 -> ParquetClassLibrary.Scripts.EntryType
 ParquetClassLibrary.Scripts.InteractionModel
 ParquetClassLibrary.Scripts.InteractionModel.InteractionModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisites, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSteps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcomes) -> void
 ParquetClassLibrary.Scripts.InteractionModel.Outcomes.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
