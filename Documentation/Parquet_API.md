@@ -206,9 +206,8 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
-- [DirectionName](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DirectionName 'ParquetClassLibrary.Maps.MapAnalysis`1.DirectionName')
 - [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,ParquetClassLibrary.Maps.MapAnalysis{`0}.DirectionName,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,ParquetClassLibrary.Maps.MapAnalysis{`0}.DirectionName)')
+  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String)')
   - [GetAdjecentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionID')
   - [GetAdjecentRegionsAdjacentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionsAdjacentRegionID')
   - [LeavingDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.LeavingDirection')
@@ -715,6 +714,12 @@
   - [op_Inequality(inElement1,inElement2)](#M-ParquetClassLibrary-RecipeElement-op_Inequality-ParquetClassLibrary-RecipeElement,ParquetClassLibrary-RecipeElement- 'ParquetClassLibrary.RecipeElement.op_Inequality(ParquetClassLibrary.RecipeElement,ParquetClassLibrary.RecipeElement)')
 - [Resources](#T-ParquetClassLibrary-Properties-Resources 'ParquetClassLibrary.Properties.Resources')
   - [Culture](#P-ParquetClassLibrary-Properties-Resources-Culture 'ParquetClassLibrary.Properties.Resources.Culture')
+  - [DirectionAbove](#P-ParquetClassLibrary-Properties-Resources-DirectionAbove 'ParquetClassLibrary.Properties.Resources.DirectionAbove')
+  - [DirectionBelow](#P-ParquetClassLibrary-Properties-Resources-DirectionBelow 'ParquetClassLibrary.Properties.Resources.DirectionBelow')
+  - [DirectionEast](#P-ParquetClassLibrary-Properties-Resources-DirectionEast 'ParquetClassLibrary.Properties.Resources.DirectionEast')
+  - [DirectionNorth](#P-ParquetClassLibrary-Properties-Resources-DirectionNorth 'ParquetClassLibrary.Properties.Resources.DirectionNorth')
+  - [DirectionSouth](#P-ParquetClassLibrary-Properties-Resources-DirectionSouth 'ParquetClassLibrary.Properties.Resources.DirectionSouth')
+  - [DirectionWest](#P-ParquetClassLibrary-Properties-Resources-DirectionWest 'ParquetClassLibrary.Properties.Resources.DirectionWest')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
   - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
@@ -2907,17 +2912,6 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 
 Separates objects within collections.
 
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DirectionName'></a>
-## DirectionName `type`
-
-##### Namespace
-
-ParquetClassLibrary.Maps.MapAnalysis`1
-
-##### Summary
-
-The names of the directions that `TMapType` supports.
-
 <a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1'></a>
 ## DualDirections\`1 `type`
 
@@ -2929,7 +2923,7 @@ ParquetClassLibrary.Maps.MapAnalysis`1
 
 A direction and its opposite, together with the properties needed to inspect both.
 
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,ParquetClassLibrary-Maps-MapAnalysis{`0}-DirectionName-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String-'></a>
 ### #ctor() `constructor`
 
 ##### Summary
@@ -9241,6 +9235,48 @@ A strongly-typed resource class, for looking up localized strings, etc.
 
 Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionAbove'></a>
+### DirectionAbove `property`
+
+##### Summary
+
+Looks up a localized string similar to above.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionBelow'></a>
+### DirectionBelow `property`
+
+##### Summary
+
+Looks up a localized string similar to below.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionEast'></a>
+### DirectionEast `property`
+
+##### Summary
+
+Looks up a localized string similar to east.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionNorth'></a>
+### DirectionNorth `property`
+
+##### Summary
+
+Looks up a localized string similar to north.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionSouth'></a>
+### DirectionSouth `property`
+
+##### Summary
+
+Looks up a localized string similar to south.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-DirectionWest'></a>
+### DirectionWest `property`
+
+##### Summary
+
+Looks up a localized string similar to west.
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert'></a>
 ### ErrorCannotConvert `property`

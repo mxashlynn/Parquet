@@ -61,6 +61,60 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to above.
+        /// </summary>
+        internal static string DirectionAbove {
+            get {
+                return ResourceManager.GetString("DirectionAbove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to below.
+        /// </summary>
+        internal static string DirectionBelow {
+            get {
+                return ResourceManager.GetString("DirectionBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to east.
+        /// </summary>
+        internal static string DirectionEast {
+            get {
+                return ResourceManager.GetString("DirectionEast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to north.
+        /// </summary>
+        internal static string DirectionNorth {
+            get {
+                return ResourceManager.GetString("DirectionNorth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to south.
+        /// </summary>
+        internal static string DirectionSouth {
+            get {
+                return ResourceManager.GetString("DirectionSouth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to west.
+        /// </summary>
+        internal static string DirectionWest {
+            get {
+                return ResourceManager.GetString("DirectionWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not convert &apos;{0}&apos; to {1}..
         /// </summary>
         internal static string ErrorCannotConvert {
