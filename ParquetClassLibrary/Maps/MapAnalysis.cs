@@ -11,29 +11,30 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
         /// </summary>
-        internal delegate ModelID IDByDirection<TMapType>(TMapType inMap);
+        internal delegate ModelID IDByDirection(TMapType inMap);
 
         /// <summary>
         /// A direction and its opposite, together with the properties needed to inspect both.
         /// </summary>
-        internal class DualDirections<TMapType>
+        internal class DualDirections<TMapType2>
+            where TMapType2 : MapModel, IMapRegionEdit
         {
             ///<summary>The property identifying the adjacent map if one leaves the original map.</summary>
-            public IDByDirection<TMapType> GetAdjecentRegionID;
+            public IDByDirection GetAdjecentRegionID;
 
             ///<summary>The direction in with the to leave.</summary>
             public string LeavingDirection;
 
             ///<summary>The property identifying the map one would find when attempting to return to the the original map.</summary>
-            public IDByDirection<TMapType> GetAdjecentRegionsAdjacentRegionID;
+            public IDByDirection GetAdjecentRegionsAdjacentRegionID;
             
             ///<summary>The direction one would expect to take in order to return.</summary>
             public string ReturningDirection;
 
             ///<summary>Initializes an instance of <see cref="DualDirections{TMapType}"/>.</summary>
-            public DualDirections(IDByDirection<TMapType> inGetAdjecentRegionID,
+            public DualDirections(IDByDirection inGetAdjecentRegionID,
                                   string inLeavingDirection,
-                                  IDByDirection<TMapType> inGetAdjecentRegionsAdjacentRegionID,
+                                  IDByDirection inGetAdjecentRegionsAdjacentRegionID,
                                   string inReturningDirection)
             {
                 GetAdjecentRegionID = inGetAdjecentRegionID;
