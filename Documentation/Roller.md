@@ -4,6 +4,13 @@
 ## Contents
 
 - [Command](#T-ParquetRoller-Roller-Command 'ParquetRoller.Roller.Command')
+- [ExitCode](#T-ParquetRoller-ExitCode 'ParquetRoller.ExitCode')
+  - [AccessDenied](#F-ParquetRoller-ExitCode-AccessDenied 'ParquetRoller.ExitCode.AccessDenied')
+  - [BadArguments](#F-ParquetRoller-ExitCode-BadArguments 'ParquetRoller.ExitCode.BadArguments')
+  - [FileNotFound](#F-ParquetRoller-ExitCode-FileNotFound 'ParquetRoller.ExitCode.FileNotFound')
+  - [InvalidData](#F-ParquetRoller-ExitCode-InvalidData 'ParquetRoller.ExitCode.InvalidData')
+  - [NotSupported](#F-ParquetRoller-ExitCode-NotSupported 'ParquetRoller.ExitCode.NotSupported')
+  - [Success](#F-ParquetRoller-ExitCode-Success 'ParquetRoller.ExitCode.Success')
 - [Resources](#T-ParquetRoller-Properties-Resources 'ParquetRoller.Properties.Resources')
   - [Culture](#P-ParquetRoller-Properties-Resources-Culture 'ParquetRoller.Properties.Resources.Culture')
   - [ErrorNoProperty](#P-ParquetRoller-Properties-Resources-ErrorNoProperty 'ParquetRoller.Properties.Resources.ErrorNoProperty')
@@ -55,6 +62,63 @@ A value indicating success or the manner of failure.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | inWorkload | [T:ParquetRoller.Roller.Command](#T-T-ParquetRoller-Roller-Command 'T:ParquetRoller.Roller.Command') | The [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') to act on, if any. |
+
+<a name='T-ParquetRoller-ExitCode'></a>
+## ExitCode `type`
+
+##### Namespace
+
+ParquetRoller
+
+##### Summary
+
+A value indicating success or the nature of the failure.
+
+##### Remarks
+
+Returned when the application terminates to indicate results of the process.
+
+<a name='F-ParquetRoller-ExitCode-AccessDenied'></a>
+### AccessDenied `constants`
+
+##### Summary
+
+Access or permission was denied.
+
+<a name='F-ParquetRoller-ExitCode-BadArguments'></a>
+### BadArguments `constants`
+
+##### Summary
+
+One or more arguments were incorrect.
+
+<a name='F-ParquetRoller-ExitCode-FileNotFound'></a>
+### FileNotFound `constants`
+
+##### Summary
+
+An invalid function was specified.
+
+<a name='F-ParquetRoller-ExitCode-InvalidData'></a>
+### InvalidData `constants`
+
+##### Summary
+
+Invalid data was given.
+
+<a name='F-ParquetRoller-ExitCode-NotSupported'></a>
+### NotSupported `constants`
+
+##### Summary
+
+An unsupported request was made.
+
+<a name='F-ParquetRoller-ExitCode-Success'></a>
+### Success `constants`
+
+##### Summary
+
+The operation completed successfully.
 
 <a name='T-ParquetRoller-Properties-Resources'></a>
 ## Resources `type`
