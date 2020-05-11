@@ -47,7 +47,8 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
-        internal static List<DualDirections<TMapType>> Directions = new List<DualDirections<TMapType>>
+        internal static List<DualDirections<TMapType>> Directions =
+            new List<DualDirections<TMapType>>
             {
                 { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheNorth, "north",
                                                 (TMapType map) => map.RegionToTheSouth, "south" ) },
