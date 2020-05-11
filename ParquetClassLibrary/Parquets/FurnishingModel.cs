@@ -56,7 +56,7 @@ namespace ParquetClassLibrary.Parquets
         public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
                           ModelID? inItemID = null, ModelTag inAddsToBiome = null,
                           ModelTag inAddsToRoom = null, bool inIsWalkable = false,
-                          bool inIsEntry = EntryType.None, bool inIsEnclosing = false,
+                          EntryType inIsEntry = EntryType.None, bool inIsEnclosing = false,
                           bool inIsFlammable = false, ModelID? inSwapID = null)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
                    inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
