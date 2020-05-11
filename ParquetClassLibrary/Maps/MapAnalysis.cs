@@ -15,59 +15,26 @@ namespace ParquetClassLibrary.Maps
         internal delegate ModelID IDByDirection(TMapType inMap);
 
         /// <summary>
-        /// A direction and its opposite, together with the properties needed to inspect both.
-        /// </summary>
-        internal class DualDirections<TMapType2>
-            where TMapType2 : MapModel, IMapRegionEdit
-        {
-            ///<summary>The property identifying the adjacent map if one leaves the original map.</summary>
-            public IDByDirection GetAdjecentRegionID;
-
-            ///<summary>The direction in with the to leave.</summary>
-            public string LeavingDirection;
-
-            ///<summary>The property identifying the map one would find when attempting to return to the the original map.</summary>
-            public IDByDirection GetAdjecentRegionsAdjacentRegionID;
-
-            ///<summary>The direction one would expect to take in order to return.</summary>
-            public string ReturningDirection;
-
-            ///<summary>Initializes an instance of <see cref="DualDirections{TMapType}"/>.</summary>
-            public DualDirections(IDByDirection inGetAdjecentRegionID,
-                                  string inLeavingDirection,
-                                  IDByDirection inGetAdjecentRegionsAdjacentRegionID,
-                                  string inReturningDirection)
-            {
-                GetAdjecentRegionID = inGetAdjecentRegionID;
-                LeavingDirection = inLeavingDirection;
-                GetAdjecentRegionsAdjacentRegionID = inGetAdjecentRegionsAdjacentRegionID;
-                ReturningDirection = inReturningDirection;
-            }
-        }
-
-        /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
-        internal static List<DualDirections<TMapType>> Directions =
-            new List<DualDirections<TMapType>>
+        internal static List<(IDByDirection GetLeavingRegionID,
+                              string LeavingDirection,
+                              IDByDirection GetReturningRegionID,
+                              string ReturningDirection)> Directions =
+            new List<(IDByDirection, string, IDByDirection, string)>
             {
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth,
-                                                (TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth ) },
-
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheEast, Resources.DirectionEast,
-                                                (TMapType map) => map.RegionToTheWest, Resources.DirectionWest ) },
-
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth,
-                                                (TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth ) },
-
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionToTheWest, Resources.DirectionWest,
-                                                (TMapType map) => map.RegionToTheEast, Resources.DirectionEast ) },
-
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionAbove, Resources.DirectionAbove,
-                                                (TMapType map) => map.RegionBelow, Resources.DirectionBelow ) },
-
-                { new DualDirections<TMapType>( (TMapType map) => map.RegionBelow, Resources.DirectionBelow,
-                                                (TMapType map) => map.RegionAbove, Resources.DirectionAbove ) },
+                { ((TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth,
+                   (TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth) },
+                { ((TMapType map) => map.RegionToTheEast, Resources.DirectionEast,
+                   (TMapType map) => map.RegionToTheWest, Resources.DirectionWest) },
+                { ((TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth,
+                   (TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth) },
+                { ((TMapType map) => map.RegionToTheWest, Resources.DirectionWest,
+                   (TMapType map) => map.RegionToTheEast, Resources.DirectionEast) },
+                { ((TMapType map) => map.RegionAbove, Resources.DirectionAbove,
+                   (TMapType map) => map.RegionBelow, Resources.DirectionBelow) },
+                { ((TMapType map) => map.RegionBelow, Resources.DirectionBelow,
+                   (TMapType map) => map.RegionAbove, Resources.DirectionAbove) },
             };
     }
 
@@ -85,6 +52,8 @@ namespace ParquetClassLibrary.Maps
         /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMapRegionEdit"/>.</typeparam>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
+            Justification = "In this instance deconstruction makes the code harder to read.")]
         public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
             where TMapType : MapModel, IMapRegionEdit
         {
@@ -98,14 +67,14 @@ namespace ParquetClassLibrary.Maps
             var currentRegion = All.Maps.Get<TMapType>(inRegionID);
             foreach (var directionPair in MapAnalysis<TMapType>.Directions)
             {
-                var adjacentRegionID = directionPair.GetAdjecentRegionID(currentRegion);
+                var adjacentRegionID = directionPair.GetLeavingRegionID(currentRegion);
                 if (adjacentRegionID == ModelID.None)
                 {
                     continue;
                 }
 
                 var adjacentRegion = All.Maps.Get<TMapType>(adjacentRegionID);
-                if (directionPair.GetAdjecentRegionsAdjacentRegionID(adjacentRegion) != inRegionID)
+                if (directionPair.GetReturningRegionID(adjacentRegion) != inRegionID)
                 {
                     inconsistentExitDirections.Add(
                         $"{adjacentRegion.Name} is {directionPair.LeavingDirection} of {currentRegion.Name} but " +
