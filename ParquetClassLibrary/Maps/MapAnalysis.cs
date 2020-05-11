@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Provides optional analysis for compatible <see cref="MapModel"/>s.
     /// </summary>
-    public static class MapAnalysis<TMapType>
+    internal static class MapAnalysis<TMapType>
         where TMapType : MapModel, IMapRegionEdit
     {
         /// <summary>
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Maps
 
             ///<summary>The property identifying the map one would find when attempting to return to the the original map.</summary>
             public IDByDirection GetAdjecentRegionsAdjacentRegionID;
-            
+
             ///<summary>The direction one would expect to take in order to return.</summary>
             public string ReturningDirection;
 
@@ -67,7 +67,13 @@ namespace ParquetClassLibrary.Maps
                 { new DualDirections<TMapType>( (TMapType map) => map.RegionBelow, "below",
                                                 (TMapType map) => map.RegionAbove, "above" ) },
             };
+    }
 
+    /// <summary>
+    /// Provides optional analysis for compatible <see cref="MapModel"/>s.
+    /// </summary>
+    public static class MapAnalysis
+    {
         /// <summary>
         /// Finds adjacent maps from which the given map is not adjacent in the expected direction.
         ///
@@ -75,14 +81,15 @@ namespace ParquetClassLibrary.Maps
         /// that is considered inconsistent and will be reported.
         /// </summary>
         /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMapRegionEdit"/>.</typeparam>
-        /// <param name="inMap">The origination and destination region.</param>
+        /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
-        public static List<string> CheckExitConsistency(ModelID inRegionID)
+        public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
+            where TMapType : MapModel, IMapRegionEdit
         {
             var inconsistentExitDirections = new List<string>();
 
             var currentRegion = All.Maps.Get<TMapType>(inRegionID);
-            foreach (var directionPair in Directions)
+            foreach (var directionPair in MapAnalysis<TMapType>.Directions)
             {
                 var adjacentRegionID = directionPair.GetAdjecentRegionID(currentRegion);
                 var adjacentRegion = All.Maps.Get<TMapType>(adjacentRegionID);

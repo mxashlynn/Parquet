@@ -219,7 +219,7 @@ ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth.get -> ParquetClassLibr
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth.set -> void
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
-ParquetClassLibrary.Maps.MapAnalysis<TMapType>
+ParquetClassLibrary.Maps.MapAnalysis
 ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
@@ -632,7 +632,7 @@ static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inL
 static ParquetClassLibrary.Maps.ChunkType.operator !=(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkType.operator ==(ParquetClassLibrary.Maps.ChunkType inChunkType1, ParquetClassLibrary.Maps.ChunkType inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkTypeGrid.DimensionsInChunks.get -> ParquetClassLibrary.Vector2D
-static ParquetClassLibrary.Maps.MapAnalysis<TMapType>.CheckExitConsistency(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
+static ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
 static ParquetClassLibrary.Maps.MapChunk.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapChunk.Empty.get -> ParquetClassLibrary.Maps.MapChunk
 static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>

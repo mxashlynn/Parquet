@@ -207,7 +207,7 @@
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
 - [DualDirections\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection{`1},System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection{`1},System.String)')
+  - [#ctor()](#M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String- 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.#ctor(ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String,ParquetClassLibrary.Maps.MapAnalysis{`0}.IDByDirection,System.String)')
   - [GetAdjecentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionID')
   - [GetAdjecentRegionsAdjacentRegionID](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-GetAdjecentRegionsAdjacentRegionID 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.GetAdjecentRegionsAdjacentRegionID')
   - [LeavingDirection](#F-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-LeavingDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.DualDirections`1.LeavingDirection')
@@ -245,7 +245,7 @@
   - [ConverterFactory](#P-ParquetClassLibrary-GridConverter`2-ConverterFactory 'ParquetClassLibrary.GridConverter`2.ConverterFactory')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
-- [IDByDirection\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection`1 'ParquetClassLibrary.Maps.MapAnalysis`1.IDByDirection`1')
+- [IDByDirection](#T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.IDByDirection')
 - [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1')
   - [Columns](#P-ParquetClassLibrary-IGrid`1-Columns 'ParquetClassLibrary.IGrid`1.Columns')
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
@@ -349,9 +349,10 @@
   - [ToString()](#M-ParquetClassLibrary-Location-ToString 'ParquetClassLibrary.Location.ToString')
   - [op_Equality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Equality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Equality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
+- [MapAnalysis](#T-ParquetClassLibrary-Maps-MapAnalysis 'ParquetClassLibrary.Maps.MapAnalysis')
+  - [CheckExitConsistency\`\`1(inRegionID)](#M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency``1(ParquetClassLibrary.ModelID)')
 - [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
-  - [CheckExitConsistency(inMap)](#M-ParquetClassLibrary-Maps-MapAnalysis`1-CheckExitConsistency-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis`1.CheckExitConsistency(ParquetClassLibrary.ModelID)')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
@@ -2916,7 +2917,7 @@ ParquetClassLibrary.Maps.MapAnalysis`1
 
 A direction and its opposite, together with the properties needed to inspect both.
 
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection{`1},System-String-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-DualDirections`1-#ctor-ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String,ParquetClassLibrary-Maps-MapAnalysis{`0}-IDByDirection,System-String-'></a>
 ### #ctor() `constructor`
 
 ##### Summary
@@ -3276,8 +3277,8 @@ The given collection serialized.
 | inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection`1'></a>
-## IDByDirection\`1 `type`
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection'></a>
+## IDByDirection `type`
 
 ##### Namespace
 
@@ -4418,6 +4419,43 @@ Determines whether a specified instance of [Location](#T-ParquetClassLibrary-Loc
 | inLocation1 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The first [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 | inLocation2 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The second [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 
+<a name='T-ParquetClassLibrary-Maps-MapAnalysis'></a>
+## MapAnalysis `type`
+
+##### Namespace
+
+ParquetClassLibrary.Maps
+
+##### Summary
+
+Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
+
+<a name='M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID-'></a>
+### CheckExitConsistency\`\`1(inRegionID) `method`
+
+##### Summary
+
+Finds adjacent maps from which the given map is not adjacent in the expected direction.
+
+ That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
+ that is considered inconsistent and will be reported.
+
+##### Returns
+
+A report of all exit directions leading to regions whose own exits are inconsistent.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inRegionID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the origination and destination map. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
+
 <a name='T-ParquetClassLibrary-Maps-MapAnalysis`1'></a>
 ## MapAnalysis\`1 `type`
 
@@ -4435,32 +4473,6 @@ Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps
 ##### Summary
 
 A database of directions and their opposites, together with the properties needed to inspect both.
-
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis`1-CheckExitConsistency-ParquetClassLibrary-ModelID-'></a>
-### CheckExitConsistency(inMap) `method`
-
-##### Summary
-
-Finds adjacent maps from which the given map is not adjacent in the expected direction.
-
- That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
- that is considered inconsistent and will be reported.
-
-##### Returns
-
-A report of all exit directions leading to regions whose own exits are inconsistent.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inMap | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The origination and destination region. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit'). |
 
 <a name='T-ParquetClassLibrary-Maps-MapChunk'></a>
 ## MapChunk `type`
