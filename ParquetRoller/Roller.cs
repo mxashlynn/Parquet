@@ -92,6 +92,9 @@ namespace ParquetRoller
                 case "-r":
                 case "roll":
                     return RollCSVs;
+                case "-c":
+                case "check":
+                    return CheckAdjacency;
                 case "-p":
                     return ListPronouns;
                 case "-l":
@@ -227,6 +230,18 @@ namespace ParquetRoller
                 case "n-items":
                     var nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
                     workload = new ModelCollection(All.ItemIDs, All.Items);
+                    break;
+                case "map":
+                case "maps":
+                    workload = new ModelCollection(All.MapIDs, All.Maps);
+                    break;
+                case "chunk":
+                case "chunks":
+                    workload = new ModelCollection(All.MapChunkIDs, All.Maps);
+                    break;
+                case "region":
+                case "regions":
+                    workload = new ModelCollection(All.MapRegionIDs, All.Maps);
                     break;
                 case "parquet":
                 case "parquets":
@@ -386,6 +401,44 @@ namespace ParquetRoller
             // Currently, all that has to be done is assigning ModelIDs.  Loading and saving will accomplish this.
             All.LoadFromCSVs();
             All.SaveToCSVs();
+            return ExitCode.Success;
+        }
+
+        /// <summary>
+        /// Check for inconsistent adjacency information in all defined <see cref="MapRegion"/>s and <see cref="MapRegionSketch"/>es.
+        /// </summary>
+        /// <param name="inWorkload">Ignored.</param>
+        /// <returns>A value indicating success or the nature of the failure.</returns>
+        private static ExitCode CheckAdjacency(ModelCollection inWorkload)
+        {
+            All.LoadFromCSVs();
+
+            var sketches = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionSketch));
+            var orderedWorkload = sketches.OrderBy(x => x.ID);
+            Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageChecking,
+                                            $"{nameof(MapRegionSketch)}es"));
+            foreach (var model in orderedWorkload)
+            {
+                var results = MapAnalysis.CheckExitConsistency<MapRegionSketch>(model.ID);
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+
+            var regions = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegion));
+            orderedWorkload = regions.OrderBy(x => x.ID);
+            Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageChecking,
+                                            $"{nameof(MapRegion)}s"));
+            foreach (var model in orderedWorkload)
+            {
+                var results = MapAnalysis.CheckExitConsistency<MapRegion>(model.ID);
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+
             return ExitCode.Success;
         }
 

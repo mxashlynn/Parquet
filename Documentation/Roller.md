@@ -19,12 +19,14 @@
   - [InfoCollision](#P-ParquetRoller-Properties-Resources-InfoCollision 'ParquetRoller.Properties.Resources.InfoCollision')
   - [InfoCollisionsHeader](#P-ParquetRoller-Properties-Resources-InfoCollisionsHeader 'ParquetRoller.Properties.Resources.InfoCollisionsHeader')
   - [InfoNoContent](#P-ParquetRoller-Properties-Resources-InfoNoContent 'ParquetRoller.Properties.Resources.InfoNoContent')
+  - [MessageChecking](#P-ParquetRoller-Properties-Resources-MessageChecking 'ParquetRoller.Properties.Resources.MessageChecking')
   - [MessageDefault](#P-ParquetRoller-Properties-Resources-MessageDefault 'ParquetRoller.Properties.Resources.MessageDefault')
   - [MessageHelp](#P-ParquetRoller-Properties-Resources-MessageHelp 'ParquetRoller.Properties.Resources.MessageHelp')
   - [MessageVersion](#P-ParquetRoller-Properties-Resources-MessageVersion 'ParquetRoller.Properties.Resources.MessageVersion')
   - [ResourceManager](#P-ParquetRoller-Properties-Resources-ResourceManager 'ParquetRoller.Properties.Resources.ResourceManager')
 - [Roller](#T-ParquetRoller-Roller 'ParquetRoller.Roller')
   - [ListPropertyForCategory](#P-ParquetRoller-Roller-ListPropertyForCategory 'ParquetRoller.Roller.ListPropertyForCategory')
+  - [CheckAdjacency(inWorkload)](#M-ParquetRoller-Roller-CheckAdjacency-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.CheckAdjacency(ParquetClassLibrary.ModelCollection)')
   - [CreateTemplates(inWorkload)](#M-ParquetRoller-Roller-CreateTemplates-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.CreateTemplates(ParquetClassLibrary.ModelCollection)')
   - [DisplayBadArguments(inWorkload)](#M-ParquetRoller-Roller-DisplayBadArguments-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.DisplayBadArguments(ParquetClassLibrary.ModelCollection)')
   - [DisplayDefault(inWorkload)](#M-ParquetRoller-Roller-DisplayDefault-ParquetClassLibrary-ModelCollection- 'ParquetRoller.Roller.DisplayDefault(ParquetClassLibrary.ModelCollection)')
@@ -187,6 +189,13 @@ Looks up a localized string similar to Collisions in {0}:
 Looks up a localized string similar to No defined content.
 .
 
+<a name='P-ParquetRoller-Properties-Resources-MessageChecking'></a>
+### MessageChecking `property`
+
+##### Summary
+
+Looks up a localized string similar to Checking {0}..
+
 <a name='P-ParquetRoller-Properties-Resources-MessageDefault'></a>
 ### MessageDefault `property`
 
@@ -201,8 +210,8 @@ Commands:
     -v|version          Display version information.
     -t|templates        Write CSV templates to current directory.
     -r|roll Prepare CSVs in current directory for use.
-    -p|list pronouns    List all defined pronoun groups.
-    -l|list (property) [category]   List various model pro [rest of string was truncated]";.
+    -c|checkCheck that map adjacency is consistent.
+    -p|list pronouns    List  [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageHelp'></a>
 ### MessageHelp `property`
@@ -220,7 +229,7 @@ Usage: roller list (property) [category]
 
 Commands:
     -h|help Display detailed help.
-    -v|version          Display versi [rest of string was truncated]";.
+    -v|version          Di [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageVersion'></a>
 ### MessageVersion `property`
@@ -256,6 +265,23 @@ A command line tool that reads in game definitions from CSV files, verifies, mod
 ##### Summary
 
 A flag indicating that a subcommand must be executed.
+
+<a name='M-ParquetRoller-Roller-CheckAdjacency-ParquetClassLibrary-ModelCollection-'></a>
+### CheckAdjacency(inWorkload) `method`
+
+##### Summary
+
+Check for inconsistent adjacency information in all defined [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s and [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es.
+
+##### Returns
+
+A value indicating success or the nature of the failure.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inWorkload | [ParquetClassLibrary.ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') | Ignored. |
 
 <a name='M-ParquetRoller-Roller-CreateTemplates-ParquetClassLibrary-ModelCollection-'></a>
 ### CreateTemplates(inWorkload) `method`

@@ -89,16 +89,26 @@ namespace ParquetClassLibrary.Maps
         {
             var inconsistentExitDirections = new List<string>();
 
+            if (inRegionID == ModelID.None)
+            {
+                return inconsistentExitDirections;
+            }
+
             var currentRegion = All.Maps.Get<TMapType>(inRegionID);
             foreach (var directionPair in MapAnalysis<TMapType>.Directions)
             {
                 var adjacentRegionID = directionPair.GetAdjecentRegionID(currentRegion);
+                if (adjacentRegionID == ModelID.None)
+                {
+                    continue;
+                }
+
                 var adjacentRegion = All.Maps.Get<TMapType>(adjacentRegionID);
                 if (directionPair.GetAdjecentRegionsAdjacentRegionID(adjacentRegion) != inRegionID)
                 {
                     inconsistentExitDirections.Add(
                         $"{adjacentRegion.Name} is {directionPair.LeavingDirection} of {currentRegion.Name} but " +
-                        $"{currentRegion.Name} is not {directionPair.ReturningDirection} of {adjacentRegion.Name}.");
+                        $"{currentRegion.Name} is not {directionPair.ReturningDirection} of {adjacentRegion.Name}.\n");
                 }
             }
 
