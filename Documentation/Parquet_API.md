@@ -217,13 +217,6 @@
   - [IsSet(inEnumVariable,inFlagToTest)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-IsSet-ParquetClassLibrary-Biomes-ElevationMask,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.IsSet(ParquetClassLibrary.Biomes.ElevationMask,ParquetClassLibrary.Biomes.ElevationMask)')
   - [Set(refEnumVariable,inFlagToSet)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-Set-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.Set(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask)')
   - [SetTo(refEnumVariable,inFlagToTest,inState)](#M-ParquetClassLibrary-Biomes-ElevationMaskSelectionExtensions-SetTo-ParquetClassLibrary-Biomes-ElevationMask@,ParquetClassLibrary-Biomes-ElevationMask,System-Boolean- 'ParquetClassLibrary.Biomes.ElevationMaskSelectionExtensions.SetTo(ParquetClassLibrary.Biomes.ElevationMask@,ParquetClassLibrary.Biomes.ElevationMask,System.Boolean)')
-- [ExitCode](#T-ParquetRoller-ExitCode 'ParquetRoller.ExitCode')
-  - [AccessDenied](#F-ParquetRoller-ExitCode-AccessDenied 'ParquetRoller.ExitCode.AccessDenied')
-  - [BadArguments](#F-ParquetRoller-ExitCode-BadArguments 'ParquetRoller.ExitCode.BadArguments')
-  - [FileNotFound](#F-ParquetRoller-ExitCode-FileNotFound 'ParquetRoller.ExitCode.FileNotFound')
-  - [InvalidData](#F-ParquetRoller-ExitCode-InvalidData 'ParquetRoller.ExitCode.InvalidData')
-  - [NotSupported](#F-ParquetRoller-ExitCode-NotSupported 'ParquetRoller.ExitCode.NotSupported')
-  - [Success](#F-ParquetRoller-ExitCode-Success 'ParquetRoller.ExitCode.Success')
 - [ExitPoint](#T-ParquetClassLibrary-Maps-ExitPoint 'ParquetClassLibrary.Maps.ExitPoint')
   - [#ctor()](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor 'ParquetClassLibrary.Maps.ExitPoint.#ctor')
   - [#ctor(inPosition,inDestinationID)](#M-ParquetClassLibrary-Maps-ExitPoint-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.ExitPoint.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.ModelID)')
@@ -2937,7 +2930,7 @@ Lowest elevation.
 
 ##### Summary
 
-Mid-level elevation.
+Default elevation.
 
 <a name='T-ParquetClassLibrary-Biomes-ElevationMask'></a>
 ## ElevationMask `type`
@@ -3033,63 +3026,6 @@ The variable with the flag modified.
 | refEnumVariable | [ParquetClassLibrary.Biomes.ElevationMask@](#T-ParquetClassLibrary-Biomes-ElevationMask@ 'ParquetClassLibrary.Biomes.ElevationMask@') | The enum variable under consideration. |
 | inFlagToTest | [ParquetClassLibrary.Biomes.ElevationMask](#T-ParquetClassLibrary-Biomes-ElevationMask 'ParquetClassLibrary.Biomes.ElevationMask') | The flag to set or clear. |
 | inState | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the flag will be set; otherwise it will be cleared. |
-
-<a name='T-ParquetRoller-ExitCode'></a>
-## ExitCode `type`
-
-##### Namespace
-
-ParquetRoller
-
-##### Summary
-
-A value indicating success or the nature of the failure.
-
-##### Remarks
-
-Returned when the application terminates to indicate results of the process.
-
-<a name='F-ParquetRoller-ExitCode-AccessDenied'></a>
-### AccessDenied `constants`
-
-##### Summary
-
-Access or permission was denied.
-
-<a name='F-ParquetRoller-ExitCode-BadArguments'></a>
-### BadArguments `constants`
-
-##### Summary
-
-One or more arguments were incorrect.
-
-<a name='F-ParquetRoller-ExitCode-FileNotFound'></a>
-### FileNotFound `constants`
-
-##### Summary
-
-An invalid function was specified.
-
-<a name='F-ParquetRoller-ExitCode-InvalidData'></a>
-### InvalidData `constants`
-
-##### Summary
-
-Invalid data was given.
-
-<a name='F-ParquetRoller-ExitCode-NotSupported'></a>
-### NotSupported `constants`
-
-##### Summary
-
-An unsupported request was made.
-
-<a name='F-ParquetRoller-ExitCode-Success'></a>
-### Success `constants`
-
-##### Summary
-
-The operation completed successfully.
 
 <a name='T-ParquetClassLibrary-Maps-ExitPoint'></a>
 ## ExitPoint `type`

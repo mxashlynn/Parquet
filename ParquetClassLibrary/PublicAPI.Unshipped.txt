@@ -474,13 +474,6 @@ ParquetClassLibrary.Vector2D.Magnitude.get -> int
 ParquetClassLibrary.Vector2D.Vector2D(int inX, int inY) -> void
 ParquetClassLibrary.Vector2D.X.get -> int
 ParquetClassLibrary.Vector2D.Y.get -> int
-ParquetRoller.ExitCode
-ParquetRoller.ExitCode.AccessDenied = 5 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.BadArguments = 160 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.FileNotFound = 1 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.InvalidData = 13 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.NotSupported = 50 -> ParquetRoller.ExitCode
-ParquetRoller.ExitCode.Success = 0 -> ParquetRoller.ExitCode
 abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
