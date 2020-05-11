@@ -11,6 +11,9 @@ namespace ParquetClassLibrary.Maps
         /// <summary>
         /// The names of the directions that <typeparamref name="TMapType"/> supports.
         /// </summary>
+        /// <remarks>
+        /// This enumeration is only to provide consistent names for user-facing reports and does not encode program data.
+        /// </remarks>
         internal enum DirectionName
         {
             North,
