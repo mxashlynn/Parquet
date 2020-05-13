@@ -122,9 +122,9 @@ namespace ParquetClassLibrary.Maps
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
-        /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        /// <summary><see cref="ChunkDescription"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(14)]
-        public ChunkTypeGrid Chunks { get; }
+        public ChunkDescriptionGrid Chunks { get; }
         #endregion
         #endregion
 
@@ -153,7 +153,7 @@ namespace ParquetClassLibrary.Maps
                                ModelID? inRegionToTheWest = null,
                                ModelID? inRegionAbove = null,
                                ModelID? inRegionBelow = null,
-                               ChunkTypeGrid inChunks = null)
+                               ChunkDescriptionGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
@@ -176,7 +176,7 @@ namespace ParquetClassLibrary.Maps
             RegionToTheWest = nonNullRegionToTheWest;
             RegionAbove = nonNullRegionAbove;
             RegionBelow = nonNullRegionBelow;
-            Chunks = inChunks ?? new ChunkTypeGrid();
+            Chunks = inChunks ?? new ChunkDescriptionGrid();
         }
         #endregion
 

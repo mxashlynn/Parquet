@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Used to indicate an empty grid.</summary>
         public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty MapChunk", "", "");
 
-        /// <summary>The length of each <see cref="ChunkTypeGrid"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="ChunkDescriptionGrid"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>

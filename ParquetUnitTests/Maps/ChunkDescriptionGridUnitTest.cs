@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ParquetUnitTests.Maps
 {
-    public class ChunkTypeGridUnitTest
+    public class ChunkDescriptionGridUnitTest
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
@@ -13,14 +13,14 @@ namespace ParquetUnitTests.Maps
         private const string testTitle = "Test Region";
         private const int testElevation = 4;
         private static readonly ModelID testID = TestModels.TestMapRegion.ID + 3;
-        private static readonly ChunkType testChunk = new ChunkType(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
+        private static readonly ChunkDescription testChunk = new ChunkDescription(ChunkTopography.Solid, "test base", ChunkTopography.Scattered, "test modifier");
         #endregion
 
         #region Chunks
         [Fact]
         public void SetGetChunkFailsOnInvalidPositionTest()
         {
-            var grid = new ChunkTypeGrid();
+            var grid = new ChunkDescriptionGrid();
 
             void TestCode()
             {
@@ -33,7 +33,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void SetGetChunkSucceedsOnOriginPositionTest()
         {
-            var grid = new ChunkTypeGrid();
+            var grid = new ChunkDescriptionGrid();
             grid[Vector2D.Zero.Y, Vector2D.Zero.X] = testChunk;
 
             var returnedChunk = grid[Vector2D.Zero.Y, Vector2D.Zero.Y];

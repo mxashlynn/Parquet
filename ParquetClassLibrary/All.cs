@@ -348,7 +348,7 @@ namespace ParquetClassLibrary
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
                 #region ITypeConverters
-                { typeof(ChunkType), ChunkType.ConverterFactory },
+                { typeof(ChunkDescription), ChunkDescription.ConverterFactory },
                 { typeof(ModelID), ModelID.ConverterFactory },
                 { typeof(ModelTag), ModelTag.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
@@ -376,7 +376,7 @@ namespace ParquetClassLibrary
                 #endregion
 
                 #region 2D Grid Types
-                { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+                { typeof(ChunkDescriptionGrid), GridConverter<ChunkDescription, ChunkDescriptionGrid>.ConverterFactory },
                 { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
                 { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
                 { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },

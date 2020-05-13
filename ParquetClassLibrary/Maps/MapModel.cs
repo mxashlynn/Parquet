@@ -8,7 +8,7 @@ namespace ParquetClassLibrary.Maps
 {
     /// <summary>
     /// Provides methods that are used by all parquet-based map models (for example <see cref="MapRegion"/> and <see cref="MapChunk"/>,
-    /// but contrast <see cref="ChunkTypeGrid"/> which is not parquet-based).
+    /// but contrast <see cref="ChunkDescriptionGrid"/> which is not parquet-based).
     /// </summary>
     public abstract class MapModel : Model
     {
