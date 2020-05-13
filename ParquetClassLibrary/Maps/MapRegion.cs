@@ -16,9 +16,6 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Used to indicate an empty grid.</summary>
         public static readonly MapRegion Empty = new MapRegion(ModelID.None, "Empty Region");
 
-        /// <summary>The length of each <see cref="MapRegion"/> dimension in <see cref="ChunkDescriptionGrid"/>s.</summary>
-        public const int ChunksPerRegionDimension = 4;
-
         /// <summary>The length of each <see cref="MapRegion"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = ChunksPerRegionDimension * MapChunk.ParquetsPerChunkDimension;
 

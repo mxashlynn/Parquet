@@ -1,3 +1,4 @@
+using System;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
@@ -11,9 +12,9 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty MapChunk", "", "");
+        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty", "", "", 0, false);
 
-        /// <summary>The length of each <see cref="ChunkDescriptionGrid"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="ModelIDGrid"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>
@@ -26,6 +27,14 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
+        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
+        [Index(5)]
+        public bool IsHandmade { get; }
+
+        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
+        [Index(6)]
+        public ChunkDescription GenerativeDescription { get; }
+
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
         public override ParquetStatusGrid ParquetStatuses { get; }
@@ -44,15 +53,35 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+        /// <param name="inHandmade">
+        /// If <c>true</c>, the <see cref="MapChunk"/> is created at design time;
+        /// otherwise, it is procedurally generated on load in-game.
+        /// </param>
+        /// <param name="inGenerativeDescription">Cues to the generation routines if generated at runtime.</param>
+        /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
+        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
+        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
+                        bool inHandmade,
+                        ChunkDescription inGenerativeDescription = null,
                         ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
-            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
-            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            IsHandmade = inHandmade;
+
+            if (IsHandmade)
+            {
+                GenerativeDescription = ChunkDescription.Empty;
+                ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            }
+            else
+            {
+                GenerativeDescription = inGenerativeDescription ?? ChunkDescription.Empty;
+                // TODO Replace these with a Grid.Empty
+                ParquetStatuses = new ParquetStatusGrid();
+                ParquetDefinitions = new ParquetStackGrid();
+            }
         }
         #endregion
 
