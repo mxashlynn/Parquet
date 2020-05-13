@@ -28,9 +28,6 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
-        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
-        public bool Handmade { get; }
-
         /// <summary>Indicates the basic form that the <see cref="MapChunk"/> of parquets takes.</summary>
         public ChunkTopography BaseTopography { get; }
 
@@ -46,22 +43,10 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Initializes a new default instance of the <see cref="ChunkDescription"/> class.
+        /// Initializes a new default instance of the <see cref="ChunkDescription"/> class for use with serialization.
         /// </summary>
-        /// <remarks>
-        /// This is primarily useful for serialization as the default values are featureless.
-        /// </remarks>
-        public ChunkDescription() :
-            this(ChunkTopography.Empty, ModelTag.None, ChunkTopography.Empty, ModelTag.None)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChunkDescription"/> class.
-        /// </summary>
-        /// <param name="inIsHandmade">If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</param>
-        public ChunkDescription(bool inIsHandmade)
+        public ChunkDescription()
         {
-            Handmade = inIsHandmade;
             BaseTopography = ChunkTopography.Empty;
             BaseComposition = ModelTag.None;
             ModifierTopography = ChunkTopography.Empty;
@@ -76,9 +61,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
         /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
         public ChunkDescription(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
-                         ChunkTopography inModifierTopography, ModelTag inModifierComposition)
+                                ChunkTopography inModifierTopography, ModelTag inModifierComposition)
         {
-            Handmade = false;
             BaseTopography = inBaseTopography;
             BaseComposition = inBaseComposition ?? ModelTag.None;
             ModifierTopography = inModifierTopography;
@@ -149,12 +133,10 @@ namespace ParquetClassLibrary.Maps
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ChunkDescription chunk
             && null != chunk
-                ? chunk.Handmade
-                    ? nameof(Handmade)
-                    : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
-                      $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
-                      $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
-                      $"{chunk.ModifierComposition}"
+                ? $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
+                  $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
+                  $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
+                  $"{chunk.ModifierComposition}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ChunkDescription)));
 
@@ -171,10 +153,6 @@ namespace ParquetClassLibrary.Maps
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                           inText, nameof(ChunkDescription)));
-            }
-            else if (string.Compare(nameof(Handmade), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return new ChunkDescription(true);
             }
             else
             {
@@ -213,27 +191,5 @@ namespace ParquetClassLibrary.Maps
         public override string ToString()
             => $"[{BaseTopography} {BaseComposition} above {ModifierTopography} {ModifierComposition}]";
         #endregion
-    }
-
-    /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="ChunkDescription"/> instances.
-    /// </summary>
-    internal static class ChunkTypeExtensions
-    {
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the current array.
-        /// </summary>
-        /// <param name="inChunkTypeArray">The <see cref="ChunkDescription"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ChunkDescription[,] inChunkTypeArray, Vector2D inPosition)
-        {
-            Precondition.IsNotNull(inChunkTypeArray, nameof(inChunkTypeArray));
-
-            return inPosition.X > -1
-                && inPosition.Y > -1
-                && inPosition.X < inChunkTypeArray.GetLength(1)
-                && inPosition.Y < inChunkTypeArray.GetLength(0);
-        }
     }
 }

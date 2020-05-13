@@ -303,4 +303,42 @@ namespace ParquetClassLibrary
             => id.ToString(CultureInfo.InvariantCulture);
         #endregion
     }
+
+    /// <summary>
+    /// Convenience extension methods for concise coding when working with <see cref="ModelID"/> instances.
+    /// </summary>
+    internal static class ModelIDExtensions
+    {
+        /// <summary>Gets the number of elements in the Y dimension of an array of <see cref="ModelID"/>.</summary>
+        public static int Rows(this ModelID[,] inIDArray)
+            => inIDArray?.GetLength(0) ?? 0;
+
+        /// <summary>Gets the number of elements in the X dimension of an array of <see cref="ModelID"/>.</summary>
+        public static int Columns(this ModelID[,] inIDArray)
+            => inIDArray?.GetLength(1) ?? 0;
+
+        /// <summary>The total number of <see cref="ModelID"/>s collected.</summary>
+        public static int Count(this ModelID[,] inIDArray)
+            => inIDArray.Columns() == 1
+            && inIDArray.Rows() == 1
+            && (inIDArray[0, 0] == ModelID.None)
+                ? 0
+                : inIDArray.Columns() * inIDArray.Rows();
+
+        /// <summary>
+        /// Determines if the given position corresponds to a point within the current array.
+        /// </summary>
+        /// <param name="inIDArray">The <see cref="ModelID"/> array to validate against.</param>
+        /// <param name="inPosition">The position to validate.</param>
+        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
+        public static bool IsValidPosition(this ModelID[,] inIDArray, Vector2D inPosition)
+        {
+            Precondition.IsNotNull(inIDArray, nameof(inIDArray));
+
+            return inPosition.X > -1
+                && inPosition.Y > -1
+                && inPosition.X < inIDArray.GetLength(1)
+                && inPosition.Y < inIDArray.GetLength(0);
+        }
+    }
 }
