@@ -9,7 +9,7 @@ namespace ParquetClassLibrary
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
     public interface IGrid<TElement> : IReadOnlyCollection<TElement>
-        where TElement : class, ITypeConverter
+        where TElement : ITypeConverter
     {
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IGrid{TElement}"/>.</summary>
         public int Rows { get; }
