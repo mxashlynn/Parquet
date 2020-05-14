@@ -91,7 +91,9 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
-            => $"Chunk {Name} {base.ToString()}";
+            => IsHandmade
+                ? $"Chunk {Name} handmade {base.ToString()}"
+                : $"Chunk {Name} generated {Details}";
         #endregion
     }
 }
