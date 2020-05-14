@@ -109,24 +109,24 @@
   - [StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.StartingInventory')
   - [StartingQuests](#P-ParquetClassLibrary-Beings-CharacterModel-StartingQuests 'ParquetClassLibrary.Beings.CharacterModel.StartingQuests')
   - [StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID')
-- [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-ChunkDescription-#ctor 'ParquetClassLibrary.Maps.ChunkDescription.#ctor')
-  - [#ctor(inBaseTopography,inBaseComposition,inModifierTopography,inModifierComposition)](#M-ParquetClassLibrary-Maps-ChunkDescription-#ctor-ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag- 'ParquetClassLibrary.Maps.ChunkDescription.#ctor(ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag)')
-  - [Empty](#F-ParquetClassLibrary-Maps-ChunkDescription-Empty 'ParquetClassLibrary.Maps.ChunkDescription.Empty')
-  - [BaseComposition](#P-ParquetClassLibrary-Maps-ChunkDescription-BaseComposition 'ParquetClassLibrary.Maps.ChunkDescription.BaseComposition')
-  - [BaseTopography](#P-ParquetClassLibrary-Maps-ChunkDescription-BaseTopography 'ParquetClassLibrary.Maps.ChunkDescription.BaseTopography')
-  - [ConverterFactory](#P-ParquetClassLibrary-Maps-ChunkDescription-ConverterFactory 'ParquetClassLibrary.Maps.ChunkDescription.ConverterFactory')
-  - [ModifierComposition](#P-ParquetClassLibrary-Maps-ChunkDescription-ModifierComposition 'ParquetClassLibrary.Maps.ChunkDescription.ModifierComposition')
-  - [ModifierTopography](#P-ParquetClassLibrary-Maps-ChunkDescription-ModifierTopography 'ParquetClassLibrary.Maps.ChunkDescription.ModifierTopography')
-  - [Clone()](#M-ParquetClassLibrary-Maps-ChunkDescription-Clone 'ParquetClassLibrary.Maps.ChunkDescription.Clone')
-  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ChunkDescription-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ChunkDescription.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
-  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ChunkDescription-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ChunkDescription.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
-  - [Equals(inChunkType)](#M-ParquetClassLibrary-Maps-ChunkDescription-Equals-ParquetClassLibrary-Maps-ChunkDescription- 'ParquetClassLibrary.Maps.ChunkDescription.Equals(ParquetClassLibrary.Maps.ChunkDescription)')
-  - [Equals(obj)](#M-ParquetClassLibrary-Maps-ChunkDescription-Equals-System-Object- 'ParquetClassLibrary.Maps.ChunkDescription.Equals(System.Object)')
-  - [GetHashCode()](#M-ParquetClassLibrary-Maps-ChunkDescription-GetHashCode 'ParquetClassLibrary.Maps.ChunkDescription.GetHashCode')
-  - [ToString()](#M-ParquetClassLibrary-Maps-ChunkDescription-ToString 'ParquetClassLibrary.Maps.ChunkDescription.ToString')
-  - [op_Equality(inChunkType1,inChunkType2)](#M-ParquetClassLibrary-Maps-ChunkDescription-op_Equality-ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Maps-ChunkDescription- 'ParquetClassLibrary.Maps.ChunkDescription.op_Equality(ParquetClassLibrary.Maps.ChunkDescription,ParquetClassLibrary.Maps.ChunkDescription)')
-  - [op_Inequality(inChunkType1,inChunkType2)](#M-ParquetClassLibrary-Maps-ChunkDescription-op_Inequality-ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Maps-ChunkDescription- 'ParquetClassLibrary.Maps.ChunkDescription.op_Inequality(ParquetClassLibrary.Maps.ChunkDescription,ParquetClassLibrary.Maps.ChunkDescription)')
+- [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')
+  - [#ctor()](#M-ParquetClassLibrary-Maps-ChunkDetail-#ctor 'ParquetClassLibrary.Maps.ChunkDetail.#ctor')
+  - [#ctor(inBaseTopography,inBaseComposition,inModifierTopography,inModifierComposition)](#M-ParquetClassLibrary-Maps-ChunkDetail-#ctor-ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag- 'ParquetClassLibrary.Maps.ChunkDetail.#ctor(ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag)')
+  - [Empty](#F-ParquetClassLibrary-Maps-ChunkDetail-Empty 'ParquetClassLibrary.Maps.ChunkDetail.Empty')
+  - [BaseComposition](#P-ParquetClassLibrary-Maps-ChunkDetail-BaseComposition 'ParquetClassLibrary.Maps.ChunkDetail.BaseComposition')
+  - [BaseTopography](#P-ParquetClassLibrary-Maps-ChunkDetail-BaseTopography 'ParquetClassLibrary.Maps.ChunkDetail.BaseTopography')
+  - [ConverterFactory](#P-ParquetClassLibrary-Maps-ChunkDetail-ConverterFactory 'ParquetClassLibrary.Maps.ChunkDetail.ConverterFactory')
+  - [ModifierComposition](#P-ParquetClassLibrary-Maps-ChunkDetail-ModifierComposition 'ParquetClassLibrary.Maps.ChunkDetail.ModifierComposition')
+  - [ModifierTopography](#P-ParquetClassLibrary-Maps-ChunkDetail-ModifierTopography 'ParquetClassLibrary.Maps.ChunkDetail.ModifierTopography')
+  - [Clone()](#M-ParquetClassLibrary-Maps-ChunkDetail-Clone 'ParquetClassLibrary.Maps.ChunkDetail.Clone')
+  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ChunkDetail-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ChunkDetail.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
+  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Maps-ChunkDetail-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Maps.ChunkDetail.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
+  - [Equals(inChunkType)](#M-ParquetClassLibrary-Maps-ChunkDetail-Equals-ParquetClassLibrary-Maps-ChunkDetail- 'ParquetClassLibrary.Maps.ChunkDetail.Equals(ParquetClassLibrary.Maps.ChunkDetail)')
+  - [Equals(obj)](#M-ParquetClassLibrary-Maps-ChunkDetail-Equals-System-Object- 'ParquetClassLibrary.Maps.ChunkDetail.Equals(System.Object)')
+  - [GetHashCode()](#M-ParquetClassLibrary-Maps-ChunkDetail-GetHashCode 'ParquetClassLibrary.Maps.ChunkDetail.GetHashCode')
+  - [ToString()](#M-ParquetClassLibrary-Maps-ChunkDetail-ToString 'ParquetClassLibrary.Maps.ChunkDetail.ToString')
+  - [op_Equality(inChunkType1,inChunkType2)](#M-ParquetClassLibrary-Maps-ChunkDetail-op_Equality-ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Maps-ChunkDetail- 'ParquetClassLibrary.Maps.ChunkDetail.op_Equality(ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Maps.ChunkDetail)')
+  - [op_Inequality(inChunkType1,inChunkType2)](#M-ParquetClassLibrary-Maps-ChunkDetail-op_Inequality-ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Maps-ChunkDetail- 'ParquetClassLibrary.Maps.ChunkDetail.op_Inequality(ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Maps.ChunkDetail)')
 - [ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography')
   - [Central](#F-ParquetClassLibrary-Maps-ChunkTopography-Central 'ParquetClassLibrary.Maps.ChunkTopography.Central')
   - [Clustered](#F-ParquetClassLibrary-Maps-ChunkTopography-Clustered 'ParquetClassLibrary.Maps.ChunkTopography.Clustered')
@@ -332,12 +332,12 @@
 - [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
 - [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inHandmade,inGenerativeDescription,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDescription,ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunk-Bounds 'ParquetClassLibrary.Maps.MapChunk.Bounds')
+  - [Details](#P-ParquetClassLibrary-Maps-MapChunk-Details 'ParquetClassLibrary.Maps.MapChunk.Details')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets')
   - [Empty](#P-ParquetClassLibrary-Maps-MapChunk-Empty 'ParquetClassLibrary.Maps.MapChunk.Empty')
-  - [GenerativeDescription](#P-ParquetClassLibrary-Maps-MapChunk-GenerativeDescription 'ParquetClassLibrary.Maps.MapChunk.GenerativeDescription')
   - [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunk-IsHandmade 'ParquetClassLibrary.Maps.MapChunk.IsHandmade')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapChunk-ParquetStatuses 'ParquetClassLibrary.Maps.MapChunk.ParquetStatuses')
@@ -1923,8 +1923,8 @@ is that these identifiers be able to span any number of shipped titles, allowing
 sequel title to import data from prior titles in such a way that one game's NPC
 can become another game's protagonist.
 
-<a name='T-ParquetClassLibrary-Maps-ChunkDescription'></a>
-## ChunkDescription `type`
+<a name='T-ParquetClassLibrary-Maps-ChunkDetail'></a>
+## ChunkDetail `type`
 
 ##### Namespace
 
@@ -1947,23 +1947,23 @@ Chunks that are not hand made are instead composed of two layers: a base and a m
  - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
  - Town: Handmade
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-#ctor'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes a new default instance of the [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') class for use with serialization.
+Initializes a new default instance of the [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') class for use with serialization.
 
 ##### Parameters
 
 This constructor has no parameters.
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-#ctor-ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-#ctor-ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag-'></a>
 ### #ctor(inBaseTopography,inBaseComposition,inModifierTopography,inModifierComposition) `constructor`
 
 ##### Summary
 
-Initializes a new instance of the [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') class.
+Initializes a new instance of the [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') class.
 
 ##### Parameters
 
@@ -1974,49 +1974,49 @@ Initializes a new instance of the [ChunkDescription](#T-ParquetClassLibrary-Maps
 | inModifierTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | Indicates a modifier on the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets. |
 | inModifierComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the type of parquets modifying the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'). |
 
-<a name='F-ParquetClassLibrary-Maps-ChunkDescription-Empty'></a>
+<a name='F-ParquetClassLibrary-Maps-ChunkDetail-Empty'></a>
 ### Empty `constants`
 
 ##### Summary
 
-The null [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription'), which generates an empty [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+The null [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail'), which generates an empty [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
 
-<a name='P-ParquetClassLibrary-Maps-ChunkDescription-BaseComposition'></a>
+<a name='P-ParquetClassLibrary-Maps-ChunkDetail-BaseComposition'></a>
 ### BaseComposition `property`
 
 ##### Summary
 
 Indicates the overall type of parquets in the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
 
-<a name='P-ParquetClassLibrary-Maps-ChunkDescription-BaseTopography'></a>
+<a name='P-ParquetClassLibrary-Maps-ChunkDetail-BaseTopography'></a>
 ### BaseTopography `property`
 
 ##### Summary
 
 Indicates the basic form that the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets takes.
 
-<a name='P-ParquetClassLibrary-Maps-ChunkDescription-ConverterFactory'></a>
+<a name='P-ParquetClassLibrary-Maps-ChunkDetail-ConverterFactory'></a>
 ### ConverterFactory `property`
 
 ##### Summary
 
 Allows the converter to construct itself statically.
 
-<a name='P-ParquetClassLibrary-Maps-ChunkDescription-ModifierComposition'></a>
+<a name='P-ParquetClassLibrary-Maps-ChunkDetail-ModifierComposition'></a>
 ### ModifierComposition `property`
 
 ##### Summary
 
 Indicates the type of parquets modifying the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
 
-<a name='P-ParquetClassLibrary-Maps-ChunkDescription-ModifierTopography'></a>
+<a name='P-ParquetClassLibrary-Maps-ChunkDetail-ModifierTopography'></a>
 ### ModifierTopography `property`
 
 ##### Summary
 
 Indicates a modifier on the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets.
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-Clone'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-Clone'></a>
 ### Clone() `method`
 
 ##### Summary
@@ -2031,7 +2031,7 @@ Creates a new instance with the same characteristics as the current instance.
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
 ### ConvertFromString(inText,inRow,inMemberMapData) `method`
 
 ##### Summary
@@ -2050,7 +2050,7 @@ The given instance deserialized.
 | inRow | [CsvHelper.IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData-'></a>
 ### ConvertToString(inValue,inRow,inMemberMapData) `method`
 
 ##### Summary
@@ -2069,46 +2069,46 @@ The given instance serialized.
 | inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-Equals-ParquetClassLibrary-Maps-ChunkDescription-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-Equals-ParquetClassLibrary-Maps-ChunkDetail-'></a>
 ### Equals(inChunkType) `method`
 
 ##### Summary
 
-Determines whether the specified [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') is equal to the current [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription').
+Determines whether the specified [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') is equal to the current [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail').
 
 ##### Returns
 
-`true` if the [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription')s are equal.
+`true` if the [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s are equal.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inChunkType | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | The [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') to compare with the current. |
+| inChunkType | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | The [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') to compare with the current. |
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-Equals-System-Object-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-Equals-System-Object-'></a>
 ### Equals(obj) `method`
 
 ##### Summary
 
-Determines whether the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription').
+Determines whether the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail').
 
 ##### Returns
 
-`true` if the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription'); otherwise, `false`.
+`true` if the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail'); otherwise, `false`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to compare with the current [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription'). |
+| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to compare with the current [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail'). |
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-GetHashCode'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-GetHashCode'></a>
 ### GetHashCode() `method`
 
 ##### Summary
 
-Serves as a hash function for a [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') class.
+Serves as a hash function for a [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') class.
 
 ##### Returns
 
@@ -2118,7 +2118,7 @@ A hash code for this instance that is suitable for use in hashing algorithms and
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-ToString'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-ToString'></a>
 ### ToString() `method`
 
 ##### Summary
@@ -2133,43 +2133,43 @@ The representation.
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-op_Equality-ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Maps-ChunkDescription-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-op_Equality-ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Maps-ChunkDetail-'></a>
 ### op_Equality(inChunkType1,inChunkType2) `method`
 
 ##### Summary
 
-Determines whether a specified instance of [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') is equal to
-another specified instance of [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription').
+Determines whether a specified instance of [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') is equal to
+another specified instance of [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail').
 
 ##### Returns
 
-`true` if the two [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription')s are equal; otherwise, `false`.
+`true` if the two [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s are equal; otherwise, `false`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inChunkType1 | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | The first [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') to compare. |
-| inChunkType2 | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | The second [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') to compare. |
+| inChunkType1 | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | The first [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') to compare. |
+| inChunkType2 | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | The second [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') to compare. |
 
-<a name='M-ParquetClassLibrary-Maps-ChunkDescription-op_Inequality-ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Maps-ChunkDescription-'></a>
+<a name='M-ParquetClassLibrary-Maps-ChunkDetail-op_Inequality-ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Maps-ChunkDetail-'></a>
 ### op_Inequality(inChunkType1,inChunkType2) `method`
 
 ##### Summary
 
-Determines whether a specified instance of [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') is unequal to
-another specified instance of [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription').
+Determines whether a specified instance of [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') is unequal to
+another specified instance of [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail').
 
 ##### Returns
 
-`true` if the two [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription')s are NOT equal; otherwise, `false`.
+`true` if the two [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s are NOT equal; otherwise, `false`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inChunkType1 | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | The first [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') to compare. |
-| inChunkType2 | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | The second [ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') to compare. |
+| inChunkType1 | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | The first [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') to compare. |
+| inChunkType2 | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | The second [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') to compare. |
 
 <a name='T-ParquetClassLibrary-Maps-ChunkTopography'></a>
 ## ChunkTopography `type`
@@ -4242,8 +4242,8 @@ ParquetClassLibrary.Maps
 Models details of a playable chunk in sandbox.
 [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s are composed of parquets.
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDescription,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inHandmade,inGenerativeDescription,inParquetStatuses,inParquetDefinitions) `constructor`
+<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### #ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4258,9 +4258,9 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
-| inHandmade | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') is created at design time;
+| inIsHandmade | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') is created at design time;
 otherwise, it is procedurally generated on load in-game. |
-| inGenerativeDescription | [ParquetClassLibrary.Maps.ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription') | Cues to the generation routines if generated at runtime. |
+| inDetails | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | Cues to the generation routines if generated at runtime. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets if designed by hand. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets if designed by hand. |
 
@@ -4278,6 +4278,13 @@ The length of each [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClass
 
 The set of values that are allowed for [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
 
+<a name='P-ParquetClassLibrary-Maps-MapChunk-Details'></a>
+### Details `property`
+
+##### Summary
+
+A description of the type and arrangement of parquets to generate at runtime.
+
 <a name='P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets'></a>
 ### DimensionsInParquets `property`
 
@@ -4291,13 +4298,6 @@ The chunk's dimensions in parquets.
 ##### Summary
 
 Used to indicate an empty grid.
-
-<a name='P-ParquetClassLibrary-Maps-MapChunk-GenerativeDescription'></a>
-### GenerativeDescription `property`
-
-##### Summary
-
-If `true`, the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') is created at design time instead of procedurally generated.
 
 <a name='P-ParquetClassLibrary-Maps-MapChunk-IsHandmade'></a>
 ### IsHandmade `property`
@@ -4793,7 +4793,7 @@ The set of values that are allowed for [MapRegionSketch](#T-ParquetClassLibrary-
 
 ##### Summary
 
-[ChunkDescription](#T-ParquetClassLibrary-Maps-ChunkDescription 'ParquetClassLibrary.Maps.ChunkDescription')s that can generate parquets to compose a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+[ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s that can generate parquets to compose a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInChunks'></a>
 ### DimensionsInChunks `property`
