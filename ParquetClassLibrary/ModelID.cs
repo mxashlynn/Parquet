@@ -309,22 +309,6 @@ namespace ParquetClassLibrary
     /// </summary>
     internal static class ModelIDExtensions
     {
-        /// <summary>Gets the number of elements in the Y dimension of an array of <see cref="ModelID"/>.</summary>
-        public static int Rows(this ModelID[,] inIDArray)
-            => inIDArray?.GetLength(0) ?? 0;
-
-        /// <summary>Gets the number of elements in the X dimension of an array of <see cref="ModelID"/>.</summary>
-        public static int Columns(this ModelID[,] inIDArray)
-            => inIDArray?.GetLength(1) ?? 0;
-
-        /// <summary>The total number of <see cref="ModelID"/>s collected.</summary>
-        public static int Count(this ModelID[,] inIDArray)
-            => inIDArray.Columns() == 1
-            && inIDArray.Rows() == 1
-            && (inIDArray[0, 0] == ModelID.None)
-                ? 0
-                : inIDArray.Columns() * inIDArray.Rows();
-
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>

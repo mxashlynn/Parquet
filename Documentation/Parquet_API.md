@@ -382,7 +382,7 @@
   - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID[0-,0-]- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID[0:,0:])')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelIDGrid)')
   - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegionSketch-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegionSketch.ChunksPerRegionDimension')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
   - [DefaultTitle](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultTitle 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultTitle')
@@ -520,10 +520,18 @@
   - [op_LessThan(inIDentifier1,inIDentifier2)](#M-ParquetClassLibrary-ModelID-op_LessThan-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelID.op_LessThan(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
   - [op_LessThanOrEqual(inIDentifier1,inIDentifier2)](#M-ParquetClassLibrary-ModelID-op_LessThanOrEqual-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelID.op_LessThanOrEqual(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
 - [ModelIDExtensions](#T-ParquetClassLibrary-ModelIDExtensions 'ParquetClassLibrary.ModelIDExtensions')
-  - [Columns()](#M-ParquetClassLibrary-ModelIDExtensions-Columns-ParquetClassLibrary-ModelID[0-,0-]- 'ParquetClassLibrary.ModelIDExtensions.Columns(ParquetClassLibrary.ModelID[0:,0:])')
-  - [Count()](#M-ParquetClassLibrary-ModelIDExtensions-Count-ParquetClassLibrary-ModelID[0-,0-]- 'ParquetClassLibrary.ModelIDExtensions.Count(ParquetClassLibrary.ModelID[0:,0:])')
   - [IsValidPosition(inIDArray,inPosition)](#M-ParquetClassLibrary-ModelIDExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.ModelIDExtensions.IsValidPosition(ParquetClassLibrary.ModelID[0:,0:],ParquetClassLibrary.Vector2D)')
-  - [Rows()](#M-ParquetClassLibrary-ModelIDExtensions-Rows-ParquetClassLibrary-ModelID[0-,0-]- 'ParquetClassLibrary.ModelIDExtensions.Rows(ParquetClassLibrary.ModelID[0:,0:])')
+- [ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid')
+  - [#ctor()](#M-ParquetClassLibrary-ModelIDGrid-#ctor 'ParquetClassLibrary.ModelIDGrid.#ctor')
+  - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-ModelIDGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.#ctor(System.Int32,System.Int32)')
+  - [Columns](#P-ParquetClassLibrary-ModelIDGrid-Columns 'ParquetClassLibrary.ModelIDGrid.Columns')
+  - [Count](#P-ParquetClassLibrary-ModelIDGrid-Count 'ParquetClassLibrary.ModelIDGrid.Count')
+  - [IDs](#P-ParquetClassLibrary-ModelIDGrid-IDs 'ParquetClassLibrary.ModelIDGrid.IDs')
+  - [Item](#P-ParquetClassLibrary-ModelIDGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.Item(System.Int32,System.Int32)')
+  - [Rows](#P-ParquetClassLibrary-ModelIDGrid-Rows 'ParquetClassLibrary.ModelIDGrid.Rows')
+  - [GetEnumerator()](#M-ParquetClassLibrary-ModelIDGrid-GetEnumerator 'ParquetClassLibrary.ModelIDGrid.GetEnumerator')
+  - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-ModelIDGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.ModelIDGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
+  - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#ModelID}#GetEnumerator()](#M-ParquetClassLibrary-ModelIDGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#ModelID}#GetEnumerator 'ParquetClassLibrary.ModelIDGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#ModelID}#GetEnumerator')
 - [ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag')
   - [None](#F-ParquetClassLibrary-ModelTag-None 'ParquetClassLibrary.ModelTag.None')
   - [tagContent](#F-ParquetClassLibrary-ModelTag-tagContent 'ParquetClassLibrary.ModelTag.tagContent')
@@ -4714,7 +4722,7 @@ A pattern and metadata to generate a [MapRegion](#T-ParquetClassLibrary-Maps-Map
 Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
 Once loaded in-game they are composited, which often includes procedurally generating contained [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID[0-,0-]-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks) `constructor`
 
 ##### Summary
@@ -4737,7 +4745,7 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 | inRegionToTheWest | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one. |
 | inRegionAbove | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one. |
 | inRegionBelow | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one. |
-| inChunks | [ParquetClassLibrary.ModelID[0:](#T-ParquetClassLibrary-ModelID[0- 'ParquetClassLibrary.ModelID[0:') | The pattern from which a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') may be generated. |
+| inChunks | [ParquetClassLibrary.ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid') | The pattern from which a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') may be generated. |
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionSketch-ChunksPerRegionDimension'></a>
 ### ChunksPerRegionDimension `constants`
@@ -6656,28 +6664,6 @@ ParquetClassLibrary
 
 Convenience extension methods for concise coding when working with [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') instances.
 
-<a name='M-ParquetClassLibrary-ModelIDExtensions-Columns-ParquetClassLibrary-ModelID[0-,0-]-'></a>
-### Columns() `method`
-
-##### Summary
-
-Gets the number of elements in the X dimension of an array of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID').
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-ParquetClassLibrary-ModelIDExtensions-Count-ParquetClassLibrary-ModelID[0-,0-]-'></a>
-### Count() `method`
-
-##### Summary
-
-The total number of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s collected.
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-ParquetClassLibrary-ModelIDExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D-'></a>
 ### IsValidPosition(inIDArray,inPosition) `method`
 
@@ -6696,16 +6682,138 @@ Determines if the given position corresponds to a point within the current array
 | inIDArray | [ParquetClassLibrary.ModelID[0:](#T-ParquetClassLibrary-ModelID[0- 'ParquetClassLibrary.ModelID[0:') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') array to validate against. |
 | inPosition | [0:]](#T-0-] '0:]') | The position to validate. |
 
-<a name='M-ParquetClassLibrary-ModelIDExtensions-Rows-ParquetClassLibrary-ModelID[0-,0-]-'></a>
-### Rows() `method`
+<a name='T-ParquetClassLibrary-ModelIDGrid'></a>
+## ModelIDGrid `type`
+
+##### Namespace
+
+ParquetClassLibrary
+
+##### Summary
+
+A square, two-dimensional collection of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s for use in [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
+
+<a name='M-ParquetClassLibrary-ModelIDGrid-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes a new [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') with unusable dimensions.
+
+##### Parameters
+
+This constructor has no parameters.
+
+##### Remarks
+
+For this class, there are no reasonable default values.
+ However, this version of the constructor exists to make the generic new() constraint happy
+ and is used in the library in a context where its limitations are understood.
+ You probably don't want to use this constructor in your own code.
+
+<a name='M-ParquetClassLibrary-ModelIDGrid-#ctor-System-Int32,System-Int32-'></a>
+### #ctor(inRowCount,inColumnCount) `constructor`
+
+##### Summary
+
+Initializes a new [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inRowCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the Y dimension of the collection. |
+| inColumnCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the X dimension of the collection. |
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-Columns'></a>
+### Columns `property`
+
+##### Summary
+
+Gets the number of elements in the X dimension of an array of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID').
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-Count'></a>
+### Count `property`
+
+##### Summary
+
+The total number of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s collected.
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-IDs'></a>
+### IDs `property`
+
+##### Summary
+
+The backing collection of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')es.
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-Item-System-Int32,System-Int32-'></a>
+### Item `property`
+
+##### Summary
+
+Access to any [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') in the grid.
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-Rows'></a>
+### Rows `property`
 
 ##### Summary
 
 Gets the number of elements in the Y dimension of an array of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID').
 
+<a name='M-ParquetClassLibrary-ModelIDGrid-GetEnumerator'></a>
+### GetEnumerator() `method`
+
+##### Summary
+
+Exposes an enumerator for the [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID'), which supports simple iteration.
+
+##### Returns
+
+An enumerator.
+
 ##### Parameters
 
 This method has no parameters.
+
+##### Remarks
+
+For serialization, this guarantees stable iteration order.
+
+<a name='M-ParquetClassLibrary-ModelIDGrid-IsValidPosition-ParquetClassLibrary-Vector2D-'></a>
+### IsValidPosition(inPosition) `method`
+
+##### Summary
+
+Determines if the given position corresponds to a point within the collection.
+
+##### Returns
+
+`true`, if the position is valid, `false` otherwise.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The position to validate. |
+
+<a name='M-ParquetClassLibrary-ModelIDGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#ModelID}#GetEnumerator'></a>
+### System#Collections#Generic#IEnumerable{ParquetClassLibrary#ModelID}#GetEnumerator() `method`
+
+##### Summary
+
+Exposes an [IEnumerator\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerator`1 'System.Collections.Generic.IEnumerator`1'), which supports simple iteration.
+
+##### Returns
+
+An enumerator.
+
+##### Parameters
+
+This method has no parameters.
+
+##### Remarks
+
+For serialization, this guarantees stable iteration order.
 
 <a name='T-ParquetClassLibrary-ModelTag'></a>
 ## ModelTag `type`

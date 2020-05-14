@@ -130,7 +130,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary><see cref="ChunkDescription"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(14)]
-        public ModelID[,] Chunks { get; }
+        public ModelIDGrid Chunks { get; }
         #endregion
         #endregion
 
@@ -159,7 +159,7 @@ namespace ParquetClassLibrary.Maps
                                ModelID? inRegionToTheWest = null,
                                ModelID? inRegionAbove = null,
                                ModelID? inRegionBelow = null,
-                               ModelID[,] inChunks = null)
+                               ModelIDGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
@@ -182,7 +182,7 @@ namespace ParquetClassLibrary.Maps
             RegionToTheWest = nonNullRegionToTheWest;
             RegionAbove = nonNullRegionAbove;
             RegionBelow = nonNullRegionBelow;
-            Chunks = inChunks ?? new ModelID[ChunksPerRegionDimension, ChunksPerRegionDimension];
+            Chunks = inChunks ?? new ModelIDGrid(ChunksPerRegionDimension, ChunksPerRegionDimension);
         }
         #endregion
 
@@ -192,7 +192,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
-            => $"Sketch {Name} ({Chunks.Columns()}, {Chunks.Rows()}) contains {Chunks.Count()} chunks.";
+            => $"Sketch {Name} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Count} chunks.";
         #endregion
     }
 }

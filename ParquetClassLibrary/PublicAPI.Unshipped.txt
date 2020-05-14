@@ -234,8 +234,8 @@ ParquetClassLibrary.Maps.MapRegion.RegionToTheWest.get -> ParquetClassLibrary.Mo
 ParquetClassLibrary.Maps.MapRegion.Rooms.get -> ParquetClassLibrary.Rooms.RoomCollection
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
-ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.ModelID[,]
-ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.ModelID? inRegionToTheNorth = null, ParquetClassLibrary.ModelID? inRegionToTheEast = null, ParquetClassLibrary.ModelID? inRegionToTheSouth = null, ParquetClassLibrary.ModelID? inRegionToTheWest = null, ParquetClassLibrary.ModelID? inRegionAbove = null, ParquetClassLibrary.ModelID? inRegionBelow = null, ParquetClassLibrary.ModelID[,] inChunks = null) -> void
+ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.ModelIDGrid
+ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.ModelID? inRegionToTheNorth = null, ParquetClassLibrary.ModelID? inRegionToTheEast = null, ParquetClassLibrary.ModelID? inRegionToTheSouth = null, ParquetClassLibrary.ModelID? inRegionToTheWest = null, ParquetClassLibrary.ModelID? inRegionAbove = null, ParquetClassLibrary.ModelID? inRegionBelow = null, ParquetClassLibrary.ModelIDGrid inChunks = null) -> void
 ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast.get -> ParquetClassLibrary.ModelID
@@ -277,6 +277,15 @@ ParquetClassLibrary.ModelID.Equals(ParquetClassLibrary.ModelID inIDentifier) -> 
 ParquetClassLibrary.ModelID.IsValidForRange(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inRange) -> bool
 ParquetClassLibrary.ModelID.IsValidForRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inRanges) -> bool
 ParquetClassLibrary.ModelID.ModelID() -> void
+ParquetClassLibrary.ModelIDGrid
+ParquetClassLibrary.ModelIDGrid.Columns.get -> int
+ParquetClassLibrary.ModelIDGrid.Count.get -> int
+ParquetClassLibrary.ModelIDGrid.GetEnumerator() -> System.Collections.IEnumerator
+ParquetClassLibrary.ModelIDGrid.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
+ParquetClassLibrary.ModelIDGrid.ModelIDGrid() -> void
+ParquetClassLibrary.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
+ParquetClassLibrary.ModelIDGrid.Rows.get -> int
+ParquetClassLibrary.ModelIDGrid.this[int y, int x].get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.ModelTag
 ParquetClassLibrary.ModelTag.CompareTo(ParquetClassLibrary.ModelTag inTag) -> int
 ParquetClassLibrary.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
