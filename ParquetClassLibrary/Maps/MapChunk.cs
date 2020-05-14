@@ -71,13 +71,13 @@ namespace ParquetClassLibrary.Maps
 
             if (IsHandmade)
             {
-                Details = ChunkDetail.Empty;
+                Details = ChunkDetail.None;
                 ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
                 ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
-                Details = inDetails ?? ChunkDetail.Empty;
+                Details = inDetails ?? ChunkDetail.None;
                 // TODO Replace these with a Grid.Empty
                 ParquetStatuses = new ParquetStatusGrid();
                 ParquetDefinitions = new ParquetStackGrid();

@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunk"/>.</summary>
-        public static readonly ChunkDetail Empty = new ChunkDetail();
+        public static readonly ChunkDetail None = new ChunkDetail();
         #endregion
 
         #region Characteristics
@@ -121,7 +121,7 @@ namespace ParquetClassLibrary.Maps
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static ChunkDetail ConverterFactory { get; } = Empty;
+        internal static ChunkDetail ConverterFactory { get; } = None;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -149,10 +149,10 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(ChunkDetail)));
+                return None;
             }
             else
             {

@@ -10,7 +10,7 @@ namespace ParquetUnitTests.Maps
         {
             var defaultChunk = new ChunkDetail();
 
-            Assert.Equal(ChunkDetail.Empty, defaultChunk);
+            Assert.Equal(ChunkDetail.None, defaultChunk);
         }
     }
 }
