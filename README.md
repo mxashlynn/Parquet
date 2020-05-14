@@ -37,10 +37,14 @@ Parquet targets the following features:
 7. Dialogue and narrative delivery.
 8. Data-driven design with all key game models customizable from CSV files.
 
-# Solution Structure
+# Repository Structure
 
-The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.
+The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.  In addition, there are non-project directories with additional files.
 
+- **Documentation**
+    - How to use the library and its tools.
+- **ExampleData**
+    - Configuration files used in developing and testing the library.
 - **ParquetClassLibrary**
     - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/blob/master/Documentation/2-How_Parquet_Handles_Game_Objects.md).
     - **Beings**, including player characters and NPCs.

@@ -13,14 +13,6 @@ namespace ParquetUnitTests.Maps
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         #endregion
 
-        #region Initialization
-        [Fact]
-        public void NewDefaultMapChunkTest()
-        {
-            Assert.Equal(0, new MapChunk(ModelID.None, "Throwaway Chunk", "", "").Revision);
-        }
-        #endregion
-
         #region Subregions
         [Fact]
         public void GetSubregionThrowsOnInvalidUpperLeftTest()

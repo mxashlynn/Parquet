@@ -372,10 +372,10 @@ namespace ParquetClassLibrary
             => Get<Model>(inID);
 
         /// <summary>
-        /// Given a type, returns the filename and path associated with that type's designer file.
+        /// Given a type, returns the filename and path associated with that type's definition file.
         /// </summary>
         /// <typeparam name="TModel">The type whose path and filename are sought.</typeparam>
-        /// <returns>A full path to the associated designer file.</returns>
+        /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath<TModel>()
             where TModel : Model
         {

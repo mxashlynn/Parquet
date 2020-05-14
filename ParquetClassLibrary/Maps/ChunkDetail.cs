@@ -20,17 +20,14 @@ namespace ParquetClassLibrary.Maps
     /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
     /// - Town: Handmade
     /// </remarks>
-    public class ChunkType : IEquatable<ChunkType>, ITypeConverter
+    public class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter
     {
         #region Class Defaults
-        /// <summary>The null <see cref="ChunkType"/>, which generates an empty <see cref="MapChunk"/>.</summary>
-        public static readonly ChunkType Empty = new ChunkType();
+        /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunk"/>.</summary>
+        public static readonly ChunkDetail None = new ChunkDetail();
         #endregion
 
         #region Characteristics
-        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
-        public bool Handmade { get; }
-
         /// <summary>Indicates the basic form that the <see cref="MapChunk"/> of parquets takes.</summary>
         public ChunkTopography BaseTopography { get; }
 
@@ -46,22 +43,10 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Initializes a new default instance of the <see cref="ChunkType"/> class.
+        /// Initializes a new default instance of the <see cref="ChunkDetail"/> class for use with serialization.
         /// </summary>
-        /// <remarks>
-        /// This is primarily useful for serialization as the default values are featureless.
-        /// </remarks>
-        public ChunkType() :
-            this(ChunkTopography.Empty, ModelTag.None, ChunkTopography.Empty, ModelTag.None)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChunkType"/> class.
-        /// </summary>
-        /// <param name="inIsHandmade">If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</param>
-        public ChunkType(bool inIsHandmade)
+        public ChunkDetail()
         {
-            Handmade = inIsHandmade;
             BaseTopography = ChunkTopography.Empty;
             BaseComposition = ModelTag.None;
             ModifierTopography = ChunkTopography.Empty;
@@ -69,16 +54,15 @@ namespace ParquetClassLibrary.Maps
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChunkType"/> class.
+        /// Initializes a new instance of the <see cref="ChunkDetail"/> class.
         /// </summary>
         /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
         /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
         /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
         /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
-        public ChunkType(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
-                         ChunkTopography inModifierTopography, ModelTag inModifierComposition)
+        public ChunkDetail(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
+                                ChunkTopography inModifierTopography, ModelTag inModifierComposition)
         {
-            Handmade = false;
             BaseTopography = inBaseTopography;
             BaseComposition = inBaseComposition ?? ModelTag.None;
             ModifierTopography = inModifierTopography;
@@ -88,56 +72,56 @@ namespace ParquetClassLibrary.Maps
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="ChunkType"/> class.
+        /// Serves as a hash function for a <see cref="ChunkDetail"/> class.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures.</returns>
         public override int GetHashCode()
             => (BaseTopography, BaseComposition, ModifierTopography, ModifierComposition).GetHashCode();
 
         /// <summary>
-        /// Determines whether the specified <see cref="ChunkType"/> is equal to the current <see cref="ChunkType"/>.
+        /// Determines whether the specified <see cref="ChunkDetail"/> is equal to the current <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType">The <see cref="ChunkType"/> to compare with the current.</param>
-        /// <returns><c>true</c> if the <see cref="ChunkType"/>s are equal.</returns>
-        public bool Equals(ChunkType inChunkType)
+        /// <param name="inChunkType">The <see cref="ChunkDetail"/> to compare with the current.</param>
+        /// <returns><c>true</c> if the <see cref="ChunkDetail"/>s are equal.</returns>
+        public bool Equals(ChunkDetail inChunkType)
             => BaseTopography == inChunkType?.BaseTopography
             && BaseComposition == inChunkType.BaseComposition
             && ModifierTopography == inChunkType.ModifierTopography
             && ModifierComposition == inChunkType.ModifierComposition;
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkType"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ChunkType"/>.</param>
-        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="ChunkType"/>; otherwise, <c>false</c>.</returns>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ChunkDetail"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="ChunkDetail"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is ChunkType chunkType
+            => obj is ChunkDetail chunkType
             && Equals(chunkType);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ChunkType"/> is equal to
-        /// another specified instance of <see cref="ChunkType"/>.
+        /// Determines whether a specified instance of <see cref="ChunkDetail"/> is equal to
+        /// another specified instance of <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType1">The first <see cref="ChunkType"/> to compare.</param>
-        /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
-        /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ChunkType inChunkType1, ChunkType inChunkType2)
+        /// <param name="inChunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="inChunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
+        /// <returns><c>true</c> if the two <see cref="ChunkDetail"/>s are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(ChunkDetail inChunkType1, ChunkDetail inChunkType2)
             => inChunkType1?.Equals(inChunkType2) ?? inChunkType2?.Equals(inChunkType1) ?? true;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ChunkType"/> is unequal to
-        /// another specified instance of <see cref="ChunkType"/>.
+        /// Determines whether a specified instance of <see cref="ChunkDetail"/> is unequal to
+        /// another specified instance of <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType1">The first <see cref="ChunkType"/> to compare.</param>
-        /// <param name="inChunkType2">The second <see cref="ChunkType"/> to compare.</param>
-        /// <returns><c>true</c> if the two <see cref="ChunkType"/>s are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ChunkType inChunkType1, ChunkType inChunkType2)
+        /// <param name="inChunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="inChunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
+        /// <returns><c>true</c> if the two <see cref="ChunkDetail"/>s are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(ChunkDetail inChunkType1, ChunkDetail inChunkType2)
             => !(inChunkType1 == inChunkType2);
         #endregion
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static ChunkType ConverterFactory { get; } = Empty;
+        internal static ChunkDetail ConverterFactory { get; } = None;
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -147,16 +131,16 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ChunkType chunk
+            => inValue is ChunkDetail chunk
             && null != chunk
-                ? chunk.Handmade
-                    ? nameof(Handmade)
+                ? chunk == None
+                    ? nameof(None)
                     : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierComposition}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ChunkType)));
+                                                            inValue, nameof(ChunkDetail)));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -167,14 +151,10 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(ChunkType)));
-            }
-            else if (string.Compare(nameof(Handmade), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return new ChunkType(true);
+                return None;
             }
             else
             {
@@ -187,12 +167,12 @@ namespace ParquetClassLibrary.Maps
                     var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
                     var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
-                    return new ChunkType(baseTopography, baseComposition, modifierTopography, modifierComposition);
+                    return new ChunkDetail(baseTopography, baseComposition, modifierTopography, modifierComposition);
                 }
                 catch (Exception e)
                 {
                     throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inText, nameof(ChunkType)), e);
+                                                            inText, nameof(ChunkDetail)), e);
                 }
             }
         }
@@ -203,8 +183,8 @@ namespace ParquetClassLibrary.Maps
         /// Creates a new instance with the same characteristics as the current instance.
         /// </summary>
         /// <returns></returns>
-        public ChunkType Clone()
-            => new ChunkType(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
+        public ChunkDetail Clone()
+            => new ChunkDetail(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Rooms.MapSpace"/>.
@@ -213,27 +193,5 @@ namespace ParquetClassLibrary.Maps
         public override string ToString()
             => $"[{BaseTopography} {BaseComposition} above {ModifierTopography} {ModifierComposition}]";
         #endregion
-    }
-
-    /// <summary>
-    /// Convenience extension methods for concise coding when working with <see cref="ChunkType"/> instances.
-    /// </summary>
-    internal static class ChunkTypeExtensions
-    {
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the current array.
-        /// </summary>
-        /// <param name="inChunkTypeArray">The <see cref="ChunkType"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ChunkType[,] inChunkTypeArray, Vector2D inPosition)
-        {
-            Precondition.IsNotNull(inChunkTypeArray, nameof(inChunkTypeArray));
-
-            return inPosition.X > -1
-                && inPosition.Y > -1
-                && inPosition.X < inChunkTypeArray.GetLength(1)
-                && inPosition.Y < inChunkTypeArray.GetLength(0);
-        }
     }
 }

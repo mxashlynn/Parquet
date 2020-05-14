@@ -1,3 +1,4 @@
+using System;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
@@ -11,9 +12,9 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty MapChunk", "", "");
+        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty", "", "", 0, false);
 
-        /// <summary>The length of each <see cref="ChunkTypeGrid"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="MapChunk"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>
@@ -26,6 +27,14 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         #region Characteristics
+        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
+        [Index(5)]
+        public bool IsHandmade { get; }
+
+        /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
+        [Index(6)]
+        public ChunkDetail Details { get; }
+
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
         public override ParquetStatusGrid ParquetStatuses { get; }
@@ -44,15 +53,35 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
-        /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+        /// <param name="inIsHandmade">
+        /// If <c>true</c>, the <see cref="MapChunk"/> is created at design time;
+        /// otherwise, it is procedurally generated on load in-game.
+        /// </param>
+        /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
+        /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
+        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
+        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
+                        bool inIsHandmade,
+                        ChunkDetail inDetails = null,
                         ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
-            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
-            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            IsHandmade = inIsHandmade;
+
+            if (IsHandmade)
+            {
+                Details = ChunkDetail.None;
+                ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            }
+            else
+            {
+                Details = inDetails ?? ChunkDetail.None;
+                // TODO Replace these with a Grid.Empty
+                ParquetStatuses = new ParquetStatusGrid();
+                ParquetDefinitions = new ParquetStackGrid();
+            }
         }
         #endregion
 
@@ -62,7 +91,9 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
-            => $"Chunk {Name} {base.ToString()}";
+            => IsHandmade
+                ? $"Chunk {Name} handmade {base.ToString()}"
+                : $"Chunk {Name} generated {Details}";
         #endregion
     }
 }

@@ -33,8 +33,8 @@ namespace ParquetClassLibrary
 
         #region Serialization Lookup Tables
         /// <summary>
-        /// The location of the designer CSV files, set to either the working directory
-        /// or a predefined designer directory, depending on build type.
+        /// The location of the CSV game data files, set to either the working directory
+        /// or a predefined data directory, depending on build type.
         /// </summary>
         public static string WorkingDirectory { get; }
 
@@ -334,7 +334,7 @@ namespace ParquetClassLibrary
             #region Initialize Serialization Values & Lookup Tables
             WorkingDirectory =
 #if DEBUG
-                $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+                $"{Directory.GetCurrentDirectory()}/../../../../ExampleData";
 #else
                 Directory.GetCurrentDirectory();
 #endif
@@ -348,7 +348,7 @@ namespace ParquetClassLibrary
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
                 #region ITypeConverters
-                { typeof(ChunkType), ChunkType.ConverterFactory },
+                { typeof(ChunkDetail), ChunkDetail.ConverterFactory },
                 { typeof(ModelID), ModelID.ConverterFactory },
                 { typeof(ModelTag), ModelTag.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
@@ -376,7 +376,7 @@ namespace ParquetClassLibrary
                 #endregion
 
                 #region 2D Grid Types
-                { typeof(ChunkTypeGrid), GridConverter<ChunkType, ChunkTypeGrid>.ConverterFactory },
+                { typeof(ModelIDGrid), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
                 { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
                 { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },

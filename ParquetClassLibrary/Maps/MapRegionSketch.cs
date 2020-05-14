@@ -19,6 +19,12 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Used to indicate a blank sketch.</summary>
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
 
+        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunk"/>s.</summary>
+        public const int ChunksPerRegionDimension = 4;
+
+        /// <summary>The grid's dimensions in chunks.</summary>
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
+
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(MapRegion.ParquetsPerRegionDimension,
                                                                               MapRegion.ParquetsPerRegionDimension);
@@ -122,9 +128,9 @@ namespace ParquetClassLibrary.Maps
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
-        /// <summary><see cref="ChunkType"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(14)]
-        public ChunkTypeGrid Chunks { get; }
+        public ModelIDGrid Chunks { get; }
         #endregion
         #endregion
 
@@ -153,7 +159,7 @@ namespace ParquetClassLibrary.Maps
                                ModelID? inRegionToTheWest = null,
                                ModelID? inRegionAbove = null,
                                ModelID? inRegionBelow = null,
-                               ChunkTypeGrid inChunks = null)
+                               ModelIDGrid inChunks = null)
             : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
@@ -176,7 +182,7 @@ namespace ParquetClassLibrary.Maps
             RegionToTheWest = nonNullRegionToTheWest;
             RegionAbove = nonNullRegionAbove;
             RegionBelow = nonNullRegionBelow;
-            Chunks = inChunks ?? new ChunkTypeGrid();
+            Chunks = inChunks ?? new ModelIDGrid(ChunksPerRegionDimension, ChunksPerRegionDimension);
         }
         #endregion
 
@@ -186,7 +192,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegionSketch"/>.</returns>
         public override string ToString()
-            => $"Sketch {Name} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Columns * Chunks.Rows} chunks.";
+            => $"Sketch {Name} ({Chunks.Columns}, {Chunks.Rows}) contains {Chunks.Count} chunks.";
         #endregion
     }
 }
