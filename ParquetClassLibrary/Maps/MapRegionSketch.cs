@@ -128,7 +128,7 @@ namespace ParquetClassLibrary.Maps
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
 
-        /// <summary><see cref="ChunkDescription"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
         [Index(14)]
         public ModelIDGrid Chunks { get; }
         #endregion

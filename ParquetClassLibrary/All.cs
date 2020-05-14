@@ -348,7 +348,7 @@ namespace ParquetClassLibrary
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
                 #region ITypeConverters
-                { typeof(ChunkDescription), ChunkDescription.ConverterFactory },
+                { typeof(ChunkDetail), ChunkDetail.ConverterFactory },
                 { typeof(ModelID), ModelID.ConverterFactory },
                 { typeof(ModelTag), ModelTag.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },

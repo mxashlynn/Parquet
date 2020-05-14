@@ -3,14 +3,14 @@ using Xunit;
 
 namespace ParquetUnitTests.Maps
 {
-    public class ChunkDescriptionUnitTest
+    public class ChunkDetailUnitTest
     {
         [Fact]
         internal void DefaultChunkTypeIsEmptyTest()
         {
-            var defaultChunk = new ChunkDescription();
+            var defaultChunk = new ChunkDetail();
 
-            Assert.Equal(ChunkDescription.Empty, defaultChunk);
+            Assert.Equal(ChunkDetail.Empty, defaultChunk);
         }
     }
 }

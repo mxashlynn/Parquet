@@ -31,9 +31,9 @@ namespace ParquetClassLibrary.Maps
         [Index(5)]
         public bool IsHandmade { get; }
 
-        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
+        /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
         [Index(6)]
-        public ChunkDescription GenerativeDescription { get; }
+        public ChunkDetail Details { get; }
 
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
@@ -57,12 +57,12 @@ namespace ParquetClassLibrary.Maps
         /// If <c>true</c>, the <see cref="MapChunk"/> is created at design time;
         /// otherwise, it is procedurally generated on load in-game.
         /// </param>
-        /// <param name="inGenerativeDescription">Cues to the generation routines if generated at runtime.</param>
+        /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
         public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
                         bool inIsHandmade,
-                        ChunkDescription inGenerativeDescription = null,
+                        ChunkDetail inDetails = null,
                         ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
@@ -71,13 +71,13 @@ namespace ParquetClassLibrary.Maps
 
             if (IsHandmade)
             {
-                GenerativeDescription = ChunkDescription.Empty;
+                Details = ChunkDetail.Empty;
                 ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
                 ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
-                GenerativeDescription = inGenerativeDescription ?? ChunkDescription.Empty;
+                Details = inDetails ?? ChunkDetail.Empty;
                 // TODO Replace these with a Grid.Empty
                 ParquetStatuses = new ParquetStatusGrid();
                 ParquetDefinitions = new ParquetStackGrid();
