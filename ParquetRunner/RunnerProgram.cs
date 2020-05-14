@@ -1,12 +1,17 @@
 using System;
+using System.Collections.Generic;
 using ParquetClassLibrary;
+using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
+using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Rooms;
+using ParquetClassLibrary.Scripts;
 
 namespace ParquetRunner
 {
-    #region Test Stuff
-    #endregion
-
     /// <summary>
     /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
     /// </summary>

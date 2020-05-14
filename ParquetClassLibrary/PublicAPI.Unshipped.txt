@@ -724,7 +724,7 @@ static readonly ParquetClassLibrary.All.RoomRecipeIDs -> ParquetClassLibrary.Ran
 static readonly ParquetClassLibrary.All.ScriptIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.Beings.PronounGroup.DefaultGroup -> ParquetClassLibrary.Beings.PronounGroup
 static readonly ParquetClassLibrary.Crafts.StrikePanel.Unused -> ParquetClassLibrary.Crafts.StrikePanel
-static readonly ParquetClassLibrary.Maps.ChunkDetail.Empty -> ParquetClassLibrary.Maps.ChunkDetail
+static readonly ParquetClassLibrary.Maps.ChunkDetail.None -> ParquetClassLibrary.Maps.ChunkDetail
 static readonly ParquetClassLibrary.Maps.MapRegion.Empty -> ParquetClassLibrary.Maps.MapRegion
 static readonly ParquetClassLibrary.Maps.MapRegionSketch.Empty -> ParquetClassLibrary.Maps.MapRegionSketch
 static readonly ParquetClassLibrary.ModelCollection.Default -> ParquetClassLibrary.ModelCollection
