@@ -33,8 +33,8 @@ namespace ParquetClassLibrary
 
         #region Serialization Lookup Tables
         /// <summary>
-        /// The location of the designer CSV files, set to either the working directory
-        /// or a predefined designer directory, depending on build type.
+        /// The location of the CSV game data files, set to either the working directory
+        /// or a predefined data directory, depending on build type.
         /// </summary>
         public static string WorkingDirectory { get; }
 
@@ -334,7 +334,7 @@ namespace ParquetClassLibrary
             #region Initialize Serialization Values & Lookup Tables
             WorkingDirectory =
 #if DEBUG
-                $"{Directory.GetCurrentDirectory()}/../../../../Designer";
+                $"{Directory.GetCurrentDirectory()}/../../../../ExampleData";
 #else
                 Directory.GetCurrentDirectory();
 #endif

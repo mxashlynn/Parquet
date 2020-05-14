@@ -1189,8 +1189,8 @@ All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s mus
 
 ##### Summary
 
-The location of the designer CSV files, set to either the working directory
-or a predefined designer directory, depending on build type.
+The location of the CSV game data files, set to either the working directory
+or a predefined data directory, depending on build type.
 
 <a name='M-ParquetClassLibrary-All-#cctor'></a>
 ### #cctor() `method`
@@ -1596,11 +1596,11 @@ There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassL
 
 ##### Summary
 
-Returns the filename and path associated with [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration')'s designer file.
+Returns the filename and path associated with [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'ParquetClassLibrary.Biomes.BiomeConfiguration')'s definition file.
 
 ##### Returns
 
-A full path to the associated designer file.
+A full path to the associated file.
 
 ##### Parameters
 
@@ -2506,11 +2506,11 @@ Number of product categories per recipe.
 
 ##### Summary
 
-Returns the filename and path associated with [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration')'s designer file.
+Returns the filename and path associated with [CraftConfiguration](#T-ParquetClassLibrary-Crafts-CraftConfiguration 'ParquetClassLibrary.Crafts.CraftConfiguration')'s definition file.
 
 ##### Returns
 
-A full path to the associated designer file.
+A full path to the associated file.
 
 ##### Parameters
 
@@ -3174,8 +3174,7 @@ Optional comment.
 
 ##### Remarks
 
-Could be used for designer notes or to implement an in-game dialogue
-with or on the [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
+Could be used for designer's notes or to implement an in-game dialogue with or on the [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
 
 <a name='P-ParquetClassLibrary-IModelEdit-Description'></a>
 ### Description `property`
@@ -5831,11 +5830,11 @@ The specified [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
 
 ##### Summary
 
-Given a type, returns the filename and path associated with that type's designer file.
+Given a type, returns the filename and path associated with that type's definition file.
 
 ##### Returns
 
-A full path to the associated designer file.
+A full path to the associated file.
 
 ##### Parameters
 
@@ -8515,11 +8514,11 @@ Personal pronoun used as the subject of a verb.
 
 ##### Summary
 
-Returns the filename and path associated with [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')'s designer file.
+Returns the filename and path associated with [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup')'s definition file.
 
 ##### Returns
 
-A full path to the associated designer file.
+A full path to the associated file.
 
 ##### Parameters
 
@@ -9742,11 +9741,11 @@ Minimum number of open walkable spaces needed for any room to register.
 
 ##### Summary
 
-Returns the filename and path associated with [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration')'s designer file.
+Returns the filename and path associated with [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration')'s definition file.
 
 ##### Returns
 
-A full path to the associated designer file.
+A full path to the associated file.
 
 ##### Parameters
 

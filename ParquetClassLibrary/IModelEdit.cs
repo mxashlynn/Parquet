@@ -13,8 +13,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Optional comment.</summary>
         /// <remarks>
-        /// Could be used for designer notes or to implement an in-game dialogue
-        /// with or on the <see cref="Model"/>.
+        /// Could be used for designer's notes or to implement an in-game dialogue with or on the <see cref="Model"/>.
         /// </remarks>
         public string Comment { get; set; }
     }

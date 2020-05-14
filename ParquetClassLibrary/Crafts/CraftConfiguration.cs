@@ -71,9 +71,9 @@ namespace ParquetClassLibrary.Crafts
         }
 
         /// <summary>
-        /// Returns the filename and path associated with <see cref="CraftConfiguration"/>'s designer file.
+        /// Returns the filename and path associated with <see cref="CraftConfiguration"/>'s definition file.
         /// </summary>
-        /// <returns>A full path to the associated designer file.</returns>
+        /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
             => $"{All.WorkingDirectory}/{nameof(CraftConfiguration)}.csv";
         #endregion

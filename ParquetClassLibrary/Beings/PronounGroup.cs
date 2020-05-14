@@ -154,9 +154,9 @@ namespace ParquetClassLibrary.Beings
 
         #region Utilities
         /// <summary>
-        /// Returns the filename and path associated with <see cref="PronounGroup"/>'s designer file.
+        /// Returns the filename and path associated with <see cref="PronounGroup"/>'s definition file.
         /// </summary>
-        /// <returns>A full path to the associated designer file.</returns>
+        /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
             => $"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv";
 
