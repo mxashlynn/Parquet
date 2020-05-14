@@ -112,7 +112,7 @@
 - [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')
   - [#ctor()](#M-ParquetClassLibrary-Maps-ChunkDetail-#ctor 'ParquetClassLibrary.Maps.ChunkDetail.#ctor')
   - [#ctor(inBaseTopography,inBaseComposition,inModifierTopography,inModifierComposition)](#M-ParquetClassLibrary-Maps-ChunkDetail-#ctor-ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Maps-ChunkTopography,ParquetClassLibrary-ModelTag- 'ParquetClassLibrary.Maps.ChunkDetail.#ctor(ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Maps.ChunkTopography,ParquetClassLibrary.ModelTag)')
-  - [Empty](#F-ParquetClassLibrary-Maps-ChunkDetail-Empty 'ParquetClassLibrary.Maps.ChunkDetail.Empty')
+  - [None](#F-ParquetClassLibrary-Maps-ChunkDetail-None 'ParquetClassLibrary.Maps.ChunkDetail.None')
   - [BaseComposition](#P-ParquetClassLibrary-Maps-ChunkDetail-BaseComposition 'ParquetClassLibrary.Maps.ChunkDetail.BaseComposition')
   - [BaseTopography](#P-ParquetClassLibrary-Maps-ChunkDetail-BaseTopography 'ParquetClassLibrary.Maps.ChunkDetail.BaseTopography')
   - [ConverterFactory](#P-ParquetClassLibrary-Maps-ChunkDetail-ConverterFactory 'ParquetClassLibrary.Maps.ChunkDetail.ConverterFactory')
@@ -1974,8 +1974,8 @@ Initializes a new instance of the [ChunkDetail](#T-ParquetClassLibrary-Maps-Chun
 | inModifierTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | Indicates a modifier on the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets. |
 | inModifierComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the type of parquets modifying the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'). |
 
-<a name='F-ParquetClassLibrary-Maps-ChunkDetail-Empty'></a>
-### Empty `constants`
+<a name='F-ParquetClassLibrary-Maps-ChunkDetail-None'></a>
+### None `constants`
 
 ##### Summary
 

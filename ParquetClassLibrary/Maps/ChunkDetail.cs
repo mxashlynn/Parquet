@@ -133,10 +133,12 @@ namespace ParquetClassLibrary.Maps
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ChunkDetail chunk
             && null != chunk
-                ? $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
-                  $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
-                  $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
-                  $"{chunk.ModifierComposition}"
+                ? chunk == None
+                    ? nameof(None)
+                    : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
+                      $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
+                      $"{chunk.ModifierComposition}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ChunkDetail)));
 
