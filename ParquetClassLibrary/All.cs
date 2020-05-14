@@ -376,7 +376,7 @@ namespace ParquetClassLibrary
                 #endregion
 
                 #region 2D Grid Types
-                { typeof(ModelID), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
+                { typeof(ModelIDGrid), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
                 { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
                 { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
