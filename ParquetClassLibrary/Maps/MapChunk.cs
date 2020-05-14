@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inHandmade">
+        /// <param name="inIsHandmade">
         /// If <c>true</c>, the <see cref="MapChunk"/> is created at design time;
         /// otherwise, it is procedurally generated on load in-game.
         /// </param>
@@ -61,13 +61,13 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
         public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
-                        bool inHandmade,
+                        bool inIsHandmade,
                         ChunkDescription inGenerativeDescription = null,
                         ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
-            IsHandmade = inHandmade;
+            IsHandmade = inIsHandmade;
 
             if (IsHandmade)
             {
