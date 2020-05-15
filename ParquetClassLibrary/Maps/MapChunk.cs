@@ -8,6 +8,9 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a portion of a <see cref="MapRegion"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
+    /// <remarks>
+    /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
+    /// </remarks>
     public sealed class MapChunk : MapModel
     {
         #region Class Defaults

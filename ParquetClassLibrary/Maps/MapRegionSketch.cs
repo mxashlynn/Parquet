@@ -10,8 +10,15 @@ namespace ParquetClassLibrary.Maps
     /// A pattern and metadata to generate a <see cref="MapRegion"/>.
     /// </summary>
     /// <remarks>
-    /// Before play begins, <see cref="MapRegion"/>s are stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
-    /// Once loaded in-game they are composited, which often includes procedurally generating contained <see cref="MapChunk"/>s.
+    /// Before play begins, <see cref="MapRegion"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
+    ///
+    /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
+    /// collection of parquets, but instead as <see cref="MapChunk"/>s, instructions to procedural generation routines.  These
+    /// instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
+    /// for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
+    /// to some general layout instructions provided by the game's designers.
+    /// 
+    /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
     public sealed class MapRegionSketch : MapModel, IMapRegionEdit
     {
