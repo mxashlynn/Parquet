@@ -8,7 +8,7 @@ using ParquetClassLibrary.Rooms;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A playable region in sandbox.
+    /// A playable region of the gameworld, composed of parquets.
     /// </summary>
     public sealed class MapRegion : MapModel, IMapRegionEdit
     {

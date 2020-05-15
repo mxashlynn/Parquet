@@ -5,8 +5,8 @@ using ParquetClassLibrary.Parquets;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Models details of a playable chunk in sandbox.
-    /// <see cref="MapChunk"/>s are composed of parquets.
+    /// Models details of a portion of a <see cref="MapRegion"/>,
+    /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
     public sealed class MapChunk : MapModel
     {
