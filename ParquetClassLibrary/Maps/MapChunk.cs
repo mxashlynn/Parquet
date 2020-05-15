@@ -85,6 +85,19 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
+        /// <summary>
+        /// Transforms the current <see cref="MapChunk"/> so that it is ready to be stitched together
+        /// with others into a playable <see cref="MapRegion"/>.
+        /// </summary>
+        /// <remarks>
+        /// If a chunk <see cref="IsHandmade"/>, it is ready to go.
+        /// Chunks that are not handmade will need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
+        /// </remarks>
+        public void Generate()
+        {
+            // TODO This.
+        }
+
         #region Utilities
         /// <summary>
         /// Describes the <see cref="MapChunk"/> as a <see cref="string"/> containing basic information.

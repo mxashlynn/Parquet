@@ -211,6 +211,7 @@ ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
 ParquetClassLibrary.Maps.MapAnalysis
 ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
+ParquetClassLibrary.Maps.MapChunk.Generate() -> void
 ParquetClassLibrary.Maps.MapChunk.IsHandmade.get -> bool
 ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
@@ -242,6 +243,7 @@ ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast.get -> ParquetClassLibr
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.Stitch() -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs
 ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack

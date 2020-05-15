@@ -341,6 +341,7 @@
   - [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunk-IsHandmade 'ParquetClassLibrary.Maps.MapChunk.IsHandmade')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapChunk-ParquetStatuses 'ParquetClassLibrary.Maps.MapChunk.ParquetStatuses')
+  - [Generate()](#M-ParquetClassLibrary-Maps-MapChunk-Generate 'ParquetClassLibrary.Maps.MapChunk.Generate')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapChunk-ToString 'ParquetClassLibrary.Maps.MapChunk.ToString')
 - [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
   - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32)')
@@ -408,6 +409,7 @@
   - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth')
   - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth')
   - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest')
+  - [Stitch()](#M-ParquetClassLibrary-Maps-MapRegionSketch-Stitch 'ParquetClassLibrary.Maps.MapRegionSketch.Stitch')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionSketch-ToString 'ParquetClassLibrary.Maps.MapRegionSketch.ToString')
 - [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')
   - [#ctor(inPosition,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStackGrid)')
@@ -4239,8 +4241,8 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-Models details of a playable chunk in sandbox.
-[MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s are composed of parquets.
+Models details of a portion of a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion'),
+either directly composed of parquets or generated from [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
 <a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetStatuses,inParquetDefinitions) `constructor`
@@ -4319,6 +4321,23 @@ Floors and walkable terrain in the chunk.
 ##### Summary
 
 The statuses of parquets in the chunk.
+
+<a name='M-ParquetClassLibrary-Maps-MapChunk-Generate'></a>
+### Generate() `method`
+
+##### Summary
+
+Transforms the current [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') so that it is ready to be stitched together
+with others into a playable [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+
+##### Parameters
+
+This method has no parameters.
+
+##### Remarks
+
+If a chunk [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunk-IsHandmade 'ParquetClassLibrary.Maps.MapChunk.IsHandmade'), it is ready to go.
+Chunks that are not handmade will need to undergo procedural generation based on their [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
 <a name='M-ParquetClassLibrary-Maps-MapChunk-ToString'></a>
 ### ToString() `method`
@@ -4474,7 +4493,7 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-A playable region in sandbox.
+A playable region of the gameworld, composed of parquets.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions) `constructor`
@@ -4920,6 +4939,21 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
+
+<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-Stitch'></a>
+### Stitch() `method`
+
+##### Summary
+
+Combines all consituent [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s to produce a playable [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+
+##### Parameters
+
+This method has no parameters.
+
+##### Remarks
+
+Invokes procedural generation routines on any [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s that need it.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-ToString'></a>
 ### ToString() `method`

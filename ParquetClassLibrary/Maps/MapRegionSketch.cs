@@ -186,6 +186,19 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
+        /// <summary>
+        /// Combines all consituent <see cref="MapChunk"/>s to produce a playable <see cref="MapRegion"/>.
+        /// </summary>
+        /// <remarks>
+        /// Invokes procedural generation routines on any <see cref="MapChunk"/>s that need it.
+        /// </remarks>
+        public void Stitch()
+        {
+            // TODO This.
+            // TODO One issue here is, how do we (and should we) update the definitions in All so that
+            // the newly stitched MapRegion replaces the old MapRegionSketch?
+        }
+
         #region Utilities
         /// <summary>
         /// Describes the <see cref="MapRegionSketch"/>.
