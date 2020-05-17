@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
@@ -192,12 +193,45 @@ namespace ParquetClassLibrary.Maps
         /// <remarks>
         /// Invokes procedural generation routines on any <see cref="MapChunk"/>s that need it.
         /// </remarks>
-        public void Stitch()
+        /// <returns>The new <see cref="MapRegion"/>.</returns>
+        public MapRegion Stitch()
         {
-            // TODO This.
+            var parquetDefinitions = new ParquetStackGrid(MapRegion.ParquetsPerRegionDimension, MapRegion.ParquetsPerRegionDimension);
+            for (var chunkX = 0; chunkX < ChunksPerRegionDimension; chunkX++)
+            {
+                for (var chunkY = 0; chunkY < ChunksPerRegionDimension; chunkY++)
+                {
+                    var currentChunk = All.Maps.Get<MapChunk>(Chunks[chunkY, chunkX]);
 
-            // TODO Use IModelCollectionEditable.Replace() to update the definitions in All so that
-            // the newly stitched MapRegion replaces the old MapRegionSketch.
+                    // Generate all contained chunks.
+                    currentChunk.Generate();
+
+                    // Extract definitions and copy them into a larger subregion.
+                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
+                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
+                    for (var parquetX = 0; parquetX < ChunksPerRegionDimension; parquetX++)
+                    {
+                        for (var parquetY = 0; parquetY < ChunksPerRegionDimension; parquetY++)
+                        {
+                            parquetDefinitions[offsetY + parquetY, offsetX + parquetX] = currentChunk.ParquetDefinitions[parquetY, parquetX];
+                        }
+                    }
+                }
+            }
+
+            // Create a new MapRegion with the metadata of this sketch plus the new subregion.
+            var newRegion = new MapRegion(ID, Name, Description, Comment, Revision + 1, BackgroundColor, RegionToTheNorth,
+                                          RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
+                                          null, parquetDefinitions);
+
+            // If the current sketch is contained in the game-wide database, replace it with the newly stitched region.
+            if (All.Maps.Contains(ID))
+            {
+                IModelCollectionEdit<MapModel> allMaps = All.Maps;
+                allMaps.Replace(newRegion);
+            }
+
+            return newRegion;
         }
 
         #region Utilities

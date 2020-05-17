@@ -32,6 +32,7 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         [Index(5)]
+        // TODO Change this name since it is being used for non-handmadeness now.
         public bool IsHandmade { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
@@ -90,8 +91,12 @@ namespace ParquetClassLibrary.Maps
         /// </remarks>
         public void Generate()
         {
-            // TODO Replace this pass-through implementation.
+            if (IsHandmade)
+            {
+                return;
+            }
 
+            // TODO Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
             for (var x = 0; x < ParquetsPerChunkDimension; x++)
