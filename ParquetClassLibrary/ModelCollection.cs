@@ -102,10 +102,9 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c> if the <see cref="Model"/> was found; <c>false</c> otherwise.</returns>
         public bool Contains(Model inModel)
         {
-            Precondition.IsNotNull(inModel);
+            Precondition.IsNotNull(inModel, nameof(inModel));
 
-            return inModel.ID == ModelID.None
-                || Models.ContainsKey(inModel.ID);
+            return Contains(inModel.ID);
         }
 
         /// <summary>
