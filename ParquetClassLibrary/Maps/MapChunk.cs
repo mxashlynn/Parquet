@@ -32,11 +32,11 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         [Index(5)]
-        public bool IsHandmade { get; }
+        public bool IsHandmade { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
         [Index(6)]
-        public ChunkDetail Details { get; }
+        public ChunkDetail Details { get; private set; }
 
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
@@ -98,7 +98,29 @@ namespace ParquetClassLibrary.Maps
         /// </remarks>
         public void Generate()
         {
-            // TODO This.
+            // TODO Replace this pass-through implementation.
+
+            #region Pass-Through Implementation
+            Details = ChunkDetail.None;
+            for (var x = 0; x < ParquetsPerChunkDimension; x++)
+            {
+                for (var y = 0; y < ParquetsPerChunkDimension; y++)
+                {
+                    ParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
+                }
+                ParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
+                ParquetDefinitions[ParquetsPerChunkDimension, 1].Block = All.BlockIDs.Minimum;
+            }
+            for (var y = 0; y < MapRegion.ParquetsPerRegionDimension; y++)
+            {
+                ParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
+                ParquetDefinitions[y, MapRegion.ParquetsPerRegionDimension - 1].Block = All.BlockIDs.Minimum;
+            }
+            ParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
+            ParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
+            #endregion
+
+            IsHandmade = true;
         }
 
         #region Utilities
