@@ -20,9 +20,8 @@ namespace ParquetClassLibrary.Parquets
         public bool IsWalkable { get; }
 
         /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegion"/>.</summary>
-        // TODO Do we want to remove the "Is" from this variable name?
         [Index(8)]
-        public EntryType IsEntry { get; }
+        public EntryType Entry { get; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         [Index(9)]
@@ -65,7 +64,7 @@ namespace ParquetClassLibrary.Parquets
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
 
             IsWalkable = inIsWalkable;
-            IsEntry = inIsEntry;
+            Entry = inIsEntry;
             IsEnclosing = inIsEnclosing;
             IsFlammable = inIsFlammable;
             SwapID = nonNullSwapID;

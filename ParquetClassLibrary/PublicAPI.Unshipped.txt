@@ -319,9 +319,9 @@ ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID i
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
+ParquetClassLibrary.Parquets.FurnishingModel.Entry.get -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inIsEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
-ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.SwapID.get -> ParquetClassLibrary.ModelID
