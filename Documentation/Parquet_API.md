@@ -237,6 +237,8 @@
   - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
   - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
   - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+- [IModelCollectionEdit\`1](#T-ParquetClassLibrary-IModelCollectionEdit`1 'ParquetClassLibrary.IModelCollectionEdit`1')
+  - [Replace(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Replace(`0)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
   - [Description](#P-ParquetClassLibrary-IModelEdit-Description 'ParquetClassLibrary.IModelEdit.Description')
@@ -482,6 +484,7 @@
   - [Bounds](#P-ParquetClassLibrary-ModelCollection`1-Bounds 'ParquetClassLibrary.ModelCollection`1.Bounds')
   - [ConverterFactory](#P-ParquetClassLibrary-ModelCollection`1-ConverterFactory 'ParquetClassLibrary.ModelCollection`1.ConverterFactory')
   - [Count](#P-ParquetClassLibrary-ModelCollection`1-Count 'ParquetClassLibrary.ModelCollection`1.Count')
+  - [EditableModels](#P-ParquetClassLibrary-ModelCollection`1-EditableModels 'ParquetClassLibrary.ModelCollection`1.EditableModels')
   - [Models](#P-ParquetClassLibrary-ModelCollection`1-Models 'ParquetClassLibrary.ModelCollection`1.Models')
   - [AssignMissingIDs\`\`1(inModelsWithOldIDs,inRecordsNeedingIDs)](#M-ParquetClassLibrary-ModelCollection`1-AssignMissingIDs``1-System-Collections-Generic-List{``0},System-Text-StringBuilder- 'ParquetClassLibrary.ModelCollection`1.AssignMissingIDs``1(System.Collections.Generic.List{``0},System.Text.StringBuilder)')
   - [ConfigureCSVReader(inReader)](#M-ParquetClassLibrary-ModelCollection`1-ConfigureCSVReader-System-IO-TextReader- 'ParquetClassLibrary.ModelCollection`1.ConfigureCSVReader(System.IO.TextReader)')
@@ -492,6 +495,7 @@
   - [GetRecordsForType\`\`1(inBounds)](#M-ParquetClassLibrary-ModelCollection`1-GetRecordsForType``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}}- 'ParquetClassLibrary.ModelCollection`1.GetRecordsForType``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}})')
   - [Get\`\`1(inID)](#M-ParquetClassLibrary-ModelCollection`1-Get``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.Get``1(ParquetClassLibrary.ModelID)')
   - [HandleUnassignedIDs\`\`1(inColumnHeaders,inModels)](#M-ParquetClassLibrary-ModelCollection`1-HandleUnassignedIDs``1-System-String[],System-Collections-Generic-List{``0}- 'ParquetClassLibrary.ModelCollection`1.HandleUnassignedIDs``1(System.String[],System.Collections.Generic.List{``0})')
+  - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(`0)')
   - [PutRecordsForType\`\`1()](#M-ParquetClassLibrary-ModelCollection`1-PutRecordsForType``1 'ParquetClassLibrary.ModelCollection`1.PutRecordsForType``1')
   - [ReconstructHeader(inColumnHeaders,inRecordsWithNewIDs)](#M-ParquetClassLibrary-ModelCollection`1-ReconstructHeader-System-String[],System-Text-StringBuilder- 'ParquetClassLibrary.ModelCollection`1.ReconstructHeader(System.String[],System.Text.StringBuilder)')
   - [RemoveHeaderPrefix(inHeaderText,inHeaderIndex)](#M-ParquetClassLibrary-ModelCollection`1-RemoveHeaderPrefix-System-String,System-Int32- 'ParquetClassLibrary.ModelCollection`1.RemoveHeaderPrefix(System.String,System.Int32)')
@@ -718,6 +722,7 @@
   - [DirectionWest](#P-ParquetClassLibrary-Properties-Resources-DirectionWest 'ParquetClassLibrary.Properties.Resources.DirectionWest')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
   - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
+  - [ErrorCannotReplace](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace 'ParquetClassLibrary.Properties.Resources.ErrorCannotReplace')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
   - [ErrorInvalidPosition](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition 'ParquetClassLibrary.Properties.Resources.ErrorInvalidPosition')
   - [ErrorModelNotFound](#P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound 'ParquetClassLibrary.Properties.Resources.ErrorModelNotFound')
@@ -3156,6 +3161,38 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
+<a name='T-ParquetClassLibrary-IModelCollectionEdit`1'></a>
+## IModelCollectionEdit\`1 `type`
+
+##### Namespace
+
+ParquetClassLibrary
+
+##### Summary
+
+Facilitates replacing elements of a [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') from design tools
+while maintaining a read-only facade during play.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TModel | The type collected, typically a concrete decendent of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'). |
+
+<a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0-'></a>
+### Replace(inModel) `method`
+
+##### Summary
+
+Replaces a contained `TModel` with the given `TModel` whose
+[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') is identicle to that of the model being replaced.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
 <a name='T-ParquetClassLibrary-IModelEdit'></a>
 ## IModelEdit `type`
 
@@ -4244,6 +4281,10 @@ ParquetClassLibrary.Maps
 Models details of a portion of a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion'),
 either directly composed of parquets or generated from [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
+##### Remarks
+
+For more information, read the remarks given in [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch').
+
 <a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetStatuses,inParquetDefinitions) `constructor`
 
@@ -4737,8 +4778,15 @@ A pattern and metadata to generate a [MapRegion](#T-ParquetClassLibrary-Maps-Map
 
 ##### Remarks
 
-Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s are stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
-Once loaded in-game they are composited, which often includes procedurally generating contained [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
+Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s may be stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
+
+ MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
+ collection of parquets, but instead as [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s, instructions to procedural generation routines.  These
+ instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
+ for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
+ to some general layout instructions provided by the game's designers.
+ 
+ The [Stitch](#M-ParquetClassLibrary-Maps-MapRegionSketch-Stitch 'ParquetClassLibrary.Maps.MapRegionSketch.Stitch') method accomplishes this, forming a composite whole from generated parts.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks) `constructor`
@@ -5896,7 +5944,7 @@ Provides bounds-checking and type-checking against `TModel`.
 
 | Name | Description |
 | ---- | ----------- |
-| TModel | The type collected, typically a decendent of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'). |
+| TModel | The type collected, typically a concrete decendent of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'). |
 
 ##### Remarks
 
@@ -5972,6 +6020,17 @@ Allows the converter to construct itself statically.
 ##### Summary
 
 The number of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model')s in the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'ParquetClassLibrary.ModelCollection`1').
+
+<a name='P-ParquetClassLibrary-ModelCollection`1-EditableModels'></a>
+### EditableModels `property`
+
+##### Summary
+
+An editable facade onto the internal collection mechanism.
+
+##### Remarks
+
+Should only be accessed from constructor and [Replace](#M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Replace(`0)').
 
 <a name='P-ParquetClassLibrary-ModelCollection`1-Models'></a>
 ### Models `property`
@@ -6160,6 +6219,24 @@ Assigns [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s
 
 Optionally, a subset of deserialized records may not have [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
 This detects such records and assigns an ID to all models created from them.
+
+<a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0-'></a>
+### ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel) `method`
+
+##### Summary
+
+Replaces a contained `TModel` with the given `TModel` whose
+[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') is identicle to that of the model being replaced.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
+##### Remarks
+
+Facilitates updating elements from design tools while maintaining a read-only facade during play.
 
 <a name='M-ParquetClassLibrary-ModelCollection`1-PutRecordsForType``1'></a>
 ### PutRecordsForType\`\`1() `method`
@@ -9260,6 +9337,13 @@ Looks up a localized string similar to Could not convert '{0}' to {1}..
 ##### Summary
 
 Looks up a localized string similar to Could not parse '{0}' as {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace'></a>
+### ErrorCannotReplace `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to replace non-contained {0} '{1}'..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast'></a>
 ### ErrorInvalidCast `property`

@@ -27,8 +27,8 @@ namespace ParquetClassLibrary
     /// <seealso cref="ModelID"/>
     /// <seealso cref="ModelTag"/>
     /// <seealso cref="All"/>
-    /// <typeparam name="TModel">The type collected, typically a decendent of <see cref="Model"/>.</typeparam>
-    public class ModelCollection<TModel> : IReadOnlyCollection<TModel>
+    /// <typeparam name="TModel">The type collected, typically a concrete decendent of <see cref="Model"/>.</typeparam>
+    public class ModelCollection<TModel> : IReadOnlyCollection<TModel>, IModelCollectionEdit<TModel>
         where TModel : Model
     {
         #region Class Defaults
@@ -39,6 +39,10 @@ namespace ParquetClassLibrary
         #endregion
 
         #region Characteristics
+        /// <summary>An editable facade onto the internal collection mechanism.</summary>
+        /// <remarks>Should only be accessed from constructor and <see cref="IModelCollectionEdit{TModel}.Replace"/>.</remarks>
+        private Dictionary<ModelID, Model> EditableModels { get; }
+
         /// <summary>The internal collection mechanism.</summary>
         private IReadOnlyDictionary<ModelID, Model> Models { get; }
 
@@ -78,6 +82,7 @@ namespace ParquetClassLibrary
 
             Bounds = inBounds.ToList();
             Models = baseDictionary;
+            EditableModels = baseDictionary;
         }
 
         /// <summary>
@@ -162,6 +167,29 @@ namespace ParquetClassLibrary
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<Model> GetEnumerator()
             => Models.Values.GetEnumerator();
+
+        /// <summary>
+        /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
+        /// <see cref="ModelID"/> is identicle to that of the model being replaced.
+        /// </summary>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        /// <remarks>Facilitates updating elements from design tools while maintaining a read-only facade during play.</remarks>
+        void IModelCollectionEdit<TModel>.Replace(TModel inModel)
+        {
+            Precondition.IsNotNull(inModel);
+            Precondition.IsNotNone(inModel.ID);
+            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+
+            if (Contains(inModel.ID))
+            {
+                EditableModels[inModel.ID] = inModel;
+            }
+            else
+            {
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
+                                                          typeof(TModel).Name, inModel.Name));
+            }
+        }
         #endregion
 
         #region Self Serialization
