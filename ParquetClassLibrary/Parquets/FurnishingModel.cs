@@ -48,14 +48,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inAddsToBiome">Indicates which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inIsWalkable">If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</param>
-        /// <param name="inIsEntry">If <c>true</c> this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/>.</param>
+        /// <param name="inEntry">If <c>true</c> this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/>.</param>
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</param>
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
         /// <param name="inSwapID">A <see cref="FurnishingModel"/> to swap with this furnishing on open/close actions.</param>
         public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
                           ModelID? inItemID = null, ModelTag inAddsToBiome = null,
                           ModelTag inAddsToRoom = null, bool inIsWalkable = false,
-                          EntryType inIsEntry = EntryType.None, bool inIsEnclosing = false,
+                          EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
                           bool inIsFlammable = false, ModelID? inSwapID = null)
             : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
                    inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
@@ -64,7 +64,7 @@ namespace ParquetClassLibrary.Parquets
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
 
             IsWalkable = inIsWalkable;
-            Entry = inIsEntry;
+            Entry = inEntry;
             IsEnclosing = inIsEnclosing;
             IsFlammable = inIsFlammable;
             SwapID = nonNullSwapID;

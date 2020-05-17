@@ -202,10 +202,10 @@
   - [ModTool](#P-ParquetClassLibrary-Parquets-FloorModel-ModTool 'ParquetClassLibrary.Parquets.FloorModel.ModTool')
   - [TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-TrenchName 'ParquetClassLibrary.Parquets.FloorModel.TrenchName')
 - [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')
-  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
+  - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FurnishingModel-Bounds 'ParquetClassLibrary.Parquets.FurnishingModel.Bounds')
+  - [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry')
   - [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing')
-  - [IsEntry](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry 'ParquetClassLibrary.Parquets.FurnishingModel.IsEntry')
   - [IsFlammable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable 'ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable')
   - [IsWalkable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsWalkable 'ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable')
   - [SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.SwapID')
@@ -2831,7 +2831,7 @@ ParquetClassLibrary.Parquets
 Configurations for large sandbox parquet items, such as furniture or plants.
 
 <a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
-### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inIsEntry,inIsEnclosing,inIsFlammable,inSwapID) `constructor`
+### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inEntry,inIsEnclosing,inIsFlammable,inSwapID) `constructor`
 
 ##### Summary
 
@@ -2849,7 +2849,7 @@ Initializes a new instance of the [FurnishingModel](#T-ParquetClassLibrary-Parqu
 | inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 | inIsWalkable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on. |
-| inIsEntry | [ParquetClassLibrary.Parquets.EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
+| inEntry | [ParquetClassLibrary.Parquets.EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsEnclosing | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as part of a perimeter of a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 | inIsFlammable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may catch fire. |
 | inSwapID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | A [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') to swap with this furnishing on open/close actions. |
@@ -2861,19 +2861,19 @@ Initializes a new instance of the [FurnishingModel](#T-ParquetClassLibrary-Parqu
 
 The set of values that are allowed for Furnishing IDs.
 
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-Entry'></a>
+### Entry `property`
+
+##### Summary
+
+Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing'></a>
 ### IsEnclosing `property`
 
 ##### Summary
 
 Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as part of a perimeter of a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
-
-<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry'></a>
-### IsEntry `property`
-
-##### Summary
-
-Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable'></a>
 ### IsFlammable `property`
@@ -5101,7 +5101,7 @@ A [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.Ma
 
 A [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is Entry iff:
 1, Its [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content') is either Walkable or Enclosing; and,
-2, It has a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') that is [IsEntry](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry 'ParquetClassLibrary.Parquets.FurnishingModel.IsEntry').
+2, It has a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
 
 ##### Returns
 
@@ -7316,7 +7316,7 @@ A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibra
 
 A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Entry iff:
 1, It is either Walkable or Enclosing but not both; and,
-2, It has a [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing') that is [IsEntry](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEntry 'ParquetClassLibrary.Parquets.FurnishingModel.IsEntry').
+2, It has a [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
 
 ##### Returns
 
