@@ -202,8 +202,9 @@ namespace ParquetClassLibrary.Maps
         public void Stitch()
         {
             // TODO This.
-            // TODO One issue here is, how do we (and should we) update the definitions in All so that
-            // the newly stitched MapRegion replaces the old MapRegionSketch?
+
+            // TODO Use IModelCollectionEditable.Replace() to update the definitions in All so that
+            // the newly stitched MapRegion replaces the old MapRegionSketch.
         }
 
         #region Utilities

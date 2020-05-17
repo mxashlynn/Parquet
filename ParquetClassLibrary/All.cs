@@ -413,7 +413,7 @@ namespace ParquetClassLibrary
         {
             if (CollectionsHaveBeenInitialized)
             {
-                // TODO How do we want to handle this.  The collection needs to be updatable for design-time tools.
+                // TODO Add a message explaining that IModelCollectionEditable.Replace() must be used to update the content of a ModelCollection.
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
                                                                   nameof(All), "initialization"));
             }
