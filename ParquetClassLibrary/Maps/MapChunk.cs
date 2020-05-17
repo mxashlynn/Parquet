@@ -38,10 +38,6 @@ namespace ParquetClassLibrary.Maps
         [Index(6)]
         public ChunkDetail Details { get; private set; }
 
-        /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(12)]
-        public override ParquetStatusGrid ParquetStatuses { get; }
-
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         [Index(13)]
         public override ParquetStackGrid ParquetDefinitions { get; }
@@ -61,12 +57,10 @@ namespace ParquetClassLibrary.Maps
         /// otherwise, it is procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
-        /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
         public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
                         bool inIsHandmade,
                         ChunkDetail inDetails = null,
-                        ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
@@ -75,14 +69,12 @@ namespace ParquetClassLibrary.Maps
             if (IsHandmade)
             {
                 Details = ChunkDetail.None;
-                ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
                 ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
                 Details = inDetails ?? ChunkDetail.None;
-                // TODO Replace these with a Grid.Empty
-                ParquetStatuses = new ParquetStatusGrid();
+                // TODO Replace this with a Grid.Empty
                 ParquetDefinitions = new ParquetStackGrid();
             }
         }

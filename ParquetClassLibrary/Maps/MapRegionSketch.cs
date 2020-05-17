@@ -121,12 +121,9 @@ namespace ParquetClassLibrary.Maps
         ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
         #endregion
 
-        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
-        [Ignore]
-        // Index(12)
-        public override ParquetStatusGrid ParquetStatuses
-            => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
-                                                                 nameof(ParquetStatuses), nameof(MapRegionSketch)));
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        [Index(12)]
+        public ModelIDGrid Chunks { get; }
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
@@ -134,10 +131,6 @@ namespace ParquetClassLibrary.Maps
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
-
-        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
-        [Index(14)]
-        public ModelIDGrid Chunks { get; }
         #endregion
         #endregion
 
