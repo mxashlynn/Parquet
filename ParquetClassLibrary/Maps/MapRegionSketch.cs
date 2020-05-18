@@ -205,10 +205,11 @@ namespace ParquetClassLibrary.Maps
             {
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
+                    // Get potentially ungenerated chunk.
                     var currentChunk = All.Maps.Get<MapChunk>(Chunks[chunkY, chunkX]);
 
-                    // Generate all contained chunks.
-                    currentChunk.Generate();
+                    // Generate chunk if needed.
+                    currentChunk = currentChunk.Generate();
 
                     // Extract definitions and copy them into a larger subregion.
                     var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
