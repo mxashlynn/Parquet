@@ -1,4 +1,4 @@
-﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,IsWalkable,IsEntry,IsEnclosing,IsFlammable,SwapID
+﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,IsWalkable,Entry,IsEnclosing,IsFlammable,SwapID
 -110000,3 Furnishing Test Parquet,Test,Test,-150003,None,None,True,Up,True,False,None
 110000,Chair,,,150003,None,Usable Surface,True,None,False,True,None
 110001,Table,,,150004,None,Seating,False,None,True,True,None

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
@@ -8,6 +9,9 @@ namespace ParquetClassLibrary.Maps
     /// Models details of a portion of a <see cref="MapRegion"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
+    /// <remarks>
+    /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
+    /// </remarks>
     public sealed class MapChunk : MapModel
     {
         #region Class Defaults
@@ -29,15 +33,12 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         [Index(5)]
-        public bool IsHandmade { get; }
+        // TODO Change this name since it is being used for non-handmadeness now.
+        public bool IsHandmade { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
         [Index(6)]
-        public ChunkDetail Details { get; }
-
-        /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(12)]
-        public override ParquetStatusGrid ParquetStatuses { get; }
+        public ChunkDetail Details { get; private set; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         [Index(13)]
@@ -58,12 +59,10 @@ namespace ParquetClassLibrary.Maps
         /// otherwise, it is procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
-        /// <param name="inParquetStatuses">The statuses of the collected parquets if designed by hand.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
         public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
                         bool inIsHandmade,
                         ChunkDetail inDetails = null,
-                        ParquetStatusGrid inParquetStatuses = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
@@ -72,18 +71,71 @@ namespace ParquetClassLibrary.Maps
             if (IsHandmade)
             {
                 Details = ChunkDetail.None;
-                ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
                 ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
                 Details = inDetails ?? ChunkDetail.None;
-                // TODO Replace these with a Grid.Empty
-                ParquetStatuses = new ParquetStatusGrid();
+                // TODO Replace this with a Grid.Empty
                 ParquetDefinitions = new ParquetStackGrid();
             }
         }
         #endregion
+
+        /// <summary>
+        /// Transforms the current <see cref="MapChunk"/> so that it is ready to be stitched together
+        /// with others into a playable <see cref="MapRegion"/>.
+        /// </summary>
+        /// <remarks>
+        /// If a chunk <see cref="IsHandmade"/>, it is ready to go.
+        /// Chunks that are not handmade will need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
+        /// </remarks>
+        /// <returns>The generated <see cref="MapChunk"/>.</returns>
+        public MapChunk Generate()
+        {
+            // If this chunk has already been generated, no work is needed.
+            if (IsHandmade)
+            {
+                return this;
+            }
+            IsHandmade = true;
+
+            // Create a subregion to hold the generated parquets.
+            var newParquetDefinitions = new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+
+            // TODO Replace this pass-through implementation.
+            #region Pass-Through Implementation
+            Details = ChunkDetail.None;
+            for (var x = 0; x < ParquetsPerChunkDimension; x++)
+            {
+                for (var y = 0; y < ParquetsPerChunkDimension; y++)
+                {
+                    newParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
+                }
+                newParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[ParquetsPerChunkDimension - 1, 1].Block = All.BlockIDs.Minimum;
+            }
+            for (var y = 0; y < ParquetsPerChunkDimension; y++)
+            {
+                newParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, ParquetsPerChunkDimension - 1].Block = All.BlockIDs.Minimum;
+            }
+            newParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
+            newParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
+            #endregion
+
+            // Create a new MapChunk with the new subregion.
+            var newChunk = new MapChunk(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
+
+            // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
+            if (All.Maps.Contains(ID))
+            {
+                IModelCollectionEdit<MapModel> allMaps = All.Maps;
+                allMaps.Replace(newChunk);
+            }
+
+            return newChunk;
+        }
 
         #region Utilities
         /// <summary>

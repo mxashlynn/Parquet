@@ -109,7 +109,7 @@ namespace ParquetClassLibrary.Maps
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
-        public override ParquetStatusGrid ParquetStatuses { get; }
+        public ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,

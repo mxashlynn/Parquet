@@ -19,6 +19,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleData", "ExampleData", "{75B6EFDC-819B-4CA1-A77A-9014E51C53B0}"
+	ProjectSection(SolutionItems) = preProject
+		ExampleData\BiomeConfiguration.csv = ExampleData\BiomeConfiguration.csv
+		ExampleData\BiomeModels.csv = ExampleData\BiomeModels.csv
+		ExampleData\BlockModels.csv = ExampleData\BlockModels.csv
+		ExampleData\CharacterModels.csv = ExampleData\CharacterModels.csv
+		ExampleData\CollectibleModels.csv = ExampleData\CollectibleModels.csv
+		ExampleData\CraftConfiguration.csv = ExampleData\CraftConfiguration.csv
+		ExampleData\CraftingRecipes.csv = ExampleData\CraftingRecipes.csv
+		ExampleData\CritterModels.csv = ExampleData\CritterModels.csv
+		ExampleData\FloorModels.csv = ExampleData\FloorModels.csv
+		ExampleData\FurnishingModels.csv = ExampleData\FurnishingModels.csv
+		ExampleData\InteractionModels.csv = ExampleData\InteractionModels.csv
+		ExampleData\ItemModels.csv = ExampleData\ItemModels.csv
+		ExampleData\MapChunks.csv = ExampleData\MapChunks.csv
+		ExampleData\MapRegions.csv = ExampleData\MapRegions.csv
+		ExampleData\MapRegionSketches.csv = ExampleData\MapRegionSketches.csv
+		ExampleData\PronounGroups.csv = ExampleData\PronounGroups.csv
+		ExampleData\RoomConfiguration.csv = ExampleData\RoomConfiguration.csv
+		ExampleData\RoomRecipes.csv = ExampleData\RoomRecipes.csv
+		ExampleData\ScriptModels.csv = ExampleData\ScriptModels.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +67,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75B6EFDC-819B-4CA1-A77A-9014E51C53B0} = {33AB7F7D-6D20-4F53-AC7F-386C8E1144C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A31AC43-AA2B-4E9F-8DE8-CD3BFCED9B1E}

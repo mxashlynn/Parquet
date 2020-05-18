@@ -202,8 +202,6 @@ Looks up a localized string similar to Checking {0}..
 ##### Summary
 
 Looks up a localized string similar to Usage: roller (command)
-Usage: roller list pronouns
-Usage: roller list (property) [category]
 
 Commands:
     -h|help Display detailed help.
@@ -224,8 +222,6 @@ Looks up a localized string similar to     Roller is a tool for working with Par
     generate blank CSV files, and to prepare existing CSV files for use in-game.
 
 Usage: roller (command)
-Usage: roller list pronouns
-Usage: roller list (property) [category]
 
 Commands:
     -h|help Display detailed help.

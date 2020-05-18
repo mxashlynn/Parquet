@@ -211,8 +211,9 @@ ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
 ParquetClassLibrary.Maps.MapAnalysis
 ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
+ParquetClassLibrary.Maps.MapChunk.Generate() -> ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.IsHandmade.get -> bool
-ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D inUpperLeft, ParquetClassLibrary.Vector2D inLowerRight) -> ParquetClassLibrary.Parquets.ParquetStackGrid
@@ -225,6 +226,7 @@ ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.MapRegion.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegion.GetBiome() -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.MapRegion(ParquetClassLibrary.ModelID inID, string inName = null, string inDescription = null, string inComment = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.ModelID? inRegionToTheNorth = null, ParquetClassLibrary.ModelID? inRegionToTheEast = null, ParquetClassLibrary.ModelID? inRegionToTheSouth = null, ParquetClassLibrary.ModelID? inRegionToTheWest = null, ParquetClassLibrary.ModelID? inRegionAbove = null, ParquetClassLibrary.ModelID? inRegionBelow = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapRegion.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 ParquetClassLibrary.Maps.MapRegion.RegionAbove.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.RegionBelow.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegion.RegionToTheEast.get -> ParquetClassLibrary.ModelID
@@ -242,6 +244,7 @@ ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheEast.get -> ParquetClassLibr
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionSketch.Stitch() -> ParquetClassLibrary.Maps.MapRegion
 ParquetClassLibrary.Maps.PositionInfoEventArgs
 ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses) -> void
 ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack
@@ -317,9 +320,9 @@ ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID i
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
-ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inIsEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
+ParquetClassLibrary.Parquets.FurnishingModel.Entry.get -> ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
-ParquetClassLibrary.Parquets.FurnishingModel.IsEntry.get -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.SwapID.get -> ParquetClassLibrary.ModelID
@@ -494,7 +497,6 @@ ParquetClassLibrary.Vector2D.X.get -> int
 ParquetClassLibrary.Vector2D.Y.get -> int
 abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
-abstract ParquetClassLibrary.Maps.MapModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 const ParquetClassLibrary.AssemblyInfo.LibraryVersion = "0.2.0.0" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "|their|" -> string
@@ -552,16 +554,13 @@ override ParquetClassLibrary.Maps.ChunkDetail.GetHashCode() -> int
 override ParquetClassLibrary.Maps.ChunkDetail.ToString() -> string
 override ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 override ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
-override ParquetClassLibrary.Maps.MapChunk.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 override ParquetClassLibrary.Maps.MapChunk.ToString() -> string
 override ParquetClassLibrary.Maps.MapModel.ToString() -> string
 override ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 override ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
-override ParquetClassLibrary.Maps.MapRegion.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 override ParquetClassLibrary.Maps.MapRegion.ToString() -> string
 override ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 override ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
-override ParquetClassLibrary.Maps.MapRegionSketch.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 override ParquetClassLibrary.Maps.MapRegionSketch.ToString() -> string
 override ParquetClassLibrary.Model.Equals(object obj) -> bool
 override ParquetClassLibrary.Model.GetHashCode() -> int

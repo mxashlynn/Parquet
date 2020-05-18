@@ -133,6 +133,15 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to replace non-contained {0} &apos;{1}&apos;..
+        /// </summary>
+        internal static string ErrorCannotReplace {
+            get {
+                return ResourceManager.GetString("ErrorCannotReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
         /// </summary>
         internal static string ErrorInvalidCast {

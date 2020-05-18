@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Rooms
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.Furnishing != ModelID.None
-                && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.IsEntry ?? EntryType.None) != EntryType.None))
+                && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.Entry ?? EntryType.None) != EntryType.None))
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
                                                           nameof(inWalkableArea), nameof(inPerimeter)));

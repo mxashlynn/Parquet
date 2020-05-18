@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
@@ -10,8 +12,15 @@ namespace ParquetClassLibrary.Maps
     /// A pattern and metadata to generate a <see cref="MapRegion"/>.
     /// </summary>
     /// <remarks>
-    /// Before play begins, <see cref="MapRegion"/>s are stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
-    /// Once loaded in-game they are composited, which often includes procedurally generating contained <see cref="MapChunk"/>s.
+    /// Before play begins, <see cref="MapRegion"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
+    ///
+    /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
+    /// collection of parquets, but instead as <see cref="MapChunk"/>s, instructions to procedural generation routines.  These
+    /// instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
+    /// for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
+    /// to some general layout instructions provided by the game's designers.
+    /// 
+    /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
     public sealed class MapRegionSketch : MapModel, IMapRegionEdit
     {
@@ -114,12 +123,9 @@ namespace ParquetClassLibrary.Maps
         ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
         #endregion
 
-        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquet statuses.</summary>
-        [Ignore]
-        // Index(12)
-        public override ParquetStatusGrid ParquetStatuses
-            => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
-                                                                 nameof(ParquetStatuses), nameof(MapRegionSketch)));
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        [Index(12)]
+        public ModelIDGrid Chunks { get; }
 
         /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
         [Ignore]
@@ -127,10 +133,6 @@ namespace ParquetClassLibrary.Maps
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
-
-        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
-        [Index(14)]
-        public ModelIDGrid Chunks { get; }
         #endregion
         #endregion
 
@@ -185,6 +187,57 @@ namespace ParquetClassLibrary.Maps
             Chunks = inChunks ?? new ModelIDGrid(ChunksPerRegionDimension, ChunksPerRegionDimension);
         }
         #endregion
+
+        /// <summary>
+        /// Combines all consituent <see cref="MapChunk"/>s to produce a playable <see cref="MapRegion"/>.
+        /// </summary>
+        /// <remarks>
+        /// Invokes procedural generation routines on any <see cref="MapChunk"/>s that need it.
+        /// </remarks>
+        /// <returns>The new <see cref="MapRegion"/>.</returns>
+        public MapRegion Stitch()
+        {
+            Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
+            Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
+
+            var parquetDefinitions = new ParquetStackGrid(MapRegion.ParquetsPerRegionDimension, MapRegion.ParquetsPerRegionDimension);
+            for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
+            {
+                for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
+                {
+                    // Get potentially ungenerated chunk.
+                    var currentChunk = All.Maps.Get<MapChunk>(Chunks[chunkY, chunkX]);
+
+                    // Generate chunk if needed.
+                    currentChunk = currentChunk.Generate();
+
+                    // Extract definitions and copy them into a larger subregion.
+                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
+                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
+                    for (var parquetX = 0; parquetX < ChunksPerRegionDimension; parquetX++)
+                    {
+                        for (var parquetY = 0; parquetY < ChunksPerRegionDimension; parquetY++)
+                        {
+                            parquetDefinitions[offsetY + parquetY, offsetX + parquetX] = currentChunk.ParquetDefinitions[parquetY, parquetX];
+                        }
+                    }
+                }
+            }
+
+            // Create a new MapRegion with the metadata of this sketch plus the new subregion.
+            var newRegion = new MapRegion(ID, Name, Description, Comment, Revision + 1, BackgroundColor, RegionToTheNorth,
+                                          RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
+                                          null, parquetDefinitions);
+
+            // If the current sketch is contained in the game-wide database, replace it with the newly stitched region.
+            if (All.Maps.Contains(ID))
+            {
+                IModelCollectionEdit<MapModel> allMaps = All.Maps;
+                allMaps.Replace(newRegion);
+            }
+
+            return newRegion;
+        }
 
         #region Utilities
         /// <summary>

@@ -95,12 +95,12 @@ namespace ParquetClassLibrary.Parquets
         /// <summary>
         /// A <see cref="ParquetStack"/> is Entry iff:
         /// 1, It is either Walkable or Enclosing but not both; and,
-        /// 2, It has a <see cref="Furnishing"/> that is <see cref="FurnishingModel.IsEntry"/>.
+        /// 2, It has a <see cref="Furnishing"/> that is <see cref="FurnishingModel.Entry"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => Furnishing != ModelID.None
-            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEntry ?? EntryType.None) != EntryType.None
+            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.Entry ?? EntryType.None) != EntryType.None
             // Inequality standing in for missing conditional XOR here.
             && (IsWalkable != IsEnclosing);
 
