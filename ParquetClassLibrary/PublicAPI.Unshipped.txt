@@ -211,7 +211,7 @@ ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
 ParquetClassLibrary.Maps.MapAnalysis
 ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
-ParquetClassLibrary.Maps.MapChunk.Generate() -> void
+ParquetClassLibrary.Maps.MapChunk.Generate() -> ParquetClassLibrary.Maps.MapChunk
 ParquetClassLibrary.Maps.MapChunk.IsHandmade.get -> bool
 ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel

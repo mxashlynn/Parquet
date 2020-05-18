@@ -4360,6 +4360,10 @@ Floors and walkable terrain in the chunk.
 Transforms the current [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') so that it is ready to be stitched together
 with others into a playable [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
 
+##### Returns
+
+The generated [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+
 ##### Parameters
 
 This method has no parameters.
