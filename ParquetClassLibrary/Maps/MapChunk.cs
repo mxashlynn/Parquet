@@ -113,12 +113,12 @@ namespace ParquetClassLibrary.Maps
                     newParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
                 }
                 newParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
-                newParquetDefinitions[ParquetsPerChunkDimension, 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[ParquetsPerChunkDimension - 1, 1].Block = All.BlockIDs.Minimum;
             }
-            for (var y = 0; y < MapRegion.ParquetsPerRegionDimension; y++)
+            for (var y = 0; y < ParquetsPerChunkDimension; y++)
             {
                 newParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
-                newParquetDefinitions[y, MapRegion.ParquetsPerRegionDimension - 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, ParquetsPerChunkDimension - 1].Block = All.BlockIDs.Minimum;
             }
             newParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
             newParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
