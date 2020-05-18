@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
@@ -196,10 +197,13 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The new <see cref="MapRegion"/>.</returns>
         public MapRegion Stitch()
         {
+            Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
+            Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
+
             var parquetDefinitions = new ParquetStackGrid(MapRegion.ParquetsPerRegionDimension, MapRegion.ParquetsPerRegionDimension);
-            for (var chunkX = 0; chunkX < ChunksPerRegionDimension; chunkX++)
+            for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
             {
-                for (var chunkY = 0; chunkY < ChunksPerRegionDimension; chunkY++)
+                for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
                     var currentChunk = All.Maps.Get<MapChunk>(Chunks[chunkY, chunkX]);
 
