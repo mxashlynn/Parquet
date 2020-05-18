@@ -90,38 +90,51 @@ namespace ParquetClassLibrary.Maps
         /// If a chunk <see cref="IsHandmade"/>, it is ready to go.
         /// Chunks that are not handmade will need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
         /// </remarks>
-        public void Generate()
+        /// <returns>The generated <see cref="MapChunk"/>.</returns>
+        public MapChunk Generate()
         {
+            // If this chunk has already been generated, no work is needed.
             if (IsHandmade)
             {
-                return;
+                return this;
             }
+            IsHandmade = true;
 
-            Debug.Assert(ParquetDefinitions.Rows == ParquetsPerChunkDimension);
-            Debug.Assert(ParquetDefinitions.Columns == ParquetsPerChunkDimension);
+            // Create a subregion to hold the generated parquets.
+            var newParquetDefinitions = new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
             // TODO Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
-            for (var x = 0; x < ParquetDefinitions.Columns; x++)
+            for (var x = 0; x < ParquetsPerChunkDimension; x++)
             {
-                for (var y = 0; y < ParquetDefinitions.Rows; y++)
+                for (var y = 0; y < ParquetsPerChunkDimension; y++)
                 {
-                    ParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
+                    newParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
                 }
-                ParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
-                ParquetDefinitions[ParquetsPerChunkDimension, 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[ParquetsPerChunkDimension, 1].Block = All.BlockIDs.Minimum;
             }
             for (var y = 0; y < MapRegion.ParquetsPerRegionDimension; y++)
             {
-                ParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
-                ParquetDefinitions[y, MapRegion.ParquetsPerRegionDimension - 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, MapRegion.ParquetsPerRegionDimension - 1].Block = All.BlockIDs.Minimum;
             }
-            ParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
-            ParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
+            newParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
+            newParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
             #endregion
 
-            IsHandmade = true;
+            // Create a new MapChunk with the new subregion.
+            var newChunk = new MapChunk(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
+
+            // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
+            if (All.Maps.Contains(ID))
+            {
+                IModelCollectionEdit<MapModel> allMaps = All.Maps;
+                allMaps.Replace(newChunk);
+            }
+
+            return newChunk;
         }
 
         #region Utilities
