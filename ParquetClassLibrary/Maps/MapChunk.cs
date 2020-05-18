@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Parquets;
 
@@ -96,12 +97,15 @@ namespace ParquetClassLibrary.Maps
                 return;
             }
 
+            Debug.Assert(ParquetDefinitions.Rows == ParquetsPerChunkDimension);
+            Debug.Assert(ParquetDefinitions.Columns == ParquetsPerChunkDimension);
+
             // TODO Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
-            for (var x = 0; x < ParquetsPerChunkDimension; x++)
+            for (var x = 0; x < ParquetDefinitions.Columns; x++)
             {
-                for (var y = 0; y < ParquetsPerChunkDimension; y++)
+                for (var y = 0; y < ParquetDefinitions.Rows; y++)
                 {
                     ParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
                 }
