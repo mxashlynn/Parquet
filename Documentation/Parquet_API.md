@@ -627,10 +627,6 @@
   - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStatusGrid.GetEnumerator')
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStatusGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStatus}#GetEnumerator')
-- [PositionInfoEventArgs](#T-ParquetClassLibrary-Maps-PositionInfoEventArgs 'ParquetClassLibrary.Maps.PositionInfoEventArgs')
-  - [#ctor(inStacks,inStatuses)](#M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus- 'ParquetClassLibrary.Maps.PositionInfoEventArgs.#ctor(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStatus)')
-  - [Stack](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Stack 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack')
-  - [Status](#P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Status 'ParquetClassLibrary.Maps.PositionInfoEventArgs.Status')
 - [Precondition](#T-ParquetClassLibrary-Precondition 'ParquetClassLibrary.Precondition')
   - [DefaultArgumentName](#F-ParquetClassLibrary-Precondition-DefaultArgumentName 'ParquetClassLibrary.Precondition.DefaultArgumentName')
   - [AreInRange(inEnumerable,inBounds,inArgumentName)](#M-ParquetClassLibrary-Precondition-AreInRange-System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-String- 'ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.String)')
@@ -8098,46 +8094,6 @@ An enumerator.
 ##### Parameters
 
 This method has no parameters.
-
-<a name='T-ParquetClassLibrary-Maps-PositionInfoEventArgs'></a>
-## PositionInfoEventArgs `type`
-
-##### Namespace
-
-ParquetClassLibrary.Maps
-
-##### Summary
-
-Indicates that the encapsulated info corresponding to a particular position in the current map
-is ready to be displayed.
-
-<a name='M-ParquetClassLibrary-Maps-PositionInfoEventArgs-#ctor-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStatus-'></a>
-### #ctor(inStacks,inStatuses) `constructor`
-
-##### Summary
-
-Triggered when the information about a specific map location is ready to be displayed.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inStacks | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | Definition of any and all parquets at the location. |
-| inStatuses | [ParquetClassLibrary.Parquets.ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus') | Status of any and all parquets at the location. |
-
-<a name='P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Stack'></a>
-### Stack `property`
-
-##### Summary
-
-Parquets at the given position.
-
-<a name='P-ParquetClassLibrary-Maps-PositionInfoEventArgs-Status'></a>
-### Status `property`
-
-##### Summary
-
-Status of parquets at the given position.
 
 <a name='T-ParquetClassLibrary-Precondition'></a>
 ## Precondition `type`
