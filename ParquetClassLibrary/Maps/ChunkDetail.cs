@@ -191,7 +191,7 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{BaseTopography} {BaseComposition} above {ModifierTopography} {ModifierComposition}]";
+            => $"[{BaseTopography} {(string.IsNullOrEmpty(BaseComposition) ? "void" : BaseComposition.ToString())} above {ModifierTopography} {(string.IsNullOrEmpty(ModifierComposition) ? "void" : ModifierComposition.ToString())}]";
         #endregion
     }
 }
