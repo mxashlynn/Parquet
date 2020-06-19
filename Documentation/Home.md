@@ -1,5 +1,4 @@
-<img src="./Parquet_Project_Logo.png" alt="Parquet Project Logo"
-     style="height: 160px; width: 160px; max-width: 25% float: left; margin-right: 16px;" />
+<img src="./Parquet_Project_Logo.png" alt="Parquet Project Logo" width="160" />
 
 Parquet targets the following features:
 
