@@ -1,5 +1,7 @@
+![Parquet Project Logo](./Parquet_Project_Logo.png)
+
 Parquet targets the following features:
- 
+
     1) A peaceful 2D overworld map that may be explored.
     2) Simple free-form building mechanics allowing player characters to create homes in the world.
     3) Resource collection mechanics allowing players to upgrade their homes and tools.
