@@ -1,4 +1,5 @@
-![Parquet Project Logo](./Parquet_Project_Logo.png)
+<img src="./Parquet_Project_Logo.png" alt="Parquet Project Logo"
+     style="height: 160px; width: 160px; float: left; margin-right: 16px;" />
 
 Parquet targets the following features:
 
