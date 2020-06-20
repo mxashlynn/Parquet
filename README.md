@@ -10,7 +10,7 @@ Code and documentation are incomplete and under rapid development.  Expect frequ
 
 [<img src="https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png" alt="An image of the Parquet milestones planned for 2020." style="max-width: 100%" />](https://media.githubusercontent.com/media/mxashlynn/Parquet/master/Documentation/Parquet_Roadmap_2020.png)
 
-Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/tree/master/Documentation) once the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been reached.
+Design and usage will be [fully documented](https://github.com/mxashlynn/Parquet/tree/master/Documentation) once the [Beta milestone](https://github.com/mxashlynn/Parquet/milestone/3) has been reached.
 
 Development milestone deadlines are tentative right now.
 
