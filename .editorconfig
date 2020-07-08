@@ -183,9 +183,6 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 # Analysis Depth
 dotnet_code_quality.api_surface = all
 
-# TODO Remove this after verifying other fixes.
-dotnet_code_quality.CA1710.exclude_indirect_base_types = false
-
 # Parquet-Specific Suffixes
 dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.Generic.IEnumerable<T>->Collection|Grid|Inventory
 dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.Generic.ICollection<T>->Collection|Grid|Inventory
