@@ -245,10 +245,6 @@ ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheNorth.get -> ParquetClassLib
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionToTheWest.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.Stitch() -> ParquetClassLibrary.Maps.MapRegion
-ParquetClassLibrary.Maps.PositionInfoEventArgs
-ParquetClassLibrary.Maps.PositionInfoEventArgs.PositionInfoEventArgs(ParquetClassLibrary.Parquets.ParquetStack inStacks, ParquetClassLibrary.Parquets.ParquetStatus inStatuses) -> void
-ParquetClassLibrary.Maps.PositionInfoEventArgs.Stack.get -> ParquetClassLibrary.Parquets.ParquetStack
-ParquetClassLibrary.Maps.PositionInfoEventArgs.Status.get -> ParquetClassLibrary.Parquets.ParquetStatus
 ParquetClassLibrary.Model
 ParquetClassLibrary.Model.Comment.get -> string
 ParquetClassLibrary.Model.Description.get -> string
