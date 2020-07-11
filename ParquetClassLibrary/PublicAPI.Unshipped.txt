@@ -46,6 +46,13 @@ ParquetClassLibrary.Beings.CharacterModel.StartingQuests.get -> System.Collectio
 ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID.get -> string
 ParquetClassLibrary.Beings.CritterModel
 ParquetClassLibrary.Beings.CritterModel.CritterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inNativeBiome, ParquetClassLibrary.ModelID inPrimaryBehavior, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoids = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeks = null) -> void
+ParquetClassLibrary.Beings.GameModel
+ParquetClassLibrary.Beings.GameModel.EpisodeNumber.get -> int
+ParquetClassLibrary.Beings.GameModel.EpisodeTitle.get -> string
+ParquetClassLibrary.Beings.GameModel.FirstScriptID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Beings.GameModel.GameModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, bool inIsEpisode, string inEpisodeTitle, int inEpisodeNumber, ParquetClassLibrary.ModelID inPlayerCharacterID, ParquetClassLibrary.ModelID inFirstScriptID) -> void
+ParquetClassLibrary.Beings.GameModel.IsEpisode.get -> bool
+ParquetClassLibrary.Beings.GameModel.PlayerCharacterID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Beings.IPronounGroupEdit
 ParquetClassLibrary.Beings.IPronounGroupEdit.Determiner.get -> string
 ParquetClassLibrary.Beings.IPronounGroupEdit.Determiner.set -> void
@@ -532,6 +539,7 @@ const ParquetClassLibrary.Scripts.Commands.SetFlag = "=" -> string
 const ParquetClassLibrary.Scripts.Commands.SetPronoun = "R" -> string
 const ParquetClassLibrary.Scripts.Commands.ShowLocation = "L" -> string
 override ParquetClassLibrary.Beings.BeingStatus.ToString() -> string
+override ParquetClassLibrary.Beings.GameModel.ToString() -> string
 override ParquetClassLibrary.Beings.PronounGroup.ToString() -> string
 override ParquetClassLibrary.Biomes.BiomeModel.GetAllTags() -> System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag>
 override ParquetClassLibrary.Crafts.StrikePanel.Equals(object obj) -> bool
@@ -597,7 +605,8 @@ static ParquetClassLibrary.All.Beings.get -> ParquetClassLibrary.ModelCollection
 static ParquetClassLibrary.All.Biomes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Biomes.BiomeModel>
 static ParquetClassLibrary.All.CollectionsHaveBeenInitialized.get -> bool
 static ParquetClassLibrary.All.CraftingRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Crafts.CraftingRecipe>
-static ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.BeingModel> inBeings, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Biomes.BiomeModel> inBiomes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.MapModel> inMaps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.ParquetModel> inParquets, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.ItemModel> inItems) -> void
+static ParquetClassLibrary.All.Games.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.GameModel>
+static ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.BeingModel> inBeings, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Biomes.BiomeModel> inBiomes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.GameModel> inGames, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.MapModel> inMaps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.ParquetModel> inParquets, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.ItemModel> inItems) -> void
 static ParquetClassLibrary.All.Interactions.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.InteractionModel>
 static ParquetClassLibrary.All.Items.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Items.ItemModel>
 static ParquetClassLibrary.All.LoadFromCSVs() -> void
@@ -708,13 +717,13 @@ static readonly ParquetClassLibrary.All.CraftingRecipeIDs -> ParquetClassLibrary
 static readonly ParquetClassLibrary.All.CritterIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.FloorIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.FurnishingIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
+static readonly ParquetClassLibrary.All.GameIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.InteractionIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.ItemIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.MapChunkIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.MapIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
 static readonly ParquetClassLibrary.All.MapRegionIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.ParquetIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
-static readonly ParquetClassLibrary.All.PlayerIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.RoomRecipeIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.ScriptIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.Beings.PronounGroup.DefaultGroup -> ParquetClassLibrary.Beings.PronounGroup

@@ -13,13 +13,13 @@
   - [CritterIDs](#F-ParquetClassLibrary-All-CritterIDs 'ParquetClassLibrary.All.CritterIDs')
   - [FloorIDs](#F-ParquetClassLibrary-All-FloorIDs 'ParquetClassLibrary.All.FloorIDs')
   - [FurnishingIDs](#F-ParquetClassLibrary-All-FurnishingIDs 'ParquetClassLibrary.All.FurnishingIDs')
+  - [GameIDs](#F-ParquetClassLibrary-All-GameIDs 'ParquetClassLibrary.All.GameIDs')
   - [InteractionIDs](#F-ParquetClassLibrary-All-InteractionIDs 'ParquetClassLibrary.All.InteractionIDs')
   - [ItemIDs](#F-ParquetClassLibrary-All-ItemIDs 'ParquetClassLibrary.All.ItemIDs')
   - [MapChunkIDs](#F-ParquetClassLibrary-All-MapChunkIDs 'ParquetClassLibrary.All.MapChunkIDs')
   - [MapIDs](#F-ParquetClassLibrary-All-MapIDs 'ParquetClassLibrary.All.MapIDs')
   - [MapRegionIDs](#F-ParquetClassLibrary-All-MapRegionIDs 'ParquetClassLibrary.All.MapRegionIDs')
   - [ParquetIDs](#F-ParquetClassLibrary-All-ParquetIDs 'ParquetClassLibrary.All.ParquetIDs')
-  - [PlayerIDs](#F-ParquetClassLibrary-All-PlayerIDs 'ParquetClassLibrary.All.PlayerIDs')
   - [RoomRecipeIDs](#F-ParquetClassLibrary-All-RoomRecipeIDs 'ParquetClassLibrary.All.RoomRecipeIDs')
   - [ScriptIDs](#F-ParquetClassLibrary-All-ScriptIDs 'ParquetClassLibrary.All.ScriptIDs')
   - [SerializedNumberStyle](#F-ParquetClassLibrary-All-SerializedNumberStyle 'ParquetClassLibrary.All.SerializedNumberStyle')
@@ -28,6 +28,7 @@
   - [CollectionsHaveBeenInitialized](#P-ParquetClassLibrary-All-CollectionsHaveBeenInitialized 'ParquetClassLibrary.All.CollectionsHaveBeenInitialized')
   - [ConversionConverters](#P-ParquetClassLibrary-All-ConversionConverters 'ParquetClassLibrary.All.ConversionConverters')
   - [CraftingRecipes](#P-ParquetClassLibrary-All-CraftingRecipes 'ParquetClassLibrary.All.CraftingRecipes')
+  - [Games](#P-ParquetClassLibrary-All-Games 'ParquetClassLibrary.All.Games')
   - [IdentifierOptions](#P-ParquetClassLibrary-All-IdentifierOptions 'ParquetClassLibrary.All.IdentifierOptions')
   - [Interactions](#P-ParquetClassLibrary-All-Interactions 'ParquetClassLibrary.All.Interactions')
   - [Items](#P-ParquetClassLibrary-All-Items 'ParquetClassLibrary.All.Items')
@@ -38,7 +39,7 @@
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
   - [WorkingDirectory](#P-ParquetClassLibrary-All-WorkingDirectory 'ParquetClassLibrary.All.WorkingDirectory')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
-  - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
+  - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
 - [AssemblyInfo](#T-ParquetClassLibrary-AssemblyInfo 'ParquetClassLibrary.AssemblyInfo')
@@ -209,6 +210,14 @@
   - [IsFlammable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable 'ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable')
   - [IsWalkable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsWalkable 'ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable')
   - [SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.SwapID')
+- [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel')
+  - [#ctor(inID,inName,inDescription,inComment,inIsEpisode,inEpisodeTitle,inEpisodeNumber,inPlayerCharacterID,inFirstScriptID)](#M-ParquetClassLibrary-Beings-GameModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Boolean,System-String,System-Int32,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Beings.GameModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Boolean,System.String,System.Int32,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
+  - [EpisodeNumber](#P-ParquetClassLibrary-Beings-GameModel-EpisodeNumber 'ParquetClassLibrary.Beings.GameModel.EpisodeNumber')
+  - [EpisodeTitle](#P-ParquetClassLibrary-Beings-GameModel-EpisodeTitle 'ParquetClassLibrary.Beings.GameModel.EpisodeTitle')
+  - [FirstScriptID](#P-ParquetClassLibrary-Beings-GameModel-FirstScriptID 'ParquetClassLibrary.Beings.GameModel.FirstScriptID')
+  - [IsEpisode](#P-ParquetClassLibrary-Beings-GameModel-IsEpisode 'ParquetClassLibrary.Beings.GameModel.IsEpisode')
+  - [PlayerCharacterID](#P-ParquetClassLibrary-Beings-GameModel-PlayerCharacterID 'ParquetClassLibrary.Beings.GameModel.PlayerCharacterID')
+  - [ToString()](#M-ParquetClassLibrary-Beings-GameModel-ToString 'ParquetClassLibrary.Beings.GameModel.ToString')
 - [GatheringEffect](#T-ParquetClassLibrary-Parquets-GatheringEffect 'ParquetClassLibrary.Parquets.GatheringEffect')
   - [Collectible](#F-ParquetClassLibrary-Parquets-GatheringEffect-Collectible 'ParquetClassLibrary.Parquets.GatheringEffect.Collectible')
   - [Item](#F-ParquetClassLibrary-Parquets-GatheringEffect-Item 'ParquetClassLibrary.Parquets.GatheringEffect.Item')
@@ -960,6 +969,14 @@ Valid identifiers may be positive or negative.  By convention, negative IDs indi
 A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')s.
 Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
 
+<a name='F-ParquetClassLibrary-All-GameIDs'></a>
+### GameIDs `constants`
+
+##### Summary
+
+A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for identifying [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel')s.
+Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
+
 <a name='F-ParquetClassLibrary-All-InteractionIDs'></a>
 ### InteractionIDs `constants`
 
@@ -1006,14 +1023,6 @@ Valid identifiers may be positive or negative.  By convention, negative IDs indi
 ##### Summary
 
 A collection containing all defined [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1')s of parquets.
-
-<a name='F-ParquetClassLibrary-All-PlayerIDs'></a>
-### PlayerIDs `constants`
-
-##### Summary
-
-A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for identifying active players.
-Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
 
 <a name='F-ParquetClassLibrary-All-RoomRecipeIDs'></a>
 ### RoomRecipeIDs `constants`
@@ -1084,6 +1093,19 @@ Mappings for all classes serialized via [ITypeConverter](#T-CsvHelper-TypeConver
 ##### Summary
 
 A collection of all defined [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')s.
+This collection is the source of truth about crafting for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
+<a name='P-ParquetClassLibrary-All-Games'></a>
+### Games `property`
+
+##### Summary
+
+A collection of all defined [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel')s.
 This collection is the source of truth about crafting for the rest of the library,
 something like a color palette that other classes can paint with.
 
@@ -1207,8 +1229,8 @@ This method has no parameters.
 
 This supports defining ItemIDs in terms of the other Ranges.
 
-<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
-### InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`
+<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
+### InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`
 
 ##### Summary
 
@@ -1222,6 +1244,7 @@ Initializes the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'P
 | inBeings | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel}') | All beings to be used in the game. |
 | inBiomes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel}') | All biomes to be used in the game. |
 | inCraftingRecipes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe}') | All crafting recipes to be used in the game. |
+| inGames | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.GameModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.GameModel}') | All games or episodes to be used in the game. |
 | inInteractions | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}') | All interactions to be used in the game. |
 | inMaps | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel}') | All maps to be used in the game. |
 | inParquets | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel}') | All parquets to be used in the game. |
@@ -2888,6 +2911,88 @@ Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-Furnish
 ##### Summary
 
 The [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') to swap with this Furnishing on an open/close action.
+
+<a name='T-ParquetClassLibrary-Beings-GameModel'></a>
+## GameModel `type`
+
+##### Namespace
+
+ParquetClassLibrary.Beings
+
+##### Summary
+
+Collects data about a Parquet-based game generally.
+
+<a name='M-ParquetClassLibrary-Beings-GameModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Boolean,System-String,System-Int32,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID-'></a>
+### #ctor(inID,inName,inDescription,inComment,inIsEpisode,inEpisodeTitle,inEpisodeNumber,inPlayerCharacterID,inFirstScriptID) `constructor`
+
+##### Summary
+
+Used by [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') subtypes.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | Unique identifier for the [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel').  Cannot be null. |
+| inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-facing title of the [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel').  Cannot be null or empty. |
+| inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-facing description of the [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel'). |
+| inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel'). |
+| inIsEpisode | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this game is part of a longer sequence of games. |
+| inEpisodeTitle | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Title of this episode, if any. |
+| inEpisodeNumber | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Number of this episode in its sequence, if any. |
+| inPlayerCharacterID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') that the player controls at the outset. |
+| inFirstScriptID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') to run when play begins. |
+
+<a name='P-ParquetClassLibrary-Beings-GameModel-EpisodeNumber'></a>
+### EpisodeNumber `property`
+
+##### Summary
+
+Number of this episode in its sequence, if any.
+
+<a name='P-ParquetClassLibrary-Beings-GameModel-EpisodeTitle'></a>
+### EpisodeTitle `property`
+
+##### Summary
+
+Title of this episode, if any.
+
+<a name='P-ParquetClassLibrary-Beings-GameModel-FirstScriptID'></a>
+### FirstScriptID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') to run when play begins.
+
+<a name='P-ParquetClassLibrary-Beings-GameModel-IsEpisode'></a>
+### IsEpisode `property`
+
+##### Summary
+
+If `true` this game is part of a longer sequence of games.
+
+<a name='P-ParquetClassLibrary-Beings-GameModel-PlayerCharacterID'></a>
+### PlayerCharacterID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') that the player controls at the outset.
+
+<a name='M-ParquetClassLibrary-Beings-GameModel-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [GameModel](#T-ParquetClassLibrary-Beings-GameModel 'ParquetClassLibrary.Beings.GameModel').
+
+##### Returns
+
+The representation.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-ParquetClassLibrary-Parquets-GatheringEffect'></a>
 ## GatheringEffect `type`

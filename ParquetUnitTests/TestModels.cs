@@ -41,6 +41,9 @@ namespace ParquetUnitTests
         public static CraftingRecipe TestCraftingRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static GameModel TestGame { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -95,6 +98,9 @@ namespace ParquetUnitTests
         public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<GameModel> Games { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
@@ -128,6 +134,7 @@ namespace ParquetUnitTests
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
                                                                         StrikePanelGrid.PanelsPerPatternWidth));
+            TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
@@ -176,6 +183,7 @@ namespace ParquetUnitTests
             Beings = new List<BeingModel> { TestCritter, TestCharacter };
             Biomes = new List<BiomeModel> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
+            Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
             Maps = new List<MapModel> { TestMapChunk, TestMapRegion };
             Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
@@ -183,7 +191,7 @@ namespace ParquetUnitTests
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Interactions, Maps, Parquets, RoomRecipes, Scripts, Items);
+            All.InitializeCollections(PronounGroups, Beings, Biomes, CraftingRecipes, Games, Interactions, Maps, Parquets, RoomRecipes, Scripts, Items);
             #endregion
         }
     }
