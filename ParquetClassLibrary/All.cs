@@ -50,10 +50,10 @@ namespace ParquetClassLibrary
 
         #region ModelID Ranges
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for identifying active players.
+        /// A subset of the values of <see cref="ModelID"/> set aside for identifying <see cref="GameModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test characters.
         /// </summary>
-        public static readonly Range<ModelID> PlayerIDs;
+        public static readonly Range<ModelID> GameIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CritterModel"/>s.
@@ -182,6 +182,14 @@ namespace ParquetClassLibrary
         public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
 
         /// <summary>
+        /// A collection of all defined <see cref="GameModel"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<GameModel> Games { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="InteractionModel"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -268,7 +276,7 @@ namespace ParquetClassLibrary
             const int TargetMultiple = 10000;
 
             #region Define Most Ranges
-            PlayerIDs = new Range<ModelID>(1, 9000);
+            GameIDs = new Range<ModelID>(1, 9000);
 
             CritterIDs = new Range<ModelID>(10000, 19000);
             CharacterIDs = new Range<ModelID>(20000, 29000);
@@ -392,6 +400,7 @@ namespace ParquetClassLibrary
         /// <param name="inBeings">All beings to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
+        /// <param name="inGames">All games or episodes to be used in the game.</param>
         /// <param name="inInteractions">All interactions to be used in the game.</param>
         /// <param name="inMaps">All maps to be used in the game.</param>
         /// <param name="inParquets">All parquets to be used in the game.</param>
@@ -404,6 +413,7 @@ namespace ParquetClassLibrary
                                                  IEnumerable<BeingModel> inBeings,
                                                  IEnumerable<BiomeModel> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
+                                                 IEnumerable<GameModel> inGames,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ParquetModel> inParquets,
@@ -421,6 +431,7 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inBeings, nameof(inBeings));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
+            Precondition.IsNotNull(inGames, nameof(inGames));
             Precondition.IsNotNull(inInteractions, nameof(inInteractions));
             Precondition.IsNotNull(inMaps, nameof(inMaps));
             Precondition.IsNotNull(inParquets, nameof(inParquets));
@@ -431,6 +442,7 @@ namespace ParquetClassLibrary
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
             Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
+            Games = new ModelCollection<GameModel>(GameIDs, inGames);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
@@ -460,6 +472,7 @@ namespace ParquetClassLibrary
                 .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
             var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
+            var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
             var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
@@ -473,7 +486,7 @@ namespace ParquetClassLibrary
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
             #endregion
 
-            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, interactions, maps, parquets, roomRecipes, scripts, items);
+            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
         }
 
         /// <summary>
@@ -493,6 +506,7 @@ namespace ParquetClassLibrary
             Beings.PutRecordsForType<CharacterModel>();
             Biomes.PutRecordsForType<BiomeModel>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            Games.PutRecordsForType<GameModel>();
             Interactions.PutRecordsForType<InteractionModel>();
             Maps.PutRecordsForType<MapChunk>();
             Maps.PutRecordsForType<MapRegionSketch>();

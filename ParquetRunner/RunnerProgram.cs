@@ -25,8 +25,10 @@ namespace ParquetRunner
         {
             All.LoadFromCSVs();
 
-            var region = new MapRegion(All.MapRegionIDs.Minimum, "Sample Region");
-            Console.WriteLine(region);
+            var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
+            var episode = new GameModel(All.GameIDs.Minimum + 2, "Sample Episode", "", "", true, "In Which A Library Is Tested", 1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
+            Console.WriteLine(game);
+            Console.WriteLine(episode);
             Console.WriteLine($"Item range = {All.ItemIDs}");
 
             All.SaveToCSVs();
