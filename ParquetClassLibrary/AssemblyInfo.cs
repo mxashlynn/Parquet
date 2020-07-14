@@ -9,7 +9,7 @@ using ParquetClassLibrary;
 // Set assembly values.
 [assembly: AssemblyTitle("Parquet Class Library")]
 [assembly: AssemblyDescription("Mechanics and models for 2D building, crafting, and narrative sandbox games.")]
-[assembly: AssemblyCompany("Queertet")]
+[assembly: AssemblyCompany("Magical Girlfriends")]
 [assembly: AssemblyCopyright("2018-2020 Paige Ashlynn")]
 [assembly: AssemblyProduct("ParquetClassLibrary")]
 [assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]

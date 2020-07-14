@@ -21,6 +21,9 @@
     <DocumentationFile>ParquetClassLibrary.xml</DocumentationFile>
     <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\Documentation\Parquet_API.md</DocumentationMarkdown>
     <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Copyright>2018-2020 Paige Ashlynn</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
