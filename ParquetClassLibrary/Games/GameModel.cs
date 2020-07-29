@@ -1,6 +1,6 @@
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary.Beings
+namespace ParquetClassLibrary.Games
 {
     /// <summary>
     /// Collects data about a Parquet-based game generally.
@@ -31,12 +31,13 @@ namespace ParquetClassLibrary.Beings
 
         #region Initialization
         /// <summary>
-        /// Used by <see cref="BeingModel"/> subtypes.
+        /// Represents a game or game-episode created with the Parquet system.
+        /// Primarily cointains metadata and gameplay rules information.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="GameModel"/>.  Cannot be null.</param>
         /// <param name="inName">Player-facing title of the <see cref="GameModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-facing description of the <see cref="GameModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="BeingModel"/>.</param>
+        /// <param name="inComment">A private comment on the nature of the game or episode.</param>
         /// <param name="inIsEpisode">If <c>true</c> this game is part of a longer sequence of games.</param>
         /// <param name="inEpisodeTitle">Title of this episode, if any.</param>
         /// <param name="inEpisodeNumber">Number of this episode in its sequence, if any.</param>

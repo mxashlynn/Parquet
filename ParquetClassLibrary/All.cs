@@ -8,6 +8,7 @@ using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Games;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
