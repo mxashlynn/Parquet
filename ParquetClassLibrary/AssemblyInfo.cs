@@ -1,20 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using ParquetClassLibrary;
-
-// Set assembly values.
-[assembly: AssemblyTitle("Parquet Class Library")]
-[assembly: AssemblyDescription("Mechanics and models for 2D building, crafting, and narrative sandbox games.")]
-[assembly: AssemblyCompany("Magical Girlfriends")]
-[assembly: AssemblyCopyright("2018-2020 Paige Ashlynn")]
-[assembly: AssemblyProduct("ParquetClassLibrary")]
-[assembly: AssemblyVersion(AssemblyInfo.LibraryVersion)]
-[assembly: AssemblyInformationalVersion(AssemblyInfo.LibraryVersion)]
-[assembly: AssemblyFileVersion(AssemblyInfo.LibraryVersion)]
 
 // Make no promises to maintain public services.
 [assembly: ComVisible(false)]
@@ -42,6 +29,6 @@ namespace ParquetClassLibrary
         /// - Patch: Fixes that do not break the API or its serialized data.
         /// - Build: Procedural updates that do not imply any changes, such as when rebuilding for APK/IPA submission.
         /// </remarks>
-        public const string LibraryVersion = "0.2.0.0";
+        public static readonly string LibraryVersion = typeof(ModelID).Assembly.GetName().Version.ToString();
     }
 }

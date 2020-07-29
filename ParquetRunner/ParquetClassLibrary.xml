@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ParquetRunner</name>
+    </assembly>
+    <members>
+        <member name="T:ParquetRunner.MainClass">
+            <summary>
+            A simple program used to run some basic features of the <see cref="N:ParquetClassLibrary"/>.
+            </summary>
+        </member>
+        <member name="M:ParquetRunner.MainClass.Main">
+            <summary>
+            A simple program used to run some basic features of the <see cref="N:ParquetClassLibrary"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

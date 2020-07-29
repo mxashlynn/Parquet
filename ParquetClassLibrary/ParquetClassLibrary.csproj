@@ -1,30 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyName>Parquet</AssemblyName>
+
+    <Product>Parquet</Product>
+    <Version>0.2.0.0</Version>
+    <Company>Magical Girlfriends</Company>
+    <Authors>Paige Ashlynn and contibutors</Authors>
+    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+    <Description>Mechanics and models for 2D building, crafting, and narrative sandbox games.</Description>
+    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageId>ParquetClassLibrary_MagicalGirlfriends</PackageId>
+    <PackageTags>C# .net core netstandard game</PackageTags>
+    <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
+
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <NeutralLanguage>English (United States)</NeutralLanguage>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <Authors>Paige Ashlynn and contibutors</Authors>
-    <PackageLicenseFile></PackageLicenseFile>
-    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
+
     <DocumentationFile>ParquetClassLibrary.xml</DocumentationFile>
     <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\Documentation\Parquet_API.md</DocumentationMarkdown>
     <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
-    <RepositoryType>git</RepositoryType>
-    <NeutralLanguage>English (United States)</NeutralLanguage>
-    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -68,6 +73,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

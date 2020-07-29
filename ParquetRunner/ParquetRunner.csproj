@@ -1,19 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyName>ParquetRunner</AssemblyName>
+
+    <Product>Runner</Product>
+    <Version>0.2.0.0</Version>
+    <Company>Magical Girlfriends</Company>
+    <Authors>Paige Ashlynn and contibutors</Authors>
+    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+    <Description>A simple test application for use in library development.</Description>
+    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageId>ParquetRunner_MagicalGirlfriends</PackageId>
+    <PackageTags></PackageTags>
+    <PackageReleaseNotes>This code is not meant for external use.</PackageReleaseNotes>
+
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <NeutralLanguage>English (United States)</NeutralLanguage>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+
+    <DocumentationFile>ParquetClassLibrary.xml</DocumentationFile>
+    <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\Documentation\Parquet_API.md</DocumentationMarkdown>
+    <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
