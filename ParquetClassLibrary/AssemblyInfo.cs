@@ -19,9 +19,6 @@ using ParquetClassLibrary;
 // Make no promises to maintain public services.
 [assembly: ComVisible(false)]
 
-// Declare American English as the fallback language.
-[assembly: NeutralResourcesLanguage("en-US")]
-
 // Show warnings on CLS-noncompliant statements to better support .NET languages other than C#.
 [assembly: CLSCompliant(true)]
 
