@@ -4,6 +4,125 @@
         <name>ParquetRunner</name>
     </assembly>
     <members>
+        <member name="T:ParquetRunner.TestModels">
+            <summary>
+            Stores <see cref="T:ParquetClassLibrary.Model"/>s for use in unit testing.
+            </summary>
+        </member>
+        <member name="F:ParquetRunner.TestModels.TestTag">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="F:ParquetRunner.TestModels.TestNode">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="F:ParquetRunner.TestModels.TestRecipeElementList">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="F:ParquetRunner.TestModels.TestQuestRequirementsList">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="F:ParquetRunner.TestModels.TestNodeList">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestPronounGroup">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestCharacter">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestCritter">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestBiome">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestCraftingRecipe">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestGame">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestInteraction">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestMapChunk">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestMapRegion">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestFloor">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestBlock">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestLiquid">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestFurnishing">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestCollectible">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestRoomRecipe">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestScript">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestItem1">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestItem2">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestItem3">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.TestItem4">
+            <summary>Used in test patterns in QA routines.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.PronounGroups">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Beings">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Biomes">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.CraftingRecipes">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Games">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Interactions">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Maps">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Parquets">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.RoomRecipes">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Scripts">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Items">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="M:ParquetRunner.TestModels.#cctor">
+            <summary>
+            Initializes unit test example models.
+            Sets up <see cref="T:ParquetClassLibrary.All"/> so that bounds can be checked in various constructors.
+            </summary>
+        </member>
         <member name="T:ParquetRunner.MainClass">
             <summary>
             A simple program used to run some basic features of the <see cref="N:ParquetClassLibrary"/>.
