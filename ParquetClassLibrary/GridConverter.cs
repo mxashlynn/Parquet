@@ -36,13 +36,6 @@ namespace ParquetClassLibrary
                                                           inValue, nameof(IGrid<TElement>)));
             }
 
-            if (grid.Columns < 1
-                || grid.Rows < 1)
-            {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDimension,
-                                                          inValue, nameof(IGrid<TElement>)));
-            }
-
             if (grid.Count < 1)
             {
                 return "";
