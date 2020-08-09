@@ -76,8 +76,7 @@ namespace ParquetClassLibrary.Maps
             else
             {
                 Details = inDetails ?? ChunkDetail.None;
-                // TODO Replace this with a Grid.Empty
-                ParquetDefinitions = new ParquetStackGrid();
+                ParquetDefinitions = ParquetStackGrid.Empty;
             }
         }
         #endregion

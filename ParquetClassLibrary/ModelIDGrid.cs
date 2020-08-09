@@ -12,12 +12,17 @@ namespace ParquetClassLibrary
     /// </remark>
     public class ModelIDGrid : IGrid<ModelID>
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="ModelIDGrid"/>s.</summary>
+        public static ModelIDGrid Empty => new ModelIDGrid();
+        #endregion
+
         /// <summary>The backing collection of <see cref="ModelID"/>es.</summary>
         private ModelID[,] IDs { get; }
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="ModelID"/> with unusable dimensions.
+        /// Initializes an empty <see cref="ModelID"/> with unusable dimensions.
         /// </summary>
         /// <remarks>
         /// For this class, there are no reasonable default values.
@@ -26,7 +31,7 @@ namespace ParquetClassLibrary
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ModelIDGrid()
-            : this(1, 1) { }
+            => IDs = null;
 
         /// <summary>
         /// Initializes a new <see cref="ModelID"/>.
@@ -57,11 +62,7 @@ namespace ParquetClassLibrary
 
         /// <summary>The total number of <see cref="ModelID"/>s collected.</summary>
         public int Count
-            => Columns == 1
-            && Rows == 1
-            && IDs[0, 0] == ModelID.None
-                ? 0
-                : Columns * Rows;
+            => Columns * Rows;
 
         /// <summary>Access to any <see cref="ModelID"/> in the grid.</summary>
         public ref ModelID this[int y, int x]

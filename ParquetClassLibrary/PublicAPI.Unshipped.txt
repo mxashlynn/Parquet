@@ -99,7 +99,6 @@ ParquetClassLibrary.Crafts.StrikePanelGrid.GetEnumerator() -> System.Collections
 ParquetClassLibrary.Crafts.StrikePanelGrid.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Crafts.StrikePanelGrid.Rows.get -> int
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
-ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.this[int y, int x].get -> ParquetClassLibrary.Crafts.StrikePanel
 ParquetClassLibrary.Delimiters
 ParquetClassLibrary.Games.GameModel
@@ -630,6 +629,7 @@ static ParquetClassLibrary.Crafts.CraftingRecipe.NotCraftable.get -> ParquetClas
 static ParquetClassLibrary.Crafts.StrikePanel.operator !=(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
 static ParquetClassLibrary.Crafts.StrikePanel.operator ==(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
 static ParquetClassLibrary.Crafts.StrikePanelArrayExtensions.IsValidPosition(this ParquetClassLibrary.Crafts.StrikePanel[,] inStrikePanels, ParquetClassLibrary.Vector2D inPosition) -> bool
+static ParquetClassLibrary.Crafts.StrikePanelGrid.Empty.get -> ParquetClassLibrary.Crafts.StrikePanelGrid
 static ParquetClassLibrary.Location.operator !=(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Maps.ChunkDetail.operator !=(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool
@@ -651,6 +651,7 @@ static ParquetClassLibrary.ModelID.operator <=(ParquetClassLibrary.ModelID inIDe
 static ParquetClassLibrary.ModelID.operator ==(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
 static ParquetClassLibrary.ModelID.operator >(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
 static ParquetClassLibrary.ModelID.operator >=(ParquetClassLibrary.ModelID inIDentifier1, ParquetClassLibrary.ModelID inIDentifier2) -> bool
+static ParquetClassLibrary.ModelIDGrid.Empty.get -> ParquetClassLibrary.ModelIDGrid
 static ParquetClassLibrary.ModelTag.implicit operator ParquetClassLibrary.ModelTag(string inValue) -> ParquetClassLibrary.ModelTag
 static ParquetClassLibrary.ModelTag.implicit operator string(ParquetClassLibrary.ModelTag inTag) -> string
 static ParquetClassLibrary.Parquets.BlockModel.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
@@ -661,10 +662,12 @@ static ParquetClassLibrary.Parquets.ParquetStack.Empty.get -> ParquetClassLibrar
 static ParquetClassLibrary.Parquets.ParquetStack.operator !=(ParquetClassLibrary.Parquets.ParquetStack inStack1, ParquetClassLibrary.Parquets.ParquetStack inStack2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStack.operator ==(ParquetClassLibrary.Parquets.ParquetStack inStack1, ParquetClassLibrary.Parquets.ParquetStack inStack2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStackArrayExtensions.IsValidPosition(this ParquetClassLibrary.Parquets.ParquetStack[,] inSubregion, ParquetClassLibrary.Vector2D inPosition) -> bool
+static ParquetClassLibrary.Parquets.ParquetStackGrid.Empty.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 static ParquetClassLibrary.Parquets.ParquetStatus.Unused.get -> ParquetClassLibrary.Parquets.ParquetStatus
 static ParquetClassLibrary.Parquets.ParquetStatus.operator !=(ParquetClassLibrary.Parquets.ParquetStatus inStatus1, ParquetClassLibrary.Parquets.ParquetStatus inStatus2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStatus.operator ==(ParquetClassLibrary.Parquets.ParquetStatus inStatus1, ParquetClassLibrary.Parquets.ParquetStatus inStatus2) -> bool
 static ParquetClassLibrary.Parquets.ParquetStatusArrayExtensions.IsValidPosition(this ParquetClassLibrary.Parquets.ParquetStatus[,] inSubregion, ParquetClassLibrary.Vector2D inPosition) -> bool
+static ParquetClassLibrary.Parquets.ParquetStatusGrid.Empty.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 static ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void
 static ParquetClassLibrary.Precondition.AreInRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBoundsCollection, string inArgumentName) -> void
 static ParquetClassLibrary.Precondition.IsInRange(ParquetClassLibrary.ModelID inID, ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, string inArgumentName) -> void

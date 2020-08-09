@@ -12,6 +12,11 @@ namespace ParquetClassLibrary.Parquets
     /// </remarks>
     public class ParquetStackGrid : IGrid<ParquetStack>
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="ParquetStackGrid"/>s.</summary>
+        public static ParquetStackGrid Empty => new ParquetStackGrid();
+        #endregion
+
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
         private ParquetStack[,] ParquetStacks { get; }
 
@@ -26,7 +31,7 @@ namespace ParquetClassLibrary.Parquets
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ParquetStackGrid()
-            : this(1, 1) { }
+            => ParquetStacks = null;
 
         /// <summary>
         /// Initializes a new empty <see cref="ParquetStackGrid"/>.

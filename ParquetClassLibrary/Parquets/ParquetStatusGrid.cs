@@ -12,6 +12,11 @@ namespace ParquetClassLibrary.Parquets
     /// </remarks>
     public class ParquetStatusGrid : IGrid<ParquetStatus>
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="ParquetStatusGrid"/>s.</summary>
+        public static ParquetStatusGrid Empty => new ParquetStatusGrid();
+        #endregion
+
         /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
         private ParquetStatus[,] ParquetStatuses { get; }
 
@@ -26,7 +31,7 @@ namespace ParquetClassLibrary.Parquets
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ParquetStatusGrid()
-            : this(1, 1) { }
+            => ParquetStatuses = null;
 
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusGrid"/>.
@@ -57,12 +62,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count
-            => Columns == 1
-            && Rows == 1
-            && (ParquetStatuses[0, 0] == null
-                || ParquetStatuses[0, 0] == ParquetStatus.Unused)
-                    ? 0
-                    : Columns * Rows;
+            => Columns * Rows;
 
         /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         public ref ParquetStatus this[int y, int x]

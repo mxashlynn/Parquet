@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace ParquetClassLibrary.Crafts
     public class StrikePanelGrid : IGrid<StrikePanel>
     {
         #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="StrikePanelGrid"/>s.</summary>
+        public static StrikePanelGrid Empty => new StrikePanelGrid(false);
+
         /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
         public const int PanelsPerPatternWidth = 4;
 
@@ -25,26 +29,29 @@ namespace ParquetClassLibrary.Crafts
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="StrikePanelGrid"/> with default dimensions.
-        /// </summary>
-        public StrikePanelGrid()
-            : this(PanelsPerPatternHeight, PanelsPerPatternWidth) { }
-
-        /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public StrikePanelGrid(int inRowCount, int inColumnCount)
+        public StrikePanelGrid()
         {
-            // TODO DO we need to check that parameters don't exceed the defaults?  Or are we scrapping the defaults?
-            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            StrikePanels = new StrikePanel[PanelsPerPatternHeight, PanelsPerPatternWidth];
+            for (var y = 0; y < PanelsPerPatternHeight; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < PanelsPerPatternWidth; x++)
                 {
                     StrikePanels[y, x] = StrikePanel.Unused.Clone();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Initializes an empty <see cref="StrikePanelGrid"/>.
+        /// </summary>
+        /// <param name="in_IsEmpty">If true, an empty <see cref="StrikePanel"/> array will also be created.</param>
+        private StrikePanelGrid(bool in_IsEmpty)
+        {
+            if (in_IsEmpty)
+            {
+                StrikePanels = new StrikePanel[0, 0];
             }
         }
         #endregion
@@ -60,12 +67,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>The total number of parquets collected.</summary>
         public int Count
-            => Columns == 1
-            && Rows == 1
-            && (StrikePanels[0, 0] == null
-                || StrikePanels[0, 0] == StrikePanel.Unused)
-                    ? 0
-                    : Columns * Rows;
+            => Columns * Rows;
 
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         public ref StrikePanel this[int y, int x]
