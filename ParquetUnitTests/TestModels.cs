@@ -18,10 +18,15 @@ namespace ParquetUnitTests
     public static class TestModels
     {
         #region Test Value Components
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly ModelTag TestTag = "Test Tag";
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly ScriptNode TestNode = $"A{Delimiters.InternalDelimiter}{Delimiters.InternalDelimiter}Test Alert";
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
         #endregion
 
@@ -133,9 +138,7 @@ namespace ParquetUnitTests
             TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, false, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
-                                                    new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
-                                                                        StrikePanelGrid.PanelsPerPatternWidth));
-            TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
+                                                    new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
             TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
@@ -157,6 +160,7 @@ namespace ParquetUnitTests
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 2);
             TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
+            TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
 
             #region Initialize TestMapChunk
             for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
