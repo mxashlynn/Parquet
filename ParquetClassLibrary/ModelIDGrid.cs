@@ -31,7 +31,7 @@ namespace ParquetClassLibrary
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ModelIDGrid()
-            => IDs = null;
+            : this(0, 0) {}
 
         /// <summary>
         /// Initializes a new <see cref="ModelID"/>.

@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Crafts
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="StrikePanelGrid"/>s.</summary>
-        public static StrikePanelGrid Empty => new StrikePanelGrid(false);
+        public static StrikePanelGrid Empty => new StrikePanelGrid(0, 0);
 
         /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
         public const int PanelsPerPatternWidth = 4;
@@ -29,29 +29,32 @@ namespace ParquetClassLibrary.Crafts
 
         #region Initialization
         /// <summary>
+        /// Initializes a new <see cref="StrikePanelGrid"/> with unusable dimensions.
+        /// </summary>
+        /// <remarks>
+        /// For this class, there are no reasonable default values.
+        /// However, this version of the constructor exists to make the generic new() constraint happy
+        /// and is used in the library in a context where its limitations are understood.
+        /// You probably don't want to use this constructor in your own code.
+        ///</remarks>
+        public StrikePanelGrid()
+            : this(0, 0) { }
+
+        /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
         /// </summary>
-        public StrikePanelGrid()
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        /// <remarks>This constructor supports instance creation via reflection from the <see cref="GridConverter{TElement, TGrid}"/> class.</remarks>
+        public StrikePanelGrid(int inRowCount, int inColumnCount)
         {
-            StrikePanels = new StrikePanel[PanelsPerPatternHeight, PanelsPerPatternWidth];
-            for (var y = 0; y < PanelsPerPatternHeight; y++)
+            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
             {
-                for (var x = 0; x < PanelsPerPatternWidth; x++)
+                for (var x = 0; x < inColumnCount; x++)
                 {
                     StrikePanels[y, x] = StrikePanel.Unused.Clone();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Initializes an empty <see cref="StrikePanelGrid"/>.
-        /// </summary>
-        /// <param name="in_IsEmpty">If true, an empty <see cref="StrikePanel"/> array will also be created.</param>
-        private StrikePanelGrid(bool in_IsEmpty)
-        {
-            if (in_IsEmpty)
-            {
-                StrikePanels = new StrikePanel[0, 0];
             }
         }
         #endregion

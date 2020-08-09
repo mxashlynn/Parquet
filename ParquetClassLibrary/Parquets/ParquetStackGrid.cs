@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Parquets
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public ParquetStackGrid()
-            => ParquetStacks = null;
+            : this(0, 0) { }
 
         /// <summary>
         /// Initializes a new empty <see cref="ParquetStackGrid"/>.

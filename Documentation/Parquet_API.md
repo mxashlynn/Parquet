@@ -34,10 +34,10 @@
   - [Items](#P-ParquetClassLibrary-All-Items 'ParquetClassLibrary.All.Items')
   - [Maps](#P-ParquetClassLibrary-All-Maps 'ParquetClassLibrary.All.Maps')
   - [Parquets](#P-ParquetClassLibrary-All-Parquets 'ParquetClassLibrary.All.Parquets')
+  - [ProjectDirectory](#P-ParquetClassLibrary-All-ProjectDirectory 'ParquetClassLibrary.All.ProjectDirectory')
   - [PronounGroups](#P-ParquetClassLibrary-All-PronounGroups 'ParquetClassLibrary.All.PronounGroups')
   - [RoomRecipes](#P-ParquetClassLibrary-All-RoomRecipes 'ParquetClassLibrary.All.RoomRecipes')
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
-  - [WorkingDirectory](#P-ParquetClassLibrary-All-WorkingDirectory 'ParquetClassLibrary.All.WorkingDirectory')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
   - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
@@ -538,6 +538,7 @@
   - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-ModelIDGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.#ctor(System.Int32,System.Int32)')
   - [Columns](#P-ParquetClassLibrary-ModelIDGrid-Columns 'ParquetClassLibrary.ModelIDGrid.Columns')
   - [Count](#P-ParquetClassLibrary-ModelIDGrid-Count 'ParquetClassLibrary.ModelIDGrid.Count')
+  - [Empty](#P-ParquetClassLibrary-ModelIDGrid-Empty 'ParquetClassLibrary.ModelIDGrid.Empty')
   - [IDs](#P-ParquetClassLibrary-ModelIDGrid-IDs 'ParquetClassLibrary.ModelIDGrid.IDs')
   - [Item](#P-ParquetClassLibrary-ModelIDGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-ModelIDGrid-Rows 'ParquetClassLibrary.ModelIDGrid.Rows')
@@ -597,6 +598,7 @@
   - [#ctor(inParquetStackArray)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-ParquetClassLibrary-Parquets-ParquetStack[0-,0-]- 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor(ParquetClassLibrary.Parquets.ParquetStack[0:,0:])')
   - [Columns](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Columns 'ParquetClassLibrary.Parquets.ParquetStackGrid.Columns')
   - [Count](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Count 'ParquetClassLibrary.Parquets.ParquetStackGrid.Count')
+  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Empty 'ParquetClassLibrary.Parquets.ParquetStackGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.Item(System.Int32,System.Int32)')
   - [ParquetStacks](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetStacks 'ParquetClassLibrary.Parquets.ParquetStackGrid.ParquetStacks')
   - [Rows](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Rows 'ParquetClassLibrary.Parquets.ParquetStackGrid.Rows')
@@ -630,6 +632,7 @@
   - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.#ctor(System.Int32,System.Int32)')
   - [Columns](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Columns 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Columns')
   - [Count](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Count 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Count')
+  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Empty 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Item(System.Int32,System.Int32)')
   - [ParquetStatuses](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-ParquetStatuses 'ParquetClassLibrary.Parquets.ParquetStatusGrid.ParquetStatuses')
   - [Rows](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Rows 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Rows')
@@ -844,6 +847,7 @@
   - [PanelsPerPatternWidth](#F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternWidth 'ParquetClassLibrary.Crafts.StrikePanelGrid.PanelsPerPatternWidth')
   - [Columns](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Columns 'ParquetClassLibrary.Crafts.StrikePanelGrid.Columns')
   - [Count](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Count 'ParquetClassLibrary.Crafts.StrikePanelGrid.Count')
+  - [Empty](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Empty 'ParquetClassLibrary.Crafts.StrikePanelGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Crafts.StrikePanelGrid.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Rows 'ParquetClassLibrary.Crafts.StrikePanelGrid.Rows')
   - [StrikePanels](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-StrikePanels 'ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanels')
@@ -1172,6 +1176,13 @@ something like a color palette that other classes can paint with.
 
 All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
 
+<a name='P-ParquetClassLibrary-All-ProjectDirectory'></a>
+### ProjectDirectory `property`
+
+##### Summary
+
+The location of the CSV game data files.  Defaults to the current application's working directory.
+
 <a name='P-ParquetClassLibrary-All-PronounGroups'></a>
 ### PronounGroups `property`
 
@@ -1205,14 +1216,6 @@ something like a color palette that other classes can paint with.
 ##### Remarks
 
 All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
-
-<a name='P-ParquetClassLibrary-All-WorkingDirectory'></a>
-### WorkingDirectory `property`
-
-##### Summary
-
-The location of the CSV game data files, set to either the working directory
-or a predefined data directory, depending on build type.
 
 <a name='M-ParquetClassLibrary-All-#cctor'></a>
 ### #cctor() `method`
@@ -6893,7 +6896,7 @@ A square, two-dimensional collection of [ModelID](#T-ParquetClassLibrary-ModelID
 
 ##### Summary
 
-Initializes a new [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') with unusable dimensions.
+Initializes an empty [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') with unusable dimensions.
 
 ##### Parameters
 
@@ -6933,6 +6936,13 @@ Gets the number of elements in the X dimension of an array of [ModelID](#T-Parqu
 ##### Summary
 
 The total number of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s collected.
+
+<a name='P-ParquetClassLibrary-ModelIDGrid-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+A value to use in place of uninitialized [ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid')s.
 
 <a name='P-ParquetClassLibrary-ModelIDGrid-IDs'></a>
 ### IDs `property`
@@ -7705,6 +7715,13 @@ Gets the number of elements in the X dimension of the [ParquetStackGrid](#T-Parq
 
 The total number of parquets collected.
 
+<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+A value to use in place of uninitialized [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s.
+
 <a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
 
@@ -8132,6 +8149,13 @@ Gets the number of elements in the X dimension of the [ParquetStatusGrid](#T-Par
 ##### Summary
 
 The total number of parquets collected.
+
+<a name='P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+A value to use in place of uninitialized [ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid')s.
 
 <a name='P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
@@ -10691,11 +10715,18 @@ A square, two-dimensional collection of [StrikePanel](#T-ParquetClassLibrary-Cra
 
 ##### Summary
 
-Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid') with default dimensions.
+Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid') with unusable dimensions.
 
 ##### Parameters
 
 This constructor has no parameters.
+
+##### Remarks
+
+For this class, there are no reasonable default values.
+ However, this version of the constructor exists to make the generic new() constraint happy
+ and is used in the library in a context where its limitations are understood.
+ You probably don't want to use this constructor in your own code.
 
 <a name='M-ParquetClassLibrary-Crafts-StrikePanelGrid-#ctor-System-Int32,System-Int32-'></a>
 ### #ctor(inRowCount,inColumnCount) `constructor`
@@ -10710,6 +10741,10 @@ Initializes a new [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGri
 | ---- | ---- | ----------- |
 | inRowCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the Y dimension of the collection. |
 | inColumnCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the X dimension of the collection. |
+
+##### Remarks
+
+This constructor supports instance creation via reflection from the [GridConverter\`2](#T-ParquetClassLibrary-GridConverter`2 'ParquetClassLibrary.GridConverter`2') class.
 
 <a name='F-ParquetClassLibrary-Crafts-StrikePanelGrid-PanelsPerPatternHeight'></a>
 ### PanelsPerPatternHeight `constants`
@@ -10738,6 +10773,13 @@ Gets the number of elements in the X dimension of the [StrikePanelGrid](#T-Parqu
 ##### Summary
 
 The total number of parquets collected.
+
+<a name='P-ParquetClassLibrary-Crafts-StrikePanelGrid-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+A value to use in place of uninitialized [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid')s.
 
 <a name='P-ParquetClassLibrary-Crafts-StrikePanelGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
