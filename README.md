@@ -35,7 +35,7 @@ Parquet targets the following features:
 5. Interactive noncombatant NPCs.
 6. A quest system encouraging players to build particular building types.
 7. Dialogue and narrative delivery.
-8. Data-driven design with all key game models customizable from CSV files.
+8. Data-driven design with all game models customizable from CSV files.
 
 # Repository Structure
 
