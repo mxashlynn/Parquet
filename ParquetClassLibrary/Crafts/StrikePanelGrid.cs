@@ -14,10 +14,10 @@ namespace ParquetClassLibrary.Crafts
     {
         #region Class Defaults
         /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
-        public const int PanelsPerPatternWidth = 2;
+        public const int PanelsPerPatternWidth = 4;
 
         /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
-        public const int PanelsPerPatternHeight = 2;
+        public const int PanelsPerPatternHeight = 4;
         #endregion
 
         /// <summary>The backing collection of <see cref="StrikePanel"/>es.</summary>
