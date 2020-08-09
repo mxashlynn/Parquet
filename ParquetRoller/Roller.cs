@@ -7,6 +7,7 @@ using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
+using ParquetClassLibrary.Games;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
@@ -326,6 +327,23 @@ namespace ParquetRoller
             if (!File.Exists(PronounGroup.GetFilePath()))
             {
                 PronounGroup.PutRecords(Enumerable.Empty<PronounGroup>());
+            }
+            if (!File.Exists(BiomeConfiguration.GetFilePath()))
+            {
+                BiomeConfiguration.PutRecord();
+            }
+            if (!File.Exists(CraftConfiguration.GetFilePath()))
+            {
+                CraftConfiguration.PutRecord();
+            }
+            if (!File.Exists(RoomConfiguration.GetFilePath()))
+            {
+                RoomConfiguration.PutRecord();
+            }
+            
+            if (!File.Exists(ModelCollection.GetFilePath<GameModel>()))
+            {
+                new ModelCollection<GameModel>(All.GameIDs, Enumerable.Empty<GameModel>()).PutRecordsForType<GameModel>();
             }
             if (!File.Exists(ModelCollection.GetFilePath<CritterModel>()))
             {
