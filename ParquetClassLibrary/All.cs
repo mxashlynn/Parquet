@@ -34,10 +34,9 @@ namespace ParquetClassLibrary
 
         #region Serialization Lookup Tables
         /// <summary>
-        /// The location of the CSV game data files, set to either the working directory
-        /// or a predefined data directory, depending on build type.
+        /// The location of the CSV game data files.  Defaults to the current application's working directory.
         /// </summary>
-        public static string WorkingDirectory { get; }
+        public static string ProjectDirectory { get; set; }
 
         /// <summary>Instructions for integer parsing.</summary>
         internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
@@ -341,7 +340,7 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Initialize Serialization Values & Lookup Tables
-            WorkingDirectory =
+            ProjectDirectory = 
 #if DEBUG
                 $"{Directory.GetCurrentDirectory()}/../../../../ExampleData";
 #else

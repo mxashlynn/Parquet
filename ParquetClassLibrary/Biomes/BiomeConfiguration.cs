@@ -107,7 +107,7 @@ namespace ParquetClassLibrary.Biomes
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
-            => $"{All.WorkingDirectory}/{nameof(BiomeConfiguration)}.csv";
+            => $"{All.ProjectDirectory}/{nameof(BiomeConfiguration)}.csv";
         #endregion
     }
 }

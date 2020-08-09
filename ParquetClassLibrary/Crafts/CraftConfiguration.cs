@@ -75,7 +75,7 @@ namespace ParquetClassLibrary.Crafts
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
-            => $"{All.WorkingDirectory}/{nameof(CraftConfiguration)}.csv";
+            => $"{All.ProjectDirectory}/{nameof(CraftConfiguration)}.csv";
         #endregion
     }
 }

@@ -71,7 +71,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
-            => $"{All.WorkingDirectory}/{nameof(RoomConfiguration)}.csv";
+            => $"{All.ProjectDirectory}/{nameof(RoomConfiguration)}.csv";
         #endregion
     }
 }

@@ -409,7 +409,7 @@ namespace ParquetClassLibrary
             var filename = typeof(TModel) == typeof(Maps.MapRegionSketch)
                 ? $"{typeof(TModel).Name}es.csv"
                 : $"{typeof(TModel).Name}s.csv";
-            return $"{All.WorkingDirectory}/{filename}";
+            return $"{All.ProjectDirectory}/{filename}";
         }
     }
 }

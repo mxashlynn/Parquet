@@ -610,11 +610,12 @@ static ParquetClassLibrary.All.Items.get -> ParquetClassLibrary.ModelCollection<
 static ParquetClassLibrary.All.LoadFromCSVs() -> void
 static ParquetClassLibrary.All.Maps.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Maps.MapModel>
 static ParquetClassLibrary.All.Parquets.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Parquets.ParquetModel>
+static ParquetClassLibrary.All.ProjectDirectory.get -> string
+static ParquetClassLibrary.All.ProjectDirectory.set -> void
 static ParquetClassLibrary.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyCollection<ParquetClassLibrary.Beings.PronounGroup>
 static ParquetClassLibrary.All.RoomRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Rooms.RoomRecipe>
 static ParquetClassLibrary.All.SaveToCSVs() -> void
 static ParquetClassLibrary.All.Scripts.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.ScriptModel>
-static ParquetClassLibrary.All.WorkingDirectory.get -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetFilePath() -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetRecords() -> System.Collections.Generic.HashSet<ParquetClassLibrary.Beings.PronounGroup>
 static ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inGroups) -> void

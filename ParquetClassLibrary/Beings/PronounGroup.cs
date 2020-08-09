@@ -158,7 +158,7 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath()
-            => $"{All.WorkingDirectory}/{nameof(PronounGroup)}s.csv";
+            => $"{All.ProjectDirectory}/{nameof(PronounGroup)}s.csv";
 
         /// <summary>
         /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
