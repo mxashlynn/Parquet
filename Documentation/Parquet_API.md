@@ -1181,7 +1181,7 @@ All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s mus
 
 ##### Summary
 
-The location of the CSV game data files.  Defaults to the current application's working directory.
+The location of the game data files.  Defaults to the current application's working directory.
 
 <a name='P-ParquetClassLibrary-All-PronounGroups'></a>
 ### PronounGroups `property`

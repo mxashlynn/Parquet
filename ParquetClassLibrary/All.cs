@@ -32,12 +32,10 @@ namespace ParquetClassLibrary
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
         public static bool CollectionsHaveBeenInitialized { get; private set; }
 
-        #region Serialization Lookup Tables
-        /// <summary>
-        /// The location of the CSV game data files.  Defaults to the current application's working directory.
-        /// </summary>
+        /// <summary>The location of the game data files.  Defaults to the current application's working directory.</summary>
         public static string ProjectDirectory { get; set; }
 
+        #region Serialization Lookup Tables
         /// <summary>Instructions for integer parsing.</summary>
         internal const NumberStyles SerializedNumberStyle = NumberStyles.AllowLeadingSign & NumberStyles.Integer;
 

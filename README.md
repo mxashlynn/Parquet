@@ -4,7 +4,7 @@ This class library implements mechanics and models for a 2D sandbox game focused
 
 A game built with this system offers many of the features of contemporary quest-driven building games but in a simple, top-down world and without combat.
 
-# Version 0.2.0 Warning
+# Version 0.2 Warning
 
 Code and documentation are incomplete and under rapid development.  Expect frequent breaking changes.  Maybe don't use this yet; when the [Alpha milestone](https://github.com/mxashlynn/Parquet/milestone/2) has been hit the project should be much more usable.
 
