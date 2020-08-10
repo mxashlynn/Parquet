@@ -338,11 +338,11 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Initialize Serialization Values & Lookup Tables
-            ProjectDirectory = 
+            ProjectDirectory =
 #if DEBUG
-                $"{Directory.GetCurrentDirectory()}/../../../../ExampleData";
+                Path.GetFullPath($"{Directory.GetCurrentDirectory()}/../../../../ExampleData");
 #else
-                Directory.GetCurrentDirectory();
+                Path.GetFullPath(Directory.GetCurrentDirectory());
 #endif
 
             IdentifierOptions = new TypeConverterOptions
