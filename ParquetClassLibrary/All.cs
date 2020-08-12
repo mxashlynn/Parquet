@@ -152,6 +152,11 @@ namespace ParquetClassLibrary
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> ItemIDs;
+
+        /// <summary>
+        /// A collection containing all defined <see cref="Range{ModelID}"/>s.
+        /// </summary>
+        public static readonly IReadOnlyList<Range<ModelID>> AllDefinedIDs;
         #endregion
 
         #region ModelCollections
@@ -273,6 +278,8 @@ namespace ParquetClassLibrary
             // By convention, the first ModelID in each Range is a multiple of this number.
             const int TargetMultiple = 10000;
 
+            // Note: The order of the definitions and computations in the following regions is important.
+
             #region Define Most Ranges
             GameIDs = new Range<ModelID>(1, 9000);
 
@@ -298,7 +305,7 @@ namespace ParquetClassLibrary
             ScriptIDs = new Range<ModelID>(140000, 149000);
             #endregion
 
-            #region Define Range Collections
+            #region Define Most Range Collections
             BeingIDs = new List<Range<ModelID>> { CritterIDs, CharacterIDs };
             MapIDs = new List<Range<ModelID>> { MapChunkIDs, MapRegionIDs };
             ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
@@ -334,6 +341,26 @@ namespace ParquetClassLibrary
             var ItemUpperBound = (TargetMultiple / 10) + ItemLowerBound + (2 * (MaximumParquetID - MinimumParquetID));
 
             ItemIDs = new Range<ModelID>(ItemLowerBound, ItemUpperBound);
+            #endregion
+
+            #region Define Collection of All Ranges
+            AllDefinedIDs = new List<Range<ModelID>>
+            {
+                GameIDs,
+                CritterIDs,
+                CharacterIDs,
+                BiomeIDs,
+                CraftingRecipeIDs,
+                InteractionIDs,
+                MapChunkIDs,
+                MapRegionIDs,
+                FloorIDs,
+                BlockIDs,
+                FurnishingIDs,
+                CollectibleIDs,
+                RoomRecipeIDs,
+                ScriptIDs
+            };
             #endregion
             #endregion
 

@@ -712,6 +712,7 @@ static ParquetClassLibrary.Vector2D.operator *(int inScalar, ParquetClassLibrary
 static ParquetClassLibrary.Vector2D.operator +(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> ParquetClassLibrary.Vector2D
 static ParquetClassLibrary.Vector2D.operator -(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> ParquetClassLibrary.Vector2D
 static ParquetClassLibrary.Vector2D.operator ==(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> bool
+static readonly ParquetClassLibrary.All.AllDefinedIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
 static readonly ParquetClassLibrary.All.BeingIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
 static readonly ParquetClassLibrary.All.BiomeIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.BlockIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>

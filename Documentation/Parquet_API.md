@@ -4,6 +4,7 @@
 ## Contents
 
 - [All](#T-ParquetClassLibrary-All 'ParquetClassLibrary.All')
+  - [AllDefinedIDs](#F-ParquetClassLibrary-All-AllDefinedIDs 'ParquetClassLibrary.All.AllDefinedIDs')
   - [BeingIDs](#F-ParquetClassLibrary-All-BeingIDs 'ParquetClassLibrary.All.BeingIDs')
   - [BiomeIDs](#F-ParquetClassLibrary-All-BiomeIDs 'ParquetClassLibrary.All.BiomeIDs')
   - [BlockIDs](#F-ParquetClassLibrary-All-BlockIDs 'ParquetClassLibrary.All.BlockIDs')
@@ -39,6 +40,9 @@
   - [RoomRecipes](#P-ParquetClassLibrary-All-RoomRecipes 'ParquetClassLibrary.All.RoomRecipes')
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
+  - [GetIDRangeForType(in_id)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
+  - [GetIDRangeForType(in_model)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
+  - [GetIDRangeForType(in_modelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
   - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
@@ -686,6 +690,7 @@
   - [IsValid\`\`1()](#M-ParquetClassLibrary-RangeCollectionExtensions-IsValid``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{``0}}- 'ParquetClassLibrary.RangeCollectionExtensions.IsValid``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{``0}})')
 - [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1')
   - [#ctor(inMinimum,inMaximum)](#M-ParquetClassLibrary-Range`1-#ctor-`0,`0- 'ParquetClassLibrary.Range`1.#ctor(`0,`0)')
+  - [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None')
   - [ConverterFactory](#P-ParquetClassLibrary-Range`1-ConverterFactory 'ParquetClassLibrary.Range`1.ConverterFactory')
   - [Int32ConverterFactory](#P-ParquetClassLibrary-Range`1-Int32ConverterFactory 'ParquetClassLibrary.Range`1.Int32ConverterFactory')
   - [Maximum](#P-ParquetClassLibrary-Range`1-Maximum 'ParquetClassLibrary.Range`1.Maximum')
@@ -901,6 +906,13 @@ For more details, see remarks on [Model](#T-ParquetClassLibrary-Model 'ParquetCl
 
 - [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')
 - [ParquetClassLibrary.ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'ParquetClassLibrary.ModelCollection`1')
+
+<a name='F-ParquetClassLibrary-All-AllDefinedIDs'></a>
+### AllDefinedIDs `constants`
+
+##### Summary
+
+A collection containing all defined [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1')s.
 
 <a name='F-ParquetClassLibrary-All-BeingIDs'></a>
 ### BeingIDs `constants`
@@ -1231,6 +1243,58 @@ This method has no parameters.
 ##### Remarks
 
 This supports defining ItemIDs in terms of the other Ranges.
+
+<a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
+### GetIDRangeForType(in_id) `method`
+
+##### Summary
+
+Given a [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID'), return the [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') within which it is defined.
+
+##### Returns
+
+The range within which this [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') is defined, or [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None') if there is none.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| in_id | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The ID whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
+
+<a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model-'></a>
+### GetIDRangeForType(in_model) `method`
+
+##### Summary
+
+Given an instance of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'), return the appropriate [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1').
+
+##### Returns
+
+The range within which this model's [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') is defined, or [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None') if there is none.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| in_model | [ParquetClassLibrary.Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') | The model whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
+
+<a name='M-ParquetClassLibrary-All-GetIDRangeForType-System-Type-'></a>
+### GetIDRangeForType(in_modelType) `method`
+
+##### Summary
+
+Given a [Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') derived from a [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'), return the appropriate [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1').
+
+##### Returns
+
+The range within which this model type's [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') would be define,
+dor [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None') if there is none exists.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| in_modelType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The model type whose ID range is sought. |
 
 <a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
 ### InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`
@@ -8893,6 +8957,13 @@ Initializes a new instance of the [Range\`1](#T-ParquetClassLibrary-Range`1 'Par
 | Name | Description |
 | ---- | ----------- |
 | [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | When the range is not well-defined.  . |
+
+<a name='F-ParquetClassLibrary-Range`1-None'></a>
+### None `constants`
+
+##### Summary
+
+Represents the empty range.
 
 <a name='P-ParquetClassLibrary-Range`1-ConverterFactory'></a>
 ### ConverterFactory `property`
