@@ -599,71 +599,36 @@ namespace ParquetClassLibrary
         /// dor <see cref="Range{ModelID}.None"/> if there is none exists.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Type inModelType)
-        {
-            if (inModelType == typeof(GameModel))
-            {
-                return GameIDs;
-            }
-            else if (inModelType == typeof(BlockModel))
-            {
-                return BlockIDs;
-            }
-            else if (inModelType == typeof(FloorModel))
-            {
-                return FloorIDs;
-            }
-            else if (inModelType == typeof(FurnishingModel))
-            {
-                return FurnishingIDs;
-            }
-            else if (inModelType == typeof(CollectibleModel))
-            {
-                return CollectibleIDs;
-            }
-            else if (inModelType == typeof(CharacterModel))
-            {
-                return CharacterIDs;
-            }
-            else if (inModelType == typeof(CritterModel))
-            {
-                return CritterIDs;
-            }
-            else if (inModelType == typeof(ItemModel))
-            {
-                return ItemIDs;
-            }
-            else if (inModelType == typeof(BiomeModel))
-            {
-                return BiomeIDs;
-            }
-            else if (inModelType == typeof(CraftingRecipe))
-            {
-                return CraftingRecipeIDs;
-            }
-            // TODO Rename MapChunk to MapChunkModel
-            else if (inModelType == typeof(MapChunk))
-            {
-                return MapChunkIDs;
-            }
-            // TODO Rename MapRegionSketch to MapSketchOfRegion
-            else if (inModelType == typeof(MapRegionSketch)
-                     || inModelType == typeof(MapRegion))
-            {
-                return MapRegionIDs;
-            }
-            else if (inModelType == typeof(ScriptModel))
-            {
-                return ScriptIDs;
-            }
-            else if (inModelType == typeof(InteractionModel))
-            {
-                return InteractionIDs;
-            }
-            else
-            {
-                return Range<ModelID>.None;
-            }
-        }
+            => inModelType == typeof(GameModel)
+                ? GameIDs
+                : inModelType == typeof(BlockModel)
+                    ? BlockIDs
+                    : inModelType == typeof(FloorModel)
+                        ? FloorIDs
+                        : inModelType == typeof(FurnishingModel)
+                            ? FurnishingIDs
+                            : inModelType == typeof(CollectibleModel)
+                                ? CollectibleIDs
+                                : inModelType == typeof(CharacterModel)
+                                    ? CharacterIDs
+                                    : inModelType == typeof(CritterModel)
+                                        ? CritterIDs
+                                        : inModelType == typeof(ItemModel)
+                                            ? ItemIDs
+                                            : inModelType == typeof(BiomeModel)
+                                                ? BiomeIDs
+                                                : inModelType == typeof(CraftingRecipe)
+                                                    ? CraftingRecipeIDs
+                                                    : inModelType == typeof(MapChunk)
+                                                        ? MapChunkIDs
+                                                        : inModelType == typeof(ScriptModel)
+                                                            ? ScriptIDs
+                                                            : inModelType == typeof(InteractionModel)
+                                                                ? InteractionIDs
+                                                                : inModelType == typeof(MapRegionSketch)
+                                                                  || inModelType == typeof(MapRegion)
+                                                                    ? MapRegionIDs
+                                                                    : Range<ModelID>.None;
         #endregion
     }
 }
