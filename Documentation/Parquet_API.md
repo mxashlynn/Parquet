@@ -40,9 +40,9 @@
   - [RoomRecipes](#P-ParquetClassLibrary-All-RoomRecipes 'ParquetClassLibrary.All.RoomRecipes')
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
-  - [GetIDRangeForType(in_id)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
-  - [GetIDRangeForType(in_model)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
-  - [GetIDRangeForType(in_modelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
+  - [GetIDRangeForType(inID)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
+  - [GetIDRangeForType(inModel)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
+  - [GetIDRangeForType(inModelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
   - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
@@ -1245,7 +1245,7 @@ This method has no parameters.
 This supports defining ItemIDs in terms of the other Ranges.
 
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
-### GetIDRangeForType(in_id) `method`
+### GetIDRangeForType(inID) `method`
 
 ##### Summary
 
@@ -1259,10 +1259,10 @@ The range within which this [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetCla
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| in_id | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The ID whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The ID whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
 
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model-'></a>
-### GetIDRangeForType(in_model) `method`
+### GetIDRangeForType(inModel) `method`
 
 ##### Summary
 
@@ -1276,10 +1276,10 @@ The range within which this model's [ModelID](#T-ParquetClassLibrary-ModelID 'Pa
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| in_model | [ParquetClassLibrary.Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') | The model whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
+| inModel | [ParquetClassLibrary.Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') | The model whose [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') is sought. |
 
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-System-Type-'></a>
-### GetIDRangeForType(in_modelType) `method`
+### GetIDRangeForType(inModelType) `method`
 
 ##### Summary
 
@@ -1294,7 +1294,7 @@ dor [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| in_modelType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The model type whose ID range is sought. |
+| inModelType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The model type whose ID range is sought. |
 
 <a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
 ### InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`

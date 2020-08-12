@@ -546,5 +546,124 @@ namespace ParquetClassLibrary
             #endregion
         }
         #endregion
+
+        #region ModelID Range Helper Methods
+        /// <summary>
+        /// Given a <see cref="ModelID"/>, return the <see cref="Range{ModelID}"/> within which it is defined.
+        /// </summary>
+        /// <param name="inID">The ID whose <see cref="Range{ModelID}"/> is sought.</param>
+        /// <returns>
+        /// The range within which this <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
+        /// </returns>
+        public static Range<ModelID> GetIDRangeForType(ModelID inID)
+            => inID == ModelID.None
+                ? Range<ModelID>.None
+                : AllDefinedIDs.Where(range => range.ContainsValue(inID)).DefaultIfEmpty(Range<ModelID>.None).First();
+
+        /// <summary>
+        /// Given an instance of <see cref="Model"/>, return the appropriate <see cref="Range{ModelID}"/>.
+        /// </summary>
+        /// <param name="inModel">The model whose <see cref="Range{ModelID}"/> is sought.</param>
+        /// <returns>
+        /// The range within which this model's <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
+        /// </returns>
+        public static Range<ModelID> GetIDRangeForType(Model inModel)
+            => inModel switch
+            {
+                GameModel _ => GameIDs,
+                BlockModel _ => BlockIDs,
+                FloorModel _ => FloorIDs,
+                FurnishingModel _ => FurnishingIDs,
+                CollectibleModel _ => CollectibleIDs,
+                CharacterModel _ => CharacterIDs,
+                CritterModel _ => CritterIDs,
+                ItemModel _ => ItemIDs,
+                BiomeModel _ => BiomeIDs,
+                CraftingRecipe _ => CraftingRecipeIDs,
+                // TODO Rename MapChunk to MapChunkModel
+                MapChunk _ => MapChunkIDs,
+                // TODO Rename MapRegionSketch to MapSketchOfRegion
+                MapRegionSketch _ => MapRegionIDs,
+                MapRegion _ => MapRegionIDs,
+                ScriptModel _ => ScriptIDs,
+                InteractionModel _ => InteractionIDs,
+                _ => Range<ModelID>.None,
+            };
+
+        /// <summary>
+        /// Given a <see cref="Type"/> derived from a <see cref="Model"/>, return the appropriate <see cref="Range{ModelID}"/>.
+        /// </summary>
+        /// <param name="inModelType">The model type whose ID range is sought.</param>
+        /// <returns>
+        /// The range within which this model type's <see cref="ModelID"/> would be define,
+        /// dor <see cref="Range{ModelID}.None"/> if there is none exists.
+        /// </returns>
+        public static Range<ModelID> GetIDRangeForType(Type inModelType)
+        {
+            if (inModelType == typeof(GameModel))
+            {
+                return GameIDs;
+            }
+            else if (inModelType == typeof(BlockModel))
+            {
+                return BlockIDs;
+            }
+            else if (inModelType == typeof(FloorModel))
+            {
+                return FloorIDs;
+            }
+            else if (inModelType == typeof(FurnishingModel))
+            {
+                return FurnishingIDs;
+            }
+            else if (inModelType == typeof(CollectibleModel))
+            {
+                return CollectibleIDs;
+            }
+            else if (inModelType == typeof(CharacterModel))
+            {
+                return CharacterIDs;
+            }
+            else if (inModelType == typeof(CritterModel))
+            {
+                return CritterIDs;
+            }
+            else if (inModelType == typeof(ItemModel))
+            {
+                return ItemIDs;
+            }
+            else if (inModelType == typeof(BiomeModel))
+            {
+                return BiomeIDs;
+            }
+            else if (inModelType == typeof(CraftingRecipe))
+            {
+                return CraftingRecipeIDs;
+            }
+            // TODO Rename MapChunk to MapChunkModel
+            else if (inModelType == typeof(MapChunk))
+            {
+                return MapChunkIDs;
+            }
+            // TODO Rename MapRegionSketch to MapSketchOfRegion
+            else if (inModelType == typeof(MapRegionSketch)
+                     || inModelType == typeof(MapRegion))
+            {
+                return MapRegionIDs;
+            }
+            else if (inModelType == typeof(ScriptModel))
+            {
+                return ScriptIDs;
+            }
+            else if (inModelType == typeof(InteractionModel))
+            {
+                return InteractionIDs;
+            }
+            else
+            {
+                return Range<ModelID>.None;
+            }
+        }
+        #endregion
     }
 }
