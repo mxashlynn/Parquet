@@ -15,6 +15,11 @@ namespace ParquetClassLibrary
     public readonly struct Range<TElement> : IEquatable<Range<TElement>>, ITypeConverter
         where TElement : IComparable<TElement>, IEquatable<TElement>
     {
+        #region Class Defaults
+        /// <summary>Represents the empty range.</summary>
+        public static readonly Range<TElement> None = new Range<TElement>(default, default);
+        #endregion
+
         #region Characteristics
         /// <summary>Minimum value of the range.</summary>
         public TElement Minimum { get; }
