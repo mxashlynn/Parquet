@@ -599,36 +599,21 @@ namespace ParquetClassLibrary
         /// dor <see cref="Range{ModelID}.None"/> if there is none exists.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Type inModelType)
-            => inModelType == typeof(GameModel)
-                ? GameIDs
-                : inModelType == typeof(BlockModel)
-                    ? BlockIDs
-                    : inModelType == typeof(FloorModel)
-                        ? FloorIDs
-                        : inModelType == typeof(FurnishingModel)
-                            ? FurnishingIDs
-                            : inModelType == typeof(CollectibleModel)
-                                ? CollectibleIDs
-                                : inModelType == typeof(CharacterModel)
-                                    ? CharacterIDs
-                                    : inModelType == typeof(CritterModel)
-                                        ? CritterIDs
-                                        : inModelType == typeof(ItemModel)
-                                            ? ItemIDs
-                                            : inModelType == typeof(BiomeModel)
-                                                ? BiomeIDs
-                                                : inModelType == typeof(CraftingRecipe)
-                                                    ? CraftingRecipeIDs
-                                                    : inModelType == typeof(MapChunk)
-                                                        ? MapChunkIDs
-                                                        : inModelType == typeof(ScriptModel)
-                                                            ? ScriptIDs
-                                                            : inModelType == typeof(InteractionModel)
-                                                                ? InteractionIDs
-                                                                : inModelType == typeof(MapRegionSketch)
-                                                                  || inModelType == typeof(MapRegion)
-                                                                    ? MapRegionIDs
-                                                                    : Range<ModelID>.None;
+            => inModelType == typeof(GameModel) ? GameIDs
+            : inModelType == typeof(BlockModel) ? BlockIDs
+            : inModelType == typeof(FloorModel) ? FloorIDs
+            : inModelType == typeof(FurnishingModel) ? FurnishingIDs
+            : inModelType == typeof(CollectibleModel) ? CollectibleIDs
+            : inModelType == typeof(CharacterModel) ? CharacterIDs
+            : inModelType == typeof(CritterModel) ? CritterIDs
+            : inModelType == typeof(ItemModel) ? ItemIDs
+            : inModelType == typeof(BiomeModel) ? BiomeIDs
+            : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
+            : inModelType == typeof(MapChunk) ? MapChunkIDs
+            : inModelType == typeof(ScriptModel) ? ScriptIDs
+            : inModelType == typeof(InteractionModel) ? InteractionIDs
+            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegion) ? MapRegionIDs
+            : Range<ModelID>.None;
         #endregion
     }
 }
