@@ -12,26 +12,26 @@ namespace ParquetClassLibrary.Maps
     /// <remarks>
     /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
     /// </remarks>
-    public sealed class MapChunk : MapModel
+    public sealed class MapChunkModel : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static MapChunk Empty { get; } = new MapChunk(ModelID.None, "Empty", "", "", 0, false);
+        public static MapChunkModel Empty { get; } = new MapChunkModel(ModelID.None, "Empty", "", "", 0, false);
 
-        /// <summary>The length of each <see cref="MapChunk"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="MapChunkModel"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerChunkDimension,
                                                                               ParquetsPerChunkDimension);
 
-        /// <summary>The set of values that are allowed for <see cref="MapChunk"/> <see cref="ModelID"/>s.</summary>
+        /// <summary>The set of values that are allowed for <see cref="MapChunkModel"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
             => All.MapChunkIDs;
         #endregion
 
         #region Characteristics
-        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
+        /// <summary>If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time instead of procedurally generated.</summary>
         [Index(5)]
         // TODO Change this name since it is being used for non-handmadeness now.
         public bool IsHandmade { get; private set; }
@@ -55,12 +55,12 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inIsHandmade">
-        /// If <c>true</c>, the <see cref="MapChunk"/> is created at design time;
+        /// If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time;
         /// otherwise, it is procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
-        public MapChunk(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
+        public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
                         bool inIsHandmade,
                         ChunkDetail inDetails = null,
                         ParquetStackGrid inParquetDefinitions = null)
@@ -82,15 +82,15 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         /// <summary>
-        /// Transforms the current <see cref="MapChunk"/> so that it is ready to be stitched together
+        /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
         /// with others into a playable <see cref="MapRegion"/>.
         /// </summary>
         /// <remarks>
         /// If a chunk <see cref="IsHandmade"/>, it is ready to go.
         /// Chunks that are not handmade will need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
         /// </remarks>
-        /// <returns>The generated <see cref="MapChunk"/>.</returns>
-        public MapChunk Generate()
+        /// <returns>The generated <see cref="MapChunkModel"/>.</returns>
+        public MapChunkModel Generate()
         {
             // If this chunk has already been generated, no work is needed.
             if (IsHandmade)
@@ -123,8 +123,8 @@ namespace ParquetClassLibrary.Maps
             newParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
             #endregion
 
-            // Create a new MapChunk with the new subregion.
-            var newChunk = new MapChunk(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
+            // Create a new MapChunkModel with the new subregion.
+            var newChunk = new MapChunkModel(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
 
             // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
             if (All.Maps.Contains(ID))
@@ -138,9 +138,9 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapChunk"/> as a <see cref="string"/> containing basic information.
+        /// Describes the <see cref="MapChunkModel"/> as a <see cref="string"/> containing basic information.
         /// </summary>
-        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunkModel"/>.</returns>
         public override string ToString()
             => IsHandmade
                 ? $"Chunk {Name} handmade {base.ToString()}"

@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Maps
     /// Before play begins, <see cref="MapRegion"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
     ///
     /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
-    /// collection of parquets, but instead as <see cref="MapChunk"/>s, instructions to procedural generation routines.  These
+    /// collection of parquets, but instead as <see cref="MapChunkModel"/>s, instructions to procedural generation routines.  These
     /// instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
     /// for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
     /// to some general layout instructions provided by the game's designers.
@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Used to indicate a blank sketch.</summary>
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
 
-        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunk"/>s.</summary>
+        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunkModel"/>s.</summary>
         public const int ChunksPerRegionDimension = 4;
 
         /// <summary>The grid's dimensions in chunks.</summary>
@@ -189,10 +189,10 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         /// <summary>
-        /// Combines all consituent <see cref="MapChunk"/>s to produce a playable <see cref="MapRegion"/>.
+        /// Combines all consituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegion"/>.
         /// </summary>
         /// <remarks>
-        /// Invokes procedural generation routines on any <see cref="MapChunk"/>s that need it.
+        /// Invokes procedural generation routines on any <see cref="MapChunkModel"/>s that need it.
         /// </remarks>
         /// <returns>The new <see cref="MapRegion"/>.</returns>
         public MapRegion Stitch()
@@ -206,14 +206,14 @@ namespace ParquetClassLibrary.Maps
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
                     // Get potentially ungenerated chunk.
-                    var currentChunk = All.Maps.Get<MapChunk>(Chunks[chunkY, chunkX]);
+                    var currentChunk = All.Maps.Get<MapChunkModel>(Chunks[chunkY, chunkX]);
 
                     // Generate chunk if needed.
                     currentChunk = currentChunk.Generate();
 
                     // Extract definitions and copy them into a larger subregion.
-                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
-                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
+                    var offsetY = chunkY * MapChunkModel.ParquetsPerChunkDimension;
+                    var offsetX = chunkX * MapChunkModel.ParquetsPerChunkDimension;
                     for (var parquetX = 0; parquetX < ChunksPerRegionDimension; parquetX++)
                     {
                         for (var parquetY = 0; parquetY < ChunksPerRegionDimension; parquetY++)

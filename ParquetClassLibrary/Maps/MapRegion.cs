@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Maps
         public static readonly MapRegion Empty = new MapRegion(ModelID.None, "Empty Region");
 
         /// <summary>The length of each <see cref="MapRegion"/> dimension in parquets.</summary>
-        public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunk.ParquetsPerChunkDimension;
+        public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunkModel.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);

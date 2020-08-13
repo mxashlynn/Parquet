@@ -55,7 +55,7 @@ namespace ParquetRunner
         public static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static MapChunk TestMapChunk { get; }
+        public static MapChunkModel TestMapChunkModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static MapRegion TestMapRegion { get; }
@@ -142,7 +142,7 @@ namespace ParquetRunner
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
-            TestMapChunk = new MapChunk(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
+            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
             TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: TestTag);
@@ -164,24 +164,24 @@ namespace ParquetRunner
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
             TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
 
-            #region Initialize TestMapChunk
-            for (var y = 0; y < TestMapChunk.DimensionsInParquets.Y; y++)
+            #region Initialize TestMapChunkModel
+            for (var y = 0; y < TestMapChunkModel.DimensionsInParquets.Y; y++)
             {
-                for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
+                for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
                 {
-                    TestMapChunk.ParquetDefinitions[y, x].Floor = TestFloor.ID;
+                    TestMapChunkModel.ParquetDefinitions[y, x].Floor = TestFloor.ID;
                 }
 
-                TestMapChunk.ParquetDefinitions[y, 0].Block = TestBlock.ID;
-                TestMapChunk.ParquetDefinitions[y, TestMapChunk.DimensionsInParquets.X - 1].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[y, 0].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[y, TestMapChunkModel.DimensionsInParquets.X - 1].Block = TestBlock.ID;
             }
-            for (var x = 0; x < TestMapChunk.DimensionsInParquets.X; x++)
+            for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
             {
-                TestMapChunk.ParquetDefinitions[0, x].Block = TestBlock.ID;
-                TestMapChunk.ParquetDefinitions[TestMapChunk.DimensionsInParquets.Y - 1, x].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[0, x].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[TestMapChunkModel.DimensionsInParquets.Y - 1, x].Block = TestBlock.ID;
             }
-            TestMapChunk.ParquetDefinitions[2, 1].Furnishing = TestFurnishing.ID;
-            TestMapChunk.ParquetDefinitions[3, 3].Collectible = TestCollectible.ID;
+            TestMapChunkModel.ParquetDefinitions[2, 1].Furnishing = TestFurnishing.ID;
+            TestMapChunkModel.ParquetDefinitions[3, 3].Collectible = TestCollectible.ID;
             #endregion
             #endregion
         }

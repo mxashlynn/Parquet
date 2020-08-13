@@ -216,11 +216,11 @@ ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth.set -> void
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest.set -> void
 ParquetClassLibrary.Maps.MapAnalysis
-ParquetClassLibrary.Maps.MapChunk
-ParquetClassLibrary.Maps.MapChunk.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
-ParquetClassLibrary.Maps.MapChunk.Generate() -> ParquetClassLibrary.Maps.MapChunk
-ParquetClassLibrary.Maps.MapChunk.IsHandmade.get -> bool
-ParquetClassLibrary.Maps.MapChunk.MapChunk(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapChunkModel
+ParquetClassLibrary.Maps.MapChunkModel.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
+ParquetClassLibrary.Maps.MapChunkModel.Generate() -> ParquetClassLibrary.Maps.MapChunkModel
+ParquetClassLibrary.Maps.MapChunkModel.IsHandmade.get -> bool
+ParquetClassLibrary.Maps.MapChunkModel.MapChunkModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D inUpperLeft, ParquetClassLibrary.Vector2D inLowerRight) -> ParquetClassLibrary.Parquets.ParquetStackGrid
@@ -517,7 +517,7 @@ const ParquetClassLibrary.Delimiters.PrimaryDelimiter = "," -> string
 const ParquetClassLibrary.Delimiters.PronounDelimiter = "|" -> string
 const ParquetClassLibrary.Delimiters.SecondaryDelimiter = "∟" -> string
 const ParquetClassLibrary.Items.InventorySlot.DefaultStackMax = 999 -> int
-const ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension = 16 -> int
+const ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension = 16 -> int
 const ParquetClassLibrary.Maps.MapRegion.ParquetsPerRegionDimension = 64 -> int
 const ParquetClassLibrary.Maps.MapRegionSketch.ChunksPerRegionDimension = 4 -> int
 const ParquetClassLibrary.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
@@ -555,9 +555,9 @@ override ParquetClassLibrary.Location.ToString() -> string
 override ParquetClassLibrary.Maps.ChunkDetail.Equals(object obj) -> bool
 override ParquetClassLibrary.Maps.ChunkDetail.GetHashCode() -> int
 override ParquetClassLibrary.Maps.ChunkDetail.ToString() -> string
-override ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
-override ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
-override ParquetClassLibrary.Maps.MapChunk.ToString() -> string
+override ParquetClassLibrary.Maps.MapChunkModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
+override ParquetClassLibrary.Maps.MapChunkModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
+override ParquetClassLibrary.Maps.MapChunkModel.ToString() -> string
 override ParquetClassLibrary.Maps.MapModel.ToString() -> string
 override ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 override ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
@@ -640,8 +640,8 @@ static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inL
 static ParquetClassLibrary.Maps.ChunkDetail.operator !=(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool
 static ParquetClassLibrary.Maps.ChunkDetail.operator ==(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool
 static ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
-static ParquetClassLibrary.Maps.MapChunk.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
-static ParquetClassLibrary.Maps.MapChunk.Empty.get -> ParquetClassLibrary.Maps.MapChunk
+static ParquetClassLibrary.Maps.MapChunkModel.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
+static ParquetClassLibrary.Maps.MapChunkModel.Empty.get -> ParquetClassLibrary.Maps.MapChunkModel
 static ParquetClassLibrary.Maps.MapRegion.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapRegionSketch.Bounds.get -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInChunks.get -> ParquetClassLibrary.Vector2D

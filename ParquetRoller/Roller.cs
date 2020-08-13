@@ -365,9 +365,9 @@ namespace ParquetRoller
             {
                 ModelCollection<InteractionModel>.Default.PutRecordsForType<InteractionModel>();
             }
-            if (!File.Exists(ModelCollection.GetFilePath<MapChunk>()))
+            if (!File.Exists(ModelCollection.GetFilePath<MapChunkModel>()))
             {
-                ModelCollection<MapModel>.Default.PutRecordsForType<MapChunk>();
+                ModelCollection<MapModel>.Default.PutRecordsForType<MapChunkModel>();
             }
             if (!File.Exists(ModelCollection.GetFilePath<MapRegionSketch>()))
             {

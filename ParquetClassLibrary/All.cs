@@ -89,7 +89,7 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> InteractionIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunk"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunkModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> MapChunkIDs;
@@ -499,7 +499,7 @@ namespace ParquetClassLibrary
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
-            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunk>(MapIDs)
+            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs));
             var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
@@ -533,7 +533,7 @@ namespace ParquetClassLibrary
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Games.PutRecordsForType<GameModel>();
             Interactions.PutRecordsForType<InteractionModel>();
-            Maps.PutRecordsForType<MapChunk>();
+            Maps.PutRecordsForType<MapChunkModel>();
             Maps.PutRecordsForType<MapRegionSketch>();
             Maps.PutRecordsForType<MapRegion>();
             Parquets.PutRecordsForType<FloorModel>();
@@ -580,8 +580,8 @@ namespace ParquetClassLibrary
                 ItemModel _ => ItemIDs,
                 BiomeModel _ => BiomeIDs,
                 CraftingRecipe _ => CraftingRecipeIDs,
-                // TODO Rename MapChunk to MapChunkModel
-                MapChunk _ => MapChunkIDs,
+                // TODO Rename MapChunkModel to MapChunkModelModel   <----------------             HERE!!
+                MapChunkModel _ => MapChunkIDs,
                 // TODO Rename MapRegionSketch to MapSketchOfRegion
                 MapRegionSketch _ => MapRegionIDs,
                 MapRegion _ => MapRegionIDs,
@@ -609,7 +609,7 @@ namespace ParquetClassLibrary
             : inModelType == typeof(ItemModel) ? ItemIDs
             : inModelType == typeof(BiomeModel) ? BiomeIDs
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
-            : inModelType == typeof(MapChunk) ? MapChunkIDs
+            : inModelType == typeof(MapChunkModel) ? MapChunkIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs
             : inModelType == typeof(InteractionModel) ? InteractionIDs
             : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegion) ? MapRegionIDs

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ParquetUnitTests.Maps
 {
-    public class MapChunkUnitTest
+    public class MapChunkModelUnitTest
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
@@ -18,12 +18,12 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionThrowsOnInvalidUpperLeftTest()
         {
             var invalidUpperLeft = invalidPosition;
-            var validLowerRight = new Vector2D(TestModels.TestMapChunk.DimensionsInParquets.X - 1,
-                                               TestModels.TestMapChunk.DimensionsInParquets.Y - 1);
+            var validLowerRight = new Vector2D(TestModels.TestMapChunkModel.DimensionsInParquets.X - 1,
+                                               TestModels.TestMapChunkModel.DimensionsInParquets.Y - 1);
 
             void InvalidSubregion()
             {
-                var _ = TestModels.TestMapChunk.GetSubregion(invalidUpperLeft, validLowerRight);
+                var _ = TestModels.TestMapChunkModel.GetSubregion(invalidUpperLeft, validLowerRight);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
@@ -33,11 +33,11 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionThrowsOnInvalidLowerRightTest()
         {
             var validUpperLeft = Vector2D.Zero;
-            var invalidLowerRight = TestModels.TestMapChunk.DimensionsInParquets;
+            var invalidLowerRight = TestModels.TestMapChunkModel.DimensionsInParquets;
 
             void InvalidSubregion()
             {
-                var _ = TestModels.TestMapChunk.GetSubregion(validUpperLeft, invalidLowerRight);
+                var _ = TestModels.TestMapChunkModel.GetSubregion(validUpperLeft, invalidLowerRight);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(InvalidSubregion);
@@ -47,12 +47,12 @@ namespace ParquetUnitTests.Maps
         public void GetSubregionThrowsOnInvalidOrderingTest()
         {
             var validUpperLeft = Vector2D.Zero;
-            var validLowerRight = new Vector2D(TestModels.TestMapChunk.DimensionsInParquets.X - 1,
-                                               TestModels.TestMapChunk.DimensionsInParquets.Y - 1);
+            var validLowerRight = new Vector2D(TestModels.TestMapChunkModel.DimensionsInParquets.X - 1,
+                                               TestModels.TestMapChunkModel.DimensionsInParquets.Y - 1);
 
             void InvalidSubregion()
             {
-                var _ = TestModels.TestMapChunk.GetSubregion(validLowerRight, validUpperLeft);
+                var _ = TestModels.TestMapChunkModel.GetSubregion(validLowerRight, validUpperLeft);
             }
 
             Assert.Throws<ArgumentException>(InvalidSubregion);
@@ -61,13 +61,13 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionMatchesPattern()
         {
-            var originalChunk = typeof(MapChunk)
+            var originalChunk = typeof(MapChunkModel)
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
-                                ?.GetValue(TestModels.TestMapChunk) as ParquetStackGrid;
+                                ?.GetValue(TestModels.TestMapChunkModel) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
             var validLowerRight = new Vector2D(10, 14);
 
-            var subregion = TestModels.TestMapChunk.GetSubregion();
+            var subregion = TestModels.TestMapChunkModel.GetSubregion();
 
             for (var x = validUpperLeft.X; x < validLowerRight.X; x++)
             {
@@ -81,15 +81,15 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionOnWholeSubregionMatchesPattern()
         {
-            var originalChunk = typeof(MapChunk)
+            var originalChunk = typeof(MapChunkModel)
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
-                                ?.GetValue(TestModels.TestMapChunk) as ParquetStackGrid;
+                                ?.GetValue(TestModels.TestMapChunkModel) as ParquetStackGrid;
 
-            var subregion = TestModels.TestMapChunk.GetSubregion();
+            var subregion = TestModels.TestMapChunkModel.GetSubregion();
 
-            for (var x = 0; x < TestModels.TestMapChunk.DimensionsInParquets.X; x++)
+            for (var x = 0; x < TestModels.TestMapChunkModel.DimensionsInParquets.X; x++)
             {
-                for (var y = 0; y < TestModels.TestMapChunk.DimensionsInParquets.Y; y++)
+                for (var y = 0; y < TestModels.TestMapChunkModel.DimensionsInParquets.Y; y++)
                 {
                     Assert.Equal(originalChunk[y, x], subregion[y, x]);
                 }
