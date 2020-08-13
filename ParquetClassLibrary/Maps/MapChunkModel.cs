@@ -6,7 +6,7 @@ using ParquetClassLibrary.Parquets;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Models details of a portion of a <see cref="MapRegion"/>,
+    /// Models details of a portion of a <see cref="MapRegionModel"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
     /// <remarks>
@@ -83,7 +83,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>
         /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
-        /// with others into a playable <see cref="MapRegion"/>.
+        /// with others into a playable <see cref="MapRegionModel"/>.
         /// </summary>
         /// <remarks>
         /// If a chunk <see cref="IsHandmade"/>, it is ready to go.

@@ -1,7 +1,7 @@
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// Facilitates editing of <see cref="MapRegion"/> characteristics from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of <see cref="MapRegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
     public interface IMapRegionEdit
     {

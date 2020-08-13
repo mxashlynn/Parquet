@@ -6,7 +6,7 @@ using ParquetClassLibrary.Parquets;
 namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
-    /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Maps.MapRegion"/>.
+    /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
     /// </summary>
     public class MapSpace : IEquatable<MapSpace>
     {

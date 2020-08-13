@@ -48,7 +48,7 @@
         <member name="P:ParquetRunner.TestModels.TestMapChunkModel">
             <summary>Used in test patterns in QA routines.</summary>
         </member>
-        <member name="P:ParquetRunner.TestModels.TestMapRegion">
+        <member name="P:ParquetRunner.TestModels.TestMapRegionModel">
             <summary>Used in test patterns in QA routines.</summary>
         </member>
         <member name="P:ParquetRunner.TestModels.TestFloor">

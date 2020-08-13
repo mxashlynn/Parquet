@@ -10,19 +10,19 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.
     /// </summary>
-    public sealed class MapRegion : MapModel, IMapRegionEdit
+    public sealed class MapRegionModel : MapModel, IMapRegionEdit
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegion Empty = new MapRegion(ModelID.None, "Empty Region");
+        public static readonly MapRegionModel Empty = new MapRegionModel(ModelID.None, "Empty Region");
 
-        /// <summary>The length of each <see cref="MapRegion"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="MapRegionModel"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunkModel.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
         public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
-        /// <summary>The set of values that are allowed for <see cref="MapRegion"/> <see cref="ModelID"/>s.</summary>
+        /// <summary>The set of values that are allowed for <see cref="MapRegionModel"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
             => All.MapRegionIDs;
 
@@ -119,7 +119,7 @@ namespace ParquetClassLibrary.Maps
         public override ParquetStackGrid ParquetDefinitions { get; }
 
         /// <summary>
-        /// All of the <see cref="Rooms.Room"/>s detected in the <see cref="MapRegion"/>.
+        /// All of the <see cref="Rooms.Room"/>s detected in the <see cref="MapRegionModel"/>.
         /// </summary>
         [Ignore]
         public RoomCollection Rooms { get; private set; }
@@ -128,7 +128,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Constructs a new instance of the <see cref="MapRegion"/> class.
+        /// Constructs a new instance of the <see cref="MapRegionModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">The player-facing name of the new region.</param>
@@ -144,7 +144,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapRegion(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
+        public MapRegionModel(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                          int inRevision = 0, string inBackgroundColor = DefaultColor,
                          ModelID? inRegionToTheNorth = null,
                          ModelID? inRegionToTheEast = null,
@@ -183,10 +183,10 @@ namespace ParquetClassLibrary.Maps
 
         #region Analysis
         /// <summary>
-        /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegion"/> corresponds to.
+        /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegionModel"/> corresponds to.
         /// </summary>
         /// <remarks>
-        /// This method assumes that <see cref="MapRegion.Rooms"/> has already been populated.
+        /// This method assumes that <see cref="MapRegionModel.Rooms"/> has already been populated.
         /// </remarks>
         /// <returns>The appropriate <see cref="ModelID"/>.</returns>
         public ModelID GetBiome()
@@ -205,10 +205,10 @@ namespace ParquetClassLibrary.Maps
 
             #region Local Helper Methods
             // Determines if the given BiomeModel matches the given Region.
-            //     inRegion -> The MapRegion to test.
+            //     inRegion -> The MapRegionModel to test.
             //     inBiome -> The BiomeModel to test against.
             // Returns the given BiomeModel's ModelID if they match, otherwise returns the ModelID for the default biome.
-            static ModelID FindBiomeByTag(MapRegion inRegion, BiomeModel inBiome)
+            static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeModel inBiome)
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
@@ -230,10 +230,10 @@ namespace ParquetClassLibrary.Maps
                 return BiomeModel.None.ID;
             }
 
-            // Determines the number of individual parquets that are present inside Rooms in the given MapRegion.
+            // Determines the number of individual parquets that are present inside Rooms in the given MapRegionModel.
             //     inRegion -> The region to consider.
             // Returns the number of parquets that are part of a known Room.
-            static ModelID GetParquetsInRooms(MapRegion inRegion)
+            static ModelID GetParquetsInRooms(MapRegionModel inRegion)
             {
                 var parquetsInRoom = 0;
 
@@ -258,7 +258,7 @@ namespace ParquetClassLibrary.Maps
             //     inBiome -> The biome to test against.
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets contribute to the biome, false otherwise.
-            static bool ConstitutesBiome(MapRegion inRegion, BiomeModel inBiome, int inThreshold)
+            static bool ConstitutesBiome(MapRegionModel inRegion, BiomeModel inBiome, int inThreshold)
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
@@ -275,7 +275,7 @@ namespace ParquetClassLibrary.Maps
             //     inPredicate -> A predicate indicating if the parquet should be counted.
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets satisfy the conditions given, false otherwise.
-            static bool CountMeetsOrExceedsThreshold(MapRegion inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
+            static bool CountMeetsOrExceedsThreshold(MapRegionModel inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
             {
                 var count = 0;
 
@@ -307,9 +307,9 @@ namespace ParquetClassLibrary.Maps
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapRegion"/>.
+        /// Describes the <see cref="MapRegionModel"/>.
         /// </summary>
-        /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegion"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapRegionModel"/>.</returns>
         public override string ToString()
             => $"Region {Name} {base.ToString()}";
         #endregion

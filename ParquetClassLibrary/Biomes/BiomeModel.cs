@@ -7,12 +7,12 @@ using ParquetClassLibrary.Maps;
 namespace ParquetClassLibrary.Biomes
 {
     /// <summary>
-    /// Models the biome that a <see cref="MapRegion"/> embodies.
+    /// Models the biome that a <see cref="MapRegionModel"/> embodies.
     /// </summary>
     public sealed class BiomeModel : Model
     {
         #region Class Defaults
-        /// <summary>Represents the lack of a <see cref="BiomeModel"/> for <see cref="MapRegion"/>s that fail to qualify.</summary>
+        /// <summary>Represents the lack of a <see cref="BiomeModel"/> for <see cref="MapRegionModel"/>s that fail to qualify.</summary>
         public static BiomeModel None { get; } = new BiomeModel(ModelID.None, "Expanse", "A featureless region.", "The default biome.",
                                                                 0, false, false, null, null);
         #endregion

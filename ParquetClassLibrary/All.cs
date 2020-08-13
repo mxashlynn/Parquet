@@ -95,7 +95,7 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> MapChunkIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegion"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> MapRegionIDs;
@@ -501,7 +501,7 @@ namespace ParquetClassLibrary
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
             var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
-                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegion>(MapIDs));
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
             var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
                 .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
@@ -535,7 +535,7 @@ namespace ParquetClassLibrary
             Interactions.PutRecordsForType<InteractionModel>();
             Maps.PutRecordsForType<MapChunkModel>();
             Maps.PutRecordsForType<MapRegionSketch>();
-            Maps.PutRecordsForType<MapRegion>();
+            Maps.PutRecordsForType<MapRegionModel>();
             Parquets.PutRecordsForType<FloorModel>();
             Parquets.PutRecordsForType<BlockModel>();
             Parquets.PutRecordsForType<FurnishingModel>();
@@ -580,11 +580,10 @@ namespace ParquetClassLibrary
                 ItemModel _ => ItemIDs,
                 BiomeModel _ => BiomeIDs,
                 CraftingRecipe _ => CraftingRecipeIDs,
-                // TODO Rename MapChunkModel to MapChunkModelModel   <----------------             HERE!!
                 MapChunkModel _ => MapChunkIDs,
                 // TODO Rename MapRegionSketch to MapSketchOfRegion
                 MapRegionSketch _ => MapRegionIDs,
-                MapRegion _ => MapRegionIDs,
+                MapRegionModel _ => MapRegionIDs,
                 ScriptModel _ => ScriptIDs,
                 InteractionModel _ => InteractionIDs,
                 _ => Range<ModelID>.None,
@@ -612,7 +611,7 @@ namespace ParquetClassLibrary
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs
             : inModelType == typeof(InteractionModel) ? InteractionIDs
-            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegion) ? MapRegionIDs
+            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegionModel) ? MapRegionIDs
             : Range<ModelID>.None;
         #endregion
     }

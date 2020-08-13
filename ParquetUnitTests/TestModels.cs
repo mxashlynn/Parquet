@@ -56,7 +56,7 @@ namespace ParquetUnitTests
         public static MapChunkModel TestMapChunkModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static MapRegion TestMapRegion { get; }
+        public static MapRegionModel TestMapRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static FloorModel TestFloor { get; }
@@ -141,7 +141,7 @@ namespace ParquetUnitTests
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
             TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
-            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestMapRegionModel = new MapRegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);
@@ -190,7 +190,7 @@ namespace ParquetUnitTests
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
-            Maps = new List<MapModel> { TestMapChunkModel, TestMapRegion };
+            Maps = new List<MapModel> { TestMapChunkModel, TestMapRegionModel };
             Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };

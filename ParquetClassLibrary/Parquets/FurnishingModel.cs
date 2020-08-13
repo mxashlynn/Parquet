@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Parquets
         [Index(7)]
         public bool IsWalkable { get; }
 
-        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegion"/>.</summary>
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
         [Index(8)]
         public EntryType Entry { get; }
 

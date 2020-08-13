@@ -58,7 +58,7 @@ namespace ParquetRunner
         public static MapChunkModel TestMapChunkModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static MapRegion TestMapRegion { get; }
+        public static MapRegionModel TestMapRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static FloorModel TestFloor { get; }
@@ -143,7 +143,7 @@ namespace ParquetRunner
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
             TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
-            TestMapRegion = new MapRegion(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestMapRegionModel = new MapRegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: TestTag);
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: TestTag);
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: TestTag);

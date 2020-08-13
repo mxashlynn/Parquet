@@ -9,10 +9,10 @@ using ParquetClassLibrary.Properties;
 namespace ParquetClassLibrary.Maps
 {
     /// <summary>
-    /// A pattern and metadata to generate a <see cref="MapRegion"/>.
+    /// A pattern and metadata to generate a <see cref="MapRegionModel"/>.
     /// </summary>
     /// <remarks>
-    /// Before play begins, <see cref="MapRegion"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
+    /// Before play begins, <see cref="MapRegionModel"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
     ///
     /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
     /// collection of parquets, but instead as <see cref="MapChunkModel"/>s, instructions to procedural generation routines.  These
@@ -35,8 +35,8 @@ namespace ParquetClassLibrary.Maps
         public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(MapRegion.ParquetsPerRegionDimension,
-                                                                              MapRegion.ParquetsPerRegionDimension);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(MapRegionModel.ParquetsPerRegionDimension,
+                                                                              MapRegionModel.ParquetsPerRegionDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
@@ -114,20 +114,20 @@ namespace ParquetClassLibrary.Maps
         [Ignore]
         ModelID IMapRegionEdit.RegionAbove { get => RegionAbove; set => RegionAbove = value; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegion"/> below this one.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegion"/> below this one.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
         [Ignore]
         ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
         #endregion
 
-        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegion"/>.</summary>
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegionModel"/>.</summary>
         [Index(12)]
         public ModelIDGrid Chunks { get; }
 
-        /// <summary>Generate a <see cref="MapRegion"/> before accessing parquets.</summary>
+        /// <summary>Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
         [Ignore]
         // Index(13)
         public override ParquetStackGrid ParquetDefinitions
@@ -152,7 +152,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the region to the west of this one.</param>
         /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
-        /// <param name="inChunks">The pattern from which a <see cref="MapRegion"/> may be generated.</param>
+        /// <param name="inChunks">The pattern from which a <see cref="MapRegionModel"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
                                int inRevision = 0, string inBackgroundColor = DefaultColor,
                                ModelID? inRegionToTheNorth = null,
@@ -189,18 +189,18 @@ namespace ParquetClassLibrary.Maps
         #endregion
 
         /// <summary>
-        /// Combines all consituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegion"/>.
+        /// Combines all consituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegionModel"/>.
         /// </summary>
         /// <remarks>
         /// Invokes procedural generation routines on any <see cref="MapChunkModel"/>s that need it.
         /// </remarks>
-        /// <returns>The new <see cref="MapRegion"/>.</returns>
-        public MapRegion Stitch()
+        /// <returns>The new <see cref="MapRegionModel"/>.</returns>
+        public MapRegionModel Stitch()
         {
             Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
             Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
 
-            var parquetDefinitions = new ParquetStackGrid(MapRegion.ParquetsPerRegionDimension, MapRegion.ParquetsPerRegionDimension);
+            var parquetDefinitions = new ParquetStackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
             for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
             {
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
@@ -224,8 +224,8 @@ namespace ParquetClassLibrary.Maps
                 }
             }
 
-            // Create a new MapRegion with the metadata of this sketch plus the new subregion.
-            var newRegion = new MapRegion(ID, Name, Description, Comment, Revision + 1, BackgroundColor, RegionToTheNorth,
+            // Create a new MapRegionModel with the metadata of this sketch plus the new subregion.
+            var newRegion = new MapRegionModel(ID, Name, Description, Comment, Revision + 1, BackgroundColor, RegionToTheNorth,
                                           RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
                                           null, parquetDefinitions);
 

@@ -3,7 +3,7 @@ using System;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Represents a specific position within a specific <see cref="Maps.MapRegion"/>.
+    /// Represents a specific position within a specific <see cref="Maps.MapRegionModel"/>.
     /// </summary>
     /// <remarks>
     /// While primarily used in-library by <see cref="Beings.BeingModel"/> this class
@@ -11,10 +11,10 @@ namespace ParquetClassLibrary
     /// </remarks>
     public class Location : IEquatable<Location>
     {
-        /// <summary>The identifier for the <see cref="Maps.MapRegion"/> of this located.</summary>
+        /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> of this located.</summary>
         public ModelID RegionID { get; }
 
-        /// <summary>The position within the current <see cref="Maps.MapRegion"/> of this located.</summary>
+        /// <summary>The position within the current <see cref="Maps.MapRegionModel"/> of this located.</summary>
         public Vector2D Position { get; }
 
         #region IEquatable Implementation

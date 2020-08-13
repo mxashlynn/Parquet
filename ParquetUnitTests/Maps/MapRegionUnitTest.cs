@@ -7,27 +7,27 @@ using Xunit;
 
 namespace ParquetUnitTests.Maps
 {
-    public class MapRegionUnitTest
+    public class MapRegionModelUnitTest
     {
         #region Values for Tests
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
-        private static readonly MapRegion defaultRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, "", "", "");
+        private static readonly MapRegionModel defaultRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, "", "", "");
         #endregion
 
         #region Region Map Initialization
         [Fact]
-        public void NewDefaultMapRegionTest()
+        public void NewDefaultMapRegionModelTest()
         {
-            Assert.Equal(MapRegion.DefaultName, defaultRegion.Name);
-            Assert.Equal(MapRegion.DefaultColor, defaultRegion.BackgroundColor);
+            Assert.Equal(MapRegionModel.DefaultName, defaultRegion.Name);
+            Assert.Equal(MapRegionModel.DefaultColor, defaultRegion.BackgroundColor);
         }
 
         [Fact]
-        public void NewCustomMapRegionTest()
+        public void NewCustomMapRegionModelTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor);
+            var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", 0, testColor);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
@@ -36,9 +36,9 @@ namespace ParquetUnitTests.Maps
 
         #region Whole Region Characteristics Editing
         [Fact]
-        public void MapRegionMayBeEditedTest()
+        public void MapRegionModelMayBeEditedTest()
         {
-            var customRegion = new MapRegion(TestModels.TestMapRegion.ID - 1, testName, "", "", 0, testColor);
+            var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", 0, testColor);
             IMapRegionEdit editableRegion = customRegion;
 
             editableRegion.Name = testName;
@@ -97,7 +97,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionMatchesPattern()
         {
-            var originalChunk = typeof(MapRegion)
+            var originalChunk = typeof(MapRegionModel)
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
             var validUpperLeft = new Vector2D(1, 4);
@@ -117,7 +117,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void GetSubregionOnWholeSubregionMatchesPattern()
         {
-            var originalChunk = typeof(MapRegion)
+            var originalChunk = typeof(MapRegionModel)
                                 .GetProperty("ParquetDefinitions", BindingFlags.Public | BindingFlags.Instance)
                                 ?.GetValue(defaultRegion) as ParquetStackGrid;
 

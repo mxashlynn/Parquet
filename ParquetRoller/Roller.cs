@@ -373,9 +373,9 @@ namespace ParquetRoller
             {
                 ModelCollection<MapModel>.Default.PutRecordsForType<MapRegionSketch>();
             }
-            if (!File.Exists(ModelCollection.GetFilePath<MapRegion>()))
+            if (!File.Exists(ModelCollection.GetFilePath<MapRegionModel>()))
             {
-                ModelCollection<MapModel>.Default.PutRecordsForType<MapRegion>();
+                ModelCollection<MapModel>.Default.PutRecordsForType<MapRegionModel>();
             }
             if (!File.Exists(ModelCollection.GetFilePath<FloorModel>()))
             {
@@ -423,7 +423,7 @@ namespace ParquetRoller
         }
 
         /// <summary>
-        /// Check for inconsistent adjacency information in all defined <see cref="MapRegion"/>s and <see cref="MapRegionSketch"/>es.
+        /// Check for inconsistent adjacency information in all defined <see cref="MapRegionModel"/>s and <see cref="MapRegionSketch"/>es.
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
@@ -444,13 +444,13 @@ namespace ParquetRoller
                 }
             }
 
-            var regions = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegion));
+            var regions = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionModel));
             orderedWorkload = regions.OrderBy(x => x.ID);
             Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageChecking,
-                                            $"{nameof(MapRegion)}s"));
+                                            $"{nameof(MapRegionModel)}s"));
             foreach (var model in orderedWorkload)
             {
-                var results = MapAnalysis.CheckExitConsistency<MapRegion>(model.ID);
+                var results = MapAnalysis.CheckExitConsistency<MapRegionModel>(model.ID);
                 foreach (var result in results)
                 {
                     Console.WriteLine(result);
