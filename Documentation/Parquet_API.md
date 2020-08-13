@@ -346,17 +346,17 @@
   - [CheckExitConsistency\`\`1(inRegionID)](#M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency``1(ParquetClassLibrary.ModelID)')
 - [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
-- [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunk.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunk.ParquetsPerChunkDimension')
-  - [Bounds](#P-ParquetClassLibrary-Maps-MapChunk-Bounds 'ParquetClassLibrary.Maps.MapChunk.Bounds')
-  - [Details](#P-ParquetClassLibrary-Maps-MapChunk-Details 'ParquetClassLibrary.Maps.MapChunk.Details')
-  - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunk.DimensionsInParquets')
-  - [Empty](#P-ParquetClassLibrary-Maps-MapChunk-Empty 'ParquetClassLibrary.Maps.MapChunk.Empty')
-  - [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunk-IsHandmade 'ParquetClassLibrary.Maps.MapChunk.IsHandmade')
-  - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunk.ParquetDefinitions')
-  - [Generate()](#M-ParquetClassLibrary-Maps-MapChunk-Generate 'ParquetClassLibrary.Maps.MapChunk.Generate')
-  - [ToString()](#M-ParquetClassLibrary-Maps-MapChunk-ToString 'ParquetClassLibrary.Maps.MapChunk.ToString')
+- [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension')
+  - [Bounds](#P-ParquetClassLibrary-Maps-MapChunkModel-Bounds 'ParquetClassLibrary.Maps.MapChunkModel.Bounds')
+  - [Details](#P-ParquetClassLibrary-Maps-MapChunkModel-Details 'ParquetClassLibrary.Maps.MapChunkModel.Details')
+  - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunkModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunkModel.DimensionsInParquets')
+  - [Empty](#P-ParquetClassLibrary-Maps-MapChunkModel-Empty 'ParquetClassLibrary.Maps.MapChunkModel.Empty')
+  - [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade 'ParquetClassLibrary.Maps.MapChunkModel.IsHandmade')
+  - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunkModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunkModel.ParquetDefinitions')
+  - [Generate()](#M-ParquetClassLibrary-Maps-MapChunkModel-Generate 'ParquetClassLibrary.Maps.MapChunkModel.Generate')
+  - [ToString()](#M-ParquetClassLibrary-Maps-MapChunkModel-ToString 'ParquetClassLibrary.Maps.MapChunkModel.ToString')
 - [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')
   - [#ctor(inBounds,inID,inName,inDescription,inComment,inRevision)](#M-ParquetClassLibrary-Maps-MapModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32- 'ParquetClassLibrary.Maps.MapModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32)')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapModel.DimensionsInParquets')
@@ -367,34 +367,34 @@
   - [GetSubregion(inUpperLeft,inLowerRight)](#M-ParquetClassLibrary-Maps-MapModel-GetSubregion-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Vector2D)')
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
-- [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegion.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegion-DefaultColor 'ParquetClassLibrary.Maps.MapRegion.DefaultColor')
-  - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegion-DefaultName 'ParquetClassLibrary.Maps.MapRegion.DefaultName')
-  - [Empty](#F-ParquetClassLibrary-Maps-MapRegion-Empty 'ParquetClassLibrary.Maps.MapRegion.Empty')
-  - [ParquetsPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegion-ParquetsPerRegionDimension 'ParquetClassLibrary.Maps.MapRegion.ParquetsPerRegionDimension')
-  - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.BackgroundColor')
-  - [Bounds](#P-ParquetClassLibrary-Maps-MapRegion-Bounds 'ParquetClassLibrary.Maps.MapRegion.Bounds')
-  - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegion.DimensionsInParquets')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
-  - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegion.ParquetDefinitions')
-  - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')
-  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegion-RegionAbove 'ParquetClassLibrary.Maps.MapRegion.RegionAbove')
-  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegion-RegionBelow 'ParquetClassLibrary.Maps.MapRegion.RegionBelow')
-  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegion.RegionToTheEast')
-  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheNorth')
-  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegion.RegionToTheSouth')
-  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegion.RegionToTheWest')
-  - [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms')
-  - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegion-GetBiome 'ParquetClassLibrary.Maps.MapRegion.GetBiome')
-  - [ToString()](#M-ParquetClassLibrary-Maps-MapRegion-ToString 'ParquetClassLibrary.Maps.MapRegion.ToString')
+- [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionModel-DefaultColor 'ParquetClassLibrary.Maps.MapRegionModel.DefaultColor')
+  - [DefaultName](#F-ParquetClassLibrary-Maps-MapRegionModel-DefaultName 'ParquetClassLibrary.Maps.MapRegionModel.DefaultName')
+  - [Empty](#F-ParquetClassLibrary-Maps-MapRegionModel-Empty 'ParquetClassLibrary.Maps.MapRegionModel.Empty')
+  - [ParquetsPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegionModel-ParquetsPerRegionDimension 'ParquetClassLibrary.Maps.MapRegionModel.ParquetsPerRegionDimension')
+  - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.BackgroundColor')
+  - [Bounds](#P-ParquetClassLibrary-Maps-MapRegionModel-Bounds 'ParquetClassLibrary.Maps.MapRegionModel.Bounds')
+  - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionModel.DimensionsInParquets')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#Name 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#Name')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
+  - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionModel.ParquetDefinitions')
+  - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionModel.ParquetStatuses')
+  - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionAbove 'ParquetClassLibrary.Maps.MapRegionModel.RegionAbove')
+  - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionBelow 'ParquetClassLibrary.Maps.MapRegionModel.RegionBelow')
+  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionModel.RegionToTheEast')
+  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionModel.RegionToTheNorth')
+  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionModel.RegionToTheSouth')
+  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionModel.RegionToTheWest')
+  - [Rooms](#P-ParquetClassLibrary-Maps-MapRegionModel-Rooms 'ParquetClassLibrary.Maps.MapRegionModel.Rooms')
+  - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegionModel-GetBiome 'ParquetClassLibrary.Maps.MapRegionModel.GetBiome')
+  - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionModel-ToString 'ParquetClassLibrary.Maps.MapRegionModel.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelIDGrid)')
   - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegionSketch-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegionSketch.ChunksPerRegionDimension')
@@ -1014,7 +1014,7 @@ Valid identifiers may be positive or negative.  By convention, negative IDs indi
 
 ##### Summary
 
-A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
+A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s.
 Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
 
 <a name='F-ParquetClassLibrary-All-MapIDs'></a>
@@ -1030,7 +1030,7 @@ Valid identifiers may be positive or negative.  By convention, negative IDs indi
 
 ##### Summary
 
-A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s.
+A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s.
 Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
 
 <a name='F-ParquetClassLibrary-All-ParquetIDs'></a>
@@ -1627,7 +1627,7 @@ ParquetClassLibrary.Biomes
 
 ##### Summary
 
-Provides rules for determining a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')'s [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Provides rules for determining a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')'s [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
 
 <a name='F-ParquetClassLibrary-Biomes-BiomeConfiguration-ParquetsPerLayer'></a>
 ### ParquetsPerLayer `constants`
@@ -1649,7 +1649,7 @@ How many of a layers' worth of parquets must contribute to a land-based [BiomeMo
 ##### Summary
 
 There must be at least this percentage of non-liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThreshold'></a>
 ### LiquidThreshold `property`
@@ -1664,7 +1664,7 @@ How many of a layers' worth of parquets must contribute to a Liquid-based [Biome
 ##### Summary
 
 There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThreshold'></a>
 ### RoomThreshold `property`
@@ -1679,7 +1679,7 @@ How many of a layers' worth of parquets must contribute to a room-based [BiomeMo
 ##### Summary
 
 There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
 
 <a name='M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath'></a>
 ### GetFilePath() `method`
@@ -1731,7 +1731,7 @@ ParquetClassLibrary.Biomes
 
 ##### Summary
 
-Models the biome that a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') embodies.
+Models the biome that a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') embodies.
 
 <a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
@@ -1780,7 +1780,7 @@ Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeM
 
 ##### Summary
 
-Represents the lack of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') for [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s that fail to qualify.
+Represents the lack of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s that fail to qualify.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria'></a>
 ### ParquetCriteria `property`
@@ -2022,7 +2022,7 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-Indicates which parquets constitute this [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') and how they are arranged.
+Indicates which parquets constitute this [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') and how they are arranged.
 
 ##### Remarks
 
@@ -2059,31 +2059,31 @@ Initializes a new instance of the [ChunkDetail](#T-ParquetClassLibrary-Maps-Chun
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inBaseTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | The basic form that the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets takes. |
-| inBaseComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the overall type of parquets in the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'). |
-| inModifierTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | Indicates a modifier on the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets. |
-| inModifierComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the type of parquets modifying the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk'). |
+| inBaseTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | The basic form that the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') of parquets takes. |
+| inBaseComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the overall type of parquets in the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel'). |
+| inModifierTopography | [ParquetClassLibrary.Maps.ChunkTopography](#T-ParquetClassLibrary-Maps-ChunkTopography 'ParquetClassLibrary.Maps.ChunkTopography') | Indicates a modifier on the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') of parquets. |
+| inModifierComposition | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates the type of parquets modifying the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel'). |
 
 <a name='F-ParquetClassLibrary-Maps-ChunkDetail-None'></a>
 ### None `constants`
 
 ##### Summary
 
-The null [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail'), which generates an empty [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+The null [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail'), which generates an empty [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel').
 
 <a name='P-ParquetClassLibrary-Maps-ChunkDetail-BaseComposition'></a>
 ### BaseComposition `property`
 
 ##### Summary
 
-Indicates the overall type of parquets in the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+Indicates the overall type of parquets in the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel').
 
 <a name='P-ParquetClassLibrary-Maps-ChunkDetail-BaseTopography'></a>
 ### BaseTopography `property`
 
 ##### Summary
 
-Indicates the basic form that the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets takes.
+Indicates the basic form that the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') of parquets takes.
 
 <a name='P-ParquetClassLibrary-Maps-ChunkDetail-ConverterFactory'></a>
 ### ConverterFactory `property`
@@ -2097,14 +2097,14 @@ Allows the converter to construct itself statically.
 
 ##### Summary
 
-Indicates the type of parquets modifying the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+Indicates the type of parquets modifying the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel').
 
 <a name='P-ParquetClassLibrary-Maps-ChunkDetail-ModifierTopography'></a>
 ### ModifierTopography `property`
 
 ##### Summary
 
-Indicates a modifier on the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') of parquets.
+Indicates a modifier on the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') of parquets.
 
 <a name='M-ParquetClassLibrary-Maps-ChunkDetail-Clone'></a>
 ### Clone() `method`
@@ -2270,7 +2270,7 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-Indicates the basic form that the parquets in a [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') take.
+Indicates the basic form that the parquets in a [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') take.
 
 <a name='F-ParquetClassLibrary-Maps-ChunkTopography-Central'></a>
 ### Central `constants`
@@ -2812,7 +2812,7 @@ ParquetClassLibrary.Parquets
 
 ##### Summary
 
-Whether and how a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') communicates to an adjacent [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Whether and how a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') communicates to an adjacent [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 <a name='F-ParquetClassLibrary-Parquets-EntryType-Down'></a>
 ### Down `constants`
@@ -2949,7 +2949,7 @@ The set of values that are allowed for Furnishing IDs.
 
 ##### Summary
 
-Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing'></a>
 ### IsEnclosing `property`
@@ -3269,7 +3269,7 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-Facilitates editing of [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') characteristics from design tools while maintaining a read-only face for use during play.
+Facilitates editing of [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') characteristics from design tools while maintaining a read-only face for use during play.
 
 <a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-BackgroundColor'></a>
 ### BackgroundColor `property`
@@ -4259,7 +4259,7 @@ ParquetClassLibrary
 
 ##### Summary
 
-Represents a specific position within a specific [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Represents a specific position within a specific [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Remarks
 
@@ -4271,14 +4271,14 @@ is made generally available to support it's general use by game client code.
 
 ##### Summary
 
-The position within the current [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') of this located.
+The position within the current [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') of this located.
 
 <a name='P-ParquetClassLibrary-Location-RegionID'></a>
 ### RegionID `property`
 
 ##### Summary
 
-The identifier for the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') of this located.
+The identifier for the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') of this located.
 
 <a name='M-ParquetClassLibrary-Location-Equals-ParquetClassLibrary-Location-'></a>
 ### Equals(inLocation) `method`
@@ -4435,8 +4435,8 @@ Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps
 
 A database of directions and their opposites, together with the properties needed to inspect both.
 
-<a name='T-ParquetClassLibrary-Maps-MapChunk'></a>
-## MapChunk `type`
+<a name='T-ParquetClassLibrary-Maps-MapChunkModel'></a>
+## MapChunkModel `type`
 
 ##### Namespace
 
@@ -4444,14 +4444,14 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-Models details of a portion of a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion'),
+Models details of a portion of a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel'),
 either directly composed of parquets or generated from [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
 ##### Remarks
 
 For more information, read the remarks given in [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch').
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetDefinitions) `constructor`
 
 ##### Summary
@@ -4467,71 +4467,71 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
-| inIsHandmade | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') is created at design time;
+| inIsHandmade | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') is created at design time;
 otherwise, it is procedurally generated on load in-game. |
 | inDetails | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | Cues to the generation routines if generated at runtime. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets if designed by hand. |
 
-<a name='F-ParquetClassLibrary-Maps-MapChunk-ParquetsPerChunkDimension'></a>
+<a name='F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension'></a>
 ### ParquetsPerChunkDimension `constants`
 
 ##### Summary
 
-The length of each [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') dimension in parquets.
+The length of each [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') dimension in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-Bounds'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-Bounds'></a>
 ### Bounds `property`
 
 ##### Summary
 
-The set of values that are allowed for [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
+The set of values that are allowed for [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-Details'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-Details'></a>
 ### Details `property`
 
 ##### Summary
 
 A description of the type and arrangement of parquets to generate at runtime.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-DimensionsInParquets'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-DimensionsInParquets'></a>
 ### DimensionsInParquets `property`
 
 ##### Summary
 
 The chunk's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-Empty'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-Empty'></a>
 ### Empty `property`
 
 ##### Summary
 
 Used to indicate an empty grid.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-IsHandmade'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade'></a>
 ### IsHandmade `property`
 
 ##### Summary
 
-If `true`, the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') is created at design time instead of procedurally generated.
+If `true`, the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') is created at design time instead of procedurally generated.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunk-ParquetDefinitions'></a>
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
 
 ##### Summary
 
 Floors and walkable terrain in the chunk.
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-Generate'></a>
+<a name='M-ParquetClassLibrary-Maps-MapChunkModel-Generate'></a>
 ### Generate() `method`
 
 ##### Summary
 
-Transforms the current [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') so that it is ready to be stitched together
-with others into a playable [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Transforms the current [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') so that it is ready to be stitched together
+with others into a playable [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Returns
 
-The generated [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+The generated [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel').
 
 ##### Parameters
 
@@ -4539,19 +4539,19 @@ This method has no parameters.
 
 ##### Remarks
 
-If a chunk [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunk-IsHandmade 'ParquetClassLibrary.Maps.MapChunk.IsHandmade'), it is ready to go.
+If a chunk [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade 'ParquetClassLibrary.Maps.MapChunkModel.IsHandmade'), it is ready to go.
 Chunks that are not handmade will need to undergo procedural generation based on their [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapChunk-ToString'></a>
+<a name='M-ParquetClassLibrary-Maps-MapChunkModel-ToString'></a>
 ### ToString() `method`
 
 ##### Summary
 
-Describes the [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk') as a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') containing basic information.
+Describes the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') as a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') containing basic information.
 
 ##### Returns
 
-A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk').
+A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel').
 
 ##### Parameters
 
@@ -4680,8 +4680,8 @@ A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&
 
 This method has no parameters.
 
-<a name='T-ParquetClassLibrary-Maps-MapRegion'></a>
-## MapRegion `type`
+<a name='T-ParquetClassLibrary-Maps-MapRegionModel'></a>
+## MapRegionModel `type`
 
 ##### Namespace
 
@@ -4691,12 +4691,12 @@ ParquetClassLibrary.Maps
 
 A playable region of the gameworld, composed of parquets.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
 
-Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') class.
+Constructs a new instance of the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') class.
 
 ##### Parameters
 
@@ -4717,181 +4717,181 @@ Constructs a new instance of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegi
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
 
-<a name='F-ParquetClassLibrary-Maps-MapRegion-DefaultColor'></a>
+<a name='F-ParquetClassLibrary-Maps-MapRegionModel-DefaultColor'></a>
 ### DefaultColor `constants`
 
 ##### Summary
 
 Default color for new regions.
 
-<a name='F-ParquetClassLibrary-Maps-MapRegion-DefaultName'></a>
+<a name='F-ParquetClassLibrary-Maps-MapRegionModel-DefaultName'></a>
 ### DefaultName `constants`
 
 ##### Summary
 
 Default name for new regions.
 
-<a name='F-ParquetClassLibrary-Maps-MapRegion-Empty'></a>
+<a name='F-ParquetClassLibrary-Maps-MapRegionModel-Empty'></a>
 ### Empty `constants`
 
 ##### Summary
 
 Used to indicate an empty grid.
 
-<a name='F-ParquetClassLibrary-Maps-MapRegion-ParquetsPerRegionDimension'></a>
+<a name='F-ParquetClassLibrary-Maps-MapRegionModel-ParquetsPerRegionDimension'></a>
 ### ParquetsPerRegionDimension `constants`
 
 ##### Summary
 
-The length of each [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') dimension in parquets.
+The length of each [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') dimension in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-BackgroundColor'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-BackgroundColor'></a>
 ### BackgroundColor `property`
 
 ##### Summary
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-Bounds'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-Bounds'></a>
 ### Bounds `property`
 
 ##### Summary
 
-The set of values that are allowed for [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
+The set of values that are allowed for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')[ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-DimensionsInParquets'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-DimensionsInParquets'></a>
 ### DimensionsInParquets `property`
 
 ##### Summary
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor `property`
 
 ##### Summary
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#Name'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#Name'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#Name `property`
 
 ##### Summary
 
 What the region is called in-game.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetDefinitions'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetDefinitions'></a>
 ### ParquetDefinitions `property`
 
 ##### Summary
 
 Parquets that make up the region.  If changing or replacing one of these,
-remember to update the corresponding element in [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegion.ParquetStatuses')!
+remember to update the corresponding element in [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionModel.ParquetStatuses')!
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-ParquetStatuses'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetStatuses'></a>
 ### ParquetStatuses `property`
 
 ##### Summary
 
 The statuses of parquets in the chunk.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionAbove'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionAbove'></a>
 ### RegionAbove `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionBelow'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionBelow'></a>
 ### RegionBelow `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheEast'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheEast'></a>
 ### RegionToTheEast `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheNorth'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheNorth'></a>
 ### RegionToTheNorth `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheSouth'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheSouth'></a>
 ### RegionToTheSouth `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-RegionToTheWest'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-RegionToTheWest'></a>
 ### RegionToTheWest `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegion-Rooms'></a>
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-Rooms'></a>
 ### Rooms `property`
 
 ##### Summary
 
-All of the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s detected in the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+All of the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s detected in the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-GetBiome'></a>
+<a name='M-ParquetClassLibrary-Maps-MapRegionModel-GetBiome'></a>
 ### GetBiome() `method`
 
 ##### Summary
 
-Determines which [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') the given [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') corresponds to.
+Determines which [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') the given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') corresponds to.
 
 ##### Returns
 
@@ -4903,18 +4903,18 @@ This method has no parameters.
 
 ##### Remarks
 
-This method assumes that [Rooms](#P-ParquetClassLibrary-Maps-MapRegion-Rooms 'ParquetClassLibrary.Maps.MapRegion.Rooms') has already been populated.
+This method assumes that [Rooms](#P-ParquetClassLibrary-Maps-MapRegionModel-Rooms 'ParquetClassLibrary.Maps.MapRegionModel.Rooms') has already been populated.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegion-ToString'></a>
+<a name='M-ParquetClassLibrary-Maps-MapRegionModel-ToString'></a>
 ### ToString() `method`
 
 ##### Summary
 
-Describes the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Describes the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Returns
 
-A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+A [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Parameters
 
@@ -4929,14 +4929,14 @@ ParquetClassLibrary.Maps
 
 ##### Summary
 
-A pattern and metadata to generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+A pattern and metadata to generate a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Remarks
 
-Before play begins, [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s may be stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
+Before play begins, [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s may be stored as [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')es, for example in an editor tool.
 
  MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
- collection of parquets, but instead as [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s, instructions to procedural generation routines.  These
+ collection of parquets, but instead as [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s, instructions to procedural generation routines.  These
  instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
  for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
  to some general layout instructions provided by the game's designers.
@@ -4966,14 +4966,14 @@ Constructs a new instance of the [MapRegionSketch](#T-ParquetClassLibrary-Maps-M
 | inRegionToTheWest | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one. |
 | inRegionAbove | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one. |
 | inRegionBelow | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one. |
-| inChunks | [ParquetClassLibrary.ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid') | The pattern from which a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') may be generated. |
+| inChunks | [ParquetClassLibrary.ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid') | The pattern from which a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') may be generated. |
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionSketch-ChunksPerRegionDimension'></a>
 ### ChunksPerRegionDimension `constants`
 
 ##### Summary
 
-The length of each [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch') dimension in [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s.
+The length of each [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch') dimension in [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s.
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor'></a>
 ### DefaultColor `constants`
@@ -5015,7 +5015,7 @@ The set of values that are allowed for [MapRegionSketch](#T-ParquetClassLibrary-
 
 ##### Summary
 
-[ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s that can generate parquets to compose a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+[ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s that can generate parquets to compose a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInChunks'></a>
 ### DimensionsInChunks `property`
@@ -5057,7 +5057,7 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') below this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
 ### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
@@ -5092,7 +5092,7 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-Generate a [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') before accessing parquets.
+Generate a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') before accessing parquets.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove'></a>
 ### RegionAbove `property`
@@ -5106,7 +5106,7 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion') below this one.
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') below this one.
 
 <a name='P-ParquetClassLibrary-Maps-MapRegionSketch-RegionToTheEast'></a>
 ### RegionToTheEast `property`
@@ -5141,11 +5141,11 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-Combines all consituent [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s to produce a playable [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+Combines all consituent [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s to produce a playable [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Returns
 
-The new [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+The new [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Parameters
 
@@ -5153,7 +5153,7 @@ This method has no parameters.
 
 ##### Remarks
 
-Invokes procedural generation routines on any [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s that need it.
+Invokes procedural generation routines on any [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s that need it.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-ToString'></a>
 ### ToString() `method`
@@ -5179,7 +5179,7 @@ ParquetClassLibrary.Rooms
 
 ##### Summary
 
-A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') together with its coordinates within a given [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion').
+A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') together with its coordinates within a given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 <a name='M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inPosition,inContent,inSubregion) `constructor`
@@ -6512,7 +6512,7 @@ game objects.
 
 
 For example, multiple identical parquet IDs may be assigned
-to [MapChunk](#T-ParquetClassLibrary-Maps-MapChunk 'ParquetClassLibrary.Maps.MapChunk')s or [MapRegion](#T-ParquetClassLibrary-Maps-MapRegion 'ParquetClassLibrary.Maps.MapRegion')s,
+to [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')s or [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s,
 and multiple duplicate [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') IDs may exist in
 accross various [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') inventories.
 
