@@ -347,13 +347,13 @@
 - [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
 - [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunkModel-Bounds 'ParquetClassLibrary.Maps.MapChunkModel.Bounds')
   - [Details](#P-ParquetClassLibrary-Maps-MapChunkModel-Details 'ParquetClassLibrary.Maps.MapChunkModel.Details')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapChunkModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapChunkModel.DimensionsInParquets')
   - [Empty](#P-ParquetClassLibrary-Maps-MapChunkModel-Empty 'ParquetClassLibrary.Maps.MapChunkModel.Empty')
-  - [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade 'ParquetClassLibrary.Maps.MapChunkModel.IsHandmade')
+  - [IsFilledOut](#P-ParquetClassLibrary-Maps-MapChunkModel-IsFilledOut 'ParquetClassLibrary.Maps.MapChunkModel.IsFilledOut')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapChunkModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapChunkModel.ParquetDefinitions')
   - [Generate()](#M-ParquetClassLibrary-Maps-MapChunkModel-Generate 'ParquetClassLibrary.Maps.MapChunkModel.Generate')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapChunkModel-ToString 'ParquetClassLibrary.Maps.MapChunkModel.ToString')
@@ -2026,16 +2026,19 @@ Indicates which parquets constitute this [MapChunkModel](#T-ParquetClassLibrary-
 
 ##### Remarks
 
-Every chunk is either handmade or procedurally generated.
+Every chunk is either handmade at design time or procedurally generated during play.
+A chunk that is not handmade may have already been procedurally generated; if so, it
+is termed "filled out".  If not, it will become filled out once it undergoes generation.
+Handmade chunks are always filled out.
 
 
 
-Chunks that are not hand made are instead composed of two layers: a base and a modifier.
- The base is the underlying structure of the chunk and the modifier overlays it to
- produce more complex arrangements than would otherwise be possible.  For example:
- - Forest: Base·Grassy Solid · Modifier·Scattered Trees
- - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
- - Town: Handmade
+Chunks that are not filled out are instead composed of two layers: a base and a modifier.
+The base is the underlying structure of the chunk and the modifier overlays it to
+produce more complex arrangements than would otherwise be possible.  For example:
+- Forest: Base·Grassy Solid · Modifier·Scattered Trees
+- Seaside: Base·Watery Solid · Modifier·Eastern Sandy
+- Town: Handmade
 
 <a name='M-ParquetClassLibrary-Maps-ChunkDetail-#ctor'></a>
 ### #ctor() `constructor`
@@ -4452,7 +4455,7 @@ either directly composed of parquets or generated from [ChunkDetail](#T-ParquetC
 For more information, read the remarks given in [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch').
 
 <a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### #ctor(inID,inName,inDescription,inComment,inRevision,inIsHandmade,inDetails,inParquetDefinitions) `constructor`
+### #ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions) `constructor`
 
 ##### Summary
 
@@ -4467,8 +4470,8 @@ Used by children of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the map. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the map. |
 | inRevision | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | An option revision count. |
-| inIsHandmade | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') is created at design time;
-otherwise, it is procedurally generated on load in-game. |
+| inIsFilledOut | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') was either created at design time or
+has already been procedurally generated on load in-game. |
 | inDetails | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | Cues to the generation routines if generated at runtime. |
 | inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets if designed by hand. |
 
@@ -4507,8 +4510,8 @@ The chunk's dimensions in parquets.
 
 Used to indicate an empty grid.
 
-<a name='P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade'></a>
-### IsHandmade `property`
+<a name='P-ParquetClassLibrary-Maps-MapChunkModel-IsFilledOut'></a>
+### IsFilledOut `property`
 
 ##### Summary
 
@@ -4527,7 +4530,7 @@ Floors and walkable terrain in the chunk.
 ##### Summary
 
 Transforms the current [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') so that it is ready to be stitched together
-with others into a playable [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
+with others in its [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch') into a playable [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
 ##### Returns
 
@@ -4539,8 +4542,8 @@ This method has no parameters.
 
 ##### Remarks
 
-If a chunk [IsHandmade](#P-ParquetClassLibrary-Maps-MapChunkModel-IsHandmade 'ParquetClassLibrary.Maps.MapChunkModel.IsHandmade'), it is ready to go.
-Chunks that are not handmade will need to undergo procedural generation based on their [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
+If a chunk [IsFilledOut](#P-ParquetClassLibrary-Maps-MapChunkModel-IsFilledOut 'ParquetClassLibrary.Maps.MapChunkModel.IsFilledOut'), it is ready to go.
+Chunks that are not handmade at design time need to undergo procedural generation based on their [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')s.
 
 <a name='M-ParquetClassLibrary-Maps-MapChunkModel-ToString'></a>
 ### ToString() `method`
