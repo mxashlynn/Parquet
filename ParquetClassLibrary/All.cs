@@ -581,7 +581,6 @@ namespace ParquetClassLibrary
                 BiomeModel _ => BiomeIDs,
                 CraftingRecipe _ => CraftingRecipeIDs,
                 MapChunkModel _ => MapChunkIDs,
-                // TODO Rename MapRegionSketch to MapSketchOfRegion
                 MapRegionSketch _ => MapRegionIDs,
                 MapRegionModel _ => MapRegionIDs,
                 ScriptModel _ => ScriptIDs,

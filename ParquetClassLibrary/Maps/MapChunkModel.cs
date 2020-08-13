@@ -33,8 +33,7 @@ namespace ParquetClassLibrary.Maps
         #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time instead of procedurally generated.</summary>
         [Index(5)]
-        // TODO Change this name since it is being used for non-handmadeness now.
-        public bool IsHandmade { get; private set; }
+        public bool IsFilledOut { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
         [Index(6)]
@@ -54,21 +53,21 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inIsHandmade">
-        /// If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time;
-        /// otherwise, it is procedurally generated on load in-game.
+        /// <param name="inIsFilledOut">
+        /// If <c>true</c>, the <see cref="MapChunkModel"/> was either created at design time or
+        /// has already been procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
         public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision,
-                        bool inIsHandmade,
+                        bool inIsFilledOut,
                         ChunkDetail inDetails = null,
                         ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
-            IsHandmade = inIsHandmade;
+            IsFilledOut = inIsFilledOut;
 
-            if (IsHandmade)
+            if (IsFilledOut)
             {
                 Details = ChunkDetail.None;
                 ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
@@ -83,21 +82,21 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>
         /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
-        /// with others into a playable <see cref="MapRegionModel"/>.
+        /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="MapRegionModel"/>.
         /// </summary>
         /// <remarks>
-        /// If a chunk <see cref="IsHandmade"/>, it is ready to go.
-        /// Chunks that are not handmade will need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
+        /// If a chunk <see cref="IsFilledOut"/>, it is ready to go.
+        /// Chunks that are not handmade at design time need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
         /// </remarks>
         /// <returns>The generated <see cref="MapChunkModel"/>.</returns>
         public MapChunkModel Generate()
         {
             // If this chunk has already been generated, no work is needed.
-            if (IsHandmade)
+            if (IsFilledOut)
             {
                 return this;
             }
-            IsHandmade = true;
+            IsFilledOut = true;
 
             // Create a subregion to hold the generated parquets.
             var newParquetDefinitions = new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
@@ -142,9 +141,9 @@ namespace ParquetClassLibrary.Maps
         /// </summary>
         /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunkModel"/>.</returns>
         public override string ToString()
-            => IsHandmade
-                ? $"Chunk {Name} handmade {base.ToString()}"
-                : $"Chunk {Name} generated {Details}";
+            => IsFilledOut
+                ? $"Chunk {Name} filled out {base.ToString()}"
+                : $"Chunk {Name} sketched as {Details}";
         #endregion
     }
 }

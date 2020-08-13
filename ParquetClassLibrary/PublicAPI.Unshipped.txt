@@ -219,8 +219,7 @@ ParquetClassLibrary.Maps.MapAnalysis
 ParquetClassLibrary.Maps.MapChunkModel
 ParquetClassLibrary.Maps.MapChunkModel.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
 ParquetClassLibrary.Maps.MapChunkModel.Generate() -> ParquetClassLibrary.Maps.MapChunkModel
-ParquetClassLibrary.Maps.MapChunkModel.IsHandmade.get -> bool
-ParquetClassLibrary.Maps.MapChunkModel.MapChunkModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision, bool inIsHandmade, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
+ParquetClassLibrary.Maps.MapChunkModel.IsFilledOut.get -> bool
 ParquetClassLibrary.Maps.MapModel
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Maps.MapModel.GetSubregion(ParquetClassLibrary.Vector2D inUpperLeft, ParquetClassLibrary.Vector2D inLowerRight) -> ParquetClassLibrary.Parquets.ParquetStackGrid
