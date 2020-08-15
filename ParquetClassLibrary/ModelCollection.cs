@@ -40,7 +40,7 @@ namespace ParquetClassLibrary
 
         #region Characteristics
         /// <summary>An editable facade onto the internal collection mechanism.</summary>
-        /// <remarks>Should only be accessed from constructor and <see cref="IModelCollectionEdit{TModel}.Replace"/>.</remarks>
+        /// <remarks>Should only be accessed from constructor and <see cref="IModelCollectionEdit{TModel}"/>.</remarks>
         private Dictionary<ModelID, Model> EditableModels { get; }
 
         /// <summary>The internal collection mechanism.</summary>
@@ -95,7 +95,7 @@ namespace ParquetClassLibrary
         { }
         #endregion
 
-        #region Collection Access
+        #region IReadOnlyCollection Implementation
         /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
         public int Count
             => Models?.Count ?? 0;
@@ -167,6 +167,31 @@ namespace ParquetClassLibrary
         /// <returns>An enumerator that iterates through the collection.</returns>
         public IEnumerator<Model> GetEnumerator()
             => Models.Values.GetEnumerator();
+        #endregion
+
+        #region IModelCollectionEdit Implementation
+        /// <summary>
+        /// Adds the given <typeparamref name="TModel"/> to the collection.
+        /// </summary>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        void IModelCollectionEdit<TModel>.Add(TModel inModel)
+        {
+            Precondition.IsNotNull(inModel);
+            Precondition.IsNotNone(inModel.ID);
+            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+
+            EditableModels[inModel.ID] = !Contains(inModel.ID)
+                ? inModel
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotAdd,
+                                                            typeof(TModel).Name, inModel.Name));
+        }
+
+        /// <summary>
+        /// Empties the entire collection.
+        /// </summary>
+        void IModelCollectionEdit<TModel>.Clear()
+            => EditableModels.Clear();
+
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
@@ -180,15 +205,10 @@ namespace ParquetClassLibrary
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
 
-            if (Contains(inModel.ID))
-            {
-                EditableModels[inModel.ID] = inModel;
-            }
-            else
-            {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
-                                                          typeof(TModel).Name, inModel.Name));
-            }
+            EditableModels[inModel.ID] = Contains(inModel.ID)
+                ? inModel
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
+                                                            typeof(TModel).Name, inModel.Name));
         }
         #endregion
 

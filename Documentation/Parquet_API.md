@@ -40,6 +40,7 @@
   - [RoomRecipes](#P-ParquetClassLibrary-All-RoomRecipes 'ParquetClassLibrary.All.RoomRecipes')
   - [Scripts](#P-ParquetClassLibrary-All-Scripts 'ParquetClassLibrary.All.Scripts')
   - [#cctor()](#M-ParquetClassLibrary-All-#cctor 'ParquetClassLibrary.All.#cctor')
+  - [Clear()](#M-ParquetClassLibrary-All-Clear 'ParquetClassLibrary.All.Clear')
   - [GetIDRangeForType(inID)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
   - [GetIDRangeForType(inModel)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
   - [GetIDRangeForType(inModelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
@@ -251,6 +252,8 @@
   - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
   - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
 - [IModelCollectionEdit\`1](#T-ParquetClassLibrary-IModelCollectionEdit`1 'ParquetClassLibrary.IModelCollectionEdit`1')
+  - [Add(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Add-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Add(`0)')
+  - [Clear()](#M-ParquetClassLibrary-IModelCollectionEdit`1-Clear 'ParquetClassLibrary.IModelCollectionEdit`1.Clear')
   - [Replace(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Replace(`0)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
@@ -505,6 +508,8 @@
   - [GetRecordsForType\`\`1(inBounds)](#M-ParquetClassLibrary-ModelCollection`1-GetRecordsForType``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}}- 'ParquetClassLibrary.ModelCollection`1.GetRecordsForType``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}})')
   - [Get\`\`1(inID)](#M-ParquetClassLibrary-ModelCollection`1-Get``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.Get``1(ParquetClassLibrary.ModelID)')
   - [HandleUnassignedIDs\`\`1(inColumnHeaders,inModels)](#M-ParquetClassLibrary-ModelCollection`1-HandleUnassignedIDs``1-System-String[],System-Collections-Generic-List{``0}- 'ParquetClassLibrary.ModelCollection`1.HandleUnassignedIDs``1(System.String[],System.Collections.Generic.List{``0})')
+  - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Add(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Add-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Add(`0)')
+  - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear()](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear')
   - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(`0)')
   - [PutRecordsForType\`\`1()](#M-ParquetClassLibrary-ModelCollection`1-PutRecordsForType``1 'ParquetClassLibrary.ModelCollection`1.PutRecordsForType``1')
   - [ReconstructHeader(inColumnHeaders,inRecordsWithNewIDs)](#M-ParquetClassLibrary-ModelCollection`1-ReconstructHeader-System-String[],System-Text-StringBuilder- 'ParquetClassLibrary.ModelCollection`1.ReconstructHeader(System.String[],System.Text.StringBuilder)')
@@ -730,9 +735,11 @@
   - [DirectionNorth](#P-ParquetClassLibrary-Properties-Resources-DirectionNorth 'ParquetClassLibrary.Properties.Resources.DirectionNorth')
   - [DirectionSouth](#P-ParquetClassLibrary-Properties-Resources-DirectionSouth 'ParquetClassLibrary.Properties.Resources.DirectionSouth')
   - [DirectionWest](#P-ParquetClassLibrary-Properties-Resources-DirectionWest 'ParquetClassLibrary.Properties.Resources.DirectionWest')
+  - [ErrorCannotAdd](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotAdd 'ParquetClassLibrary.Properties.Resources.ErrorCannotAdd')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
   - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
   - [ErrorCannotReplace](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace 'ParquetClassLibrary.Properties.Resources.ErrorCannotReplace')
+  - [ErrorClearAllFirst](#P-ParquetClassLibrary-Properties-Resources-ErrorClearAllFirst 'ParquetClassLibrary.Properties.Resources.ErrorClearAllFirst')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
   - [ErrorInvalidPosition](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition 'ParquetClassLibrary.Properties.Resources.ErrorInvalidPosition')
   - [ErrorModelNotFound](#P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound 'ParquetClassLibrary.Properties.Resources.ErrorModelNotFound')
@@ -1244,6 +1251,31 @@ This method has no parameters.
 
 This supports defining ItemIDs in terms of the other Ranges.
 
+<a name='M-ParquetClassLibrary-All-Clear'></a>
+### Clear() `method`
+
+##### Summary
+
+Clears all the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'ParquetClassLibrary.ModelCollection`1')s contained in [All](#T-ParquetClassLibrary-All 'ParquetClassLibrary.All').
+
+##### Parameters
+
+This method has no parameters.
+
+##### Exceptions
+
+| Name | Description |
+| ---- | ----------- |
+| [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | When called more than once. |
+
+##### Remarks
+
+This method must be called between calls to the initialization routines.
+
+##### See Also
+
+- [ParquetClassLibrary.All.InitializeCollections](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
+
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
 ### GetIDRangeForType(inID) `method`
 
@@ -1327,7 +1359,11 @@ Initializes the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'P
 
 ##### Remarks
 
-This initialization routine may be called only once per library execution.
+The collections of models must be separately cleared between calls to this initialization routine.
+
+##### See Also
+
+- [ParquetClassLibrary.All.Clear](#M-ParquetClassLibrary-All-Clear 'ParquetClassLibrary.All.Clear')
 
 <a name='M-ParquetClassLibrary-All-LoadFromCSVs'></a>
 ### LoadFromCSVs() `method`
@@ -3339,7 +3375,7 @@ ParquetClassLibrary
 
 ##### Summary
 
-Facilitates replacing elements of a [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') from design tools
+Facilitates updating elements of a [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection') from design tools
 while maintaining a read-only facade during play.
 
 ##### Generic Types
@@ -3347,6 +3383,30 @@ while maintaining a read-only facade during play.
 | Name | Description |
 | ---- | ----------- |
 | TModel | The type collected, typically a concrete decendent of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model'). |
+
+<a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Add-`0-'></a>
+### Add(inModel) `method`
+
+##### Summary
+
+Adds the given `TModel` to the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
+<a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Clear'></a>
+### Clear() `method`
+
+##### Summary
+
+Empties the entire collection.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0-'></a>
 ### Replace(inModel) `method`
@@ -6185,7 +6245,7 @@ An editable facade onto the internal collection mechanism.
 
 ##### Remarks
 
-Should only be accessed from constructor and [Replace](#M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Replace(`0)').
+Should only be accessed from constructor and [IModelCollectionEdit\`1](#T-ParquetClassLibrary-IModelCollectionEdit`1 'ParquetClassLibrary.IModelCollectionEdit`1').
 
 <a name='P-ParquetClassLibrary-ModelCollection`1-Models'></a>
 ### Models `property`
@@ -6374,6 +6434,30 @@ Assigns [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s
 
 Optionally, a subset of deserialized records may not have [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s.
 This detects such records and assigns an ID to all models created from them.
+
+<a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Add-`0-'></a>
+### ParquetClassLibrary#IModelCollectionEdit{TModel}#Add(inModel) `method`
+
+##### Summary
+
+Adds the given `TModel` to the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
+<a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear'></a>
+### ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear() `method`
+
+##### Summary
+
+Empties the entire collection.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0-'></a>
 ### ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel) `method`
@@ -9467,6 +9551,13 @@ Looks up a localized string similar to south.
 
 Looks up a localized string similar to west.
 
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotAdd'></a>
+### ErrorCannotAdd `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to add already-contained {0} '{1}'.  Did you mean to call Replace?.
+
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert'></a>
 ### ErrorCannotConvert `property`
 
@@ -9486,7 +9577,14 @@ Looks up a localized string similar to Could not parse '{0}' as {1}..
 
 ##### Summary
 
-Looks up a localized string similar to Tried to replace non-contained {0} '{1}'..
+Looks up a localized string similar to Tried to replace non-contained {0} '{1}'.  Did you mean to call Add?.
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorClearAllFirst'></a>
+### ErrorClearAllFirst `property`
+
+##### Summary
+
+Looks up a localized string similar to You must clear the model database before reloading it..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast'></a>
 ### ErrorInvalidCast `property`

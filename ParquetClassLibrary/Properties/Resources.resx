@@ -141,6 +141,10 @@
     <value>west</value>
     <comment>Warning string.</comment>
   </data>
+  <data name="ErrorCannotAdd" xml:space="preserve">
+    <value>Tried to add already-contained {0} '{1}'.  Did you mean to call Replace?</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorCannotConvert" xml:space="preserve">
     <value>Could not convert '{0}' to {1}.</value>
     <comment>Error string.</comment>
@@ -150,7 +154,11 @@
     <comment>Error string.</comment>
   </data>
   <data name="ErrorCannotReplace" xml:space="preserve">
-    <value>Tried to replace non-contained {0} '{1}'.</value>
+    <value>Tried to replace non-contained {0} '{1}'.  Did you mean to call Add?</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorClearAllFirst" xml:space="preserve">
+    <value>You must clear the model database before reloading it.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorInvalidCast" xml:space="preserve">

@@ -601,6 +601,7 @@ override ParquetClassLibrary.Vector2D.GetHashCode() -> int
 override ParquetClassLibrary.Vector2D.ToString() -> string
 static ParquetClassLibrary.All.Beings.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.BeingModel>
 static ParquetClassLibrary.All.Biomes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Biomes.BiomeModel>
+static ParquetClassLibrary.All.Clear() -> void
 static ParquetClassLibrary.All.CollectionsHaveBeenInitialized.get -> bool
 static ParquetClassLibrary.All.CraftingRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Crafts.CraftingRecipe>
 static ParquetClassLibrary.All.Games.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Games.GameModel>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -432,7 +433,8 @@ namespace ParquetClassLibrary
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inScripts">All scripts to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
-        /// <remarks>This initialization routine may be called only once per library execution.</remarks>
+        /// <remarks>The collections of models must be separately cleared between calls to this initialization routine.</remarks>
+        /// <seealso cref="All.Clear"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
                                                  IEnumerable<BeingModel> inBeings,
@@ -448,8 +450,7 @@ namespace ParquetClassLibrary
         {
             if (CollectionsHaveBeenInitialized)
             {
-                // TODO Add a message explaining that IModelCollectionEditable.Replace() must be used to update the content of a ModelCollection.
-                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorClearAllFirst,
                                                                   nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
@@ -544,6 +545,28 @@ namespace ParquetClassLibrary
             Scripts.PutRecordsForType<ScriptModel>();
             Items.PutRecordsForType<ItemModel>();
             #endregion
+        }
+
+        /// <summary>
+        /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
+        /// </summary>
+        /// <remarks>This method must be called between calls to the initialization routines.</remarks>
+        /// <seealso cref="InitializeCollections(IEnumerable{PronounGroup}, IEnumerable{BeingModel}, IEnumerable{BiomeModel}, IEnumerable{CraftingRecipe}, IEnumerable{GameModel}, IEnumerable{InteractionModel}, IEnumerable{MapModel}, IEnumerable{ParquetModel}, IEnumerable{RoomRecipe}, IEnumerable{ScriptModel}, IEnumerable{ItemModel})"/>
+        /// <exception cref="InvalidOperationException">When called more than once.</exception>
+        public static void Clear()
+        {
+            ((IModelCollectionEdit<BeingModel>)Beings)?.Clear();
+            ((IModelCollectionEdit<BiomeModel>)Biomes)?.Clear();
+            ((IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
+            ((IModelCollectionEdit<GameModel>)Games)?.Clear();
+            ((IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
+            ((IModelCollectionEdit<MapModel>)Maps)?.Clear();
+            ((IModelCollectionEdit<ParquetModel>)Parquets)?.Clear();
+            ((IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
+            ((IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
+            ((IModelCollectionEdit<ItemModel>)Items)?.Clear();
+            ((Collection<PronounGroup>)PronounGroups)?.Clear();
+            CollectionsHaveBeenInitialized = false;
         }
         #endregion
 

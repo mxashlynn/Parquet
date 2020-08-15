@@ -115,6 +115,15 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to add already-contained {0} &apos;{1}&apos;.  Did you mean to call Replace?.
+        /// </summary>
+        internal static string ErrorCannotAdd {
+            get {
+                return ResourceManager.GetString("ErrorCannotAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not convert &apos;{0}&apos; to {1}..
         /// </summary>
         internal static string ErrorCannotConvert {
@@ -133,11 +142,20 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tried to replace non-contained {0} &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Tried to replace non-contained {0} &apos;{1}&apos;.  Did you mean to call Add?.
         /// </summary>
         internal static string ErrorCannotReplace {
             get {
                 return ResourceManager.GetString("ErrorCannotReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must clear the model database before reloading it..
+        /// </summary>
+        internal static string ErrorClearAllFirst {
+            get {
+                return ResourceManager.GetString("ErrorClearAllFirst", resourceCulture);
             }
         }
         
