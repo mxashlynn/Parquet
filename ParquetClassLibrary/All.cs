@@ -568,25 +568,28 @@ namespace ParquetClassLibrary
         /// The range within which this model's <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Model inModel)
-            => inModel switch
-            {
-                GameModel _ => GameIDs,
-                BlockModel _ => BlockIDs,
-                FloorModel _ => FloorIDs,
-                FurnishingModel _ => FurnishingIDs,
-                CollectibleModel _ => CollectibleIDs,
-                CharacterModel _ => CharacterIDs,
-                CritterModel _ => CritterIDs,
-                ItemModel _ => ItemIDs,
-                BiomeModel _ => BiomeIDs,
-                CraftingRecipe _ => CraftingRecipeIDs,
-                MapChunkModel _ => MapChunkIDs,
-                MapRegionSketch _ => MapRegionIDs,
-                MapRegionModel _ => MapRegionIDs,
-                ScriptModel _ => ScriptIDs,
-                InteractionModel _ => InteractionIDs,
-                _ => Range<ModelID>.None,
-            };
+            => inModel == null
+            || inModel.ID == ModelID.None
+                ? Range<ModelID>.None
+                : inModel switch
+                {
+                    GameModel _ => GameIDs,
+                    BlockModel _ => BlockIDs,
+                    FloorModel _ => FloorIDs,
+                    FurnishingModel _ => FurnishingIDs,
+                    CollectibleModel _ => CollectibleIDs,
+                    CharacterModel _ => CharacterIDs,
+                    CritterModel _ => CritterIDs,
+                    ItemModel _ => ItemIDs,
+                    BiomeModel _ => BiomeIDs,
+                    CraftingRecipe _ => CraftingRecipeIDs,
+                    MapChunkModel _ => MapChunkIDs,
+                    MapRegionSketch _ => MapRegionIDs,
+                    MapRegionModel _ => MapRegionIDs,
+                    ScriptModel _ => ScriptIDs,
+                    InteractionModel _ => InteractionIDs,
+                    _ => Range<ModelID>.None,
+                };
 
         /// <summary>
         /// Given a <see cref="Type"/> derived from a <see cref="Model"/>, return the appropriate <see cref="Range{ModelID}"/>.
