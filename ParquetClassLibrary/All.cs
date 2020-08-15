@@ -565,7 +565,7 @@ namespace ParquetClassLibrary
             ((IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
             ((IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
             ((IModelCollectionEdit<ItemModel>)Items)?.Clear();
-            ((Collection<PronounGroup>)PronounGroups)?.Clear();
+            ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
         }
         #endregion
