@@ -42,6 +42,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         [Ignore]
+        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
@@ -50,6 +51,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing description.</summary>
         [Ignore]
+        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
@@ -59,6 +61,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Optional comment.</summary>
         [Ignore]
+        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion
 

@@ -48,13 +48,11 @@ ParquetClassLibrary.Beings.CritterModel
 ParquetClassLibrary.Beings.CritterModel.CritterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inNativeBiome, ParquetClassLibrary.ModelID inPrimaryBehavior, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoids = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeks = null) -> void
 ParquetClassLibrary.Beings.IBeingModelEdit
 ParquetClassLibrary.Beings.IBeingModelEdit.Avoids.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.IBeingModelEdit.Avoids.set -> void
 ParquetClassLibrary.Beings.IBeingModelEdit.NativeBiome.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Beings.IBeingModelEdit.NativeBiome.set -> void
 ParquetClassLibrary.Beings.IBeingModelEdit.PrimaryBehavior.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Beings.IBeingModelEdit.PrimaryBehavior.set -> void
 ParquetClassLibrary.Beings.IBeingModelEdit.Seeks.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.IBeingModelEdit.Seeks.set -> void
 ParquetClassLibrary.Beings.ICharacterModelEdit
 ParquetClassLibrary.Beings.ICharacterModelEdit.FamilyName.get -> string
 ParquetClassLibrary.Beings.ICharacterModelEdit.FamilyName.set -> void
@@ -270,8 +268,6 @@ ParquetClassLibrary.Maps.ChunkTopography.West = 11 -> ParquetClassLibrary.Maps.C
 ParquetClassLibrary.Maps.IMapRegionEdit
 ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor.set -> void
-ParquetClassLibrary.Maps.IMapRegionEdit.Name.get -> string
-ParquetClassLibrary.Maps.IMapRegionEdit.Name.set -> void
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove.set -> void
 ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow.get -> ParquetClassLibrary.ModelID

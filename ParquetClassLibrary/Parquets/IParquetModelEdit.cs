@@ -5,7 +5,6 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     public interface IParquetModelEdit : IModelEdit
     {
-        #region Characteristics
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>

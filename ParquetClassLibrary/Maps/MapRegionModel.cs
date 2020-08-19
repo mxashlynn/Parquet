@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Maps
         #region Whole-Map Characteristics
         /// <summary>What the region is called in-game.</summary>
         [Ignore]
-        string IMapRegionEdit.Name
+        string IModelEdit.Name
         {
             get => Name;
             set

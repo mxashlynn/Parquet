@@ -7,7 +7,6 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     public interface ICharacterModelEdit : IBeingModelEdit
     {
-        #region Characteristics
         /// <summary>Player-facing personal name.</summary>
         public string PersonalName { get; set; }
 
