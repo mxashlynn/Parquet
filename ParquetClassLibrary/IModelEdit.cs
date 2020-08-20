@@ -3,6 +3,10 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Facilitates editing of a <see cref="Model"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+    /// IModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface IModelEdit
     {
         /// <summary>Player-facing name.</summary>

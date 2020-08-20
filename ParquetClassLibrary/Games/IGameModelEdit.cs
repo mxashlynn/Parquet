@@ -3,6 +3,10 @@ namespace ParquetClassLibrary.Games
     /// <summary>
     /// Facilitates editing of a <see cref="GameModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="GameModel"/> should never themselves use <see cref="IGameModelEdit"/>.
+    /// IGameModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface IGameModelEdit : IModelEdit
     {
         /// <summary>If <c>true</c> this game is part of a longer sequence of games.</summary>

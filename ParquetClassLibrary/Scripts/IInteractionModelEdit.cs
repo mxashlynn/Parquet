@@ -3,8 +3,12 @@ using System.Collections.Generic;
 namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
-    /// Facilitates editing of a <see cref="ScriptModel"/> from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of a <see cref="InteractionModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="InteractionModel"/> should never themselves use <see cref="IInteractionModelEdit"/>.
+    /// IInteractionModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface IInteractionModelEdit : IModelEdit
     {
         /// <summary>

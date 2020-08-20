@@ -3,6 +3,10 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Facilitates editing of a <see cref="CritterModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="CritterModel"/> should never themselves use <see cref="ICritterModelEdit"/>.
+    /// ICritterModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface ICritterModelEdit : IBeingModelEdit
     {
         // This class is intentionally left empty.

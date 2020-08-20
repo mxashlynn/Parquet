@@ -5,6 +5,10 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Facilitates editing of a <see cref="BlockModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+    /// IBlockModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface IBlockModelEdit : IParquetModelEdit
     {
         /// <summary>The tool used to remove the block.</summary>

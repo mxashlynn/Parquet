@@ -5,6 +5,10 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Facilitates editing of a <see cref="CharacterModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
+    /// <remarks>
+    /// By design, children of <see cref="CharacterModel"/> should never themselves use <see cref="ICharacterModelEdit"/>.
+    /// ICharacterModelEdit is for use only by external types that require readwrite access to model properties.
+    /// </remarks>
     public interface ICharacterModelEdit : IBeingModelEdit
     {
         /// <summary>Player-facing personal name.</summary>
