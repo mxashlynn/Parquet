@@ -41,8 +41,13 @@ namespace ParquetClassLibrary
         public string Name { get; private set; }
 
         /// <summary>Player-facing name.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
-        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
@@ -50,8 +55,13 @@ namespace ParquetClassLibrary
         public string Description { get; private set; }
 
         /// <summary>Player-facing description.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
-        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Description { get => Description; set => Description = value; }
 
         /// <summary>Optional comment.</summary>
@@ -60,8 +70,13 @@ namespace ParquetClassLibrary
         public string Comment { get; private set; }
 
         /// <summary>Optional comment.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
-        // I believe Warning CA1033 can be safely surpressed here as I cannot imagine when the fail state would ever occur, but let's be sure.
         string IModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion
 
