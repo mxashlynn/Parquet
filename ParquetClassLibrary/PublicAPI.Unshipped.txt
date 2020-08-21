@@ -411,11 +411,11 @@ ParquetClassLibrary.Parquets.IBlockModelEdit.IsLiquid.get -> bool
 ParquetClassLibrary.Parquets.IBlockModelEdit.IsLiquid.set -> void
 ParquetClassLibrary.Parquets.IBlockModelEdit.MaxToughness.get -> int
 ParquetClassLibrary.Parquets.IBlockModelEdit.MaxToughness.set -> void
-ParquetClassLibrary.Parquets.ICollectibleModel
-ParquetClassLibrary.Parquets.ICollectibleModel.CollectionEffect.get -> ParquetClassLibrary.Parquets.CollectingEffect
-ParquetClassLibrary.Parquets.ICollectibleModel.CollectionEffect.set -> void
-ParquetClassLibrary.Parquets.ICollectibleModel.EffectAmount.get -> int
-ParquetClassLibrary.Parquets.ICollectibleModel.EffectAmount.set -> void
+ParquetClassLibrary.Parquets.ICollectibleModelEdit
+ParquetClassLibrary.Parquets.ICollectibleModelEdit.CollectionEffect.get -> ParquetClassLibrary.Parquets.CollectingEffect
+ParquetClassLibrary.Parquets.ICollectibleModelEdit.CollectionEffect.set -> void
+ParquetClassLibrary.Parquets.ICollectibleModelEdit.EffectAmount.get -> int
+ParquetClassLibrary.Parquets.ICollectibleModelEdit.EffectAmount.set -> void
 ParquetClassLibrary.Parquets.IFloorModelEdit
 ParquetClassLibrary.Parquets.IFloorModelEdit.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.IFloorModelEdit.ModTool.set -> void
