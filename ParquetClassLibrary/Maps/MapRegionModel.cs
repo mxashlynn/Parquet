@@ -210,7 +210,8 @@ namespace ParquetClassLibrary.Maps
             // Returns the given BiomeRecipe's ModelID if they match, otherwise returns the ModelID for the default biome.
             static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeRecipe inBiome)
             {
-                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                // TODO The following FOR EACH seems to make no sense in that it does not examine the element it is iterating over!
+                foreach (ModelTag biomeElement in inBiome.ParquetCriteria)
                 {
                     // Prioritization of biome categories is hard-coded in the following way:
                     //    1 Room-based Biomes supercede
@@ -262,6 +263,7 @@ namespace ParquetClassLibrary.Maps
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
+                    // TODO This logic needs to be checked wrong.
                     if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
                     {
                         return true;
