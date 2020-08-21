@@ -7,7 +7,9 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet walking surface.
     /// </summary>
-    public sealed class FloorModel : ParquetModel
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public sealed class FloorModel : ParquetModel, IFloorModelEdit
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
@@ -21,11 +23,27 @@ namespace ParquetClassLibrary.Parquets
         #region Characteristics
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         [Index(7)]
-        public ModificationTool ModTool { get; }
+        public ModificationTool ModTool { get; private set; }
+
+        /// <summary>The tool used to dig out or fill in the floor.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModificationTool IFloorModelEdit.ModTool { get => ModTool; set => ModTool = value; }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         [Index(8)]
-        public string TrenchName { get; }
+        public string TrenchName { get; private set; }
+
+        /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        string IFloorModelEdit.TrenchName { get => TrenchName; set => TrenchName = value; }
         #endregion
 
         #region Initialization

@@ -8,14 +8,20 @@ namespace ParquetClassLibrary.Scripts
     /// <summary>
     /// Models a series of imperative, procedural commands.
     /// </summary>
-    public class ScriptModel : Model
+    public class ScriptModel : Model, IScriptModelEdit
     {
         #region Characteristics
-        /// <summary>
-        /// A series of imperative, procedural commands.
-        /// </summary>
+        /// <summary>A series of imperative, procedural commands.</summary>
         [Index(4)]
         public IReadOnlyList<ScriptNode> Nodes { get; }
+
+        /// <summary>A series of imperative, procedural commands.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
+        /// IScriptModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ScriptNode> IScriptModelEdit.Nodes => (IList<ScriptNode>)Nodes;
         #endregion
 
         #region Initialization

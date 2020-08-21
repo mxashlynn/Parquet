@@ -8,21 +8,44 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract class ParquetModel : Model
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public abstract class ParquetModel : Model, IParquetModelEdit
     {
         #region Characteristics
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
         [Index(4)]
-        public ModelID ItemID { get; }
+        public ModelID ItemID { get; private set; }
+
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
+        /// </summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IParquetModelEdit.ItemID { get => ItemID; set => ItemID = value; }
 
         /// <summary>
         /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [Index(5)]
-        public ModelTag AddsToBiome { get; }
+        public ModelTag AddsToBiome { get; private set; }
+
+        /// <summary>
+        /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelTag IParquetModelEdit.AddsToBiome { get => AddsToBiome; set => AddsToBiome = value; }
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -32,7 +55,18 @@ namespace ParquetClassLibrary.Parquets
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
         [Index(6)]
-        public ModelTag AddsToRoom { get; }
+        public ModelTag AddsToRoom { get; private set; }
+
+        /// <summary>
+        /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelTag IParquetModelEdit.AddsToRoom { get => AddsToRoom; set => AddsToRoom = value; }
         #endregion
 
         #region Initialization

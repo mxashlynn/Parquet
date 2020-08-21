@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
-    /// IRoomRecipeEdit is for use only by external types that require readwrite access to model properties.
+    /// IRoomRecipeEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IRoomRecipeEdit : IModelEdit
     {

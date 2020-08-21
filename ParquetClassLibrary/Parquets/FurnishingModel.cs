@@ -6,7 +6,9 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for large sandbox parquet items, such as furniture or plants.
     /// </summary>
-    public sealed class FurnishingModel : ParquetModel
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public sealed class FurnishingModel : ParquetModel, IFurnishingModelEdit
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>
@@ -17,23 +19,63 @@ namespace ParquetClassLibrary.Parquets
         #region Characteristics
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         [Index(7)]
-        public bool IsWalkable { get; }
+        public bool IsWalkable { get; private set; }
+
+        /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        bool IFurnishingModelEdit.IsWalkable { get => IsWalkable; set => IsWalkable = value; }
 
         /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
         [Index(8)]
-        public EntryType Entry { get; }
+        public EntryType Entry { get; private set; }
+
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        EntryType IFurnishingModelEdit.Entry { get => Entry; set => Entry = value; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         [Index(9)]
-        public bool IsEnclosing { get; }
+        public bool IsEnclosing { get; private set; }
+
+        /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        bool IFurnishingModelEdit.IsEnclosing { get => IsEnclosing; set => IsEnclosing = value; }
 
         /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
         [Index(10)]
-        public bool IsFlammable { get; }
+        public bool IsFlammable { get; private set; }
+
+        /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        bool IFurnishingModelEdit.IsFlammable { get => IsFlammable; set => IsFlammable = value; }
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
         [Index(11)]
-        public ModelID SwapID { get; }
+        public ModelID SwapID { get; private set; }
+
+        /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IFurnishingModelEdit.SwapID { get => SwapID; set => SwapID = value; }
         #endregion
 
         #region Initialization

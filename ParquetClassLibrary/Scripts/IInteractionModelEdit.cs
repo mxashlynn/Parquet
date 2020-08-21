@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Scripts
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="InteractionModel"/> should never themselves use <see cref="IInteractionModelEdit"/>.
-    /// IInteractionModelEdit is for use only by external types that require readwrite access to model properties.
+    /// IInteractionModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IInteractionModelEdit : IModelEdit
     {

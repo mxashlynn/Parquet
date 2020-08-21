@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Games
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="GameModel"/> should never themselves use <see cref="IGameModelEdit"/>.
-    /// IGameModelEdit is for use only by external types that require readwrite access to model properties.
+    /// IGameModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IGameModelEdit : IModelEdit
     {

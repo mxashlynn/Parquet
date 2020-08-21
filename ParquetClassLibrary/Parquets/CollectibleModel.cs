@@ -6,7 +6,9 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    public sealed class CollectibleModel : ParquetModel
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public sealed class CollectibleModel : ParquetModel, ICollectibleModel
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -17,14 +19,33 @@ namespace ParquetClassLibrary.Parquets
         #region Characteristics
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         [Index(7)]
-        public CollectingEffect CollectionEffect { get; }
+        public CollectingEffect CollectionEffect { get; private set; }
+
+        /// <summary>The effect generated when a character encounters this Collectible.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        CollectingEffect ICollectibleModel.CollectionEffect { get => CollectionEffect; set => CollectionEffect = value; }
 
         /// <summary>
         /// The scale in points of the effect.
         /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
         [Index(8)]
-        public int EffectAmount { get; }
+        public int EffectAmount { get; private set; }
+
+        /// <summary>
+        /// The scale in points of the effect.
+        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
+        /// </summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        int ICollectibleModel.EffectAmount { get => EffectAmount; set => EffectAmount = value; }
         #endregion
 
         #region Initialization

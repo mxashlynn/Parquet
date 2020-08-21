@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
-    /// IBlockModelEdit is for use only by external types that require readwrite access to model properties.
+    /// IBlockModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IBlockModelEdit : IParquetModelEdit
     {

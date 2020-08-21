@@ -9,7 +9,9 @@ namespace ParquetClassLibrary.Biomes
     /// <summary>
     /// Models the biome that a <see cref="MapRegionModel"/> embodies.
     /// </summary>
-    public sealed class BiomeModel : Model
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public sealed class BiomeModel : Model, IBiomeModelEdit
     {
         #region Class Defaults
         /// <summary>Represents the lack of a <see cref="BiomeModel"/> for <see cref="MapRegionModel"/>s that fail to qualify.</summary>
@@ -23,23 +25,66 @@ namespace ParquetClassLibrary.Biomes
         /// Must be non-negative.  Higher values indicate later Biomes.
         /// </summary>
         [Index(4)]
-        public int Tier { get; }
+        public int Tier { get; private set; }
+
+        /// <summary>
+        /// A rating indicating where in the progression this <see cref="BiomeModel"/> falls.
+        /// Must be non-negative.  Higher values indicate later Biomes.
+        /// </summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        int IBiomeModelEdit.Tier { get => Tier; set => Tier = value; }
 
         /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
         [Index(5)]
-        public bool IsRoomBased { get; }
+        public bool IsRoomBased { get; private set; }
+
+        /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        bool IBiomeModelEdit.IsRoomBased { get => IsRoomBased; set => IsRoomBased = value; }
 
         /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</summary>
         [Index(6)]
-        public bool IsLiquidBased { get; }
+        public bool IsLiquidBased { get; private set; }
+
+        /// <summary>Determines whether or not this <see cref="BiomeModel"/> is defined in terms of liquid parquets.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        bool IBiomeModelEdit.IsLiquidBased { get => IsLiquidBased; set => IsLiquidBased = value; }
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
         [Index(7)]
         public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
+        /// <summary>Describes the parquets that make up this <see cref="BiomeModel"/>.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IBiomeModelEdit.ParquetCriteria => (IList<ModelTag>)ParquetCriteria;
+
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
         [Index(8)]
         public IReadOnlyList<ModelTag> EntryRequirements { get; }
+
+        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this <see cref="BiomeModel"/>.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IBiomeModelEdit.EntryRequirements => (IList<ModelTag>)EntryRequirements;
         #endregion
 
         #region Initialization

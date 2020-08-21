@@ -5,7 +5,7 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="CritterModel"/> should never themselves use <see cref="ICritterModelEdit"/>.
-    /// ICritterModelEdit is for use only by external types that require readwrite access to model properties.
+    /// ICritterModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface ICritterModelEdit : IBeingModelEdit
     {

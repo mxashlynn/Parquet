@@ -53,6 +53,10 @@
   - [#ctor(inBounds,inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks)](#M-ParquetClassLibrary-Beings-BeingModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.BeingModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [Avoids](#P-ParquetClassLibrary-Beings-BeingModel-Avoids 'ParquetClassLibrary.Beings.BeingModel.Avoids')
   - [NativeBiome](#P-ParquetClassLibrary-Beings-BeingModel-NativeBiome 'ParquetClassLibrary.Beings.BeingModel.NativeBiome')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#Avoids](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Avoids 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#Avoids')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#Seeks](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Seeks 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#Seeks')
   - [PrimaryBehavior](#P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehavior 'ParquetClassLibrary.Beings.BeingModel.PrimaryBehavior')
   - [Seeks](#P-ParquetClassLibrary-Beings-BeingModel-Seeks 'ParquetClassLibrary.Beings.BeingModel.Seeks')
 - [BeingStatus](#T-ParquetClassLibrary-Beings-BeingStatus 'ParquetClassLibrary.Beings.BeingStatus')
@@ -92,6 +96,11 @@
   - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased')
   - [IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased')
   - [None](#P-ParquetClassLibrary-Biomes-BiomeModel-None 'ParquetClassLibrary.Biomes.BiomeModel.None')
+  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements')
+  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased')
+  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased')
+  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria')
+  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier')
   - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeModel.ParquetCriteria')
   - [Tier](#P-ParquetClassLibrary-Biomes-BiomeModel-Tier 'ParquetClassLibrary.Biomes.BiomeModel.Tier')
   - [GetAllTags()](#M-ParquetClassLibrary-Biomes-BiomeModel-GetAllTags 'ParquetClassLibrary.Biomes.BiomeModel.GetAllTags')
@@ -106,9 +115,22 @@
   - [IsFlammable](#P-ParquetClassLibrary-Parquets-BlockModel-IsFlammable 'ParquetClassLibrary.Parquets.BlockModel.IsFlammable')
   - [IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.IsLiquid')
   - [MaxToughness](#P-ParquetClassLibrary-Parquets-BlockModel-MaxToughness 'ParquetClassLibrary.Parquets.BlockModel.MaxToughness')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#CollectibleID](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#CollectibleID 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#CollectibleID')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#GatherEffect](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#GatherEffect 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#GatherEffect')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#GatherTool](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#GatherTool 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#GatherTool')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#IsFlammable](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#IsFlammable 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#IsFlammable')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#IsLiquid')
+  - [ParquetClassLibrary#Parquets#IBlockModelEdit#MaxToughness](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#MaxToughness 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#Parquets#IBlockModelEdit#MaxToughness')
 - [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')
   - [#ctor(inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks,inPronouns,inStoryCharacterID,inStartingQuests,inStartingDialogue,inStartingInventory)](#M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CharacterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-FamilyName 'ParquetClassLibrary.Beings.CharacterModel.FamilyName')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID')
   - [PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-PersonalName 'ParquetClassLibrary.Beings.CharacterModel.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-Pronouns 'ParquetClassLibrary.Beings.CharacterModel.Pronouns')
   - [StartingDialogue](#P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogue 'ParquetClassLibrary.Beings.CharacterModel.StartingDialogue')
@@ -152,6 +174,8 @@
   - [Bounds](#P-ParquetClassLibrary-Parquets-CollectibleModel-Bounds 'ParquetClassLibrary.Parquets.CollectibleModel.Bounds')
   - [CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.CollectionEffect')
   - [EffectAmount](#P-ParquetClassLibrary-Parquets-CollectibleModel-EffectAmount 'ParquetClassLibrary.Parquets.CollectibleModel.EffectAmount')
+  - [ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect')
+  - [ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount')
 - [CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect')
   - [BiomeTime](#F-ParquetClassLibrary-Parquets-CollectingEffect-BiomeTime 'ParquetClassLibrary.Parquets.CollectingEffect.BiomeTime')
   - [Item](#F-ParquetClassLibrary-Parquets-CollectingEffect-Item 'ParquetClassLibrary.Parquets.CollectingEffect.Item')
@@ -184,6 +208,9 @@
   - [Ingredients](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Ingredients 'ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients')
   - [NotCraftable](#P-ParquetClassLibrary-Crafts-CraftingRecipe-NotCraftable 'ParquetClassLibrary.Crafts.CraftingRecipe.NotCraftable')
   - [PanelPattern](#P-ParquetClassLibrary-Crafts-CraftingRecipe-PanelPattern 'ParquetClassLibrary.Crafts.CraftingRecipe.PanelPattern')
+  - [ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Ingredients](#P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Ingredients 'ParquetClassLibrary.Crafts.CraftingRecipe.ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Ingredients')
+  - [ParquetClassLibrary#Crafts#ICraftingRecipeEdit#PanelPattern](#P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#PanelPattern 'ParquetClassLibrary.Crafts.CraftingRecipe.ParquetClassLibrary#Crafts#ICraftingRecipeEdit#PanelPattern')
+  - [ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Products](#P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Products 'ParquetClassLibrary.Crafts.CraftingRecipe.ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Products')
   - [Products](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Products 'ParquetClassLibrary.Crafts.CraftingRecipe.Products')
 - [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel')
   - [#ctor(inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks)](#M-ParquetClassLibrary-Beings-CritterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CritterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
@@ -206,6 +233,8 @@
   - [defaultTrenchName](#F-ParquetClassLibrary-Parquets-FloorModel-defaultTrenchName 'ParquetClassLibrary.Parquets.FloorModel.defaultTrenchName')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FloorModel-Bounds 'ParquetClassLibrary.Parquets.FloorModel.Bounds')
   - [ModTool](#P-ParquetClassLibrary-Parquets-FloorModel-ModTool 'ParquetClassLibrary.Parquets.FloorModel.ModTool')
+  - [ParquetClassLibrary#Parquets#IFloorModelEdit#ModTool](#P-ParquetClassLibrary-Parquets-FloorModel-ParquetClassLibrary#Parquets#IFloorModelEdit#ModTool 'ParquetClassLibrary.Parquets.FloorModel.ParquetClassLibrary#Parquets#IFloorModelEdit#ModTool')
+  - [ParquetClassLibrary#Parquets#IFloorModelEdit#TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-ParquetClassLibrary#Parquets#IFloorModelEdit#TrenchName 'ParquetClassLibrary.Parquets.FloorModel.ParquetClassLibrary#Parquets#IFloorModelEdit#TrenchName')
   - [TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-TrenchName 'ParquetClassLibrary.Parquets.FloorModel.TrenchName')
 - [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
@@ -214,6 +243,11 @@
   - [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing')
   - [IsFlammable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsFlammable 'ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable')
   - [IsWalkable](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsWalkable 'ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable')
+  - [ParquetClassLibrary#Parquets#IFurnishingModelEdit#Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#Entry 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#Parquets#IFurnishingModelEdit#Entry')
+  - [ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsEnclosing')
+  - [ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsFlammable](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsFlammable 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsFlammable')
+  - [ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsWalkable](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsWalkable 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsWalkable')
+  - [ParquetClassLibrary#Parquets#IFurnishingModelEdit#SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#Parquets#IFurnishingModelEdit#SwapID')
   - [SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.SwapID')
 - [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel')
   - [#ctor(inID,inName,inDescription,inComment,inIsEpisode,inEpisodeTitle,inEpisodeNumber,inPlayerCharacterID,inFirstScriptID)](#M-ParquetClassLibrary-Games-GameModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Boolean,System-String,System-Int32,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Games.GameModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Boolean,System.String,System.Int32,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
@@ -221,6 +255,11 @@
   - [EpisodeTitle](#P-ParquetClassLibrary-Games-GameModel-EpisodeTitle 'ParquetClassLibrary.Games.GameModel.EpisodeTitle')
   - [FirstScriptID](#P-ParquetClassLibrary-Games-GameModel-FirstScriptID 'ParquetClassLibrary.Games.GameModel.FirstScriptID')
   - [IsEpisode](#P-ParquetClassLibrary-Games-GameModel-IsEpisode 'ParquetClassLibrary.Games.GameModel.IsEpisode')
+  - [ParquetClassLibrary#Games#IGameModelEdit#EpisodeNumber](#P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#EpisodeNumber 'ParquetClassLibrary.Games.GameModel.ParquetClassLibrary#Games#IGameModelEdit#EpisodeNumber')
+  - [ParquetClassLibrary#Games#IGameModelEdit#EpisodeTitle](#P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#EpisodeTitle 'ParquetClassLibrary.Games.GameModel.ParquetClassLibrary#Games#IGameModelEdit#EpisodeTitle')
+  - [ParquetClassLibrary#Games#IGameModelEdit#FirstScriptID](#P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#FirstScriptID 'ParquetClassLibrary.Games.GameModel.ParquetClassLibrary#Games#IGameModelEdit#FirstScriptID')
+  - [ParquetClassLibrary#Games#IGameModelEdit#IsEpisode](#P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#IsEpisode 'ParquetClassLibrary.Games.GameModel.ParquetClassLibrary#Games#IGameModelEdit#IsEpisode')
+  - [ParquetClassLibrary#Games#IGameModelEdit#PlayerCharacterID](#P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#PlayerCharacterID 'ParquetClassLibrary.Games.GameModel.ParquetClassLibrary#Games#IGameModelEdit#PlayerCharacterID')
   - [PlayerCharacterID](#P-ParquetClassLibrary-Games-GameModel-PlayerCharacterID 'ParquetClassLibrary.Games.GameModel.PlayerCharacterID')
   - [ToString()](#M-ParquetClassLibrary-Games-GameModel-ToString 'ParquetClassLibrary.Games.GameModel.ToString')
 - [GatheringEffect](#T-ParquetClassLibrary-Parquets-GatheringEffect 'ParquetClassLibrary.Parquets.GatheringEffect')
@@ -348,6 +387,9 @@
 - [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')
   - [#ctor(inID,inName,inDescription,inComment,inPrerequisites,inSteps,inOutcomes)](#M-ParquetClassLibrary-Scripts-InteractionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Scripts.InteractionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [Outcomes](#P-ParquetClassLibrary-Scripts-InteractionModel-Outcomes 'ParquetClassLibrary.Scripts.InteractionModel.Outcomes')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps')
   - [Prerequisites](#P-ParquetClassLibrary-Scripts-InteractionModel-Prerequisites 'ParquetClassLibrary.Scripts.InteractionModel.Prerequisites')
   - [Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-Steps 'ParquetClassLibrary.Scripts.InteractionModel.Steps')
 - [InteractionStatus](#T-ParquetClassLibrary-Scripts-InteractionStatus 'ParquetClassLibrary.Scripts.InteractionStatus')
@@ -393,6 +435,14 @@
   - [EffectWhenUsed](#P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsed 'ParquetClassLibrary.Items.ItemModel.EffectWhenUsed')
   - [EffectWhileHeld](#P-ParquetClassLibrary-Items-ItemModel-EffectWhileHeld 'ParquetClassLibrary.Items.ItemModel.EffectWhileHeld')
   - [ItemTags](#P-ParquetClassLibrary-Items-ItemModel-ItemTags 'ParquetClassLibrary.Items.ItemModel.ItemTags')
+  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed')
+  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld')
+  - [ParquetClassLibrary#Items#IItemModelEdit#ItemTags](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ItemTags 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#ItemTags')
+  - [ParquetClassLibrary#Items#IItemModelEdit#ParquetID](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ParquetID 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#ParquetID')
+  - [ParquetClassLibrary#Items#IItemModelEdit#Price](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Price 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#Price')
+  - [ParquetClassLibrary#Items#IItemModelEdit#Rarity](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Rarity 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#Rarity')
+  - [ParquetClassLibrary#Items#IItemModelEdit#StackMax](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#StackMax 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#StackMax')
+  - [ParquetClassLibrary#Items#IItemModelEdit#Subtype](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Subtype 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#Subtype')
   - [ParquetID](#P-ParquetClassLibrary-Items-ItemModel-ParquetID 'ParquetClassLibrary.Items.ItemModel.ParquetID')
   - [Price](#P-ParquetClassLibrary-Items-ItemModel-Price 'ParquetClassLibrary.Items.ItemModel.Price')
   - [Rarity](#P-ParquetClassLibrary-Items-ItemModel-Rarity 'ParquetClassLibrary.Items.ItemModel.Rarity')
@@ -645,6 +695,9 @@
   - [AddsToBiome](#P-ParquetClassLibrary-Parquets-ParquetModel-AddsToBiome 'ParquetClassLibrary.Parquets.ParquetModel.AddsToBiome')
   - [AddsToRoom](#P-ParquetClassLibrary-Parquets-ParquetModel-AddsToRoom 'ParquetClassLibrary.Parquets.ParquetModel.AddsToRoom')
   - [ItemID](#P-ParquetClassLibrary-Parquets-ParquetModel-ItemID 'ParquetClassLibrary.Parquets.ParquetModel.ItemID')
+  - [ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToBiome](#P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToBiome 'ParquetClassLibrary.Parquets.ParquetModel.ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToBiome')
+  - [ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToRoom](#P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToRoom 'ParquetClassLibrary.Parquets.ParquetModel.ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToRoom')
+  - [ParquetClassLibrary#Parquets#IParquetModelEdit#ItemID](#P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#ItemID 'ParquetClassLibrary.Parquets.ParquetModel.ParquetClassLibrary#Parquets#IParquetModelEdit#ItemID')
   - [GetAllTags()](#M-ParquetClassLibrary-Parquets-ParquetModel-GetAllTags 'ParquetClassLibrary.Parquets.ParquetModel.GetAllTags')
 - [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStack-#ctor 'ParquetClassLibrary.Parquets.ParquetStack.#ctor')
@@ -871,6 +924,10 @@
   - [OptionallyRequiredFurnishings](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredFurnishings 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredFurnishings')
   - [OptionallyRequiredPerimeterBlocks](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredPerimeterBlocks 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredPerimeterBlocks')
   - [OptionallyRequiredWalkableFloors](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredWalkableFloors 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors')
+  - [ParquetClassLibrary#Rooms#IRoomRecipeEdit#MinimumWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#MinimumWalkableSpaces 'ParquetClassLibrary.Rooms.RoomRecipe.ParquetClassLibrary#Rooms#IRoomRecipeEdit#MinimumWalkableSpaces')
+  - [ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredFurnishings](#P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredFurnishings 'ParquetClassLibrary.Rooms.RoomRecipe.ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredFurnishings')
+  - [ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredPerimeterBlocks](#P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredPerimeterBlocks 'ParquetClassLibrary.Rooms.RoomRecipe.ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredPerimeterBlocks')
+  - [ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredWalkableFloors](#P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredWalkableFloors 'ParquetClassLibrary.Rooms.RoomRecipe.ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredWalkableFloors')
   - [Priority](#P-ParquetClassLibrary-Rooms-RoomRecipe-Priority 'ParquetClassLibrary.Rooms.RoomRecipe.Priority')
   - [Matches(inRoom)](#M-ParquetClassLibrary-Rooms-RoomRecipe-Matches-ParquetClassLibrary-Rooms-Room- 'ParquetClassLibrary.Rooms.RoomRecipe.Matches(ParquetClassLibrary.Rooms.Room)')
 - [RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState')
@@ -880,6 +937,7 @@
 - [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel')
   - [#ctor(inID,inName,inDescription,inComment,inNodes)](#M-ParquetClassLibrary-Scripts-ScriptModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptNode}- 'ParquetClassLibrary.Scripts.ScriptModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptNode})')
   - [Nodes](#P-ParquetClassLibrary-Scripts-ScriptModel-Nodes 'ParquetClassLibrary.Scripts.ScriptModel.Nodes')
+  - [ParquetClassLibrary#Scripts#IScriptModelEdit#Nodes](#P-ParquetClassLibrary-Scripts-ScriptModel-ParquetClassLibrary#Scripts#IScriptModelEdit#Nodes 'ParquetClassLibrary.Scripts.ScriptModel.ParquetClassLibrary#Scripts#IScriptModelEdit#Nodes')
   - [GetActions()](#M-ParquetClassLibrary-Scripts-ScriptModel-GetActions 'ParquetClassLibrary.Scripts.ScriptModel.GetActions')
 - [ScriptNode](#T-ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode')
   - [None](#F-ParquetClassLibrary-Scripts-ScriptNode-None 'ParquetClassLibrary.Scripts.ScriptNode.None')
@@ -1532,6 +1590,54 @@ Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'Pa
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this character is at home.
 
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Avoids'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#Avoids `property`
+
+##### Summary
+
+Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') avoids, if any.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this character is at home.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') governing the way this being acts.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Seeks'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#Seeks `property`
+
+##### Summary
+
+Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') seeks out, if any.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehavior'></a>
 ### PrimaryBehavior `property`
 
@@ -1890,6 +1996,67 @@ Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeM
 
 Represents the lack of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s that fail to qualify.
 
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements'></a>
+### ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements `property`
+
+##### Summary
+
+Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased'></a>
+### ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased `property`
+
+##### Summary
+
+Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased'></a>
+### ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased `property`
+
+##### Summary
+
+Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria'></a>
+### ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria `property`
+
+##### Summary
+
+Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier'></a>
+### ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier `property`
+
+##### Summary
+
+A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls.
+Must be non-negative.  Higher values indicate later Biomes.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
 <a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria'></a>
 ### ParquetCriteria `property`
 
@@ -2019,6 +2186,78 @@ Whether or not the block is a liquid.
 
 The block's native toughness.
 
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#CollectibleID'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#CollectibleID `property`
+
+##### Summary
+
+The Collectible spawned when a character gathers this Block.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#GatherEffect'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#GatherEffect `property`
+
+##### Summary
+
+The effect generated when a character gathers this Block.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#GatherTool'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#GatherTool `property`
+
+##### Summary
+
+The tool used to remove the block.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#IsFlammable'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#IsFlammable `property`
+
+##### Summary
+
+Whether or not the block is flammable.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#IsLiquid'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#IsLiquid `property`
+
+##### Summary
+
+Whether or not the block is a liquid.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#Parquets#IBlockModelEdit#MaxToughness'></a>
+### ParquetClassLibrary#Parquets#IBlockModelEdit#MaxToughness `property`
+
+##### Summary
+
+The block's native toughness.
+
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for external types that require read/write access.
+
 <a name='T-ParquetClassLibrary-Beings-CharacterModel'></a>
 ## CharacterModel `type`
 
@@ -2061,6 +2300,91 @@ Initializes a new instance of the [CharacterModel](#T-ParquetClassLibrary-Beings
 ##### Summary
 
 Player-facing family name.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName `property`
+
+##### Summary
+
+Player-facing family name.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName `property`
+
+##### Summary
+
+Player-facing personal name.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns `property`
+
+##### Summary
+
+A key for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup') the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') uses,
+stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'ParquetClassLibrary.Beings.PronounGroup.Objective')/[Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue `property`
+
+##### Summary
+
+Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory `property`
+
+##### Summary
+
+The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') begins with.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests `property`
+
+##### Summary
+
+The [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')s that this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') either offers or has undertaken.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID `property`
+
+##### Summary
+
+The story character that this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') represents.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
 
 <a name='P-ParquetClassLibrary-Beings-CharacterModel-PersonalName'></a>
 ### PersonalName `property`
@@ -2529,6 +2853,31 @@ The effect generated when a character encounters this Collectible.
 The scale in points of the effect.
 For example, how much to alter a stat if the [CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect') is set to alter a stat.
 
+<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect'></a>
+### ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect `property`
+
+##### Summary
+
+The effect generated when a character encounters this Collectible.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount'></a>
+### ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount `property`
+
+##### Summary
+
+The scale in points of the effect.
+For example, how much to alter a stat if the [CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect') is set to alter a stat.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='T-ParquetClassLibrary-Parquets-CollectingEffect'></a>
 ## CollectingEffect `type`
 
@@ -2808,6 +3157,42 @@ Represents the lack of a [CraftingRecipe](#T-ParquetClassLibrary-Crafts-Crafting
 
 The arrangment of panels encompassed by this recipe.
 
+<a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Ingredients'></a>
+### ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Ingredients `property`
+
+##### Summary
+
+All materials and their quantities needed to follow this recipe once.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#PanelPattern'></a>
+### ParquetClassLibrary#Crafts#ICraftingRecipeEdit#PanelPattern `property`
+
+##### Summary
+
+The arrangment of panels encompassed by this recipe.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Products'></a>
+### ParquetClassLibrary#Crafts#ICraftingRecipeEdit#Products `property`
+
+##### Summary
+
+The types and amounts of [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s created by following this recipe.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
 <a name='P-ParquetClassLibrary-Crafts-CraftingRecipe-Products'></a>
 ### Products `property`
 
@@ -3006,6 +3391,30 @@ The set of values that are allowed for Floor IDs.
 
 The tool used to dig out or fill in the floor.
 
+<a name='P-ParquetClassLibrary-Parquets-FloorModel-ParquetClassLibrary#Parquets#IFloorModelEdit#ModTool'></a>
+### ParquetClassLibrary#Parquets#IFloorModelEdit#ModTool `property`
+
+##### Summary
+
+The tool used to dig out or fill in the floor.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-FloorModel-ParquetClassLibrary#Parquets#IFloorModelEdit#TrenchName'></a>
+### ParquetClassLibrary#Parquets#IFloorModelEdit#TrenchName `property`
+
+##### Summary
+
+Player-facing name of the parquet, used when it has been dug out.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Parquets-FloorModel-TrenchName'></a>
 ### TrenchName `property`
 
@@ -3083,6 +3492,66 @@ Whether or not the [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingM
 
 Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on.
 
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#Entry'></a>
+### ParquetClassLibrary#Parquets#IFurnishingModelEdit#Entry `property`
+
+##### Summary
+
+Indicates if and how this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') or [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsEnclosing'></a>
+### ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsEnclosing `property`
+
+##### Summary
+
+Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as part of a perimeter of a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsFlammable'></a>
+### ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsFlammable `property`
+
+##### Summary
+
+Whether or not the [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') is flammable.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsWalkable'></a>
+### ParquetClassLibrary#Parquets#IFurnishingModelEdit#IsWalkable `property`
+
+##### Summary
+
+Indicates whether this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#Parquets#IFurnishingModelEdit#SwapID'></a>
+### ParquetClassLibrary#Parquets#IFurnishingModelEdit#SwapID `property`
+
+##### Summary
+
+The [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') to swap with this Furnishing on an open/close action.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Parquets-FurnishingModel-SwapID'></a>
 ### SwapID `property`
 
@@ -3135,7 +3604,7 @@ Number of this episode in its sequence, if any.
 
 ##### Summary
 
-Title of this episode, if any.
+Subtitle, if any.  This will be used as the title of the episode if [IsEpisode](#P-ParquetClassLibrary-Games-GameModel-IsEpisode 'ParquetClassLibrary.Games.GameModel.IsEpisode') is `true`.
 
 <a name='P-ParquetClassLibrary-Games-GameModel-FirstScriptID'></a>
 ### FirstScriptID `property`
@@ -3149,7 +3618,67 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-If `true` this game is part of a longer sequence of games.
+If `true` this game is part of a sequence of games.
+
+<a name='P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#EpisodeNumber'></a>
+### ParquetClassLibrary#Games#IGameModelEdit#EpisodeNumber `property`
+
+##### Summary
+
+Number of this episode in its sequence, if any.
+
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#EpisodeTitle'></a>
+### ParquetClassLibrary#Games#IGameModelEdit#EpisodeTitle `property`
+
+##### Summary
+
+Subtitle, if any.  This will be used as the title of the episode if [IsEpisode](#P-ParquetClassLibrary-Games-GameModel-IsEpisode 'ParquetClassLibrary.Games.GameModel.IsEpisode') is `true`.
+
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#FirstScriptID'></a>
+### ParquetClassLibrary#Games#IGameModelEdit#FirstScriptID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') to run when play begins.
+
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#IsEpisode'></a>
+### ParquetClassLibrary#Games#IGameModelEdit#IsEpisode `property`
+
+##### Summary
+
+If `true` this game is part of a sequence of games.
+
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Games-GameModel-ParquetClassLibrary#Games#IGameModelEdit#PlayerCharacterID'></a>
+### ParquetClassLibrary#Games#IGameModelEdit#PlayerCharacterID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') that the player controls at the outset.
+
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for external types that require read/write access.
 
 <a name='P-ParquetClassLibrary-Games-GameModel-PlayerCharacterID'></a>
 ### PlayerCharacterID `property`
@@ -3415,6 +3944,11 @@ ParquetClassLibrary.Parquets
 
 Facilitates editing of a [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') should never themselves use [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit').
+IBlockModelEdit is for use only by external types that require read/write access to model properties.
+
 <a name='P-ParquetClassLibrary-Parquets-IBlockModelEdit-CollectibleID'></a>
 ### CollectibleID `property`
 
@@ -3467,6 +4001,11 @@ ParquetClassLibrary.Beings
 ##### Summary
 
 Facilitates editing of a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') should never themselves use [ICharacterModelEdit](#T-ParquetClassLibrary-Beings-ICharacterModelEdit 'ParquetClassLibrary.Beings.ICharacterModelEdit').
+ICharacterModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-FamilyName'></a>
 ### FamilyName `property`
@@ -3545,6 +4084,11 @@ ParquetClassLibrary.Parquets
 
 Facilitates editing of a [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') should never themselves use [ICollectibleModel](#T-ParquetClassLibrary-Parquets-ICollectibleModel 'ParquetClassLibrary.Parquets.ICollectibleModel').
+ICollectibleModel is for use only by external types that require read/write access to model properties.
+
 <a name='P-ParquetClassLibrary-Parquets-ICollectibleModel-CollectionEffect'></a>
 ### CollectionEffect `property`
 
@@ -3570,6 +4114,11 @@ ParquetClassLibrary.Crafts
 ##### Summary
 
 Facilitates editing of a [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe') should never themselves use [ICraftingRecipeEdit](#T-ParquetClassLibrary-Crafts-ICraftingRecipeEdit 'ParquetClassLibrary.Crafts.ICraftingRecipeEdit').
+ICraftingRecipeEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Crafts-ICraftingRecipeEdit-Ingredients'></a>
 ### Ingredients `property`
@@ -3603,6 +4152,11 @@ ParquetClassLibrary.Beings
 
 Facilitates editing of a [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') should never themselves use [ICritterModelEdit](#T-ParquetClassLibrary-Beings-ICritterModelEdit 'ParquetClassLibrary.Beings.ICritterModelEdit').
+ICritterModelEdit is for use only by external types that require read/write access to model properties.
+
 <a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection'></a>
 ## IDByDirection `type`
 
@@ -3624,6 +4178,11 @@ ParquetClassLibrary.Parquets
 ##### Summary
 
 Facilitates editing of a [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel') should never themselves use [IFloorModelEdit](#T-ParquetClassLibrary-Parquets-IFloorModelEdit 'ParquetClassLibrary.Parquets.IFloorModelEdit').
+IFloorModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Parquets-IFloorModelEdit-ModTool'></a>
 ### ModTool `property`
@@ -3649,6 +4208,11 @@ ParquetClassLibrary.Parquets
 ##### Summary
 
 Facilitates editing of a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') should never themselves use [IFurnishingModelEdit](#T-ParquetClassLibrary-Parquets-IFurnishingModelEdit 'ParquetClassLibrary.Parquets.IFurnishingModelEdit').
+IFurnishingModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Parquets-IFurnishingModelEdit-Entry'></a>
 ### Entry `property`
@@ -3696,6 +4260,11 @@ ParquetClassLibrary.Games
 
 Facilitates editing of a [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') should never themselves use [IGameModelEdit](#T-ParquetClassLibrary-Games-IGameModelEdit 'ParquetClassLibrary.Games.IGameModelEdit').
+IGameModelEdit is for use only by external types that require read/write access to model properties.
+
 <a name='P-ParquetClassLibrary-Games-IGameModelEdit-EpisodeNumber'></a>
 ### EpisodeNumber `property`
 
@@ -3708,7 +4277,7 @@ Number of this episode in its sequence, if any.
 
 ##### Summary
 
-Title of this episode, if any.
+Subtitle, if any.  This will be used as the title of the episode if [IsEpisode](#P-ParquetClassLibrary-Games-IGameModelEdit-IsEpisode 'ParquetClassLibrary.Games.IGameModelEdit.IsEpisode') is `true`.
 
 <a name='P-ParquetClassLibrary-Games-IGameModelEdit-FirstScriptID'></a>
 ### FirstScriptID `property`
@@ -3782,7 +4351,12 @@ ParquetClassLibrary.Scripts
 
 ##### Summary
 
-Facilitates editing of a [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') from design tools while maintaining a read-only face for use during play.
+Facilitates editing of a [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') should never themselves use [IInteractionModelEdit](#T-ParquetClassLibrary-Scripts-IInteractionModelEdit 'ParquetClassLibrary.Scripts.IInteractionModelEdit').
+IInteractionModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Outcomes'></a>
 ### Outcomes `property`
@@ -3815,6 +4389,11 @@ ParquetClassLibrary.Items
 ##### Summary
 
 Facilitates editing of a [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') should never themselves use [IItemModelEdit](#T-ParquetClassLibrary-Items-IItemModelEdit 'ParquetClassLibrary.Items.IItemModelEdit').
+IItemModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhenUsed'></a>
 ### EffectWhenUsed `property`
@@ -4001,6 +4580,11 @@ ParquetClassLibrary
 
 Facilitates editing of a [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for use only by external types that require read/write access to model properties.
+
 <a name='P-ParquetClassLibrary-IModelEdit-Comment'></a>
 ### Comment `property`
 
@@ -4036,6 +4620,11 @@ ParquetClassLibrary.Parquets
 ##### Summary
 
 Facilitates editing of a [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel') should never themselves use [IParquetModelEdit](#T-ParquetClassLibrary-Parquets-IParquetModelEdit 'ParquetClassLibrary.Parquets.IParquetModelEdit').
+IParquetModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Parquets-IParquetModelEdit-AddsToBiome'></a>
 ### AddsToBiome `property`
@@ -4171,6 +4760,11 @@ ParquetClassLibrary.Rooms
 
 Facilitates editing of a [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') from design tools while maintaining a read-only face for use during play.
 
+##### Remarks
+
+By design, children of [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') should never themselves use [IRoomRecipeEdit](#T-ParquetClassLibrary-Rooms-IRoomRecipeEdit 'ParquetClassLibrary.Rooms.IRoomRecipeEdit').
+IRoomRecipeEdit is for use only by external types that require read/write access to model properties.
+
 <a name='P-ParquetClassLibrary-Rooms-IRoomRecipeEdit-MinimumWalkableSpaces'></a>
 ### MinimumWalkableSpaces `property`
 
@@ -4209,6 +4803,11 @@ ParquetClassLibrary.Scripts
 ##### Summary
 
 Facilitates editing of a [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') from design tools while maintaining a read-only face for use during play.
+
+##### Remarks
+
+By design, children of [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') should never themselves use [IScriptModelEdit](#T-ParquetClassLibrary-Scripts-IScriptModelEdit 'ParquetClassLibrary.Scripts.IScriptModelEdit').
+IScriptModelEdit is for use only by external types that require read/write access to model properties.
 
 <a name='P-ParquetClassLibrary-Scripts-IScriptModelEdit-Nodes'></a>
 ### Nodes `property`
@@ -4284,6 +4883,42 @@ Initializes a new instance of the [InteractionModel](#T-ParquetClassLibrary-Scri
 ##### Summary
 
 Describes the results of finishing this interaction.
+
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes `property`
+
+##### Summary
+
+Describes the results of finishing this interaction.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites `property`
+
+##### Summary
+
+Describes the criteria for begining this interaction.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps `property`
+
+##### Summary
+
+Everything this interaction entails.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
 
 <a name='P-ParquetClassLibrary-Scripts-InteractionModel-Prerequisites'></a>
 ### Prerequisites `property`
@@ -4854,6 +5489,104 @@ keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMo
 ##### Summary
 
 Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') generating the in-game effect caused by
+using (consuming) the item.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') generating the in-game effect caused by
+keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')'s [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ItemTags'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#ItemTags `property`
+
+##### Summary
+
+Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ParquetID'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#ParquetID `property`
+
+##### Summary
+
+The parquet that corresponds to this item, if any.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Price'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#Price `property`
+
+##### Summary
+
+In-game value of the item.  Must be non-negative.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Rarity'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#Rarity `property`
+
+##### Summary
+
+How relatively rare this item is.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#StackMax'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#StackMax `property`
+
+##### Summary
+
+How many of the item may share a single inventory slot.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
+
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Subtype'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#Subtype `property`
+
+##### Summary
+
+The type of item this is.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require readwrite access.
 
 <a name='P-ParquetClassLibrary-Items-ItemModel-ParquetID'></a>
 ### ParquetID `property`
@@ -6583,6 +7316,11 @@ Player-facing name.
 
 Optional comment.
 
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Description'></a>
 ### ParquetClassLibrary#IModelEdit#Description `property`
 
@@ -6590,12 +7328,22 @@ Optional comment.
 
 Player-facing description.
 
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Name'></a>
 ### ParquetClassLibrary#IModelEdit#Name `property`
 
 ##### Summary
 
 Player-facing name.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
 
 <a name='M-ParquetClassLibrary-Model-Equals-ParquetClassLibrary-Model-'></a>
 ### Equals(inModel) `method`
@@ -8091,6 +8839,44 @@ Allows the creation of classes of constructs, for example "wooden", "golden", "r
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') awarded to the player when a character gathers or collects this parquet.
+
+<a name='P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToBiome'></a>
+### ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToBiome `property`
+
+##### Summary
+
+Describes the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')(s) that this parquet helps form.
+Guaranteed to never be `null`.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToRoom'></a>
+### ParquetClassLibrary#Parquets#IParquetModelEdit#AddsToRoom `property`
+
+##### Summary
+
+A property of the parquet that can, for example, be used by [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')s.
+Guaranteed to never be `null`.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#Parquets#IParquetModelEdit#ItemID'></a>
+### ParquetClassLibrary#Parquets#IParquetModelEdit#ItemID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') awarded to the player when a character gathers or collects this parquet.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+IModelEdit is for external types that require read/write access.
 
 <a name='M-ParquetClassLibrary-Parquets-ParquetModel-GetAllTags'></a>
 ### GetAllTags() `method`
@@ -10858,6 +11644,54 @@ An optional list of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'Par
 
 An optional list of [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel') categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires.
 
+<a name='P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#MinimumWalkableSpaces'></a>
+### ParquetClassLibrary#Rooms#IRoomRecipeEdit#MinimumWalkableSpaces `property`
+
+##### Summary
+
+Minimum number of open spaces needed for this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') to register.
+
+##### Remarks
+
+By design, children of [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') should never themselves use [IRoomRecipeEdit](#T-ParquetClassLibrary-Rooms-IRoomRecipeEdit 'ParquetClassLibrary.Rooms.IRoomRecipeEdit').
+IRoomRecipeEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredFurnishings'></a>
+### ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredFurnishings `property`
+
+##### Summary
+
+A list of [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires.
+
+##### Remarks
+
+By design, children of [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') should never themselves use [IRoomRecipeEdit](#T-ParquetClassLibrary-Rooms-IRoomRecipeEdit 'ParquetClassLibrary.Rooms.IRoomRecipeEdit').
+IRoomRecipeEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredPerimeterBlocks'></a>
+### ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredPerimeterBlocks `property`
+
+##### Summary
+
+An optional list of [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires as walls.
+
+##### Remarks
+
+By design, children of [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') should never themselves use [IRoomRecipeEdit](#T-ParquetClassLibrary-Rooms-IRoomRecipeEdit 'ParquetClassLibrary.Rooms.IRoomRecipeEdit').
+IRoomRecipeEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Rooms-RoomRecipe-ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredWalkableFloors'></a>
+### ParquetClassLibrary#Rooms#IRoomRecipeEdit#OptionallyRequiredWalkableFloors `property`
+
+##### Summary
+
+An optional list of [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel') categories this [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') requires.
+
+##### Remarks
+
+By design, children of [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') should never themselves use [IRoomRecipeEdit](#T-ParquetClassLibrary-Rooms-IRoomRecipeEdit 'ParquetClassLibrary.Rooms.IRoomRecipeEdit').
+IRoomRecipeEdit is for external types that require read/write access.
+
 <a name='P-ParquetClassLibrary-Rooms-RoomRecipe-Priority'></a>
 ### Priority `property`
 
@@ -10951,6 +11785,18 @@ Initializes a new instance of the [ScriptModel](#T-ParquetClassLibrary-Scripts-S
 ##### Summary
 
 A series of imperative, procedural commands.
+
+<a name='P-ParquetClassLibrary-Scripts-ScriptModel-ParquetClassLibrary#Scripts#IScriptModelEdit#Nodes'></a>
+### ParquetClassLibrary#Scripts#IScriptModelEdit#Nodes `property`
+
+##### Summary
+
+A series of imperative, procedural commands.
+
+##### Remarks
+
+By design, children of [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') should never themselves use [IScriptModelEdit](#T-ParquetClassLibrary-Scripts-IScriptModelEdit 'ParquetClassLibrary.Scripts.IScriptModelEdit').
+IScriptModelEdit is for external types that require read/write access.
 
 <a name='M-ParquetClassLibrary-Scripts-ScriptModel-GetActions'></a>
 ### GetActions() `method`

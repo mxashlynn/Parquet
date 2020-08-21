@@ -8,6 +8,7 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
+    // TODO Revisit this implementation.  Right now, some implementors rely on this being read/write while others assume it is read-only.
     public interface IGrid<TElement> : IReadOnlyCollection<TElement>
         where TElement : ITypeConverter
     {

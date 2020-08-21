@@ -8,24 +8,58 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    public abstract class BeingModel : Model
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public abstract class BeingModel : Model, IBeingModelEdit
     {
         #region Characteristics
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
         [Index(4)]
-        public ModelID NativeBiome { get; }
+        public ModelID NativeBiome { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IBeingModelEdit.NativeBiome { get => NativeBiome; set => NativeBiome = value; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         [Index(5)]
-        public ModelID PrimaryBehavior { get; }
+        public ModelID PrimaryBehavior { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IBeingModelEdit.PrimaryBehavior { get => PrimaryBehavior; set => PrimaryBehavior = value; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         [Index(6)]
         public IReadOnlyList<ModelID> Avoids { get; }
 
+        /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> IBeingModelEdit.Avoids => (IList<ModelID>)Avoids;
+
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         [Index(7)]
         public IReadOnlyList<ModelID> Seeks { get; }
+
+        /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> IBeingModelEdit.Seeks => (IList<ModelID>)Seeks;
         #endregion
 
         #region Initialization

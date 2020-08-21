@@ -29,6 +29,8 @@ namespace ParquetClassLibrary
     /// Model could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="ModelTag"/>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, Model should never itself use IModelEdit the interface to access its own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public abstract class Model : IModelEdit, IEquatable<Model>
     {
         #region Characteristics
@@ -43,10 +45,8 @@ namespace ParquetClassLibrary
         /// <summary>Player-facing name.</summary>
         /// <remarks>
         /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read/write access.
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
         string IModelEdit.Name { get => Name; set => Name = value; }
 
@@ -57,10 +57,8 @@ namespace ParquetClassLibrary
         /// <summary>Player-facing description.</summary>
         /// <remarks>
         /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read/write access.
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
         string IModelEdit.Description { get => Description; set => Description = value; }
 
@@ -72,10 +70,8 @@ namespace ParquetClassLibrary
         /// <summary>Optional comment.</summary>
         /// <remarks>
         /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read/write access.
         /// </remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-            Justification = "By design, children of Model should never themselves use IModelEdit.  IModelEdit is for external types that require readwrite access.")]
         [Ignore]
         string IModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion

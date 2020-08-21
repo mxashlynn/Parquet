@@ -7,7 +7,9 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet block.
     /// </summary>
-    public sealed class BlockModel : ParquetModel
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    public sealed class BlockModel : ParquetModel, IBlockModelEdit
     {
         #region Class Defaults
         /// <summary>Minimum toughness value for any Block.</summary>
@@ -24,27 +26,75 @@ namespace ParquetClassLibrary.Parquets
         #region Characteristics
         /// <summary>The tool used to remove the block.</summary>
         [Index(7)]
-        public GatheringTool GatherTool { get; }
+        public GatheringTool GatherTool { get; private set; }
+
+        /// <summary>The tool used to remove the block.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        GatheringTool IBlockModelEdit.GatherTool { get => GatherTool; set => GatherTool = value; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         [Index(8)]
-        public GatheringEffect GatherEffect { get; }
+        public GatheringEffect GatherEffect { get; private set; }
+
+        /// <summary>The effect generated when a character gathers this Block.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        GatheringEffect IBlockModelEdit.GatherEffect { get => GatherEffect; set => GatherEffect = value; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         [Index(9)]
-        public ModelID CollectibleID { get; }
+        public ModelID CollectibleID { get; private set; }
+
+        /// <summary>The Collectible spawned when a character gathers this Block.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IBlockModelEdit.CollectibleID { get => CollectibleID; set => CollectibleID = value; }
 
         /// <summary>Whether or not the block is flammable.</summary>
         [Index(10)]
-        public bool IsFlammable { get; }
+        public bool IsFlammable { get; private set; }
+
+        /// <summary>Whether or not the block is flammable.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        bool IBlockModelEdit.IsFlammable { get => IsFlammable; set => IsFlammable = value; }
 
         /// <summary>Whether or not the block is a liquid.</summary>
         [Index(11)]
-        public bool IsLiquid { get; }
+        public bool IsLiquid { get; private set; }
+
+        /// <summary>Whether or not the block is a liquid.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        bool IBlockModelEdit.IsLiquid { get => IsLiquid; set => IsLiquid = value; }
 
         /// <summary>The block's native toughness.</summary>
         [Index(12)]
-        public int MaxToughness { get; }
+        public int MaxToughness { get; private set; }
+
+        /// <summary>The block's native toughness.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// IBlockModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        int IBlockModelEdit.MaxToughness { get => MaxToughness; set => MaxToughness = value; }
         #endregion
 
         #region Initialization

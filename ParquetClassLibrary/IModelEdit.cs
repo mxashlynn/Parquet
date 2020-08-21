@@ -5,7 +5,7 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-    /// IModelEdit is for use only by external types that require readwrite access to model properties.
+    /// IModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IModelEdit
     {

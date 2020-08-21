@@ -11,6 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// <remark>
     /// The intent is that this class function much like a read-only array.
     /// </remark>
+    // TODO As implemented circa Aug. 21 2020, this is not actually read-only.  Needs to be fixed!
     public class StrikePanelGrid : IGrid<StrikePanel>
     {
         #region Class Defaults

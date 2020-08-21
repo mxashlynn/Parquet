@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     /// <remarks>
     /// By design, children of <see cref="ItemModel"/> should never themselves use <see cref="IItemModelEdit"/>.
-    /// IItemModelEdit is for use only by external types that require readwrite access to model properties.
+    /// IItemModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IItemModelEdit : IModelEdit
     {
