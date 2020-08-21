@@ -71,7 +71,7 @@ namespace ParquetClassLibrary
         public static readonly IReadOnlyList<Range<ModelID>> BeingIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
         public static readonly Range<ModelID> BiomeIDs;
@@ -169,12 +169,12 @@ namespace ParquetClassLibrary
         public static ModelCollection<BeingModel> Beings { get; private set; }
 
         /// <summary>
-        /// A collection of all defined <see cref="BiomeModel"/>s.
+        /// A collection of all defined <see cref="BiomeRecipe"/>s.
         /// This collection is the source of truth about biome for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<BiomeModel> Biomes { get; private set; }
+        public static ModelCollection<BiomeRecipe> Biomes { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="CraftingRecipe"/>s.
@@ -263,7 +263,7 @@ namespace ParquetClassLibrary
             #region Default Values for Collections
             CollectionsHaveBeenInitialized = false;
             Beings = ModelCollection<BeingModel>.Default;
-            Biomes = ModelCollection<BiomeModel>.Default;
+            Biomes = ModelCollection<BiomeRecipe>.Default;
             CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
             Interactions = ModelCollection<InteractionModel>.Default;
             Maps = ModelCollection<MapModel>.Default;
@@ -437,7 +437,7 @@ namespace ParquetClassLibrary
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
                                                  IEnumerable<BeingModel> inBeings,
-                                                 IEnumerable<BiomeModel> inBiomes,
+                                                 IEnumerable<BiomeRecipe> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<GameModel> inGames,
                                                  IEnumerable<InteractionModel> inInteractions,
@@ -465,7 +465,7 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inItems, nameof(inItems));
 
             Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
-            Biomes = new ModelCollection<BiomeModel>(BiomeIDs, inBiomes);
+            Biomes = new ModelCollection<BiomeRecipe>(BiomeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Games = new ModelCollection<GameModel>(GameIDs, inGames);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
@@ -495,7 +495,7 @@ namespace ParquetClassLibrary
             #region Read Models
             var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
                 .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
-            var biomes = ModelCollection<BiomeModel>.ConverterFactory.GetRecordsForType<BiomeModel>(BiomeIDs);
+            var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
@@ -529,7 +529,7 @@ namespace ParquetClassLibrary
             #region Write Models
             Beings.PutRecordsForType<CritterModel>();
             Beings.PutRecordsForType<CharacterModel>();
-            Biomes.PutRecordsForType<BiomeModel>();
+            Biomes.PutRecordsForType<BiomeRecipe>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Games.PutRecordsForType<GameModel>();
             Interactions.PutRecordsForType<InteractionModel>();
@@ -550,12 +550,12 @@ namespace ParquetClassLibrary
         /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
         /// </summary>
         /// <remarks>This method must be called between calls to the initialization routines.</remarks>
-        /// <seealso cref="InitializeCollections(IEnumerable{PronounGroup}, IEnumerable{BeingModel}, IEnumerable{BiomeModel}, IEnumerable{CraftingRecipe}, IEnumerable{GameModel}, IEnumerable{InteractionModel}, IEnumerable{MapModel}, IEnumerable{ParquetModel}, IEnumerable{RoomRecipe}, IEnumerable{ScriptModel}, IEnumerable{ItemModel})"/>
+        /// <seealso cref="InitializeCollections(IEnumerable{PronounGroup}, IEnumerable{BeingModel}, IEnumerable{BiomeRecipe}, IEnumerable{CraftingRecipe}, IEnumerable{GameModel}, IEnumerable{InteractionModel}, IEnumerable{MapModel}, IEnumerable{ParquetModel}, IEnumerable{RoomRecipe}, IEnumerable{ScriptModel}, IEnumerable{ItemModel})"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
             ((IModelCollectionEdit<BeingModel>)Beings)?.Clear();
-            ((IModelCollectionEdit<BiomeModel>)Biomes)?.Clear();
+            ((IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
             ((IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
             ((IModelCollectionEdit<GameModel>)Games)?.Clear();
             ((IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
@@ -603,7 +603,7 @@ namespace ParquetClassLibrary
                     CharacterModel _ => CharacterIDs,
                     CritterModel _ => CritterIDs,
                     ItemModel _ => ItemIDs,
-                    BiomeModel _ => BiomeIDs,
+                    BiomeRecipe _ => BiomeIDs,
                     CraftingRecipe _ => CraftingRecipeIDs,
                     MapChunkModel _ => MapChunkIDs,
                     MapRegionSketch _ => MapRegionIDs,
@@ -630,7 +630,7 @@ namespace ParquetClassLibrary
             : inModelType == typeof(CharacterModel) ? CharacterIDs
             : inModelType == typeof(CritterModel) ? CritterIDs
             : inModelType == typeof(ItemModel) ? ItemIDs
-            : inModelType == typeof(BiomeModel) ? BiomeIDs
+            : inModelType == typeof(BiomeRecipe) ? BiomeIDs
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs

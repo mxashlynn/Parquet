@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         public ModelID ParquetID { get; set; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
         public IList<ModelTag> ItemTags { get; }
     }
 }

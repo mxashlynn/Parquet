@@ -30,14 +30,14 @@ namespace ParquetClassLibrary.Parquets
         ModelID IParquetModelEdit.ItemID { get => ItemID; set => ItemID = value; }
 
         /// <summary>
-        /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
+        /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [Index(5)]
         public ModelTag AddsToBiome { get; private set; }
 
         /// <summary>
-        /// Describes the <see cref="BiomeModel"/>(s) that this parquet helps form.
+        /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         /// <remarks>
@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
-        /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeModel"/>(s) this parquet helps form.</param>
+        /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         protected ParquetModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
                                 string inComment, ModelID inItemID, ModelTag inAddsToBiome, ModelTag inAddsToRoom)

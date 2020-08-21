@@ -44,7 +44,7 @@
   - [GetIDRangeForType(inID)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
   - [GetIDRangeForType(inModel)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
   - [GetIDRangeForType(inModelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
-  - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
+  - [InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
 - [AssemblyInfo](#T-ParquetClassLibrary-AssemblyInfo 'ParquetClassLibrary.AssemblyInfo')
@@ -90,20 +90,20 @@
   - [GetFilePath()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath')
   - [GetRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord')
-- [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')
-  - [#ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
-  - [EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeModel-EntryRequirements 'ParquetClassLibrary.Biomes.BiomeModel.EntryRequirements')
-  - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.IsLiquidBased')
-  - [IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.IsRoomBased')
-  - [None](#P-ParquetClassLibrary-Biomes-BiomeModel-None 'ParquetClassLibrary.Biomes.BiomeModel.None')
-  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements')
-  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased')
-  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased')
-  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria')
-  - [ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier 'ParquetClassLibrary.Biomes.BiomeModel.ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier')
-  - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeModel.ParquetCriteria')
-  - [Tier](#P-ParquetClassLibrary-Biomes-BiomeModel-Tier 'ParquetClassLibrary.Biomes.BiomeModel.Tier')
-  - [GetAllTags()](#M-ParquetClassLibrary-Biomes-BiomeModel-GetAllTags 'ParquetClassLibrary.Biomes.BiomeModel.GetAllTags')
+- [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')
+  - [#ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
+  - [EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeRecipe-EntryRequirements 'ParquetClassLibrary.Biomes.BiomeRecipe.EntryRequirements')
+  - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeRecipe-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeRecipe.IsLiquidBased')
+  - [IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeRecipe-IsRoomBased 'ParquetClassLibrary.Biomes.BiomeRecipe.IsRoomBased')
+  - [None](#P-ParquetClassLibrary-Biomes-BiomeRecipe-None 'ParquetClassLibrary.Biomes.BiomeRecipe.None')
+  - [ParquetClassLibrary#Biomes#IBiomeRecipeEdit#EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#EntryRequirements 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetClassLibrary#Biomes#IBiomeRecipeEdit#EntryRequirements')
+  - [ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsLiquidBased')
+  - [ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsRoomBased](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsRoomBased 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsRoomBased')
+  - [ParquetClassLibrary#Biomes#IBiomeRecipeEdit#ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetClassLibrary#Biomes#IBiomeRecipeEdit#ParquetCriteria')
+  - [ParquetClassLibrary#Biomes#IBiomeRecipeEdit#Tier](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#Tier 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetClassLibrary#Biomes#IBiomeRecipeEdit#Tier')
+  - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetCriteria 'ParquetClassLibrary.Biomes.BiomeRecipe.ParquetCriteria')
+  - [Tier](#P-ParquetClassLibrary-Biomes-BiomeRecipe-Tier 'ParquetClassLibrary.Biomes.BiomeRecipe.Tier')
+  - [GetAllTags()](#M-ParquetClassLibrary-Biomes-BiomeRecipe-GetAllTags 'ParquetClassLibrary.Biomes.BiomeRecipe.GetAllTags')
 - [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inGatherTool,inGatherEffect,inCollectibleID,inIsFlammable,inIsLiquid,inMaxToughness)](#M-ParquetClassLibrary-Parquets-BlockModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelTag,ParquetClassLibrary-ModelTag,ParquetClassLibrary-Items-GatheringTool,ParquetClassLibrary-Parquets-GatheringEffect,System-Nullable{ParquetClassLibrary-ModelID},System-Boolean,System-Boolean,System-Int32- 'ParquetClassLibrary.Parquets.BlockModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelTag,ParquetClassLibrary.ModelTag,ParquetClassLibrary.Items.GatheringTool,ParquetClassLibrary.Parquets.GatheringEffect,System.Nullable{ParquetClassLibrary.ModelID},System.Boolean,System.Boolean,System.Int32)')
   - [DefaultMaxToughness](#F-ParquetClassLibrary-Parquets-BlockModel-DefaultMaxToughness 'ParquetClassLibrary.Parquets.BlockModel.DefaultMaxToughness')
@@ -174,8 +174,8 @@
   - [Bounds](#P-ParquetClassLibrary-Parquets-CollectibleModel-Bounds 'ParquetClassLibrary.Parquets.CollectibleModel.Bounds')
   - [CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.CollectionEffect')
   - [EffectAmount](#P-ParquetClassLibrary-Parquets-CollectibleModel-EffectAmount 'ParquetClassLibrary.Parquets.CollectibleModel.EffectAmount')
-  - [ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect')
-  - [ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount')
+  - [ParquetClassLibrary#Parquets#ICollectibleModelEdit#CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModelEdit#CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModelEdit#CollectionEffect')
+  - [ParquetClassLibrary#Parquets#ICollectibleModelEdit#EffectAmount](#P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModelEdit#EffectAmount 'ParquetClassLibrary.Parquets.CollectibleModel.ParquetClassLibrary#Parquets#ICollectibleModelEdit#EffectAmount')
 - [CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect')
   - [BiomeTime](#F-ParquetClassLibrary-Parquets-CollectingEffect-BiomeTime 'ParquetClassLibrary.Parquets.CollectingEffect.BiomeTime')
   - [Item](#F-ParquetClassLibrary-Parquets-CollectingEffect-Item 'ParquetClassLibrary.Parquets.CollectingEffect.Item')
@@ -281,12 +281,12 @@
   - [NativeBiome](#P-ParquetClassLibrary-Beings-IBeingModelEdit-NativeBiome 'ParquetClassLibrary.Beings.IBeingModelEdit.NativeBiome')
   - [PrimaryBehavior](#P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehavior 'ParquetClassLibrary.Beings.IBeingModelEdit.PrimaryBehavior')
   - [Seeks](#P-ParquetClassLibrary-Beings-IBeingModelEdit-Seeks 'ParquetClassLibrary.Beings.IBeingModelEdit.Seeks')
-- [IBiomeModelEdit](#T-ParquetClassLibrary-Biomes-IBiomeModelEdit 'ParquetClassLibrary.Biomes.IBiomeModelEdit')
-  - [EntryRequirements](#P-ParquetClassLibrary-Biomes-IBiomeModelEdit-EntryRequirements 'ParquetClassLibrary.Biomes.IBiomeModelEdit.EntryRequirements')
-  - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-IBiomeModelEdit-IsLiquidBased 'ParquetClassLibrary.Biomes.IBiomeModelEdit.IsLiquidBased')
-  - [IsRoomBased](#P-ParquetClassLibrary-Biomes-IBiomeModelEdit-IsRoomBased 'ParquetClassLibrary.Biomes.IBiomeModelEdit.IsRoomBased')
-  - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-IBiomeModelEdit-ParquetCriteria 'ParquetClassLibrary.Biomes.IBiomeModelEdit.ParquetCriteria')
-  - [Tier](#P-ParquetClassLibrary-Biomes-IBiomeModelEdit-Tier 'ParquetClassLibrary.Biomes.IBiomeModelEdit.Tier')
+- [IBiomeRecipeEdit](#T-ParquetClassLibrary-Biomes-IBiomeRecipeEdit 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit')
+  - [EntryRequirements](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-EntryRequirements 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.EntryRequirements')
+  - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-IsLiquidBased 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.IsLiquidBased')
+  - [IsRoomBased](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-IsRoomBased 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.IsRoomBased')
+  - [ParquetCriteria](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-ParquetCriteria 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.ParquetCriteria')
+  - [Tier](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-Tier 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.Tier')
 - [IBlockModelEdit](#T-ParquetClassLibrary-Parquets-IBlockModelEdit 'ParquetClassLibrary.Parquets.IBlockModelEdit')
   - [CollectibleID](#P-ParquetClassLibrary-Parquets-IBlockModelEdit-CollectibleID 'ParquetClassLibrary.Parquets.IBlockModelEdit.CollectibleID')
   - [GatherEffect](#P-ParquetClassLibrary-Parquets-IBlockModelEdit-GatherEffect 'ParquetClassLibrary.Parquets.IBlockModelEdit.GatherEffect')
@@ -302,9 +302,9 @@
   - [StartingInventory](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingInventory 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingInventory')
   - [StartingQuests](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingQuests 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingQuests')
   - [StoryCharacterID](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StoryCharacterID 'ParquetClassLibrary.Beings.ICharacterModelEdit.StoryCharacterID')
-- [ICollectibleModel](#T-ParquetClassLibrary-Parquets-ICollectibleModel 'ParquetClassLibrary.Parquets.ICollectibleModel')
-  - [CollectionEffect](#P-ParquetClassLibrary-Parquets-ICollectibleModel-CollectionEffect 'ParquetClassLibrary.Parquets.ICollectibleModel.CollectionEffect')
-  - [EffectAmount](#P-ParquetClassLibrary-Parquets-ICollectibleModel-EffectAmount 'ParquetClassLibrary.Parquets.ICollectibleModel.EffectAmount')
+- [ICollectibleModelEdit](#T-ParquetClassLibrary-Parquets-ICollectibleModelEdit 'ParquetClassLibrary.Parquets.ICollectibleModelEdit')
+  - [CollectionEffect](#P-ParquetClassLibrary-Parquets-ICollectibleModelEdit-CollectionEffect 'ParquetClassLibrary.Parquets.ICollectibleModelEdit.CollectionEffect')
+  - [EffectAmount](#P-ParquetClassLibrary-Parquets-ICollectibleModelEdit-EffectAmount 'ParquetClassLibrary.Parquets.ICollectibleModelEdit.EffectAmount')
 - [ICraftingRecipeEdit](#T-ParquetClassLibrary-Crafts-ICraftingRecipeEdit 'ParquetClassLibrary.Crafts.ICraftingRecipeEdit')
   - [Ingredients](#P-ParquetClassLibrary-Crafts-ICraftingRecipeEdit-Ingredients 'ParquetClassLibrary.Crafts.ICraftingRecipeEdit.Ingredients')
   - [PanelPattern](#P-ParquetClassLibrary-Crafts-ICraftingRecipeEdit-PanelPattern 'ParquetClassLibrary.Crafts.ICraftingRecipeEdit.PanelPattern')
@@ -1063,7 +1063,7 @@ A collection containing all defined [Range\`1](#T-ParquetClassLibrary-Range`1 'P
 
 ##### Summary
 
-A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')s.
+A subset of the values of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') set aside for [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')s.
 Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
 
 <a name='F-ParquetClassLibrary-All-BlockIDs'></a>
@@ -1218,7 +1218,7 @@ All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s mus
 
 ##### Summary
 
-A collection of all defined [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')s.
+A collection of all defined [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')s.
 This collection is the source of truth about biome for the rest of the library,
 something like a color palette that other classes can paint with.
 
@@ -1404,7 +1404,7 @@ This method must be called between calls to the initialization routines.
 
 ##### See Also
 
-- [ParquetClassLibrary.All.InitializeCollections](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
+- [ParquetClassLibrary.All.InitializeCollections](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
 
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
 ### GetIDRangeForType(inID) `method`
@@ -1458,7 +1458,7 @@ dor [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None
 | ---- | ---- | ----------- |
 | inModelType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The model type whose ID range is sought. |
 
-<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
+<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-BeingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
 ### InitializeCollections(inPronouns,inBeings,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`
 
 ##### Summary
@@ -1471,7 +1471,7 @@ Initializes the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'P
 | ---- | ---- | ----------- |
 | inPronouns | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup}') | The pronouns that the game knows by default. |
 | inBeings | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.BeingModel}') | All beings to be used in the game. |
-| inBiomes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeModel}') | All biomes to be used in the game. |
+| inBiomes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe}') | All biomes to be used in the game. |
 | inCraftingRecipes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe}') | All crafting recipes to be used in the game. |
 | inGames | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel}') | All games or episodes to be used in the game. |
 | inInteractions | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}') | All interactions to be used in the game. |
@@ -1571,7 +1571,7 @@ Must be one of [BeingIDs](#F-ParquetClassLibrary-All-BeingIDs 'ParquetClassLibra
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel').  Cannot be null or empty. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel'). |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel'). |
-| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') is most comfortable. |
+| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') is most comfortable. |
 | inPrimaryBehavior | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The rules that govern how this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') acts.  Cannot be null. |
 | inAvoids | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') avoids. |
 | inSeeks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') seeks. |
@@ -1588,7 +1588,7 @@ Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'Pa
 
 ##### Summary
 
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this character is at home.
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this character is at home.
 
 <a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Avoids'></a>
 ### ParquetClassLibrary#Beings#IBeingModelEdit#Avoids `property`
@@ -1607,7 +1607,7 @@ IModelEdit is for external types that require read/write access.
 
 ##### Summary
 
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this character is at home.
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this character is at home.
 
 ##### Remarks
 
@@ -1678,7 +1678,7 @@ Initializes a new instance of the [BeingStatus](#T-ParquetClassLibrary-Beings-Be
 | inPosition | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') occupies. |
 | inSpawnAt | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') will next spawn at. |
 | inCurrentBehavior | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The behavior currently governing the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel'). |
-| inBiomeTimeRemaining | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How long [TODO in what units?] to until being kicked out of the current [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
+| inBiomeTimeRemaining | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How long [TODO in what units?] to until being kicked out of the current [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
 | inBuildingSpeed | [System.Single](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Single 'System.Single') | The time it takes the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') to place new parquets. |
 | inModificationSpeed | [System.Single](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Single 'System.Single') | The time it takes the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') to modify existing parquets. |
 | inGatheringSpeed | [System.Single](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Single 'System.Single') | The time it takes the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') to gather existing parquets. |
@@ -1702,7 +1702,7 @@ The [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.B
 
 ##### Summary
 
-The time remaining that the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') can safely remain in the current [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+The time remaining that the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') can safely remain in the current [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 ##### Remarks
 
@@ -1841,7 +1841,7 @@ ParquetClassLibrary.Biomes
 
 ##### Summary
 
-Provides rules for determining a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')'s [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Provides rules for determining a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')'s [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='F-ParquetClassLibrary-Biomes-BiomeConfiguration-ParquetsPerLayer'></a>
 ### ParquetsPerLayer `constants`
@@ -1855,7 +1855,7 @@ Used in computing thresholds.
 
 ##### Summary
 
-How many of a layers' worth of parquets must contribute to a land-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+How many of a layers' worth of parquets must contribute to a land-based [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LandThresholdFactor'></a>
 ### LandThresholdFactor `property`
@@ -1863,14 +1863,14 @@ How many of a layers' worth of parquets must contribute to a land-based [BiomeMo
 ##### Summary
 
 There must be at least this percentage of non-liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') associated with them.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThreshold'></a>
 ### LiquidThreshold `property`
 
 ##### Summary
 
-How many of a layers' worth of parquets must contribute to a Liquid-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+How many of a layers' worth of parquets must contribute to a Liquid-based [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-LiquidThresholdFactor'></a>
 ### LiquidThresholdFactor `property`
@@ -1878,22 +1878,22 @@ How many of a layers' worth of parquets must contribute to a Liquid-based [Biome
 ##### Summary
 
 There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') associated with them.
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThreshold'></a>
 ### RoomThreshold `property`
 
 ##### Summary
 
-How many of a layers' worth of parquets must contribute to a room-based [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+How many of a layers' worth of parquets must contribute to a room-based [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='P-ParquetClassLibrary-Biomes-BiomeConfiguration-RoomThresholdFactor'></a>
 ### RoomThresholdFactor `property`
 
 ##### Summary
 
-There must be at least this percentage of liquid [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s in a given
-[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') associated with them.
+There must be at least this percentage of [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel')s included in rooms in a given
+[MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') to generate the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') associated with them.
 
 <a name='M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetFilePath'></a>
 ### GetFilePath() `method`
@@ -1936,8 +1936,8 @@ Writes [BiomeConfiguration](#T-ParquetClassLibrary-Biomes-BiomeConfiguration 'Pa
 
 This method has no parameters.
 
-<a name='T-ParquetClassLibrary-Biomes-BiomeModel'></a>
-## BiomeModel `type`
+<a name='T-ParquetClassLibrary-Biomes-BiomeRecipe'></a>
+## BiomeRecipe `type`
 
 ##### Namespace
 
@@ -1947,109 +1947,109 @@ ParquetClassLibrary.Biomes
 
 Models the biome that a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') embodies.
 
-<a name='M-ParquetClassLibrary-Biomes-BiomeModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
+<a name='M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
 
 ##### Summary
 
-Initializes a new instance of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') class.
+Initializes a new instance of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') class.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | Unique identifier for the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').  Cannot be null. |
-| inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').  Cannot be null or empty. |
-| inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
-| inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
-| inTier | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls. |
-| inIsRoomBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
-| inIsLiquidBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets. |
-| inParquetCriteria | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
-| inEntryRequirements | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s needed to access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | Unique identifier for the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').  Cannot be null. |
+| inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').  Cannot be null or empty. |
+| inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
+| inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
+| inTier | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | A rating indicating where in the progression this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') falls. |
+| inIsRoomBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
+| inIsLiquidBased | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of liquid parquets. |
+| inParquetCriteria | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | Describes the parquets that make up this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
+| inEntryRequirements | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s needed to access this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-EntryRequirements'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-EntryRequirements'></a>
 ### EntryRequirements `property`
 
 ##### Summary
 
-Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this biome.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-IsLiquidBased'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-IsLiquidBased'></a>
 ### IsLiquidBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of liquid parquets.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-IsRoomBased'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-IsRoomBased'></a>
 ### IsRoomBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-None'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-None'></a>
 ### None `property`
 
 ##### Summary
 
-Represents the lack of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s that fail to qualify.
+Represents the lack of a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') for [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')s that fail to qualify.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements'></a>
-### ParquetClassLibrary#Biomes#IBiomeModelEdit#EntryRequirements `property`
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#EntryRequirements'></a>
+### ParquetClassLibrary#Biomes#IBiomeRecipeEdit#EntryRequirements `property`
 
 ##### Summary
 
-Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this biome.
 
 ##### Remarks
 
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased'></a>
-### ParquetClassLibrary#Biomes#IBiomeModelEdit#IsLiquidBased `property`
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsLiquidBased'></a>
+### ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsLiquidBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of liquid parquets.
 
 ##### Remarks
 
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased'></a>
-### ParquetClassLibrary#Biomes#IBiomeModelEdit#IsRoomBased `property`
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsRoomBased'></a>
+### ParquetClassLibrary#Biomes#IBiomeRecipeEdit#IsRoomBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
 
 ##### Remarks
 
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria'></a>
-### ParquetClassLibrary#Biomes#IBiomeModelEdit#ParquetCriteria `property`
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#ParquetCriteria'></a>
+### ParquetClassLibrary#Biomes#IBiomeRecipeEdit#ParquetCriteria `property`
 
 ##### Summary
 
-Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the parquets that make up this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 ##### Remarks
 
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier'></a>
-### ParquetClassLibrary#Biomes#IBiomeModelEdit#Tier `property`
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetClassLibrary#Biomes#IBiomeRecipeEdit#Tier'></a>
+### ParquetClassLibrary#Biomes#IBiomeRecipeEdit#Tier `property`
 
 ##### Summary
 
-A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls.
+A rating indicating where in the progression this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') falls.
 Must be non-negative.  Higher values indicate later Biomes.
 
 ##### Remarks
@@ -2057,22 +2057,22 @@ Must be non-negative.  Higher values indicate later Biomes.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-ParquetCriteria'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-ParquetCriteria'></a>
 ### ParquetCriteria `property`
 
 ##### Summary
 
-Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the parquets that make up this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
-<a name='P-ParquetClassLibrary-Biomes-BiomeModel-Tier'></a>
+<a name='P-ParquetClassLibrary-Biomes-BiomeRecipe-Tier'></a>
 ### Tier `property`
 
 ##### Summary
 
-A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls.
+A rating indicating where in the progression this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') falls.
 Must be non-negative.  Higher values indicate later Biomes.
 
-<a name='M-ParquetClassLibrary-Biomes-BiomeModel-GetAllTags'></a>
+<a name='M-ParquetClassLibrary-Biomes-BiomeRecipe-GetAllTags'></a>
 ### GetAllTags() `method`
 
 ##### Summary
@@ -2114,7 +2114,7 @@ Initializes a new instance of the [BlockModel](#T-ParquetClassLibrary-Parquets-B
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the parquet. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the parquet. |
 | inItemID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The item that this collectible corresponds to, if any. |
-| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
+| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') this parquet helps to generate. |
 | inGatherTool | [ParquetClassLibrary.Items.GatheringTool](#T-ParquetClassLibrary-Items-GatheringTool 'ParquetClassLibrary.Items.GatheringTool') | The tool used to gather this block. |
 | inGatherEffect | [ParquetClassLibrary.Parquets.GatheringEffect](#T-ParquetClassLibrary-Parquets-GatheringEffect 'ParquetClassLibrary.Parquets.GatheringEffect') | Effect of this block when gathered. |
@@ -2284,7 +2284,7 @@ Initializes a new instance of the [CharacterModel](#T-ParquetClassLibrary-Beings
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Personal and family names of the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel'), separated by a space.  Cannot be null or empty. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel'). |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel'). |
-| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') is most comfortable. |
+| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') for the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') is most comfortable. |
 | inPrimaryBehavior | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The rules that govern how this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') acts.  Cannot be null. |
 | inAvoids | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') avoids. |
 | inSeeks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') seeks. |
@@ -2825,7 +2825,7 @@ Initializes a new instance of the [CollectibleModel](#T-ParquetClassLibrary-Parq
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the parquet. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the parquet. |
 | inItemID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') that this [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') corresponds to, if any. |
-| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
+| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | A set of flags indicating which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') this parquet helps to generate. |
 | inCollectionEffect | [ParquetClassLibrary.Parquets.CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect') | Effect of this collectible. |
 | inEffectAmount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The scale in points of the effect.
@@ -2853,8 +2853,8 @@ The effect generated when a character encounters this Collectible.
 The scale in points of the effect.
 For example, how much to alter a stat if the [CollectingEffect](#T-ParquetClassLibrary-Parquets-CollectingEffect 'ParquetClassLibrary.Parquets.CollectingEffect') is set to alter a stat.
 
-<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect'></a>
-### ParquetClassLibrary#Parquets#ICollectibleModel#CollectionEffect `property`
+<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModelEdit#CollectionEffect'></a>
+### ParquetClassLibrary#Parquets#ICollectibleModelEdit#CollectionEffect `property`
 
 ##### Summary
 
@@ -2865,8 +2865,8 @@ The effect generated when a character encounters this Collectible.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount'></a>
-### ParquetClassLibrary#Parquets#ICollectibleModel#EffectAmount `property`
+<a name='P-ParquetClassLibrary-Parquets-CollectibleModel-ParquetClassLibrary#Parquets#ICollectibleModelEdit#EffectAmount'></a>
+### ParquetClassLibrary#Parquets#ICollectibleModelEdit#EffectAmount `property`
 
 ##### Summary
 
@@ -2894,7 +2894,7 @@ IDs for effects that can happen when a character encounters a Collectible.
 
 ##### Summary
 
-Allows the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') to remain safely in the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') longer.
+Allows the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') to remain safely in the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') longer.
 
 <a name='F-ParquetClassLibrary-Parquets-CollectingEffect-Item'></a>
 ### Item `constants`
@@ -3227,7 +3227,7 @@ Must be a [CritterIDs](#F-ParquetClassLibrary-All-CritterIDs 'ParquetClassLibrar
 | inName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly name of the [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel').  Cannot be null or empty. |
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel'). |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel'). |
-| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') is most comfortable. |
+| inNativeBiome | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') is most comfortable. |
 | inPrimaryBehavior | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The rules that govern how this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') acts.  Cannot be null. |
 | inAvoids | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') avoids. |
 | inSeeks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') seeks. |
@@ -3365,7 +3365,7 @@ Initializes a new instance of the [FloorModel](#T-ParquetClassLibrary-Parquets-F
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the parquet. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the parquet. |
 | inItemID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') awarded to the player when a character gathers this parquet. |
-| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
+| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Which, if any, [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 | inModTool | [ParquetClassLibrary.Items.ModificationTool](#T-ParquetClassLibrary-Items-ModificationTool 'ParquetClassLibrary.Items.ModificationTool') | The tool used to modify this floor. |
 | inTrenchName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The name to use for this floor when it has been dug out. |
@@ -3449,7 +3449,7 @@ Initializes a new instance of the [FurnishingModel](#T-ParquetClassLibrary-Parqu
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the parquet. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the parquet. |
 | inItemID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') that represents this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') in the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory'). |
-| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') this parquet helps to generate. |
+| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Indicates which, if any, [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') this parquet helps to generate. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 | inIsWalkable | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') may be walked on. |
 | inEntry | [ParquetClassLibrary.Parquets.EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType') | If `true` this [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') serves as an entry to a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
@@ -3870,7 +3870,7 @@ Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'Pa
 
 ##### Summary
 
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') in which this character is at home.
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this character is at home.
 
 <a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehavior'></a>
 ### PrimaryBehavior `property`
@@ -3886,8 +3886,8 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') seeks out, if any.
 
-<a name='T-ParquetClassLibrary-Biomes-IBiomeModelEdit'></a>
-## IBiomeModelEdit `type`
+<a name='T-ParquetClassLibrary-Biomes-IBiomeRecipeEdit'></a>
+## IBiomeRecipeEdit `type`
 
 ##### Namespace
 
@@ -3895,42 +3895,42 @@ ParquetClassLibrary.Biomes
 
 ##### Summary
 
-Facilitates editing of a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') from design tools while maintaining a read-only face for use during play.
+Facilitates editing of a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') from design tools while maintaining a read-only face for use during play.
 
-<a name='P-ParquetClassLibrary-Biomes-IBiomeModelEdit-EntryRequirements'></a>
+<a name='P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-EntryRequirements'></a>
 ### EntryRequirements `property`
 
 ##### Summary
 
-Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') needs to safely access this biome.
 
-<a name='P-ParquetClassLibrary-Biomes-IBiomeModelEdit-IsLiquidBased'></a>
+<a name='P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-IsLiquidBased'></a>
 ### IsLiquidBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of liquid parquets.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of liquid parquets.
 
-<a name='P-ParquetClassLibrary-Biomes-IBiomeModelEdit-IsRoomBased'></a>
+<a name='P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-IsRoomBased'></a>
 ### IsRoomBased `property`
 
 ##### Summary
 
-Determines whether or not this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+Determines whether or not this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') is defined in terms of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
 
-<a name='P-ParquetClassLibrary-Biomes-IBiomeModelEdit-ParquetCriteria'></a>
+<a name='P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-ParquetCriteria'></a>
 ### ParquetCriteria `property`
 
 ##### Summary
 
-Describes the parquets that make up this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Describes the parquets that make up this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
-<a name='P-ParquetClassLibrary-Biomes-IBiomeModelEdit-Tier'></a>
+<a name='P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-Tier'></a>
 ### Tier `property`
 
 ##### Summary
 
-A rating indicating where in the progression this [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') falls.
+A rating indicating where in the progression this [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') falls.
 Must be non-negative.  Higher values indicate later Biomes.
 
 <a name='T-ParquetClassLibrary-Parquets-IBlockModelEdit'></a>
@@ -4073,8 +4073,8 @@ is that these identifiers be able to span any number of shipped titles, allowing
 sequel title to import data from prior titles in such a way that one game's NPC
 can become another game's protagonist.
 
-<a name='T-ParquetClassLibrary-Parquets-ICollectibleModel'></a>
-## ICollectibleModel `type`
+<a name='T-ParquetClassLibrary-Parquets-ICollectibleModelEdit'></a>
+## ICollectibleModelEdit `type`
 
 ##### Namespace
 
@@ -4086,17 +4086,17 @@ Facilitates editing of a [CollectibleModel](#T-ParquetClassLibrary-Parquets-Coll
 
 ##### Remarks
 
-By design, children of [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') should never themselves use [ICollectibleModel](#T-ParquetClassLibrary-Parquets-ICollectibleModel 'ParquetClassLibrary.Parquets.ICollectibleModel').
-ICollectibleModel is for use only by external types that require read/write access to model properties.
+By design, children of [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') should never themselves use [ICollectibleModelEdit](#T-ParquetClassLibrary-Parquets-ICollectibleModelEdit 'ParquetClassLibrary.Parquets.ICollectibleModelEdit').
+ICollectibleModelEdit is for use only by external types that require read/write access to model properties.
 
-<a name='P-ParquetClassLibrary-Parquets-ICollectibleModel-CollectionEffect'></a>
+<a name='P-ParquetClassLibrary-Parquets-ICollectibleModelEdit-CollectionEffect'></a>
 ### CollectionEffect `property`
 
 ##### Summary
 
 The effect generated when a character encounters this Collectible.
 
-<a name='P-ParquetClassLibrary-Parquets-ICollectibleModel-EffectAmount'></a>
+<a name='P-ParquetClassLibrary-Parquets-ICollectibleModelEdit-EffectAmount'></a>
 ### EffectAmount `property`
 
 ##### Summary
@@ -4416,7 +4416,7 @@ keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMo
 
 ##### Summary
 
-Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='P-ParquetClassLibrary-Items-IItemModelEdit-ParquetID'></a>
 ### ParquetID `property`
@@ -4631,7 +4631,7 @@ IParquetModelEdit is for use only by external types that require read/write acce
 
 ##### Summary
 
-Describes the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')(s) that this parquet helps form.
+Describes the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')(s) that this parquet helps form.
 Guaranteed to never be `null`.
 
 <a name='P-ParquetClassLibrary-Parquets-IParquetModelEdit-AddsToRoom'></a>
@@ -5465,7 +5465,7 @@ Initializes a new instance of the [ItemModel](#T-ParquetClassLibrary-Items-ItemM
 | inEffectWhileHeld | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')'s passive effect. |
 | inEffectWhenUsed | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')'s active effect. |
 | inParquetID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The parquet represented, if any. |
-| inItemTags | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel'). |
+| inItemTags | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
 
 <a name='P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsed'></a>
 ### EffectWhenUsed `property`
@@ -5488,7 +5488,7 @@ keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMo
 
 ##### Summary
 
-Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 <a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed'></a>
 ### ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed `property`
@@ -5521,7 +5521,7 @@ IModelEdit is for external types that require readwrite access.
 
 ##### Summary
 
-Any additional functionality this item has, e.g. contributing to a [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel').
+Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
 ##### Remarks
 
@@ -6350,7 +6350,7 @@ All of the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.R
 
 ##### Summary
 
-Determines which [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel') the given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') corresponds to.
+Determines which [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') the given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') corresponds to.
 
 ##### Returns
 
@@ -8593,7 +8593,7 @@ ParquetClassLibrary
 
 Identifies functional characteristics of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model')s,
 such as their role in [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')s or
-[BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')s.
+[BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')s.
 
 ##### Remarks
 
@@ -8810,7 +8810,7 @@ Used by children of the [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetMo
 | inDescription | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Player-friendly description of the parquet. |
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the parquet. |
 | inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') awarded to the player when a character gathers or collects this parquet. |
-| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')(s) this parquet helps form. |
+| inAddsToBiome | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')(s) this parquet helps form. |
 | inAddsToRoom | [ParquetClassLibrary.ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.ModelTag') | Describes which, if any, [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')(s) this parquet helps form. |
 
 <a name='P-ParquetClassLibrary-Parquets-ParquetModel-AddsToBiome'></a>
@@ -8818,7 +8818,7 @@ Used by children of the [ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetMo
 
 ##### Summary
 
-Describes the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')(s) that this parquet helps form.
+Describes the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')(s) that this parquet helps form.
 Guaranteed to never be `null`.
 
 <a name='P-ParquetClassLibrary-Parquets-ParquetModel-AddsToRoom'></a>
@@ -8845,7 +8845,7 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 
 ##### Summary
 
-Describes the [BiomeModel](#T-ParquetClassLibrary-Biomes-BiomeModel 'ParquetClassLibrary.Biomes.BiomeModel')(s) that this parquet helps form.
+Describes the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')(s) that this parquet helps form.
 Guaranteed to never be `null`.
 
 ##### Remarks

@@ -108,11 +108,11 @@ namespace ParquetClassLibrary.Items
         [Ignore]
         ModelID IItemModelEdit.ParquetID { get => ParquetID; set => ParquetID = value; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
         [Index(11)]
         public IReadOnlyList<ModelTag> ItemTags { get; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
         /// <remarks>
         /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
@@ -136,7 +136,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inEffectWhileHeld"><see cref="ItemModel"/>'s passive effect.</param>
         /// <param name="inEffectWhenUsed"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented, if any.</param>
-        /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeModel"/>.</param>
+        /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
                          ModelID inEffectWhileHeld, ModelID inEffectWhenUsed, ModelID inParquetID,

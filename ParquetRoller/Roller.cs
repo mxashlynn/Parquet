@@ -353,9 +353,9 @@ namespace ParquetRoller
             {
                 ModelCollection<BeingModel>.Default.PutRecordsForType<CharacterModel>();
             }
-            if (!File.Exists(ModelCollection.GetFilePath<BiomeModel>()))
+            if (!File.Exists(ModelCollection.GetFilePath<BiomeRecipe>()))
             {
-                ModelCollection<BiomeModel>.Default.PutRecordsForType<BiomeModel>();
+                ModelCollection<BiomeRecipe>.Default.PutRecordsForType<BiomeRecipe>();
             }
             if (!File.Exists(ModelCollection.GetFilePath<CraftingRecipe>()))
             {

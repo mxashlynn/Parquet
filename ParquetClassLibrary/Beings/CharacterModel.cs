@@ -120,7 +120,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inName">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeModel"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
+        /// <param name="inNativeBiome">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="CharacterModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="CharacterModel"/> seeks.</param>

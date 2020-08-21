@@ -41,7 +41,7 @@ namespace ParquetUnitTests
         public static CritterModel TestCritter { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static BiomeModel TestBiome { get; }
+        public static BiomeRecipe TestBiome { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static CraftingRecipe TestCraftingRecipe { get; }
@@ -98,7 +98,7 @@ namespace ParquetUnitTests
         public static IReadOnlyList<BeingModel> Beings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BiomeModel> Biomes { get; }
+        public static IReadOnlyList<BiomeRecipe> Biomes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
@@ -135,7 +135,7 @@ namespace ParquetUnitTests
             TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
             TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
             TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeIDs.Minimum, All.ScriptIDs.Minimum);
-            TestBiome = new BiomeModel(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, false, false, null, null);
+            TestBiome = new BiomeRecipe(-All.BiomeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, false, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
                                                     TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
@@ -186,7 +186,7 @@ namespace ParquetUnitTests
             #region Initialize All
             PronounGroups = new List<PronounGroup> { TestPronounGroup };
             Beings = new List<BeingModel> { TestCritter, TestCharacter };
-            Biomes = new List<BiomeModel> { TestBiome };
+            Biomes = new List<BiomeRecipe> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };

@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Parquets
         None,
         /// <summary>Awards the <see cref="Beings.CharacterModel"/> a given <see cref="Items.ItemModel"/>.</summary>
         Item,
-        /// <summary>Allows the <see cref="Beings.CharacterModel"/> to remain safely in the <see cref="Biomes.BiomeModel"/> longer.</summary>
+        /// <summary>Allows the <see cref="Beings.CharacterModel"/> to remain safely in the <see cref="Biomes.BiomeRecipe"/> longer.</summary>
         BiomeTime,
     }
 }

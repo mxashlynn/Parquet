@@ -183,7 +183,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Analysis
         /// <summary>
-        /// Determines which <see cref="BiomeModel"/> the given <see cref="MapRegionModel"/> corresponds to.
+        /// Determines which <see cref="BiomeRecipe"/> the given <see cref="MapRegionModel"/> corresponds to.
         /// </summary>
         /// <remarks>
         /// This method assumes that <see cref="MapRegionModel.Rooms"/> has already been populated.
@@ -191,11 +191,11 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The appropriate <see cref="ModelID"/>.</returns>
         public ModelID GetBiome()
         {
-            var result = BiomeModel.None.ID;
-            foreach (BiomeModel biome in All.Biomes)
+            var result = BiomeRecipe.None.ID;
+            foreach (BiomeRecipe biome in All.Biomes)
             {
                 result = FindBiomeByTag(this, biome);
-                if (result != BiomeModel.None.ID)
+                if (result != BiomeRecipe.None.ID)
                 {
                     break;
                 }
@@ -204,11 +204,11 @@ namespace ParquetClassLibrary.Maps
             return result;
 
             #region Local Helper Methods
-            // Determines if the given BiomeModel matches the given Region.
+            // Determines if the given BiomeRecipe matches the given Region.
             //     inRegion -> The MapRegionModel to test.
-            //     inBiome -> The BiomeModel to test against.
-            // Returns the given BiomeModel's ModelID if they match, otherwise returns the ModelID for the default biome.
-            static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeModel inBiome)
+            //     inBiome -> The BiomeRecipe to test against.
+            // Returns the given BiomeRecipe's ModelID if they match, otherwise returns the ModelID for the default biome.
+            static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeRecipe inBiome)
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
@@ -227,7 +227,7 @@ namespace ParquetClassLibrary.Maps
                         return inBiome.ID;
                     }
                 }
-                return BiomeModel.None.ID;
+                return BiomeRecipe.None.ID;
             }
 
             // Determines the number of individual parquets that are present inside Rooms in the given MapRegionModel.
@@ -258,7 +258,7 @@ namespace ParquetClassLibrary.Maps
             //     inBiome -> The biome to test against.
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets contribute to the biome, false otherwise.
-            static bool ConstitutesBiome(MapRegionModel inRegion, BiomeModel inBiome, int inThreshold)
+            static bool ConstitutesBiome(MapRegionModel inRegion, BiomeRecipe inBiome, int inThreshold)
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {

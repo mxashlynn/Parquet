@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Parquets
         public ModelID ItemID { get; set; }
 
         /// <summary>
-        /// Describes the <see cref="Biomes.BiomeModel"/>(s) that this parquet helps form.
+        /// Describes the <see cref="Biomes.BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         public ModelTag AddsToBiome { get; set; }

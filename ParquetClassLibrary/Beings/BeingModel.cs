@@ -13,11 +13,11 @@ namespace ParquetClassLibrary.Beings
     public abstract class BeingModel : Model, IBeingModelEdit
     {
         #region Characteristics
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         [Index(4)]
         public ModelID NativeBiome { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         /// <remarks>
         /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inName">Player-friendly name of the <see cref="BeingModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="BeingModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="BeingModel"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeModel"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
+        /// <param name="inNativeBiome">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="BeingModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoids">Any parquets this <see cref="BeingModel"/> avoids.</param>
         /// <param name="inSeeks">Any parquets this <see cref="BeingModel"/> seeks.</param>

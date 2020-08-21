@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers this parquet.</param>
-        /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeModel"/> this parquet helps to generate.</param>
+        /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inModTool">The tool used to modify this floor.</param>
         /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>

@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.Beings
     /// </summary>
     public interface IBeingModelEdit : IModelEdit
     {
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeModel"/> in which this character is at home.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         public ModelID NativeBiome { get; set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> governing the way this being acts.</summary>
