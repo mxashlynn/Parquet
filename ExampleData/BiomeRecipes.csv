@@ -1,16 +1,16 @@
 ﻿ID,Name,Description,Comment,Tier,IsRoomBased,IsLiquidBased,ParquetCriteria,EntryRequirements
--30000,Biome Test,Test,Test,1,FALSE,TRUE,,
-30000,Alpine,,,4,FALSE,FALSE,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
-30001,Cavern,,,3,FALSE,FALSE,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
-30002,Desert,,,2,FALSE,FALSE,Deserted,SeasideKey∟DesertKey∟Tier2Key
-30003,Field,,,0,FALSE,FALSE,,
-30004,Forest,,,1,FALSE,FALSE,Forested,ForestKey
-30005,Heavens,,,5,FALSE,TRUE,Heavenly,HeavenlyKey
-30006,Inferno,,,5,FALSE,TRUE,Volcanic,InfernalKey
-30007,Ruins,,,4,FALSE,FALSE,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
-30008,Seaside,,,1,FALSE,TRUE,Coastal,SeasideKey
-30009,Swamp,,,2,FALSE,FALSE,Swampy,ForestKey∟SwampKey∟Tier2Key
-30010,Town,,,0,TRUE,FALSE,Urban,
-30011,Tundra,,,2,FALSE,FALSE,Frozen,SeasideKey∟TundraKey∟Tier2Key
-30012,Volcano,,,4,FALSE,TRUE,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
-30013,Prism,,,4,FALSE,FALSE,Crystaline,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+-30000,Biome Test,Test,Test,1,False,True,,
+30000,Alpine,,,4,False,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+30001,Cavern,,,3,False,False,,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
+30002,Desert,,,2,False,False,Deserted,SeasideKey∟DesertKey∟Tier2Key
+30003,Field,,,0,False,False,,
+30004,Forest,,,1,False,False,Forested,ForestKey
+30005,Heavens,,,5,False,True,Heavenly,HeavenlyKey
+30006,Inferno,,,5,False,True,Volcanic,InfernalKey
+30007,Ruins,,,4,False,False,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
+30008,Seaside,,,1,False,True,Coastal,SeasideKey
+30009,Swamp,,,2,False,False,Swampy,ForestKey∟SwampKey∟Tier2Key
+30010,Town,,,0,True,False,Urban,
+30011,Tundra,,,2,False,False,Frozen,SeasideKey∟TundraKey∟Tier2Key
+30012,Volcano,,,4,False,True,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
+30013,Prism,,,4,False,False,Crystaline,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
