@@ -12,10 +12,10 @@ namespace ParquetClassLibrary.Rooms
     public static class RoomConfiguration
     {
         /// <summary>Minimum number of open walkable spaces needed for any room to register.</summary>
-        public static int MinWalkableSpaces { get; private set; } = 4;
+        public static int MinWalkableSpaces { get; set; } = 4;
 
         /// <summary>Maximum number of open walkable spaces needed for any room to register.</summary>
-        public static int MaxWalkableSpaces { get; private set; } = 121;
+        public static int MaxWalkableSpaces { get; set; } = 121;
 
         /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
         public static int MinPerimeterSpaces => MinWalkableSpaces * 3;

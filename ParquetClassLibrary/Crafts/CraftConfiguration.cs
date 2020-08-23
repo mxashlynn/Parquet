@@ -12,10 +12,10 @@ namespace ParquetClassLibrary.Crafts
     public static class CraftConfiguration
     {
         /// <summary>Number of ingredient categories per recipe.</summary>
-        internal static Range<int> IngredientCount { get; private set; } = new Range<int>(1, 5);
+        public static Range<int> IngredientCount { get; set; } = new Range<int>(1, 5);
 
         /// <summary>Number of product categories per recipe.</summary>
-        internal static Range<int> ProductCount { get; private set; } = new Range<int>(1, 5);
+        public static Range<int> ProductCount { get; set; } = new Range<int>(1, 5);
 
         #region Self Serialization
         /// <summary>

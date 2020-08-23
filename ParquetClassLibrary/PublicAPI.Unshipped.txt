@@ -744,10 +744,23 @@ static ParquetClassLibrary.Beings.PronounGroup.GetRecords() -> System.Collection
 static ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inGroups) -> void
 static ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord() -> void
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LandThreshold.get -> int
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LandThresholdFactor.get -> double
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LandThresholdFactor.set -> void
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThreshold.get -> int
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThresholdFactor.get -> double
+static ParquetClassLibrary.Biomes.BiomeConfiguration.LiquidThresholdFactor.set -> void
 static ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord() -> void
+static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThreshold.get -> int
+static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThresholdFactor.get -> double
+static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThresholdFactor.set -> void
 static ParquetClassLibrary.Biomes.BiomeRecipe.None.get -> ParquetClassLibrary.Biomes.BiomeRecipe
 static ParquetClassLibrary.Crafts.CraftConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord() -> void
+static ParquetClassLibrary.Crafts.CraftConfiguration.IngredientCount.get -> ParquetClassLibrary.Range<int>
+static ParquetClassLibrary.Crafts.CraftConfiguration.IngredientCount.set -> void
+static ParquetClassLibrary.Crafts.CraftConfiguration.ProductCount.get -> ParquetClassLibrary.Range<int>
+static ParquetClassLibrary.Crafts.CraftConfiguration.ProductCount.set -> void
 static ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Crafts.CraftingRecipe.NotCraftable.get -> ParquetClassLibrary.Crafts.CraftingRecipe
 static ParquetClassLibrary.Crafts.StrikePanel.operator !=(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
@@ -824,8 +837,10 @@ static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClass
 static ParquetClassLibrary.Rooms.RoomConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.get -> int
+static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.set -> void
 static ParquetClassLibrary.Rooms.RoomConfiguration.MinPerimeterSpaces.get -> int
 static ParquetClassLibrary.Rooms.RoomConfiguration.MinWalkableSpaces.get -> int
+static ParquetClassLibrary.Rooms.RoomConfiguration.MinWalkableSpaces.set -> void
 static ParquetClassLibrary.Rooms.RoomConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator ParquetClassLibrary.Scripts.ScriptNode(string inValue) -> ParquetClassLibrary.Scripts.ScriptNode
 static ParquetClassLibrary.Scripts.ScriptNode.implicit operator string(ParquetClassLibrary.Scripts.ScriptNode inNode) -> string
