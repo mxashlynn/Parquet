@@ -15,6 +15,18 @@ namespace ParquetClassLibrary
         public void Add(TModel inModel);
 
         /// <summary>
+        /// Removes the given <typeparamref name="TModel"/> from the collection.
+        /// </summary>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        public void Remove(TModel inModel);
+
+        /// <summary>
+        /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
+        /// </summary>
+        /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        public void Remove(ModelID inID);
+
+        /// <summary>
         /// Empties the entire collection.
         /// </summary>
         public void Clear();

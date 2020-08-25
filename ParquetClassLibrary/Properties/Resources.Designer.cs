@@ -142,6 +142,15 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to remove {0} with ID {1}, but it is not contained in this collection..
+        /// </summary>
+        internal static string ErrorCannotRemove {
+            get {
+                return ResourceManager.GetString("ErrorCannotRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tried to replace non-contained {0} &apos;{1}&apos;.  Did you mean to call Add?.
         /// </summary>
         internal static string ErrorCannotReplace {

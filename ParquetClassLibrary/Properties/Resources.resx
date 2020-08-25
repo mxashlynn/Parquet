@@ -153,6 +153,10 @@
     <value>Could not parse '{0}' as {1}.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="ErrorCannotRemove" xml:space="preserve">
+    <value>Tried to remove {0} with ID {1}, but it is not contained in this collection.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorCannotReplace" xml:space="preserve">
     <value>Tried to replace non-contained {0} '{1}'.  Did you mean to call Add?</value>
     <comment>Error string.</comment>

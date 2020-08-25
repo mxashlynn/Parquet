@@ -162,6 +162,8 @@ ParquetClassLibrary.IGrid<TElement>.this[int y, int x].get -> TElement
 ParquetClassLibrary.IModelCollectionEdit<TModel>
 ParquetClassLibrary.IModelCollectionEdit<TModel>.Add(TModel inModel) -> void
 ParquetClassLibrary.IModelCollectionEdit<TModel>.Clear() -> void
+ParquetClassLibrary.IModelCollectionEdit<TModel>.Remove(ParquetClassLibrary.ModelID inID) -> void
+ParquetClassLibrary.IModelCollectionEdit<TModel>.Remove(TModel inModel) -> void
 ParquetClassLibrary.IModelCollectionEdit<TModel>.Replace(TModel inModel) -> void
 ParquetClassLibrary.IModelEdit
 ParquetClassLibrary.IModelEdit.Comment.get -> string

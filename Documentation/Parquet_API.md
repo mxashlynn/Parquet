@@ -354,6 +354,8 @@
 - [IModelCollectionEdit\`1](#T-ParquetClassLibrary-IModelCollectionEdit`1 'ParquetClassLibrary.IModelCollectionEdit`1')
   - [Add(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Add-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Add(`0)')
   - [Clear()](#M-ParquetClassLibrary-IModelCollectionEdit`1-Clear 'ParquetClassLibrary.IModelCollectionEdit`1.Clear')
+  - [Remove(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Remove-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Remove(`0)')
+  - [Remove(inID)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Remove-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.IModelCollectionEdit`1.Remove(ParquetClassLibrary.ModelID)')
   - [Replace(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Replace(`0)')
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
@@ -632,6 +634,8 @@
   - [HandleUnassignedIDs\`\`1(inColumnHeaders,inModels)](#M-ParquetClassLibrary-ModelCollection`1-HandleUnassignedIDs``1-System-String[],System-Collections-Generic-List{``0}- 'ParquetClassLibrary.ModelCollection`1.HandleUnassignedIDs``1(System.String[],System.Collections.Generic.List{``0})')
   - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Add(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Add-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Add(`0)')
   - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear()](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Clear')
+  - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(`0)')
+  - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(inID)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(ParquetClassLibrary.ModelID)')
   - [ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel)](#M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0- 'ParquetClassLibrary.ModelCollection`1.ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(`0)')
   - [PutRecordsForType\`\`1()](#M-ParquetClassLibrary-ModelCollection`1-PutRecordsForType``1 'ParquetClassLibrary.ModelCollection`1.PutRecordsForType``1')
   - [ReconstructHeader(inColumnHeaders,inRecordsWithNewIDs)](#M-ParquetClassLibrary-ModelCollection`1-ReconstructHeader-System-String[],System-Text-StringBuilder- 'ParquetClassLibrary.ModelCollection`1.ReconstructHeader(System.String[],System.Text.StringBuilder)')
@@ -863,6 +867,7 @@
   - [ErrorCannotAdd](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotAdd 'ParquetClassLibrary.Properties.Resources.ErrorCannotAdd')
   - [ErrorCannotConvert](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotConvert 'ParquetClassLibrary.Properties.Resources.ErrorCannotConvert')
   - [ErrorCannotParse](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotParse 'ParquetClassLibrary.Properties.Resources.ErrorCannotParse')
+  - [ErrorCannotRemove](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotRemove 'ParquetClassLibrary.Properties.Resources.ErrorCannotRemove')
   - [ErrorCannotReplace](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace 'ParquetClassLibrary.Properties.Resources.ErrorCannotReplace')
   - [ErrorClearAllFirst](#P-ParquetClassLibrary-Properties-Resources-ErrorClearAllFirst 'ParquetClassLibrary.Properties.Resources.ErrorClearAllFirst')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
@@ -4555,6 +4560,32 @@ Empties the entire collection.
 
 This method has no parameters.
 
+<a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Remove-`0-'></a>
+### Remove(inModel) `method`
+
+##### Summary
+
+Removes the given `TModel` from the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
+<a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Remove-ParquetClassLibrary-ModelID-'></a>
+### Remove(inID) `method`
+
+##### Summary
+
+Removes the `TModel` associated with the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') from the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The ID for a valid, defined `TModel` contianed in this collection. |
+
 <a name='M-ParquetClassLibrary-IModelCollectionEdit`1-Replace-`0-'></a>
 ### Replace(inModel) `method`
 
@@ -7870,6 +7901,32 @@ Empties the entire collection.
 
 This method has no parameters.
 
+<a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove-`0-'></a>
+### ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(inModel) `method`
+
+##### Summary
+
+Removes the given `TModel` from the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inModel | [\`0](#T-`0 '`0') | A valid, defined `TModel` contianed in this collection. |
+
+<a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove-ParquetClassLibrary-ModelID-'></a>
+### ParquetClassLibrary#IModelCollectionEdit{TModel}#Remove(inID) `method`
+
+##### Summary
+
+Removes the `TModel` associated with the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') from the collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The ID for a valid, defined `TModel` contianed in this collection. |
+
 <a name='M-ParquetClassLibrary-ModelCollection`1-ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace-`0-'></a>
 ### ParquetClassLibrary#IModelCollectionEdit{TModel}#Replace(inModel) `method`
 
@@ -11020,6 +11077,13 @@ Looks up a localized string similar to Could not convert '{0}' to {1}..
 ##### Summary
 
 Looks up a localized string similar to Could not parse '{0}' as {1}..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotRemove'></a>
+### ErrorCannotRemove `property`
+
+##### Summary
+
+Looks up a localized string similar to Tried to remove {0} with ID {1}, but it is not contained in this collection..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace'></a>
 ### ErrorCannotReplace `property`
