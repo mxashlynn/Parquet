@@ -5,7 +5,7 @@ namespace ParquetClassLibrary
     /// while maintaining a read-only facade during play.
     /// </summary>
     /// <typeparam name="TModel">The type collected, typically a concrete decendent of <see cref="Model"/>.</typeparam>
-    internal interface IModelCollectionEdit<TModel>
+    public interface IModelCollectionEdit<TModel>
         where TModel : Model
     {
         /// <summary>
