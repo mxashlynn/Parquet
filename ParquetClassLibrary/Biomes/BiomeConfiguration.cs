@@ -63,33 +63,18 @@ namespace ParquetClassLibrary.Biomes
             var values = valueLine.Split(Delimiters.PrimaryDelimiter);
 
             // Parse.
-            if (double.TryParse(values[0], out var temp))
-            {
-                LandThresholdFactor = temp;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        values[0], nameof(LandThresholdFactor)));
-            }
-            if (double.TryParse(values[1], out temp))
-            {
-                LiquidThresholdFactor = temp;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        values[1], nameof(LiquidThresholdFactor)));
-            }
-            if (double.TryParse(values[2], out temp))
-            {
-                RoomThresholdFactor = temp;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        values[2], nameof(RoomThresholdFactor)));
-            }
+            LandThresholdFactor = double.TryParse(values[0], out var temp)
+                ? temp
+                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                          values[0], nameof(LandThresholdFactor)));
+            LiquidThresholdFactor = double.TryParse(values[1], out temp)
+                ? temp
+                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                          values[1], nameof(LiquidThresholdFactor)));
+            RoomThresholdFactor = double.TryParse(values[2], out temp)
+                ? temp
+                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                          values[2], nameof(RoomThresholdFactor)));
         }
 
         /// <summary>
