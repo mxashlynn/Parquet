@@ -736,14 +736,14 @@ static ParquetClassLibrary.All.GetIDRangeForType(System.Type inModelType) -> Par
 static ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.BeingModel> inBeings, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Biomes.BiomeRecipe> inBiomes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Games.GameModel> inGames, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.MapModel> inMaps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.ParquetModel> inParquets, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.ItemModel> inItems) -> void
 static ParquetClassLibrary.All.Interactions.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.InteractionModel>
 static ParquetClassLibrary.All.Items.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Items.ItemModel>
-static ParquetClassLibrary.All.LoadFromCSVs() -> void
+static ParquetClassLibrary.All.LoadFromCSVs() -> bool
 static ParquetClassLibrary.All.Maps.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Maps.MapModel>
 static ParquetClassLibrary.All.Parquets.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Parquets.ParquetModel>
 static ParquetClassLibrary.All.ProjectDirectory.get -> string
 static ParquetClassLibrary.All.ProjectDirectory.set -> void
 static ParquetClassLibrary.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyCollection<ParquetClassLibrary.Beings.PronounGroup>
 static ParquetClassLibrary.All.RoomRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Rooms.RoomRecipe>
-static ParquetClassLibrary.All.SaveToCSVs() -> void
+static ParquetClassLibrary.All.SaveToCSVs() -> bool
 static ParquetClassLibrary.All.Scripts.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.ScriptModel>
 static ParquetClassLibrary.Beings.PronounGroup.GetFilePath() -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetRecords() -> System.Collections.Generic.HashSet<ParquetClassLibrary.Beings.PronounGroup>

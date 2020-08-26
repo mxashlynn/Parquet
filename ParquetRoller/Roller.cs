@@ -161,7 +161,10 @@ namespace ParquetRoller
                 inCategory = "all";
             }
 
-            All.LoadFromCSVs();
+            if (!All.LoadFromCSVs())
+            {
+                return null;
+            }
 
             // Advertise plural categories but accept singular
             switch (inCategory)
@@ -417,9 +420,20 @@ namespace ParquetRoller
         private static ExitCode RollCSVs(ModelCollection inWorkload)
         {
             // Currently, all that has to be done is assigning ModelIDs.  Loading and saving will accomplish this.
-            All.LoadFromCSVs();
-            All.SaveToCSVs();
-            return ExitCode.Success;
+            if (!All.LoadFromCSVs())
+            {
+                Console.WriteLine(Resources.ErrorLoading);
+                return ExitCode.ReadFault;
+            }
+            else if (!All.SaveToCSVs())
+            {
+                Console.WriteLine(Resources.ErrorSaving);
+                return ExitCode.WriteFault;
+            }
+            else
+            {
+                return ExitCode.Success;
+            }
         }
 
         /// <summary>
@@ -429,7 +443,11 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode CheckAdjacency(ModelCollection inWorkload)
         {
-            All.LoadFromCSVs();
+            if (!All.LoadFromCSVs())
+            {
+                Console.WriteLine(Resources.ErrorLoading);
+                return ExitCode.ReadFault;
+            }
 
             var sketches = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionSketch));
             var orderedWorkload = sketches.OrderBy(x => x.ID);
@@ -467,7 +485,11 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode ListPronouns(ModelCollection inWorkload)
         {
-            All.LoadFromCSVs();
+            if (!All.LoadFromCSVs())
+            {
+                Console.WriteLine(Resources.ErrorLoading);
+                return ExitCode.ReadFault;
+            }
 
             foreach (var pronounGroup in All.PronounGroups)
             {

@@ -1507,6 +1507,10 @@ The collections of models must be separately cleared between calls to this initi
 
 Initializes [All](#T-ParquetClassLibrary-All 'ParquetClassLibrary.All') based on the values in design-time CSV files.
 
+##### Returns
+
+`true` if no exceptions were caught, `false` otherwise.
+
 ##### Parameters
 
 This method has no parameters.
@@ -1517,6 +1521,10 @@ This method has no parameters.
 ##### Summary
 
 Stores the content of [All](#T-ParquetClassLibrary-All 'ParquetClassLibrary.All') to CSV files for later reinitialization.
+
+##### Returns
+
+`true` if no exceptions were caught, `false` otherwise.
 
 ##### Parameters
 

@@ -10,10 +10,14 @@
   - [FileNotFound](#F-ParquetRoller-ExitCode-FileNotFound 'ParquetRoller.ExitCode.FileNotFound')
   - [InvalidData](#F-ParquetRoller-ExitCode-InvalidData 'ParquetRoller.ExitCode.InvalidData')
   - [NotSupported](#F-ParquetRoller-ExitCode-NotSupported 'ParquetRoller.ExitCode.NotSupported')
+  - [ReadFault](#F-ParquetRoller-ExitCode-ReadFault 'ParquetRoller.ExitCode.ReadFault')
   - [Success](#F-ParquetRoller-ExitCode-Success 'ParquetRoller.ExitCode.Success')
+  - [WriteFault](#F-ParquetRoller-ExitCode-WriteFault 'ParquetRoller.ExitCode.WriteFault')
 - [Resources](#T-ParquetRoller-Properties-Resources 'ParquetRoller.Properties.Resources')
   - [Culture](#P-ParquetRoller-Properties-Resources-Culture 'ParquetRoller.Properties.Resources.Culture')
+  - [ErrorLoading](#P-ParquetRoller-Properties-Resources-ErrorLoading 'ParquetRoller.Properties.Resources.ErrorLoading')
   - [ErrorNoProperty](#P-ParquetRoller-Properties-Resources-ErrorNoProperty 'ParquetRoller.Properties.Resources.ErrorNoProperty')
+  - [ErrorSaving](#P-ParquetRoller-Properties-Resources-ErrorSaving 'ParquetRoller.Properties.Resources.ErrorSaving')
   - [ErrorUnknownCategory](#P-ParquetRoller-Properties-Resources-ErrorUnknownCategory 'ParquetRoller.Properties.Resources.ErrorUnknownCategory')
   - [ErrorUnknownProperty](#P-ParquetRoller-Properties-Resources-ErrorUnknownProperty 'ParquetRoller.Properties.Resources.ErrorUnknownProperty')
   - [InfoCollision](#P-ParquetRoller-Properties-Resources-InfoCollision 'ParquetRoller.Properties.Resources.InfoCollision')
@@ -115,12 +119,26 @@ Invalid data was given.
 
 An unsupported request was made.
 
+<a name='F-ParquetRoller-ExitCode-ReadFault'></a>
+### ReadFault `constants`
+
+##### Summary
+
+An error occured while attempting to read data.
+
 <a name='F-ParquetRoller-ExitCode-Success'></a>
 ### Success `constants`
 
 ##### Summary
 
 The operation completed successfully.
+
+<a name='F-ParquetRoller-ExitCode-WriteFault'></a>
+### WriteFault `constants`
+
+##### Summary
+
+An error occured while attempting to write data.
 
 <a name='T-ParquetRoller-Properties-Resources'></a>
 ## Resources `type`
@@ -141,6 +159,13 @@ A strongly-typed resource class, for looking up localized strings, etc.
 Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 
+<a name='P-ParquetRoller-Properties-Resources-ErrorLoading'></a>
+### ErrorLoading `property`
+
+##### Summary
+
+Looks up a localized string similar to Error loading data files..
+
 <a name='P-ParquetRoller-Properties-Resources-ErrorNoProperty'></a>
 ### ErrorNoProperty `property`
 
@@ -148,6 +173,13 @@ Overrides the current thread's CurrentUICulture property for all
 
 Looks up a localized string similar to Specify property.
 .
+
+<a name='P-ParquetRoller-Properties-Resources-ErrorSaving'></a>
+### ErrorSaving `property`
+
+##### Summary
+
+Looks up a localized string similar to Error saving data files..
 
 <a name='P-ParquetRoller-Properties-Resources-ErrorUnknownCategory'></a>
 ### ErrorUnknownCategory `property`
@@ -209,7 +241,8 @@ Commands:
     -t|templates        Write CSV templates to current directory.
     -r|roll Prepare CSVs in current directory for use.
     -c|checkCheck that map adjacency is consistent.
-    -p|list pronouns    List  [rest of string was truncated]";.
+    -p|list pronouns    List all defined pronoun groups.
+    -l|list (property) [category]   List various mo [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageHelp'></a>
 ### MessageHelp `property`
@@ -225,7 +258,8 @@ Usage: roller (command)
 
 Commands:
     -h|help Display detailed help.
-    -v|version          Di [rest of string was truncated]";.
+    -v|version          Display version information.
+    -t|templates        Write CSV templat [rest of string was truncated]";.
 
 <a name='P-ParquetRoller-Properties-Resources-MessageVersion'></a>
 ### MessageVersion `property`

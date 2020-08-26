@@ -198,7 +198,7 @@ namespace ParquetRunner
         /// </summary>
         public static void Main()
         {
-            All.LoadFromCSVs();
+            Console.WriteLine(All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
             var episode = new GameModel(All.GameIDs.Minimum + 2, "Sample Episode", "", "", true, "In Which A Library Is Tested", 1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
@@ -206,7 +206,7 @@ namespace ParquetRunner
             Console.WriteLine(episode);
             Console.WriteLine($"Item range = {All.ItemIDs}");
 
-            All.SaveToCSVs();
+            Console.WriteLine(All.SaveToCSVs() ? "Saved." : "Failed to save!");
         }
     }
 }

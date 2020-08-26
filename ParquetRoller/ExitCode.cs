@@ -13,6 +13,10 @@ namespace ParquetRoller
         AccessDenied = 5,
         /// <summary>Invalid data was given.</summary>
         InvalidData = 13,
+        /// <summary>An error occured while attempting to write data.</summary>
+        WriteFault = 29,
+        /// <summary>An error occured while attempting to read data.</summary>
+        ReadFault = 30,
         /// <summary>An unsupported request was made.</summary>
         NotSupported = 50,
         /// <summary>One or more arguments were incorrect.</summary>
