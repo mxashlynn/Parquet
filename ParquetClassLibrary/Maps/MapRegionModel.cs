@@ -263,7 +263,7 @@ namespace ParquetClassLibrary.Maps
             {
                 foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
                 {
-                    // TODO This logic needs to be checked wrong.
+                    // TODO This logic needs to be checked, at a glance it seems wrong.
                     if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
                     {
                         return true;
