@@ -51,20 +51,20 @@
   - [LibraryVersion](#F-ParquetClassLibrary-AssemblyInfo-LibraryVersion 'ParquetClassLibrary.AssemblyInfo.LibraryVersion')
 - [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel')
   - [#ctor(inBounds,inID,inName,inDescription,inComment,inNativeBiome,inPrimaryBehavior,inAvoids,inSeeks)](#M-ParquetClassLibrary-Beings-BeingModel-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.BeingModel.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
-  - [Avoids](#P-ParquetClassLibrary-Beings-BeingModel-Avoids 'ParquetClassLibrary.Beings.BeingModel.Avoids')
-  - [NativeBiome](#P-ParquetClassLibrary-Beings-BeingModel-NativeBiome 'ParquetClassLibrary.Beings.BeingModel.NativeBiome')
-  - [ParquetClassLibrary#Beings#IBeingModelEdit#Avoids](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Avoids 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#Avoids')
-  - [ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome')
-  - [ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior')
-  - [ParquetClassLibrary#Beings#IBeingModelEdit#Seeks](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Seeks 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#Seeks')
-  - [PrimaryBehavior](#P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehavior 'ParquetClassLibrary.Beings.BeingModel.PrimaryBehavior')
-  - [Seeks](#P-ParquetClassLibrary-Beings-BeingModel-Seeks 'ParquetClassLibrary.Beings.BeingModel.Seeks')
+  - [AvoidsIDs](#P-ParquetClassLibrary-Beings-BeingModel-AvoidsIDs 'ParquetClassLibrary.Beings.BeingModel.AvoidsIDs')
+  - [NativeBiomeID](#P-ParquetClassLibrary-Beings-BeingModel-NativeBiomeID 'ParquetClassLibrary.Beings.BeingModel.NativeBiomeID')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#AvoidsIDs](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#AvoidsIDs 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#AvoidsIDs')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiomeID](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiomeID 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiomeID')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehaviorID](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehaviorID 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehaviorID')
+  - [ParquetClassLibrary#Beings#IBeingModelEdit#SeeksIDs](#P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#SeeksIDs 'ParquetClassLibrary.Beings.BeingModel.ParquetClassLibrary#Beings#IBeingModelEdit#SeeksIDs')
+  - [PrimaryBehaviorID](#P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehaviorID 'ParquetClassLibrary.Beings.BeingModel.PrimaryBehaviorID')
+  - [SeeksIDs](#P-ParquetClassLibrary-Beings-BeingModel-SeeksIDs 'ParquetClassLibrary.Beings.BeingModel.SeeksIDs')
 - [BeingStatus](#T-ParquetClassLibrary-Beings-BeingStatus 'ParquetClassLibrary.Beings.BeingStatus')
   - [#ctor(inBeingDefinition,inPosition,inSpawnAt,inCurrentBehavior,inBiomeTimeRemaining,inBuildingSpeed,inModificationSpeed,inGatheringSpeed,inMovementSpeed,inKnownBeings,inKnownParquets,inKnownRoomRecipes,inKnownCraftingRecipes,inQuests,inInventory)](#M-ParquetClassLibrary-Beings-BeingStatus-#ctor-ParquetClassLibrary-Beings-BeingModel,ParquetClassLibrary-ModelID,ParquetClassLibrary-Location,ParquetClassLibrary-Location,System-Int32,System-Single,System-Single,System-Single,System-Single,System-Collections-Generic-List{ParquetClassLibrary-ModelID},System-Collections-Generic-List{ParquetClassLibrary-ModelID},System-Collections-Generic-List{ParquetClassLibrary-ModelID},System-Collections-Generic-List{ParquetClassLibrary-ModelID},System-Collections-Generic-List{ParquetClassLibrary-ModelID},System-Collections-Generic-List{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.BeingStatus.#ctor(ParquetClassLibrary.Beings.BeingModel,ParquetClassLibrary.ModelID,ParquetClassLibrary.Location,ParquetClassLibrary.Location,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Collections.Generic.List{ParquetClassLibrary.ModelID},System.Collections.Generic.List{ParquetClassLibrary.ModelID},System.Collections.Generic.List{ParquetClassLibrary.ModelID},System.Collections.Generic.List{ParquetClassLibrary.ModelID},System.Collections.Generic.List{ParquetClassLibrary.ModelID},System.Collections.Generic.List{ParquetClassLibrary.ModelID})')
   - [BeingDefinition](#P-ParquetClassLibrary-Beings-BeingStatus-BeingDefinition 'ParquetClassLibrary.Beings.BeingStatus.BeingDefinition')
   - [BiomeTimeRemaining](#P-ParquetClassLibrary-Beings-BeingStatus-BiomeTimeRemaining 'ParquetClassLibrary.Beings.BeingStatus.BiomeTimeRemaining')
   - [BuildingSpeed](#P-ParquetClassLibrary-Beings-BeingStatus-BuildingSpeed 'ParquetClassLibrary.Beings.BeingStatus.BuildingSpeed')
-  - [CurrentBehavior](#P-ParquetClassLibrary-Beings-BeingStatus-CurrentBehavior 'ParquetClassLibrary.Beings.BeingStatus.CurrentBehavior')
+  - [CurrentBehaviorID](#P-ParquetClassLibrary-Beings-BeingStatus-CurrentBehaviorID 'ParquetClassLibrary.Beings.BeingStatus.CurrentBehaviorID')
   - [GatheringSpeed](#P-ParquetClassLibrary-Beings-BeingStatus-GatheringSpeed 'ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed')
   - [Inventory](#P-ParquetClassLibrary-Beings-BeingStatus-Inventory 'ParquetClassLibrary.Beings.BeingStatus.Inventory')
   - [KnownBeings](#P-ParquetClassLibrary-Beings-BeingStatus-KnownBeings 'ParquetClassLibrary.Beings.BeingStatus.KnownBeings')
@@ -127,15 +127,15 @@
   - [ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#FamilyName')
   - [ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#PersonalName')
   - [ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#Pronouns')
-  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue')
-  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory')
-  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogueIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogueIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogueIDs')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventoryIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventoryIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventoryIDs')
+  - [ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuestIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuestIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuestIDs')
   - [ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#Beings#ICharacterModelEdit#StoryCharacterID')
   - [PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-PersonalName 'ParquetClassLibrary.Beings.CharacterModel.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-Pronouns 'ParquetClassLibrary.Beings.CharacterModel.Pronouns')
-  - [StartingDialogue](#P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogue 'ParquetClassLibrary.Beings.CharacterModel.StartingDialogue')
-  - [StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.StartingInventory')
-  - [StartingQuests](#P-ParquetClassLibrary-Beings-CharacterModel-StartingQuests 'ParquetClassLibrary.Beings.CharacterModel.StartingQuests')
+  - [StartingDialogueIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingDialogueIDs')
+  - [StartingInventoryIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingInventoryIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingInventoryIDs')
+  - [StartingQuestIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingQuestIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingQuestIDs')
   - [StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID')
 - [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')
   - [#ctor()](#M-ParquetClassLibrary-Maps-ChunkDetail-#ctor 'ParquetClassLibrary.Maps.ChunkDetail.#ctor')
@@ -277,10 +277,10 @@
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
 - [IBeingModelEdit](#T-ParquetClassLibrary-Beings-IBeingModelEdit 'ParquetClassLibrary.Beings.IBeingModelEdit')
-  - [Avoids](#P-ParquetClassLibrary-Beings-IBeingModelEdit-Avoids 'ParquetClassLibrary.Beings.IBeingModelEdit.Avoids')
-  - [NativeBiome](#P-ParquetClassLibrary-Beings-IBeingModelEdit-NativeBiome 'ParquetClassLibrary.Beings.IBeingModelEdit.NativeBiome')
-  - [PrimaryBehavior](#P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehavior 'ParquetClassLibrary.Beings.IBeingModelEdit.PrimaryBehavior')
-  - [Seeks](#P-ParquetClassLibrary-Beings-IBeingModelEdit-Seeks 'ParquetClassLibrary.Beings.IBeingModelEdit.Seeks')
+  - [AvoidsIDs](#P-ParquetClassLibrary-Beings-IBeingModelEdit-AvoidsIDs 'ParquetClassLibrary.Beings.IBeingModelEdit.AvoidsIDs')
+  - [NativeBiomeID](#P-ParquetClassLibrary-Beings-IBeingModelEdit-NativeBiomeID 'ParquetClassLibrary.Beings.IBeingModelEdit.NativeBiomeID')
+  - [PrimaryBehaviorID](#P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehaviorID 'ParquetClassLibrary.Beings.IBeingModelEdit.PrimaryBehaviorID')
+  - [SeeksIDs](#P-ParquetClassLibrary-Beings-IBeingModelEdit-SeeksIDs 'ParquetClassLibrary.Beings.IBeingModelEdit.SeeksIDs')
 - [IBiomeRecipeEdit](#T-ParquetClassLibrary-Biomes-IBiomeRecipeEdit 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit')
   - [EntryRequirements](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-EntryRequirements 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.EntryRequirements')
   - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-IBiomeRecipeEdit-IsLiquidBased 'ParquetClassLibrary.Biomes.IBiomeRecipeEdit.IsLiquidBased')
@@ -298,9 +298,9 @@
   - [FamilyName](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-FamilyName 'ParquetClassLibrary.Beings.ICharacterModelEdit.FamilyName')
   - [PersonalName](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-PersonalName 'ParquetClassLibrary.Beings.ICharacterModelEdit.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-Pronouns 'ParquetClassLibrary.Beings.ICharacterModelEdit.Pronouns')
-  - [StartingDialogue](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingDialogue 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingDialogue')
-  - [StartingInventory](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingInventory 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingInventory')
-  - [StartingQuests](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingQuests 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingQuests')
+  - [StartingDialogueIDs](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingDialogueIDs 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingDialogueIDs')
+  - [StartingInventoryIDs](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingInventoryIDs 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingInventoryIDs')
+  - [StartingQuestIDs](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingQuestIDs 'ParquetClassLibrary.Beings.ICharacterModelEdit.StartingQuestIDs')
   - [StoryCharacterID](#P-ParquetClassLibrary-Beings-ICharacterModelEdit-StoryCharacterID 'ParquetClassLibrary.Beings.ICharacterModelEdit.StoryCharacterID')
 - [ICollectibleModelEdit](#T-ParquetClassLibrary-Parquets-ICollectibleModelEdit 'ParquetClassLibrary.Parquets.ICollectibleModelEdit')
   - [CollectionEffect](#P-ParquetClassLibrary-Parquets-ICollectibleModelEdit-CollectionEffect 'ParquetClassLibrary.Parquets.ICollectibleModelEdit.CollectionEffect')
@@ -331,12 +331,12 @@
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-IGrid`1-Rows 'ParquetClassLibrary.IGrid`1.Rows')
 - [IInteractionModelEdit](#T-ParquetClassLibrary-Scripts-IInteractionModelEdit 'ParquetClassLibrary.Scripts.IInteractionModelEdit')
-  - [Outcomes](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Outcomes 'ParquetClassLibrary.Scripts.IInteractionModelEdit.Outcomes')
-  - [Prerequisites](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Prerequisites 'ParquetClassLibrary.Scripts.IInteractionModelEdit.Prerequisites')
-  - [Steps](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Steps 'ParquetClassLibrary.Scripts.IInteractionModelEdit.Steps')
+  - [OutcomesIDs](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-OutcomesIDs 'ParquetClassLibrary.Scripts.IInteractionModelEdit.OutcomesIDs')
+  - [PrerequisitesIDs](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-PrerequisitesIDs 'ParquetClassLibrary.Scripts.IInteractionModelEdit.PrerequisitesIDs')
+  - [StepsIDs](#P-ParquetClassLibrary-Scripts-IInteractionModelEdit-StepsIDs 'ParquetClassLibrary.Scripts.IInteractionModelEdit.StepsIDs')
 - [IItemModelEdit](#T-ParquetClassLibrary-Items-IItemModelEdit 'ParquetClassLibrary.Items.IItemModelEdit')
-  - [EffectWhenUsed](#P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhenUsed 'ParquetClassLibrary.Items.IItemModelEdit.EffectWhenUsed')
-  - [EffectWhileHeld](#P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhileHeld 'ParquetClassLibrary.Items.IItemModelEdit.EffectWhileHeld')
+  - [EffectWhenUsedID](#P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhenUsedID 'ParquetClassLibrary.Items.IItemModelEdit.EffectWhenUsedID')
+  - [EffectWhileHeldID](#P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhileHeldID 'ParquetClassLibrary.Items.IItemModelEdit.EffectWhileHeldID')
   - [ItemTags](#P-ParquetClassLibrary-Items-IItemModelEdit-ItemTags 'ParquetClassLibrary.Items.IItemModelEdit.ItemTags')
   - [ParquetID](#P-ParquetClassLibrary-Items-IItemModelEdit-ParquetID 'ParquetClassLibrary.Items.IItemModelEdit.ParquetID')
   - [Price](#P-ParquetClassLibrary-Items-IItemModelEdit-Price 'ParquetClassLibrary.Items.IItemModelEdit.Price')
@@ -345,12 +345,12 @@
   - [Subtype](#P-ParquetClassLibrary-Items-IItemModelEdit-Subtype 'ParquetClassLibrary.Items.IItemModelEdit.Subtype')
 - [IMapRegionEdit](#T-ParquetClassLibrary-Maps-IMapRegionEdit 'ParquetClassLibrary.Maps.IMapRegionEdit')
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-IMapRegionEdit-BackgroundColor 'ParquetClassLibrary.Maps.IMapRegionEdit.BackgroundColor')
-  - [RegionAbove](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAbove')
-  - [RegionBelow](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelow')
-  - [RegionToTheEast](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEast')
-  - [RegionToTheNorth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorth')
-  - [RegionToTheSouth](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouth')
-  - [RegionToTheWest](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWest')
+  - [RegionAboveID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAboveID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionAboveID')
+  - [RegionBelowID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelowID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionBelowID')
+  - [RegionToTheEastID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEastID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheEastID')
+  - [RegionToTheNorthID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorthID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheNorthID')
+  - [RegionToTheSouthID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouthID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheSouthID')
+  - [RegionToTheWestID](#P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWestID 'ParquetClassLibrary.Maps.IMapRegionEdit.RegionToTheWestID')
 - [IModelCollectionEdit\`1](#T-ParquetClassLibrary-IModelCollectionEdit`1 'ParquetClassLibrary.IModelCollectionEdit`1')
   - [Add(inModel)](#M-ParquetClassLibrary-IModelCollectionEdit`1-Add-`0- 'ParquetClassLibrary.IModelCollectionEdit`1.Add(`0)')
   - [Clear()](#M-ParquetClassLibrary-IModelCollectionEdit`1-Clear 'ParquetClassLibrary.IModelCollectionEdit`1.Clear')
@@ -366,10 +366,10 @@
   - [AddsToRoom](#P-ParquetClassLibrary-Parquets-IParquetModelEdit-AddsToRoom 'ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToRoom')
   - [ItemID](#P-ParquetClassLibrary-Parquets-IParquetModelEdit-ItemID 'ParquetClassLibrary.Parquets.IParquetModelEdit.ItemID')
 - [IParquetStack](#T-ParquetClassLibrary-Parquets-IParquetStack 'ParquetClassLibrary.Parquets.IParquetStack')
-  - [Block](#P-ParquetClassLibrary-Parquets-IParquetStack-Block 'ParquetClassLibrary.Parquets.IParquetStack.Block')
-  - [Collectible](#P-ParquetClassLibrary-Parquets-IParquetStack-Collectible 'ParquetClassLibrary.Parquets.IParquetStack.Collectible')
-  - [Floor](#P-ParquetClassLibrary-Parquets-IParquetStack-Floor 'ParquetClassLibrary.Parquets.IParquetStack.Floor')
-  - [Furnishing](#P-ParquetClassLibrary-Parquets-IParquetStack-Furnishing 'ParquetClassLibrary.Parquets.IParquetStack.Furnishing')
+  - [BlockID](#P-ParquetClassLibrary-Parquets-IParquetStack-BlockID 'ParquetClassLibrary.Parquets.IParquetStack.BlockID')
+  - [CollectibleID](#P-ParquetClassLibrary-Parquets-IParquetStack-CollectibleID 'ParquetClassLibrary.Parquets.IParquetStack.CollectibleID')
+  - [FloorID](#P-ParquetClassLibrary-Parquets-IParquetStack-FloorID 'ParquetClassLibrary.Parquets.IParquetStack.FloorID')
+  - [FurnishingID](#P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.IParquetStack.FurnishingID')
   - [IsEmpty](#P-ParquetClassLibrary-Parquets-IParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.IParquetStack.IsEmpty')
 - [IPronounGroupEdit](#T-ParquetClassLibrary-Beings-IPronounGroupEdit 'ParquetClassLibrary.Beings.IPronounGroupEdit')
   - [Determiner](#P-ParquetClassLibrary-Beings-IPronounGroupEdit-Determiner 'ParquetClassLibrary.Beings.IPronounGroupEdit.Determiner')
@@ -388,12 +388,12 @@
   - [Normalize(inInt,inLowerBound,inUpperBound)](#M-ParquetClassLibrary-IntExtensions-Normalize-System-Int32,System-Int32,System-Int32- 'ParquetClassLibrary.IntExtensions.Normalize(System.Int32,System.Int32,System.Int32)')
 - [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')
   - [#ctor(inID,inName,inDescription,inComment,inPrerequisites,inSteps,inOutcomes)](#M-ParquetClassLibrary-Scripts-InteractionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Scripts.InteractionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
-  - [Outcomes](#P-ParquetClassLibrary-Scripts-InteractionModel-Outcomes 'ParquetClassLibrary.Scripts.InteractionModel.Outcomes')
-  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes')
-  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites')
-  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps')
-  - [Prerequisites](#P-ParquetClassLibrary-Scripts-InteractionModel-Prerequisites 'ParquetClassLibrary.Scripts.InteractionModel.Prerequisites')
-  - [Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-Steps 'ParquetClassLibrary.Scripts.InteractionModel.Steps')
+  - [OutcomesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-OutcomesIDs 'ParquetClassLibrary.Scripts.InteractionModel.OutcomesIDs')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#OutcomesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#OutcomesIDs 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#OutcomesIDs')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#PrerequisitesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#PrerequisitesIDs 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#PrerequisitesIDs')
+  - [ParquetClassLibrary#Scripts#IInteractionModelEdit#StepsIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#StepsIDs 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#Scripts#IInteractionModelEdit#StepsIDs')
+  - [PrerequisitesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-PrerequisitesIDs 'ParquetClassLibrary.Scripts.InteractionModel.PrerequisitesIDs')
+  - [StepsIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-StepsIDs 'ParquetClassLibrary.Scripts.InteractionModel.StepsIDs')
 - [InteractionStatus](#T-ParquetClassLibrary-Scripts-InteractionStatus 'ParquetClassLibrary.Scripts.InteractionStatus')
   - [#ctor(inInteractionDefinition,inState,inProgramCounter)](#M-ParquetClassLibrary-Scripts-InteractionStatus-#ctor-ParquetClassLibrary-Scripts-InteractionModel,ParquetClassLibrary-Scripts-RunState,System-Int32- 'ParquetClassLibrary.Scripts.InteractionStatus.#ctor(ParquetClassLibrary.Scripts.InteractionModel,ParquetClassLibrary.Scripts.RunState,System.Int32)')
   - [InteractionDefinition](#P-ParquetClassLibrary-Scripts-InteractionStatus-InteractionDefinition 'ParquetClassLibrary.Scripts.InteractionStatus.InteractionDefinition')
@@ -434,11 +434,11 @@
   - [ToString()](#M-ParquetClassLibrary-Items-InventorySlot-ToString 'ParquetClassLibrary.Items.InventorySlot.ToString')
 - [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')
   - [#ctor(inID,inName,inDescription,inComment,inSubtype,inPrice,inRarity,inStackMax,inEffectWhileHeld,inEffectWhenUsed,inParquetID,inItemTags)](#M-ParquetClassLibrary-Items-ItemModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-Items-ItemType,System-Int32,System-Int32,System-Int32,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Items.ItemModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.Items.ItemType,System.Int32,System.Int32,System.Int32,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
-  - [EffectWhenUsed](#P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsed 'ParquetClassLibrary.Items.ItemModel.EffectWhenUsed')
-  - [EffectWhileHeld](#P-ParquetClassLibrary-Items-ItemModel-EffectWhileHeld 'ParquetClassLibrary.Items.ItemModel.EffectWhileHeld')
+  - [EffectWhenUsedID](#P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsedID 'ParquetClassLibrary.Items.ItemModel.EffectWhenUsedID')
+  - [EffectWhileHeldID](#P-ParquetClassLibrary-Items-ItemModel-EffectWhileHeldID 'ParquetClassLibrary.Items.ItemModel.EffectWhileHeldID')
   - [ItemTags](#P-ParquetClassLibrary-Items-ItemModel-ItemTags 'ParquetClassLibrary.Items.ItemModel.ItemTags')
-  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed')
-  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld')
+  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsedID](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsedID 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsedID')
+  - [ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeldID](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeldID 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeldID')
   - [ParquetClassLibrary#Items#IItemModelEdit#ItemTags](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ItemTags 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#ItemTags')
   - [ParquetClassLibrary#Items#IItemModelEdit#ParquetID](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#ParquetID 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#ParquetID')
   - [ParquetClassLibrary#Items#IItemModelEdit#Price](#P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#Price 'ParquetClassLibrary.Items.ItemModel.ParquetClassLibrary#Items#IItemModelEdit#Price')
@@ -505,12 +505,12 @@
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionModel.DimensionsInParquets')
   - [ParquetClassLibrary#IModelEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#IModelEdit#Name 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#IModelEdit#Name')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionModel.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionModel.ParquetStatuses')
   - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionModel-RegionAbove 'ParquetClassLibrary.Maps.MapRegionModel.RegionAbove')
@@ -535,12 +535,12 @@
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets')
   - [ParquetClassLibrary#IModelEdit#Name](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#IModelEdit#Name 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#IModelEdit#Name')
   - [ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#BackgroundColor')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth')
-  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID')
+  - [ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions')
   - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove')
   - [RegionBelow](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionBelow 'ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow')
@@ -706,13 +706,13 @@
 - [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStack-#ctor 'ParquetClassLibrary.Parquets.ParquetStack.#ctor')
   - [#ctor(inFloor,inBlock,inFurnishing,inCollectible)](#M-ParquetClassLibrary-Parquets-ParquetStack-#ctor-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Parquets.ParquetStack.#ctor(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
-  - [Block](#P-ParquetClassLibrary-Parquets-ParquetStack-Block 'ParquetClassLibrary.Parquets.ParquetStack.Block')
-  - [Collectible](#P-ParquetClassLibrary-Parquets-ParquetStack-Collectible 'ParquetClassLibrary.Parquets.ParquetStack.Collectible')
+  - [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID')
+  - [CollectibleID](#P-ParquetClassLibrary-Parquets-ParquetStack-CollectibleID 'ParquetClassLibrary.Parquets.ParquetStack.CollectibleID')
   - [ConverterFactory](#P-ParquetClassLibrary-Parquets-ParquetStack-ConverterFactory 'ParquetClassLibrary.Parquets.ParquetStack.ConverterFactory')
   - [Count](#P-ParquetClassLibrary-Parquets-ParquetStack-Count 'ParquetClassLibrary.Parquets.ParquetStack.Count')
   - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStack-Empty 'ParquetClassLibrary.Parquets.ParquetStack.Empty')
-  - [Floor](#P-ParquetClassLibrary-Parquets-ParquetStack-Floor 'ParquetClassLibrary.Parquets.ParquetStack.Floor')
-  - [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing')
+  - [FloorID](#P-ParquetClassLibrary-Parquets-ParquetStack-FloorID 'ParquetClassLibrary.Parquets.ParquetStack.FloorID')
+  - [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID')
   - [IsEmpty](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.ParquetStack.IsEmpty')
   - [IsEnclosing](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEnclosing 'ParquetClassLibrary.Parquets.ParquetStack.IsEnclosing')
   - [IsEntry](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEntry 'ParquetClassLibrary.Parquets.ParquetStack.IsEntry')
@@ -1589,22 +1589,22 @@ Must be one of [BeingIDs](#F-ParquetClassLibrary-All-BeingIDs 'ParquetClassLibra
 | inAvoids | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') avoids. |
 | inSeeks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') seeks. |
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-Avoids'></a>
-### Avoids `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-AvoidsIDs'></a>
+### AvoidsIDs `property`
 
 ##### Summary
 
 Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') avoids, if any.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-NativeBiome'></a>
-### NativeBiome `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-NativeBiomeID'></a>
+### NativeBiomeID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this character is at home.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Avoids'></a>
-### ParquetClassLibrary#Beings#IBeingModelEdit#Avoids `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#AvoidsIDs'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#AvoidsIDs `property`
 
 ##### Summary
 
@@ -1615,8 +1615,8 @@ Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'Pa
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome'></a>
-### ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiome `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiomeID'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#NativeBiomeID `property`
 
 ##### Summary
 
@@ -1627,8 +1627,8 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior'></a>
-### ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehavior `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehaviorID'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#PrimaryBehaviorID `property`
 
 ##### Summary
 
@@ -1639,8 +1639,8 @@ The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of t
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#Seeks'></a>
-### ParquetClassLibrary#Beings#IBeingModelEdit#Seeks `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-ParquetClassLibrary#Beings#IBeingModelEdit#SeeksIDs'></a>
+### ParquetClassLibrary#Beings#IBeingModelEdit#SeeksIDs `property`
 
 ##### Summary
 
@@ -1651,15 +1651,15 @@ Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'Pa
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehavior'></a>
-### PrimaryBehavior `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-PrimaryBehaviorID'></a>
+### PrimaryBehaviorID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') governing the way this being acts.
 
-<a name='P-ParquetClassLibrary-Beings-BeingModel-Seeks'></a>
-### Seeks `property`
+<a name='P-ParquetClassLibrary-Beings-BeingModel-SeeksIDs'></a>
+### SeeksIDs `property`
 
 ##### Summary
 
@@ -1728,8 +1728,8 @@ It is likely that this will only be used by [CharacterModel](#T-ParquetClassLibr
 
 The time it takes the tracked [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') to place new parquets.
 
-<a name='P-ParquetClassLibrary-Beings-BeingStatus-CurrentBehavior'></a>
-### CurrentBehavior `property`
+<a name='P-ParquetClassLibrary-Beings-BeingStatus-CurrentBehaviorID'></a>
+### CurrentBehaviorID `property`
 
 ##### Summary
 
@@ -2351,8 +2351,8 @@ stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'Par
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue'></a>
-### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogue `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogueIDs'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingDialogueIDs `property`
 
 ##### Summary
 
@@ -2363,8 +2363,8 @@ Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMode
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory'></a>
-### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventory `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventoryIDs'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingInventoryIDs `property`
 
 ##### Summary
 
@@ -2375,8 +2375,8 @@ The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-C
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests'></a>
-### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuests `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuestIDs'></a>
+### ParquetClassLibrary#Beings#ICharacterModelEdit#StartingQuestIDs `property`
 
 ##### Summary
 
@@ -2414,15 +2414,15 @@ Player-facing personal name.
 A key for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup') the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') uses,
 stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'ParquetClassLibrary.Beings.PronounGroup.Objective')/[Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective').
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogue'></a>
-### StartingDialogue `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueIDs'></a>
+### StartingDialogueIDs `property`
 
 ##### Summary
 
 Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingInventory'></a>
-### StartingInventory `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingInventoryIDs'></a>
+### StartingInventoryIDs `property`
 
 ##### Summary
 
@@ -2432,8 +2432,8 @@ The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-C
 
 This is not the full [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') but a list of item IDs to populate it with.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingQuests'></a>
-### StartingQuests `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingQuestIDs'></a>
+### StartingQuestIDs `property`
 
 ##### Summary
 
@@ -3871,29 +3871,29 @@ ParquetClassLibrary.Beings
 
 Facilitates editing of a [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') from design tools while maintaining a read-only face for use during play.
 
-<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-Avoids'></a>
-### Avoids `property`
+<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-AvoidsIDs'></a>
+### AvoidsIDs `property`
 
 ##### Summary
 
 Types of parquets this [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel') avoids, if any.
 
-<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-NativeBiome'></a>
-### NativeBiome `property`
+<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-NativeBiomeID'></a>
+### NativeBiomeID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') in which this character is at home.
 
-<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehavior'></a>
-### PrimaryBehavior `property`
+<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-PrimaryBehaviorID'></a>
+### PrimaryBehaviorID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') governing the way this being acts.
 
-<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-Seeks'></a>
-### Seeks `property`
+<a name='P-ParquetClassLibrary-Beings-IBeingModelEdit-SeeksIDs'></a>
+### SeeksIDs `property`
 
 ##### Summary
 
@@ -4042,15 +4042,15 @@ Player-facing personal name.
 A key for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup') the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') uses,
 stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'ParquetClassLibrary.Beings.PronounGroup.Objective')/[Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective').
 
-<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingDialogue'></a>
-### StartingDialogue `property`
+<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingDialogueIDs'></a>
+### StartingDialogueIDs `property`
 
 ##### Summary
 
 Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
 
-<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingInventory'></a>
-### StartingInventory `property`
+<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingInventoryIDs'></a>
+### StartingInventoryIDs `property`
 
 ##### Summary
 
@@ -4060,8 +4060,8 @@ The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-C
 
 This is not the full [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') but a list of item IDs to populate it with.
 
-<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingQuests'></a>
-### StartingQuests `property`
+<a name='P-ParquetClassLibrary-Beings-ICharacterModelEdit-StartingQuestIDs'></a>
+### StartingQuestIDs `property`
 
 ##### Summary
 
@@ -4371,22 +4371,22 @@ Facilitates editing of a [InteractionModel](#T-ParquetClassLibrary-Scripts-Inter
 By design, children of [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') should never themselves use [IInteractionModelEdit](#T-ParquetClassLibrary-Scripts-IInteractionModelEdit 'ParquetClassLibrary.Scripts.IInteractionModelEdit').
 IInteractionModelEdit is for use only by external types that require read/write access to model properties.
 
-<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Outcomes'></a>
-### Outcomes `property`
+<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-OutcomesIDs'></a>
+### OutcomesIDs `property`
 
 ##### Summary
 
 Describes the results of finishing this interaction.
 
-<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Prerequisites'></a>
-### Prerequisites `property`
+<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-PrerequisitesIDs'></a>
+### PrerequisitesIDs `property`
 
 ##### Summary
 
 Describes the criteria for begining this interaction.
 
-<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-Steps'></a>
-### Steps `property`
+<a name='P-ParquetClassLibrary-Scripts-IInteractionModelEdit-StepsIDs'></a>
+### StepsIDs `property`
 
 ##### Summary
 
@@ -4408,16 +4408,16 @@ Facilitates editing of a [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'Par
 By design, children of [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') should never themselves use [IItemModelEdit](#T-ParquetClassLibrary-Items-IItemModelEdit 'ParquetClassLibrary.Items.IItemModelEdit').
 IItemModelEdit is for use only by external types that require read/write access to model properties.
 
-<a name='P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhenUsed'></a>
-### EffectWhenUsed `property`
+<a name='P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhenUsedID'></a>
+### EffectWhenUsedID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') generating the in-game effect caused by
 using (consuming) the item.
 
-<a name='P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhileHeld'></a>
-### EffectWhileHeld `property`
+<a name='P-ParquetClassLibrary-Items-IItemModelEdit-EffectWhileHeldID'></a>
+### EffectWhileHeldID `property`
 
 ##### Summary
 
@@ -4484,43 +4484,43 @@ Facilitates editing of [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionMod
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAbove'></a>
-### RegionAbove `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionAboveID'></a>
+### RegionAboveID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelow'></a>
-### RegionBelow `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionBelowID'></a>
+### RegionBelowID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEast'></a>
-### RegionToTheEast `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheEastID'></a>
+### RegionToTheEastID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorth'></a>
-### RegionToTheNorth `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheNorthID'></a>
+### RegionToTheNorthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouth'></a>
-### RegionToTheSouth `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheSouthID'></a>
+### RegionToTheSouthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWest'></a>
-### RegionToTheWest `property`
+<a name='P-ParquetClassLibrary-Maps-IMapRegionEdit-RegionToTheWestID'></a>
+### RegionToTheWestID `property`
 
 ##### Summary
 
@@ -4707,29 +4707,29 @@ Interface to a simple container for one of each layer of parquet occupying the s
 
 Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into game-level methods that performs simple operations, such as rasterization.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-Block'></a>
-### Block `property`
+<a name='P-ParquetClassLibrary-Parquets-IParquetStack-BlockID'></a>
+### BlockID `property`
 
 ##### Summary
 
 The block contained in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-Collectible'></a>
-### Collectible `property`
+<a name='P-ParquetClassLibrary-Parquets-IParquetStack-CollectibleID'></a>
+### CollectibleID `property`
 
 ##### Summary
 
 The collectible contained in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-Floor'></a>
-### Floor `property`
+<a name='P-ParquetClassLibrary-Parquets-IParquetStack-FloorID'></a>
+### FloorID `property`
 
 ##### Summary
 
 The floor contained in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-Furnishing'></a>
-### Furnishing `property`
+<a name='P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID'></a>
+### FurnishingID `property`
 
 ##### Summary
 
@@ -4916,15 +4916,15 @@ Initializes a new instance of the [InteractionModel](#T-ParquetClassLibrary-Scri
 | inSteps | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Describes the criteria for completing this [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel'). |
 | inOutcomes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Describes the results of finishing this [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel'). |
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-Outcomes'></a>
-### Outcomes `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-OutcomesIDs'></a>
+### OutcomesIDs `property`
 
 ##### Summary
 
 Describes the results of finishing this interaction.
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes'></a>
-### ParquetClassLibrary#Scripts#IInteractionModelEdit#Outcomes `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#OutcomesIDs'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#OutcomesIDs `property`
 
 ##### Summary
 
@@ -4935,8 +4935,8 @@ Describes the results of finishing this interaction.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites'></a>
-### ParquetClassLibrary#Scripts#IInteractionModelEdit#Prerequisites `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#PrerequisitesIDs'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#PrerequisitesIDs `property`
 
 ##### Summary
 
@@ -4947,8 +4947,8 @@ Describes the criteria for begining this interaction.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps'></a>
-### ParquetClassLibrary#Scripts#IInteractionModelEdit#Steps `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#Scripts#IInteractionModelEdit#StepsIDs'></a>
+### ParquetClassLibrary#Scripts#IInteractionModelEdit#StepsIDs `property`
 
 ##### Summary
 
@@ -4959,15 +4959,15 @@ Everything this interaction entails.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-Prerequisites'></a>
-### Prerequisites `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-PrerequisitesIDs'></a>
+### PrerequisitesIDs `property`
 
 ##### Summary
 
 Describes the criteria for begining this interaction.
 
-<a name='P-ParquetClassLibrary-Scripts-InteractionModel-Steps'></a>
-### Steps `property`
+<a name='P-ParquetClassLibrary-Scripts-InteractionModel-StepsIDs'></a>
+### StepsIDs `property`
 
 ##### Summary
 
@@ -4997,7 +4997,7 @@ Initializes a new instance of the [InteractionStatus](#T-ParquetClassLibrary-Scr
 | ---- | ---- | ----------- |
 | inInteractionDefinition | [ParquetClassLibrary.Scripts.InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') | The [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') whose status is being tracked. |
 | inState | [ParquetClassLibrary.Scripts.RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState') | The [RunState](#T-ParquetClassLibrary-Scripts-RunState 'ParquetClassLibrary.Scripts.RunState') of the tracked [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel'). |
-| inProgramCounter | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Index to the current [ScriptNode](#T-ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode') in the tracked [Steps](#P-ParquetClassLibrary-Scripts-InteractionModel-Steps 'ParquetClassLibrary.Scripts.InteractionModel.Steps'). |
+| inProgramCounter | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Index to the current [ScriptNode](#T-ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode') in the tracked [StepsIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-StepsIDs 'ParquetClassLibrary.Scripts.InteractionModel.StepsIDs'). |
 
 <a name='P-ParquetClassLibrary-Scripts-InteractionStatus-InteractionDefinition'></a>
 ### InteractionDefinition `property`
@@ -5506,16 +5506,16 @@ Initializes a new instance of the [ItemModel](#T-ParquetClassLibrary-Items-ItemM
 | inParquetID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The parquet represented, if any. |
 | inItemTags | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag}') | Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe'). |
 
-<a name='P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsed'></a>
-### EffectWhenUsed `property`
+<a name='P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsedID'></a>
+### EffectWhenUsedID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') generating the in-game effect caused by
 using (consuming) the item.
 
-<a name='P-ParquetClassLibrary-Items-ItemModel-EffectWhileHeld'></a>
-### EffectWhileHeld `property`
+<a name='P-ParquetClassLibrary-Items-ItemModel-EffectWhileHeldID'></a>
+### EffectWhileHeldID `property`
 
 ##### Summary
 
@@ -5529,8 +5529,8 @@ keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMo
 
 Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
 
-<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed'></a>
-### ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsed `property`
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsedID'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#EffectWhenUsedID `property`
 
 ##### Summary
 
@@ -5542,8 +5542,8 @@ using (consuming) the item.
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld'></a>
-### ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeld `property`
+<a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeldID'></a>
+### ParquetClassLibrary#Items#IItemModelEdit#EffectWhileHeldID `property`
 
 ##### Summary
 
@@ -6278,43 +6278,43 @@ What the region is called in-game.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID `property`
 
 ##### Summary
 
@@ -6543,43 +6543,43 @@ What the region is called in-game.
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAbove `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionAboveID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelow `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionBelowID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEast `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheEastID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorth `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheNorthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouth `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheSouthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest'></a>
-### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWest `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID'></a>
+### ParquetClassLibrary#Maps#IMapRegionEdit#RegionToTheWestID `property`
 
 ##### Summary
 
@@ -9000,15 +9000,15 @@ Initializes a new instance of the [ParquetStack](#T-ParquetClassLibrary-Parquets
 | inFurnishing | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The furnishing-layer parquet. |
 | inCollectible | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The collectible-layer parquet. |
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Block'></a>
-### Block `property`
+<a name='P-ParquetClassLibrary-Parquets-ParquetStack-BlockID'></a>
+### BlockID `property`
 
 ##### Summary
 
 The block contained in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Collectible'></a>
-### Collectible `property`
+<a name='P-ParquetClassLibrary-Parquets-ParquetStack-CollectibleID'></a>
+### CollectibleID `property`
 
 ##### Summary
 
@@ -9035,15 +9035,15 @@ The number of parquets actually present in this stack.
 
 Cannonical null [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack'), representing an arbitrary empty stack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Floor'></a>
-### Floor `property`
+<a name='P-ParquetClassLibrary-Parquets-ParquetStack-FloorID'></a>
+### FloorID `property`
 
 ##### Summary
 
 The floor contained in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing'></a>
-### Furnishing `property`
+<a name='P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID'></a>
+### FurnishingID `property`
 
 ##### Summary
 
@@ -9062,8 +9062,8 @@ Indicates whether this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetSta
 ##### Summary
 
 A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Enclosing iff:
-1, It has a [Block](#P-ParquetClassLibrary-Parquets-ParquetStack-Block 'ParquetClassLibrary.Parquets.ParquetStack.Block') that is not [IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.IsLiquid'); or,
-2, It has a [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing') that is [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
+1, It has a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID') that is not [IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.IsLiquid'); or,
+2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that is [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
 
 ##### Returns
 
@@ -9076,7 +9076,7 @@ A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibra
 
 A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Entry iff:
 1, It is either Walkable or Enclosing but not both; and,
-2, It has a [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
+2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
 
 ##### Returns
 
@@ -9088,9 +9088,9 @@ A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibra
 ##### Summary
 
 A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is considered walkable iff:
-1, It has a [Floor](#P-ParquetClassLibrary-Parquets-ParquetStack-Floor 'ParquetClassLibrary.Parquets.ParquetStack.Floor');
-2, It does not have a [Block](#P-ParquetClassLibrary-Parquets-ParquetStack-Block 'ParquetClassLibrary.Parquets.ParquetStack.Block');
-3, It does not have a [Furnishing](#P-ParquetClassLibrary-Parquets-ParquetStack-Furnishing 'ParquetClassLibrary.Parquets.ParquetStack.Furnishing') that [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
+1, It has a [FloorID](#P-ParquetClassLibrary-Parquets-ParquetStack-FloorID 'ParquetClassLibrary.Parquets.ParquetStack.FloorID');
+2, It does not have a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID');
+3, It does not have a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
 
 ##### Returns
 

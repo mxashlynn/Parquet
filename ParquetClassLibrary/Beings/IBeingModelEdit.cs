@@ -8,15 +8,15 @@ namespace ParquetClassLibrary.Beings
     public interface IBeingModelEdit : IModelEdit
     {
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
-        public ModelID NativeBiome { get; set; }
+        public ModelID NativeBiomeID { get; set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> governing the way this being acts.</summary>
-        public ModelID PrimaryBehavior { get; set; }
+        public ModelID PrimaryBehaviorID { get; set; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-        public IList<ModelID> Avoids { get; }
+        public IList<ModelID> AvoidsIDs { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-        public IList<ModelID> Seeks { get; }
+        public IList<ModelID> SeeksIDs { get; }
     }
 }

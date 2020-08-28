@@ -14,19 +14,19 @@ namespace ParquetUnitTests.Maps
             {
                 for (var y = 0; y < MapRegionModel.ParquetsPerRegionDimension; y++)
                 {
-                    inMapRegionModel.ParquetDefinitions[y, x].Floor = TestModels.TestFloor.ID;
+                    inMapRegionModel.ParquetDefinitions[y, x].FloorID = TestModels.TestFloor.ID;
                 }
 
-                inMapRegionModel.ParquetDefinitions[0, x].Block = TestModels.TestBlock.ID;
-                inMapRegionModel.ParquetDefinitions[MapRegionModel.ParquetsPerRegionDimension, 1].Block = TestModels.TestBlock.ID;
+                inMapRegionModel.ParquetDefinitions[0, x].BlockID = TestModels.TestBlock.ID;
+                inMapRegionModel.ParquetDefinitions[MapRegionModel.ParquetsPerRegionDimension, 1].BlockID = TestModels.TestBlock.ID;
             }
             for (var y = 0; y < MapRegionModel.ParquetsPerRegionDimension; y++)
             {
-                inMapRegionModel.ParquetDefinitions[y, 0].Block = TestModels.TestBlock.ID;
-                inMapRegionModel.ParquetDefinitions[y, MapRegionModel.ParquetsPerRegionDimension - 1].Block = TestModels.TestBlock.ID;
+                inMapRegionModel.ParquetDefinitions[y, 0].BlockID = TestModels.TestBlock.ID;
+                inMapRegionModel.ParquetDefinitions[y, MapRegionModel.ParquetsPerRegionDimension - 1].BlockID = TestModels.TestBlock.ID;
             }
-            inMapRegionModel.ParquetDefinitions[2, 1].Furnishing = TestModels.TestFurnishing.ID;
-            inMapRegionModel.ParquetDefinitions[3, 3].Collectible = TestModels.TestCollectible.ID;
+            inMapRegionModel.ParquetDefinitions[2, 1].FurnishingID = TestModels.TestFurnishing.ID;
+            inMapRegionModel.ParquetDefinitions[3, 3].CollectibleID = TestModels.TestCollectible.ID;
 
             return inMapRegionModel;
         }

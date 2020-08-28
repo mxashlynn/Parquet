@@ -169,19 +169,19 @@ namespace ParquetRunner
             {
                 for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
                 {
-                    TestMapChunkModel.ParquetDefinitions[y, x].Floor = TestFloor.ID;
+                    TestMapChunkModel.ParquetDefinitions[y, x].FloorID = TestFloor.ID;
                 }
 
-                TestMapChunkModel.ParquetDefinitions[y, 0].Block = TestBlock.ID;
-                TestMapChunkModel.ParquetDefinitions[y, TestMapChunkModel.DimensionsInParquets.X - 1].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[y, 0].BlockID = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[y, TestMapChunkModel.DimensionsInParquets.X - 1].BlockID = TestBlock.ID;
             }
             for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
             {
-                TestMapChunkModel.ParquetDefinitions[0, x].Block = TestBlock.ID;
-                TestMapChunkModel.ParquetDefinitions[TestMapChunkModel.DimensionsInParquets.Y - 1, x].Block = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[0, x].BlockID = TestBlock.ID;
+                TestMapChunkModel.ParquetDefinitions[TestMapChunkModel.DimensionsInParquets.Y - 1, x].BlockID = TestBlock.ID;
             }
-            TestMapChunkModel.ParquetDefinitions[2, 1].Furnishing = TestFurnishing.ID;
-            TestMapChunkModel.ParquetDefinitions[3, 3].Collectible = TestCollectible.ID;
+            TestMapChunkModel.ParquetDefinitions[2, 1].FurnishingID = TestFurnishing.ID;
+            TestMapChunkModel.ParquetDefinitions[3, 3].CollectibleID = TestCollectible.ID;
             #endregion
             #endregion
         }

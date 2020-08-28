@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Beings
         #region Characteristics
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         [Index(4)]
-        public ModelID NativeBiome { get; private set; }
+        public ModelID NativeBiomeID { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         /// <remarks>
@@ -23,11 +23,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IBeingModelEdit.NativeBiome { get => NativeBiome; set => NativeBiome = value; }
+        ModelID IBeingModelEdit.NativeBiomeID { get => NativeBiomeID; set => NativeBiomeID = value; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         [Index(5)]
-        public ModelID PrimaryBehavior { get; private set; }
+        public ModelID PrimaryBehaviorID { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         /// <remarks>
@@ -35,11 +35,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IBeingModelEdit.PrimaryBehavior { get => PrimaryBehavior; set => PrimaryBehavior = value; }
+        ModelID IBeingModelEdit.PrimaryBehaviorID { get => PrimaryBehaviorID; set => PrimaryBehaviorID = value; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         [Index(6)]
-        public IReadOnlyList<ModelID> Avoids { get; }
+        public IReadOnlyList<ModelID> AvoidsIDs { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         /// <remarks>
@@ -47,11 +47,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IBeingModelEdit.Avoids => (IList<ModelID>)Avoids;
+        IList<ModelID> IBeingModelEdit.AvoidsIDs => (IList<ModelID>)AvoidsIDs;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         [Index(7)]
-        public IReadOnlyList<ModelID> Seeks { get; }
+        public IReadOnlyList<ModelID> SeeksIDs { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         /// <remarks>
@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IBeingModelEdit.Seeks => (IList<ModelID>)Seeks;
+        IList<ModelID> IBeingModelEdit.SeeksIDs => (IList<ModelID>)SeeksIDs;
         #endregion
 
         #region Initialization
@@ -89,10 +89,10 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(inAvoids, All.ParquetIDs, nameof(inAvoids));
             Precondition.AreInRange(inSeeks, All.ParquetIDs, nameof(inSeeks));
 
-            NativeBiome = inNativeBiome;
-            PrimaryBehavior = inPrimaryBehavior;
-            Avoids = (inAvoids ?? Enumerable.Empty<ModelID>()).ToList();
-            Seeks = (inSeeks ?? Enumerable.Empty<ModelID>()).ToList();
+            NativeBiomeID = inNativeBiome;
+            PrimaryBehaviorID = inPrimaryBehavior;
+            AvoidsIDs = (inAvoids ?? Enumerable.Empty<ModelID>()).ToList();
+            SeeksIDs = (inSeeks ?? Enumerable.Empty<ModelID>()).ToList();
         }
         #endregion
     }

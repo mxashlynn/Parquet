@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionToTheNorth { get => RegionToTheNorth; set => RegionToTheNorth = value; }
+        ModelID IMapRegionEdit.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
         [Index(7)]
@@ -70,7 +70,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionToTheEast { get => RegionToTheEast; set => RegionToTheEast = value; }
+        ModelID IMapRegionEdit.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
         [Index(8)]
@@ -78,7 +78,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionToTheSouth { get => RegionToTheSouth; set => RegionToTheSouth = value; }
+        ModelID IMapRegionEdit.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
         [Index(9)]
@@ -86,7 +86,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionToTheWest { get => RegionToTheWest; set => RegionToTheWest = value; }
+        ModelID IMapRegionEdit.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
         [Index(10)]
@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionAbove { get => RegionAbove; set => RegionAbove = value; }
+        ModelID IMapRegionEdit.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Index(11)]
@@ -102,7 +102,7 @@ namespace ParquetClassLibrary.Maps
 
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Ignore]
-        ModelID IMapRegionEdit.RegionBelow { get => RegionBelow; set => RegionBelow = value; }
+        ModelID IMapRegionEdit.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
         #endregion
         #endregion
 
@@ -283,19 +283,19 @@ namespace ParquetClassLibrary.Maps
 
                 foreach (ParquetStack stack in inRegion.ParquetDefinitions)
                 {
-                    if (inPredicate(All.Parquets.Get<FloorModel>(stack.Floor)))
+                    if (inPredicate(All.Parquets.Get<FloorModel>(stack.FloorID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<BlockModel>(stack.Block)))
+                    if (inPredicate(All.Parquets.Get<BlockModel>(stack.BlockID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<FurnishingModel>(stack.Furnishing)))
+                    if (inPredicate(All.Parquets.Get<FurnishingModel>(stack.FurnishingID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<CollectibleModel>(stack.Collectible)))
+                    if (inPredicate(All.Parquets.Get<CollectibleModel>(stack.CollectibleID)))
                     {
                         count++;
                     }

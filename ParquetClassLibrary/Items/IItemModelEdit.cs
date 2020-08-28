@@ -27,13 +27,13 @@ namespace ParquetClassLibrary.Items
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
         /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
         /// </summary>
-        public ModelID EffectWhileHeld { get; set; }
+        public ModelID EffectWhileHeldID { get; set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
         /// using (consuming) the item.
         /// </summary>
-        public ModelID EffectWhenUsed { get; set; }
+        public ModelID EffectWhenUsedID { get; set; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         public ModelID ParquetID { get; set; }

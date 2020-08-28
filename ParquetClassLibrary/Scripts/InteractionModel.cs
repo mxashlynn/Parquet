@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Scripts
         #region Characteristics
         /// <summary>Describes the criteria for begining this interaction.</summary>
         [Index(4)]
-        public IReadOnlyList<ModelID> Prerequisites { get; }
+        public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>
         /// Describes the criteria for begining this interaction.
@@ -25,11 +25,11 @@ namespace ParquetClassLibrary.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IInteractionModelEdit.Prerequisites => (IList<ModelID>)Prerequisites;
+        IList<ModelID> IInteractionModelEdit.PrerequisitesIDs => (IList<ModelID>)PrerequisitesIDs;
 
         /// <summary>Everything this interaction entails.</summary>
         [Index(5)]
-        public IReadOnlyList<ModelID> Steps { get; }
+        public IReadOnlyList<ModelID> StepsIDs { get; }
 
         /// <summary>
         /// Everything this interaction entails.
@@ -39,11 +39,11 @@ namespace ParquetClassLibrary.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IInteractionModelEdit.Steps => (IList<ModelID>)Steps;
+        IList<ModelID> IInteractionModelEdit.StepsIDs => (IList<ModelID>)StepsIDs;
 
         /// <summary>Describes the results of finishing this interaction.</summary>
         [Index(6)]
-        public IReadOnlyList<ModelID> Outcomes { get; }
+        public IReadOnlyList<ModelID> OutcomesIDs { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IInteractionModelEdit.Outcomes => (IList<ModelID>)Outcomes;
+        IList<ModelID> IInteractionModelEdit.OutcomesIDs => (IList<ModelID>)OutcomesIDs;
         #endregion
 
         #region Initialization
@@ -78,9 +78,9 @@ namespace ParquetClassLibrary.Scripts
             Precondition.AreInRange(nonNullSteps, All.ScriptIDs, nameof(inSteps));
             Precondition.AreInRange(nonNullOutcomes, All.ScriptIDs, nameof(inOutcomes));
 
-            Prerequisites = nonNullPrerequisites.ToList();
-            Steps = nonNullSteps.ToList();
-            Outcomes = nonNullOutcomes.ToList();
+            PrerequisitesIDs = nonNullPrerequisites.ToList();
+            StepsIDs = nonNullSteps.ToList();
+            OutcomesIDs = nonNullOutcomes.ToList();
         }
         #endregion
     }

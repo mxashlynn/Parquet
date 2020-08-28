@@ -108,18 +108,18 @@ namespace ParquetClassLibrary.Maps
             {
                 for (var y = 0; y < ParquetsPerChunkDimension; y++)
                 {
-                    newParquetDefinitions[y, x].Floor = All.FloorIDs.Minimum;
+                    newParquetDefinitions[y, x].FloorID = All.FloorIDs.Minimum;
                 }
-                newParquetDefinitions[0, x].Block = All.BlockIDs.Minimum;
-                newParquetDefinitions[ParquetsPerChunkDimension - 1, 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[0, x].BlockID = All.BlockIDs.Minimum;
+                newParquetDefinitions[ParquetsPerChunkDimension - 1, 1].BlockID = All.BlockIDs.Minimum;
             }
             for (var y = 0; y < ParquetsPerChunkDimension; y++)
             {
-                newParquetDefinitions[y, 0].Block = All.BlockIDs.Minimum;
-                newParquetDefinitions[y, ParquetsPerChunkDimension - 1].Block = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, 0].BlockID = All.BlockIDs.Minimum;
+                newParquetDefinitions[y, ParquetsPerChunkDimension - 1].BlockID = All.BlockIDs.Minimum;
             }
-            newParquetDefinitions[2, 1].Furnishing = All.FurnishingIDs.Minimum;
-            newParquetDefinitions[3, 3].Collectible = All.CollectibleIDs.Minimum;
+            newParquetDefinitions[2, 1].FurnishingID = All.FurnishingIDs.Minimum;
+            newParquetDefinitions[3, 3].CollectibleID = All.CollectibleIDs.Minimum;
             #endregion
 
             // Create a new MapChunkModel with the new subregion.

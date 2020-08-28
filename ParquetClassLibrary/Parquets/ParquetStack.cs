@@ -20,16 +20,16 @@ namespace ParquetClassLibrary.Parquets
 
         #region Characteristics
         /// <summary>The floor contained in this stack.</summary>
-        public ModelID Floor { get; set; }
+        public ModelID FloorID { get; set; }
 
         /// <summary>The block contained in this stack.</summary>
-        public ModelID Block { get; set; }
+        public ModelID BlockID { get; set; }
 
         /// <summary>The furnishing contained in this stack.</summary>
-        public ModelID Furnishing { get; set; }
+        public ModelID FurnishingID { get; set; }
 
         /// <summary>The collectible contained in this stack.</summary>
-        public ModelID Collectible { get; set; }
+        public ModelID CollectibleID { get; set; }
         #endregion
 
         #region Initialization
@@ -57,65 +57,65 @@ namespace ParquetClassLibrary.Parquets
             Precondition.IsInRange(inFurnishing, All.FurnishingIDs, nameof(inFurnishing));
             Precondition.IsInRange(inCollectible, All.CollectibleIDs, nameof(inCollectible));
 
-            Floor = inFloor;
-            Block = inBlock;
-            Furnishing = inFurnishing;
-            Collectible = inCollectible;
+            FloorID = inFloor;
+            BlockID = inBlock;
+            FurnishingID = inFurnishing;
+            CollectibleID = inCollectible;
         }
         #endregion
 
         #region Queries
         /// <summary>The number of parquets actually present in this stack.</summary>
-        public int Count => ModelID.None != Floor ? 1 : 0
-                          + ModelID.None != Block ? 1 : 0
-                          + ModelID.None != Furnishing ? 1 : 0
-                          + ModelID.None != Collectible ? 1 : 0;
+        public int Count => ModelID.None != FloorID ? 1 : 0
+                          + ModelID.None != BlockID ? 1 : 0
+                          + ModelID.None != FurnishingID ? 1 : 0
+                          + ModelID.None != CollectibleID ? 1 : 0;
 
         /// <summary>
         /// Indicates whether this <see cref="ParquetStack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
-        public bool IsEmpty => ModelID.None == Floor
-                            && ModelID.None == Block
-                            && ModelID.None == Furnishing
-                            && ModelID.None == Collectible;
+        public bool IsEmpty => ModelID.None == FloorID
+                            && ModelID.None == BlockID
+                            && ModelID.None == FurnishingID
+                            && ModelID.None == CollectibleID;
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is Enclosing iff:
-        /// 1, It has a <see cref="Block"/> that is not <see cref="BlockModel.IsLiquid"/>; or,
-        /// 2, It has a <see cref="Furnishing"/> that is <see cref="FurnishingModel.IsEnclosing"/>.
+        /// 1, It has a <see cref="BlockID"/> that is not <see cref="BlockModel.IsLiquid"/>; or,
+        /// 2, It has a <see cref="FurnishingID"/> that is <see cref="FurnishingModel.IsEnclosing"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Enclosing, <c>false</c> otherwise.</returns>
         public bool IsEnclosing
-            => (Block != ModelID.None
-                && !(All.Parquets.Get<BlockModel>(Block)?.IsLiquid ?? true))
-            || (Furnishing != ModelID.None
-                && (All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false));
+            => (BlockID != ModelID.None
+                && !(All.Parquets.Get<BlockModel>(BlockID)?.IsLiquid ?? true))
+            || (FurnishingID != ModelID.None
+                && (All.Parquets.Get<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is Entry iff:
         /// 1, It is either Walkable or Enclosing but not both; and,
-        /// 2, It has a <see cref="Furnishing"/> that is <see cref="FurnishingModel.Entry"/>.
+        /// 2, It has a <see cref="FurnishingID"/> that is <see cref="FurnishingModel.Entry"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
-            => Furnishing != ModelID.None
-            && (All.Parquets.Get<FurnishingModel>(Furnishing)?.Entry ?? EntryType.None) != EntryType.None
+            => FurnishingID != ModelID.None
+            && (All.Parquets.Get<FurnishingModel>(FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
             // Inequality standing in for missing conditional XOR here.
             && (IsWalkable != IsEnclosing);
 
         /// <summary>
         /// A <see cref="ParquetStack"/> is considered walkable iff:
-        /// 1, It has a <see cref="Floor"/>;
-        /// 2, It does not have a <see cref="Block"/>;
-        /// 3, It does not have a <see cref="Furnishing"/> that <see cref="FurnishingModel.IsEnclosing"/>.
+        /// 1, It has a <see cref="FloorID"/>;
+        /// 2, It does not have a <see cref="BlockID"/>;
+        /// 3, It does not have a <see cref="FurnishingID"/> that <see cref="FurnishingModel.IsEnclosing"/>.
         /// </summary>
         /// <returns><c>true</c>, if this <see cref="ParquetStack"/> is Walkable, <c>false</c> otherwise.</returns>
         internal bool IsWalkable
-            => Floor != ModelID.None
-            && Block == ModelID.None
-            && (Furnishing == ModelID.None
-                || !(All.Parquets.Get<FurnishingModel>(Furnishing)?.IsEnclosing ?? false));
+            => FloorID != ModelID.None
+            && BlockID == ModelID.None
+            && (FurnishingID == ModelID.None
+                || !(All.Parquets.Get<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
         #endregion
 
         #region IEquatable Implementation
@@ -126,7 +126,7 @@ namespace ParquetClassLibrary.Parquets
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-            => (Floor, Block, Furnishing, Collectible).GetHashCode();
+            => (FloorID, BlockID, FurnishingID, CollectibleID).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStack"/> is equal to the current <see cref="ParquetStack"/>.
@@ -134,10 +134,10 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inStack">The <see cref="ParquetStack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(ParquetStack inStack)
-            => Floor == inStack?.Floor
-            && Block == inStack.Block
-            && Furnishing == inStack.Furnishing
-            && Collectible == inStack.Collectible;
+            => FloorID == inStack?.FloorID
+            && BlockID == inStack.BlockID
+            && FurnishingID == inStack.FurnishingID
+            && CollectibleID == inStack.CollectibleID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStack"/>.
@@ -181,10 +181,10 @@ namespace ParquetClassLibrary.Parquets
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStack stack
             && null != stack
-                ? $"{stack.Floor}{Delimiters.InternalDelimiter}" +
-                  $"{stack.Block}{Delimiters.InternalDelimiter}" +
-                  $"{stack.Furnishing}{Delimiters.InternalDelimiter}" +
-                  $"{stack.Collectible}"
+                ? $"{stack.FloorID}{Delimiters.InternalDelimiter}" +
+                  $"{stack.BlockID}{Delimiters.InternalDelimiter}" +
+                  $"{stack.FurnishingID}{Delimiters.InternalDelimiter}" +
+                  $"{stack.CollectibleID}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ParquetStack)));
 
@@ -228,14 +228,14 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns></returns>
         public ParquetStack Clone()
-            => new ParquetStack(Floor, Block, Furnishing, Collectible);
+            => new ParquetStack(FloorID, BlockID, FurnishingID, CollectibleID);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ParquetStack"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"[{Floor} {Block} {Furnishing} {Collectible}]";
+            => $"[{FloorID} {BlockID} {FurnishingID} {CollectibleID}]";
         #endregion
     }
 

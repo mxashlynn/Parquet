@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(10)]
-        public IReadOnlyList<ModelID> StartingQuests { get; }
+        public IReadOnlyList<ModelID> StartingQuestIDs { get; }
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
@@ -84,11 +84,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingQuests => (IList<ModelID>)StartingQuests;
+        IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         [Index(11)]
-        public IReadOnlyList<ModelID> StartingDialogue { get; }
+        public IReadOnlyList<ModelID> StartingDialogueIDs { get; }
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
@@ -96,12 +96,12 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingDialogue => (IList<ModelID>)StartingDialogue;
+        IList<ModelID> ICharacterModelEdit.StartingDialogueIDs => (IList<ModelID>)StartingDialogueIDs;
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
         [Index(12)]
-        public IReadOnlyList<ModelID> StartingInventory { get; }
+        public IReadOnlyList<ModelID> StartingInventoryIDs { get; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>
@@ -109,7 +109,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingInventory => (IList<ModelID>)StartingInventory;
+        IList<ModelID> ICharacterModelEdit.StartingInventoryIDs => (IList<ModelID>)StartingInventoryIDs;
         #endregion
 
         #region Initialization
@@ -153,9 +153,9 @@ namespace ParquetClassLibrary.Beings
                 : "";
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
-            StartingQuests = nonNullQuests.ToList();
-            StartingDialogue = nonNullDialogue.ToList();
-            StartingInventory = nonNullInventory.ToList();
+            StartingQuestIDs = nonNullQuests.ToList();
+            StartingDialogueIDs = nonNullDialogue.ToList();
+            StartingInventoryIDs = nonNullInventory.ToList();
         }
         #endregion
     }

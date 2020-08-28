@@ -14,16 +14,16 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>
         /// Describes the criteria for begining this interaction.
         /// </summary>
-        public IList<ModelID> Prerequisites { get; }
+        public IList<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        public IList<ModelID> Steps { get; }
+        public IList<ModelID> StepsIDs { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
         /// </summary>
-        public IList<ModelID> Outcomes { get; }
+        public IList<ModelID> OutcomesIDs { get; }
     }
 }

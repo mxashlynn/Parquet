@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Beings
         public Location RoomAssignment { get; set; }
 
         /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> currently governing the tracked <see cref="BeingModel"/>.</summary>
-        public ModelID CurrentBehavior { get; set; }
+        public ModelID CurrentBehaviorID { get; set; }
 
         /// <summary>The time remaining that the tracked <see cref="BeingModel"/> can safely remain in the current <see cref="Biomes.BiomeRecipe"/>.</summary>
         /// <remarks>It is likely that this will only be used by <see cref="CharacterModel"/> but may be useful for other beings as well.</remarks>
@@ -109,7 +109,7 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inInventory));
 
             BeingDefinition = inBeingDefinition;
-            CurrentBehavior = inCurrentBehavior;
+            CurrentBehaviorID = inCurrentBehavior;
             Position = inPosition;
             SpawnAt = inSpawnAt;
             BiomeTimeRemaining = inBiomeTimeRemaining;

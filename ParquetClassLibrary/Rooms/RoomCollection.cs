@@ -66,8 +66,8 @@ namespace ParquetClassLibrary.Rooms
                                         .TryGetPerimeter(out perimeter)
                                     && walkableArea
                                         .Concat(perimeter)
-                                        .Any(space => space.Content.Furnishing != ModelID.None
-                                                      && (All.Parquets.Get<FurnishingModel>(space.Content.Furnishing)?.Entry ?? EntryType.None) != EntryType.None)
+                                        .Any(space => space.Content.FurnishingID != ModelID.None
+                                                      && (All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None)
                                     && walkableArea
                                         .Any(space => space.IsWalkableEntry
                                                     || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))

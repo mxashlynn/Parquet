@@ -35,13 +35,13 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
-        public IList<ModelID> StartingQuests { get; }
+        public IList<ModelID> StartingQuestIDs { get; }
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-        public IList<ModelID> StartingDialogue { get; }
+        public IList<ModelID> StartingDialogueIDs { get; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
-        public IList<ModelID> StartingInventory { get; }
+        public IList<ModelID> StartingInventoryIDs { get; }
     }
 }

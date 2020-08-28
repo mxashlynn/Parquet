@@ -65,7 +65,7 @@ namespace ParquetClassLibrary.Items
         /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
         /// </summary>
         [Index(8)]
-        public ModelID EffectWhileHeld { get; private set; }
+        public ModelID EffectWhileHeldID { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
@@ -76,14 +76,14 @@ namespace ParquetClassLibrary.Items
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        ModelID IItemModelEdit.EffectWhileHeld { get => EffectWhileHeld; set => EffectWhileHeld = value; }
+        ModelID IItemModelEdit.EffectWhileHeldID { get => EffectWhileHeldID; set => EffectWhileHeldID = value; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
         /// using (consuming) the item.
         /// </summary>
         [Index(9)]
-        public ModelID EffectWhenUsed { get; private set; }
+        public ModelID EffectWhenUsedID { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Items
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        ModelID IItemModelEdit.EffectWhenUsed { get => EffectWhenUsed; set => EffectWhenUsed = value; }
+        ModelID IItemModelEdit.EffectWhenUsedID { get => EffectWhenUsedID; set => EffectWhenUsedID = value; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         [Index(10)]
@@ -152,8 +152,8 @@ namespace ParquetClassLibrary.Items
             Price = inPrice;
             Rarity = inRarity;
             StackMax = inStackMax;
-            EffectWhileHeld = inEffectWhileHeld;
-            EffectWhenUsed = inEffectWhenUsed;
+            EffectWhileHeldID = inEffectWhileHeld;
+            EffectWhenUsedID = inEffectWhenUsed;
             ParquetID = inParquetID;
             ItemTags = nonNullItemTags.ToList();
         }

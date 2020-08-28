@@ -23,18 +23,18 @@ namespace ParquetClassLibrary.Maps
                               string ReturningDirection)> Directions =
             new List<(IDByDirection, string, IDByDirection, string)>
             {
-                { ((TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth,
-                   (TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth) },
-                { ((TMapType map) => map.RegionToTheEast, Resources.DirectionEast,
-                   (TMapType map) => map.RegionToTheWest, Resources.DirectionWest) },
-                { ((TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth,
-                   (TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth) },
-                { ((TMapType map) => map.RegionToTheWest, Resources.DirectionWest,
-                   (TMapType map) => map.RegionToTheEast, Resources.DirectionEast) },
-                { ((TMapType map) => map.RegionAbove, Resources.DirectionAbove,
-                   (TMapType map) => map.RegionBelow, Resources.DirectionBelow) },
-                { ((TMapType map) => map.RegionBelow, Resources.DirectionBelow,
-                   (TMapType map) => map.RegionAbove, Resources.DirectionAbove) },
+                { ((TMapType map) => map.RegionToTheNorthID, Resources.DirectionNorth,
+                   (TMapType map) => map.RegionToTheSouthID, Resources.DirectionSouth) },
+                { ((TMapType map) => map.RegionToTheEastID, Resources.DirectionEast,
+                   (TMapType map) => map.RegionToTheWestID, Resources.DirectionWest) },
+                { ((TMapType map) => map.RegionToTheSouthID, Resources.DirectionSouth,
+                   (TMapType map) => map.RegionToTheNorthID, Resources.DirectionNorth) },
+                { ((TMapType map) => map.RegionToTheWestID, Resources.DirectionWest,
+                   (TMapType map) => map.RegionToTheEastID, Resources.DirectionEast) },
+                { ((TMapType map) => map.RegionAboveID, Resources.DirectionAbove,
+                   (TMapType map) => map.RegionBelowID, Resources.DirectionBelow) },
+                { ((TMapType map) => map.RegionBelowID, Resources.DirectionBelow,
+                   (TMapType map) => map.RegionAboveID, Resources.DirectionAbove) },
             };
     }
 
