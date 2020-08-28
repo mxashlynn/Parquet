@@ -73,5 +73,5 @@ To work with this repository you will need:
 - [Vsxmd](https://github.com/lijunle/Vsxmd)  >= 1.4.5 (to generate the API reference only)
 
 # Contributors
-- Primary coding and design by [Paige Ashlynn](https://github.com/mxashlynn/).
-- Special thanks to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), [Ashley Hauck](https://github.com/khyperia), [Emma Maassen](https://github.com/Enichan), and Lillian Harris for help with code reviews, mathematics, algorithms, game design quandries, and understanding the finer points of C#.
+- Library design and code by [Paige Ashlynn](https://github.com/mxashlynn/).
+- Special thanks to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), [Ashley Hauck](https://github.com/khyperia), [Emma Maassen](https://github.com/Enichan), and Lillian Harris for help with code reviews, mathematics, algorithms, game design, and tehcnical decisions.
