@@ -133,13 +133,13 @@ namespace ParquetClassLibrary.Items
         /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
         /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
         /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
-        /// <param name="inEffectWhileHeld"><see cref="ItemModel"/>'s passive effect.</param>
-        /// <param name="inEffectWhenUsed"><see cref="ItemModel"/>'s active effect.</param>
+        /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
+        /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
-                         ModelID inEffectWhileHeld, ModelID inEffectWhenUsed, ModelID inParquetID,
+                         ModelID inEffectWhileHeldID, ModelID inEffectWhenUsedID, ModelID inParquetID,
                          IEnumerable<ModelTag> inItemTags = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
@@ -152,8 +152,8 @@ namespace ParquetClassLibrary.Items
             Price = inPrice;
             Rarity = inRarity;
             StackMax = inStackMax;
-            EffectWhileHeldID = inEffectWhileHeld;
-            EffectWhenUsedID = inEffectWhenUsed;
+            EffectWhileHeldID = inEffectWhileHeldID;
+            EffectWhenUsedID = inEffectWhenUsedID;
             ParquetID = inParquetID;
             ItemTags = nonNullItemTags.ToList();
         }

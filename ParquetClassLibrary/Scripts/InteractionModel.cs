@@ -64,19 +64,19 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inName">Player-friendly name of the <see cref="InteractionModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="InteractionModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
-        /// <param name="inPrerequisites">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
-        /// <param name="inSteps">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        /// <param name="inOutcomes">Describes the results of finishing this <see cref="InteractionModel"/>.</param>
+        /// <param name="inPrerequisitesIDs">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
+        /// <param name="inStepsIDs">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
+        /// <param name="inOutcomesIDs">Describes the results of finishing this <see cref="InteractionModel"/>.</param>
         public InteractionModel(ModelID inID, string inName, string inDescription, string inComment,
-                                IEnumerable<ModelID> inPrerequisites, IEnumerable<ModelID> inSteps, IEnumerable<ModelID> inOutcomes)
+                                IEnumerable<ModelID> inPrerequisitesIDs, IEnumerable<ModelID> inStepsIDs, IEnumerable<ModelID> inOutcomesIDs)
             : base(All.InteractionIDs, inID, inName, inDescription, inComment)
         {
-            var nonNullPrerequisites = inPrerequisites ?? Enumerable.Empty<ModelID>();
-            var nonNullSteps = inSteps ?? Enumerable.Empty<ModelID>();
-            var nonNullOutcomes = inOutcomes ?? Enumerable.Empty<ModelID>();
-            Precondition.AreInRange(nonNullPrerequisites, All.ScriptIDs, nameof(inPrerequisites));
-            Precondition.AreInRange(nonNullSteps, All.ScriptIDs, nameof(inSteps));
-            Precondition.AreInRange(nonNullOutcomes, All.ScriptIDs, nameof(inOutcomes));
+            var nonNullPrerequisites = inPrerequisitesIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullSteps = inStepsIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullOutcomes = inOutcomesIDs ?? Enumerable.Empty<ModelID>();
+            Precondition.AreInRange(nonNullPrerequisites, All.ScriptIDs, nameof(inPrerequisitesIDs));
+            Precondition.AreInRange(nonNullSteps, All.ScriptIDs, nameof(inStepsIDs));
+            Precondition.AreInRange(nonNullOutcomes, All.ScriptIDs, nameof(inOutcomesIDs));
 
             PrerequisitesIDs = nonNullPrerequisites.ToList();
             StepsIDs = nonNullSteps.ToList();

@@ -120,30 +120,30 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inName">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
-        /// <param name="inNativeBiome">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
-        /// <param name="inPrimaryBehavior">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
-        /// <param name="inAvoids">Any parquets this <see cref="CharacterModel"/> avoids.</param>
-        /// <param name="inSeeks">Any parquets this <see cref="CharacterModel"/> seeks.</param>
+        /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
+        /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
+        /// <param name="inAvoidsIDs">Any parquets this <see cref="CharacterModel"/> avoids.</param>
+        /// <param name="inSeeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>
         /// <param name="inPronouns">How to refer to this <see cref="CharacterModel"/>.</param>
         /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
-        /// <param name="inStartingQuests">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
-        /// <param name="inStartingDialogue">All dialogue this <see cref="CharacterModel"/> may say.</param>
-        /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
-        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID inNativeBiome,
-                              ModelID inPrimaryBehavior, IEnumerable<ModelID> inAvoids = null,
-                              IEnumerable<ModelID> inSeeks = null, string inPronouns = PronounGroup.DefaultKey,
-                              string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuests = null,
-                              IEnumerable<ModelID> inStartingDialogue = null, IEnumerable<ModelID> inStartingInventory = null)
+        /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
+        /// <param name="inStartingDialogueIDs">All dialogue this <see cref="CharacterModel"/> may say.</param>
+        /// <param name="inStartingInventoryIDs">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
+        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID inNativeBiomeID,
+                              ModelID inPrimaryBehaviorID, IEnumerable<ModelID> inAvoidsIDs = null,
+                              IEnumerable<ModelID> inSeeksIDs = null, string inPronouns = PronounGroup.DefaultKey,
+                              string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuestIDs = null,
+                              IEnumerable<ModelID> inStartingDialogueIDs = null, IEnumerable<ModelID> inStartingInventoryIDs = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment,
-                   inNativeBiome, inPrimaryBehavior, inAvoids, inSeeks)
+                   inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
         {
-            var nonNullQuests = inStartingQuests ?? Enumerable.Empty<ModelID>();
-            var nonNullDialogue = inStartingDialogue ?? Enumerable.Empty<ModelID>();
-            var nonNullInventory = inStartingInventory ?? Enumerable.Empty<ModelID>();
+            var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullDialogueIDs = inStartingDialogueIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullInventoryIDs = inStartingInventoryIDs ?? Enumerable.Empty<ModelID>();
 
-            Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(inStartingQuests));
-            Precondition.AreInRange(inStartingDialogue, All.InteractionIDs, nameof(inStartingDialogue));
-            Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inStartingInventory));
+            Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
+            Precondition.AreInRange(nonNullDialogueIDs, All.InteractionIDs, nameof(inStartingDialogueIDs));
+            Precondition.AreInRange(nonNullInventoryIDs, All.ItemIDs, nameof(inStartingInventoryIDs));
             Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
             var names = inName.Split(Delimiters.NameDelimiter);
@@ -153,9 +153,9 @@ namespace ParquetClassLibrary.Beings
                 : "";
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
-            StartingQuestIDs = nonNullQuests.ToList();
-            StartingDialogueIDs = nonNullDialogue.ToList();
-            StartingInventoryIDs = nonNullInventory.ToList();
+            StartingQuestIDs = nonNullQuestIDs.ToList();
+            StartingDialogueIDs = nonNullDialogueIDs.ToList();
+            StartingInventoryIDs = nonNullInventoryIDs.ToList();
         }
         #endregion
     }
