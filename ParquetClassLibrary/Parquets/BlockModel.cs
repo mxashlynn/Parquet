@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -115,14 +117,13 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
         public BlockModel(ModelID inID, string inName, string inDescription, string inComment,
-                     ModelID? inItemID = null, ModelTag inAddsToBiome = null,
-                     ModelTag inAddsToRoom = null,
-                     GatheringTool inGatherTool = GatheringTool.None,
-                     GatheringEffect inGatherEffect = GatheringEffect.None,
-                     ModelID? inCollectibleID = null, bool inIsFlammable = false,
-                     bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
-                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
+                          ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
+                          IEnumerable<ModelTag> inAddsToRoom = null,
+                          GatheringTool inGatherTool = GatheringTool.None,
+                          GatheringEffect inGatherEffect = GatheringEffect.None,
+                          ModelID? inCollectibleID = null, bool inIsFlammable = false,
+                          bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
         {
             var nonNullCollectibleID = inCollectibleID ?? ModelID.None;
 

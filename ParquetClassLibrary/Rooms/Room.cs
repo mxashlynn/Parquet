@@ -25,15 +25,15 @@ namespace ParquetClassLibrary.Rooms
         public MapSpaceCollection Perimeter { get; }
 
         /// <summary>
-        /// The <see cref="ModelID"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
-        /// together with the number of times that furnishing occurs.
+        /// The <see cref="ModelTag"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
+        /// duplicated the number of times each tag is found.
         /// </summary>
         public IEnumerable<ModelTag> FurnishingTags
             => WalkableArea
                .Concat(Perimeter)
                .Where(space => ModelID.None != space.Content.FurnishingID
-                            && ModelTag.None != All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom)
-               .Select(space => All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom);
+                            && All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom.Count > 0)
+               .SelectMany(space => All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom);
 
         /// <summary>
         /// A location with the least X and Y coordinates of every <see cref="MapSpace"/> in this <see cref="Room"/>.

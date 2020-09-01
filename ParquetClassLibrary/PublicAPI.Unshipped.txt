@@ -369,7 +369,7 @@ ParquetClassLibrary.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderR
 ParquetClassLibrary.ModelTag.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 ParquetClassLibrary.ModelTag.ModelTag() -> void
 ParquetClassLibrary.Parquets.BlockModel
-ParquetClassLibrary.Parquets.BlockModel.BlockModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, ParquetClassLibrary.Items.GatheringTool inGatherTool = ParquetClassLibrary.Items.GatheringTool.None, ParquetClassLibrary.Parquets.GatheringEffect inGatherEffect = ParquetClassLibrary.Parquets.GatheringEffect.None, ParquetClassLibrary.ModelID? inCollectibleID = null, bool inIsFlammable = false, bool inIsLiquid = false, int inMaxToughness = 10) -> void
+ParquetClassLibrary.Parquets.BlockModel.BlockModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Items.GatheringTool inGatherTool = ParquetClassLibrary.Items.GatheringTool.None, ParquetClassLibrary.Parquets.GatheringEffect inGatherEffect = ParquetClassLibrary.Parquets.GatheringEffect.None, ParquetClassLibrary.ModelID? inCollectibleID = null, bool inIsFlammable = false, bool inIsLiquid = false, int inMaxToughness = 10) -> void
 ParquetClassLibrary.Parquets.BlockModel.CollectibleID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.BlockModel.GatherEffect.get -> ParquetClassLibrary.Parquets.GatheringEffect
 ParquetClassLibrary.Parquets.BlockModel.GatherTool.get -> ParquetClassLibrary.Items.GatheringTool
@@ -377,7 +377,7 @@ ParquetClassLibrary.Parquets.BlockModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.BlockModel.IsLiquid.get -> bool
 ParquetClassLibrary.Parquets.BlockModel.MaxToughness.get -> int
 ParquetClassLibrary.Parquets.CollectibleModel
-ParquetClassLibrary.Parquets.CollectibleModel.CollectibleModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, ParquetClassLibrary.Parquets.CollectingEffect inCollectionEffect = ParquetClassLibrary.Parquets.CollectingEffect.None, int inEffectAmount = 0) -> void
+ParquetClassLibrary.Parquets.CollectibleModel.CollectibleModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Parquets.CollectingEffect inCollectionEffect = ParquetClassLibrary.Parquets.CollectingEffect.None, int inEffectAmount = 0) -> void
 ParquetClassLibrary.Parquets.CollectibleModel.CollectionEffect.get -> ParquetClassLibrary.Parquets.CollectingEffect
 ParquetClassLibrary.Parquets.CollectibleModel.EffectAmount.get -> int
 ParquetClassLibrary.Parquets.CollectingEffect
@@ -390,12 +390,12 @@ ParquetClassLibrary.Parquets.EntryType.None = 0 -> ParquetClassLibrary.Parquets.
 ParquetClassLibrary.Parquets.EntryType.Room = 1 -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.EntryType.Up = 2 -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FloorModel
-ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, ParquetClassLibrary.Items.ModificationTool inModTool = ParquetClassLibrary.Items.ModificationTool.None, string inTrenchName = "dark hole") -> void
+ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Items.ModificationTool inModTool = ParquetClassLibrary.Items.ModificationTool.None, string inTrenchName = "dark hole") -> void
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
 ParquetClassLibrary.Parquets.FurnishingModel.Entry.get -> ParquetClassLibrary.Parquets.EntryType
-ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, ParquetClassLibrary.ModelTag inAddsToBiome = null, ParquetClassLibrary.ModelTag inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
+ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsWalkable.get -> bool
@@ -439,10 +439,8 @@ ParquetClassLibrary.Parquets.IFurnishingModelEdit.IsWalkable.set -> void
 ParquetClassLibrary.Parquets.IFurnishingModelEdit.SwapID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.IFurnishingModelEdit.SwapID.set -> void
 ParquetClassLibrary.Parquets.IParquetModelEdit
-ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToBiome.get -> ParquetClassLibrary.ModelTag
-ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToBiome.set -> void
-ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToRoom.get -> ParquetClassLibrary.ModelTag
-ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToRoom.set -> void
+ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToBiome.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToRoom.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Parquets.IParquetModelEdit.ItemID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.IParquetModelEdit.ItemID.set -> void
 ParquetClassLibrary.Parquets.IParquetStack
@@ -452,10 +450,10 @@ ParquetClassLibrary.Parquets.IParquetStack.FloorID.get -> ParquetClassLibrary.Mo
 ParquetClassLibrary.Parquets.IParquetStack.FurnishingID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.IParquetStack.IsEmpty.get -> bool
 ParquetClassLibrary.Parquets.ParquetModel
-ParquetClassLibrary.Parquets.ParquetModel.AddsToBiome.get -> ParquetClassLibrary.ModelTag
-ParquetClassLibrary.Parquets.ParquetModel.AddsToRoom.get -> ParquetClassLibrary.ModelTag
+ParquetClassLibrary.Parquets.ParquetModel.AddsToBiome.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.Parquets.ParquetModel.AddsToRoom.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Parquets.ParquetModel.ItemID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.Parquets.ParquetModel.ParquetModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inItemID, ParquetClassLibrary.ModelTag inAddsToBiome, ParquetClassLibrary.ModelTag inAddsToRoom) -> void
+ParquetClassLibrary.Parquets.ParquetModel.ParquetModel(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID inItemID, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom) -> void
 ParquetClassLibrary.Parquets.ParquetStack
 ParquetClassLibrary.Parquets.ParquetStack.BlockID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.ParquetStack.BlockID.set -> void

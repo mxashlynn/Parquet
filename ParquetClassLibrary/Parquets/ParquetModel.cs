@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Parquets
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [Index(5)]
-        public ModelTag AddsToBiome { get; private set; }
+        public IReadOnlyList<ModelTag> AddsToBiome { get; private set; }
 
         /// <summary>
         /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelTag IParquetModelEdit.AddsToBiome { get => AddsToBiome; set => AddsToBiome = value; }
+        IList<ModelTag> IParquetModelEdit.AddsToBiome => (IList<ModelTag>)AddsToBiome;
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Parquets
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
         [Index(6)]
-        public ModelTag AddsToRoom { get; private set; }
+        public IReadOnlyList<ModelTag> AddsToRoom { get; private set; }
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelTag IParquetModelEdit.AddsToRoom { get => AddsToRoom; set => AddsToRoom = value; }
+        IList<ModelTag> IParquetModelEdit.AddsToRoom => (IList<ModelTag>)AddsToRoom;
         #endregion
 
         #region Initialization
@@ -82,14 +82,14 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
         protected ParquetModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
-                                string inComment, ModelID inItemID, ModelTag inAddsToBiome, ModelTag inAddsToRoom)
+                                string inComment, ModelID inItemID, IEnumerable<ModelTag> inAddsToBiome, IEnumerable<ModelTag> inAddsToRoom)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
             Precondition.IsInRange(inItemID, All.ItemIDs, nameof(inItemID));
 
             ItemID = inItemID;
-            AddsToBiome = string.IsNullOrEmpty(inAddsToBiome) ? ModelTag.None : inAddsToBiome;
-            AddsToRoom = string.IsNullOrEmpty(inAddsToRoom) ? ModelTag.None : inAddsToRoom;
+            AddsToBiome = (IReadOnlyList<ModelTag>)(inAddsToBiome ?? Enumerable.Empty<ModelTag>());
+            AddsToRoom = (IReadOnlyList<ModelTag>)(inAddsToRoom ?? Enumerable.Empty<ModelTag>());
         }
         #endregion
 
@@ -99,7 +99,7 @@ namespace ParquetClassLibrary.Parquets
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-            => base.GetAllTags().Union(new List<ModelTag>() { AddsToBiome, AddsToRoom });
+            => base.GetAllTags().Union(AddsToBiome).Union(AddsToRoom);
         #endregion
     }
 }

@@ -120,11 +120,11 @@ namespace ParquetClassLibrary.Rooms
             && OptionallyRequiredPerimeterBlocks.All(element =>
                 inRoom.Perimeter.Count(space =>
                     space.Content.BlockID != ModelID.None
-                    && All.Parquets.Get<BlockModel>(space.Content.BlockID).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                    && All.Parquets.Get<BlockModel>(space.Content.BlockID).AddsToRoom.Contains(element.ElementTag)) >= element.ElementAmount)
             && OptionallyRequiredWalkableFloors.All(element =>
                 inRoom.WalkableArea.Count(space =>
                     space.Content.FloorID != ModelID.None
-                    && All.Parquets.Get<FloorModel>(space.Content.FloorID).AddsToRoom == element.ElementTag) >= element.ElementAmount)
+                    && All.Parquets.Get<FloorModel>(space.Content.FloorID).AddsToRoom.Contains(element.ElementTag)) >= element.ElementAmount)
             && OptionallyRequiredFurnishings.All(element =>
                 inRoom.FurnishingTags.Count(tag =>
                     tag == element.ElementTag) >= element.ElementAmount);

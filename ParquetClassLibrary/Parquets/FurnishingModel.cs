@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 
@@ -95,12 +96,11 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
         /// <param name="inSwapID">A <see cref="FurnishingModel"/> to swap with this furnishing on open/close actions.</param>
         public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
-                          ModelID? inItemID = null, ModelTag inAddsToBiome = null,
-                          ModelTag inAddsToRoom = null, bool inIsWalkable = false,
-                          EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
-                          bool inIsFlammable = false, ModelID? inSwapID = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
-                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
+                               ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
+                               IEnumerable<ModelTag> inAddsToRoom = null, bool inIsWalkable = false,
+                               EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
+                               bool inIsFlammable = false, ModelID? inSwapID = null)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
         {
             var nonNullSwapID = inSwapID ?? ModelID.None;
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));

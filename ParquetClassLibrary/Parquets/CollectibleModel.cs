@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 
@@ -65,11 +66,10 @@ namespace ParquetClassLibrary.Parquets
         /// For example, how much to alter a stat if inEffect is set to alter a stat.
         /// </param>
         public CollectibleModel(ModelID inID, string inName, string inDescription, string inComment,
-                           ModelID? inItemID = null, ModelTag inAddsToBiome = null,
-                           ModelTag inAddsToRoom = null, CollectingEffect inCollectionEffect = CollectingEffect.None,
-                           int inEffectAmount = 0)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
-                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
+                                ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
+                                IEnumerable<ModelTag> inAddsToRoom = null, CollectingEffect inCollectionEffect = CollectingEffect.None,
+                                int inEffectAmount = 0)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
         {
             var nonNullItemID = inItemID ?? ModelID.None;
             Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Items;
@@ -60,11 +61,10 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inModTool">The tool used to modify this floor.</param>
         /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>
         public FloorModel(ModelID inID, string inName, string inDescription, string inComment,
-                     ModelID? inItemID = null, ModelTag inAddsToBiome = null,
-                     ModelTag inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
-                     string inTrenchName = defaultTrenchName)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None,
-                   inAddsToBiome ?? ModelTag.None, inAddsToRoom ?? ModelTag.None)
+                          ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
+                          IEnumerable<ModelTag> inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
+                          string inTrenchName = defaultTrenchName)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
         {
             ModTool = inModTool;
             TrenchName = inTrenchName;
