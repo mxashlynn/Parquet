@@ -15,3 +15,5 @@
 * Since C# does not support static methods in interfaces and also cannot invoke static methods using a generic type argument, one way to support access to class-scoped members within a generic method is to provide each implementing class of a given interface with a static method, and then compose a unit test to ensure via reflection that all classes that implement the interface do indeed implement a method with that signature.  A single instance of the class can be cached in a dictionary, matching `typeof(ImplementingClass)` with `ImplementingClass.StaticMethod`, thus creating a simple runtime static fill C#'s gap.
 
 * It is sometimes practical to provide a public parameterless constructor to a class that otherwise should not have one, so that the class may be dealt with more easily from within generic methods.  While messy from an API perspective, the limitations of C#'s generics prevent cleaner approaches.
+
+* In WindowsForms, SelectedValue only works if ValueMember has been set.  When not using MS Databinding, use SelectedItem instead.
