@@ -11,6 +11,11 @@ namespace ParquetClassLibrary.Items
         Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class ItemModel : Model, IItemModelEdit
     {
+        #region Class Defaults
+        /// <summary>Stack maximum assumed when none is defined.</summary>
+        public const int DefaultStackMax = 999;
+        #endregion
+
         #region Characteristics
         /// <summary>The type of item this is.</summary>
         [Index(4)]
@@ -138,24 +143,30 @@ namespace ParquetClassLibrary.Items
         /// <param name="inParquetID">The parquet represented, if any.</param>
         /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
-                         ItemType inSubtype, int inPrice, int inRarity, int inStackMax,
-                         ModelID inEffectWhileHeldID, ModelID inEffectWhenUsedID, ModelID inParquetID,
+                         ItemType inSubtype = ItemType.Other, int inPrice = 0, int inRarity = 0,
+                         int inStackMax = DefaultStackMax, ModelID? inEffectWhileHeldID = null,
+                         ModelID? inEffectWhenUsedID = null, ModelID? inParquetID = null,
                          IEnumerable<ModelTag> inItemTags = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.IsInRange(inParquetID, All.ParquetIDs, nameof(inParquetID));
-            Precondition.MustBePositive(inStackMax, nameof(inStackMax));
+            var nonNullEffectWhileHeldID = inEffectWhileHeldID ?? ModelID.None;
+            var nonNullEffectWhenUsedID = inEffectWhenUsedID ?? ModelID.None;
+            var nonNullParquetID = inParquetID ?? ModelID.None;
+            var nonNullItemTags = (inItemTags ?? Enumerable.Empty<ModelTag>()).ToList();
 
-            var nonNullItemTags = inItemTags ?? Enumerable.Empty<ModelTag>().ToList();
+            Precondition.IsInRange(nonNullEffectWhileHeldID, All.ScriptIDs, nameof(inEffectWhileHeldID));
+            Precondition.IsInRange(nonNullEffectWhenUsedID, All.ScriptIDs, nameof(inEffectWhenUsedID));
+            Precondition.IsInRange(nonNullParquetID, All.ParquetIDs, nameof(inParquetID));
+            Precondition.MustBePositive(inStackMax, nameof(inStackMax));
 
             Subtype = inSubtype;
             Price = inPrice;
             Rarity = inRarity;
             StackMax = inStackMax;
-            EffectWhileHeldID = inEffectWhileHeldID;
-            EffectWhenUsedID = inEffectWhenUsedID;
-            ParquetID = inParquetID;
-            ItemTags = nonNullItemTags.ToList();
+            EffectWhileHeldID = nonNullEffectWhileHeldID;
+            EffectWhenUsedID = nonNullEffectWhenUsedID;
+            ParquetID = nonNullParquetID;
+            ItemTags = nonNullItemTags;
         }
         #endregion
 

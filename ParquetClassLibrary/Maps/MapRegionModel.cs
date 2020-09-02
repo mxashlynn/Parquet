@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly MapRegionModel Empty = new MapRegionModel(ModelID.None, "Empty Region");
+        public static readonly MapRegionModel Empty = new MapRegionModel(ModelID.None, "Empty Region", "", "");
 
         /// <summary>The length of each <see cref="MapRegionModel"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunkModel.ParquetsPerChunkDimension;
@@ -25,9 +25,6 @@ namespace ParquetClassLibrary.Maps
         /// <summary>The set of values that are allowed for <see cref="MapRegionModel"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
             => All.MapRegionIDs;
-
-        /// <summary>Default name for new regions.</summary>
-        internal const string DefaultName = "New Region";
 
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
@@ -144,17 +141,17 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inParquetStatuses">The statuses of the collected parquets.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets.</param>
-        public MapRegionModel(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                         int inRevision = 0, string inBackgroundColor = DefaultColor,
-                         ModelID? inRegionToTheNorth = null,
-                         ModelID? inRegionToTheEast = null,
-                         ModelID? inRegionToTheSouth = null,
-                         ModelID? inRegionToTheWest = null,
-                         ModelID? inRegionAbove = null,
-                         ModelID? inRegionBelow = null,
-                         ParquetStatusGrid inParquetStatuses = null,
-                         ParquetStackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultName : inName, inDescription, inComment, inRevision)
+        public MapRegionModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+                              string inBackgroundColor = DefaultColor,
+                              ModelID? inRegionToTheNorth = null,
+                              ModelID? inRegionToTheEast = null,
+                              ModelID? inRegionToTheSouth = null,
+                              ModelID? inRegionToTheWest = null,
+                              ModelID? inRegionAbove = null,
+                              ModelID? inRegionBelow = null,
+                              ParquetStatusGrid inParquetStatuses = null,
+                              ParquetStackGrid inParquetDefinitions = null)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
             var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
@@ -162,6 +159,9 @@ namespace ParquetClassLibrary.Maps
             var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
             var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
             var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
+            var nonNullParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+
             Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
             Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
             Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(inRegionToTheSouth));
@@ -176,8 +176,8 @@ namespace ParquetClassLibrary.Maps
             RegionToTheWest = nonNullRegionToTheWest;
             RegionAbove = nonNullRegionAbove;
             RegionBelow = nonNullRegionBelow;
-            ParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
-            ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            ParquetStatuses = nonNullParquetStatuses;
+            ParquetDefinitions = nonNullParquetDefinitions;
         }
         #endregion
 

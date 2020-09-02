@@ -86,18 +86,21 @@ namespace ParquetClassLibrary.Games
         /// <param name="inPlayerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
         /// <param name="inFirstScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
         public GameModel(ModelID inID, string inName, string inDescription, string inComment,
-                            bool inIsEpisode, string inEpisodeTitle, int inEpisodeNumber,
-                            ModelID inPlayerCharacterID, ModelID inFirstScriptID)
+                         bool inIsEpisode = false, string inEpisodeTitle = "", int inEpisodeNumber = 0,
+                         ModelID? inPlayerCharacterID = null, ModelID? inFirstScriptID = null)
             : base(All.GameIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.IsInRange(inPlayerCharacterID, All.CharacterIDs, nameof(inPlayerCharacterID));
-            Precondition.IsInRange(inFirstScriptID, All.ScriptIDs, nameof(inFirstScriptID));
+            var nonNullPlayerCharacterID = inPlayerCharacterID ?? ModelID.None;
+            var nonNullFirstScriptID = inFirstScriptID ?? ModelID.None;
+
+            Precondition.IsInRange(nonNullPlayerCharacterID, All.CharacterIDs, nameof(inPlayerCharacterID));
+            Precondition.IsInRange(nonNullFirstScriptID, All.ScriptIDs, nameof(inFirstScriptID));
 
             IsEpisode = inIsEpisode;
             EpisodeTitle = IsEpisode ? inEpisodeTitle : "";
             EpisodeNumber = IsEpisode ? inEpisodeNumber : 0;
-            PlayerCharacterID = inPlayerCharacterID;
-            FirstScriptID = inFirstScriptID;
+            PlayerCharacterID = nonNullPlayerCharacterID;
+            FirstScriptID = nonNullFirstScriptID;
         }
         #endregion
 

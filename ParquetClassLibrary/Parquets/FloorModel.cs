@@ -64,7 +64,7 @@ namespace ParquetClassLibrary.Parquets
                           ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
                           IEnumerable<ModelTag> inAddsToRoom = null, ModificationTool inModTool = ModificationTool.None,
                           string inTrenchName = defaultTrenchName)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID, inAddsToBiome, inAddsToRoom)
         {
             ModTool = inModTool;
             TrenchName = inTrenchName;

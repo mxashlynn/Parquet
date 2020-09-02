@@ -69,11 +69,8 @@ namespace ParquetClassLibrary.Parquets
                                 ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
                                 IEnumerable<ModelTag> inAddsToRoom = null, CollectingEffect inCollectionEffect = CollectingEffect.None,
                                 int inEffectAmount = 0)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID, inAddsToBiome, inAddsToRoom)
         {
-            var nonNullItemID = inItemID ?? ModelID.None;
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
-
             CollectionEffect = inCollectionEffect;
             EffectAmount = inEffectAmount;
         }

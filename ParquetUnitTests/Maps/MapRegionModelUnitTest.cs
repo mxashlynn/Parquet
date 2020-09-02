@@ -20,7 +20,6 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewDefaultMapRegionModelTest()
         {
-            Assert.Equal(MapRegionModel.DefaultName, defaultRegion.Name);
             Assert.Equal(MapRegionModel.DefaultColor, defaultRegion.BackgroundColor);
         }
 

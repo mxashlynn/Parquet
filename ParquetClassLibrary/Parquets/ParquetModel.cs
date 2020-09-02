@@ -81,15 +81,20 @@ namespace ParquetClassLibrary.Parquets
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
         /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
-        protected ParquetModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
-                                string inComment, ModelID inItemID, IEnumerable<ModelTag> inAddsToBiome, IEnumerable<ModelTag> inAddsToRoom)
+        protected ParquetModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
+                               ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
+                               IEnumerable<ModelTag> inAddsToRoom = null)
             : base(inBounds, inID, inName, inDescription, inComment)
         {
-            Precondition.IsInRange(inItemID, All.ItemIDs, nameof(inItemID));
+            var nonNullItemID = inItemID ?? ModelID.None;
+            var nonNullAddsToBiome = (inAddsToBiome ?? Enumerable.Empty<ModelTag>()).ToList();
+            var nonNullAddsToRoom = (inAddsToRoom ?? Enumerable.Empty<ModelTag>()).ToList();
 
-            ItemID = inItemID;
-            AddsToBiome = (IReadOnlyList<ModelTag>)(inAddsToBiome ?? Enumerable.Empty<ModelTag>());
-            AddsToRoom = (IReadOnlyList<ModelTag>)(inAddsToRoom ?? Enumerable.Empty<ModelTag>());
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
+
+            ItemID = nonNullItemID;
+            AddsToBiome = nonNullAddsToBiome;
+            AddsToRoom = nonNullAddsToRoom;
         }
         #endregion
 

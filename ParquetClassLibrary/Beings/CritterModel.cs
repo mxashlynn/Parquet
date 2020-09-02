@@ -23,7 +23,7 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inAvoidsIDs">Any parquets this <see cref="CritterModel"/> avoids.</param>
         /// <param name="inSeeksIDs">Any parquets this <see cref="CritterModel"/> seeks.</param>
         public CritterModel(ModelID inID, string inName, string inDescription, string inComment,
-                            ModelID inNativeBiomeID, ModelID inPrimaryBehaviorID,
+                            ModelID? inNativeBiomeID = null, ModelID? inPrimaryBehaviorID = null,
                             IEnumerable<ModelID> inAvoidsIDs = null, IEnumerable<ModelID> inSeeksIDs = null)
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
             => Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));

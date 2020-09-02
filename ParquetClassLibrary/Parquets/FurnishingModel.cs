@@ -100,9 +100,10 @@ namespace ParquetClassLibrary.Parquets
                                IEnumerable<ModelTag> inAddsToRoom = null, bool inIsWalkable = false,
                                EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
                                bool inIsFlammable = false, ModelID? inSwapID = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID ?? ModelID.None, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, inID, inName, inDescription, inComment, inItemID, inAddsToBiome, inAddsToRoom)
         {
             var nonNullSwapID = inSwapID ?? ModelID.None;
+
             Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
 
             IsWalkable = inIsWalkable;

@@ -83,16 +83,21 @@ namespace ParquetClassLibrary.Rooms
             : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment)
         {
             var nonNullMinimumWalkableSpaces = inMinimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
+            var nonNullOptionallyRequiredFurnishings = (inOptionallyRequiredFurnishings ?? Enumerable.Empty<RecipeElement>()).ToList();
+            var nonNullOptionallyRequiredWalkableFloors = (inOptionallyRequiredWalkableFloors ?? Enumerable.Empty<RecipeElement>()).ToList();
+            var nonNullOptionallyRequiredPerimeterBlocks = (inOptionallyRequiredPerimeterBlocks ?? Enumerable.Empty<RecipeElement>()).ToList();
+
             if (nonNullMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
                 || nonNullMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
+                // TODO Add an explanatory message here using Resources.
                 throw new ArgumentOutOfRangeException(nameof(inMinimumWalkableSpaces));
             }
 
             MinimumWalkableSpaces = nonNullMinimumWalkableSpaces;
-            OptionallyRequiredFurnishings = inOptionallyRequiredFurnishings?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            OptionallyRequiredWalkableFloors = inOptionallyRequiredWalkableFloors?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
-            OptionallyRequiredPerimeterBlocks = inOptionallyRequiredPerimeterBlocks?.ToList() ?? Enumerable.Empty<RecipeElement>().ToList();
+            OptionallyRequiredFurnishings = nonNullOptionallyRequiredFurnishings;
+            OptionallyRequiredWalkableFloors = nonNullOptionallyRequiredWalkableFloors;
+            OptionallyRequiredPerimeterBlocks = nonNullOptionallyRequiredPerimeterBlocks;
         }
         #endregion
 

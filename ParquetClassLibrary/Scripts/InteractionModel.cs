@@ -68,19 +68,21 @@ namespace ParquetClassLibrary.Scripts
         /// <param name="inStepsIDs">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inOutcomesIDs">Describes the results of finishing this <see cref="InteractionModel"/>.</param>
         public InteractionModel(ModelID inID, string inName, string inDescription, string inComment,
-                                IEnumerable<ModelID> inPrerequisitesIDs, IEnumerable<ModelID> inStepsIDs, IEnumerable<ModelID> inOutcomesIDs)
+                                IEnumerable<ModelID> inPrerequisitesIDs = null, IEnumerable<ModelID> inStepsIDs = null,
+                                IEnumerable<ModelID> inOutcomesIDs = null)
             : base(All.InteractionIDs, inID, inName, inDescription, inComment)
         {
-            var nonNullPrerequisites = inPrerequisitesIDs ?? Enumerable.Empty<ModelID>();
-            var nonNullSteps = inStepsIDs ?? Enumerable.Empty<ModelID>();
-            var nonNullOutcomes = inOutcomesIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullPrerequisites = (inPrerequisitesIDs ?? Enumerable.Empty<ModelID>()).ToList();
+            var nonNullSteps = (inStepsIDs ?? Enumerable.Empty<ModelID>()).ToList();
+            var nonNullOutcomes = (inOutcomesIDs ?? Enumerable.Empty<ModelID>()).ToList();
+
             Precondition.AreInRange(nonNullPrerequisites, All.ScriptIDs, nameof(inPrerequisitesIDs));
             Precondition.AreInRange(nonNullSteps, All.ScriptIDs, nameof(inStepsIDs));
             Precondition.AreInRange(nonNullOutcomes, All.ScriptIDs, nameof(inOutcomesIDs));
 
-            PrerequisitesIDs = nonNullPrerequisites.ToList();
-            StepsIDs = nonNullSteps.ToList();
-            OutcomesIDs = nonNullOutcomes.ToList();
+            PrerequisitesIDs = nonNullPrerequisites;
+            StepsIDs = nonNullSteps;
+            OutcomesIDs = nonNullOutcomes;
         }
         #endregion
     }

@@ -101,9 +101,9 @@ namespace ParquetClassLibrary.Biomes
         /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="BiomeRecipe"/>.</param>
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeRecipe"/>.</param>
         public BiomeRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          int inTier, bool inIsRoomBased, bool inIsLiquidBased,
-                          IEnumerable<ModelTag> inParquetCriteria,
-                          IEnumerable<ModelTag> inEntryRequirements)
+                          int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false,
+                          IEnumerable<ModelTag> inParquetCriteria = null,
+                          IEnumerable<ModelTag> inEntryRequirements = null)
             : base(All.BiomeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.MustBeNonNegative(inTier, nameof(inTier));

@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Beings
 {
@@ -129,8 +132,8 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inStartingDialogueIDs">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventoryIDs">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
-        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID inNativeBiomeID,
-                              ModelID inPrimaryBehaviorID, IEnumerable<ModelID> inAvoidsIDs = null,
+        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID? inNativeBiomeID = null,
+                              ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
                               IEnumerable<ModelID> inSeeksIDs = null, string inPronouns = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuestIDs = null,
                               IEnumerable<ModelID> inStartingDialogueIDs = null, IEnumerable<ModelID> inStartingInventoryIDs = null)
@@ -144,9 +147,8 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
             Precondition.AreInRange(nonNullDialogueIDs, All.InteractionIDs, nameof(inStartingDialogueIDs));
             Precondition.AreInRange(nonNullInventoryIDs, All.ItemIDs, nameof(inStartingInventoryIDs));
-            Precondition.IsNotNullOrEmpty(inName, nameof(inName));
 
-            var names = inName.Split(Delimiters.NameDelimiter);
+            var names = inName?.Split(Delimiters.NameDelimiter) ?? new string[] { "" };
             PersonalName = names[0];
             FamilyName = names.Length > 1
                 ? names[1]

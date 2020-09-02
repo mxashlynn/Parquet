@@ -26,7 +26,7 @@ namespace ParquetClassLibrary.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>
-        public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region");
+        public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region", "", "");
 
         /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunkModel"/>s.</summary>
         public const int ChunksPerRegionDimension = 4;
@@ -41,9 +41,6 @@ namespace ParquetClassLibrary.Maps
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
             => All.MapRegionIDs;
-
-        /// <summary>Default name for new regions.</summary>
-        internal const string DefaultTitle = "New Region";
 
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
@@ -153,8 +150,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegionModel"/> may be generated.</param>
-        public MapRegionSketch(ModelID inID, string inName = null, string inDescription = null, string inComment = null,
-                               int inRevision = 0, string inBackgroundColor = DefaultColor,
+        public MapRegionSketch(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+                               string inBackgroundColor = DefaultColor,
                                ModelID? inRegionToTheNorth = null,
                                ModelID? inRegionToTheEast = null,
                                ModelID? inRegionToTheSouth = null,
@@ -162,7 +159,7 @@ namespace ParquetClassLibrary.Maps
                                ModelID? inRegionAbove = null,
                                ModelID? inRegionBelow = null,
                                ModelIDGrid inChunks = null)
-            : base(Bounds, inID, string.IsNullOrEmpty(inName) ? DefaultTitle : inName, inDescription, inComment, inRevision)
+            : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
             var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
@@ -170,6 +167,8 @@ namespace ParquetClassLibrary.Maps
             var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
             var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
             var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
+            var nonNullChunks = inChunks ?? new ModelIDGrid(ChunksPerRegionDimension, ChunksPerRegionDimension);
+
             Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
             Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
             Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(inRegionToTheSouth));
@@ -184,7 +183,7 @@ namespace ParquetClassLibrary.Maps
             RegionToTheWest = nonNullRegionToTheWest;
             RegionAbove = nonNullRegionAbove;
             RegionBelow = nonNullRegionBelow;
-            Chunks = inChunks ?? new ModelIDGrid(ChunksPerRegionDimension, ChunksPerRegionDimension);
+            Chunks = nonNullChunks;
         }
         #endregion
 

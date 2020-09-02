@@ -44,7 +44,8 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, int inRevision)
+        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0)
+            // TODO Either remove Revision (YAGNI), or make it part of a custom IEquatable and IComparable implementation.
             : base(inBounds, inID, inName, inDescription, inComment)
             => Revision = inRevision;
         #endregion

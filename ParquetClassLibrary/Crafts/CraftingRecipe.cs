@@ -78,27 +78,26 @@ namespace ParquetClassLibrary.Crafts
         /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
         /// </exception>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                              IEnumerable<RecipeElement> inProducts,
-                              IEnumerable<RecipeElement> inIngredients, StrikePanelGrid inPanelPattern)
+                              IEnumerable<RecipeElement> inProducts = null,
+                              IEnumerable<RecipeElement> inIngredients = null, StrikePanelGrid inPanelPattern = null)
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
-            Precondition.IsNotNullOrEmpty(inProducts, nameof(inProducts));
-            Precondition.IsInRange(inProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
-            Precondition.IsNotNullOrEmpty(inIngredients, nameof(inIngredients));
-            Precondition.IsInRange(inIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inProducts)}.Count");
-            Precondition.IsNotNull(inPanelPattern, nameof(inPanelPattern));
-            if (inPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
-                || inPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth
-                || inPanelPattern.Rows < 1
-                || inPanelPattern.Columns < 1)
+            var nonNullProducts = inProducts ?? Enumerable.Empty<RecipeElement>();
+            var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
+            var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
+
+            Precondition.IsInRange(nonNullProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
+            Precondition.IsInRange(nonNullIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inIngredients)}.Count");
+            if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
+                || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
             {
                 throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDimension,
                                                                  nameof(inPanelPattern)));
             }
 
-            Products = inProducts.ToList();
-            Ingredients = inIngredients.ToList();
-            PanelPattern = inPanelPattern;
+            Products = nonNullProducts.ToList();
+            Ingredients = nonNullIngredients.ToList();
+            PanelPattern = nonNullPanelPattern;
         }
         #endregion
     }
