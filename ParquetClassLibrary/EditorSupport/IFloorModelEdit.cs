@@ -1,6 +1,7 @@
 using ParquetClassLibrary.Items;
+using ParquetClassLibrary.Parquets;
 
-namespace ParquetClassLibrary.Parquets
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="FloorModel"/> from design tools while maintaining a read-only face for use during play.

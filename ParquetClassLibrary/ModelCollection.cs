@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
+using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary

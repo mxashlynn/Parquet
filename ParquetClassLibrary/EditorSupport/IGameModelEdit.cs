@@ -1,4 +1,6 @@
-namespace ParquetClassLibrary.Games
+using ParquetClassLibrary.Games;
+
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="GameModel"/> from design tools while maintaining a read-only face for use during play.

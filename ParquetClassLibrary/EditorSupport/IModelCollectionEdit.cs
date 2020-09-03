@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Facilitates updating elements of a <see cref="ModelCollection"/> from design tools

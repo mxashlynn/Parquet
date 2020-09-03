@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Maps

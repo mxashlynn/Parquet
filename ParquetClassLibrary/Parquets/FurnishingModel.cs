@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Parquets
 {

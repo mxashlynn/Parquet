@@ -1,4 +1,5 @@
 using CsvHelper.Configuration.Attributes;
+using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Games
 {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using ParquetClassLibrary.Items;
 
-namespace ParquetClassLibrary.Items
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="ItemModel"/> from design tools while maintaining a read-only face for use during play.

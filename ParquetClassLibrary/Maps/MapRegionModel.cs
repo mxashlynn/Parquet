@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
+using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 

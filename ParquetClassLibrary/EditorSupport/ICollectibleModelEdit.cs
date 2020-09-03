@@ -1,4 +1,6 @@
-namespace ParquetClassLibrary.Parquets
+using ParquetClassLibrary.Parquets;
+
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="CollectibleModel"/> from design tools while maintaining a read-only face for use during play.

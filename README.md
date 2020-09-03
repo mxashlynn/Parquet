@@ -50,10 +50,11 @@ The solution contains several related projects, each of which is structured so t
     - **Beings**, including player characters and NPCs.
     - **Biomes**.
     - **Crafts**.
+    - **EditorSupport** contains [classes to aid in design-time tools](https://github.com/mxashlynn/Parquet/ParquetClassLibrary/EditorSupport/IModelEdit.cs) such as [Scribe](https://github.com/mxashlynn/Scribe/).
     - **Items**.
     - **Maps**.
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/blob/master/Documentation/3-How_Parquets_Work.md).
-    - **Properties**, contains error strings and other static content.
+    - **Properties** contains error strings and other static content.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
     - **Scripts**, used to define Interactions and Item effect.
 - **ParquetRoller**

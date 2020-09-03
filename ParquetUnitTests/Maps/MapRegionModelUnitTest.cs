@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using ParquetClassLibrary;
+using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using Xunit;
