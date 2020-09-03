@@ -36,7 +36,17 @@ namespace ParquetClassLibrary
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
         [Index(0)]
-        public ModelID ID { get; }
+        public ModelID ID { get; private set; }
+
+        /// <summary>Game-wide unique identifier.</summary>
+        /// <remarks>
+        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        ///
+        /// Be especially cautious editing this property.
+        /// </remarks>
+        [Ignore]
+        ModelID IModelEdit.ID { get => ID; set => ID = value; }
 
         /// <summary>Player-facing name.</summary>
         [Index(1)]

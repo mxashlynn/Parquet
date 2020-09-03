@@ -9,6 +9,10 @@ namespace ParquetClassLibrary
     /// </remarks>
     public interface IModelEdit
     {
+        /// <summary>Game-wide unique identifier.</summary>
+        /// <remarks>Be cautious editing this.</remarks>
+        public ModelID ID { get; set; }
+
         /// <summary>Player-facing name.</summary>
         public string Name { get; set; }
 

@@ -170,6 +170,8 @@ ParquetClassLibrary.IModelEdit.Comment.get -> string
 ParquetClassLibrary.IModelEdit.Comment.set -> void
 ParquetClassLibrary.IModelEdit.Description.get -> string
 ParquetClassLibrary.IModelEdit.Description.set -> void
+ParquetClassLibrary.IModelEdit.ID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.IModelEdit.ID.set -> void
 ParquetClassLibrary.IModelEdit.Name.get -> string
 ParquetClassLibrary.IModelEdit.Name.set -> void
 ParquetClassLibrary.Items.GatheringTool

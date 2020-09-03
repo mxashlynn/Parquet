@@ -360,6 +360,7 @@
 - [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit')
   - [Comment](#P-ParquetClassLibrary-IModelEdit-Comment 'ParquetClassLibrary.IModelEdit.Comment')
   - [Description](#P-ParquetClassLibrary-IModelEdit-Description 'ParquetClassLibrary.IModelEdit.Description')
+  - [ID](#P-ParquetClassLibrary-IModelEdit-ID 'ParquetClassLibrary.IModelEdit.ID')
   - [Name](#P-ParquetClassLibrary-IModelEdit-Name 'ParquetClassLibrary.IModelEdit.Name')
 - [IParquetModelEdit](#T-ParquetClassLibrary-Parquets-IParquetModelEdit 'ParquetClassLibrary.Parquets.IParquetModelEdit')
   - [AddsToBiome](#P-ParquetClassLibrary-Parquets-IParquetModelEdit-AddsToBiome 'ParquetClassLibrary.Parquets.IParquetModelEdit.AddsToBiome')
@@ -598,6 +599,7 @@
   - [Name](#P-ParquetClassLibrary-Model-Name 'ParquetClassLibrary.Model.Name')
   - [ParquetClassLibrary#IModelEdit#Comment](#P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Comment 'ParquetClassLibrary.Model.ParquetClassLibrary#IModelEdit#Comment')
   - [ParquetClassLibrary#IModelEdit#Description](#P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Description 'ParquetClassLibrary.Model.ParquetClassLibrary#IModelEdit#Description')
+  - [ParquetClassLibrary#IModelEdit#ID](#P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#ID 'ParquetClassLibrary.Model.ParquetClassLibrary#IModelEdit#ID')
   - [ParquetClassLibrary#IModelEdit#Name](#P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Name 'ParquetClassLibrary.Model.ParquetClassLibrary#IModelEdit#Name')
   - [Equals(inModel)](#M-ParquetClassLibrary-Model-Equals-ParquetClassLibrary-Model- 'ParquetClassLibrary.Model.Equals(ParquetClassLibrary.Model)')
   - [Equals(obj)](#M-ParquetClassLibrary-Model-Equals-System-Object- 'ParquetClassLibrary.Model.Equals(System.Object)')
@@ -4640,6 +4642,17 @@ Could be used for designer's notes or to implement an in-game dialogue with or o
 
 Player-facing description.
 
+<a name='P-ParquetClassLibrary-IModelEdit-ID'></a>
+### ID `property`
+
+##### Summary
+
+Game-wide unique identifier.
+
+##### Remarks
+
+Be cautious editing this.
+
 <a name='P-ParquetClassLibrary-IModelEdit-Name'></a>
 ### Name `property`
 
@@ -7355,6 +7368,20 @@ Player-facing description.
 
 By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
 IModelEdit is for external types that require read/write access.
+
+<a name='P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#ID'></a>
+### ParquetClassLibrary#IModelEdit#ID `property`
+
+##### Summary
+
+Game-wide unique identifier.
+
+##### Remarks
+
+By design, children of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-IModelEdit 'ParquetClassLibrary.IModelEdit').
+ IModelEdit is for external types that require read/write access.
+
+ Be especially cautious editing this property.
 
 <a name='P-ParquetClassLibrary-Model-ParquetClassLibrary#IModelEdit#Name'></a>
 ### ParquetClassLibrary#IModelEdit#Name `property`
