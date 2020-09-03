@@ -90,12 +90,6 @@ namespace ParquetClassLibrary.Biomes
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="BiomeRecipe"/> for use by design-time tools.
-        /// </summary>
-        public BiomeRecipe()
-            : this(ModelID.None, $"Default {nameof(BiomeRecipe)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="BiomeRecipe"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="BiomeRecipe"/>.  Cannot be null.</param>

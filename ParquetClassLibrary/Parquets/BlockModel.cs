@@ -102,12 +102,6 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="BlockModel"/> for use by design-time tools.
-        /// </summary>
-        public BlockModel()
-            : this(ModelID.None, $"Default {nameof(BlockModel)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="BlockModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>

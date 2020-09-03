@@ -91,7 +91,6 @@
   - [GetRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-GetRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Biomes-BiomeConfiguration-PutRecord 'ParquetClassLibrary.Biomes.BiomeConfiguration.PutRecord')
 - [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe')
-  - [#ctor()](#M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor 'ParquetClassLibrary.Biomes.BiomeRecipe.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements)](#M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Biomes.BiomeRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
   - [EntryRequirements](#P-ParquetClassLibrary-Biomes-BiomeRecipe-EntryRequirements 'ParquetClassLibrary.Biomes.BiomeRecipe.EntryRequirements')
   - [IsLiquidBased](#P-ParquetClassLibrary-Biomes-BiomeRecipe-IsLiquidBased 'ParquetClassLibrary.Biomes.BiomeRecipe.IsLiquidBased')
@@ -106,7 +105,6 @@
   - [Tier](#P-ParquetClassLibrary-Biomes-BiomeRecipe-Tier 'ParquetClassLibrary.Biomes.BiomeRecipe.Tier')
   - [GetAllTags()](#M-ParquetClassLibrary-Biomes-BiomeRecipe-GetAllTags 'ParquetClassLibrary.Biomes.BiomeRecipe.GetAllTags')
 - [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-BlockModel-#ctor 'ParquetClassLibrary.Parquets.BlockModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inGatherTool,inGatherEffect,inCollectibleID,inIsFlammable,inIsLiquid,inMaxToughness)](#M-ParquetClassLibrary-Parquets-BlockModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Items-GatheringTool,ParquetClassLibrary-Parquets-GatheringEffect,System-Nullable{ParquetClassLibrary-ModelID},System-Boolean,System-Boolean,System-Int32- 'ParquetClassLibrary.Parquets.BlockModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},ParquetClassLibrary.Items.GatheringTool,ParquetClassLibrary.Parquets.GatheringEffect,System.Nullable{ParquetClassLibrary.ModelID},System.Boolean,System.Boolean,System.Int32)')
   - [DefaultMaxToughness](#F-ParquetClassLibrary-Parquets-BlockModel-DefaultMaxToughness 'ParquetClassLibrary.Parquets.BlockModel.DefaultMaxToughness')
   - [LowestPossibleToughness](#F-ParquetClassLibrary-Parquets-BlockModel-LowestPossibleToughness 'ParquetClassLibrary.Parquets.BlockModel.LowestPossibleToughness')
@@ -124,7 +122,6 @@
   - [ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid')
   - [ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness')
 - [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')
-  - [#ctor()](#M-ParquetClassLibrary-Beings-CharacterModel-#ctor 'ParquetClassLibrary.Beings.CharacterModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueIDs,inStartingInventoryIDs)](#M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CharacterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-FamilyName 'ParquetClassLibrary.Beings.CharacterModel.FamilyName')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName')
@@ -173,7 +170,6 @@
   - [SouthWest](#F-ParquetClassLibrary-Maps-ChunkTopography-SouthWest 'ParquetClassLibrary.Maps.ChunkTopography.SouthWest')
   - [West](#F-ParquetClassLibrary-Maps-ChunkTopography-West 'ParquetClassLibrary.Maps.ChunkTopography.West')
 - [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-CollectibleModel-#ctor 'ParquetClassLibrary.Parquets.CollectibleModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inCollectionEffect,inEffectAmount)](#M-ParquetClassLibrary-Parquets-CollectibleModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Parquets-CollectingEffect,System-Int32- 'ParquetClassLibrary.Parquets.CollectibleModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},ParquetClassLibrary.Parquets.CollectingEffect,System.Int32)')
   - [Bounds](#P-ParquetClassLibrary-Parquets-CollectibleModel-Bounds 'ParquetClassLibrary.Parquets.CollectibleModel.Bounds')
   - [CollectionEffect](#P-ParquetClassLibrary-Parquets-CollectibleModel-CollectionEffect 'ParquetClassLibrary.Parquets.CollectibleModel.CollectionEffect')
@@ -207,7 +203,6 @@
   - [GetRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-GetRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-PutRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord')
 - [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')
-  - [#ctor()](#M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor 'ParquetClassLibrary.Crafts.CraftingRecipe.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern)](#M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-Crafts-StrikePanelGrid- 'ParquetClassLibrary.Crafts.CraftingRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},ParquetClassLibrary.Crafts.StrikePanelGrid)')
   - [EmptyCraftingElementList](#P-ParquetClassLibrary-Crafts-CraftingRecipe-EmptyCraftingElementList 'ParquetClassLibrary.Crafts.CraftingRecipe.EmptyCraftingElementList')
   - [Ingredients](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Ingredients 'ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients')
@@ -218,7 +213,6 @@
   - [ParquetClassLibrary#EditorSupport#ICraftingRecipeEdit#Products](#P-ParquetClassLibrary-Crafts-CraftingRecipe-ParquetClassLibrary#EditorSupport#ICraftingRecipeEdit#Products 'ParquetClassLibrary.Crafts.CraftingRecipe.ParquetClassLibrary#EditorSupport#ICraftingRecipeEdit#Products')
   - [Products](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Products 'ParquetClassLibrary.Crafts.CraftingRecipe.Products')
 - [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel')
-  - [#ctor()](#M-ParquetClassLibrary-Beings-CritterModel-#ctor 'ParquetClassLibrary.Beings.CritterModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs)](#M-ParquetClassLibrary-Beings-CritterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CritterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
 - [Delimiters](#T-ParquetClassLibrary-Delimiters 'ParquetClassLibrary.Delimiters')
   - [DimensionalDelimiter](#F-ParquetClassLibrary-Delimiters-DimensionalDelimiter 'ParquetClassLibrary.Delimiters.DimensionalDelimiter')
@@ -235,7 +229,6 @@
   - [Room](#F-ParquetClassLibrary-Parquets-EntryType-Room 'ParquetClassLibrary.Parquets.EntryType.Room')
   - [Up](#F-ParquetClassLibrary-Parquets-EntryType-Up 'ParquetClassLibrary.Parquets.EntryType.Up')
 - [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-FloorModel-#ctor 'ParquetClassLibrary.Parquets.FloorModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inModTool,inTrenchName)](#M-ParquetClassLibrary-Parquets-FloorModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Items-ModificationTool,System-String- 'ParquetClassLibrary.Parquets.FloorModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},ParquetClassLibrary.Items.ModificationTool,System.String)')
   - [defaultTrenchName](#F-ParquetClassLibrary-Parquets-FloorModel-defaultTrenchName 'ParquetClassLibrary.Parquets.FloorModel.defaultTrenchName')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FloorModel-Bounds 'ParquetClassLibrary.Parquets.FloorModel.Bounds')
@@ -244,7 +237,6 @@
   - [ParquetClassLibrary#EditorSupport#IFloorModelEdit#TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-ParquetClassLibrary#EditorSupport#IFloorModelEdit#TrenchName 'ParquetClassLibrary.Parquets.FloorModel.ParquetClassLibrary#EditorSupport#IFloorModelEdit#TrenchName')
   - [TrenchName](#P-ParquetClassLibrary-Parquets-FloorModel-TrenchName 'ParquetClassLibrary.Parquets.FloorModel.TrenchName')
 - [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inEntry,inIsEnclosing,inIsFlammable,inSwapID)](#M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Parquets.FurnishingModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag},System.Boolean,ParquetClassLibrary.Parquets.EntryType,System.Boolean,System.Boolean,System.Nullable{ParquetClassLibrary.ModelID})')
   - [Bounds](#P-ParquetClassLibrary-Parquets-FurnishingModel-Bounds 'ParquetClassLibrary.Parquets.FurnishingModel.Bounds')
   - [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry')
@@ -258,7 +250,6 @@
   - [ParquetClassLibrary#EditorSupport#IFurnishingModelEdit#SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-ParquetClassLibrary#EditorSupport#IFurnishingModelEdit#SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.ParquetClassLibrary#EditorSupport#IFurnishingModelEdit#SwapID')
   - [SwapID](#P-ParquetClassLibrary-Parquets-FurnishingModel-SwapID 'ParquetClassLibrary.Parquets.FurnishingModel.SwapID')
 - [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel')
-  - [#ctor()](#M-ParquetClassLibrary-Games-GameModel-#ctor 'ParquetClassLibrary.Games.GameModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inIsEpisode,inEpisodeTitle,inEpisodeNumber,inPlayerCharacterID,inFirstScriptID)](#M-ParquetClassLibrary-Games-GameModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Boolean,System-String,System-Int32,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Games.GameModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Boolean,System.String,System.Int32,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID})')
   - [EpisodeNumber](#P-ParquetClassLibrary-Games-GameModel-EpisodeNumber 'ParquetClassLibrary.Games.GameModel.EpisodeNumber')
   - [EpisodeTitle](#P-ParquetClassLibrary-Games-GameModel-EpisodeTitle 'ParquetClassLibrary.Games.GameModel.EpisodeTitle')
@@ -397,7 +388,6 @@
 - [IntExtensions](#T-ParquetClassLibrary-IntExtensions 'ParquetClassLibrary.IntExtensions')
   - [Normalize(inInt,inLowerBound,inUpperBound)](#M-ParquetClassLibrary-IntExtensions-Normalize-System-Int32,System-Int32,System-Int32- 'ParquetClassLibrary.IntExtensions.Normalize(System.Int32,System.Int32,System.Int32)')
 - [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')
-  - [#ctor()](#M-ParquetClassLibrary-Scripts-InteractionModel-#ctor 'ParquetClassLibrary.Scripts.InteractionModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inPrerequisitesIDs,inStepsIDs,inOutcomesIDs)](#M-ParquetClassLibrary-Scripts-InteractionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Scripts.InteractionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
   - [OutcomesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-OutcomesIDs 'ParquetClassLibrary.Scripts.InteractionModel.OutcomesIDs')
   - [ParquetClassLibrary#EditorSupport#IInteractionModelEdit#OutcomesIDs](#P-ParquetClassLibrary-Scripts-InteractionModel-ParquetClassLibrary#EditorSupport#IInteractionModelEdit#OutcomesIDs 'ParquetClassLibrary.Scripts.InteractionModel.ParquetClassLibrary#EditorSupport#IInteractionModelEdit#OutcomesIDs')
@@ -443,7 +433,6 @@
   - [Take(inHowMany)](#M-ParquetClassLibrary-Items-InventorySlot-Take-System-Int32- 'ParquetClassLibrary.Items.InventorySlot.Take(System.Int32)')
   - [ToString()](#M-ParquetClassLibrary-Items-InventorySlot-ToString 'ParquetClassLibrary.Items.InventorySlot.ToString')
 - [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')
-  - [#ctor()](#M-ParquetClassLibrary-Items-ItemModel-#ctor 'ParquetClassLibrary.Items.ItemModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inSubtype,inPrice,inRarity,inStackMax,inEffectWhileHeldID,inEffectWhenUsedID,inParquetID,inItemTags)](#M-ParquetClassLibrary-Items-ItemModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-Items-ItemType,System-Int32,System-Int32,System-Int32,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}- 'ParquetClassLibrary.Items.ItemModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,ParquetClassLibrary.Items.ItemType,System.Int32,System.Int32,System.Int32,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelTag})')
   - [DefaultStackMax](#F-ParquetClassLibrary-Items-ItemModel-DefaultStackMax 'ParquetClassLibrary.Items.ItemModel.DefaultStackMax')
   - [EffectWhenUsedID](#P-ParquetClassLibrary-Items-ItemModel-EffectWhenUsedID 'ParquetClassLibrary.Items.ItemModel.EffectWhenUsedID')
@@ -486,7 +475,6 @@
 - [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
 - [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor 'ParquetClassLibrary.Maps.MapChunkModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunkModel-Bounds 'ParquetClassLibrary.Maps.MapChunkModel.Bounds')
@@ -508,7 +496,6 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapRegionModel-#ctor 'ParquetClassLibrary.Maps.MapRegionModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionModel-DefaultColor 'ParquetClassLibrary.Maps.MapRegionModel.DefaultColor')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegionModel-Empty 'ParquetClassLibrary.Maps.MapRegionModel.Empty')
@@ -536,7 +523,6 @@
   - [GetBiome()](#M-ParquetClassLibrary-Maps-MapRegionModel-GetBiome 'ParquetClassLibrary.Maps.MapRegionModel.GetBiome')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionModel-ToString 'ParquetClassLibrary.Maps.MapRegionModel.ToString')
 - [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch')
-  - [#ctor()](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks)](#M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid- 'ParquetClassLibrary.Maps.MapRegionSketch.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelIDGrid)')
   - [ChunksPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegionSketch-ChunksPerRegionDimension 'ParquetClassLibrary.Maps.MapRegionSketch.ChunksPerRegionDimension')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionSketch-DefaultColor 'ParquetClassLibrary.Maps.MapRegionSketch.DefaultColor')
@@ -938,7 +924,6 @@
   - [GetRecord()](#M-ParquetClassLibrary-Rooms-RoomConfiguration-GetRecord 'ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Rooms-RoomConfiguration-PutRecord 'ParquetClassLibrary.Rooms.RoomConfiguration.PutRecord')
 - [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe')
-  - [#ctor()](#M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor 'ParquetClassLibrary.Rooms.RoomRecipe.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inMinimumWalkableSpaces,inOptionallyRequiredFurnishings,inOptionallyRequiredWalkableFloors,inOptionallyRequiredPerimeterBlocks)](#M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{System-Int32},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}- 'ParquetClassLibrary.Rooms.RoomRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement})')
   - [MinimumWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomRecipe-MinimumWalkableSpaces 'ParquetClassLibrary.Rooms.RoomRecipe.MinimumWalkableSpaces')
   - [OptionallyRequiredFurnishings](#P-ParquetClassLibrary-Rooms-RoomRecipe-OptionallyRequiredFurnishings 'ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredFurnishings')
@@ -955,7 +940,6 @@
   - [InProgress](#F-ParquetClassLibrary-Scripts-RunState-InProgress 'ParquetClassLibrary.Scripts.RunState.InProgress')
   - [Unstarted](#F-ParquetClassLibrary-Scripts-RunState-Unstarted 'ParquetClassLibrary.Scripts.RunState.Unstarted')
 - [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel')
-  - [#ctor()](#M-ParquetClassLibrary-Scripts-ScriptModel-#ctor 'ParquetClassLibrary.Scripts.ScriptModel.#ctor')
   - [#ctor(inID,inName,inDescription,inComment,inNodes)](#M-ParquetClassLibrary-Scripts-ScriptModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptNode}- 'ParquetClassLibrary.Scripts.ScriptModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptNode})')
   - [Nodes](#P-ParquetClassLibrary-Scripts-ScriptModel-Nodes 'ParquetClassLibrary.Scripts.ScriptModel.Nodes')
   - [ParquetClassLibrary#EditorSupport#IScriptModelEdit#Nodes](#P-ParquetClassLibrary-Scripts-ScriptModel-ParquetClassLibrary#EditorSupport#IScriptModelEdit#Nodes 'ParquetClassLibrary.Scripts.ScriptModel.ParquetClassLibrary#EditorSupport#IScriptModelEdit#Nodes')
@@ -1976,17 +1960,6 @@ ParquetClassLibrary.Biomes
 
 Models the biome that a [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') embodies.
 
-<a name='M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Biomes-BiomeRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,System-Boolean,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inTier,inIsRoomBased,inIsLiquidBased,inParquetCriteria,inEntryRequirements) `constructor`
 
@@ -2137,17 +2110,6 @@ ParquetClassLibrary.Parquets
 ##### Summary
 
 Configurations for a sandbox parquet block.
-
-<a name='M-ParquetClassLibrary-Parquets-BlockModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Parquets-BlockModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Items-GatheringTool,ParquetClassLibrary-Parquets-GatheringEffect,System-Nullable{ParquetClassLibrary-ModelID},System-Boolean,System-Boolean,System-Int32-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inGatherTool,inGatherEffect,inCollectibleID,inIsFlammable,inIsLiquid,inMaxToughness) `constructor`
@@ -2319,17 +2281,6 @@ ParquetClassLibrary.Beings
 ##### Summary
 
 Models the definitions of in-game actors that take part in the narrative.
-
-<a name='M-ParquetClassLibrary-Beings-CharacterModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueIDs,inStartingInventoryIDs) `constructor`
@@ -2871,17 +2822,6 @@ ParquetClassLibrary.Parquets
 
 Configurations for a sandbox collectible object, such as crafting materials.
 
-<a name='M-ParquetClassLibrary-Parquets-CollectibleModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Parquets-CollectibleModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Parquets-CollectingEffect,System-Int32-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inCollectionEffect,inEffectAmount) `constructor`
 
@@ -3176,17 +3116,6 @@ ParquetClassLibrary.Crafts
 
 Models the ingredients and process needed to produce a new item.
 
-<a name='M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-Crafts-StrikePanelGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern) `constructor`
 
@@ -3294,17 +3223,6 @@ ParquetClassLibrary.Beings
 ##### Summary
 
 Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
-
-<a name='M-ParquetClassLibrary-Beings-CritterModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Beings-CritterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs) `constructor`
@@ -3444,17 +3362,6 @@ ParquetClassLibrary.Parquets
 
 Configurations for a sandbox parquet walking surface.
 
-<a name='M-ParquetClassLibrary-Parquets-FloorModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Parquets-FloorModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},ParquetClassLibrary-Items-ModificationTool,System-String-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inModTool,inTrenchName) `constructor`
 
@@ -3538,17 +3445,6 @@ ParquetClassLibrary.Parquets
 ##### Summary
 
 Configurations for large sandbox parquet items, such as furniture or plants.
-
-<a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Parquets-FurnishingModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag},System-Boolean,ParquetClassLibrary-Parquets-EntryType,System-Boolean,System-Boolean,System-Nullable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inItemID,inAddsToBiome,inAddsToRoom,inIsWalkable,inEntry,inIsEnclosing,inIsFlammable,inSwapID) `constructor`
@@ -3686,17 +3582,6 @@ ParquetClassLibrary.Games
 ##### Summary
 
 Collects data about a Parquet-based game generally.
-
-<a name='M-ParquetClassLibrary-Games-GameModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [GameModel](#T-ParquetClassLibrary-Games-GameModel 'ParquetClassLibrary.Games.GameModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Games-GameModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Boolean,System-String,System-Int32,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inIsEpisode,inEpisodeTitle,inEpisodeNumber,inPlayerCharacterID,inFirstScriptID) `constructor`
@@ -5032,17 +4917,6 @@ ParquetClassLibrary.Scripts
 Models input, output, and process of an in-game interaction.
 This could be a quest, cutscene, environmental effect, or dialogue between [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')s
 
-<a name='M-ParquetClassLibrary-Scripts-InteractionModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Scripts-InteractionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inPrerequisitesIDs,inStepsIDs,inOutcomesIDs) `constructor`
 
@@ -5621,17 +5495,6 @@ ParquetClassLibrary.Items
 
 Models an item that characters may carry, use, equip, trade, and/or build with.
 
-<a name='M-ParquetClassLibrary-Items-ItemModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Items-ItemModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,ParquetClassLibrary-Items-ItemType,System-Int32,System-Int32,System-Int32,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelTag}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inSubtype,inPrice,inRarity,inStackMax,inEffectWhileHeldID,inEffectWhenUsedID,inParquetID,inItemTags) `constructor`
 
@@ -6106,17 +5969,6 @@ either directly composed of parquets or generated from [ChunkDetail](#T-ParquetC
 
 For more information, read the remarks given in [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch').
 
-<a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions) `constructor`
 
@@ -6356,17 +6208,6 @@ ParquetClassLibrary.Maps
 ##### Summary
 
 A playable region of the gameworld, composed of parquets.
-
-<a name='M-ParquetClassLibrary-Maps-MapRegionModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions) `constructor`
@@ -6612,17 +6453,6 @@ Before play begins, [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 
  to some general layout instructions provided by the game's designers.
  
  The [Stitch](#M-ParquetClassLibrary-Maps-MapRegionSketch-Stitch 'ParquetClassLibrary.Maps.MapRegionSketch.Stitch') method accomplishes this, forming a composite whole from generated parts.
-
-<a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Maps-MapRegionSketch-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelIDGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inChunks) `constructor`
@@ -11858,17 +11688,6 @@ ParquetClassLibrary.Rooms
 
 Models the minimum requirements for a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to be recognizable and useful.
 
-<a name='M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [RoomRecipe](#T-ParquetClassLibrary-Rooms-RoomRecipe 'ParquetClassLibrary.Rooms.RoomRecipe') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='M-ParquetClassLibrary-Rooms-RoomRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{System-Int32},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inMinimumWalkableSpaces,inOptionallyRequiredFurnishings,inOptionallyRequiredWalkableFloors,inOptionallyRequiredPerimeterBlocks) `constructor`
 
@@ -12034,17 +11853,6 @@ ParquetClassLibrary.Scripts
 ##### Summary
 
 Models a series of imperative, procedural commands.
-
-<a name='M-ParquetClassLibrary-Scripts-ScriptModel-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes an empty [ScriptModel](#T-ParquetClassLibrary-Scripts-ScriptModel 'ParquetClassLibrary.Scripts.ScriptModel') for use by design-time tools.
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='M-ParquetClassLibrary-Scripts-ScriptModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptNode}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inNodes) `constructor`

@@ -65,12 +65,6 @@ namespace ParquetClassLibrary.Crafts
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="CraftingRecipe"/> for use by design-time tools.
-        /// </summary>
-        public CraftingRecipe()
-            : this(ModelID.None, $"Default {nameof(CraftingRecipe)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>

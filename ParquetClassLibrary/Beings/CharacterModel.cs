@@ -118,12 +118,6 @@ namespace ParquetClassLibrary.Beings
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="CharacterModel"/> for use by design-time tools.
-        /// </summary>
-        public CharacterModel()
-            : this(ModelID.None, $"Default {nameof(CharacterModel)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CharacterModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>

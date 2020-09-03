@@ -66,12 +66,6 @@ namespace ParquetClassLibrary.Rooms
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="RoomRecipe"/> for use by design-time tools.
-        /// </summary>
-        public RoomRecipe()
-            : this(ModelID.None, $"Default {nameof(RoomRecipe)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="RoomRecipe"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>

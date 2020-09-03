@@ -50,12 +50,6 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="FloorModel"/> for use by design-time tools.
-        /// </summary>
-        public FloorModel()
-            : this(ModelID.None, $"Default {nameof(FloorModel)}", "", "") { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="FloorModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
