@@ -372,18 +372,18 @@ namespace ParquetClassLibrary
             where TModelInner : TModel
         {
             using var fileWriter = new StreamWriter(ModelCollection.GetFilePath<TModelInner>(), false, new UTF8Encoding(true, true));
-            using var fileCSV = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
-            fileCSV.Configuration.NewLine = NewLine.LF;
-            fileCSV.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            using var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            csvWriter.Configuration.NewLine = NewLine.LF;
+            csvWriter.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             foreach (var kvp in All.ConversionConverters)
             {
-                fileCSV.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+                csvWriter.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
             }
 
-            fileCSV.WriteHeader<TModelInner>();
-            fileCSV.NextRecord();
+            csvWriter.WriteHeader<TModelInner>();
+            csvWriter.NextRecord();
             var recordsToWrite = Models.Values.Where(model => model.GetType() == typeof(TModelInner)).Cast<TModelInner>();
-            fileCSV.WriteRecords(recordsToWrite);
+            csvWriter.WriteRecords(recordsToWrite);
         }
         #endregion
 
