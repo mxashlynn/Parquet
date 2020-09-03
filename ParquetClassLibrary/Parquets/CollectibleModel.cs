@@ -8,8 +8,8 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class CollectibleModel : ParquetModel, ICollectibleModelEdit
     {
         #region Class Defaults
@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Parquets
         /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

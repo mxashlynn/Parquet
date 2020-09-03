@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="ItemModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, children of <see cref="ItemModel"/> should never themselves use <see cref="IItemModelEdit"/>.
+    /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IItemModelEdit"/>.
     /// IItemModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IItemModelEdit : IModelEdit

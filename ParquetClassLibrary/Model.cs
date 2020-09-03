@@ -30,7 +30,7 @@ namespace ParquetClassLibrary
     /// Model could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="ModelTag"/>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, Model should never itself use IModelEdit the interface to access its own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public abstract class Model : IModelEdit, IEquatable<Model>
     {
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Game-wide unique identifier.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         ///
         /// Be especially cautious editing this property.
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing name.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -67,7 +67,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Player-facing description.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -80,7 +80,7 @@ namespace ParquetClassLibrary
 
         /// <summary>Optional comment.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

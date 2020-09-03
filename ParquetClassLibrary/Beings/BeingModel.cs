@@ -9,8 +9,8 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public abstract class BeingModel : Model, IBeingModelEdit
     {
         #region Characteristics
@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -56,7 +56,7 @@ namespace ParquetClassLibrary.Beings
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

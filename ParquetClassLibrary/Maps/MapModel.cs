@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     public abstract class MapModel : Model
     {
         #region Class Defaults
-        /// <summary>Dimensions in parquets.  Defined by child classes.</summary>
+        /// <summary>Dimensions in parquets.  Defined by subtypes.</summary>
         [Ignore]
         public abstract Vector2D DimensionsInParquets { get; }
         #endregion
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="MapModel"/> class.
+        /// Used by subtypes of the <see cref="MapModel"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived map type's <see cref="ModelID"/> is defined.</param>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>

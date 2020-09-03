@@ -9,8 +9,8 @@ namespace ParquetClassLibrary.Scripts
     /// Models input, output, and process of an in-game interaction.
     /// This could be a quest, cutscene, environmental effect, or dialogue between <see cref="Beings.CharacterModel"/>s
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public class InteractionModel : Model, IInteractionModelEdit
     {
         #region Characteristics
@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Scripts
         /// Describes the criteria for begining this interaction.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Scripts
         /// Everything this interaction entails.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Scripts
         /// Describes the results of finishing this interaction.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

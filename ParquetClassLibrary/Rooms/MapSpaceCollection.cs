@@ -293,7 +293,7 @@ namespace ParquetClassLibrary.Rooms
                         }
                         else
                         {
-                            // Continue, examining all children in order.
+                            // Continue, examining all neighbors in order.
                             goalFound = DepthFirstSearch(inSpace.NorthNeighbor())
                                 || DepthFirstSearch(inSpace.SouthNeighbor())
                                 || DepthFirstSearch(inSpace.EastNeighbor())

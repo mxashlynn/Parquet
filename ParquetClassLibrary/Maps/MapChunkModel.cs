@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="MapModel"/> class.
+        /// Used by subtypes of the <see cref="MapModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>

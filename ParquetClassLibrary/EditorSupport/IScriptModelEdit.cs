@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="ScriptModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, children of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
+    /// By design, subtypes of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
     /// IScriptModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IScriptModelEdit : IModelEdit

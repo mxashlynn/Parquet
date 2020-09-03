@@ -10,8 +10,8 @@ namespace ParquetClassLibrary.Rooms
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class RoomRecipe : Model, IRoomRecipeEdit
     {
         #region Characteristics
@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         /// <remarks>
-        /// By design, children of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         /// <remarks>
-        /// By design, children of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         /// <remarks>
-        /// By design, children of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         /// <remarks>
-        /// By design, children of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

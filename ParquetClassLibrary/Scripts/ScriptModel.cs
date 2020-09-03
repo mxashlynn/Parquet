@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Scripts
 
         /// <summary>A series of imperative, procedural commands.</summary>
         /// <remarks>
-        /// By design, children of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
+        /// By design, subtypes of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
         /// IScriptModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

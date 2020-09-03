@@ -8,8 +8,8 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class ItemModel : Model, IItemModelEdit
     {
         #region Class Defaults
@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>The type of item this is.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -48,7 +48,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>How relatively rare this item is.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -78,7 +78,7 @@ namespace ParquetClassLibrary.Items
         /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -96,7 +96,7 @@ namespace ParquetClassLibrary.Items
         /// using (consuming) the item.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -108,7 +108,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -120,7 +120,7 @@ namespace ParquetClassLibrary.Items
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]

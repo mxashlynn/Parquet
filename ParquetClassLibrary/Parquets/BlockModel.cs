@@ -10,8 +10,8 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet block.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class BlockModel : ParquetModel, IBlockModelEdit
     {
         #region Class Defaults
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The tool used to remove the block.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -69,7 +69,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Whether or not the block is flammable.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -81,7 +81,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Whether or not the block is a liquid.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The block's native toughness.</summary>
         /// <remarks>
-        /// By design, children of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+        /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

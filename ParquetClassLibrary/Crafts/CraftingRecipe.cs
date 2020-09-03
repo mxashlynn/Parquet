@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -43,7 +43,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]

@@ -8,8 +8,8 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for large sandbox parquet items, such as furniture or plants.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class FurnishingModel : ParquetModel, IFurnishingModelEdit
     {
         #region Class Defaults
@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -37,7 +37,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -73,7 +73,7 @@ namespace ParquetClassLibrary.Parquets
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]

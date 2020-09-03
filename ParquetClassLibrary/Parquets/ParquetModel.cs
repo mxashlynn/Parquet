@@ -9,8 +9,8 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
-        Justification = "By design, children of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public abstract class ParquetModel : Model, IParquetModelEdit
     {
         #region Characteristics
@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Parquets
         /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Parquets
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -63,7 +63,7 @@ namespace ParquetClassLibrary.Parquets
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         /// <remarks>
-        /// By design, children of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
@@ -72,7 +72,7 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
-        /// Used by children of the <see cref="ParquetModel"/> class.
+        /// Used by subtypes of the <see cref="ParquetModel"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived parquet type's ModelID is defined.</param>
         /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>

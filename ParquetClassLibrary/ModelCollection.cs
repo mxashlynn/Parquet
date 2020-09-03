@@ -29,7 +29,7 @@ namespace ParquetClassLibrary
     /// <seealso cref="ModelTag"/>
     /// <seealso cref="All"/>
     /// <typeparam name="TModel">The type collected, typically a concrete decendent of <see cref="Model"/>.</typeparam>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by child types",
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, ModelCollection should never use IModelCollectionEdit to alter its own collection.  IModelCollectionEdit is for external types that require read/write access.")]
     public class ModelCollection<TModel> : IReadOnlyCollection<TModel>, IModelCollectionEdit<TModel>
         where TModel : Model

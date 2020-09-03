@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="CraftingRecipe"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, children of <see cref="CraftingRecipe"/> should never themselves use <see cref="ICraftingRecipeEdit"/>.
+    /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="ICraftingRecipeEdit"/>.
     /// ICraftingRecipeEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface ICraftingRecipeEdit : IModelEdit
