@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Rooms
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IModelEdit or its decendent interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+        Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
     public sealed class RoomRecipe : Model, IRoomRecipeEdit
     {
         #region Characteristics
