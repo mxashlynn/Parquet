@@ -47,6 +47,12 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="MapChunkModel"/> for use by design-time tools.
+        /// </summary>
+        public MapChunkModel()
+            : this(ModelID.None, $"Default {nameof(MapChunkModel)}", "", "") { }
+
+        /// <summary>
         /// Used by children of the <see cref="MapModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>

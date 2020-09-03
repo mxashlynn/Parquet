@@ -82,6 +82,12 @@ namespace ParquetClassLibrary.Parquets
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="FurnishingModel"/> for use by design-time tools.
+        /// </summary>
+        public FurnishingModel()
+            : this(ModelID.None, $"Default {nameof(FurnishingModel)}", "", "") { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FurnishingModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="FurnishingModel"/>.  Cannot be null.</param>

@@ -59,6 +59,12 @@ namespace ParquetClassLibrary.Scripts
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="InteractionModel"/> for use by design-time tools.
+        /// </summary>
+        public InteractionModel()
+            : this(ModelID.None, $"Default {nameof(InteractionModel)}", "", "") { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="InteractionModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="InteractionModel"/>.  Cannot be null.</param>

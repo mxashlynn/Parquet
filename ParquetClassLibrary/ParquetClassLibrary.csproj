@@ -4,7 +4,7 @@
     <AssemblyName>Parquet</AssemblyName>
 
     <Product>Parquet</Product>
-    <Version>0.3.15.0</Version>
+    <Version>0.3.16.0</Version>
     <Company>Magical Girlfriends</Company>
     <Authors>Paige Ashlynn and contibutors</Authors>
     <Copyright>2018-2020 Paige Ashlynn</Copyright>
@@ -30,8 +30,8 @@
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AssemblyVersion>0.3.15.0</AssemblyVersion>
-    <FileVersion>0.3.15.0</FileVersion>
+    <AssemblyVersion>0.3.16.0</AssemblyVersion>
+    <FileVersion>0.3.16.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

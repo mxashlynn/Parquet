@@ -129,6 +129,12 @@ namespace ParquetClassLibrary.Items
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="ItemModel"/> for use by design-time tools.
+        /// </summary>
+        public ItemModel()
+            : this(ModelID.None, $"Default {nameof(ItemModel)}", "", "") { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ItemModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="ItemModel"/>.  Cannot be null.</param>

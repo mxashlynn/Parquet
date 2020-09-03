@@ -36,6 +36,7 @@ ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.set -> void
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.set -> void
 ParquetClassLibrary.Beings.CharacterModel
+ParquetClassLibrary.Beings.CharacterModel.CharacterModel() -> void
 ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuestIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingDialogueIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingInventoryIDs = null) -> void
 ParquetClassLibrary.Beings.CharacterModel.FamilyName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.PersonalName.get -> string
@@ -45,6 +46,7 @@ ParquetClassLibrary.Beings.CharacterModel.StartingInventoryIDs.get -> System.Col
 ParquetClassLibrary.Beings.CharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID.get -> string
 ParquetClassLibrary.Beings.CritterModel
+ParquetClassLibrary.Beings.CritterModel.CritterModel() -> void
 ParquetClassLibrary.Beings.CritterModel.CritterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null) -> void
 ParquetClassLibrary.Beings.PronounGroup
 ParquetClassLibrary.Beings.PronounGroup.Determiner.get -> string
@@ -57,6 +59,7 @@ ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Biomes.BiomeConfiguration
 ParquetClassLibrary.Biomes.BiomeRecipe
+ParquetClassLibrary.Biomes.BiomeRecipe.BiomeRecipe() -> void
 ParquetClassLibrary.Biomes.BiomeRecipe.BiomeRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements = null) -> void
 ParquetClassLibrary.Biomes.BiomeRecipe.EntryRequirements.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Biomes.BiomeRecipe.IsLiquidBased.get -> bool
@@ -65,6 +68,7 @@ ParquetClassLibrary.Biomes.BiomeRecipe.ParquetCriteria.get -> System.Collections
 ParquetClassLibrary.Biomes.BiomeRecipe.Tier.get -> int
 ParquetClassLibrary.Crafts.CraftConfiguration
 ParquetClassLibrary.Crafts.CraftingRecipe
+ParquetClassLibrary.Crafts.CraftingRecipe.CraftingRecipe() -> void
 ParquetClassLibrary.Crafts.CraftingRecipe.CraftingRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inProducts = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inIngredients = null, ParquetClassLibrary.Crafts.StrikePanelGrid inPanelPattern = null) -> void
 ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Crafts.CraftingRecipe.PanelPattern.get -> ParquetClassLibrary.Crafts.StrikePanelGrid
@@ -247,6 +251,7 @@ ParquetClassLibrary.Games.GameModel
 ParquetClassLibrary.Games.GameModel.EpisodeNumber.get -> int
 ParquetClassLibrary.Games.GameModel.EpisodeTitle.get -> string
 ParquetClassLibrary.Games.GameModel.FirstScriptID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Games.GameModel.GameModel() -> void
 ParquetClassLibrary.Games.GameModel.GameModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, bool inIsEpisode = false, string inEpisodeTitle = "", int inEpisodeNumber = 0, ParquetClassLibrary.ModelID? inPlayerCharacterID = null, ParquetClassLibrary.ModelID? inFirstScriptID = null) -> void
 ParquetClassLibrary.Games.GameModel.IsEpisode.get -> bool
 ParquetClassLibrary.Games.GameModel.PlayerCharacterID.get -> ParquetClassLibrary.ModelID
@@ -289,6 +294,7 @@ ParquetClassLibrary.Items.InventorySlot.Take(int inHowMany = 1) -> int
 ParquetClassLibrary.Items.ItemModel
 ParquetClassLibrary.Items.ItemModel.EffectWhenUsedID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Items.ItemModel.EffectWhileHeldID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Items.ItemModel.ItemModel() -> void
 ParquetClassLibrary.Items.ItemModel.ItemModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.Items.ItemType inSubtype = ParquetClassLibrary.Items.ItemType.Other, int inPrice = 0, int inRarity = 0, int inStackMax = 999, ParquetClassLibrary.ModelID? inEffectWhileHeldID = null, ParquetClassLibrary.ModelID? inEffectWhenUsedID = null, ParquetClassLibrary.ModelID? inParquetID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inItemTags = null) -> void
 ParquetClassLibrary.Items.ItemModel.ItemTags.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.Items.ItemModel.ParquetID.get -> ParquetClassLibrary.ModelID
@@ -344,6 +350,7 @@ ParquetClassLibrary.Maps.MapChunkModel
 ParquetClassLibrary.Maps.MapChunkModel.Details.get -> ParquetClassLibrary.Maps.ChunkDetail
 ParquetClassLibrary.Maps.MapChunkModel.Generate() -> ParquetClassLibrary.Maps.MapChunkModel
 ParquetClassLibrary.Maps.MapChunkModel.IsFilledOut.get -> bool
+ParquetClassLibrary.Maps.MapChunkModel.MapChunkModel() -> void
 ParquetClassLibrary.Maps.MapChunkModel.MapChunkModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, bool inIsFilledOut = false, ParquetClassLibrary.Maps.ChunkDetail inDetails = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapModel
 ParquetClassLibrary.Maps.MapModel.GetSubregion() -> ParquetClassLibrary.Parquets.ParquetStackGrid
@@ -356,6 +363,7 @@ ParquetClassLibrary.Maps.MapModel.Revision.set -> void
 ParquetClassLibrary.Maps.MapRegionModel
 ParquetClassLibrary.Maps.MapRegionModel.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionModel.GetBiome() -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.Maps.MapRegionModel.MapRegionModel() -> void
 ParquetClassLibrary.Maps.MapRegionModel.MapRegionModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.ModelID? inRegionToTheNorth = null, ParquetClassLibrary.ModelID? inRegionToTheEast = null, ParquetClassLibrary.ModelID? inRegionToTheSouth = null, ParquetClassLibrary.ModelID? inRegionToTheWest = null, ParquetClassLibrary.ModelID? inRegionAbove = null, ParquetClassLibrary.ModelID? inRegionBelow = null, ParquetClassLibrary.Parquets.ParquetStatusGrid inParquetStatuses = null, ParquetClassLibrary.Parquets.ParquetStackGrid inParquetDefinitions = null) -> void
 ParquetClassLibrary.Maps.MapRegionModel.ParquetStatuses.get -> ParquetClassLibrary.Parquets.ParquetStatusGrid
 ParquetClassLibrary.Maps.MapRegionModel.RegionAbove.get -> ParquetClassLibrary.ModelID
@@ -368,6 +376,7 @@ ParquetClassLibrary.Maps.MapRegionModel.Rooms.get -> ParquetClassLibrary.Rooms.R
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.ModelIDGrid
+ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch() -> void
 ParquetClassLibrary.Maps.MapRegionSketch.MapRegionSketch(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", ParquetClassLibrary.ModelID? inRegionToTheNorth = null, ParquetClassLibrary.ModelID? inRegionToTheEast = null, ParquetClassLibrary.ModelID? inRegionToTheSouth = null, ParquetClassLibrary.ModelID? inRegionToTheWest = null, ParquetClassLibrary.ModelID? inRegionAbove = null, ParquetClassLibrary.ModelID? inRegionBelow = null, ParquetClassLibrary.ModelIDGrid inChunks = null) -> void
 ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionSketch.RegionBelow.get -> ParquetClassLibrary.ModelID
@@ -422,6 +431,7 @@ ParquetClassLibrary.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderR
 ParquetClassLibrary.ModelTag.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 ParquetClassLibrary.ModelTag.ModelTag() -> void
 ParquetClassLibrary.Parquets.BlockModel
+ParquetClassLibrary.Parquets.BlockModel.BlockModel() -> void
 ParquetClassLibrary.Parquets.BlockModel.BlockModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Items.GatheringTool inGatherTool = ParquetClassLibrary.Items.GatheringTool.None, ParquetClassLibrary.Parquets.GatheringEffect inGatherEffect = ParquetClassLibrary.Parquets.GatheringEffect.None, ParquetClassLibrary.ModelID? inCollectibleID = null, bool inIsFlammable = false, bool inIsLiquid = false, int inMaxToughness = 10) -> void
 ParquetClassLibrary.Parquets.BlockModel.CollectibleID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Parquets.BlockModel.GatherEffect.get -> ParquetClassLibrary.Parquets.GatheringEffect
@@ -430,6 +440,7 @@ ParquetClassLibrary.Parquets.BlockModel.IsFlammable.get -> bool
 ParquetClassLibrary.Parquets.BlockModel.IsLiquid.get -> bool
 ParquetClassLibrary.Parquets.BlockModel.MaxToughness.get -> int
 ParquetClassLibrary.Parquets.CollectibleModel
+ParquetClassLibrary.Parquets.CollectibleModel.CollectibleModel() -> void
 ParquetClassLibrary.Parquets.CollectibleModel.CollectibleModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Parquets.CollectingEffect inCollectionEffect = ParquetClassLibrary.Parquets.CollectingEffect.None, int inEffectAmount = 0) -> void
 ParquetClassLibrary.Parquets.CollectibleModel.CollectionEffect.get -> ParquetClassLibrary.Parquets.CollectingEffect
 ParquetClassLibrary.Parquets.CollectibleModel.EffectAmount.get -> int
@@ -443,11 +454,13 @@ ParquetClassLibrary.Parquets.EntryType.None = 0 -> ParquetClassLibrary.Parquets.
 ParquetClassLibrary.Parquets.EntryType.Room = 1 -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.EntryType.Up = 2 -> ParquetClassLibrary.Parquets.EntryType
 ParquetClassLibrary.Parquets.FloorModel
+ParquetClassLibrary.Parquets.FloorModel.FloorModel() -> void
 ParquetClassLibrary.Parquets.FloorModel.FloorModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, ParquetClassLibrary.Items.ModificationTool inModTool = ParquetClassLibrary.Items.ModificationTool.None, string inTrenchName = "dark hole") -> void
 ParquetClassLibrary.Parquets.FloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
 ParquetClassLibrary.Parquets.FloorModel.TrenchName.get -> string
 ParquetClassLibrary.Parquets.FurnishingModel
 ParquetClassLibrary.Parquets.FurnishingModel.Entry.get -> ParquetClassLibrary.Parquets.EntryType
+ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel() -> void
 ParquetClassLibrary.Parquets.FurnishingModel.FurnishingModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inAddsToRoom = null, bool inIsWalkable = false, ParquetClassLibrary.Parquets.EntryType inEntry = ParquetClassLibrary.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, ParquetClassLibrary.ModelID? inSwapID = null) -> void
 ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing.get -> bool
 ParquetClassLibrary.Parquets.FurnishingModel.IsFlammable.get -> bool
@@ -582,9 +595,11 @@ ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredFurnishings.get -> System
 ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredPerimeterBlocks.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Rooms.RoomRecipe.OptionallyRequiredWalkableFloors.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Rooms.RoomRecipe.Priority.get -> int
+ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe() -> void
 ParquetClassLibrary.Rooms.RoomRecipe.RoomRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int? inMinimumWalkableSpaces = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredFurnishings = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredWalkableFloors = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inOptionallyRequiredPerimeterBlocks = null) -> void
 ParquetClassLibrary.Scripts.Commands
 ParquetClassLibrary.Scripts.InteractionModel
+ParquetClassLibrary.Scripts.InteractionModel.InteractionModel() -> void
 ParquetClassLibrary.Scripts.InteractionModel.InteractionModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inPrerequisitesIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStepsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inOutcomesIDs = null) -> void
 ParquetClassLibrary.Scripts.InteractionModel.OutcomesIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Scripts.InteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
@@ -604,6 +619,7 @@ ParquetClassLibrary.Scripts.RunState.Unstarted = 0 -> ParquetClassLibrary.Script
 ParquetClassLibrary.Scripts.ScriptModel
 ParquetClassLibrary.Scripts.ScriptModel.GetActions() -> System.Collections.Generic.IEnumerable<System.Action>
 ParquetClassLibrary.Scripts.ScriptModel.Nodes.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Scripts.ScriptNode>
+ParquetClassLibrary.Scripts.ScriptModel.ScriptModel() -> void
 ParquetClassLibrary.Scripts.ScriptModel.ScriptModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptNode> inNodes = null) -> void
 ParquetClassLibrary.Scripts.ScriptNode
 ParquetClassLibrary.Scripts.ScriptNode.CompareTo(ParquetClassLibrary.Scripts.ScriptNode inTag) -> int

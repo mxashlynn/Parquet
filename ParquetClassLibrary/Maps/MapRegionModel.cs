@@ -126,6 +126,12 @@ namespace ParquetClassLibrary.Maps
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="MapRegionModel"/> for use by design-time tools.
+        /// </summary>
+        public MapRegionModel()
+            : this(ModelID.None, $"Default {nameof(MapRegionModel)}", "", "") { }
+
+        /// <summary>
         /// Constructs a new instance of the <see cref="MapRegionModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>

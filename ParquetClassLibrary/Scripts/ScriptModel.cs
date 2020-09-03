@@ -27,6 +27,12 @@ namespace ParquetClassLibrary.Scripts
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="ScriptModel"/> for use by design-time tools.
+        /// </summary>
+        public ScriptModel()
+            : this(ModelID.None, $"Default {nameof(ScriptModel)}", "", "") { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScriptModel"/> class.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="ScriptModel"/>.  Cannot be null.</param>

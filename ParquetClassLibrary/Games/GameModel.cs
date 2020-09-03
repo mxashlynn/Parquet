@@ -74,6 +74,12 @@ namespace ParquetClassLibrary.Games
 
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="GameModel"/> for use by design-time tools.
+        /// </summary>
+        public GameModel()
+            : this(ModelID.None, $"Default {nameof(GameModel)}", "", "") { }
+
+        /// <summary>
         /// Represents a game or game-episode created with the Parquet system.
         /// Primarily cointains metadata and gameplay rules information.
         /// </summary>

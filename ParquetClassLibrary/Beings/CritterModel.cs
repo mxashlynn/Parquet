@@ -10,6 +10,12 @@ namespace ParquetClassLibrary.Beings
     {
         #region Initialization
         /// <summary>
+        /// Initializes an empty <see cref="CritterModel"/> for use by design-time tools.
+        /// </summary>
+        public CritterModel()
+            : this(ModelID.None, $"Default {nameof(CritterModel)}", "", "") { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CritterModel"/> class.
         /// </summary>
         /// <param name="inID">
