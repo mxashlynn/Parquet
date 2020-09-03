@@ -162,12 +162,20 @@ namespace ParquetClassLibrary
 
         #region ModelCollections
         /// <summary>
-        /// A collection of all defined <see cref="BeingModel"/>s.
+        /// A collection of all defined <see cref="CharacterModel"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<BeingModel> Beings { get; private set; }
+        public static ModelCollection<CharacterModel> Characters { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CritterModel"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<CritterModel> Critters { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="BiomeRecipe"/>s.
@@ -263,7 +271,8 @@ namespace ParquetClassLibrary
         {
             #region Default Values for Collections
             CollectionsHaveBeenInitialized = false;
-            Beings = ModelCollection<BeingModel>.Default;
+            Characters = ModelCollection<CharacterModel>.Default;
+            Critters = ModelCollection<CritterModel>.Default;
             Biomes = ModelCollection<BiomeRecipe>.Default;
             CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
             Interactions = ModelCollection<InteractionModel>.Default;
@@ -423,7 +432,8 @@ namespace ParquetClassLibrary
         /// Initializes the <see cref="ModelCollection{T}"/>s from the given collections.
         /// </summary>
         /// <param name="inPronouns">The pronouns that the game knows by default.</param>
-        /// <param name="inBeings">All beings to be used in the game.</param>
+        /// <param name="inCharacters">All characters to be used in the game.</param>
+        /// <param name="inCritters">All critters to be used in the game.</param>
         /// <param name="inBiomes">All biomes to be used in the game.</param>
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
         /// <param name="inGames">All games or episodes to be used in the game.</param>
@@ -437,7 +447,8 @@ namespace ParquetClassLibrary
         /// <seealso cref="All.Clear"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
-                                                 IEnumerable<BeingModel> inBeings,
+                                                 IEnumerable<CharacterModel> inCharacters,
+                                                 IEnumerable<CritterModel> inCritters,
                                                  IEnumerable<BiomeRecipe> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<GameModel> inGames,
@@ -454,7 +465,8 @@ namespace ParquetClassLibrary
                                                                   nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
-            Precondition.IsNotNull(inBeings, nameof(inBeings));
+            Precondition.IsNotNull(inCharacters, nameof(inCharacters));
+            Precondition.IsNotNull(inCritters, nameof(inCritters));
             Precondition.IsNotNull(inBiomes, nameof(inBiomes));
             Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
             Precondition.IsNotNull(inGames, nameof(inGames));
@@ -465,7 +477,8 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inScripts, nameof(inScripts));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
-            Beings = new ModelCollection<BeingModel>(BeingIDs, inBeings);
+            Characters = new ModelCollection<CharacterModel>(BeingIDs, inCharacters);
+            Critters = new ModelCollection<CritterModel>(BeingIDs, inCritters);
             Biomes = new ModelCollection<BiomeRecipe>(BiomeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Games = new ModelCollection<GameModel>(GameIDs, inGames);
@@ -496,8 +509,8 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Read Models
-            var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
-                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
+            var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
+            var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
             var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
@@ -514,7 +527,7 @@ namespace ParquetClassLibrary
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
             #endregion
 
-            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
+            InitializeCollections(pronounGroups, characters, critters, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
 
             // TODO In case of exception, log it and return false;
             return true;
@@ -535,8 +548,8 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Write Models
-            Beings.PutRecordsForType<CritterModel>();
-            Beings.PutRecordsForType<CharacterModel>();
+            Characters.PutRecordsForType<CharacterModel>();
+            Critters.PutRecordsForType<CritterModel>();
             Biomes.PutRecordsForType<BiomeRecipe>();
             CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Games.PutRecordsForType<GameModel>();
@@ -565,7 +578,8 @@ namespace ParquetClassLibrary
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
-            ((IModelCollectionEdit<BeingModel>)Beings)?.Clear();
+            ((IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
+            ((IModelCollectionEdit<CritterModel>)Critters)?.Clear();
             ((IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
             ((IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
             ((IModelCollectionEdit<GameModel>)Games)?.Clear();

@@ -187,7 +187,8 @@ namespace ParquetRoller
                         All.ScriptIDs,
                         All.ItemIDs
                     };
-                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Beings)
+                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Characters)
+                                                                .Concat(All.Critters)
                                                                 .Concat(All.Biomes)
                                                                 .Concat(All.CraftingRecipes)
                                                                 .Concat(All.Interactions)
@@ -197,17 +198,15 @@ namespace ParquetRoller
                     break;
                 case "being":
                 case "beings":
-                    workload = new ModelCollection(All.BeingIDs, All.Beings);
+                    workload = new ModelCollection(All.BeingIDs, ((IEnumerable<Model>)All.Characters).Concat(All.Critters));
                     break;
                 case "critter":
                 case "critters":
-                    var critters = All.Beings.Where(model => model.ID.IsValidForRange(All.CritterIDs));
-                    workload = new ModelCollection(All.CritterIDs, critters);
+                    workload = new ModelCollection(All.CritterIDs, All.Critters);
                     break;
                 case "character":
                 case "characters":
-                    var characters = All.Beings.Where(model => model.ID.IsValidForRange(All.CharacterIDs));
-                    workload = new ModelCollection(All.CharacterIDs, characters);
+                    workload = new ModelCollection(All.CharacterIDs, All.Characters);
                     break;
                 case "biome":
                 case "biomes":
