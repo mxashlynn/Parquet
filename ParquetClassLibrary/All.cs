@@ -488,62 +488,35 @@ namespace ParquetClassLibrary
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Parquet does not throw exceptions.")]
         public static bool LoadFromCSVs()
         {
-            try
-            {
-                #region Read Configuration
-                var pronounGroups = PronounGroup.GetRecords();
-                BiomeConfiguration.GetRecord();
-                CraftConfiguration.GetRecord();
-                RoomConfiguration.GetRecord();
-                #endregion
+            #region Read Configuration
+            var pronounGroups = PronounGroup.GetRecords();
+            BiomeConfiguration.GetRecord();
+            CraftConfiguration.GetRecord();
+            RoomConfiguration.GetRecord();
+            #endregion
 
-                #region Read Models
-                var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
-                    .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
-                var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeIDs);
-                var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
-                var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
-                var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
-                var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
-                    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
-                    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
-                var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
-                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
-                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
-                    .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
-                var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
-                var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
-                var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
-                #endregion
+            #region Read Models
+            var beings = ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CritterModel>(BeingIDs)
+                .Concat(ModelCollection<BeingModel>.ConverterFactory.GetRecordsForType<CharacterModel>(BeingIDs));
+            var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeIDs);
+            var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
+            var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
+            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
+            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
+            var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
+                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
+            var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
+            var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
+            var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
+            #endregion
 
-                InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
-            }
-            catch (IOException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (FormatException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (OutOfMemoryException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (CsvHelper.CsvHelperException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch
-            {
-                // TODO Log this exception.
-                return false;
-            }
+            InitializeCollections(pronounGroups, beings, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
 
+            // TODO In case of exception, log it and return false;
             return true;
         }
 
@@ -554,60 +527,33 @@ namespace ParquetClassLibrary
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Parquet does not throw exceptions.")]
         public static bool SaveToCSVs()
         {
-            try
-            {
-                #region Write Configuration
-                PronounGroup.PutRecords(PronounGroups);
-                BiomeConfiguration.PutRecord();
-                CraftConfiguration.PutRecord();
-                RoomConfiguration.PutRecord();
-                #endregion
+            #region Write Configuration
+            PronounGroup.PutRecords(PronounGroups);
+            BiomeConfiguration.PutRecord();
+            CraftConfiguration.PutRecord();
+            RoomConfiguration.PutRecord();
+            #endregion
 
-                #region Write Models
-                Beings.PutRecordsForType<CritterModel>();
-                Beings.PutRecordsForType<CharacterModel>();
-                Biomes.PutRecordsForType<BiomeRecipe>();
-                CraftingRecipes.PutRecordsForType<CraftingRecipe>();
-                Games.PutRecordsForType<GameModel>();
-                Interactions.PutRecordsForType<InteractionModel>();
-                Maps.PutRecordsForType<MapChunkModel>();
-                Maps.PutRecordsForType<MapRegionSketch>();
-                Maps.PutRecordsForType<MapRegionModel>();
-                Parquets.PutRecordsForType<FloorModel>();
-                Parquets.PutRecordsForType<BlockModel>();
-                Parquets.PutRecordsForType<FurnishingModel>();
-                Parquets.PutRecordsForType<CollectibleModel>();
-                RoomRecipes.PutRecordsForType<RoomRecipe>();
-                Scripts.PutRecordsForType<ScriptModel>();
-                Items.PutRecordsForType<ItemModel>();
-                #endregion
-            }
-            catch (IOException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (FormatException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (OutOfMemoryException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch (CsvHelper.CsvHelperException)
-            {
-                // TODO Log this exception.
-                return false;
-            }
-            catch
-            {
-                // TODO Log this exception.
-                return false;
-            }
+            #region Write Models
+            Beings.PutRecordsForType<CritterModel>();
+            Beings.PutRecordsForType<CharacterModel>();
+            Biomes.PutRecordsForType<BiomeRecipe>();
+            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+            Games.PutRecordsForType<GameModel>();
+            Interactions.PutRecordsForType<InteractionModel>();
+            Maps.PutRecordsForType<MapChunkModel>();
+            Maps.PutRecordsForType<MapRegionSketch>();
+            Maps.PutRecordsForType<MapRegionModel>();
+            Parquets.PutRecordsForType<FloorModel>();
+            Parquets.PutRecordsForType<BlockModel>();
+            Parquets.PutRecordsForType<FurnishingModel>();
+            Parquets.PutRecordsForType<CollectibleModel>();
+            RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Scripts.PutRecordsForType<ScriptModel>();
+            Items.PutRecordsForType<ItemModel>();
+            #endregion
 
+            // TODO In case of exception, log it and return false;
             return true;
         }
 
