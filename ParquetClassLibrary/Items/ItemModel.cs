@@ -114,11 +114,11 @@ namespace ParquetClassLibrary.Items
         [Ignore]
         ModelID IItemModelEdit.ParquetID { get => ParquetID; set => ParquetID = value; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         [Index(11)]
         public IReadOnlyList<ModelTag> ItemTags { get; }
 
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.
