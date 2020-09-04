@@ -284,19 +284,19 @@ namespace ParquetClassLibrary.Maps
 
                 foreach (ParquetStack stack in inRegion.ParquetDefinitions)
                 {
-                    if (inPredicate(All.Parquets.Get<FloorModel>(stack.FloorID)))
+                    if (inPredicate(All.Floors.Get<FloorModel>(stack.FloorID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<BlockModel>(stack.BlockID)))
+                    if (inPredicate(All.Blocks.Get<BlockModel>(stack.BlockID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<FurnishingModel>(stack.FurnishingID)))
+                    if (inPredicate(All.Furnishings.Get<FurnishingModel>(stack.FurnishingID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Parquets.Get<CollectibleModel>(stack.CollectibleID)))
+                    if (inPredicate(All.Collectibles.Get<CollectibleModel>(stack.CollectibleID)))
                     {
                         count++;
                     }

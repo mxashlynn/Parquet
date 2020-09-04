@@ -192,13 +192,16 @@ namespace ParquetRoller
                                                                 .Concat(All.Biomes)
                                                                 .Concat(All.CraftingRecipes)
                                                                 .Concat(All.Interactions)
-                                                                .Concat(All.Parquets)
+                                                                .Concat(All.Floors)
+                                                                .Concat(All.Blocks)
+                                                                .Concat(All.Furnishings)
+                                                                .Concat(All.Collectibles)
                                                                 .Concat(All.RoomRecipes)
                                                                 .Concat(All.Items));
                     break;
                 case "being":
                 case "beings":
-                    workload = new ModelCollection(All.BeingIDs, ((IEnumerable<Model>)All.Characters).Concat(All.Critters));
+                    workload = new ModelCollection(All.BeingIDs, All.Beings);
                     break;
                 case "critter":
                 case "critters":
@@ -252,23 +255,19 @@ namespace ParquetRoller
                     break;
                 case "floor":
                 case "floors":
-                    var floors = All.Parquets.Where(model => model.ID.IsValidForRange(All.FloorIDs));
-                    workload = new ModelCollection(All.FloorIDs, floors);
+                    workload = new ModelCollection(All.FloorIDs, All.Floors);
                     break;
                 case "block":
                 case "blocks":
-                    var blocks = All.Parquets.Where(model => model.ID.IsValidForRange(All.BlockIDs));
-                    workload = new ModelCollection(All.BlockIDs, blocks);
+                    workload = new ModelCollection(All.BlockIDs, All.Blocks);
                     break;
                 case "furnishing":
                 case "furnishings":
-                    var furnishings = All.Parquets.Where(model => model.ID.IsValidForRange(All.FurnishingIDs));
-                    workload = new ModelCollection(All.FurnishingIDs, furnishings);
+                    workload = new ModelCollection(All.FurnishingIDs, All.Furnishings);
                     break;
                 case "collectible":
                 case "collectibles":
-                    var collectibles = All.Parquets.Where(model => model.ID.IsValidForRange(All.CollectibleIDs));
-                    workload = new ModelCollection(All.CollectibleIDs, collectibles);
+                    workload = new ModelCollection(All.CollectibleIDs, All.Collectibles);
                     break;
                 case "room":
                 case "rooms":

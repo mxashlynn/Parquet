@@ -62,15 +62,12 @@ namespace ParquetClassLibrary.Rooms
             var perimeter = MapSpaceCollection.Empty;
             var rooms =
                 walkableAreas
-                .Where(walkableArea => walkableArea
-                                        .TryGetPerimeter(out perimeter)
-                                    && walkableArea
-                                        .Concat(perimeter)
-                                        .Any(space => space.Content.FurnishingID != ModelID.None
-                                                      && (All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None)
-                                    && walkableArea
-                                        .Any(space => space.IsWalkableEntry
-                                                    || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
+                .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
+                                    && walkableArea.Concat(perimeter)
+                                                    .Any(space => space.Content.FurnishingID != ModelID.None
+                                                               && (All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None)
+                                    && walkableArea.Any(space => space.IsWalkableEntry
+                                                              || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                 .Select(walkableArea => new Room(walkableArea, perimeter));
 
             return new RoomCollection(rooms);

@@ -116,7 +116,16 @@ namespace ParquetUnitTests
         public static IReadOnlyList<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<ParquetModel> Parquets { get; }
+        public static IReadOnlyList<FloorModel> Floors { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<BlockModel> Blocks { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<FurnishingModel> Furnishings { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<CollectibleModel> Collectibles{ get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
@@ -195,12 +204,16 @@ namespace ParquetUnitTests
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
             Maps = new List<MapModel> { TestMapChunkModel, TestMapRegionModel };
-            Parquets = new List<ParquetModel> { TestFloor, TestBlock, TestLiquid, TestFurnishing, TestCollectible };
+            Floors = new List<FloorModel> { TestFloor };
+            Blocks = new List<BlockModel> { TestBlock, TestLiquid };
+            Furnishings = new List<FurnishingModel> { TestFurnishing };
+            Collectibles = new List<CollectibleModel> { TestCollectible };
             RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Characters, Critters, Biomes, CraftingRecipes, Games, Interactions, Maps, Parquets, RoomRecipes, Scripts, Items);
+            All.InitializeCollections(PronounGroups, Characters, Critters, Biomes, CraftingRecipes, Games, Interactions, Maps,
+                                      Floors, Blocks, Furnishings, Collectibles, RoomRecipes, Scripts, Items);
             #endregion
         }
     }

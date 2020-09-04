@@ -162,6 +162,14 @@ namespace ParquetClassLibrary
 
         #region ModelCollections
         /// <summary>
+        /// A collection of all defined <see cref="BeingModel"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<BeingModel> Beings { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="CharacterModel"/>s.
         /// This collection is the source of truth about mobs and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -226,6 +234,38 @@ namespace ParquetClassLibrary
         public static ModelCollection<ParquetModel> Parquets { get; private set; }
 
         /// <summary>
+        /// A collection of all defined <see cref="FloorModel"/>s.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<FloorModel> Floors { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="BlockModel"/>s.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<BlockModel> Blocks { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="FurnishingModel"/>s.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<FurnishingModel> Furnishings { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CollectibleModel"/>s.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<CollectibleModel> Collectibles { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -271,6 +311,7 @@ namespace ParquetClassLibrary
         {
             #region Default Values for Collections
             CollectionsHaveBeenInitialized = false;
+            Beings = ModelCollection<BeingModel>.Default;
             Characters = ModelCollection<CharacterModel>.Default;
             Critters = ModelCollection<CritterModel>.Default;
             Biomes = ModelCollection<BiomeRecipe>.Default;
@@ -278,6 +319,10 @@ namespace ParquetClassLibrary
             Interactions = ModelCollection<InteractionModel>.Default;
             Maps = ModelCollection<MapModel>.Default;
             Parquets = ModelCollection<ParquetModel>.Default;
+            Floors = ModelCollection<FloorModel>.Default;
+            Blocks = ModelCollection<BlockModel>.Default;
+            Furnishings = ModelCollection<FurnishingModel>.Default;
+            Collectibles = ModelCollection<CollectibleModel>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
             Items = ModelCollection<ItemModel>.Default;
 
@@ -439,7 +484,10 @@ namespace ParquetClassLibrary
         /// <param name="inGames">All games or episodes to be used in the game.</param>
         /// <param name="inInteractions">All interactions to be used in the game.</param>
         /// <param name="inMaps">All maps to be used in the game.</param>
-        /// <param name="inParquets">All parquets to be used in the game.</param>
+        /// <param name="inFloors">All floors to be used in the game.</param>
+        /// <param name="inBlocks">All blocks to be used in the game.</param>
+        /// <param name="inFurnishings">All furnishings to be used in the game.</param>
+        /// <param name="inCollectibles">All collectibles to be used in the game.</param>
         /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
         /// <param name="inScripts">All scripts to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
@@ -454,7 +502,10 @@ namespace ParquetClassLibrary
                                                  IEnumerable<GameModel> inGames,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<MapModel> inMaps,
-                                                 IEnumerable<ParquetModel> inParquets,
+                                                 IEnumerable<FloorModel> inFloors,
+                                                 IEnumerable<BlockModel> inBlocks,
+                                                 IEnumerable<FurnishingModel> inFurnishings,
+                                                 IEnumerable<CollectibleModel> inCollectibles,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
                                                  IEnumerable<ScriptModel> inScripts,
                                                  IEnumerable<ItemModel> inItems)
@@ -472,19 +523,31 @@ namespace ParquetClassLibrary
             Precondition.IsNotNull(inGames, nameof(inGames));
             Precondition.IsNotNull(inInteractions, nameof(inInteractions));
             Precondition.IsNotNull(inMaps, nameof(inMaps));
-            Precondition.IsNotNull(inParquets, nameof(inParquets));
+            Precondition.IsNotNull(inFloors, nameof(inFloors));
+            Precondition.IsNotNull(inBlocks, nameof(inBlocks));
+            Precondition.IsNotNull(inFurnishings, nameof(inFurnishings));
+            Precondition.IsNotNull(inCollectibles, nameof(inCollectibles));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
             Precondition.IsNotNull(inScripts, nameof(inScripts));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
-            Characters = new ModelCollection<CharacterModel>(BeingIDs, inCharacters);
-            Critters = new ModelCollection<CritterModel>(BeingIDs, inCritters);
+            Characters = new ModelCollection<CharacterModel>(CharacterIDs, inCharacters);
+            Critters = new ModelCollection<CritterModel>(CritterIDs, inCritters);
+            Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
+                .Concat(Critters));
             Biomes = new ModelCollection<BiomeRecipe>(BiomeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Games = new ModelCollection<GameModel>(GameIDs, inGames);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
-            Parquets = new ModelCollection<ParquetModel>(ParquetIDs, inParquets);
+            Floors = new ModelCollection<FloorModel>(FloorIDs, inFloors);
+            Blocks = new ModelCollection<BlockModel>(BlockIDs, inBlocks);
+            Furnishings = new ModelCollection<FurnishingModel>(FurnishingIDs, inFurnishings);
+            Collectibles = new ModelCollection<CollectibleModel>(CollectibleIDs, inCollectibles);
+            Parquets = new ModelCollection<ParquetModel>(ParquetIDs, ((IEnumerable<ParquetModel>)Floors)
+                .Concat(Blocks)
+                .Concat(Furnishings)
+                .Concat(Collectibles));
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
@@ -518,16 +581,17 @@ namespace ParquetClassLibrary
             var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
                 .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
-            var parquets = ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs)
-                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs))
-                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs))
-                .Concat(ModelCollection<ParquetModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs));
+            var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
+            var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
+            var furnishings = ModelCollection<FurnishingModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs);
+            var collectibles = ModelCollection<CollectibleModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs);
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
             var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
             #endregion
 
-            InitializeCollections(pronounGroups, characters, critters, biomes, craftingRecipes, games, interactions, maps, parquets, roomRecipes, scripts, items);
+            InitializeCollections(pronounGroups, characters, critters, biomes, craftingRecipes, games, interactions, maps,
+                                  floors, blocks, furnishings, collectibles, roomRecipes, scripts, items);
 
             // TODO In case of exception, log it and return false;
             return true;
@@ -557,10 +621,10 @@ namespace ParquetClassLibrary
             Maps.PutRecordsForType<MapChunkModel>();
             Maps.PutRecordsForType<MapRegionSketch>();
             Maps.PutRecordsForType<MapRegionModel>();
-            Parquets.PutRecordsForType<FloorModel>();
-            Parquets.PutRecordsForType<BlockModel>();
-            Parquets.PutRecordsForType<FurnishingModel>();
-            Parquets.PutRecordsForType<CollectibleModel>();
+            Floors.PutRecordsForType<FloorModel>();
+            Blocks.PutRecordsForType<BlockModel>();
+            Furnishings.PutRecordsForType<FurnishingModel>();
+            Collectibles.PutRecordsForType<CollectibleModel>();
             RoomRecipes.PutRecordsForType<RoomRecipe>();
             Scripts.PutRecordsForType<ScriptModel>();
             Items.PutRecordsForType<ItemModel>();
@@ -574,7 +638,6 @@ namespace ParquetClassLibrary
         /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
         /// </summary>
         /// <remarks>This method must be called between calls to the initialization routines.</remarks>
-        /// <seealso cref="InitializeCollections(IEnumerable{PronounGroup}, IEnumerable{BeingModel}, IEnumerable{BiomeRecipe}, IEnumerable{CraftingRecipe}, IEnumerable{GameModel}, IEnumerable{InteractionModel}, IEnumerable{MapModel}, IEnumerable{ParquetModel}, IEnumerable{RoomRecipe}, IEnumerable{ScriptModel}, IEnumerable{ItemModel})"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
@@ -585,7 +648,10 @@ namespace ParquetClassLibrary
             ((IModelCollectionEdit<GameModel>)Games)?.Clear();
             ((IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
             ((IModelCollectionEdit<MapModel>)Maps)?.Clear();
-            ((IModelCollectionEdit<ParquetModel>)Parquets)?.Clear();
+            ((IModelCollectionEdit<FloorModel>)Floors)?.Clear();
+            ((IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
+            ((IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
+            ((IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
             ((IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
             ((IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
             ((IModelCollectionEdit<ItemModel>)Items)?.Clear();

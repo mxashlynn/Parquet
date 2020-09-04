@@ -149,7 +149,7 @@ namespace ParquetClassLibrary.Rooms
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsEnclosingEntry(MapSpaceCollection inWalkableArea)
             => Content.FurnishingID != ModelID.None
-            && (All.Parquets.Get<FurnishingModel>(Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
+            && (All.Furnishings.Get<FurnishingModel>(Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
             && Content.IsEnclosing
             && Neighbors().Any(neighbor1 => inWalkableArea.Contains(neighbor1))
             && Neighbors().Any(neighbor2 => !inWalkableArea.Contains(neighbor2)

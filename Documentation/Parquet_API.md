@@ -24,12 +24,17 @@
   - [RoomRecipeIDs](#F-ParquetClassLibrary-All-RoomRecipeIDs 'ParquetClassLibrary.All.RoomRecipeIDs')
   - [ScriptIDs](#F-ParquetClassLibrary-All-ScriptIDs 'ParquetClassLibrary.All.ScriptIDs')
   - [SerializedNumberStyle](#F-ParquetClassLibrary-All-SerializedNumberStyle 'ParquetClassLibrary.All.SerializedNumberStyle')
+  - [Beings](#P-ParquetClassLibrary-All-Beings 'ParquetClassLibrary.All.Beings')
   - [Biomes](#P-ParquetClassLibrary-All-Biomes 'ParquetClassLibrary.All.Biomes')
+  - [Blocks](#P-ParquetClassLibrary-All-Blocks 'ParquetClassLibrary.All.Blocks')
   - [Characters](#P-ParquetClassLibrary-All-Characters 'ParquetClassLibrary.All.Characters')
+  - [Collectibles](#P-ParquetClassLibrary-All-Collectibles 'ParquetClassLibrary.All.Collectibles')
   - [CollectionsHaveBeenInitialized](#P-ParquetClassLibrary-All-CollectionsHaveBeenInitialized 'ParquetClassLibrary.All.CollectionsHaveBeenInitialized')
   - [ConversionConverters](#P-ParquetClassLibrary-All-ConversionConverters 'ParquetClassLibrary.All.ConversionConverters')
   - [CraftingRecipes](#P-ParquetClassLibrary-All-CraftingRecipes 'ParquetClassLibrary.All.CraftingRecipes')
   - [Critters](#P-ParquetClassLibrary-All-Critters 'ParquetClassLibrary.All.Critters')
+  - [Floors](#P-ParquetClassLibrary-All-Floors 'ParquetClassLibrary.All.Floors')
+  - [Furnishings](#P-ParquetClassLibrary-All-Furnishings 'ParquetClassLibrary.All.Furnishings')
   - [Games](#P-ParquetClassLibrary-All-Games 'ParquetClassLibrary.All.Games')
   - [IdentifierOptions](#P-ParquetClassLibrary-All-IdentifierOptions 'ParquetClassLibrary.All.IdentifierOptions')
   - [Interactions](#P-ParquetClassLibrary-All-Interactions 'ParquetClassLibrary.All.Interactions')
@@ -45,7 +50,7 @@
   - [GetIDRangeForType(inID)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID)')
   - [GetIDRangeForType(inModel)](#M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-Model- 'ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model)')
   - [GetIDRangeForType(inModelType)](#M-ParquetClassLibrary-All-GetIDRangeForType-System-Type- 'ParquetClassLibrary.All.GetIDRangeForType(System.Type)')
-  - [InitializeCollections(inPronouns,inCharacters,inCritters,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CharacterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CritterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.CharacterModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.CritterModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
+  - [InitializeCollections(inPronouns,inCharacters,inCritters,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inFloors,inBlocks,inFurnishings,inCollectibles,inRoomRecipes,inScripts,inItems)](#M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CharacterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CritterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-FloorModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-BlockModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-FurnishingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-CollectibleModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}- 'ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.CharacterModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.CritterModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Biomes.BiomeRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Crafts.CraftingRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FloorModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.BlockModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FurnishingModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.CollectibleModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel})')
   - [LoadFromCSVs()](#M-ParquetClassLibrary-All-LoadFromCSVs 'ParquetClassLibrary.All.LoadFromCSVs')
   - [SaveToCSVs()](#M-ParquetClassLibrary-All-SaveToCSVs 'ParquetClassLibrary.All.SaveToCSVs')
 - [AssemblyInfo](#T-ParquetClassLibrary-AssemblyInfo 'ParquetClassLibrary.AssemblyInfo')
@@ -1206,6 +1211,19 @@ Valid identifiers may be positive or negative.  By convention, negative IDs indi
 
 Instructions for integer parsing.
 
+<a name='P-ParquetClassLibrary-All-Beings'></a>
+### Beings `property`
+
+##### Summary
+
+A collection of all defined [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel')s.
+This collection is the source of truth about mobs and characters for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
 <a name='P-ParquetClassLibrary-All-Biomes'></a>
 ### Biomes `property`
 
@@ -1219,6 +1237,19 @@ something like a color palette that other classes can paint with.
 
 All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
 
+<a name='P-ParquetClassLibrary-All-Blocks'></a>
+### Blocks `property`
+
+##### Summary
+
+A collection of all defined [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')s.
+This collection is the source of truth about parquets for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
 <a name='P-ParquetClassLibrary-All-Characters'></a>
 ### Characters `property`
 
@@ -1226,6 +1257,19 @@ All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s mus
 
 A collection of all defined [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')s.
 This collection is the source of truth about mobs and characters for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
+<a name='P-ParquetClassLibrary-All-Collectibles'></a>
+### Collectibles `property`
+
+##### Summary
+
+A collection of all defined [CollectibleModel](#T-ParquetClassLibrary-Parquets-CollectibleModel 'ParquetClassLibrary.Parquets.CollectibleModel')s.
+This collection is the source of truth about parquets for the rest of the library,
 something like a color palette that other classes can paint with.
 
 ##### Remarks
@@ -1266,6 +1310,32 @@ All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s mus
 
 A collection of all defined [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel')s.
 This collection is the source of truth about mobs and characters for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
+<a name='P-ParquetClassLibrary-All-Floors'></a>
+### Floors `property`
+
+##### Summary
+
+A collection of all defined [FloorModel](#T-ParquetClassLibrary-Parquets-FloorModel 'ParquetClassLibrary.Parquets.FloorModel')s.
+This collection is the source of truth about parquets for the rest of the library,
+something like a color palette that other classes can paint with.
+
+##### Remarks
+
+All [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s must be unique.
+
+<a name='P-ParquetClassLibrary-All-Furnishings'></a>
+### Furnishings `property`
+
+##### Summary
+
+A collection of all defined [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')s.
+This collection is the source of truth about parquets for the rest of the library,
 something like a color palette that other classes can paint with.
 
 ##### Remarks
@@ -1421,10 +1491,6 @@ This method has no parameters.
 
 This method must be called between calls to the initialization routines.
 
-##### See Also
-
-- [InitializeCollections](#!-InitializeCollections-IEnumerable<PronounGroup>, IEnumerable<BeingModel>, IEnumerable<BiomeRecipe>, IEnumerable<CraftingRecipe>, IEnumerable<GameModel>, IEnumerable<InteractionModel>, IEnumerable<MapModel>, IEnumerable<ParquetModel>, IEnumerable<RoomRecipe>, IEnumerable<ScriptModel>, IEnumerable<ItemModel>- 'InitializeCollections(IEnumerable<PronounGroup>, IEnumerable<BeingModel>, IEnumerable<BiomeRecipe>, IEnumerable<CraftingRecipe>, IEnumerable<GameModel>, IEnumerable<InteractionModel>, IEnumerable<MapModel>, IEnumerable<ParquetModel>, IEnumerable<RoomRecipe>, IEnumerable<ScriptModel>, IEnumerable<ItemModel>)')
-
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
 ### GetIDRangeForType(inID) `method`
 
@@ -1477,8 +1543,8 @@ dor [None](#F-ParquetClassLibrary-Range`1-None 'ParquetClassLibrary.Range`1.None
 | ---- | ---- | ----------- |
 | inModelType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The model type whose ID range is sought. |
 
-<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CharacterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CritterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-ParquetModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
-### InitializeCollections(inPronouns,inCharacters,inCritters,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inParquets,inRoomRecipes,inScripts,inItems) `method`
+<a name='M-ParquetClassLibrary-All-InitializeCollections-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CharacterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-CritterModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Biomes-BiomeRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Crafts-CraftingRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Games-GameModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-InteractionModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Maps-MapModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-FloorModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-BlockModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-FurnishingModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Parquets-CollectibleModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-RoomRecipe},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Scripts-ScriptModel},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-ItemModel}-'></a>
+### InitializeCollections(inPronouns,inCharacters,inCritters,inBiomes,inCraftingRecipes,inGames,inInteractions,inMaps,inFloors,inBlocks,inFurnishings,inCollectibles,inRoomRecipes,inScripts,inItems) `method`
 
 ##### Summary
 
@@ -1496,7 +1562,10 @@ Initializes the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'P
 | inGames | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Games.GameModel}') | All games or episodes to be used in the game. |
 | inInteractions | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.InteractionModel}') | All interactions to be used in the game. |
 | inMaps | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Maps.MapModel}') | All maps to be used in the game. |
-| inParquets | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.ParquetModel}') | All parquets to be used in the game. |
+| inFloors | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FloorModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FloorModel}') | All floors to be used in the game. |
+| inBlocks | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.BlockModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.BlockModel}') | All blocks to be used in the game. |
+| inFurnishings | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FurnishingModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.FurnishingModel}') | All furnishings to be used in the game. |
+| inCollectibles | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.CollectibleModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Parquets.CollectibleModel}') | All collectibles to be used in the game. |
 | inRoomRecipes | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.RoomRecipe}') | All room recipes to be used in the game. |
 | inScripts | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Scripts.ScriptModel}') | All scripts to be used in the game. |
 | inItems | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.ItemModel}') | All items to be used in the game. |

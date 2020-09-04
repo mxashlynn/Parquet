@@ -32,8 +32,8 @@ namespace ParquetClassLibrary.Rooms
             => WalkableArea
                .Concat(Perimeter)
                .Where(space => ModelID.None != space.Content.FurnishingID
-                            && All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom.Count > 0)
-               .SelectMany(space => All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom);
+                            && All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom.Count > 0)
+               .SelectMany(space => All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID).AddsToRoom);
 
         /// <summary>
         /// A location with the least X and Y coordinates of every <see cref="MapSpace"/> in this <see cref="Room"/>.
@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Rooms
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.FurnishingID != ModelID.None
-                && (All.Parquets.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None))
+                && (All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None))
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
                                                           nameof(inWalkableArea), nameof(inPerimeter)));
