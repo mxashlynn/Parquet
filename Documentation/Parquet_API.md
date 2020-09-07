@@ -617,8 +617,6 @@
 - [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection')
   - [#ctor(inBounds,inModels)](#M-ParquetClassLibrary-ModelCollection-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Model}- 'ParquetClassLibrary.ModelCollection.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Model})')
   - [#ctor(inBounds,inModels)](#M-ParquetClassLibrary-ModelCollection-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Model}- 'ParquetClassLibrary.ModelCollection.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Model})')
-  - [Default](#F-ParquetClassLibrary-ModelCollection-Default 'ParquetClassLibrary.ModelCollection.Default')
-  - [Get(inID)](#M-ParquetClassLibrary-ModelCollection-Get-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection.Get(ParquetClassLibrary.ModelID)')
   - [GetFilePath\`\`1()](#M-ParquetClassLibrary-ModelCollection-GetFilePath``1 'ParquetClassLibrary.ModelCollection.GetFilePath``1')
 - [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'ParquetClassLibrary.ModelCollection`1')
   - [#ctor(inBounds,inModels)](#M-ParquetClassLibrary-ModelCollection`1-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Model}- 'ParquetClassLibrary.ModelCollection`1.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}},System.Collections.Generic.IEnumerable{ParquetClassLibrary.Model})')
@@ -634,6 +632,7 @@
   - [Contains(inModel)](#M-ParquetClassLibrary-ModelCollection`1-Contains-ParquetClassLibrary-Model- 'ParquetClassLibrary.ModelCollection`1.Contains(ParquetClassLibrary.Model)')
   - [Contains(inID)](#M-ParquetClassLibrary-ModelCollection`1-Contains-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.Contains(ParquetClassLibrary.ModelID)')
   - [GetEnumerator()](#M-ParquetClassLibrary-ModelCollection`1-GetEnumerator 'ParquetClassLibrary.ModelCollection`1.GetEnumerator')
+  - [GetOrNull(inID)](#M-ParquetClassLibrary-ModelCollection`1-GetOrNull-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.GetOrNull(ParquetClassLibrary.ModelID)')
   - [GetRecordsForType\`\`1(inBounds)](#M-ParquetClassLibrary-ModelCollection`1-GetRecordsForType``1-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.ModelCollection`1.GetRecordsForType``1(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID})')
   - [GetRecordsForType\`\`1(inBounds)](#M-ParquetClassLibrary-ModelCollection`1-GetRecordsForType``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}}- 'ParquetClassLibrary.ModelCollection`1.GetRecordsForType``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}})')
   - [Get\`\`1(inID)](#M-ParquetClassLibrary-ModelCollection`1-Get``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelCollection`1.Get``1(ParquetClassLibrary.ModelID)')
@@ -5631,7 +5630,7 @@ keeping the item in a [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMo
 
 ##### Summary
 
-Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
+Any additional functionality this item has, e.g. contributing to a [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
 
 <a name='P-ParquetClassLibrary-Items-ItemModel-ParquetClassLibrary#EditorSupport#IItemModelEdit#EffectWhenUsedID'></a>
 ### ParquetClassLibrary#EditorSupport#IItemModelEdit#EffectWhenUsedID `property`
@@ -5664,7 +5663,7 @@ IModelEdit is for external types that require readwrite access.
 
 ##### Summary
 
-Any additional functionality this item has, e.g. contributing to a [BiomeRecipe](#T-ParquetClassLibrary-Biomes-BiomeRecipe 'ParquetClassLibrary.Biomes.BiomeRecipe').
+Any additional functionality this item has, e.g. contributing to a [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe').
 
 ##### Remarks
 
@@ -7613,16 +7612,12 @@ ParquetClassLibrary
 ##### Summary
 
 Stores a [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') collection.
- Provides bounds-checking and type-checking against [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
+Provides bounds-checking and type-checking against [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
 
 ##### Remarks
 
 All [ModelCollection](#T-ParquetClassLibrary-ModelCollection 'ParquetClassLibrary.ModelCollection')s implicitly contain [None](#F-ParquetClassLibrary-ModelID-None 'ParquetClassLibrary.ModelID.None').
- 
- This version supports collections that do not rely heavily on
- multiple incompatible subclasses of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
-
- For more details, see remarks on [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
+For more details, see remarks on [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
 
 <a name='M-ParquetClassLibrary-ModelCollection-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-Model}-'></a>
 ### #ctor(inBounds,inModels) `constructor`
@@ -7651,30 +7646,6 @@ Initializes a new instance of the [ModelCollection](#T-ParquetClassLibrary-Model
 | ---- | ---- | ----------- |
 | inBounds | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{ParquetClassLibrary.ModelID}}') | The bounds within which the collected [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID')s are defined. |
 | inModels | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.Model}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.Model}') | The [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model')s to collect.  Cannot be null. |
-
-<a name='F-ParquetClassLibrary-ModelCollection-Default'></a>
-### Default `constants`
-
-##### Summary
-
-A value to use in place of uninitialized [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'ParquetClassLibrary.ModelCollection`1')s.
-
-<a name='M-ParquetClassLibrary-ModelCollection-Get-ParquetClassLibrary-ModelID-'></a>
-### Get(inID) `method`
-
-##### Summary
-
-Returns the specified [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
-
-##### Returns
-
-The specified [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model').
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | A valid, defined [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') identifier. |
 
 <a name='M-ParquetClassLibrary-ModelCollection-GetFilePath``1'></a>
 ### GetFilePath\`\`1() `method`
@@ -7895,6 +7866,28 @@ An enumerator that iterates through the collection.
 
 This method has no parameters.
 
+<a name='M-ParquetClassLibrary-ModelCollection`1-GetOrNull-ParquetClassLibrary-ModelID-'></a>
+### GetOrNull(inID) `method`
+
+##### Summary
+
+Retrieves a specified `TModel` if possible.
+
+##### Returns
+
+The specified `TModel`, or `null` if no such model can be found.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | A valid `TModel` identifier. |
+
+##### Remarks
+
+Note that this method will silently fail by returning null if `inID` is out of range or undefined.
+This method exists primarily to support design-time tools that expect undefined models as part of the normal workflow.
+
 <a name='M-ParquetClassLibrary-ModelCollection`1-GetRecordsForType``1-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID}-'></a>
 ### GetRecordsForType\`\`1(inBounds) `method`
 
@@ -7946,11 +7939,11 @@ The instances read.
 
 ##### Summary
 
-Returns the specified `TModel`.
+Retrieves a specified `TModel`.
 
 ##### Returns
 
-The specified `TTarget` model.
+The specified `TTarget`.
 
 ##### Parameters
 

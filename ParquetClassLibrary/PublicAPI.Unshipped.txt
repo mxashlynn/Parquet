@@ -394,6 +394,7 @@ ParquetClassLibrary.ModelCollection<TModel>.Contains(ParquetClassLibrary.ModelID
 ParquetClassLibrary.ModelCollection<TModel>.Count.get -> int
 ParquetClassLibrary.ModelCollection<TModel>.Get<TTarget>(ParquetClassLibrary.ModelID inID) -> TTarget
 ParquetClassLibrary.ModelCollection<TModel>.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Model>
+ParquetClassLibrary.ModelCollection<TModel>.GetOrNull(ParquetClassLibrary.ModelID inID) -> TModel
 ParquetClassLibrary.ModelCollection<TModel>.GetRecordsForType<TModelInner>(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds) -> ParquetClassLibrary.ModelCollection<TModel>
 ParquetClassLibrary.ModelCollection<TModel>.GetRecordsForType<TModelInner>(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inBounds) -> ParquetClassLibrary.ModelCollection<TModel>
 ParquetClassLibrary.ModelCollection<TModel>.ModelCollection(ParquetClassLibrary.Range<ParquetClassLibrary.ModelID> inBounds, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Model> inModels) -> void

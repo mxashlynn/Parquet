@@ -130,13 +130,13 @@ namespace ParquetClassLibrary
         }
 
         /// <summary>
-        /// Returns the specified <typeparamref name="TModel"/>.
+        /// Retrieves a specified <typeparamref name="TModel"/>.
         /// </summary>
         /// <param name="inID">A valid, defined <typeparamref name="TModel"/> identifier.</param>
         /// <typeparam name="TTarget">
         /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
-        /// <returns>The specified <typeparamref name="TTarget"/> model.</returns>
+        /// <returns>The specified <typeparamref name="TTarget"/>.</returns>
         public TTarget Get<TTarget>(ModelID inID)
             where TTarget : TModel
         {
@@ -147,6 +147,21 @@ namespace ParquetClassLibrary
                                                             typeof(TTarget).Name, nameof(ModelID.None)))
                 : (TTarget)Models[inID];
         }
+
+        /// <summary>
+        /// Retrieves a specified <typeparamref name="TModel"/> if possible.
+        /// </summary>
+        /// <param name="inID">A valid <typeparamref name="TModel"/> identifier.</param>
+        /// <returns>The specified <typeparamref name="TModel"/>, or <c>null</c> if no such model can be found.</returns>
+        /// <remarks>
+        /// Note that this method will silently fail by returning null if <paramref name="inID"/> is out of range or undefined.
+        /// This method exists primarily to support design-time tools that expect undefined models as part of the normal workflow.
+        /// </remarks>
+        public TModel GetOrNull(ModelID inID)
+            => ModelID.None != inID
+                && inID.IsValidForRange(Bounds)
+                ? (TModel)Models[inID]
+                : null;
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{TModel}"/> to support simple iteration.
@@ -410,18 +425,11 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>
     /// All <see cref="ModelCollection"/>s implicitly contain <see cref="ModelID.None"/>.
-    /// 
-    /// This version supports collections that do not rely heavily on
-    /// multiple incompatible subclasses of <see cref="Model"/>.
-    ///
     /// For more details, see remarks on <see cref="Model"/>.
     /// </remarks>
+    // TODO Should this class be removed, or reduced to static?
     public class ModelCollection : ModelCollection<Model>
     {
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{Model}"/>s.</summary>
-        public static new readonly ModelCollection Default =
-            new ModelCollection(new Range<ModelID>(int.MinValue, int.MaxValue), Enumerable.Empty<Model>());
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelCollection"/> class.
         /// </summary>
@@ -437,14 +445,6 @@ namespace ParquetClassLibrary
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
         public ModelCollection(IEnumerable<Range<ModelID>> inBounds, IEnumerable<Model> inModels)
             : base(inBounds, inModels) { }
-
-        /// <summary>
-        /// Returns the specified <see cref="Model"/>.
-        /// </summary>
-        /// <param name="inID">A valid, defined <see cref="Model"/> identifier.</param>
-        /// <returns>The specified <see cref="Model"/>.</returns>
-        public Model Get(ModelID inID)
-            => Get<Model>(inID);
 
         /// <summary>
         /// Given a type, returns the filename and path associated with that type's definition file.
