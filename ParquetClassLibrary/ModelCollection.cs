@@ -160,6 +160,7 @@ namespace ParquetClassLibrary
         public TModel GetOrNull(ModelID inID)
             => ModelID.None != inID
                 && inID.IsValidForRange(Bounds)
+                && Models.ContainsKey(inID)
                 ? (TModel)Models[inID]
                 : null;
 
