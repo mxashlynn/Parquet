@@ -17,3 +17,5 @@
 * It is sometimes practical to provide a public parameterless constructor to a class that otherwise should not have one, so that the class may be dealt with more easily from within generic methods.  While messy from an API perspective, the limitations of C#'s generics prevent cleaner approaches.
 
 * In WindowsForms, SelectedValue only works if ValueMember has been set.  When not using MS Databinding, use SelectedItem instead.
+
+* As of Sept. 2020, setting ComboBox.SelectedItem to NULL, or ListBox.SelectedItem to NULL, causes the control to deselect, the same as setting SelectedIndex to -1.  This appears to be undocumented behavior, at least from what I can find on MSDN, but I am relying on it for now.
