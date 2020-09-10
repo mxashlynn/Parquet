@@ -1,9 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
@@ -22,7 +22,10 @@ namespace ParquetClassLibrary
         /// <param name="inType">The type of the enumeration.</param>
         public EmptyTolerantEnumConverter(Type inType)
             : base(inType)
-            => EnumType = inType;
+            => EnumType = (inType?.IsEnum ?? false)
+                ? inType
+                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
+                                                            nameof(inType), inType.Name, nameof(Enum)));
 
         /// <summary>
         /// Converts the <c>string</c> to an <c>object</c>.
@@ -33,7 +36,7 @@ namespace ParquetClassLibrary
         /// <returns>The object created from the string.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
             => string.IsNullOrEmpty(inText)
-                ? ((IList<int>)EnumType.GetEnumValues()).FirstOrDefault(value => value == 0)
+                ? Activator.CreateInstance(EnumType)
                 : base.ConvertFromString(inText, inRow, inMemberMapData);
     }
 }
