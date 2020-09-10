@@ -32,16 +32,8 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The object created from the string.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-        {
-            if (string.IsNullOrEmpty(inText))
-            {
-                var values = (IList<int>)EnumType.GetEnumValues();
-                return values.FirstOrDefault(value => value == 0);
-            }
-            else
-            {
-                return base.ConvertFromString(inText, inRow, inMemberMapData);
-            }
-        }
+            => string.IsNullOrEmpty(inText)
+                ? ((IList<int>)EnumType.GetEnumValues()).FirstOrDefault(value => value == 0)
+                : base.ConvertFromString(inText, inRow, inMemberMapData);
     }
 }
