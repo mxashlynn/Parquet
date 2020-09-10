@@ -1,21 +1,21 @@
-﻿// Copyright 2009-2020 Josh Close and Contributors
+// Copyright 2009-2020 Josh Close and Contributors
 // This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.
 // See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.
 // https://github.com/JoshClose/CsvHelper
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
 using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace CsvHelper.Expressions
 {
-	/// <summary>
-	/// Write dynamic records.
-	/// </summary>
-	public class DynamicRecordWriter : RecordWriter
+    /// <summary>
+    /// Write dynamic records.
+    /// </summary>
+    public class DynamicRecordWriter : RecordWriter
 	{
 		private readonly Hashtable getters = new Hashtable();
 
