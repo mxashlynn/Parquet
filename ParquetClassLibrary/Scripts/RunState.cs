@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Scripts
     public enum RunState
     {
         /// <summary>This script has not yet begun execution.</summary>
-        Unstarted,
+        Unstarted = 0,
         /// <summary>This script is currently executing.</summary>
         InProgress,
         /// <summary>This script is completed execution.</summary>

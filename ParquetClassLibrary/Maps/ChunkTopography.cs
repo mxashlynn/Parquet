@@ -4,7 +4,7 @@ namespace ParquetClassLibrary.Maps
     public enum ChunkTopography
     {
         /// <summary>Indicates there are no parquets in this topography.</summary>
-        Empty,
+        Empty = 0,
         /// <summary>Indicates parquets entirely fill this topography.</summary>
         Solid,
         /// <summary>Indicates parquets are spread evenly throughout this topography.</summary>
