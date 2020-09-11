@@ -229,6 +229,10 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
+- [EmptyTolerantEnumConverter](#T-ParquetClassLibrary-EmptyTolerantEnumConverter 'ParquetClassLibrary.EmptyTolerantEnumConverter')
+  - [#ctor(inType)](#M-ParquetClassLibrary-EmptyTolerantEnumConverter-#ctor-System-Type- 'ParquetClassLibrary.EmptyTolerantEnumConverter.#ctor(System.Type)')
+  - [EnumType](#F-ParquetClassLibrary-EmptyTolerantEnumConverter-EnumType 'ParquetClassLibrary.EmptyTolerantEnumConverter.EnumType')
+  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-EmptyTolerantEnumConverter-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.EmptyTolerantEnumConverter.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
 - [EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType')
   - [Down](#F-ParquetClassLibrary-Parquets-EntryType-Down 'ParquetClassLibrary.Parquets.EntryType.Down')
   - [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None')
@@ -3396,6 +3400,57 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 ##### Summary
 
 Separates objects within collections.
+
+<a name='T-ParquetClassLibrary-EmptyTolerantEnumConverter'></a>
+## EmptyTolerantEnumConverter `type`
+
+##### Namespace
+
+ParquetClassLibrary
+
+##### Summary
+
+Converts an [Enum](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Enum 'System.Enum') to and from a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String')
+providing sensible default values in case of `null` or the [Empty](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String.Empty 'System.String.Empty').
+
+<a name='M-ParquetClassLibrary-EmptyTolerantEnumConverter-#ctor-System-Type-'></a>
+### #ctor(inType) `constructor`
+
+##### Summary
+
+Creates a new [EmptyTolerantEnumConverter](#T-ParquetClassLibrary-EmptyTolerantEnumConverter 'ParquetClassLibrary.EmptyTolerantEnumConverter') for the given [Enum](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Enum 'System.Enum')[Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The type of the enumeration. |
+
+<a name='F-ParquetClassLibrary-EmptyTolerantEnumConverter-EnumType'></a>
+### EnumType `constants`
+
+##### Summary
+
+Stores the type information for the kind of enumeration being converted.
+
+<a name='M-ParquetClassLibrary-EmptyTolerantEnumConverter-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
+### ConvertFromString(inText,inRow,inMemberMapData) `method`
+
+##### Summary
+
+Converts the `string` to an `object`.
+
+##### Returns
+
+The object created from the string.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The string to convert. |
+| inRow | [CsvHelper.IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') | The [IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') for the current record. |
+| inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | The [MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') for the member being created. |
 
 <a name='T-ParquetClassLibrary-Parquets-EntryType'></a>
 ## EntryType `type`
