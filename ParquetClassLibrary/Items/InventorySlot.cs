@@ -172,7 +172,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => $"{Count} {All.Items.Get<ItemModel>(ItemID)?.Name}";
+            => $"{Count} {ItemID}";
         #endregion
     }
 }
