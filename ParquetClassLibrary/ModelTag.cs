@@ -88,7 +88,9 @@ namespace ParquetClassLibrary
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ModelTag)inText;
+            => string.Compare(inText, nameof(None), comparisonType: StringComparison.OrdinalIgnoreCase) == 0
+                ? (ModelTag)""
+                : (ModelTag)inText;
 
         /// <summary>
         /// Converts the given <see cref="ModelTag"/> to a record column.
@@ -99,7 +101,9 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
-                ? (string)tag
+                ? string.IsNullOrEmpty(tag)
+                    ? nameof(None)
+                    : (string)tag
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, nameof(ModelTag)));
         #endregion

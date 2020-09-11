@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -21,6 +23,9 @@ namespace ParquetClassLibrary
         internal static GridConverter<TElement, TGrid> ConverterFactory { get; } =
             new GridConverter<TElement, TGrid>();
 
+        /// <summary>Allows the converter to construct its contents.</summary>
+        internal static TElement ElementFactory = new TElement();
+
         /// <summary>
         /// Converts the given 2D collection into a record column.
         /// </summary>
@@ -36,7 +41,8 @@ namespace ParquetClassLibrary
                                                           inValue, nameof(IGrid<TElement>)));
             }
 
-            if (grid.Count < 1)
+            if (grid.Count < 1
+                || (grid.Count == 1 && ((IEnumerable<TElement>)grid).Contains(ElementFactory)))
             {
                 return "";
             }
@@ -72,7 +78,9 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="IGrid{TElement}"/> created from the record column.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(inText, nameof(ModelID.None), comparisonType: StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(inText, nameof(Enumerable.Empty), comparisonType: StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return new TGrid();
             }
@@ -89,8 +97,6 @@ namespace ParquetClassLibrary
             }
 
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });
-            var elementFactory = new TElement();
-
             var gridTexts = headerAndGridTexts[1].Split(Delimiters.SecondaryDelimiter);
             var gridTextEnumerator = gridTexts.GetEnumerator();
             for (var y = 0; y < grid.Rows; y++)
@@ -103,7 +109,7 @@ namespace ParquetClassLibrary
                     }
 
                     var currentText = (string)gridTextEnumerator.Current;
-                    grid[y, x] = (TElement)elementFactory.ConvertFromString(currentText, inRow, inMemberMapData);
+                    grid[y, x] = (TElement)ElementFactory.ConvertFromString(currentText, inRow, inMemberMapData);
                 }
             }
             return grid;

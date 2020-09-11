@@ -1,4 +1,4 @@
 ﻿ID,Name,Description,Comment,NativeBiomeID,PrimaryBehaviorID,AvoidsIDs,SeeksIDs,Pronouns,StoryCharacterID,StartingQuestIDs,StartingDialogueIDs,StartingInventoryIDs
--20000,Test§NPC,Test,Test,None,140000,None,None,xe/xem,TEST_NPC,,,
-20000,Missy§Titan,Sharp and sweet.,Come on in!,30004,140001,None,None,she/her,MISSY,,,
+-20000,Test§NPC,Test,Test,None,140000,,,xe/xem,TEST_NPC,,,
+20000,Missy§Titan,Sharp and sweet.,Come on in!,30004,140001,,,she/her,MISSY,,,
 20001,DotDot§Dot,Loves to understand how things work.,,30010,140002,,,they/them,DOTDOT,,,

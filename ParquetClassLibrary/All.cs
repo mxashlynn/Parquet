@@ -435,7 +435,18 @@ namespace ParquetClassLibrary
 
             ConversionConverters = new Dictionary<Type, ITypeConverter>
             {
-                #region ITypeConverters
+                #region Empty-Tolerant Enumeration Types
+                { typeof(ChunkTopography), new EmptyTolerantEnumConverter(typeof(ChunkTopography)) },
+                { typeof(CollectingEffect), new EmptyTolerantEnumConverter(typeof(CollectingEffect)) },
+                { typeof(EntryType), new EmptyTolerantEnumConverter(typeof(EntryType)) },
+                { typeof(GatheringEffect), new EmptyTolerantEnumConverter(typeof(GatheringEffect)) },
+                { typeof(GatheringTool), new EmptyTolerantEnumConverter(typeof(GatheringTool)) },
+                { typeof(ItemType), new EmptyTolerantEnumConverter(typeof(ItemType)) },
+                { typeof(ModificationTool), new EmptyTolerantEnumConverter(typeof(ModificationTool)) },
+                { typeof(RunState), new EmptyTolerantEnumConverter(typeof(RunState)) },
+                #endregion
+
+                #region Types Implementing ITypeConverter
                 { typeof(ChunkDetail), ChunkDetail.ConverterFactory },
                 { typeof(ModelID), ModelID.ConverterFactory },
                 { typeof(ModelTag), ModelTag.ConverterFactory },

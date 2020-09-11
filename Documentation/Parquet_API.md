@@ -229,6 +229,10 @@
   - [PrimaryDelimiter](#F-ParquetClassLibrary-Delimiters-PrimaryDelimiter 'ParquetClassLibrary.Delimiters.PrimaryDelimiter')
   - [PronounDelimiter](#F-ParquetClassLibrary-Delimiters-PronounDelimiter 'ParquetClassLibrary.Delimiters.PronounDelimiter')
   - [SecondaryDelimiter](#F-ParquetClassLibrary-Delimiters-SecondaryDelimiter 'ParquetClassLibrary.Delimiters.SecondaryDelimiter')
+- [EmptyTolerantEnumConverter](#T-ParquetClassLibrary-EmptyTolerantEnumConverter 'ParquetClassLibrary.EmptyTolerantEnumConverter')
+  - [#ctor(inType)](#M-ParquetClassLibrary-EmptyTolerantEnumConverter-#ctor-System-Type- 'ParquetClassLibrary.EmptyTolerantEnumConverter.#ctor(System.Type)')
+  - [EnumType](#F-ParquetClassLibrary-EmptyTolerantEnumConverter-EnumType 'ParquetClassLibrary.EmptyTolerantEnumConverter.EnumType')
+  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-EmptyTolerantEnumConverter-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.EmptyTolerantEnumConverter.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
 - [EntryType](#T-ParquetClassLibrary-Parquets-EntryType 'ParquetClassLibrary.Parquets.EntryType')
   - [Down](#F-ParquetClassLibrary-Parquets-EntryType-Down 'ParquetClassLibrary.Parquets.EntryType.Down')
   - [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None')
@@ -279,6 +283,7 @@
   - [Pick](#F-ParquetClassLibrary-Items-GatheringTool-Pick 'ParquetClassLibrary.Items.GatheringTool.Pick')
   - [Shovel](#F-ParquetClassLibrary-Items-GatheringTool-Shovel 'ParquetClassLibrary.Items.GatheringTool.Shovel')
 - [GridConverter\`2](#T-ParquetClassLibrary-GridConverter`2 'ParquetClassLibrary.GridConverter`2')
+  - [ElementFactory](#F-ParquetClassLibrary-GridConverter`2-ElementFactory 'ParquetClassLibrary.GridConverter`2.ElementFactory')
   - [ConverterFactory](#P-ParquetClassLibrary-GridConverter`2-ConverterFactory 'ParquetClassLibrary.GridConverter`2.ConverterFactory')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-GridConverter`2-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.GridConverter`2.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
@@ -966,6 +971,7 @@
   - [GoalFound](#F-ParquetClassLibrary-Rooms-MapSpaceCollection-SearchResults-GoalFound 'ParquetClassLibrary.Rooms.MapSpaceCollection.SearchResults.GoalFound')
   - [Visited](#F-ParquetClassLibrary-Rooms-MapSpaceCollection-SearchResults-Visited 'ParquetClassLibrary.Rooms.MapSpaceCollection.SearchResults.Visited')
 - [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2')
+  - [ElementFactory](#F-ParquetClassLibrary-SeriesConverter`2-ElementFactory 'ParquetClassLibrary.SeriesConverter`2.ElementFactory')
   - [ConverterFactory](#P-ParquetClassLibrary-SeriesConverter`2-ConverterFactory 'ParquetClassLibrary.SeriesConverter`2.ConverterFactory')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-SeriesConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.SeriesConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertFromString(inText,inRow,inMemberMapData,inDelimiter)](#M-ParquetClassLibrary-SeriesConverter`2-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData,System-String- 'ParquetClassLibrary.SeriesConverter`2.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData,System.String)')
@@ -3395,6 +3401,57 @@ Marks out tags that need to be replaced with pronouns from a [PronounGroup](#T-P
 
 Separates objects within collections.
 
+<a name='T-ParquetClassLibrary-EmptyTolerantEnumConverter'></a>
+## EmptyTolerantEnumConverter `type`
+
+##### Namespace
+
+ParquetClassLibrary
+
+##### Summary
+
+Converts an [Enum](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Enum 'System.Enum') to and from a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String')
+providing sensible default values in case of `null` or the [Empty](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String.Empty 'System.String.Empty').
+
+<a name='M-ParquetClassLibrary-EmptyTolerantEnumConverter-#ctor-System-Type-'></a>
+### #ctor(inType) `constructor`
+
+##### Summary
+
+Creates a new [EmptyTolerantEnumConverter](#T-ParquetClassLibrary-EmptyTolerantEnumConverter 'ParquetClassLibrary.EmptyTolerantEnumConverter') for the given [Enum](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Enum 'System.Enum')[Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inType | [System.Type](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Type 'System.Type') | The type of the enumeration. |
+
+<a name='F-ParquetClassLibrary-EmptyTolerantEnumConverter-EnumType'></a>
+### EnumType `constants`
+
+##### Summary
+
+Stores the type information for the kind of enumeration being converted.
+
+<a name='M-ParquetClassLibrary-EmptyTolerantEnumConverter-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
+### ConvertFromString(inText,inRow,inMemberMapData) `method`
+
+##### Summary
+
+Converts the `string` to an `object`.
+
+##### Returns
+
+The object created from the string.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The string to convert. |
+| inRow | [CsvHelper.IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') | The [IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') for the current record. |
+| inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | The [MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') for the member being created. |
+
 <a name='T-ParquetClassLibrary-Parquets-EntryType'></a>
 ## EntryType `type`
 
@@ -3897,6 +3954,13 @@ Type converter for any collection that implements [IGrid\`1](#T-ParquetClassLibr
 | ---- | ----------- |
 | TElement | The type collected. |
 | TGrid | The type of the collection. |
+
+<a name='F-ParquetClassLibrary-GridConverter`2-ElementFactory'></a>
+### ElementFactory `constants`
+
+##### Summary
+
+Allows the converter to construct its contents.
 
 <a name='P-ParquetClassLibrary-GridConverter`2-ConverterFactory'></a>
 ### ConverterFactory `property`
@@ -12207,6 +12271,13 @@ Type converter for any collection that implements [ICollection\`1](http://msdn.m
 | ---- | ----------- |
 | TElement | The type collected. |
 | TCollection | The type of the collection. |
+
+<a name='F-ParquetClassLibrary-SeriesConverter`2-ElementFactory'></a>
+### ElementFactory `constants`
+
+##### Summary
+
+Allows the converter to construct its contents.
 
 <a name='P-ParquetClassLibrary-SeriesConverter`2-ConverterFactory'></a>
 ### ConverterFactory `property`

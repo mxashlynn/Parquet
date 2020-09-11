@@ -69,8 +69,8 @@ namespace ParquetUnitTests.Crafts
                                            emptyProductList, ingredientList, emptyPanelPattern);
             }
 
-            Assert.Throws<ArgumentNullException>(TestCodeNull);
-            Assert.Throws<IndexOutOfRangeException>(TestCodeEmpty);
+            Assert.Throws<ArgumentOutOfRangeException>(TestCodeNull);
+            Assert.Throws<ArgumentOutOfRangeException>(TestCodeEmpty);
         }
 
         [Fact]
@@ -90,8 +90,8 @@ namespace ParquetUnitTests.Crafts
                                            productList, emptyIngredientList, emptyPanelPattern);
             }
 
-            Assert.Throws<ArgumentNullException>(TestCodeNull);
-            Assert.Throws<IndexOutOfRangeException>(TestCodeEmpty);
+            Assert.Throws<ArgumentOutOfRangeException>(TestCodeNull);
+            Assert.Throws<ArgumentOutOfRangeException>(TestCodeEmpty);
         }
 
         [Fact]
@@ -104,34 +104,6 @@ namespace ParquetUnitTests.Crafts
             }
 
             Assert.Throws<ArgumentNullException>(TestCode);
-        }
-
-        [Fact]
-        public void PanelTooNarrowPatternsThrowTest()
-        {
-            var patternTooNarrow = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, 0);
-
-            void TestCodeTooNarrow()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, ingredientList, patternTooNarrow);
-            }
-
-            Assert.Throws<IndexOutOfRangeException>(TestCodeTooNarrow);
-        }
-
-        [Fact]
-        public void PanelTooShortPatternsThrowTest()
-        {
-            var patternTooShort = new StrikePanelGrid(0, StrikePanelGrid.PanelsPerPatternWidth);
-
-            void TestCodeTooShort()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, ingredientList, patternTooShort);
-            }
-
-            Assert.Throws<IndexOutOfRangeException>(TestCodeTooShort);
         }
 
         [Fact]

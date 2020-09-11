@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Parquets
     public enum EntryType
     {
         /// <summary>This furnishing does not communicate to another map or room.</summary>
-        None,
+        None = 0,
         /// <summary>This furnishing communicates between rooms on the same map.</summary>
         Room,
         /// <summary>This furnishing communicates to the map above.</summary>

@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Items
     public enum ItemType
     {
         /// <summary>This item corresponds to no particular category.</summary>
-        Other,
+        Other = 0,
         /// <summary>This item may be used only once.</summary>
         Consumable,
         /// <summary>This item may be worn, carried, or otherwise employed in an ongoing fashion.</summary>

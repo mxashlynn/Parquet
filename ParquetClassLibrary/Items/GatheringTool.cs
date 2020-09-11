@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Items
     public enum GatheringTool
     {
         /// <summary>This parquet cannot be gathered.</summary>
-        None,
+        None = 0,
         /// <summary>This parquet can be gathered by using a pick-like tool.</summary>
         Pick,
         /// <summary>This parquet can be gathered by using a axe-like tool.</summary>
