@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -22,6 +23,9 @@ namespace ParquetClassLibrary
         internal static SeriesConverter<TElement, TCollection> ConverterFactory { get; } =
             new SeriesConverter<TElement, TCollection>();
 
+        /// <summary>Allows the converter to construct its contents.</summary>
+        internal static TElement ElementFactory = new TElement();
+
         /// <summary>
         /// Converts the given 1D collection into a record column.
         /// </summary>
@@ -37,7 +41,8 @@ namespace ParquetClassLibrary
                                                           inValue, nameof(TCollection)));
             }
 
-            if (series.Count == 0)
+            if (series.Count < 1
+                || (series.Count == 1 && series.Contains(ElementFactory)))
             {
                 return "";
             }
@@ -77,16 +82,17 @@ namespace ParquetClassLibrary
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData, string inDelimiter)
         {
             var collection = new TCollection();
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(inText, nameof(ModelID.None), comparisonType: StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(inText, nameof(Enumerable.Empty), comparisonType: StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return collection;
             }
 
-            var elementFactory = new TElement();
             var textCollection = inText.Split(inDelimiter);
             foreach (var currentText in textCollection)
             {
-                collection.Add((TElement)elementFactory.ConvertFromString(currentText, inRow, inMemberMapData));
+                collection.Add((TElement)ElementFactory.ConvertFromString(currentText, inRow, inMemberMapData));
             }
             return collection;
         }
