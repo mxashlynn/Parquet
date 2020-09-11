@@ -14,7 +14,9 @@ namespace ParquetUnitTests.Maps
         private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
-        private static readonly MapRegionModel defaultRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, "", "", "");
+        private static readonly MapRegionModel defaultRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1,
+                                                                                  nameof(MapRegionModelUnitTest.defaultRegion),
+                                                                                  "", "");
         #endregion
 
         #region Region Map Initialization
