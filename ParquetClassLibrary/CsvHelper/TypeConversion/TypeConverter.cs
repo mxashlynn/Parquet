@@ -4,16 +4,20 @@
 // https://github.com/JoshClose/CsvHelper
 using CsvHelper.Configuration;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CsvHelper.TypeConversion
 {
-    /// <summary>
-    /// Throws an exception when used. This is here so that it's apparent
-    /// that there is no support for <see cref="Type"/> type conversion. A custom
-    /// converter will need to be created to have a field convert to and
-    /// from <see cref="Type"/>.
-    /// </summary>
-    public class TypeConverter : DefaultTypeConverter
+	/// <summary>
+	/// Throws an exception when used. This is here so that it's apparent
+	/// that there is no support for <see cref="Type"/> type conversion. A custom
+	/// converter will need to be created to have a field convert to and
+	/// from <see cref="Type"/>.
+	/// </summary>
+	public class TypeConverter : DefaultTypeConverter
 	{
 		/// <summary>
 		/// Throws an exception.

@@ -4,13 +4,17 @@
 // https://github.com/JoshClose/CsvHelper
 using CsvHelper.Configuration;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CsvHelper.TypeConversion
 {
-    /// <summary>
-    /// Converts a <see cref="Uri"/> to and from a <see cref="string"/>.
-    /// </summary>
-    public class UriConverter : DefaultTypeConverter
+	/// <summary>
+	/// Converts a <see cref="Uri"/> to and from a <see cref="string"/>.
+	/// </summary>
+	public class UriConverter : DefaultTypeConverter
     {
 		/// <summary>
 		/// Converts the <see cref="string"/>  to a <see cref="Uri"/>.

@@ -4,6 +4,7 @@
 // https://github.com/JoshClose/CsvHelper
 using System;
 using System.IO;
+using CsvHelper.Configuration;
 using System.Threading.Tasks;
 
 // This file is generated from a T4 template.
@@ -11,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace CsvHelper
 {
-    /// <summary>
-    /// Reads fields from a <see cref="TextReader"/>.
-    /// </summary>
-    public partial class CsvFieldReader : IFieldReader
+	/// <summary>
+	/// Reads fields from a <see cref="TextReader"/>.
+	/// </summary>
+	public partial class CsvFieldReader : IFieldReader
 	{
 		private ReadingContext context;
 		private bool disposed;
