@@ -23,31 +23,12 @@ namespace ParquetClassLibrary.Parquets
         [Index(7)]
         public CollectingEffect CollectionEffect { get; private set; }
 
-        /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        CollectingEffect ICollectibleModelEdit.CollectionEffect { get => CollectionEffect; set => CollectionEffect = value; }
-
         /// <summary>
         /// The scale in points of the effect.
         /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
         [Index(8)]
         public int EffectAmount { get; private set; }
-
-        /// <summary>
-        /// The scale in points of the effect.
-        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        int ICollectibleModelEdit.EffectAmount { get => EffectAmount; set => EffectAmount = value; }
         #endregion
 
         #region Initialization
@@ -75,6 +56,27 @@ namespace ParquetClassLibrary.Parquets
             CollectionEffect = inCollectionEffect;
             EffectAmount = inEffectAmount;
         }
+        #endregion
+
+        #region ICollectibleModelEdit Implementation
+        /// <summary>The effect generated when a character encounters this Collectible.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        CollectingEffect ICollectibleModelEdit.CollectionEffect { get => CollectionEffect; set => CollectionEffect = value; }
+
+        /// <summary>
+        /// The scale in points of the effect.
+        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        int ICollectibleModelEdit.EffectAmount { get => EffectAmount; set => EffectAmount = value; }
         #endregion
     }
 }
