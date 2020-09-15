@@ -62,8 +62,10 @@ namespace ParquetClassLibrary.Crafts
             var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
             var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
 
+            // TODO: Move the following two checks into a Validation method, or place behind a #define directive, as editor tools need to be able to create empty recipes.
             Precondition.IsInRange(nonNullProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
             Precondition.IsInRange(nonNullIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inIngredients)}.Count");
+            
             if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
             {
