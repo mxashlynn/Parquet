@@ -937,6 +937,10 @@ ParquetClassLibrary.EditorSupport.IInteractionModelEdit
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.OutcomesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.PrerequisitesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.StepsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IInventoryEdit
+ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity.get -> int
+ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity.set -> void
+ParquetClassLibrary.EditorSupport.IInventoryEdit.Slots.get -> System.Collections.Generic.IList<ParquetClassLibrary.Items.InventorySlot>
 ParquetClassLibrary.EditorSupport.IItemModelEdit
 ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID.set -> void
