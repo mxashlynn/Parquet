@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public sealed class FurnishingModel : ParquetModel, IFurnishingModelEdit
+    public class FurnishingModel : ParquetModel, IFurnishingModelEdit
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Furnishing IDs.</summary>

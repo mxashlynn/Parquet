@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    public sealed class CraftingRecipe : Model, ICraftingRecipeEdit
+    public class CraftingRecipe : Model, ICraftingRecipeEdit
     {
         #region Class Defaults
         /// <summary>Used in defining <see cref="NotCraftable"/>.</summary>

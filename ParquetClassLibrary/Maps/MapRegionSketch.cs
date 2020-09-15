@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Maps
     /// 
     /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
-    public sealed class MapRegionSketch : MapModel, IMapRegionEdit
+    public class MapRegionSketch : MapModel, IMapRegionEdit
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>

@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Biomes
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public sealed class BiomeRecipe : Model, IBiomeRecipeEdit
+    public class BiomeRecipe : Model, IBiomeRecipeEdit
     {
         #region Class Defaults
         /// <summary>Represents the lack of a <see cref="BiomeRecipe"/> for <see cref="MapRegionModel"/>s that fail to qualify.</summary>

@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
     /// </summary>
-    public sealed class CritterModel : BeingModel, ICritterModelEdit
+    public class CritterModel : BeingModel, ICritterModelEdit
     {
         #region Initialization
         /// <summary>

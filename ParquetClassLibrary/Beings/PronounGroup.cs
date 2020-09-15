@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Beings
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
     /// </summary>
-    public sealed class PronounGroup : IPronounGroupEdit
+    public class PronounGroup : IPronounGroupEdit
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>

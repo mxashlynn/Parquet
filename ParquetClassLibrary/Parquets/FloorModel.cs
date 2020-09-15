@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Parquets
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public sealed class FloorModel : ParquetModel, IFloorModelEdit
+    public class FloorModel : ParquetModel, IFloorModelEdit
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>

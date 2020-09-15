@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     /// <remarks>
     /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
     /// </remarks>
-    public sealed class MapChunkModel : MapModel
+    public class MapChunkModel : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
