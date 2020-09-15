@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
-using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Beings
 {
