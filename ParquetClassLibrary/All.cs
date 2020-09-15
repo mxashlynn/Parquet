@@ -8,7 +8,6 @@ using CsvHelper.TypeConversion;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Games;
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Maps;
@@ -645,6 +644,7 @@ namespace ParquetClassLibrary
             return true;
         }
 
+#if DESIGN
         /// <summary>
         /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
         /// </summary>
@@ -652,23 +652,24 @@ namespace ParquetClassLibrary
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
-            ((IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
-            ((IModelCollectionEdit<CritterModel>)Critters)?.Clear();
-            ((IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
-            ((IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
-            ((IModelCollectionEdit<GameModel>)Games)?.Clear();
-            ((IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
-            ((IModelCollectionEdit<MapModel>)Maps)?.Clear();
-            ((IModelCollectionEdit<FloorModel>)Floors)?.Clear();
-            ((IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
-            ((IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
-            ((IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
-            ((IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
-            ((IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
-            ((IModelCollectionEdit<ItemModel>)Items)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CritterModel>)Critters)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<GameModel>)Games)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<MapModel>)Maps)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<FloorModel>)Floors)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
+            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
         }
+#endif
         #endregion
 
         #region ModelID Range Helper Methods

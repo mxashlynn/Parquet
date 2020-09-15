@@ -1,5 +1,4 @@
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Games
 {
@@ -20,6 +19,10 @@ namespace ParquetClassLibrary.Games
         /// <summary>Number of this episode in its sequence, if any.</summary>
         [Index(6)]
         public int EpisodeNumber { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
+        [Index(7)]
+        public ModelID PlayerCharacterID { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</summary>
         [Index(8)]

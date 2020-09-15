@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 
@@ -33,18 +32,6 @@ namespace ParquetClassLibrary.Maps
 
         #region Characteristics
         #region Whole-Map Characteristics
-        /// <summary>What the region is called in-game.</summary>
-        [Ignore]
-        string IModelEdit.Name
-        {
-            get => Name;
-            set
-            {
-                IModelEdit editableThis = this;
-                editableThis.Name = value;
-            }
-        }
-
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Index(5)]
         public string BackgroundColor { get; private set; }

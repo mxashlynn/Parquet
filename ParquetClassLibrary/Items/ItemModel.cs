@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Items
 {
@@ -27,6 +26,10 @@ namespace ParquetClassLibrary.Items
         /// <summary>How relatively rare this item is.</summary>
         [Index(6)]
         public int Rarity { get; private set; }
+
+        /// <summary>How many of the item may share a single inventory slot.</summary>
+        [Index(7)]
+        public int StackMax { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by

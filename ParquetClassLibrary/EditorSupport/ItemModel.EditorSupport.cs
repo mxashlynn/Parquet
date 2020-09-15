@@ -35,10 +35,6 @@ namespace ParquetClassLibrary.Items
         int IItemModelEdit.Rarity { get => Rarity; set => Rarity = value; }
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
-        [Index(7)]
-        public int StackMax { get; private set; }
-
-        /// <summary>How many of the item may share a single inventory slot.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
         /// IModelEdit is for external types that require readwrite access.

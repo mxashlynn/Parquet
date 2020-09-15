@@ -1,8 +1,9 @@
+#if DESIGN
 using System.Collections.Generic;
-using ParquetClassLibrary.EditorSupport;
+using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Properties;
 
-namespace ParquetClassLibrary.Maps
+namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
     /// Provides optional analysis for compatible <see cref="MapModel"/>s.
@@ -87,3 +88,4 @@ namespace ParquetClassLibrary.Maps
         }
     }
 }
+#endif

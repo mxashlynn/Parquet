@@ -47,18 +47,6 @@ namespace ParquetClassLibrary.Maps
 
         #region Characteristics
         #region Whole-Map Characteristics
-        /// <summary>What the region is called in-game.</summary>
-        [Ignore]
-        string IModelEdit.Name
-        {
-            get => Name;
-            set
-            {
-                IModelEdit editableThis = this;
-                editableThis.Name = value;
-            }
-        }
-
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Index(5)]
         public string BackgroundColor { get; private set; }
@@ -198,12 +186,16 @@ namespace ParquetClassLibrary.Maps
                                           RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
                                           null, parquetDefinitions);
 
+            // TODO Fix this section
+            /*
             // If the current sketch is contained in the game-wide database, replace it with the newly stitched region.
             if (All.Maps.Contains(ID))
             {
+                // TODO This bug surfaces a design flaw in MapModels -- we need MapModelStatus classes.
                 IModelCollectionEdit<MapModel> allMaps = All.Maps;
                 allMaps.Replace(newRegion);
             }
+            */
 
             return newRegion;
         }

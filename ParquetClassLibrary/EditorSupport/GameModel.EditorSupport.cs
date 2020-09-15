@@ -34,10 +34,6 @@ namespace ParquetClassLibrary.Games
         int IGameModelEdit.EpisodeNumber { get => EpisodeNumber; set => EpisodeNumber = value; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
-        [Index(7)]
-        public ModelID PlayerCharacterID { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IGameModelEdit"/>.
         /// IGameModelEdit is for external types that require read/write access.

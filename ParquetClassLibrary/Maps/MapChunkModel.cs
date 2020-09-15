@@ -1,6 +1,5 @@
 using System;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Parquets;
 
 namespace ParquetClassLibrary.Maps
@@ -126,12 +125,15 @@ namespace ParquetClassLibrary.Maps
             // Create a new MapChunkModel with the new subregion.
             var newChunk = new MapChunkModel(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
 
+            // TODO: Fix this section.
+            /*
             // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
             if (All.Maps.Contains(ID))
             {
                 IModelCollectionEdit<MapModel> allMaps = All.Maps;
                 allMaps.Replace(newChunk);
             }
+            */
 
             return newChunk;
         }

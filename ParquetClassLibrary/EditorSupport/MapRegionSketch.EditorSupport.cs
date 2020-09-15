@@ -9,6 +9,18 @@ namespace ParquetClassLibrary.Maps
     public partial class MapRegionSketch : IMapRegionEdit
     {
         #region IMapRegionEdit Implementation
+        /// <summary>What the region is called in-game.</summary>
+        [Ignore]
+        string IModelEdit.Name
+        {
+            get => Name;
+            set
+            {
+                IModelEdit editableThis = this;
+                editableThis.Name = value;
+            }
+        }
+
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Ignore]
         string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
