@@ -345,6 +345,9 @@
   - [OutcomesIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-OutcomesIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.OutcomesIDs')
   - [PrerequisitesIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-PrerequisitesIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.PrerequisitesIDs')
   - [StepsIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-StepsIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.StepsIDs')
+- [IInventoryEdit](#T-ParquetClassLibrary-EditorSupport-IInventoryEdit 'ParquetClassLibrary.EditorSupport.IInventoryEdit')
+  - [Capacity](#P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Capacity 'ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity')
+  - [Slots](#P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Slots 'ParquetClassLibrary.EditorSupport.IInventoryEdit.Slots')
 - [IItemModelEdit](#T-ParquetClassLibrary-EditorSupport-IItemModelEdit 'ParquetClassLibrary.EditorSupport.IItemModelEdit')
   - [EffectWhenUsedID](#P-ParquetClassLibrary-EditorSupport-IItemModelEdit-EffectWhenUsedID 'ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID')
   - [EffectWhileHeldID](#P-ParquetClassLibrary-EditorSupport-IItemModelEdit-EffectWhileHeldID 'ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhileHeldID')
@@ -418,6 +421,8 @@
   - [#ctor(inSlots,inCapacity)](#M-ParquetClassLibrary-Items-Inventory-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-InventorySlot},System-Int32- 'ParquetClassLibrary.Items.Inventory.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.InventorySlot},System.Int32)')
   - [Capacity](#P-ParquetClassLibrary-Items-Inventory-Capacity 'ParquetClassLibrary.Items.Inventory.Capacity')
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
+  - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity')
+  - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
   - [Contains(inItemID)](#M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID)')
   - [GetEnumerator()](#M-ParquetClassLibrary-Items-Inventory-GetEnumerator 'ParquetClassLibrary.Items.Inventory.GetEnumerator')
@@ -4539,6 +4544,31 @@ Describes the criteria for begining this interaction.
 
 Everything this interaction entails.
 
+<a name='T-ParquetClassLibrary-EditorSupport-IInventoryEdit'></a>
+## IInventoryEdit `type`
+
+##### Namespace
+
+ParquetClassLibrary.EditorSupport
+
+##### Summary
+
+Facilitates editing of an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') from design tools while maintaining a read-only face for use during play.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Capacity'></a>
+### Capacity `property`
+
+##### Summary
+
+How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s exits.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Slots'></a>
+### Slots `property`
+
+##### Summary
+
+The internal collection mechanism.
+
 <a name='T-ParquetClassLibrary-EditorSupport-IItemModelEdit'></a>
 ## IItemModelEdit `type`
 
@@ -5260,6 +5290,20 @@ How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClas
 ##### Summary
 
 How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s are currently occupied.
+
+<a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity'></a>
+### ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity `property`
+
+##### Summary
+
+How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s exits.
+
+<a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots'></a>
+### ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots `property`
+
+##### Summary
+
+The internal collection mechanism.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Slots'></a>
 ### Slots `property`
