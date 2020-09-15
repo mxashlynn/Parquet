@@ -15,14 +15,6 @@ namespace ParquetClassLibrary.Scripts
         /// <summary>A series of imperative, procedural commands.</summary>
         [Index(4)]
         public IReadOnlyList<ScriptNode> Nodes { get; }
-
-        /// <summary>A series of imperative, procedural commands.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
-        /// IScriptModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ScriptNode> IScriptModelEdit.Nodes => (IList<ScriptNode>)Nodes;
         #endregion
 
         #region Initialization
@@ -37,6 +29,16 @@ namespace ParquetClassLibrary.Scripts
         public ScriptModel(ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ScriptNode> inNodes = null)
             : base(All.ScriptIDs, inID, inName, inDescription, inComment)
             => Nodes = (inNodes ?? Enumerable.Empty<ScriptNode>()).ToList();
+        #endregion
+
+        #region IScriptModelEdit Implementation
+        /// <summary>A series of imperative, procedural commands.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="ScriptModel"/> should never themselves use <see cref="IScriptModelEdit"/>.
+        /// IScriptModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ScriptNode> IScriptModelEdit.Nodes => (IList<ScriptNode>)Nodes;
         #endregion
 
         /// <summary>

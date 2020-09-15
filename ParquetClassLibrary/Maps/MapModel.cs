@@ -50,6 +50,8 @@ namespace ParquetClassLibrary.Maps
             => Revision = inRevision;
         #endregion
 
+        // TODO We probably need an IMapModelEdit interface and implementation #region
+
         #region Utilities
         /// <summary>The total number of parquets in the entire map.</summary>
         [Ignore]

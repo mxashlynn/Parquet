@@ -19,49 +19,17 @@ namespace ParquetClassLibrary.Rooms
         [Index(4)]
         public int MinimumWalkableSpaces { get; private set; }
 
-        /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        int IRoomRecipeEdit.MinimumWalkableSpaces { get => MinimumWalkableSpaces; set => MinimumWalkableSpaces = value; }
-
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         [Index(5)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredFurnishings { get; }
-
-        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredFurnishings => (IList<RecipeElement>)OptionallyRequiredFurnishings;
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         [Index(6)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredWalkableFloors { get; }
 
-        /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredWalkableFloors => (IList<RecipeElement>)OptionallyRequiredWalkableFloors;
-
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         [Index(7)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
-
-        /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredPerimeterBlocks => (IList<RecipeElement>)OptionallyRequiredPerimeterBlocks;
         #endregion
 
         #region Initialization
@@ -100,6 +68,40 @@ namespace ParquetClassLibrary.Rooms
             OptionallyRequiredWalkableFloors = nonNullOptionallyRequiredWalkableFloors;
             OptionallyRequiredPerimeterBlocks = nonNullOptionallyRequiredPerimeterBlocks;
         }
+        #endregion
+
+        #region IRoomRecipeEdit Implementation
+        /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        int IRoomRecipeEdit.MinimumWalkableSpaces { get => MinimumWalkableSpaces; set => MinimumWalkableSpaces = value; }
+
+        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredFurnishings => (IList<RecipeElement>)OptionallyRequiredFurnishings;
+
+        /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredWalkableFloors => (IList<RecipeElement>)OptionallyRequiredWalkableFloors;
+
+        /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IRoomRecipeEdit"/>.
+        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<RecipeElement> IRoomRecipeEdit.OptionallyRequiredPerimeterBlocks => (IList<RecipeElement>)OptionallyRequiredPerimeterBlocks;
         #endregion
 
         #region Derived Details

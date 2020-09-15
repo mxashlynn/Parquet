@@ -64,62 +64,32 @@ namespace ParquetClassLibrary.Maps
         /// <summary>A color to display in any empty areas of the region.</summary>
         [Index(5)]
         public string BackgroundColor { get; private set; }
-
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        [Ignore]
-        string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
         #endregion
 
         #region Map Contents
-        #region Exit IDs
         /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
         [Index(6)]
         public ModelID RegionToTheNorth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
         [Index(7)]
         public ModelID RegionToTheEast { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
-
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
         [Index(8)]
         public ModelID RegionToTheSouth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
         [Index(9)]
         public ModelID RegionToTheWest { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
-
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
         [Index(10)]
         public ModelID RegionAbove { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
-
         /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
-        #endregion
 
         /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegionModel"/>.</summary>
         [Index(12)]
@@ -188,6 +158,37 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
+        #region IMapRegionEdit Implementation
+        /// <summary>A color to display in any empty areas of the region.</summary>
+        [Ignore]
+        string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
+
+        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
+        [Ignore]
+        ModelID IMapRegionEdit.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
+        #endregion
+
+        #region Procedural Generation
         /// <summary>
         /// Combines all consituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegionModel"/>.
         /// </summary>
@@ -238,6 +239,7 @@ namespace ParquetClassLibrary.Maps
 
             return newRegion;
         }
+        #endregion
 
         #region Utilities
         /// <summary>

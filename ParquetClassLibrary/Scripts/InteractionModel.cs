@@ -18,43 +18,13 @@ namespace ParquetClassLibrary.Scripts
         [Index(4)]
         public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 
-        /// <summary>
-        /// Describes the criteria for begining this interaction.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> IInteractionModelEdit.PrerequisitesIDs => (IList<ModelID>)PrerequisitesIDs;
-
         /// <summary>Everything this interaction entails.</summary>
         [Index(5)]
         public IReadOnlyList<ModelID> StepsIDs { get; }
 
-        /// <summary>
-        /// Everything this interaction entails.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> IInteractionModelEdit.StepsIDs => (IList<ModelID>)StepsIDs;
-
         /// <summary>Describes the results of finishing this interaction.</summary>
         [Index(6)]
         public IReadOnlyList<ModelID> OutcomesIDs { get; }
-
-        /// <summary>
-        /// Describes the results of finishing this interaction.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> IInteractionModelEdit.OutcomesIDs => (IList<ModelID>)OutcomesIDs;
         #endregion
 
         #region Initialization
@@ -85,6 +55,38 @@ namespace ParquetClassLibrary.Scripts
             StepsIDs = nonNullSteps;
             OutcomesIDs = nonNullOutcomes;
         }
+        #endregion
+
+        #region IInteractionModelEdit Implementation
+        /// <summary>
+        /// Describes the criteria for begining this interaction.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> IInteractionModelEdit.PrerequisitesIDs => (IList<ModelID>)PrerequisitesIDs;
+
+        /// <summary>
+        /// Everything this interaction entails.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> IInteractionModelEdit.StepsIDs => (IList<ModelID>)StepsIDs;
+
+        /// <summary>
+        /// Describes the results of finishing this interaction.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> IInteractionModelEdit.OutcomesIDs => (IList<ModelID>)OutcomesIDs;
         #endregion
     }
 }

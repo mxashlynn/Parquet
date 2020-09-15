@@ -21,32 +21,11 @@ namespace ParquetClassLibrary.Parquets
         public ModelID ItemID { get; private set; }
 
         /// <summary>
-        /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        ModelID IParquetModelEdit.ItemID { get => ItemID; set => ItemID = value; }
-
-        /// <summary>
         /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [Index(5)]
         public IReadOnlyList<ModelTag> AddsToBiome { get; private set; }
-
-        /// <summary>
-        /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
-        /// Guaranteed to never be <c>null</c>.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelTag> IParquetModelEdit.AddsToBiome => (IList<ModelTag>)AddsToBiome;
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -57,17 +36,6 @@ namespace ParquetClassLibrary.Parquets
         /// </remarks>
         [Index(6)]
         public IReadOnlyList<ModelTag> AddsToRoom { get; private set; }
-
-        /// <summary>
-        /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
-        /// Guaranteed to never be <c>null</c>.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelTag> IParquetModelEdit.AddsToRoom => (IList<ModelTag>)AddsToRoom;
         #endregion
 
         #region Initialization
@@ -97,6 +65,40 @@ namespace ParquetClassLibrary.Parquets
             AddsToBiome = nonNullAddsToBiome;
             AddsToRoom = nonNullAddsToRoom;
         }
+        #endregion
+
+        #region IParquetModelEdit Implementation
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IParquetModelEdit.ItemID { get => ItemID; set => ItemID = value; }
+
+        /// <summary>
+        /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IParquetModelEdit.AddsToBiome => (IList<ModelTag>)AddsToBiome;
+
+        /// <summary>
+        /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IParquetModelEdit.AddsToRoom => (IList<ModelTag>)AddsToRoom;
         #endregion
 
         #region Utilities

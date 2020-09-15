@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Biomes
         #region Class Defaults
         /// <summary>Represents the lack of a <see cref="BiomeRecipe"/> for <see cref="MapRegionModel"/>s that fail to qualify.</summary>
         public static BiomeRecipe None { get; } = new BiomeRecipe(ModelID.None, "Expanse", "A featureless region.", "The default biome.",
-                                                                0, false, false, null, null);
+                                                                  0, false, false, null, null);
         #endregion
 
         #region Characteristics
@@ -28,64 +28,21 @@ namespace ParquetClassLibrary.Biomes
         [Index(4)]
         public int Tier { get; private set; }
 
-        /// <summary>
-        /// A rating indicating where in the progression this <see cref="BiomeRecipe"/> falls.
-        /// Must be non-negative.  Higher values indicate later Biomes.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        int IBiomeRecipeEdit.Tier { get => Tier; set => Tier = value; }
-
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
         [Index(5)]
         public bool IsRoomBased { get; private set; }
-
-        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        bool IBiomeRecipeEdit.IsRoomBased { get => IsRoomBased; set => IsRoomBased = value; }
 
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
         [Index(6)]
         public bool IsLiquidBased { get; private set; }
 
-        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        bool IBiomeRecipeEdit.IsLiquidBased { get => IsLiquidBased; set => IsLiquidBased = value; }
-
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         [Index(7)]
         public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
-        /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelTag> IBiomeRecipeEdit.ParquetCriteria => (IList<ModelTag>)ParquetCriteria;
-
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         [Index(8)]
         public IReadOnlyList<ModelTag> EntryRequirements { get; }
-
-        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelTag> IBiomeRecipeEdit.EntryRequirements => (IList<ModelTag>)EntryRequirements;
         #endregion
 
         #region Initialization
@@ -115,6 +72,51 @@ namespace ParquetClassLibrary.Biomes
             ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<ModelTag>()).ToList();
             EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
         }
+        #endregion
+
+        #region IBiomeRecipeEdit Implementation
+        /// <summary>
+        /// A rating indicating where in the progression this <see cref="BiomeRecipe"/> falls.
+        /// Must be non-negative.  Higher values indicate later Biomes.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        int IBiomeRecipeEdit.Tier { get => Tier; set => Tier = value; }
+
+        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        bool IBiomeRecipeEdit.IsRoomBased { get => IsRoomBased; set => IsRoomBased = value; }
+
+        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        bool IBiomeRecipeEdit.IsLiquidBased { get => IsLiquidBased; set => IsLiquidBased = value; }
+
+        /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IBiomeRecipeEdit.ParquetCriteria => (IList<ModelTag>)ParquetCriteria;
+
+        /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelTag> IBiomeRecipeEdit.EntryRequirements => (IList<ModelTag>)EntryRequirements;
         #endregion
 
         #region Utilities

@@ -29,38 +29,13 @@ namespace ParquetClassLibrary.Crafts
         [Index(4)]
         public IReadOnlyList<RecipeElement> Products { get; }
 
-        /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<RecipeElement> ICraftingRecipeEdit.Products => (IList<RecipeElement>)Products;
-
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         [Index(5)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
-        /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<RecipeElement> ICraftingRecipeEdit.Ingredients => (IList<RecipeElement>)Ingredients;
-
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         [Index(6)]
         public StrikePanelGrid PanelPattern { get; }
-
-        /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        // TODO Revisit this implementation.  IGrid is read-write as of Aug 21 2020 anyway.
-        StrikePanelGrid ICraftingRecipeEdit.PanelPattern => PanelPattern;
         #endregion
 
         #region Initialization
@@ -100,6 +75,33 @@ namespace ParquetClassLibrary.Crafts
             Ingredients = nonNullIngredients.ToList();
             PanelPattern = nonNullPanelPattern;
         }
+        #endregion
+
+        #region ICraftingRecipeEdit Implementation
+        /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<RecipeElement> ICraftingRecipeEdit.Products => (IList<RecipeElement>)Products;
+
+        /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<RecipeElement> ICraftingRecipeEdit.Ingredients => (IList<RecipeElement>)Ingredients;
+
+        /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        // TODO Revisit this implementation.  IGrid is read-write as of Aug 21 2020 anyway.
+        StrikePanelGrid ICraftingRecipeEdit.PanelPattern => PanelPattern;
         #endregion
     }
 }

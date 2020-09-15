@@ -20,25 +20,9 @@ namespace ParquetClassLibrary.Beings
         [Ignore]
         public string PersonalName { get; private set; }
 
-        /// <summary>Player-facing personal name.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        string ICharacterModelEdit.PersonalName { get => PersonalName; set => PersonalName = value; }
-
         /// <summary>Player-facing family name.</summary>
         [Ignore]
         public string FamilyName { get; private set; }
-
-        /// <summary>Player-facing family name.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        string ICharacterModelEdit.FamilyName { get => FamilyName; set => FamilyName = value; }
 
         /// <summary>
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
@@ -46,17 +30,6 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         [Index(8)]
         public string Pronouns { get; private set; }
-
-        /// <summary>
-        /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
-        /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        string ICharacterModelEdit.Pronouns { get => Pronouns; set => Pronouns = value; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
@@ -69,51 +42,19 @@ namespace ParquetClassLibrary.Beings
         [Index(9)]
         public string StoryCharacterID { get; private set; }
 
-        /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        string ICharacterModelEdit.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
-
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuestIDs { get; }
 
-        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
-
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         [Index(11)]
         public IReadOnlyList<ModelID> StartingDialogueIDs { get; }
-
-        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingDialogueIDs => (IList<ModelID>)StartingDialogueIDs;
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
         [Index(12)]
         public IReadOnlyList<ModelID> StartingInventoryIDs { get; }
-
-        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingInventoryIDs => (IList<ModelID>)StartingInventoryIDs;
         #endregion
 
         #region Initialization
@@ -160,6 +101,67 @@ namespace ParquetClassLibrary.Beings
             StartingDialogueIDs = nonNullDialogueIDs.ToList();
             StartingInventoryIDs = nonNullInventoryIDs.ToList();
         }
+        #endregion
+
+        #region ICharacterModelEdit Implementation
+        /// <summary>Player-facing personal name.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        string ICharacterModelEdit.PersonalName { get => PersonalName; set => PersonalName = value; }
+
+        /// <summary>Player-facing family name.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        string ICharacterModelEdit.FamilyName { get => FamilyName; set => FamilyName = value; }
+
+        /// <summary>
+        /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
+        /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        string ICharacterModelEdit.Pronouns { get => Pronouns; set => Pronouns = value; }
+
+        /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        string ICharacterModelEdit.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
+
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
+
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> ICharacterModelEdit.StartingDialogueIDs => (IList<ModelID>)StartingDialogueIDs;
+
+        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        IList<ModelID> ICharacterModelEdit.StartingInventoryIDs => (IList<ModelID>)StartingInventoryIDs;
         #endregion
     }
 }

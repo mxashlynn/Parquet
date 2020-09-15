@@ -29,5 +29,9 @@ namespace ParquetClassLibrary.Beings
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
             => Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));
         #endregion
+
+        #region ICritterModelEdit Implementation
+        // Currently, everything needed for editing CritterModels is provided by IBeingModelEdit.
+        #endregion
     }
 }

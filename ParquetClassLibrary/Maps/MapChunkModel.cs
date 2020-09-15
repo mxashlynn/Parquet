@@ -81,6 +81,9 @@ namespace ParquetClassLibrary.Maps
         }
         #endregion
 
+        // TODO We probably need an IMapModelEdit equivalent for this class.
+
+        #region Procedural Generation
         /// <summary>
         /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
         /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="MapRegionModel"/>.
@@ -135,6 +138,7 @@ namespace ParquetClassLibrary.Maps
 
             return newChunk;
         }
+        #endregion
 
         #region Utilities
         /// <summary>
