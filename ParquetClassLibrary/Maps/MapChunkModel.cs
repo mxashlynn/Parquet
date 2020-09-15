@@ -12,7 +12,7 @@ namespace ParquetClassLibrary.Maps
     /// <remarks>
     /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
     /// </remarks>
-    public class MapChunkModel : MapModel
+    public partial class MapChunkModel : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -79,8 +79,6 @@ namespace ParquetClassLibrary.Maps
             }
         }
         #endregion
-
-        // TODO We probably need an IMapModelEdit equivalent for this class.
 
         #region Procedural Generation
         /// <summary>

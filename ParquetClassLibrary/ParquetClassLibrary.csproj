@@ -38,7 +38,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <ErrorReport>send</ErrorReport>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;DESIGN</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

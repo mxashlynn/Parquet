@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// Provides methods that are used by all map models.
     /// </summary>
-    public abstract class MapModel : Model
+    public abstract partial class MapModel : Model
     {
         #region Class Defaults
         /// <summary>Dimensions in parquets.  Defined by subtypes.</summary>
@@ -49,8 +49,6 @@ namespace ParquetClassLibrary.Maps
             : base(inBounds, inID, inName, inDescription, inComment)
             => Revision = inRevision;
         #endregion
-
-        // TODO We probably need an IMapModelEdit interface and implementation #region
 
         #region Utilities
         /// <summary>The total number of parquets in the entire map.</summary>

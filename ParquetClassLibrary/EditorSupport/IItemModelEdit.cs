@@ -1,3 +1,4 @@
+#if DESIGN
 using System.Collections.Generic;
 using ParquetClassLibrary.Items;
 
@@ -43,3 +44,4 @@ namespace ParquetClassLibrary.EditorSupport
         public IList<ModelTag> ItemTags { get; }
     }
 }
+#endif

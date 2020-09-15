@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.Parquets
@@ -9,9 +8,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Configurations for a sandbox parquet walking surface.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public class FloorModel : ParquetModel, IFloorModelEdit
+    public partial class FloorModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
@@ -54,24 +51,6 @@ namespace ParquetClassLibrary.Parquets
             ModTool = inModTool;
             TrenchName = inTrenchName;
         }
-        #endregion
-
-        #region IFloorModelEdit Implementation
-        /// <summary>The tool used to dig out or fill in the floor.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        ModificationTool IFloorModelEdit.ModTool { get => ModTool; set => ModTool = value; }
-
-        /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        string IFloorModelEdit.TrenchName { get => TrenchName; set => TrenchName = value; }
         #endregion
     }
 }

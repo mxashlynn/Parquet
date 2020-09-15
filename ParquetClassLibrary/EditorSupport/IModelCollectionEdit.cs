@@ -1,3 +1,4 @@
+#if DESIGN
 namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
@@ -39,3 +40,4 @@ namespace ParquetClassLibrary.EditorSupport
         public void Replace(TModel inModel);
     }
 }
+#endif

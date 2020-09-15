@@ -1,3 +1,4 @@
+#if DESIGN
 namespace ParquetClassLibrary.EditorSupport
 {
     /// <summary>
@@ -35,3 +36,4 @@ namespace ParquetClassLibrary.EditorSupport
         public string Comment { get; set; }
     }
 }
+#endif

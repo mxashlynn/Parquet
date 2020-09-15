@@ -1,3 +1,4 @@
+#if DESIGN
 using ParquetClassLibrary.Games;
 
 namespace ParquetClassLibrary.EditorSupport
@@ -27,3 +28,4 @@ namespace ParquetClassLibrary.EditorSupport
         public ModelID FirstScriptID { get; set; }
     }
 }
+#endif

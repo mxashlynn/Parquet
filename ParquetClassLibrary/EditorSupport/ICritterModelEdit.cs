@@ -1,3 +1,4 @@
+#if DESIGN
 using ParquetClassLibrary.Beings;
 
 namespace ParquetClassLibrary.EditorSupport
@@ -17,3 +18,4 @@ namespace ParquetClassLibrary.EditorSupport
         // and to allow for future expansion of CritterModel.
     }
 }
+#endif

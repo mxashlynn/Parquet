@@ -1,3 +1,4 @@
+#if DESIGN
 using System.Collections.Generic;
 using ParquetClassLibrary.Biomes;
 
@@ -27,3 +28,4 @@ namespace ParquetClassLibrary.EditorSupport
         public IList<ModelTag> EntryRequirements { get; }
     }
 }
+#endif

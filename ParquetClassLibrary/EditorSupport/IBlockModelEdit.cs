@@ -1,3 +1,4 @@
+#if DESIGN
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 
@@ -31,3 +32,4 @@ namespace ParquetClassLibrary.EditorSupport
         public int MaxToughness { get; set; }
     }
 }
+#endif

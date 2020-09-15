@@ -1,3 +1,4 @@
+#if DESIGN
 using System.Collections.Generic;
 using ParquetClassLibrary.Crafts;
 
@@ -22,3 +23,4 @@ namespace ParquetClassLibrary.EditorSupport
         public StrikePanelGrid PanelPattern { get; }
     }
 }
+#endif

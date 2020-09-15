@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public class CollectibleModel : ParquetModel, ICollectibleModelEdit
+    public partial class CollectibleModel : ParquetModel
     {
         #region Class Defaults
         /// <summary>The set of values that are allowed for Collectible IDs.</summary>
@@ -56,27 +53,6 @@ namespace ParquetClassLibrary.Parquets
             CollectionEffect = inCollectionEffect;
             EffectAmount = inEffectAmount;
         }
-        #endregion
-
-        #region ICollectibleModelEdit Implementation
-        /// <summary>The effect generated when a character encounters this Collectible.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        CollectingEffect ICollectibleModelEdit.CollectionEffect { get => CollectionEffect; set => CollectionEffect = value; }
-
-        /// <summary>
-        /// The scale in points of the effect.
-        /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
-        /// </summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        int ICollectibleModelEdit.EffectAmount { get => EffectAmount; set => EffectAmount = value; }
         #endregion
     }
 }

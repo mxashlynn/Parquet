@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Properties;
 
@@ -22,7 +21,7 @@ namespace ParquetClassLibrary.Maps
     /// 
     /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
-    public class MapRegionSketch : MapModel, IMapRegionEdit
+    public partial class MapRegionSketch : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>
@@ -155,36 +154,6 @@ namespace ParquetClassLibrary.Maps
             RegionBelow = nonNullRegionBelow;
             Chunks = nonNullChunks;
         }
-        #endregion
-
-        #region IMapRegionEdit Implementation
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        [Ignore]
-        string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
         #endregion
 
         #region Procedural Generation

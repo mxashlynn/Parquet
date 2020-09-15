@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Maps
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.
     /// </summary>
-    public class MapRegionModel : MapModel, IMapRegionEdit
+    public partial class MapRegionModel : MapModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -49,59 +49,29 @@ namespace ParquetClassLibrary.Maps
         [Index(5)]
         public string BackgroundColor { get; private set; }
 
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        [Ignore]
-        string IMapRegionEdit.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
-
-        #region Exit IDs
         /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
         [Index(6)]
         public ModelID RegionToTheNorth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
         [Index(7)]
         public ModelID RegionToTheEast { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
-
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
         [Index(8)]
         public ModelID RegionToTheSouth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
         [Index(9)]
         public ModelID RegionToTheWest { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
-
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
         [Index(10)]
         public ModelID RegionAbove { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
-
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
-        [Ignore]
-        ModelID IMapRegionEdit.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
-        #endregion
         #endregion
 
         #region Map Contents

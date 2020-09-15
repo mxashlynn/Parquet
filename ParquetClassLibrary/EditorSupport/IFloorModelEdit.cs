@@ -1,3 +1,4 @@
+#if DESIGN
 using ParquetClassLibrary.Items;
 using ParquetClassLibrary.Parquets;
 
@@ -19,3 +20,4 @@ namespace ParquetClassLibrary.EditorSupport
         public string TrenchName { get; set; }
     }
 }
+#endif

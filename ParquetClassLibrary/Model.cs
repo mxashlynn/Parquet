@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary
 {
@@ -32,59 +31,25 @@ namespace ParquetClassLibrary
     /// <seealso cref="ModelTag"/>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, Model should never itself use IModelEdit the interface to access its own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public abstract class Model : IModelEdit, IEquatable<Model>
+    public abstract partial class Model : IEquatable<Model>
     {
         #region Characteristics
         /// <summary>Game-wide unique identifier.</summary>
         [Index(0)]
         public ModelID ID { get; private set; }
 
-        /// <summary>Game-wide unique identifier.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        ///
-        /// Be especially cautious editing this property.
-        /// </remarks>
-        [Ignore]
-        ModelID IModelEdit.ID { get => ID; set => ID = value; }
-
         /// <summary>Player-facing name.</summary>
         [Index(1)]
         public string Name { get; private set; }
-
-        /// <summary>Player-facing name.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        string IModelEdit.Name { get => Name; set => Name = value; }
 
         /// <summary>Player-facing description.</summary>
         [Index(2)]
         public string Description { get; private set; }
 
-        /// <summary>Player-facing description.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        string IModelEdit.Description { get => Description; set => Description = value; }
-
         /// <summary>Optional comment.</summary>
         /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="Model"/>.</remarks>
         [Index(3)]
         public string Comment { get; private set; }
-
-        /// <summary>Optional comment.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require read/write access.
-        /// </remarks>
-        [Ignore]
-        string IModelEdit.Comment { get => Comment; set => Comment = value; }
         #endregion
 
         #region Initialization

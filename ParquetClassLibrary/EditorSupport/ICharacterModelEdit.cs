@@ -1,3 +1,4 @@
+#if DESIGN
 using System.Collections.Generic;
 using ParquetClassLibrary.Beings;
 
@@ -46,3 +47,4 @@ namespace ParquetClassLibrary.EditorSupport
         public IList<ModelID> StartingInventoryIDs { get; }
     }
 }
+#endif
