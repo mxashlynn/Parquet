@@ -13,6 +13,9 @@ using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Parquets;
 using ParquetClassLibrary.Rooms;
 using ParquetClassLibrary.Scripts;
+#if DESIGN
+using ParquetClassLibrary.EditorSupport;
+#endif
 using ParquetRoller.Properties;
 
 namespace ParquetRoller
@@ -441,6 +444,7 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode CheckAdjacency(ModelCollection inWorkload)
         {
+#if DESIGN
             if (!All.LoadFromCSVs())
             {
                 Console.WriteLine(Resources.ErrorLoading);
@@ -474,6 +478,10 @@ namespace ParquetRoller
             }
 
             return ExitCode.Success;
+#else
+                Console.WriteLine(Resources.ErrorEditorSupport);
+                return ExitCode.NotSupported;
+#endif
         }
 
         /// <summary>

@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorEditorSupport" xml:space="preserve">
+    <value>To access this command, please rebuild Roller with editor support enabled.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorLoading" xml:space="preserve">
     <value>Error loading data files.</value>
     <comment>Error string.</comment>

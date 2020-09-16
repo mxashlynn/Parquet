@@ -61,6 +61,15 @@ namespace ParquetRoller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To access this command, please rebuild Roller with editor support enabled..
+        /// </summary>
+        internal static string ErrorEditorSupport {
+            get {
+                return ResourceManager.GetString("ErrorEditorSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error loading data files..
         /// </summary>
         internal static string ErrorLoading {

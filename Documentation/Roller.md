@@ -15,6 +15,7 @@
   - [WriteFault](#F-ParquetRoller-ExitCode-WriteFault 'ParquetRoller.ExitCode.WriteFault')
 - [Resources](#T-ParquetRoller-Properties-Resources 'ParquetRoller.Properties.Resources')
   - [Culture](#P-ParquetRoller-Properties-Resources-Culture 'ParquetRoller.Properties.Resources.Culture')
+  - [ErrorEditorSupport](#P-ParquetRoller-Properties-Resources-ErrorEditorSupport 'ParquetRoller.Properties.Resources.ErrorEditorSupport')
   - [ErrorLoading](#P-ParquetRoller-Properties-Resources-ErrorLoading 'ParquetRoller.Properties.Resources.ErrorLoading')
   - [ErrorNoProperty](#P-ParquetRoller-Properties-Resources-ErrorNoProperty 'ParquetRoller.Properties.Resources.ErrorNoProperty')
   - [ErrorSaving](#P-ParquetRoller-Properties-Resources-ErrorSaving 'ParquetRoller.Properties.Resources.ErrorSaving')
@@ -158,6 +159,13 @@ A strongly-typed resource class, for looking up localized strings, etc.
 
 Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
+
+<a name='P-ParquetRoller-Properties-Resources-ErrorEditorSupport'></a>
+### ErrorEditorSupport `property`
+
+##### Summary
+
+Looks up a localized string similar to To access this command, please rebuild Roller with editor support enabled..
 
 <a name='P-ParquetRoller-Properties-Resources-ErrorLoading'></a>
 ### ErrorLoading `property`
