@@ -32,7 +32,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AssemblyVersion>0.3.22.0</AssemblyVersion>
     <FileVersion>0.3.22.0</FileVersion>
-    <Configurations>Debug;Release;Release Editor Support</Configurations>
+    <Configurations>Debug;Game Release;Editor Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,11 +41,11 @@
     <DefineConstants>DEBUG;DESIGN</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Game Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Editor Support|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor Release|AnyCPU'">
     <DefineConstants>DESIGN;TRACE</DefineConstants>
   </PropertyGroup>
 

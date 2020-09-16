@@ -321,7 +321,7 @@
   - [PanelPattern](#P-ParquetClassLibrary-EditorSupport-ICraftingRecipeEdit-PanelPattern 'ParquetClassLibrary.EditorSupport.ICraftingRecipeEdit.PanelPattern')
   - [Products](#P-ParquetClassLibrary-EditorSupport-ICraftingRecipeEdit-Products 'ParquetClassLibrary.EditorSupport.ICraftingRecipeEdit.Products')
 - [ICritterModelEdit](#T-ParquetClassLibrary-EditorSupport-ICritterModelEdit 'ParquetClassLibrary.EditorSupport.ICritterModelEdit')
-- [IDByDirection](#T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection 'ParquetClassLibrary.Maps.MapAnalysis`1.IDByDirection')
+- [IDByDirection](#T-ParquetClassLibrary-EditorSupport-MapAnalysis`1-IDByDirection 'ParquetClassLibrary.EditorSupport.MapAnalysis`1.IDByDirection')
 - [IFloorModelEdit](#T-ParquetClassLibrary-EditorSupport-IFloorModelEdit 'ParquetClassLibrary.EditorSupport.IFloorModelEdit')
   - [ModTool](#P-ParquetClassLibrary-EditorSupport-IFloorModelEdit-ModTool 'ParquetClassLibrary.EditorSupport.IFloorModelEdit.ModTool')
   - [TrenchName](#P-ParquetClassLibrary-EditorSupport-IFloorModelEdit-TrenchName 'ParquetClassLibrary.EditorSupport.IFloorModelEdit.TrenchName')
@@ -486,10 +486,10 @@
   - [ToString()](#M-ParquetClassLibrary-Location-ToString 'ParquetClassLibrary.Location.ToString')
   - [op_Equality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Equality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Equality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
   - [op_Inequality(inLocation1,inLocation2)](#M-ParquetClassLibrary-Location-op_Inequality-ParquetClassLibrary-Location,ParquetClassLibrary-Location- 'ParquetClassLibrary.Location.op_Inequality(ParquetClassLibrary.Location,ParquetClassLibrary.Location)')
-- [MapAnalysis](#T-ParquetClassLibrary-Maps-MapAnalysis 'ParquetClassLibrary.Maps.MapAnalysis')
-  - [CheckExitConsistency\`\`1(inRegionID)](#M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Maps.MapAnalysis.CheckExitConsistency``1(ParquetClassLibrary.ModelID)')
-- [MapAnalysis\`1](#T-ParquetClassLibrary-Maps-MapAnalysis`1 'ParquetClassLibrary.Maps.MapAnalysis`1')
-  - [Directions](#F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions 'ParquetClassLibrary.Maps.MapAnalysis`1.Directions')
+- [MapAnalysis](#T-ParquetClassLibrary-EditorSupport-MapAnalysis 'ParquetClassLibrary.EditorSupport.MapAnalysis')
+  - [CheckExitConsistency\`\`1(inRegionID)](#M-ParquetClassLibrary-EditorSupport-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency``1(ParquetClassLibrary.ModelID)')
+- [MapAnalysis\`1](#T-ParquetClassLibrary-EditorSupport-MapAnalysis`1 'ParquetClassLibrary.EditorSupport.MapAnalysis`1')
+  - [Directions](#F-ParquetClassLibrary-EditorSupport-MapAnalysis`1-Directions 'ParquetClassLibrary.EditorSupport.MapAnalysis`1.Directions')
 - [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')
   - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension')
@@ -4322,12 +4322,12 @@ Facilitates editing of a [CritterModel](#T-ParquetClassLibrary-Beings-CritterMod
 By design, subtypes of [CritterModel](#T-ParquetClassLibrary-Beings-CritterModel 'ParquetClassLibrary.Beings.CritterModel') should never themselves use [ICritterModelEdit](#T-ParquetClassLibrary-EditorSupport-ICritterModelEdit 'ParquetClassLibrary.EditorSupport.ICritterModelEdit').
 ICritterModelEdit is for use only by external types that require read/write access to model properties.
 
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1-IDByDirection'></a>
+<a name='T-ParquetClassLibrary-EditorSupport-MapAnalysis`1-IDByDirection'></a>
 ## IDByDirection `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Maps.MapAnalysis`1
+ParquetClassLibrary.EditorSupport.MapAnalysis`1
 
 ##### Summary
 
@@ -6089,18 +6089,18 @@ Determines whether a specified instance of [Location](#T-ParquetClassLibrary-Loc
 | inLocation1 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The first [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 | inLocation2 | [ParquetClassLibrary.Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') | The second [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location') to compare. |
 
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis'></a>
+<a name='T-ParquetClassLibrary-EditorSupport-MapAnalysis'></a>
 ## MapAnalysis `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Maps
+ParquetClassLibrary.EditorSupport
 
 ##### Summary
 
 Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
 
-<a name='M-ParquetClassLibrary-Maps-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID-'></a>
+<a name='M-ParquetClassLibrary-EditorSupport-MapAnalysis-CheckExitConsistency``1-ParquetClassLibrary-ModelID-'></a>
 ### CheckExitConsistency\`\`1(inRegionID) `method`
 
 ##### Summary
@@ -6126,18 +6126,18 @@ A report of all exit directions leading to regions whose own exits are inconsist
 | ---- | ----------- |
 | TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMapRegionEdit](#T-ParquetClassLibrary-EditorSupport-IMapRegionEdit 'ParquetClassLibrary.EditorSupport.IMapRegionEdit'). |
 
-<a name='T-ParquetClassLibrary-Maps-MapAnalysis`1'></a>
+<a name='T-ParquetClassLibrary-EditorSupport-MapAnalysis`1'></a>
 ## MapAnalysis\`1 `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Maps
+ParquetClassLibrary.EditorSupport
 
 ##### Summary
 
 Provides optional analysis for compatible [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel')s.
 
-<a name='F-ParquetClassLibrary-Maps-MapAnalysis`1-Directions'></a>
+<a name='F-ParquetClassLibrary-EditorSupport-MapAnalysis`1-Directions'></a>
 ### Directions `constants`
 
 ##### Summary
@@ -7878,7 +7878,7 @@ An editable facade onto the internal collection mechanism.
 
 ##### Remarks
 
-Should only be accessed from constructor and [IModelCollectionEdit\`1](#T-ParquetClassLibrary-EditorSupport-IModelCollectionEdit`1 'ParquetClassLibrary.EditorSupport.IModelCollectionEdit`1').
+Should only be accessed from constructor and [](#!-IModelCollectionEdit<TModel> 'IModelCollectionEdit<TModel>').
 
 <a name='P-ParquetClassLibrary-ModelCollection`1-Models'></a>
 ### Models `property`

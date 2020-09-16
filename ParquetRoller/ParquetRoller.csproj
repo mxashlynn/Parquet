@@ -30,18 +30,18 @@
 
     <StartupObject>ParquetRoller.Roller</StartupObject>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Configurations>Debug;Release;Release Editor Support</Configurations>
+    <Configurations>Debug;Game Release;Editor Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Game Release|AnyCPU' ">
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Editor Support|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor Release|AnyCPU'">
     <DefineConstants>TRACE;DESIGN</DefineConstants>
   </PropertyGroup>
 
