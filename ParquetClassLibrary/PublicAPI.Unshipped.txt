@@ -800,11 +800,11 @@ ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.set -> void
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.set -> void
 ParquetClassLibrary.Beings.CharacterModel
-ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuestIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingDialogueIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingInventoryIDs = null) -> void
+ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuestIDs = null, ParquetClassLibrary.ModelID? inStartingDialogueID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingInventoryIDs = null) -> void
 ParquetClassLibrary.Beings.CharacterModel.FamilyName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.PersonalName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.Pronouns.get -> string
-ParquetClassLibrary.Beings.CharacterModel.StartingDialogueIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.CharacterModel.StartingDialogueID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Beings.CharacterModel.StartingInventoryIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID.get -> string
@@ -891,7 +891,8 @@ ParquetClassLibrary.EditorSupport.ICharacterModelEdit.PersonalName.get -> string
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.PersonalName.set -> void
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns.get -> string
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns.set -> void
-ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID.set -> void
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventoryIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingQuestIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StoryCharacterID.get -> string
@@ -1011,6 +1012,7 @@ ParquetClassLibrary.EditorSupport.IRoomRecipeEdit.OptionallyRequiredPerimeterBlo
 ParquetClassLibrary.EditorSupport.IRoomRecipeEdit.OptionallyRequiredWalkableFloors.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.EditorSupport.IScriptModelEdit
 ParquetClassLibrary.EditorSupport.IScriptModelEdit.Nodes.get -> System.Collections.Generic.IList<ParquetClassLibrary.Scripts.ScriptNode>
+ParquetClassLibrary.EditorSupport.MapAnalysis
 ParquetClassLibrary.EmptyTolerantEnumConverter
 ParquetClassLibrary.EmptyTolerantEnumConverter.EmptyTolerantEnumConverter(System.Type inType) -> void
 ParquetClassLibrary.Games.GameModel
@@ -1623,6 +1625,7 @@ static ParquetClassLibrary.Crafts.StrikePanel.operator !=(ParquetClassLibrary.Cr
 static ParquetClassLibrary.Crafts.StrikePanel.operator ==(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
 static ParquetClassLibrary.Crafts.StrikePanelArrayExtensions.IsValidPosition(this ParquetClassLibrary.Crafts.StrikePanel[,] inStrikePanels, ParquetClassLibrary.Vector2D inPosition) -> bool
 static ParquetClassLibrary.Crafts.StrikePanelGrid.Empty.get -> ParquetClassLibrary.Crafts.StrikePanelGrid
+static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
 static ParquetClassLibrary.Location.operator !=(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Maps.ChunkDetail.operator !=(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool

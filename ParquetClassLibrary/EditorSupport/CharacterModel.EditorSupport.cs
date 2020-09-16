@@ -53,13 +53,6 @@ namespace ParquetClassLibrary.Beings
         [Ignore]
         IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
 
-        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingDialogueIDs => (IList<ModelID>)StartingDialogueIDs;
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>
@@ -68,6 +61,14 @@ namespace ParquetClassLibrary.Beings
         /// </remarks>
         [Ignore]
         IList<ModelID> ICharacterModelEdit.StartingInventoryIDs => (IList<ModelID>)StartingInventoryIDs;
+
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        ModelID ICharacterModelEdit.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
         #endregion
     }
 }

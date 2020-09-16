@@ -42,9 +42,9 @@ namespace ParquetClassLibrary.Beings
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuestIDs { get; }
 
-        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say at the outset.</summary>
         [Index(11)]
-        public IReadOnlyList<ModelID> StartingDialogueIDs { get; }
+        public ModelID StartingDialogueID { get; private set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
         /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
@@ -67,22 +67,22 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inPronouns">How to refer to this <see cref="CharacterModel"/>.</param>
         /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
         /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
-        /// <param name="inStartingDialogueIDs">All dialogue this <see cref="CharacterModel"/> may say.</param>
+        /// <param name="inStartingDialogueID">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventoryIDs">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
         public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID? inNativeBiomeID = null,
                               ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
                               IEnumerable<ModelID> inSeeksIDs = null, string inPronouns = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuestIDs = null,
-                              IEnumerable<ModelID> inStartingDialogueIDs = null, IEnumerable<ModelID> inStartingInventoryIDs = null)
+                              ModelID? inStartingDialogueID = null, IEnumerable<ModelID> inStartingInventoryIDs = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment,
                    inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
         {
             var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
-            var nonNullDialogueIDs = inStartingDialogueIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullDialogueID = inStartingDialogueID ?? ModelID.None;
             var nonNullInventoryIDs = inStartingInventoryIDs ?? Enumerable.Empty<ModelID>();
 
             Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
-            Precondition.AreInRange(nonNullDialogueIDs, All.InteractionIDs, nameof(inStartingDialogueIDs));
+            Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(inStartingDialogueID));
             Precondition.AreInRange(nonNullInventoryIDs, All.ItemIDs, nameof(inStartingInventoryIDs));
 
             var names = inName?.Split(Delimiters.NameDelimiter) ?? new string[] { "" };
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Beings
             Pronouns = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuestIDs = nonNullQuestIDs.ToList();
-            StartingDialogueIDs = nonNullDialogueIDs.ToList();
+            StartingDialogueID = nonNullDialogueID;
             StartingInventoryIDs = nonNullInventoryIDs.ToList();
         }
         #endregion
