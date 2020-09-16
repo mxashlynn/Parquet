@@ -16,15 +16,15 @@ namespace ParquetClassLibrary.Rooms
         [Index(4)]
         public int MinimumWalkableSpaces { get; private set; }
 
-        /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>A list of <see cref="FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         [Index(5)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredFurnishings { get; }
 
-        /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
+        /// <summary>An optional list of <see cref="FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         [Index(6)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredWalkableFloors { get; }
 
-        /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
+        /// <summary>An optional list of <see cref="BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         [Index(7)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
         #endregion
