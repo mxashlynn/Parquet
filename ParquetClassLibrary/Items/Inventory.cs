@@ -12,6 +12,11 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public partial class Inventory : IReadOnlyCollection<InventorySlot>
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
+        public static Inventory Empty { get; } = new Inventory(1);
+        #endregion
+
         #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; set; }

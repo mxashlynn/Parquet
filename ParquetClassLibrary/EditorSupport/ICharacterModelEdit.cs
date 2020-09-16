@@ -1,6 +1,7 @@
 #if DESIGN
 using System.Collections.Generic;
 using ParquetClassLibrary.Beings;
+using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.EditorSupport
 {
@@ -43,8 +44,8 @@ namespace ParquetClassLibrary.EditorSupport
         public ModelID StartingDialogueID { get; set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        /// <remarks>This is not the full <see cref="Items.Inventory"/> but a list of item IDs to populate it with.</remarks>
-        public IList<ModelID> StartingInventoryIDs { get; }
+        /// <remarks>This is not the full <see cref="Inventory"/> but a list of item IDs to populate it with.</remarks>
+        public IInventoryEdit StartingInventory { get; }
     }
 }
 #endif

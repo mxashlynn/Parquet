@@ -128,19 +128,19 @@
   - [ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#EditorSupport#IBlockModelEdit#IsLiquid')
   - [ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness](#P-ParquetClassLibrary-Parquets-BlockModel-ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness 'ParquetClassLibrary.Parquets.BlockModel.ParquetClassLibrary#EditorSupport#IBlockModelEdit#MaxToughness')
 - [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel')
-  - [#ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueIDs,inStartingInventoryIDs)](#M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}- 'ParquetClassLibrary.Beings.CharacterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID})')
+  - [#ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueID,inStartingInventory)](#M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Items-Inventory- 'ParquetClassLibrary.Beings.CharacterModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Items.Inventory)')
   - [FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-FamilyName 'ParquetClassLibrary.Beings.CharacterModel.FamilyName')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#FamilyName')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns')
-  - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueIDs')
-  - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventoryIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventoryIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventoryIDs')
+  - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID')
+  - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID')
   - [PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-PersonalName 'ParquetClassLibrary.Beings.CharacterModel.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-Pronouns 'ParquetClassLibrary.Beings.CharacterModel.Pronouns')
-  - [StartingDialogueIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingDialogueIDs')
-  - [StartingInventoryIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingInventoryIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingInventoryIDs')
+  - [StartingDialogueID](#P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueID 'ParquetClassLibrary.Beings.CharacterModel.StartingDialogueID')
+  - [StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.StartingInventory')
   - [StartingQuestIDs](#P-ParquetClassLibrary-Beings-CharacterModel-StartingQuestIDs 'ParquetClassLibrary.Beings.CharacterModel.StartingQuestIDs')
   - [StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.StoryCharacterID')
 - [ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail')
@@ -309,8 +309,8 @@
   - [FamilyName](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-FamilyName 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.FamilyName')
   - [PersonalName](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-PersonalName 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-Pronouns 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns')
-  - [StartingDialogueIDs](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingDialogueIDs 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueIDs')
-  - [StartingInventoryIDs](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventoryIDs 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventoryIDs')
+  - [StartingDialogueID](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingDialogueID 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID')
+  - [StartingInventory](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventory 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventory')
   - [StartingQuestIDs](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingQuestIDs 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingQuestIDs')
   - [StoryCharacterID](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StoryCharacterID 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StoryCharacterID')
 - [ICollectibleModelEdit](#T-ParquetClassLibrary-EditorSupport-ICollectibleModelEdit 'ParquetClassLibrary.EditorSupport.ICollectibleModelEdit')
@@ -421,6 +421,7 @@
   - [#ctor(inSlots,inCapacity)](#M-ParquetClassLibrary-Items-Inventory-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-InventorySlot},System-Int32- 'ParquetClassLibrary.Items.Inventory.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.InventorySlot},System.Int32)')
   - [Capacity](#P-ParquetClassLibrary-Items-Inventory-Capacity 'ParquetClassLibrary.Items.Inventory.Capacity')
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
+  - [Empty](#P-ParquetClassLibrary-Items-Inventory-Empty 'ParquetClassLibrary.Items.Inventory.Empty')
   - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity')
   - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
@@ -2376,8 +2377,8 @@ ParquetClassLibrary.Beings
 
 Models the definitions of in-game actors that take part in the narrative.
 
-<a name='M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID}-'></a>
-### #ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueIDs,inStartingInventoryIDs) `constructor`
+<a name='M-ParquetClassLibrary-Beings-CharacterModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Items-Inventory-'></a>
+### #ctor(inID,inName,inDescription,inComment,inNativeBiomeID,inPrimaryBehaviorID,inAvoidsIDs,inSeeksIDs,inPronouns,inStoryCharacterID,inStartingQuestIDs,inStartingDialogueID,inStartingInventory) `constructor`
 
 ##### Summary
 
@@ -2398,8 +2399,8 @@ Initializes a new instance of the [CharacterModel](#T-ParquetClassLibrary-Beings
 | inPronouns | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | How to refer to this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel'). |
 | inStoryCharacterID | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | A means of identifying this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') across multiple shipped game titles. |
 | inStartingQuestIDs | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any quests this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') has to offer or has undertaken. |
-| inStartingDialogueIDs | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | All dialogue this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') may say. |
-| inStartingInventoryIDs | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.ModelID}') | Any items this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') possesses at the outset. |
+| inStartingDialogueID | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | All dialogue this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') may say. |
+| inStartingInventory | [ParquetClassLibrary.Items.Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') | Any items this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') possesses at the outset. |
 
 <a name='P-ParquetClassLibrary-Beings-CharacterModel-FamilyName'></a>
 ### FamilyName `property`
@@ -2445,8 +2446,8 @@ stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'Par
 By design, subtypes of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-EditorSupport-IModelEdit 'ParquetClassLibrary.EditorSupport.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueIDs'></a>
-### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueIDs `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID'></a>
+### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID `property`
 
 ##### Summary
 
@@ -2457,8 +2458,8 @@ Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMode
 By design, subtypes of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-EditorSupport-IModelEdit 'ParquetClassLibrary.EditorSupport.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventoryIDs'></a>
-### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventoryIDs `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory'></a>
+### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory `property`
 
 ##### Summary
 
@@ -2508,15 +2509,15 @@ Player-facing personal name.
 A key for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup') the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') uses,
 stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'ParquetClassLibrary.Beings.PronounGroup.Objective')/[Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective').
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueIDs'></a>
-### StartingDialogueIDs `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingDialogueID'></a>
+### StartingDialogueID `property`
 
 ##### Summary
 
-Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
+Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say at the outset.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingInventoryIDs'></a>
-### StartingInventoryIDs `property`
+<a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingInventory'></a>
+### StartingInventory `property`
 
 ##### Summary
 
@@ -4194,15 +4195,15 @@ Player-facing personal name.
 A key for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup') the [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') uses,
 stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'ParquetClassLibrary.Beings.PronounGroup.Objective')/[Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective').
 
-<a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingDialogueIDs'></a>
-### StartingDialogueIDs `property`
+<a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingDialogueID'></a>
+### StartingDialogueID `property`
 
 ##### Summary
 
 Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
 
-<a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventoryIDs'></a>
-### StartingInventoryIDs `property`
+<a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventory'></a>
+### StartingInventory `property`
 
 ##### Summary
 
@@ -5290,6 +5291,13 @@ How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClas
 ##### Summary
 
 How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s are currently occupied.
+
+<a name='P-ParquetClassLibrary-Items-Inventory-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
 
 <a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity'></a>
 ### ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity `property`

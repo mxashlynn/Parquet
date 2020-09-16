@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
+using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.Beings
 {
@@ -60,7 +61,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingInventoryIDs => (IList<ModelID>)StartingInventoryIDs;
+        IInventoryEdit ICharacterModelEdit.StartingInventory => (IInventoryEdit)StartingInventory;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
