@@ -17,7 +17,7 @@ namespace ParquetClassLibrary
         private readonly Type EnumType;
 
         /// <summary>
-        /// Creates a new <see cref="EmptyTolerantEnumConverter"/> for the given <see cref="Enum"/> <see cref="System.Type"/>.
+        /// Creates a new <see cref="EmptyTolerantEnumConverter"/> for the given <see cref="Enum"/> <see cref="Type"/>.
         /// </summary>
         /// <param name="inType">The type of the enumeration.</param>
         public EmptyTolerantEnumConverter(Type inType)

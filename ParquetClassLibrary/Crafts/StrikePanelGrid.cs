@@ -17,10 +17,10 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>A value to use in place of uninitialized <see cref="StrikePanelGrid"/>s.</summary>
         public static StrikePanelGrid Empty => new StrikePanelGrid(0, 0);
 
-        /// <summary>Width of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
+        /// <summary>Width of the <see cref="StrikePanel"/> pattern in <see cref="CraftingRecipe"/>.</summary>
         public const int PanelsPerPatternWidth = 4;
 
-        /// <summary>Height of the <see cref="Crafts.StrikePanel"/> pattern in <see cref="Crafts.CraftingRecipe"/>.</summary>
+        /// <summary>Height of the <see cref="StrikePanel"/> pattern in <see cref="CraftingRecipe"/>.</summary>
         public const int PanelsPerPatternHeight = 4;
         #endregion
 

@@ -54,19 +54,19 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> GameIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CritterModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CritterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
         /// </summary>
         public static readonly Range<ModelID> CritterIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Beings.CharacterModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CharacterModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
         /// </summary>
         public static readonly Range<ModelID> CharacterIDs;
 
         /// <summary>
-        /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="Beings.BeingModel"/>s.
+        /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="BeingModel"/>s.
         /// </summary>
         public static readonly IReadOnlyList<Range<ModelID>> BeingIDs;
 
@@ -142,7 +142,7 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> RoomRecipeIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Scripts.ScriptModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ScriptModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> ScriptIDs;
@@ -502,7 +502,7 @@ namespace ParquetClassLibrary
         /// <param name="inScripts">All scripts to be used in the game.</param>
         /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>The collections of models must be separately cleared between calls to this initialization routine.</remarks>
-        /// <seealso cref="All.Clear"/>
+        /// <seealso cref="Clear"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
                                                  IEnumerable<CharacterModel> inCharacters,
@@ -652,20 +652,20 @@ namespace ParquetClassLibrary
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CritterModel>)Critters)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<GameModel>)Games)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<MapModel>)Maps)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<FloorModel>)Floors)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
-            ((ParquetClassLibrary.EditorSupport.IModelCollectionEdit<ItemModel>)Items)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<CritterModel>)Critters)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<GameModel>)Games)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<MapModel>)Maps)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<FloorModel>)Floors)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
+            ((EditorSupport.IModelCollectionEdit<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
         }

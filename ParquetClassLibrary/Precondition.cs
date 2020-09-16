@@ -138,7 +138,7 @@ namespace ParquetClassLibrary
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <typeparam name="TToCheck">The type to check.</typeparam>
         /// <typeparam name="TTarget">The type of which it must be a subtype.</typeparam>
-        /// <exception cref="System.InvalidOperationException">
+        /// <exception cref="InvalidOperationException">
         /// When <typeparamref name="TToCheck"/> does not correspond to <typeparamref name="TTarget"/>.
         /// </exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]

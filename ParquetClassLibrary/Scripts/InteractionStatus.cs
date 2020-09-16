@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Scripts
         /// </summary>
         /// <param name="inInteractionDefinition">The <see cref="InteractionModel"/> whose status is being tracked.</param>
         /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="InteractionModel"/>.</param>
-        /// <param name="inProgramCounter">Index to the current <see cref="Scripts.ScriptNode"/> in the tracked <see cref="InteractionModel.StepsIDs"/>.</param>
+        /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="InteractionModel.StepsIDs"/>.</param>
         public InteractionStatus(InteractionModel inInteractionDefinition, RunState inState, int inProgramCounter)
         {
             Precondition.IsNotNull(inInteractionDefinition, nameof(inInteractionDefinition));

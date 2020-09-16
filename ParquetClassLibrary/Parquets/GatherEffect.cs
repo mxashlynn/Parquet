@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.Parquets
         None = 0,
         /// <summary>Awards the <see cref="Beings.CharacterModel"/> a given <see cref="Items.ItemModel"/>.</summary>
         Item,
-        /// <summary>Replaces this parquet with a <see cref="Parquets.CollectibleModel"/>.</summary>
+        /// <summary>Replaces this parquet with a <see cref="CollectibleModel"/>.</summary>
         Collectible,
     }
 }

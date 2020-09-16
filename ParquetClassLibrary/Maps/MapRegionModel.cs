@@ -74,7 +74,7 @@ namespace ParquetClassLibrary.Maps
         public override ParquetStackGrid ParquetDefinitions { get; }
 
         /// <summary>
-        /// All of the <see cref="Rooms.Room"/>s detected in the <see cref="MapRegionModel"/>.
+        /// All of the <see cref="Room"/>s detected in the <see cref="MapRegionModel"/>.
         /// </summary>
         [Ignore]
         public RoomCollection Rooms { get; private set; }
@@ -144,7 +144,7 @@ namespace ParquetClassLibrary.Maps
         /// Determines which <see cref="BiomeRecipe"/> the given <see cref="MapRegionModel"/> corresponds to.
         /// </summary>
         /// <remarks>
-        /// This method assumes that <see cref="MapRegionModel.Rooms"/> has already been populated.
+        /// This method assumes that <see cref="Rooms"/> has already been populated.
         /// </remarks>
         /// <returns>The appropriate <see cref="ModelID"/>.</returns>
         public ModelID GetBiome()
