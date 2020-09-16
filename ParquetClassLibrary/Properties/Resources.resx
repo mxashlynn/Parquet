@@ -165,6 +165,10 @@
     <value>You must clear the model database before reloading it.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="ErrorEditorSupport" xml:space="preserve">
+    <value>To access this command, please rebuild Parquet with editor support enabled.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorInvalidCast" xml:space="preserve">
     <value>{0} is of type {1} but must be of type {2}.</value>
     <comment>Error string.</comment>

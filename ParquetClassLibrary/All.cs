@@ -644,14 +644,18 @@ namespace ParquetClassLibrary
             return true;
         }
 
-#if DESIGN
         /// <summary>
         /// Clears all the <see cref="ModelCollection{T}"/>s contained in <see cref="All"/>.
         /// </summary>
-        /// <remarks>This method must be called between calls to the initialization routines.</remarks>
+        /// <remarks>
+        /// This method must be called between calls to the initialization routines.
+        /// Note that this method is only available when Paruqet is built with editor support enabled.
+        /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
+#if DESIGN
             ((EditorSupport.IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
             ((EditorSupport.IModelCollectionEdit<CritterModel>)Critters)?.Clear();
             ((EditorSupport.IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
@@ -668,8 +672,10 @@ namespace ParquetClassLibrary
             ((EditorSupport.IModelCollectionEdit<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
-        }
+#else
+            throw new InvalidOperationException(Resources.ErrorEditorSupport);
 #endif
+        }
         #endregion
 
         #region ModelID Range Helper Methods

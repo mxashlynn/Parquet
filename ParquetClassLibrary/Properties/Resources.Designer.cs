@@ -169,6 +169,15 @@ namespace ParquetClassLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To access this command, please rebuild Parquet with editor support enabled..
+        /// </summary>
+        internal static string ErrorEditorSupport {
+            get {
+                return ResourceManager.GetString("ErrorEditorSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
         /// </summary>
         internal static string ErrorInvalidCast {
