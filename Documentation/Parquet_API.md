@@ -134,7 +134,6 @@
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#PersonalName')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#Pronouns')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingDialogueID')
-  - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs')
   - [ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID](#P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID 'ParquetClassLibrary.Beings.CharacterModel.ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StoryCharacterID')
   - [PersonalName](#P-ParquetClassLibrary-Beings-CharacterModel-PersonalName 'ParquetClassLibrary.Beings.CharacterModel.PersonalName')
@@ -310,7 +309,6 @@
   - [PersonalName](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-PersonalName 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.PersonalName')
   - [Pronouns](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-Pronouns 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns')
   - [StartingDialogueID](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingDialogueID 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID')
-  - [StartingInventory](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventory 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventory')
   - [StartingQuestIDs](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingQuestIDs 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingQuestIDs')
   - [StoryCharacterID](#P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StoryCharacterID 'ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StoryCharacterID')
 - [ICollectibleModelEdit](#T-ParquetClassLibrary-EditorSupport-ICollectibleModelEdit 'ParquetClassLibrary.EditorSupport.ICollectibleModelEdit')
@@ -345,9 +343,6 @@
   - [OutcomesIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-OutcomesIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.OutcomesIDs')
   - [PrerequisitesIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-PrerequisitesIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.PrerequisitesIDs')
   - [StepsIDs](#P-ParquetClassLibrary-EditorSupport-IInteractionModelEdit-StepsIDs 'ParquetClassLibrary.EditorSupport.IInteractionModelEdit.StepsIDs')
-- [IInventoryEdit](#T-ParquetClassLibrary-EditorSupport-IInventoryEdit 'ParquetClassLibrary.EditorSupport.IInventoryEdit')
-  - [Capacity](#P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Capacity 'ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity')
-  - [Slots](#P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Slots 'ParquetClassLibrary.EditorSupport.IInventoryEdit.Slots')
 - [IItemModelEdit](#T-ParquetClassLibrary-EditorSupport-IItemModelEdit 'ParquetClassLibrary.EditorSupport.IItemModelEdit')
   - [EffectWhenUsedID](#P-ParquetClassLibrary-EditorSupport-IItemModelEdit-EffectWhenUsedID 'ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID')
   - [EffectWhileHeldID](#P-ParquetClassLibrary-EditorSupport-IItemModelEdit-EffectWhileHeldID 'ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhileHeldID')
@@ -417,15 +412,19 @@
   - [State](#P-ParquetClassLibrary-Scripts-InteractionStatus-State 'ParquetClassLibrary.Scripts.InteractionStatus.State')
   - [ToString()](#M-ParquetClassLibrary-Scripts-InteractionStatus-ToString 'ParquetClassLibrary.Scripts.InteractionStatus.ToString')
 - [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory')
+  - [#ctor()](#M-ParquetClassLibrary-Items-Inventory-#ctor 'ParquetClassLibrary.Items.Inventory.#ctor')
   - [#ctor(inCapacity)](#M-ParquetClassLibrary-Items-Inventory-#ctor-System-Int32- 'ParquetClassLibrary.Items.Inventory.#ctor(System.Int32)')
   - [#ctor(inSlots,inCapacity)](#M-ParquetClassLibrary-Items-Inventory-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-InventorySlot},System-Int32- 'ParquetClassLibrary.Items.Inventory.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.InventorySlot},System.Int32)')
   - [Capacity](#P-ParquetClassLibrary-Items-Inventory-Capacity 'ParquetClassLibrary.Items.Inventory.Capacity')
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
   - [Empty](#P-ParquetClassLibrary-Items-Inventory-Empty 'ParquetClassLibrary.Items.Inventory.Empty')
-  - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity')
-  - [ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots')
+  - [IsReadOnly](#P-ParquetClassLibrary-Items-Inventory-IsReadOnly 'ParquetClassLibrary.Items.Inventory.IsReadOnly')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
+  - [Add(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Add-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Add(ParquetClassLibrary.Items.InventorySlot)')
+  - [Clear()](#M-ParquetClassLibrary-Items-Inventory-Clear 'ParquetClassLibrary.Items.Inventory.Clear')
   - [Contains(inItemID)](#M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID)')
+  - [Contains(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.Items.InventorySlot)')
+  - [CopyTo(inArray,inArrayIndex)](#M-ParquetClassLibrary-Items-Inventory-CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32- 'ParquetClassLibrary.Items.Inventory.CopyTo(ParquetClassLibrary.Items.InventorySlot[],System.Int32)')
   - [GetEnumerator()](#M-ParquetClassLibrary-Items-Inventory-GetEnumerator 'ParquetClassLibrary.Items.Inventory.GetEnumerator')
   - [Give(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.Items.InventorySlot)')
   - [Give(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.ModelID,System.Int32)')
@@ -433,6 +432,7 @@
   - [Has(inSlots)](#M-ParquetClassLibrary-Items-Inventory-Has-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-InventorySlot}- 'ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.InventorySlot})')
   - [Has(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Has-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.Items.InventorySlot)')
   - [Has(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Has-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.ModelID,System.Int32)')
+  - [Remove(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Remove-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Remove(ParquetClassLibrary.Items.InventorySlot)')
   - [System#Collections#IEnumerable#GetEnumerator()](#M-ParquetClassLibrary-Items-Inventory-System#Collections#IEnumerable#GetEnumerator 'ParquetClassLibrary.Items.Inventory.System#Collections#IEnumerable#GetEnumerator')
   - [Take(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.Items.InventorySlot)')
   - [Take(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.ModelID,System.Int32)')
@@ -886,6 +886,7 @@
   - [ErrorCannotRemove](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotRemove 'ParquetClassLibrary.Properties.Resources.ErrorCannotRemove')
   - [ErrorCannotReplace](#P-ParquetClassLibrary-Properties-Resources-ErrorCannotReplace 'ParquetClassLibrary.Properties.Resources.ErrorCannotReplace')
   - [ErrorClearAllFirst](#P-ParquetClassLibrary-Properties-Resources-ErrorClearAllFirst 'ParquetClassLibrary.Properties.Resources.ErrorClearAllFirst')
+  - [ErrorEditorSupport](#P-ParquetClassLibrary-Properties-Resources-ErrorEditorSupport 'ParquetClassLibrary.Properties.Resources.ErrorEditorSupport')
   - [ErrorInvalidCast](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast 'ParquetClassLibrary.Properties.Resources.ErrorInvalidCast')
   - [ErrorInvalidPosition](#P-ParquetClassLibrary-Properties-Resources-ErrorInvalidPosition 'ParquetClassLibrary.Properties.Resources.ErrorInvalidPosition')
   - [ErrorModelNotFound](#P-ParquetClassLibrary-Properties-Resources-ErrorModelNotFound 'ParquetClassLibrary.Properties.Resources.ErrorModelNotFound')
@@ -1501,6 +1502,8 @@ This method has no parameters.
 ##### Remarks
 
 This method must be called between calls to the initialization routines.
+Note that this method is only available when Paruqet is built with editor support enabled.
+This means that when games that do not support live editing of models must initialize [All](#T-ParquetClassLibrary-All 'ParquetClassLibrary.All') only once per run.
 
 <a name='M-ParquetClassLibrary-All-GetIDRangeForType-ParquetClassLibrary-ModelID-'></a>
 ### GetIDRangeForType(inID) `method`
@@ -2458,18 +2461,6 @@ Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterMode
 By design, subtypes of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-EditorSupport-IModelEdit 'ParquetClassLibrary.EditorSupport.IModelEdit').
 IModelEdit is for external types that require readwrite access.
 
-<a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory'></a>
-### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingInventory `property`
-
-##### Summary
-
-The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') begins with.
-
-##### Remarks
-
-By design, subtypes of [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') should never themselves use [IModelEdit](#T-ParquetClassLibrary-EditorSupport-IModelEdit 'ParquetClassLibrary.EditorSupport.IModelEdit').
-IModelEdit is for external types that require readwrite access.
-
 <a name='P-ParquetClassLibrary-Beings-CharacterModel-ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs'></a>
 ### ParquetClassLibrary#EditorSupport#ICharacterModelEdit#StartingQuestIDs `property`
 
@@ -2525,7 +2516,8 @@ The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-C
 
 ##### Remarks
 
-This is not the full [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') but a list of item IDs to populate it with.
+Note that, unlike other members, for technical reasons this property is mutable.
+Care should be taken not to alter it during play.
 
 <a name='P-ParquetClassLibrary-Beings-CharacterModel-StartingQuestIDs'></a>
 ### StartingQuestIDs `property`
@@ -4202,17 +4194,6 @@ stored as "[Objective](#P-ParquetClassLibrary-Beings-PronounGroup-Objective 'Par
 
 Dialogue lines this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') can say.
 
-<a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingInventory'></a>
-### StartingInventory `property`
-
-##### Summary
-
-The set of belongings that this [CharacterModel](#T-ParquetClassLibrary-Beings-CharacterModel 'ParquetClassLibrary.Beings.CharacterModel') begins with.
-
-##### Remarks
-
-This is not the full [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') but a list of item IDs to populate it with.
-
 <a name='P-ParquetClassLibrary-EditorSupport-ICharacterModelEdit-StartingQuestIDs'></a>
 ### StartingQuestIDs `property`
 
@@ -4544,31 +4525,6 @@ Describes the criteria for begining this interaction.
 ##### Summary
 
 Everything this interaction entails.
-
-<a name='T-ParquetClassLibrary-EditorSupport-IInventoryEdit'></a>
-## IInventoryEdit `type`
-
-##### Namespace
-
-ParquetClassLibrary.EditorSupport
-
-##### Summary
-
-Facilitates editing of an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') from design tools while maintaining a read-only face for use during play.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Capacity'></a>
-### Capacity `property`
-
-##### Summary
-
-How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s exits.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IInventoryEdit-Slots'></a>
-### Slots `property`
-
-##### Summary
-
-The internal collection mechanism.
 
 <a name='T-ParquetClassLibrary-EditorSupport-IItemModelEdit'></a>
 ## IItemModelEdit `type`
@@ -5251,6 +5207,23 @@ ParquetClassLibrary.Items
 
 Models an item that characters may carry, use, equip, trade, and/or build with.
 
+<a name='M-ParquetClassLibrary-Items-Inventory-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes an empty [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') with unusable capacity.
+
+##### Parameters
+
+This constructor has no parameters.
+
+##### Remarks
+
+This version of the constructor exists to make the generic new() constraint happy
+ and is used in the library in a context where its limitations are understood.
+ You probably don't want to use this constructor in your own code.
+
 <a name='M-ParquetClassLibrary-Items-Inventory-#ctor-System-Int32-'></a>
 ### #ctor(inCapacity) `constructor`
 
@@ -5299,19 +5272,12 @@ How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClas
 
 A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
 
-<a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity'></a>
-### ParquetClassLibrary#EditorSupport#IInventoryEdit#Capacity `property`
+<a name='P-ParquetClassLibrary-Items-Inventory-IsReadOnly'></a>
+### IsReadOnly `property`
 
 ##### Summary
 
-How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s exits.
-
-<a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots'></a>
-### ParquetClassLibrary#EditorSupport#IInventoryEdit#Slots `property`
-
-##### Summary
-
-The internal collection mechanism.
+If `true` the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is read-only; if false, it may be mutated.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Slots'></a>
 ### Slots `property`
@@ -5319,6 +5285,34 @@ The internal collection mechanism.
 ##### Summary
 
 The internal collection mechanism.
+
+<a name='M-ParquetClassLibrary-Items-Inventory-Add-ParquetClassLibrary-Items-InventorySlot-'></a>
+### Add(inSlot) `method`
+
+##### Summary
+
+Adds the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') to the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to add. |
+
+##### Remarks
+
+This method should only be used by [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2').
+
+<a name='M-ParquetClassLibrary-Items-Inventory-Clear'></a>
+### Clear() `method`
+
+##### Summary
+
+Removes all [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s from the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-ModelID-'></a>
 ### Contains(inItemID) `method`
@@ -5336,6 +5330,37 @@ The number of items of the given type contained.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The item type to check for.  Cannot be [None](#F-ParquetClassLibrary-ModelID-None 'ParquetClassLibrary.ModelID.None'). |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-Items-InventorySlot-'></a>
+### Contains(inSlot) `method`
+
+##### Summary
+
+Determines whether the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') contains the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot').
+
+##### Returns
+
+`true` if the slot is found; otherwise, `false`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to search for. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32-'></a>
+### CopyTo(inArray,inArrayIndex) `method`
+
+##### Summary
+
+Copies the elements of the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') to an [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array'), starting at the given index.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inArray | [ParquetClassLibrary.Items.InventorySlot[]](#T-ParquetClassLibrary-Items-InventorySlot[] 'ParquetClassLibrary.Items.InventorySlot[]') | The array to copy to. |
+| inArrayIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The index at which to begin copying. |
 
 <a name='M-ParquetClassLibrary-Items-Inventory-GetEnumerator'></a>
 ### GetEnumerator() `method`
@@ -5457,6 +5482,23 @@ Determines if the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetCla
 | ---- | ---- | ----------- |
 | inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to check for. |
 | inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to check for.  Must be positive. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-Remove-ParquetClassLibrary-Items-InventorySlot-'></a>
+### Remove(inSlot) `method`
+
+##### Summary
+
+Removes the first occurrence of the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') from the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Returns
+
+`False` if slot was found but could not be removed; otherwise, `true`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to remove. |
 
 <a name='M-ParquetClassLibrary-Items-Inventory-System#Collections#IEnumerable#GetEnumerator'></a>
 ### System#Collections#IEnumerable#GetEnumerator() `method`
@@ -11319,6 +11361,13 @@ Looks up a localized string similar to Tried to replace non-contained {0} '{1}'.
 ##### Summary
 
 Looks up a localized string similar to You must clear the model database before reloading it..
+
+<a name='P-ParquetClassLibrary-Properties-Resources-ErrorEditorSupport'></a>
+### ErrorEditorSupport `property`
+
+##### Summary
+
+Looks up a localized string similar to To access this command, please rebuild Parquet with editor support enabled..
 
 <a name='P-ParquetClassLibrary-Properties-Resources-ErrorInvalidCast'></a>
 ### ErrorInvalidCast `property`
