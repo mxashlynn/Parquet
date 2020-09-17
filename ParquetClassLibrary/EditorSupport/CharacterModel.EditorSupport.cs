@@ -54,15 +54,6 @@ namespace ParquetClassLibrary.Beings
         [Ignore]
         IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
 
-
-        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
-        /// IModelEdit is for external types that require readwrite access.
-        /// </remarks>
-        [Ignore]
-        IInventoryEdit ICharacterModelEdit.StartingInventory => (IInventoryEdit)StartingInventory;
-
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.

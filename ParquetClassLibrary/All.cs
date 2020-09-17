@@ -463,12 +463,11 @@ namespace ParquetClassLibrary
                 #region Linear Series Types
                 { typeof(IEnumerable<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
                 { typeof(IEnumerable<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
-                { typeof(IEnumerable<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 { typeof(IEnumerable<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
+                { typeof(Inventory), SeriesConverter<InventorySlot, Inventory>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
-                { typeof(IReadOnlyList<InventorySlot>), SeriesConverter<InventorySlot, List<InventorySlot>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 { typeof(IReadOnlyList<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
                 #endregion

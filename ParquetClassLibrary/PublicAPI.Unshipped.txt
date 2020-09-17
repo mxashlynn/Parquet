@@ -893,7 +893,7 @@ ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns.get -> string
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.Pronouns.set -> void
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingDialogueID.set -> void
-ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventory.get -> ParquetClassLibrary.EditorSupport.IInventoryEdit
+ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingInventory.get -> ParquetClassLibrary.EditorSupport.IMutableInventory
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StartingQuestIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StoryCharacterID.get -> string
 ParquetClassLibrary.EditorSupport.ICharacterModelEdit.StoryCharacterID.set -> void
@@ -938,10 +938,6 @@ ParquetClassLibrary.EditorSupport.IInteractionModelEdit
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.OutcomesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.PrerequisitesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IInteractionModelEdit.StepsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.EditorSupport.IInventoryEdit
-ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity.get -> int
-ParquetClassLibrary.EditorSupport.IInventoryEdit.Capacity.set -> void
-ParquetClassLibrary.EditorSupport.IInventoryEdit.Slots.get -> System.Collections.Generic.IList<ParquetClassLibrary.Items.InventorySlot>
 ParquetClassLibrary.EditorSupport.IItemModelEdit
 ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IItemModelEdit.EffectWhenUsedID.set -> void
@@ -988,6 +984,10 @@ ParquetClassLibrary.EditorSupport.IModelEdit.ID.get -> ParquetClassLibrary.Model
 ParquetClassLibrary.EditorSupport.IModelEdit.ID.set -> void
 ParquetClassLibrary.EditorSupport.IModelEdit.Name.get -> string
 ParquetClassLibrary.EditorSupport.IModelEdit.Name.set -> void
+ParquetClassLibrary.EditorSupport.IMutableInventory
+ParquetClassLibrary.EditorSupport.IMutableInventory.Capacity.get -> int
+ParquetClassLibrary.EditorSupport.IMutableInventory.Capacity.set -> void
+ParquetClassLibrary.EditorSupport.IMutableInventory.Slots.get -> System.Collections.Generic.IList<ParquetClassLibrary.Items.InventorySlot>
 ParquetClassLibrary.EditorSupport.IParquetModelEdit
 ParquetClassLibrary.EditorSupport.IParquetModelEdit.AddsToBiome.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.EditorSupport.IParquetModelEdit.AddsToRoom.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
@@ -1035,8 +1035,12 @@ ParquetClassLibrary.Items.GatheringTool.None = 0 -> ParquetClassLibrary.Items.Ga
 ParquetClassLibrary.Items.GatheringTool.Pick = 1 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Shovel = 3 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.Inventory
+ParquetClassLibrary.Items.Inventory.Add(ParquetClassLibrary.Items.InventorySlot inSlot) -> void
 ParquetClassLibrary.Items.Inventory.Capacity.get -> int
+ParquetClassLibrary.Items.Inventory.Clear() -> void
+ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID inItemID) -> int
+ParquetClassLibrary.Items.Inventory.CopyTo(ParquetClassLibrary.Items.InventorySlot[] inArray, int inArrayIndex) -> void
 ParquetClassLibrary.Items.Inventory.Count.get -> int
 ParquetClassLibrary.Items.Inventory.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Items.InventorySlot>
 ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
@@ -1045,10 +1049,29 @@ ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.Items.InventorySlot 
 ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> bool
 ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable<(ParquetClassLibrary.ModelID, int)> inItems) -> bool
 ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots) -> bool
+ParquetClassLibrary.Items.Inventory.Inventory() -> void
 ParquetClassLibrary.Items.Inventory.Inventory(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots, int inCapacity) -> void
 ParquetClassLibrary.Items.Inventory.Inventory(int inCapacity) -> void
+ParquetClassLibrary.Items.Inventory.IsReadOnly.get -> bool
+ParquetClassLibrary.Items.Inventory.Remove(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int
+ParquetClassLibrary.Items.InventoryCob
+ParquetClassLibrary.Items.InventoryCob.Capacity.get -> int
+ParquetClassLibrary.Items.InventoryCob.Contains(ParquetClassLibrary.ModelID inItemID) -> int
+ParquetClassLibrary.Items.InventoryCob.Count.get -> int
+ParquetClassLibrary.Items.InventoryCob.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Items.InventorySlot>
+ParquetClassLibrary.Items.InventoryCob.Give(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
+ParquetClassLibrary.Items.InventoryCob.Give(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int
+ParquetClassLibrary.Items.InventoryCob.Has(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
+ParquetClassLibrary.Items.InventoryCob.Has(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> bool
+ParquetClassLibrary.Items.InventoryCob.Has(System.Collections.Generic.IEnumerable<(ParquetClassLibrary.ModelID, int)> inItems) -> bool
+ParquetClassLibrary.Items.InventoryCob.Has(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots) -> bool
+ParquetClassLibrary.Items.InventoryCob.InventoryCob() -> void
+ParquetClassLibrary.Items.InventoryCob.InventoryCob(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots, int inCapacity) -> void
+ParquetClassLibrary.Items.InventoryCob.InventoryCob(int inCapacity) -> void
+ParquetClassLibrary.Items.InventoryCob.Take(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
+ParquetClassLibrary.Items.InventoryCob.Take(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int
 ParquetClassLibrary.Items.InventorySlot
 ParquetClassLibrary.Items.InventorySlot.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 ParquetClassLibrary.Items.InventorySlot.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -1497,6 +1520,7 @@ override ParquetClassLibrary.Games.GameModel.ToString() -> string
 override ParquetClassLibrary.GridConverter<TElement, TGrid>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override ParquetClassLibrary.GridConverter<TElement, TGrid>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override ParquetClassLibrary.Items.Inventory.ToString() -> string
+override ParquetClassLibrary.Items.InventoryCob.ToString() -> string
 override ParquetClassLibrary.Items.InventorySlot.ToString() -> string
 override ParquetClassLibrary.Items.ItemModel.GetAllTags() -> System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag>
 override ParquetClassLibrary.Location.Equals(object obj) -> bool
@@ -1627,6 +1651,7 @@ static ParquetClassLibrary.Crafts.StrikePanelArrayExtensions.IsValidPosition(thi
 static ParquetClassLibrary.Crafts.StrikePanelGrid.Empty.get -> ParquetClassLibrary.Crafts.StrikePanelGrid
 static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
 static ParquetClassLibrary.Items.Inventory.Empty.get -> ParquetClassLibrary.Items.Inventory
+static ParquetClassLibrary.Items.InventoryCob.Empty.get -> ParquetClassLibrary.Items.Inventory
 static ParquetClassLibrary.Location.operator !=(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Maps.ChunkDetail.operator !=(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool

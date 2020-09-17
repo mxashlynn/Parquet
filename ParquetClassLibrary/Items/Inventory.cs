@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,11 +11,13 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public partial class Inventory : IReadOnlyCollection<InventorySlot>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
+                                                     Justification = "Inventory implies InventorySlotCollection.")]
+    public class Inventory : ICollection<InventorySlot>
     {
         #region Class Defaults
         /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
-        public static Inventory Empty { get; } = new Inventory(1);
+        public static Inventory Empty { get; } = new Inventory();
         #endregion
 
         #region Characteristics
@@ -26,6 +29,17 @@ namespace ParquetClassLibrary.Items
         #endregion
 
         #region Initialization
+        /// <summary>
+        /// Initializes an empty <see cref="Inventory"/> with unusable capacity.
+        /// </summary>
+        /// <remarks>
+        /// This version of the constructor exists to make the generic new() constraint happy
+        /// and is used in the library in a context where its limitations are understood.
+        /// You probably don't want to use this constructor in your own code.
+        ///</remarks>
+        public Inventory()
+            : this(1) { }
+
         /// <summary>
         /// Initializes a new empty instance of the <see cref="Inventory"/> class.
         /// </summary>
@@ -275,5 +289,53 @@ namespace ParquetClassLibrary.Items
         public override string ToString()
             => $"{Count} / {Capacity} Items";
         #endregion
+
+        #region ICollection Implementation
+        /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
+        public bool IsReadOnly => false;
+
+        /// <summary>
+        /// Adds the given <see cref="InventorySlot"/> to the <see cref="Inventory"/>.
+        /// </summary>
+        /// <remarks>This method should only be used by <see cref="SeriesConverter{TElement, TCollection}"/>.</remarks>
+        /// <param name="inSlot">The slot to add.</param>
+        [Obsolete("Use Inventory.Give() instead.")]
+        public void Add(InventorySlot inSlot)
+            => Give(inSlot);
+
+        /// <summary>
+        /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
+        /// <remarks>This method does not respect gameplay rules, but forcibly empties the collection.</remarks>
+        /// </summary>
+        public void Clear()
+            => Slots.Clear();
+
+        /// <summary>
+        /// Determines whether the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
+        /// </summary>
+        /// <param name="inSlot">The slot to search for.</param>
+        /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
+        [Obsolete("Use Inventory.Has() instead.", true)]
+        public bool Contains(InventorySlot inSlot)
+            => Has(inSlot);
+
+        /// <summary>
+        /// Copies the elements of the <see cref="Inventory"/> to an <see cref="System.Array"/>, starting at the given index.
+        /// </summary>
+        /// <param name="inArray">The array to copy to.</param>
+        /// <param name="inArrayIndex">The index at which to begin copying.</param>
+        public void CopyTo(InventorySlot[] inArray, int inArrayIndex)
+            => Slots.CopyTo(inArray, inArrayIndex);
+
+        /// <summary>
+        /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="Inventory"/>.
+        /// </summary>
+        /// <param name="inSlot">The slot to remove.</param>
+        /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
+        [Obsolete("Use Inventory.Take() instead.", true)]
+        public bool Remove(InventorySlot inSlot)
+            => Take(inSlot) == 0;
+        #endregion
+
     }
 }

@@ -48,7 +48,10 @@ namespace ParquetClassLibrary.Beings
         public ModelID StartingDialogueID { get; private set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        /// <remarks>This is not the full <see cref="Inventory"/> but a list of item IDs to populate it with.</remarks>
+        /// <remarks>
+        /// Note that, unlike other members, for technical reasons this property is mutable.
+        /// Care should be taken not to alter it during play.
+        /// </remarks>
         [Index(12)]
         public Inventory StartingInventory { get; }
         #endregion

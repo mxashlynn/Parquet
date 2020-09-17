@@ -54,7 +54,8 @@ namespace ParquetClassLibrary
                 {
                     result.Append(element.ConvertToString(element, inRow, inMemberMapData));
                 }
-                result.Append(Delimiters.SecondaryDelimiter);
+                // TODO Can the delimeters be made into Chars?  If so, remove the indexer here.
+                result.Append(Delimiters.SecondaryDelimiter[0]);
             }
             result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
 
