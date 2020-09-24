@@ -141,11 +141,11 @@ namespace ParquetClassLibrary.Beings
             => $"{All.ProjectDirectory}/{nameof(PronounGroup)}s.csv";
 
         /// <summary>
-        /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
+        /// Replaces pronoun tags with the appropriate pronoung from the given <see cref="PronounGroup"/>.
         /// </summary>
         /// <param name="inText">The text to transform.</param>
         /// <returns>The updated text.</returns>
-        public StringBuilder UpdatePronouns(StringBuilder inText)
+        public StringBuilder FillInPronouns(StringBuilder inText)
             => inText?
                 .Replace(SubjectiveTag, Subjective)
                 .Replace(ObjectiveTag, Objective)
@@ -154,17 +154,24 @@ namespace ParquetClassLibrary.Beings
                 .Replace(ReflexiveTag, Reflexive);
 
         /// <summary>
-        /// Replaces pronoun tags with the given <see cref="PronounGroup"/>.
+        /// Replaces pronoun tags with the appropriate pronoung from the given <see cref="PronounGroup"/>.
         /// </summary>
         /// <param name="inText">The text to transform.</param>
         /// <returns>The updated text.</returns>
-        public StringBuilder UpdatePronouns(string inText)
+        public StringBuilder FillInPronouns(string inText)
             => new StringBuilder(inText)
                 .Replace(SubjectiveTag, Subjective)
                 .Replace(ObjectiveTag, Objective)
                 .Replace(DeterminerTag, Determiner)
                 .Replace(PossessiveTag, Possessive)
                 .Replace(ReflexiveTag, Reflexive);
+
+        /// <summary>
+        /// Returns a <see cref="string"/> to use as shorthand for the <see cref="PronounGroup"/>.
+        /// </summary>
+        /// <returns>The shorthand.</returns>
+        public string GetKey()
+            => $"{Subjective}/{Objective}";
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the <see cref="PronounGroup"/>.

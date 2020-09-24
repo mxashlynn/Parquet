@@ -812,13 +812,14 @@ ParquetClassLibrary.Beings.CritterModel
 ParquetClassLibrary.Beings.CritterModel.CritterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null) -> void
 ParquetClassLibrary.Beings.PronounGroup
 ParquetClassLibrary.Beings.PronounGroup.Determiner.get -> string
+ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(System.Text.StringBuilder inText) -> System.Text.StringBuilder
+ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(string inText) -> System.Text.StringBuilder
+ParquetClassLibrary.Beings.PronounGroup.GetKey() -> string
 ParquetClassLibrary.Beings.PronounGroup.Objective.get -> string
 ParquetClassLibrary.Beings.PronounGroup.Possessive.get -> string
 ParquetClassLibrary.Beings.PronounGroup.PronounGroup(string inSubjective, string inObjective, string inDeterminer, string inPossessive, string inReflexive) -> void
 ParquetClassLibrary.Beings.PronounGroup.Reflexive.get -> string
 ParquetClassLibrary.Beings.PronounGroup.Subjective.get -> string
-ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder inText) -> System.Text.StringBuilder
-ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Biomes.BiomeConfiguration
 ParquetClassLibrary.Biomes.BiomeRecipe
 ParquetClassLibrary.Biomes.BiomeRecipe.BiomeRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inParquetCriteria = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag> inEntryRequirements = null) -> void

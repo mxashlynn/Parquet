@@ -828,12 +828,13 @@
   - [Possessive](#P-ParquetClassLibrary-Beings-PronounGroup-Possessive 'ParquetClassLibrary.Beings.PronounGroup.Possessive')
   - [Reflexive](#P-ParquetClassLibrary-Beings-PronounGroup-Reflexive 'ParquetClassLibrary.Beings.PronounGroup.Reflexive')
   - [Subjective](#P-ParquetClassLibrary-Beings-PronounGroup-Subjective 'ParquetClassLibrary.Beings.PronounGroup.Subjective')
+  - [FillInPronouns(inText)](#M-ParquetClassLibrary-Beings-PronounGroup-FillInPronouns-System-Text-StringBuilder- 'ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(System.Text.StringBuilder)')
+  - [FillInPronouns(inText)](#M-ParquetClassLibrary-Beings-PronounGroup-FillInPronouns-System-String- 'ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(System.String)')
   - [GetFilePath()](#M-ParquetClassLibrary-Beings-PronounGroup-GetFilePath 'ParquetClassLibrary.Beings.PronounGroup.GetFilePath')
+  - [GetKey()](#M-ParquetClassLibrary-Beings-PronounGroup-GetKey 'ParquetClassLibrary.Beings.PronounGroup.GetKey')
   - [GetRecords()](#M-ParquetClassLibrary-Beings-PronounGroup-GetRecords 'ParquetClassLibrary.Beings.PronounGroup.GetRecords')
   - [PutRecords()](#M-ParquetClassLibrary-Beings-PronounGroup-PutRecords-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Beings-PronounGroup}- 'ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Beings.PronounGroup})')
   - [ToString()](#M-ParquetClassLibrary-Beings-PronounGroup-ToString 'ParquetClassLibrary.Beings.PronounGroup.ToString')
-  - [UpdatePronouns(inText)](#M-ParquetClassLibrary-Beings-PronounGroup-UpdatePronouns-System-Text-StringBuilder- 'ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.Text.StringBuilder)')
-  - [UpdatePronouns(inText)](#M-ParquetClassLibrary-Beings-PronounGroup-UpdatePronouns-System-String- 'ParquetClassLibrary.Beings.PronounGroup.UpdatePronouns(System.String)')
 - [RangeCollectionExtensions](#T-ParquetClassLibrary-RangeCollectionExtensions 'ParquetClassLibrary.RangeCollectionExtensions')
   - [ContainsRange\`\`1(inRangeCollection,inRange)](#M-ParquetClassLibrary-RangeCollectionExtensions-ContainsRange``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{``0}},ParquetClassLibrary-Range{``0}- 'ParquetClassLibrary.RangeCollectionExtensions.ContainsRange``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{``0}},ParquetClassLibrary.Range{``0})')
   - [ContainsValue\`\`1(inRangeCollection,inValue)](#M-ParquetClassLibrary-RangeCollectionExtensions-ContainsValue``1-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Range{``0}},``0- 'ParquetClassLibrary.RangeCollectionExtensions.ContainsValue``1(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Range{``0}},``0)')
@@ -10609,6 +10610,40 @@ Personal pronoun used to indicate the user.
 
 Personal pronoun used as the subject of a verb.
 
+<a name='M-ParquetClassLibrary-Beings-PronounGroup-FillInPronouns-System-Text-StringBuilder-'></a>
+### FillInPronouns(inText) `method`
+
+##### Summary
+
+Replaces pronoun tags with the appropriate pronoung from the given [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup').
+
+##### Returns
+
+The updated text.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inText | [System.Text.StringBuilder](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Text.StringBuilder 'System.Text.StringBuilder') | The text to transform. |
+
+<a name='M-ParquetClassLibrary-Beings-PronounGroup-FillInPronouns-System-String-'></a>
+### FillInPronouns(inText) `method`
+
+##### Summary
+
+Replaces pronoun tags with the appropriate pronoung from the given [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup').
+
+##### Returns
+
+The updated text.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The text to transform. |
+
 <a name='M-ParquetClassLibrary-Beings-PronounGroup-GetFilePath'></a>
 ### GetFilePath() `method`
 
@@ -10619,6 +10654,21 @@ Returns the filename and path associated with [PronounGroup](#T-ParquetClassLibr
 ##### Returns
 
 A full path to the associated file.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Beings-PronounGroup-GetKey'></a>
+### GetKey() `method`
+
+##### Summary
+
+Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') to use as shorthand for the [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup').
+
+##### Returns
+
+The shorthand.
 
 ##### Parameters
 
@@ -10664,40 +10714,6 @@ The representation.
 ##### Parameters
 
 This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Beings-PronounGroup-UpdatePronouns-System-Text-StringBuilder-'></a>
-### UpdatePronouns(inText) `method`
-
-##### Summary
-
-Replaces pronoun tags with the given [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup').
-
-##### Returns
-
-The updated text.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inText | [System.Text.StringBuilder](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Text.StringBuilder 'System.Text.StringBuilder') | The text to transform. |
-
-<a name='M-ParquetClassLibrary-Beings-PronounGroup-UpdatePronouns-System-String-'></a>
-### UpdatePronouns(inText) `method`
-
-##### Summary
-
-Replaces pronoun tags with the given [PronounGroup](#T-ParquetClassLibrary-Beings-PronounGroup 'ParquetClassLibrary.Beings.PronounGroup').
-
-##### Returns
-
-The updated text.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The text to transform. |
 
 <a name='T-ParquetClassLibrary-RangeCollectionExtensions'></a>
 ## RangeCollectionExtensions `type`
