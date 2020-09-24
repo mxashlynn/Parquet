@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Beings
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
         [Index(8)]
-        public string Pronouns { get; private set; }
+        public string PronounKey { get; private set; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
@@ -93,7 +93,7 @@ namespace ParquetClassLibrary.Beings
             FamilyName = names.Length > 1
                 ? names[1]
                 : "";
-            Pronouns = inPronouns;
+            PronounKey = inPronouns;
             StoryCharacterID = inStoryCharacterID;
             StartingQuestIDs = nonNullQuestIDs.ToList();
             StartingDialogueID = nonNullDialogueID;

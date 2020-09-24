@@ -36,7 +36,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string ICharacterModelEdit.Pronouns { get => Pronouns; set => Pronouns = value; }
+        string ICharacterModelEdit.PronounKey { get => PronounKey; set => PronounKey = value; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
