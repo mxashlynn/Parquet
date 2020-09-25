@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// <summary>
     /// Facilitates editing of a <see cref="BiomeRecipe"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    public interface IBiomeRecipeEdit : IModelEdit
+    public interface IMutableBiomeRecipe : IMutableModel
     {
         /// <summary>
         /// A rating indicating where in the progression this <see cref="BiomeRecipe"/> falls.

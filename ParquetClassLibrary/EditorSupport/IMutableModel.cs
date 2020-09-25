@@ -10,14 +10,14 @@ namespace ParquetClassLibrary.EditorSupport
     /// State class.
     ///
     /// However, at design time even definitions need to be changeable.  To support this easily while still preserving the fixedness
-    /// of Model and company during play, <see cref="IModelEdit"/> and its subtypes provide interfaces that may be used to safely
+    /// of Model and company during play, <see cref="IMutableModel"/> and its subtypes provide interfaces that may be used to safely
     /// make changes to the properties of their corresponding models.
     /// 
-    /// By design, subtypes of <see cref="Model"/> should never themselves use their <see cref="IModelEdit"/> interface.
+    /// By design, subtypes of <see cref="Model"/> should never themselves use their <see cref="IMutableModel"/> interface.
     /// IModelEdit is for use only by external types (such as those in a design-time tool) that require read/write access to model
     /// properties.
     /// </remarks>
-    public interface IModelEdit
+    public interface IMutableModel
     {
         /// <summary>Game-wide unique identifier.</summary>
         /// <remarks>Be cautious editing this.</remarks>

@@ -7,10 +7,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="FurnishingModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="FurnishingModel"/> should never themselves use <see cref="IFurnishingModelEdit"/>.
+    /// By design, subtypes of <see cref="FurnishingModel"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
     /// IFurnishingModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface IFurnishingModelEdit : IParquetModelEdit
+    public interface IMutableFurnishingModel : IMutableParquetModel
     {
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         public bool IsWalkable { get; set; }

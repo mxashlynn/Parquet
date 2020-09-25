@@ -9,7 +9,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// Provides optional analysis for compatible <see cref="MapModel"/>s.
     /// </summary>
     internal static class MapAnalysis<TMapType>
-        where TMapType : MapModel, IMapRegionEdit
+        where TMapType : MapModel, IMutablMapRegion
     {
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
@@ -51,13 +51,13 @@ namespace ParquetClassLibrary.EditorSupport
         /// That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
         /// that is considered inconsistent and will be reported.
         /// </summary>
-        /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMapRegionEdit"/>.</typeparam>
+        /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMutablMapRegion"/>.</typeparam>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
             Justification = "In this instance deconstruction makes the code harder to read.")]
         public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
-            where TMapType : MapModel, IMapRegionEdit
+            where TMapType : MapModel, IMutablMapRegion
         {
             var inconsistentExitDirections = new List<string>();
 

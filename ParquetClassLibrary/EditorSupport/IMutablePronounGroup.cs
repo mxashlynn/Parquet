@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// <summary>
     /// Facilitates editing of a <see cref="PronounGroup"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    public interface IPronounGroupEdit
+    public interface IMutablePronounGroup
     {
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
         public string Subjective { get; set; }

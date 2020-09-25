@@ -9,10 +9,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="CharacterModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="ICharacterModelEdit"/>.
+    /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
     /// ICharacterModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface ICharacterModelEdit : IBeingModelEdit
+    public interface IMutableCharacterModel : IMutableBeingModel
     {
         /// <summary>Player-facing personal name.</summary>
         public string PersonalName { get; set; }
@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
-        public string Pronouns { get; set; }
+        public string PronounKey { get; set; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>

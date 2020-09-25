@@ -7,10 +7,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="GameModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IGameModelEdit"/>.
+    /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
     /// IGameModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface IGameModelEdit : IModelEdit
+    public interface IMutableGameModel : IMutableModel
     {
         /// <summary>If <c>true</c> this game is part of a longer sequence of games.</summary>
         public bool IsEpisode { get; set;  }

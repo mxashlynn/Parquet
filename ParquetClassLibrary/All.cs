@@ -655,20 +655,20 @@ namespace ParquetClassLibrary
         public static void Clear()
         {
 #if DESIGN
-            ((EditorSupport.IModelCollectionEdit<CharacterModel>)Characters)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<CritterModel>)Critters)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<BiomeRecipe>)Biomes)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<CraftingRecipe>)CraftingRecipes)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<GameModel>)Games)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<InteractionModel>)Interactions)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<MapModel>)Maps)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<FloorModel>)Floors)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<BlockModel>)Blocks)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<FurnishingModel>)Furnishings)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<CollectibleModel>)Collectibles)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<RoomRecipe>)RoomRecipes)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<ScriptModel>)Scripts)?.Clear();
-            ((EditorSupport.IModelCollectionEdit<ItemModel>)Items)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
+            ((EditorSupport.IMutableModelCollection<BiomeRecipe>)Biomes)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
+            ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
+            ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
+            ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
+            ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
+            ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
+            ((EditorSupport.IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
+            ((EditorSupport.IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
+            ((EditorSupport.IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
+            ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
 #else

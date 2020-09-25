@@ -8,10 +8,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="ParquetModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="ParquetModel"/> should never themselves use <see cref="IParquetModelEdit"/>.
+    /// By design, subtypes of <see cref="ParquetModel"/> should never themselves use <see cref="IMutableParquetModel"/>.
     /// IParquetModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface IParquetModelEdit : IModelEdit
+    public interface IMutableParquetModel : IMutableModel
     {
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.

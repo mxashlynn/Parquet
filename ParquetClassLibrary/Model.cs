@@ -30,7 +30,7 @@ namespace ParquetClassLibrary
     /// </remarks>
     /// <seealso cref="ModelTag"/>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, Model should never itself use IModelEdit the interface to access its own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
+        Justification = "By design, Model should never itself use IMutableModel the interface to access its own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public abstract partial class Model : IEquatable<Model>
     {
         #region Characteristics

@@ -7,10 +7,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="CollectibleModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="CollectibleModel"/> should never themselves use <see cref="ICollectibleModelEdit"/>.
+    /// By design, subtypes of <see cref="CollectibleModel"/> should never themselves use <see cref="IMutableCollectibleModel"/>.
     /// ICollectibleModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface ICollectibleModelEdit : IParquetModelEdit
+    public interface IMutableCollectibleModel : IMutableParquetModel
     {
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         public CollectingEffect CollectionEffect { get; set; }

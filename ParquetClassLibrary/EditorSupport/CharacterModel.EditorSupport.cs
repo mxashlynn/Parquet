@@ -7,60 +7,60 @@ using ParquetClassLibrary.Items;
 namespace ParquetClassLibrary.Beings
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IModelEdit or derived interfaces to access their own members.  The IModelEdit family of interfaces is for external types that require read/write access.")]
-    public partial class CharacterModel : ICharacterModelEdit
+        Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    public partial class CharacterModel : IMutableCharacterModel
     {
         #region ICharacterModelEdit Implementation
         /// <summary>Player-facing personal name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string ICharacterModelEdit.PersonalName { get => PersonalName; set => PersonalName = value; }
+        string IMutableCharacterModel.PersonalName { get => PersonalName; set => PersonalName = value; }
 
         /// <summary>Player-facing family name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string ICharacterModelEdit.FamilyName { get => FamilyName; set => FamilyName = value; }
+        string IMutableCharacterModel.FamilyName { get => FamilyName; set => FamilyName = value; }
 
         /// <summary>
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string ICharacterModelEdit.PronounKey { get => PronounKey; set => PronounKey = value; }
+        string IMutableCharacterModel.PronounKey { get => PronounKey; set => PronounKey = value; }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string ICharacterModelEdit.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
+        string IMutableCharacterModel.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> ICharacterModelEdit.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
+        IList<ModelID> IMutableCharacterModel.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IModelEdit"/>.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        ModelID ICharacterModelEdit.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
+        ModelID IMutableCharacterModel.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
         #endregion
     }
 }

@@ -8,10 +8,10 @@ namespace ParquetClassLibrary.EditorSupport
     /// Facilitates editing of a <see cref="BlockModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
     /// <remarks>
-    /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IBlockModelEdit"/>.
+    /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
     /// IBlockModelEdit is for use only by external types that require read/write access to model properties.
     /// </remarks>
-    public interface IBlockModelEdit : IParquetModelEdit
+    public interface IMutableBlockModel : IMutableParquetModel
     {
         /// <summary>The tool used to remove the block.</summary>
         public GatheringTool GatherTool { get; set; }

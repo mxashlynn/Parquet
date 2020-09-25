@@ -6,7 +6,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// while maintaining a read-only facade during play.
     /// </summary>
     /// <typeparam name="TModel">The type collected, typically a concrete decendent of <see cref="Model"/>.</typeparam>
-    public interface IModelCollectionEdit<TModel>
+    public interface IMutableModelCollection<TModel>
         where TModel : Model
     {
         /// <summary>

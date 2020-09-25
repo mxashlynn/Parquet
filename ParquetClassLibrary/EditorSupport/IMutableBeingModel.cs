@@ -7,7 +7,7 @@ namespace ParquetClassLibrary.EditorSupport
     /// <summary>
     /// Facilitates editing of a <see cref="BeingModel"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    public interface IBeingModelEdit : IModelEdit
+    public interface IMutableBeingModel : IMutableModel
     {
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         public ModelID NativeBiomeID { get; set; }
