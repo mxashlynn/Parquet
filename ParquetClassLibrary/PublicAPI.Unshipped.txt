@@ -1653,6 +1653,7 @@ static ParquetClassLibrary.Crafts.StrikePanelGrid.Empty.get -> ParquetClassLibra
 static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
 static ParquetClassLibrary.Items.Inventory.Empty.get -> ParquetClassLibrary.Items.Inventory
 static ParquetClassLibrary.Items.InventoryCob.Empty.get -> ParquetClassLibrary.Items.Inventory
+static ParquetClassLibrary.Items.InventorySlot.Empty.get -> ParquetClassLibrary.Items.InventorySlot
 static ParquetClassLibrary.Location.operator !=(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Location.operator ==(ParquetClassLibrary.Location inLocation1, ParquetClassLibrary.Location inLocation2) -> bool
 static ParquetClassLibrary.Maps.ChunkDetail.operator !=(ParquetClassLibrary.Maps.ChunkDetail inChunkType1, ParquetClassLibrary.Maps.ChunkDetail inChunkType2) -> bool

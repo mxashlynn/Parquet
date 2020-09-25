@@ -14,6 +14,11 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     public class InventorySlot : ITypeConverter
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
+        public static InventorySlot Empty { get; } = new InventorySlot();
+        #endregion
+
         #region Characteristics
         /// <summary>What <see cref="ItemModel"/>s are stored in this slot.</summary>
         public ModelID ItemID { get; }
