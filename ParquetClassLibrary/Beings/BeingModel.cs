@@ -55,7 +55,7 @@ namespace ParquetClassLibrary.Beings
             var nonNullSeeksIDs = (inSeeksIDs ?? Enumerable.Empty<ModelID>()).ToList();
 
             Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));
-            Precondition.IsInRange(nonNullNativeBiomeID, All.BiomeIDs, nameof(inNativeBiomeID));
+            Precondition.IsInRange(nonNullNativeBiomeID, All.BiomeRecipeIDs, nameof(inNativeBiomeID));
             Precondition.IsInRange(nonNullPrimaryBehaviorID, All.ScriptIDs, nameof(inPrimaryBehaviorID));
             Precondition.AreInRange(nonNullAvoidsIDs, All.ParquetIDs, nameof(inAvoidsIDs));
             Precondition.AreInRange(nonNullSeeksIDs, All.ParquetIDs, nameof(inSeeksIDs));

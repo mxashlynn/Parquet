@@ -177,7 +177,7 @@ namespace ParquetRoller
                     {
                         All.CritterIDs,
                         All.CharacterIDs,
-                        All.BiomeIDs,
+                        All.BiomeRecipeIDs,
                         All.CraftingRecipeIDs,
                         All.InteractionIDs,
                         All.MapChunkIDs,
@@ -216,7 +216,7 @@ namespace ParquetRoller
                     break;
                 case "biome":
                 case "biomes":
-                    workload = new ModelCollection(All.BiomeIDs, All.Biomes);
+                    workload = new ModelCollection(All.BiomeRecipeIDs, All.Biomes);
                     break;
                 case "craft":
                 case "crafts":

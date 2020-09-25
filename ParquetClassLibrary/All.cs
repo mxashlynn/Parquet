@@ -74,7 +74,7 @@ namespace ParquetClassLibrary
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
         /// </summary>
-        public static readonly Range<ModelID> BiomeIDs;
+        public static readonly Range<ModelID> BiomeRecipeIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CraftingRecipe"/>s.
@@ -340,7 +340,7 @@ namespace ParquetClassLibrary
             CritterIDs = new Range<ModelID>(10000, 19000);
             CharacterIDs = new Range<ModelID>(20000, 29000);
 
-            BiomeIDs = new Range<ModelID>(30000, 39000);
+            BiomeRecipeIDs = new Range<ModelID>(30000, 39000);
 
             CraftingRecipeIDs = new Range<ModelID>(40000, 49000);
 
@@ -403,7 +403,7 @@ namespace ParquetClassLibrary
                 GameIDs,
                 CritterIDs,
                 CharacterIDs,
-                BiomeIDs,
+                BiomeRecipeIDs,
                 CraftingRecipeIDs,
                 InteractionIDs,
                 MapChunkIDs,
@@ -544,7 +544,7 @@ namespace ParquetClassLibrary
             Critters = new ModelCollection<CritterModel>(CritterIDs, inCritters);
             Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
                 .Concat(Critters));
-            Biomes = new ModelCollection<BiomeRecipe>(BiomeIDs, inBiomes);
+            Biomes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Games = new ModelCollection<GameModel>(GameIDs, inGames);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
@@ -583,7 +583,7 @@ namespace ParquetClassLibrary
             #region Read Models
             var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
             var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
-            var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeIDs);
+            var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
             var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
             var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
@@ -711,7 +711,7 @@ namespace ParquetClassLibrary
                     CharacterModel _ => CharacterIDs,
                     CritterModel _ => CritterIDs,
                     ItemModel _ => ItemIDs,
-                    BiomeRecipe _ => BiomeIDs,
+                    BiomeRecipe _ => BiomeRecipeIDs,
                     CraftingRecipe _ => CraftingRecipeIDs,
                     MapChunkModel _ => MapChunkIDs,
                     MapRegionSketch _ => MapRegionIDs,
@@ -738,7 +738,7 @@ namespace ParquetClassLibrary
             : inModelType == typeof(CharacterModel) ? CharacterIDs
             : inModelType == typeof(CritterModel) ? CritterIDs
             : inModelType == typeof(ItemModel) ? ItemIDs
-            : inModelType == typeof(BiomeRecipe) ? BiomeIDs
+            : inModelType == typeof(BiomeRecipe) ? BiomeRecipeIDs
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs

@@ -59,7 +59,7 @@ namespace ParquetClassLibrary.Biomes
                           int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false,
                           IEnumerable<ModelTag> inParquetCriteria = null,
                           IEnumerable<ModelTag> inEntryRequirements = null)
-            : base(All.BiomeIDs, inID, inName, inDescription, inComment)
+            : base(All.BiomeRecipeIDs, inID, inName, inDescription, inComment)
         {
             Precondition.MustBeNonNegative(inTier, nameof(inTier));
 
