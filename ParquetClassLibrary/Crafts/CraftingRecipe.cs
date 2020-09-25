@@ -62,7 +62,7 @@ namespace ParquetClassLibrary.Crafts
             var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
 
 #if !DESIGN
-            // These two checks should not be made from within editing tools.
+            // DESIGN-Time Note: These two checks should not be made from within editing tools.
             Precondition.IsInRange(nonNullProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
             Precondition.IsInRange(nonNullIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inIngredients)}.Count");
 #endif

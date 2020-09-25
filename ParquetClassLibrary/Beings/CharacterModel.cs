@@ -43,7 +43,10 @@ namespace ParquetClassLibrary.Beings
         [Index(10)]
         public IReadOnlyList<ModelID> StartingQuestIDs { get; }
 
-        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say at the outset.</summary>
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Scripts.InteractionModel"/>that this <see cref="CharacterModel"/>
+        /// can say at the outset.
+        /// </summary>
         [Index(11)]
         public ModelID StartingDialogueID { get; private set; }
 

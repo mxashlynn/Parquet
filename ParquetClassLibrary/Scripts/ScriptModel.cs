@@ -7,6 +7,7 @@ namespace ParquetClassLibrary.Scripts
 {
     /// <summary>
     /// Models a series of imperative, procedural commands.
+    /// This might be an AI behavior, for example.
     /// </summary>
     public partial class ScriptModel : Model
     {
