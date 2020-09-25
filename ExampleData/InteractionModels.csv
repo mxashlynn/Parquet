@@ -1,4 +1,4 @@
 ﻿ID,Name,Description,Comment,PrerequisitesIDs,StepsIDs,OutcomesIDs
--50000,Interaction Test,Test,Test,,,
-50000,Scarf Talk,prompt for getting scarves,"It's mighty cold out; take this with you, dearie.",,,
-50001,Find A Scarf,The quest to find a scarf!,,,,
+-130000,Interaction Test,Test,Test,,,
+130000,Scarf Talk,prompt for getting scarves,"It's mighty cold out; take this with you, dearie.",,,
+130001,Find A Scarf,The quest to find a scarf!,,,,

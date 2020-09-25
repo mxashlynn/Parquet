@@ -337,26 +337,27 @@ namespace ParquetClassLibrary
             #region Define Most Ranges
             GameIDs = new Range<ModelID>(1, 9000);
 
-            CritterIDs = new Range<ModelID>(10000, 19000);
-            CharacterIDs = new Range<ModelID>(20000, 29000);
+            FloorIDs = new Range<ModelID>(10000, 19000);
+            BlockIDs = new Range<ModelID>(20000, 29000);
+            FurnishingIDs = new Range<ModelID>(30000, 39000);
+            CollectibleIDs = new Range<ModelID>(40000, 49000);
 
-            BiomeRecipeIDs = new Range<ModelID>(30000, 39000);
+            CritterIDs = new Range<ModelID>(50000, 59000);
+            CharacterIDs = new Range<ModelID>(60000, 69000);
 
-            CraftingRecipeIDs = new Range<ModelID>(40000, 49000);
+            BiomeRecipeIDs = new Range<ModelID>(70000, 79000);
+            CraftingRecipeIDs = new Range<ModelID>(80000, 89000);
+            RoomRecipeIDs = new Range<ModelID>(90000, 99000);
 
-            InteractionIDs = new Range<ModelID>(50000, 59000);
+
+
+
 
             MapChunkIDs = new Range<ModelID>(70000, 79000);
             MapRegionIDs = new Range<ModelID>(80000, 89000);
 
-            FloorIDs = new Range<ModelID>(90000, 99000);
-            BlockIDs = new Range<ModelID>(100000, 109000);
-            FurnishingIDs = new Range<ModelID>(110000, 119000);
-            CollectibleIDs = new Range<ModelID>(120000, 129000);
-
-            RoomRecipeIDs = new Range<ModelID>(130000, 139000);
-
             ScriptIDs = new Range<ModelID>(140000, 149000);
+            InteractionIDs = new Range<ModelID>(50000, 59000);
             #endregion
 
             #region Define Most Range Collections

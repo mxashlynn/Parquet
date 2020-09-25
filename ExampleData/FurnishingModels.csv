@@ -1,6 +1,6 @@
 ﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,IsWalkable,Entry,IsEnclosing,IsFlammable,SwapID
--110000,3 Furnishing Test Parquet,Test,Test,-150003,,,True,Up,True,False,None
-110000,Chair,,,150003,,Usable Surface,True,None,False,True,None
-110001,Table,,,150004,,Seating,False,None,True,True,None
-110002,Wooden Door Open,,,150005,,,True,Room,True,True,110003
-110003,Wooden Door Closed,,,150005,,,False,Room,True,True,110002
+-30000,3 Furnishing Test Parquet,Test,Test,-140003,,,True,Up,True,False,None
+30000,Chair,,,140003,,Usable Surface,True,None,False,True,None
+30001,Table,,,140004,,Seating,False,None,True,True,None
+30002,Wooden Door Open,,,140005,,,True,Room,True,True,30003
+30003,Wooden Door Closed,,,140005,,,False,Room,True,True,30002

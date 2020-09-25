@@ -1,8 +1,8 @@
 ﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
--90000,1 Floor Test Parquet,Test,Test,-150000,,,None,dark hole
-90000,grass,,,None,,,Shovel,dirty pit
-90001,weeds,,,None,Swampy,,Shovel,muddy pit
-90002,sand,,,None,Deserted,,Shovel,sandy pit
-90003,snow,,,None,Frozen,,Shovel,snowy pit
-90004,stone floor,,,None,,Stone,Hammer,stony trench
-90005,red brick,,,None,,Brick,Hammer,red brick channel
+-10000,1 Floor Test Parquet,Test,Test,-140000,,,None,dark hole
+10000,grass,,,None,,,Shovel,dirty pit
+10001,weeds,,,None,Swampy,,Shovel,muddy pit
+10002,sand,,,None,Deserted,,Shovel,sandy pit
+10003,snow,,,None,Frozen,,Shovel,snowy pit
+10004,stone floor,,,None,,Stone,Hammer,stony trench
+10005,red brick,,,None,,Brick,Hammer,red brick channel

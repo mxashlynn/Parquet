@@ -1,4 +1,4 @@
 ﻿ID,Name,Description,Comment,NativeBiomeID,PrimaryBehaviorID,AvoidsIDs,SeeksIDs
--10000,Test Critter,Test,Test,None,140000,,
-10000,Ladybug,Dainty and red!,,30004,140005,,
-10001,Blue Milkweed Beetle,Dark and dutiful!,,30003,140001,,
+-50000,Test Critter,Test,Test,None,120000,,
+50000,Ladybug,Dainty and red!,,70004,120005,,
+50001,Blue Milkweed Beetle,Dark and dutiful!,,70003,120001,,
