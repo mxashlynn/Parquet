@@ -741,7 +741,7 @@ namespace ParquetClassLibrary
             : inModelType == typeof(CharacterModel) ? CharacterIDs
             : inModelType == typeof(BiomeRecipe) ? BiomeRecipeIDs
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
-            : inModelType == typeof(RoomRecipe) ? CraftingRecipeIDs
+            : inModelType == typeof(RoomRecipe) ? RoomRecipeIDs
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
             : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegionModel) ? MapRegionIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs
