@@ -800,7 +800,7 @@ ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.set -> void
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.SpawnAt.set -> void
 ParquetClassLibrary.Beings.CharacterModel
-ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null, string inPronouns = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuestIDs = null, ParquetClassLibrary.ModelID? inStartingDialogueID = null, ParquetClassLibrary.Items.Inventory inStartingInventory = null) -> void
+ParquetClassLibrary.Beings.CharacterModel.CharacterModel(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, ParquetClassLibrary.ModelID? inNativeBiomeID = null, ParquetClassLibrary.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inSeeksIDs = null, string inPronounKey = "they/them", string inStoryCharacterID = "", System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelID> inStartingQuestIDs = null, ParquetClassLibrary.ModelID? inStartingDialogueID = null, ParquetClassLibrary.Items.Inventory inStartingInventory = null) -> void
 ParquetClassLibrary.Beings.CharacterModel.FamilyName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.PersonalName.get -> string
 ParquetClassLibrary.Beings.CharacterModel.PronounKey.get -> string
@@ -1591,6 +1591,7 @@ static CsvHelper.ReflectionExtensions.IsUserDefinedStruct(this System.Type type)
 static CsvHelper.ReflectionExtensions.MemberType(this System.Reflection.MemberInfo member) -> System.Type
 static CsvHelper.TypeConversion.TypeConverterOptions.Merge(params CsvHelper.TypeConversion.TypeConverterOptions[] sources) -> CsvHelper.TypeConversion.TypeConverterOptions
 static ParquetClassLibrary.All.Beings.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.BeingModel>
+static ParquetClassLibrary.All.BiomeRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Biomes.BiomeRecipe>
 static ParquetClassLibrary.All.Blocks.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Parquets.BlockModel>
 static ParquetClassLibrary.All.Characters.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.CharacterModel>
 static ParquetClassLibrary.All.Clear() -> void

@@ -71,14 +71,14 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoidsIDs">Any parquets this <see cref="CharacterModel"/> avoids.</param>
         /// <param name="inSeeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>
-        /// <param name="inPronouns">How to refer to this <see cref="CharacterModel"/>.</param>
+        /// <param name="inPronounKey">How to refer to this <see cref="CharacterModel"/>.</param>
         /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
         /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inStartingDialogueID">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
         public CharacterModel(ModelID inID, string inName, string inDescription, string inComment, ModelID? inNativeBiomeID = null,
                               ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
-                              IEnumerable<ModelID> inSeeksIDs = null, string inPronouns = PronounGroup.DefaultKey,
+                              IEnumerable<ModelID> inSeeksIDs = null, string inPronounKey = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuestIDs = null,
                               ModelID? inStartingDialogueID = null, Inventory inStartingInventory = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment,
@@ -96,7 +96,7 @@ namespace ParquetClassLibrary.Beings
             FamilyName = names.Length > 1
                 ? names[1]
                 : "";
-            PronounKey = inPronouns;
+            PronounKey = inPronounKey;
             StoryCharacterID = inStoryCharacterID;
             StartingQuestIDs = nonNullQuestIDs.ToList();
             StartingDialogueID = nonNullDialogueID;
