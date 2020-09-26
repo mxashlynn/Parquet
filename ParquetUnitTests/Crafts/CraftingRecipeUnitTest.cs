@@ -53,60 +53,6 @@ namespace ParquetUnitTests.Crafts
         }
 
         [Fact]
-        public void NullAndEmptyProductListsThrowTest()
-        {
-            var emptyProductList = new List<RecipeElement>();
-
-            static void TestCodeNull()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           null, ingredientList, emptyPanelPattern);
-            }
-
-            void TestCodeEmpty()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           emptyProductList, ingredientList, emptyPanelPattern);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeNull);
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeEmpty);
-        }
-
-        [Fact]
-        public void NullAndEmptyIngredientListsThrowTest()
-        {
-            var emptyIngredientList = new List<RecipeElement>();
-
-            static void TestCodeNull()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, null, emptyPanelPattern);
-            }
-
-            void TestCodeEmpty()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, emptyIngredientList, emptyPanelPattern);
-            }
-
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeNull);
-            Assert.Throws<ArgumentOutOfRangeException>(TestCodeEmpty);
-        }
-
-        [Fact]
-        public void NullPanelPatternsThrowTest()
-        {
-            static void TestCode()
-            {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
-                                           productList, ingredientList, null);
-            }
-
-            Assert.Throws<ArgumentNullException>(TestCode);
-        }
-
-        [Fact]
         public void PanelTooHighPatternsThrowTest()
         {
             var patternTooHigh = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight + 1,
