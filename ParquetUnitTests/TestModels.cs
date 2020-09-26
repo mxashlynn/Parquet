@@ -101,7 +101,7 @@ namespace ParquetUnitTests
         public static IReadOnlyList<CritterModel> Critters { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BiomeRecipe> Biomes { get; }
+        public static IReadOnlyList<BiomeRecipe> BiomeRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
@@ -199,7 +199,7 @@ namespace ParquetUnitTests
             PronounGroups = new List<PronounGroup> { TestPronounGroup };
             Characters = new List<CharacterModel> { TestCharacter };
             Critters = new List<CritterModel> { TestCritter };
-            Biomes = new List<BiomeRecipe> { TestBiome };
+            BiomeRecipes = new List<BiomeRecipe> { TestBiome };
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
@@ -212,8 +212,8 @@ namespace ParquetUnitTests
             Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
             Scripts = new List<ScriptModel> { TestScript };
 
-            All.InitializeCollections(PronounGroups, Characters, Critters, Biomes, CraftingRecipes, Games, Interactions, Maps,
-                                      Floors, Blocks, Furnishings, Collectibles, RoomRecipes, Scripts, Items);
+            All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
+                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Maps, Scripts, Interactions, Items);
             #endregion
         }
     }

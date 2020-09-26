@@ -905,8 +905,8 @@ ParquetClassLibrary.EditorSupport.IMutableCharacterModel.FamilyName.get -> strin
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.FamilyName.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PersonalName.get -> string
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PersonalName.set -> void
-ParquetClassLibrary.EditorSupport.IMutableCharacterModel.Pronouns.get -> string
-ParquetClassLibrary.EditorSupport.IMutableCharacterModel.Pronouns.set -> void
+ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PronounKey.get -> string
+ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PronounKey.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
@@ -1591,7 +1591,6 @@ static CsvHelper.ReflectionExtensions.IsUserDefinedStruct(this System.Type type)
 static CsvHelper.ReflectionExtensions.MemberType(this System.Reflection.MemberInfo member) -> System.Type
 static CsvHelper.TypeConversion.TypeConverterOptions.Merge(params CsvHelper.TypeConversion.TypeConverterOptions[] sources) -> CsvHelper.TypeConversion.TypeConverterOptions
 static ParquetClassLibrary.All.Beings.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.BeingModel>
-static ParquetClassLibrary.All.Biomes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Biomes.BiomeRecipe>
 static ParquetClassLibrary.All.Blocks.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Parquets.BlockModel>
 static ParquetClassLibrary.All.Characters.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Beings.CharacterModel>
 static ParquetClassLibrary.All.Clear() -> void
@@ -1605,7 +1604,7 @@ static ParquetClassLibrary.All.Games.get -> ParquetClassLibrary.ModelCollection<
 static ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.Model inModel) -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.All.GetIDRangeForType(ParquetClassLibrary.ModelID inID) -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static ParquetClassLibrary.All.GetIDRangeForType(System.Type inModelType) -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
-static ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.CharacterModel> inCharacters, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.CritterModel> inCritters, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Biomes.BiomeRecipe> inBiomes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Games.GameModel> inGames, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.MapModel> inMaps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.FloorModel> inFloors, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.BlockModel> inBlocks, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.FurnishingModel> inFurnishings, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.CollectibleModel> inCollectibles, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.ItemModel> inItems) -> void
+static ParquetClassLibrary.All.InitializeCollections(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Games.GameModel> inGames, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.FloorModel> inFloors, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.BlockModel> inBlocks, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.FurnishingModel> inFurnishings, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Parquets.CollectibleModel> inCollectibles, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.CritterModel> inCritters, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.CharacterModel> inCharacters, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Biomes.BiomeRecipe> inBiomes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Maps.MapModel> inMaps, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.ItemModel> inItems) -> void
 static ParquetClassLibrary.All.Interactions.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.InteractionModel>
 static ParquetClassLibrary.All.Items.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Items.ItemModel>
 static ParquetClassLibrary.All.LoadFromCSVs() -> bool
@@ -1733,7 +1732,7 @@ static ParquetClassLibrary.Vector2D.operator -(ParquetClassLibrary.Vector2D inVe
 static ParquetClassLibrary.Vector2D.operator ==(ParquetClassLibrary.Vector2D inVector1, ParquetClassLibrary.Vector2D inVector2) -> bool
 static readonly ParquetClassLibrary.All.AllDefinedIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
 static readonly ParquetClassLibrary.All.BeingIDs -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>>
-static readonly ParquetClassLibrary.All.BiomeIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
+static readonly ParquetClassLibrary.All.BiomeRecipeIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.BlockIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.CharacterIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>
 static readonly ParquetClassLibrary.All.CollectibleIDs -> ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>

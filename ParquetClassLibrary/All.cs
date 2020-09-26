@@ -54,59 +54,6 @@ namespace ParquetClassLibrary
         public static readonly Range<ModelID> GameIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CritterModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
-        /// </summary>
-        public static readonly Range<ModelID> CritterIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CharacterModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
-        /// </summary>
-        public static readonly Range<ModelID> CharacterIDs;
-
-        /// <summary>
-        /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="BeingModel"/>s.
-        /// </summary>
-        public static readonly IReadOnlyList<Range<ModelID>> BeingIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
-        /// </summary>
-        public static readonly Range<ModelID> BiomeRecipeIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CraftingRecipe"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
-        /// </summary>
-        public static readonly Range<ModelID> CraftingRecipeIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="InteractionModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
-        /// </summary>
-        public static readonly Range<ModelID> InteractionIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunkModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<ModelID> MapChunkIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegionModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly Range<ModelID> MapRegionIDs;
-
-        /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapModel"/>s.
-        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
-        /// </summary>
-        public static readonly IReadOnlyList<Range<ModelID>> MapIDs;
-
-        /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="FloorModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test parquets.
         /// </summary>
@@ -136,16 +83,69 @@ namespace ParquetClassLibrary
         public static readonly IReadOnlyList<Range<ModelID>> ParquetIDs;
 
         /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CritterModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Critters.
+        /// </summary>
+        public static readonly Range<ModelID> CritterIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CharacterModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test NPCs.
+        /// </summary>
+        public static readonly Range<ModelID> CharacterIDs;
+
+        /// <summary>
+        /// A collection containing all defined <see cref="Range{ModelID}"/>s of <see cref="BeingModel"/>s.
+        /// </summary>
+        public static readonly IReadOnlyList<Range<ModelID>> BeingIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="BiomeRecipe"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Biomes.
+        /// </summary>
+        public static readonly Range<ModelID> BiomeRecipeIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="CraftingRecipe"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
+        /// </summary>
+        public static readonly Range<ModelID> CraftingRecipeIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="RoomRecipe"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
         /// </summary>
         public static readonly Range<ModelID> RoomRecipeIDs;
 
         /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapChunkModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<ModelID> MapChunkIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegionModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly Range<ModelID> MapRegionIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
+        /// </summary>
+        public static readonly IReadOnlyList<Range<ModelID>> MapIDs;
+
+        /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ScriptModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> ScriptIDs;
+
+        /// <summary>
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="InteractionModel"/>s.
+        /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test recipes.
+        /// </summary>
+        public static readonly Range<ModelID> InteractionIDs;
 
         /// <summary>
         /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="ItemModel"/>s.
@@ -161,76 +161,12 @@ namespace ParquetClassLibrary
 
         #region ModelCollections
         /// <summary>
-        /// A collection of all defined <see cref="BeingModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<BeingModel> Beings { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="CharacterModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<CharacterModel> Characters { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="CritterModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<CritterModel> Critters { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="BiomeRecipe"/>s.
-        /// This collection is the source of truth about biome for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<BiomeRecipe> Biomes { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="CraftingRecipe"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
-
-        /// <summary>
         /// A collection of all defined <see cref="GameModel"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<GameModel> Games { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="InteractionModel"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<InteractionModel> Interactions { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined <see cref="MapModel"/>s.
-        /// This collection is the source of truth about biome for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<MapModel> Maps { get; private set; }
-
-        /// <summary>
-        /// A collection of all defined parquets of all subtypes.
-        /// This collection is the source of truth about parquets for the rest of the library,
-        /// something like a color palette that other classes can paint with.
-        /// </summary>
-        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<ParquetModel> Parquets { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="FloorModel"/>s.
@@ -265,6 +201,54 @@ namespace ParquetClassLibrary
         public static ModelCollection<CollectibleModel> Collectibles { get; private set; }
 
         /// <summary>
+        /// A collection of all defined parquets of all subtypes.
+        /// This collection is the source of truth about parquets for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<ParquetModel> Parquets { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CritterModel"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<CritterModel> Critters { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CharacterModel"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<CharacterModel> Characters { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="BeingModel"/>s.
+        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<BeingModel> Beings { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="BiomeRecipe"/>s.
+        /// This collection is the source of truth about biome for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<BiomeRecipe> BiomeRecipes { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="CraftingRecipe"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<CraftingRecipe> CraftingRecipes { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
@@ -273,12 +257,28 @@ namespace ParquetClassLibrary
         public static ModelCollection<RoomRecipe> RoomRecipes { get; private set; }
 
         /// <summary>
+        /// A collection of all defined <see cref="MapModel"/>s.
+        /// This collection is the source of truth about biome for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<MapModel> Maps { get; private set; }
+
+        /// <summary>
         /// A collection of all defined <see cref="ScriptModel"/>s.
         /// This collection is the source of truth about crafting for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<ScriptModel> Scripts { get; private set; }
+
+        /// <summary>
+        /// A collection of all defined <see cref="InteractionModel"/>s.
+        /// This collection is the source of truth about crafting for the rest of the library,
+        /// something like a color palette that other classes can paint with.
+        /// </summary>
+        /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
+        public static ModelCollection<InteractionModel> Interactions { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="ItemModel"/>s.
@@ -310,19 +310,22 @@ namespace ParquetClassLibrary
         {
             #region Default Values for Collections
             CollectionsHaveBeenInitialized = false;
-            Beings = ModelCollection<BeingModel>.Default;
-            Characters = ModelCollection<CharacterModel>.Default;
-            Critters = ModelCollection<CritterModel>.Default;
-            Biomes = ModelCollection<BiomeRecipe>.Default;
-            CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
-            Interactions = ModelCollection<InteractionModel>.Default;
-            Maps = ModelCollection<MapModel>.Default;
-            Parquets = ModelCollection<ParquetModel>.Default;
+
+            Games = ModelCollection<GameModel>.Default;
             Floors = ModelCollection<FloorModel>.Default;
             Blocks = ModelCollection<BlockModel>.Default;
             Furnishings = ModelCollection<FurnishingModel>.Default;
             Collectibles = ModelCollection<CollectibleModel>.Default;
+            Parquets = ModelCollection<ParquetModel>.Default;
+            Critters = ModelCollection<CritterModel>.Default;
+            Characters = ModelCollection<CharacterModel>.Default;
+            Beings = ModelCollection<BeingModel>.Default;
+            BiomeRecipes = ModelCollection<BiomeRecipe>.Default;
+            CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
+            Maps = ModelCollection<MapModel>.Default;
+            Scripts = ModelCollection<ScriptModel>.Default;
+            Interactions = ModelCollection<InteractionModel>.Default;
             Items = ModelCollection<ItemModel>.Default;
 
             PronounGroups = new HashSet<PronounGroup>();
@@ -349,21 +352,17 @@ namespace ParquetClassLibrary
             CraftingRecipeIDs = new Range<ModelID>(80000, 89000);
             RoomRecipeIDs = new Range<ModelID>(90000, 99000);
 
+            MapChunkIDs = new Range<ModelID>(100000, 109000);
+            MapRegionIDs = new Range<ModelID>(110000, 119000);
 
-
-
-
-            MapChunkIDs = new Range<ModelID>(70000, 79000);
-            MapRegionIDs = new Range<ModelID>(80000, 89000);
-
-            ScriptIDs = new Range<ModelID>(140000, 149000);
-            InteractionIDs = new Range<ModelID>(50000, 59000);
+            ScriptIDs = new Range<ModelID>(120000, 129000);
+            InteractionIDs = new Range<ModelID>(130000, 139000);
             #endregion
 
             #region Define Most Range Collections
+            ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             BeingIDs = new List<Range<ModelID>> { CritterIDs, CharacterIDs };
             MapIDs = new List<Range<ModelID>> { MapChunkIDs, MapRegionIDs };
-            ParquetIDs = new List<Range<ModelID>> { FloorIDs, BlockIDs, FurnishingIDs, CollectibleIDs };
             #endregion
 
             #region Calculate Item Range
@@ -402,19 +401,20 @@ namespace ParquetClassLibrary
             AllDefinedIDs = new List<Range<ModelID>>
             {
                 GameIDs,
-                CritterIDs,
-                CharacterIDs,
-                BiomeRecipeIDs,
-                CraftingRecipeIDs,
-                InteractionIDs,
-                MapChunkIDs,
-                MapRegionIDs,
                 FloorIDs,
                 BlockIDs,
                 FurnishingIDs,
                 CollectibleIDs,
+                CritterIDs,
+                CharacterIDs,
+                BiomeRecipeIDs,
+                CraftingRecipeIDs,
                 RoomRecipeIDs,
-                ScriptIDs
+                MapChunkIDs,
+                MapRegionIDs,
+                ScriptIDs,
+                InteractionIDs,
+                ItemIDs,
             };
             #endregion
             #endregion
@@ -505,19 +505,19 @@ namespace ParquetClassLibrary
         /// <seealso cref="Clear"/>
         /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
-                                                 IEnumerable<CharacterModel> inCharacters,
-                                                 IEnumerable<CritterModel> inCritters,
-                                                 IEnumerable<BiomeRecipe> inBiomes,
-                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<GameModel> inGames,
-                                                 IEnumerable<InteractionModel> inInteractions,
-                                                 IEnumerable<MapModel> inMaps,
                                                  IEnumerable<FloorModel> inFloors,
                                                  IEnumerable<BlockModel> inBlocks,
                                                  IEnumerable<FurnishingModel> inFurnishings,
                                                  IEnumerable<CollectibleModel> inCollectibles,
+                                                 IEnumerable<CritterModel> inCritters,
+                                                 IEnumerable<CharacterModel> inCharacters,
+                                                 IEnumerable<BiomeRecipe> inBiomes,
+                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
+                                                 IEnumerable<MapModel> inMaps,
                                                  IEnumerable<ScriptModel> inScripts,
+                                                 IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<ItemModel> inItems)
         {
             if (CollectionsHaveBeenInitialized)
@@ -526,30 +526,22 @@ namespace ParquetClassLibrary
                                                                   nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
-            Precondition.IsNotNull(inCharacters, nameof(inCharacters));
-            Precondition.IsNotNull(inCritters, nameof(inCritters));
-            Precondition.IsNotNull(inBiomes, nameof(inBiomes));
-            Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
             Precondition.IsNotNull(inGames, nameof(inGames));
-            Precondition.IsNotNull(inInteractions, nameof(inInteractions));
-            Precondition.IsNotNull(inMaps, nameof(inMaps));
             Precondition.IsNotNull(inFloors, nameof(inFloors));
             Precondition.IsNotNull(inBlocks, nameof(inBlocks));
             Precondition.IsNotNull(inFurnishings, nameof(inFurnishings));
             Precondition.IsNotNull(inCollectibles, nameof(inCollectibles));
+            Precondition.IsNotNull(inCritters, nameof(inCritters));
+            Precondition.IsNotNull(inCharacters, nameof(inCharacters));
+            Precondition.IsNotNull(inBiomes, nameof(inBiomes));
+            Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
             Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
+            Precondition.IsNotNull(inMaps, nameof(inMaps));
             Precondition.IsNotNull(inScripts, nameof(inScripts));
+            Precondition.IsNotNull(inInteractions, nameof(inInteractions));
             Precondition.IsNotNull(inItems, nameof(inItems));
 
-            Characters = new ModelCollection<CharacterModel>(CharacterIDs, inCharacters);
-            Critters = new ModelCollection<CritterModel>(CritterIDs, inCritters);
-            Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
-                .Concat(Critters));
-            Biomes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
-            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             Games = new ModelCollection<GameModel>(GameIDs, inGames);
-            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
-            Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
             Floors = new ModelCollection<FloorModel>(FloorIDs, inFloors);
             Blocks = new ModelCollection<BlockModel>(BlockIDs, inBlocks);
             Furnishings = new ModelCollection<FurnishingModel>(FurnishingIDs, inFurnishings);
@@ -558,8 +550,16 @@ namespace ParquetClassLibrary
                 .Concat(Blocks)
                 .Concat(Furnishings)
                 .Concat(Collectibles));
+            Critters = new ModelCollection<CritterModel>(CritterIDs, inCritters);
+            Characters = new ModelCollection<CharacterModel>(CharacterIDs, inCharacters);
+            Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
+                .Concat(Critters));
+            BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
+            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
+            Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
+            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
             PronounGroups = new HashSet<PronounGroup>(inPronouns);
             CollectionsHaveBeenInitialized = true;
@@ -582,26 +582,26 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Read Models
-            var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
-            var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
-            var biomes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
-            var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
-            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
-            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
-                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
-                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
             var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
             var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
             var furnishings = ModelCollection<FurnishingModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs);
             var collectibles = ModelCollection<CollectibleModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs);
+            var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
+            var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
+            var biomeRecipes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
+            var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
             var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
+            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
+                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
             var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
+            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
             var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
             #endregion
 
-            InitializeCollections(pronounGroups, characters, critters, biomes, craftingRecipes, games, interactions, maps,
-                                  floors, blocks, furnishings, collectibles, roomRecipes, scripts, items);
+            InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
+                                  craftingRecipes, roomRecipes, maps, scripts, interactions, items);
 
             // TODO In case of exception, log it and return false;
             return true;
@@ -622,21 +622,21 @@ namespace ParquetClassLibrary
             #endregion
 
             #region Write Models
-            Characters.PutRecordsForType<CharacterModel>();
-            Critters.PutRecordsForType<CritterModel>();
-            Biomes.PutRecordsForType<BiomeRecipe>();
-            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             Games.PutRecordsForType<GameModel>();
-            Interactions.PutRecordsForType<InteractionModel>();
-            Maps.PutRecordsForType<MapChunkModel>();
-            Maps.PutRecordsForType<MapRegionSketch>();
-            Maps.PutRecordsForType<MapRegionModel>();
             Floors.PutRecordsForType<FloorModel>();
             Blocks.PutRecordsForType<BlockModel>();
             Furnishings.PutRecordsForType<FurnishingModel>();
             Collectibles.PutRecordsForType<CollectibleModel>();
+            Critters.PutRecordsForType<CritterModel>();
+            Characters.PutRecordsForType<CharacterModel>();
+            BiomeRecipes.PutRecordsForType<BiomeRecipe>();
+            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
             RoomRecipes.PutRecordsForType<RoomRecipe>();
+            Maps.PutRecordsForType<MapChunkModel>();
+            Maps.PutRecordsForType<MapRegionSketch>();
+            Maps.PutRecordsForType<MapRegionModel>();
             Scripts.PutRecordsForType<ScriptModel>();
+            Interactions.PutRecordsForType<InteractionModel>();
             Items.PutRecordsForType<ItemModel>();
             #endregion
 
@@ -656,19 +656,19 @@ namespace ParquetClassLibrary
         public static void Clear()
         {
 #if DESIGN
-            ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
-            ((EditorSupport.IMutableModelCollection<BiomeRecipe>)Biomes)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
             ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
-            ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
-            ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
             ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
             ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
             ((EditorSupport.IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
             ((EditorSupport.IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
+            ((EditorSupport.IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
+            ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
             ((EditorSupport.IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
+            ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
             ((EditorSupport.IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
+            ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
             ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
@@ -705,20 +705,21 @@ namespace ParquetClassLibrary
                 : inModel switch
                 {
                     GameModel _ => GameIDs,
-                    BlockModel _ => BlockIDs,
                     FloorModel _ => FloorIDs,
+                    BlockModel _ => BlockIDs,
                     FurnishingModel _ => FurnishingIDs,
                     CollectibleModel _ => CollectibleIDs,
-                    CharacterModel _ => CharacterIDs,
                     CritterModel _ => CritterIDs,
-                    ItemModel _ => ItemIDs,
+                    CharacterModel _ => CharacterIDs,
                     BiomeRecipe _ => BiomeRecipeIDs,
                     CraftingRecipe _ => CraftingRecipeIDs,
+                    RoomRecipe _ => RoomRecipeIDs,
                     MapChunkModel _ => MapChunkIDs,
                     MapRegionSketch _ => MapRegionIDs,
                     MapRegionModel _ => MapRegionIDs,
                     ScriptModel _ => ScriptIDs,
                     InteractionModel _ => InteractionIDs,
+                    ItemModel _ => ItemIDs,
                     _ => Range<ModelID>.None,
                 };
 
@@ -736,15 +737,16 @@ namespace ParquetClassLibrary
             : inModelType == typeof(FloorModel) ? FloorIDs
             : inModelType == typeof(FurnishingModel) ? FurnishingIDs
             : inModelType == typeof(CollectibleModel) ? CollectibleIDs
-            : inModelType == typeof(CharacterModel) ? CharacterIDs
             : inModelType == typeof(CritterModel) ? CritterIDs
-            : inModelType == typeof(ItemModel) ? ItemIDs
+            : inModelType == typeof(CharacterModel) ? CharacterIDs
             : inModelType == typeof(BiomeRecipe) ? BiomeRecipeIDs
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
+            : inModelType == typeof(RoomRecipe) ? CraftingRecipeIDs
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
+            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegionModel) ? MapRegionIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs
             : inModelType == typeof(InteractionModel) ? InteractionIDs
-            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegionModel) ? MapRegionIDs
+            : inModelType == typeof(ItemModel) ? ItemIDs
             : Range<ModelID>.None;
         #endregion
     }

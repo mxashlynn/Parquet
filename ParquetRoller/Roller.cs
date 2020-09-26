@@ -192,7 +192,7 @@ namespace ParquetRoller
                     };
                     workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Characters)
                                                                 .Concat(All.Critters)
-                                                                .Concat(All.Biomes)
+                                                                .Concat(All.BiomeRecipes)
                                                                 .Concat(All.CraftingRecipes)
                                                                 .Concat(All.Interactions)
                                                                 .Concat(All.Floors)
@@ -216,7 +216,7 @@ namespace ParquetRoller
                     break;
                 case "biome":
                 case "biomes":
-                    workload = new ModelCollection(All.BiomeRecipeIDs, All.Biomes);
+                    workload = new ModelCollection(All.BiomeRecipeIDs, All.BiomeRecipes);
                     break;
                 case "craft":
                 case "crafts":

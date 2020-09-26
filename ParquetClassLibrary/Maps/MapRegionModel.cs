@@ -150,7 +150,7 @@ namespace ParquetClassLibrary.Maps
         public ModelID GetBiome()
         {
             var result = BiomeRecipe.None.ID;
-            foreach (BiomeRecipe biome in All.Biomes)
+            foreach (BiomeRecipe biome in All.BiomeRecipes)
             {
                 result = FindBiomeByTag(this, biome);
                 if (result != BiomeRecipe.None.ID)
