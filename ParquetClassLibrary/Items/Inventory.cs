@@ -336,6 +336,5 @@ namespace ParquetClassLibrary.Items
         public bool Remove(InventorySlot inSlot)
             => Take(inSlot) == 0;
         #endregion
-
     }
 }
