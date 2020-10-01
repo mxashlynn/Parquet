@@ -7,7 +7,6 @@ namespace ParquetClassLibrary.Beings
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
         Justification = "By design, PronounGroup should never use IPronounGroupEdit to access its own members.  The IPronounGroupEdit interface is for external types that require read/write access.")]
-    /// </summary>
     public partial class PronounGroup : IMutablePronounGroup
     {
         #region IPronounGroupEdit Implementation
