@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
@@ -77,7 +78,7 @@ namespace ParquetClassLibrary.Maps
         /// All of the <see cref="Room"/>s detected in the <see cref="MapRegionModel"/>.
         /// </summary>
         [Ignore]
-        public RoomCollection Rooms { get; private set; }
+        public IReadOnlyCollection<Room> Rooms { get; private set; }
         #endregion
         #endregion
 

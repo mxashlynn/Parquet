@@ -745,8 +745,6 @@
   - [op_Inequality(inStack1,inStack2)](#M-ParquetClassLibrary-Parquets-ParquetStack-op_Inequality-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStack- 'ParquetClassLibrary.Parquets.ParquetStack.op_Inequality(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStack)')
 - [ParquetStackArrayExtensions](#T-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions 'ParquetClassLibrary.Parquets.ParquetStackArrayExtensions')
   - [IsValidPosition(inSubregion,inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetStack[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStackArrayExtensions.IsValidPosition(ParquetClassLibrary.Parquets.ParquetStack[0:,0:],ParquetClassLibrary.Vector2D)')
-- [ParquetStackExtensions](#T-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackExtensions 'ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackExtensions')
-  - [GetWalkableAreas(inSubregion)](#M-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackExtensions.GetWalkableAreas(ParquetClassLibrary.Parquets.ParquetStackGrid)')
 - [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor')
   - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor(System.Int32,System.Int32)')
@@ -760,7 +758,11 @@
   - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStackGrid.GetEnumerator')
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStackGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStackGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator')
+- [ParquetStackGridExtensions](#T-ParquetClassLibrary-Rooms-ParquetStackGridExtensions 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions')
 - [ParquetStackGridExtensions](#T-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackGridExtensions 'ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackGridExtensions')
+  - [CreateRoomCollectionFromSubregion(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.CreateRoomCollectionFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [GetWalkableAreas(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.GetWalkableAreas(ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [IsEntryFurnishing(inFurnishingID)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-IsEntryFurnishing-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.IsEntryFurnishing(ParquetClassLibrary.ModelID)')
   - [GetSpaces()](#M-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackGridExtensions-GetSpaces-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.RegionAnalysis.ParquetStackGridExtensions.GetSpaces(ParquetClassLibrary.Parquets.ParquetStackGrid)')
 - [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor 'ParquetClassLibrary.Parquets.ParquetStatus.#ctor')
@@ -859,6 +861,9 @@
   - [ToString()](#M-ParquetClassLibrary-Range`1-ToString 'ParquetClassLibrary.Range`1.ToString')
   - [op_Equality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Equality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Equality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
   - [op_Inequality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Inequality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Inequality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
+- [ReadOnlyRoomCollectionExtensions](#T-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions')
+  - [GetRoomAt(inRooms,inPosition)](#M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-GetRoomAt-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room},ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.GetRoomAt(System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room},ParquetClassLibrary.Vector2D)')
+  - [ToString()](#M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-ToString-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room}- 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.ToString(System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room})')
 - [RecipeElement](#T-ParquetClassLibrary-RecipeElement 'ParquetClassLibrary.RecipeElement')
   - [#ctor()](#M-ParquetClassLibrary-RecipeElement-#ctor 'ParquetClassLibrary.RecipeElement.#ctor')
   - [#ctor(inElementAmount,inElementTag)](#M-ParquetClassLibrary-RecipeElement-#ctor-System-Int32,ParquetClassLibrary-ModelTag- 'ParquetClassLibrary.RecipeElement.#ctor(System.Int32,ParquetClassLibrary.ModelTag)')
@@ -925,16 +930,6 @@
   - [GetHashCode()](#M-ParquetClassLibrary-Rooms-Room-GetHashCode 'ParquetClassLibrary.Rooms.Room.GetHashCode')
   - [op_Equality(inRoom1,inRoom2)](#M-ParquetClassLibrary-Rooms-Room-op_Equality-ParquetClassLibrary-Rooms-Room,ParquetClassLibrary-Rooms-Room- 'ParquetClassLibrary.Rooms.Room.op_Equality(ParquetClassLibrary.Rooms.Room,ParquetClassLibrary.Rooms.Room)')
   - [op_Inequality(inRoom1,inRoom2)](#M-ParquetClassLibrary-Rooms-Room-op_Inequality-ParquetClassLibrary-Rooms-Room,ParquetClassLibrary-Rooms-Room- 'ParquetClassLibrary.Rooms.Room.op_Inequality(ParquetClassLibrary.Rooms.Room,ParquetClassLibrary.Rooms.Room)')
-- [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection')
-  - [#ctor()](#M-ParquetClassLibrary-Rooms-RoomCollection-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-Room}- 'ParquetClassLibrary.Rooms.RoomCollection.#ctor(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Rooms.Room})')
-  - [Count](#P-ParquetClassLibrary-Rooms-RoomCollection-Count 'ParquetClassLibrary.Rooms.RoomCollection.Count')
-  - [Rooms](#P-ParquetClassLibrary-Rooms-RoomCollection-Rooms 'ParquetClassLibrary.Rooms.RoomCollection.Rooms')
-  - [Contains(inRoom)](#M-ParquetClassLibrary-Rooms-RoomCollection-Contains-ParquetClassLibrary-Rooms-Room- 'ParquetClassLibrary.Rooms.RoomCollection.Contains(ParquetClassLibrary.Rooms.Room)')
-  - [CreateFromSubregion(inSubregion)](#M-ParquetClassLibrary-Rooms-RoomCollection-CreateFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [GetEnumerator()](#M-ParquetClassLibrary-Rooms-RoomCollection-GetEnumerator 'ParquetClassLibrary.Rooms.RoomCollection.GetEnumerator')
-  - [GetRoomAt(inPosition)](#M-ParquetClassLibrary-Rooms-RoomCollection-GetRoomAt-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Rooms.RoomCollection.GetRoomAt(ParquetClassLibrary.Vector2D)')
-  - [System#Collections#IEnumerable#GetEnumerator()](#M-ParquetClassLibrary-Rooms-RoomCollection-System#Collections#IEnumerable#GetEnumerator 'ParquetClassLibrary.Rooms.RoomCollection.System#Collections#IEnumerable#GetEnumerator')
-  - [ToString()](#M-ParquetClassLibrary-Rooms-RoomCollection-ToString 'ParquetClassLibrary.Rooms.RoomCollection.ToString')
 - [RoomConfiguration](#T-ParquetClassLibrary-Rooms-RoomConfiguration 'ParquetClassLibrary.Rooms.RoomConfiguration')
   - [MaxWalkableSpaces](#P-ParquetClassLibrary-Rooms-RoomConfiguration-MaxWalkableSpaces 'ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces')
   - [MinPerimeterSpaces](#P-ParquetClassLibrary-Rooms-RoomConfiguration-MinPerimeterSpaces 'ParquetClassLibrary.Rooms.RoomConfiguration.MinPerimeterSpaces')
@@ -9543,34 +9538,6 @@ Determines if the given position corresponds to a point within the current array
 | inSubregion | [ParquetClassLibrary.Parquets.ParquetStack[0:](#T-ParquetClassLibrary-Parquets-ParquetStack[0- 'ParquetClassLibrary.Parquets.ParquetStack[0:') | The [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') array to validate against. |
 | inPosition | [0:]](#T-0-] '0:]') | The position to validate. |
 
-<a name='T-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackExtensions'></a>
-## ParquetStackExtensions `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rooms.RegionAnalysis
-
-##### Summary
-
-Extension methods used only by [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection') when analyzing subregions of [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s.
-
-<a name='M-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### GetWalkableAreas(inSubregion) `method`
-
-##### Summary
-
-Finds all valid Walkable Areas in a given subregion.
-
-##### Returns
-
-The list of vallid Walkable Areas.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s to search. |
-
 <a name='T-ParquetClassLibrary-Parquets-ParquetStackGrid'></a>
 ## ParquetStackGrid `type`
 
@@ -9728,6 +9695,22 @@ This method has no parameters.
 
 For serialization, this guarantees stable iteration order.
 
+<a name='T-ParquetClassLibrary-Rooms-ParquetStackGridExtensions'></a>
+## ParquetStackGridExtensions `type`
+
+##### Namespace
+
+ParquetClassLibrary.Rooms
+
+##### Summary
+
+Extensions to [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') for analyzing subregions of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s
+to find all valid [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s within them.
+
+##### Remarks
+
+For a complete explanation of the algorithm implemented here, see:
+
 <a name='T-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackGridExtensions'></a>
 ## ParquetStackGridExtensions `type`
 
@@ -9738,6 +9721,58 @@ ParquetClassLibrary.Rooms.RegionAnalysis
 ##### Summary
 
 Provides extension methods for deriving [MapSpaceCollection](#T-ParquetClassLibrary-Rooms-MapSpaceCollection 'ParquetClassLibrary.Rooms.MapSpaceCollection')s from [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s.
+
+<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### CreateRoomCollectionFromSubregion(inSubregion) `method`
+
+##### Summary
+
+Initializes a new [IReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection`1 'System.Collections.Generic.IReadOnlyCollection`1') from the current [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid').
+
+##### Returns
+
+An initialized collection of rooms.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The current collection of parquets to search for [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
+
+<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+### GetWalkableAreas(inSubregion) `method`
+
+##### Summary
+
+Finds all valid Walkable Areas in a given subregion.
+
+##### Returns
+
+The list of vallid Walkable Areas.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s to search. |
+
+<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-IsEntryFurnishing-ParquetClassLibrary-ModelID-'></a>
+### IsEntryFurnishing(inFurnishingID) `method`
+
+##### Summary
+
+Determines if the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') refers to a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') whose
+entry is not [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None').
+
+##### Returns
+
+`true` if the furnishing is an Entry furnishing; `false` otherwise.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inFurnishingID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') to evaluate. |
 
 <a name='M-ParquetClassLibrary-Rooms-RegionAnalysis-ParquetStackGridExtensions-GetSpaces-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
 ### GetSpaces() `method`
@@ -11070,6 +11105,50 @@ is not equal to another specified instance of [Range\`1](#T-ParquetClassLibrary-
 | inRange1 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The first [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
 | inRange2 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The second [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
 
+<a name='T-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions'></a>
+## ReadOnlyRoomCollectionExtensions `type`
+
+##### Namespace
+
+ParquetClassLibrary.Rooms
+
+##### Summary
+
+Convenience extensions to [IReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection`1 'System.Collections.Generic.IReadOnlyCollection`1').
+
+<a name='M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-GetRoomAt-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room},ParquetClassLibrary-Vector2D-'></a>
+### GetRoomAt(inRooms,inPosition) `method`
+
+##### Summary
+
+Returns the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') at the given position, if there is one.
+
+##### Returns
+
+The specified [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') if found; otherwise, null.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inRooms | [System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection 'System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room}') | The current collection of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
+| inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | An in-bounds position to search for a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
+
+<a name='M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-ToString-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room}-'></a>
+### ToString() `method`
+
+##### Summary
+
+Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [IReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection`1 'System.Collections.Generic.IReadOnlyCollection`1').
+
+##### Returns
+
+The representation.
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-ParquetClassLibrary-RecipeElement'></a>
 ## RecipeElement `type`
 
@@ -11729,147 +11808,6 @@ Determines whether a specified instance of [Room](#T-ParquetClassLibrary-Rooms-R
 | ---- | ---- | ----------- |
 | inRoom1 | [ParquetClassLibrary.Rooms.Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') | The first [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to compare. |
 | inRoom2 | [ParquetClassLibrary.Rooms.Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') | The second [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to compare. |
-
-<a name='T-ParquetClassLibrary-Rooms-RoomCollection'></a>
-## RoomCollection `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rooms
-
-##### Summary
-
-Stores a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') collection.
-Analyzes subregions of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s to find all valid rooms within them.
-
-##### Remarks
-
-For a complete explanation of the algorithm implemented here, see:
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-#ctor-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Rooms-Room}-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initializes a new instance of the [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection') class.
-
-##### Parameters
-
-This constructor has no parameters.
-
-##### Remarks
-
-Private so that empty [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection')s are not made in client code.
-
-<a name='P-ParquetClassLibrary-Rooms-RoomCollection-Count'></a>
-### Count `property`
-
-##### Summary
-
-The number of [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s in the [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection').
-
-<a name='P-ParquetClassLibrary-Rooms-RoomCollection-Rooms'></a>
-### Rooms `property`
-
-##### Summary
-
-The internal collection mechanism.
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-Contains-ParquetClassLibrary-Rooms-Room-'></a>
-### Contains(inRoom) `method`
-
-##### Summary
-
-Determines whether the [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection') contains the specified [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
-
-##### Returns
-
-`true` if the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') was found; `false` otherwise.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inRoom | [ParquetClassLibrary.Rooms.Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') | The [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') to find. |
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-CreateFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
-### CreateFromSubregion(inSubregion) `method`
-
-##### Summary
-
-Initializes a new instance of the [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection') class.
-
-##### Returns
-
-An initialized [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection').
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The collection of parquets to search for [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-GetEnumerator'></a>
-### GetEnumerator() `method`
-
-##### Summary
-
-Retrieves an enumerator for the [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection').
-
-##### Returns
-
-An enumerator that iterates through the collection.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-GetRoomAt-ParquetClassLibrary-Vector2D-'></a>
-### GetRoomAt(inPosition) `method`
-
-##### Summary
-
-Returns the [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') at the given position, if there is one.
-
-##### Returns
-
-The specified [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room') if found; otherwise, null.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | An in-bounds position to search for a [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-System#Collections#IEnumerable#GetEnumerator'></a>
-### System#Collections#IEnumerable#GetEnumerator() `method`
-
-##### Summary
-
-Exposes an [IEnumerator](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.IEnumerator 'System.Collections.IEnumerator'), which supports simple iteration.
-
-##### Returns
-
-An enumerator.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Rooms-RoomCollection-ToString'></a>
-### ToString() `method`
-
-##### Summary
-
-Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [RoomCollection](#T-ParquetClassLibrary-Rooms-RoomCollection 'ParquetClassLibrary.Rooms.RoomCollection').
-
-##### Returns
-
-The representation.
-
-##### Parameters
-
-This method has no parameters.
 
 <a name='T-ParquetClassLibrary-Rooms-RoomConfiguration'></a>
 ## RoomConfiguration `type`
