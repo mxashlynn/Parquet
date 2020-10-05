@@ -29,8 +29,8 @@ namespace ParquetClassLibrary
     /// There are multiple <see cref="Model"/> subtypes
     /// (<see cref="Parquets.ParquetModel"/>, <see cref="Beings.BeingModel"/>,
     /// etc.), and each of these subtypes has multiple definitions.
-    /// The definitions are purely data-driven, read in from CSV or
-    /// other files, and not type-checked by the compiler.<para />
+    /// The definitions are purely data-driven, read in from file,
+    /// and not type-checked by the compiler.<para />
     /// <para />
     /// Although the compiler does not provide type-checking for IDs,
     /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
@@ -39,7 +39,7 @@ namespace ParquetClassLibrary
     /// A note on implementation as of January 1st, 2020.<para />
     /// <para />
     /// ModelID is implemented as a mutable struct because, under the hood,
-    /// it is simply an Int32.  ModelID is designed to be implicitly
+    /// it is simply an <see cref="int"/>.  ModelID is designed to be implicitly
     /// interoperable with and implcity castable to and from integer types.<para />
     /// <para />
     /// Since the entire point of this ID system is to provide a way for the
@@ -307,7 +307,7 @@ namespace ParquetClassLibrary
     /// <summary>
     /// Convenience extension methods for concise coding when working with <see cref="ModelID"/> instances.
     /// </summary>
-    internal static class ModelIDExtensions
+    internal static class ModelIDArrayExtensions
     {
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
@@ -317,6 +317,7 @@ namespace ParquetClassLibrary
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ModelID[,] inIDArray, Vector2D inPosition)
         {
+            // TODO IDEA: When we reach 1.0 this precondition could be incorporated into the return value.
             Precondition.IsNotNull(inIDArray, nameof(inIDArray));
 
             return inPosition.X > -1

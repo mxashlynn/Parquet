@@ -228,6 +228,7 @@ namespace ParquetClassLibrary.Crafts
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this StrikePanel[,] inStrikePanels, Vector2D inPosition)
         {
+            // NOTE IDEA When we reach 1.0 we could replace this precondition with a clause in the return computation.
             Precondition.IsNotNull(inStrikePanels, nameof(inStrikePanels));
 
             return inPosition.X > -1
