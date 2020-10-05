@@ -10,10 +10,13 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class MapSpace : IEquatable<MapSpace>
     {
+        #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
         // TODO Change this final null here to ParquetStackGrid.Empty
         public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
+        #endregion
 
+        #region Characteristics
         /// <summary>The subregion containing this <see cref="MapSpace"/>.</summary>
         public ParquetStackGrid Subregion { get; }
 
@@ -22,6 +25,7 @@ namespace ParquetClassLibrary.Rooms
 
         /// <summary>All parquets occupying this <see cref="MapSpace"/>.</summary>
         public ParquetStack Content { get; }
+        #endregion
 
         #region Initialization
         /// <summary>
