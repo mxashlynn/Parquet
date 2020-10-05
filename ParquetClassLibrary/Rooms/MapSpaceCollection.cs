@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.Rooms
     /// Extension methods to <see cref="IReadOnlyCollection{MapSpace}"/>, providing bounds-checking and
     /// various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
-    public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
+    public class MapSpaceCollection : IReadOnlySet<MapSpace>
     {
         // TODO IDEA -- A potential simplification is to replace this class with a set of extension methods to  HashSet<MapSpace>.
 
@@ -80,6 +80,26 @@ namespace ParquetClassLibrary.Rooms
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ((IEnumerable<MapSpace>)Spaces).GetEnumerator();
+        #endregion
+
+        #region IReadOnlySet Implementation
+        public bool IsProperSubsetOf(IEnumerable<MapSpace> other)
+            => Spaces.IsProperSubsetOf(other);
+
+        public bool IsProperSupersetOf(IEnumerable<MapSpace> other)
+            => Spaces.IsProperSupersetOf(other);
+
+        public bool IsSubsetOf(IEnumerable<MapSpace> other)
+            => Spaces.IsSubsetOf(other);
+
+        public bool IsSupersetOf(IEnumerable<MapSpace> other)
+            => Spaces.IsSupersetOf(other);
+
+        public bool Overlaps(IEnumerable<MapSpace> other)
+            => Spaces.Overlaps(other);
+
+        public bool SetEquals(IEnumerable<MapSpace> other)
+            => Spaces.SetEquals(other);
         #endregion
 
         #region Implicit Conversion Operators
