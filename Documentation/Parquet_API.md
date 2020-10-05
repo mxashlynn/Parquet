@@ -683,8 +683,8 @@
   - [op_Inequality(inIDentifier1,inIDentifier2)](#M-ParquetClassLibrary-ModelID-op_Inequality-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelID.op_Inequality(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
   - [op_LessThan(inIDentifier1,inIDentifier2)](#M-ParquetClassLibrary-ModelID-op_LessThan-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelID.op_LessThan(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
   - [op_LessThanOrEqual(inIDentifier1,inIDentifier2)](#M-ParquetClassLibrary-ModelID-op_LessThanOrEqual-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.ModelID.op_LessThanOrEqual(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
-- [ModelIDExtensions](#T-ParquetClassLibrary-ModelIDExtensions 'ParquetClassLibrary.ModelIDExtensions')
-  - [IsValidPosition(inIDArray,inPosition)](#M-ParquetClassLibrary-ModelIDExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.ModelIDExtensions.IsValidPosition(ParquetClassLibrary.ModelID[0:,0:],ParquetClassLibrary.Vector2D)')
+- [ModelIDArrayExtensions](#T-ParquetClassLibrary-ModelIDArrayExtensions 'ParquetClassLibrary.ModelIDArrayExtensions')
+  - [IsValidPosition(inIDArray,inPosition)](#M-ParquetClassLibrary-ModelIDArrayExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.ModelIDArrayExtensions.IsValidPosition(ParquetClassLibrary.ModelID[0:,0:],ParquetClassLibrary.Vector2D)')
 - [ModelIDGrid](#T-ParquetClassLibrary-ModelIDGrid 'ParquetClassLibrary.ModelIDGrid')
   - [#ctor()](#M-ParquetClassLibrary-ModelIDGrid-#ctor 'ParquetClassLibrary.ModelIDGrid.#ctor')
   - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-ModelIDGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.#ctor(System.Int32,System.Int32)')
@@ -8355,8 +8355,8 @@ without filling RAM with numerous duplicate Models.
 There are multiple [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model') subtypes
 ([ParquetModel](#T-ParquetClassLibrary-Parquets-ParquetModel 'ParquetClassLibrary.Parquets.ParquetModel'), [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel'),
 etc.), and each of these subtypes has multiple definitions.
-The definitions are purely data-driven, read in from CSV or
-other files, and not type-checked by the compiler.
+The definitions are purely data-driven, read in from file,
+and not type-checked by the compiler.
 
 
 
@@ -8371,7 +8371,7 @@ A note on implementation as of January 1st, 2020.
 
 
 ModelID is implemented as a mutable struct because, under the hood,
-it is simply an Int32.  ModelID is designed to be implicitly
+it is simply an [Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32').  ModelID is designed to be implicitly
 interoperable with and implcity castable to and from integer types.
 
 
@@ -8743,8 +8743,8 @@ another specified instance of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetC
 | inIDentifier1 | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The first [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') to compare. |
 | inIDentifier2 | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The second [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') to compare. |
 
-<a name='T-ParquetClassLibrary-ModelIDExtensions'></a>
-## ModelIDExtensions `type`
+<a name='T-ParquetClassLibrary-ModelIDArrayExtensions'></a>
+## ModelIDArrayExtensions `type`
 
 ##### Namespace
 
@@ -8754,7 +8754,7 @@ ParquetClassLibrary
 
 Convenience extension methods for concise coding when working with [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') instances.
 
-<a name='M-ParquetClassLibrary-ModelIDExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D-'></a>
+<a name='M-ParquetClassLibrary-ModelIDArrayExtensions-IsValidPosition-ParquetClassLibrary-ModelID[0-,0-],ParquetClassLibrary-Vector2D-'></a>
 ### IsValidPosition(inIDArray,inPosition) `method`
 
 ##### Summary
