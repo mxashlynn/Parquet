@@ -18,6 +18,8 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
+        // TODO IDEA -- A potential simplification is to replace this class with a set of extension methods to  HashSet<MapSpace>.
+
         /// <summary>The canonical empty collection.</summary>
         public static MapSpaceCollection Empty { get; } = new HashSet<MapSpace>();
 
