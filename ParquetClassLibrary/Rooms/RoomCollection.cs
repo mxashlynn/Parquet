@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Rooms
     /// </summary>
     /// <remarks>
     /// For a complete explanation of the algorithm implemented here, see:
-    /// <a href="https://github.com/mxashlynn/Parquet/wiki/Room-Detection-and-Type-Assignment"/>
+    /// <a href="https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md"/>
     /// </remarks>
     public class RoomCollection : IReadOnlyCollection<Room>
     {
