@@ -1155,7 +1155,7 @@ ParquetClassLibrary.Maps.MapRegionModel.RegionToTheEast.get -> ParquetClassLibra
 ParquetClassLibrary.Maps.MapRegionModel.RegionToTheNorth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionModel.RegionToTheSouth.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Maps.MapRegionModel.RegionToTheWest.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.Maps.MapRegionModel.Rooms.get -> ParquetClassLibrary.Rooms.RoomCollection
+ParquetClassLibrary.Maps.MapRegionModel.Rooms.get -> RoomCollection
 ParquetClassLibrary.Maps.MapRegionSketch
 ParquetClassLibrary.Maps.MapRegionSketch.BackgroundColor.get -> string
 ParquetClassLibrary.Maps.MapRegionSketch.Chunks.get -> ParquetClassLibrary.ModelIDGrid
@@ -1352,6 +1352,8 @@ ParquetClassLibrary.Rooms.MapSpaceCollection.First.get -> ParquetClassLibrary.Ro
 ParquetClassLibrary.Rooms.MapSpaceCollection.GetEnumerator() -> System.Collections.IEnumerator
 ParquetClassLibrary.Rooms.MapSpaceCollection.MapSpaceCollection(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Rooms.MapSpace> inSpaces) -> void
 ParquetClassLibrary.Rooms.MapSpaceCollection.SetEquals(ParquetClassLibrary.Rooms.MapSpaceCollection inEqualTo) -> bool
+ParquetClassLibrary.Rooms.ParquetStackGridExtensions
+ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions
 ParquetClassLibrary.Rooms.Room
 ParquetClassLibrary.Rooms.Room.ContainsPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Rooms.Room.Equals(ParquetClassLibrary.Rooms.Room inRoom) -> bool
@@ -1361,11 +1363,6 @@ ParquetClassLibrary.Rooms.Room.Position.get -> ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Rooms.Room.RecipeID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.Rooms.Room.Room(ParquetClassLibrary.Rooms.MapSpaceCollection inWalkableArea, ParquetClassLibrary.Rooms.MapSpaceCollection inPerimeter) -> void
 ParquetClassLibrary.Rooms.Room.WalkableArea.get -> ParquetClassLibrary.Rooms.MapSpaceCollection
-ParquetClassLibrary.Rooms.RoomCollection
-ParquetClassLibrary.Rooms.RoomCollection.Contains(ParquetClassLibrary.Rooms.Room inRoom) -> bool
-ParquetClassLibrary.Rooms.RoomCollection.Count.get -> int
-ParquetClassLibrary.Rooms.RoomCollection.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Rooms.Room>
-ParquetClassLibrary.Rooms.RoomCollection.GetRoomAt(ParquetClassLibrary.Vector2D inPosition) -> ParquetClassLibrary.Rooms.Room
 ParquetClassLibrary.Rooms.RoomConfiguration
 ParquetClassLibrary.Rooms.RoomRecipe
 ParquetClassLibrary.Rooms.RoomRecipe.Matches(ParquetClassLibrary.Rooms.Room inRoom) -> bool
@@ -1562,7 +1559,6 @@ override ParquetClassLibrary.Rooms.MapSpace.ToString() -> string
 override ParquetClassLibrary.Rooms.MapSpaceCollection.ToString() -> string
 override ParquetClassLibrary.Rooms.Room.Equals(object obj) -> bool
 override ParquetClassLibrary.Rooms.Room.GetHashCode() -> int
-override ParquetClassLibrary.Rooms.RoomCollection.ToString() -> string
 override ParquetClassLibrary.Scripts.InteractionStatus.ToString() -> string
 override ParquetClassLibrary.Scripts.ScriptNode.ToString() -> string
 override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -1713,9 +1709,11 @@ static ParquetClassLibrary.Rooms.MapSpace.operator ==(ParquetClassLibrary.Rooms.
 static ParquetClassLibrary.Rooms.MapSpaceCollection.Empty.get -> ParquetClassLibrary.Rooms.MapSpaceCollection
 static ParquetClassLibrary.Rooms.MapSpaceCollection.implicit operator ParquetClassLibrary.Rooms.MapSpaceCollection(System.Collections.Generic.HashSet<ParquetClassLibrary.Rooms.MapSpace> inSpaces) -> ParquetClassLibrary.Rooms.MapSpaceCollection
 static ParquetClassLibrary.Rooms.MapSpaceCollection.implicit operator System.Collections.Generic.HashSet<ParquetClassLibrary.Rooms.MapSpace>(ParquetClassLibrary.Rooms.MapSpaceCollection inSpaces) -> System.Collections.Generic.HashSet<ParquetClassLibrary.Rooms.MapSpace>
+static ParquetClassLibrary.Rooms.ParquetStackGridExtensions.CreateRoomCollectionFromSubregion(this ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> System.Collections.Generic.IReadOnlyCollection<ParquetClassLibrary.Rooms.Room>
+static ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.GetRoomAt(this System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.Rooms.Room> inRooms, ParquetClassLibrary.Vector2D inPosition) -> ParquetClassLibrary.Rooms.Room
+static ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.ToString(this System.Collections.Generic.IReadOnlyCollection<ParquetClassLibrary.Rooms.Room> inRooms) -> string
 static ParquetClassLibrary.Rooms.Room.operator !=(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
 static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
-static ParquetClassLibrary.Rooms.RoomCollection.CreateFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid inSubregion) -> ParquetClassLibrary.Rooms.RoomCollection
 static ParquetClassLibrary.Rooms.RoomConfiguration.GetFilePath() -> string
 static ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.get -> int
