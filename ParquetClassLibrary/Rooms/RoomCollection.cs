@@ -64,8 +64,8 @@ namespace ParquetClassLibrary.Rooms
                 walkableAreas
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
                                     && walkableArea.Concat(perimeter)
-                                                    .Any(space => space.Content.FurnishingID != ModelID.None
-                                                               && (All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None)
+                                                   .Any(space => space.Content.FurnishingID != ModelID.None
+                                                              && space.Content.FurnishingID.IsEntryFurnishing())
                                     && walkableArea.Any(space => space.IsWalkableEntry
                                                               || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                 .Select(walkableArea => new Room(walkableArea, perimeter));
@@ -103,6 +103,21 @@ namespace ParquetClassLibrary.Rooms
 
 namespace ParquetClassLibrary.Rooms.RegionAnalysis
 {
+    /// <summary>
+    /// Extension methods used only by <see cref="RoomCollection"/> when analyzing <see cref="Model"/>s.
+    /// </summary>
+    internal static class ModelIDExtensions
+    {
+        /// <summary>
+        /// Determines if the current <see cref="ModelID"/> refers to a <see cref="FurnishingModel"/> whose
+        /// entry is not <see cref="EntryType.None"/>.
+        /// </summary>
+        /// <param name="inFurnishingID">The <see cref="ModelID"/> to evaluate.</param>
+        /// <returns><c>true</c> if the furnishing is an Entry furnishing; <c>false</c> otherwise.</returns>
+        internal static bool IsEntryFurnishing(this ModelID inFurnishingID)
+            => (All.Furnishings.Get<FurnishingModel>(inFurnishingID)?.Entry ?? EntryType.None) != EntryType.None;
+    }
+
     /// <summary>
     /// Extension methods used only by <see cref="RoomCollection"/> when analyzing subregions of <see cref="MapSpace"/>s.
     /// </summary>
