@@ -13,8 +13,8 @@ namespace ParquetClassLibrary.Rooms
     using ParquetClassLibrary.Rooms.RegionAnalysis;
 
     /// <summary>
-    /// Stores a collection of <see cref="MapSpace"/>s.
-    /// Provides bounds-checking and various routines useful when dealing with <see cref="Room"/>s.
+    /// Extension methods to <see cref="IReadOnlyCollection{MapSpace}"/>, providing bounds-checking and
+    /// various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
     public class MapSpaceCollection : IReadOnlyCollection<MapSpace>
     {
