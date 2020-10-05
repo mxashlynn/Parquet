@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
+using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Rooms
 {
-    using System.Diagnostics;
-    using System.Globalization;
-    using ParquetClassLibrary.Properties;
     // Local extension methods allow fluent algorithm expression.  See bottom of this file for definitions.
     using ParquetClassLibrary.Rooms.RegionAnalysis;
 
