@@ -29,7 +29,6 @@ namespace ParquetClassLibrary.Rooms
             var rooms =
                 walkableAreas
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
-                                    && walkableArea.Concat(perimeter).Any(space => space.IsEntry)
                                     && walkableArea.Any(space => space.IsWalkableEntry
                                                               || space.Neighbors()
                                                                       .Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
