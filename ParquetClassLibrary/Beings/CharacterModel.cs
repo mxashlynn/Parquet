@@ -55,6 +55,7 @@ namespace ParquetClassLibrary.Beings
         /// Note that, unlike other members, for technical reasons this property is mutable.
         /// Care should be taken not to alter it during play.
         /// </remarks>
+        // TODO Probably make Inventory immutable with a mutable IMutableInventory and Inventory.EditorSupport.
         [Index(12)]
         public Inventory StartingInventory { get; }
         #endregion
