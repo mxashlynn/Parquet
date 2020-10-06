@@ -7111,9 +7111,10 @@ This method has no parameters.
 ##### Summary
 
 Determines if this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is:
-1) [IsEntry](#P-ParquetClassLibrary-Rooms-MapSpace-IsEntry 'ParquetClassLibrary.Rooms.MapSpace.IsEntry')
-2) [IsEnclosing](#P-ParquetClassLibrary-Rooms-MapSpace-IsEnclosing 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosing')
-3) has one walkable neighbor that is within the given [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1') and one not within the collection.
+first, [IsEntry](#P-ParquetClassLibrary-Rooms-MapSpace-IsEntry 'ParquetClassLibrary.Rooms.MapSpace.IsEntry');
+second, [IsEnclosing](#P-ParquetClassLibrary-Rooms-MapSpace-IsEnclosing 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosing');
+third, has one walkable neighbor that is within the given [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1'); and
+fourth, has one walkable neighbor that is NOT within the given [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1').
 
 ##### Returns
 
