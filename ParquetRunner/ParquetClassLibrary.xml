@@ -87,10 +87,13 @@
         <member name="P:ParquetRunner.TestModels.PronounGroups">
             <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
         </member>
-        <member name="P:ParquetRunner.TestModels.Beings">
+        <member name="P:ParquetRunner.TestModels.Characters">
             <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
         </member>
-        <member name="P:ParquetRunner.TestModels.Biomes">
+        <member name="P:ParquetRunner.TestModels.Critters">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.BiomeRecipes">
             <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
         </member>
         <member name="P:ParquetRunner.TestModels.CraftingRecipes">
@@ -105,7 +108,16 @@
         <member name="P:ParquetRunner.TestModels.Maps">
             <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
         </member>
-        <member name="P:ParquetRunner.TestModels.Parquets">
+        <member name="P:ParquetRunner.TestModels.Floors">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Blocks">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Furnishings">
+            <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
+        </member>
+        <member name="P:ParquetRunner.TestModels.Collectibles">
             <summary>Used in initializing <see cref="T:ParquetClassLibrary.All"/>.</summary>
         </member>
         <member name="P:ParquetRunner.TestModels.RoomRecipes">
