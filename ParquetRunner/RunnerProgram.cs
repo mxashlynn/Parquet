@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ParquetClassLibrary;
 using ParquetClassLibrary.Beings;
 using ParquetClassLibrary.Biomes;
@@ -97,10 +98,13 @@ namespace ParquetRunner
         public static IReadOnlyList<PronounGroup> PronounGroups { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BeingModel> Beings { get; }
+        public static IReadOnlyList<CharacterModel> Characters { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BiomeRecipe> Biomes { get; }
+        public static IReadOnlyList<CritterModel> Critters { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<BiomeRecipe> BiomeRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
@@ -115,7 +119,16 @@ namespace ParquetRunner
         public static IReadOnlyList<MapModel> Maps { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<ParquetModel> Parquets { get; }
+        public static IReadOnlyList<FloorModel> Floors { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<BlockModel> Blocks { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<FurnishingModel> Furnishings { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyList<CollectibleModel> Collectibles { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
@@ -183,6 +196,27 @@ namespace ParquetRunner
             TestMapChunkModel.ParquetDefinitions[2, 1].FurnishingID = TestFurnishing.ID;
             TestMapChunkModel.ParquetDefinitions[3, 3].CollectibleID = TestCollectible.ID;
             #endregion
+            #endregion
+
+            #region Initialize All
+            PronounGroups = new List<PronounGroup> { TestPronounGroup };
+            Characters = new List<CharacterModel> { TestCharacter };
+            Critters = new List<CritterModel> { TestCritter };
+            BiomeRecipes = new List<BiomeRecipe> { TestBiome };
+            CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
+            Games = new List<GameModel> { TestGame };
+            Interactions = new List<InteractionModel> { TestInteraction };
+            Maps = new List<MapModel> { TestMapChunkModel, TestMapRegionModel };
+            Floors = new List<FloorModel> { TestFloor };
+            Blocks = new List<BlockModel> { TestBlock, TestLiquid };
+            Furnishings = new List<FurnishingModel> { TestFurnishing };
+            Collectibles = new List<CollectibleModel> { TestCollectible };
+            RoomRecipes = new List<RoomRecipe> { TestRoomRecipe };
+            Items = new List<ItemModel> { TestItem1, TestItem2, TestItem3, TestItem4 };
+            Scripts = new List<ScriptModel> { TestScript };
+
+            All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
+                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Maps, Scripts, Interactions, Items);
             #endregion
         }
     }
