@@ -61,6 +61,15 @@ namespace ParquetClassLibrary.Beings
         /// </remarks>
         [Ignore]
         ModelID IMutableCharacterModel.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
+
+
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require readwrite access.
+        /// </remarks>
+        [Ignore]
+        Inventory IMutableCharacterModel.StartingInventory => StartingInventory;
         #endregion
     }
 }

@@ -42,6 +42,9 @@ namespace ParquetClassLibrary.EditorSupport
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         public ModelID StartingDialogueID { get; set; }
+
+        /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
+        public Inventory StartingInventory { get; }
     }
 }
 #endif
