@@ -281,15 +281,6 @@ namespace ParquetClassLibrary.Items
             => Slots.GetEnumerator();
         #endregion
 
-        #region Utilities
-        /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="Inventory"/>.
-        /// </summary>
-        /// <returns>The representation.</returns>
-        public override string ToString()
-            => $"{Count} / {Capacity} Items";
-        #endregion
-
         #region ICollection Implementation
         /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
         public bool IsReadOnly => false;
@@ -335,6 +326,22 @@ namespace ParquetClassLibrary.Items
         [Obsolete("Use Inventory.Take() instead.", true)]
         public bool Remove(InventorySlot inSlot)
             => Take(inSlot) == 0;
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Creates a new instance with the same characteristics as the current instance.
+        /// </summary>
+        /// <returns>That newly allocated instance.</returns>
+        public Inventory Clone()
+            => new Inventory(Slots, Capacity);
+
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the current <see cref="Inventory"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"{Count} / {Capacity} Items";
         #endregion
     }
 }
