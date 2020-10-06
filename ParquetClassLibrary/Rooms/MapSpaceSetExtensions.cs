@@ -250,15 +250,15 @@ namespace ParquetClassLibrary.Rooms
         private class SearchResults
         {
             /// <summary><c>true</c> if the goal condition was met, <c>false</c> otherwise.</summary>
-            public bool GoalFound;
+            internal bool GoalFound { get; private set; }
 
             /// <summary><c>true</c> if a cycle was met during the search, <c>false</c> otherwise.</summary>
-            public bool CycleFound;
+            internal bool CycleFound { get; private set; }
 
             /// <summary>A collection of all the <see cref="MapSpace"/>s visited during the search.</summary>
-            public ISet<MapSpace> Visited;
+            internal ISet<MapSpace> Visited { get; private set; }
 
-            public SearchResults(bool inGoalFound, bool inCycleFound, ISet<MapSpace> inVisited)
+            internal SearchResults(bool inGoalFound, bool inCycleFound, ISet<MapSpace> inVisited)
             {
                 GoalFound = inGoalFound;
                 CycleFound = inCycleFound;

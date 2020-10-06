@@ -958,9 +958,9 @@
   - [op_Implicit(inValue)](#M-ParquetClassLibrary-Scripts-ScriptNode-op_Implicit-System-String-~ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode.op_Implicit(System.String)~ParquetClassLibrary.Scripts.ScriptNode')
   - [op_Implicit(inNode)](#M-ParquetClassLibrary-Scripts-ScriptNode-op_Implicit-ParquetClassLibrary-Scripts-ScriptNode-~System-String 'ParquetClassLibrary.Scripts.ScriptNode.op_Implicit(ParquetClassLibrary.Scripts.ScriptNode)~System.String')
 - [SearchResults](#T-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults')
-  - [CycleFound](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.CycleFound')
-  - [GoalFound](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.GoalFound')
-  - [Visited](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.Visited')
+  - [CycleFound](#P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.CycleFound')
+  - [GoalFound](#P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.GoalFound')
+  - [Visited](#P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.Visited')
 - [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2')
   - [ElementFactory](#F-ParquetClassLibrary-SeriesConverter`2-ElementFactory 'ParquetClassLibrary.SeriesConverter`2.ElementFactory')
   - [ConverterFactory](#P-ParquetClassLibrary-SeriesConverter`2-ConverterFactory 'ParquetClassLibrary.SeriesConverter`2.ConverterFactory')
@@ -12123,22 +12123,22 @@ ParquetClassLibrary.Rooms.MapSpaceSetExtensions
 
 Encapsulates the results of a graph search.
 
-<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound'></a>
-### CycleFound `constants`
+<a name='P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound'></a>
+### CycleFound `property`
 
 ##### Summary
 
 `true` if a cycle was met during the search, `false` otherwise.
 
-<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound'></a>
-### GoalFound `constants`
+<a name='P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound'></a>
+### GoalFound `property`
 
 ##### Summary
 
 `true` if the goal condition was met, `false` otherwise.
 
-<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited'></a>
-### Visited `constants`
+<a name='P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited'></a>
+### Visited `property`
 
 ##### Summary
 
