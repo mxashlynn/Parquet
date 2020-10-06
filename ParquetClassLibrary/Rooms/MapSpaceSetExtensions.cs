@@ -9,13 +9,14 @@ using ParquetClassLibrary.Properties;
 namespace ParquetClassLibrary.Rooms
 {
     /// <summary>
-    /// Extension methods to <see cref="IReadOnlySet{MapSpace}"/>, providing bounds-checking and
+    /// Extension methods to <see cref="ISet{MapSpace}"/>, providing bounds-checking and
     /// various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
-    public static class ReadOnlyMapSpaceSetExtensions
+    // TODO Once we move to .Net 5 or 6, change each of these extensions to use IReadOnlySet instead of ISet, and rename this class.
+    public static class MapSpaceSetExtensions
     {
         /// <summary>The canonical empty collection.</summary>
-        internal static IReadOnlySet<MapSpace> Empty { get; } = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>();
+        internal static ISet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
 
         #region Room Analysis
         /// <summary>
@@ -24,7 +25,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpaces">The walkable area under consideration.</param>
         /// <param name="outPerimeter">The walkable area's valid perimiter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        internal static bool TryGetPerimeter(this IReadOnlySet<MapSpace> inSpaces, out IReadOnlySet<MapSpace> outPerimeter)
+        internal static bool TryGetPerimeter(this ISet<MapSpace> inSpaces, out ISet<MapSpace> outPerimeter)
         {
             var subregion = inSpaces.First().Subregion;
             Precondition.IsNotNull(subregion);
@@ -134,13 +135,13 @@ namespace ParquetClassLibrary.Rooms
 
             // Returns the potential perimeter by finding all 4-connected MapSpaces in the given subregion
             // whose Content is Enclosing, beginning at the Position given by inStart.
-            IReadOnlySet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
+            ISet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
                 => GetSpaces(inSpaces.First().Subregion).Search(inStart,
                                                                 space => space.Content.IsEnclosing,
                                                                 space => false).Visited;
 
             // Returns a Set of MapSpaces corresponding to the ParquetStackGrid.
-            static IReadOnlySet<MapSpace> GetSpaces(ParquetStackGrid inParquetStacks)
+            static ISet<MapSpace> GetSpaces(ParquetStackGrid inParquetStacks)
             {
                 Precondition.IsNotNull(inParquetStacks, nameof(inParquetStacks));
 
@@ -154,7 +155,7 @@ namespace ParquetClassLibrary.Rooms
                     }
                 }
 
-                return (IReadOnlySet<MapSpace>)new HashSet<MapSpace>(uniqueResults);
+                return new HashSet<MapSpace>(uniqueResults);
             }
             #endregion
         }
@@ -168,7 +169,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
-            => ((IReadOnlySet<MapSpace>)inSpaces).Search(inSpaces.First(), inIsApplicable, space => false)
+            => ((ISet<MapSpace>)inSpaces).Search(inSpaces.First(), inIsApplicable, space => false)
                .Visited.Count == inSpaces.Count;
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inSpaces">The group of spaces under consideration.</param>
         /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool AllSpacesAreReachableAndCycleExists(this IReadOnlySet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
+        internal static bool AllSpacesAreReachableAndCycleExists(this ISet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
         {
             var results = inSpaces.Search(inSpaces.First(), inIsApplicable, space => false);
             return results.CycleFound
@@ -199,13 +200,13 @@ namespace ParquetClassLibrary.Rooms
         /// <param name="inIsApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
         /// <param name="inIsGoal"><c>true</c> if a the search goal has been satisfied.</param>
         /// <returns>Information about the results of the search procedure.</returns>
-        private static SearchResults Search(this IReadOnlySet<MapSpace> inSpaces, MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
+        private static SearchResults Search(this ISet<MapSpace> inSpaces, MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
         {
             Precondition.IsNotNullOrEmpty(inSpaces, nameof(inSpaces));
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 
-            return new SearchResults(DepthFirstSearch(inStart), cycleFound, (IReadOnlySet<MapSpace>)new HashSet<MapSpace>(visited));
+            return new SearchResults(DepthFirstSearch(inStart), cycleFound, new HashSet<MapSpace>(visited));
 
             // Traverses the given 4-connected grid in a preorder, depth-first fashion.
             // inSpace indicates the MapSpace under consideration this stack frame.
@@ -255,9 +256,9 @@ namespace ParquetClassLibrary.Rooms
             public bool CycleFound;
 
             /// <summary>A collection of all the <see cref="MapSpace"/>s visited during the search.</summary>
-            public IReadOnlySet<MapSpace> Visited;
+            public ISet<MapSpace> Visited;
 
-            public SearchResults(bool inGoalFound, bool inCycleFound, IReadOnlySet<MapSpace> inVisited)
+            public SearchResults(bool inGoalFound, bool inCycleFound, ISet<MapSpace> inVisited)
             {
                 GoalFound = inGoalFound;
                 CycleFound = inCycleFound;
@@ -268,11 +269,11 @@ namespace ParquetClassLibrary.Rooms
 
         #region Utilities
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="IReadOnlySet{MapSpace}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ISet{MapSpace}"/>.
         /// </summary>
         /// <param name="inSpaces">The group of spaces under consideration.</param>
         /// <returns>The representation.</returns>
-        internal static string ToString(this IReadOnlySet<MapSpace> inSpaces)
+        internal static string ToString(this ISet<MapSpace> inSpaces)
             => $"{inSpaces?.Count ?? 0} spaces";
         #endregion
     }

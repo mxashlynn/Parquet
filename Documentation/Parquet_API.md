@@ -394,14 +394,6 @@
   - [FloorID](#P-ParquetClassLibrary-Parquets-IParquetStack-FloorID 'ParquetClassLibrary.Parquets.IParquetStack.FloorID')
   - [FurnishingID](#P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.IParquetStack.FurnishingID')
   - [IsEmpty](#P-ParquetClassLibrary-Parquets-IParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.IParquetStack.IsEmpty')
-- [IReadOnlySet\`1](#T-System-Collections-Generic-IReadOnlySet`1 'System.Collections.Generic.IReadOnlySet`1')
-  - [Contains(item)](#M-System-Collections-Generic-IReadOnlySet`1-Contains-`0- 'System.Collections.Generic.IReadOnlySet`1.Contains(`0)')
-  - [IsProperSubsetOf(other)](#M-System-Collections-Generic-IReadOnlySet`1-IsProperSubsetOf-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})')
-  - [IsProperSupersetOf(other)](#M-System-Collections-Generic-IReadOnlySet`1-IsProperSupersetOf-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})')
-  - [IsSubsetOf(other)](#M-System-Collections-Generic-IReadOnlySet`1-IsSubsetOf-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})')
-  - [IsSupersetOf(other)](#M-System-Collections-Generic-IReadOnlySet`1-IsSupersetOf-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})')
-  - [Overlaps(other)](#M-System-Collections-Generic-IReadOnlySet`1-Overlaps-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})')
-  - [SetEquals(other)](#M-System-Collections-Generic-IReadOnlySet`1-SetEquals-System-Collections-Generic-IEnumerable{`0}- 'System.Collections.Generic.IReadOnlySet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})')
 - [IntExtensions](#T-ParquetClassLibrary-IntExtensions 'ParquetClassLibrary.IntExtensions')
   - [Normalize(inInt,inLowerBound,inUpperBound)](#M-ParquetClassLibrary-IntExtensions-Normalize-System-Int32,System-Int32,System-Int32- 'ParquetClassLibrary.IntExtensions.Normalize(System.Int32,System.Int32,System.Int32)')
 - [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')
@@ -591,7 +583,7 @@
   - [Equals(inSpace)](#M-ParquetClassLibrary-Rooms-MapSpace-Equals-ParquetClassLibrary-Rooms-MapSpace- 'ParquetClassLibrary.Rooms.MapSpace.Equals(ParquetClassLibrary.Rooms.MapSpace)')
   - [Equals(obj)](#M-ParquetClassLibrary-Rooms-MapSpace-Equals-System-Object- 'ParquetClassLibrary.Rooms.MapSpace.Equals(System.Object)')
   - [GetHashCode()](#M-ParquetClassLibrary-Rooms-MapSpace-GetHashCode 'ParquetClassLibrary.Rooms.MapSpace.GetHashCode')
-  - [IsEnclosingEntry(inWalkableArea)](#M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace})')
+  - [IsEnclosingEntry(inWalkableArea)](#M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace})')
   - [Neighbor()](#M-ParquetClassLibrary-Rooms-MapSpace-Neighbor-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Rooms.MapSpace.Neighbor(ParquetClassLibrary.Vector2D)')
   - [Neighbors()](#M-ParquetClassLibrary-Rooms-MapSpace-Neighbors 'ParquetClassLibrary.Rooms.MapSpace.Neighbors')
   - [NorthNeighbor()](#M-ParquetClassLibrary-Rooms-MapSpace-NorthNeighbor 'ParquetClassLibrary.Rooms.MapSpace.NorthNeighbor')
@@ -600,6 +592,13 @@
   - [WestNeighbor()](#M-ParquetClassLibrary-Rooms-MapSpace-WestNeighbor 'ParquetClassLibrary.Rooms.MapSpace.WestNeighbor')
   - [op_Equality(inSpace1,inSpace2)](#M-ParquetClassLibrary-Rooms-MapSpace-op_Equality-ParquetClassLibrary-Rooms-MapSpace,ParquetClassLibrary-Rooms-MapSpace- 'ParquetClassLibrary.Rooms.MapSpace.op_Equality(ParquetClassLibrary.Rooms.MapSpace,ParquetClassLibrary.Rooms.MapSpace)')
   - [op_Inequality(inSpace1,inSpace2)](#M-ParquetClassLibrary-Rooms-MapSpace-op_Inequality-ParquetClassLibrary-Rooms-MapSpace,ParquetClassLibrary-Rooms-MapSpace- 'ParquetClassLibrary.Rooms.MapSpace.op_Inequality(ParquetClassLibrary.Rooms.MapSpace,ParquetClassLibrary.Rooms.MapSpace)')
+- [MapSpaceSetExtensions](#T-ParquetClassLibrary-Rooms-MapSpaceSetExtensions 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions')
+  - [Empty](#P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-Empty 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.Empty')
+  - [AllSpacesAreReachable(inSpaces,inIsApplicable)](#M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-AllSpacesAreReachable-System-Collections-Generic-HashSet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.AllSpacesAreReachable(System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
+  - [AllSpacesAreReachableAndCycleExists(inSpaces,inIsApplicable)](#M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-AllSpacesAreReachableAndCycleExists-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.AllSpacesAreReachableAndCycleExists(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
+  - [Search(inSpaces,inStart,inIsApplicable,inIsGoal)](#M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-Search-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},ParquetClassLibrary-Rooms-MapSpace,System-Predicate{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.Search(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace},ParquetClassLibrary.Rooms.MapSpace,System.Predicate{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
+  - [ToString(inSpaces)](#M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-ToString-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.ToString(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace})')
+  - [TryGetPerimeter(inSpaces,outPerimeter)](#M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-TryGetPerimeter-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}@- 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.TryGetPerimeter(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace},System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}@)')
 - [Model](#T-ParquetClassLibrary-Model 'ParquetClassLibrary.Model')
   - [#ctor(inBounds,inID,inName,inDescription,inComment)](#M-ParquetClassLibrary-Model-#ctor-ParquetClassLibrary-Range{ParquetClassLibrary-ModelID},ParquetClassLibrary-ModelID,System-String,System-String,System-String- 'ParquetClassLibrary.Model.#ctor(ParquetClassLibrary.Range{ParquetClassLibrary.ModelID},ParquetClassLibrary.ModelID,System.String,System.String,System.String)')
   - [Comment](#P-ParquetClassLibrary-Model-Comment 'ParquetClassLibrary.Model.Comment')
@@ -850,13 +849,6 @@
   - [ToString()](#M-ParquetClassLibrary-Range`1-ToString 'ParquetClassLibrary.Range`1.ToString')
   - [op_Equality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Equality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Equality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
   - [op_Inequality(inRange1,inRange2)](#M-ParquetClassLibrary-Range`1-op_Inequality-ParquetClassLibrary-Range{`0},ParquetClassLibrary-Range{`0}- 'ParquetClassLibrary.Range`1.op_Inequality(ParquetClassLibrary.Range{`0},ParquetClassLibrary.Range{`0})')
-- [ReadOnlyMapSpaceSetExtensions](#T-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions')
-  - [Empty](#P-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-Empty 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.Empty')
-  - [AllSpacesAreReachable(inSpaces,inIsApplicable)](#M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-AllSpacesAreReachable-System-Collections-Generic-HashSet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.AllSpacesAreReachable(System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
-  - [AllSpacesAreReachableAndCycleExists(inSpaces,inIsApplicable)](#M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-AllSpacesAreReachableAndCycleExists-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.AllSpacesAreReachableAndCycleExists(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
-  - [Search(inSpaces,inStart,inIsApplicable,inIsGoal)](#M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-Search-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},ParquetClassLibrary-Rooms-MapSpace,System-Predicate{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.Search(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace},ParquetClassLibrary.Rooms.MapSpace,System.Predicate{ParquetClassLibrary.Rooms.MapSpace},System.Predicate{ParquetClassLibrary.Rooms.MapSpace})')
-  - [ToString(inSpaces)](#M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-ToString-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.ToString(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace})')
-  - [TryGetPerimeter(inSpaces,outPerimeter)](#M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-TryGetPerimeter-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}@- 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.TryGetPerimeter(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace},System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}@)')
 - [ReadOnlyRoomCollectionExtensions](#T-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions')
   - [GetRoomAt(inRooms,inPosition)](#M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-GetRoomAt-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room},ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.GetRoomAt(System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room},ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions-ToString-System-Collections-Generic-IReadOnlyCollection{ParquetClassLibrary-Rooms-Room}- 'ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.ToString(System.Collections.Generic.IReadOnlyCollection{ParquetClassLibrary.Rooms.Room})')
@@ -913,7 +905,7 @@
   - [WarningTriedToGiveNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToGiveNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToGiveNothing')
   - [WarningTriedToStoreNothing](#P-ParquetClassLibrary-Properties-Resources-WarningTriedToStoreNothing 'ParquetClassLibrary.Properties.Resources.WarningTriedToStoreNothing')
 - [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')
-  - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.Room.#ctor(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace},System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace})')
+  - [#ctor(inWalkableArea,inPerimeter)](#M-ParquetClassLibrary-Rooms-Room-#ctor-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.Room.#ctor(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace},System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace})')
   - [FurnishingTags](#P-ParquetClassLibrary-Rooms-Room-FurnishingTags 'ParquetClassLibrary.Rooms.Room.FurnishingTags')
   - [Perimeter](#P-ParquetClassLibrary-Rooms-Room-Perimeter 'ParquetClassLibrary.Rooms.Room.Perimeter')
   - [Position](#P-ParquetClassLibrary-Rooms-Room-Position 'ParquetClassLibrary.Rooms.Room.Position')
@@ -966,10 +958,10 @@
   - [ToString()](#M-ParquetClassLibrary-Scripts-ScriptNode-ToString 'ParquetClassLibrary.Scripts.ScriptNode.ToString')
   - [op_Implicit(inValue)](#M-ParquetClassLibrary-Scripts-ScriptNode-op_Implicit-System-String-~ParquetClassLibrary-Scripts-ScriptNode 'ParquetClassLibrary.Scripts.ScriptNode.op_Implicit(System.String)~ParquetClassLibrary.Scripts.ScriptNode')
   - [op_Implicit(inNode)](#M-ParquetClassLibrary-Scripts-ScriptNode-op_Implicit-ParquetClassLibrary-Scripts-ScriptNode-~System-String 'ParquetClassLibrary.Scripts.ScriptNode.op_Implicit(ParquetClassLibrary.Scripts.ScriptNode)~System.String')
-- [SearchResults](#T-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.SearchResults')
-  - [CycleFound](#F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-CycleFound 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.SearchResults.CycleFound')
-  - [GoalFound](#F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-GoalFound 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.SearchResults.GoalFound')
-  - [Visited](#F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-Visited 'ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions.SearchResults.Visited')
+- [SearchResults](#T-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults')
+  - [CycleFound](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.CycleFound')
+  - [GoalFound](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.GoalFound')
+  - [Visited](#F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited 'ParquetClassLibrary.Rooms.MapSpaceSetExtensions.SearchResults.Visited')
 - [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2')
   - [ElementFactory](#F-ParquetClassLibrary-SeriesConverter`2-ElementFactory 'ParquetClassLibrary.SeriesConverter`2.ElementFactory')
   - [ConverterFactory](#P-ParquetClassLibrary-SeriesConverter`2-ConverterFactory 'ParquetClassLibrary.SeriesConverter`2.ConverterFactory')
@@ -5003,178 +4995,6 @@ The furnishing contained in this stack.
 
 Indicates whether this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is empty.
 
-<a name='T-System-Collections-Generic-IReadOnlySet`1'></a>
-## IReadOnlySet\`1 `type`
-
-##### Namespace
-
-System.Collections.Generic
-
-##### Summary
-
-Provides a readonly abstraction of a set.
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | The type of elements in the set. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-Contains-`0-'></a>
-### Contains(item) `method`
-
-##### Summary
-
-Determines if the set contains a specific item
-
-##### Returns
-
-`true` if found; otherwise `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| item | [\`0](#T-`0 '`0') | The item to check if the set contains. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-IsProperSubsetOf-System-Collections-Generic-IEnumerable{`0}-'></a>
-### IsProperSubsetOf(other) `method`
-
-##### Summary
-
-Determines whether the current set is a proper (strict) subset of a specified collection.
-
-##### Returns
-
-`true` if the current set is a proper subset of other; otherwise `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-IsProperSupersetOf-System-Collections-Generic-IEnumerable{`0}-'></a>
-### IsProperSupersetOf(other) `method`
-
-##### Summary
-
-Determines whether the current set is a proper (strict) superset of a specified collection.
-
-##### Returns
-
-`true` if the collection is a proper superset of other; otherwise `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-IsSubsetOf-System-Collections-Generic-IEnumerable{`0}-'></a>
-### IsSubsetOf(other) `method`
-
-##### Summary
-
-Determine whether the current set is a subset of a specified collection.
-
-##### Returns
-
-`true` if the current set is a subset of other; otherwise `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-IsSupersetOf-System-Collections-Generic-IEnumerable{`0}-'></a>
-### IsSupersetOf(other) `method`
-
-##### Summary
-
-Determine whether the current set is a super set of a specified collection.
-
-##### Returns
-
-`true` if the current set is a subset of other; otherwise `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-Overlaps-System-Collections-Generic-IEnumerable{`0}-'></a>
-### Overlaps(other) `method`
-
-##### Summary
-
-Determines whether the current set overlaps with the specified collection.
-
-##### Returns
-
-`true`if the current set and other share at least one common element; otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
-<a name='M-System-Collections-Generic-IReadOnlySet`1-SetEquals-System-Collections-Generic-IEnumerable{`0}-'></a>
-### SetEquals(other) `method`
-
-##### Summary
-
-Determines whether the current set and the specified collection contain the same elements.
-
-##### Returns
-
-`true` if the current set is equal to other; otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| other | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection to compare to the current set. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | other is `null`. |
-
 <a name='T-ParquetClassLibrary-IntExtensions'></a>
 ## IntExtensions `type`
 
@@ -7205,7 +7025,7 @@ and [IsWalkable](#P-ParquetClassLibrary-Rooms-MapSpace-IsWalkable 'ParquetClassL
 
 ##### See Also
 
-- [ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry](#M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry(System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace})')
+- [ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry](#M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}- 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosingEntry(System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace})')
 
 <a name='P-ParquetClassLibrary-Rooms-MapSpace-Position'></a>
 ### Position `property`
@@ -7285,7 +7105,7 @@ A hash code for this instance that is suitable for use in hashing algorithms and
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+<a name='M-ParquetClassLibrary-Rooms-MapSpace-IsEnclosingEntry-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
 ### IsEnclosingEntry(inWalkableArea) `method`
 
 ##### Summary
@@ -7293,7 +7113,7 @@ This method has no parameters.
 Determines if this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is:
 1) [IsEntry](#P-ParquetClassLibrary-Rooms-MapSpace-IsEntry 'ParquetClassLibrary.Rooms.MapSpace.IsEntry')
 2) [IsEnclosing](#P-ParquetClassLibrary-Rooms-MapSpace-IsEnclosing 'ParquetClassLibrary.Rooms.MapSpace.IsEnclosing')
-3) has one walkable neighbor that is within the given [IReadOnlySet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet`1 'System.Collections.Generic.IReadOnlySet`1') and one not within the collection.
+3) has one walkable neighbor that is within the given [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1') and one not within the collection.
 
 ##### Returns
 
@@ -7303,7 +7123,7 @@ Determines if this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClas
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inWalkableArea | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The [IReadOnlySet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet`1 'System.Collections.Generic.IReadOnlySet`1') used to define this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
+| inWalkableArea | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1') used to define this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
 
 <a name='M-ParquetClassLibrary-Rooms-MapSpace-Neighbor-ParquetClassLibrary-Vector2D-'></a>
 ### Neighbor() `method`
@@ -7432,6 +7252,126 @@ another specified instance of [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace '
 | ---- | ---- | ----------- |
 | inSpace1 | [ParquetClassLibrary.Rooms.MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') | The first [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') to compare. |
 | inSpace2 | [ParquetClassLibrary.Rooms.MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') | The second [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') to compare. |
+
+<a name='T-ParquetClassLibrary-Rooms-MapSpaceSetExtensions'></a>
+## MapSpaceSetExtensions `type`
+
+##### Namespace
+
+ParquetClassLibrary.Rooms
+
+##### Summary
+
+Extension methods to [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1'), providing bounds-checking and
+various routines useful when dealing with [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
+
+<a name='P-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-Empty'></a>
+### Empty `property`
+
+##### Summary
+
+The canonical empty collection.
+
+<a name='M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-AllSpacesAreReachable-System-Collections-Generic-HashSet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+### AllSpacesAreReachable(inSpaces,inIsApplicable) `method`
+
+##### Summary
+
+Determines if it is possible to reach every [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') in the given subregion
+whose [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content') conforms to the given predicate using only
+4-connected movements, beginning at an arbitrary [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace').
+
+##### Returns
+
+`true` if all members of the given set are reachable from all other members of the given set.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSpaces | [System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.HashSet 'System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
+| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | Determines if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is a target MapSpace. |
+
+<a name='M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-AllSpacesAreReachableAndCycleExists-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+### AllSpacesAreReachableAndCycleExists(inSpaces,inIsApplicable) `method`
+
+##### Summary
+
+Determines if it is possible to reach every [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') in the given subregion
+whose [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content') conforms to the given predicate using only 4-connected
+movements, beginning at an arbitrary [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'), while encountering at least one cycle.
+
+##### Returns
+
+`true` if all members of the given set are reachable from all other members of the given set.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSpaces | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
+| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | Determines if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is a target MapSpace. |
+
+<a name='M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-Search-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},ParquetClassLibrary-Rooms-MapSpace,System-Predicate{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+### Search(inSpaces,inStart,inIsApplicable,inIsGoal) `method`
+
+##### Summary
+
+Searches the given set of [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s using only 4-connected movements,
+considering all spaces that conform to the given applicability predicate,
+beginning at an arbitrary space and continuing until the given goal predicate is satisfied.
+
+##### Returns
+
+Information about the results of the search procedure.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSpaces | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
+| inStart | [ParquetClassLibrary.Rooms.MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') to begin searching from. |
+| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | `true` if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') ought to be considered. |
+| inIsGoal | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | `true` if a the search goal has been satisfied. |
+
+##### Remarks
+
+Searches in a preorder, depth-first fashion.
+
+<a name='M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-ToString-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+### ToString(inSpaces) `method`
+
+##### Summary
+
+Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [ISet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet`1 'System.Collections.Generic.ISet`1').
+
+##### Returns
+
+The representation.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSpaces | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
+
+<a name='M-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-TryGetPerimeter-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}@-'></a>
+### TryGetPerimeter(inSpaces,outPerimeter) `method`
+
+##### Summary
+
+Finds a walkable area's perimiter in a given subregion.
+
+##### Returns
+
+`true` if a valid perimeter was found; otherwise, `false`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSpaces | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The walkable area under consideration. |
+| outPerimeter | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}@](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}@') | The walkable area's valid perimiter, if it exists. |
 
 <a name='T-ParquetClassLibrary-Model'></a>
 ## Model `type`
@@ -11008,126 +10948,6 @@ is not equal to another specified instance of [Range\`1](#T-ParquetClassLibrary-
 | inRange1 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The first [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
 | inRange2 | [ParquetClassLibrary.Range{\`0}](#T-ParquetClassLibrary-Range{`0} 'ParquetClassLibrary.Range{`0}') | The second [Range\`1](#T-ParquetClassLibrary-Range`1 'ParquetClassLibrary.Range`1') to compare. |
 
-<a name='T-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions'></a>
-## ReadOnlyMapSpaceSetExtensions `type`
-
-##### Namespace
-
-ParquetClassLibrary.Rooms
-
-##### Summary
-
-Extension methods to [IReadOnlySet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet`1 'System.Collections.Generic.IReadOnlySet`1'), providing bounds-checking and
-various routines useful when dealing with [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s.
-
-<a name='P-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-Empty'></a>
-### Empty `property`
-
-##### Summary
-
-The canonical empty collection.
-
-<a name='M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-AllSpacesAreReachable-System-Collections-Generic-HashSet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
-### AllSpacesAreReachable(inSpaces,inIsApplicable) `method`
-
-##### Summary
-
-Determines if it is possible to reach every [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') in the given subregion
-whose [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content') conforms to the given predicate using only
-4-connected movements, beginning at an arbitrary [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace').
-
-##### Returns
-
-`true` if all members of the given set are reachable from all other members of the given set.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSpaces | [System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.HashSet 'System.Collections.Generic.HashSet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
-| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | Determines if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is a target MapSpace. |
-
-<a name='M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-AllSpacesAreReachableAndCycleExists-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
-### AllSpacesAreReachableAndCycleExists(inSpaces,inIsApplicable) `method`
-
-##### Summary
-
-Determines if it is possible to reach every [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') in the given subregion
-whose [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content') conforms to the given predicate using only 4-connected
-movements, beginning at an arbitrary [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'), while encountering at least one cycle.
-
-##### Returns
-
-`true` if all members of the given set are reachable from all other members of the given set.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSpaces | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
-| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | Determines if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is a target MapSpace. |
-
-<a name='M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-Search-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},ParquetClassLibrary-Rooms-MapSpace,System-Predicate{ParquetClassLibrary-Rooms-MapSpace},System-Predicate{ParquetClassLibrary-Rooms-MapSpace}-'></a>
-### Search(inSpaces,inStart,inIsApplicable,inIsGoal) `method`
-
-##### Summary
-
-Searches the given set of [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s using only 4-connected movements,
-considering all spaces that conform to the given applicability predicate,
-beginning at an arbitrary space and continuing until the given goal predicate is satisfied.
-
-##### Returns
-
-Information about the results of the search procedure.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSpaces | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
-| inStart | [ParquetClassLibrary.Rooms.MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') to begin searching from. |
-| inIsApplicable | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | `true` if a [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') ought to be considered. |
-| inIsGoal | [System.Predicate{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{ParquetClassLibrary.Rooms.MapSpace}') | `true` if a the search goal has been satisfied. |
-
-##### Remarks
-
-Searches in a preorder, depth-first fashion.
-
-<a name='M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-ToString-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
-### ToString(inSpaces) `method`
-
-##### Summary
-
-Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [IReadOnlySet\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet`1 'System.Collections.Generic.IReadOnlySet`1').
-
-##### Returns
-
-The representation.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSpaces | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The group of spaces under consideration. |
-
-<a name='M-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-TryGetPerimeter-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}@-'></a>
-### TryGetPerimeter(inSpaces,outPerimeter) `method`
-
-##### Summary
-
-Finds a walkable area's perimiter in a given subregion.
-
-##### Returns
-
-`true` if a valid perimeter was found; otherwise, `false`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSpaces | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The walkable area under consideration. |
-| outPerimeter | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}@](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}@') | The walkable area's valid perimiter, if it exists. |
-
 <a name='T-ParquetClassLibrary-Rooms-ReadOnlyRoomCollectionExtensions'></a>
 ## ReadOnlyRoomCollectionExtensions `type`
 
@@ -11661,7 +11481,7 @@ ParquetClassLibrary.Rooms
 
 Models the a constructed [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room').
 
-<a name='M-ParquetClassLibrary-Rooms-Room-#ctor-System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-IReadOnlySet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
+<a name='M-ParquetClassLibrary-Rooms-Room-#ctor-System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace},System-Collections-Generic-ISet{ParquetClassLibrary-Rooms-MapSpace}-'></a>
 ### #ctor(inWalkableArea,inPerimeter) `constructor`
 
 ##### Summary
@@ -11672,9 +11492,9 @@ Initializes a new instance of the [Room](#T-ParquetClassLibrary-Rooms-Room 'Parq
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inWalkableArea | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s on which a [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel')
+| inWalkableArea | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s on which a [BeingModel](#T-ParquetClassLibrary-Beings-BeingModel 'ParquetClassLibrary.Beings.BeingModel')
 may walk within this [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
-| inPerimeter | [System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlySet 'System.Collections.Generic.IReadOnlySet{ParquetClassLibrary.Rooms.MapSpace}') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s whose [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')s and [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')s
+| inPerimeter | [System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.ISet 'System.Collections.Generic.ISet{ParquetClassLibrary.Rooms.MapSpace}') | The [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')s whose [BlockModel](#T-ParquetClassLibrary-Parquets-BlockModel 'ParquetClassLibrary.Parquets.BlockModel')s and [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel')s
 define the limits of this [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room'). |
 
 <a name='P-ParquetClassLibrary-Rooms-Room-FurnishingTags'></a>
@@ -12310,32 +12130,32 @@ The tag's value.
 | ---- | ---- | ----------- |
 | inNode | [ParquetClassLibrary.Scripts.ScriptNode)~System.String](#T-ParquetClassLibrary-Scripts-ScriptNode-~System-String 'ParquetClassLibrary.Scripts.ScriptNode)~System.String') | Any tag. |
 
-<a name='T-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults'></a>
+<a name='T-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults'></a>
 ## SearchResults `type`
 
 ##### Namespace
 
-ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions
+ParquetClassLibrary.Rooms.MapSpaceSetExtensions
 
 ##### Summary
 
 Encapsulates the results of a graph search.
 
-<a name='F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-CycleFound'></a>
+<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-CycleFound'></a>
 ### CycleFound `constants`
 
 ##### Summary
 
 `true` if a cycle was met during the search, `false` otherwise.
 
-<a name='F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-GoalFound'></a>
+<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-GoalFound'></a>
 ### GoalFound `constants`
 
 ##### Summary
 
 `true` if the goal condition was met, `false` otherwise.
 
-<a name='F-ParquetClassLibrary-Rooms-ReadOnlyMapSpaceSetExtensions-SearchResults-Visited'></a>
+<a name='F-ParquetClassLibrary-Rooms-MapSpaceSetExtensions-SearchResults-Visited'></a>
 ### Visited `constants`
 
 ##### Summary

@@ -563,18 +563,18 @@ ParquetClassLibrary.Rooms.MapSpace.Position.get -> ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Rooms.MapSpace.SouthNeighbor() -> ParquetClassLibrary.Rooms.MapSpace
 ParquetClassLibrary.Rooms.MapSpace.Subregion.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 ParquetClassLibrary.Rooms.MapSpace.WestNeighbor() -> ParquetClassLibrary.Rooms.MapSpace
+ParquetClassLibrary.Rooms.MapSpaceSetExtensions
 ParquetClassLibrary.Rooms.ParquetStackGridExtensions
-ParquetClassLibrary.Rooms.ReadOnlyMapSpaceSetExtensions
 ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions
 ParquetClassLibrary.Rooms.Room
 ParquetClassLibrary.Rooms.Room.ContainsPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Rooms.Room.Equals(ParquetClassLibrary.Rooms.Room inRoom) -> bool
 ParquetClassLibrary.Rooms.Room.FurnishingTags.get -> System.Collections.Generic.IEnumerable<ParquetClassLibrary.ModelTag>
-ParquetClassLibrary.Rooms.Room.Perimeter.get -> System.Collections.Generic.IReadOnlySet<ParquetClassLibrary.Rooms.MapSpace>
+ParquetClassLibrary.Rooms.Room.Perimeter.get -> System.Collections.Generic.ISet<ParquetClassLibrary.Rooms.MapSpace>
 ParquetClassLibrary.Rooms.Room.Position.get -> ParquetClassLibrary.Vector2D
 ParquetClassLibrary.Rooms.Room.RecipeID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.Rooms.Room.Room(System.Collections.Generic.IReadOnlySet<ParquetClassLibrary.Rooms.MapSpace> inWalkableArea, System.Collections.Generic.IReadOnlySet<ParquetClassLibrary.Rooms.MapSpace> inPerimeter) -> void
-ParquetClassLibrary.Rooms.Room.WalkableArea.get -> System.Collections.Generic.IReadOnlySet<ParquetClassLibrary.Rooms.MapSpace>
+ParquetClassLibrary.Rooms.Room.Room(System.Collections.Generic.ISet<ParquetClassLibrary.Rooms.MapSpace> inWalkableArea, System.Collections.Generic.ISet<ParquetClassLibrary.Rooms.MapSpace> inPerimeter) -> void
+ParquetClassLibrary.Rooms.Room.WalkableArea.get -> System.Collections.Generic.ISet<ParquetClassLibrary.Rooms.MapSpace>
 ParquetClassLibrary.Rooms.RoomConfiguration
 ParquetClassLibrary.Rooms.RoomRecipe
 ParquetClassLibrary.Rooms.RoomRecipe.Matches(ParquetClassLibrary.Rooms.Room inRoom) -> bool
@@ -623,14 +623,14 @@ ParquetClassLibrary.Vector2D.Magnitude.get -> int
 ParquetClassLibrary.Vector2D.Vector2D(int inX, int inY) -> void
 ParquetClassLibrary.Vector2D.X.get -> int
 ParquetClassLibrary.Vector2D.Y.get -> int
-System.Collections.Generic.IReadOnlySet<T>
-System.Collections.Generic.IReadOnlySet<T>.Contains(T item) -> bool
-System.Collections.Generic.IReadOnlySet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
-System.Collections.Generic.IReadOnlySet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
-System.Collections.Generic.IReadOnlySet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
-System.Collections.Generic.IReadOnlySet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
-System.Collections.Generic.IReadOnlySet<T>.Overlaps(System.Collections.Generic.IEnumerable<T> other) -> bool
-System.Collections.Generic.IReadOnlySet<T>.SetEquals(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>
+System.Collections.Generic.ISet<T>.Contains(T item) -> bool
+System.Collections.Generic.ISet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>.Overlaps(System.Collections.Generic.IEnumerable<T> other) -> bool
+System.Collections.Generic.ISet<T>.SetEquals(System.Collections.Generic.IEnumerable<T> other) -> bool
 abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string

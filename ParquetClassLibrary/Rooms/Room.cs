@@ -16,13 +16,13 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.
         /// </summary>
-        public IReadOnlySet<MapSpace> WalkableArea { get; }
+        public ISet<MapSpace> WalkableArea { get; }
 
         /// <summary>
         /// The <see cref="MapSpace"/>s whose <see cref="BlockModel"/>s and <see cref="FurnishingModel"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </summary>
-        public IReadOnlySet<MapSpace> Perimeter { get; }
+        public ISet<MapSpace> Perimeter { get; }
 
         /// <summary>
         /// The <see cref="ModelTag"/>s for every <see cref="FurnishingModel"/> found in this <see cref="Room"/>
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Rooms
         /// The <see cref="MapSpace"/>s whose <see cref="BlockModel"/>s and <see cref="FurnishingModel"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(IReadOnlySet<MapSpace> inWalkableArea, IReadOnlySet<MapSpace> inPerimeter)
+        public Room(ISet<MapSpace> inWalkableArea, ISet<MapSpace> inPerimeter)
         {
             Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
