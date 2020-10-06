@@ -473,7 +473,7 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly IReadOnlyCollection<Room> TestCollection = new ParquetStackGrid(TestRoomMap).CreateRoomCollectionFromSubregion();
 
-        private static readonly HashSet<MapSpace> ExtantPerimeter = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> ExtantPerimeter = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
         {
             new MapSpace(0, 0, TWall, null),
             new MapSpace(1, 0, TWall, null),
@@ -488,7 +488,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(2, 3, TWall, null),
             new MapSpace(3, 3, TWall, null),
         };
-        private static readonly HashSet<MapSpace> ExtantWalkableArea = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> ExtantWalkableArea = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
         {
             new MapSpace(1, 1, TTile, null),
             new MapSpace(2, 1, TTile, null),
@@ -497,7 +497,7 @@ namespace ParquetUnitTests.Rooms
         };
         private static readonly Room ExtantRoom = new Room(ExtantWalkableArea, ExtantPerimeter);
 
-        private static readonly HashSet<MapSpace> NonextantPerimeter = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> NonextantPerimeter = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
         {
             new MapSpace(10, 10, TWall, null),
             new MapSpace(11, 10, TWall, null),
@@ -512,7 +512,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(12, 13, TWall, null),
             new MapSpace(13, 13, TWall, null),
         };
-        private static readonly HashSet<MapSpace> NonextantWalkableArea = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> NonextantWalkableArea = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
         {
             new MapSpace(11, 11, TTile, null),
             new MapSpace(12, 11, TTile, null),

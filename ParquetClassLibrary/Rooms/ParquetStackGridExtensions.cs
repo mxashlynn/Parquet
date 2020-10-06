@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ParquetClassLibrary.Parquets;
@@ -24,7 +25,7 @@ namespace ParquetClassLibrary.Rooms
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
 
             var walkableAreas = GetWalkableAreas(inSubregion);
-            var perimeter = MapSpaceCollection.Empty;
+            var perimeter = ReadOnlyMapSpaceSetExtensions.Empty;
             var rooms =
                 walkableAreas
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
@@ -43,7 +44,7 @@ namespace ParquetClassLibrary.Rooms
         /// </summary>
         /// <param name="inSubregion">The <see cref="ParquetStackGrid"/>s to search.</param>
         /// <returns>The list of vallid Walkable Areas.</returns>
-        private static IReadOnlyList<MapSpaceCollection> GetWalkableAreas(ParquetStackGrid inSubregion)
+        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetStackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
             var subregionRows = inSubregion.Rows;
@@ -99,10 +100,10 @@ namespace ParquetClassLibrary.Rooms
 
             var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < RoomConfiguration.MinWalkableSpaces));
             var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > RoomConfiguration.MaxWalkableSpaces));
-            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !new MapSpaceCollection(pwa).AllSpacesAreReachable(space => space.Content.IsWalkable)));
+            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.AllSpacesAreReachable(space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
-            return results.ConvertAll(hashOfSpaces => new MapSpaceCollection(hashOfSpaces));
+            return results.Cast<IReadOnlySet<MapSpace>>().ToList();
         }
 
         /// <summary>

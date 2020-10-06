@@ -10,7 +10,7 @@ namespace System.Collections.Generic
     /// Provides a readonly abstraction of a set.
     /// </summary>
     /// <typeparam name="T">The type of elements in the set.</typeparam>
-    internal interface IReadOnlySet<T> : IReadOnlyCollection<T>
+    public interface IReadOnlySet<T> : IReadOnlyCollection<T>
     {
         /// <summary>
         /// Determines if the set contains a specific item
