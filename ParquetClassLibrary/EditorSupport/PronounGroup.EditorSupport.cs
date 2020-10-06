@@ -1,5 +1,4 @@
 #if DESIGN
-using System;
 using ParquetClassLibrary.EditorSupport;
 using CsvHelper.Configuration.Attributes;
 

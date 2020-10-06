@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Maps;
 
 namespace ParquetClassLibrary.Biomes
 {
