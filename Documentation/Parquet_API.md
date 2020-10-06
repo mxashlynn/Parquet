@@ -751,7 +751,6 @@
 - [ParquetStackGridExtensions](#T-ParquetClassLibrary-Rooms-ParquetStackGridExtensions 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions')
   - [CreateRoomCollectionFromSubregion(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.CreateRoomCollectionFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid)')
   - [GetWalkableAreas(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.GetWalkableAreas(ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [IsEntryFurnishing(inFurnishingID)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-IsEntryFurnishing-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.IsEntryFurnishing(ParquetClassLibrary.ModelID)')
 - [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor 'ParquetClassLibrary.Parquets.ParquetStatus.#ctor')
   - [#ctor(inIsTrench,inToughness,inMaxToughness)](#M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor-System-Boolean,System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatus.#ctor(System.Boolean,System.Int32,System.Int32)')
@@ -9614,24 +9613,6 @@ The list of vallid Walkable Areas.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s to search. |
-
-<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-IsEntryFurnishing-ParquetClassLibrary-ModelID-'></a>
-### IsEntryFurnishing(inFurnishingID) `method`
-
-##### Summary
-
-Determines if the given [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') refers to a [FurnishingModel](#T-ParquetClassLibrary-Parquets-FurnishingModel 'ParquetClassLibrary.Parquets.FurnishingModel') whose
-entry is not [None](#F-ParquetClassLibrary-Parquets-EntryType-None 'ParquetClassLibrary.Parquets.EntryType.None').
-
-##### Returns
-
-`true` if the furnishing is an Entry furnishing; `false` otherwise.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inFurnishingID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') to evaluate. |
 
 <a name='T-ParquetClassLibrary-Parquets-ParquetStatus'></a>
 ## ParquetStatus `type`

@@ -29,14 +29,13 @@ namespace ParquetClassLibrary.Rooms
             var rooms =
                 walkableAreas
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
-                                    && walkableArea.Concat(perimeter)
-                                                   .Any(space => space.Content.FurnishingID != ModelID.None
-                                                              && IsEntryFurnishing(space.Content.FurnishingID))
+                                    && walkableArea.Concat(perimeter).Any(space => space.IsEntry)
                                     && walkableArea.Any(space => space.IsWalkableEntry
-                                                              || space.Neighbors().Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
-                .Select(walkableArea => new Room(walkableArea, perimeter));
-
-            return rooms.ToList();
+                                                              || space.Neighbors()
+                                                                      .Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
+                .Select(walkableArea => new Room(walkableArea, perimeter))
+                .ToList();
+            return rooms;
         }
 
         /// <summary>
@@ -105,14 +104,5 @@ namespace ParquetClassLibrary.Rooms
 
             return results.Cast<ISet<MapSpace>>().ToList();
         }
-
-        /// <summary>
-        /// Determines if the given <see cref="ModelID"/> refers to a <see cref="FurnishingModel"/> whose
-        /// entry is not <see cref="EntryType.None"/>.
-        /// </summary>
-        /// <param name="inFurnishingID">The <see cref="ModelID"/> to evaluate.</param>
-        /// <returns><c>true</c> if the furnishing is an Entry furnishing; <c>false</c> otherwise.</returns>
-        private static bool IsEntryFurnishing(ModelID inFurnishingID)
-            => (All.Furnishings.Get<FurnishingModel>(inFurnishingID)?.Entry ?? EntryType.None) != EntryType.None;
     }
 }
