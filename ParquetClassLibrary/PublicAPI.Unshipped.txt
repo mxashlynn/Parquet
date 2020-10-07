@@ -92,21 +92,6 @@ ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.this[int y, int x].get -> ParquetClassLibrary.Crafts.StrikePanel
 ParquetClassLibrary.Delimiters
-ParquetClassLibrary.EditorSupport.IMutablMapRegion
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.BackgroundColor.get -> string
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.BackgroundColor.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionAboveID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionAboveID.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionBelowID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionBelowID.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheEastID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheEastID.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheNorthID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheNorthID.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheSouthID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheSouthID.set -> void
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheWestID.get -> ParquetClassLibrary.ModelID
-ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheWestID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableBeingModel
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.AvoidsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.NativeBiomeID.get -> ParquetClassLibrary.ModelID
@@ -207,6 +192,21 @@ ParquetClassLibrary.EditorSupport.IMutableItemModel.StackMax.get -> int
 ParquetClassLibrary.EditorSupport.IMutableItemModel.StackMax.set -> void
 ParquetClassLibrary.EditorSupport.IMutableItemModel.Subtype.get -> ParquetClassLibrary.Items.ItemType
 ParquetClassLibrary.EditorSupport.IMutableItemModel.Subtype.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.BackgroundColor.get -> string
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.BackgroundColor.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionAboveID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionAboveID.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionBelowID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionBelowID.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheEastID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheEastID.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheNorthID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheNorthID.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheSouthID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheSouthID.set -> void
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheWestID.get -> ParquetClassLibrary.ModelID
+ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheWestID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableModel
 ParquetClassLibrary.EditorSupport.IMutableModel.Comment.get -> string
 ParquetClassLibrary.EditorSupport.IMutableModel.Comment.set -> void

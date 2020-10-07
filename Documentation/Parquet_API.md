@@ -292,14 +292,6 @@
   - [Columns](#P-ParquetClassLibrary-IGrid`1-Columns 'ParquetClassLibrary.IGrid`1.Columns')
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-IGrid`1-Rows 'ParquetClassLibrary.IGrid`1.Rows')
-- [IMutablMapRegion](#T-ParquetClassLibrary-EditorSupport-IMutablMapRegion 'ParquetClassLibrary.EditorSupport.IMutablMapRegion')
-  - [BackgroundColor](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-BackgroundColor 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.BackgroundColor')
-  - [RegionAboveID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionAboveID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionAboveID')
-  - [RegionBelowID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionBelowID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionBelowID')
-  - [RegionToTheEastID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheEastID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheEastID')
-  - [RegionToTheNorthID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheNorthID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheNorthID')
-  - [RegionToTheSouthID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheSouthID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheSouthID')
-  - [RegionToTheWestID](#P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheWestID 'ParquetClassLibrary.EditorSupport.IMutablMapRegion.RegionToTheWestID')
 - [IMutableBeingModel](#T-ParquetClassLibrary-EditorSupport-IMutableBeingModel 'ParquetClassLibrary.EditorSupport.IMutableBeingModel')
   - [AvoidsIDs](#P-ParquetClassLibrary-EditorSupport-IMutableBeingModel-AvoidsIDs 'ParquetClassLibrary.EditorSupport.IMutableBeingModel.AvoidsIDs')
   - [NativeBiomeID](#P-ParquetClassLibrary-EditorSupport-IMutableBeingModel-NativeBiomeID 'ParquetClassLibrary.EditorSupport.IMutableBeingModel.NativeBiomeID')
@@ -362,6 +354,14 @@
   - [Rarity](#P-ParquetClassLibrary-EditorSupport-IMutableItemModel-Rarity 'ParquetClassLibrary.EditorSupport.IMutableItemModel.Rarity')
   - [StackMax](#P-ParquetClassLibrary-EditorSupport-IMutableItemModel-StackMax 'ParquetClassLibrary.EditorSupport.IMutableItemModel.StackMax')
   - [Subtype](#P-ParquetClassLibrary-EditorSupport-IMutableItemModel-Subtype 'ParquetClassLibrary.EditorSupport.IMutableItemModel.Subtype')
+- [IMutableMapRegion](#T-ParquetClassLibrary-EditorSupport-IMutableMapRegion 'ParquetClassLibrary.EditorSupport.IMutableMapRegion')
+  - [BackgroundColor](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-BackgroundColor 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.BackgroundColor')
+  - [RegionAboveID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionAboveID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionAboveID')
+  - [RegionBelowID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionBelowID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionBelowID')
+  - [RegionToTheEastID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheEastID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheEastID')
+  - [RegionToTheNorthID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheNorthID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheNorthID')
+  - [RegionToTheSouthID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheSouthID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheSouthID')
+  - [RegionToTheWestID](#P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheWestID 'ParquetClassLibrary.EditorSupport.IMutableMapRegion.RegionToTheWestID')
 - [IMutableModel](#T-ParquetClassLibrary-EditorSupport-IMutableModel 'ParquetClassLibrary.EditorSupport.IMutableModel')
   - [Comment](#P-ParquetClassLibrary-EditorSupport-IMutableModel-Comment 'ParquetClassLibrary.EditorSupport.IMutableModel.Comment')
   - [Description](#P-ParquetClassLibrary-EditorSupport-IMutableModel-Description 'ParquetClassLibrary.EditorSupport.IMutableModel.Description')
@@ -524,13 +524,13 @@
   - [BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.BackgroundColor')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapRegionModel-Bounds 'ParquetClassLibrary.Maps.MapRegionModel.Bounds')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionModel-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionModel.DimensionsInParquets')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID')
   - [ParquetClassLibrary#EditorSupport#IMutableModel#Name](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableModel#Name 'ParquetClassLibrary.Maps.MapRegionModel.ParquetClassLibrary#EditorSupport#IMutableModel#Name')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionModel.ParquetDefinitions')
   - [ParquetStatuses](#P-ParquetClassLibrary-Maps-MapRegionModel-ParquetStatuses 'ParquetClassLibrary.Maps.MapRegionModel.ParquetStatuses')
@@ -553,13 +553,13 @@
   - [Chunks](#P-ParquetClassLibrary-Maps-MapRegionSketch-Chunks 'ParquetClassLibrary.Maps.MapRegionSketch.Chunks')
   - [DimensionsInChunks](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInChunks 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInChunks')
   - [DimensionsInParquets](#P-ParquetClassLibrary-Maps-MapRegionSketch-DimensionsInParquets 'ParquetClassLibrary.Maps.MapRegionSketch.DimensionsInParquets')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID')
-  - [ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID')
+  - [ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID')
   - [ParquetClassLibrary#EditorSupport#IMutableModel#Name](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableModel#Name 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetClassLibrary#EditorSupport#IMutableModel#Name')
   - [ParquetDefinitions](#P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetDefinitions 'ParquetClassLibrary.Maps.MapRegionSketch.ParquetDefinitions')
   - [RegionAbove](#P-ParquetClassLibrary-Maps-MapRegionSketch-RegionAbove 'ParquetClassLibrary.Maps.MapRegionSketch.RegionAbove')
@@ -4058,66 +4058,6 @@ Access to any object in the grid.
 
 Gets the number of elements in the Y dimension of the [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1').
 
-<a name='T-ParquetClassLibrary-EditorSupport-IMutablMapRegion'></a>
-## IMutablMapRegion `type`
-
-##### Namespace
-
-ParquetClassLibrary.EditorSupport
-
-##### Summary
-
-Facilitates editing of [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') characteristics from design tools while maintaining a read-only face for use during play.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-BackgroundColor'></a>
-### BackgroundColor `property`
-
-##### Summary
-
-A color to display in any empty areas of the region.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionAboveID'></a>
-### RegionAboveID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionBelowID'></a>
-### RegionBelowID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheEastID'></a>
-### RegionToTheEastID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheNorthID'></a>
-### RegionToTheNorthID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheSouthID'></a>
-### RegionToTheSouthID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
-
-<a name='P-ParquetClassLibrary-EditorSupport-IMutablMapRegion-RegionToTheWestID'></a>
-### RegionToTheWestID `property`
-
-##### Summary
-
-The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
-
 <a name='T-ParquetClassLibrary-EditorSupport-IMutableBeingModel'></a>
 ## IMutableBeingModel `type`
 
@@ -4666,6 +4606,66 @@ How many of the item may share a single inventory slot.
 ##### Summary
 
 The type of item this is.
+
+<a name='T-ParquetClassLibrary-EditorSupport-IMutableMapRegion'></a>
+## IMutableMapRegion `type`
+
+##### Namespace
+
+ParquetClassLibrary.EditorSupport
+
+##### Summary
+
+Facilitates editing of [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') characteristics from design tools while maintaining a read-only face for use during play.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-BackgroundColor'></a>
+### BackgroundColor `property`
+
+##### Summary
+
+A color to display in any empty areas of the region.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionAboveID'></a>
+### RegionAboveID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionBelowID'></a>
+### RegionBelowID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheEastID'></a>
+### RegionToTheEastID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheNorthID'></a>
+### RegionToTheNorthID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheSouthID'></a>
+### RegionToTheSouthID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
+
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableMapRegion-RegionToTheWestID'></a>
+### RegionToTheWestID `property`
+
+##### Summary
+
+The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the west of this one.
 
 <a name='T-ParquetClassLibrary-EditorSupport-IMutableModel'></a>
 ## IMutableModel `type`
@@ -6203,7 +6203,7 @@ A report of all exit directions leading to regions whose own exits are inconsist
 
 | Name | Description |
 | ---- | ----------- |
-| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMutablMapRegion](#T-ParquetClassLibrary-EditorSupport-IMutablMapRegion 'ParquetClassLibrary.EditorSupport.IMutablMapRegion'). |
+| TMapType | A type derived from [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') that implements [IMutableMapRegion](#T-ParquetClassLibrary-EditorSupport-IMutableMapRegion 'ParquetClassLibrary.EditorSupport.IMutableMapRegion'). |
 
 <a name='T-ParquetClassLibrary-EditorSupport-MapAnalysis`1'></a>
 ## MapAnalysis\`1 `type`
@@ -6547,50 +6547,50 @@ The set of values that are allowed for [MapRegionModel](#T-ParquetClassLibrary-M
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor `property`
 
 ##### Summary
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionModel-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID `property`
 
 ##### Summary
 
@@ -6805,50 +6805,50 @@ The grid's dimensions in chunks.
 
 The region's dimensions in parquets.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#BackgroundColor `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#BackgroundColor `property`
 
 ##### Summary
 
 A color to display in any empty areas of the region.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionAboveID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionAboveID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionBelowID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionBelowID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel') below this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheEastID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheEastID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the east of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheNorthID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheNorthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the north of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheSouthID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheSouthID `property`
 
 ##### Summary
 
 The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region to the south of this one.
 
-<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID'></a>
-### ParquetClassLibrary#EditorSupport#IMutablMapRegion#RegionToTheWestID `property`
+<a name='P-ParquetClassLibrary-Maps-MapRegionSketch-ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID'></a>
+### ParquetClassLibrary#EditorSupport#IMutableMapRegion#RegionToTheWestID `property`
 
 ##### Summary
 
