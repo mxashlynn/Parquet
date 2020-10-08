@@ -1,4 +1,5 @@
 #if DESIGN
+using System.Collections;
 using System.Collections.Generic;
 using ParquetClassLibrary.Items;
 
@@ -11,32 +12,47 @@ namespace ParquetClassLibrary.EditorSupport
                                                      Justification = "Inventory implies InventorySlotCollection.")]
     public interface IMutableInventory : ICollection<InventorySlot>
     {
-        #region ICollection Implementation
         /// <summary>
-        /// Adds the given <see cref="InventorySlot"/> to the <see cref="Inventory"/>.
+        /// Stores the given <see cref="InventorySlot"/> if possible.
         /// </summary>
-        new void Add(InventorySlot inSlot);
+        /// <param name="inSlot">The slot to give.</param>
+        /// <returns>
+        /// If everything was stored successfully, <c>0</c>;
+        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
+        /// </returns>
+        public int Give(InventorySlot inSlot);
 
         /// <summary>
-        /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
-        /// <remarks>This method does not respect gameplay rules, but forcibly empties the collection.</remarks>
+        /// Stores the given number of the given item, if possible.
         /// </summary>
-        new void Clear();
+        /// <param name="inItemID">What kind of item to give.</param>
+        /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
+        /// <returns>
+        /// If everything was stored successfully, <c>0</c>;
+        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
+        /// </returns>
+        public int Give(ModelID inItemID, int inHowMany = 1);
 
         /// <summary>
-        /// Copies the elements of the <see cref="Inventory"/> to an <see cref="System.Array"/>, starting at the given index.
+        /// Removes the given <see cref="InventorySlot"/>, if possible.
         /// </summary>
-        /// <param name="inArray">The array to copy to.</param>
-        /// <param name="inArrayIndex">The index at which to begin copying.</param>
-        new void CopyTo(InventorySlot[] inArray, int inArrayIndex);
+        /// <param name="inSlot">The slot to take.</param>
+        /// <returns>
+        /// If everything was removed successfully, <c>0</c>;
+        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
+        /// </returns>
+        public int Take(InventorySlot inSlot);
 
         /// <summary>
-        /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="Inventory"/>.
+        /// Removes the given number of the given item, if possible.
         /// </summary>
-        /// <param name="inSlot">The slot to remove.</param>
-        /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
-        new bool Remove(InventorySlot inSlot);
-        #endregion
+        /// <param name="inItemID">What kind of item to take.</param>
+        /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
+        /// <returns>
+        /// If everything was removed successfully, <c>0</c>;
+        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
+        /// </returns>
+        public int Take(ModelID inItemID, int inHowMany = 1);
     }
 }
 #endif
