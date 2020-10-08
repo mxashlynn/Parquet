@@ -176,6 +176,11 @@ ParquetClassLibrary.EditorSupport.IMutableInteractionModel
 ParquetClassLibrary.EditorSupport.IMutableInteractionModel.OutcomesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableInteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableInteractionModel.StepsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableInventory
+ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
+ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int
+ParquetClassLibrary.EditorSupport.IMutableInventory.Take(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
+ParquetClassLibrary.EditorSupport.IMutableInventory.Take(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int
 ParquetClassLibrary.EditorSupport.IMutableItemModel
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhenUsedID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhenUsedID.set -> void

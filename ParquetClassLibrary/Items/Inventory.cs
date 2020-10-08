@@ -13,7 +13,7 @@ namespace ParquetClassLibrary.Items
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
                                                      Justification = "Inventory implies InventorySlotCollection.")]
-    public class Inventory : ICollection<InventorySlot>
+    public partial class Inventory : IReadOnlyCollection<InventorySlot>
     {
         #region Class Defaults
         /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
@@ -137,124 +137,21 @@ namespace ParquetClassLibrary.Items
             Precondition.MustBePositive(inHowMany, nameof(inHowMany));
             return Contains(inItemID) >= inHowMany;
         }
+        #endregion
+
+        #region IReadOnlyCollection Implementation
+        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
+        public int Count
+            => Slots.Count;
 
         /// <summary>
-        /// Stores the given <see cref="InventorySlot"/> if possible.
+        /// Determines whether the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inSlot">The slot to give.</param>
-        /// <returns>
-        /// If everything was stored successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
-        /// </returns>
-        public int Give(InventorySlot inSlot)
-            => Give(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 1);
-
-        /// <summary>
-        /// Stores the given number of the given item, if possible.
-        /// </summary>
-        /// <param name="inItemID">What kind of item to give.</param>
-        /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
-        /// <returns>
-        /// If everything was stored successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
-        /// </returns>
-        public int Give(ModelID inItemID, int inHowMany = 1)
-        {
-            // In testing we want to alert the developer if they try to give "nothing",
-            // but in production this should probably just silently succeed.
-            // TODO Is Debug.Assert fine here or do we need to use #if DESIGN ?
-            Debug.Assert(inItemID != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
-                                                   nameof(ModelID.None), nameof(Inventory)));
-            if (inItemID == ModelID.None)
-            {
-                return 0;
-            }
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-
-            var remainder = inHowMany;
-            // If this is happening during deserialization, assume the stack max was respected during serialization.
-            var stackMax = All.CollectionsHaveBeenInitialized
-                ? All.Items.Get<ItemModel>(inItemID).StackMax
-                : ItemModel.DefaultStackMax;
-
-            while (remainder > 0)
-            {
-                var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID
-                                                  && slot.Count < stackMax);
-                if (null == slotToAddTo)
-                {
-                    // If there are no slots of the item type with room, try to make a new one.
-                    if (Slots.Count < Capacity)
-                    {
-                        // If there is room for another slot, make one and add it.
-                        slotToAddTo = new InventorySlot(inItemID, 1);
-                        Slots.Add(slotToAddTo);
-                        remainder--;
-                    }
-                    else
-                    {
-                        // If there is no room left, return the remainder.
-                        break;
-                    }
-                }
-                else
-                {
-                    remainder = slotToAddTo.Give(remainder);
-                }
-            }
-
-            return remainder;
-        }
-
-        /// <summary>
-        /// Removes the given <see cref="InventorySlot"/>, if possible.
-        /// </summary>
-        /// <param name="inSlot">The slot to take.</param>
-        /// <returns>
-        /// If everything was removed successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
-        /// </returns>
-        public int Take(InventorySlot inSlot)
-        {
-            Precondition.IsNotNull(inSlot);
-            return Take(inSlot.ItemID, inSlot.Count);
-        }
-
-        /// <summary>
-        /// Removes the given number of the given item, if possible.
-        /// </summary>
-        /// <param name="inItemID">What kind of item to take.</param>
-        /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
-        /// <returns>
-        /// If everything was removed successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
-        /// </returns>
-        public int Take(ModelID inItemID, int inHowMany = 1)
-        {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-
-            var remainder = inHowMany;
-
-            while (remainder > 0)
-            {
-                var slotToTakeFrom = Slots.Find(slot => slot.ItemID == inItemID);
-                if (null != slotToTakeFrom)
-                {
-                    remainder = slotToTakeFrom.Take(remainder);
-                    if (slotToTakeFrom.Count == 0)
-                    {
-                        Slots.Remove(slotToTakeFrom);
-                    }
-                }
-                else
-                {
-                    // If there are no slots of the item type, return the remainder.
-                    break;
-                }
-            }
-
-            return remainder;
-        }
+        /// <param name="inSlot">The slot to search for.</param>
+        /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
+        [Obsolete("Use Inventory.Has() instead.", true)]
+        public bool Contains(InventorySlot inSlot)
+            => Has(inSlot);
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
@@ -270,58 +167,6 @@ namespace ParquetClassLibrary.Items
         /// <returns>An enumerator that iterates through the inventory.</returns>
         public IEnumerator<InventorySlot> GetEnumerator()
             => Slots.GetEnumerator();
-        #endregion
-
-        #region ICollection Implementation
-        /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
-        public bool IsReadOnly => false;
-
-        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
-        public int Count
-            => Slots.Count;
-
-
-        /// <summary>
-        /// Adds the given <see cref="InventorySlot"/> to the <see cref="Inventory"/>.
-        /// </summary>
-        /// <remarks>This method should only be used by <see cref="SeriesConverter{TElement, TCollection}"/>.</remarks>
-        /// <param name="inSlot">The slot to add.</param>
-        [Obsolete("Use Inventory.Give() instead.")]
-        public void Add(InventorySlot inSlot)
-            => Give(inSlot);
-
-        /// <summary>
-        /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
-        /// <remarks>This method does not respect gameplay rules, but forcibly empties the collection.</remarks>
-        /// </summary>
-        public void Clear()
-            => Slots.Clear();
-
-        /// <summary>
-        /// Determines whether the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
-        /// </summary>
-        /// <param name="inSlot">The slot to search for.</param>
-        /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
-        [Obsolete("Use Inventory.Has() instead.", true)]
-        public bool Contains(InventorySlot inSlot)
-            => Has(inSlot);
-
-        /// <summary>
-        /// Copies the elements of the <see cref="Inventory"/> to an <see cref="System.Array"/>, starting at the given index.
-        /// </summary>
-        /// <param name="inArray">The array to copy to.</param>
-        /// <param name="inArrayIndex">The index at which to begin copying.</param>
-        public void CopyTo(InventorySlot[] inArray, int inArrayIndex)
-            => Slots.CopyTo(inArray, inArrayIndex);
-
-        /// <summary>
-        /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="Inventory"/>.
-        /// </summary>
-        /// <param name="inSlot">The slot to remove.</param>
-        /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
-        [Obsolete("Use Inventory.Take() instead.", true)]
-        public bool Remove(InventorySlot inSlot)
-            => Take(inSlot) == 0;
         #endregion
 
         #region Utilities
