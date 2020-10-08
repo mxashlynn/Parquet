@@ -1,10 +1,7 @@
 #if DESIGN
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using ParquetClassLibrary.EditorSupport;
-using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary.Items
 {
@@ -36,52 +33,8 @@ namespace ParquetClassLibrary.Items
         /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
         /// </returns>
         int IMutableInventory.Give(ModelID inItemID, int inHowMany)
-        {
-            // In testing we want to alert the developer if they try to give "nothing",
-            // but in production this should probably just silently succeed.
-            // TODO Is Debug.Assert fine here or do we need to use #if DESIGN ?
-            Debug.Assert(inItemID != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
-                                                   nameof(ModelID.None), nameof(Inventory)));
-            if (inItemID == ModelID.None)
-            {
-                return 0;
-            }
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-
-            var remainder = inHowMany;
-            // If this is happening during deserialization, assume the stack max was respected during serialization.
-            var stackMax = All.CollectionsHaveBeenInitialized
-                ? All.Items.Get<ItemModel>(inItemID).StackMax
-                : ItemModel.DefaultStackMax;
-
-            while (remainder > 0)
-            {
-                var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID
-                                                  && slot.Count < stackMax);
-                if (null == slotToAddTo)
-                {
-                    // If there are no slots of the item type with room, try to make a new one.
-                    if (Slots.Count < Capacity)
-                    {
-                        // If there is room for another slot, make one and add it.
-                        slotToAddTo = new InventorySlot(inItemID, 1);
-                        Slots.Add(slotToAddTo);
-                        remainder--;
-                    }
-                    else
-                    {
-                        // If there is no room left, return the remainder.
-                        break;
-                    }
-                }
-                else
-                {
-                    remainder = slotToAddTo.Give(remainder);
-                }
-            }
-
-            return remainder;
-        }
+            // NOTE That the implementation is found in Inventory.cs so that the constructors can leverage this logic.
+            => PrivateGive(inItemID, inHowMany);
 
         /// <summary>
         /// Removes the given <see cref="InventorySlot"/>, if possible.
@@ -145,7 +98,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inSlot">The slot to add.</param>
         [Obsolete("Use Inventory.Give() instead.")]
         void ICollection<InventorySlot>.Add(InventorySlot inSlot)
-            => Give(inSlot);
+            => ((IMutableInventory)this).Give(inSlot);
 
         /// <summary>
         /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
@@ -169,7 +122,7 @@ namespace ParquetClassLibrary.Items
         /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
         [Obsolete("Use Inventory.Take() instead.", true)]
         bool ICollection<InventorySlot>.Remove(InventorySlot inSlot)
-            => Take(inSlot) == 0;
+            => ((IMutableInventory)this).Take(inSlot) == 0;
         #endregion
     }
 }

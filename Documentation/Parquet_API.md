@@ -345,6 +345,11 @@
   - [OutcomesIDs](#P-ParquetClassLibrary-EditorSupport-IMutableInteractionModel-OutcomesIDs 'ParquetClassLibrary.EditorSupport.IMutableInteractionModel.OutcomesIDs')
   - [PrerequisitesIDs](#P-ParquetClassLibrary-EditorSupport-IMutableInteractionModel-PrerequisitesIDs 'ParquetClassLibrary.EditorSupport.IMutableInteractionModel.PrerequisitesIDs')
   - [StepsIDs](#P-ParquetClassLibrary-EditorSupport-IMutableInteractionModel-StepsIDs 'ParquetClassLibrary.EditorSupport.IMutableInteractionModel.StepsIDs')
+- [IMutableInventory](#T-ParquetClassLibrary-EditorSupport-IMutableInventory 'ParquetClassLibrary.EditorSupport.IMutableInventory')
+  - [Give(inSlot)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.Items.InventorySlot)')
+  - [Give(inItemID,inHowMany)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.ModelID,System.Int32)')
+  - [Take(inSlot)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Take-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Take(ParquetClassLibrary.Items.InventorySlot)')
+  - [Take(inItemID,inHowMany)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Take-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Take(ParquetClassLibrary.ModelID,System.Int32)')
 - [IMutableItemModel](#T-ParquetClassLibrary-EditorSupport-IMutableItemModel 'ParquetClassLibrary.EditorSupport.IMutableItemModel')
   - [EffectWhenUsedID](#P-ParquetClassLibrary-EditorSupport-IMutableItemModel-EffectWhenUsedID 'ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhenUsedID')
   - [EffectWhileHeldID](#P-ParquetClassLibrary-EditorSupport-IMutableItemModel-EffectWhileHeldID 'ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhileHeldID')
@@ -420,26 +425,27 @@
   - [Capacity](#P-ParquetClassLibrary-Items-Inventory-Capacity 'ParquetClassLibrary.Items.Inventory.Capacity')
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
   - [Empty](#P-ParquetClassLibrary-Items-Inventory-Empty 'ParquetClassLibrary.Items.Inventory.Empty')
-  - [IsReadOnly](#P-ParquetClassLibrary-Items-Inventory-IsReadOnly 'ParquetClassLibrary.Items.Inventory.IsReadOnly')
   - [ItemCount](#P-ParquetClassLibrary-Items-Inventory-ItemCount 'ParquetClassLibrary.Items.Inventory.ItemCount')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
-  - [Add(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Add-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Add(ParquetClassLibrary.Items.InventorySlot)')
-  - [Clear()](#M-ParquetClassLibrary-Items-Inventory-Clear 'ParquetClassLibrary.Items.Inventory.Clear')
+  - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly](#P-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly')
   - [Clone()](#M-ParquetClassLibrary-Items-Inventory-Clone 'ParquetClassLibrary.Items.Inventory.Clone')
   - [Contains(inItemID)](#M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID)')
   - [Contains(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Contains-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.Items.InventorySlot)')
-  - [CopyTo(inArray,inArrayIndex)](#M-ParquetClassLibrary-Items-Inventory-CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32- 'ParquetClassLibrary.Items.Inventory.CopyTo(ParquetClassLibrary.Items.InventorySlot[],System.Int32)')
   - [GetEnumerator()](#M-ParquetClassLibrary-Items-Inventory-GetEnumerator 'ParquetClassLibrary.Items.Inventory.GetEnumerator')
-  - [Give(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.Items.InventorySlot)')
-  - [Give(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.ModelID,System.Int32)')
   - [Has(inItems)](#M-ParquetClassLibrary-Items-Inventory-Has-System-Collections-Generic-IEnumerable{System-ValueTuple{ParquetClassLibrary-ModelID,System-Int32}}- 'ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable{System.ValueTuple{ParquetClassLibrary.ModelID,System.Int32}})')
   - [Has(inSlots)](#M-ParquetClassLibrary-Items-Inventory-Has-System-Collections-Generic-IEnumerable{ParquetClassLibrary-Items-InventorySlot}- 'ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable{ParquetClassLibrary.Items.InventorySlot})')
   - [Has(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Has-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.Items.InventorySlot)')
   - [Has(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Has-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.ModelID,System.Int32)')
-  - [Remove(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Remove-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Remove(ParquetClassLibrary.Items.InventorySlot)')
+  - [ParquetClassLibrary#EditorSupport#IMutableInventory#Give(inSlot)](#M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Give-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IMutableInventory#Give(ParquetClassLibrary.Items.InventorySlot)')
+  - [ParquetClassLibrary#EditorSupport#IMutableInventory#Give(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Give-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IMutableInventory#Give(ParquetClassLibrary.ModelID,System.Int32)')
+  - [ParquetClassLibrary#EditorSupport#IMutableInventory#Take(inSlot)](#M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Take-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IMutableInventory#Take(ParquetClassLibrary.Items.InventorySlot)')
+  - [ParquetClassLibrary#EditorSupport#IMutableInventory#Take(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Take-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IMutableInventory#Take(ParquetClassLibrary.ModelID,System.Int32)')
+  - [PrivateGive(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-PrivateGive-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.PrivateGive(ParquetClassLibrary.ModelID,System.Int32)')
+  - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Add(inSlot)](#M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Add-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Add(ParquetClassLibrary.Items.InventorySlot)')
+  - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Clear()](#M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Clear 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Clear')
+  - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#CopyTo(inArray,inArrayIndex)](#M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32- 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#CopyTo(ParquetClassLibrary.Items.InventorySlot[],System.Int32)')
+  - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Remove(inSlot)](#M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Remove-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Remove(ParquetClassLibrary.Items.InventorySlot)')
   - [System#Collections#IEnumerable#GetEnumerator()](#M-ParquetClassLibrary-Items-Inventory-System#Collections#IEnumerable#GetEnumerator 'ParquetClassLibrary.Items.Inventory.System#Collections#IEnumerable#GetEnumerator')
-  - [Take(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.Items.InventorySlot)')
-  - [Take(inItemID,inHowMany)](#M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.ModelID,System.Int32)')
   - [ToString()](#M-ParquetClassLibrary-Items-Inventory-ToString 'ParquetClassLibrary.Items.Inventory.ToString')
 - [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')
   - [#ctor()](#M-ParquetClassLibrary-Items-InventorySlot-#ctor 'ParquetClassLibrary.Items.InventorySlot.#ctor')
@@ -4534,6 +4540,91 @@ Describes the criteria for begining this interaction.
 
 Everything this interaction entails.
 
+<a name='T-ParquetClassLibrary-EditorSupport-IMutableInventory'></a>
+## IMutableInventory `type`
+
+##### Namespace
+
+ParquetClassLibrary.EditorSupport
+
+##### Summary
+
+Facilitates editing of an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') from design tools while maintaining a read-only face for use during play.
+
+<a name='M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-Items-InventorySlot-'></a>
+### Give(inSlot) `method`
+
+##### Summary
+
+Stores the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') if possible.
+
+##### Returns
+
+If everything was stored successfully, `0`;
+otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to give. |
+
+<a name='M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-ModelID,System-Int32-'></a>
+### Give(inItemID,inHowMany) `method`
+
+##### Summary
+
+Stores the given number of the given item, if possible.
+
+##### Returns
+
+If everything was stored successfully, `0`;
+otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to give. |
+| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to give.  Must be positive. |
+
+<a name='M-ParquetClassLibrary-EditorSupport-IMutableInventory-Take-ParquetClassLibrary-Items-InventorySlot-'></a>
+### Take(inSlot) `method`
+
+##### Summary
+
+Removes the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot'), if possible.
+
+##### Returns
+
+If everything was removed successfully, `0`;
+otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to take. |
+
+<a name='M-ParquetClassLibrary-EditorSupport-IMutableInventory-Take-ParquetClassLibrary-ModelID,System-Int32-'></a>
+### Take(inItemID,inHowMany) `method`
+
+##### Summary
+
+Removes the given number of the given item, if possible.
+
+##### Returns
+
+If everything was removed successfully, `0`;
+otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to take. |
+| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to take.  Must be positive. |
+
 <a name='T-ParquetClassLibrary-EditorSupport-IMutableItemModel'></a>
 ## IMutableItemModel `type`
 
@@ -5280,13 +5371,6 @@ How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClas
 
 A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
 
-<a name='P-ParquetClassLibrary-Items-Inventory-IsReadOnly'></a>
-### IsReadOnly `property`
-
-##### Summary
-
-If `true` the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is read-only; if false, it may be mutated.
-
 <a name='P-ParquetClassLibrary-Items-Inventory-ItemCount'></a>
 ### ItemCount `property`
 
@@ -5301,33 +5385,12 @@ How many individual [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetC
 
 The internal collection mechanism.
 
-<a name='M-ParquetClassLibrary-Items-Inventory-Add-ParquetClassLibrary-Items-InventorySlot-'></a>
-### Add(inSlot) `method`
+<a name='P-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly'></a>
+### System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly `property`
 
 ##### Summary
 
-Adds the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') to the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to add. |
-
-##### Remarks
-
-This method should only be used by [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2').
-
-<a name='M-ParquetClassLibrary-Items-Inventory-Clear'></a>
-### Clear() `method`
-
-##### Summary
-
-Removes all [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s from the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
-
-##### Parameters
-
-This method has no parameters.
+If `true` the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is read-only; if false, it may be mutated.
 
 <a name='M-ParquetClassLibrary-Items-Inventory-Clone'></a>
 ### Clone() `method`
@@ -5378,20 +5441,6 @@ Determines whether the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'Parqu
 | ---- | ---- | ----------- |
 | inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to search for. |
 
-<a name='M-ParquetClassLibrary-Items-Inventory-CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32-'></a>
-### CopyTo(inArray,inArrayIndex) `method`
-
-##### Summary
-
-Copies the elements of the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') to an [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array'), starting at the given index.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inArray | [ParquetClassLibrary.Items.InventorySlot[]](#T-ParquetClassLibrary-Items-InventorySlot[] 'ParquetClassLibrary.Items.InventorySlot[]') | The array to copy to. |
-| inArrayIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The index at which to begin copying. |
-
 <a name='M-ParquetClassLibrary-Items-Inventory-GetEnumerator'></a>
 ### GetEnumerator() `method`
 
@@ -5406,43 +5455,6 @@ An enumerator that iterates through the inventory.
 ##### Parameters
 
 This method has no parameters.
-
-<a name='M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-Items-InventorySlot-'></a>
-### Give(inSlot) `method`
-
-##### Summary
-
-Stores the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') if possible.
-
-##### Returns
-
-If everything was stored successfully, `0`;
-otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to give. |
-
-<a name='M-ParquetClassLibrary-Items-Inventory-Give-ParquetClassLibrary-ModelID,System-Int32-'></a>
-### Give(inItemID,inHowMany) `method`
-
-##### Summary
-
-Stores the given number of the given item, if possible.
-
-##### Returns
-
-If everything was stored successfully, `0`;
-otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to give. |
-| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to give.  Must be positive. |
 
 <a name='M-ParquetClassLibrary-Items-Inventory-Has-System-Collections-Generic-IEnumerable{System-ValueTuple{ParquetClassLibrary-ModelID,System-Int32}}-'></a>
 ### Has(inItems) `method`
@@ -5513,8 +5525,143 @@ Determines if the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetCla
 | inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to check for. |
 | inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to check for.  Must be positive. |
 
-<a name='M-ParquetClassLibrary-Items-Inventory-Remove-ParquetClassLibrary-Items-InventorySlot-'></a>
-### Remove(inSlot) `method`
+<a name='M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Give-ParquetClassLibrary-Items-InventorySlot-'></a>
+### ParquetClassLibrary#EditorSupport#IMutableInventory#Give(inSlot) `method`
+
+##### Summary
+
+Stores the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') if possible.
+
+##### Returns
+
+If everything was stored successfully, `0`;
+otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to give. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Give-ParquetClassLibrary-ModelID,System-Int32-'></a>
+### ParquetClassLibrary#EditorSupport#IMutableInventory#Give(inItemID,inHowMany) `method`
+
+##### Summary
+
+Stores the given number of the given item, if possible.
+
+##### Returns
+
+If everything was stored successfully, `0`;
+otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to give. |
+| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to give.  Must be positive. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Take-ParquetClassLibrary-Items-InventorySlot-'></a>
+### ParquetClassLibrary#EditorSupport#IMutableInventory#Take(inSlot) `method`
+
+##### Summary
+
+Removes the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot'), if possible.
+
+##### Returns
+
+If everything was removed successfully, `0`;
+otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to take. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Take-ParquetClassLibrary-ModelID,System-Int32-'></a>
+### ParquetClassLibrary#EditorSupport#IMutableInventory#Take(inItemID,inHowMany) `method`
+
+##### Summary
+
+Removes the given number of the given item, if possible.
+
+##### Returns
+
+If everything was removed successfully, `0`;
+otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to take. |
+| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to take.  Must be positive. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-PrivateGive-ParquetClassLibrary-ModelID,System-Int32-'></a>
+### PrivateGive(inItemID,inHowMany) `method`
+
+##### Summary
+
+Stores the given number of the given item, if possible.
+
+##### Returns
+
+If everything was stored successfully, `0`;
+otherwise, the number of items that could not be stored because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is full.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to give. |
+| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to give.  Must be positive. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Add-ParquetClassLibrary-Items-InventorySlot-'></a>
+### System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Add(inSlot) `method`
+
+##### Summary
+
+Adds the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') to the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to add. |
+
+##### Remarks
+
+This method should only be used by [SeriesConverter\`2](#T-ParquetClassLibrary-SeriesConverter`2 'ParquetClassLibrary.SeriesConverter`2').
+
+<a name='M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Clear'></a>
+### System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Clear() `method`
+
+##### Summary
+
+Removes all [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s from the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#CopyTo-ParquetClassLibrary-Items-InventorySlot[],System-Int32-'></a>
+### System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#CopyTo(inArray,inArrayIndex) `method`
+
+##### Summary
+
+Copies the elements of the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') to an [Array](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Array 'System.Array'), starting at the given index.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| inArray | [ParquetClassLibrary.Items.InventorySlot[]](#T-ParquetClassLibrary-Items-InventorySlot[] 'ParquetClassLibrary.Items.InventorySlot[]') | The array to copy to. |
+| inArrayIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The index at which to begin copying. |
+
+<a name='M-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Remove-ParquetClassLibrary-Items-InventorySlot-'></a>
+### System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#Remove(inSlot) `method`
 
 ##### Summary
 
@@ -5548,43 +5695,6 @@ This method has no parameters.
 ##### Remarks
 
 Used by LINQ. No accessibility modifiers are valid in this context.
-
-<a name='M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-Items-InventorySlot-'></a>
-### Take(inSlot) `method`
-
-##### Summary
-
-Removes the given [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot'), if possible.
-
-##### Returns
-
-If everything was removed successfully, `0`;
-otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inSlot | [ParquetClassLibrary.Items.InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot') | The slot to take. |
-
-<a name='M-ParquetClassLibrary-Items-Inventory-Take-ParquetClassLibrary-ModelID,System-Int32-'></a>
-### Take(inItemID,inHowMany) `method`
-
-##### Summary
-
-Removes the given number of the given item, if possible.
-
-##### Returns
-
-If everything was removed successfully, `0`;
-otherwise, the number of items that could not be removed because the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') did not have any more.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| inItemID | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | What kind of item to take. |
-| inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to take.  Must be positive. |
 
 <a name='M-ParquetClassLibrary-Items-Inventory-ToString'></a>
 ### ToString() `method`
