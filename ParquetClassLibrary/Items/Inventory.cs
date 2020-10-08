@@ -72,14 +72,6 @@ namespace ParquetClassLibrary.Items
         #endregion
 
         #region Slot Access
-        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
-        public int Count
-            => Slots.Count;
-
-        /// <summary>How many individual <see cref="ItemModel"/>s are contained.</summary>
-        public int ItemCount
-            => Slots.Select(slot => slot.Count).Sum();
-
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
         /// </summary>
@@ -284,6 +276,11 @@ namespace ParquetClassLibrary.Items
         /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
         public bool IsReadOnly => false;
 
+        /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
+        public int Count
+            => Slots.Count;
+
+
         /// <summary>
         /// Adds the given <see cref="InventorySlot"/> to the <see cref="Inventory"/>.
         /// </summary>
@@ -328,6 +325,10 @@ namespace ParquetClassLibrary.Items
         #endregion
 
         #region Utilities
+        /// <summary>How many individual <see cref="ItemModel"/>s are contained.</summary>
+        public int ItemCount
+            => Slots.Select(slot => slot.Count).Sum();
+
         /// <summary>
         /// Creates a new instance with the same characteristics as the current instance.
         /// </summary>
