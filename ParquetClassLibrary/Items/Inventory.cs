@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Items
         public int Count
             => Slots.Count;
 
-        /// <summary>How many individual items are currently contained.</summary>
+        /// <summary>How many individual <see cref="ItemModel"/>s are contained.</summary>
         public int ItemCount
             => Slots.Select(slot => slot.Count).Sum();
 
@@ -155,10 +155,7 @@ namespace ParquetClassLibrary.Items
         /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
         /// </returns>
         public int Give(InventorySlot inSlot)
-        {
-            Precondition.IsNotNull(inSlot);
-            return Give(inSlot.ItemID, inSlot.Count);
-        }
+            => Give(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 1);
 
         /// <summary>
         /// Stores the given number of the given item, if possible.
@@ -171,16 +168,16 @@ namespace ParquetClassLibrary.Items
         /// </returns>
         public int Give(ModelID inItemID, int inHowMany = 1)
         {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-
             // In testing we want to alert the developer if they try to give "nothing",
             // but in production this should probably just silently succeed.
+            // TODO Is Debug.Assert fine here or do we need to use #if DESIGN ?
             Debug.Assert(inItemID != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
                                                    nameof(ModelID.None), nameof(Inventory)));
             if (inItemID == ModelID.None)
             {
                 return 0;
             }
+            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
 
             var remainder = inHowMany;
             // If this is happening during deserialization, assume the stack max was respected during serialization.
