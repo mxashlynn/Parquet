@@ -1,14 +1,15 @@
 #if DESIGN
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Items
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
-                                                     Justification = "Inventory implies InventorySlotCollection.")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-                                                     Justification = "By design, Inventory should never itself use IMutableInventory to access its own members.  This interface is for external types that require read/write access.")]
+    [SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
+                     Justification = "Inventory implies InventorySlotCollection.")]
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, Inventory should never itself use IMutableInventory to access its own members.  This interface is for external types that require read/write access.")]
     public partial class Inventory : IMutableInventory
     {
         #region IMutableInventory Implementation
