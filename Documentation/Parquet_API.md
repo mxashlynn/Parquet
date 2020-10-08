@@ -5292,7 +5292,7 @@ If `true` the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLi
 
 ##### Summary
 
-How many individual items are currently contained.
+How many individual [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s are contained.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Slots'></a>
 ### Slots `property`
