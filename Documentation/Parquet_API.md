@@ -444,11 +444,11 @@
 - [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')
   - [#ctor()](#M-ParquetClassLibrary-Items-InventorySlot-#ctor 'ParquetClassLibrary.Items.InventorySlot.#ctor')
   - [#ctor(inItemToStore,inHowMany)](#M-ParquetClassLibrary-Items-InventorySlot-#ctor-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.Items.InventorySlot.#ctor(ParquetClassLibrary.ModelID,System.Int32)')
-  - [StackMax](#F-ParquetClassLibrary-Items-InventorySlot-StackMax 'ParquetClassLibrary.Items.InventorySlot.StackMax')
   - [ConverterFactory](#P-ParquetClassLibrary-Items-InventorySlot-ConverterFactory 'ParquetClassLibrary.Items.InventorySlot.ConverterFactory')
   - [Count](#P-ParquetClassLibrary-Items-InventorySlot-Count 'ParquetClassLibrary.Items.InventorySlot.Count')
   - [Empty](#P-ParquetClassLibrary-Items-InventorySlot-Empty 'ParquetClassLibrary.Items.InventorySlot.Empty')
   - [ItemID](#P-ParquetClassLibrary-Items-InventorySlot-ItemID 'ParquetClassLibrary.Items.InventorySlot.ItemID')
+  - [StackMax](#P-ParquetClassLibrary-Items-InventorySlot-StackMax 'ParquetClassLibrary.Items.InventorySlot.StackMax')
   - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Items-InventorySlot-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Items.InventorySlot.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
   - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Items-InventorySlot-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Items.InventorySlot.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
   - [Give(inHowMany)](#M-ParquetClassLibrary-Items-InventorySlot-Give-System-Int32- 'ParquetClassLibrary.Items.InventorySlot.Give(System.Int32)')
@@ -5610,8 +5610,7 @@ ParquetClassLibrary.Items
 
 ##### Summary
 
-Allows multiple copies of a given [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')
-to be grouped together in an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
+Allows multiple copies of a given [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel') to be grouped together in an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory').
 
 <a name='M-ParquetClassLibrary-Items-InventorySlot-#ctor'></a>
 ### #ctor() `constructor`
@@ -5638,13 +5637,6 @@ Creates a new slot to store the given item type.
 | inItemToStore | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') corresponding to the item being stored here.
 Must be in-range and not [None](#F-ParquetClassLibrary-ModelID-None 'ParquetClassLibrary.ModelID.None'). |
 | inHowMany | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | How many of the item to store initially.  Must be positive. |
-
-<a name='F-ParquetClassLibrary-Items-InventorySlot-StackMax'></a>
-### StackMax `constants`
-
-##### Summary
-
-How many of the item may share this slow, cached.
 
 <a name='P-ParquetClassLibrary-Items-InventorySlot-ConverterFactory'></a>
 ### ConverterFactory `property`
@@ -5673,6 +5665,13 @@ A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-I
 ##### Summary
 
 What [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s are stored in this slot.
+
+<a name='P-ParquetClassLibrary-Items-InventorySlot-StackMax'></a>
+### StackMax `property`
+
+##### Summary
+
+How many of the item may share this slot, cached.
 
 <a name='M-ParquetClassLibrary-Items-InventorySlot-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
 ### ConvertFromString(inText,inRow,inMemberMapData) `method`

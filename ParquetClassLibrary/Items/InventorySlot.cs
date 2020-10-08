@@ -9,8 +9,7 @@ using ParquetClassLibrary.Properties;
 namespace ParquetClassLibrary.Items
 {
     /// <summary>
-    /// Allows multiple copies of a given <see cref="ItemModel"/>
-    /// to be grouped together in an <see cref="Inventory"/>.
+    /// Allows multiple copies of a given <see cref="ItemModel"/> to be grouped together in an <see cref="Inventory"/>.
     /// </summary>
     public class InventorySlot : ITypeConverter
     {
@@ -26,8 +25,11 @@ namespace ParquetClassLibrary.Items
         /// <summary>How many instances of the items are stores in this slot.</summary>
         public int Count { get; private set; }
 
-        /// <summary>How many of the item may share this slow, cached.</summary>
-        private readonly int StackMax;
+        /// <summary>How many of the item may share this slot, cached.</summary>
+        private int StackMax
+            => All.CollectionsHaveBeenInitialized
+                ? All.Items?.Get<ItemModel>(ItemID)?.StackMax ?? ItemModel.DefaultStackMax
+                : ItemModel.DefaultStackMax;
         #endregion
 
         #region Initialization
@@ -38,7 +40,6 @@ namespace ParquetClassLibrary.Items
         {
             ItemID = ModelID.None;
             Count = 1;
-            StackMax = ItemModel.DefaultStackMax;
         }
 
         /// <summary>
@@ -60,7 +61,6 @@ namespace ParquetClassLibrary.Items
 
             ItemID = inItemToStore;
             Count = inHowMany;
-            StackMax = All.Items?.Get<ItemModel>(inItemToStore)?.StackMax ?? ItemModel.DefaultStackMax;
         }
         #endregion
 
