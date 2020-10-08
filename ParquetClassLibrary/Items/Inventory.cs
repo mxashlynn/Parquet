@@ -82,13 +82,8 @@ namespace ParquetClassLibrary.Items
         /// <param name="inItemID">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
         /// <returns>The number of items of the given type contained.</returns>
         public int Contains(ModelID inItemID)
-        {
-            Precondition.IsNotNone(inItemID);
-
-            return Slots
-                   .Where(slot => slot.ItemID == inItemID)
-                   .Sum(slot => slot.Count);
-        }
+            => Slots.Where(slot => slot.ItemID == inItemID)
+                    .Sum(slot => slot.Count);
 
         /// <summary>
         /// Determines if the <see cref="Inventory"/> contains the given items in the given quantities.
