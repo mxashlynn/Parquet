@@ -288,6 +288,7 @@ ParquetClassLibrary.Items.Inventory.Inventory() -> void
 ParquetClassLibrary.Items.Inventory.Inventory(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots, int inCapacity) -> void
 ParquetClassLibrary.Items.Inventory.Inventory(int inCapacity) -> void
 ParquetClassLibrary.Items.Inventory.IsReadOnly.get -> bool
+ParquetClassLibrary.Items.Inventory.ItemCount.get -> int
 ParquetClassLibrary.Items.Inventory.Remove(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> int

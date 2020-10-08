@@ -421,6 +421,7 @@
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
   - [Empty](#P-ParquetClassLibrary-Items-Inventory-Empty 'ParquetClassLibrary.Items.Inventory.Empty')
   - [IsReadOnly](#P-ParquetClassLibrary-Items-Inventory-IsReadOnly 'ParquetClassLibrary.Items.Inventory.IsReadOnly')
+  - [ItemCount](#P-ParquetClassLibrary-Items-Inventory-ItemCount 'ParquetClassLibrary.Items.Inventory.ItemCount')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
   - [Add(inSlot)](#M-ParquetClassLibrary-Items-Inventory-Add-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.Items.Inventory.Add(ParquetClassLibrary.Items.InventorySlot)')
   - [Clear()](#M-ParquetClassLibrary-Items-Inventory-Clear 'ParquetClassLibrary.Items.Inventory.Clear')
@@ -5285,6 +5286,13 @@ A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-I
 ##### Summary
 
 If `true` the [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') is read-only; if false, it may be mutated.
+
+<a name='P-ParquetClassLibrary-Items-Inventory-ItemCount'></a>
+### ItemCount `property`
+
+##### Summary
+
+How many individual items are currently contained.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Slots'></a>
 ### Slots `property`

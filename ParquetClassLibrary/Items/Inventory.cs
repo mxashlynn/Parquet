@@ -76,6 +76,10 @@ namespace ParquetClassLibrary.Items
         public int Count
             => Slots.Count;
 
+        /// <summary>How many individual items are currently contained.</summary>
+        public int ItemCount
+            => Slots.Select(slot => slot.Count).Sum();
+
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
         /// </summary>
