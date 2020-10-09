@@ -20,8 +20,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
         public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(ModelID.None, "Not Craftable", "Not Craftable", "",
                                                                                 EmptyCraftingElementList, EmptyCraftingElementList,
-                                                                                // TODO Why not use StrikePanelGrid.Empty here?
-                                                                                new StrikePanelGrid());
+                                                                                StrikePanelGrid.Empty);
         #endregion
 
         #region Characteristics
