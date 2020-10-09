@@ -478,6 +478,10 @@ namespace ParquetClassLibrary
                 { typeof(ParquetStackGrid), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
                 { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
                 { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
+                { typeof(IReadOnlyGrid<ModelID>), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
+                { typeof(IReadOnlyGrid<ParquetStack>), GridConverter<ParquetStack, ParquetStackGrid>.ConverterFactory },
+                { typeof(IReadOnlyGrid<ParquetStatus>), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(IReadOnlyGrid<StrikePanel>), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 #endregion
             };
             #endregion
