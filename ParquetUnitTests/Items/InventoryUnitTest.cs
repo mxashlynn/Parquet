@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ParquetClassLibrary.Items;
 using Xunit;
 
@@ -18,6 +17,7 @@ namespace ParquetUnitTests.Items
             Assert.Equal(TestCapacity, inventory.Capacity);
         }
 
+        /* TODO Introduce EditorSupport unit tests!
         [Fact]
         public void NewInventoryContainsOneSlotsForEachItemTest()
         {
@@ -109,5 +109,6 @@ namespace ParquetUnitTests.Items
 
             Assert.Equal(0, inventory.Contains(notInInventoryID));
         }
+        */
     }
 }

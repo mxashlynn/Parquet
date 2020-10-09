@@ -346,6 +346,7 @@
   - [PrerequisitesIDs](#P-ParquetClassLibrary-EditorSupport-IMutableInteractionModel-PrerequisitesIDs 'ParquetClassLibrary.EditorSupport.IMutableInteractionModel.PrerequisitesIDs')
   - [StepsIDs](#P-ParquetClassLibrary-EditorSupport-IMutableInteractionModel-StepsIDs 'ParquetClassLibrary.EditorSupport.IMutableInteractionModel.StepsIDs')
 - [IMutableInventory](#T-ParquetClassLibrary-EditorSupport-IMutableInventory 'ParquetClassLibrary.EditorSupport.IMutableInventory')
+  - [Capacity](#P-ParquetClassLibrary-EditorSupport-IMutableInventory-Capacity 'ParquetClassLibrary.EditorSupport.IMutableInventory.Capacity')
   - [Give(inSlot)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.Items.InventorySlot)')
   - [Give(inItemID,inHowMany)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-ModelID,System-Int32- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Give(ParquetClassLibrary.ModelID,System.Int32)')
   - [Take(inSlot)](#M-ParquetClassLibrary-EditorSupport-IMutableInventory-Take-ParquetClassLibrary-Items-InventorySlot- 'ParquetClassLibrary.EditorSupport.IMutableInventory.Take(ParquetClassLibrary.Items.InventorySlot)')
@@ -426,6 +427,7 @@
   - [Count](#P-ParquetClassLibrary-Items-Inventory-Count 'ParquetClassLibrary.Items.Inventory.Count')
   - [Empty](#P-ParquetClassLibrary-Items-Inventory-Empty 'ParquetClassLibrary.Items.Inventory.Empty')
   - [ItemCount](#P-ParquetClassLibrary-Items-Inventory-ItemCount 'ParquetClassLibrary.Items.Inventory.ItemCount')
+  - [ParquetClassLibrary#EditorSupport#IMutableInventory#Capacity](#P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Capacity 'ParquetClassLibrary.Items.Inventory.ParquetClassLibrary#EditorSupport#IMutableInventory#Capacity')
   - [Slots](#P-ParquetClassLibrary-Items-Inventory-Slots 'ParquetClassLibrary.Items.Inventory.Slots')
   - [System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly](#P-ParquetClassLibrary-Items-Inventory-System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly 'ParquetClassLibrary.Items.Inventory.System#Collections#Generic#ICollection{ParquetClassLibrary#Items#InventorySlot}#IsReadOnly')
   - [Clone()](#M-ParquetClassLibrary-Items-Inventory-Clone 'ParquetClassLibrary.Items.Inventory.Clone')
@@ -4551,6 +4553,13 @@ ParquetClassLibrary.EditorSupport
 
 Facilitates editing of an [Inventory](#T-ParquetClassLibrary-Items-Inventory 'ParquetClassLibrary.Items.Inventory') from design tools while maintaining a read-only face for use during play.
 
+<a name='P-ParquetClassLibrary-EditorSupport-IMutableInventory-Capacity'></a>
+### Capacity `property`
+
+##### Summary
+
+How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s can be stored.
+
 <a name='M-ParquetClassLibrary-EditorSupport-IMutableInventory-Give-ParquetClassLibrary-Items-InventorySlot-'></a>
 ### Give(inSlot) `method`
 
@@ -5355,7 +5364,7 @@ Initializes a new instance of the [Inventory](#T-ParquetClassLibrary-Items-Inven
 
 ##### Summary
 
-How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s exits.
+How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s can be stored.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Count'></a>
 ### Count `property`
@@ -5377,6 +5386,13 @@ A value to use in place of an uninitialized [Inventory](#T-ParquetClassLibrary-I
 ##### Summary
 
 How many individual [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s are contained.
+
+<a name='P-ParquetClassLibrary-Items-Inventory-ParquetClassLibrary#EditorSupport#IMutableInventory#Capacity'></a>
+### ParquetClassLibrary#EditorSupport#IMutableInventory#Capacity `property`
+
+##### Summary
+
+How many [InventorySlot](#T-ParquetClassLibrary-Items-InventorySlot 'ParquetClassLibrary.Items.InventorySlot')s can be stored.
 
 <a name='P-ParquetClassLibrary-Items-Inventory-Slots'></a>
 ### Slots `property`
