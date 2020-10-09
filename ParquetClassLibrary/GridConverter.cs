@@ -49,9 +49,9 @@ namespace ParquetClassLibrary
 
             var result = new StringBuilder();
             result.Append(grid.Rows);
-            result.Append(Delimiters.DimensionalDelimiter);
+            result.Append(Delimiters.DimensionalDelimiter[0]);
             result.Append(grid.Columns);
-            result.Append(Delimiters.DimensionalTerminator);
+            result.Append(Delimiters.DimensionalTerminator[0]);
 
             for (var y = 0; y < grid.Rows; y++)
             {
@@ -61,7 +61,7 @@ namespace ParquetClassLibrary
                     {
                         result.Append(grid[y, x].ConvertToString(grid[y, x], inRow, inMemberMapData));
                     }
-                    result.Append(Delimiters.SecondaryDelimiter);
+                    result.Append(Delimiters.SecondaryDelimiter[0]);
                 }
             }
             result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
