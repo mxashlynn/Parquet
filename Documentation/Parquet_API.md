@@ -1498,12 +1498,6 @@ Clears all the [ModelCollection\`1](#T-ParquetClassLibrary-ModelCollection`1 'Pa
 
 This method has no parameters.
 
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | When called more than once. |
-
 ##### Remarks
 
 This method must be called between calls to the initialization routines.
