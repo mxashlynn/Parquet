@@ -660,7 +660,6 @@ namespace ParquetClassLibrary
         /// Note that this method is only available when Paruqet is built with editor support enabled.
         /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void Clear()
         {
 #if DESIGN
