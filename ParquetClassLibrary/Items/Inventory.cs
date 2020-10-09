@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; set; }
 
-        /// <summary>How many <see cref="InventorySlot"/>s exits.</summary>
+        /// <summary>How many <see cref="InventorySlot"/>s can be stored.</summary>
         public int Capacity { get; private set; }
         #endregion
 

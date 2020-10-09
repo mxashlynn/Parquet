@@ -12,6 +12,9 @@ namespace ParquetClassLibrary.EditorSupport
                      Justification = "Inventory implies InventorySlotCollection.")]
     public interface IMutableInventory : ICollection<InventorySlot>
     {
+        /// <summary>How many <see cref="InventorySlot"/>s can be stored.</summary>
+        public int Capacity { get; set; }
+
         /// <summary>
         /// Stores the given <see cref="InventorySlot"/> if possible.
         /// </summary>

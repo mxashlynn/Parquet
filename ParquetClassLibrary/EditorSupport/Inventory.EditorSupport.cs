@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Items
@@ -13,6 +14,10 @@ namespace ParquetClassLibrary.Items
     public partial class Inventory : IMutableInventory
     {
         #region IMutableInventory Implementation
+        /// <summary>How many <see cref="InventorySlot"/>s can be stored.</summary>
+        [Ignore]
+        int IMutableInventory.Capacity { get => Capacity; set => Capacity = value; }
+
         /// <summary>
         /// Stores the given <see cref="InventorySlot"/> if possible.
         /// </summary>
