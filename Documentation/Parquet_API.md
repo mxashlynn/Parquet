@@ -290,6 +290,7 @@
 - [IDByDirection](#T-ParquetClassLibrary-EditorSupport-MapAnalysis`1-IDByDirection 'ParquetClassLibrary.EditorSupport.MapAnalysis`1.IDByDirection')
 - [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1')
   - [Columns](#P-ParquetClassLibrary-IGrid`1-Columns 'ParquetClassLibrary.IGrid`1.Columns')
+  - [Count](#P-ParquetClassLibrary-IGrid`1-Count 'ParquetClassLibrary.IGrid`1.Count')
   - [Item](#P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IGrid`1.Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-IGrid`1-Rows 'ParquetClassLibrary.IGrid`1.Rows')
 - [IMutableBeingModel](#T-ParquetClassLibrary-EditorSupport-IMutableBeingModel 'ParquetClassLibrary.EditorSupport.IMutableBeingModel')
@@ -402,6 +403,10 @@
   - [FloorID](#P-ParquetClassLibrary-Parquets-IParquetStack-FloorID 'ParquetClassLibrary.Parquets.IParquetStack.FloorID')
   - [FurnishingID](#P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.IParquetStack.FurnishingID')
   - [IsEmpty](#P-ParquetClassLibrary-Parquets-IParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.IParquetStack.IsEmpty')
+- [IReadOnlyGrid\`1](#T-ParquetClassLibrary-IReadOnlyGrid`1 'ParquetClassLibrary.IReadOnlyGrid`1')
+  - [Columns](#P-ParquetClassLibrary-IReadOnlyGrid`1-Columns 'ParquetClassLibrary.IReadOnlyGrid`1.Columns')
+  - [Item](#P-ParquetClassLibrary-IReadOnlyGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IReadOnlyGrid`1.Item(System.Int32,System.Int32)')
+  - [Rows](#P-ParquetClassLibrary-IReadOnlyGrid`1-Rows 'ParquetClassLibrary.IReadOnlyGrid`1.Rows')
 - [IntExtensions](#T-ParquetClassLibrary-IntExtensions 'ParquetClassLibrary.IntExtensions')
   - [Normalize(inInt,inLowerBound,inUpperBound)](#M-ParquetClassLibrary-IntExtensions-Normalize-System-Int32,System-Int32,System-Int32- 'ParquetClassLibrary.IntExtensions.Normalize(System.Int32,System.Int32,System.Int32)')
 - [InteractionModel](#T-ParquetClassLibrary-Scripts-InteractionModel 'ParquetClassLibrary.Scripts.InteractionModel')
@@ -695,6 +700,7 @@
   - [Empty](#P-ParquetClassLibrary-ModelIDGrid-Empty 'ParquetClassLibrary.ModelIDGrid.Empty')
   - [IDs](#P-ParquetClassLibrary-ModelIDGrid-IDs 'ParquetClassLibrary.ModelIDGrid.IDs')
   - [Item](#P-ParquetClassLibrary-ModelIDGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.Item(System.Int32,System.Int32)')
+  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#ModelID}#Item](#P-ParquetClassLibrary-ModelIDGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#ModelID}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.ModelIDGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#ModelID}#Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-ModelIDGrid-Rows 'ParquetClassLibrary.ModelIDGrid.Rows')
   - [GetEnumerator()](#M-ParquetClassLibrary-ModelIDGrid-GetEnumerator 'ParquetClassLibrary.ModelIDGrid.GetEnumerator')
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-ModelIDGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.ModelIDGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
@@ -755,6 +761,7 @@
   - [Count](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Count 'ParquetClassLibrary.Parquets.ParquetStackGrid.Count')
   - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Empty 'ParquetClassLibrary.Parquets.ParquetStackGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.Item(System.Int32,System.Int32)')
+  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item(System.Int32,System.Int32)')
   - [ParquetStacks](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetStacks 'ParquetClassLibrary.Parquets.ParquetStackGrid.ParquetStacks')
   - [Rows](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Rows 'ParquetClassLibrary.Parquets.ParquetStackGrid.Rows')
   - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStackGrid.GetEnumerator')
@@ -790,6 +797,7 @@
   - [Count](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Count 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Count')
   - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Empty 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Item(System.Int32,System.Int32)')
+  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStatus}#Item](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStatus}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatusGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStatus}#Item(System.Int32,System.Int32)')
   - [ParquetStatuses](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-ParquetStatuses 'ParquetClassLibrary.Parquets.ParquetStatusGrid.ParquetStatuses')
   - [Rows](#P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Rows 'ParquetClassLibrary.Parquets.ParquetStatusGrid.Rows')
   - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStatusGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStatusGrid.GetEnumerator')
@@ -1010,6 +1018,7 @@
   - [Count](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Count 'ParquetClassLibrary.Crafts.StrikePanelGrid.Count')
   - [Empty](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Empty 'ParquetClassLibrary.Crafts.StrikePanelGrid.Empty')
   - [Item](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Crafts.StrikePanelGrid.Item(System.Int32,System.Int32)')
+  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Crafts#StrikePanel}#Item](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Crafts#StrikePanel}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.Crafts.StrikePanelGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Crafts#StrikePanel}#Item(System.Int32,System.Int32)')
   - [Rows](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-Rows 'ParquetClassLibrary.Crafts.StrikePanelGrid.Rows')
   - [StrikePanels](#P-ParquetClassLibrary-Crafts-StrikePanelGrid-StrikePanels 'ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanels')
   - [GetEnumerator()](#M-ParquetClassLibrary-Crafts-StrikePanelGrid-GetEnumerator 'ParquetClassLibrary.Crafts.StrikePanelGrid.GetEnumerator')
@@ -4053,6 +4062,13 @@ For serialization, implementing classes need to guarantee stable iteration order
 
 Gets the number of elements in the X dimension of the [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1').
 
+<a name='P-ParquetClassLibrary-IGrid`1-Count'></a>
+### Count `property`
+
+##### Summary
+
+Gets the total number of elements contained in the [IGrid\`1](#T-ParquetClassLibrary-IGrid`1 'ParquetClassLibrary.IGrid`1').
+
 <a name='P-ParquetClassLibrary-IGrid`1-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
 
@@ -5116,6 +5132,48 @@ The furnishing contained in this stack.
 ##### Summary
 
 Indicates whether this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is empty.
+
+<a name='T-ParquetClassLibrary-IReadOnlyGrid`1'></a>
+## IReadOnlyGrid\`1 `type`
+
+##### Namespace
+
+ParquetClassLibrary
+
+##### Summary
+
+A two-dimensional collection that functions much like an immutable array.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TElement | The type collected. |
+
+##### Remarks
+
+For serialization, implementing classes need to guarantee stable iteration order.
+
+<a name='P-ParquetClassLibrary-IReadOnlyGrid`1-Columns'></a>
+### Columns `property`
+
+##### Summary
+
+Gets the number of elements in the X dimension of the [IReadOnlyGrid\`1](#T-ParquetClassLibrary-IReadOnlyGrid`1 'ParquetClassLibrary.IReadOnlyGrid`1').
+
+<a name='P-ParquetClassLibrary-IReadOnlyGrid`1-Item-System-Int32,System-Int32-'></a>
+### Item `property`
+
+##### Summary
+
+Read-only access to any object in the grid.
+
+<a name='P-ParquetClassLibrary-IReadOnlyGrid`1-Rows'></a>
+### Rows `property`
+
+##### Summary
+
+Gets the number of elements in the Y dimension of the [IReadOnlyGrid\`1](#T-ParquetClassLibrary-IReadOnlyGrid`1 'ParquetClassLibrary.IReadOnlyGrid`1').
 
 <a name='T-ParquetClassLibrary-IntExtensions'></a>
 ## IntExtensions `type`
@@ -8884,6 +8942,13 @@ The backing collection of [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClass
 
 Access to any [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') in the grid.
 
+<a name='P-ParquetClassLibrary-ModelIDGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#ModelID}#Item-System-Int32,System-Int32-'></a>
+### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#ModelID}#Item `property`
+
+##### Summary
+
+Access to any [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') in the grid.
+
 <a name='P-ParquetClassLibrary-ModelIDGrid-Rows'></a>
 ### Rows `property`
 
@@ -9665,6 +9730,13 @@ A value to use in place of uninitialized [ParquetStackGrid](#T-ParquetClassLibra
 
 Access to any [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') in the grid.
 
+<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item-System-Int32,System-Int32-'></a>
+### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item `property`
+
+##### Summary
+
+Access to any [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') in the grid.
+
 <a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetStacks'></a>
 ### ParquetStacks `property`
 
@@ -10119,6 +10191,13 @@ A value to use in place of uninitialized [ParquetStatusGrid](#T-ParquetClassLibr
 
 <a name='P-ParquetClassLibrary-Parquets-ParquetStatusGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
+
+##### Summary
+
+Access to any [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus') in the grid.
+
+<a name='P-ParquetClassLibrary-Parquets-ParquetStatusGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStatus}#Item-System-Int32,System-Int32-'></a>
+### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStatus}#Item `property`
 
 ##### Summary
 
@@ -12764,6 +12843,13 @@ A value to use in place of uninitialized [StrikePanelGrid](#T-ParquetClassLibrar
 
 <a name='P-ParquetClassLibrary-Crafts-StrikePanelGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
+
+##### Summary
+
+Access to any [StrikePanel](#T-ParquetClassLibrary-Crafts-StrikePanel 'ParquetClassLibrary.Crafts.StrikePanel') in the grid.
+
+<a name='P-ParquetClassLibrary-Crafts-StrikePanelGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Crafts#StrikePanel}#Item-System-Int32,System-Int32-'></a>
+### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Crafts#StrikePanel}#Item `property`
 
 ##### Summary
 

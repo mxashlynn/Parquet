@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Crafts
     /// The intent is that this class function much like a read-only array.
     /// </remark>
     // TODO As implemented circa Aug. 21 2020, this is not actually read-only.  Needs to be fixed!
-    public class StrikePanelGrid : IGrid<StrikePanel>
+    public class StrikePanelGrid : IGrid<StrikePanel>, IReadOnlyGrid<StrikePanel>
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="StrikePanelGrid"/>s.</summary>
@@ -91,6 +91,12 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => StrikePanels.GetEnumerator();
+        #endregion
+
+        #region IReadOnlyGrid Implementation
+        /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
+        StrikePanel IReadOnlyGrid<StrikePanel>.this[int y, int x]
+            => StrikePanels[y, x];
         #endregion
 
         #region Utilities

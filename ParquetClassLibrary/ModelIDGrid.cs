@@ -10,7 +10,7 @@ namespace ParquetClassLibrary
     /// <remark>
     /// The intent is that this class function much like a read-only array.
     /// </remark>
-    public class ModelIDGrid : IGrid<ModelID>
+    public class ModelIDGrid : IGrid<ModelID>, IReadOnlyGrid<ModelID>
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="ModelIDGrid"/>s.</summary>
@@ -83,6 +83,12 @@ namespace ParquetClassLibrary
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => IDs.GetEnumerator();
+        #endregion
+
+        #region IReadOnlyGrid Implementation
+        /// <summary>Access to any <see cref="ModelID"/> in the grid.</summary>
+        ModelID IReadOnlyGrid<ModelID>.this[int y, int x]
+            => IDs[y, x];
         #endregion
 
         #region Utilities

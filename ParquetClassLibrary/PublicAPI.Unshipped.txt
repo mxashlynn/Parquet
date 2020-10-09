@@ -130,8 +130,7 @@ ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PronounKey.get -> strin
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PronounKey.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.set -> void
-ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingInventory.get -> ParquetClassLibrary.Items.Inventory
-ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingInventory.set -> void
+ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingInventory.get -> ParquetClassLibrary.EditorSupport.IMutableInventory
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StoryCharacterID.get -> string
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StoryCharacterID.set -> void
@@ -267,8 +266,13 @@ ParquetClassLibrary.GridConverter<TElement, TGrid>
 ParquetClassLibrary.GridConverter<TElement, TGrid>.GridConverter() -> void
 ParquetClassLibrary.IGrid<TElement>
 ParquetClassLibrary.IGrid<TElement>.Columns.get -> int
+ParquetClassLibrary.IGrid<TElement>.Count.get -> int
 ParquetClassLibrary.IGrid<TElement>.Rows.get -> int
 ParquetClassLibrary.IGrid<TElement>.this[int y, int x].get -> TElement
+ParquetClassLibrary.IReadOnlyGrid<TElement>
+ParquetClassLibrary.IReadOnlyGrid<TElement>.Columns.get -> int
+ParquetClassLibrary.IReadOnlyGrid<TElement>.Rows.get -> int
+ParquetClassLibrary.IReadOnlyGrid<TElement>.this[int y, int x].get -> TElement
 ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Axe = 2 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Bucket = 4 -> ParquetClassLibrary.Items.GatheringTool

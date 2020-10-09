@@ -10,7 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <remarks>
     /// The intent is that this class function much like a read-only array.
     /// </remarks>
-    public class ParquetStatusGrid : IGrid<ParquetStatus>
+    public class ParquetStatusGrid : IGrid<ParquetStatus>, IReadOnlyGrid<ParquetStatus>
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="ParquetStatusGrid"/>s.</summary>
@@ -81,6 +81,12 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStatuses.GetEnumerator();
+        #endregion
+
+        #region IReadOnlyGrid Implementation
+        /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
+        ParquetStatus IReadOnlyGrid<ParquetStatus>.this[int y, int x]
+            => ParquetStatuses[y, x];
         #endregion
 
         #region Utilities
