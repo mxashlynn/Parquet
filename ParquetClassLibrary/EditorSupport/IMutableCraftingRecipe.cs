@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.EditorSupport
         public IList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
-        public StrikePanelGrid PanelPattern { get; }
+        public IGrid<StrikePanel> PanelPattern { get; }
     }
 }
 #endif

@@ -36,8 +36,7 @@ namespace ParquetClassLibrary.Crafts
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        // TODO Revisit this implementation.  IGrid is read-write as of Aug 21 2020 anyway.
-        StrikePanelGrid IMutableCraftingRecipe.PanelPattern => PanelPattern;
+        IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;
         #endregion
     }
 }
