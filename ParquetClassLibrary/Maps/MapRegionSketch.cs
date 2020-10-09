@@ -84,6 +84,7 @@ namespace ParquetClassLibrary.Maps
         /// <summary>Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
         [Ignore]
         // Index(13)
+        // TODO Should this be IReadOnlyGrid<ParquetStack> instead?
         public override ParquetStackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));

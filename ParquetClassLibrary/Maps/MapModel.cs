@@ -30,6 +30,7 @@ namespace ParquetClassLibrary.Maps
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
         [Index(13)]
+        // TODO Should this be IReadOnlyGrid<ParquetStack> instead?
         public abstract ParquetStackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
@@ -77,6 +78,7 @@ namespace ParquetClassLibrary.Maps
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
+        // TODO Should this return an IReadOnlyGrid<ParquetStack>s instead?
         public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))

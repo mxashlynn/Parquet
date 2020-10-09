@@ -57,10 +57,11 @@ namespace ParquetClassLibrary.Maps
         /// has already been procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
-        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>
+        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
         public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
                              bool inIsFilledOut = false,
                              ChunkDetail inDetails = null,
+                             // TODO Should this accept an IReadOnlyGrid<ParquetStack>s instead?
                              ParquetStackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {

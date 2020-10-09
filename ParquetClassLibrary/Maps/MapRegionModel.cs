@@ -65,6 +65,7 @@ namespace ParquetClassLibrary.Maps
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
+        // TODO Should this be an IReadOnlyGrid<ParquetStatus>es instead?
         public ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
