@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
         private static readonly Range<int> defaultIdealRange = new Range<int>(0, 3);
 
-        /// <summary>Indicates an space in a <see cref="StrikePanelGrid"/>.</summary>
+        /// <summary>Indicates an open space in a <see cref="StrikePanelGrid"/>.</summary>
         public static readonly StrikePanel Unused = new StrikePanel(defaultWorkingRange, defaultIdealRange);
         #endregion
 

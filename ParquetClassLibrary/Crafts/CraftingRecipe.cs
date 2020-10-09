@@ -54,7 +54,7 @@ namespace ParquetClassLibrary.Crafts
         /// </exception>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts = null,
-                              IEnumerable<RecipeElement> inIngredients = null, StrikePanelGrid inPanelPattern = null)
+                              IEnumerable<RecipeElement> inIngredients = null, IReadOnlyGrid<StrikePanel> inPanelPattern = null)
             : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
         {
             var nonNullProducts = inProducts ?? Enumerable.Empty<RecipeElement>();
@@ -70,7 +70,8 @@ namespace ParquetClassLibrary.Crafts
             if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
             {
-                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDimension,
+                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture,
+                                                                 Resources.ErrorUnsupportedDimension,
                                                                  nameof(inPanelPattern)));
             }
 

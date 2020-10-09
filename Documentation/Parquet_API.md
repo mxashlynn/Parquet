@@ -209,7 +209,7 @@
   - [GetRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-GetRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord')
   - [PutRecord()](#M-ParquetClassLibrary-Crafts-CraftConfiguration-PutRecord 'ParquetClassLibrary.Crafts.CraftConfiguration.PutRecord')
 - [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe')
-  - [#ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern)](#M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-Crafts-StrikePanelGrid- 'ParquetClassLibrary.Crafts.CraftingRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},ParquetClassLibrary.Crafts.StrikePanelGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern)](#M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-IReadOnlyGrid{ParquetClassLibrary-Crafts-StrikePanel}- 'ParquetClassLibrary.Crafts.CraftingRecipe.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement},ParquetClassLibrary.IReadOnlyGrid{ParquetClassLibrary.Crafts.StrikePanel})')
   - [EmptyCraftingElementList](#P-ParquetClassLibrary-Crafts-CraftingRecipe-EmptyCraftingElementList 'ParquetClassLibrary.Crafts.CraftingRecipe.EmptyCraftingElementList')
   - [Ingredients](#P-ParquetClassLibrary-Crafts-CraftingRecipe-Ingredients 'ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients')
   - [NotCraftable](#P-ParquetClassLibrary-Crafts-CraftingRecipe-NotCraftable 'ParquetClassLibrary.Crafts.CraftingRecipe.NotCraftable')
@@ -3221,7 +3221,7 @@ ParquetClassLibrary.Crafts
 
 Models the ingredients and process needed to produce a new item.
 
-<a name='M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-Crafts-StrikePanelGrid-'></a>
+<a name='M-ParquetClassLibrary-Crafts-CraftingRecipe-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},System-Collections-Generic-IEnumerable{ParquetClassLibrary-RecipeElement},ParquetClassLibrary-IReadOnlyGrid{ParquetClassLibrary-Crafts-StrikePanel}-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inProducts,inIngredients,inPanelPattern) `constructor`
 
 ##### Summary
@@ -3238,7 +3238,7 @@ Initializes a new instance of the [CraftingRecipe](#T-ParquetClassLibrary-Crafts
 | inComment | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Comment of, on, or by the [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe'). |
 | inProducts | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | The types and quantities of [ItemModel](#T-ParquetClassLibrary-Items-ItemModel 'ParquetClassLibrary.Items.ItemModel')s created by following this recipe once. |
 | inIngredients | [System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{ParquetClassLibrary.RecipeElement}') | All items needed to follow this [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe') once. |
-| inPanelPattern | [ParquetClassLibrary.Crafts.StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid') | The arrangment of panels encompassed by this [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe'). |
+| inPanelPattern | [ParquetClassLibrary.IReadOnlyGrid{ParquetClassLibrary.Crafts.StrikePanel}](#T-ParquetClassLibrary-IReadOnlyGrid{ParquetClassLibrary-Crafts-StrikePanel} 'ParquetClassLibrary.IReadOnlyGrid{ParquetClassLibrary.Crafts.StrikePanel}') | The arrangment of panels encompassed by this [CraftingRecipe](#T-ParquetClassLibrary-Crafts-CraftingRecipe 'ParquetClassLibrary.Crafts.CraftingRecipe'). |
 
 ##### Exceptions
 
@@ -12524,7 +12524,7 @@ Initializes a new instance of the [StrikePanel](#T-ParquetClassLibrary-Crafts-St
 
 ##### Summary
 
-Indicates an space in a [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid').
+Indicates an open space in a [StrikePanelGrid](#T-ParquetClassLibrary-Crafts-StrikePanelGrid 'ParquetClassLibrary.Crafts.StrikePanelGrid').
 
 <a name='F-ParquetClassLibrary-Crafts-StrikePanel-defaultIdealRange'></a>
 ### defaultIdealRange `constants`
