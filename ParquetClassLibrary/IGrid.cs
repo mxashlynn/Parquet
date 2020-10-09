@@ -8,8 +8,7 @@ namespace ParquetClassLibrary
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
-    // TODO Revisit this implementation.  Right now, some implementors rely on this being read/write while others assume it is read-only.
-    public interface IGrid<TElement> : IReadOnlyCollection<TElement>
+    public interface IGrid<TElement> : IEnumerable<TElement>
         where TElement : ITypeConverter
     {
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IGrid{TElement}"/>.</summary>
@@ -17,6 +16,9 @@ namespace ParquetClassLibrary
 
         /// <summary>Gets the number of elements in the X dimension of the <see cref="IGrid{TElement}"/>.</summary>
         public int Columns { get; }
+
+        /// <summary>Gets the total number of elements contained in the <see cref="IGrid{TElement}"/>.</summary>
+        public int Count { get; }
 
         /// <summary>Access to any object in the grid.</summary>
         public ref TElement this[int y, int x] { get; }
