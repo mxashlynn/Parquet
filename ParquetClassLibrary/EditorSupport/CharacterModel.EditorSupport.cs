@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
-using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.Beings
 {
@@ -70,7 +69,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        Inventory IMutableCharacterModel.StartingInventory => StartingInventory;
+        IMutableInventory IMutableCharacterModel.StartingInventory => StartingInventory;
         #endregion
     }
 }
