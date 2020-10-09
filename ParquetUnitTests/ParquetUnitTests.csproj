@@ -24,6 +24,18 @@
 
   <PropertyGroup>
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
+    <Authors>Paige Ashlynn and contibutors</Authors>
+    <Company>Magical Girlfriends</Company>
+    <PackageId>ParquetUnitTests_MagicalGirlfriends</PackageId>
+    <Description>Unit tests for ParquetClassLibrary.</Description>
+    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Please see ParquetClassLibrary for details.</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Version>0.3.38.0</Version>
   </PropertyGroup>
   
   <Target Name="AfterClean">
@@ -47,5 +59,12 @@
   <ItemGroup>
     <Folder Include="Biomes\" />
     <Folder Include="Interactions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
