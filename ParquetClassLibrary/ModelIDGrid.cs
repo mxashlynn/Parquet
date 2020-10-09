@@ -18,7 +18,7 @@ namespace ParquetClassLibrary
         #endregion
 
         /// <summary>The backing collection of <see cref="ModelID"/>es.</summary>
-        private ModelID[,] IDs { get; }
+        private readonly ModelID[,] IDs;
 
         #region Initialization
         /// <summary>

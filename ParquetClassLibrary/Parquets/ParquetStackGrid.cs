@@ -18,7 +18,7 @@ namespace ParquetClassLibrary.Parquets
         #endregion
 
         /// <summary>The backing collection of <see cref="ParquetStack"/>s.</summary>
-        private ParquetStack[,] ParquetStacks { get; }
+        private readonly ParquetStack[,] ParquetStacks;
 
         #region Initialization
         /// <summary>

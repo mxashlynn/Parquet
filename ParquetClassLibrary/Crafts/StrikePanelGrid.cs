@@ -24,7 +24,7 @@ namespace ParquetClassLibrary.Crafts
         #endregion
 
         /// <summary>The backing collection of <see cref="StrikePanel"/>es.</summary>
-        private StrikePanel[,] StrikePanels { get; }
+        private readonly StrikePanel[,] StrikePanels;
 
         #region Initialization
         /// <summary>
