@@ -1,13 +1,14 @@
 #if DESIGN
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.Beings
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public partial class CharacterModel : IMutableCharacterModel
     {
         #region ICharacterModelEdit Implementation

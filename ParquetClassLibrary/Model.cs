@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 
 namespace ParquetClassLibrary
@@ -29,8 +30,8 @@ namespace ParquetClassLibrary
     /// Model could be considered the fundamental class of the entire Parquet library.
     /// </remarks>
     /// <seealso cref="ModelTag"/>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, Model should never itself use IMutableModel the interface to access its own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, Model should never itself use IMutableModel the interface to access its own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public abstract partial class Model : IEquatable<Model>
     {
         #region Characteristics

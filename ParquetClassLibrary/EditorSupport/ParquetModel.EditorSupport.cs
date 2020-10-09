@@ -1,13 +1,14 @@
 #if DESIGN
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using ParquetClassLibrary.Biomes;
 using ParquetClassLibrary.EditorSupport;
 
 namespace ParquetClassLibrary.Parquets
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public abstract partial class ParquetModel : IMutableParquetModel
     {
         #region IParquetModelEdit Implementation

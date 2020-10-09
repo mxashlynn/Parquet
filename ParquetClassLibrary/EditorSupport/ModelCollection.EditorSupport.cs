@@ -1,13 +1,14 @@
 #if DESIGN
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using ParquetClassLibrary.EditorSupport;
 using ParquetClassLibrary.Properties;
 
 namespace ParquetClassLibrary
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-        Justification = "By design, ModelCollection should never use IMutableModelCollection to alter its own collection.  IMutableModelCollection is for external types that require read/write access.")]
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, ModelCollection should never use IMutableModelCollection to alter its own collection.  IMutableModelCollection is for external types that require read/write access.")]
     public partial class ModelCollection<TModel> : IMutableModelCollection<TModel>
         where TModel : Model
     {

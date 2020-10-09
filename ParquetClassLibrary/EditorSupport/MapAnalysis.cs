@@ -1,5 +1,6 @@
 #if DESIGN
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ParquetClassLibrary.Maps;
 using ParquetClassLibrary.Properties;
 
@@ -54,8 +55,8 @@ namespace ParquetClassLibrary.EditorSupport
         /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMutableMapRegion"/>.</typeparam>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
-            Justification = "In this instance deconstruction makes the code harder to read.")]
+        [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
+                         Justification = "In this instance deconstruction makes the code harder to read.")]
         public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
             where TMapType : MapModel, IMutableMapRegion
         {

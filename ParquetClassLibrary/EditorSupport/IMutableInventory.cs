@@ -1,5 +1,6 @@
 #if DESIGN
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ParquetClassLibrary.Items;
 
 namespace ParquetClassLibrary.EditorSupport
@@ -7,8 +8,8 @@ namespace ParquetClassLibrary.EditorSupport
     /// <summary>
     /// Facilitates editing of an <see cref="Inventory"/> from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
-                                                     Justification = "Inventory implies InventorySlotCollection.")]
+    [SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
+                     Justification = "Inventory implies InventorySlotCollection.")]
     public interface IMutableInventory : ICollection<InventorySlot>
     {
         /// <summary>
