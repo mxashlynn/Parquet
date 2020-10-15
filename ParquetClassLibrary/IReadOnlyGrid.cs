@@ -19,5 +19,11 @@ namespace ParquetClassLibrary
 
         /// <summary>Read-only access to any object in the grid.</summary>
         public TElement this[int y, int x] { get; }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        public IReadOnlyGrid<TElement> Clone();
     }
 }

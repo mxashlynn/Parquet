@@ -90,12 +90,37 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => StrikePanels.GetEnumerator();
+
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        public IGrid<StrikePanel> Clone()
+        {
+            var newInstance = new StrikePanelGrid(Rows, Columns);
+            for (var x = 0; x < Columns; x++)
+            {
+                for (var y = 0; y < Rows; y++)
+                {
+                    newInstance[y, x] = this[y, x].Clone();
+                }
+            }
+            return newInstance;
+        }
         #endregion
 
         #region IReadOnlyGrid Implementation
         /// <summary>Access to any <see cref="StrikePanel"/> in the grid.</summary>
         StrikePanel IReadOnlyGrid<StrikePanel>.this[int y, int x]
             => StrikePanels[y, x];
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        IReadOnlyGrid<StrikePanel> IReadOnlyGrid<StrikePanel>.Clone()
+            => (IReadOnlyGrid<StrikePanel>)Clone();
         #endregion
 
         #region Utilities

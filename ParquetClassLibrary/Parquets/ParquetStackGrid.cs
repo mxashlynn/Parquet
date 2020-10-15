@@ -105,12 +105,36 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStacks.GetEnumerator();
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        public IGrid<ParquetStack> Clone()
+        {
+            var newInstance = new ParquetStackGrid(Rows, Columns);
+            for (var x = 0; x < Columns; x++)
+            {
+                for (var y = 0; y < Rows; y++)
+                {
+                    newInstance[y, x] = this[y, x].Clone();
+                }
+            }
+            return newInstance;
+        }
         #endregion
 
         #region IReadOnlyGrid Implementation
         /// <summary>Access to any <see cref="ParquetStack"/> in the grid.</summary>
         ParquetStack IReadOnlyGrid<ParquetStack>.this[int y, int x]
             => ParquetStacks[y, x];
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        IReadOnlyGrid<ParquetStack> IReadOnlyGrid<ParquetStack>.Clone()
+            => (IReadOnlyGrid<ParquetStack>)Clone();
         #endregion
 
         #region Utilities

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace ParquetClassLibrary.Parquets
 {
@@ -81,12 +82,36 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
             => ParquetStatuses.GetEnumerator();
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        public IGrid<ParquetStatus> Clone()
+        {
+            var newInstance = new ParquetStatusGrid(Rows, Columns);
+            for (var x = 0; x < Columns; x++)
+            {
+                for (var y = 0; y < Rows; y++)
+                {
+                    newInstance[y, x] = this[y, x].Clone();
+                }
+            }
+            return newInstance;
+        }
         #endregion
 
         #region IReadOnlyGrid Implementation
         /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
         ParquetStatus IReadOnlyGrid<ParquetStatus>.this[int y, int x]
             => ParquetStatuses[y, x];
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>The new instance.</returns>
+        IReadOnlyGrid<ParquetStatus> IReadOnlyGrid<ParquetStatus>.Clone()
+            => (IReadOnlyGrid<ParquetStatus>)Clone();
         #endregion
 
         #region Utilities

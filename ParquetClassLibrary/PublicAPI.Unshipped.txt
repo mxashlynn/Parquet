@@ -83,6 +83,7 @@ ParquetClassLibrary.Crafts.StrikePanel.WorkingRange.get -> ParquetClassLibrary.R
 ParquetClassLibrary.Crafts.StrikePanel.WorkingRange.set -> void
 ParquetClassLibrary.Crafts.StrikePanelArrayExtensions
 ParquetClassLibrary.Crafts.StrikePanelGrid
+ParquetClassLibrary.Crafts.StrikePanelGrid.Clone() -> ParquetClassLibrary.IGrid<ParquetClassLibrary.Crafts.StrikePanel>
 ParquetClassLibrary.Crafts.StrikePanelGrid.Columns.get -> int
 ParquetClassLibrary.Crafts.StrikePanelGrid.Count.get -> int
 ParquetClassLibrary.Crafts.StrikePanelGrid.GetEnumerator() -> System.Collections.IEnumerator
@@ -265,11 +266,13 @@ ParquetClassLibrary.Games.GameModel.PlayerCharacterID.get -> ParquetClassLibrary
 ParquetClassLibrary.GridConverter<TElement, TGrid>
 ParquetClassLibrary.GridConverter<TElement, TGrid>.GridConverter() -> void
 ParquetClassLibrary.IGrid<TElement>
+ParquetClassLibrary.IGrid<TElement>.Clone() -> ParquetClassLibrary.IGrid<TElement>
 ParquetClassLibrary.IGrid<TElement>.Columns.get -> int
 ParquetClassLibrary.IGrid<TElement>.Count.get -> int
 ParquetClassLibrary.IGrid<TElement>.Rows.get -> int
 ParquetClassLibrary.IGrid<TElement>.this[int y, int x].get -> TElement
 ParquetClassLibrary.IReadOnlyGrid<TElement>
+ParquetClassLibrary.IReadOnlyGrid<TElement>.Clone() -> ParquetClassLibrary.IReadOnlyGrid<TElement>
 ParquetClassLibrary.IReadOnlyGrid<TElement>.Columns.get -> int
 ParquetClassLibrary.IReadOnlyGrid<TElement>.Rows.get -> int
 ParquetClassLibrary.IReadOnlyGrid<TElement>.this[int y, int x].get -> TElement
@@ -433,6 +436,7 @@ ParquetClassLibrary.ModelID.IsValidForRange(ParquetClassLibrary.Range<ParquetCla
 ParquetClassLibrary.ModelID.IsValidForRange(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Range<ParquetClassLibrary.ModelID>> inRanges) -> bool
 ParquetClassLibrary.ModelID.ModelID() -> void
 ParquetClassLibrary.ModelIDGrid
+ParquetClassLibrary.ModelIDGrid.Clone() -> ParquetClassLibrary.IGrid<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.ModelIDGrid.Columns.get -> int
 ParquetClassLibrary.ModelIDGrid.Count.get -> int
 ParquetClassLibrary.ModelIDGrid.GetEnumerator() -> System.Collections.IEnumerator
@@ -513,6 +517,7 @@ ParquetClassLibrary.Parquets.ParquetStack.ParquetStack() -> void
 ParquetClassLibrary.Parquets.ParquetStack.ParquetStack(ParquetClassLibrary.ModelID inFloor, ParquetClassLibrary.ModelID inBlock, ParquetClassLibrary.ModelID inFurnishing, ParquetClassLibrary.ModelID inCollectible) -> void
 ParquetClassLibrary.Parquets.ParquetStackArrayExtensions
 ParquetClassLibrary.Parquets.ParquetStackGrid
+ParquetClassLibrary.Parquets.ParquetStackGrid.Clone() -> ParquetClassLibrary.IGrid<ParquetClassLibrary.Parquets.ParquetStack>
 ParquetClassLibrary.Parquets.ParquetStackGrid.Columns.get -> int
 ParquetClassLibrary.Parquets.ParquetStackGrid.Count.get -> int
 ParquetClassLibrary.Parquets.ParquetStackGrid.GetEnumerator() -> System.Collections.IEnumerator
@@ -535,6 +540,7 @@ ParquetClassLibrary.Parquets.ParquetStatus.Toughness.get -> int
 ParquetClassLibrary.Parquets.ParquetStatus.Toughness.set -> void
 ParquetClassLibrary.Parquets.ParquetStatusArrayExtensions
 ParquetClassLibrary.Parquets.ParquetStatusGrid
+ParquetClassLibrary.Parquets.ParquetStatusGrid.Clone() -> ParquetClassLibrary.IGrid<ParquetClassLibrary.Parquets.ParquetStatus>
 ParquetClassLibrary.Parquets.ParquetStatusGrid.Columns.get -> int
 ParquetClassLibrary.Parquets.ParquetStatusGrid.Count.get -> int
 ParquetClassLibrary.Parquets.ParquetStatusGrid.GetEnumerator() -> System.Collections.IEnumerator
