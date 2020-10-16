@@ -71,7 +71,6 @@ To work with this repository you will need:
 - [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.1
 - [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 15.0.5
 - [XUnit](https://github.com/xunit/xunit) >= 2.4.1 (to compile the unit tests only)
-- [Vsxmd](https://github.com/lijunle/Vsxmd)  >= 1.4.5 (to generate the API reference only)
 
 # Contributors
 - Library design and code by [Paige Ashlynn](https://github.com/mxashlynn/).

@@ -24,10 +24,6 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
 
-    <DocumentationFile>ParquetClassLibrary.xml</DocumentationFile>
-    <DocumentationMarkdown>$(MSBuildProjectDirectory)\..\Documentation\Parquet_API.md</DocumentationMarkdown>
-    <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
-
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Game Release;Editor Release</Configurations>
