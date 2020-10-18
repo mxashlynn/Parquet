@@ -56,6 +56,30 @@ namespace ParquetClassLibrary.Crafts
                 }
             }
         }
+
+        /// <summary>
+        /// Initializes a new <see cref="StrikePanelGrid"/> similar to the one provided but with the given dimensions.
+        /// </summary>
+        /// <param name="inContent">An existing <see cref="StrikePanelGrid"/>.</param>
+        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        /// <remarks>This constructor supports instance creation via reflection from the <see cref="GridConverter{TElement, TGrid}"/> class.</remarks>
+        public StrikePanelGrid(IGrid<StrikePanel> inContent, int inRowCount, int inColumnCount)
+        {
+            Precondition.IsNotNull(inContent, nameof(inContent));
+
+            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
+            for (var y = 0; y < inRowCount; y++)
+            {
+                for (var x = 0; x < inColumnCount; x++)
+                {
+                    StrikePanels[y, x] = x < inContent.Columns
+                                         && y < inContent.Rows
+                        ? inContent[y, x].Clone()
+                        : StrikePanel.Unused.Clone();
+                }
+            }
+        }
         #endregion
 
         #region IGrid Implementation

@@ -90,6 +90,7 @@ ParquetClassLibrary.Crafts.StrikePanelGrid.GetEnumerator() -> System.Collections
 ParquetClassLibrary.Crafts.StrikePanelGrid.IsValidPosition(ParquetClassLibrary.Vector2D inPosition) -> bool
 ParquetClassLibrary.Crafts.StrikePanelGrid.Rows.get -> int
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
+ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(ParquetClassLibrary.IGrid<ParquetClassLibrary.Crafts.StrikePanel> inContent, int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(int inRowCount, int inColumnCount) -> void
 ParquetClassLibrary.Crafts.StrikePanelGrid.this[int y, int x].get -> ParquetClassLibrary.Crafts.StrikePanel
 ParquetClassLibrary.Delimiters
