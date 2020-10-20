@@ -21,6 +21,10 @@ namespace ParquetClassLibrary.EditorSupport
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         public IGrid<StrikePanel> PanelPattern { get; }
+
+        /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
+        /// <param name="inReplacement">The new pattern to use.</param>
+        public void PanelPatternReplace(IGrid<StrikePanel> inReplacement);
     }
 }
 #endif

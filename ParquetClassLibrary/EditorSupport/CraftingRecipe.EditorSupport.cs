@@ -37,6 +37,14 @@ namespace ParquetClassLibrary.Crafts
         /// </remarks>
         [Ignore]
         IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;
+
+        /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
+        /// <param name="inReplacement">The new pattern to use.</param>
+        public void PanelPatternReplace(IGrid<StrikePanel> inReplacement)
+        {
+            var nonNullPanelPattern = (StrikePanelGrid)inReplacement ?? StrikePanelGrid.Empty;
+            PanelPattern = nonNullPanelPattern;
+        }
         #endregion
     }
 }

@@ -69,6 +69,7 @@ ParquetClassLibrary.Crafts.CraftingRecipe
 ParquetClassLibrary.Crafts.CraftingRecipe.CraftingRecipe(ParquetClassLibrary.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inProducts = null, System.Collections.Generic.IEnumerable<ParquetClassLibrary.RecipeElement> inIngredients = null, ParquetClassLibrary.IReadOnlyGrid<ParquetClassLibrary.Crafts.StrikePanel> inPanelPattern = null) -> void
 ParquetClassLibrary.Crafts.CraftingRecipe.Ingredients.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Crafts.CraftingRecipe.PanelPattern.get -> ParquetClassLibrary.IReadOnlyGrid<ParquetClassLibrary.Crafts.StrikePanel>
+ParquetClassLibrary.Crafts.CraftingRecipe.PanelPatternReplace(ParquetClassLibrary.IGrid<ParquetClassLibrary.Crafts.StrikePanel> inReplacement) -> void
 ParquetClassLibrary.Crafts.CraftingRecipe.Products.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.Crafts.StrikePanel
 ParquetClassLibrary.Crafts.StrikePanel.Clone() -> ParquetClassLibrary.Crafts.StrikePanel

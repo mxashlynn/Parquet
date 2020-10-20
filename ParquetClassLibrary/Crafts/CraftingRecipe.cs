@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Crafts
 
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         [Index(6)]
-        public IReadOnlyGrid<StrikePanel> PanelPattern { get; }
+        public IReadOnlyGrid<StrikePanel> PanelPattern { get; private set; }
         #endregion
 
         #region Initialization
