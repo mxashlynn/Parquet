@@ -41,6 +41,8 @@ namespace ParquetClassLibrary.Crafts
             {
                 workingRangeBackingStruct = value;
 
+                // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
+#if DEBUG || !DESIGN
                 if (IdealRange.Maximum > value.Maximum)
                 {
                     idealRangeBackingStruct = new Range<int>(idealRangeBackingStruct.Minimum, value.Maximum);
@@ -49,6 +51,7 @@ namespace ParquetClassLibrary.Crafts
                 {
                     idealRangeBackingStruct = new Range<int>(value.Minimum, idealRangeBackingStruct.Maximum);
                 }
+#endif
             }
         }
 
@@ -61,7 +64,8 @@ namespace ParquetClassLibrary.Crafts
             get => idealRangeBackingStruct;
             set
             {
-                // TODO This logic doesn't account for wholesale replacement of ranges.
+                // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
+#if DEBUG || !DESIGN
                 if (value.Maximum > WorkingRange.Maximum)
                 {
                     value = new Range<int>(value.Minimum, WorkingRange.Maximum);
@@ -70,7 +74,7 @@ namespace ParquetClassLibrary.Crafts
                 {
                     value = new Range<int>(WorkingRange.Minimum, value.Maximum);
                 }
-
+#endif
                 idealRangeBackingStruct = value;
             }
         }
