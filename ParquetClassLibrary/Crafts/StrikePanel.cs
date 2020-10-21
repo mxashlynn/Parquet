@@ -41,14 +41,13 @@ namespace ParquetClassLibrary.Crafts
             {
                 workingRangeBackingStruct = value;
 
-                if (IdealRange.Maximum > value.Maximum ||
-                    IdealRange.Minimum < value.Minimum)
+                if (IdealRange.Maximum > value.Maximum)
                 {
-                    var lowestValue = Math.Min(Math.Min(IdealRange.Minimum, value.Minimum),
-                                               Math.Min(IdealRange.Maximum, value.Maximum));
-                    var highestValue = Math.Max(Math.Max(IdealRange.Minimum, value.Minimum),
-                                                Math.Max(IdealRange.Maximum, value.Maximum));
-                    idealRangeBackingStruct = new Range<int>(lowestValue, highestValue);
+                    idealRangeBackingStruct = new Range<int>(idealRangeBackingStruct.Minimum, value.Maximum);
+                }
+                if (IdealRange.Minimum < value.Minimum)
+                {
+                    idealRangeBackingStruct = new Range<int>(value.Minimum, idealRangeBackingStruct.Maximum);
                 }
             }
         }
@@ -62,6 +61,7 @@ namespace ParquetClassLibrary.Crafts
             get => idealRangeBackingStruct;
             set
             {
+                // TODO This logic doesn't account for wholesale replacement of ranges.
                 if (value.Maximum > WorkingRange.Maximum)
                 {
                     value = new Range<int>(value.Minimum, WorkingRange.Maximum);
