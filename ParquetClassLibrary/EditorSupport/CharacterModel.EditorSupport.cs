@@ -17,7 +17,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string IMutableCharacterModel.PersonalName { get => PersonalName; set => PersonalName = value; }
+        string IMutableCharacterModel.PersonalName
+        {
+            get => PersonalName;
+            set => ((IMutableModel)this).Name = $"{value}{Delimiters.NameDelimiter}{FamilyName}";
+        }
 
         /// <summary>Player-facing family name.</summary>
         /// <remarks>
@@ -25,7 +29,11 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require readwrite access.
         /// </remarks>
         [Ignore]
-        string IMutableCharacterModel.FamilyName { get => FamilyName; set => FamilyName = value; }
+        string IMutableCharacterModel.FamilyName
+        {
+            get => FamilyName;
+            set => ((IMutableModel)this).Name = $"{PersonalName}{Delimiters.NameDelimiter}{value}";
+        }
 
         /// <summary>
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,

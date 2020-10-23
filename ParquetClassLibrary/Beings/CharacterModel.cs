@@ -14,11 +14,20 @@ namespace ParquetClassLibrary.Beings
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
         [Ignore]
-        public string PersonalName { get; private set; }
+        public string PersonalName => Name?.Split(Delimiters.NameDelimiter)[0] ?? "";
 
         /// <summary>Player-facing family name.</summary>
         [Ignore]
-        public string FamilyName { get; private set; }
+        public string FamilyName
+        {
+            get
+            {
+                var names = Name?.Split(Delimiters.NameDelimiter) ?? new string[] { "" };
+                return names.Length > 1
+                    ? names[1]
+                    : "";
+            }
+        }
 
         /// <summary>
         /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
@@ -91,11 +100,6 @@ namespace ParquetClassLibrary.Beings
             Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
             Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(inStartingDialogueID));
 
-            var names = inName?.Split(Delimiters.NameDelimiter) ?? new string[] { "" };
-            PersonalName = names[0];
-            FamilyName = names.Length > 1
-                ? names[1]
-                : "";
             PronounKey = inPronounKey;
             StoryCharacterID = inStoryCharacterID;
             StartingQuestIDs = nonNullQuestIDs.ToList();
