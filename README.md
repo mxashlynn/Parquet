@@ -21,7 +21,7 @@ This project has two goals:
 1. To provide a foundation for games developed in C# stacks;
 2. To provide a learning exercise for the lead developer.
 
-Due to goal 2, no attempt has been made to design the most elegant, effecient, general-purpose, or powerful library possible.
+Due to goal 2, no attempt has been made to design the most elegant, efficient, general-purpose, or powerful library possible.
 What has been attempted is a cleanly-coded, clearly-documented, easily maintainable class library.
 
 # Features
@@ -74,4 +74,4 @@ To work with this repository you will need:
 
 # Contributors
 - Library design and code by [Paige Ashlynn](https://github.com/mxashlynn/).
-- Special thanks to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), [Ashley Hauck](https://github.com/khyperia), [Emma Maassen](https://github.com/Enichan), and Lillian Harris for help with code reviews, mathematics, algorithms, game design, and tehcnical decisions.
+- Special thanks to [Mint Gould](https://github.com/WispyMouse), [Caidence Stone](https://github.com/caidencestone), [Ashley Hauck](https://github.com/khyperia), [Emma Maassen](https://github.com/Enichan), and Lillian Harris for help with code reviews, mathematics, algorithms, game design, and technical decisions.
