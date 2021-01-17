@@ -85,7 +85,7 @@ namespace ParquetClassLibrary
                 return new TGrid();
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
 
             var headerAndGridTexts = inText.Split(Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Delimiters.DimensionalDelimiter);

@@ -146,7 +146,7 @@ namespace ParquetClassLibrary.Parquets
 
             try
             {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
                 var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
                 var isTrench = bool.Parse(parameterText[0]);

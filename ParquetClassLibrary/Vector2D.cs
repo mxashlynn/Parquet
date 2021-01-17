@@ -167,7 +167,7 @@ namespace ParquetClassLibrary
                                                           inText, nameof(Vector2D)));
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
             if (int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var x)

@@ -221,7 +221,7 @@ namespace ParquetClassLibrary
                 return None;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyle ?? All.SerializedNumberStyle;
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             if (int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var id))
             {
                 return (ModelID)id;

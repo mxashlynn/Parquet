@@ -429,7 +429,7 @@ namespace ParquetClassLibrary
 
             IdentifierOptions = new TypeConverterOptions
             {
-                NumberStyle = SerializedNumberStyle,
+                NumberStyles = SerializedNumberStyle,
                 CultureInfo = CultureInfo.InvariantCulture,
             };
 
