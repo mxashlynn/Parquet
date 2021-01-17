@@ -69,7 +69,7 @@ The solution contains several related projects, each of which is structured so t
 To work with this repository you will need:
 
 - [.NET Core](https://dotnet.microsoft.com/download/dotnet-core) >= 3.1
-- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 15.0.5
+- [CSVHelper](https://joshclose.github.io/CsvHelper/)  >= 19.0.0
 - [XUnit](https://github.com/xunit/xunit) >= 2.4.1 (to compile the unit tests only)
 
 # Contributors
