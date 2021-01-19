@@ -25,8 +25,8 @@
   <PropertyGroup>
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
     <Authors>Paige Ashlynn and contibutors</Authors>
-    <Company>Magical Girlfriends</Company>
-    <PackageId>ParquetUnitTests_MagicalGirlfriends</PackageId>
+    <Company>Girl Potion</Company>
+    <PackageId>ParquetUnitTests_GirlPotion</PackageId>
     <Description>Unit tests for ParquetClassLibrary.</Description>
     <Copyright>2018-2020 Paige Ashlynn</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -37,7 +37,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <Version>0.3.38.0</Version>
   </PropertyGroup>
-  
+
   <Target Name="AfterClean">
     <RemoveDir Directories="$(TestResultsFolderPath)" Condition="Exists('$(TestResultsFolderPath)')" />
   </Target>

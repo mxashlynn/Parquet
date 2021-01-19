@@ -4,15 +4,15 @@
     <AssemblyName>ParquetRunner</AssemblyName>
 
     <Product>Runner</Product>
-    <Version>0.3.44.0</Version>
-    <Company>Magical Girlfriends</Company>
+    <Version>0.3.45.0</Version>
+    <Company>Girl Potion</Company>
     <Authors>Paige Ashlynn and contibutors</Authors>
     <Copyright>2018-2020 Paige Ashlynn</Copyright>
     <Description>A simple test application for use in library development.</Description>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetRunner_MagicalGirlfriends</PackageId>
+    <PackageId>ParquetRunner_GirlPotion</PackageId>
     <PackageTags></PackageTags>
     <PackageReleaseNotes>This code is not meant for external use.</PackageReleaseNotes>
 
