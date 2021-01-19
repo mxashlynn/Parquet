@@ -304,8 +304,6 @@ namespace ParquetClassLibrary
         /// <remarks>
         /// This supports defining ItemIDs in terms of the other Ranges.
         /// </remarks>
-        [SuppressMessage("Performance", "CA1810:Initialize reference type static fields inline",
-                         Justification = "Inline initializers would notably complicate the code in this instance.")]
         static All()
         {
             #region Default Values for Collections
@@ -579,7 +577,6 @@ namespace ParquetClassLibrary
         /// Initializes <see cref="All"/> based on the values in design-time CSV files.
         /// </summary>
         /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Parquet does not throw exceptions.")]
         public static bool LoadFromCSVs()
         {
             #region Read Configuration
@@ -619,7 +616,6 @@ namespace ParquetClassLibrary
         /// Stores the content of <see cref="All"/> to CSV files for later reinitialization.
         /// </summary>
         /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Parquet does not throw exceptions.")]
         public static bool SaveToCSVs()
         {
             #region Write Configuration
