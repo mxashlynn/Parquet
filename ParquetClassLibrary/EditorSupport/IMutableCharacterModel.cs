@@ -44,7 +44,7 @@ namespace ParquetClassLibrary.EditorSupport
         public ModelID StartingDialogueID { get; set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        public IMutableInventory StartingInventory { get; }
+        public Inventory StartingInventory { get; }
     }
 }
 #endif
