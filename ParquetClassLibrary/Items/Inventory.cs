@@ -38,6 +38,7 @@ namespace ParquetClassLibrary.Items
             get => backingCapacity;
             set
             {
+                Precondition.MustBeNonNegative(value, nameof(Capacity));
                 backingCapacity = value;
                 while (backingCapacity < Slots.Count)
                 {
