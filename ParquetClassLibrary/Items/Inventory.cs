@@ -24,7 +24,6 @@ namespace ParquetClassLibrary.Items
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; set; }
 
-        #region Characteristics
         /// <summary>Backing value for <see cref="Capacity"/>.</summary>
         private int backingCapacity;
 
