@@ -24,9 +24,27 @@ namespace ParquetClassLibrary.Items
         /// <summary>The internal collection mechanism.</summary>
         private List<InventorySlot> Slots { get; set; }
 
+        #region Characteristics
+        /// <summary>Backing value for <see cref="Capacity"/>.</summary>
+        private int backingCapacity;
+
         /// <summary>How many <see cref="InventorySlot"/>s can be stored.</summary>
-        // TODO When setting capacity, we need to discard excess slots.
-        public int Capacity { get => Capacity; set => Capacity = value; }
+        /// <remarks>
+        /// If <see cref="Capacity"/> is set to a value smaller than the current <see cref="Count"/>,
+        /// then <see cref="InventorySlot"/>s will be discarded until <see cref="Capacity"/> is not exceeded.
+        /// </remarks>
+        public int Capacity
+        {
+            get => backingCapacity;
+            set
+            {
+                backingCapacity = value;
+                while (backingCapacity < Slots.Count)
+                {
+                    Slots.RemoveAt(Slots.Count - 1);
+                }
+            }
+        }
         #endregion
 
         #region Initialization
