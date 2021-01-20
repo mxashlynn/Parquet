@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>The type of item this is.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ItemType IMutableItemModel.Subtype { get => Subtype; set => Subtype = value; }
@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.Price { get => Price; set => Price = value; }
@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>How relatively rare this item is.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.Rarity { get => Rarity; set => Rarity = value; }
@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>How many of the item may share a single inventory slot.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.StackMax { get => StackMax; set => StackMax = value; }
@@ -49,7 +49,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.EffectWhileHeldID { get => EffectWhileHeldID; set => EffectWhileHeldID = value; }
@@ -60,7 +60,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.EffectWhenUsedID { get => EffectWhenUsedID; set => EffectWhenUsedID = value; }
@@ -68,7 +68,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.ParquetID { get => ParquetID; set => ParquetID = value; }
@@ -76,7 +76,7 @@ namespace ParquetClassLibrary.Items
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IList<ModelTag> IMutableItemModel.ItemTags => (IList<ModelTag>)ItemTags;

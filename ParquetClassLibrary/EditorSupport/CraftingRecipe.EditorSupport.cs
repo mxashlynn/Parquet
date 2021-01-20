@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IList<RecipeElement> IMutableCraftingRecipe.Products => (IList<RecipeElement>)Products;
@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IList<RecipeElement> IMutableCraftingRecipe.Ingredients => (IList<RecipeElement>)Ingredients;
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Crafts
         /// <summary>The arrangment of panels encompassed by this recipe.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;

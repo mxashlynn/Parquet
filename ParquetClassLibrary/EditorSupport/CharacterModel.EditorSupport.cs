@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Player-facing personal name.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PersonalName
@@ -27,7 +27,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Player-facing family name.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.FamilyName
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Beings
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PronounKey { get => PronounKey; set => PronounKey = value; }
@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
@@ -58,7 +58,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IList<ModelID> IMutableCharacterModel.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
@@ -66,7 +66,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableCharacterModel.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
@@ -75,7 +75,7 @@ namespace ParquetClassLibrary.Beings
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require readwrite access.
+        /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         Inventory IMutableCharacterModel.StartingInventory => StartingInventory;
