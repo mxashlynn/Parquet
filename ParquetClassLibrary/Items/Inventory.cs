@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Items
             {
                 Precondition.MustBeNonNegative(value, nameof(Capacity));
                 backingCapacity = value;
-                while (backingCapacity < Slots.Count)
+                while (backingCapacity < (Slots?.Count ?? 0))
                 {
                     Slots.RemoveAt(Slots.Count - 1);
                 }
