@@ -29,16 +29,17 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Converts the given 1D collection into a record column.
         /// </summary>
-        /// <param name="inValue">The collection to convert.</param>
+        /// <param name="inCollection">The collection to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given collection serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+        public override string ConvertToString(object inCollection, IWriterRow inRow, MemberMapData inMemberMapData)
         {
-            if (!(inValue is TCollection series))
+            Precondition.IsNotNull(inCollection, nameof(inCollection));
+            if (inCollection is not TCollection series)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inValue, nameof(TCollection)));
+                                                          inCollection, nameof(TCollection)));
             }
 
             if (series.Count < 1

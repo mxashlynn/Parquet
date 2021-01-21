@@ -95,7 +95,7 @@ override ParquetClassLibrary.Rooms.Room.GetHashCode() -> int
 override ParquetClassLibrary.Scripts.InteractionStatus.ToString() -> string
 override ParquetClassLibrary.Scripts.ScriptNode.ToString() -> string
 override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override ParquetClassLibrary.SeriesConverter<TElement, TCollection>.ConvertToString(object inCollection, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override ParquetClassLibrary.Vector2D.Equals(object obj) -> bool
 override ParquetClassLibrary.Vector2D.GetHashCode() -> int
 override ParquetClassLibrary.Vector2D.ToString() -> string
