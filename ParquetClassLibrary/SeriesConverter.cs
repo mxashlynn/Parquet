@@ -43,7 +43,8 @@ namespace ParquetClassLibrary
             }
 
             if (series.Count < 1
-                || (series.Count == 1 && series.Contains(ElementFactory)))
+                || (series.Count == 1
+                    && series.Contains(ElementFactory)))
             {
                 return "";
             }
