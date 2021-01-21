@@ -387,6 +387,7 @@ ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.Items.Inventory
 ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID inItemID) -> int
 ParquetClassLibrary.Items.Inventory.Count.get -> int
 ParquetClassLibrary.Items.Inventory.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Items.InventorySlot>
+ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
 ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.ModelID inItemID, int inHowMany) -> int
 ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Has(ParquetClassLibrary.ModelID inItemID, int inHowMany = 1) -> bool
