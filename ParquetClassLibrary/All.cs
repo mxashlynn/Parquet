@@ -655,7 +655,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <remarks>
         /// This method must be called between calls to the initialization routines.
-        /// Note that this method is only available when Paruqet is built with editor support enabled.
+        /// Note that this method is only available when Parquet is built with editor support enabled.
         /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
         /// </remarks>
         public static void Clear()
