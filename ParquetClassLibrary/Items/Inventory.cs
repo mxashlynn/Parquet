@@ -165,7 +165,7 @@ namespace ParquetClassLibrary.Items
         /// If everything was stored successfully, <c>0</c>;
         /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
         /// </returns>
-        private int Give(InventorySlot inSlot)
+        public int Give(InventorySlot inSlot)
             => Give(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 0);
 
         /// <summary>
