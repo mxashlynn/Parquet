@@ -583,6 +583,7 @@ namespace ParquetClassLibrary
             var pronounGroups = PronounGroup.GetRecords();
             BiomeConfiguration.GetRecord();
             CraftConfiguration.GetRecord();
+            InventoryConfiguration.GetRecord();
             RoomConfiguration.GetRecord();
             #endregion
 
@@ -622,6 +623,7 @@ namespace ParquetClassLibrary
             PronounGroup.PutRecords(PronounGroups);
             BiomeConfiguration.PutRecord();
             CraftConfiguration.PutRecord();
+            InventoryConfiguration.PutRecord();
             RoomConfiguration.PutRecord();
             #endregion
 

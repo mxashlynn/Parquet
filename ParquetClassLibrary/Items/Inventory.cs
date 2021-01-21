@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.Items
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
         public Inventory()
-            : this(1) { }
+            : this(InventoryConfiguration.DefaultCapacity) { }
 
         /// <summary>
         /// Initializes a new empty instance of the <see cref="Inventory"/> class.
