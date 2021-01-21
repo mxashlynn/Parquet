@@ -4,16 +4,16 @@
     <AssemblyName>Roller</AssemblyName>
 
     <Product>Roller</Product>
-    <Version>0.3.45 .0</Version>
+    <Version>0.3.46.0</Version>
     <Company>Girl Potion</Company>
-    <Authors>Paige Ashlynn and contibutors</Authors>
+    <Authors>Paige Ashlynn and contributors</Authors>
     <Copyright>2018-2020 Paige Ashlynn</Copyright>
     <Description>Command line tool for working with Parquet data and configuration files.</Description>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageId>ParquetRoller_GirlPotion</PackageId>
-    <PackageTags>C# .net core command game</PackageTags>
+    <PackageTags>C# .net command game</PackageTags>
     <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
 
     <OutputType>Exe</OutputType>
