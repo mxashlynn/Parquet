@@ -9,10 +9,10 @@ namespace ParquetClassLibrary.Items
     /// <summary>
     /// Provides rules for working with an <see cref="Inventory"/>.
     /// </summary>
-    class InventoryConfiguration
+    public static class InventoryConfiguration
     {
         /// <summary>The capacity to use for an <see cref="Inventory"/> when none is specified.</summary>
-        public static int DefaultCapacity = 16;
+        public static int DefaultCapacity { get; set; } = 16;
 
         #region Self Serialization
         /// <summary>
