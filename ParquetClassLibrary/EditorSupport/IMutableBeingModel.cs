@@ -16,10 +16,10 @@ namespace ParquetClassLibrary.EditorSupport
         public ModelID PrimaryBehaviorID { get; set; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-        public IList<ModelID> AvoidsIDs { get; }
+        public ICollection<ModelID> AvoidsIDs { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-        public IList<ModelID> SeeksIDs { get; }
+        public ICollection<ModelID> SeeksIDs { get; }
     }
 }
 #endif

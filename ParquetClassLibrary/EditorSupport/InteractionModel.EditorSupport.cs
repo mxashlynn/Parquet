@@ -12,14 +12,14 @@ namespace ParquetClassLibrary.Scripts
     {
         #region IInteractionModelEdit Implementation
         /// <summary>
-        /// Describes the criteria for begining this interaction.
+        /// Describes the criteria for beginning this interaction.
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableInteractionModel.PrerequisitesIDs => (IList<ModelID>)PrerequisitesIDs;
+        ICollection<ModelID> IMutableInteractionModel.PrerequisitesIDs => (ICollection<ModelID>)PrerequisitesIDs;
 
         /// <summary>
         /// Everything this interaction entails.
@@ -29,7 +29,7 @@ namespace ParquetClassLibrary.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableInteractionModel.StepsIDs => (IList<ModelID>)StepsIDs;
+        ICollection<ModelID> IMutableInteractionModel.StepsIDs => (ICollection<ModelID>)StepsIDs;
 
         /// <summary>
         /// Describes the results of finishing this interaction.
@@ -39,7 +39,7 @@ namespace ParquetClassLibrary.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableInteractionModel.OutcomesIDs => (IList<ModelID>)OutcomesIDs;
+        ICollection<ModelID> IMutableInteractionModel.OutcomesIDs => (ICollection<ModelID>)OutcomesIDs;
         #endregion
     }
 }

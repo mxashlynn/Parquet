@@ -16,7 +16,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// <summary>
         /// A series of imperative, procedural commands.
         /// </summary>
-        public IList<ScriptNode> Nodes { get; }
+        public ICollection<ScriptNode> Nodes { get; }
     }
 }
 #endif

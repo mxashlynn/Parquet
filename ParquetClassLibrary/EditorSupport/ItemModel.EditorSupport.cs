@@ -79,7 +79,7 @@ namespace ParquetClassLibrary.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<ModelTag> IMutableItemModel.ItemTags => (IList<ModelTag>)ItemTags;
+        ICollection<ModelTag> IMutableItemModel.ItemTags => (ICollection<ModelTag>)ItemTags;
         #endregion
     }
 }

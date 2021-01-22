@@ -11,7 +11,7 @@ namespace ParquetClassLibrary.Scripts
     public partial class InteractionModel : Model
     {
         #region Characteristics
-        /// <summary>Describes the criteria for begining this interaction.</summary>
+        /// <summary>Describes the criteria for beginning this interaction.</summary>
         [Index(4)]
         public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 

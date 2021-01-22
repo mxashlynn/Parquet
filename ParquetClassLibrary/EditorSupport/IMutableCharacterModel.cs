@@ -38,7 +38,7 @@ namespace ParquetClassLibrary.EditorSupport
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
-        public IList<ModelID> StartingQuestIDs { get; }
+        public ICollection<ModelID> StartingQuestIDs { get; }
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         public ModelID StartingDialogueID { get; set; }

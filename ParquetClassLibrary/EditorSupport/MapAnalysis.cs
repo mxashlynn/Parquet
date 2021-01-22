@@ -20,10 +20,10 @@ namespace ParquetClassLibrary.EditorSupport
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
-        internal static List<(IDByDirection GetLeavingRegionID,
-                              string LeavingDirection,
-                              IDByDirection GetReturningRegionID,
-                              string ReturningDirection)> Directions =
+        internal static ICollection<(IDByDirection GetLeavingRegionID,
+                                     string LeavingDirection,
+                                     IDByDirection GetReturningRegionID,
+                                     string ReturningDirection)> Directions =
             new List<(IDByDirection, string, IDByDirection, string)>
             {
                 { ((TMapType map) => map.RegionToTheNorthID, Resources.DirectionNorth,
@@ -57,7 +57,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
         [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
                          Justification = "In this instance deconstruction makes the code harder to read.")]
-        public static List<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
+        public static ICollection<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
             where TMapType : MapModel, IMutableMapRegion
         {
             var inconsistentExitDirections = new List<string>();

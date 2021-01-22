@@ -51,22 +51,22 @@ namespace ParquetClassLibrary.Beings
 
         #region Collections
         /// <summary>The <see cref="BeingModel"/>s that this <see cref="CharacterModel"/> has encountered.</summary>
-        public List<ModelID> KnownBeings { get; }
+        public ICollection<ModelID> KnownBeings { get; }
 
         /// <summary>The parquets that this <see cref="CharacterModel"/> has encountered.</summary>
-        public List<ModelID> KnownParquets { get; }
+        public ICollection<ModelID> KnownParquets { get; }
 
         /// <summary>The <see cref="Rooms.RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
-        public List<ModelID> KnownRoomRecipes { get; }
+        public ICollection<ModelID> KnownRoomRecipes { get; }
 
         /// <summary>The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</summary>
-        public List<ModelID> KnownCraftingRecipes { get; }
+        public ICollection<ModelID> KnownCraftingRecipes { get; }
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</summary>
-        public List<ModelID> Quests { get; }
+        public ICollection<ModelID> Quests { get; }
 
         /// <summary>This <see cref="CharacterModel"/>'s set of belongings.</summary>
-        public List<ModelID> Inventory { get; }
+        public ICollection<ModelID> Inventory { get; }
         #endregion
 
         #region Initialization
@@ -89,9 +89,11 @@ namespace ParquetClassLibrary.Beings
         /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
         public BeingStatus(BeingModel inBeingDefinition, ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
-                           int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed,
-                           List<ModelID> inKnownBeings = null, List<ModelID> inKnownParquets = null, List<ModelID> inKnownRoomRecipes = null,
-                           List<ModelID> inKnownCraftingRecipes = null, List<ModelID> inQuests = null, List<ModelID> inInventory = null)
+                           int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed,
+                           float inMovementSpeed, ICollection<ModelID> inKnownBeings = null,
+                           ICollection<ModelID> inKnownParquets = null, ICollection<ModelID> inKnownRoomRecipes = null,
+                           ICollection<ModelID> inKnownCraftingRecipes = null, ICollection<ModelID> inQuests = null,
+                           ICollection<ModelID> inInventory = null)
         {
             Precondition.IsNotNull(inBeingDefinition, nameof(inBeingDefinition));
             Precondition.IsInRange(inCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));

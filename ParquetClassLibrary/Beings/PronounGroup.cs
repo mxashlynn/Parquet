@@ -170,6 +170,7 @@ namespace ParquetClassLibrary.Beings
         /// Returns a <see cref="string"/> to use as shorthand for the <see cref="PronounGroup"/>.
         /// </summary>
         /// <returns>The shorthand.</returns>
+        [Ignore]
         public string Key
             => $"{Subjective}/{Objective}";
 

@@ -14,10 +14,10 @@ namespace ParquetClassLibrary.EditorSupport
     public interface IMutableCraftingRecipe : IMutableModel
     {
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-        public IList<RecipeElement> Products { get; }
+        public ICollection<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        public IList<RecipeElement> Ingredients { get; }
+        public ICollection<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         public IGrid<StrikePanel> PanelPattern { get; }

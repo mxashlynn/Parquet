@@ -255,20 +255,22 @@ namespace ParquetClassLibrary
         /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
         /// <param name="inColumnHeaders">Text indicating which value corresponds to which model member.</param>
         /// <param name="inModels">Models created by the most recent call to CsvReader.GetRecords.</param>
-        private static void HandleUnassignedIDs<TModelInner>(string[] inColumnHeaders, List<TModelInner> inModels)
+        private static void HandleUnassignedIDs<TModelInner>(string[] inColumnHeaders, ICollection<TModelInner> inModels)
             where TModelInner : TModel
         {
             if (ModelID.RecordsWithMissingIDs.Count > 0)
             {
+                var models = inModels.ToList();
+
                 var recordsWithNewIDs = new StringBuilder();
                 ReconstructHeader(inColumnHeaders, recordsWithNewIDs);
-                AssignMissingIDs(inModels, recordsWithNewIDs);
+                AssignMissingIDs(models, recordsWithNewIDs);
 
                 using var stringReader = new StringReader(recordsWithNewIDs.ToString());
                 using var stringCSVReader = ConfigureCSVReader(stringReader);
 
                 var modelsWithNewIDs = stringCSVReader.GetRecords<TModelInner>().ToList();
-                inModels.AddRange(modelsWithNewIDs);
+                models.AddRange(modelsWithNewIDs);
                 ModelID.RecordsWithMissingIDs.Clear();
             }
         }
@@ -293,7 +295,8 @@ namespace ParquetClassLibrary
         /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
         /// <param name="inModelsWithOldIDs">Models that already had IDs.</param>
         /// <param name="inRecordsNeedingIDs">Records of models that have not yet had their IDs assigned.</param>
-        private static void AssignMissingIDs<TModelInner>(List<TModelInner> inModelsWithOldIDs, StringBuilder inRecordsNeedingIDs)
+        private static void AssignMissingIDs<TModelInner>(ICollection<TModelInner> inModelsWithOldIDs,
+                                                          StringBuilder inRecordsNeedingIDs)
             where TModelInner : TModel
         {
             var maxAssignedID = inModelsWithOldIDs

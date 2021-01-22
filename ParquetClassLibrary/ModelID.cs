@@ -191,13 +191,13 @@ namespace ParquetClassLibrary
             None;
 
         /// <summary>A collection of records that need to have <see cref="ModelID"/>s assigned to them before deserialization.</summary>
-        internal static readonly List<string> RecordsWithMissingIDs =
+        internal static readonly ICollection<string> RecordsWithMissingIDs =
             new List<string>();
 
         /// <summary>
         /// Registers the given record as a <see cref="Model"/> in need of a <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inRawRecord">The record to regiseter.</param>
+        /// <param name="inRawRecord">The record to register.</param>
         /// <remarks>Used during deserialization to allow the library to generate appropriate IDs.</remarks>
         private static void RegisterMissingID(string inRawRecord)
             => RecordsWithMissingIDs.Add(inRawRecord);

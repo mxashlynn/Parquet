@@ -14,19 +14,19 @@ namespace ParquetClassLibrary.EditorSupport
     public interface IMutableInteractionModel : IMutableModel
     {
         /// <summary>
-        /// Describes the criteria for begining this interaction.
+        /// Describes the criteria for beginning this interaction.
         /// </summary>
-        public IList<ModelID> PrerequisitesIDs { get; }
+        public ICollection<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>
         /// Everything this interaction entails.
         /// </summary>
-        public IList<ModelID> StepsIDs { get; }
+        public ICollection<ModelID> StepsIDs { get; }
 
         /// <summary>
         /// Describes the results of finishing this interaction.
         /// </summary>
-        public IList<ModelID> OutcomesIDs { get; }
+        public ICollection<ModelID> OutcomesIDs { get; }
     }
 }
 #endif

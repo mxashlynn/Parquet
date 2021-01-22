@@ -45,7 +45,7 @@ namespace ParquetClassLibrary.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<ModelTag> IMutableBiomeRecipe.ParquetCriteria => (IList<ModelTag>)ParquetCriteria;
+        ICollection<ModelTag> IMutableBiomeRecipe.ParquetCriteria => (ICollection<ModelTag>)ParquetCriteria;
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         /// <remarks>
@@ -53,7 +53,7 @@ namespace ParquetClassLibrary.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<ModelTag> IMutableBiomeRecipe.EntryRequirements => (IList<ModelTag>)EntryRequirements;
+        ICollection<ModelTag> IMutableBiomeRecipe.EntryRequirements => (ICollection<ModelTag>)EntryRequirements;
         #endregion
     }
 }

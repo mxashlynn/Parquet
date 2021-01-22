@@ -22,6 +22,8 @@ namespace ParquetClassLibrary.Items
 
         #region Characteristics
         /// <summary>The internal collection mechanism.</summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1002:Do not expose generic lists",
+                                                         Justification = "Slots is not exposed; I suspect this is a bug in .Net 5.")]
         private List<InventorySlot> Slots { get; set; }
 
         /// <summary>Backing value for <see cref="Capacity"/>.</summary>

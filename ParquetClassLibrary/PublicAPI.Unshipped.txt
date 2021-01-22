@@ -1,4 +1,4 @@
-abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
+﻿abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "|their|" -> string
@@ -110,7 +110,7 @@ ParquetClassLibrary.Beings.BeingModel.PrimaryBehaviorID.get -> ParquetClassLibra
 ParquetClassLibrary.Beings.BeingModel.SeeksIDs.get -> System.Collections.Generic.IReadOnlyList<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.BeingStatus
 ParquetClassLibrary.Beings.BeingStatus.BeingDefinition.get -> ParquetClassLibrary.Beings.BeingModel
-ParquetClassLibrary.Beings.BeingStatus.BeingStatus(ParquetClassLibrary.Beings.BeingModel inBeingDefinition, ParquetClassLibrary.ModelID inCurrentBehavior, ParquetClassLibrary.Location inPosition, ParquetClassLibrary.Location inSpawnAt, int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inKnownBeings = null, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inKnownParquets = null, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inQuests = null, System.Collections.Generic.List<ParquetClassLibrary.ModelID> inInventory = null) -> void
+ParquetClassLibrary.Beings.BeingStatus.BeingStatus(ParquetClassLibrary.Beings.BeingModel inBeingDefinition, ParquetClassLibrary.ModelID inCurrentBehavior, ParquetClassLibrary.Location inPosition, ParquetClassLibrary.Location inSpawnAt, int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inQuests = null, System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID> inInventory = null) -> void
 ParquetClassLibrary.Beings.BeingStatus.BiomeTimeRemaining.get -> int
 ParquetClassLibrary.Beings.BeingStatus.BiomeTimeRemaining.set -> void
 ParquetClassLibrary.Beings.BeingStatus.BuildingSpeed.get -> float
@@ -119,18 +119,18 @@ ParquetClassLibrary.Beings.BeingStatus.CurrentBehaviorID.get -> ParquetClassLibr
 ParquetClassLibrary.Beings.BeingStatus.CurrentBehaviorID.set -> void
 ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed.get -> float
 ParquetClassLibrary.Beings.BeingStatus.GatheringSpeed.set -> void
-ParquetClassLibrary.Beings.BeingStatus.Inventory.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.BeingStatus.KnownBeings.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.BeingStatus.KnownCraftingRecipes.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.BeingStatus.KnownParquets.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.Beings.BeingStatus.KnownRoomRecipes.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.Inventory.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.KnownBeings.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.KnownCraftingRecipes.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.KnownParquets.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.KnownRoomRecipes.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.BeingStatus.ModificationSpeed.get -> float
 ParquetClassLibrary.Beings.BeingStatus.ModificationSpeed.set -> void
 ParquetClassLibrary.Beings.BeingStatus.MovementSpeed.get -> float
 ParquetClassLibrary.Beings.BeingStatus.MovementSpeed.set -> void
 ParquetClassLibrary.Beings.BeingStatus.Position.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.Position.set -> void
-ParquetClassLibrary.Beings.BeingStatus.Quests.get -> System.Collections.Generic.List<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.Beings.BeingStatus.Quests.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.Beings.BeingStatus.Revision.get -> int
 ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.get -> ParquetClassLibrary.Location
 ParquetClassLibrary.Beings.BeingStatus.RoomAssignment.set -> void
@@ -197,19 +197,19 @@ ParquetClassLibrary.Crafts.StrikePanelGrid.StrikePanelGrid(ParquetClassLibrary.I
 ParquetClassLibrary.Crafts.StrikePanelGrid.this[int y, int x].get -> ParquetClassLibrary.Crafts.StrikePanel
 ParquetClassLibrary.Delimiters
 ParquetClassLibrary.EditorSupport.IMutableBeingModel
-ParquetClassLibrary.EditorSupport.IMutableBeingModel.AvoidsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableBeingModel.AvoidsIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.NativeBiomeID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.NativeBiomeID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.PrimaryBehaviorID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableBeingModel.PrimaryBehaviorID.set -> void
-ParquetClassLibrary.EditorSupport.IMutableBeingModel.SeeksIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableBeingModel.SeeksIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe
-ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.EntryRequirements.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.EntryRequirements.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.IsLiquidBased.get -> bool
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.IsLiquidBased.set -> void
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.IsRoomBased.get -> bool
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.IsRoomBased.set -> void
-ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.ParquetCriteria.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.ParquetCriteria.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.Tier.get -> int
 ParquetClassLibrary.EditorSupport.IMutableBiomeRecipe.Tier.set -> void
 ParquetClassLibrary.EditorSupport.IMutableBlockModel
@@ -235,7 +235,7 @@ ParquetClassLibrary.EditorSupport.IMutableCharacterModel.PronounKey.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingDialogueID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingInventory.get -> ParquetClassLibrary.Items.Inventory
-ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StoryCharacterID.get -> string
 ParquetClassLibrary.EditorSupport.IMutableCharacterModel.StoryCharacterID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCollectibleModel
@@ -244,10 +244,10 @@ ParquetClassLibrary.EditorSupport.IMutableCollectibleModel.CollectionEffect.set 
 ParquetClassLibrary.EditorSupport.IMutableCollectibleModel.EffectAmount.get -> int
 ParquetClassLibrary.EditorSupport.IMutableCollectibleModel.EffectAmount.set -> void
 ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe
-ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.Ingredients.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
+ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.Ingredients.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.PanelPattern.get -> ParquetClassLibrary.IGrid<ParquetClassLibrary.Crafts.StrikePanel>
 ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.PanelPatternReplace(ParquetClassLibrary.IGrid<ParquetClassLibrary.Crafts.StrikePanel> inReplacement) -> void
-ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.Products.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
+ParquetClassLibrary.EditorSupport.IMutableCraftingRecipe.Products.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.EditorSupport.IMutableCritterModel
 ParquetClassLibrary.EditorSupport.IMutableFloorModel
 ParquetClassLibrary.EditorSupport.IMutableFloorModel.ModTool.get -> ParquetClassLibrary.Items.ModificationTool
@@ -277,15 +277,15 @@ ParquetClassLibrary.EditorSupport.IMutableGameModel.IsEpisode.set -> void
 ParquetClassLibrary.EditorSupport.IMutableGameModel.PlayerCharacterID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableGameModel.PlayerCharacterID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableInteractionModel
-ParquetClassLibrary.EditorSupport.IMutableInteractionModel.OutcomesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.EditorSupport.IMutableInteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
-ParquetClassLibrary.EditorSupport.IMutableInteractionModel.StepsIDs.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableInteractionModel.OutcomesIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableInteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
+ParquetClassLibrary.EditorSupport.IMutableInteractionModel.StepsIDs.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelID>
 ParquetClassLibrary.EditorSupport.IMutableItemModel
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhenUsedID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhenUsedID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhileHeldID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableItemModel.EffectWhileHeldID.set -> void
-ParquetClassLibrary.EditorSupport.IMutableItemModel.ItemTags.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.EditorSupport.IMutableItemModel.ItemTags.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.EditorSupport.IMutableItemModel.ParquetID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableItemModel.ParquetID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableItemModel.Price.get -> int
@@ -324,8 +324,8 @@ ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>
 ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Remove(ParquetClassLibrary.ModelID inID) -> bool
 ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Replace(TModel inModel) -> void
 ParquetClassLibrary.EditorSupport.IMutableParquetModel
-ParquetClassLibrary.EditorSupport.IMutableParquetModel.AddsToBiome.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
-ParquetClassLibrary.EditorSupport.IMutableParquetModel.AddsToRoom.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.EditorSupport.IMutableParquetModel.AddsToBiome.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelTag>
+ParquetClassLibrary.EditorSupport.IMutableParquetModel.AddsToRoom.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.ModelTag>
 ParquetClassLibrary.EditorSupport.IMutableParquetModel.ItemID.get -> ParquetClassLibrary.ModelID
 ParquetClassLibrary.EditorSupport.IMutableParquetModel.ItemID.set -> void
 ParquetClassLibrary.EditorSupport.IMutablePronounGroup
@@ -342,11 +342,11 @@ ParquetClassLibrary.EditorSupport.IMutablePronounGroup.Subjective.set -> void
 ParquetClassLibrary.EditorSupport.IMutableRoomRecipe
 ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.MinimumWalkableSpaces.get -> int
 ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.MinimumWalkableSpaces.set -> void
-ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredFurnishings.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
-ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredPerimeterBlocks.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
-ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredWalkableFloors.get -> System.Collections.Generic.IList<ParquetClassLibrary.RecipeElement>
+ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredFurnishings.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.RecipeElement>
+ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredPerimeterBlocks.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.RecipeElement>
+ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredWalkableFloors.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.RecipeElement>
 ParquetClassLibrary.EditorSupport.IMutableScriptModel
-ParquetClassLibrary.EditorSupport.IMutableScriptModel.Nodes.get -> System.Collections.Generic.IList<ParquetClassLibrary.Scripts.ScriptNode>
+ParquetClassLibrary.EditorSupport.IMutableScriptModel.Nodes.get -> System.Collections.Generic.ICollection<ParquetClassLibrary.Scripts.ScriptNode>
 ParquetClassLibrary.EditorSupport.MapAnalysis
 ParquetClassLibrary.EmptyTolerantEnumConverter
 ParquetClassLibrary.EmptyTolerantEnumConverter.EmptyTolerantEnumConverter(System.Type inType) -> void
@@ -797,7 +797,7 @@ static ParquetClassLibrary.Crafts.StrikePanel.operator !=(ParquetClassLibrary.Cr
 static ParquetClassLibrary.Crafts.StrikePanel.operator ==(ParquetClassLibrary.Crafts.StrikePanel inStrikePanel1, ParquetClassLibrary.Crafts.StrikePanel inStrikePanel2) -> bool
 static ParquetClassLibrary.Crafts.StrikePanelArrayExtensions.IsValidPosition(this ParquetClassLibrary.Crafts.StrikePanel[,] inStrikePanels, ParquetClassLibrary.Vector2D inPosition) -> bool
 static ParquetClassLibrary.Crafts.StrikePanelGrid.Empty.get -> ParquetClassLibrary.Crafts.StrikePanelGrid
-static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.List<string>
+static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapType>(ParquetClassLibrary.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static ParquetClassLibrary.Items.Inventory.Empty.get -> ParquetClassLibrary.Items.Inventory
 static ParquetClassLibrary.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static ParquetClassLibrary.Items.InventoryConfiguration.DefaultCapacity.set -> void

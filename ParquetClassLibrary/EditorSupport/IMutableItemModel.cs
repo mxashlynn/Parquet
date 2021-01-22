@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.EditorSupport
         public ModelID ParquetID { get; set; }
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
-        public IList<ModelTag> ItemTags { get; }
+        public ICollection<ModelTag> ItemTags { get; }
     }
 }
 #endif

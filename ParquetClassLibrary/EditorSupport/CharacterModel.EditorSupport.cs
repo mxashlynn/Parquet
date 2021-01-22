@@ -61,7 +61,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableCharacterModel.StartingQuestIDs => (IList<ModelID>)StartingQuestIDs;
+        ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs => (ICollection<ModelID>)StartingQuestIDs;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>

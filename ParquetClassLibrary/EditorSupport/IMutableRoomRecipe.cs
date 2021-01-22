@@ -17,13 +17,13 @@ namespace ParquetClassLibrary.EditorSupport
         public int MinimumWalkableSpaces { get; set; }
 
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public IList<RecipeElement> OptionallyRequiredFurnishings { get; }
+        public ICollection<RecipeElement> OptionallyRequiredFurnishings { get; }
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        public IList<RecipeElement> OptionallyRequiredWalkableFloors { get; }
+        public ICollection<RecipeElement> OptionallyRequiredWalkableFloors { get; }
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        public IList<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
+        public ICollection<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
     }
 }
 #endif

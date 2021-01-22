@@ -20,7 +20,7 @@ namespace ParquetClassLibrary.Crafts
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<RecipeElement> IMutableCraftingRecipe.Products => (IList<RecipeElement>)Products;
+        ICollection<RecipeElement> IMutableCraftingRecipe.Products => (ICollection<RecipeElement>)Products;
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         /// <remarks>
@@ -28,7 +28,7 @@ namespace ParquetClassLibrary.Crafts
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        IList<RecipeElement> IMutableCraftingRecipe.Ingredients => (IList<RecipeElement>)Ingredients;
+        ICollection<RecipeElement> IMutableCraftingRecipe.Ingredients => (ICollection<RecipeElement>)Ingredients;
 
         /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         /// <remarks>

@@ -17,7 +17,7 @@ namespace ParquetClassLibrary.Scripts
         /// IScriptModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ScriptNode> IMutableScriptModel.Nodes => (IList<ScriptNode>)Nodes;
+        ICollection<ScriptNode> IMutableScriptModel.Nodes => (ICollection<ScriptNode>)Nodes;
         #endregion
     }
 }

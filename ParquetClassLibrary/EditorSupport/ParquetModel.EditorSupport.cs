@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelTag> IMutableParquetModel.AddsToBiome => (IList<ModelTag>)AddsToBiome;
+        ICollection<ModelTag> IMutableParquetModel.AddsToBiome => (ICollection<ModelTag>)AddsToBiome;
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelTag> IMutableParquetModel.AddsToRoom => (IList<ModelTag>)AddsToRoom;
+        ICollection<ModelTag> IMutableParquetModel.AddsToRoom => (ICollection<ModelTag>)AddsToRoom;
         #endregion
     }
 }

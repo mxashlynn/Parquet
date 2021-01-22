@@ -25,7 +25,7 @@ namespace ParquetClassLibrary.Rooms
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<RecipeElement> IMutableRoomRecipe.OptionallyRequiredFurnishings => (IList<RecipeElement>)OptionallyRequiredFurnishings;
+        ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredFurnishings => (ICollection<RecipeElement>)OptionallyRequiredFurnishings;
 
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         /// <remarks>
@@ -33,7 +33,7 @@ namespace ParquetClassLibrary.Rooms
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<RecipeElement> IMutableRoomRecipe.OptionallyRequiredWalkableFloors => (IList<RecipeElement>)OptionallyRequiredWalkableFloors;
+        ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredWalkableFloors => (ICollection<RecipeElement>)OptionallyRequiredWalkableFloors;
 
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         /// <remarks>
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Rooms
         /// IRoomRecipeEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<RecipeElement> IMutableRoomRecipe.OptionallyRequiredPerimeterBlocks => (IList<RecipeElement>)OptionallyRequiredPerimeterBlocks;
+        ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredPerimeterBlocks => (ICollection<RecipeElement>)OptionallyRequiredPerimeterBlocks;
         #endregion
     }
 }

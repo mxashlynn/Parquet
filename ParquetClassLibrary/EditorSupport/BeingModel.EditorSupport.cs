@@ -34,7 +34,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableBeingModel.AvoidsIDs => (IList<ModelID>)AvoidsIDs;
+        ICollection<ModelID> IMutableBeingModel.AvoidsIDs => (ICollection<ModelID>)AvoidsIDs;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         /// <remarks>
@@ -42,7 +42,7 @@ namespace ParquetClassLibrary.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        IList<ModelID> IMutableBeingModel.SeeksIDs => (IList<ModelID>)SeeksIDs;
+        ICollection<ModelID> IMutableBeingModel.SeeksIDs => (ICollection<ModelID>)SeeksIDs;
         #endregion
     }
 }

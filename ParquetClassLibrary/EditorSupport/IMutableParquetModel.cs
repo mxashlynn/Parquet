@@ -22,7 +22,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// Describes the <see cref="Biomes.BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
-        public IList<ModelTag> AddsToBiome { get; }
+        public ICollection<ModelTag> AddsToBiome { get; }
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -31,7 +31,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// <remarks>
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
-        public IList<ModelTag> AddsToRoom { get; }
+        public ICollection<ModelTag> AddsToRoom { get; }
     }
 }
 #endif
