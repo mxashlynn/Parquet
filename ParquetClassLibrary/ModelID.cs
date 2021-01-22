@@ -36,7 +36,7 @@ namespace ParquetClassLibrary
     /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
     /// and these are checked by library code.<para />
     /// <para />
-    /// A note on implementation as of January 1st, 2020.<para />
+    /// A note on implementation as of January 21st, 2021.<para />
     /// <para />
     /// ModelID is implemented as a mutable struct because, under the hood,
     /// it is simply an <see cref="int"/>.  ModelID is designed to be implicitly

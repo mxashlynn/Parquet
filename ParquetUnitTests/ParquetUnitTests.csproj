@@ -28,7 +28,7 @@
     <Company>Girl Potion</Company>
     <PackageId>ParquetUnitTests_GirlPotion</PackageId>
     <Description>Unit tests for ParquetClassLibrary.</Description>
-    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+    <Copyright>2018-2021 Paige Ashlynn</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>

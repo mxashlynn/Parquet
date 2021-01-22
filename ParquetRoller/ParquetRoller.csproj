@@ -7,7 +7,7 @@
     <Version>0.3.49.0</Version>
     <Company>Girl Potion</Company>
     <Authors>Paige Ashlynn and contributors</Authors>
-    <Copyright>2018-2020 Paige Ashlynn</Copyright>
+    <Copyright>2018-2021 Paige Ashlynn</Copyright>
     <Description>Command line tool for working with Parquet data and configuration files.</Description>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
