@@ -735,8 +735,8 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inModelType">The model type whose ID range is sought.</param>
         /// <returns>
-        /// The range within which this model type's <see cref="ModelID"/> would be define,
-        /// dor <see cref="Range{ModelID}.None"/> if there is none exists.
+        /// The range within which this model type's <see cref="ModelID"/> would be defined,
+        /// or <see cref="Range{ModelID}.None"/> if there is none exists.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Type inModelType)
             => inModelType == typeof(GameModel) ? GameIDs

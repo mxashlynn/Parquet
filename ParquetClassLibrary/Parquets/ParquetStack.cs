@@ -14,7 +14,7 @@ namespace ParquetClassLibrary.Parquets
     public class ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
         #region Class Defaults
-        /// <summary>Cannonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
+        /// <summary>Canonical null <see cref="ParquetStack"/>, representing an arbitrary empty stack.</summary>
         public static ParquetStack Empty
             => new ParquetStack(ModelID.None, ModelID.None, ModelID.None, ModelID.None);
         #endregion
@@ -48,7 +48,7 @@ namespace ParquetClassLibrary.Parquets
         /// Initializes a new instance of the <see cref="ParquetStack"/> class.
         /// </summary>
         /// <param name="inFloor">The floor-layer parquet.</param>
-        /// <param name="inBlock">The The floor-layer parquet-layer parquet.</param>
+        /// <param name="inBlock">The block-layer parquet.</param>
         /// <param name="inFurnishing">The furnishing-layer parquet.</param>
         /// <param name="inCollectible">The collectible-layer parquet.</param>
         public ParquetStack(ModelID inFloor, ModelID inBlock, ModelID inFurnishing, ModelID inCollectible)

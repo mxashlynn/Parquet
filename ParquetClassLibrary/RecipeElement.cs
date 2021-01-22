@@ -16,7 +16,7 @@ namespace ParquetClassLibrary
     /// <remarks>
     /// The pairing of ElementTag with an ElementAmount achieves two ends:
     /// - It allows multiple element instances to be required without storing and counting multiple objects representing that element.
-    /// - It allows various Models to be used interchangably for the same recipe purpose; see <see cref="ModelTag"/>.
+    /// - It allows various Models to be used interchangeably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </remarks>
     public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {

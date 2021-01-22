@@ -20,7 +20,7 @@ namespace ParquetClassLibrary
     /// For example, multiple identical parquet IDs may be assigned
     /// to <see cref="Maps.MapChunkModel"/>s or <see cref="Maps.MapRegionModel"/>s,
     /// and multiple duplicate <see cref="Items.ItemModel"/> IDs may exist in
-    /// accross various <see cref="Beings.CharacterModel"/> inventories.<para />
+    /// across various <see cref="Beings.CharacterModel"/> inventories.<para />
     /// <para />
     /// Using ModelID the library looks up the game object definitions
     /// for each of these when other game elements interact with them,
@@ -40,12 +40,12 @@ namespace ParquetClassLibrary
     /// <para />
     /// ModelID is implemented as a mutable struct because, under the hood,
     /// it is simply an <see cref="int"/>.  ModelID is designed to be implicitly
-    /// interoperable with and implcity castable to and from integer types.<para />
+    /// interoperable with and implicitly castable to and from integer types.<para />
     /// <para />
     /// Since the entire point of this ID system is to provide a way for the
     /// library to rapidly track changes in large arrays of identical game
     /// objects, it must be a light-weight mutable value type.  This is
-    /// analagous to the use case for C# 7 tuples, which are also light-weight
+    /// analogous to the use case for C# 7 tuples, which are also light-weight
     /// mutable value types.<para />
     /// <para />
     /// If the implementation were ever to become more complex, ModelID
@@ -124,7 +124,7 @@ namespace ParquetClassLibrary
         /// </summary>
         /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
         /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
-        /// <returns><c>true</c> if the first identifier strictly followa the second; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if the first identifier strictly follows the second; otherwise, <c>false</c>.</returns>
         public static bool operator >(ModelID inIDentifier1, ModelID inIDentifier2)
             => inIDentifier1.id > inIDentifier2.id;
 

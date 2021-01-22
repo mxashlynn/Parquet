@@ -174,9 +174,9 @@ namespace ParquetClassLibrary.Maps
                 foreach (ModelTag biomeElement in inBiome.ParquetCriteria)
                 {
                     // Prioritization of biome categories is hard-coded in the following way:
-                    //    1 Room-based Biomes supercede
-                    //    2 Liquid-based Biomes supercede
-                    //    3 Land-based Biomes supercede
+                    //    1 Room-based Biomes supersede
+                    //    2 Liquid-based Biomes supersede
+                    //    3 Land-based Biomes supersede
                     //    4 the default Biome.
                     if ((inBiome.IsRoomBased
                             && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
@@ -198,7 +198,7 @@ namespace ParquetClassLibrary.Maps
             {
                 var parquetsInRoom = 0;
 
-                // TODO This might be a good place to optimise.
+                // TODO This might be a good place to optimize.
                 for (var y = 0; y < inRegion.ParquetDefinitions.Rows; y++)
                 {
                     for (var x = 0; x < inRegion.ParquetDefinitions.Columns; x++)

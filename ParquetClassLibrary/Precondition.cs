@@ -8,7 +8,7 @@ using ParquetClassLibrary.Properties;
 namespace ParquetClassLibrary
 {
     /// <summary>
-    /// Provides constructors and initialization routines with concise arugment boilerplate.
+    /// Provides constructors and initialization routines with concise argument boilerplate.
     /// </summary>
     public static class Precondition
     {

@@ -90,9 +90,9 @@ Icons?
 *.iap
 *.unitypackage
 
-# =================== #
-# Single seat plugins #
-# =================== #
+# ==================== #
+# Single seat plug-ins #
+# ==================== #
 /[Aa]ssets/AssetStoreTools*
 /[Aa]ssets/Add-Ons/TextMesh Pro/Documentation/
 /[Aa]ssets/UnityVS.meta

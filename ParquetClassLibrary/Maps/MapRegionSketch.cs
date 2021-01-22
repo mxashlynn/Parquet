@@ -147,7 +147,7 @@ namespace ParquetClassLibrary.Maps
 
         #region Procedural Generation
         /// <summary>
-        /// Combines all consituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegionModel"/>.
+        /// Combines all constituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegionModel"/>.
         /// </summary>
         /// <remarks>
         /// Invokes procedural generation routines on any <see cref="MapChunkModel"/>s that need it.

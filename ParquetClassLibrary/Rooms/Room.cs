@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Rooms
         /// Determines whether or not the given position is included in this <see cref="Room"/>.
         /// </summary>
         /// <param name="inPosition">The position to check for.</param>
-        /// <returns><c>true</c>, if the position was containsed, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the position was contained, <c>false</c> otherwise.</returns>
         public bool ContainsPosition(Vector2D inPosition)
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
 

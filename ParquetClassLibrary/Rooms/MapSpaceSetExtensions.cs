@@ -20,10 +20,10 @@ namespace ParquetClassLibrary.Rooms
 
         #region Room Analysis
         /// <summary>
-        /// Finds a walkable area's perimiter in a given subregion.
+        /// Finds a walkable area's perimeter in a given subregion.
         /// </summary>
         /// <param name="inSpaces">The walkable area under consideration.</param>
-        /// <param name="outPerimeter">The walkable area's valid perimiter, if it exists.</param>
+        /// <param name="outPerimeter">The walkable area's valid perimeter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
         internal static bool TryGetPerimeter(this ISet<MapSpace> inSpaces, out ISet<MapSpace> outPerimeter)
         {

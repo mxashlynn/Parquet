@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Games
         #region Initialization
         /// <summary>
         /// Represents a game or game-episode created with the Parquet system.
-        /// Primarily cointains metadata and gameplay rules information.
+        /// Primarily contains metadata and gameplay rules information.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="GameModel"/>.  Cannot be null.</param>
         /// <param name="inName">Player-facing title of the <see cref="GameModel"/>.  Cannot be null or empty.</param>

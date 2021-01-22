@@ -40,7 +40,7 @@ namespace ParquetClassLibrary.Rooms
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
         /// <param name="inSubregion">The <see cref="ParquetStackGrid"/>s to search.</param>
-        /// <returns>The list of vallid Walkable Areas.</returns>
+        /// <returns>The list of valid Walkable Areas.</returns>
         private static IReadOnlyList<ISet<MapSpace>> GetWalkableAreas(ParquetStackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
