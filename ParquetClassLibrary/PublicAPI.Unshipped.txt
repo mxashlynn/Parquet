@@ -1,4 +1,4 @@
-﻿abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
+abstract ParquetClassLibrary.Maps.MapModel.DimensionsInParquets.get -> ParquetClassLibrary.Vector2D
 abstract ParquetClassLibrary.Maps.MapModel.ParquetDefinitions.get -> ParquetClassLibrary.Parquets.ParquetStackGrid
 const ParquetClassLibrary.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const ParquetClassLibrary.Beings.PronounGroup.DeterminerTag = "|their|" -> string

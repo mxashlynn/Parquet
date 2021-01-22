@@ -6,6 +6,7 @@ namespace ParquetClassLibrary.Parquets
     /// <remarks>
     /// Supports injecting <see cref="ParquetStack"/> into game-level methods that performs simple operations, such as rasterization.
     /// </remarks>
+    // TODO: Let's consider if there is another word than Stack that we can use.  Bundle?  Sheaf?
     public interface IParquetStack
     {
         /// <summary>The floor contained in this stack.</summary>
