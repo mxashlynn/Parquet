@@ -101,7 +101,7 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
-                ? string.IsNullOrEmpty(tag)
+                ? string.CompareOrdinal(tag, "") == 0
                     ? nameof(None)
                     : (string)tag
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
