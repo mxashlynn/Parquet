@@ -15,7 +15,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
         /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        public void Remove(ModelID inID);
+        public bool Remove(ModelID inID);
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose

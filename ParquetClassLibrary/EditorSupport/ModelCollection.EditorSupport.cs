@@ -1,5 +1,6 @@
 #if DESIGN
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using ParquetClassLibrary.EditorSupport;
@@ -12,12 +13,15 @@ namespace ParquetClassLibrary
     public partial class ModelCollection<TModel> : IMutableModelCollection<TModel>
         where TModel : Model
     {
+        int ICollection<TModel>.Count => throw new NotImplementedException();
+
+        bool ICollection<TModel>.IsReadOnly => throw new NotImplementedException();
         #region IModelCollectionEdit Implementation
         /// <summary>
         /// Adds the given <typeparamref name="TModel"/> to the collection.
         /// </summary>
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        void IMutableModelCollection<TModel>.Add(TModel inModel)
+        void ICollection<TModel>.Add(TModel inModel)
         {
             Precondition.IsNotNull(inModel);
             Precondition.IsNotNone(inModel.ID);
@@ -29,37 +33,39 @@ namespace ParquetClassLibrary
                                                             typeof(TModel).Name, inModel.Name));
         }
 
+        bool ICollection<TModel>.Contains(TModel item) => throw new NotImplementedException();
+        void ICollection<TModel>.CopyTo(TModel[] array, int arrayIndex) => throw new NotImplementedException();
+
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
         /// </summary>
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        void IMutableModelCollection<TModel>.Remove(TModel inModel)
-            => ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID
-                ?? throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull, nameof(inModel))));
+        bool ICollection<TModel>.Remove(TModel inModel)
+            => ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ??
+                                                                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
+                                                              nameof(inModel))));
 
 
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
         /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        void IMutableModelCollection<TModel>.Remove(ModelID inID)
+        bool IMutableModelCollection<TModel>.Remove(ModelID inID)
         {
             Precondition.IsNotNone(inID);
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            if (!EditableModels.Remove(inID))
-            {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotRemove,
-                                                          typeof(TModel).Name, inID));
-            }
+            return !EditableModels.Remove(inID)
+                ? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotRemove,
+                                                          typeof(TModel).Name, inID))
+                : true;
         }
 
         /// <summary>
         /// Empties the entire collection.
         /// </summary>
-        void IMutableModelCollection<TModel>.Clear()
+        void ICollection<TModel>.Clear()
             => EditableModels.Clear();
-
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose

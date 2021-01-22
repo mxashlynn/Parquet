@@ -321,10 +321,7 @@ ParquetClassLibrary.EditorSupport.IMutableModel.ID.set -> void
 ParquetClassLibrary.EditorSupport.IMutableModel.Name.get -> string
 ParquetClassLibrary.EditorSupport.IMutableModel.Name.set -> void
 ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>
-ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Add(TModel inModel) -> void
-ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Clear() -> void
-ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Remove(ParquetClassLibrary.ModelID inID) -> void
-ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Remove(TModel inModel) -> void
+ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Remove(ParquetClassLibrary.ModelID inID) -> bool
 ParquetClassLibrary.EditorSupport.IMutableModelCollection<TModel>.Replace(TModel inModel) -> void
 ParquetClassLibrary.EditorSupport.IMutableParquetModel
 ParquetClassLibrary.EditorSupport.IMutableParquetModel.AddsToBiome.get -> System.Collections.Generic.IList<ParquetClassLibrary.ModelTag>
