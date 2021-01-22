@@ -212,7 +212,7 @@ namespace ParquetClassLibrary
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 if (inRow?.Context.CurrentIndex == 0)
                 {
