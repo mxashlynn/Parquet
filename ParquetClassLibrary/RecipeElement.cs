@@ -118,7 +118,7 @@ namespace ParquetClassLibrary
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return None;
             }
@@ -160,7 +160,6 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is RecipeElement recipeElement
-            && null != recipeElement
                 ? recipeElement == None
                     ? nameof(None)
                     : $"{recipeElement.ElementAmount}{Delimiters.InternalDelimiter}" +

@@ -71,7 +71,7 @@ namespace ParquetClassLibrary
 
         #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
-        internal static Range<TElement> ConverterFactory { get; } = new Range<TElement>();
+        internal static Range<TElement> ConverterFactory { get; }
 
         /// <summary>Allows deserialization of <typeparamref name="TElement"/>s that are interchangeable with <see cref="long"/>.</summary>
         internal static Int32Converter Int32ConverterFactory { get; } = new Int32Converter();
@@ -88,7 +88,6 @@ namespace ParquetClassLibrary
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is Range<TElement> range
-            && null != range
                 ? $"{range.Minimum}{Delimiters.ElementDelimiter}" +
                   $"{range.Maximum}"
             : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,

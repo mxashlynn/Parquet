@@ -21,7 +21,7 @@ namespace ParquetClassLibrary.Items
         /// <returns>The instances read.</returns>
         public static void GetRecord()
         {
-            using var reader = new StreamReader(GetFilePath());
+            using var reader = new StreamReader(FilePath);
 
             // Skip the header.
             reader.ReadLine();
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         public static void PutRecord()
         {
-            using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
+            using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             writer.Write($"{nameof(DefaultCapacity)}\n");
             writer.Write($"{DefaultCapacity}\n");
         }
@@ -50,7 +50,7 @@ namespace ParquetClassLibrary.Items
         /// Returns the filename and path associated with <see cref="InventoryConfiguration"/>'s definition file.
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
-        public static string GetFilePath()
+        public static string FilePath
             => $"{All.ProjectDirectory}/{nameof(InventoryConfiguration)}.csv";
         #endregion
     }

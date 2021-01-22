@@ -16,7 +16,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Adds the given <typeparamref name="TModel"/> to the collection.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         void IMutableModelCollection<TModel>.Add(TModel inModel)
         {
             Precondition.IsNotNull(inModel);
@@ -32,7 +32,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         void IMutableModelCollection<TModel>.Remove(TModel inModel)
             => ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID
                 ?? throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull, nameof(inModel))));
@@ -41,7 +41,7 @@ namespace ParquetClassLibrary
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
-        /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         void IMutableModelCollection<TModel>.Remove(ModelID inID)
         {
             Precondition.IsNotNone(inID);
@@ -63,9 +63,9 @@ namespace ParquetClassLibrary
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
-        /// <see cref="ModelID"/> is identicle to that of the model being replaced.
+        /// <see cref="ModelID"/> is identical to that of the model being replaced.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contianed in this collection.</param>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         /// <remarks>Facilitates updating elements from design tools while maintaining a read-only facade during play.</remarks>
         void IMutableModelCollection<TModel>.Replace(TModel inModel)
         {

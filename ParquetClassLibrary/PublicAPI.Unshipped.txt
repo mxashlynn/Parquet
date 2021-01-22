@@ -151,7 +151,7 @@ ParquetClassLibrary.Beings.PronounGroup
 ParquetClassLibrary.Beings.PronounGroup.Determiner.get -> string
 ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(string inText) -> System.Text.StringBuilder
 ParquetClassLibrary.Beings.PronounGroup.FillInPronouns(System.Text.StringBuilder inText) -> System.Text.StringBuilder
-ParquetClassLibrary.Beings.PronounGroup.GetKey() -> string
+ParquetClassLibrary.Beings.PronounGroup.Key.get -> string
 ParquetClassLibrary.Beings.PronounGroup.Objective.get -> string
 ParquetClassLibrary.Beings.PronounGroup.Possessive.get -> string
 ParquetClassLibrary.Beings.PronounGroup.PronounGroup(string inSubjective, string inObjective, string inDeterminer, string inPossessive, string inReflexive) -> void
@@ -380,11 +380,14 @@ ParquetClassLibrary.Items.GatheringTool.None = 0 -> ParquetClassLibrary.Items.Ga
 ParquetClassLibrary.Items.GatheringTool.Pick = 1 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.GatheringTool.Shovel = 3 -> ParquetClassLibrary.Items.GatheringTool
 ParquetClassLibrary.Items.Inventory
+ParquetClassLibrary.Items.Inventory.Add(ParquetClassLibrary.Items.InventorySlot inSlot) -> void
 ParquetClassLibrary.Items.Inventory.Capacity.get -> int
 ParquetClassLibrary.Items.Inventory.Capacity.set -> void
+ParquetClassLibrary.Items.Inventory.Clear() -> void
 ParquetClassLibrary.Items.Inventory.Clone() -> ParquetClassLibrary.Items.Inventory
 ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Contains(ParquetClassLibrary.ModelID inItemID) -> int
+ParquetClassLibrary.Items.Inventory.CopyTo(ParquetClassLibrary.Items.InventorySlot[] inArray, int inArrayIndex) -> void
 ParquetClassLibrary.Items.Inventory.Count.get -> int
 ParquetClassLibrary.Items.Inventory.GetEnumerator() -> System.Collections.Generic.IEnumerator<ParquetClassLibrary.Items.InventorySlot>
 ParquetClassLibrary.Items.Inventory.Give(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
@@ -396,7 +399,9 @@ ParquetClassLibrary.Items.Inventory.Has(System.Collections.Generic.IEnumerable<P
 ParquetClassLibrary.Items.Inventory.Inventory() -> void
 ParquetClassLibrary.Items.Inventory.Inventory(int inCapacity) -> void
 ParquetClassLibrary.Items.Inventory.Inventory(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Items.InventorySlot> inSlots, int inCapacity) -> void
+ParquetClassLibrary.Items.Inventory.IsReadOnly.get -> bool
 ParquetClassLibrary.Items.Inventory.ItemCount.get -> int
+ParquetClassLibrary.Items.Inventory.Remove(ParquetClassLibrary.Items.InventorySlot inSlot) -> bool
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.Items.InventorySlot inSlot) -> int
 ParquetClassLibrary.Items.Inventory.Take(ParquetClassLibrary.ModelID inItemID, int inHowMany) -> int
 ParquetClassLibrary.Items.InventoryConfiguration
@@ -767,10 +772,10 @@ static ParquetClassLibrary.All.PronounGroups.get -> System.Collections.Generic.I
 static ParquetClassLibrary.All.RoomRecipes.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Rooms.RoomRecipe>
 static ParquetClassLibrary.All.SaveToCSVs() -> bool
 static ParquetClassLibrary.All.Scripts.get -> ParquetClassLibrary.ModelCollection<ParquetClassLibrary.Scripts.ScriptModel>
-static ParquetClassLibrary.Beings.PronounGroup.GetFilePath() -> string
+static ParquetClassLibrary.Beings.PronounGroup.FilePath.get -> string
 static ParquetClassLibrary.Beings.PronounGroup.GetRecords() -> System.Collections.Generic.HashSet<ParquetClassLibrary.Beings.PronounGroup>
 static ParquetClassLibrary.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable<ParquetClassLibrary.Beings.PronounGroup> inGroups) -> void
-static ParquetClassLibrary.Biomes.BiomeConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Biomes.BiomeConfiguration.FilePath.get -> string
 static ParquetClassLibrary.Biomes.BiomeConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Biomes.BiomeConfiguration.LandThreshold.get -> int
 static ParquetClassLibrary.Biomes.BiomeConfiguration.LandThresholdFactor.get -> double
@@ -783,7 +788,7 @@ static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThreshold.get -> int
 static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThresholdFactor.get -> double
 static ParquetClassLibrary.Biomes.BiomeConfiguration.RoomThresholdFactor.set -> void
 static ParquetClassLibrary.Biomes.BiomeRecipe.None.get -> ParquetClassLibrary.Biomes.BiomeRecipe
-static ParquetClassLibrary.Crafts.CraftConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Crafts.CraftConfiguration.FilePath.get -> string
 static ParquetClassLibrary.Crafts.CraftConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Crafts.CraftConfiguration.IngredientCount.get -> ParquetClassLibrary.Range<int>
 static ParquetClassLibrary.Crafts.CraftConfiguration.IngredientCount.set -> void
@@ -799,7 +804,7 @@ static ParquetClassLibrary.EditorSupport.MapAnalysis.CheckExitConsistency<TMapTy
 static ParquetClassLibrary.Items.Inventory.Empty.get -> ParquetClassLibrary.Items.Inventory
 static ParquetClassLibrary.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static ParquetClassLibrary.Items.InventoryConfiguration.DefaultCapacity.set -> void
-static ParquetClassLibrary.Items.InventoryConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Items.InventoryConfiguration.FilePath.get -> string
 static ParquetClassLibrary.Items.InventoryConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Items.InventoryConfiguration.PutRecord() -> void
 static ParquetClassLibrary.Items.InventorySlot.Empty.get -> ParquetClassLibrary.Items.InventorySlot
@@ -868,7 +873,7 @@ static ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.GetRoomAt(this
 static ParquetClassLibrary.Rooms.ReadOnlyRoomCollectionExtensions.ToString(this System.Collections.Generic.IReadOnlyCollection<ParquetClassLibrary.Rooms.Room> inRooms) -> string
 static ParquetClassLibrary.Rooms.Room.operator !=(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
 static ParquetClassLibrary.Rooms.Room.operator ==(ParquetClassLibrary.Rooms.Room inRoom1, ParquetClassLibrary.Rooms.Room inRoom2) -> bool
-static ParquetClassLibrary.Rooms.RoomConfiguration.GetFilePath() -> string
+static ParquetClassLibrary.Rooms.RoomConfiguration.FilePath.get -> string
 static ParquetClassLibrary.Rooms.RoomConfiguration.GetRecord() -> void
 static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.get -> int
 static ParquetClassLibrary.Rooms.RoomConfiguration.MaxWalkableSpaces.set -> void

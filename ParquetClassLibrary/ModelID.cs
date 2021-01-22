@@ -242,8 +242,7 @@ namespace ParquetClassLibrary
         /// <returns>The <see cref="ModelID"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelID id
-                ? null != id
-                && None != id
+                ? None != id
                     ? id.ToString()
                     : nameof(None)
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,

@@ -27,7 +27,7 @@ namespace ParquetClassLibrary
     /// <seealso cref="ModelID"/>
     /// <seealso cref="ModelTag"/>
     /// <seealso cref="All"/>
-    /// <typeparam name="TModel">The type collected, typically a concrete decendent of <see cref="Model"/>.</typeparam>
+    /// <typeparam name="TModel">The type collected, typically a concrete descendant of <see cref="Model"/>.</typeparam>
     public partial class ModelCollection<TModel> : IReadOnlyCollection<TModel>
         where TModel : Model
     {

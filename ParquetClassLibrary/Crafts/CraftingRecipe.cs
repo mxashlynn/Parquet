@@ -32,7 +32,7 @@ namespace ParquetClassLibrary.Crafts
         [Index(5)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
-        /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         [Index(6)]
         public IReadOnlyGrid<StrikePanel> PanelPattern { get; private set; }
         #endregion
@@ -47,7 +47,7 @@ namespace ParquetClassLibrary.Crafts
         /// <param name="inComment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
         /// <param name="inProducts">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
-        /// <param name="inPanelPattern">The arrangment of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
+        /// <param name="inPanelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <exception cref="IndexOutOfRangeException">
         /// When <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
         /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
@@ -70,9 +70,9 @@ namespace ParquetClassLibrary.Crafts
             if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
             {
-                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture,
-                                                                 Resources.ErrorUnsupportedDimension,
-                                                                 nameof(inPanelPattern)));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture,
+                                                                    Resources.ErrorUnsupportedDimension,
+                                                                    nameof(inPanelPattern)));
             }
 
             Products = nonNullProducts.ToList();

@@ -146,7 +146,6 @@ namespace ParquetClassLibrary
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is Vector2D vector
-            && vector != null
                 ? $"{vector.X}{Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,

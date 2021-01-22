@@ -25,15 +25,15 @@ namespace ParquetClassLibrary.Parquets
         private readonly int maxToughness;
 
         /// <summary>The <see cref="BlockModel"/>'s current toughness.</summary>
-        private int toughness;
+        private int backingToughness;
 
         /// <summary>
         /// The <see cref="BlockModel"/>'s current toughness, from <see cref="BlockModel.LowestPossibleToughness"/> to <see cref="BlockModel.MaxToughness"/>.
         /// </summary>
         public int Toughness
         {
-            get => toughness;
-            set => toughness = value.Normalize(BlockModel.LowestPossibleToughness, maxToughness);
+            get => backingToughness;
+            set => backingToughness = value.Normalize(BlockModel.LowestPossibleToughness, maxToughness);
         }
         #endregion
 
@@ -122,7 +122,6 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStatus status
-            && null != status
                 ? $"{status.IsTrench}{Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"

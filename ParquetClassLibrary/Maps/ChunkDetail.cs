@@ -135,7 +135,6 @@ namespace ParquetClassLibrary.Maps
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ChunkDetail chunk
-            && null != chunk
                 ? chunk == None
                     ? nameof(None)
                     : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
@@ -155,7 +154,7 @@ namespace ParquetClassLibrary.Maps
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return None;
             }

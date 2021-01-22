@@ -277,7 +277,7 @@ namespace ParquetClassLibrary.Items
 
         #region ICollection Implementation
         /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
-        bool ICollection<InventorySlot>.IsReadOnly => false;
+        public bool IsReadOnly => false;
 
         /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
         public int Count
@@ -298,14 +298,14 @@ namespace ParquetClassLibrary.Items
         /// <remarks>This method should only be used by <see cref="SeriesConverter{TElement, TCollection}"/>.</remarks>
         /// <param name="inSlot">The slot to add.</param>
         [Obsolete("Use Inventory.Give() instead.")]
-        void ICollection<InventorySlot>.Add(InventorySlot inSlot)
+        public void Add(InventorySlot inSlot)
             => Give(inSlot);
 
         /// <summary>
         /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
         /// <remarks>This method does not respect gameplay rules, but forcibly empties the collection.</remarks>
         /// </summary>
-        void ICollection<InventorySlot>.Clear()
+        public void Clear()
             => Slots.Clear();
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace ParquetClassLibrary.Items
         /// </summary>
         /// <param name="inArray">The array to copy to.</param>
         /// <param name="inArrayIndex">The index at which to begin copying.</param>
-        void ICollection<InventorySlot>.CopyTo(InventorySlot[] inArray, int inArrayIndex)
+        public void CopyTo(InventorySlot[] inArray, int inArrayIndex)
             => Slots.CopyTo(inArray, inArrayIndex);
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace ParquetClassLibrary.Items
         /// <param name="inSlot">The slot to remove.</param>
         /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
         [Obsolete("Use Inventory.Take() instead.", true)]
-        bool ICollection<InventorySlot>.Remove(InventorySlot inSlot)
+        public bool Remove(InventorySlot inSlot)
             => Take(inSlot) == 0;
 
         /// <summary>

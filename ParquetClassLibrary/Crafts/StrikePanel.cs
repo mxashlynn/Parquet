@@ -161,7 +161,7 @@ namespace ParquetClassLibrary.Crafts
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unused), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Unused;
             }
@@ -190,8 +190,7 @@ namespace ParquetClassLibrary.Crafts
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is StrikePanel panel
-                ? null == panel
-                || Unused == panel
+                ? Unused == panel
                     ? nameof(Unused)
                     : $"{panel.WorkingRange.Minimum}{Delimiters.ElementDelimiter}" +
                       $"{panel.WorkingRange.Maximum}{Delimiters.InternalDelimiter}" +

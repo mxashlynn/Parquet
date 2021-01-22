@@ -328,19 +328,19 @@ namespace ParquetRoller
         /// <returns>A value indicating success or the nature of the failure.</returns>
         private static ExitCode CreateTemplates(ModelCollection inWorkload)
         {
-            if (!File.Exists(PronounGroup.GetFilePath()))
+            if (!File.Exists(PronounGroup.FilePath))
             {
                 PronounGroup.PutRecords(Enumerable.Empty<PronounGroup>());
             }
-            if (!File.Exists(BiomeConfiguration.GetFilePath()))
+            if (!File.Exists(BiomeConfiguration.FilePath))
             {
                 BiomeConfiguration.PutRecord();
             }
-            if (!File.Exists(CraftConfiguration.GetFilePath()))
+            if (!File.Exists(CraftConfiguration.FilePath))
             {
                 CraftConfiguration.PutRecord();
             }
-            if (!File.Exists(RoomConfiguration.GetFilePath()))
+            if (!File.Exists(RoomConfiguration.FilePath))
             {
                 RoomConfiguration.PutRecord();
             }
@@ -497,9 +497,9 @@ namespace ParquetRoller
                 return ExitCode.ReadFault;
             }
 
-            foreach (var pronounGroup in All.PronounGroups)
+            foreach (var PronounGroup in All.PronounGroups)
             {
-                Console.WriteLine(pronounGroup);
+                Console.WriteLine(PronounGroup);
             }
 
             return ExitCode.Success;

@@ -19,7 +19,7 @@ namespace ParquetClassLibrary.EditorSupport
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         public IList<RecipeElement> Ingredients { get; }
 
-        /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         public IGrid<StrikePanel> PanelPattern { get; }
 
         /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>

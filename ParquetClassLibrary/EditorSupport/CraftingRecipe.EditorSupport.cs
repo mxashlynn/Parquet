@@ -30,7 +30,7 @@ namespace ParquetClassLibrary.Crafts
         [Ignore]
         IList<RecipeElement> IMutableCraftingRecipe.Ingredients => (IList<RecipeElement>)Ingredients;
 
-        /// <summary>The arrangment of panels encompassed by this recipe.</summary>
+        /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require read-write access.

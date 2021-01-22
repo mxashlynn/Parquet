@@ -131,7 +131,6 @@ namespace ParquetClassLibrary.Items
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is InventorySlot slot
-            && null != slot
                 ? $"{slot.ItemID}{Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,

@@ -10,6 +10,7 @@ namespace ParquetClassLibrary.Parquets
     /// <summary>
     /// Simple container for one of each overlapping layer of parquets.
     /// </summary>
+    // TODO: Let's consider if there is another word than Stack that we can use.  Bundle?  Sheaf?
     public class ParquetStack : IParquetStack, IEquatable<ParquetStack>, ITypeConverter
     {
         #region Class Defaults
@@ -180,7 +181,6 @@ namespace ParquetClassLibrary.Parquets
         /// <returns>The given instance serialized.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetStack stack
-            && null != stack
                 ? $"{stack.FloorID}{Delimiters.InternalDelimiter}" +
                   $"{stack.BlockID}{Delimiters.InternalDelimiter}" +
                   $"{stack.FurnishingID}{Delimiters.InternalDelimiter}" +

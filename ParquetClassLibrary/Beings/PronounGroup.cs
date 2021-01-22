@@ -94,7 +94,7 @@ namespace ParquetClassLibrary.Beings
         /// <returns>The instances read.</returns>
         public static HashSet<PronounGroup> GetRecords()
         {
-            using var reader = new StreamReader(GetFilePath());
+            using var reader = new StreamReader(FilePath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             csv.Configuration.PrepareHeaderForMatch =
@@ -117,7 +117,7 @@ namespace ParquetClassLibrary.Beings
         {
             Precondition.IsNotNull(inGroups);
 
-            using var writer = new StreamWriter(GetFilePath(), false, new UTF8Encoding(true, true));
+            using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.Configuration.NewLine = NewLine.LF;
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
@@ -137,11 +137,11 @@ namespace ParquetClassLibrary.Beings
         /// Returns the filename and path associated with <see cref="PronounGroup"/>'s definition file.
         /// </summary>
         /// <returns>A full path to the associated file.</returns>
-        public static string GetFilePath()
+        public static string FilePath
             => $"{All.ProjectDirectory}/{nameof(PronounGroup)}s.csv";
 
         /// <summary>
-        /// Replaces pronoun tags with the appropriate pronoung from the given <see cref="PronounGroup"/>.
+        /// Replaces pronoun tags with the appropriate pronoun from the given <see cref="PronounGroup"/>.
         /// </summary>
         /// <param name="inText">The text to transform.</param>
         /// <returns>The updated text.</returns>
@@ -154,7 +154,7 @@ namespace ParquetClassLibrary.Beings
                 .Replace(ReflexiveTag, Reflexive);
 
         /// <summary>
-        /// Replaces pronoun tags with the appropriate pronoung from the given <see cref="PronounGroup"/>.
+        /// Replaces pronoun tags with the appropriate pronoun from the given <see cref="PronounGroup"/>.
         /// </summary>
         /// <param name="inText">The text to transform.</param>
         /// <returns>The updated text.</returns>
@@ -170,7 +170,7 @@ namespace ParquetClassLibrary.Beings
         /// Returns a <see cref="string"/> to use as shorthand for the <see cref="PronounGroup"/>.
         /// </summary>
         /// <returns>The shorthand.</returns>
-        public string GetKey()
+        public string Key
             => $"{Subjective}/{Objective}";
 
         /// <summary>

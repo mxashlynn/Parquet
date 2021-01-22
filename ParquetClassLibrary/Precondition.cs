@@ -266,8 +266,8 @@ namespace ParquetClassLibrary
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNullEmpty,
-                                                                 inArgumentName));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNullEmpty,
+                                                                    inArgumentName));
             }
         }
 
@@ -296,8 +296,8 @@ namespace ParquetClassLibrary
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new IndexOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeEmpty,
-                                                                 inArgumentName));
+                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeEmpty,
+                                                                    inArgumentName));
             }
         }
 
