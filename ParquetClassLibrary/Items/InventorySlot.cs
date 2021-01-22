@@ -146,7 +146,7 @@ namespace ParquetClassLibrary.Items
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(ModelID.None), inText, StringComparison.InvariantCultureIgnoreCase) == 0)
+                || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                           inText, nameof(InventorySlot)));
