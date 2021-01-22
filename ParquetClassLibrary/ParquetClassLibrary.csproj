@@ -6,7 +6,7 @@
     <Product>Parquet</Product>
     <Version>0.3.49.0</Version>
     <Company>Girl Potion</Company>
-    <Authors>Paige Ashlynn and contributors</Authors>
+    <Authors>Paige Ashlynn</Authors>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
     <Description>Mechanics and models for 2D building, crafting, and narrative sandbox games.</Description>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
@@ -52,6 +52,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--- NOTE: Updating to CSVHelper Version 20 requires major research and adjustment of CSVHelper code. -->
     <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2">
       <PrivateAssets>all</PrivateAssets>

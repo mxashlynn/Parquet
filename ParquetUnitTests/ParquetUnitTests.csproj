@@ -24,7 +24,7 @@
 
   <PropertyGroup>
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
-    <Authors>Paige Ashlynn and contributors</Authors>
+    <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>
     <PackageId>ParquetUnitTests_GirlPotion</PackageId>
     <Description>Unit tests for ParquetClassLibrary.</Description>
