@@ -238,7 +238,7 @@ namespace ParquetClassLibrary
         /// <param name="inValue">The value to search for.</param>
         /// <typeparam name="TElement">The type over which the Ranges are defined.</typeparam>
         /// <returns>
-        /// <c>true</c>, if the <paramref name="inValue"/> was contained in <paramref name="inRangeCollection"/>,
+        /// <c>true</c>, if <paramref name="inRangeCollection"/> contains the <paramref name="inValue"/>,
         /// <c>false</c> otherwise.
         /// </returns>
         public static bool ContainsValue<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, TElement inValue)
@@ -265,7 +265,7 @@ namespace ParquetClassLibrary
         /// <param name="inRangeCollection">The range collection in which to search.</param>
         /// <param name="inRange">The range to search for.</param>
         /// <typeparam name="TElement">The type over which the Ranges are defined.</typeparam>
-        /// <returns><c>true</c>, if the given range was contained in the list, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the list contains the given range, <c>false</c> otherwise.</returns>
         public static bool ContainsRange<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, Range<TElement> inRange)
             where TElement : IComparable<TElement>, IEquatable<TElement>
         {
