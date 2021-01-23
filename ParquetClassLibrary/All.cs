@@ -660,9 +660,9 @@ namespace Parquet
         /// Note that this method is only available when Parquet is built with editor support enabled.
         /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
         /// </remarks>
+#if DESIGN
         public static void Clear()
         {
-#if DESIGN
             ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
             ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
             ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
@@ -679,10 +679,11 @@ namespace Parquet
             ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
             ((HashSet<PronounGroup>)PronounGroups)?.Clear();
             CollectionsHaveBeenInitialized = false;
-#else
-            throw new InvalidOperationException(Resources.ErrorEditorSupport);
-#endif
         }
+#else
+        public static void Clear()
+            => throw new InvalidOperationException(Resources.ErrorEditorSupport);
+#endif
         #endregion
 
         #region ModelID Range Helper Methods
