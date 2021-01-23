@@ -17,7 +17,7 @@ namespace ParquetUnitTests.Rooms
 
         private static readonly ParquetStack TestEntry = new ParquetStack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
 
-        private static readonly ISet<MapSpace> TestPerimeter = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
             new MapSpace(0, 0, TestWall, null),
             new MapSpace(1, 0, TestWall, null),
@@ -33,7 +33,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(3, 3, TestWall, null),
         };
 
-        private static readonly ISet<MapSpace> TestWalkableArea = new HashSet<MapSpace>
+        private static readonly IReadOnlySet<MapSpace> TestWalkableArea = new HashSet<MapSpace>
         {
             new MapSpace(1, 1, TestWalk, null),
             new MapSpace(2, 1, TestWalk, null),
@@ -91,7 +91,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NoEntryThrowsTest()
         {
-            var walkableAreaWithNoExit = (ISet<MapSpace>)new HashSet<MapSpace>
+            var walkableAreaWithNoExit = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
             {
                 new MapSpace(1, 1, TestWalk, null),
                 new MapSpace(2, 1, TestWalk, null),
@@ -136,7 +136,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void DifferingRoomsAreUnequalTest()
         {
-            var otherWalkableArea = (ISet<MapSpace>)new HashSet<MapSpace>
+            var otherWalkableArea = (IReadOnlySet<MapSpace>)new HashSet<MapSpace>
             {
                 new MapSpace(1, 1, TestEntry, null),
                 new MapSpace(2, 1, TestWalk, null),

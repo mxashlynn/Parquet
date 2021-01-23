@@ -30,7 +30,8 @@ namespace Parquet.Rooms
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
                                     && walkableArea.Any(space => space.IsWalkableEntry
                                                               || space.Neighbors()
-                                                                      .Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
+                                                                      .Any(neighbor =>
+                                                                           neighbor.IsEnclosingEntry(walkableArea))))
                 .Select(walkableArea => new Room(walkableArea, perimeter))
                 .ToList();
             return rooms;
@@ -41,7 +42,7 @@ namespace Parquet.Rooms
         /// </summary>
         /// <param name="inSubregion">The <see cref="ParquetStackGrid"/>s to search.</param>
         /// <returns>The list of valid Walkable Areas.</returns>
-        private static IReadOnlyList<ISet<MapSpace>> GetWalkableAreas(ParquetStackGrid inSubregion)
+        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetStackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
             var subregionRows = inSubregion.Rows;
@@ -100,7 +101,7 @@ namespace Parquet.Rooms
             var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(space => space.Content.IsWalkable)));
             var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
 
-            return results.Cast<ISet<MapSpace>>().ToList();
+            return results.Cast<IReadOnlySet<MapSpace>>().ToList();
         }
     }
 }

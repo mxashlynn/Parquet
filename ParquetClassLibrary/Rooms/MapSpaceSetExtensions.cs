@@ -9,14 +9,13 @@ using Parquet.Properties;
 namespace Parquet.Rooms
 {
     /// <summary>
-    /// Extension methods to <see cref="ISet{MapSpace}"/>, providing bounds-checking and
+    /// Extension methods to <see cref="IReadOnlySet{MapSpace}"/>, providing bounds-checking and
     /// various routines useful when dealing with <see cref="Room"/>s.
     /// </summary>
-    // TODO Once we move to .Net 5 or 6, change each of these extensions to use IReadOnlySet instead of ISet, and rename this class.
     public static class MapSpaceSetExtensions
     {
         /// <summary>The canonical empty collection.</summary>
-        internal static ISet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
+        internal static IReadOnlySet<MapSpace> Empty { get; } = new HashSet<MapSpace>();
 
         #region Room Analysis
         /// <summary>
@@ -25,7 +24,7 @@ namespace Parquet.Rooms
         /// <param name="inSpaces">The walkable area under consideration.</param>
         /// <param name="outPerimeter">The walkable area's valid perimeter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
-        internal static bool TryGetPerimeter(this ISet<MapSpace> inSpaces, out ISet<MapSpace> outPerimeter)
+        internal static bool TryGetPerimeter(this IReadOnlySet<MapSpace> inSpaces, out IReadOnlySet<MapSpace> outPerimeter)
         {
             var subregion = inSpaces.First().Subregion;
             Precondition.IsNotNull(subregion);
@@ -135,13 +134,13 @@ namespace Parquet.Rooms
 
             // Returns the potential perimeter by finding all 4-connected MapSpaces in the given subregion
             // whose Content is Enclosing, beginning at the Position given by inStart.
-            ISet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
+            IReadOnlySet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
                 => GetSpaces(inSpaces.First().Subregion).Search(inStart,
                                                                 space => space.Content.IsEnclosing,
                                                                 space => false).Visited;
 
             // Returns a Set of MapSpaces corresponding to the ParquetStackGrid.
-            static ISet<MapSpace> GetSpaces(ParquetStackGrid inParquetStacks)
+            static IReadOnlySet<MapSpace> GetSpaces(ParquetStackGrid inParquetStacks)
             {
                 Precondition.IsNotNull(inParquetStacks, nameof(inParquetStacks));
 
@@ -169,7 +168,7 @@ namespace Parquet.Rooms
         /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
         internal static bool AllSpacesAreReachable(this HashSet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
-            => ((ISet<MapSpace>)inSpaces).Search(inSpaces.First(), inIsApplicable, space => false)
+            => ((IReadOnlySet<MapSpace>)inSpaces).Search(inSpaces.First(), inIsApplicable, space => false)
                .Visited.Count == inSpaces.Count;
 
         /// <summary>
@@ -180,7 +179,7 @@ namespace Parquet.Rooms
         /// <param name="inSpaces">The group of spaces under consideration.</param>
         /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool AllSpacesAreReachableAndCycleExists(this ISet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
+        internal static bool AllSpacesAreReachableAndCycleExists(this IReadOnlySet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
         {
             var results = inSpaces.Search(inSpaces.First(), inIsApplicable, space => false);
             return results.CycleFound
@@ -200,7 +199,7 @@ namespace Parquet.Rooms
         /// <param name="inIsApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
         /// <param name="inIsGoal"><c>true</c> if a the search goal has been satisfied.</param>
         /// <returns>Information about the results of the search procedure.</returns>
-        private static SearchResults Search(this ISet<MapSpace> inSpaces, MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
+        private static SearchResults Search(this IReadOnlySet<MapSpace> inSpaces, MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
         {
             Precondition.IsNotNullOrEmpty(inSpaces, nameof(inSpaces));
             var visited = new HashSet<MapSpace>();
@@ -256,9 +255,9 @@ namespace Parquet.Rooms
             internal bool CycleFound { get; private set; }
 
             /// <summary>A collection of all the <see cref="MapSpace"/>s visited during the search.</summary>
-            internal ISet<MapSpace> Visited { get; private set; }
+            internal IReadOnlySet<MapSpace> Visited { get; private set; }
 
-            internal SearchResults(bool inGoalFound, bool inCycleFound, ISet<MapSpace> inVisited)
+            internal SearchResults(bool inGoalFound, bool inCycleFound, IReadOnlySet<MapSpace> inVisited)
             {
                 GoalFound = inGoalFound;
                 CycleFound = inCycleFound;
@@ -269,11 +268,11 @@ namespace Parquet.Rooms
 
         #region Utilities
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="ISet{MapSpace}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="IReadOnlySet{MapSpace}"/>.
         /// </summary>
         /// <param name="inSpaces">The group of spaces under consideration.</param>
         /// <returns>The representation.</returns>
-        internal static string ToString(this ISet<MapSpace> inSpaces)
+        internal static string ToString(this IReadOnlySet<MapSpace> inSpaces)
             => $"{inSpaces?.Count ?? 0} spaces";
         #endregion
     }
