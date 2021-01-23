@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Properties;
+using Parquet.Parquets;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// Provides methods that are used by all map models.

@@ -3,9 +3,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// Indicates which parquets constitute this <see cref="MapChunkModel"/> and how they are arranged.

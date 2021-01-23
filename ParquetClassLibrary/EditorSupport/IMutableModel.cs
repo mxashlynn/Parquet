@@ -1,5 +1,5 @@
 #if DESIGN
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="Model"/> from design tools while maintaining a read-only face for use during play.

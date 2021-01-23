@@ -1,9 +1,9 @@
 #if DESIGN
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
+using Parquet.EditorSupport;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, Model should never itself use IMutableModel the interface to access its own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]

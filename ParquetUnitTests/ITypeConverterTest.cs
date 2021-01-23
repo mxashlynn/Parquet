@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary;
+using Parquet;
 using Xunit;
 
 namespace ParquetUnitTests

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Parquets;
+using Parquet.Parquets;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.

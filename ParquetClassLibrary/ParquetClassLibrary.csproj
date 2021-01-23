@@ -12,8 +12,8 @@
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetClassLibrary_GirlPotion</PackageId>
-    <PackageTags>C# .net game</PackageTags>
+    <PackageId>Parquet</PackageId>
+    <PackageTags>C# .net5 net5 game library</PackageTags>
     <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
 
     <OutputType>Library</OutputType>
@@ -49,6 +49,7 @@
   <PropertyGroup>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <RootNamespace>Parquet</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

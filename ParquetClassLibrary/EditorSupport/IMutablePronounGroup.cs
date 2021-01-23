@@ -1,7 +1,7 @@
 #if DESIGN
-using ParquetClassLibrary.Beings;
+using Parquet.Beings;
 
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="PronounGroup"/> from design tools while maintaining a read-only face for use during play.

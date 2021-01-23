@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
+using Parquet;
+using Parquet.Maps;
+using Parquet.Parquets;
 using Xunit;
 
 namespace ParquetUnitTests.Maps

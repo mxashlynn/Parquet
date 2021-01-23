@@ -1,5 +1,5 @@
 using System.Linq;
-using ParquetClassLibrary;
+using Parquet;
 using Xunit;
 
 namespace ParquetUnitTests

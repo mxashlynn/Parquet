@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using ParquetClassLibrary.EditorSupport;
-using ParquetClassLibrary.Properties;
+using Parquet.EditorSupport;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, ModelCollection should never use IMutableModelCollection to alter its own collection.  IMutableModelCollection is for external types that require read/write access.")]

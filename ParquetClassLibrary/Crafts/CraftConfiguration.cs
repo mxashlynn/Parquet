@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Crafts
+namespace Parquet.Crafts
 {
     /// <summary>
     /// Provides parameters for <see cref="CraftingRecipe"/>s.

@@ -2,10 +2,10 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Properties;
+using Parquet.Parquets;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// A pattern and metadata to generate a <see cref="MapRegionModel"/>.

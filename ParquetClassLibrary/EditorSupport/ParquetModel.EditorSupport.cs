@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.EditorSupport;
+using Parquet.Biomes;
+using Parquet.EditorSupport;
 
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]

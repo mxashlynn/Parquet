@@ -3,9 +3,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.

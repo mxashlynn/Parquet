@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Scripts
+namespace Parquet.Scripts
 {
     /// <summary>
     /// Models the status of an <see cref="InteractionModel"/>.

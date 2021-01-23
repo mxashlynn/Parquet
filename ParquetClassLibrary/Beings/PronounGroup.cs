@@ -7,7 +7,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     /// <summary>
     /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.

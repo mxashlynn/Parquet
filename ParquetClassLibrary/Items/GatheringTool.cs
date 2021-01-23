@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Items
+namespace Parquet.Items
 {
     /// <summary>
     /// IDs for <see cref="ItemModel"/> tools that Characters can use to gather <see cref="Parquets.BlockModel"/>s.

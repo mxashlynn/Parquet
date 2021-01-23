@@ -2,10 +2,10 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Properties;
+using Parquet.Maps;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Biomes
+namespace Parquet.Biomes
 {
     /// <summary>
     /// Provides rules for determining a <see cref="MapRegionModel"/>'s <see cref="BiomeRecipe"/>.

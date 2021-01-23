@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Scripts;
+using Parquet.Scripts;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.

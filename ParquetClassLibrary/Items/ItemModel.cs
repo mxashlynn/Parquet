@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary.Items
+namespace Parquet.Items
 {
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.

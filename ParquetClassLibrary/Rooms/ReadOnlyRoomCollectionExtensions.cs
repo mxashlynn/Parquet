@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Convenience extensions to <see cref="IReadOnlyCollection{Room}"/>.

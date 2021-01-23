@@ -1,7 +1,7 @@
 #if DESIGN
-using ParquetClassLibrary.EditorSupport;
+using Parquet.EditorSupport;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.

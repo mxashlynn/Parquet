@@ -4,9 +4,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Items
+namespace Parquet.Items
 {
     /// <summary>
     /// Allows multiple copies of a given <see cref="ItemModel"/> to be grouped together in an <see cref="Inventory"/>.

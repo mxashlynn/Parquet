@@ -5,18 +5,18 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.Games;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Properties;
-using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Scripts;
+using Parquet.Beings;
+using Parquet.Biomes;
+using Parquet.Crafts;
+using Parquet.Games;
+using Parquet.Items;
+using Parquet.Maps;
+using Parquet.Parquets;
+using Parquet.Properties;
+using Parquet.Rooms;
+using Parquet.Scripts;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Provides content and identifiers for the game.

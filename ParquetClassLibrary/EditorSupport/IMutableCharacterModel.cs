@@ -1,9 +1,9 @@
 #if DESIGN
 using System.Collections.Generic;
-using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Items;
+using Parquet.Beings;
+using Parquet.Items;
 
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="CharacterModel"/> from design tools while maintaining a read-only face for use during play.

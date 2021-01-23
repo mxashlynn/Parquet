@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Collects a group of <see cref="Model"/>s.

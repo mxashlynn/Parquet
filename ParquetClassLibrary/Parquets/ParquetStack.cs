@@ -3,9 +3,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     /// <summary>
     /// Simple container for one of each overlapping layer of parquets.

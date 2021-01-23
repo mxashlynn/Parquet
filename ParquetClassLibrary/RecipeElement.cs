@@ -3,10 +3,10 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Properties;
+using Parquet.Items;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Models the category and amount of a <see cref="Model"/> from a recipe, e.g. <see cref="Crafts.CraftingRecipe"/>

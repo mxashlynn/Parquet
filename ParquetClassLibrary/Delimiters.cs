@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Provides a unified source of serialization separators for the library.

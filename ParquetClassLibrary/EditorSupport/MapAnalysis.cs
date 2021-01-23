@@ -1,10 +1,10 @@
 #if DESIGN
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Properties;
+using Parquet.Maps;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Provides optional analysis for compatible <see cref="MapModel"/>s.

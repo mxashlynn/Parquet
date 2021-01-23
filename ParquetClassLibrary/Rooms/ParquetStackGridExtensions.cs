@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using ParquetClassLibrary.Parquets;
+using Parquet.Parquets;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Extensions to <see cref="ParquetStackGrid"/> for analyzing subregions of <see cref="ParquetStack"/>s

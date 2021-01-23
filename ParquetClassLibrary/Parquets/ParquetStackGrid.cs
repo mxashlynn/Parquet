@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetStack"/>s for use in <see cref="Maps.MapModel"/> and derived classes.

@@ -1,8 +1,8 @@
 using System;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Parquets;
+using Parquet.Parquets;
 
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// Models details of a portion of a <see cref="MapRegionModel"/>,

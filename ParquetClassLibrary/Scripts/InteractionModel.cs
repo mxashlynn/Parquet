@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary.Scripts
+namespace Parquet.Scripts
 {
     /// <summary>
     /// Models input, output, and process of an in-game interaction.

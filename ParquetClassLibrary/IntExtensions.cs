@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Provides extension methods to the built in integer type.

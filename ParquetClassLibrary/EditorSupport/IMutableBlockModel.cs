@@ -1,8 +1,8 @@
 #if DESIGN
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Parquets;
+using Parquet.Items;
+using Parquet.Parquets;
 
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="BlockModel"/> from design tools while maintaining a read-only face for use during play.

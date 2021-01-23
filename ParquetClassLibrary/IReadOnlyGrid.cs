@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CsvHelper.TypeConversion;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// A two-dimensional collection that functions much like an immutable array.

@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Scripts
+namespace Parquet.Scripts
 {
     /// <summary>
     /// IDs for commands used in <see cref="ScriptNode"/>s.

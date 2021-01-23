@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Items;
+using Parquet.Items;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     /// <summary>
     /// Models the definitions of in-game actors that take part in the narrative.

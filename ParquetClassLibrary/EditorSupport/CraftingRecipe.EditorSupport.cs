@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.EditorSupport;
+using Parquet.EditorSupport;
 
-namespace ParquetClassLibrary.Crafts
+namespace Parquet.Crafts
 {
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ModelID"/>s for use in <see cref="ModelID"/>s.

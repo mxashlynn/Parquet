@@ -1,7 +1,7 @@
 #if DESIGN
-using ParquetClassLibrary.Games;
+using Parquet.Games;
 
-namespace ParquetClassLibrary.EditorSupport
+namespace Parquet.EditorSupport
 {
     /// <summary>
     /// Facilitates editing of a <see cref="GameModel"/> from design tools while maintaining a read-only face for use during play.

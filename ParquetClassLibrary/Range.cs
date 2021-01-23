@@ -4,9 +4,9 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.

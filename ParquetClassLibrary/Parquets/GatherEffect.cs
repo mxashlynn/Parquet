@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     /// <summary>
     /// IDs for effects that can happen when a character gathers a <see cref="BlockModel"/>.

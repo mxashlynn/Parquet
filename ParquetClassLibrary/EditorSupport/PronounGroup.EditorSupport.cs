@@ -1,9 +1,9 @@
 #if DESIGN
-using ParquetClassLibrary.EditorSupport;
+using Parquet.EditorSupport;
 using CsvHelper.Configuration.Attributes;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, PronounGroup should never use IPronounGroupEdit to access its own members.  The IPronounGroupEdit interface is for external types that require read/write access.")]

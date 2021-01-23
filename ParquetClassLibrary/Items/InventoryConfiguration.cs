@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Items
+namespace Parquet.Items
 {
     /// <summary>
     /// Provides rules for working with an <see cref="Inventory"/>.

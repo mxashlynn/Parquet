@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 // Allow unit tests to access classes and members with internal accessibility.
 [assembly: InternalsVisibleTo("ParquetUnitTests")]
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Provides assembly-wide information.

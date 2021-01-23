@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParquetClassLibrary.Beings
+namespace Parquet.Beings
 {
     /// <summary>
     /// Models the status of a <see cref="BeingModel"/>.

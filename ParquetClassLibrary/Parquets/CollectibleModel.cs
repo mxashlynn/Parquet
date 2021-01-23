@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
+using Parquet.Biomes;
 
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox collectible object, such as crafting materials.

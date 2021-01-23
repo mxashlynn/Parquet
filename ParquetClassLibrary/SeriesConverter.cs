@@ -6,9 +6,9 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Type converter for any collection that implements <see cref="ICollection{T}"/>.

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Properties;
+using Parquet.Parquets;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.

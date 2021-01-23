@@ -1,5 +1,5 @@
 #if DESIGN
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// Provides methods that are used by all map models.

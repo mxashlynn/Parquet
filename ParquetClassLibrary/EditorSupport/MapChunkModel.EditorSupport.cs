@@ -1,5 +1,5 @@
 #if DESIGN
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// Models details of a portion of a <see cref="MapRegionModel"/>,

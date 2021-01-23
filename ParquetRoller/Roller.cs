@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Beings;
-using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Crafts;
-using ParquetClassLibrary.Games;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Maps;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Rooms;
-using ParquetClassLibrary.Scripts;
+using Parquet;
+using Parquet.Beings;
+using Parquet.Biomes;
+using Parquet.Crafts;
+using Parquet.Games;
+using Parquet.Items;
+using Parquet.Maps;
+using Parquet.Parquets;
+using Parquet.Rooms;
+using Parquet.Scripts;
 #if DESIGN
-using ParquetClassLibrary.EditorSupport;
+using Parquet.EditorSupport;
 #endif
 using ParquetRoller.Properties;
 

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Rooms;
+using Parquet.Biomes;
+using Parquet.Parquets;
+using Parquet.Rooms;
 
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.

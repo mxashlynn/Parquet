@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Biomes;
-using ParquetClassLibrary.Items;
+using Parquet.Biomes;
+using Parquet.Items;
 
-namespace ParquetClassLibrary.Parquets
+namespace Parquet.Parquets
 {
     /// <summary>
     /// Configurations for a sandbox parquet block.

@@ -1,6 +1,6 @@
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary.Games
+namespace Parquet.Games
 {
     /// <summary>
     /// Collects data about a Parquet-based game generally.

@@ -1,4 +1,4 @@
-using ParquetClassLibrary.Parquets;
+using Parquet.Parquets;
 using Xunit;
 
 namespace ParquetUnitTests.Parquets

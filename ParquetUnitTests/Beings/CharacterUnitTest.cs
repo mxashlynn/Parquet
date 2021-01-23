@@ -1,6 +1,6 @@
 using System;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Beings;
+using Parquet;
+using Parquet.Beings;
 using Xunit;
 
 namespace ParquetUnitTests.Beings

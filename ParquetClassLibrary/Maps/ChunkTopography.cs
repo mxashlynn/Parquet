@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Maps
+namespace Parquet.Maps
 {
     /// <summary>Indicates the basic form that the parquets in a <see cref="MapChunkModel"/> take.</summary>
     public enum ChunkTopography

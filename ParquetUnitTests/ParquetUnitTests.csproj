@@ -26,7 +26,7 @@
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
     <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>
-    <PackageId>ParquetUnitTests_GirlPotion</PackageId>
+    <PackageId>ParquetUnitTests</PackageId>
     <Description>Unit tests for ParquetClassLibrary.</Description>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -45,6 +45,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.analyzers" Version="0.10.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

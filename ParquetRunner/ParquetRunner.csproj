@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetRunner_GirlPotion</PackageId>
+    <PackageId>ParquetRunner</PackageId>
     <PackageTags></PackageTags>
     <PackageReleaseNotes>This code is not meant for external use.</PackageReleaseNotes>
 

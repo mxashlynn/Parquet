@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Rooms;
+using Parquet;
+using Parquet.Parquets;
+using Parquet.Rooms;
 using Xunit;
 
 namespace ParquetUnitTests.Rooms

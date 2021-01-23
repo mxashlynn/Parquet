@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Items;
-using ParquetClassLibrary.Maps;
+using Parquet.Items;
+using Parquet.Maps;
 
-namespace ParquetClassLibrary.Biomes
+namespace Parquet.Biomes
 {
     /// <summary>
     /// Models the biome that a <see cref="MapRegionModel"/> embodies.

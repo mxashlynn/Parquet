@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using ParquetClassLibrary;
-using ParquetClassLibrary.Crafts;
+using Parquet;
+using Parquet.Crafts;
 using Xunit;
 
 namespace ParquetUnitTests.Crafts

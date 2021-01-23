@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Crafts
+namespace Parquet.Crafts
 {
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using ParquetClassLibrary.Parquets;
-using ParquetClassLibrary.Properties;
+using Parquet.Parquets;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Extension methods to <see cref="ISet{MapSpace}"/>, providing bounds-checking and

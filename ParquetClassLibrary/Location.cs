@@ -1,6 +1,6 @@
 using System;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Represents a specific position within a specific <see cref="Maps.MapRegionModel"/>.

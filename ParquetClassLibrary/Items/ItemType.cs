@@ -1,4 +1,4 @@
-namespace ParquetClassLibrary.Items
+namespace Parquet.Items
 {
     /// <summary>
     /// Represents the different types of <see cref="ItemModel"/>s that may be carried and used.

@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ParquetClassLibrary.Properties;
+using Parquet.Properties;
 
-namespace ParquetClassLibrary.Rooms
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Provides parameters for <see cref="Room"/>s.

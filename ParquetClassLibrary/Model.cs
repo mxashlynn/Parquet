@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 
-namespace ParquetClassLibrary
+namespace Parquet
 {
     /// <summary>
     /// Models a unique, identifiable type of game object.
