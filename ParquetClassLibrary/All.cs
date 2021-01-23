@@ -660,8 +660,11 @@ namespace ParquetClassLibrary
         /// Note that this method is only available when Parquet is built with editor support enabled.
         /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
         /// </remarks>
+        [SuppressMessage("CodeQuality", "IDE0079:Remove unnecessary suppression",
+                         Justification = "Suppression is needed when DESIGN is undefined.")]
         [SuppressMessage("Style", "IDE0022:Use expression body for methods",
                          Justification = "Cannot be an expression when symbol DESIGN is defined.")]
+        // TODO The above suppression pair indicates that there is likely a better way to handle this method.
         public static void Clear()
         {
 #if DESIGN
