@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetClassLibrary_GirlPotion</PackageId>
+    <PackageId>Parquet</PackageId>
     <PackageTags>C# .net game</PackageTags>
     <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
 

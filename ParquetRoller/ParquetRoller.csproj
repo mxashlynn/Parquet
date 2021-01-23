@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetRoller_GirlPotion</PackageId>
+    <PackageId>ParquetRoller</PackageId>
     <PackageTags>C# .net command game</PackageTags>
     <PackageReleaseNotes>Code and documentation are incomplete and under rapid development. Expect frequent breaking changes.</PackageReleaseNotes>
 
