@@ -688,11 +688,11 @@ Parquet.Rooms.Room
 Parquet.Rooms.Room.ContainsPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Rooms.Room.Equals(Parquet.Rooms.Room inRoom) -> bool
 Parquet.Rooms.Room.FurnishingTags.get -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
-Parquet.Rooms.Room.Perimeter.get -> System.Collections.Generic.ISet<Parquet.Rooms.MapSpace>
+Parquet.Rooms.Room.Perimeter.get -> System.Collections.Generic.IReadOnlySet<Parquet.Rooms.MapSpace>
 Parquet.Rooms.Room.Position.get -> Parquet.Vector2D
 Parquet.Rooms.Room.RecipeID.get -> Parquet.ModelID
-Parquet.Rooms.Room.Room(System.Collections.Generic.ISet<Parquet.Rooms.MapSpace> inWalkableArea, System.Collections.Generic.ISet<Parquet.Rooms.MapSpace> inPerimeter) -> void
-Parquet.Rooms.Room.WalkableArea.get -> System.Collections.Generic.ISet<Parquet.Rooms.MapSpace>
+Parquet.Rooms.Room.Room(System.Collections.Generic.IReadOnlySet<Parquet.Rooms.MapSpace> inWalkableArea, System.Collections.Generic.IReadOnlySet<Parquet.Rooms.MapSpace> inPerimeter) -> void
+Parquet.Rooms.Room.WalkableArea.get -> System.Collections.Generic.IReadOnlySet<Parquet.Rooms.MapSpace>
 Parquet.Rooms.RoomConfiguration
 Parquet.Rooms.RoomRecipe
 Parquet.Rooms.RoomRecipe.Matches(Parquet.Rooms.Room inRoom) -> bool
