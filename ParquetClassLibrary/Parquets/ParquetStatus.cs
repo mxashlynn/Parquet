@@ -53,7 +53,7 @@ namespace Parquet.Parquets
         /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
         /// <param name="inToughness">The toughness of the <see cref="BlockModel"/> associated with this status.</param>
         /// <param name="inMaxToughness">The native toughness of the <see cref="BlockModel"/> associated with this status.</param>
-        public ParquetStatus(bool inIsTrench = false, int inToughness = BlockModel.DefaultMaxToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
+        public ParquetStatus(bool inIsTrench, int inToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
         {
             IsTrench = inIsTrench;
             Toughness = inToughness;
