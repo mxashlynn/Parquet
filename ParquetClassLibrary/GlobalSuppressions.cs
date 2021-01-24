@@ -13,3 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Naming", "CA1725:Parameter names should match base declaration",
                            Justification = "This rule inhibits clarity as items are refered to in generic terms when specific terms are available.  (For example, calling a Model an Object.)",
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]
+
+[assembly: SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested",
+                           Justification = "This rule is incorrect.",
+                           Scope = "namespaceanddescendants", Target = "~N:Parquet")]
