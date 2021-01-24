@@ -30,8 +30,8 @@ namespace Parquet.Maps
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
         [Index(13)]
-        // TODO Should this be IReadOnlyGrid<ParquetStack> instead?
-        public abstract ParquetStackGrid ParquetDefinitions { get; }
+        // TODO Should this be IReadOnlyGrid<ParquetPack> instead?
+        public abstract ParquetPackGrid ParquetDefinitions { get; }
         #endregion
         #endregion
 
@@ -69,7 +69,7 @@ namespace Parquet.Maps
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
-        public ParquetStackGrid GetSubregion()
+        public ParquetPackGrid GetSubregion()
             => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1, DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace Parquet.Maps
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
-        // TODO Should this return an IReadOnlyGrid<ParquetStack>s instead?
-        public ParquetStackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        // TODO Should this return an IReadOnlyGrid<ParquetPack>s instead?
+        public ParquetPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
@@ -98,7 +98,7 @@ namespace Parquet.Maps
             }
             else
             {
-                var subregion = new ParquetStack[inLowerRight.X - inUpperLeft.X + 1,
+                var subregion = new ParquetPack[inLowerRight.X - inUpperLeft.X + 1,
                                                  inLowerRight.Y - inUpperLeft.Y + 1];
 
                 for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
@@ -109,7 +109,7 @@ namespace Parquet.Maps
                     }
                 }
 
-                return new ParquetStackGrid(subregion);
+                return new ParquetPackGrid(subregion);
             }
         }
 

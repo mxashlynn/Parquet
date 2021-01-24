@@ -29,7 +29,7 @@ namespace Parquet.Scripts
         /// <summary>If the given variable is set, load and begin processing the given <see cref="ScriptModel"/>.</summary>
         public const string JumpIf = "F";
 
-        /// <summary>Place the given <see cref="Parquets.ParquetStack"/> at the given <see cref="Location"/>.</summary>
+        /// <summary>Place the given <see cref="Parquets.ParquetPack"/> at the given <see cref="Location"/>.</summary>
         public const string Put = "P";
 
         /// <summary>Display the given text as dialogue spoken by the given <see cref="Beings.CharacterModel"/>.</summary>

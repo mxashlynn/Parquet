@@ -397,12 +397,12 @@
   - [OptionallyRequiredWalkableFloors](#P-ParquetClassLibrary-EditorSupport-IMutableRoomRecipe-OptionallyRequiredWalkableFloors 'ParquetClassLibrary.EditorSupport.IMutableRoomRecipe.OptionallyRequiredWalkableFloors')
 - [IMutableScriptModel](#T-ParquetClassLibrary-EditorSupport-IMutableScriptModel 'ParquetClassLibrary.EditorSupport.IMutableScriptModel')
   - [Nodes](#P-ParquetClassLibrary-EditorSupport-IMutableScriptModel-Nodes 'ParquetClassLibrary.EditorSupport.IMutableScriptModel.Nodes')
-- [IParquetStack](#T-ParquetClassLibrary-Parquets-IParquetStack 'ParquetClassLibrary.Parquets.IParquetStack')
-  - [BlockID](#P-ParquetClassLibrary-Parquets-IParquetStack-BlockID 'ParquetClassLibrary.Parquets.IParquetStack.BlockID')
-  - [CollectibleID](#P-ParquetClassLibrary-Parquets-IParquetStack-CollectibleID 'ParquetClassLibrary.Parquets.IParquetStack.CollectibleID')
-  - [FloorID](#P-ParquetClassLibrary-Parquets-IParquetStack-FloorID 'ParquetClassLibrary.Parquets.IParquetStack.FloorID')
-  - [FurnishingID](#P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.IParquetStack.FurnishingID')
-  - [IsEmpty](#P-ParquetClassLibrary-Parquets-IParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.IParquetStack.IsEmpty')
+- [IParquetPack](#T-ParquetClassLibrary-Parquets-IParquetPack 'ParquetClassLibrary.Parquets.IParquetPack')
+  - [BlockID](#P-ParquetClassLibrary-Parquets-IParquetPack-BlockID 'ParquetClassLibrary.Parquets.IParquetPack.BlockID')
+  - [CollectibleID](#P-ParquetClassLibrary-Parquets-IParquetPack-CollectibleID 'ParquetClassLibrary.Parquets.IParquetPack.CollectibleID')
+  - [FloorID](#P-ParquetClassLibrary-Parquets-IParquetPack-FloorID 'ParquetClassLibrary.Parquets.IParquetPack.FloorID')
+  - [FurnishingID](#P-ParquetClassLibrary-Parquets-IParquetPack-FurnishingID 'ParquetClassLibrary.Parquets.IParquetPack.FurnishingID')
+  - [IsEmpty](#P-ParquetClassLibrary-Parquets-IParquetPack-IsEmpty 'ParquetClassLibrary.Parquets.IParquetPack.IsEmpty')
 - [IReadOnlyGrid\`1](#T-ParquetClassLibrary-IReadOnlyGrid`1 'ParquetClassLibrary.IReadOnlyGrid`1')
   - [Columns](#P-ParquetClassLibrary-IReadOnlyGrid`1-Columns 'ParquetClassLibrary.IReadOnlyGrid`1.Columns')
   - [Item](#P-ParquetClassLibrary-IReadOnlyGrid`1-Item-System-Int32,System-Int32- 'ParquetClassLibrary.IReadOnlyGrid`1.Item(System.Int32,System.Int32)')
@@ -510,7 +510,7 @@
 - [MapAnalysis\`1](#T-ParquetClassLibrary-EditorSupport-MapAnalysis`1 'ParquetClassLibrary.EditorSupport.MapAnalysis`1')
   - [Directions](#F-ParquetClassLibrary-EditorSupport-MapAnalysis`1-Directions 'ParquetClassLibrary.EditorSupport.MapAnalysis`1.Directions')
 - [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Maps.MapChunkModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.Boolean,ParquetClassLibrary.Maps.ChunkDetail,ParquetClassLibrary.Parquets.ParquetPackGrid)')
   - [ParquetsPerChunkDimension](#F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension 'ParquetClassLibrary.Maps.MapChunkModel.ParquetsPerChunkDimension')
   - [Bounds](#P-ParquetClassLibrary-Maps-MapChunkModel-Bounds 'ParquetClassLibrary.Maps.MapChunkModel.Bounds')
   - [Details](#P-ParquetClassLibrary-Maps-MapChunkModel-Details 'ParquetClassLibrary.Maps.MapChunkModel.Details')
@@ -531,7 +531,7 @@
   - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Maps-MapModel-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Maps.MapModel.IsValidPosition(ParquetClassLibrary.Vector2D)')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapModel-ToString 'ParquetClassLibrary.Maps.MapModel.ToString')
 - [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel')
-  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Maps.MapRegionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions)](#M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Maps.MapRegionModel.#ctor(ParquetClassLibrary.ModelID,System.String,System.String,System.String,System.Int32,System.String,System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},System.Nullable{ParquetClassLibrary.ModelID},ParquetClassLibrary.Parquets.ParquetStatusGrid,ParquetClassLibrary.Parquets.ParquetPackGrid)')
   - [DefaultColor](#F-ParquetClassLibrary-Maps-MapRegionModel-DefaultColor 'ParquetClassLibrary.Maps.MapRegionModel.DefaultColor')
   - [Empty](#F-ParquetClassLibrary-Maps-MapRegionModel-Empty 'ParquetClassLibrary.Maps.MapRegionModel.Empty')
   - [ParquetsPerRegionDimension](#F-ParquetClassLibrary-Maps-MapRegionModel-ParquetsPerRegionDimension 'ParquetClassLibrary.Maps.MapRegionModel.ParquetsPerRegionDimension')
@@ -585,8 +585,8 @@
   - [Stitch()](#M-ParquetClassLibrary-Maps-MapRegionSketch-Stitch 'ParquetClassLibrary.Maps.MapRegionSketch.Stitch')
   - [ToString()](#M-ParquetClassLibrary-Maps-MapRegionSketch-ToString 'ParquetClassLibrary.Maps.MapRegionSketch.ToString')
 - [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace')
-  - [#ctor(inPosition,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [#ctor(inX,inY,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-System-Int32,System-Int32,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(System.Int32,System.Int32,ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStackGrid)')
+  - [#ctor(inPosition,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(ParquetClassLibrary.Vector2D,ParquetClassLibrary.Parquets.ParquetPack,ParquetClassLibrary.Parquets.ParquetPackGrid)')
+  - [#ctor(inX,inY,inContent,inSubregion)](#M-ParquetClassLibrary-Rooms-MapSpace-#ctor-System-Int32,System-Int32,ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Rooms.MapSpace.#ctor(System.Int32,System.Int32,ParquetClassLibrary.Parquets.ParquetPack,ParquetClassLibrary.Parquets.ParquetPackGrid)')
   - [Empty](#F-ParquetClassLibrary-Rooms-MapSpace-Empty 'ParquetClassLibrary.Rooms.MapSpace.Empty')
   - [Content](#P-ParquetClassLibrary-Rooms-MapSpace-Content 'ParquetClassLibrary.Rooms.MapSpace.Content')
   - [IsEmpty](#P-ParquetClassLibrary-Rooms-MapSpace-IsEmpty 'ParquetClassLibrary.Rooms.MapSpace.IsEmpty')
@@ -728,48 +728,48 @@
   - [ParquetClassLibrary#EditorSupport#IMutableParquetModel#AddsToRoom](#P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#EditorSupport#IMutableParquetModel#AddsToRoom 'ParquetClassLibrary.Parquets.ParquetModel.ParquetClassLibrary#EditorSupport#IMutableParquetModel#AddsToRoom')
   - [ParquetClassLibrary#EditorSupport#IMutableParquetModel#ItemID](#P-ParquetClassLibrary-Parquets-ParquetModel-ParquetClassLibrary#EditorSupport#IMutableParquetModel#ItemID 'ParquetClassLibrary.Parquets.ParquetModel.ParquetClassLibrary#EditorSupport#IMutableParquetModel#ItemID')
   - [GetAllTags()](#M-ParquetClassLibrary-Parquets-ParquetModel-GetAllTags 'ParquetClassLibrary.Parquets.ParquetModel.GetAllTags')
-- [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStack-#ctor 'ParquetClassLibrary.Parquets.ParquetStack.#ctor')
-  - [#ctor(inFloor,inBlock,inFurnishing,inCollectible)](#M-ParquetClassLibrary-Parquets-ParquetStack-#ctor-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Parquets.ParquetStack.#ctor(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
-  - [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID')
-  - [CollectibleID](#P-ParquetClassLibrary-Parquets-ParquetStack-CollectibleID 'ParquetClassLibrary.Parquets.ParquetStack.CollectibleID')
-  - [ConverterFactory](#P-ParquetClassLibrary-Parquets-ParquetStack-ConverterFactory 'ParquetClassLibrary.Parquets.ParquetStack.ConverterFactory')
-  - [Count](#P-ParquetClassLibrary-Parquets-ParquetStack-Count 'ParquetClassLibrary.Parquets.ParquetStack.Count')
-  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStack-Empty 'ParquetClassLibrary.Parquets.ParquetStack.Empty')
-  - [FloorID](#P-ParquetClassLibrary-Parquets-ParquetStack-FloorID 'ParquetClassLibrary.Parquets.ParquetStack.FloorID')
-  - [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID')
-  - [IsEmpty](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEmpty 'ParquetClassLibrary.Parquets.ParquetStack.IsEmpty')
-  - [IsEnclosing](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEnclosing 'ParquetClassLibrary.Parquets.ParquetStack.IsEnclosing')
-  - [IsEntry](#P-ParquetClassLibrary-Parquets-ParquetStack-IsEntry 'ParquetClassLibrary.Parquets.ParquetStack.IsEntry')
-  - [IsWalkable](#P-ParquetClassLibrary-Parquets-ParquetStack-IsWalkable 'ParquetClassLibrary.Parquets.ParquetStack.IsWalkable')
-  - [Clone()](#M-ParquetClassLibrary-Parquets-ParquetStack-Clone 'ParquetClassLibrary.Parquets.ParquetStack.Clone')
-  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Parquets-ParquetStack-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Parquets.ParquetStack.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
-  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Parquets-ParquetStack-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Parquets.ParquetStack.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
-  - [Equals(inStack)](#M-ParquetClassLibrary-Parquets-ParquetStack-Equals-ParquetClassLibrary-Parquets-ParquetStack- 'ParquetClassLibrary.Parquets.ParquetStack.Equals(ParquetClassLibrary.Parquets.ParquetStack)')
-  - [Equals(obj)](#M-ParquetClassLibrary-Parquets-ParquetStack-Equals-System-Object- 'ParquetClassLibrary.Parquets.ParquetStack.Equals(System.Object)')
-  - [GetHashCode()](#M-ParquetClassLibrary-Parquets-ParquetStack-GetHashCode 'ParquetClassLibrary.Parquets.ParquetStack.GetHashCode')
-  - [ToString()](#M-ParquetClassLibrary-Parquets-ParquetStack-ToString 'ParquetClassLibrary.Parquets.ParquetStack.ToString')
-  - [op_Equality(inStack1,inStack2)](#M-ParquetClassLibrary-Parquets-ParquetStack-op_Equality-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStack- 'ParquetClassLibrary.Parquets.ParquetStack.op_Equality(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStack)')
-  - [op_Inequality(inStack1,inStack2)](#M-ParquetClassLibrary-Parquets-ParquetStack-op_Inequality-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStack- 'ParquetClassLibrary.Parquets.ParquetStack.op_Inequality(ParquetClassLibrary.Parquets.ParquetStack,ParquetClassLibrary.Parquets.ParquetStack)')
-- [ParquetStackArrayExtensions](#T-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions 'ParquetClassLibrary.Parquets.ParquetStackArrayExtensions')
-  - [IsValidPosition(inSubregion,inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetStack[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStackArrayExtensions.IsValidPosition(ParquetClassLibrary.Parquets.ParquetStack[0:,0:],ParquetClassLibrary.Vector2D)')
-- [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')
-  - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor')
-  - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor(System.Int32,System.Int32)')
-  - [#ctor(inParquetStackArray)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-ParquetClassLibrary-Parquets-ParquetStack[0-,0-]- 'ParquetClassLibrary.Parquets.ParquetStackGrid.#ctor(ParquetClassLibrary.Parquets.ParquetStack[0:,0:])')
-  - [ParquetStacks](#F-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetStacks 'ParquetClassLibrary.Parquets.ParquetStackGrid.ParquetStacks')
-  - [Columns](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Columns 'ParquetClassLibrary.Parquets.ParquetStackGrid.Columns')
-  - [Count](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Count 'ParquetClassLibrary.Parquets.ParquetStackGrid.Count')
-  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Empty 'ParquetClassLibrary.Parquets.ParquetStackGrid.Empty')
-  - [Item](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.Item(System.Int32,System.Int32)')
-  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStackGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item(System.Int32,System.Int32)')
-  - [Rows](#P-ParquetClassLibrary-Parquets-ParquetStackGrid-Rows 'ParquetClassLibrary.Parquets.ParquetStackGrid.Rows')
-  - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStackGrid.GetEnumerator')
-  - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetStackGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
-  - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetStackGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator 'ParquetClassLibrary.Parquets.ParquetStackGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator')
-- [ParquetStackGridExtensions](#T-ParquetClassLibrary-Rooms-ParquetStackGridExtensions 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions')
-  - [CreateRoomCollectionFromSubregion(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.CreateRoomCollectionFromSubregion(ParquetClassLibrary.Parquets.ParquetStackGrid)')
-  - [GetWalkableAreas(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid- 'ParquetClassLibrary.Rooms.ParquetStackGridExtensions.GetWalkableAreas(ParquetClassLibrary.Parquets.ParquetStackGrid)')
+- [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')
+  - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetPack-#ctor 'ParquetClassLibrary.Parquets.ParquetPack.#ctor')
+  - [#ctor(inFloor,inBlock,inFurnishing,inCollectible)](#M-ParquetClassLibrary-Parquets-ParquetPack-#ctor-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID- 'ParquetClassLibrary.Parquets.ParquetPack.#ctor(ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID,ParquetClassLibrary.ModelID)')
+  - [BlockID](#P-ParquetClassLibrary-Parquets-ParquetPack-BlockID 'ParquetClassLibrary.Parquets.ParquetPack.BlockID')
+  - [CollectibleID](#P-ParquetClassLibrary-Parquets-ParquetPack-CollectibleID 'ParquetClassLibrary.Parquets.ParquetPack.CollectibleID')
+  - [ConverterFactory](#P-ParquetClassLibrary-Parquets-ParquetPack-ConverterFactory 'ParquetClassLibrary.Parquets.ParquetPack.ConverterFactory')
+  - [Count](#P-ParquetClassLibrary-Parquets-ParquetPack-Count 'ParquetClassLibrary.Parquets.ParquetPack.Count')
+  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetPack-Empty 'ParquetClassLibrary.Parquets.ParquetPack.Empty')
+  - [FloorID](#P-ParquetClassLibrary-Parquets-ParquetPack-FloorID 'ParquetClassLibrary.Parquets.ParquetPack.FloorID')
+  - [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetPack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetPack.FurnishingID')
+  - [IsEmpty](#P-ParquetClassLibrary-Parquets-ParquetPack-IsEmpty 'ParquetClassLibrary.Parquets.ParquetPack.IsEmpty')
+  - [IsEnclosing](#P-ParquetClassLibrary-Parquets-ParquetPack-IsEnclosing 'ParquetClassLibrary.Parquets.ParquetPack.IsEnclosing')
+  - [IsEntry](#P-ParquetClassLibrary-Parquets-ParquetPack-IsEntry 'ParquetClassLibrary.Parquets.ParquetPack.IsEntry')
+  - [IsWalkable](#P-ParquetClassLibrary-Parquets-ParquetPack-IsWalkable 'ParquetClassLibrary.Parquets.ParquetPack.IsWalkable')
+  - [Clone()](#M-ParquetClassLibrary-Parquets-ParquetPack-Clone 'ParquetClassLibrary.Parquets.ParquetPack.Clone')
+  - [ConvertFromString(inText,inRow,inMemberMapData)](#M-ParquetClassLibrary-Parquets-ParquetPack-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Parquets.ParquetPack.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)')
+  - [ConvertToString(inValue,inRow,inMemberMapData)](#M-ParquetClassLibrary-Parquets-ParquetPack-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData- 'ParquetClassLibrary.Parquets.ParquetPack.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)')
+  - [Equals(inStack)](#M-ParquetClassLibrary-Parquets-ParquetPack-Equals-ParquetClassLibrary-Parquets-ParquetPack- 'ParquetClassLibrary.Parquets.ParquetPack.Equals(ParquetClassLibrary.Parquets.ParquetPack)')
+  - [Equals(obj)](#M-ParquetClassLibrary-Parquets-ParquetPack-Equals-System-Object- 'ParquetClassLibrary.Parquets.ParquetPack.Equals(System.Object)')
+  - [GetHashCode()](#M-ParquetClassLibrary-Parquets-ParquetPack-GetHashCode 'ParquetClassLibrary.Parquets.ParquetPack.GetHashCode')
+  - [ToString()](#M-ParquetClassLibrary-Parquets-ParquetPack-ToString 'ParquetClassLibrary.Parquets.ParquetPack.ToString')
+  - [op_Equality(inStack1,inStack2)](#M-ParquetClassLibrary-Parquets-ParquetPack-op_Equality-ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPack- 'ParquetClassLibrary.Parquets.ParquetPack.op_Equality(ParquetClassLibrary.Parquets.ParquetPack,ParquetClassLibrary.Parquets.ParquetPack)')
+  - [op_Inequality(inStack1,inStack2)](#M-ParquetClassLibrary-Parquets-ParquetPack-op_Inequality-ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPack- 'ParquetClassLibrary.Parquets.ParquetPack.op_Inequality(ParquetClassLibrary.Parquets.ParquetPack,ParquetClassLibrary.Parquets.ParquetPack)')
+- [ParquetPackArrayExtensions](#T-ParquetClassLibrary-Parquets-ParquetPackArrayExtensions 'ParquetClassLibrary.Parquets.ParquetPackArrayExtensions')
+  - [IsValidPosition(inSubregion,inPosition)](#M-ParquetClassLibrary-Parquets-ParquetPackArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetPack[0-,0-],ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetPackArrayExtensions.IsValidPosition(ParquetClassLibrary.Parquets.ParquetPack[0:,0:],ParquetClassLibrary.Vector2D)')
+- [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid')
+  - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor 'ParquetClassLibrary.Parquets.ParquetPackGrid.#ctor')
+  - [#ctor(inRowCount,inColumnCount)](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetPackGrid.#ctor(System.Int32,System.Int32)')
+  - [#ctor(inParquetPackArray)](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor-ParquetClassLibrary-Parquets-ParquetPack[0-,0-]- 'ParquetClassLibrary.Parquets.ParquetPackGrid.#ctor(ParquetClassLibrary.Parquets.ParquetPack[0:,0:])')
+  - [ParquetPacks](#F-ParquetClassLibrary-Parquets-ParquetPackGrid-ParquetPacks 'ParquetClassLibrary.Parquets.ParquetPackGrid.ParquetPacks')
+  - [Columns](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-Columns 'ParquetClassLibrary.Parquets.ParquetPackGrid.Columns')
+  - [Count](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-Count 'ParquetClassLibrary.Parquets.ParquetPackGrid.Count')
+  - [Empty](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-Empty 'ParquetClassLibrary.Parquets.ParquetPackGrid.Empty')
+  - [Item](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetPackGrid.Item(System.Int32,System.Int32)')
+  - [ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetPack}#Item](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetPack}#Item-System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetPackGrid.ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetPack}#Item(System.Int32,System.Int32)')
+  - [Rows](#P-ParquetClassLibrary-Parquets-ParquetPackGrid-Rows 'ParquetClassLibrary.Parquets.ParquetPackGrid.Rows')
+  - [GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-GetEnumerator 'ParquetClassLibrary.Parquets.ParquetPackGrid.GetEnumerator')
+  - [IsValidPosition(inPosition)](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-IsValidPosition-ParquetClassLibrary-Vector2D- 'ParquetClassLibrary.Parquets.ParquetPackGrid.IsValidPosition(ParquetClassLibrary.Vector2D)')
+  - [System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetPack}#GetEnumerator()](#M-ParquetClassLibrary-Parquets-ParquetPackGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetPack}#GetEnumerator 'ParquetClassLibrary.Parquets.ParquetPackGrid.System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetPack}#GetEnumerator')
+- [ParquetPackGridExtensions](#T-ParquetClassLibrary-Rooms-ParquetPackGridExtensions 'ParquetClassLibrary.Rooms.ParquetPackGridExtensions')
+  - [CreateRoomCollectionFromSubregion(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetPackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Rooms.ParquetPackGridExtensions.CreateRoomCollectionFromSubregion(ParquetClassLibrary.Parquets.ParquetPackGrid)')
+  - [GetWalkableAreas(inSubregion)](#M-ParquetClassLibrary-Rooms-ParquetPackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetPackGrid- 'ParquetClassLibrary.Rooms.ParquetPackGridExtensions.GetWalkableAreas(ParquetClassLibrary.Parquets.ParquetPackGrid)')
 - [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus')
   - [#ctor()](#M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor 'ParquetClassLibrary.Parquets.ParquetStatus.#ctor')
   - [#ctor(inIsTrench,inToughness,inMaxToughness)](#M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor-System-Boolean,System-Int32,System-Int32- 'ParquetClassLibrary.Parquets.ParquetStatus.#ctor(System.Boolean,System.Int32,System.Int32)')
@@ -3094,7 +3094,7 @@ Indicates non-command.  NOP.
 
 ##### Summary
 
-Place the given [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') at the given [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location').
+Place the given [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') at the given [Location](#T-ParquetClassLibrary-Location 'ParquetClassLibrary.Location').
 
 <a name='F-ParquetClassLibrary-Scripts-Commands-Say'></a>
 ### Say `constants`
@@ -5077,8 +5077,8 @@ IScriptModelEdit is for use only by external types that require read/write acces
 
 A series of imperative, procedural commands.
 
-<a name='T-ParquetClassLibrary-Parquets-IParquetStack'></a>
-## IParquetStack `type`
+<a name='T-ParquetClassLibrary-Parquets-IParquetPack'></a>
+## IParquetPack `type`
 
 ##### Namespace
 
@@ -5090,42 +5090,42 @@ Interface to a simple container for one of each layer of parquet occupying the s
 
 ##### Remarks
 
-Supports injecting [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') into game-level methods that performs simple operations, such as rasterization.
+Supports injecting [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') into game-level methods that performs simple operations, such as rasterization.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-BlockID'></a>
+<a name='P-ParquetClassLibrary-Parquets-IParquetPack-BlockID'></a>
 ### BlockID `property`
 
 ##### Summary
 
-The block contained in this stack.
+The block contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-CollectibleID'></a>
+<a name='P-ParquetClassLibrary-Parquets-IParquetPack-CollectibleID'></a>
 ### CollectibleID `property`
 
 ##### Summary
 
-The collectible contained in this stack.
+The collectible contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-FloorID'></a>
+<a name='P-ParquetClassLibrary-Parquets-IParquetPack-FloorID'></a>
 ### FloorID `property`
 
 ##### Summary
 
-The floor contained in this stack.
+The floor contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-FurnishingID'></a>
+<a name='P-ParquetClassLibrary-Parquets-IParquetPack-FurnishingID'></a>
 ### FurnishingID `property`
 
 ##### Summary
 
-The furnishing contained in this stack.
+The furnishing contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-IParquetStack-IsEmpty'></a>
+<a name='P-ParquetClassLibrary-Parquets-IParquetPack-IsEmpty'></a>
 ### IsEmpty `property`
 
 ##### Summary
 
-Indicates whether this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is empty.
+Indicates whether this [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is empty.
 
 <a name='T-ParquetClassLibrary-IReadOnlyGrid`1'></a>
 ## IReadOnlyGrid\`1 `type`
@@ -6424,7 +6424,7 @@ either directly composed of parquets or generated from [ChunkDetail](#T-ParquetC
 
 For more information, read the remarks given in [MapRegionSketch](#T-ParquetClassLibrary-Maps-MapRegionSketch 'ParquetClassLibrary.Maps.MapRegionSketch').
 
-<a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapChunkModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-Boolean,ParquetClassLibrary-Maps-ChunkDetail,ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inIsFilledOut,inDetails,inParquetDefinitions) `constructor`
 
 ##### Summary
@@ -6443,7 +6443,7 @@ Used by subtypes of the [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'Parquet
 | inIsFilledOut | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If `true`, the [MapChunkModel](#T-ParquetClassLibrary-Maps-MapChunkModel 'ParquetClassLibrary.Maps.MapChunkModel') was either created at design time or
 has already been procedurally generated on load in-game. |
 | inDetails | [ParquetClassLibrary.Maps.ChunkDetail](#T-ParquetClassLibrary-Maps-ChunkDetail 'ParquetClassLibrary.Maps.ChunkDetail') | Cues to the generation routines if generated at runtime. |
-| inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets if designed by hand. |
+| inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The definitions of the collected parquets if designed by hand. |
 
 <a name='F-ParquetClassLibrary-Maps-MapChunkModel-ParquetsPerChunkDimension'></a>
 ### ParquetsPerChunkDimension `constants`
@@ -6664,7 +6664,7 @@ ParquetClassLibrary.Maps
 
 A playable region of the gameworld, composed of parquets.
 
-<a name='M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Maps-MapRegionModel-#ctor-ParquetClassLibrary-ModelID,System-String,System-String,System-String,System-Int32,System-String,System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},System-Nullable{ParquetClassLibrary-ModelID},ParquetClassLibrary-Parquets-ParquetStatusGrid,ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### #ctor(inID,inName,inDescription,inComment,inRevision,inBackgroundColor,inRegionToTheNorth,inRegionToTheEast,inRegionToTheSouth,inRegionToTheWest,inRegionAbove,inRegionBelow,inParquetStatuses,inParquetDefinitions) `constructor`
 
 ##### Summary
@@ -6688,7 +6688,7 @@ Constructs a new instance of the [MapRegionModel](#T-ParquetClassLibrary-Maps-Ma
 | inRegionAbove | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region above this one. |
 | inRegionBelow | [System.Nullable{ParquetClassLibrary.ModelID}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{ParquetClassLibrary.ModelID}') | The [ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') of the region below this one. |
 | inParquetStatuses | [ParquetClassLibrary.Parquets.ParquetStatusGrid](#T-ParquetClassLibrary-Parquets-ParquetStatusGrid 'ParquetClassLibrary.Parquets.ParquetStatusGrid') | The statuses of the collected parquets. |
-| inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The definitions of the collected parquets. |
+| inParquetDefinitions | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The definitions of the collected parquets. |
 
 <a name='F-ParquetClassLibrary-Maps-MapRegionModel-DefaultColor'></a>
 ### DefaultColor `constants`
@@ -7138,9 +7138,9 @@ ParquetClassLibrary.Rooms
 
 ##### Summary
 
-A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') together with its coordinates within a given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
+A [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') together with its coordinates within a given [MapRegionModel](#T-ParquetClassLibrary-Maps-MapRegionModel 'ParquetClassLibrary.Maps.MapRegionModel').
 
-<a name='M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Rooms-MapSpace-#ctor-ParquetClassLibrary-Vector2D,ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### #ctor(inPosition,inContent,inSubregion) `constructor`
 
 ##### Summary
@@ -7152,10 +7152,10 @@ Initializes a new instance of the [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpa
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | Where this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') is. |
-| inContent | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | All parquets occupying this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') within which this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') occurs. |
+| inContent | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | All parquets occupying this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') within which this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') occurs. |
 
-<a name='M-ParquetClassLibrary-Rooms-MapSpace-#ctor-System-Int32,System-Int32,ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Rooms-MapSpace-#ctor-System-Int32,System-Int32,ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### #ctor(inX,inY,inContent,inSubregion) `constructor`
 
 ##### Summary
@@ -7168,8 +7168,8 @@ Initializes a new instance of the [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpa
 | ---- | ---- | ----------- |
 | inX | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | X-coordinate of this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
 | inY | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Y-coordinate of this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
-| inContent | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | All parquets occupying this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The subregion in which this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') occurs. |
+| inContent | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | All parquets occupying this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace'). |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The subregion in which this [MapSpace](#T-ParquetClassLibrary-Rooms-MapSpace 'ParquetClassLibrary.Rooms.MapSpace') occurs. |
 
 <a name='F-ParquetClassLibrary-Rooms-MapSpace-Empty'></a>
 ### Empty `constants`
@@ -9316,8 +9316,8 @@ List of all [ModelTag](#T-ParquetClassLibrary-ModelTag 'ParquetClassLibrary.Mode
 
 This method has no parameters.
 
-<a name='T-ParquetClassLibrary-Parquets-ParquetStack'></a>
-## ParquetStack `type`
+<a name='T-ParquetClassLibrary-Parquets-ParquetPack'></a>
+## ParquetPack `type`
 
 ##### Namespace
 
@@ -9327,12 +9327,12 @@ ParquetClassLibrary.Parquets
 
 Simple container for one of each overlapping layer of parquets.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-#ctor'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes a new default instance of the [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') class.
+Initializes a new default instance of the [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') class.
 
 ##### Parameters
 
@@ -9342,12 +9342,12 @@ This constructor has no parameters.
 
 This is primarily useful for serialization as the default values are featureless.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-#ctor-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-#ctor-ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID,ParquetClassLibrary-ModelID-'></a>
 ### #ctor(inFloor,inBlock,inFurnishing,inCollectible) `constructor`
 
 ##### Summary
 
-Initializes a new instance of the [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') class.
+Initializes a new instance of the [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') class.
 
 ##### Parameters
 
@@ -9358,103 +9358,103 @@ Initializes a new instance of the [ParquetStack](#T-ParquetClassLibrary-Parquets
 | inFurnishing | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The furnishing-layer parquet. |
 | inCollectible | [ParquetClassLibrary.ModelID](#T-ParquetClassLibrary-ModelID 'ParquetClassLibrary.ModelID') | The collectible-layer parquet. |
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-BlockID'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-BlockID'></a>
 ### BlockID `property`
 
 ##### Summary
 
-The block contained in this stack.
+The block contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-CollectibleID'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-CollectibleID'></a>
 ### CollectibleID `property`
 
 ##### Summary
 
-The collectible contained in this stack.
+The collectible contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-ConverterFactory'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-ConverterFactory'></a>
 ### ConverterFactory `property`
 
 ##### Summary
 
 Allows the converter to construct itself statically.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Count'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-Count'></a>
 ### Count `property`
 
 ##### Summary
 
 The number of parquets actually present in this stack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-Empty'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-Empty'></a>
 ### Empty `property`
 
 ##### Summary
 
-Cannonical null [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack'), representing an arbitrary empty stack.
+Cannonical null [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack'), representing an arbitrary empty stack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-FloorID'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-FloorID'></a>
 ### FloorID `property`
 
 ##### Summary
 
-The floor contained in this stack.
+The floor contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-FurnishingID'></a>
 ### FurnishingID `property`
 
 ##### Summary
 
-The furnishing contained in this stack.
+The furnishing contained in this pack.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-IsEmpty'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-IsEmpty'></a>
 ### IsEmpty `property`
 
 ##### Summary
 
-Indicates whether this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is empty.
+Indicates whether this [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is empty.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-IsEnclosing'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-IsEnclosing'></a>
 ### IsEnclosing `property`
 
 ##### Summary
 
-A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Enclosing iff:
-1, It has a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID') that is not [IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.IsLiquid'); or,
-2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that is [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
+A [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is Enclosing iff:
+1, It has a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetPack-BlockID 'ParquetClassLibrary.Parquets.ParquetPack.BlockID') that is not [IsLiquid](#P-ParquetClassLibrary-Parquets-BlockModel-IsLiquid 'ParquetClassLibrary.Parquets.BlockModel.IsLiquid'); or,
+2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetPack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetPack.FurnishingID') that is [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
 
 ##### Returns
 
-`true`, if this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Enclosing, `false` otherwise.
+`true`, if this [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is Enclosing, `false` otherwise.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-IsEntry'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-IsEntry'></a>
 ### IsEntry `property`
 
 ##### Summary
 
-A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Entry iff:
+A [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is Entry iff:
 1, It is either Walkable or Enclosing but not both; and,
-2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
+2, It has a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetPack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetPack.FurnishingID') that is [Entry](#P-ParquetClassLibrary-Parquets-FurnishingModel-Entry 'ParquetClassLibrary.Parquets.FurnishingModel.Entry').
 
 ##### Returns
 
-`true`, if this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Entry, `false` otherwise.
+`true`, if this [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is Entry, `false` otherwise.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStack-IsWalkable'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPack-IsWalkable'></a>
 ### IsWalkable `property`
 
 ##### Summary
 
-A [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is considered walkable iff:
-1, It has a [FloorID](#P-ParquetClassLibrary-Parquets-ParquetStack-FloorID 'ParquetClassLibrary.Parquets.ParquetStack.FloorID');
-2, It does not have a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetStack-BlockID 'ParquetClassLibrary.Parquets.ParquetStack.BlockID');
-3, It does not have a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetStack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetStack.FurnishingID') that [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
+A [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is considered walkable iff:
+1, It has a [FloorID](#P-ParquetClassLibrary-Parquets-ParquetPack-FloorID 'ParquetClassLibrary.Parquets.ParquetPack.FloorID');
+2, It does not have a [BlockID](#P-ParquetClassLibrary-Parquets-ParquetPack-BlockID 'ParquetClassLibrary.Parquets.ParquetPack.BlockID');
+3, It does not have a [FurnishingID](#P-ParquetClassLibrary-Parquets-ParquetPack-FurnishingID 'ParquetClassLibrary.Parquets.ParquetPack.FurnishingID') that [IsEnclosing](#P-ParquetClassLibrary-Parquets-FurnishingModel-IsEnclosing 'ParquetClassLibrary.Parquets.FurnishingModel.IsEnclosing').
 
 ##### Returns
 
-`true`, if this [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is Walkable, `false` otherwise.
+`true`, if this [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is Walkable, `false` otherwise.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-Clone'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-Clone'></a>
 ### Clone() `method`
 
 ##### Summary
@@ -9469,7 +9469,7 @@ Creates a new instance with the same characteristics as the current instance.
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-ConvertFromString-System-String,CsvHelper-IReaderRow,CsvHelper-Configuration-MemberMapData-'></a>
 ### ConvertFromString(inText,inRow,inMemberMapData) `method`
 
 ##### Summary
@@ -9488,7 +9488,7 @@ The given instance deserialized.
 | inRow | [CsvHelper.IReaderRow](#T-CsvHelper-IReaderRow 'CsvHelper.IReaderRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-ConvertToString-System-Object,CsvHelper-IWriterRow,CsvHelper-Configuration-MemberMapData-'></a>
 ### ConvertToString(inValue,inRow,inMemberMapData) `method`
 
 ##### Summary
@@ -9507,12 +9507,12 @@ The given instance serialized.
 | inRow | [CsvHelper.IWriterRow](#T-CsvHelper-IWriterRow 'CsvHelper.IWriterRow') | The current context and configuration. |
 | inMemberMapData | [CsvHelper.Configuration.MemberMapData](#T-CsvHelper-Configuration-MemberMapData 'CsvHelper.Configuration.MemberMapData') | Mapping info for a member to a CSV field or property. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-Equals-ParquetClassLibrary-Parquets-ParquetStack-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-Equals-ParquetClassLibrary-Parquets-ParquetPack-'></a>
 ### Equals(inStack) `method`
 
 ##### Summary
 
-Determines whether the specified [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is equal to the current [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Determines whether the specified [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is equal to the current [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9522,14 +9522,14 @@ Determines whether the specified [ParquetStack](#T-ParquetClassLibrary-Parquets-
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inStack | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | The [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') to compare with the current. |
+| inStack | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | The [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') to compare with the current. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-Equals-System-Object-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-Equals-System-Object-'></a>
 ### Equals(obj) `method`
 
 ##### Summary
 
-Determines whether the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Determines whether the specified [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') is equal to the current [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9539,14 +9539,14 @@ Determines whether the specified [Object](http://msdn.microsoft.com/query/dev14.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to compare with the current [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack'). |
+| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | The [Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') to compare with the current [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack'). |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-GetHashCode'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-GetHashCode'></a>
 ### GetHashCode() `method`
 
 ##### Summary
 
-Serves as a hash function for a [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Serves as a hash function for a [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9556,12 +9556,12 @@ A hash code for this instance that is suitable for use in hashing algorithms and
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-ToString'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-ToString'></a>
 ### ToString() `method`
 
 ##### Summary
 
-Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Returns a [String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') that represents the current [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9571,12 +9571,12 @@ The representation.
 
 This method has no parameters.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-op_Equality-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStack-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-op_Equality-ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPack-'></a>
 ### op_Equality(inStack1,inStack2) `method`
 
 ##### Summary
 
-Determines whether a specified instance of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is equal to another specified instance of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Determines whether a specified instance of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is equal to another specified instance of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9586,15 +9586,15 @@ Determines whether a specified instance of [ParquetStack](#T-ParquetClassLibrary
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inStack1 | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | The first [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') to compare. |
-| inStack2 | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | The second [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') to compare. |
+| inStack1 | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | The first [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') to compare. |
+| inStack2 | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | The second [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') to compare. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStack-op_Inequality-ParquetClassLibrary-Parquets-ParquetStack,ParquetClassLibrary-Parquets-ParquetStack-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPack-op_Inequality-ParquetClassLibrary-Parquets-ParquetPack,ParquetClassLibrary-Parquets-ParquetPack-'></a>
 ### op_Inequality(inStack1,inStack2) `method`
 
 ##### Summary
 
-Determines whether a specified instance of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') is not equal to another specified instance of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Determines whether a specified instance of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') is not equal to another specified instance of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -9604,11 +9604,11 @@ Determines whether a specified instance of [ParquetStack](#T-ParquetClassLibrary
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inStack1 | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | The first [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') to compare. |
-| inStack2 | [ParquetClassLibrary.Parquets.ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') | The second [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') to compare. |
+| inStack1 | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | The first [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') to compare. |
+| inStack2 | [ParquetClassLibrary.Parquets.ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') | The second [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') to compare. |
 
-<a name='T-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions'></a>
-## ParquetStackArrayExtensions `type`
+<a name='T-ParquetClassLibrary-Parquets-ParquetPackArrayExtensions'></a>
+## ParquetPackArrayExtensions `type`
 
 ##### Namespace
 
@@ -9616,9 +9616,9 @@ ParquetClassLibrary.Parquets
 
 ##### Summary
 
-Provides extension methods useful when dealing with 2D arrays of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s.
+Provides extension methods useful when dealing with 2D arrays of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')s.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetStack[0-,0-],ParquetClassLibrary-Vector2D-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetPack[0-,0-],ParquetClassLibrary-Vector2D-'></a>
 ### IsValidPosition(inSubregion,inPosition) `method`
 
 ##### Summary
@@ -9633,11 +9633,11 @@ Determines if the given position corresponds to a point within the current array
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStack[0:](#T-ParquetClassLibrary-Parquets-ParquetStack[0- 'ParquetClassLibrary.Parquets.ParquetStack[0:') | The [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') array to validate against. |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetPack[0:](#T-ParquetClassLibrary-Parquets-ParquetPack[0- 'ParquetClassLibrary.Parquets.ParquetPack[0:') | The [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') array to validate against. |
 | inPosition | [0:]](#T-0-] '0:]') | The position to validate. |
 
-<a name='T-ParquetClassLibrary-Parquets-ParquetStackGrid'></a>
-## ParquetStackGrid `type`
+<a name='T-ParquetClassLibrary-Parquets-ParquetPackGrid'></a>
+## ParquetPackGrid `type`
 
 ##### Namespace
 
@@ -9645,18 +9645,18 @@ ParquetClassLibrary.Parquets
 
 ##### Summary
 
-A square, two-dimensional collection of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s for use in [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') and derived classes.
+A square, two-dimensional collection of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')s for use in [MapModel](#T-ParquetClassLibrary-Maps-MapModel 'ParquetClassLibrary.Maps.MapModel') and derived classes.
 
 ##### Remarks
 
 The intent is that this class function much like a read-only array.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes a new [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') with unusable dimensions.
+Initializes a new [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') with unusable dimensions.
 
 ##### Parameters
 
@@ -9669,12 +9669,12 @@ For this class, there are no reasonable default values.
  and is used in the library in a context where its limitations are understood.
  You probably don't want to use this constructor in your own code.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-System-Int32,System-Int32-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor-System-Int32,System-Int32-'></a>
 ### #ctor(inRowCount,inColumnCount) `constructor`
 
 ##### Summary
 
-Initializes a new empty [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid').
+Initializes a new empty [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid').
 
 ##### Parameters
 
@@ -9683,74 +9683,74 @@ Initializes a new empty [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-Parqu
 | inRowCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the Y dimension of the collection. |
 | inColumnCount | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The length of the X dimension of the collection. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-#ctor-ParquetClassLibrary-Parquets-ParquetStack[0-,0-]-'></a>
-### #ctor(inParquetStackArray) `constructor`
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-#ctor-ParquetClassLibrary-Parquets-ParquetPack[0-,0-]-'></a>
+### #ctor(inParquetPackArray) `constructor`
 
 ##### Summary
 
-Initializes a new [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') from the given 2D [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') array.
+Initializes a new [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') from the given 2D [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') array.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inParquetStackArray | [ParquetClassLibrary.Parquets.ParquetStack[0:](#T-ParquetClassLibrary-Parquets-ParquetStack[0- 'ParquetClassLibrary.Parquets.ParquetStack[0:') | The array containing the subregion. |
+| inParquetPackArray | [ParquetClassLibrary.Parquets.ParquetPack[0:](#T-ParquetClassLibrary-Parquets-ParquetPack[0- 'ParquetClassLibrary.Parquets.ParquetPack[0:') | The array containing the subregion. |
 
-<a name='F-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetStacks'></a>
-### ParquetStacks `constants`
+<a name='F-ParquetClassLibrary-Parquets-ParquetPackGrid-ParquetPacks'></a>
+### ParquetPacks `constants`
 
 ##### Summary
 
-The backing collection of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s.
+The backing collection of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')s.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Columns'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-Columns'></a>
 ### Columns `property`
 
 ##### Summary
 
-Gets the number of elements in the X dimension of the [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid').
+Gets the number of elements in the X dimension of the [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid').
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Count'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-Count'></a>
 ### Count `property`
 
 ##### Summary
 
 The total number of parquets collected.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Empty'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-Empty'></a>
 ### Empty `property`
 
 ##### Summary
 
-A value to use in place of uninitialized [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s.
+A value to use in place of uninitialized [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid')s.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Item-System-Int32,System-Int32-'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-Item-System-Int32,System-Int32-'></a>
 ### Item `property`
 
 ##### Summary
 
-Access to any [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') in the grid.
+Access to any [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') in the grid.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item-System-Int32,System-Int32-'></a>
-### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetStack}#Item `property`
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetPack}#Item-System-Int32,System-Int32-'></a>
+### ParquetClassLibrary#IReadOnlyGrid{ParquetClassLibrary#Parquets#ParquetPack}#Item `property`
 
 ##### Summary
 
-Access to any [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack') in the grid.
+Access to any [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack') in the grid.
 
-<a name='P-ParquetClassLibrary-Parquets-ParquetStackGrid-Rows'></a>
+<a name='P-ParquetClassLibrary-Parquets-ParquetPackGrid-Rows'></a>
 ### Rows `property`
 
 ##### Summary
 
-Gets the number of elements in the Y dimension of the [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid').
+Gets the number of elements in the Y dimension of the [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid').
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-GetEnumerator'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-GetEnumerator'></a>
 ### GetEnumerator() `method`
 
 ##### Summary
 
-Exposes an enumerator for the [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid'), which supports simple iteration.
+Exposes an enumerator for the [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid'), which supports simple iteration.
 
 ##### Returns
 
@@ -9764,7 +9764,7 @@ This method has no parameters.
 
 For serialization, this guarantees stable iteration order.
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-IsValidPosition-ParquetClassLibrary-Vector2D-'></a>
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-IsValidPosition-ParquetClassLibrary-Vector2D-'></a>
 ### IsValidPosition(inPosition) `method`
 
 ##### Summary
@@ -9781,8 +9781,8 @@ Determines if the given position corresponds to a point within the collection.
 | ---- | ---- | ----------- |
 | inPosition | [ParquetClassLibrary.Vector2D](#T-ParquetClassLibrary-Vector2D 'ParquetClassLibrary.Vector2D') | The position to validate. |
 
-<a name='M-ParquetClassLibrary-Parquets-ParquetStackGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator'></a>
-### System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetStack}#GetEnumerator() `method`
+<a name='M-ParquetClassLibrary-Parquets-ParquetPackGrid-System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetPack}#GetEnumerator'></a>
+### System#Collections#Generic#IEnumerable{ParquetClassLibrary#Parquets#ParquetPack}#GetEnumerator() `method`
 
 ##### Summary
 
@@ -9800,8 +9800,8 @@ This method has no parameters.
 
 For serialization, this guarantees stable iteration order.
 
-<a name='T-ParquetClassLibrary-Rooms-ParquetStackGridExtensions'></a>
-## ParquetStackGridExtensions `type`
+<a name='T-ParquetClassLibrary-Rooms-ParquetPackGridExtensions'></a>
+## ParquetPackGridExtensions `type`
 
 ##### Namespace
 
@@ -9809,19 +9809,19 @@ ParquetClassLibrary.Rooms
 
 ##### Summary
 
-Extensions to [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') for analyzing subregions of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s
+Extensions to [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') for analyzing subregions of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')s
 to find all valid [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s within them.
 
 ##### Remarks
 
 For a complete explanation of the algorithm implemented here, see:
 
-<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Rooms-ParquetPackGridExtensions-CreateRoomCollectionFromSubregion-ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### CreateRoomCollectionFromSubregion(inSubregion) `method`
 
 ##### Summary
 
-Initializes a new [IReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection`1 'System.Collections.Generic.IReadOnlyCollection`1') from the current [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid').
+Initializes a new [IReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection`1 'System.Collections.Generic.IReadOnlyCollection`1') from the current [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid').
 
 ##### Returns
 
@@ -9831,9 +9831,9 @@ An initialized collection of rooms.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The current collection of parquets to search for [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The current collection of parquets to search for [Room](#T-ParquetClassLibrary-Rooms-Room 'ParquetClassLibrary.Rooms.Room')s. |
 
-<a name='M-ParquetClassLibrary-Rooms-ParquetStackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetStackGrid-'></a>
+<a name='M-ParquetClassLibrary-Rooms-ParquetPackGridExtensions-GetWalkableAreas-ParquetClassLibrary-Parquets-ParquetPackGrid-'></a>
 ### GetWalkableAreas(inSubregion) `method`
 
 ##### Summary
@@ -9848,7 +9848,7 @@ The list of vallid Walkable Areas.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| inSubregion | [ParquetClassLibrary.Parquets.ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid') | The [ParquetStackGrid](#T-ParquetClassLibrary-Parquets-ParquetStackGrid 'ParquetClassLibrary.Parquets.ParquetStackGrid')s to search. |
+| inSubregion | [ParquetClassLibrary.Parquets.ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid') | The [ParquetPackGrid](#T-ParquetClassLibrary-Parquets-ParquetPackGrid 'ParquetClassLibrary.Parquets.ParquetPackGrid')s to search. |
 
 <a name='T-ParquetClassLibrary-Parquets-ParquetStatus'></a>
 ## ParquetStatus `type`
@@ -9859,7 +9859,7 @@ ParquetClassLibrary.Parquets
 
 ##### Summary
 
-Models the status of a stack of sandbox parquets.
+Models the status of a pack of sandbox parquets.
 
 <a name='M-ParquetClassLibrary-Parquets-ParquetStatus-#ctor'></a>
 ### #ctor() `constructor`
@@ -10073,7 +10073,7 @@ Determines whether a specified instance of [ParquetStatus](#T-ParquetClassLibrar
 
 ##### Summary
 
-Determines whether a specified instance of [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus') is not equal to another specified instance of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack').
+Determines whether a specified instance of [ParquetStatus](#T-ParquetClassLibrary-Parquets-ParquetStatus 'ParquetClassLibrary.Parquets.ParquetStatus') is not equal to another specified instance of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack').
 
 ##### Returns
 
@@ -10095,7 +10095,7 @@ ParquetClassLibrary.Parquets
 
 ##### Summary
 
-Provides extension methods useful when dealing with 2D arrays of [ParquetStack](#T-ParquetClassLibrary-Parquets-ParquetStack 'ParquetClassLibrary.Parquets.ParquetStack')s.
+Provides extension methods useful when dealing with 2D arrays of [ParquetPack](#T-ParquetClassLibrary-Parquets-ParquetPack 'ParquetClassLibrary.Parquets.ParquetPack')s.
 
 <a name='M-ParquetClassLibrary-Parquets-ParquetStatusArrayExtensions-IsValidPosition-ParquetClassLibrary-Parquets-ParquetStatus[0-,0-],ParquetClassLibrary-Vector2D-'></a>
 ### IsValidPosition(inSubregion,inPosition) `method`

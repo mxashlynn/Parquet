@@ -8,7 +8,7 @@ using Parquet.Properties;
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// Models the status of a stack of sandbox parquets.
+    /// Models the status of a <see cref="ParquetPack"/>.
     /// </summary>
     public class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
     {
@@ -100,7 +100,7 @@ namespace Parquet.Parquets
             => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ParquetStatus"/> is not equal to another specified instance of <see cref="ParquetStack"/>.
+        /// Determines whether a specified instance of <see cref="ParquetStatus"/> is not equal to another specified instance of <see cref="ParquetPack"/>.
         /// </summary>
         /// <param name="inStatus1">The first <see cref="ParquetStatus"/> to compare.</param>
         /// <param name="inStatus2">The second <see cref="ParquetStatus"/> to compare.</param>
@@ -180,7 +180,7 @@ namespace Parquet.Parquets
     }
 
     /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetStack"/>s.
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetPack"/>s.
     /// </summary>
     public static class ParquetStatusArrayExtensions
     {

@@ -84,8 +84,8 @@ namespace Parquet.Maps
         /// <summary>Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
         [Ignore]
         // Index(13)
-        // TODO Should this be IReadOnlyGrid<ParquetStack> instead?
-        public override ParquetStackGrid ParquetDefinitions
+        // TODO Should this be IReadOnlyGrid<ParquetPack> instead?
+        public override ParquetPackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
         #endregion
@@ -158,7 +158,7 @@ namespace Parquet.Maps
             Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
             Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
 
-            var parquetDefinitions = new ParquetStackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
+            var parquetDefinitions = new ParquetPackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
             for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
             {
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)

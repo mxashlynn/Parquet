@@ -6,25 +6,25 @@ using Parquet.Parquets;
 namespace Parquet.Rooms
 {
     /// <summary>
-    /// A <see cref="ParquetStack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
+    /// A <see cref="ParquetPack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
     /// </summary>
     public class MapSpace : IEquatable<MapSpace>
     {
         #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        // TODO Change this final null here to ParquetStackGrid.Empty
-        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetStack.Empty, null);
+        // TODO Change this final null here to ParquetPackGrid.Empty
+        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetPack.Empty, null);
         #endregion
 
         #region Characteristics
         /// <summary>The subregion containing this <see cref="MapSpace"/>.</summary>
-        public ParquetStackGrid Subregion { get; }
+        public ParquetPackGrid Subregion { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
         public Vector2D Position { get; }
 
         /// <summary>All parquets occupying this <see cref="MapSpace"/>.</summary>
-        public ParquetStack Content { get; }
+        public ParquetPack Content { get; }
         #endregion
 
         #region Initialization
@@ -33,8 +33,8 @@ namespace Parquet.Rooms
         /// </summary>
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        /// <param name="inSubregion">The <see cref="ParquetStackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
-        public MapSpace(Vector2D inPosition, ParquetStack inContent, ParquetStackGrid inSubregion)
+        /// <param name="inSubregion">The <see cref="ParquetPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
+        public MapSpace(Vector2D inPosition, ParquetPack inContent, ParquetPackGrid inSubregion)
         {
             Position = inPosition;
             Content = inContent;
@@ -48,7 +48,7 @@ namespace Parquet.Rooms
         /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
         /// <param name="inSubregion">The subregion in which this <see cref="MapSpace"/> occurs. </param>
-        public MapSpace(int inX, int inY, ParquetStack inContent, ParquetStackGrid inSubregion)
+        public MapSpace(int inX, int inY, ParquetPack inContent, ParquetPackGrid inSubregion)
             : this(new Vector2D(inX, inY), inContent, inSubregion) { }
         #endregion
 
@@ -101,7 +101,7 @@ namespace Parquet.Rooms
         /// <summary>
         /// Indicates whether this <see cref="MapSpace"/> is empty.
         /// </summary>
-        /// <value><c>true</c> if the stack contains only null references; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the <see cref="ParquetPack"/> contains only null references; otherwise, <c>false</c>.</value>
         public bool IsEmpty
             => Content.IsEmpty;
 

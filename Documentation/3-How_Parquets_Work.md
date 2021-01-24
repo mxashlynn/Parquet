@@ -6,14 +6,14 @@ Parquets are defined once and used many times throughout the game world's 2D map
 
 Some types of parquets, notably *floors* and *blocks*, may have statuses that are particular to a specific location.  For example, the block at the player's location may have been damaged while other blocks have not.
 
-Parquets are normally arranged in **Parquet Stacks**.  In a stack, a given location on the map may hold four parquets of different types simultaneously, arranged as follows from top to bottom:
+Parquets are normally arranged in **Parquet Packs**.  In a ptack, a given location on the map may hold four parquets of different types simultaneously, arranged as follows from top to bottom:
 
 * Collectibles
 * Furnishings
 * Blocks
 * Floors
 
-As an example, a Parquet Stack might consist of:
+As an example, a Parquet Pack might consist of:
 
 * a feather Collectible
 * on a birdhouse Furnishing

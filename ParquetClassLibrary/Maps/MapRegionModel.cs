@@ -73,7 +73,7 @@ namespace Parquet.Maps
         /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
         [Index(13)]
-        public override ParquetStackGrid ParquetDefinitions { get; }
+        public override ParquetPackGrid ParquetDefinitions { get; }
 
         /// <summary>
         /// All of the <see cref="Room"/>s detected in the <see cref="MapRegionModel"/>.
@@ -110,7 +110,7 @@ namespace Parquet.Maps
                               ModelID? inRegionAbove = null,
                               ModelID? inRegionBelow = null,
                               ParquetStatusGrid inParquetStatuses = null,
-                              ParquetStackGrid inParquetDefinitions = null)
+                              ParquetPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
@@ -120,7 +120,7 @@ namespace Parquet.Maps
             var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
             var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
             var nonNullParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
-            var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
             Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
             Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
@@ -241,21 +241,21 @@ namespace Parquet.Maps
             {
                 var count = 0;
 
-                foreach (ParquetStack stack in inRegion.ParquetDefinitions)
+                foreach (ParquetPack pack in inRegion.ParquetDefinitions)
                 {
-                    if (inPredicate(All.Floors.Get<FloorModel>(stack.FloorID)))
+                    if (inPredicate(All.Floors.Get<FloorModel>(pack.FloorID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Blocks.Get<BlockModel>(stack.BlockID)))
+                    if (inPredicate(All.Blocks.Get<BlockModel>(pack.BlockID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Furnishings.Get<FurnishingModel>(stack.FurnishingID)))
+                    if (inPredicate(All.Furnishings.Get<FurnishingModel>(pack.FurnishingID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Collectibles.Get<CollectibleModel>(stack.CollectibleID)))
+                    if (inPredicate(All.Collectibles.Get<CollectibleModel>(pack.CollectibleID)))
                     {
                         count++;
                     }

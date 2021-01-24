@@ -139,17 +139,17 @@ namespace Parquet.Rooms
                                                                 space => space.Content.IsEnclosing,
                                                                 space => false).Visited;
 
-            // Returns a Set of MapSpaces corresponding to the ParquetStackGrid.
-            static IReadOnlySet<MapSpace> GetSpaces(ParquetStackGrid inParquetStacks)
+            // Returns a Set of MapSpaces corresponding to the ParquetPackGrid.
+            static IReadOnlySet<MapSpace> GetSpaces(ParquetPackGrid inParquetPacks)
             {
-                Precondition.IsNotNull(inParquetStacks, nameof(inParquetStacks));
+                Precondition.IsNotNull(inParquetPacks, nameof(inParquetPacks));
 
                 var uniqueResults = new HashSet<MapSpace>();
-                for (var y = 0; y < inParquetStacks.Rows; y++)
+                for (var y = 0; y < inParquetPacks.Rows; y++)
                 {
-                    for (var x = 0; x < inParquetStacks.Columns; x++)
+                    for (var x = 0; x < inParquetPacks.Columns; x++)
                     {
-                        var currentSpace = new MapSpace(x, y, inParquetStacks[y, x], inParquetStacks);
+                        var currentSpace = new MapSpace(x, y, inParquetPacks[y, x], inParquetPacks);
                         uniqueResults.Add(currentSpace);
                     }
                 }

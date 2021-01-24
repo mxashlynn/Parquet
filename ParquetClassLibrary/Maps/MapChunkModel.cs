@@ -40,7 +40,7 @@ namespace Parquet.Maps
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         [Index(13)]
-        public override ParquetStackGrid ParquetDefinitions { get; }
+        public override ParquetPackGrid ParquetDefinitions { get; }
         #endregion
 
         #region Initialization
@@ -61,8 +61,8 @@ namespace Parquet.Maps
         public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
                              bool inIsFilledOut = false,
                              ChunkDetail inDetails = null,
-                             // TODO Should this accept an IReadOnlyGrid<ParquetStack>s instead?
-                             ParquetStackGrid inParquetDefinitions = null)
+                             // TODO Should this accept an IReadOnlyGrid<ParquetPack>s instead?
+                             ParquetPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
             IsFilledOut = inIsFilledOut;
@@ -70,12 +70,12 @@ namespace Parquet.Maps
             if (IsFilledOut)
             {
                 Details = ChunkDetail.None;
-                ParquetDefinitions = inParquetDefinitions ?? new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = inParquetDefinitions ?? new ParquetPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
                 Details = inDetails ?? ChunkDetail.None;
-                ParquetDefinitions = ParquetStackGrid.Empty;
+                ParquetDefinitions = ParquetPackGrid.Empty;
             }
         }
         #endregion
@@ -100,7 +100,7 @@ namespace Parquet.Maps
             IsFilledOut = true;
 
             // Create a subregion to hold the generated parquets.
-            var newParquetDefinitions = new ParquetStackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            var newParquetDefinitions = new ParquetPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
             // TODO Replace this pass-through implementation.
             #region Pass-Through Implementation
