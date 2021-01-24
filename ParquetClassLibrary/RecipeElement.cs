@@ -74,7 +74,7 @@ namespace Parquet
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(RecipeElement inElement)
             => inElement?.ElementTag == ElementTag
-            && inElement.ElementAmount == ElementAmount;
+            && inElement?.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.
