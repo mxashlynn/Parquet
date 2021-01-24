@@ -363,6 +363,13 @@ namespace Parquet
     // TODO Should this class be removed, or reduced to static?
     public class ModelCollection : ModelCollection<Model>
     {
+        #region Class Defaults
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection"/>s.</summary>
+        public static readonly ModelCollection Default = new ModelCollection(
+            new List<Range<ModelID>> { new Range<ModelID>(int.MinValue, int.MaxValue) },
+            Enumerable.Empty<Model>());
+        #endregion
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelCollection"/> class.
         /// </summary>
