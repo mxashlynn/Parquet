@@ -233,12 +233,12 @@ namespace ParquetRoller
                 case "p-item":
                 case "p-items":
                     var pitems = All.Items.Where(model => model.ParquetID != ModelID.None);
-                    workload = new ModelCollection(All.ItemIDs, All.Items);
+                    workload = new ModelCollection(All.ItemIDs, pitems);
                     break;
                 case "n-item":
                 case "n-items":
                     var nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
-                    workload = new ModelCollection(All.ItemIDs, All.Items);
+                    workload = new ModelCollection(All.ItemIDs, nitems);
                     break;
                 case "map":
                 case "maps":
