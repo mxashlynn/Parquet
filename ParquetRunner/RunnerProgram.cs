@@ -224,12 +224,12 @@ namespace ParquetRunner
     /// <summary>
     /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
     /// </summary>
-    internal class MainClass
+    internal static class RunnerProgram
     {
         /// <summary>
         /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
         /// </summary>
-        public static void Main()
+        internal static void Main()
         {
             Console.WriteLine(All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
 
