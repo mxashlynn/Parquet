@@ -8,7 +8,7 @@ using Parquet.Properties;
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// Simple container for one of each overlapping layer of parquets.
+    /// Simple container for one of collocated parquets, one from each overlapping layer.
     /// </summary>
     public class ParquetPack : IParquetPack, IEquatable<ParquetPack>, ITypeConverter
     {
