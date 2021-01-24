@@ -35,27 +35,16 @@ namespace Parquet.Crafts
             var productValues = serializedRanges[1].Split(Delimiters.ElementDelimiter);
 
             // Parse.
-            if (int.TryParse(ingredientValues[0], out var tempMin)
-                && int.TryParse(ingredientValues[1], out var tempMax))
-            {
-                IngredientCount = new Range<int>(tempMin, tempMax);
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        serializedRanges[0], nameof(IngredientCount)));
-            }
-            if (int.TryParse(ingredientValues[0], out tempMin)
-                && int.TryParse(ingredientValues[1], out tempMax))
-            {
-                ProductCount = new Range<int>(tempMin, tempMax);
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        serializedRanges[1], nameof(ProductCount)));
-            }
-        }
+            IngredientCount = int.TryParse(ingredientValues[0], out var tempMin)
+                            && int.TryParse(ingredientValues[1], out var tempMax)
+                ? new Range<int>(tempMin, tempMax)
+                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                          serializedRanges[0], nameof(IngredientCount)));
+            ProductCount = int.TryParse(productValues[0], out tempMin)
+                         && int.TryParse(productValues[1], out tempMax)
+                ? new Range<int>(tempMin, tempMax)
+                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                          serializedRanges[1], nameof(ProductCount)));        }
 
         /// <summary>
         /// Writes <see cref="CraftConfiguration"/> data to the appropriate file.
