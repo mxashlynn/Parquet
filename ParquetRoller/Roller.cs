@@ -166,7 +166,7 @@ namespace ParquetRoller
 
             if (!All.LoadFromCSVs())
             {
-                return null;
+                return ModelCollection.Default;
             }
 
             // Advertise plural categories but accept singular
