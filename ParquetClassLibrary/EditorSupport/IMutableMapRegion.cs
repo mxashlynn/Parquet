@@ -6,9 +6,7 @@ namespace Parquet.EditorSupport
     /// <summary>
     /// Facilitates editing of <see cref="MapRegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
-    // TODO Is this being used correctly?  I don't think MapRegion should have to access this....
-    // TODO Do we need to implement an IEdit interface for each subtype, or does that not matter since they are intended to be runtime editable?
-    // TODO Maybe what really needs to change is a separation of MapModels from MapStatuses.....
+    // TODO Separation MapModel from MapStatus.
     public interface IMutableMapRegion : IMutableModel
     {
         /// <summary>A color to display in any empty areas of the region.</summary>

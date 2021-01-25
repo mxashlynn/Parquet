@@ -183,7 +183,6 @@ namespace Parquet.Items
         {
             // In testing we want to alert the developer if they try to give "nothing",
             // but in production this should probably just silently succeed.
-            // TODO Is Debug.Assert fine here or do we need to use #if DESIGN ?
             Debug.Assert(inItemID != ModelID.None,
                          string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
                          nameof(ModelID.None),
