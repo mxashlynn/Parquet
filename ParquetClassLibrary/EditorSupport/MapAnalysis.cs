@@ -20,7 +20,7 @@ namespace Parquet.EditorSupport
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
-        internal static ICollection<(IDByDirection GetLeavingRegionID,
+        internal static readonly IReadOnlyCollection<(IDByDirection GetLeavingRegionID,
                                      string LeavingDirection,
                                      IDByDirection GetReturningRegionID,
                                      string ReturningDirection)> Directions =
