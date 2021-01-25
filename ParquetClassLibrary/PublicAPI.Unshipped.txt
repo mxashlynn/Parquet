@@ -631,7 +631,7 @@ Parquet.Parquets.ParquetStatus.Equals(Parquet.Parquets.ParquetStatus inStatus) -
 Parquet.Parquets.ParquetStatus.IsTrench.get -> bool
 Parquet.Parquets.ParquetStatus.IsTrench.set -> void
 Parquet.Parquets.ParquetStatus.ParquetStatus() -> void
-Parquet.Parquets.ParquetStatus.ParquetStatus(bool inIsTrench = false, int inToughness = 10, int inMaxToughness = 10) -> void
+Parquet.Parquets.ParquetStatus.ParquetStatus(bool inIsTrench, int inToughness, int inMaxToughness = 10) -> void
 Parquet.Parquets.ParquetStatus.Toughness.get -> int
 Parquet.Parquets.ParquetStatus.Toughness.set -> void
 Parquet.Parquets.ParquetStatusArrayExtensions
@@ -910,6 +910,7 @@ static readonly Parquet.Crafts.StrikePanel.Unused -> Parquet.Crafts.StrikePanel
 static readonly Parquet.Maps.ChunkDetail.None -> Parquet.Maps.ChunkDetail
 static readonly Parquet.Maps.MapRegionModel.Empty -> Parquet.Maps.MapRegionModel
 static readonly Parquet.Maps.MapRegionSketch.Empty -> Parquet.Maps.MapRegionSketch
+static readonly Parquet.ModelCollection.Default -> Parquet.ModelCollection
 static readonly Parquet.ModelCollection<TModel>.Default -> Parquet.ModelCollection<TModel>
 static readonly Parquet.ModelID.None -> Parquet.ModelID
 static readonly Parquet.ModelTag.None -> Parquet.ModelTag
