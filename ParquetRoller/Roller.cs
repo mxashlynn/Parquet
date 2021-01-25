@@ -451,7 +451,7 @@ namespace ParquetRoller
                 return ExitCode.ReadFault;
             }
 
-            var sketches = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionSketch));
+            var sketches = new ModelCollection<Model>(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionSketch));
             var orderedWorkload = sketches.OrderBy(x => x.ID);
             Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageChecking,
                                             $"{nameof(MapRegionSketch)}es"));
@@ -464,7 +464,7 @@ namespace ParquetRoller
                 }
             }
 
-            var regions = new ModelCollection(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionModel));
+            var regions = new ModelCollection<Model>(All.MapRegionIDs, All.Maps.Where(map => map is MapRegionModel));
             orderedWorkload = regions.OrderBy(x => x.ID);
             Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageChecking,
                                             $"{nameof(MapRegionModel)}s"));
