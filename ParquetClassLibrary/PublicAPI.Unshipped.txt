@@ -159,11 +159,11 @@ Parquet.Beings.PronounGroup.Reflexive.get -> string
 Parquet.Beings.PronounGroup.Subjective.get -> string
 Parquet.Biomes.BiomeConfiguration
 Parquet.Biomes.BiomeRecipe
-Parquet.Biomes.BiomeRecipe.BiomeRecipe(Parquet.ModelID inID, string inName, string inDescription, string inComment, int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inParquetCriteria = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inEntryRequirements = null) -> void
+Parquet.Biomes.BiomeRecipe.BiomeRecipe(Parquet.ModelID inID, string inName, string inDescription, string inComment, int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false, Parquet.ModelTag inParquetCriteria = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inEntryRequirements = null) -> void
 Parquet.Biomes.BiomeRecipe.EntryRequirements.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Biomes.BiomeRecipe.IsLiquidBased.get -> bool
 Parquet.Biomes.BiomeRecipe.IsRoomBased.get -> bool
-Parquet.Biomes.BiomeRecipe.ParquetCriteria.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
+Parquet.Biomes.BiomeRecipe.ParquetCriteria.get -> Parquet.ModelTag
 Parquet.Biomes.BiomeRecipe.Tier.get -> int
 Parquet.Crafts.CraftConfiguration
 Parquet.Crafts.CraftingRecipe

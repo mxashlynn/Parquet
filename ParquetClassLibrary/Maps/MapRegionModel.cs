@@ -213,18 +213,9 @@ namespace Parquet.Maps
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets contribute to the biome, false otherwise.
             static bool ConstitutesBiome(MapRegionModel inRegion, BiomeRecipe inBiome, int inThreshold)
-            {
-                foreach (ModelTag biomeParquetTag in inBiome.ParquetCriteria)
-                {
-                    if (CountMeetsOrExceedsThreshold(inRegion,
-                                                     parquet => parquet.AddsToBiome.Contains(biomeParquetTag),
-                                                     inThreshold))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
+                => CountMeetsOrExceedsThreshold(inRegion,
+                                                parquet => parquet.AddsToBiome.Contains(inBiome.ParquetCriteria),
+                                                inThreshold);
 
             // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
             //     inRegion -> The region to test.
