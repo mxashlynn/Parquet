@@ -1,4 +1,4 @@
-abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
+﻿abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
 const Parquet.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const Parquet.Beings.PronounGroup.DeterminerTag = "|their|" -> string
@@ -508,8 +508,6 @@ Parquet.Model.ID.get -> Parquet.ModelID
 Parquet.Model.Model(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment) -> void
 Parquet.Model.Name.get -> string
 Parquet.ModelCollection
-Parquet.ModelCollection.ModelCollection(Parquet.Range<Parquet.ModelID> inBounds, System.Collections.Generic.IEnumerable<Parquet.Model> inModels) -> void
-Parquet.ModelCollection.ModelCollection(System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBounds, System.Collections.Generic.IEnumerable<Parquet.Model> inModels) -> void
 Parquet.ModelCollection<TModel>
 Parquet.ModelCollection<TModel>.Bounds.get -> System.Collections.Generic.IReadOnlyList<Parquet.Range<Parquet.ModelID>>
 Parquet.ModelCollection<TModel>.Contains(Parquet.Model inModel) -> bool
@@ -910,7 +908,6 @@ static readonly Parquet.Crafts.StrikePanel.Unused -> Parquet.Crafts.StrikePanel
 static readonly Parquet.Maps.ChunkDetail.None -> Parquet.Maps.ChunkDetail
 static readonly Parquet.Maps.MapRegionModel.Empty -> Parquet.Maps.MapRegionModel
 static readonly Parquet.Maps.MapRegionSketch.Empty -> Parquet.Maps.MapRegionSketch
-static readonly Parquet.ModelCollection.Default -> Parquet.ModelCollection
 static readonly Parquet.ModelCollection<TModel>.Default -> Parquet.ModelCollection<TModel>
 static readonly Parquet.ModelID.None -> Parquet.ModelID
 static readonly Parquet.ModelTag.None -> Parquet.ModelTag

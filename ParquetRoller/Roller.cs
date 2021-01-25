@@ -30,7 +30,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="ModelCollection" /> to act on, if any.</param>
         /// <returns>A value indicating success or the manner of failure.</returns>
-        internal delegate ExitCode Command(ModelCollection inWorkload);
+        internal delegate ExitCode Command(ModelCollection<Model> inWorkload);
 
         /// <summary>
         /// A flag indicating that a subcommand must be executed.
@@ -54,7 +54,7 @@ namespace ParquetRoller
                 : "";
 
             var command = ParseCommand(optionText);
-            ModelCollection workload = null;
+            ModelCollection<Model> workload = null;
 
             if (command == ListPropertyForCategory)
             {
@@ -154,9 +154,9 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inCategory">The third command line argument.</param>
         /// <returns>A collection of <see cref="Model"/>s to take action on.</returns>
-        private static ModelCollection ParseCategory(string inCategory)
+        private static ModelCollection<Model> ParseCategory(string inCategory)
         {
-            ModelCollection workload = null;
+            ModelCollection<Model> workload = null;
 
             // Default to everything.
             if (string.IsNullOrEmpty(inCategory))
@@ -166,7 +166,7 @@ namespace ParquetRoller
 
             if (!All.LoadFromCSVs())
             {
-                return ModelCollection.Default;
+                return ModelCollection<Model>.Default;
             }
 
             // Advertise plural categories but accept singular
@@ -190,91 +190,91 @@ namespace ParquetRoller
                         All.ScriptIDs,
                         All.ItemIDs
                     };
-                    workload = new ModelCollection(entireRange, ((IEnumerable<Model>)All.Characters)
-                                                                .Concat(All.Critters)
-                                                                .Concat(All.BiomeRecipes)
-                                                                .Concat(All.CraftingRecipes)
-                                                                .Concat(All.Interactions)
-                                                                .Concat(All.Floors)
-                                                                .Concat(All.Blocks)
-                                                                .Concat(All.Furnishings)
-                                                                .Concat(All.Collectibles)
-                                                                .Concat(All.RoomRecipes)
-                                                                .Concat(All.Items));
+                    workload = new ModelCollection<Model>(entireRange, ((IEnumerable<Model>)All.Characters)
+                                                                       .Concat(All.Critters)
+                                                                       .Concat(All.BiomeRecipes)
+                                                                       .Concat(All.CraftingRecipes)
+                                                                       .Concat(All.Interactions)
+                                                                       .Concat(All.Floors)
+                                                                       .Concat(All.Blocks)
+                                                                       .Concat(All.Furnishings)
+                                                                       .Concat(All.Collectibles)
+                                                                       .Concat(All.RoomRecipes)
+                                                                       .Concat(All.Items));
                     break;
                 case "being":
                 case "beings":
-                    workload = new ModelCollection(All.BeingIDs, All.Beings);
+                    workload = new ModelCollection<Model>(All.BeingIDs, All.Beings);
                     break;
                 case "critter":
                 case "critters":
-                    workload = new ModelCollection(All.CritterIDs, All.Critters);
+                    workload = new ModelCollection<Model>(All.CritterIDs, All.Critters);
                     break;
                 case "character":
                 case "characters":
-                    workload = new ModelCollection(All.CharacterIDs, All.Characters);
+                    workload = new ModelCollection<Model>(All.CharacterIDs, All.Characters);
                     break;
                 case "biome":
                 case "biomes":
-                    workload = new ModelCollection(All.BiomeRecipeIDs, All.BiomeRecipes);
+                    workload = new ModelCollection<Model>(All.BiomeRecipeIDs, All.BiomeRecipes);
                     break;
                 case "craft":
                 case "crafts":
-                    workload = new ModelCollection(All.CraftingRecipeIDs, All.CraftingRecipes);
+                    workload = new ModelCollection<Model>(All.CraftingRecipeIDs, All.CraftingRecipes);
                     break;
                 case "interaction":
                 case "interactions":
-                    workload = new ModelCollection(All.InteractionIDs, All.Interactions);
+                    workload = new ModelCollection<Model>(All.InteractionIDs, All.Interactions);
                     break;
                 case "item":
                 case "items":
-                    workload = new ModelCollection(All.ItemIDs, All.Items);
+                    workload = new ModelCollection<Model>(All.ItemIDs, All.Items);
                     break;
                 case "p-item":
                 case "p-items":
                     var pitems = All.Items.Where(model => model.ParquetID != ModelID.None);
-                    workload = new ModelCollection(All.ItemIDs, pitems);
+                    workload = new ModelCollection<Model>(All.ItemIDs, pitems);
                     break;
                 case "n-item":
                 case "n-items":
                     var nitems = All.Items.Where(model => model.ParquetID == ModelID.None);
-                    workload = new ModelCollection(All.ItemIDs, nitems);
+                    workload = new ModelCollection<Model>(All.ItemIDs, nitems);
                     break;
                 case "map":
                 case "maps":
-                    workload = new ModelCollection(All.MapIDs, All.Maps);
+                    workload = new ModelCollection<Model>(All.MapIDs, All.Maps);
                     break;
                 case "chunk":
                 case "chunks":
-                    workload = new ModelCollection(All.MapChunkIDs, All.Maps);
+                    workload = new ModelCollection<Model>(All.MapChunkIDs, All.Maps);
                     break;
                 case "region":
                 case "regions":
-                    workload = new ModelCollection(All.MapRegionIDs, All.Maps);
+                    workload = new ModelCollection<Model>(All.MapRegionIDs, All.Maps);
                     break;
                 case "parquet":
                 case "parquets":
-                    workload = new ModelCollection(All.ParquetIDs, All.Parquets);
+                    workload = new ModelCollection<Model>(All.ParquetIDs, All.Parquets);
                     break;
                 case "floor":
                 case "floors":
-                    workload = new ModelCollection(All.FloorIDs, All.Floors);
+                    workload = new ModelCollection<Model>(All.FloorIDs, All.Floors);
                     break;
                 case "block":
                 case "blocks":
-                    workload = new ModelCollection(All.BlockIDs, All.Blocks);
+                    workload = new ModelCollection<Model>(All.BlockIDs, All.Blocks);
                     break;
                 case "furnishing":
                 case "furnishings":
-                    workload = new ModelCollection(All.FurnishingIDs, All.Furnishings);
+                    workload = new ModelCollection<Model>(All.FurnishingIDs, All.Furnishings);
                     break;
                 case "collectible":
                 case "collectibles":
-                    workload = new ModelCollection(All.CollectibleIDs, All.Collectibles);
+                    workload = new ModelCollection<Model>(All.CollectibleIDs, All.Collectibles);
                     break;
                 case "room":
                 case "rooms":
-                    workload = new ModelCollection(All.RoomRecipeIDs, All.RoomRecipes);
+                    workload = new ModelCollection<Model>(All.RoomRecipeIDs, All.RoomRecipes);
                     break;
                 default:
                     Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnknownCategory, inCategory));
@@ -291,7 +291,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayDefault(ModelCollection inWorkload)
+        private static ExitCode DisplayDefault(ModelCollection<Model> inWorkload)
         {
             Console.WriteLine(Resources.MessageDefault);
             return ExitCode.Success;
@@ -302,7 +302,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayHelp(ModelCollection inWorkload)
+        private static ExitCode DisplayHelp(ModelCollection<Model> inWorkload)
         {
             Console.WriteLine(Resources.MessageHelp);
             return ExitCode.Success;
@@ -313,7 +313,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode DisplayVersion(ModelCollection inWorkload)
+        private static ExitCode DisplayVersion(ModelCollection<Model> inWorkload)
         {
             Console.WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.MessageVersion,
                                             AssemblyInfo.LibraryVersion.Remove(AssemblyInfo.LibraryVersion.Length - 2),
@@ -326,7 +326,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode CreateTemplates(ModelCollection inWorkload)
+        private static ExitCode CreateTemplates(ModelCollection<Model> inWorkload)
         {
             if (!File.Exists(PronounGroup.FilePath))
             {
@@ -418,7 +418,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode RollCSVs(ModelCollection inWorkload)
+        private static ExitCode RollCSVs(ModelCollection<Model> inWorkload)
         {
             // Currently, all that has to be done is assigning ModelIDs.  Loading and saving will accomplish this.
             if (!All.LoadFromCSVs())
@@ -442,7 +442,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode CheckAdjacency(ModelCollection inWorkload)
+        private static ExitCode CheckAdjacency(ModelCollection<Model> inWorkload)
         {
 #if DESIGN
             if (!All.LoadFromCSVs())
@@ -489,7 +489,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns>A value indicating success or the nature of the failure.</returns>
-        private static ExitCode ListPronouns(ModelCollection inWorkload)
+        private static ExitCode ListPronouns(ModelCollection<Model> inWorkload)
         {
             if (!All.LoadFromCSVs())
             {
@@ -512,7 +512,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">Ignored.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
-        private static ExitCode DisplayBadArguments(ModelCollection inWorkload)
+        private static ExitCode DisplayBadArguments(ModelCollection<Model> inWorkload)
         {
             DisplayHelp(null);
             return ExitCode.BadArguments;
@@ -523,7 +523,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode ListRanges(ModelCollection inWorkload)
+        private static ExitCode ListRanges(ModelCollection<Model> inWorkload)
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
@@ -544,7 +544,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode ListMaxIDs(ModelCollection inWorkload)
+        private static ExitCode ListMaxIDs(ModelCollection<Model> inWorkload)
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
@@ -566,7 +566,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
-        private static ExitCode ListTags(ModelCollection inWorkload)
+        private static ExitCode ListTags(ModelCollection<Model> inWorkload)
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
@@ -600,7 +600,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.Success"/></returns>
-        private static ExitCode ListNames(ModelCollection inWorkload)
+        private static ExitCode ListNames(ModelCollection<Model> inWorkload)
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {
@@ -621,7 +621,7 @@ namespace ParquetRoller
         /// </summary>
         /// <param name="inWorkload">The <see cref="Model"/>s to inspect.</param>
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
-        private static ExitCode ListCollisions(ModelCollection inWorkload)
+        private static ExitCode ListCollisions(ModelCollection<Model> inWorkload)
         {
             if (inWorkload == null || inWorkload.Count == 0)
             {

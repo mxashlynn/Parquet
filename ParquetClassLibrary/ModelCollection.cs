@@ -352,40 +352,15 @@ namespace Parquet
         #endregion
     }
 
+
     /// <summary>
-    /// Stores a <see cref="Model"/> collection.
-    /// Provides bounds-checking and type-checking against <see cref="Model"/>.
+    /// Provides the filename and path associated with the definition file for a <see cref="Model"/>-derived type
+    /// collected by a <see cref="ModelCollection{TModel}"/>.
     /// </summary>
-    /// <remarks>
-    /// All <see cref="ModelCollection"/>s implicitly contain <see cref="ModelID.None"/>.
-    /// For more details, see remarks on <see cref="Model"/>.
-    /// </remarks>
-    // TODO Should this class be removed, or reduced to static?
-    public class ModelCollection : ModelCollection<Model>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix",
+        Justification = "This class provides a static utility method used by the generic collection of the same name.")]
+    public static class ModelCollection
     {
-        #region Class Defaults
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection"/>s.</summary>
-        public static readonly new ModelCollection Default = new ModelCollection(
-            new List<Range<ModelID>> { new Range<ModelID>(int.MinValue, int.MaxValue) },
-            Enumerable.Empty<Model>());
-        #endregion
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(Range<ModelID> inBounds, IEnumerable<Model> inModels)
-            : base(new List<Range<ModelID>> { inBounds }, inModels) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(IEnumerable<Range<ModelID>> inBounds, IEnumerable<Model> inModels)
-            : base(inBounds, inModels) { }
-
         /// <summary>
         /// Given a type, returns the filename and path associated with that type's definition file.
         /// </summary>
