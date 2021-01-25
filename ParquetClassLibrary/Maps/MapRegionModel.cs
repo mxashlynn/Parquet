@@ -170,27 +170,19 @@ namespace Parquet.Maps
             //     inBiome -> The BiomeRecipe to test against.
             // Returns the given BiomeRecipe's ModelID if they match, otherwise returns the ModelID for the default biome.
             static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeRecipe inBiome)
-            {
-                // TODO The following FOR EACH seems to make no sense in that it does not examine the element it is iterating over!
-                foreach (ModelTag biomeElement in inBiome.ParquetCriteria)
-                {
-                    // Prioritization of biome categories is hard-coded in the following way:
-                    //    1 Room-based Biomes supersede
-                    //    2 Liquid-based Biomes supersede
-                    //    3 Land-based Biomes supersede
-                    //    4 the default Biome.
-                    if ((inBiome.IsRoomBased
-                            && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
-                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
-                        || (inBiome.IsLiquidBased
-                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
-                        || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
-                    {
-                        return inBiome.ID;
-                    }
-                }
-                return BiomeRecipe.None.ID;
-            }
+                // Prioritization of biome categories is hard-coded in the following way:
+                //    1 Room-based Biomes supersede
+                //    2 Liquid-based Biomes, which supersede
+                //    3 Land-based Biomes, which supersede
+                //    4 the default Biome.
+                => (inBiome.IsRoomBased
+                    && GetParquetsInRooms(inRegion) >= BiomeConfiguration.RoomThreshold
+                    && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                || (inBiome.IsLiquidBased
+                    && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
+                || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold)
+                    ? inBiome.ID
+                    : BiomeRecipe.None.ID;
 
             // Determines the number of individual parquets that are present inside Rooms in the given MapRegionModel.
             //     inRegion -> The region to consider.
@@ -222,10 +214,11 @@ namespace Parquet.Maps
             // Returns true if enough parquets contribute to the biome, false otherwise.
             static bool ConstitutesBiome(MapRegionModel inRegion, BiomeRecipe inBiome, int inThreshold)
             {
-                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
+                foreach (ModelTag biomeParquetTag in inBiome.ParquetCriteria)
                 {
-                    // TODO This logic needs to be checked, at a glance it seems wrong.
-                    if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
+                    if (CountMeetsOrExceedsThreshold(inRegion,
+                                                     parquet => parquet.AddsToBiome.Contains(biomeParquetTag),
+                                                     inThreshold))
                     {
                         return true;
                     }

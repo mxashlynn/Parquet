@@ -35,6 +35,9 @@ namespace Parquet.Biomes
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         [Index(7)]
+        // TODO It seems like this might be better as a single ModelTag, rather than a list.
+        // It makes sense that Parquets should contribute to multiple types of biomes,
+        // but should biomes be constituted by multiple incompatible/exclusive types of Parquet??
         public IReadOnlyList<ModelTag> ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
