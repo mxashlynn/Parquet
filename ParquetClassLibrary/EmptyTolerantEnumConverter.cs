@@ -25,7 +25,7 @@ namespace Parquet
             => EnumType = (inType?.IsEnum ?? false)
                 ? inType
                 : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
-                                                            nameof(inType), inType.Name, nameof(Enum)));
+                                                            nameof(inType), inType?.Name ?? "null", nameof(Enum)));
 
         /// <summary>
         /// Converts the <c>string</c> to an <c>object</c>.
