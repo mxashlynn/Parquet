@@ -53,7 +53,6 @@ namespace Parquet
             foreach (var element in series)
             {
                 result.Append(element.ConvertToString(element, inRow, inMemberMapData));
-                // TODO Can the delimiters be made into Chars?  If so, remove the indexer here and throughout.
                 result.Append(Delimiters.SecondaryDelimiter[0]);
             }
             result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
