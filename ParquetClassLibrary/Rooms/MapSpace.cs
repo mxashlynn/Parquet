@@ -12,8 +12,7 @@ namespace Parquet.Rooms
     {
         #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        // TODO Change this final null here to ParquetPackGrid.Empty
-        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetPack.Empty, null);
+        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetPack.Empty, ParquetPackGrid.Empty);
         #endregion
 
         #region Characteristics
