@@ -10,7 +10,13 @@ namespace Parquet.Crafts
     /// <summary>
     /// Models the panels that the player must strike during item crafting.
     /// </summary>
-    public class StrikePanel : IEquatable<StrikePanel>, ITypeConverter
+    /// <remarks>
+    /// If a <see cref="StrikePanel"/> is stored in a <see cref="System.Collections.Generic.HashSet{T}"/>,
+    /// <see cref="System.Collections.Hashtable"/>, or used as a key in a
+    /// <see cref="System.Collections.Generic.Dictionary{K,V}"/> it must not be mutated.
+    /// It is safe to mutate it again once it is removed.
+    /// </remarks>
+    public sealed class StrikePanel : IEquatable<StrikePanel>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
@@ -107,7 +113,16 @@ namespace Parquet.Crafts
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
+        /// <remarks>
+        /// If a <see cref="StrikePanel"/> is stored in a <see cref="System.Collections.Generic.HashSet{T}"/>,
+        /// <see cref="System.Collections.Hashtable"/>, or used as a key in a
+        /// <see cref="System.Collections.Generic.Dictionary{K,V}"/> it must not be mutated.  It is safe to
+        /// mutate it again once it is removed from all such collections.
+        /// </remarks>
         public override int GetHashCode()
+            // NOTE: This implementation is a potential source of error.  Because this hash code is derived from
+            // mutable data, it is unstable.  Until a better way of generating the hash code can be found,
+            // do note store StrikePanels in HastSets, HashTables, or use them as keys in Dictionaries. 
             => (workingRangeBackingStruct, idealRangeBackingStruct).GetHashCode();
 
         /// <summary>
