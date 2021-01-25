@@ -32,7 +32,7 @@ namespace Parquet
         where TModel : Model
     {
         #region Class Defaults
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModelType}"/>s.</summary>
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModel}"/>s.</summary>
         public static readonly ModelCollection<TModel> Default = new ModelCollection<TModel>(
             new List<Range<ModelID>> { new Range<ModelID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<Model>());
