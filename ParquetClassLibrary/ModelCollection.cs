@@ -32,7 +32,7 @@ namespace Parquet
         where TModel : Model
     {
         #region Class Defaults
-        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModelType}"/>s.</summary>
+        /// <summary>A value to use in place of uninitialized <see cref="ModelCollection{TModel}"/>s.</summary>
         public static readonly ModelCollection<TModel> Default = new ModelCollection<TModel>(
             new List<Range<ModelID>> { new Range<ModelID>(int.MinValue, int.MaxValue) },
             Enumerable.Empty<Model>());
@@ -52,7 +52,7 @@ namespace Parquet
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
@@ -86,7 +86,7 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
@@ -96,12 +96,12 @@ namespace Parquet
         #endregion
 
         #region IReadOnlyCollection Implementation
-        /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
+        /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModel}"/>.</summary>
         public int Count
             => Models?.Count ?? 0;
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="Model"/>.
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <see cref="Model"/>.
         /// </summary>
         /// <param name="inModel">The <see cref="Model"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Model"/> was found; <c>false</c> otherwise.</returns>
@@ -113,7 +113,7 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains a <see cref="Model"/>
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains a <see cref="Model"/>
         /// with the specified <see cref="ModelID"/>.
         /// </summary>
         /// <param name="inID">The <see cref="ModelID"/> of the <see cref="Model"/> to find.</param>
@@ -337,7 +337,7 @@ namespace Parquet
 
         #region Utilities
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModel}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
@@ -352,33 +352,15 @@ namespace Parquet
         #endregion
     }
 
+
     /// <summary>
-    /// Stores a <see cref="Model"/> collection.
-    /// Provides bounds-checking and type-checking against <see cref="Model"/>.
+    /// Provides the filename and path associated with the definition file for a <see cref="Model"/>-derived type
+    /// collected by a <see cref="ModelCollection{TModel}"/>.
     /// </summary>
-    /// <remarks>
-    /// All <see cref="ModelCollection"/>s implicitly contain <see cref="ModelID.None"/>.
-    /// For more details, see remarks on <see cref="Model"/>.
-    /// </remarks>
-    // TODO Should this class be removed, or reduced to static?
-    public class ModelCollection : ModelCollection<Model>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix",
+        Justification = "This class provides a static utility method used by the generic collection of the same name.")]
+    public static class ModelCollection
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(Range<ModelID> inBounds, IEnumerable<Model> inModels)
-            : base(new List<Range<ModelID>> { inBounds }, inModels) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection"/> class.
-        /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(IEnumerable<Range<ModelID>> inBounds, IEnumerable<Model> inModels)
-            : base(inBounds, inModels) { }
-
         /// <summary>
         /// Given a type, returns the filename and path associated with that type's definition file.
         /// </summary>

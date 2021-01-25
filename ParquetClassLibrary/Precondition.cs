@@ -96,10 +96,11 @@ namespace Parquet
 
             if (!inID.IsValidForRange(inBoundsCollection))
             {
-                var allBounds = "";
+                var allBounds = new System.Text.StringBuilder();
                 foreach (var range in inBoundsCollection)
                 {
-                    allBounds += range + " ";
+                    allBounds.Append(range);
+                    allBounds.Append(' ');
                 }
                 if (string.IsNullOrEmpty(inArgumentName))
                 {

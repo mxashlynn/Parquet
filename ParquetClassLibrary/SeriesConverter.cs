@@ -24,7 +24,7 @@ namespace Parquet
             new SeriesConverter<TElement, TCollection>();
 
         /// <summary>Allows the converter to construct its contents.</summary>
-        internal static TElement ElementFactory = new TElement();
+        internal static readonly TElement ElementFactory = new TElement();
 
         /// <summary>
         /// Converts the given 1D collection into a record column.
@@ -53,7 +53,6 @@ namespace Parquet
             foreach (var element in series)
             {
                 result.Append(element.ConvertToString(element, inRow, inMemberMapData));
-                // TODO Can the delimiters be made into Chars?  If so, remove the indexer here and throughout.
                 result.Append(Delimiters.SecondaryDelimiter[0]);
             }
             result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);

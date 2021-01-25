@@ -35,7 +35,7 @@ namespace Parquet.Biomes
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         [Index(7)]
-        public IReadOnlyList<ModelTag> ParquetCriteria { get; }
+        public ModelTag ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         [Index(8)]
@@ -57,7 +57,7 @@ namespace Parquet.Biomes
         /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeRecipe"/>.</param>
         public BiomeRecipe(ModelID inID, string inName, string inDescription, string inComment,
                           int inTier = 0, bool inIsRoomBased = false, bool inIsLiquidBased = false,
-                          IEnumerable<ModelTag> inParquetCriteria = null,
+                          ModelTag inParquetCriteria = null,
                           IEnumerable<ModelTag> inEntryRequirements = null)
             : base(All.BiomeRecipeIDs, inID, inName, inDescription, inComment)
         {
@@ -66,7 +66,7 @@ namespace Parquet.Biomes
             Tier = inTier;
             IsRoomBased = inIsRoomBased;
             IsLiquidBased = inIsLiquidBased;
-            ParquetCriteria = (inParquetCriteria ?? Enumerable.Empty<ModelTag>()).ToList();
+            ParquetCriteria = inParquetCriteria ?? ModelTag.None;
             EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
         }
         #endregion
@@ -77,7 +77,7 @@ namespace Parquet.Biomes
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-             => base.GetAllTags().Union(ParquetCriteria.Union(EntryRequirements));
+             => base.GetAllTags().Union(EntryRequirements).Append(ParquetCriteria);
         #endregion
     }
 }

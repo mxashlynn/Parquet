@@ -152,7 +152,8 @@ namespace Parquet.Maps
         public ModelID GetBiome()
         {
             var result = BiomeRecipe.None.ID;
-            foreach (BiomeRecipe biome in All.BiomeRecipes)
+            // NOTE: OfType() is used here because the iterator returns a Model.  Perhaps this can be improved?
+            foreach (var biome in All.BiomeRecipes.OfType<BiomeRecipe>())
             {
                 result = FindBiomeByTag(this, biome);
                 if (result != BiomeRecipe.None.ID)
@@ -169,27 +170,19 @@ namespace Parquet.Maps
             //     inBiome -> The BiomeRecipe to test against.
             // Returns the given BiomeRecipe's ModelID if they match, otherwise returns the ModelID for the default biome.
             static ModelID FindBiomeByTag(MapRegionModel inRegion, BiomeRecipe inBiome)
-            {
-                // TODO The following FOR EACH seems to make no sense in that it does not examine the element it is iterating over!
-                foreach (ModelTag biomeElement in inBiome.ParquetCriteria)
-                {
-                    // Prioritization of biome categories is hard-coded in the following way:
-                    //    1 Room-based Biomes supersede
-                    //    2 Liquid-based Biomes supersede
-                    //    3 Land-based Biomes supersede
-                    //    4 the default Biome.
-                    if ((inBiome.IsRoomBased
-                            && GetParquetsInRooms(inRegion) <= BiomeConfiguration.RoomThreshold
-                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
-                        || (inBiome.IsLiquidBased
-                            && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
-                        || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold))
-                    {
-                        return inBiome.ID;
-                    }
-                }
-                return BiomeRecipe.None.ID;
-            }
+                // Prioritization of biome categories is hard-coded in the following way:
+                //    1 Room-based Biomes supersede
+                //    2 Liquid-based Biomes, which supersede
+                //    3 Land-based Biomes, which supersede
+                //    4 the default Biome.
+                => (inBiome.IsRoomBased
+                    && GetParquetsInRooms(inRegion) >= BiomeConfiguration.RoomThreshold
+                    && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.RoomThreshold))
+                || (inBiome.IsLiquidBased
+                    && ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LiquidThreshold))
+                || ConstitutesBiome(inRegion, inBiome, BiomeConfiguration.LandThreshold)
+                    ? inBiome.ID
+                    : BiomeRecipe.None.ID;
 
             // Determines the number of individual parquets that are present inside Rooms in the given MapRegionModel.
             //     inRegion -> The region to consider.
@@ -220,17 +213,9 @@ namespace Parquet.Maps
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets contribute to the biome, false otherwise.
             static bool ConstitutesBiome(MapRegionModel inRegion, BiomeRecipe inBiome, int inThreshold)
-            {
-                foreach (ModelTag biomeTag in inBiome.ParquetCriteria)
-                {
-                    // TODO This logic needs to be checked, at a glance it seems wrong.
-                    if (CountMeetsOrExceedsThreshold(inRegion, parquet => parquet.AddsToBiome == biomeTag, inThreshold))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
+                => CountMeetsOrExceedsThreshold(inRegion,
+                                                parquet => parquet.AddsToBiome.Contains(inBiome.ParquetCriteria),
+                                                inThreshold);
 
             // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
             //     inRegion -> The region to test.

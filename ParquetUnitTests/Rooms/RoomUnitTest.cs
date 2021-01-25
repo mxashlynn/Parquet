@@ -99,18 +99,18 @@ namespace ParquetUnitTests.Rooms
                 new MapSpace(2, 2, TestWalk, null),
             };
 
-            void BadWalkableAre()
+            void BadWalkableArea()
             {
                 var _ = new Room(walkableAreaWithNoExit, TestPerimeter);
             }
 
-            Assert.Throws<ArgumentException>(BadWalkableAre);
+            Assert.Throws<ArgumentException>(BadWalkableArea);
         }
 
         [Fact]
         internal void ContainedPositionIsFoundTest()
         {
-            var ContainedPosition = TestWalkableArea.ToList().ElementAt(0).Position;
+            var ContainedPosition = TestWalkableArea.ElementAt(0).Position;
 
             Assert.True(ValidRoom.ContainsPosition(ContainedPosition));
         }

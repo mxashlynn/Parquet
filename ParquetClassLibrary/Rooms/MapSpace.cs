@@ -8,12 +8,11 @@ namespace Parquet.Rooms
     /// <summary>
     /// A <see cref="ParquetPack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
     /// </summary>
-    public class MapSpace : IEquatable<MapSpace>
+    public sealed class MapSpace : IEquatable<MapSpace>
     {
         #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        // TODO Change this final null here to ParquetPackGrid.Empty
-        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetPack.Empty, null);
+        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetPack.Empty, ParquetPackGrid.Empty);
         #endregion
 
         #region Characteristics

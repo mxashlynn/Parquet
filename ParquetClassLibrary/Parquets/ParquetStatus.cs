@@ -10,7 +10,7 @@ namespace Parquet.Parquets
     /// <summary>
     /// Models the status of a <see cref="ParquetPack"/>.
     /// </summary>
-    public class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
+    public sealed class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="ParquetStatus"/> class with default values.</summary>
@@ -53,7 +53,7 @@ namespace Parquet.Parquets
         /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
         /// <param name="inToughness">The toughness of the <see cref="BlockModel"/> associated with this status.</param>
         /// <param name="inMaxToughness">The native toughness of the <see cref="BlockModel"/> associated with this status.</param>
-        public ParquetStatus(bool inIsTrench = false, int inToughness = BlockModel.DefaultMaxToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
+        public ParquetStatus(bool inIsTrench, int inToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
         {
             IsTrench = inIsTrench;
             Toughness = inToughness;
@@ -148,11 +148,11 @@ namespace Parquet.Parquets
                 var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
                 var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
-                var isTrench = bool.Parse(parameterText[0]);
-                var toughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
-                var maxToughness = int.Parse(parameterText[2], numberStyle, CultureInfo.InvariantCulture);
+                var parsedIsTrench = bool.Parse(parameterText[0]);
+                var parsedToughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
+                var parsedMaxToughness = int.Parse(parameterText[2], numberStyle, CultureInfo.InvariantCulture);
 
-                return new ParquetStatus(isTrench, toughness, maxToughness);
+                return new ParquetStatus(parsedIsTrench, parsedToughness, parsedMaxToughness);
             }
             catch (Exception e)
             {

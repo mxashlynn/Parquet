@@ -18,7 +18,7 @@ namespace Parquet
     /// - It allows multiple element instances to be required without storing and counting multiple objects representing that element.
     /// - It allows various Models to be used interchangeably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </remarks>
-    public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
+    public sealed class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
@@ -74,7 +74,7 @@ namespace Parquet
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(RecipeElement inElement)
             => inElement?.ElementTag == ElementTag
-            && inElement.ElementAmount == ElementAmount;
+            && inElement?.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.

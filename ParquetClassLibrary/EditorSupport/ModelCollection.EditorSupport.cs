@@ -41,9 +41,10 @@ namespace Parquet
         /// </summary>
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         bool ICollection<TModel>.Remove(TModel inModel)
-            => ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ??
-                                                                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
-                                                              nameof(inModel))));
+        {
+            Precondition.IsNotNull(inModel);
+            return ((IMutableModelCollection<TModel>)this).Remove(inModel);
+        }
 
 
         /// <summary>
@@ -55,10 +56,7 @@ namespace Parquet
             Precondition.IsNotNone(inID);
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return !EditableModels.Remove(inID)
-                ? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotRemove,
-                                                          typeof(TModel).Name, inID))
-                : true;
+            return EditableModels.Remove(inID);
         }
 
         /// <summary>

@@ -146,7 +146,19 @@ namespace Parquet
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
+        /// <remarks>
+        /// If a <see cref="ModelID"/> is stored in a <see cref="HashSet{T}"/>, <see cref="Hashtable"/>, or used
+        /// as a key in a <see cref="Dictionary{K,V}"/> it must not be mutated.  It is safe to mutate it again
+        /// once it is removed from all such collections.
+        /// </remarks>
         public override readonly int GetHashCode()
+            // NOTE: This implementation is a potential source of error.  If the identity of a ModelID is changed while the
+            // corresponding Model is stored in a hash-based collection it might invalidate the collection.  However,
+            // this should never happen in normal Parquet usage.  The reason the hash code is derived from mutable
+            // data is similar to the reason .Net's own ValueTuple derives its hash code from mutable data.
+            // See:
+            // https://github.com/dotnet/coreclr/blob/master/src/System.Private.CoreLib/shared/System/ValueTuple.cs
+            // https://ericlippert.com/2011/02/28/guidelines-and-rules-for-gethashcode/
             => id.GetHashCode();
 
         /// <summary>
