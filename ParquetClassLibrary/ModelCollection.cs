@@ -52,7 +52,7 @@ namespace Parquet
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
@@ -86,7 +86,7 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelCollection{TModelType}"/> class.
+        /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
@@ -96,12 +96,12 @@ namespace Parquet
         #endregion
 
         #region IReadOnlyCollection Implementation
-        /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModelType}"/>.</summary>
+        /// <summary>The number of <see cref="Model"/>s in the <see cref="ModelCollection{TModel}"/>.</summary>
         public int Count
             => Models?.Count ?? 0;
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains the specified <see cref="Model"/>.
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <see cref="Model"/>.
         /// </summary>
         /// <param name="inModel">The <see cref="Model"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Model"/> was found; <c>false</c> otherwise.</returns>
@@ -113,7 +113,7 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{TModelType}"/> contains a <see cref="Model"/>
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains a <see cref="Model"/>
         /// with the specified <see cref="ModelID"/>.
         /// </summary>
         /// <param name="inID">The <see cref="ModelID"/> of the <see cref="Model"/> to find.</param>
@@ -337,7 +337,7 @@ namespace Parquet
 
         #region Utilities
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModelType}"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="ModelCollection{TModel}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
