@@ -152,7 +152,8 @@ namespace Parquet.Maps
         public ModelID GetBiome()
         {
             var result = BiomeRecipe.None.ID;
-            foreach (BiomeRecipe biome in All.BiomeRecipes)
+            // NOTE: OfType() is used here because the iterator returns a Model.  Perhaps this can be improved?
+            foreach (var biome in All.BiomeRecipes.OfType<BiomeRecipe>())
             {
                 result = FindBiomeByTag(this, biome);
                 if (result != BiomeRecipe.None.ID)
