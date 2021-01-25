@@ -10,7 +10,7 @@ namespace Parquet.Parquets
     /// <summary>
     /// Models the status of a <see cref="ParquetPack"/>.
     /// </summary>
-    public class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
+    public sealed class ParquetStatus : IEquatable<ParquetStatus>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="ParquetStatus"/> class with default values.</summary>

@@ -23,7 +23,7 @@ namespace Parquet.Maps
     /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
     /// - Town: Handmade
     /// </remarks>
-    public class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter
+    public sealed class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunkModel"/>.</summary>

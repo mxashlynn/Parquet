@@ -18,7 +18,7 @@ namespace Parquet
     /// - It allows multiple element instances to be required without storing and counting multiple objects representing that element.
     /// - It allows various Models to be used interchangeably for the same recipe purpose; see <see cref="ModelTag"/>.
     /// </remarks>
-    public class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
+    public sealed class RecipeElement : IEquatable<RecipeElement>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>

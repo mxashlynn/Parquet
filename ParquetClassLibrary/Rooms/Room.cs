@@ -10,7 +10,7 @@ namespace Parquet.Rooms
     /// <summary>
     /// Models the a constructed <see cref="Room"/>.
     /// </summary>
-    public class Room : IEquatable<Room>
+    public sealed class Room : IEquatable<Room>
     {
         /// <summary>
         /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>

@@ -10,7 +10,7 @@ namespace Parquet.Parquets
     /// <summary>
     /// Simple container for one of collocated parquets, one from each overlapping layer.
     /// </summary>
-    public class ParquetPack : IParquetPack, IEquatable<ParquetPack>, ITypeConverter
+    public sealed class ParquetPack : IParquetPack, IEquatable<ParquetPack>, ITypeConverter
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetPack"/>, representing an arbitrary empty pack.</summary>

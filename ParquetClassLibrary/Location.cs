@@ -9,7 +9,7 @@ namespace Parquet
     /// While primarily used in-library by <see cref="Beings.BeingModel"/> this class
     /// is made generally available to support it's general use by game client code.
     /// </remarks>
-    public class Location : IEquatable<Location>
+    sealed sealed public class Location : IEquatable<Location>
     {
         /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> of this located.</summary>
         public ModelID RegionID { get; }
