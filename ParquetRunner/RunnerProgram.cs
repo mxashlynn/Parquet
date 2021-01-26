@@ -231,21 +231,15 @@ namespace ParquetRunner
         /// </summary>
         internal static void Main()
         {
-            /*
-            Console.WriteLine(All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
+            Logger.Log(LogLevel.Info, All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
             var episode = new GameModel(All.GameIDs.Minimum + 2, "Sample Episode", "", "", true, "In Which A Library Is Tested", 1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
-            Console.WriteLine(game);
-            Console.WriteLine(episode);
-            Console.WriteLine($"Item range = {All.ItemIDs}");
+            Logger.Log(LogLevel.Info, game);
+            Logger.Log(LogLevel.Info, episode);
+            Logger.Log(LogLevel.Info, $"Item range = {All.ItemIDs}");
 
-            Console.WriteLine(All.SaveToCSVs() ? "Saved." : "Failed to save!");
-            */
-
-            Console.WriteLine("Written to default out.");
-            Console.Out.WriteLine("Written to standard out.");
-            Console.Error.WriteLine("Written to standard out.");
+            Logger.Log(LogLevel.Info, All.SaveToCSVs() ? "Saved." : "Failed to save!");
         }
     }
 }

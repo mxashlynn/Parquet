@@ -365,6 +365,8 @@ Parquet.IGrid<TElement>.Columns.get -> int
 Parquet.IGrid<TElement>.Count.get -> int
 Parquet.IGrid<TElement>.Rows.get -> int
 Parquet.IGrid<TElement>.this[int y, int x].get -> TElement
+Parquet.ILogger
+Parquet.ILogger.Log(Parquet.LogLevel inLogLevel, string inMessage, System.Exception inException) -> void
 Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Clone() -> Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Columns.get -> int
@@ -439,6 +441,13 @@ Parquet.Location.Equals(Parquet.Location inLocation) -> bool
 Parquet.Location.Location() -> void
 Parquet.Location.Position.get -> Parquet.Vector2D
 Parquet.Location.RegionID.get -> Parquet.ModelID
+Parquet.Logger
+Parquet.LogLevel
+Parquet.LogLevel.Debug = 0 -> Parquet.LogLevel
+Parquet.LogLevel.Error = 3 -> Parquet.LogLevel
+Parquet.LogLevel.Fatal = 4 -> Parquet.LogLevel
+Parquet.LogLevel.Info = 1 -> Parquet.LogLevel
+Parquet.LogLevel.Warning = 2 -> Parquet.LogLevel
 Parquet.Maps.ChunkDetail
 Parquet.Maps.ChunkDetail.BaseComposition.get -> Parquet.ModelTag
 Parquet.Maps.ChunkDetail.BaseTopography.get -> Parquet.Maps.ChunkTopography
@@ -805,6 +814,9 @@ static Parquet.Items.InventoryConfiguration.PutRecord() -> void
 static Parquet.Items.InventorySlot.Empty.get -> Parquet.Items.InventorySlot
 static Parquet.Location.operator !=(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Location.operator ==(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
+static Parquet.Logger.Log(Parquet.LogLevel inLogLevel, object inObject) -> void
+static Parquet.Logger.Log(Parquet.LogLevel inLogLevel, string inMessage = null, System.Exception inException = null) -> void
+static Parquet.Logger.SetLogger(Parquet.ILogger inLoggerToUse) -> void
 static Parquet.Maps.ChunkDetail.operator !=(Parquet.Maps.ChunkDetail inChunkType1, Parquet.Maps.ChunkDetail inChunkType2) -> bool
 static Parquet.Maps.ChunkDetail.operator ==(Parquet.Maps.ChunkDetail inChunkType1, Parquet.Maps.ChunkDetail inChunkType2) -> bool
 static Parquet.Maps.MapChunkModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
