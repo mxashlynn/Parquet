@@ -84,7 +84,7 @@ namespace Parquet.Maps
         /// <summary>Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
         [Ignore]
         // Index(13)
-        // TODO Should this be IReadOnlyGrid<ParquetPack> instead?
+        // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
         public override ParquetPackGrid ParquetDefinitions
             => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                                  nameof(ParquetDefinitions), nameof(MapRegionSketch)));
@@ -187,12 +187,12 @@ namespace Parquet.Maps
                                           RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
                                           null, parquetDefinitions);
 
-            // TODO Fix this section
+            // TODO [MAP EDITOR] Fix this section:
             /*
             // If the current sketch is contained in the game-wide database, replace it with the newly stitched region.
             if (All.Maps.Contains(ID))
             {
-                // TODO This bug surfaces a design flaw in MapModels -- we need MapModelStatus classes.
+                // TODO [MAP EDITOR] This bug surfaces a design flaw in MapModels -- we need MapModelStatus classes.
                 IModelCollectionEdit<MapModel> allMaps = All.Maps;
                 allMaps.Replace(newRegion);
             }

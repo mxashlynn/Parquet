@@ -17,7 +17,7 @@ namespace ParquetUnitTests.Items
             Assert.Equal(TestCapacity, inventory.Capacity);
         }
 
-        /* TODO Introduce EditorSupport unit tests!
+        /* TODO [TESTING] Introduce EditorSupport unit tests!
         [Fact]
         public void NewInventoryContainsOneSlotsForEachItemTest()
         {

@@ -7,7 +7,7 @@ namespace Parquet.Maps
     public abstract partial class MapModel
     {
         #region IMapRegionEdit Implementation
-        // TODO We probably need an IMapModelEdit implementation
+        // TODO [MAP EDITOR] We probably need an IMapModelEdit implementation
         #endregion
     }
 }

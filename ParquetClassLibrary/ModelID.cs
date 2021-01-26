@@ -328,7 +328,7 @@ namespace Parquet
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ModelID[,] inIDArray, Vector2D inPosition)
         {
-            // TODO IDEA: When we reach 1.0 this precondition could be incorporated into the return value.
+            // TODO [1.0] When we reach 1.0 this precondition could be incorporated into the return value.
             Precondition.IsNotNull(inIDArray, nameof(inIDArray));
 
             return inPosition.X > -1

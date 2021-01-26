@@ -61,7 +61,7 @@ namespace Parquet.Maps
         public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
                              bool inIsFilledOut = false,
                              ChunkDetail inDetails = null,
-                             // TODO Should this accept an IReadOnlyGrid<ParquetPack>s instead?
+                             // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
                              ParquetPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inRevision)
         {
@@ -102,7 +102,7 @@ namespace Parquet.Maps
             // Create a subregion to hold the generated parquets.
             var newParquetDefinitions = new ParquetPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
-            // TODO Replace this pass-through implementation.
+            // TODO [MAP EDITOR] Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
             for (var x = 0; x < ParquetsPerChunkDimension; x++)
@@ -126,7 +126,7 @@ namespace Parquet.Maps
             // Create a new MapChunkModel with the new subregion.
             var newChunk = new MapChunkModel(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
 
-            // TODO: Fix this section.
+            // TODO [MAP EDITOR] Fix this section:
             /*
             // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
             if (All.Maps.Contains(ID))

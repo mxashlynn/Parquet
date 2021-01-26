@@ -56,7 +56,7 @@ namespace Parquet.Rooms
             if (nonNullMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
                 || nonNullMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
-                // TODO Add an explanatory message here using Resources.
+                // TODO [LOGGING] Add an explanatory message here using Resources.
                 throw new ArgumentOutOfRangeException(nameof(inMinimumWalkableSpaces));
             }
 

@@ -611,7 +611,7 @@ namespace Parquet
             InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
                                   craftingRecipes, roomRecipes, maps, scripts, interactions, items);
 
-            // TODO In case of exception, log it and return false;
+            // TODO [LOGGING] In case of exception, log it and return false;
             return true;
         }
 
@@ -648,7 +648,7 @@ namespace Parquet
             Items.PutRecordsForType<ItemModel>();
             #endregion
 
-            // TODO In case of exception, log it and return false;
+            // TODO [LOGGING] In case of exception, log it and return false;
             return true;
         }
 

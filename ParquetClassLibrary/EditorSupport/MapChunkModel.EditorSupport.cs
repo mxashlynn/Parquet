@@ -11,7 +11,7 @@ namespace Parquet.Maps
     public partial class MapChunkModel
     {
         #region IMapChunkModelEdit Implementation
-        // TODO We probably need an IMapChunkModelEdit equivalent for this class.
+        // TODO [MAP EDITOR] We probably need an IMapChunkModelEdit equivalent for this class.
         #endregion
     }
 }

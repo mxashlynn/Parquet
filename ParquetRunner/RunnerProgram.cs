@@ -231,6 +231,7 @@ namespace ParquetRunner
         /// </summary>
         internal static void Main()
         {
+            /*
             Console.WriteLine(All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
@@ -240,6 +241,11 @@ namespace ParquetRunner
             Console.WriteLine($"Item range = {All.ItemIDs}");
 
             Console.WriteLine(All.SaveToCSVs() ? "Saved." : "Failed to save!");
+            */
+
+            Console.WriteLine("Written to default out.");
+            Console.Out.WriteLine("Written to standard out.");
+            Console.Error.WriteLine("Written to standard out.");
         }
     }
 }

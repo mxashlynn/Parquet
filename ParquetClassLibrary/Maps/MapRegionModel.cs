@@ -65,7 +65,7 @@ namespace Parquet.Maps
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
-        // TODO Should this be an IReadOnlyGrid<ParquetStatus>es instead?
+        // TODO [MAP EDITOR] [API] Should this be an IReadOnlyGrid<ParquetStatus>es instead?
         public ParquetStatusGrid ParquetStatuses { get; }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Parquet.Maps
                     break;
                 }
             }
-            // TODO Log this result as INFO or WARNING.
+            // TODO [LOGGING] Log this result as INFO or WARNING.
             return result;
 
             #region Local Helper Methods
@@ -191,7 +191,7 @@ namespace Parquet.Maps
             {
                 var parquetsInRoom = 0;
 
-                // TODO This might be a good place to optimize.
+                // TODO [OPTIMIZATION] This might be a good place to optimize.
                 for (var y = 0; y < inRegion.ParquetDefinitions.Rows; y++)
                 {
                     for (var x = 0; x < inRegion.ParquetDefinitions.Columns; x++)
