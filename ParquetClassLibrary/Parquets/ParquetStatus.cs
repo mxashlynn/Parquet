@@ -143,22 +143,22 @@ namespace Parquet.Parquets
                                                           inText, nameof(ParquetStatus)));
             }
 
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-                var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
+            var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
-                var parsedIsTrench = bool.Parse(parameterText[0]);
-                var parsedToughness = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
-                var parsedMaxToughness = int.Parse(parameterText[2], numberStyle, CultureInfo.InvariantCulture);
+            var parsedIsTrench = bool.TryParse(parameterText[0], out var temp1)
+                ? temp1
+                : Logger.DefaultWithParseLog(parameterText[0], nameof(IsTrench), false);
+            var parsedToughness = int.TryParse(parameterText[1], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp2)
+                ? temp2
+                : Logger.DefaultWithParseLog(parameterText[1], nameof(Toughness), maxToughness);
+            var parsedMaxToughness = int.TryParse(parameterText[2], All.SerializedNumberStyle,
+                                                  CultureInfo.InvariantCulture, out var temp3)
+                ? temp3
+                : Logger.DefaultWithParseLog(parameterText[2], nameof(maxToughness), BlockModel.DefaultMaxToughness);
 
-                return new ParquetStatus(parsedIsTrench, parsedToughness, parsedMaxToughness);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(ParquetStatus)), e);
-            }
+            return new ParquetStatus(parsedIsTrench, parsedToughness, parsedMaxToughness);
         }
         #endregion
 

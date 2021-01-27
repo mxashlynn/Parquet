@@ -234,14 +234,19 @@ namespace Parquet
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-            if (int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var id))
+            var id = int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var temp)
+                ? (ModelID)temp
+                : DefaultWithFatalParseLog(inText, nameof(ModelID), None);
+
+            return id;
+
+            // Convenience method that logs a fatal parsing error and returns the given default value.
+            // This is a fatal error as the library is unlikely to be able to accommodate a corrupted ModelID.
+            static ModelID DefaultWithFatalParseLog(string inValue, string inName, ModelID inDefaultValue)
             {
-                return (ModelID)id;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(ModelID)));
+                Logger.Log(LogLevel.Fatal, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                         inValue, inName), null);
+                return inDefaultValue;
             }
         }
 

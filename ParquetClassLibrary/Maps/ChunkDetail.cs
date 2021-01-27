@@ -160,22 +160,18 @@ namespace Parquet.Maps
             }
             else
             {
-                try
-                {
-                    var parameterText = inText.Split(Delimiters.InternalDelimiter);
+                var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
-                    var baseTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[0]);
-                    var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-                    var modifierTopography = (ChunkTopography)Enum.Parse(typeof(ChunkTopography), parameterText[2]);
-                    var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+                var baseTopography = Enum.TryParse(typeof(ChunkTopography), parameterText[0], true, out var temp1)
+                    ? (ChunkTopography)temp1
+                    : Logger.DefaultWithParseLog(parameterText[0], nameof(BaseTopography), ChunkTopography.Empty);
+                var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var modifierTopography = Enum.TryParse(typeof(ChunkTopography), parameterText[2], true, out var temp2)
+                    ? (ChunkTopography)temp2
+                    : Logger.DefaultWithParseLog(parameterText[2], nameof(ModifierTopography), ChunkTopography.Empty);
+                var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
-                    return new ChunkDetail(baseTopography, baseComposition, modifierTopography, modifierComposition);
-                }
-                catch (Exception e)
-                {
-                    throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inText, nameof(ChunkDetail)), e);
-                }
+                return new ChunkDetail(baseTopography, baseComposition, modifierTopography, modifierComposition);
             }
         }
         #endregion

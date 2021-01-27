@@ -11,11 +11,21 @@ namespace Parquet.Crafts
     /// </summary>
     public static class CraftConfiguration
     {
+        #region Class Defaults
+        /// <summary>A fall-back number of ingredient categories per recipe.</summary>
+        private static Range<int> DefaultIngredientCount { get; } = new Range<int>(1, 5);
+
+        /// <summary>A fall-back number of product categories per recipe.</summary>
+        private static Range<int> DefaultProductCount { get; } = new Range<int>(1, 5);
+        #endregion
+
+        #region Characteristics
         /// <summary>Number of ingredient categories per recipe.</summary>
-        public static Range<int> IngredientCount { get; set; } = new Range<int>(1, 5);
+        public static Range<int> IngredientCount { get; set; } = DefaultIngredientCount;
 
         /// <summary>Number of product categories per recipe.</summary>
-        public static Range<int> ProductCount { get; set; } = new Range<int>(1, 5);
+        public static Range<int> ProductCount { get; set; } = DefaultProductCount;
+        #endregion
 
         #region Self Serialization
         /// <summary>
@@ -38,13 +48,11 @@ namespace Parquet.Crafts
             IngredientCount = int.TryParse(ingredientValues[0], out var tempMin)
                             && int.TryParse(ingredientValues[1], out var tempMax)
                 ? new Range<int>(tempMin, tempMax)
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          serializedRanges[0], nameof(IngredientCount)));
+                : Logger.DefaultWithParseLog(serializedRanges[0], nameof(IngredientCount), DefaultIngredientCount);
             ProductCount = int.TryParse(productValues[0], out tempMin)
                          && int.TryParse(productValues[1], out tempMax)
                 ? new Range<int>(tempMin, tempMax)
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          serializedRanges[1], nameof(ProductCount)));        }
+                : Logger.DefaultWithParseLog(serializedRanges[1], nameof(ProductCount), DefaultProductCount);
 
         /// <summary>
         /// Writes <see cref="CraftConfiguration"/> data to the appropriate file.

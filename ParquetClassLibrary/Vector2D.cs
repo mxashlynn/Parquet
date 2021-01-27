@@ -169,16 +169,14 @@ namespace Parquet
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
-            if (int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var x)
-                && int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var y))
-            {
-                return new Vector2D(x, y);
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(Vector2D)));
-            }
+            var x = int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var temp1)
+                ? temp1
+                : Logger.DefaultWithParseLog(parameterText[0], nameof(X), Zero.X);
+            var y = int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var temp2)
+                ? temp2
+                : Logger.DefaultWithParseLog(parameterText[1], nameof(Y), Zero.Y);
+
+            return new Vector2D(x, y);
         }
         #endregion
 

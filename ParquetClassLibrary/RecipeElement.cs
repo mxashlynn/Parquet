@@ -123,32 +123,18 @@ namespace Parquet
                 return None;
             }
 
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-                var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
+            var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
 
-                var elementAmountText = elementSplitText[0];
-                var elementTagText = elementSplitText[1];
+            var elementAmountText = elementSplitText[0];
+            var elementTagText = elementSplitText[1];
 
-                if (int.TryParse(elementAmountText, numberStyle, CultureInfo.InvariantCulture, out var amount))
-                {
-                    var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
-                    return new RecipeElement(amount, tag);
-                }
-                else
-                {
-                    throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inText,
-                                                            $"{nameof(ElementAmount)}{Delimiters.InternalDelimiter}{nameof(ElementTag)}"));
+            var amount = int.TryParse(elementAmountText, numberStyle, CultureInfo.InvariantCulture, out var temp)
+                ? temp
+                : Logger.DefaultWithParseLog(elementAmountText, nameof(ElementAmount), 0);
+            var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
 
-                }
-            }
-            catch (Exception e)
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(RecipeElement)), e);
-            }
+            return new RecipeElement(amount, tag);
         }
 
         /// <summary>

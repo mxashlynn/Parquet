@@ -11,8 +11,15 @@ namespace Parquet.Items
     /// </summary>
     public static class InventoryConfiguration
     {
+        #region Class Defaults
+        /// <summary>The capacity to use for an <see cref="Inventory"/> when the configuration cannot be read.</summary>
+        private const int DefaultDefaultCapacity = 16;
+        #endregion
+
+        #region Characteristics
         /// <summary>The capacity to use for an <see cref="Inventory"/> when none is specified.</summary>
-        public static int DefaultCapacity { get; set; } = 16;
+        public static int DefaultCapacity { get; set; } = DefaultDefaultCapacity;
+        #endregion
 
         #region Self Serialization
         /// <summary>
@@ -32,8 +39,7 @@ namespace Parquet.Items
             // Parse.
             DefaultCapacity = int.TryParse(value, out var outInt)
                 ? outInt
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          value, nameof(DefaultCapacity)));
+                : Logger.DefaultWithParseLog(value, nameof(DefaultCapacity), DefaultDefaultCapacity);
         }
 
         /// <summary>

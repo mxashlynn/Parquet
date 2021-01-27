@@ -65,16 +65,13 @@ namespace Parquet.Biomes
             // Parse.
             LandThresholdFactor = double.TryParse(values[0], out var temp)
                 ? temp
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          values[0], nameof(LandThresholdFactor)));
+                : Logger.DefaultWithParseLog(values[0], nameof(LandThresholdFactor), 1.0);
             LiquidThresholdFactor = double.TryParse(values[1], out temp)
                 ? temp
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          values[1], nameof(LiquidThresholdFactor)));
+                : Logger.DefaultWithParseLog(values[1], nameof(LiquidThresholdFactor), 1.0);
             RoomThresholdFactor = double.TryParse(values[2], out temp)
                 ? temp
-                : throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                          values[2], nameof(RoomThresholdFactor)));
+                : Logger.DefaultWithParseLog(values[2], nameof(RoomThresholdFactor), 1.0);
         }
 
         /// <summary>

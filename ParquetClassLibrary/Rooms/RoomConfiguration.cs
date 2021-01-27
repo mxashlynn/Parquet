@@ -11,14 +11,24 @@ namespace Parquet.Rooms
     /// </summary>
     public static class RoomConfiguration
     {
+        #region Class Defaults
+        /// <summary>Minimum walkable spaces to use if the configuration cannot be read.</summary>
+        private const int DefaultMinWalkableSpaces = 4;
+
+        /// <summary>Maximum walkable spaces to use if the configuration cannot be read.</summary>
+        private const int DefaultMaxWalkableSpaces = 121;
+        #endregion
+
+        #region Characteristics
         /// <summary>Minimum number of open walkable spaces needed for any room to register.</summary>
-        public static int MinWalkableSpaces { get; set; } = 4;
+        public static int MinWalkableSpaces { get; set; } = DefaultMinWalkableSpaces;
 
         /// <summary>Maximum number of open walkable spaces needed for any room to register.</summary>
-        public static int MaxWalkableSpaces { get; set; } = 121;
+        public static int MaxWalkableSpaces { get; set; } = DefaultMaxWalkableSpaces;
 
         /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
         public static int MinPerimeterSpaces => MinWalkableSpaces * 3;
+        #endregion
 
         #region Self Serialization
         /// <summary>
@@ -36,24 +46,12 @@ namespace Parquet.Rooms
             var values = valueLine.Split(Delimiters.PrimaryDelimiter);
 
             // Parse.
-            if (int.TryParse(values[0], out var temp))
-            {
-                MinWalkableSpaces = temp;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        values[0], nameof(MinWalkableSpaces)));
-            }
-            if (int.TryParse(values[1], out temp))
-            {
-                MaxWalkableSpaces = temp;
-            }
-            else
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        values[1], nameof(MaxWalkableSpaces)));
-            }
+            MinWalkableSpaces = int.TryParse(values[0], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp1)
+                ? temp1
+                : Logger.DefaultWithParseLog(values[0], nameof(MinWalkableSpaces), DefaultMinWalkableSpaces);
+            MaxWalkableSpaces = int.TryParse(values[1], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp2)
+                ? temp2
+                : Logger.DefaultWithParseLog(values[1], nameof(MaxWalkableSpaces), DefaultMinWalkableSpaces);
         }
 
         /// <summary>
