@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using Parquet.Properties;
 
 namespace Parquet
 {
@@ -8,9 +10,12 @@ namespace Parquet
     /// <seealso cref="ILogger"/>
     public static class Logger
     {
+        #region Characteristics
         /// <summary>The instance currently being used to log events.</summary>
         private static ILogger currentLogger = new LoggerDefault();
+        #endregion
 
+        #region Initialization
         /// <summary>
         /// Represents a type used to perform logging.
         /// </summary>
@@ -21,7 +26,9 @@ namespace Parquet
             => currentLogger = inLoggerToUse is not null
                 ? inLoggerToUse
                 : currentLogger;
+        #endregion
 
+        #region Log Access
         /// <summary>
         /// Writes a log entry.
         /// </summary>
@@ -38,5 +45,39 @@ namespace Parquet
         /// <param name="inObject">An object related to the event being logged.  This will be converted to a string.</param>
         public static void Log(LogLevel inLogLevel, object inObject)
             => currentLogger.Log(inLogLevel, inObject?.ToString() ?? "", null);
+        #endregion
+
+        #region Convenience Routines
+        /// <summary>
+        /// Convenience method that logs a parsing error and returns the given default value.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inValue">The value of the item that failed to parse.</param>
+        /// <param name="inName">The name of the item that failed to parse.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        internal static T DefaultWithParseLog<T>(string inValue, string inName, T inDefaultValue)
+        {
+            currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
+                                                            inValue, inName), null);
+            return inDefaultValue;
+        }
+
+        /// <summary>
+        /// Convenience method that logs a conversion error and returns the given default value.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inValue">The value of the item that failed to convert.</param>
+        /// <param name="inName">The name of the item that failed to convert.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        internal static T DefaultWithConvertLog<T>(string inValue, string inName, T inDefaultValue)
+        {
+            currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, inName), null);
+
+            return inDefaultValue;
+        }
+        #endregion
     }
 }
