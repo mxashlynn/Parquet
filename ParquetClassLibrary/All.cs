@@ -532,6 +532,7 @@ namespace Parquet
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorClearAllFirst,
                                                            nameof(All), "initialization"));
+                return;
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
             Precondition.IsNotNull(inGames, nameof(inGames));
