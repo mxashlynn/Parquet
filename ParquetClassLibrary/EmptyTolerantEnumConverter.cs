@@ -24,8 +24,25 @@ namespace Parquet
             : base(inType)
             => EnumType = (inType?.IsEnum ?? false)
                 ? inType
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
-                                                            nameof(inType), inType?.Name ?? "null", nameof(Enum)));
+                : DefaultWithCastLog(nameof(inType), inType?.Name ?? "null", nameof(Enum), default(Type));
+
+        /// <summary>
+        /// Convenience method that logs a casting error and returns the given default value.
+        /// This is a fatal error as the library will be unable to handle a default type in place of an enumeration.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inValue">The value that could not be case.</param>
+        /// <param name="inActualTypeName">The name of type received.</param>
+        /// <param name="inExpectedTypeName">The name of type expected.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        private static T DefaultWithCastLog<T>(string inValue, string inActualTypeName, string inExpectedTypeName, T inDefaultValue)
+        {
+            Logger.Log(LogLevel.Fatal, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
+                                                     inValue, inActualTypeName, inExpectedTypeName), null);
+
+            return inDefaultValue;
+        }
 
         /// <summary>
         /// Converts the <c>string</c> to an <c>object</c>.
