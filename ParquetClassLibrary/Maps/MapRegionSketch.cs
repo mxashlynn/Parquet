@@ -81,13 +81,20 @@ namespace Parquet.Maps
         [Index(12)]
         public ModelIDGrid Chunks { get; }
 
-        /// <summary>Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
-        [Ignore]
+        /// <summary>Do not use.  Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
         // Index(13)
+        [Ignore]
+        [Obsolete("Do not use.  Generate a MapRegionModel by calling Stitch, then access the parquet via that instance.")]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
         public override ParquetPackGrid ParquetDefinitions
-            => throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
-                                                                 nameof(ParquetDefinitions), nameof(MapRegionSketch)));
+        {
+            get
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
+                                                           nameof(ParquetDefinitions), nameof(MapRegionSketch)));
+                return new ParquetPackGrid();
+            }
+        }
         #endregion
         #endregion
 
