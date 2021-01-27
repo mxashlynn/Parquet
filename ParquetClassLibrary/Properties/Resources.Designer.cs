@@ -178,6 +178,15 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tried to retrive {0} from {1} but the collection is empty..
+        /// </summary>
+        internal static string ErrorEmptyCollection {
+            get {
+                return ResourceManager.GetString("ErrorEmptyCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is of type {1} but must be of type {2}..
         /// </summary>
         internal static string ErrorInvalidCast {
@@ -196,7 +205,7 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to laod..
+        ///   Looks up a localized string similar to An error occurred while trying to load..
         /// </summary>
         internal static string ErrorLoading {
             get {

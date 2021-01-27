@@ -169,6 +169,10 @@
     <value>To access this command, please rebuild Parquet with editor support enabled.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="ErrorEmptyCollection" xml:space="preserve">
+    <value>Tried to retrive {0} from {1} but the collection is empty.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorInvalidCast" xml:space="preserve">
     <value>{0} is of type {1} but must be of type {2}.</value>
     <comment>Error string.</comment>

@@ -213,12 +213,13 @@ namespace Parquet.Maps
             // Returns true if enough parquets contribute to the biome, false otherwise.
             static bool ConstitutesBiome(MapRegionModel inRegion, BiomeRecipe inBiome, int inThreshold)
                 => CountMeetsOrExceedsThreshold(inRegion,
-                                                parquet => parquet.AddsToBiome.Contains(inBiome.ParquetCriteria),
+                                                parquet => parquet?.AddsToBiome.Contains(inBiome.ParquetCriteria) ?? false,
                                                 inThreshold);
 
             // Determines if the region has enough parquets satisfying the given predicate to meet or exceed the given threshold.
             //     inRegion -> The region to test.
             //     inPredicate -> A predicate indicating if the parquet should be counted.
+            //                    The predicate must accommodate a null argument.
             //     inThreshold -> A total number of parquets that must be met for the region to qualify.
             // Returns true if enough parquets satisfy the conditions given, false otherwise.
             static bool CountMeetsOrExceedsThreshold(MapRegionModel inRegion, Predicate<ParquetModel> inPredicate, int inThreshold)
@@ -227,19 +228,19 @@ namespace Parquet.Maps
 
                 foreach (ParquetPack pack in inRegion.ParquetDefinitions)
                 {
-                    if (inPredicate(All.Floors.Get<FloorModel>(pack.FloorID)))
+                    if (inPredicate(All.Floors.GetOrNull<FloorModel>(pack.FloorID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Blocks.Get<BlockModel>(pack.BlockID)))
+                    if (inPredicate(All.Blocks.GetOrNull<BlockModel>(pack.BlockID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Furnishings.Get<FurnishingModel>(pack.FurnishingID)))
+                    if (inPredicate(All.Furnishings.GetOrNull<FurnishingModel>(pack.FurnishingID)))
                     {
                         count++;
                     }
-                    if (inPredicate(All.Collectibles.Get<CollectibleModel>(pack.CollectibleID)))
+                    if (inPredicate(All.Collectibles.GetOrNull<CollectibleModel>(pack.CollectibleID)))
                     {
                         count++;
                     }

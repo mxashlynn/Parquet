@@ -88,9 +88,9 @@ namespace Parquet.Parquets
         /// <returns><c>true</c>, if this <see cref="ParquetPack"/> is Enclosing, <c>false</c> otherwise.</returns>
         public bool IsEnclosing
             => (BlockID != ModelID.None
-                && !(All.Blocks.Get<BlockModel>(BlockID)?.IsLiquid ?? true))
+                && !(All.Blocks.GetOrNull<BlockModel>(BlockID)?.IsLiquid ?? true))
             || (FurnishingID != ModelID.None
-                && (All.Furnishings.Get<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
+                && (All.Furnishings.GetOrNull<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
 
         /// <summary>
         /// A <see cref="ParquetPack"/> is Entry iff:
@@ -100,7 +100,7 @@ namespace Parquet.Parquets
         /// <returns><c>true</c>, if this <see cref="ParquetPack"/> is Entry, <c>false</c> otherwise.</returns>
         internal bool IsEntry
             => FurnishingID != ModelID.None
-            && (All.Furnishings.Get<FurnishingModel>(FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
+            && (All.Furnishings.GetOrNull<FurnishingModel>(FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
             // Inequality standing in for missing conditional XOR here.
             && (IsWalkable != IsEnclosing);
 
@@ -115,7 +115,7 @@ namespace Parquet.Parquets
             => FloorID != ModelID.None
             && BlockID == ModelID.None
             && (FurnishingID == ModelID.None
-                || !(All.Furnishings.Get<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
+                || !(All.Furnishings.GetOrNull<FurnishingModel>(FurnishingID)?.IsEnclosing ?? false));
         #endregion
 
         #region IEquatable Implementation

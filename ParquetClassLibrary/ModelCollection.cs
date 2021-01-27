@@ -133,33 +133,40 @@ namespace Parquet
         /// <typeparam name="TTarget">
         /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
         /// </typeparam>
-        /// <returns>The specified <typeparamref name="TTarget"/>.</returns>
-        public TTarget Get<TTarget>(ModelID inID)
+        /// <returns>The specified <typeparamref name="TTarget"/>, or null if no such model exists in this collection.</returns>
+        /// <remarks>
+        /// This method will return null in the following cases:
+        /// 1, if <paramref name="inID"/> is out of range or undefined;
+        /// 2, if <paramref name="inID"/> is <see cref="ModelID.None"/>;
+        /// 3, if this collection is empty.
+        /// </remarks>
+        public TTarget GetOrNull<TTarget>(ModelID inID)
             where TTarget : TModel
         {
-            Precondition.IsInRange(inID, Bounds, nameof(inID));
-
-            return inID == ModelID.None
-                ? throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorModelNotFound,
-                                                            typeof(TTarget).Name, nameof(ModelID.None)))
-                : (TTarget)Models[inID];
+            if (Models.Count < 1)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorEmptyCollection,
+                                                           $"{typeof(TTarget).Name} {inID}", nameof(ModelCollection<TModel>)));
+                return null;
+            }
+            else if (!inID.IsValidForRange(Bounds))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                           nameof(ModelCollection<TModel>), inID, Bounds));
+                return null;
+            }
+            else if (inID == ModelID.None
+                     || !Models.ContainsKey(inID))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorModelNotFound,
+                                                           typeof(TTarget).Name, nameof(ModelID.None)));
+                return null;
+            }
+            else
+            {
+                return (TTarget)Models[inID];
+            }
         }
-
-        /// <summary>
-        /// Retrieves a specified <typeparamref name="TModel"/> if possible.
-        /// </summary>
-        /// <param name="inID">A valid <typeparamref name="TModel"/> identifier.</param>
-        /// <returns>The specified <typeparamref name="TModel"/>, or <c>null</c> if no such model can be found.</returns>
-        /// <remarks>
-        /// Note that this method will silently fail by returning null if <paramref name="inID"/> is out of range or undefined.
-        /// This method exists primarily to support design-time tools that expect undefined models as part of the normal workflow.
-        /// </remarks>
-        public TModel GetOrNull(ModelID inID)
-            => ModelID.None != inID
-                && inID.IsValidForRange(Bounds)
-                && Models.ContainsKey(inID)
-                ? (TModel)Models[inID]
-                : null;
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{TModel}"/> to support simple iteration.

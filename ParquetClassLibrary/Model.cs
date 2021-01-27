@@ -19,7 +19,7 @@ namespace Parquet
     /// Individual game objects are represented and referenced as instances of <see cref="ModelID"/>
     /// within <see cref="ModelCollection{T}"/>s in other classes.  Like a class instance,
     /// the Model for a given ModelID is looked up from a singular definition,
-    /// in this case via <see cref="ModelCollection{T}.Get{T}(ModelID)"/>.<para />
+    /// in this case via <see cref="ModelCollection{T}.GetOrNull{T}(ModelID)"/>.<para />
     /// <para />
     /// Collections of the definitions used during play are contained in <see cref="All"/>.<para />
     /// <para />

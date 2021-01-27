@@ -196,7 +196,7 @@ namespace Parquet.Items
             var remainder = inHowMany;
             // If this is happening during deserialization, assume the stack max was respected during serialization.
             var stackMax = All.CollectionsHaveBeenInitialized
-                ? All.Items.Get<ItemModel>(inItemID).StackMax
+                ? All.Items?.GetOrNull<ItemModel>(inItemID)?.StackMax ?? ItemModel.DefaultStackMax
                 : ItemModel.DefaultStackMax;
 
             while (remainder > 0)

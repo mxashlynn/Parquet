@@ -522,9 +522,9 @@ Parquet.ModelCollection<TModel>.Bounds.get -> System.Collections.Generic.IReadOn
 Parquet.ModelCollection<TModel>.Contains(Parquet.Model inModel) -> bool
 Parquet.ModelCollection<TModel>.Contains(Parquet.ModelID inID) -> bool
 Parquet.ModelCollection<TModel>.Count.get -> int
-Parquet.ModelCollection<TModel>.Get<TTarget>(Parquet.ModelID inID) -> TTarget
 Parquet.ModelCollection<TModel>.GetEnumerator() -> System.Collections.Generic.IEnumerator<Parquet.Model>
 Parquet.ModelCollection<TModel>.GetOrNull(Parquet.ModelID inID) -> TModel
+Parquet.ModelCollection<TModel>.GetOrNull<TTarget>(Parquet.ModelID inID) -> TTarget
 Parquet.ModelCollection<TModel>.GetRecordsForType<TModelInner>(Parquet.Range<Parquet.ModelID> inBounds) -> Parquet.ModelCollection<TModel>
 Parquet.ModelCollection<TModel>.GetRecordsForType<TModelInner>(System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBounds) -> Parquet.ModelCollection<TModel>
 Parquet.ModelCollection<TModel>.ModelCollection(Parquet.Range<Parquet.ModelID> inBounds, System.Collections.Generic.IEnumerable<Parquet.Model> inModels) -> void

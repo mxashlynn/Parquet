@@ -28,7 +28,7 @@ namespace Parquet.Items
         /// <summary>How many of the item may share this slot, cached.</summary>
         private int StackMax
             => All.CollectionsHaveBeenInitialized
-                ? All.Items?.Get<ItemModel>(ItemID)?.StackMax ?? ItemModel.DefaultStackMax
+                ? All.Items?.GetOrNull<ItemModel>(ItemID)?.StackMax ?? ItemModel.DefaultStackMax
                 : ItemModel.DefaultStackMax;
         #endregion
 

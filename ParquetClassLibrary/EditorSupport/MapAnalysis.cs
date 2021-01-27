@@ -21,10 +21,10 @@ namespace Parquet.EditorSupport
         /// A database of directions and their opposites, together with the properties needed to inspect both.
         /// </summary>
         internal static readonly IReadOnlyCollection<(IDByDirection GetLeavingRegionID,
-                                     string LeavingDirection,
-                                     IDByDirection GetReturningRegionID,
-                                     string ReturningDirection)> Directions =
-            new List<(IDByDirection, string, IDByDirection, string)>
+                                                      string LeavingDirection,
+                                                      IDByDirection GetReturningRegionID,
+                                                      string ReturningDirection)>
+            Directions = new List<(IDByDirection, string, IDByDirection, string)>
             {
                 { ((TMapType map) => map.RegionToTheNorthID, Resources.DirectionNorth,
                    (TMapType map) => map.RegionToTheSouthID, Resources.DirectionSouth) },
@@ -67,7 +67,13 @@ namespace Parquet.EditorSupport
                 return inconsistentExitDirections;
             }
 
-            var currentRegion = All.Maps.Get<TMapType>(inRegionID);
+            var currentRegion = All.Maps.GetOrNull<TMapType>(inRegionID);
+
+            if (currentRegion is null)
+            {
+                return inconsistentExitDirections;
+            }
+
             foreach (var directionPair in MapAnalysis<TMapType>.Directions)
             {
                 var adjacentRegionID = directionPair.GetLeavingRegionID(currentRegion);
@@ -76,7 +82,12 @@ namespace Parquet.EditorSupport
                     continue;
                 }
 
-                var adjacentRegion = All.Maps.Get<TMapType>(adjacentRegionID);
+                var adjacentRegion = All.Maps.GetOrNull<TMapType>(adjacentRegionID);
+                if (adjacentRegion is not null)
+                {
+                    continue;
+                }
+
                 if (directionPair.GetReturningRegionID(adjacentRegion) != inRegionID)
                 {
                     inconsistentExitDirections.Add(

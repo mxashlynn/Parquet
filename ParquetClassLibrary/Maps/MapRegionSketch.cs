@@ -164,7 +164,11 @@ namespace Parquet.Maps
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
                     // Get potentially ungenerated chunk.
-                    var currentChunk = All.Maps.Get<MapChunkModel>(Chunks[chunkY, chunkX]);
+                    var currentChunk = All.Maps.GetOrNull<MapChunkModel>(Chunks[chunkY, chunkX]);
+                    if (currentChunk is null)
+                    {
+                        continue;
+                    }
 
                     // Generate chunk if needed.
                     currentChunk = currentChunk.Generate();
