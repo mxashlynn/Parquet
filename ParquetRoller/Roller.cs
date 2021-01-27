@@ -76,38 +76,35 @@ namespace ParquetRoller
         /// <param name="inCommandText">The first command line argument.</param>
         /// <returns>An action for <see cref="Roller"/> to take.</returns>
         private static Command ParseCommand(string inCommandText)
-        {
-            switch (inCommandText)
+            => inCommandText switch
             {
-                case "/?":
-                case "-?":
-                case "/h":
-                case "-h":
-                case "--help":
-                case "help":
-                    return DisplayHelp;
-                case "-v":
-                case "version":
-                    return DisplayVersion;
-                case "-t":
-                case "template":
-                case "templates":
-                    return CreateTemplates;
-                case "-r":
-                case "roll":
-                    return RollCSVs;
-                case "-c":
-                case "check":
-                    return CheckAdjacency;
-                case "-p":
-                    return ListPronouns;
-                case "-l":
-                case "list":
-                    return ListPropertyForCategory;
-                default:
-                    return DisplayDefault;
-            }
-        }
+                "/?" or
+                "-?" or
+                "/h" or
+                "-h" or
+                "--help" or
+                "help" => DisplayHelp,
+
+                "-v" or
+                "version" => DisplayVersion,
+
+                "-t" or
+                "template" or
+                "templates" => CreateTemplates,
+
+                "-r" or
+                "roll" => RollCSVs,
+
+                "-c" or
+                "check" => CheckAdjacency,
+
+                "-p" => ListPronouns,
+
+                "-l" or
+                "list" => ListPropertyForCategory,
+
+                _ => DisplayDefault,
+            };
 
         /// <summary>
         /// Takes a single argument corresponding to the "property" selection and determines which subcommand it corresponds to.
