@@ -45,7 +45,7 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelTag IMutableBiomeRecipe.ParquetCriteria => ParquetCriteria;
+        ModelTag IMutableBiomeRecipe.ParquetCriteria { get => ParquetCriteria; set => ParquetCriteria = value; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         /// <remarks>

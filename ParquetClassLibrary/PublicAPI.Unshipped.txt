@@ -210,6 +210,7 @@ Parquet.EditorSupport.IMutableBiomeRecipe.IsLiquidBased.set -> void
 Parquet.EditorSupport.IMutableBiomeRecipe.IsRoomBased.get -> bool
 Parquet.EditorSupport.IMutableBiomeRecipe.IsRoomBased.set -> void
 Parquet.EditorSupport.IMutableBiomeRecipe.ParquetCriteria.get -> Parquet.ModelTag
+Parquet.EditorSupport.IMutableBiomeRecipe.ParquetCriteria.set -> void
 Parquet.EditorSupport.IMutableBiomeRecipe.Tier.get -> int
 Parquet.EditorSupport.IMutableBiomeRecipe.Tier.set -> void
 Parquet.EditorSupport.IMutableBlockModel

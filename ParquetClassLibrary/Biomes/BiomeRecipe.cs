@@ -35,7 +35,7 @@ namespace Parquet.Biomes
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         [Index(7)]
-        public ModelTag ParquetCriteria { get; }
+        public ModelTag ParquetCriteria { get; private set; }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         [Index(8)]
