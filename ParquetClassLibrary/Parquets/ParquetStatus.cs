@@ -3,7 +3,6 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using Parquet.Properties;
 
 namespace Parquet.Parquets
 {

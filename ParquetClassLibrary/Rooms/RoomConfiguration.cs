@@ -1,8 +1,6 @@
-using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using Parquet.Properties;
 
 namespace Parquet.Rooms
 {

@@ -1,10 +1,8 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using Parquet.Properties;
 
 namespace Parquet.Scripts
 {
