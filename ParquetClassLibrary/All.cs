@@ -530,8 +530,8 @@ namespace Parquet
         {
             if (CollectionsHaveBeenInitialized)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorClearAllFirst,
-                                                                  nameof(All), "initialization"));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorClearAllFirst,
+                                                           nameof(All), "initialization"));
             }
             Precondition.IsNotNull(inPronouns, nameof(inPronouns));
             Precondition.IsNotNull(inGames, nameof(inGames));
@@ -695,7 +695,7 @@ namespace Parquet
         }
 #else
         public static void Clear()
-            => Logger.Log(LogLevel.Error, Resources.ErrorEditorSupport);
+            => Logger.Log(LogLevel.Warning, Resources.ErrorEditorSupport);
 
 #endif
         #endregion
