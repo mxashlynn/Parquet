@@ -70,9 +70,9 @@ namespace Parquet.Crafts
             if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture,
-                                                                    Resources.ErrorUnsupportedDimension,
-                                                                    nameof(inPanelPattern)));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
+                                                           Resources.ErrorUnsupportedDimension,
+                                                           nameof(inPanelPattern)));
             }
 
             Products = nonNullProducts.ToList();
