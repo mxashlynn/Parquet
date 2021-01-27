@@ -104,7 +104,7 @@ namespace Parquet
                 ? string.CompareOrdinal(tag, "") == 0
                     ? nameof(None)
                     : (string)tag
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", ModelTag(ModelID), "");
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ModelTag), "");
         #endregion
 
         #region Utilities

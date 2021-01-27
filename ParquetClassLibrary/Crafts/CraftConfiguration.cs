@@ -53,6 +53,7 @@ namespace Parquet.Crafts
                          && int.TryParse(productValues[1], out tempMax)
                 ? new Range<int>(tempMin, tempMax)
                 : Logger.DefaultWithParseLog(serializedRanges[1], nameof(ProductCount), DefaultProductCount);
+        }
 
         /// <summary>
         /// Writes <see cref="CraftConfiguration"/> data to the appropriate file.
