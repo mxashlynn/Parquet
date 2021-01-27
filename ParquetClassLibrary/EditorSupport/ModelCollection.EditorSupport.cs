@@ -13,10 +13,13 @@ namespace Parquet
     public partial class ModelCollection<TModel> : IMutableModelCollection<TModel>
         where TModel : Model
     {
-        int ICollection<TModel>.Count => throw new NotImplementedException();
-
-        bool ICollection<TModel>.IsReadOnly => throw new NotImplementedException();
         #region IModelCollectionEdit Implementation
+        /// <summary>The number of <see cref="TModel"/>s in the <see cref="ModelCollection{TModel}"/>.</summary>
+        int ICollection<TModel>.Count => Count;
+
+        /// <summary><c>true</c> if the <see cref="ModelCollection{TModel}"/> is read-only; otherwise, <c>false</c>.</summary>
+        bool ICollection<TModel>.IsReadOnly => false;
+
         /// <summary>
         /// Adds the given <typeparamref name="TModel"/> to the collection.
         /// </summary>
@@ -33,8 +36,20 @@ namespace Parquet
                                                             typeof(TModel).Name, inModel.Name));
         }
 
-        bool ICollection<TModel>.Contains(TModel item) => throw new NotImplementedException();
-        void ICollection<TModel>.CopyTo(TModel[] array, int arrayIndex) => throw new NotImplementedException();
+        /// <summary>
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <see cref="TModel"/>.
+        /// </summary>
+        /// <param name="inModel">The <see cref="TModel"/> to find.</param>
+        /// <returns><c>true</c> if the <see cref="TModel"/> was found; <c>false</c> otherwise.</returns>
+        bool ICollection<TModel>.Contains(TModel item) => Contains(item);
+
+        /// <summary>
+        /// Copies the elements of the <see cref="ModelCollection{TModel}"/> to an <see cref="Array"/>, starting at the given index.
+        /// </summary>
+        /// <param name="inArray">The array to copy to.</param>
+        /// <param name="inArrayIndex">The index at which to begin copying.</param>
+        void ICollection<TModel>.CopyTo(TModel[] inArray, int inArrayIndex)
+            => EditableModels.Values.CopyTo(inArray, inArrayIndex);
 
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
@@ -45,7 +60,6 @@ namespace Parquet
             Precondition.IsNotNull(inModel);
             return ((IMutableModelCollection<TModel>)this).Remove(inModel);
         }
-
 
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
