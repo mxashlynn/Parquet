@@ -682,7 +682,8 @@ namespace Parquet
         }
 #else
         public static void Clear()
-            => throw new InvalidOperationException(Resources.ErrorEditorSupport);
+            => Logger.Log(LogLevel.Error, Resources.ErrorEditorSupport);
+
 #endif
         #endregion
 
