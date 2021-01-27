@@ -181,19 +181,11 @@ namespace Parquet.Crafts
                 return Unused;
             }
 
-            try
-            {
-                var panelSplitText = inText.Split(Delimiters.InternalDelimiter);
-                var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
-                var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
+            var panelSplitText = inText.Split(Delimiters.InternalDelimiter);
+            var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
+            var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
 
-                return new StrikePanel(workingRangeDeserialized, idealRangeDeserialized);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(StrikePanel)), e);
-            }
+            return new StrikePanel(workingRangeDeserialized, idealRangeDeserialized);
         }
 
         /// <summary>

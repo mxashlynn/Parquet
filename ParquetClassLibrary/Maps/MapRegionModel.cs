@@ -161,7 +161,6 @@ namespace Parquet.Maps
                     break;
                 }
             }
-            // TODO [LOGGING] Log this result as INFO or WARNING.
             return result;
 
             #region Local Helper Methods
