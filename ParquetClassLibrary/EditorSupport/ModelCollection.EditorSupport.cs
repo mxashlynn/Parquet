@@ -30,10 +30,15 @@ namespace Parquet
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
 
-            EditableModels[inModel.ID] = !Contains(inModel.ID)
-                ? inModel
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotAdd,
-                                                            typeof(TModel).Name, inModel.Name));
+            if (!Contains(inModel.ID))
+            {
+                EditableModels[inModel.ID] = inModel;
+            }
+            else
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotAdd,
+                                                           typeof(TModel).Name, inModel.Name));
+            }
         }
 
         /// <summary>
@@ -91,10 +96,15 @@ namespace Parquet
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
 
-            EditableModels[inModel.ID] = Contains(inModel.ID)
-                ? inModel
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
-                                                            typeof(TModel).Name, inModel.Name));
+            if (Contains(inModel.ID))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
+                                                           typeof(TModel).Name, inModel.Name));
+            }
+            else
+            {
+                EditableModels[inModel.ID] = inModel;
+            }
         }
         #endregion
     }
