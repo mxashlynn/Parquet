@@ -49,21 +49,6 @@ namespace Parquet
 
         #region Convenience Routines
         /// <summary>
-        /// Convenience method that logs a parsing error and returns the given default value.
-        /// </summary>
-        /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inValue">The value of the item that failed to parse.</param>
-        /// <param name="inName">The name of the item that failed to parse.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
-        /// <returns>The default value given.</returns>
-        internal static T DefaultWithParseLog<T>(string inValue, string inName, T inDefaultValue)
-        {
-            currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inValue, inName), null);
-            return inDefaultValue;
-        }
-
-        /// <summary>
         /// Convenience method that logs a conversion error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
@@ -74,6 +59,21 @@ namespace Parquet
         internal static T DefaultWithConvertLog<T>(string inValue, string inName, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
+                                                            inValue, inName), null);
+            return inDefaultValue;
+        }
+
+        /// <summary>
+        /// Convenience method that logs a parsing error and returns the given default value.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inValue">The value of the item that failed to parse.</param>
+        /// <param name="inName">The name of the item that failed to parse.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        internal static T DefaultWithParseLog<T>(string inValue, string inName, T inDefaultValue)
+        {
+            currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                             inValue, inName), null);
             return inDefaultValue;
         }
