@@ -6,5 +6,9 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0022:Use expression body for methods",
-                           Justification = "I think it's better to use full blocks when it comes to unit tests.",
+                           Justification = "Prefer keeping unit tests in Arrange-Act-Assert form.",
+                           Scope = "namespaceanddescendants", Target = "~N:ParquetUnitTests")]
+
+[assembly: SuppressMessage("Style", "IDE0017:Simplify object initialization",
+                           Justification = "Prefer keeping unit tests in Arrange-Act-Assert form.",
                            Scope = "namespaceanddescendants", Target = "~N:ParquetUnitTests")]

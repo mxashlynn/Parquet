@@ -16,7 +16,7 @@ namespace ParquetUnitTests.Items
         [Fact]
         public void CannotStoreSomeOfNothingTest()
         {
-            void TestCode()
+            static void TestCode()
             {
                 var _ = new InventorySlot(ModelID.None, Some);
             }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Items
         [Fact]
         public void CannotStoreNoneOfSomethingTest()
         {
-            void TestCode()
+            static void TestCode()
             {
                 var _ = new InventorySlot(TestModels.TestItem1.ID, None);
             }
@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Items
         [Fact]
         public void CannotStoreNonItemTest()
         {
-            void TestCode()
+            static void TestCode()
             {
                 var _ = new InventorySlot(TestModels.TestBlock.ID, Some);
             }

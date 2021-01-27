@@ -9,7 +9,7 @@ namespace ParquetUnitTests
         [Fact]
         public void ZeroAmountsFailTest()
         {
-            void TestCodeZero()
+            static void TestCodeZero()
             {
                 var _ = new RecipeElement(0, "test");
             }
@@ -20,7 +20,7 @@ namespace ParquetUnitTests
         [Fact]
         public void NegativeeAountsFailTest()
         {
-            void TestCodeNegative()
+            static void TestCodeNegative()
             {
                 var _ = new RecipeElement(-1, "test");
             }

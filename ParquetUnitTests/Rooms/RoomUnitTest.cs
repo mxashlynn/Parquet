@@ -47,7 +47,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NullWalkableAreaThrowsTest()
         {
-            void NullWalkableArea()
+            static void NullWalkableArea()
             {
                 var _ = new Room(null, TestPerimeter);
             }
@@ -58,7 +58,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void NullPerimeterThrowsTest()
         {
-            void NullPerimeter()
+            static void NullPerimeter()
             {
                 var _ = new Room(TestWalkableArea, null);
             }
@@ -69,7 +69,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void EmptyWalkableAreaThrowsTest()
         {
-            void EmptyWalkableArea()
+            static void EmptyWalkableArea()
             {
                 var _ = new Room(new HashSet<MapSpace>(), TestPerimeter);
             }
@@ -80,7 +80,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void EmptyPerimeterThrowsTest()
         {
-            void EmptyPerimeter()
+            static void EmptyPerimeter()
             {
                 var _ = new Room(TestWalkableArea, new HashSet<MapSpace>());
             }
