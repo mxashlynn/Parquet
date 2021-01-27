@@ -150,21 +150,15 @@ namespace Parquet.Items
                 return Logger.DefaultWithConvertLog(inText, nameof(InventorySlot), Empty);
             }
 
-            try
-            {
-                var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-                var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
+            var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
-                var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var count = int.Parse(parameterText[1], numberStyle, CultureInfo.InvariantCulture);
+            var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var count = int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var temp)
+                ? temp
+                : Logger.DefaultWithParseLog(parameterText[1], nameof(InventorySlot), 1);
 
-                return new InventorySlot(id, count);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(InventorySlot)), e);
-            }
+            return new InventorySlot(id, count);
         }
         #endregion
 

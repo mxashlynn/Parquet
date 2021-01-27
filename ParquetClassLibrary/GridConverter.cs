@@ -85,13 +85,12 @@ namespace Parquet
 
             var headerAndGridTexts = inText.Split(Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Delimiters.DimensionalDelimiter);
-            if (!int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var rowCount)
-                || !int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var columnCount))
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(ModelID)));
-            }
-
+            var rowCount = int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var temp1)
+                ? temp1
+                : Logger.DefaultWithParseLog(headerAndGridTexts[0], "rowCount", 1);
+            var columnCount = int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var temp2)
+                ? temp2
+                : Logger.DefaultWithParseLog(headerAndGridTexts[0], "columnCount", 1);
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });
             var gridTexts = headerAndGridTexts[1].Split(Delimiters.SecondaryDelimiter);
             var gridTextEnumerator = gridTexts.GetEnumerator();
