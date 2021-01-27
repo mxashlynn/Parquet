@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
+using Parquet.Properties;
 
 namespace Parquet.Rooms
 {
@@ -56,8 +58,9 @@ namespace Parquet.Rooms
             if (nonNullMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
                 || nonNullMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
-                // TODO [LOGGING] Add an explanatory message here using Resources.
-                throw new ArgumentOutOfRangeException(nameof(inMinimumWalkableSpaces));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningRoomSize,
+                                                           inMinimumWalkableSpaces, RoomConfiguration.MinWalkableSpaces,
+                                                           RoomConfiguration.MaxWalkableSpaces));
             }
 
             MinimumWalkableSpaces = nonNullMinimumWalkableSpaces;

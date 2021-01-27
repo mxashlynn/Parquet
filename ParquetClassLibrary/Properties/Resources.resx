@@ -253,6 +253,10 @@
     <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="WarningRoomSize" xml:space="preserve">
+    <value>A RoomRecipe with {0} minimum walkable spaces exists, but rooms can only have from {1} to {2} walkable spaces.</value>
+    <comment>Warning string.</comment>
+  </data>
   <data name="WarningTriedToGiveNothing" xml:space="preserve">
     <value>Tried to give {0} to {1}.</value>
     <comment>Warning string.</comment>
