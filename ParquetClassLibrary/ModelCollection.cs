@@ -75,8 +75,8 @@ namespace Parquet
                 }
                 else
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
-                                                                      nameof(ModelID), model.ID));
+                    Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedDuplicate,
+                                                               nameof(ModelID), model.ID));
                 }
             }
 
