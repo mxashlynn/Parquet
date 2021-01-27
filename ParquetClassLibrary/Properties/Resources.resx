@@ -177,6 +177,10 @@
     <value>Invalid position: {0} is not within {1}.</value>
     <comment>Error string.</comment>
   </data>
+  <data name="ErrorLoading" xml:space="preserve">
+    <value>An error occurred while trying to load.</value>
+    <comment>Error string.</comment>
+  </data>
   <data name="ErrorModelNotFound" xml:space="preserve">
     <value>No model of type {0} exists for ID {1}.</value>
     <comment>Error string.</comment>
@@ -219,6 +223,10 @@
   </data>
   <data name="ErrorOutOfOrderLTE" xml:space="preserve">
     <value>{0} is {1} but must be less than or equal to {2}.</value>
+    <comment>Error string.</comment>
+  </data>
+  <data name="ErrorSaving" xml:space="preserve">
+    <value>An error occurred while trying to save.</value>
     <comment>Error string.</comment>
   </data>
   <data name="ErrorUndefinedDirection" xml:space="preserve">
