@@ -22,6 +22,10 @@ namespace Parquet.Rooms
         public static IReadOnlyCollection<Room> CreateRoomCollectionFromSubregion(this ParquetPackGrid inSubregion)
         {
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
+            if (inSubregion is null)
+            {
+                return new List<Room>();
+            }
 
             var walkableAreas = GetWalkableAreas(inSubregion);
             var perimeter = MapSpaceSetExtensions.Empty;

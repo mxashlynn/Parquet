@@ -85,7 +85,7 @@ namespace Parquet.Items
 
             Capacity = inCapacity;
             Slots = new List<InventorySlot>();
-            foreach (var slot in inSlots)
+            foreach (var slot in inSlots ?? Enumerable.Empty<InventorySlot>())
             {
                 Give(slot.ItemID, slot.Count);
             }
@@ -112,7 +112,7 @@ namespace Parquet.Items
             Precondition.IsNotNullOrEmpty(inItems, nameof(inItems));
 
             var result = true;
-            foreach (var slot in inItems)
+            foreach (var slot in inItems ?? Enumerable.Empty<(ModelID, int)>())
             {
                 result &= Has(slot.Item1, slot.Item2);
             }
@@ -129,7 +129,7 @@ namespace Parquet.Items
             Precondition.IsNotNullOrEmpty(inSlots, nameof(inSlots));
 
             var result = true;
-            foreach (var slot in inSlots)
+            foreach (var slot in inSlots ?? Enumerable.Empty< InventorySlot>())
             {
                 result &= Has(slot.ItemID, slot.Count);
             }
@@ -139,13 +139,12 @@ namespace Parquet.Items
         /// <summary>
         /// Determines if the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inSlot">The slot to check for.  Cannot be null.</param>
+        /// <param name="inSlot">The slot to check for.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
+        /// <remarks>A <c>null</c> slot is never found and will result in a return value of <c>false</c>.</remarks>
         public bool Has(InventorySlot inSlot)
-        {
-            Precondition.IsNotNull(inSlot, nameof(inSlot));
-            return Has(inSlot.ItemID, inSlot.Count);
-        }
+            => inSlot is not null
+            && Has(inSlot.ItemID, inSlot.Count);
 
         /// <summary>
         /// Determines if the <see cref="Inventory"/> contains the given number of the given item.

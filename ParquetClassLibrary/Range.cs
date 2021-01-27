@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -215,7 +216,7 @@ namespace Parquet
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var isValid = true;
-            foreach (var range in inRangeCollection)
+            foreach (var range in inRangeCollection ?? Enumerable.Empty<Range<TElement>>())
             {
                 isValid &= range.IsValid();
             }
@@ -239,7 +240,7 @@ namespace Parquet
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var foundRange = false;
-            foreach (var range in inRangeCollection)
+            foreach (var range in inRangeCollection ?? Enumerable.Empty<Range<TElement>>())
             {
                 if (range.ContainsValue(inValue))
                 {
@@ -264,7 +265,7 @@ namespace Parquet
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
 
             var foundRange = false;
-            foreach (var range in inRangeCollection)
+            foreach (var range in inRangeCollection ?? Enumerable.Empty<Range<TElement>>())
             {
                 if (range.ContainsRange(inRange))
                 {

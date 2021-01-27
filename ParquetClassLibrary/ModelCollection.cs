@@ -61,7 +61,7 @@ namespace Parquet
             Precondition.IsNotNull(inModels, nameof(inModels));
 
             var baseDictionary = new Dictionary<ModelID, Model>();
-            foreach (var model in inModels)
+            foreach (var model in inModels ?? Enumerable.Empty<Model>())
             {
                 Precondition.IsInRange(model.ID, inBounds, nameof(inModels));
 
@@ -105,12 +105,10 @@ namespace Parquet
         /// </summary>
         /// <param name="inModel">The <see cref="Model"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Model"/> was found; <c>false</c> otherwise.</returns>
+        /// <remarks>A <c>null</c> model is never found and will result in a return value of <c>false</c>.</remarks>
         public bool Contains(Model inModel)
-        {
-            Precondition.IsNotNull(inModel, nameof(inModel));
-
-            return Contains(inModel.ID);
-        }
+            => inModel is not null
+            && Contains(inModel.ID);
 
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModel}"/> contains a <see cref="Model"/>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
@@ -298,7 +299,7 @@ namespace Parquet
             Precondition.IsNotNull(inRanges, nameof(inRanges));
             var result = false;
 
-            foreach (var idRange in inRanges)
+            foreach (var idRange in inRanges ?? Enumerable.Empty<Range<ModelID>>())
             {
                 if (IsValidForRange(idRange))
                 {

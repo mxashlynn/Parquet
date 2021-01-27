@@ -65,6 +65,12 @@ namespace Parquet.Rooms
         {
             Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
+            if (inWalkableArea is null
+                || inPerimeter is null)
+            {
+                return;
+            }
+
             if (inWalkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,

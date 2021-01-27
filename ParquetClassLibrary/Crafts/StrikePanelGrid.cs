@@ -66,17 +66,18 @@ namespace Parquet.Crafts
         /// <remarks>This constructor supports instance creation via reflection from the <see cref="GridConverter{TElement, TGrid}"/> class.</remarks>
         public StrikePanelGrid(IGrid<StrikePanel> inContent, int inRowCount, int inColumnCount)
         {
-            Precondition.IsNotNull(inContent, nameof(inContent));
-
             StrikePanels = new StrikePanel[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            if (inContent is not null)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var y = 0; y < inRowCount; y++)
                 {
-                    StrikePanels[y, x] = x < inContent.Columns
-                                         && y < inContent.Rows
-                        ? inContent[y, x].Clone()
-                        : StrikePanel.Unused.Clone();
+                    for (var x = 0; x < inColumnCount; x++)
+                    {
+                        StrikePanels[y, x] = x < inContent.Columns
+                                           && y < inContent.Rows
+                            ? inContent[y, x].Clone()
+                            : StrikePanel.Unused.Clone();
+                    }
                 }
             }
         }
