@@ -33,8 +33,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                    inArgumentName, inInt, inBounds));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                         inArgumentName, inInt, inBounds));
             }
         }
 
@@ -54,8 +54,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                    inArgumentName, inID, inBounds));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                         inArgumentName, inID, inBounds));
             }
         }
 
@@ -75,8 +75,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                    inArgumentName, inInnerBounds, inOuterBounds));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                         inArgumentName, inInnerBounds, inOuterBounds));
             }
         }
 
@@ -106,8 +106,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                    inArgumentName, inID, allBounds));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                         inArgumentName, inID, allBounds));
             }
         }
 
@@ -128,8 +128,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                    inArgumentName, inInnerBounds, inBoundsCollection));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                         inArgumentName, inInnerBounds, inBoundsCollection));
             }
         }
 
@@ -148,8 +148,8 @@ namespace Parquet
             if (!typeof(TToCheck).IsSubclassOf(typeof(TTarget))
                 && typeof(TToCheck) != typeof(TTarget))
             {
-                throw new InvalidCastException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
-                                                             inArgumentName, typeof(TToCheck), typeof(TTarget)));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
+                                                         inArgumentName, typeof(TToCheck), typeof(TTarget)));
             }
         }
 
@@ -172,8 +172,8 @@ namespace Parquet
                 }
                 if (!id.IsValidForRange(inBounds))
                 {
-                    throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                        inArgumentName, id, inBounds));
+                    Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                             inArgumentName, id, inBounds));
                 }
             }
         }
@@ -198,8 +198,8 @@ namespace Parquet
                     {
                         inArgumentName = DefaultArgumentName;
                     }
-                    throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                        inArgumentName, id, inBoundsCollection));
+                    Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                             inArgumentName, id, inBoundsCollection));
                 }
             }
         }
@@ -215,8 +215,8 @@ namespace Parquet
         {
             if (inID == ModelID.None)
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNone,
-                                                                    inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNone,
+                                                         inArgumentName));
             }
         }
 
@@ -231,8 +231,8 @@ namespace Parquet
         {
             if (inNumber < 0)
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBeNonNegative,
-                                                                    inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBeNonNegative,
+                                                         inArgumentName));
             }
         }
 
@@ -247,8 +247,8 @@ namespace Parquet
         {
             if (inNumber < 1)
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBePositive,
-                                                                    inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustBePositive,
+                                                         inArgumentName));
             }
         }
 
@@ -267,8 +267,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNullEmpty,
-                                                                    inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNullEmpty,
+                                                         inArgumentName));
             }
         }
 
@@ -288,8 +288,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
-                                                              inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
+                                                         inArgumentName));
             }
             else if (!inEnumerable.Any())
             {
@@ -297,8 +297,8 @@ namespace Parquet
                 {
                     inArgumentName = DefaultArgumentName;
                 }
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeEmpty,
-                                                                    inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeEmpty,
+                                                         inArgumentName));
             }
         }
 
@@ -313,8 +313,8 @@ namespace Parquet
         {
             if (null == inReference)
             {
-                throw new ArgumentNullException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
-                                                              inArgumentName));
+                Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
+                                                         inArgumentName));
             }
         }
     }
