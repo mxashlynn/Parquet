@@ -75,7 +75,6 @@ namespace Parquet
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             inValue, inName), null);
-
             return inDefaultValue;
         }
 

@@ -164,16 +164,16 @@ namespace Parquet
         /// <summary>
         /// Exposes an <see cref="IEnumerator{TModel}"/> to support simple iteration.
         /// </summary>
-        /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
+        // Used by LINQ. No accessibility modifiers are valid in this context.
         IEnumerator<TModel> IEnumerable<TModel>.GetEnumerator()
             => Models.Values.Cast<TModel>().GetEnumerator();
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.
         /// </summary>
-        /// <remarks>Used by LINQ. No accessibility modifiers are valid in this context.</remarks>
         /// <returns>An enumerator.</returns>
+        // Used by LINQ. No accessibility modifiers are valid in this context.
         IEnumerator IEnumerable.GetEnumerator()
             => Models.Values.GetEnumerator();
 
