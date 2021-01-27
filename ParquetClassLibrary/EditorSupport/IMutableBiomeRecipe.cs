@@ -22,7 +22,7 @@ namespace Parquet.EditorSupport
         public bool IsLiquidBased { get; set; }
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
-        public ICollection<ModelTag> ParquetCriteria { get; }
+        public ModelTag ParquetCriteria { get; }
 
         /// <summary>Describes the <see cref="Items.ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         public ICollection<ModelTag> EntryRequirements { get; }
