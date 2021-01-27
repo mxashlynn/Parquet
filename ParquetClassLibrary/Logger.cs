@@ -78,6 +78,23 @@ namespace Parquet
 
             return inDefaultValue;
         }
+
+        /// <summary>
+        /// Convenience method that logs an unsupported command error and returns the given default value.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inName">The name of the command type.</param>
+        /// <param name="inCommandText">The text version of the unsupported command.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        internal static T DefaultWithUnsupportedNodeLog<T>(string inName, string inCommandText, T inDefaultValue)
+        {
+            currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
+                                                                Resources.ErrorUnsupportedNode,
+                                                                inName, inCommandText), null);
+
+            return inDefaultValue;
+        }
         #endregion
     }
 }
