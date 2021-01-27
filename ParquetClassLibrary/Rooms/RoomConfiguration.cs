@@ -58,8 +58,8 @@ namespace Parquet.Rooms
         public static void PutRecord()
         {
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
-            writer.WriteLine($"{nameof(MinWalkableSpaces)}{Delimiters.PrimaryDelimiter}{nameof(MaxWalkableSpaces)}");
-            writer.WriteLine($"{MinWalkableSpaces}{Delimiters.PrimaryDelimiter}{MaxWalkableSpaces}");
+            writer.Write($"{nameof(MinWalkableSpaces)}{Delimiters.PrimaryDelimiter}{nameof(MaxWalkableSpaces)}\n");
+            writer.Write($"{MinWalkableSpaces}{Delimiters.PrimaryDelimiter}{MaxWalkableSpaces}\n");
         }
 
         /// <summary>
