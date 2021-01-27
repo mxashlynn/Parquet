@@ -17,3 +17,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Major Code Smell", "S3358:Ternary operators should not be nested",
                            Justification = "This rule is incorrect.",
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]
+
+[assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types",
+                           Justification = "Parquet logs errors and returns results; it does not throw exceptions.",
+                           Scope = "namespaceanddescendants", Target = "~N:Parquet")]
