@@ -42,8 +42,10 @@ namespace Parquet
 
             if (!IsValid())
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
-                                                                  nameof(inMinimum), inMinimum, nameof(inMaximum)));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
+                                                           nameof(inMinimum), inMinimum, nameof(inMaximum)));
+                // Swap the two values so that execution can continue.
+                (Minimum, Maximum) = (Maximum, Minimum);
             }
         }
         #endregion
