@@ -188,14 +188,10 @@ namespace Parquet.Parquets
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition(this ParquetStatus[,] inSubregion, Vector2D inPosition)
-        {
-            // NOTE IDEA When we reach 1.0 we could replace this precondition with a clause in the return computation.
-            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
-
-            return inPosition.X > -1
-                && inPosition.Y > -1
-                && inPosition.X < inSubregion.GetLength(1)
-                && inPosition.Y < inSubregion.GetLength(0);
-        }
+            => inSubregion is not null
+            && inPosition.X > -1
+            && inPosition.Y > -1
+            && inPosition.X < inSubregion.GetLength(1)
+            && inPosition.Y < inSubregion.GetLength(0);
     }
 }
