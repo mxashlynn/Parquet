@@ -141,8 +141,7 @@ namespace Parquet.Maps
                       $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierComposition}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ChunkDetail)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ChunkDetail), nameof(None));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.

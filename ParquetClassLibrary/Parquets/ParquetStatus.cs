@@ -125,8 +125,7 @@ namespace Parquet.Parquets
                 ? $"{status.IsTrench}{Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Delimiters.InternalDelimiter}" +
                   $"{status.maxToughness}"
-            : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                        inValue, nameof(ParquetStatus)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetStatus), nameof(Unused));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -139,8 +138,7 @@ namespace Parquet.Parquets
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(ParquetStatus)));
+                return Logger.DefaultWithConvertLog(inText, nameof(ParquetPack), Unused);
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;

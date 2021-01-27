@@ -148,8 +148,7 @@ namespace Parquet
             => inValue is Vector2D vector
                 ? $"{vector.X}{Delimiters.ElementDelimiter}" +
                   $"{vector.Y}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(Vector2D)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Vector2D), nameof(Zero));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -162,8 +161,7 @@ namespace Parquet
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(Vector2D)));
+                return Logger.DefaultWithConvertLog(inText, nameof(Vector2D), Zero);
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;

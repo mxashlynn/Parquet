@@ -104,8 +104,7 @@ namespace Parquet
                 ? string.CompareOrdinal(tag, "") == 0
                     ? nameof(None)
                     : (string)tag
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ModelTag)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", ModelTag(ModelID), "");
         #endregion
 
         #region Utilities

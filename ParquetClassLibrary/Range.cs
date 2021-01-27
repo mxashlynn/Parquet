@@ -90,8 +90,8 @@ namespace Parquet
             => inValue is Range<TElement> range
                 ? $"{range.Minimum}{Delimiters.ElementDelimiter}" +
                   $"{range.Maximum}"
-            : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                        inValue, nameof(Range<TElement>)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Range<TElement>),
+                                               $"{default(TElement)}{Delimiters.ElementDelimiter}{default(TElement)}");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -104,8 +104,7 @@ namespace Parquet
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(Range<TElement>)));
+                return Logger.DefaultWithConvertLog(inText, nameof(Range<TElement>), None);
             }
 
             var parameterText = inText.Split(Delimiters.ElementDelimiter);

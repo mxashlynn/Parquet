@@ -38,8 +38,7 @@ namespace Parquet
             Precondition.IsNotNull(inCollection, nameof(inCollection));
             if (inCollection is not TCollection series)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inCollection, nameof(TCollection)));
+                return Logger.DefaultWithConvertLog(inCollection?.ToString() ?? "null", nameof(TCollection), "");
             }
 
             if (series.Count < 1

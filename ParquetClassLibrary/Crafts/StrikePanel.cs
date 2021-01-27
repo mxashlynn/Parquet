@@ -211,8 +211,7 @@ namespace Parquet.Crafts
                       $"{panel.WorkingRange.Maximum}{Delimiters.InternalDelimiter}" +
                       $"{panel.IdealRange.Minimum}{Delimiters.ElementDelimiter}" +
                       $"{panel.IdealRange.Maximum}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(StrikePanel)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(StrikePanel), nameof(Unused));
         #endregion
 
         #region Utilities

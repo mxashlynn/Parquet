@@ -133,8 +133,7 @@ namespace Parquet.Items
             => inValue is InventorySlot slot
                 ? $"{slot.ItemID}{Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(InventorySlot)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(InventorySlot), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -148,8 +147,7 @@ namespace Parquet.Items
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(InventorySlot)));
+                return Logger.DefaultWithConvertLog(inText, nameof(InventorySlot), Empty);
             }
 
             try

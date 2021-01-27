@@ -35,10 +35,9 @@ namespace Parquet
         /// <returns>The given collection serialized.</returns>
         public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
         {
-            if (!(inValue is IGrid<TElement> grid))
+            if (inValue is not IGrid<TElement> grid)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inValue, nameof(IGrid<TElement>)));
+                return Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(IGrid<TElement>), "");
             }
 
             if (grid.Count < 1

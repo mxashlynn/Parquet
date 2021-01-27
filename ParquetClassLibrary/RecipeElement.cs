@@ -150,8 +150,7 @@ namespace Parquet
                     ? nameof(None)
                     : $"{recipeElement.ElementAmount}{Delimiters.InternalDelimiter}" +
                       $"{recipeElement.ElementTag}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(RecipeElement)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities

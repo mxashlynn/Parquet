@@ -127,8 +127,7 @@ namespace Parquet.Scripts
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
                 ? (string)node
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ScriptNode)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities

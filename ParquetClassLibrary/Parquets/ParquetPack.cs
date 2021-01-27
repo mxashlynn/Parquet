@@ -184,8 +184,7 @@ namespace Parquet.Parquets
                   $"{pack.BlockID}{Delimiters.InternalDelimiter}" +
                   $"{pack.FurnishingID}{Delimiters.InternalDelimiter}" +
                   $"{pack.CollectibleID}"
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ParquetPack)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetPack), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
@@ -198,26 +197,17 @@ namespace Parquet.Parquets
         {
             if (string.IsNullOrEmpty(inText))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                          inText, nameof(ParquetPack)));
+                return Logger.DefaultWithConvertLog(inText, nameof(ParquetPack), Empty);
             }
 
-            try
-            {
-                var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
-                var floor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-                var block = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-                var furnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
-                var collectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+            var floor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var block = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var furnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
+            var collectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
-                return new ParquetPack(floor, block, furnishing, collectible);
-            }
-            catch (Exception e)
-            {
-                throw new FormatException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                        inText, nameof(ParquetPack)), e);
-            }
+            return new ParquetPack(floor, block, furnishing, collectible);
         }
         #endregion
 

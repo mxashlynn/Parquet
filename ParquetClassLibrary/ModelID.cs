@@ -262,8 +262,7 @@ namespace Parquet
                 ? None != id
                     ? id.ToString()
                     : nameof(None)
-                : throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, nameof(ModelID)));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ModelID), nameof(None));
         #endregion
 
         #region Utilities
