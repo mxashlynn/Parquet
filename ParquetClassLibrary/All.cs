@@ -581,38 +581,44 @@ namespace Parquet
         /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
         public static bool LoadFromCSVs()
         {
-            #region Read Configuration
-            var pronounGroups = PronounGroup.GetRecords();
-            BiomeConfiguration.GetRecord();
-            CraftConfiguration.GetRecord();
-            InventoryConfiguration.GetRecord();
-            RoomConfiguration.GetRecord();
-            #endregion
+            try
+            {
+                #region Read Configuration
+                var pronounGroups = PronounGroup.GetRecords();
+                BiomeConfiguration.GetRecord();
+                CraftConfiguration.GetRecord();
+                InventoryConfiguration.GetRecord();
+                RoomConfiguration.GetRecord();
+                #endregion
 
-            #region Read Models
-            var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
-            var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
-            var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
-            var furnishings = ModelCollection<FurnishingModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs);
-            var collectibles = ModelCollection<CollectibleModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs);
-            var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
-            var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
-            var biomeRecipes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
-            var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
-            var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
-            var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
-                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
-                .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
-            var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
-            var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
-            var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
-            #endregion
+                #region Read Models
+                var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
+                var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
+                var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
+                var furnishings = ModelCollection<FurnishingModel>.ConverterFactory.GetRecordsForType<FurnishingModel>(ParquetIDs);
+                var collectibles = ModelCollection<CollectibleModel>.ConverterFactory.GetRecordsForType<CollectibleModel>(ParquetIDs);
+                var critters = ModelCollection<CritterModel>.ConverterFactory.GetRecordsForType<CritterModel>(CritterIDs);
+                var characters = ModelCollection<CharacterModel>.ConverterFactory.GetRecordsForType<CharacterModel>(CharacterIDs);
+                var biomeRecipes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
+                var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
+                var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
+                var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
+                    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
+                    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs));
+                var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
+                var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
+                var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
+                #endregion
 
-            InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
-                                  craftingRecipes, roomRecipes, maps, scripts, interactions, items);
-
-            // TODO [LOGGING] In case of exception, log it and return false;
-            return true;
+                InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
+                                      craftingRecipes, roomRecipes, maps, scripts, interactions, items);
+                return true;
+            }
+            catch (Exception loadException)
+            {
+                Logger.Log(LogLevel.Error, Resources.ErrorLoading, loadException);
+                return false;
+            }
         }
 
         /// <summary>
@@ -621,35 +627,42 @@ namespace Parquet
         /// <returns><c>true</c> if no exceptions were caught, <c>false</c> otherwise.</returns>
         public static bool SaveToCSVs()
         {
-            #region Write Configuration
-            PronounGroup.PutRecords(PronounGroups);
-            BiomeConfiguration.PutRecord();
-            CraftConfiguration.PutRecord();
-            InventoryConfiguration.PutRecord();
-            RoomConfiguration.PutRecord();
-            #endregion
+            try
+            {
+                #region Write Configuration
+                PronounGroup.PutRecords(PronounGroups);
+                BiomeConfiguration.PutRecord();
+                CraftConfiguration.PutRecord();
+                InventoryConfiguration.PutRecord();
+                RoomConfiguration.PutRecord();
+                #endregion
 
-            #region Write Models
-            Games.PutRecordsForType<GameModel>();
-            Floors.PutRecordsForType<FloorModel>();
-            Blocks.PutRecordsForType<BlockModel>();
-            Furnishings.PutRecordsForType<FurnishingModel>();
-            Collectibles.PutRecordsForType<CollectibleModel>();
-            Critters.PutRecordsForType<CritterModel>();
-            Characters.PutRecordsForType<CharacterModel>();
-            BiomeRecipes.PutRecordsForType<BiomeRecipe>();
-            CraftingRecipes.PutRecordsForType<CraftingRecipe>();
-            RoomRecipes.PutRecordsForType<RoomRecipe>();
-            Maps.PutRecordsForType<MapChunkModel>();
-            Maps.PutRecordsForType<MapRegionSketch>();
-            Maps.PutRecordsForType<MapRegionModel>();
-            Scripts.PutRecordsForType<ScriptModel>();
-            Interactions.PutRecordsForType<InteractionModel>();
-            Items.PutRecordsForType<ItemModel>();
-            #endregion
+                #region Write Models
+                Games.PutRecordsForType<GameModel>();
+                Floors.PutRecordsForType<FloorModel>();
+                Blocks.PutRecordsForType<BlockModel>();
+                Furnishings.PutRecordsForType<FurnishingModel>();
+                Collectibles.PutRecordsForType<CollectibleModel>();
+                Critters.PutRecordsForType<CritterModel>();
+                Characters.PutRecordsForType<CharacterModel>();
+                BiomeRecipes.PutRecordsForType<BiomeRecipe>();
+                CraftingRecipes.PutRecordsForType<CraftingRecipe>();
+                RoomRecipes.PutRecordsForType<RoomRecipe>();
+                Maps.PutRecordsForType<MapChunkModel>();
+                Maps.PutRecordsForType<MapRegionSketch>();
+                Maps.PutRecordsForType<MapRegionModel>();
+                Scripts.PutRecordsForType<ScriptModel>();
+                Interactions.PutRecordsForType<InteractionModel>();
+                Items.PutRecordsForType<ItemModel>();
+                #endregion
 
-            // TODO [LOGGING] In case of exception, log it and return false;
-            return true;
+                return true;
+            }
+            catch (Exception saveException)
+            {
+                Logger.Log(LogLevel.Error, Resources.ErrorSaving, saveException);
+                return false;
+            }
         }
 
         /// <summary>
