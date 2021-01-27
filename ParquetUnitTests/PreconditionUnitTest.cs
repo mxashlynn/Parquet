@@ -62,7 +62,7 @@ namespace ParquetUnitTests
             var testID = (ModelID)12;
             var testRange = new Range<ModelID>(0, 10);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testRange, nameof(testID)); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.IsInRange(testID, testRange, nameof(testID)));
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace ParquetUnitTests
             var innerRange = new Range<ModelID>(0, 10);
             var outterRange = new Range<ModelID>(1, 9);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, outterRange, nameof(innerRange)); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.IsInRange(innerRange, outterRange, nameof(innerRange)));
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace ParquetUnitTests
             var testID = (ModelID)12;
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(testID, testCollection, nameof(testID)); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.IsInRange(testID, testCollection, nameof(testID)));
         }
 
         [Fact]
@@ -89,7 +89,7 @@ namespace ParquetUnitTests
             var innerRange = new Range<ModelID>(0, 10);
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(1, 5), new Range<ModelID>(6, 9) };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => { Precondition.IsInRange(innerRange, testCollection, nameof(innerRange)); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => Precondition.IsInRange(innerRange, testCollection, nameof(innerRange)));
         }
 
         [Fact]
