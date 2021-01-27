@@ -109,21 +109,13 @@ namespace Parquet
 
             var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
-            if (IsIntConvertible(default))
-            {
-                return new Range<TElement>((TElement)Int32ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
-                                           (TElement)Int32ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
-            }
-            else if (IsSingleConvertible(default))
-            {
-                return new Range<TElement>((TElement)SingleConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
-                                           (TElement)SingleConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData));
-            }
-            else
-            {
-                throw new NotImplementedException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedSerialization,
-                                                                nameof(Range<TElement>)));
-            }
+            return IsIntConvertible(default)
+                ? new Range<TElement>((TElement)Int32ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
+                                      (TElement)Int32ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData))
+                : IsSingleConvertible(default)
+                    ? new Range<TElement>((TElement)SingleConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
+                                          (TElement)SingleConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData))
+                    : Logger.DefaultWithUnsupportedSerializationLog(nameof(Range<TElement>), None);
 
             // Determines if the given variable may be deserialized as an integer.
             // Returns true if TElement may be deserialized via Int32Converter.
