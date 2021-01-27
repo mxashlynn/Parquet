@@ -48,10 +48,10 @@ namespace Parquet.Crafts
         /// <param name="inProducts">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="inPanelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
-        /// <exception cref="IndexOutOfRangeException">
-        /// When <paramref name="inPanelPattern"/> has dimensions less than <c>1</c> or dimensions larger than those given by
+        /// <remarks>
+        /// <paramref name="inPanelPattern"/> must have dimensions between <c>1</c> and those given by
         /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
-        /// </exception>
+        /// </remarks>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
                               IEnumerable<RecipeElement> inProducts = null,
                               IEnumerable<RecipeElement> inIngredients = null, IReadOnlyGrid<StrikePanel> inPanelPattern = null)

@@ -34,7 +34,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inMinimum">The lower end of the range.</param>
         /// <param name="inMaximum">The upper end of the range.</param>
-        /// <exception cref="ArgumentException">When the range is not well-defined.  <seealso cref="IsValid"/>.</exception>
         public Range(TElement inMinimum, TElement inMaximum)
         {
             Minimum = inMinimum;

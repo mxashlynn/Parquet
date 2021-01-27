@@ -23,7 +23,6 @@ namespace Parquet
         /// <param name="inInt">The integer to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the integer is not in range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsInRange(int inInt, Range<int> inBounds, string inArgumentName)
         {
@@ -44,7 +43,6 @@ namespace Parquet
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsInRange(ModelID inID, Range<ModelID> inBounds, string inArgumentName)
         {
@@ -65,7 +63,6 @@ namespace Parquet
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inOuterBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsInRange(Range<ModelID> inInnerBounds, Range<ModelID> inOuterBounds, string inArgumentName)
         {
@@ -87,8 +84,6 @@ namespace Parquet
         /// <param name="inID">The identifier to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in any of the ranges.</exception>
-        /// <exception cref="ArgumentNullException">When <paramref name="inBoundsCollection"/> is null.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsInRange(ModelID inID, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
@@ -118,7 +113,6 @@ namespace Parquet
         /// <param name="inInnerBounds">The range to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the first range is not in the second range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsInRange(Range<ModelID> inInnerBounds, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
@@ -139,9 +133,6 @@ namespace Parquet
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         /// <typeparam name="TToCheck">The type to check.</typeparam>
         /// <typeparam name="TTarget">The type of which it must be a subtype.</typeparam>
-        /// <exception cref="InvalidOperationException">
-        /// When <typeparamref name="TToCheck"/> does not correspond to <typeparamref name="TTarget"/>.
-        /// </exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsOfType<TToCheck, TTarget>(string inArgumentName = DefaultArgumentName)
         {
@@ -160,7 +151,6 @@ namespace Parquet
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBounds">The range they must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void AreInRange(IEnumerable<ModelID> inEnumerable, Range<ModelID> inBounds, string inArgumentName)
         {
@@ -185,7 +175,6 @@ namespace Parquet
         /// <param name="inEnumerable">The identifiers to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges they must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the identifier is not in range.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void AreInRange(IEnumerable<ModelID> inEnumerable, IEnumerable<Range<ModelID>> inBoundsCollection,
                                       string inArgumentName)
@@ -209,7 +198,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inID">The number to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the number is -1 or less.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNone(ModelID inID, string inArgumentName = DefaultArgumentName)
         {
@@ -225,7 +213,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inNumber">The number to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the number is -1 or less.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void MustBeNonNegative(int inNumber, string inArgumentName = DefaultArgumentName)
         {
@@ -241,7 +228,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inNumber">The number to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentOutOfRangeException">When the number is zero or less.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void MustBePositive(int inNumber, string inArgumentName = DefaultArgumentName)
         {
@@ -257,7 +243,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inString">The string to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="IndexOutOfRangeException">When <paramref name="inString"/> is null or empty.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNullOrEmpty(string inString, string inArgumentName)
         {
@@ -277,8 +262,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inEnumerable">The collection to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="inEnumerable"/> is null.</exception>
-        /// <exception cref="IndexOutOfRangeException">When <paramref name="inEnumerable"/> is empty.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName)
         {
@@ -307,7 +290,6 @@ namespace Parquet
         /// </summary>
         /// <param name="inReference">The reference to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="inReference"/> is null.</exception>
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNull(object inReference, string inArgumentName = DefaultArgumentName)
         {

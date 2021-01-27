@@ -511,7 +511,6 @@ namespace Parquet
         /// <param name="inItems">All items to be used in the game.</param>
         /// <remarks>The collections of models must be separately cleared between calls to this initialization routine.</remarks>
         /// <seealso cref="Clear"/>
-        /// <exception cref="InvalidOperationException">When called more than once.</exception>
         public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
                                                  IEnumerable<GameModel> inGames,
                                                  IEnumerable<FloorModel> inFloors,
