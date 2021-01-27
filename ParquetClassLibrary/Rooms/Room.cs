@@ -67,22 +67,22 @@ namespace Parquet.Rooms
             Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
             if (inWalkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
-                                                          nameof(inWalkableArea), inWalkableArea,
-                                                          RoomConfiguration.MaxWalkableSpaces));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
+                                                           nameof(inWalkableArea), inWalkableArea,
+                                                           RoomConfiguration.MaxWalkableSpaces));
             }
             else if (inWalkableArea.Count < RoomConfiguration.MinWalkableSpaces)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
-                                                          nameof(inWalkableArea.Count),
-                                                          inWalkableArea.Count, RoomConfiguration.MinWalkableSpaces));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                                           nameof(inWalkableArea.Count),
+                                                           inWalkableArea.Count, RoomConfiguration.MinWalkableSpaces));
             }
             if (!inWalkableArea.Concat(inPerimeter).Any(space
                 => space.Content.FurnishingID != ModelID.None
                 && (All.Furnishings.Get<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
-                                                          nameof(inWalkableArea), nameof(inPerimeter)));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
+                                                           nameof(inWalkableArea), nameof(inPerimeter)));
             }
 
             WalkableArea = inWalkableArea;
