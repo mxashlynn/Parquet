@@ -78,23 +78,24 @@ namespace Parquet.Maps
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
         /// <returns>A portion of the map as a subregion.</returns>
+        /// <remarks>If the coordinates given are not well-formed, the subregion returned will be invalid.</remarks>
         // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
         public ParquetPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                      nameof(inUpperLeft), nameof(ParquetDefinitions)));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inUpperLeft), nameof(ParquetDefinitions)));
             }
             else if (!ParquetDefinitions.IsValidPosition(inLowerRight))
             {
-                throw new ArgumentOutOfRangeException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                      nameof(inLowerRight), nameof(ParquetDefinitions)));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inLowerRight), nameof(ParquetDefinitions)));
             }
             else if (inLowerRight.X < inUpperLeft.X || inLowerRight.Y < inUpperLeft.Y)
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
-                                                          nameof(inLowerRight), inLowerRight, inUpperLeft));
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                                           nameof(inLowerRight), inLowerRight, inUpperLeft));
             }
             else
             {
@@ -111,6 +112,8 @@ namespace Parquet.Maps
 
                 return new ParquetPackGrid(subregion);
             }
+
+            return new ParquetPackGrid();
         }
 
         /// <summary>
