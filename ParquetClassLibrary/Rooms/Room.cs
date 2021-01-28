@@ -129,7 +129,7 @@ namespace Parquet.Rooms
         /// <param name="inRoom">The <see cref="Room"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(Room inRoom)
-            => null != inRoom
+            => inRoom is not null
             && WalkableArea.SetEquals(inRoom.WalkableArea)
             && Perimeter.SetEquals(inRoom.Perimeter);
 

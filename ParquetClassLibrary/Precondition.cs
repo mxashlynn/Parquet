@@ -265,7 +265,7 @@ namespace Parquet
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNullOrEmpty<TElement>(IEnumerable<TElement> inEnumerable, string inArgumentName)
         {
-            if (null == inEnumerable)
+            if (inEnumerable is null)
             {
                 if (string.IsNullOrEmpty(inArgumentName))
                 {
@@ -293,7 +293,7 @@ namespace Parquet
         [Conditional("DEBUG"), Conditional("DESIGN")]
         public static void IsNotNull(object inReference, string inArgumentName = DefaultArgumentName)
         {
-            if (null == inReference)
+            if (inReference is null)
             {
                 Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNull,
                                                          inArgumentName));

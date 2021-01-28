@@ -721,7 +721,7 @@ namespace Parquet
         /// The range within which this model's <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Model inModel)
-            => inModel == null
+            => inModel is null
             || inModel.ID == ModelID.None
                 ? Range<ModelID>.None
                 : inModel switch

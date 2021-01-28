@@ -202,7 +202,7 @@ namespace Parquet.Items
             {
                 var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID
                                                   && slot.Count < stackMax);
-                if (null == slotToAddTo)
+                if (slotToAddTo is null)
                 {
                     // If there are no slots of the item type with room, try to make a new one.
                     if (Slots.Count < Capacity)
@@ -256,7 +256,7 @@ namespace Parquet.Items
             while (remainder > 0)
             {
                 var slotToTakeFrom = Slots.Find(slot => slot.ItemID == inItemID);
-                if (null != slotToTakeFrom)
+                if (slotToTakeFrom is not null)
                 {
                     remainder = slotToTakeFrom.Take(remainder);
                     if (slotToTakeFrom.Count == 0)

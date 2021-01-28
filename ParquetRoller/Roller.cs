@@ -522,7 +522,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListRanges(ModelCollection<Model> inWorkload)
         {
-            if (inWorkload == null || inWorkload.Count == 0)
+            if (inWorkload is null || inWorkload.Count == 0)
             {
                 Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
@@ -543,7 +543,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListMaxIDs(ModelCollection<Model> inWorkload)
         {
-            if (inWorkload == null || inWorkload.Count == 0)
+            if (inWorkload is null || inWorkload.Count == 0)
             {
                 Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
@@ -565,7 +565,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListTags(ModelCollection<Model> inWorkload)
         {
-            if (inWorkload == null || inWorkload.Count == 0)
+            if (inWorkload is null || inWorkload.Count == 0)
             {
                 Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
@@ -599,7 +599,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.Success"/></returns>
         private static ExitCode ListNames(ModelCollection<Model> inWorkload)
         {
-            if (inWorkload == null || inWorkload.Count == 0)
+            if (inWorkload is null || inWorkload.Count == 0)
             {
                 Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;
@@ -620,7 +620,7 @@ namespace ParquetRoller
         /// <returns><see cref="ExitCode.BadArguments"/></returns>
         private static ExitCode ListCollisions(ModelCollection<Model> inWorkload)
         {
-            if (inWorkload == null || inWorkload.Count == 0)
+            if (inWorkload is null || inWorkload.Count == 0)
             {
                 Console.WriteLine(Resources.InfoNoContent);
                 return ExitCode.Success;

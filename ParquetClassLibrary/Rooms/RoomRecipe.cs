@@ -89,7 +89,7 @@ namespace Parquet.Rooms
         /// <c>false</c> otherwise.
         /// </returns>
         public bool Matches(Room inRoom)
-            => null != inRoom
+            => inRoom is not null
             && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
             && OptionallyRequiredPerimeterBlocks.All(element =>
                 inRoom.Perimeter.Count(space =>
