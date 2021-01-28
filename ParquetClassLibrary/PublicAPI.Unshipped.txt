@@ -1,4 +1,4 @@
-﻿abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
+abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
 const Parquet.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const Parquet.Beings.PronounGroup.DeterminerTag = "|their|" -> string
@@ -524,7 +524,6 @@ Parquet.ModelCollection<TModel>.Contains(Parquet.Model inModel) -> bool
 Parquet.ModelCollection<TModel>.Contains(Parquet.ModelID inID) -> bool
 Parquet.ModelCollection<TModel>.Count.get -> int
 Parquet.ModelCollection<TModel>.GetEnumerator() -> System.Collections.Generic.IEnumerator<Parquet.Model>
-Parquet.ModelCollection<TModel>.GetOrNull(Parquet.ModelID inID) -> TModel
 Parquet.ModelCollection<TModel>.GetOrNull<TTarget>(Parquet.ModelID inID) -> TTarget
 Parquet.ModelCollection<TModel>.GetRecordsForType<TModelInner>(Parquet.Range<Parquet.ModelID> inBounds) -> Parquet.ModelCollection<TModel>
 Parquet.ModelCollection<TModel>.GetRecordsForType<TModelInner>(System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBounds) -> Parquet.ModelCollection<TModel>

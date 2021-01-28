@@ -4,7 +4,7 @@
     <AssemblyName>Parquet</AssemblyName>
 
     <Product>Parquet</Product>
-    <Version>0.3.52.0</Version>
+    <Version>0.3.53.0</Version>
     <Company>Girl Potion</Company>
     <Authors>Paige Ashlynn</Authors>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
@@ -26,8 +26,8 @@
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AssemblyVersion>0.3.52.0</AssemblyVersion>
-    <FileVersion>0.3.52.0</FileVersion>
+    <AssemblyVersion>0.3.53.0</AssemblyVersion>
+    <FileVersion>0.3.53.0</FileVersion>
     <Configurations>Debug;Game Release;Editor Release</Configurations>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
   </PropertyGroup>
