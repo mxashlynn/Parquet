@@ -63,7 +63,8 @@ namespace Parquet
         bool ICollection<TModel>.Remove(TModel inModel)
         {
             Precondition.IsNotNull(inModel);
-            return ((IMutableModelCollection<TModel>)this).Remove(inModel);
+
+            return ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ?? ModelID.None);
         }
 
         /// <summary>
@@ -75,7 +76,9 @@ namespace Parquet
             Precondition.IsNotNone(inID);
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return EditableModels.Remove(inID);
+            return inID == ModelID.None
+                ? false
+                : EditableModels.Remove(inID);
         }
 
         /// <summary>
