@@ -57,8 +57,6 @@ The solution contains several related projects, each of which is structured so t
     - **Properties** contains error strings and other static content.
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
     - **Scripts**, used to define Interactions and Item effect.
-- **ParquetRoller**
-    - A command line tool for working with CSV files containing game definitions.
 - **ParquetRunner**
     - A simple app for use in library development.  If you are not developing the library itself, just ignore this.
 - **ParquetUnitTests**
