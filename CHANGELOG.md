@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 
 
+## [0.3.52] - 2021-01-29
+#### Removes
+- Roller command line untility.  It is not build as part of Scribe instead.
+
 ## [0.3.0] - 2020-08-11
 ### Pre-Alpha 2 Milestone
 #### Added
