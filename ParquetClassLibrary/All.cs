@@ -32,7 +32,7 @@ namespace Parquet
         /// <summary><c>true</c> if the collections have been initialized; otherwise, <c>false</c>.</summary>
         public static bool CollectionsHaveBeenInitialized { get; private set; }
 
-        /// <summary>The location of the game data files.  Defaults to the current application's working directory.</summary>
+        /// <summary>The location of the game data files.  Defaults to the application's working directory.</summary>
         public static string ProjectDirectory { get; set; }
 
         #region Serialization Lookup Tables
