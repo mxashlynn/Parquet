@@ -39,7 +39,8 @@ Parquet targets the following features:
 
 # Repository Structure
 
-The solution contains several related projects, each of which is structured so that every folder corresponds to a namespace.  In addition, there are non-project directories with additional files.
+The solution contains several related project.
+The C# employs the convention whereby every namespace gets its own folder.
 
 - **Documentation**
     - How to use the library and its tools.
@@ -58,7 +59,7 @@ The solution contains several related projects, each of which is structured so t
     - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
     - **Scripts**, used to define Interactions and Item effect.
 - **ParquetRunner**
-    - A simple app for use in library development.  If you are not developing the library itself, just ignore this.
+    - A simple smoke test routine.
 - **ParquetUnitTests**
     - Unit tests for ParquetClassLibrary.
 

@@ -11,7 +11,7 @@ namespace Parquet.Maps
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.
     /// </summary>
-    public partial class MapRegionModel : MapModel
+    public partial class MapRegionModel : MapModel, IMapConnections
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
