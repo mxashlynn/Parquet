@@ -54,4 +54,4 @@ Here are definitions for some of the terms used in this class library.
 
 * **Map Chunk Grid**s are sections of the game world equivalent to Map Regions, but in an uninitialized state before play begins.  They consist of Map Chunks together with locations that have been designated as entrances or exits.  Map Regions may be generated from Map Chunk Grids in a procedural process at the time of load.
 
-* **Map Chunk**s are small subsections of the Map.  They come in two flavors.  Custom map chunks are "Handmade" segments of parquets which will be loaded exactly as they are laid out in the editor.  Procedural map chunks consist of instructions describing the parquets to procedurally generate in this location on the grid.
+* **Map Chunk**s are small subsections of the Map.  They come in two varieties.  Custom map chunks are "Handmade" segments of parquets which will be loaded exactly as they are laid out in the editor.  Procedural map chunks consist of instructions describing the parquets to procedurally generate in this location on the grid.
