@@ -1,7 +1,7 @@
-﻿ID,Name,Description,Comment,Tags,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
+ID,Name,Description,Comment,Tags,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
 -10000,1 Floor Test Parquet,Test,Test,,-140000,,,None,dark hole
 10000,grass,,,,None,,,Shovel,dirty pit
-10001,weeds,,,,None,Swampy,,Shovel,muddy pit
+10001,weeds,,,,140001,Swampy,,Shovel,muddy pit
 10002,sand,,,,None,Deserted,,Shovel,sandy pit
 10003,snow,,,,None,Frozen,,Shovel,snowy pit
 10004,stone floor,,,,None,,Stone,Hammer,stony trench
