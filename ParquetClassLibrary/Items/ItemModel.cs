@@ -65,7 +65,7 @@ namespace Parquet.Items
         /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
         /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
         /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
-        /// <param name="inParquetID">The parquet represented, if any.</param>
+        /// <param name="inParquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          IEnumerable<ModelTag> inTags = null, ItemType inSubtype = ItemType.Other,
                          int inPrice = 0, int inRarity = 0, int inStackMax = DefaultStackMax,

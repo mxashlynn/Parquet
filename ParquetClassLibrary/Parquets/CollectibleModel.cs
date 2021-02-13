@@ -32,19 +32,16 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="CollectibleModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="inDescription">Player-friendly description of the parquet.</param>
-        /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inTags">Any additional information about the parquet.</param>
+        /// <param name="inID">Unique identifier for the <see cref="CollectibleModel"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="CollectibleModel"/>.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="CollectibleModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="CollectibleModel"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="CollectibleModel"/>.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> that this <see cref="CollectibleModel"/> corresponds to, if any.</param>
         /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inCollectionEffect">Effect of this collectible.</param>
-        /// <param name="inEffectAmount">
-        /// The scale in points of the effect.
-        /// For example, how much to alter a stat if inEffect is set to alter a stat.
-        /// </param>
+        /// <param name="inCollectionEffect">Effect of this <see cref="CollectibleModel"/>.</param>
+        /// <param name="inEffectAmount">The scale in points of the effect. For example, how much to alter a stat if <see cref="inCollectionEffect"/> is set to alter a stat.</param>
         public CollectibleModel(ModelID inID, string inName, string inDescription, string inComment,
                                 IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
                                 IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,

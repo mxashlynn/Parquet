@@ -103,20 +103,20 @@ namespace Parquet.Maps
         /// <summary>
         /// Constructs a new instance of the <see cref="MapRegionSketch"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
-        /// <param name="inName">The player-facing name of the new region.</param>
-        /// <param name="inDescription">Player-friendly description of the map.</param>
-        /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inTags">Any additional information about the map.</param>
-        /// <param name="inRevision">An option revision count.</param>
-        /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
-        /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the region to the north of this one.</param>
-        /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the region to the east of this one.</param>
-        /// <param name="inRegionToTheSouth">The <see cref="ModelID"/> of the region to the south of this one.</param>
-        /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the region to the west of this one.</param>
-        /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
-        /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
-        /// <param name="inChunks">The pattern from which a <see cref="MapRegionModel"/> may be generated.</param>
+        /// <param name="inID">Unique identifier for the <see cref="MapRegionSketch"/>.  Cannot be null.</param>
+        /// <param name="inName">The player-facing name of the <see cref="MapRegionSketch"/>.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="MapRegionSketch"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="MapRegionSketch"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="MapRegionSketch"/>.</param>
+        /// <param name="inRevision">An optional revision count.</param>
+        /// <param name="inBackgroundColor">A color to show in the <see cref="MapRegionSketch"/> when no parquets are present at a location.</param>
+        /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> to the north of this one.</param>
+        /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> to the east of this one.</param>
+        /// <param name="inRegionToTheSouth">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> to the south of this one.</param>
+        /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> to the west of this one.</param>
+        /// <param name="inRegionAbove">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> above this one.</param>
+        /// <param name="inRegionBelow">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> below this one.</param>
+        /// <param name="inChunks">The patterns of which this <see cref="MapRegionSketch"/> consists, from which a <see cref="MapRegionModel"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName, string inDescription, string inComment,
                                IEnumerable<ModelTag> inTags = null, int inRevision = 0,
                                string inBackgroundColor = DefaultColor,

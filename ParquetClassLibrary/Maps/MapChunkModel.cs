@@ -46,14 +46,14 @@ namespace Parquet.Maps
 
         #region Initialization
         /// <summary>
-        /// Used by subtypes of the <see cref="MapModel"/> class.
+        /// Initializes an instance of the <see cref="MapChunkModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the map.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the map.</param>
-        /// <param name="inComment">Comment of, on, or by the map.</param>
-        /// <param name="inTags">Any additional information about the map.</param>
-        /// <param name="inRevision">An option revision count.</param>
+        /// <param name="inID">Unique identifier for the <see cref="MapChunkModel"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="MapChunkModel"/>.  Cannot be null or empty.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="MapChunkModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="MapChunkModel"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="MapChunkModel"/>.</param>
+        /// <param name="inRevision">An optional revision count.</param>
         /// <param name="inIsFilledOut">
         /// If <c>true</c>, the <see cref="MapChunkModel"/> was either created at design time or
         /// has already been procedurally generated on load in-game.

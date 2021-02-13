@@ -33,16 +33,16 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="FloorModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="inDescription">Player-friendly description of the parquet.</param>
-        /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inTags">Any additional information about the parquet.</param>
-        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="ItemModel"/> awarded to the player when a character gathers this parquet.</param>
-        /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
-        /// <param name="inModTool">The tool used to modify this floor.</param>
-        /// <param name="inTrenchName">The name to use for this floor when it has been dug out.</param>
+        /// <param name="inID">Unique identifier for the <see cref="FloorModel"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="FloorModel"/>.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="FloorModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="FloorModel"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="FloorModel"/>.</param>
+        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="ItemModel"/> awarded to the player when a character gathers this <see cref="FloorModel"/>.</param>
+        /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeRecipe"/> this <see cref="FloorModel"/> helps to generate.</param>
+        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this <see cref="FloorModel"/> helps form.</param>
+        /// <param name="inModTool">The tool used to modify this <see cref="FloorModel"/>.</param>
+        /// <param name="inTrenchName">The name to use for this <see cref="FloorModel"/> when it has been dug out.</param>
         public FloorModel(ModelID inID, string inName, string inDescription, string inComment,
                           IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
                           IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,

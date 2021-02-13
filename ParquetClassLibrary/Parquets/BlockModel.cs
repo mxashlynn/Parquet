@@ -52,20 +52,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="BlockModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
-        /// <param name="inDescription">Player-friendly description of the parquet.</param>
-        /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inTags">Any additional information about the parquet.</param>
-        /// <param name="inItemID">The item that this collectible corresponds to, if any.</param>
-        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inGatherTool">The tool used to gather this block.</param>
-        /// <param name="inGatherEffect">Effect of this block when gathered.</param>
-        /// <param name="inCollectibleID">The Collectible to spawn, if any, when this Block is Gathered.</param>
-        /// <param name="inIsFlammable">If <c>true</c> this block may burn.</param>
-        /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
-        /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
+        /// <param name="inID">Unique identifier for the <see cref="BlockModel"/>.  Cannot be null.</param>
+        /// <param name="inName">Player-friendly name of the <see cref="BlockModel"/>.  Cannot be null.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="BlockModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="BlockModel"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="BlockModel"/>.</param>
+        /// <param name="inItemID">The item that this <see cref="BlockModel"/> corresponds to, if any.</param>
+        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this <see cref="BlockModel"/> helps to generate.</param>
+        /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this <see cref="BlockModel"/> helps to generate.</param>
+        /// <param name="inGatherTool">The tool used to gather this <see cref="BlockModel"/>.</param>
+        /// <param name="inGatherEffect">Effect of this <see cref="BlockModel"/> when gathered.</param>
+        /// <param name="inCollectibleID">The <see cref="CollectibleModel"/> to spawn, if any, when this <see cref="BlockModel"/> is gathered.</param>
+        /// <param name="inIsFlammable">If <c>true</c> this <see cref="BlockModel"/> may burn.</param>
+        /// <param name="inIsLiquid">If <c>true</c> this <see cref="BlockModel"/> will flow.</param>
+        /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this <see cref="BlockModel"/>.</param>
         public BlockModel(ModelID inID, string inName, string inDescription, string inComment,
                           IEnumerable<ModelTag> inTags = null,
                           ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,

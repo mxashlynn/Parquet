@@ -77,7 +77,7 @@ namespace Parquet.Beings
         /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
         /// <param name="inTags">Any additional information about the <see cref="CharacterModel"/>.</param>
-        /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
+        /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="CharacterModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoidsIDs">Any parquets this <see cref="CharacterModel"/> avoids.</param>
         /// <param name="inSeeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>

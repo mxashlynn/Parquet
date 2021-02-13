@@ -25,7 +25,7 @@ namespace Parquet.Scripts
         /// <param name="inName">Player-friendly name of the <see cref="ScriptModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="ScriptModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="ScriptModel"/>.</param>
-        /// <param name="inTags">Any additional information about this <see cref="GameModel"/>.</param>
+        /// <param name="inTags">Any additional information about this <see cref="ScriptModel"/>.</param>
         /// <param name="inNodes">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         public ScriptModel(ModelID inID, string inName, string inDescription, string inComment,
                            IEnumerable<ModelTag> inTags = null, IEnumerable<ScriptNode> inNodes = null)

@@ -43,9 +43,9 @@ namespace Parquet.Parquets
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="FurnishingModel"/>.  Cannot be null.</param>
         /// <param name="inName">Player-friendly name of the <see cref="FurnishingModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the parquet.</param>
-        /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inTags">Any additional information about the parquet.</param>
+        /// <param name="inDescription">Player-friendly description of the <see cref="FurnishingModel"/>.</param>
+        /// <param name="inComment">Comment of, on, or by the <see cref="FurnishingModel"/>.</param>
+        /// <param name="inTags">Any additional information about the <see cref="FurnishingModel"/>.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> that represents this <see cref="FurnishingModel"/> in the <see cref="Items.Inventory"/>.</param>
         /// <param name="inAddsToBiome">Indicates which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
