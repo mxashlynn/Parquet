@@ -8,11 +8,6 @@ namespace Parquet.Beings
     /// </summary>
     public class BeingStatus
     {
-        #region Metadata
-        /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; private set; }
-        #endregion
-
         #region Identity
         /// <summary>The <see cref="BeingModel"/> whose status is being tracked.</summary>
         public BeingModel BeingDefinition { get; }

@@ -131,7 +131,6 @@ Parquet.Beings.BeingStatus.MovementSpeed.set -> void
 Parquet.Beings.BeingStatus.Position.get -> Parquet.Location
 Parquet.Beings.BeingStatus.Position.set -> void
 Parquet.Beings.BeingStatus.Quests.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
-Parquet.Beings.BeingStatus.Revision.get -> int
 Parquet.Beings.BeingStatus.RoomAssignment.get -> Parquet.Location
 Parquet.Beings.BeingStatus.RoomAssignment.set -> void
 Parquet.Beings.BeingStatus.SpawnAt.get -> Parquet.Location
@@ -484,19 +483,17 @@ Parquet.Maps.MapChunkModel
 Parquet.Maps.MapChunkModel.Details.get -> Parquet.Maps.ChunkDetail
 Parquet.Maps.MapChunkModel.Generate() -> Parquet.Maps.MapChunkModel
 Parquet.Maps.MapChunkModel.IsFilledOut.get -> bool
-Parquet.Maps.MapChunkModel.MapChunkModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, int inRevision = 0, bool inIsFilledOut = false, Parquet.Maps.ChunkDetail inDetails = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
+Parquet.Maps.MapChunkModel.MapChunkModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, bool inIsFilledOut = false, Parquet.Maps.ChunkDetail inDetails = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
 Parquet.Maps.MapModel
 Parquet.Maps.MapModel.GetSubregion() -> Parquet.Parquets.ParquetPackGrid
 Parquet.Maps.MapModel.GetSubregion(Parquet.Vector2D inUpperLeft, Parquet.Vector2D inLowerRight) -> Parquet.Parquets.ParquetPackGrid
 Parquet.Maps.MapModel.IsValidPosition(Parquet.Vector2D inPosition) -> bool
-Parquet.Maps.MapModel.MapModel(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, int inRevision = 0) -> void
+Parquet.Maps.MapModel.MapModel(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null) -> void
 Parquet.Maps.MapModel.ParquetsCount.get -> int
-Parquet.Maps.MapModel.Revision.get -> int
-Parquet.Maps.MapModel.Revision.set -> void
 Parquet.Maps.MapRegionModel
 Parquet.Maps.MapRegionModel.BackgroundColor.get -> string
 Parquet.Maps.MapRegionModel.GetBiome() -> Parquet.ModelID
-Parquet.Maps.MapRegionModel.MapRegionModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.Parquets.ParquetStatusGrid inParquetStatuses = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
+Parquet.Maps.MapRegionModel.MapRegionModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.Parquets.ParquetStatusGrid inParquetStatuses = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
 Parquet.Maps.MapRegionModel.ParquetStatuses.get -> Parquet.Parquets.ParquetStatusGrid
 Parquet.Maps.MapRegionModel.RegionAbove.get -> Parquet.ModelID
 Parquet.Maps.MapRegionModel.RegionBelow.get -> Parquet.ModelID
@@ -508,7 +505,7 @@ Parquet.Maps.MapRegionModel.Rooms.get -> System.Collections.Generic.IReadOnlyCol
 Parquet.Maps.MapRegionSketch
 Parquet.Maps.MapRegionSketch.BackgroundColor.get -> string
 Parquet.Maps.MapRegionSketch.Chunks.get -> Parquet.ModelIDGrid
-Parquet.Maps.MapRegionSketch.MapRegionSketch(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, int inRevision = 0, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.ModelIDGrid inChunks = null) -> void
+Parquet.Maps.MapRegionSketch.MapRegionSketch(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.ModelIDGrid inChunks = null) -> void
 Parquet.Maps.MapRegionSketch.RegionAbove.get -> Parquet.ModelID
 Parquet.Maps.MapRegionSketch.RegionBelow.get -> Parquet.ModelID
 Parquet.Maps.MapRegionSketch.RegionToTheEast.get -> Parquet.ModelID
@@ -727,7 +724,6 @@ Parquet.Scripts.InteractionStatus.InteractionDefinition.get -> Parquet.Scripts.I
 Parquet.Scripts.InteractionStatus.InteractionStatus(Parquet.Scripts.InteractionModel inInteractionDefinition, Parquet.Scripts.RunState inState, int inProgramCounter) -> void
 Parquet.Scripts.InteractionStatus.ProgramCounter.get -> int
 Parquet.Scripts.InteractionStatus.ProgramCounter.set -> void
-Parquet.Scripts.InteractionStatus.Revision.get -> int
 Parquet.Scripts.InteractionStatus.State.get -> Parquet.Scripts.RunState
 Parquet.Scripts.InteractionStatus.State.set -> void
 Parquet.Scripts.RunState

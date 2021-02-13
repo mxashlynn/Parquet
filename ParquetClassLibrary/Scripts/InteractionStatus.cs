@@ -5,11 +5,6 @@ namespace Parquet.Scripts
     /// </summary>
     public class InteractionStatus
     {
-        #region Metadata
-        /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        public int Revision { get; private set; }
-        #endregion
-
         #region Identity
         /// <summary>The script being tracked.</summary>
         public InteractionModel InteractionDefinition { get; }

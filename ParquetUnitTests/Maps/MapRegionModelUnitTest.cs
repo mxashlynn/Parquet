@@ -28,7 +28,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         public void NewCustomMapRegionModelTest()
         {
-            var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, 0, testColor);
+            var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, testColor);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);

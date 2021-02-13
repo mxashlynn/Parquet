@@ -34,37 +34,37 @@ namespace Parquet.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(6)]
+        [Index(5)]
         public string BackgroundColor { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Index(7)]
+        [Index(6)]
         public ModelID RegionToTheNorth { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Index(8)]
+        [Index(7)]
         public ModelID RegionToTheEast { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Index(9)]
+        [Index(8)]
         public ModelID RegionToTheSouth { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Index(10)]
+        [Index(9)]
         public ModelID RegionToTheWest { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Index(11)]
+        [Index(10)]
         public ModelID RegionAbove { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
-        [Index(12)]
+        [Index(11)]
         public ModelID RegionBelow { get; private set; }
         #endregion
 
         #region Map Contents
         /// <summary>The statuses of parquets in the chunk.</summary>
-        [Index(13)]
+        [Index(12)]
         // TODO [MAP EDITOR] [API] Should this be an IReadOnlyGrid<ParquetStatus>es instead?
         public ParquetStatusGrid ParquetStatuses { get; }
 
@@ -72,7 +72,7 @@ namespace Parquet.Maps
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
-        [Index(14)]
+        [Index(13)]
         public override ParquetPackGrid ParquetDefinitions { get; }
 
         /// <summary>
@@ -92,7 +92,6 @@ namespace Parquet.Maps
         /// <param name="inDescription">Player-friendly description of the <see cref="MapRegionModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="MapRegionModel"/>.</param>
         /// <param name="inTags">Any additional information about the <see cref="MapRegionModel"/>.</param>
-        /// <param name="inRevision">An optional revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the <see cref="MapRegionModel"/> when no parquets are present at a location.</param>
         /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> to the north of this one.</param>
         /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> to the east of this one.</param>
@@ -103,7 +102,7 @@ namespace Parquet.Maps
         /// <param name="inParquetStatuses">The statuses of the parquets making up this <see cref="MapRegionModel"/>.</param>
         /// <param name="inParquetDefinitions">The definitions of the parquets making up this <see cref="MapRegionModel"/>.</param>
         public MapRegionModel(ModelID inID, string inName, string inDescription, string inComment,
-                              IEnumerable<ModelTag> inTags = null, int inRevision = 0,
+                              IEnumerable<ModelTag> inTags = null,
                               string inBackgroundColor = DefaultColor,
                               ModelID? inRegionToTheNorth = null,
                               ModelID? inRegionToTheEast = null,
@@ -113,7 +112,7 @@ namespace Parquet.Maps
                               ModelID? inRegionBelow = null,
                               ParquetStatusGrid inParquetStatuses = null,
                               ParquetPackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags, inRevision)
+            : base(Bounds, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
             var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;

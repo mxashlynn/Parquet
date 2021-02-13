@@ -155,7 +155,7 @@ namespace ParquetRunner
                                                     null, TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
-            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", null, 0, true);
+            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", null, true);
             TestMapRegionModel = new MapRegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });

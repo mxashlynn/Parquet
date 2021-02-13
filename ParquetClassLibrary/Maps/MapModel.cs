@@ -19,21 +19,13 @@ namespace Parquet.Maps
         #endregion
 
         #region Characteristics
-        #region Whole-Map Characteristics
-        /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        [Index(5)]
-        public int Revision { get; protected set; }
-        #endregion
-
-        #region Map Contents
         /// <summary>
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(14)]
+        [Index(13)]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
         public abstract ParquetPackGrid ParquetDefinitions { get; }
-        #endregion
         #endregion
 
         #region Initialization
@@ -46,12 +38,10 @@ namespace Parquet.Maps
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
         /// <param name="inTags">Any additional information about this map.</param>
-        /// <param name="inRevision">How many times this map has been serialized.</param>
         protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                           IEnumerable<ModelTag> inTags = null, int inRevision = 0)
-            // Remove Revision (YAGNI).
+                           IEnumerable<ModelTag> inTags = null)
             : base(inBounds, inID, inName, inDescription, inComment, inTags)
-            => Revision = inRevision;
+        { }
         #endregion
 
         #region Utilities
