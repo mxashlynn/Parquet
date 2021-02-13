@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
@@ -48,41 +49,41 @@ namespace Parquet.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(5)]
+        [Index(6)]
         public string BackgroundColor { get; private set; }
         #endregion
 
         #region Map Contents
         /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Index(6)]
+        [Index(7)]
         public ModelID RegionToTheNorth { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Index(7)]
+        [Index(8)]
         public ModelID RegionToTheEast { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Index(8)]
+        [Index(9)]
         public ModelID RegionToTheSouth { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Index(9)]
+        [Index(10)]
         public ModelID RegionToTheWest { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Index(10)]
+        [Index(11)]
         public ModelID RegionAbove { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
-        [Index(11)]
+        [Index(12)]
         public ModelID RegionBelow { get; private set; }
 
         /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegionModel"/>.</summary>
-        [Index(12)]
+        [Index(13)]
         public ModelIDGrid Chunks { get; }
 
         /// <summary>Do not use.  Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
-        // Index(13)
+        // Index(14)
         [Ignore]
         [Obsolete("Do not use.  Generate a MapRegionModel by calling Stitch, then access the parquet via that instance.")]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
@@ -106,6 +107,7 @@ namespace Parquet.Maps
         /// <param name="inName">The player-facing name of the new region.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inTags">Any additional information about the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inBackgroundColor">A color to show in the new region when no parquet is present.</param>
         /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the region to the north of this one.</param>
@@ -115,7 +117,8 @@ namespace Parquet.Maps
         /// <param name="inRegionAbove">The <see cref="ModelID"/> of the region above this one.</param>
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the region below this one.</param>
         /// <param name="inChunks">The pattern from which a <see cref="MapRegionModel"/> may be generated.</param>
-        public MapRegionSketch(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
+        public MapRegionSketch(ModelID inID, string inName, string inDescription, string inComment,
+                               IEnumerable<ModelTag> inTags = null, int inRevision = 0,
                                string inBackgroundColor = DefaultColor,
                                ModelID? inRegionToTheNorth = null,
                                ModelID? inRegionToTheEast = null,
@@ -124,7 +127,7 @@ namespace Parquet.Maps
                                ModelID? inRegionAbove = null,
                                ModelID? inRegionBelow = null,
                                ModelIDGrid inChunks = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inRevision)
+            : base(Bounds, inID, inName, inDescription, inComment, inTags, inRevision)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
             var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
@@ -194,9 +197,9 @@ namespace Parquet.Maps
             }
 
             // Create a new MapRegionModel with the metadata of this sketch plus the new subregion.
-            var newRegion = new MapRegionModel(ID, Name, Description, Comment, Revision + 1, BackgroundColor, RegionToTheNorth,
-                                          RegionToTheEast, RegionToTheSouth, RegionToTheWest, RegionAbove, RegionBelow,
-                                          null, parquetDefinitions);
+            var newRegion = new MapRegionModel(ID, Name, Description, Comment, null, Revision + 1, BackgroundColor,
+                                               RegionToTheNorth, RegionToTheEast, RegionToTheSouth, RegionToTheWest,
+                                               RegionAbove, RegionBelow, null, parquetDefinitions);
 
             // TODO [MAP EDITOR] Fix this section:
             /*

@@ -16,42 +16,38 @@ namespace Parquet.Items
 
         #region Characteristics
         /// <summary>The type of item this is.</summary>
-        [Index(4)]
+        [Index(5)]
         public ItemType Subtype { get; private set; }
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
-        [Index(5)]
+        [Index(6)]
         public int Price { get; private set; }
 
         /// <summary>How relatively rare this item is.</summary>
-        [Index(6)]
+        [Index(7)]
         public int Rarity { get; private set; }
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
-        [Index(7)]
+        [Index(8)]
         public int StackMax { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
         /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
         /// </summary>
-        [Index(8)]
+        [Index(9)]
         public ModelID EffectWhileHeldID { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
         /// using (consuming) the item.
         /// </summary>
-        [Index(9)]
+        [Index(10)]
         public ModelID EffectWhenUsedID { get; private set; }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
-        [Index(10)]
-        public ModelID ParquetID { get; private set; }
-
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         [Index(11)]
-        public IReadOnlyList<ModelTag> ItemTags { get; }
+        public ModelID ParquetID { get; private set; }
         #endregion
 
         #region Initialization
@@ -62,6 +58,7 @@ namespace Parquet.Items
         /// <param name="inName">Player-friendly name of the <see cref="ItemModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="ItemModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="ItemModel"/>.</param>
+        /// <param name="inTags">Any additional functionality this <see cref="ItemModel"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
         /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
         /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
@@ -69,18 +66,16 @@ namespace Parquet.Items
         /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
         /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented, if any.</param>
-        /// <param name="inItemTags">Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
-                         ItemType inSubtype = ItemType.Other, int inPrice = 0, int inRarity = 0,
-                         int inStackMax = DefaultStackMax, ModelID? inEffectWhileHeldID = null,
-                         ModelID? inEffectWhenUsedID = null, ModelID? inParquetID = null,
-                         IEnumerable<ModelTag> inItemTags = null)
-            : base(All.ItemIDs, inID, inName, inDescription, inComment)
+                         IEnumerable<ModelTag> inTags = null, ItemType inSubtype = ItemType.Other,
+                         int inPrice = 0, int inRarity = 0, int inStackMax = DefaultStackMax,
+                         ModelID? inEffectWhileHeldID = null, ModelID? inEffectWhenUsedID = null,
+                         ModelID? inParquetID = null)
+            : base(All.ItemIDs, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullEffectWhileHeldID = inEffectWhileHeldID ?? ModelID.None;
             var nonNullEffectWhenUsedID = inEffectWhenUsedID ?? ModelID.None;
             var nonNullParquetID = inParquetID ?? ModelID.None;
-            var nonNullItemTags = (inItemTags ?? Enumerable.Empty<ModelTag>()).ToList();
 
             Precondition.IsInRange(nonNullEffectWhileHeldID, All.ScriptIDs, nameof(inEffectWhileHeldID));
             Precondition.IsInRange(nonNullEffectWhenUsedID, All.ScriptIDs, nameof(inEffectWhenUsedID));
@@ -94,7 +89,6 @@ namespace Parquet.Items
             EffectWhileHeldID = nonNullEffectWhileHeldID;
             EffectWhenUsedID = nonNullEffectWhenUsedID;
             ParquetID = nonNullParquetID;
-            ItemTags = nonNullItemTags;
         }
         #endregion
 
@@ -104,7 +98,7 @@ namespace Parquet.Items
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
-            => base.GetAllTags().Union(ItemTags);
+            => base.GetAllTags().Union(Tags);
         #endregion
     }
 }

@@ -1,5 +1,4 @@
 #if DESIGN
-using System.Collections.Generic;
 using Parquet.Items;
 
 namespace Parquet.EditorSupport
@@ -39,9 +38,6 @@ namespace Parquet.EditorSupport
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         public ModelID ParquetID { get; set; }
-
-        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
-        public ICollection<ModelTag> ItemTags { get; }
     }
 }
 #endif

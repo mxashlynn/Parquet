@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Parquet.Maps;
 using Parquet.Properties;
 
 namespace Parquet.Maps

@@ -1,4 +1,4 @@
-﻿ID,Name,Description,Comment,Subtype,Price,Rarity,StackMax,EffectWhileHeldID,EffectWhenUsedID,ParquetID,ItemTags
--140000,Item Test,Test,Test,Consumable,10,3,99,None,-120000,None,
-140000,Red Apple,Red and tasty!,,Consumable,2,1,30,120000,120001,None,
-140001,Green Apple,Green for baking!,,Consumable,2,1,30,None,None,20001,Frizzle's Fave
+﻿ID,Name,Description,Comment,Tags,Subtype,Price,Rarity,StackMax,EffectWhileHeldID,EffectWhenUsedID,ParquetID
+-140000,Item Test,Test,Test,,Consumable,10,3,99,None,-120000,None
+140000,Red Apple,Red and tasty!,,,Consumable,2,1,30,120000,120001,None
+140001,Green Apple,Green for baking!,,Frizzle's Fave,Consumable,2,1,30,None,None,20001

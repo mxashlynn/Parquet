@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Parquets
         {
             ModelID goodItemID = -All.ItemIDs.Minimum;
 
-            var testBlock = new BlockModel(newBlockID, "will be created", "", "", goodItemID);
+            var testBlock = new BlockModel(newBlockID, "will be created", "", "", null, goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new BlockModel(newBlockID, "will fail", "", "", badItemID);
+                var _ = new BlockModel(newBlockID, "will fail", "", "", null, badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

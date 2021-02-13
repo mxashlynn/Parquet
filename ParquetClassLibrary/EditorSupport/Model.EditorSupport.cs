@@ -1,4 +1,5 @@
 #if DESIGN
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -43,6 +44,14 @@ namespace Parquet
         /// </remarks>
         [Ignore]
         string IMutableModel.Comment { get => Comment; set => Comment = value; }
+
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ICollection<ModelTag> IMutableModel.Tags => (ICollection<ModelTag>)Tags;
         #endregion
     }
 }

@@ -1,9 +1,9 @@
-﻿ID,Name,Description,Comment,ItemID,AddsToBiome,AddsToRoom,GatherTool,GatherEffect,CollectibleID,IsFlammable,IsLiquid,MaxToughness
--20000,2 Block Test Parquet,Test,Test,-140002,,,None,None,-40000,False,False,10
-20000,Bush,A short shrub.,This is just a test.,None,,,Axe,Collectible,40000,True,False,1
-20001,Tree,A large woody plant.,,None,Forested∟Wood,None∟Natural,Axe,Collectible,40001,True,False,4
-20003,Sandstone Boulder,A major block of stone made from accreted sand.,,None,Deserted,,Pick,None,None,False,False,10
-20004,Ice Boulder,A huge chunk of frozen water.,,None,Frozen,,Pick,None,None,False,False,8
-20005,Grey Brick,Standard blocks for building a wall.,,None,,Brick,Pick,None,None,False,False,8
-20006,Fresh Water,"Come, wash your face!",,140001,,,Bucket,Item,None,False,True,1
-20007,Lava,Molten silicates from the Earth's mantle.,,140002,Volcanic,,Bucket,Item,None,False,True,1
+﻿ID,Name,Description,Comment,Tags,ItemID,AddsToBiome,AddsToRoom,GatherTool,GatherEffect,CollectibleID,IsFlammable,IsLiquid,MaxToughness
+-20000,2 Block Test Parquet,Test,Test,Test-Tag,-140002,,,None,None,-40000,False,False,10
+20000,Bush,A short shrub.,This is just a test.,,None,,,Axe,Collectible,40000,True,False,1
+20001,Tree,A large woody plant.,,,None,Forested∟Wood,None∟Natural,Axe,Collectible,40001,True,False,4
+20003,Sandstone Boulder,A major block of stone made from accreted sand.,,,None,Deserted,,Pick,None,None,False,False,10
+20004,Ice Boulder,A huge chunk of frozen water.,,,None,Frozen,,Pick,None,None,False,False,8
+20005,Grey Brick,Standard blocks for building a wall.,,,None,,Brick,Pick,None,None,False,False,8
+20006,Fresh Water,"Come, wash your face!",,,140001,,,Bucket,Item,None,False,True,1
+20007,Lava,Molten silicates from the Earth's mantle.,,,140002,Volcanic,,Bucket,Item,None,False,True,1

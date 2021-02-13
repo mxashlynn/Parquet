@@ -15,19 +15,19 @@ namespace Parquet.Rooms
     {
         #region Characteristics
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
-        [Index(4)]
+        [Index(5)]
         public int MinimumWalkableSpaces { get; private set; }
 
         /// <summary>A list of <see cref="FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        [Index(5)]
+        [Index(6)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredFurnishings { get; }
 
         /// <summary>An optional list of <see cref="FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
-        [Index(6)]
+        [Index(7)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredWalkableFloors { get; }
 
         /// <summary>An optional list of <see cref="BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
-        [Index(7)]
+        [Index(8)]
         public IReadOnlyList<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
         #endregion
 
@@ -39,16 +39,17 @@ namespace Parquet.Rooms
         /// <param name="inName">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
+        /// <param name="inTags">Any additional information about this <see cref="RoomRecipe"/>.</param>
         /// <param name="inMinimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
         /// <param name="inOptionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
         public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          int? inMinimumWalkableSpaces = null,
+                          IEnumerable<ModelTag> inTags = null, int? inMinimumWalkableSpaces = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
-            : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment)
+            : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullMinimumWalkableSpaces = inMinimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
             var nonNullOptionallyRequiredFurnishings = (inOptionallyRequiredFurnishings ?? Enumerable.Empty<RecipeElement>()).ToList();

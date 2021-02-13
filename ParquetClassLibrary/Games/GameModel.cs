@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 
 namespace Parquet.Games
@@ -9,23 +10,23 @@ namespace Parquet.Games
     {
         #region Characteristics
         /// <summary>If <c>true</c> this game is part of a sequence of games.</summary>
-        [Index(4)]
+        [Index(5)]
         public bool IsEpisode { get; private set; }
 
         /// <summary>Subtitle, if any.  This will be used as the title of the episode if <see cref="IsEpisode"/> is <c>true</c>.</summary>
-        [Index(5)]
+        [Index(6)]
         public string EpisodeTitle { get; private set; }
 
         /// <summary>Number of this episode in its sequence, if any.</summary>
-        [Index(6)]
+        [Index(7)]
         public int EpisodeNumber { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
-        [Index(7)]
+        [Index(8)]
         public ModelID PlayerCharacterID { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</summary>
-        [Index(8)]
+        [Index(9)]
         public ModelID FirstScriptID { get; private set; }
         #endregion
 
@@ -38,15 +39,16 @@ namespace Parquet.Games
         /// <param name="inName">Player-facing title of the <see cref="GameModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-facing description of the <see cref="GameModel"/>.</param>
         /// <param name="inComment">A private comment on the nature of the game or episode.</param>
+        /// <param name="inTags">Any additional information about this <see cref="GameModel"/>.</param>
         /// <param name="inIsEpisode">If <c>true</c> this game is part of a longer sequence of games.</param>
         /// <param name="inEpisodeTitle">Title of this episode, if any.</param>
         /// <param name="inEpisodeNumber">Number of this episode in its sequence, if any.</param>
         /// <param name="inPlayerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
         /// <param name="inFirstScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
         public GameModel(ModelID inID, string inName, string inDescription, string inComment,
-                         bool inIsEpisode = false, string inEpisodeTitle = "", int inEpisodeNumber = 0,
-                         ModelID? inPlayerCharacterID = null, ModelID? inFirstScriptID = null)
-            : base(All.GameIDs, inID, inName, inDescription, inComment)
+                         IEnumerable<ModelTag> inTags = null, bool inIsEpisode = false, string inEpisodeTitle = "",
+                         int inEpisodeNumber = 0, ModelID? inPlayerCharacterID = null, ModelID? inFirstScriptID = null)
+            : base(All.GameIDs, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullPlayerCharacterID = inPlayerCharacterID ?? ModelID.None;
             var nonNullFirstScriptID = inFirstScriptID ?? ModelID.None;

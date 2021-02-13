@@ -25,6 +25,8 @@ namespace ParquetUnitTests
         /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         /// <summary>Used in test patterns in QA routines.</summary>
+        public static readonly IReadOnlyList<ModelTag> TestTagList = new List<ModelTag> { TestTag };
+        /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
         /// <summary>Used in test patterns in QA routines.</summary>
         public static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
@@ -145,14 +147,14 @@ namespace ParquetUnitTests
         {
             #region Initialize Instances
             TestPronounGroup = new PronounGroup("thon", "thon", "thons", "thons", "thonself");
-            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
-            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
-            TestBiome = new BiomeRecipe(-All.BiomeRecipeIDs.Minimum, "3 Test Biome", "Test", "Test", 1, false, false, null, null);
+            TestCritter = new CritterModel(-All.CritterIDs.Minimum, "1 Test Critter", "Test", "Test", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
+            TestCharacter = new CharacterModel(-All.CharacterIDs.Minimum, "2 Test Character", "Test", "Test", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
+            TestBiome = new BiomeRecipe(-All.BiomeRecipeIDs.Minimum, "3 Test Biome", "Test", "Test", null, 1, false, false, null, null);
             TestCraftingRecipe = new CraftingRecipe(-All.CraftingRecipeIDs.Minimum, "4 Test Crafting Recipe", "Test", "Test",
-                                                    TestRecipeElementList, TestRecipeElementList,
+                                                    null, TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
-            TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null);
-            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", 0, true);
+            TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
+            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", null, 0, true);
             TestMapRegionModel = new MapRegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
@@ -160,19 +162,19 @@ namespace ParquetUnitTests
             TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "10 Test Furnishing", "Test", "Test",
                                                  inEntry: EntryType.Room, inAddsToRoom: new List<ModelTag> { TestTag });
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
-            TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test",
+            TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test", null,
                                             RoomConfiguration.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);
-            TestScript = new ScriptModel(-All.ScriptIDs.Minimum, "13 Test Script", "Test", "Test", TestNodeList);
-            TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "14 Test Item 1", "Test", "Test", ItemType.Other,
+            TestScript = new ScriptModel(-All.ScriptIDs.Minimum, "13 Test Script", "Test", "Test", null, TestNodeList);
+            TestItem1 = new ItemModel(-All.ItemIDs.Minimum, "14 Test Item 1", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 99, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum);
-            TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "14 Test Item 2", "Test", "Test", ItemType.Other,
+            TestItem2 = new ItemModel(-All.ItemIDs.Minimum - 1, "14 Test Item 2", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 1);
-            TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "14 Test Item 3", "Test", "Test", ItemType.Other,
+            TestItem3 = new ItemModel(-All.ItemIDs.Minimum - 2, "14 Test Item 3", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 2);
-            TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", ItemType.Other,
+            TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
-            TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
+            TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", null, false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
 
             #region Initialize TestMapChunkModel
             for (var y = 0; y < TestMapChunkModel.DimensionsInParquets.Y; y++)

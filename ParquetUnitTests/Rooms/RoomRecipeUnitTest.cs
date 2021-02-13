@@ -43,7 +43,7 @@ namespace ParquetUnitTests.Rooms
         private static readonly IReadOnlyList<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
-            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", RoomConfiguration.MinWalkableSpaces, TestRequiredFurnishings);
+            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", null, RoomConfiguration.MinWalkableSpaces, TestRequiredFurnishings);
 
         private static readonly Room MinimalRoom = new Room(TestWalkableArea, TestPerimeter);
         #endregion
@@ -55,7 +55,7 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredBlocks()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", BadMinimum);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", null, BadMinimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredBlocks);
@@ -68,7 +68,7 @@ namespace ParquetUnitTests.Rooms
 
             void HasBadRequiredBlocks()
             {
-                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", BadMinimum);
+                var _ = new RoomRecipe(-All.RoomRecipeIDs.Minimum, "will fail", "", "", null, BadMinimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(HasBadRequiredBlocks);

@@ -13,7 +13,7 @@ namespace Parquet.Scripts
     {
         #region Characteristics
         /// <summary>A series of imperative, procedural commands.</summary>
-        [Index(4)]
+        [Index(5)]
         public IReadOnlyList<ScriptNode> Nodes { get; }
         #endregion
 
@@ -25,9 +25,11 @@ namespace Parquet.Scripts
         /// <param name="inName">Player-friendly name of the <see cref="ScriptModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="ScriptModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="ScriptModel"/>.</param>
+        /// <param name="inTags">Any additional information about this <see cref="GameModel"/>.</param>
         /// <param name="inNodes">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
-        public ScriptModel(ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ScriptNode> inNodes = null)
-            : base(All.ScriptIDs, inID, inName, inDescription, inComment)
+        public ScriptModel(ModelID inID, string inName, string inDescription, string inComment,
+                           IEnumerable<ModelTag> inTags = null, IEnumerable<ScriptNode> inNodes = null)
+            : base(All.ScriptIDs, inID, inName, inDescription, inComment, inTags)
             => Nodes = (inNodes ?? Enumerable.Empty<ScriptNode>()).ToList();
         #endregion
 

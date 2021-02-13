@@ -1,4 +1,6 @@
 #if DESIGN
+using System.Collections.Generic;
+
 namespace Parquet.EditorSupport
 {
     /// <summary>
@@ -30,10 +32,11 @@ namespace Parquet.EditorSupport
         public string Description { get; set; }
 
         /// <summary>Optional comment.</summary>
-        /// <remarks>
-        /// Could be used for designer's notes or to implement an in-game dialogue with or on the <see cref="Model"/>.
-        /// </remarks>
+        /// <remarks>Could be used for designer's notes or to implement an in-game dialogue with or on the <see cref="Model"/>.</remarks>
         public string Comment { get; set; }
+
+        /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</summary>
+        public ICollection<ModelTag> Tags { get; }
     }
 }
 #endif

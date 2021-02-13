@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
 
@@ -15,7 +16,7 @@ namespace Parquet.Maps
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
-        public static MapChunkModel Empty { get; } = new MapChunkModel(ModelID.None, "Empty", "", "", 0, false);
+        public static MapChunkModel Empty { get; } = new MapChunkModel(ModelID.None, "Empty", "", "", null, 0, false);
 
         /// <summary>The length of each <see cref="MapChunkModel"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
@@ -31,15 +32,15 @@ namespace Parquet.Maps
 
         #region Characteristics
         /// <summary>If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time instead of procedurally generated.</summary>
-        [Index(5)]
+        [Index(6)]
         public bool IsFilledOut { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
-        [Index(6)]
+        [Index(7)]
         public ChunkDetail Details { get; private set; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        [Index(13)]
+        [Index(14)]
         public override ParquetPackGrid ParquetDefinitions { get; }
         #endregion
 
@@ -51,6 +52,7 @@ namespace Parquet.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inTags">Any additional information about the map.</param>
         /// <param name="inRevision">An option revision count.</param>
         /// <param name="inIsFilledOut">
         /// If <c>true</c>, the <see cref="MapChunkModel"/> was either created at design time or
@@ -58,12 +60,12 @@ namespace Parquet.Maps
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
-        public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0,
-                             bool inIsFilledOut = false,
+        public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment,
+                             IEnumerable<ModelTag> inTags = null, int inRevision = 0, bool inIsFilledOut = false,
                              ChunkDetail inDetails = null,
                              // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
                              ParquetPackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inRevision)
+            : base(Bounds, inID, inName, inDescription, inComment, inTags, inRevision)
         {
             IsFilledOut = inIsFilledOut;
 
@@ -124,7 +126,7 @@ namespace Parquet.Maps
             #endregion
 
             // Create a new MapChunkModel with the new subregion.
-            var newChunk = new MapChunkModel(ID, Name, Description, Comment, Revision + 1, true, null, newParquetDefinitions);
+            var newChunk = new MapChunkModel(ID, Name, Description, Comment, Tags, Revision + 1, true, null, newParquetDefinitions);
 
             // TODO [MAP EDITOR] Fix this section:
             /*

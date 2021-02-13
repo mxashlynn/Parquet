@@ -35,7 +35,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Please see ParquetClassLibrary for details.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.3.55.0</Version>
+    <Version>0.3.56.0</Version>
   </PropertyGroup>
 
   <Target Name="AfterClean">

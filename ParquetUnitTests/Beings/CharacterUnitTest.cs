@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Beings
         [Fact]
         public void ValidCharacterIDsArePermittedTest()
         {
-            var newCharacter = new CharacterModel(newCharacterID, "Character", "will be created", "", All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
+            var newCharacter = new CharacterModel(newCharacterID, "Character", "will be created", "", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
 
             Assert.NotNull(newCharacter);
         }
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Beings
 
             void TestCode()
             {
-                var _ = new CharacterModel(badCharacterID, "Character", "will fail", "", All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
+                var _ = new CharacterModel(badCharacterID, "Character", "will fail", "", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

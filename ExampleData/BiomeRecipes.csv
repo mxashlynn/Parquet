@@ -1,16 +1,16 @@
-﻿ID,Name,Description,Comment,Tier,IsRoomBased,IsLiquidBased,ParquetCriteria,EntryRequirements
--70000,Biome Test,Test,Test,1,False,True,None,
-70000,Alpine,,,4,False,False,None,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
-70001,Cavern,,,3,False,False,None,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
-70002,Desert,,,2,False,False,Deserted,SeasideKey∟DesertKey∟Tier2Key
-70003,Field,,,0,False,False,None,
-70004,Forest,,,1,False,False,Forested,ForestKey
-70005,Heavens,Heavenly!,"What a nice place, but don't miss your step!",5,False,True,Heavenly,HeavenlyKey
-70006,Inferno,Infernal!,"What a horrendous place, so don't miss your step!",5,False,True,Volcanic,InfernalKey
-70007,Ruins,,,4,False,False,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
-70008,Seaside,,,1,False,True,Coastal,SeasideKey
-70009,Swamp,,,2,False,False,Swampy,ForestKey∟SwampKey∟Tier2Key
-70010,Town,,,0,True,False,Urban,
-70011,Tundra,,,2,False,False,Frozen,SeasideKey∟TundraKey∟Tier2Key
-70012,Volcano,,,4,False,True,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
-70013,Prism,,,4,False,False,Crystaline,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+﻿ID,Name,Description,Comment,Tags,Tier,IsRoomBased,IsLiquidBased,ParquetCriteria,EntryRequirements
+-70000,Biome Test,Test,Test,,1,False,True,None,
+70000,Alpine,,,,4,False,False,None,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey
+70001,Cavern,,,,3,False,False,None,ForestKey∟CavernKey∟Tier2Key∟Tier3Key
+70002,Desert,,,,2,False,False,Deserted,SeasideKey∟DesertKey∟Tier2Key
+70003,Field,,,,0,False,False,None,
+70004,Forest,,,,1,False,False,Forested,ForestKey
+70005,Heavens,Heavenly!,sky,"What a nice place, but don't miss your step!",5,False,True,Heavenly,HeavenlyKey
+70006,Inferno,Infernal!,pit,"What a horrendous place, so don't miss your step!",5,False,True,Volcanic,InfernalKey
+70007,Ruins,,,,4,False,False,Ruinous,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟ForestKey∟SwampKey∟RuinsKey
+70008,Seaside,,,,1,False,True,Coastal,SeasideKey
+70009,Swamp,,,,2,False,False,Swampy,ForestKey∟SwampKey∟Tier2Key
+70010,Town,,,,0,True,False,Urban,
+70011,Tundra,,,,2,False,False,Frozen,SeasideKey∟TundraKey∟Tier2Key
+70012,Volcano,,,,4,False,True,Volcanic,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟DesertKey∟VolcanoKey
+70013,Prism,,,,4,False,False,Crystaline,ForestKey∟CavernKey∟Tier2Key∟Tier3Key∟SeasideKey∟TundraKey∟AlpineKey

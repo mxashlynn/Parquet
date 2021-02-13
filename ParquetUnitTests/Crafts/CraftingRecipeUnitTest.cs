@@ -32,7 +32,7 @@ namespace ParquetUnitTests.Crafts
         [Fact]
         public void ValidCraftingRecipeIDsArePermittedTest()
         {
-            var newCraftingRecipe = new CraftingRecipe(newCraftingRecipeID, "will be created", "", "",
+            var newCraftingRecipe = new CraftingRecipe(newCraftingRecipeID, "will be created", "", "", null,
                                                        productList, ingredientList, emptyPanelPattern);
 
             Assert.NotNull(newCraftingRecipe);
@@ -45,7 +45,7 @@ namespace ParquetUnitTests.Crafts
 
             void TestCode()
             {
-                var _ = new CraftingRecipe(badCraftingRecipeID, "will fail", "", "",
+                var _ = new CraftingRecipe(badCraftingRecipeID, "will fail", "", "", null,
                                            productList, ingredientList, emptyPanelPattern);
             }
 
@@ -60,7 +60,7 @@ namespace ParquetUnitTests.Crafts
 
             void TestCodeTooHigh()
             {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
+                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "", null,
                                            productList, ingredientList, patternTooHigh);
             }
 
@@ -75,7 +75,7 @@ namespace ParquetUnitTests.Crafts
 
             void TestCodeTooWide()
             {
-                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "",
+                var _ = new CraftingRecipe(newCraftingRecipeID, "will fail", "", "", null,
                                            productList, ingredientList, patternTooWide);
             }
 

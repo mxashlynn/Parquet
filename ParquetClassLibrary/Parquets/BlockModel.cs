@@ -24,27 +24,27 @@ namespace Parquet.Parquets
 
         #region Characteristics
         /// <summary>The tool used to remove the block.</summary>
-        [Index(7)]
+        [Index(8)]
         public GatheringTool GatherTool { get; private set; }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
-        [Index(8)]
+        [Index(9)]
         public GatheringEffect GatherEffect { get; private set; }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
-        [Index(9)]
+        [Index(10)]
         public ModelID CollectibleID { get; private set; }
 
         /// <summary>Whether or not the block is flammable.</summary>
-        [Index(10)]
+        [Index(11)]
         public bool IsFlammable { get; private set; }
 
         /// <summary>Whether or not the block is a liquid.</summary>
-        [Index(11)]
+        [Index(12)]
         public bool IsLiquid { get; private set; }
 
         /// <summary>The block's native toughness.</summary>
-        [Index(12)]
+        [Index(13)]
         public int MaxToughness { get; private set; }
         #endregion
 
@@ -56,6 +56,7 @@ namespace Parquet.Parquets
         /// <param name="inName">Player-friendly name of the parquet.  Cannot be null.</param>
         /// <param name="inDescription">Player-friendly description of the parquet.</param>
         /// <param name="inComment">Comment of, on, or by the parquet.</param>
+        /// <param name="inTags">Any additional information about the parquet.</param>
         /// <param name="inItemID">The item that this collectible corresponds to, if any.</param>
         /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
@@ -66,13 +67,14 @@ namespace Parquet.Parquets
         /// <param name="inIsLiquid">If <c>true</c> this block will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this block.</param>
         public BlockModel(ModelID inID, string inName, string inDescription, string inComment,
+                          IEnumerable<ModelTag> inTags = null,
                           ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
                           IEnumerable<ModelTag> inAddsToRoom = null,
                           GatheringTool inGatherTool = GatheringTool.None,
                           GatheringEffect inGatherEffect = GatheringEffect.None,
                           ModelID? inCollectibleID = null, bool inIsFlammable = false,
                           bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
-            : base(Bounds, inID, inName, inDescription, inComment, inItemID, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
         {
             var nonNullCollectibleID = inCollectibleID ?? ModelID.None;
 

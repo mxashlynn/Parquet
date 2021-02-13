@@ -12,19 +12,19 @@ namespace Parquet.Beings
     {
         #region Characteristics
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
-        [Index(4)]
+        [Index(5)]
         public ModelID NativeBiomeID { get; private set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
-        [Index(5)]
+        [Index(6)]
         public ModelID PrimaryBehaviorID { get; private set; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
-        [Index(6)]
+        [Index(7)]
         public IReadOnlyList<ModelID> AvoidsIDs { get; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
-        [Index(7)]
+        [Index(8)]
         public IReadOnlyList<ModelID> SeeksIDs { get; }
         #endregion
 
@@ -40,14 +40,16 @@ namespace Parquet.Beings
         /// <param name="inName">Player-friendly name of the <see cref="BeingModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="BeingModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="BeingModel"/>.</param>
+        /// <param name="inTags">Any additional functionality this <see cref="BeingModel"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is most comfortable.</param>
         /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="BeingModel"/> acts.  Cannot be null.</param>
         /// <param name="inAvoidsIDs">Any parquets this <see cref="BeingModel"/> avoids.</param>
         /// <param name="inSeeksIDs">Any parquets this <see cref="BeingModel"/> seeks.</param>
         protected BeingModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
-                             string inComment, ModelID? inNativeBiomeID = null, ModelID? inPrimaryBehaviorID = null,
-                             IEnumerable<ModelID> inAvoidsIDs = null, IEnumerable<ModelID> inSeeksIDs = null)
-            : base(inBounds, inID, inName, inDescription, inComment)
+                             string inComment, IEnumerable<ModelTag> inTags = null, ModelID? inNativeBiomeID = null,
+                             ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
+                             IEnumerable<ModelID> inSeeksIDs = null)
+            : base(inBounds, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullNativeBiomeID = inNativeBiomeID ?? ModelID.None;
             var nonNullPrimaryBehaviorID = inPrimaryBehaviorID ?? ModelID.None;

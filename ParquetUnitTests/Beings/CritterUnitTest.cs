@@ -15,7 +15,7 @@ namespace ParquetUnitTests.Beings
         [Fact]
         public void ValidCritterIDsArePermittedTest()
         {
-            var newCritter = new CritterModel(newCritterID, "will be created", "", "",
+            var newCritter = new CritterModel(newCritterID, "will be created", "", "", null,
                                          All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
 
             Assert.NotNull(newCritter);
@@ -28,7 +28,7 @@ namespace ParquetUnitTests.Beings
 
             void TestCode()
             {
-                var _ = new CritterModel(badCritterID, "will fail", "", "",
+                var _ = new CritterModel(badCritterID, "will fail", "", "", null,
                                     All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
             }
 

@@ -1,3 +1,3 @@
-﻿ID,Name,Description,Comment,Revision,BackgroundColor,RegionToTheNorth,RegionToTheEast,RegionToTheSouth,RegionToTheWest,RegionAbove,RegionBelow,Chunks
--110010,Map Sketch Test,Test,Test,0,#000000,-110010,-110010,-110010,-110010,-110010,-110010,
-110010,Simple Sketch,,,256,#FFFFFF,None,None,None,None,None,None,4×4≡100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001
+﻿ID,Name,Description,Comment,Tags,Revision,BackgroundColor,RegionToTheNorth,RegionToTheEast,RegionToTheSouth,RegionToTheWest,RegionAbove,RegionBelow,Chunks
+-110010,Map Sketch Test,Test,Test,Test-Tag,0,#000000,-110010,-110010,-110010,-110010,-110010,-110010,
+110010,Simple Sketch,,,,256,#FFFFFF,None,None,None,None,None,None,4×4≡100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001∟100000∟70001

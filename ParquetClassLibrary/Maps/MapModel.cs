@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
@@ -20,7 +21,7 @@ namespace Parquet.Maps
         #region Characteristics
         #region Whole-Map Characteristics
         /// <summary>Tracks how many times the data structure has been serialized.</summary>
-        [Index(4)]
+        [Index(5)]
         public int Revision { get; protected set; }
         #endregion
 
@@ -29,7 +30,7 @@ namespace Parquet.Maps
         /// Definitions for every <see cref="FloorModel"/>, <see cref="BlockModel"/>, <see cref="FurnishingModel"/>,
         /// and <see cref="CollectibleModel"/> that makes up this part of the game world.
         /// </summary>
-        [Index(13)]
+        [Index(14)]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
         public abstract ParquetPackGrid ParquetDefinitions { get; }
         #endregion
@@ -44,10 +45,12 @@ namespace Parquet.Maps
         /// <param name="inName">Player-friendly name of the map.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the map.</param>
         /// <param name="inComment">Comment of, on, or by the map.</param>
+        /// <param name="inTags">Any additional information about this map.</param>
         /// <param name="inRevision">How many times this map has been serialized.</param>
-        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, int inRevision = 0)
+        protected MapModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
+                           IEnumerable<ModelTag> inTags = null, int inRevision = 0)
             // Remove Revision (YAGNI).
-            : base(inBounds, inID, inName, inDescription, inComment)
+            : base(inBounds, inID, inName, inDescription, inComment, inTags)
             => Revision = inRevision;
         #endregion
 

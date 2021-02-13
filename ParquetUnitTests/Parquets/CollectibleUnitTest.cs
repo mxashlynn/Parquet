@@ -38,7 +38,7 @@ namespace ParquetUnitTests.Parquets
         {
             ModelID goodItemID = -All.ItemIDs.Minimum;
 
-            var testBlock = new CollectibleModel(newCollectibleID, "will be created", "", "", goodItemID);
+            var testBlock = new CollectibleModel(newCollectibleID, "will be created", "", "", null, goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -50,7 +50,7 @@ namespace ParquetUnitTests.Parquets
 
             void TestCode()
             {
-                var _ = new CollectibleModel(newCollectibleID, "will fail", "", "", badItemID);
+                var _ = new CollectibleModel(newCollectibleID, "will fail", "", "", null, badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);

@@ -12,15 +12,15 @@ namespace Parquet.Scripts
     {
         #region Characteristics
         /// <summary>Describes the criteria for beginning this interaction.</summary>
-        [Index(4)]
+        [Index(5)]
         public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>Everything this interaction entails.</summary>
-        [Index(5)]
+        [Index(6)]
         public IReadOnlyList<ModelID> StepsIDs { get; }
 
         /// <summary>Describes the results of finishing this interaction.</summary>
-        [Index(6)]
+        [Index(7)]
         public IReadOnlyList<ModelID> OutcomesIDs { get; }
         #endregion
 
@@ -32,13 +32,14 @@ namespace Parquet.Scripts
         /// <param name="inName">Player-friendly name of the <see cref="InteractionModel"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="InteractionModel"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="InteractionModel"/>.</param>
+        /// <param name="inTags">Any additional information about this <see cref="InteractionModel"/>.</param>
         /// <param name="inPrerequisitesIDs">Describes the criteria for beginning this <see cref="InteractionModel"/>.</param>
         /// <param name="inStepsIDs">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         /// <param name="inOutcomesIDs">Describes the results of finishing this <see cref="InteractionModel"/>.</param>
         public InteractionModel(ModelID inID, string inName, string inDescription, string inComment,
-                                IEnumerable<ModelID> inPrerequisitesIDs = null, IEnumerable<ModelID> inStepsIDs = null,
-                                IEnumerable<ModelID> inOutcomesIDs = null)
-            : base(All.InteractionIDs, inID, inName, inDescription, inComment)
+                                IEnumerable<ModelTag> inTags = null, IEnumerable<ModelID> inPrerequisitesIDs = null,
+                                IEnumerable<ModelID> inStepsIDs = null, IEnumerable<ModelID> inOutcomesIDs = null)
+            : base(All.InteractionIDs, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullPrerequisites = (inPrerequisitesIDs ?? Enumerable.Empty<ModelID>()).ToList();
             var nonNullSteps = (inStepsIDs ?? Enumerable.Empty<ModelID>()).ToList();

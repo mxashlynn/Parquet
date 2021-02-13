@@ -1,3 +1,3 @@
-﻿ID,Name,Description,Comment,MinimumWalkableSpaces,OptionallyRequiredFurnishings,OptionallyRequiredWalkableFloors,OptionallyRequiredPerimeterBlocks
--90000,Room Recipe Test,Test,Test,20,1·Test Tag,1·Test Tag,1·Test Tag
-90000,Room,A basic space.,n/a,4,,,
+﻿ID,Name,Description,Comment,Tags,MinimumWalkableSpaces,OptionallyRequiredFurnishings,OptionallyRequiredWalkableFloors,OptionallyRequiredPerimeterBlocks
+-90000,Room Recipe Test,Test,Test,,20,1·Test Tag,1·Test Tag,1·Test Tag
+90000,Room,A basic space.,n/a,,4,,,

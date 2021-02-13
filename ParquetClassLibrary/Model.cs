@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using CsvHelper.Configuration.Attributes;
 
 namespace Parquet
@@ -51,6 +52,10 @@ namespace Parquet
         /// <remarks>Could be used for designer notes or to implement an in-game dialogue with or on the <see cref="Model"/>.</remarks>
         [Index(3)]
         public string Comment { get; private set; }
+
+        /// <summary>Any additional functionality this model has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
+        [Index(4)]
+        public IReadOnlyList<ModelTag> Tags { get; }
         #endregion
 
         #region Initialization
@@ -62,15 +67,19 @@ namespace Parquet
         /// <param name="inName">Player-friendly name of the <see cref="Model"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="Model"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="Model"/>.</param>
-        protected Model(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment)
+        /// <param name="inTags">Any additional functionality this <see cref="Model"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
+        protected Model(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ModelTag> inTags)
         {
             Precondition.IsInRange(inID, inBounds, nameof(inID));
             Precondition.IsNotNullOrEmpty(inName, nameof(inName));
+
+            var nonNullTags = (inTags ?? Enumerable.Empty<ModelTag>());
 
             ID = inID;
             Name = inName;
             Description = inDescription ?? "";
             Comment = inComment ?? "";
+            Tags = nonNullTags.ToList();
         }
         #endregion
 
@@ -133,7 +142,7 @@ namespace Parquet
         /// </summary>
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public virtual IEnumerable<ModelTag> GetAllTags()
-            => new List<ModelTag>() { };
+            => Tags;
         #endregion
     }
 }

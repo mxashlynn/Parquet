@@ -18,22 +18,24 @@ namespace Parquet.Crafts
             new List<RecipeElement> { RecipeElement.None };
 
         /// <summary>Represents the lack of a <see cref="CraftingRecipe"/> for uncraftable <see cref="Items.ItemModel"/>s.</summary>
-        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(ModelID.None, "Not Craftable", "Not Craftable", "",
-                                                                                EmptyCraftingElementList, EmptyCraftingElementList,
+        public static CraftingRecipe NotCraftable { get; } = new CraftingRecipe(ModelID.None, "Not Craftable",
+                                                                                "Not Craftable", "", null,
+                                                                                EmptyCraftingElementList,
+                                                                                EmptyCraftingElementList,
                                                                                 StrikePanelGrid.Empty);
         #endregion
 
         #region Characteristics
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
-        [Index(4)]
+        [Index(5)]
         public IReadOnlyList<RecipeElement> Products { get; }
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
-        [Index(5)]
+        [Index(6)]
         public IReadOnlyList<RecipeElement> Ingredients { get; }
 
         /// <summary>The arrangement of panels encompassed by this recipe.</summary>
-        [Index(6)]
+        [Index(7)]
         public IReadOnlyGrid<StrikePanel> PanelPattern { get; private set; }
         #endregion
 
@@ -45,6 +47,7 @@ namespace Parquet.Crafts
         /// <param name="inName">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
         /// <param name="inDescription">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
         /// <param name="inComment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
+        /// <param name="inTags">Any additional functionality this <see cref="CraftingRecipe"/> has.</param>
         /// <param name="inProducts">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
         /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
         /// <param name="inPanelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
@@ -53,9 +56,9 @@ namespace Parquet.Crafts
         /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
         /// </remarks>
         public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                              IEnumerable<RecipeElement> inProducts = null,
+                              IEnumerable<ModelTag> inTags = null, IEnumerable<RecipeElement> inProducts = null,
                               IEnumerable<RecipeElement> inIngredients = null, IReadOnlyGrid<StrikePanel> inPanelPattern = null)
-            : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment)
+            : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullProducts = inProducts ?? Enumerable.Empty<RecipeElement>();
             var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
