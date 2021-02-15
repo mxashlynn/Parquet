@@ -452,7 +452,7 @@ namespace Parquet
                 { typeof(ModelTag), ModelTag.ConverterFactory },
                 { typeof(InventorySlot), InventorySlot.ConverterFactory },
                 { typeof(ParquetPack), ParquetPack.ConverterFactory },
-                { typeof(ParquetStatus), ParquetStatus.ConverterFactory },
+                { typeof(ParquetPackStatus), ParquetPackStatus.ConverterFactory },
                 { typeof(Range<ModelID>), Range<ModelID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
@@ -476,15 +476,15 @@ namespace Parquet
                 #region 2D Grid Types
                 { typeof(IGrid<ModelID>), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(IGrid<ParquetPack>), GridConverter<ParquetPack, ParquetPackGrid>.ConverterFactory },
-                { typeof(IGrid<ParquetStatus>), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(IGrid<ParquetPackStatus>), GridConverter<ParquetPackStatus, ParquetPackStatusGrid>.ConverterFactory },
                 { typeof(IGrid<StrikePanel>), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<ModelID>), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<ParquetPack>), GridConverter<ParquetPack, ParquetPackGrid>.ConverterFactory },
-                { typeof(IReadOnlyGrid<ParquetStatus>), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(IReadOnlyGrid<ParquetPackStatus>), GridConverter<ParquetPackStatus, ParquetPackStatusGrid>.ConverterFactory },
                 { typeof(IReadOnlyGrid<StrikePanel>), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 { typeof(ModelIDGrid), GridConverter<ModelID, ModelIDGrid>.ConverterFactory },
                 { typeof(ParquetPackGrid), GridConverter<ParquetPack, ParquetPackGrid>.ConverterFactory },
-                { typeof(ParquetStatusGrid), GridConverter<ParquetStatus, ParquetStatusGrid>.ConverterFactory },
+                { typeof(ParquetPackStatusGrid), GridConverter<ParquetPackStatus, ParquetPackStatusGrid>.ConverterFactory },
                 { typeof(StrikePanelGrid), GridConverter<StrikePanel, StrikePanelGrid>.ConverterFactory },
                 #endregion
             };

@@ -12,7 +12,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ToughnessCannotBeSetBelowZeroTest()
         {
-            var testStatus = new ParquetStatus();
+            var testStatus = new ParquetPackStatus();
 
             testStatus.Toughness = int.MinValue;
 
@@ -22,7 +22,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         public void ToughnessCannotBeAboveMaxToughnessTest()
         {
-            var testStatus = new ParquetStatus(false, TestMaxToughness, TestMaxToughness);
+            var testStatus = new ParquetPackStatus(false, TestMaxToughness, TestMaxToughness);
 
             testStatus.Toughness = int.MaxValue;
 

@@ -5,24 +5,24 @@ using System.Linq;
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// A square, two-dimensional collection of <see cref="ParquetStatus"/>es for use in <see cref="Maps.MapModel"/> and derived classes.
+    /// A square, two-dimensional collection of <see cref="ParquetPackStatus"/>es for use in <see cref="Maps.MapModel"/> and derived classes.
     /// </summary>
     /// <remarks>
     /// The intent is that this class function much like a read-only array.
     /// </remarks>
-    public class ParquetStatusGrid : IGrid<ParquetStatus>, IReadOnlyGrid<ParquetStatus>
+    public class ParquetPackStatusGrid : IGrid<ParquetPackStatus>, IReadOnlyGrid<ParquetPackStatus>
     {
         #region Class Defaults
-        /// <summary>A value to use in place of uninitialized <see cref="ParquetStatusGrid"/>s.</summary>
-        public static ParquetStatusGrid Empty => new ParquetStatusGrid();
+        /// <summary>A value to use in place of uninitialized <see cref="ParquetPackStatusGrid"/>s.</summary>
+        public static ParquetPackStatusGrid Empty => new ParquetPackStatusGrid();
         #endregion
 
-        /// <summary>The backing collection of <see cref="ParquetStatus"/>es.</summary>
-        private readonly ParquetStatus[,] ParquetStatuses;
+        /// <summary>The backing collection of <see cref="ParquetPackStatus"/>es.</summary>
+        private readonly ParquetPackStatus[,] ParquetStatuses;
 
         #region Initialization
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatusGrid"/> with unusable dimensions.
+        /// Initializes a new <see cref="ParquetPackStatusGrid"/> with unusable dimensions.
         /// </summary>
         /// <remarks>
         /// For this class, there are no reasonable default values.
@@ -30,33 +30,33 @@ namespace Parquet.Parquets
         /// and is used in the library in a context where its limitations are understood.
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
-        public ParquetStatusGrid()
+        public ParquetPackStatusGrid()
             : this(0, 0) { }
 
         /// <summary>
-        /// Initializes a new <see cref="ParquetStatusGrid"/>.
+        /// Initializes a new <see cref="ParquetPackStatusGrid"/>.
         /// </summary>
         /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
         /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public ParquetStatusGrid(int inRowCount, int inColumnCount)
+        public ParquetPackStatusGrid(int inRowCount, int inColumnCount)
         {
-            ParquetStatuses = new ParquetStatus[inRowCount, inColumnCount];
+            ParquetStatuses = new ParquetPackStatus[inRowCount, inColumnCount];
             for (var y = 0; y < inRowCount; y++)
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    ParquetStatuses[y, x] = ParquetStatus.Unused.Clone();
+                    ParquetStatuses[y, x] = ParquetPackStatus.Unused.Clone();
                 }
             }
         }
         #endregion
 
         #region IGrid Implementation
-        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetPackStatusGrid"/>.</summary>
         public int Rows
             => ParquetStatuses?.GetLength(0) ?? 0;
 
-        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetStatusGrid"/>.</summary>
+        /// <summary>Gets the number of elements in the X dimension of the <see cref="ParquetPackStatusGrid"/>.</summary>
         public int Columns
             => ParquetStatuses?.GetLength(1) ?? 0;
 
@@ -64,19 +64,19 @@ namespace Parquet.Parquets
         public int Count
             => Columns * Rows;
 
-        /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
-        public ref ParquetStatus this[int y, int x]
+        /// <summary>Access to any <see cref="ParquetPackStatus"/> in the grid.</summary>
+        public ref ParquetPackStatus this[int y, int x]
             => ref ParquetStatuses[y, x];
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator{ParquetStatus}"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
-        IEnumerator<ParquetStatus> IEnumerable<ParquetStatus>.GetEnumerator()
-            => ParquetStatuses.Cast<ParquetStatus>().GetEnumerator();
+        IEnumerator<ParquetPackStatus> IEnumerable<ParquetPackStatus>.GetEnumerator()
+            => ParquetStatuses.Cast<ParquetPackStatus>().GetEnumerator();
 
         /// <summary>
-        /// Exposes an enumerator for the <see cref="ParquetStatusGrid"/>, which supports simple iteration.
+        /// Exposes an enumerator for the <see cref="ParquetPackStatusGrid"/>, which supports simple iteration.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator GetEnumerator()
@@ -86,9 +86,9 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        public IGrid<ParquetStatus> Clone()
+        public IGrid<ParquetPackStatus> Clone()
         {
-            var newInstance = new ParquetStatusGrid(Rows, Columns);
+            var newInstance = new ParquetPackStatusGrid(Rows, Columns);
             for (var x = 0; x < Columns; x++)
             {
                 for (var y = 0; y < Rows; y++)
@@ -101,16 +101,16 @@ namespace Parquet.Parquets
         #endregion
 
         #region IReadOnlyGrid Implementation
-        /// <summary>Access to any <see cref="ParquetStatus"/> in the grid.</summary>
-        ParquetStatus IReadOnlyGrid<ParquetStatus>.this[int y, int x]
+        /// <summary>Access to any <see cref="ParquetPackStatus"/> in the grid.</summary>
+        ParquetPackStatus IReadOnlyGrid<ParquetPackStatus>.this[int y, int x]
             => ParquetStatuses[y, x];
 
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ParquetStatus> IReadOnlyGrid<ParquetStatus>.Clone()
-            => (IReadOnlyGrid<ParquetStatus>)Clone();
+        IReadOnlyGrid<ParquetPackStatus> IReadOnlyGrid<ParquetPackStatus>.Clone()
+            => (IReadOnlyGrid<ParquetPackStatus>)Clone();
         #endregion
 
         #region Utilities

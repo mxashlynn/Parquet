@@ -78,9 +78,9 @@ override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generi
 override Parquet.Parquets.ParquetPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetPack.GetHashCode() -> int
 override Parquet.Parquets.ParquetPack.ToString() -> string
-override Parquet.Parquets.ParquetStatus.Equals(object obj) -> bool
-override Parquet.Parquets.ParquetStatus.GetHashCode() -> int
-override Parquet.Parquets.ParquetStatus.ToString() -> string
+override Parquet.Parquets.ParquetPackStatus.Equals(object obj) -> bool
+override Parquet.Parquets.ParquetPackStatus.GetHashCode() -> int
+override Parquet.Parquets.ParquetPackStatus.ToString() -> string
 override Parquet.Range<TElement>.Equals(object obj) -> bool
 override Parquet.Range<TElement>.GetHashCode() -> int
 override Parquet.Range<TElement>.ToString() -> string
@@ -493,8 +493,8 @@ Parquet.Maps.MapModel.ParquetsCount.get -> int
 Parquet.Maps.MapRegionModel
 Parquet.Maps.MapRegionModel.BackgroundColor.get -> string
 Parquet.Maps.MapRegionModel.GetBiome() -> Parquet.ModelID
-Parquet.Maps.MapRegionModel.MapRegionModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.Parquets.ParquetStatusGrid inParquetStatuses = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
-Parquet.Maps.MapRegionModel.ParquetStatuses.get -> Parquet.Parquets.ParquetStatusGrid
+Parquet.Maps.MapRegionModel.MapRegionModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, string inBackgroundColor = "#FFFFFFFF", Parquet.ModelID? inRegionToTheNorth = null, Parquet.ModelID? inRegionToTheEast = null, Parquet.ModelID? inRegionToTheSouth = null, Parquet.ModelID? inRegionToTheWest = null, Parquet.ModelID? inRegionAbove = null, Parquet.ModelID? inRegionBelow = null, Parquet.Parquets.ParquetPackStatusGrid inParquetStatuses = null, Parquet.Parquets.ParquetPackGrid inParquetDefinitions = null) -> void
+Parquet.Maps.MapRegionModel.ParquetStatuses.get -> Parquet.Parquets.ParquetPackStatusGrid
 Parquet.Maps.MapRegionModel.RegionAbove.get -> Parquet.ModelID
 Parquet.Maps.MapRegionModel.RegionBelow.get -> Parquet.ModelID
 Parquet.Maps.MapRegionModel.RegionToTheEast.get -> Parquet.ModelID
@@ -634,28 +634,28 @@ Parquet.Parquets.ParquetPackGrid.ParquetPackGrid(int inRowCount, int inColumnCou
 Parquet.Parquets.ParquetPackGrid.ParquetPackGrid(Parquet.Parquets.ParquetPack[,] inParquetPackArray) -> void
 Parquet.Parquets.ParquetPackGrid.Rows.get -> int
 Parquet.Parquets.ParquetPackGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPack
-Parquet.Parquets.ParquetStatus
-Parquet.Parquets.ParquetStatus.Clone() -> Parquet.Parquets.ParquetStatus
-Parquet.Parquets.ParquetStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-Parquet.Parquets.ParquetStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-Parquet.Parquets.ParquetStatus.Equals(Parquet.Parquets.ParquetStatus inStatus) -> bool
-Parquet.Parquets.ParquetStatus.IsTrench.get -> bool
-Parquet.Parquets.ParquetStatus.IsTrench.set -> void
-Parquet.Parquets.ParquetStatus.ParquetStatus() -> void
-Parquet.Parquets.ParquetStatus.ParquetStatus(bool inIsTrench, int inToughness, int inMaxToughness = 10) -> void
-Parquet.Parquets.ParquetStatus.Toughness.get -> int
-Parquet.Parquets.ParquetStatus.Toughness.set -> void
+Parquet.Parquets.ParquetPackStatus
+Parquet.Parquets.ParquetPackStatus.Clone() -> Parquet.Parquets.ParquetPackStatus
+Parquet.Parquets.ParquetPackStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+Parquet.Parquets.ParquetPackStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Parquets.ParquetPackStatus.Equals(Parquet.Parquets.ParquetPackStatus inStatus) -> bool
+Parquet.Parquets.ParquetPackStatus.IsTrench.get -> bool
+Parquet.Parquets.ParquetPackStatus.IsTrench.set -> void
+Parquet.Parquets.ParquetPackStatus.ParquetPackStatus() -> void
+Parquet.Parquets.ParquetPackStatus.ParquetPackStatus(bool inIsTrench, int inToughness, int inMaxToughness = 10) -> void
+Parquet.Parquets.ParquetPackStatus.Toughness.get -> int
+Parquet.Parquets.ParquetPackStatus.Toughness.set -> void
+Parquet.Parquets.ParquetPackStatusGrid
+Parquet.Parquets.ParquetPackStatusGrid.Clone() -> Parquet.IGrid<Parquet.Parquets.ParquetPackStatus>
+Parquet.Parquets.ParquetPackStatusGrid.Columns.get -> int
+Parquet.Parquets.ParquetPackStatusGrid.Count.get -> int
+Parquet.Parquets.ParquetPackStatusGrid.GetEnumerator() -> System.Collections.IEnumerator
+Parquet.Parquets.ParquetPackStatusGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
+Parquet.Parquets.ParquetPackStatusGrid.ParquetPackStatusGrid() -> void
+Parquet.Parquets.ParquetPackStatusGrid.ParquetPackStatusGrid(int inRowCount, int inColumnCount) -> void
+Parquet.Parquets.ParquetPackStatusGrid.Rows.get -> int
+Parquet.Parquets.ParquetPackStatusGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPackStatus
 Parquet.Parquets.ParquetStatusArrayExtensions
-Parquet.Parquets.ParquetStatusGrid
-Parquet.Parquets.ParquetStatusGrid.Clone() -> Parquet.IGrid<Parquet.Parquets.ParquetStatus>
-Parquet.Parquets.ParquetStatusGrid.Columns.get -> int
-Parquet.Parquets.ParquetStatusGrid.Count.get -> int
-Parquet.Parquets.ParquetStatusGrid.GetEnumerator() -> System.Collections.IEnumerator
-Parquet.Parquets.ParquetStatusGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
-Parquet.Parquets.ParquetStatusGrid.ParquetStatusGrid() -> void
-Parquet.Parquets.ParquetStatusGrid.ParquetStatusGrid(int inRowCount, int inColumnCount) -> void
-Parquet.Parquets.ParquetStatusGrid.Rows.get -> int
-Parquet.Parquets.ParquetStatusGrid.this[int y, int x].get -> Parquet.Parquets.ParquetStatus
 Parquet.Precondition
 Parquet.Range<TElement>
 Parquet.Range<TElement>.ContainsRange(Parquet.Range<TElement> inRange) -> bool
@@ -850,11 +850,11 @@ static Parquet.Parquets.ParquetPack.operator !=(Parquet.Parquets.ParquetPack inS
 static Parquet.Parquets.ParquetPack.operator ==(Parquet.Parquets.ParquetPack inStack1, Parquet.Parquets.ParquetPack inStack2) -> bool
 static Parquet.Parquets.ParquetPackArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetPack[,] inSubregion, Parquet.Vector2D inPosition) -> bool
 static Parquet.Parquets.ParquetPackGrid.Empty.get -> Parquet.Parquets.ParquetPackGrid
-static Parquet.Parquets.ParquetStatus.operator !=(Parquet.Parquets.ParquetStatus inStatus1, Parquet.Parquets.ParquetStatus inStatus2) -> bool
-static Parquet.Parquets.ParquetStatus.operator ==(Parquet.Parquets.ParquetStatus inStatus1, Parquet.Parquets.ParquetStatus inStatus2) -> bool
-static Parquet.Parquets.ParquetStatus.Unused.get -> Parquet.Parquets.ParquetStatus
-static Parquet.Parquets.ParquetStatusArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetStatus[,] inSubregion, Parquet.Vector2D inPosition) -> bool
-static Parquet.Parquets.ParquetStatusGrid.Empty.get -> Parquet.Parquets.ParquetStatusGrid
+static Parquet.Parquets.ParquetPackStatus.operator !=(Parquet.Parquets.ParquetPackStatus inStatus1, Parquet.Parquets.ParquetPackStatus inStatus2) -> bool
+static Parquet.Parquets.ParquetPackStatus.operator ==(Parquet.Parquets.ParquetPackStatus inStatus1, Parquet.Parquets.ParquetPackStatus inStatus2) -> bool
+static Parquet.Parquets.ParquetPackStatus.Unused.get -> Parquet.Parquets.ParquetPackStatus
+static Parquet.Parquets.ParquetPackStatusGrid.Empty.get -> Parquet.Parquets.ParquetPackStatusGrid
+static Parquet.Parquets.ParquetStatusArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetPackStatus[,] inSubregion, Parquet.Vector2D inPosition) -> bool
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, Parquet.Range<Parquet.ModelID> inBounds, string inArgumentName) -> void
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBoundsCollection, string inArgumentName) -> void
 static Parquet.Precondition.IsInRange(int inInt, Parquet.Range<int> inBounds, string inArgumentName) -> void

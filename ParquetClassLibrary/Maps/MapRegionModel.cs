@@ -66,7 +66,7 @@ namespace Parquet.Maps
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
         // TODO [MAP EDITOR] [API] Should this be an IReadOnlyGrid<ParquetStatus>es instead?
-        public ParquetStatusGrid ParquetStatuses { get; }
+        public ParquetPackStatusGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
@@ -110,7 +110,7 @@ namespace Parquet.Maps
                               ModelID? inRegionToTheWest = null,
                               ModelID? inRegionAbove = null,
                               ModelID? inRegionBelow = null,
-                              ParquetStatusGrid inParquetStatuses = null,
+                              ParquetPackStatusGrid inParquetStatuses = null,
                               ParquetPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inTags)
         {
@@ -120,7 +120,7 @@ namespace Parquet.Maps
             var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
             var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
             var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
-            var nonNullParquetStatuses = inParquetStatuses ?? new ParquetStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            var nonNullParquetStatuses = inParquetStatuses ?? new ParquetPackStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
             var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
             Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
