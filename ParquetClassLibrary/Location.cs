@@ -11,11 +11,18 @@ namespace Parquet
     /// </remarks>
     sealed public class Location : IEquatable<Location>
     {
+        #region Class Defaults
+        /// <summary>Provides a throwaway instance of the <see cref="Location"/> class with default values.</summary>
+        public static Location Default { get; } = new Location();
+        #endregion
+
+        #region Characteristics
         /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> of this located.</summary>
         public ModelID RegionID { get; }
 
         /// <summary>The position within the current <see cref="Maps.MapRegionModel"/> of this located.</summary>
         public Vector2D Position { get; }
+        #endregion
 
         #region IEquatable Implementation
         /// <summary>
