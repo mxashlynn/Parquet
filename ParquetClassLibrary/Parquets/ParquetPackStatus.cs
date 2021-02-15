@@ -9,7 +9,7 @@ namespace Parquet.Parquets
     /// <summary>
     /// Tracks the status of a <see cref="ParquetPack"/>.
     /// </summary>
-    public sealed class ParquetPackStatus : IEquatable<ParquetPackStatus>, ITypeConverter
+    public sealed class ParquetPackStatus : ModelStatus<ParquetPack>
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="ParquetPackStatus"/> class with default values.</summary>
@@ -75,10 +75,21 @@ namespace Parquet.Parquets
         /// </summary>
         /// <param name="inStatus">The <see cref="ParquetPackStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(ParquetPackStatus inStatus)
-            => IsTrench == inStatus?.IsTrench
-            && Toughness == inStatus.Toughness
-            && maxToughness == inStatus.maxToughness;
+        public override bool Equals<T>(T inStatus)
+            => inStatus is ParquetPackStatus packStatus
+            && IsTrench == packStatus.IsTrench
+            && Toughness == packStatus.Toughness
+            && maxToughness == packStatus.maxToughness;
+
+        /*
+        /// <summary>
+        /// Determines whether the specified <see cref="ModelStatus{ParquetPack}"/> is equal to the current <see cref="ModelStatus{ParquetPack}"/>.
+        /// </summary>
+        /// <param name="inStatus">The <see cref="ModelStatus{ParquetPack}"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals(ModelStatus<ParquetPack> inStatus)
+            => Equals((ParquetPackStatus)inStatus);
+        */
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -119,7 +130,7 @@ namespace Parquet.Parquets
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetPackStatus status
                 ? $"{status.IsTrench}{Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Delimiters.InternalDelimiter}" +
@@ -133,7 +144,7 @@ namespace Parquet.Parquets
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText))
             {
@@ -174,24 +185,6 @@ namespace Parquet.Parquets
         public ParquetPackStatus Clone()
             => new ParquetPackStatus(IsTrench, Toughness, maxToughness);
         #endregion
-    }
 
-    /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetPack"/>s.
-    /// </summary>
-    public static class ParquetStatusArrayExtensions
-    {
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the current array.
-        /// </summary>
-        /// <param name="inSubregion">The <see cref="ParquetPackStatus"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ParquetPackStatus[,] inSubregion, Vector2D inPosition)
-            => inSubregion is not null
-            && inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inSubregion.GetLength(1)
-            && inPosition.Y < inSubregion.GetLength(0);
     }
 }

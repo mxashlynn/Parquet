@@ -2,7 +2,7 @@ abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
 abstract Parquet.ModelStatus<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 abstract Parquet.ModelStatus<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-abstract Parquet.ModelStatus<T>.Equals(Parquet.ModelStatus<T> inStatus) -> bool
+abstract Parquet.ModelStatus<T>.Equals<TDerived>(TDerived inStatus) -> bool
 const Parquet.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const Parquet.Beings.PronounGroup.DeterminerTag = "|their|" -> string
 const Parquet.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
@@ -83,7 +83,10 @@ override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generi
 override Parquet.Parquets.ParquetPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetPack.GetHashCode() -> int
 override Parquet.Parquets.ParquetPack.ToString() -> string
+override Parquet.Parquets.ParquetPackStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Parquets.ParquetPackStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Parquets.ParquetPackStatus.Equals(object obj) -> bool
+override Parquet.Parquets.ParquetPackStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.ParquetPackStatus.GetHashCode() -> int
 override Parquet.Parquets.ParquetPackStatus.ToString() -> string
 override Parquet.Range<TElement>.Equals(object obj) -> bool
@@ -558,6 +561,7 @@ Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
 Parquet.ModelStatus<T>
+Parquet.ModelStatus<T>.Equals(Parquet.ModelStatus<T> inStatus) -> bool
 Parquet.ModelStatus<T>.ModelStatus() -> void
 Parquet.ModelStatusArrayExtensions
 Parquet.ModelTag
@@ -644,9 +648,6 @@ Parquet.Parquets.ParquetPackGrid.Rows.get -> int
 Parquet.Parquets.ParquetPackGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPack
 Parquet.Parquets.ParquetPackStatus
 Parquet.Parquets.ParquetPackStatus.Clone() -> Parquet.Parquets.ParquetPackStatus
-Parquet.Parquets.ParquetPackStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-Parquet.Parquets.ParquetPackStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-Parquet.Parquets.ParquetPackStatus.Equals(Parquet.Parquets.ParquetPackStatus inStatus) -> bool
 Parquet.Parquets.ParquetPackStatus.IsTrench.get -> bool
 Parquet.Parquets.ParquetPackStatus.IsTrench.set -> void
 Parquet.Parquets.ParquetPackStatus.ParquetPackStatus() -> void

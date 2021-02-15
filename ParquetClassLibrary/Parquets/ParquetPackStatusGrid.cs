@@ -120,7 +120,7 @@ namespace Parquet.Parquets
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => ParquetStatuses.IsValidPosition(inPosition);
+            => ((ModelStatus<ParquetPack>[,])ParquetStatuses).IsValidPosition(inPosition);
         #endregion
     }
 }
