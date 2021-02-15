@@ -1,3 +1,5 @@
+abstract Parquet.Beings.BeingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+abstract Parquet.Beings.BeingStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
 abstract Parquet.Status<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -42,6 +44,11 @@ const Parquet.Scripts.Commands.SetPronoun = "R" -> string
 const Parquet.Scripts.Commands.ShowLocation = "L" -> string
 override abstract Parquet.Status<T>.Equals(object obj) -> bool
 override abstract Parquet.Status<T>.GetHashCode() -> int
+override Parquet.Beings.BeingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Beings.BeingStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Beings.BeingStatus.Equals(object obj) -> bool
+override Parquet.Beings.BeingStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Beings.BeingStatus.GetHashCode() -> int
 override Parquet.Beings.BeingStatus.ToString() -> string
 override Parquet.Beings.PronounGroup.ToString() -> string
 override Parquet.Biomes.BiomeRecipe.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
@@ -117,8 +124,8 @@ Parquet.Beings.BeingModel.NativeBiomeID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.PrimaryBehaviorID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.SeeksIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Beings.BeingStatus
-Parquet.Beings.BeingStatus.BeingDefinition.get -> Parquet.Beings.BeingModel
-Parquet.Beings.BeingStatus.BeingStatus(Parquet.Beings.BeingModel inBeingDefinition, Parquet.ModelID inCurrentBehavior, Parquet.Location inPosition, Parquet.Location inSpawnAt, int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, System.Collections.Generic.ICollection<Parquet.ModelID> inInventory = null) -> void
+Parquet.Beings.BeingStatus.BeingStatus() -> void
+Parquet.Beings.BeingStatus.BeingStatus(Parquet.ModelID inCurrentBehavior, Parquet.Location inPosition, Parquet.Location inSpawnAt, int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, System.Collections.Generic.ICollection<Parquet.ModelID> inInventory = null) -> void
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.get -> int
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.set -> void
 Parquet.Beings.BeingStatus.BuildingSpeed.get -> float
@@ -788,6 +795,9 @@ static Parquet.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyColl
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
 static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
+static Parquet.Beings.BeingStatus.operator !=(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
+static Parquet.Beings.BeingStatus.operator ==(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
+static Parquet.Beings.BeingStatus.Unused.get -> Parquet.Beings.BeingStatus
 static Parquet.Beings.PronounGroup.FilePath.get -> string
 static Parquet.Beings.PronounGroup.GetRecords() -> System.Collections.Generic.HashSet<Parquet.Beings.PronounGroup>
 static Parquet.Beings.PronounGroup.PutRecords(System.Collections.Generic.IEnumerable<Parquet.Beings.PronounGroup> inGroups) -> void
@@ -823,6 +833,7 @@ static Parquet.Items.InventoryConfiguration.FilePath.get -> string
 static Parquet.Items.InventoryConfiguration.GetRecord() -> void
 static Parquet.Items.InventoryConfiguration.PutRecord() -> void
 static Parquet.Items.InventorySlot.Empty.get -> Parquet.Items.InventorySlot
+static Parquet.Location.Default.get -> Parquet.Location
 static Parquet.Location.operator !=(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Location.operator ==(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Logger.Log(Parquet.LogLevel inLogLevel, object inObject) -> void
