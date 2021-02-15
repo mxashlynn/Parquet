@@ -1,8 +1,8 @@
 abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
-abstract Parquet.ModelStatus<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-abstract Parquet.ModelStatus<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-abstract Parquet.ModelStatus<T>.Equals<TDerived>(TDerived inStatus) -> bool
+abstract Parquet.Status<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+abstract Parquet.Status<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+abstract Parquet.Status<T>.Equals<TDerived>(TDerived inStatus) -> bool
 const Parquet.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const Parquet.Beings.PronounGroup.DeterminerTag = "|their|" -> string
 const Parquet.Beings.PronounGroup.ObjectiveTag = "|them|" -> string
@@ -40,8 +40,8 @@ const Parquet.Scripts.Commands.SetDialogue = "D" -> string
 const Parquet.Scripts.Commands.SetFlag = "=" -> string
 const Parquet.Scripts.Commands.SetPronoun = "R" -> string
 const Parquet.Scripts.Commands.ShowLocation = "L" -> string
-override abstract Parquet.ModelStatus<T>.Equals(object obj) -> bool
-override abstract Parquet.ModelStatus<T>.GetHashCode() -> int
+override abstract Parquet.Status<T>.Equals(object obj) -> bool
+override abstract Parquet.Status<T>.GetHashCode() -> int
 override Parquet.Beings.BeingStatus.ToString() -> string
 override Parquet.Beings.PronounGroup.ToString() -> string
 override Parquet.Biomes.BiomeRecipe.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
@@ -560,10 +560,7 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
-Parquet.ModelStatus<T>
-Parquet.ModelStatus<T>.Equals(Parquet.ModelStatus<T> inStatus) -> bool
-Parquet.ModelStatus<T>.ModelStatus() -> void
-Parquet.ModelStatusArrayExtensions
+Parquet.StatusArrayExtensions
 Parquet.ModelTag
 Parquet.ModelTag.CompareTo(Parquet.ModelTag inTag) -> int
 Parquet.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -752,6 +749,9 @@ Parquet.Scripts.ScriptNode.ScriptNode() -> void
 Parquet.SeriesConverter<TElement, TCollection>
 Parquet.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData, string inDelimiter) -> object
 Parquet.SeriesConverter<TElement, TCollection>.SeriesConverter() -> void
+Parquet.Status<T>
+Parquet.Status<T>.Equals(Parquet.Status<T> inStatus) -> bool
+Parquet.Status<T>.Status() -> void
 Parquet.Vector2D
 Parquet.Vector2D.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Vector2D.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -848,7 +848,7 @@ static Parquet.ModelID.operator ==(Parquet.ModelID inIDentifier1, Parquet.ModelI
 static Parquet.ModelID.operator >(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelID.operator >=(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelIDGrid.Empty.get -> Parquet.ModelIDGrid
-static Parquet.ModelStatusArrayExtensions.IsValidPosition<T>(this Parquet.ModelStatus<T>[,] inArray, Parquet.Vector2D inPosition) -> bool
+static Parquet.StatusArrayExtensions.IsValidPosition<T>(this Parquet.Status<T>[,] inArray, Parquet.Vector2D inPosition) -> bool
 static Parquet.ModelTag.implicit operator Parquet.ModelTag(string inValue) -> Parquet.ModelTag
 static Parquet.ModelTag.implicit operator string(Parquet.ModelTag inTag) -> string
 static Parquet.Parquets.BlockModel.Bounds.get -> Parquet.Range<Parquet.ModelID>

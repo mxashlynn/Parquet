@@ -6,16 +6,14 @@ using CsvHelper.TypeConversion;
 namespace Parquet
 {
     /// <summary>
-    /// Tracks the status of a <see cref="Model"/>.
-    /// These classes are modifiable during play.
+    /// Tracks the status of a game element that varies during play.
+    /// As a result, instances of these classes are mutable during play.
     /// </summary>
-    public abstract class ModelStatus<T> : IEquatable<ModelStatus<T>>, ITypeConverter
-    // TODO Should we reinstate this?  If so, ParquetPack needs to inherit from Model....
-    //    where T : Model
+    public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter
     {
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="ModelStatus{T}"/>.
+        /// Serves as a hash function for a <see cref="Status{T}"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
@@ -28,15 +26,15 @@ namespace Parquet
         /// <param name="inStatus">The status to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public abstract bool Equals<TDerived>(TDerived inStatus)
-            where TDerived : ModelStatus<T>;
+            where TDerived : Status<T>;
 
         /// <summary>
-        /// Determines whether the specified <see cref="ModelStatus{T}"/> is equal to the current <see cref="ModelStatus{T}"/>.
+        /// Determines whether the specified <see cref="Status{T}"/> is equal to the current <see cref="Status{T}"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="ModelStatus{T}"/> to compare with the current.</param>
+        /// <param name="inStatus">The <see cref="Status{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(ModelStatus<T> inStatus)
-            => Equals<ModelStatus<T>>(inStatus);
+        public bool Equals(Status<T> inStatus)
+            => Equals<Status<T>>(inStatus);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -45,12 +43,12 @@ namespace Parquet
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public abstract override bool Equals(object obj);
 
-        // NOTE that derived classes should also declare static bool operator ==(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
-        // NOTE that derived classes should also declare static bool operator !=(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
+        // NOTE that derived classes should also declare static bool operator ==(Status<T> inStatus1, Status<T> inStatus2)
+        // NOTE that derived classes should also declare static bool operator !=(Status<T> inStatus1, Status<T> inStatus2)
         #endregion
 
         #region ITypeConverter Implementation
-        // NOTE that derived classes should probably include an internal static ModelStatus ConverterFactory { get; }
+        // NOTE that derived classes should probably include an internal static Status ConverterFactory { get; }
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -73,9 +71,9 @@ namespace Parquet
     }
 
     /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ModelStatus"/>es.
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="Status"/>es.
     /// </summary>
-    public static class ModelStatusArrayExtensions
+    public static class StatusArrayExtensions
     {
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
@@ -83,9 +81,7 @@ namespace Parquet
         /// <param name="inArray">The array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition<T>(this ModelStatus<T>[,] inArray, Vector2D inPosition)
-        // TODO Should we reinstate this?  If so, ParquetPack needs to inherit from Model....
-        //    where T : Model
+        public static bool IsValidPosition<T>(this Status<T>[,] inArray, Vector2D inPosition)
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1

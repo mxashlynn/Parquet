@@ -9,7 +9,7 @@ namespace Parquet.Parquets
     /// <summary>
     /// Tracks the status of a <see cref="ParquetPack"/>.
     /// </summary>
-    public sealed class ParquetPackStatus : ModelStatus<ParquetPack>
+    public sealed class ParquetPackStatus : Status<ParquetPack>
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="ParquetPackStatus"/> class with default values.</summary>
@@ -83,11 +83,11 @@ namespace Parquet.Parquets
 
         /*
         /// <summary>
-        /// Determines whether the specified <see cref="ModelStatus{ParquetPack}"/> is equal to the current <see cref="ModelStatus{ParquetPack}"/>.
+        /// Determines whether the specified <see cref="Status{ParquetPack}"/> is equal to the current <see cref="Status{ParquetPack}"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="ModelStatus{ParquetPack}"/> to compare with the current.</param>
+        /// <param name="inStatus">The <see cref="Status{ParquetPack}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals(ModelStatus<ParquetPack> inStatus)
+        public override bool Equals(Status<ParquetPack> inStatus)
             => Equals((ParquetPackStatus)inStatus);
         */
 
