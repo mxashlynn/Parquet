@@ -175,6 +175,5 @@ namespace Parquet.Parquets
         public ParquetPackStatus Clone()
             => new ParquetPackStatus(IsTrench, Toughness, maxToughness);
         #endregion
-
     }
 }
