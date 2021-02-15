@@ -7,7 +7,7 @@ using CsvHelper.TypeConversion;
 namespace Parquet.Scripts
 {
     /// <summary>
-    /// Models the an element within a scripted element of gameplay.
+    /// Models an element within scripted gameplay.
     /// For example, a precondition, postcondition, or step in an <see cref="InteractionModel"/>
     /// or the effect of an <see cref="Items.ItemModel"/>.
     /// </summary>

@@ -4,7 +4,7 @@ using System.Linq;
 namespace Parquet.Beings
 {
     /// <summary>
-    /// Models the status of a <see cref="BeingModel"/>.
+    /// Tracks the status of a <see cref="BeingModel"/>.
     /// </summary>
     public class BeingStatus
     {

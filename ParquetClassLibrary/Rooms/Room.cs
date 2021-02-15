@@ -8,7 +8,7 @@ using Parquet.Properties;
 namespace Parquet.Rooms
 {
     /// <summary>
-    /// Models the a constructed <see cref="Room"/>.
+    /// Models a constructed <see cref="Room"/>.
     /// </summary>
     public sealed class Room : IEquatable<Room>
     {

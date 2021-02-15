@@ -1,7 +1,7 @@
 namespace Parquet.Scripts
 {
     /// <summary>
-    /// Models the status of an <see cref="InteractionModel"/>.
+    /// Tracks the status of an <see cref="InteractionModel"/>.
     /// </summary>
     public class InteractionStatus
     {

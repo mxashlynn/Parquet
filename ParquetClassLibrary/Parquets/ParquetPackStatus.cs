@@ -7,7 +7,7 @@ using CsvHelper.TypeConversion;
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// Models the status of a <see cref="ParquetPack"/>.
+    /// Tracks the status of a <see cref="ParquetPack"/>.
     /// </summary>
     public sealed class ParquetPackStatus : IEquatable<ParquetPackStatus>, ITypeConverter
     {
