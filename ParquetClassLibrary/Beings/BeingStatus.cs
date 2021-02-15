@@ -1,16 +1,20 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Parquet.Beings
 {
     /// <summary>
     /// Tracks the status of a <see cref="BeingModel"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
-    public class BeingStatus
+    public class BeingStatus : Status<BeingModel>
     {
-        #region Identity
-        /// <summary>The <see cref="BeingModel"/> whose status is being tracked.</summary>
-        public BeingModel BeingDefinition { get; }
+        #region Class Defaults
+        /// <summary>Provides a throwaway instance of the <see cref="ParquetPackStatus"/> class with default values.</summary>
+        public static BeingStatus Unused { get; } = new BeingStatus();
         #endregion
 
         #region Status
@@ -66,9 +70,17 @@ namespace Parquet.Beings
 
         #region Initialization
         /// <summary>
+        /// Initializes a new instance of the <see cref="BeingStatus"/> class with default values.
+        /// </summary>
+        /// <remarks>
+        /// Primarily useful in the context of serialization.
+        /// </remarks>
+        public BeingStatus()
+            : this(ModelID.None, Location.Default, Location.Default, 0, 0f, 0f, 0f, 0f) { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BeingStatus"/> class.
         /// </summary>
-        /// <param name="inBeingDefinition">The <see cref="BeingModel"/> whose status is being tracked.</param>
         /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</param>
         /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
         /// <param name="inCurrentBehavior">The behavior currently governing the tracked <see cref="BeingModel"/>.</param>
@@ -83,14 +95,13 @@ namespace Parquet.Beings
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
-        public BeingStatus(BeingModel inBeingDefinition, ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
+        public BeingStatus(ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
                            int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed,
                            float inMovementSpeed, ICollection<ModelID> inKnownBeings = null,
                            ICollection<ModelID> inKnownParquets = null, ICollection<ModelID> inKnownRoomRecipes = null,
                            ICollection<ModelID> inKnownCraftingRecipes = null, ICollection<ModelID> inQuests = null,
                            ICollection<ModelID> inInventory = null)
         {
-            Precondition.IsNotNull(inBeingDefinition, nameof(inBeingDefinition));
             Precondition.IsInRange(inCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));
             var nonNullBeings = inKnownBeings ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
@@ -105,7 +116,6 @@ namespace Parquet.Beings
             Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(inQuests));
             Precondition.AreInRange(nonNullInventory, All.ItemIDs, nameof(inInventory));
 
-            BeingDefinition = inBeingDefinition;
             CurrentBehaviorID = inCurrentBehavior;
             Position = inPosition;
             SpawnAt = inSpawnAt;
@@ -123,13 +133,169 @@ namespace Parquet.Beings
         }
         #endregion
 
-        #region Utilities
+        #region IEquatable Implementation
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="BeingStatus"/>.
+        /// Serves as a hash function for a <see cref="BeingStatus"/>.
         /// </summary>
-        /// <returns>The representation.</returns>
-        public override string ToString()
-            => BeingDefinition.Name;
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (CurrentBehaviorID,
+                Position,
+                SpawnAt,
+                RoomAssignment,
+                BiomeTimeRemaining,
+                BuildingSpeed,
+                ModificationSpeed,
+                GatheringSpeed,
+                MovementSpeed).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="BeingStatus"/> is equal to the current <see cref="ParquetPackStatus"/>.
+        /// </summary>
+        /// <param name="inStatus">The <see cref="BeingStatus"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals<T>(T inStatus)
+            => inStatus is BeingStatus beingStatus
+            && CurrentBehaviorID == beingStatus.CurrentBehaviorID
+            && Position == beingStatus.Position
+            && SpawnAt == beingStatus.SpawnAt
+            && RoomAssignment == beingStatus.RoomAssignment
+            && BiomeTimeRemaining == beingStatus.BiomeTimeRemaining
+            && BuildingSpeed == beingStatus.BuildingSpeed
+            && ModificationSpeed == beingStatus.ModificationSpeed
+            && GatheringSpeed == beingStatus.GatheringSpeed
+            && MovementSpeed == beingStatus.MovementSpeed;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="BeingStatus"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="BeingStatus"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+            => obj is BeingStatus status
+            && Equals(status);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="BeingStatus"/> is equal to another specified instance of <see cref="ParquetPackStatus"/>.
+        /// </summary>
+        /// <param name="inStatus1">The first <see cref="BeingStatus"/> to compare.</param>
+        /// <param name="inStatus2">The second <see cref="BeingStatus"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(BeingStatus inStatus1, BeingStatus inStatus2)
+            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="BeingStatus"/> is not equal to another specified instance of <see cref="ParquetPack"/>.
+        /// </summary>
+        /// <param name="inStatus1">The first <see cref="BeingStatus"/> to compare.</param>
+        /// <param name="inStatus2">The second <see cref="BeingStatus"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(BeingStatus inStatus1, BeingStatus inStatus2)
+            => !(inStatus1 == inStatus2);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static BeingStatus ConverterFactory { get; } = Unused;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is BeingStatus status
+                ? $"{status.CurrentBehaviorID.ConvertToString(status.CurrentBehaviorID, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.Position.ConvertToString(status.Position, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.SpawnAt.ConvertToString(status.SpawnAt, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.RoomAssignment.ConvertToString(status.RoomAssignment, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.BiomeTimeRemaining}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.BuildingSpeed}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.ModificationSpeed}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.GatheringSpeed}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.MovementSpeed}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.KnownBeings.ConvertToString(status.KnownBeings, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.KnownParquets.ConvertToString(status.KnownParquets, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.KnownRoomRecipes.ConvertToString(status.KnownRoomRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.KnownCraftingRecipes.ConvertToString(status.KnownCraftingRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.Quests.ConvertToString(status.Quests, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.Inventory.ConvertToString(status.Inventory, inRow, inMemberMapData)}"
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(BeingStatus), nameof(Unused));
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                return Logger.DefaultWithConvertLog(inText, nameof(BeingStatus), Unused);
+            }
+
+            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
+            var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
+
+            var parsedPosition;
+            var parsedSpawnAt;
+            var parsedRoomAssignment;
+            var parsedCurrentBehaviorID;
+
+            var parsedBiomeTimeRemaining = int.TryParse(parameterText[4], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp4)
+                ? temp4
+                : Logger.DefaultWithParseLog(parameterText[4], nameof(BiomeTimeRemaining), int.MaxValue);
+
+            var parsedBuildingSpeed = float.TryParse(parameterText[5], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp5)
+                ? temp5
+                : Logger.DefaultWithParseLog(parameterText[5], nameof(BuildingSpeed), 1f);
+
+            var parsedModificationSpeed = float.TryParse(parameterText[6], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp6)
+                ? temp6
+                : Logger.DefaultWithParseLog(parameterText[6], nameof(ModificationSpeed), 1f);
+
+            var parsedGatheringSpeed = float.TryParse(parameterText[7], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp7)
+                ? temp7
+                : Logger.DefaultWithParseLog(parameterText[7], nameof(GatheringSpeed), 1f);
+
+            var parsedMovementSpeed = float.TryParse(parameterText[8], All.SerializedNumberStyle,
+                                               CultureInfo.InvariantCulture, out var temp8)
+                ? temp8
+                : Logger.DefaultWithParseLog(parameterText[8], nameof(MovementSpeed), 1f);
+
+            var parsedKnownBeings;
+            var parsedKnownParquets;
+            var parsedKnownRoomRecipes;
+            var parsedKnownCraftingRecipes;
+            var parsedQuests;
+            var parsedInventory;
+
+            return new BeingStatus(parsedCurrentBehaviorID,
+                                   parsedPosition,
+                                   parsedSpawnAt,
+                                   //parsedRoomAssignment,
+                                   parsedBiomeTimeRemaining,
+                                   parsedBuildingSpeed,
+                                   parsedModificationSpeed,
+                                   parsedGatheringSpeed,
+                                   parsedMovementSpeed,
+                                   parsedKnownBeings,
+                                   parsedKnownParquets,
+                                   parsedKnownRoomRecipes,
+                                   parsedKnownCraftingRecipes,
+                                   parsedQuests,
+                                   parsedInventory);
+        }
         #endregion
     }
 }
