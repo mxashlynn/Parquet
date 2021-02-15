@@ -13,7 +13,7 @@ namespace Parquet.Beings
         public BeingModel BeingDefinition { get; }
         #endregion
 
-        #region Stats
+        #region Status
         /// <summary>The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</summary>
         public Location Position { get; set; }
 

@@ -10,7 +10,7 @@ namespace Parquet.Scripts
         public InteractionModel InteractionDefinition { get; }
         #endregion
 
-        #region Stats
+        #region Status
         /// <summary>The current execution status of the tracked script.</summary>
         public RunState State { get; set; }
 
