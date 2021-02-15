@@ -10,7 +10,8 @@ namespace Parquet
     /// These classes are modifiable during play.
     /// </summary>
     public abstract class ModelStatus<T> : IEquatable<ModelStatus<T>>, ITypeConverter
-        where T : Model
+    // TODO Should we reinstate this?  If so, ParquetPack needs to inherit from Model....
+    //    where T : Model
     {
         #region IEquatable Implementation
         /// <summary>
@@ -22,11 +23,20 @@ namespace Parquet
         public abstract override int GetHashCode();
 
         /// <summary>
+        /// Determines whether the specified status is equal to the current status.
+        /// </summary>
+        /// <param name="inStatus">The status to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public abstract bool Equals<TDerived>(TDerived inStatus)
+            where TDerived : ModelStatus<T>;
+
+        /// <summary>
         /// Determines whether the specified <see cref="ModelStatus{T}"/> is equal to the current <see cref="ModelStatus{T}"/>.
         /// </summary>
         /// <param name="inStatus">The <see cref="ModelStatus{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public abstract bool Equals(ModelStatus<T> inStatus);
+        public bool Equals(ModelStatus<T> inStatus)
+            => Equals<ModelStatus<T>>(inStatus);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -35,12 +45,12 @@ namespace Parquet
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public abstract override bool Equals(object obj);
 
-        // NOTE that implementors should also declare static bool operator ==(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
-        // NOTE that implementors should also declare static bool operator !=(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
+        // NOTE that derived classes should also declare static bool operator ==(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
+        // NOTE that derived classes should also declare static bool operator !=(ModelStatus<T> inStatus1, ModelStatus<T> inStatus2)
         #endregion
 
         #region ITypeConverter Implementation
-        // NOTE that implementors should probably include an internal static ModelStatus ConverterFactory { get; }
+        // NOTE that derived classes should probably include an internal static ModelStatus ConverterFactory { get; }
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
@@ -74,7 +84,8 @@ namespace Parquet
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public static bool IsValidPosition<T>(this ModelStatus<T>[,] inArray, Vector2D inPosition)
-            where T : Model
+        // TODO Should we reinstate this?  If so, ParquetPack needs to inherit from Model....
+        //    where T : Model
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1
