@@ -81,16 +81,6 @@ namespace Parquet.Parquets
             && Toughness == packStatus.Toughness
             && maxToughness == packStatus.maxToughness;
 
-        /*
-        /// <summary>
-        /// Determines whether the specified <see cref="Status{ParquetPack}"/> is equal to the current <see cref="Status{ParquetPack}"/>.
-        /// </summary>
-        /// <param name="inStatus">The <see cref="Status{ParquetPack}"/> to compare with the current.</param>
-        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals(Status<ParquetPack> inStatus)
-            => Equals((ParquetPackStatus)inStatus);
-        */
-
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
         /// </summary>
