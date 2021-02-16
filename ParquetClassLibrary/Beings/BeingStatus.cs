@@ -150,6 +150,7 @@ namespace Parquet.Beings
                 ModificationSpeed,
                 GatheringSpeed,
                 MovementSpeed).GetHashCode();
+                // TODO Add missing bits.
 
         /// <summary>
         /// Determines whether the specified <see cref="BeingStatus"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -167,6 +168,7 @@ namespace Parquet.Beings
             && ModificationSpeed == beingStatus.ModificationSpeed
             && GatheringSpeed == beingStatus.GatheringSpeed
             && MovementSpeed == beingStatus.MovementSpeed;
+            // TODO Add missing bits.
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="BeingStatus"/>.
