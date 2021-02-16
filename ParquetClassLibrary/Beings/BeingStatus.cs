@@ -218,12 +218,12 @@ namespace Parquet.Beings
                   $"{status.ModificationSpeed}{Delimiters.SecondaryDelimiter}" +
                   $"{status.GatheringSpeed}{Delimiters.SecondaryDelimiter}" +
                   $"{status.MovementSpeed}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.KnownBeings.ConvertToString(status.KnownBeings, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.KnownParquets.ConvertToString(status.KnownParquets, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.KnownRoomRecipes.ConvertToString(status.KnownRoomRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.KnownCraftingRecipes.ConvertToString(status.KnownCraftingRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.Quests.ConvertToString(status.Quests, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.Inventory.ConvertToString(status.Inventory, inRow, inMemberMapData)}"
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownBeings, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownParquets, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownRoomRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownCraftingRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Quests, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Inventory, inRow, inMemberMapData)}"
                 : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(BeingStatus), nameof(Unused));
 
         /// <summary>
