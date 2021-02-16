@@ -100,7 +100,7 @@ namespace Parquet.Parquets
             => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="ParquetPackStatus"/> is not equal to another specified instance of <see cref="ParquetPack"/>.
+        /// Determines whether a specified instance of <see cref="ParquetPackStatus"/> is not equal to another specified instance of <see cref="ParquetPackStatus"/>.
         /// </summary>
         /// <param name="inStatus1">The first <see cref="ParquetPackStatus"/> to compare.</param>
         /// <param name="inStatus2">The second <see cref="ParquetPackStatus"/> to compare.</param>

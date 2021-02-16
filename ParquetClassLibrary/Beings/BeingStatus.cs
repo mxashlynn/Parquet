@@ -155,7 +155,7 @@ namespace Parquet.Beings
                 Inventory).GetHashCode();
 
         /// <summary>
-        /// Determines whether the specified <see cref="BeingStatus"/> is equal to the current <see cref="ParquetPackStatus"/>.
+        /// Determines whether the specified <see cref="BeingStatus"/> is equal to the current <see cref="BeingStatus"/>.
         /// </summary>
         /// <param name="inStatus">The <see cref="BeingStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
@@ -187,7 +187,7 @@ namespace Parquet.Beings
             && Equals(status);
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="BeingStatus"/> is equal to another specified instance of <see cref="ParquetPackStatus"/>.
+        /// Determines whether a specified instance of <see cref="BeingStatus"/> is equal to another specified instance of <see cref="BeingStatus"/>.
         /// </summary>
         /// <param name="inStatus1">The first <see cref="BeingStatus"/> to compare.</param>
         /// <param name="inStatus2">The second <see cref="BeingStatus"/> to compare.</param>
@@ -196,7 +196,7 @@ namespace Parquet.Beings
             => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="BeingStatus"/> is not equal to another specified instance of <see cref="ParquetPack"/>.
+        /// Determines whether a specified instance of <see cref="BeingStatus"/> is not equal to another specified instance of <see cref="BeingStatus"/>.
         /// </summary>
         /// <param name="inStatus1">The first <see cref="BeingStatus"/> to compare.</param>
         /// <param name="inStatus2">The second <see cref="BeingStatus"/> to compare.</param>
