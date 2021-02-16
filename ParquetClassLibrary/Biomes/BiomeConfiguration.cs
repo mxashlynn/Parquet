@@ -15,6 +15,7 @@ namespace Parquet.Biomes
         private const int ParquetsPerLayer = MapRegionModel.ParquetsPerRegionDimension * MapRegionModel.ParquetsPerRegionDimension;
         #endregion
 
+        #region Characteristics
         /// <summary>
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
         /// <see cref="MapRegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
@@ -44,6 +45,7 @@ namespace Parquet.Biomes
         /// <summary>How many of a layers' worth of parquets must contribute to a room-based <see cref="BiomeRecipe"/>.</summary>
         public static int RoomThreshold
             => (int)Math.Round(ParquetsPerLayer * RoomThresholdFactor, 0, MidpointRounding.AwayFromZero);
+        #endregion
 
         #region Self Serialization
         /// <summary>
