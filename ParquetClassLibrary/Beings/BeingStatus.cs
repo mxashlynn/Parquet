@@ -243,72 +243,52 @@ namespace Parquet.Beings
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
 
-
-            // TODO: HERE!!!  We need to implement ITypeConverter for several classes in order to derive this from Status.
-            // Might seem frustrating, but we would have needed to do this sooner or later in order to save game progress!!
-
-
             var parsedPosition = (Location)Location.ConverterFactory.ConvertFromString(parameterText[0],
                                                                                        inRow, inMemberMapData);
-
             var parsedSpawnAt = (Location)Location.ConverterFactory.ConvertFromString(parameterText[1],
                                                                                       inRow, inMemberMapData);
-
             var parsedRoomAssignment = (Location)Location.ConverterFactory.ConvertFromString(parameterText[2],
                                                                                              inRow, inMemberMapData);
-
             var parsedCurrentBehaviorID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3],
                                                                                               inRow, inMemberMapData);
-
             var parsedBiomeTimeRemaining = int.TryParse(parameterText[4], All.SerializedNumberStyle,
                                                         CultureInfo.InvariantCulture, out var temp4)
                 ? temp4
                 : Logger.DefaultWithParseLog(parameterText[4], nameof(BiomeTimeRemaining), int.MaxValue);
-
             var parsedBuildingSpeed = float.TryParse(parameterText[5], All.SerializedNumberStyle,
                                                      CultureInfo.InvariantCulture, out var temp5)
                 ? temp5
                 : Logger.DefaultWithParseLog(parameterText[5], nameof(BuildingSpeed), 1f);
-
             var parsedModificationSpeed = float.TryParse(parameterText[6], All.SerializedNumberStyle,
                                                          CultureInfo.InvariantCulture, out var temp6)
                 ? temp6
                 : Logger.DefaultWithParseLog(parameterText[6], nameof(ModificationSpeed), 1f);
-
             var parsedGatheringSpeed = float.TryParse(parameterText[7], All.SerializedNumberStyle,
                                                       CultureInfo.InvariantCulture, out var temp7)
                 ? temp7
                 : Logger.DefaultWithParseLog(parameterText[7], nameof(GatheringSpeed), 1f);
-
             var parsedMovementSpeed = float.TryParse(parameterText[8], All.SerializedNumberStyle,
                                                      CultureInfo.InvariantCulture, out var temp8)
                 ? temp8
                 : Logger.DefaultWithParseLog(parameterText[8], nameof(MovementSpeed), 1f);
-
             var parsedKnownBeings = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[9], inRow,
                                                                                            inMemberMapData);
-
             var parsedKnownParquets = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory
                                                        .ConvertFromString(parameterText[10], inRow, inMemberMapData);
-
             var parsedKnownRoomRecipes = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[11], inRow,
                                                                                            inMemberMapData);
-
             var parsedKnownCraftingRecipes = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[12], inRow,
                                                                                            inMemberMapData);
-
             var parsedQuests = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[13], inRow,
                                                                                            inMemberMapData);
-
             var parsedInventory = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[14], inRow,
                                                                                            inMemberMapData);
-
 
             return new BeingStatus(parsedCurrentBehaviorID,
                                    parsedPosition,
