@@ -76,13 +76,14 @@ namespace Parquet.Beings
         /// Primarily useful in the context of serialization.
         /// </remarks>
         public BeingStatus()
-            : this(ModelID.None, Location.Default, Location.Default, 0, 0f, 0f, 0f, 0f) { }
+            : this(Location.Nowhere, Location.Nowhere, Location.Nowhere, ModelID.None, 0, 0f, 0f, 0f, 0f) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BeingStatus"/> class.
         /// </summary>
         /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="BeingModel"/> occupies.</param>
         /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="BeingModel"/> will next spawn at.</param>
+        /// <param name="inRoomAssignment">The <see cref="Location"/> of the <see cref="Rooms.Room"/> to which the tracked <see cref="BeingModel"/> is assigned.</param>
         /// <param name="inCurrentBehavior">The behavior currently governing the tracked <see cref="BeingModel"/>.</param>
         /// <param name="inBiomeTimeRemaining">How long [TODO in what units?] to until being kicked out of the current <see cref="Biomes.BiomeRecipe"/>.</param>
         /// <param name="inBuildingSpeed">The time it takes the tracked <see cref="BeingModel"/> to place new parquets.</param>
@@ -95,13 +96,16 @@ namespace Parquet.Beings
         /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
         /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
         /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
-        public BeingStatus(ModelID inCurrentBehavior, Location inPosition, Location inSpawnAt,
+        public BeingStatus(Location inPosition, Location inSpawnAt, Location inRoomAssignment, ModelID inCurrentBehavior,
                            int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed,
                            float inMovementSpeed, ICollection<ModelID> inKnownBeings = null,
                            ICollection<ModelID> inKnownParquets = null, ICollection<ModelID> inKnownRoomRecipes = null,
                            ICollection<ModelID> inKnownCraftingRecipes = null, ICollection<ModelID> inQuests = null,
                            ICollection<ModelID> inInventory = null)
         {
+            Precondition.IsNotNull(inPosition, nameof(inPosition));
+            Precondition.IsNotNull(inSpawnAt, nameof(inSpawnAt));
+            Precondition.IsNotNull(inRoomAssignment, nameof(inRoomAssignment));
             Precondition.IsInRange(inCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));
             var nonNullBeings = inKnownBeings ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
@@ -119,6 +123,7 @@ namespace Parquet.Beings
             CurrentBehaviorID = inCurrentBehavior;
             Position = inPosition;
             SpawnAt = inSpawnAt;
+            RoomAssignment = inRoomAssignment;
             BiomeTimeRemaining = inBiomeTimeRemaining;
             BuildingSpeed = inBuildingSpeed;
             ModificationSpeed = inModificationSpeed;
@@ -295,7 +300,7 @@ namespace Parquet.Beings
             return new BeingStatus(parsedCurrentBehaviorID,
                                    parsedPosition,
                                    parsedSpawnAt,
-                                   //parsedRoomAssignment,
+                                   parsedRoomAssignment,
                                    parsedBiomeTimeRemaining,
                                    parsedBuildingSpeed,
                                    parsedModificationSpeed,
