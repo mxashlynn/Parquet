@@ -1,4 +1,4 @@
-ID,Name,Description,Comment,Tags,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
+﻿ID,Name,Description,Comment,Tags,ItemID,AddsToBiome,AddsToRoom,ModTool,TrenchName
 -10000,1 Floor Test Parquet,Test,Test,,-140000,,,None,dark hole
 10000,grass,,,,None,,,Shovel,dirty pit
 10001,weeds,,,,140001,Swampy,,Shovel,muddy pit
