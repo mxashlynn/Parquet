@@ -1,5 +1,3 @@
-abstract Parquet.Beings.BeingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-abstract Parquet.Beings.BeingStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
 abstract Parquet.Status<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -49,7 +47,6 @@ override Parquet.Beings.BeingStatus.ConvertToString(object inValue, CsvHelper.IW
 override Parquet.Beings.BeingStatus.Equals(object obj) -> bool
 override Parquet.Beings.BeingStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Beings.BeingStatus.GetHashCode() -> int
-override Parquet.Beings.BeingStatus.ToString() -> string
 override Parquet.Beings.PronounGroup.ToString() -> string
 override Parquet.Biomes.BiomeRecipe.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Crafts.StrikePanel.Equals(object obj) -> bool
@@ -124,8 +121,7 @@ Parquet.Beings.BeingModel.NativeBiomeID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.PrimaryBehaviorID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.SeeksIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Beings.BeingStatus
-Parquet.Beings.BeingStatus.BeingStatus() -> void
-Parquet.Beings.BeingStatus.BeingStatus(Parquet.ModelID inCurrentBehavior, Parquet.Location inPosition, Parquet.Location inSpawnAt, int inBiomeTimeRemaining, float inBuildingSpeed, float inModificationSpeed, float inGatheringSpeed, float inMovementSpeed, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, System.Collections.Generic.ICollection<Parquet.ModelID> inInventory = null) -> void
+Parquet.Beings.BeingStatus.BeingStatus(Parquet.Location inPosition = null, Parquet.Location inSpawnAt = null, Parquet.Location inRoomAssignment = null, Parquet.ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = 0, float inBuildingSpeed = 0, float inModificationSpeed = 0, float inGatheringSpeed = 0, float inMovementSpeed = 0, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, System.Collections.Generic.ICollection<Parquet.ModelID> inInventory = null) -> void
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.get -> int
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.set -> void
 Parquet.Beings.BeingStatus.BuildingSpeed.get -> float
