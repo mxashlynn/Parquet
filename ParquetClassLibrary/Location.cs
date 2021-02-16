@@ -1,15 +1,17 @@
 using System;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Parquet
 {
     /// <summary>
-    /// Represents a specific position within a specific <see cref="Maps.MapRegionModel"/>.
+    /// Tracks a specific position within a specific <see cref="Maps.MapRegionModel"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// While primarily used in-library by <see cref="Beings.BeingModel"/> this class
-    /// is made generally available to support it's general use by game client code.
+    /// Could meaningfully apply to any <see cref="Model"/> that has a specific position with in the game world.
     /// </remarks>
-    sealed public class Location : IEquatable<Location>
+    sealed public class Location : Status<Location>
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="Location"/> class with default values.</summary>
@@ -17,11 +19,24 @@ namespace Parquet
         #endregion
 
         #region Characteristics
-        /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> of this located.</summary>
+        /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</summary>
         public ModelID RegionID { get; }
 
-        /// <summary>The position within the current <see cref="Maps.MapRegionModel"/> of this located.</summary>
+        /// <summary>The position within the current <see cref="Maps.MapRegionModel"/> of the tracked <see cref="Model"/>.</summary>
         public Vector2D Position { get; }
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Location"/> class.
+        /// </summary>
+        /// <param name="inRegionID">The identifier for the <see cref="Maps.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
+        /// <param name="inPosition">The position within the current <see cref="Maps.MapRegionModel"/> of the tracked <see cref="Model"/>.</param>
+        public Location(ModelID? inRegionID = null, Vector2D? inPosition = null)
+        {
+            RegionID = inRegionID ?? ModelID.None;
+            Position = inPosition ?? Vector2D.Zero;
+        }
         #endregion
 
         #region IEquatable Implementation
@@ -39,9 +54,10 @@ namespace Parquet
         /// </summary>
         /// <param name="inLocation">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Location inLocation)
-            => RegionID == inLocation?.RegionID
-            && Position == inLocation.Position;
+        public override bool Equals<T>(T inLocation)
+            => inLocation is Location location
+            && RegionID == location.RegionID
+            && Position == location.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Location"/>.
@@ -69,6 +85,46 @@ namespace Parquet
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Location inLocation1, Location inLocation2)
             => !(inLocation1 == inLocation2);
+        #endregion
+
+        #region ITypeConverter Implementation
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static Location ConverterFactory { get; } = Nowhere;
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is Location location
+                ? $"{location.RegionID.ConvertToString(location.RegionID, inRow, inMemberMapData)}{Delimiters.InternalDelimiter}" +
+                  $"{location.Position.ConvertToString(location.Position, inRow, inMemberMapData)}"
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Location), nameof(Nowhere));
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText))
+            {
+                return Nowhere;
+            }
+
+            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+
+            var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var parsedPosition = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+
+            return new Location(parsedRegionID, parsedPosition);
+        }
         #endregion
 
         #region Utilities
