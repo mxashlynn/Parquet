@@ -833,7 +833,7 @@ static Parquet.Items.InventoryConfiguration.FilePath.get -> string
 static Parquet.Items.InventoryConfiguration.GetRecord() -> void
 static Parquet.Items.InventoryConfiguration.PutRecord() -> void
 static Parquet.Items.InventorySlot.Empty.get -> Parquet.Items.InventorySlot
-static Parquet.Location.Default.get -> Parquet.Location
+static Parquet.Location.Nowhere.get -> Parquet.Location
 static Parquet.Location.operator !=(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Location.operator ==(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Logger.Log(Parquet.LogLevel inLogLevel, object inObject) -> void

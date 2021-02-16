@@ -13,7 +13,7 @@ namespace Parquet
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="Location"/> class with default values.</summary>
-        public static Location Default { get; } = new Location();
+        public static Location Nowhere { get; } = new Location();
         #endregion
 
         #region Characteristics
