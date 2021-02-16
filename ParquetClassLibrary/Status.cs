@@ -48,7 +48,7 @@ namespace Parquet
         #endregion
 
         #region ITypeConverter Implementation
-        // NOTE that derived classes should probably include an internal static Status ConverterFactory { get; }
+        // NOTE that derived classes should include an internal static Status ConverterFactory { get; }
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
