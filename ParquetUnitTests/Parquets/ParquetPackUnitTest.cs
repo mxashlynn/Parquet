@@ -8,7 +8,7 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         internal void ParquetPackIsEmptyWhenAllFieldsAreNullTest()
         {
-            var pack = new ParquetPack();
+            var pack = new ParquetModelPack();
 
             Assert.True(pack.IsEmpty);
         }
@@ -16,17 +16,17 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         internal void ParquetPackDotEmptyIsEmpty()
         {
-            Assert.True(ParquetPack.Empty.IsEmpty);
+            Assert.True(ParquetModelPack.Empty.IsEmpty);
         }
 
         [Fact]
         internal void IdenticalStacksAreEqualTest()
         {
-            var pack1 = new ParquetPack(TestModels.TestFloor.ID,
+            var pack1 = new ParquetModelPack(TestModels.TestFloor.ID,
                                         TestModels.TestBlock.ID,
                                         TestModels.TestFurnishing.ID,
                                         TestModels.TestCollectible.ID);
-            var pack2 = new ParquetPack(TestModels.TestFloor.ID,
+            var pack2 = new ParquetModelPack(TestModels.TestFloor.ID,
                                         TestModels.TestBlock.ID,
                                         TestModels.TestFurnishing.ID,
                                         TestModels.TestCollectible.ID);
@@ -37,11 +37,11 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         internal void DifferingStacksAreUnequalTest()
         {
-            var pack1 = new ParquetPack(TestModels.TestFloor.ID,
+            var pack1 = new ParquetModelPack(TestModels.TestFloor.ID,
                                         TestModels.TestBlock.ID,
                                         TestModels.TestFurnishing.ID,
                                         TestModels.TestCollectible.ID);
-            var pack2 = new ParquetPack(TestModels.TestFloor.ID - 1,
+            var pack2 = new ParquetModelPack(TestModels.TestFloor.ID - 1,
                                         TestModels.TestBlock.ID - 1,
                                         TestModels.TestFurnishing.ID - 1,
                                         TestModels.TestCollectible.ID - 1);

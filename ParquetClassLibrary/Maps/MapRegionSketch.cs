@@ -87,13 +87,13 @@ namespace Parquet.Maps
         [Ignore]
         [Obsolete("Do not use.  Generate a MapRegionModel by calling Stitch, then access the parquet via that instance.")]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
-        public override ParquetPackGrid ParquetDefinitions
+        public override ParquetModelPackGrid ParquetDefinitions
         {
             get
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorUngenerated,
                                                            nameof(ParquetDefinitions), nameof(MapRegionSketch)));
-                return new ParquetPackGrid();
+                return new ParquetModelPackGrid();
             }
         }
         #endregion
@@ -167,7 +167,7 @@ namespace Parquet.Maps
             Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
             Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
 
-            var parquetDefinitions = new ParquetPackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
+            var parquetDefinitions = new ParquetModelPackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
             for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
             {
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)

@@ -5,21 +5,21 @@ using Parquet.Parquets;
 namespace Parquet.Rooms
 {
     /// <summary>
-    /// Extensions to <see cref="ParquetPackGrid"/> for analyzing subregions of <see cref="ParquetPack"/>s
+    /// Extensions to <see cref="ParquetModelPackGrid"/> for analyzing subregions of <see cref="ParquetModelPack"/>s
     /// to find all valid <see cref="Room"/>s within them.
     /// </summary>
     /// <remarks>
     /// For a complete explanation of the algorithm implemented here, see:
     /// <a href="https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md"/>
     /// </remarks>
-    public static class ParquetPackGridExtensions
+    public static class ParquetModelPackGridExtensions
     {
         /// <summary>
-        /// Initializes a new <see cref="IReadOnlyCollection{Room}"/> from the current <see cref="ParquetPackGrid"/>.
+        /// Initializes a new <see cref="IReadOnlyCollection{Room}"/> from the current <see cref="ParquetModelPackGrid"/>.
         /// </summary>
         /// <param name="inSubregion">The current collection of parquets to search for <see cref="Room"/>s.</param>
         /// <returns>An initialized collection of rooms.</returns>
-        public static IReadOnlyCollection<Room> CreateRoomCollectionFromSubregion(this ParquetPackGrid inSubregion)
+        public static IReadOnlyCollection<Room> CreateRoomCollectionFromSubregion(this ParquetModelPackGrid inSubregion)
         {
             Precondition.IsNotNull(inSubregion, nameof(inSubregion));
             if (inSubregion is null)
@@ -44,9 +44,9 @@ namespace Parquet.Rooms
         /// <summary>
         /// Finds all valid Walkable Areas in a given subregion.
         /// </summary>
-        /// <param name="inSubregion">The <see cref="ParquetPackGrid"/>s to search.</param>
+        /// <param name="inSubregion">The <see cref="ParquetModelPackGrid"/>s to search.</param>
         /// <returns>The list of valid Walkable Areas.</returns>
-        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetPackGrid inSubregion)
+        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetModelPackGrid inSubregion)
         {
             var PWAs = new List<HashSet<MapSpace>>();
             var subregionRows = inSubregion.Rows;

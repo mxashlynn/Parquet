@@ -8,12 +8,12 @@ namespace ParquetUnitTests.Parquets
     public class MapSpaceUnitTest
     {
         #region Test Values
-        private static readonly ParquetPack TVoid = ParquetPack.Empty;
-        private static readonly ParquetPack TWall = new ParquetPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
-        private static readonly ParquetPack TDoor = new ParquetPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
-        private static readonly ParquetPack TTile = new ParquetPack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TVoid = ParquetModelPack.Empty;
+        private static readonly ParquetModelPack TWall = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TDoor = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetModelPack TTile = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
 
-        private static readonly ParquetPack[,] TestRoomMap =
+        private static readonly ParquetModelPack[,] TestRoomMap =
         {
             { TWall, TWall, TWall, TWall, TVoid, },
             { TWall, TTile, TTile, TWall, TVoid, },
@@ -30,7 +30,7 @@ namespace ParquetUnitTests.Parquets
         {
             var x = 10;
             var y = 30;
-            var testStack = new ParquetPack(TestModels.TestFloor.ID,
+            var testStack = new ParquetModelPack(TestModels.TestFloor.ID,
                                              TestModels.TestBlock.ID,
                                              TestModels.TestFurnishing.ID,
                                              TestModels.TestCollectible.ID);
@@ -48,7 +48,7 @@ namespace ParquetUnitTests.Parquets
             var y1 = 30;
             var x2 = 20;
             var y2 = 20;
-            var testStack = new ParquetPack(TestModels.TestFloor.ID,
+            var testStack = new ParquetModelPack(TestModels.TestFloor.ID,
                                              TestModels.TestBlock.ID,
                                              TestModels.TestFurnishing.ID,
                                              TestModels.TestCollectible.ID);
@@ -64,11 +64,11 @@ namespace ParquetUnitTests.Parquets
         {
             var x = 10;
             var y = 30;
-            var testStack1 = new ParquetPack(TestModels.TestFloor.ID,
+            var testStack1 = new ParquetModelPack(TestModels.TestFloor.ID,
                                              TestModels.TestBlock.ID,
                                              TestModels.TestFurnishing.ID,
                                              TestModels.TestCollectible.ID);
-            var testStack2 = new ParquetPack(TestModels.TestFloor.ID - 1,
+            var testStack2 = new ParquetModelPack(TestModels.TestFloor.ID - 1,
                                              TestModels.TestBlock.ID - 1,
                                              TestModels.TestFurnishing.ID - 1,
                                              TestModels.TestCollectible.ID - 1);
@@ -85,7 +85,7 @@ namespace ParquetUnitTests.Parquets
             var x = 1;
             var y = 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.NorthNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -98,7 +98,7 @@ namespace ParquetUnitTests.Parquets
             var x = 0;
             var y = 0;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.NorthNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -111,7 +111,7 @@ namespace ParquetUnitTests.Parquets
             var x = 1;
             var y = 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.SouthNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -124,7 +124,7 @@ namespace ParquetUnitTests.Parquets
             var x = 1;
             var y = TestRoomMap.GetLength(0) - 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.SouthNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -137,7 +137,7 @@ namespace ParquetUnitTests.Parquets
             var x = 1;
             var y = 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.EastNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -150,7 +150,7 @@ namespace ParquetUnitTests.Parquets
             var x = TestRoomMap.GetLength(1) - 1;
             var y = 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.EastNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -163,7 +163,7 @@ namespace ParquetUnitTests.Parquets
             var x = 1;
             var y = 1;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.WestNeighbor();
 
             Assert.NotEqual(space, neighbour);
@@ -176,7 +176,7 @@ namespace ParquetUnitTests.Parquets
             var x = 0;
             var y = 0;
 
-            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetPackGrid(TestRoomMap));
+            var space = new MapSpace(new Vector2D(x, y), TestRoomMap[y, x], new ParquetModelPackGrid(TestRoomMap));
             var neighbour = space.WestNeighbor();
 
             Assert.NotEqual(space, neighbour);

@@ -25,7 +25,7 @@ namespace Parquet.Maps
         /// </summary>
         [Index(13)]
         // TODO [MAP EDITOR] [API] Should this be IReadOnlyGrid<ParquetPack> instead?
-        public abstract ParquetPackGrid ParquetDefinitions { get; }
+        public abstract ParquetModelPackGrid ParquetDefinitions { get; }
         #endregion
 
         #region Initialization
@@ -62,7 +62,7 @@ namespace Parquet.Maps
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subregion.</returns>
-        public ParquetPackGrid GetSubregion()
+        public ParquetModelPackGrid GetSubregion()
             => GetSubregion(Vector2D.Zero, new Vector2D(DimensionsInParquets.X - 1, DimensionsInParquets.Y - 1));
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Parquet.Maps
         /// <returns>A portion of the map as a subregion.</returns>
         /// <remarks>If the coordinates given are not well-formed, the subregion returned will be invalid.</remarks>
         // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
-        public ParquetPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public ParquetModelPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetDefinitions.IsValidPosition(inUpperLeft))
             {
@@ -92,7 +92,7 @@ namespace Parquet.Maps
             }
             else
             {
-                var subregion = new ParquetPack[inLowerRight.X - inUpperLeft.X + 1,
+                var subregion = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
                                                  inLowerRight.Y - inUpperLeft.Y + 1];
 
                 for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
@@ -103,10 +103,10 @@ namespace Parquet.Maps
                     }
                 }
 
-                return new ParquetPackGrid(subregion);
+                return new ParquetModelPackGrid(subregion);
             }
 
-            return new ParquetPackGrid();
+            return new ParquetModelPackGrid();
         }
 
         /// <summary>

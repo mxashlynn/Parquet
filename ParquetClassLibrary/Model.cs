@@ -25,7 +25,7 @@ namespace Parquet
     /// Collections of the definitions used during play are contained in <see cref="All"/>.<para />
     /// <para />
     /// If individual game objects must have mutable state then a separate partner class,
-    /// such as <see cref="Parquets.ParquetPackStatus"/> or <see cref="Beings.BeingStatus"/>,
+    /// such as <see cref="Parquets.ParquetStatusPack"/> or <see cref="Beings.BeingStatus"/>,
     /// represents that state.<para />
     /// <para />
     /// Model could be considered the fundamental class of the entire Parquet library.

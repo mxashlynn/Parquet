@@ -66,14 +66,14 @@ namespace Parquet.Maps
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
         // TODO [MAP EDITOR] [API] Should this be an IReadOnlyGrid<ParquetStatus>es instead?
-        public ParquetPackStatusGrid ParquetStatuses { get; }
+        public ParquetStatusPackGrid ParquetStatuses { get; }
 
         /// <summary>
         /// Parquets that make up the region.  If changing or replacing one of these,
         /// remember to update the corresponding element in <see cref="ParquetStatuses"/>!
         /// </summary>
         [Index(13)]
-        public override ParquetPackGrid ParquetDefinitions { get; }
+        public override ParquetModelPackGrid ParquetDefinitions { get; }
 
         /// <summary>
         /// All of the <see cref="Room"/>s detected in the <see cref="MapRegionModel"/>.
@@ -110,8 +110,8 @@ namespace Parquet.Maps
                               ModelID? inRegionToTheWest = null,
                               ModelID? inRegionAbove = null,
                               ModelID? inRegionBelow = null,
-                              ParquetPackStatusGrid inParquetStatuses = null,
-                              ParquetPackGrid inParquetDefinitions = null)
+                              ParquetStatusPackGrid inParquetStatuses = null,
+                              ParquetModelPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inTags)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
@@ -120,8 +120,8 @@ namespace Parquet.Maps
             var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
             var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
             var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
-            var nonNullParquetStatuses = inParquetStatuses ?? new ParquetPackStatusGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
-            var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            var nonNullParquetStatuses = inParquetStatuses ?? new ParquetStatusPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+            var nonNullParquetDefinitions = inParquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
 
             Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
             Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
@@ -227,7 +227,7 @@ namespace Parquet.Maps
             {
                 var count = 0;
 
-                foreach (ParquetPack pack in inRegion.ParquetDefinitions)
+                foreach (ParquetModelPack pack in inRegion.ParquetDefinitions)
                 {
                     if (inPredicate(All.Floors.GetOrNull<FloorModel>(pack.FloorID)))
                     {

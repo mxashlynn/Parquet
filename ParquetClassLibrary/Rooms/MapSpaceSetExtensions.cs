@@ -140,7 +140,7 @@ namespace Parquet.Rooms
                                                                 space => false).Visited;
 
             // Returns a Set of MapSpaces corresponding to the ParquetPackGrid.
-            static IReadOnlySet<MapSpace> GetSpaces(ParquetPackGrid inParquetPacks)
+            static IReadOnlySet<MapSpace> GetSpaces(ParquetModelPackGrid inParquetPacks)
             {
                 Precondition.IsNotNull(inParquetPacks, nameof(inParquetPacks));
 

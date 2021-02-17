@@ -99,9 +99,9 @@ override Parquet.Parquets.FloorStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.FloorStatus.GetHashCode() -> int
 override Parquet.Parquets.FloorStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
-override Parquet.Parquets.ParquetPack.Equals(object obj) -> bool
-override Parquet.Parquets.ParquetPack.GetHashCode() -> int
-override Parquet.Parquets.ParquetPack.ToString() -> string
+override Parquet.Parquets.ParquetModelPack.Equals(object obj) -> bool
+override Parquet.Parquets.ParquetModelPack.GetHashCode() -> int
+override Parquet.Parquets.ParquetModelPack.ToString() -> string
 override Parquet.Parquets.ParquetPackStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetPackStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Parquets.ParquetPackStatus.Equals(object obj) -> bool
@@ -592,6 +592,31 @@ Parquet.Parquets.FloorStatus.DeepClone() -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void
 Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
+Parquet.Parquets.IParquetModelPack
+Parquet.Parquets.IParquetModelPack.BlockID.get -> Parquet.ModelID
+Parquet.Parquets.IParquetModelPack.CollectibleID.get -> Parquet.ModelID
+Parquet.Parquets.IParquetModelPack.FloorID.get -> Parquet.ModelID
+Parquet.Parquets.IParquetModelPack.FurnishingID.get -> Parquet.ModelID
+Parquet.Parquets.IParquetModelPack.IsEmpty.get -> bool
+Parquet.Parquets.ParquetModelPack
+Parquet.Parquets.ParquetModelPack.BlockID.get -> Parquet.ModelID
+Parquet.Parquets.ParquetModelPack.BlockID.set -> void
+Parquet.Parquets.ParquetModelPack.CollectibleID.get -> Parquet.ModelID
+Parquet.Parquets.ParquetModelPack.CollectibleID.set -> void
+Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Parquets.ParquetModelPack.Count.get -> int
+Parquet.Parquets.ParquetModelPack.DeepClone() -> Parquet.Parquets.ParquetModelPack
+Parquet.Parquets.ParquetModelPack.Equals(Parquet.Parquets.ParquetModelPack inStack) -> bool
+Parquet.Parquets.ParquetModelPack.FloorID.get -> Parquet.ModelID
+Parquet.Parquets.ParquetModelPack.FloorID.set -> void
+Parquet.Parquets.ParquetModelPack.FurnishingID.get -> Parquet.ModelID
+Parquet.Parquets.ParquetModelPack.FurnishingID.set -> void
+Parquet.Parquets.ParquetModelPack.IsEmpty.get -> bool
+Parquet.Parquets.ParquetModelPack.IsEnclosing.get -> bool
+Parquet.Parquets.ParquetModelPack.ParquetModelPack() -> void
+Parquet.Parquets.ParquetModelPack.ParquetModelPack(Parquet.ModelID inFloor, Parquet.ModelID inBlock, Parquet.ModelID inFurnishing, Parquet.ModelID inCollectible) -> void
+Parquet.Parquets.ParquetModelPackGrid
 Parquet.Parquets.ParquetStatus<T>
 Parquet.Parquets.ParquetStatus<T>.ParquetStatus() -> void
 Parquet.Scripts.ScriptStatus
@@ -642,47 +667,12 @@ Parquet.Parquets.GatheringEffect
 Parquet.Parquets.GatheringEffect.Collectible = 2 -> Parquet.Parquets.GatheringEffect
 Parquet.Parquets.GatheringEffect.Item = 1 -> Parquet.Parquets.GatheringEffect
 Parquet.Parquets.GatheringEffect.None = 0 -> Parquet.Parquets.GatheringEffect
-Parquet.Parquets.IParquetPack
-Parquet.Parquets.IParquetPack.BlockID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetPack.CollectibleID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetPack.FloorID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetPack.FurnishingID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetPack.IsEmpty.get -> bool
 Parquet.Parquets.ParquetModel
 Parquet.Parquets.ParquetModel.AddsToBiome.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Parquets.ParquetModel.AddsToRoom.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Parquets.ParquetModel.ItemID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModel.ParquetModel(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null) -> void
-Parquet.Parquets.ParquetPack
-Parquet.Parquets.ParquetPack.BlockID.get -> Parquet.ModelID
-Parquet.Parquets.ParquetPack.BlockID.set -> void
-Parquet.Parquets.ParquetPack.DeepClone() -> Parquet.Parquets.ParquetPack
-Parquet.Parquets.ParquetPack.CollectibleID.get -> Parquet.ModelID
-Parquet.Parquets.ParquetPack.CollectibleID.set -> void
-Parquet.Parquets.ParquetPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-Parquet.Parquets.ParquetPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-Parquet.Parquets.ParquetPack.Count.get -> int
-Parquet.Parquets.ParquetPack.Equals(Parquet.Parquets.ParquetPack inStack) -> bool
-Parquet.Parquets.ParquetPack.FloorID.get -> Parquet.ModelID
-Parquet.Parquets.ParquetPack.FloorID.set -> void
-Parquet.Parquets.ParquetPack.FurnishingID.get -> Parquet.ModelID
-Parquet.Parquets.ParquetPack.FurnishingID.set -> void
-Parquet.Parquets.ParquetPack.IsEmpty.get -> bool
-Parquet.Parquets.ParquetPack.IsEnclosing.get -> bool
-Parquet.Parquets.ParquetPack.ParquetPack() -> void
-Parquet.Parquets.ParquetPack.ParquetPack(Parquet.ModelID inFloor, Parquet.ModelID inBlock, Parquet.ModelID inFurnishing, Parquet.ModelID inCollectible) -> void
 Parquet.Parquets.ParquetPackArrayExtensions
-Parquet.Parquets.ParquetPackGrid
-Parquet.Parquets.ParquetPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetPack>
-Parquet.Parquets.ParquetPackGrid.Columns.get -> int
-Parquet.Parquets.ParquetPackGrid.Count.get -> int
-Parquet.Parquets.ParquetPackGrid.GetEnumerator() -> System.Collections.IEnumerator
-Parquet.Parquets.ParquetPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
-Parquet.Parquets.ParquetPackGrid.ParquetPackGrid() -> void
-Parquet.Parquets.ParquetPackGrid.ParquetPackGrid(int inRowCount, int inColumnCount) -> void
-Parquet.Parquets.ParquetPackGrid.ParquetPackGrid(Parquet.Parquets.ParquetPack[,] inParquetPackArray) -> void
-Parquet.Parquets.ParquetPackGrid.Rows.get -> int
-Parquet.Parquets.ParquetPackGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPack
 Parquet.Parquets.ParquetPackStatus
 Parquet.Parquets.ParquetPackStatus.DeepClone() -> Parquet.Parquets.ParquetPackStatus
 Parquet.Parquets.ParquetPackStatus.IsTrench.get -> bool
@@ -890,6 +880,10 @@ static Parquet.Parquets.BlockStatus.operator ==(Parquet.Parquets.BlockStatus inS
 static Parquet.Parquets.FloorStatus.Default.get -> Parquet.Parquets.FloorStatus
 static Parquet.Parquets.FloorStatus.operator !=(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
 static Parquet.Parquets.FloorStatus.operator ==(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
+static Parquet.Parquets.ParquetModelPack.Empty.get -> Parquet.Parquets.ParquetModelPack
+static Parquet.Parquets.ParquetModelPack.operator !=(Parquet.Parquets.ParquetModelPack inStack1, Parquet.Parquets.ParquetModelPack inStack2) -> bool
+static Parquet.Parquets.ParquetModelPack.operator ==(Parquet.Parquets.ParquetModelPack inStack1, Parquet.Parquets.ParquetModelPack inStack2) -> bool
+static Parquet.Parquets.ParquetPackArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetModelPack[,] inSubregion, Parquet.Vector2D inPosition) -> bool
 static Parquet.Scripts.ScriptStatus.operator !=(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
 static Parquet.Scripts.ScriptStatus.operator ==(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
 static Parquet.Scripts.ScriptStatus.Unstarted.get -> Parquet.Scripts.ScriptStatus
@@ -900,11 +894,6 @@ static Parquet.Parquets.BlockModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Parquets.CollectibleModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Parquets.FloorModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Parquets.FurnishingModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
-static Parquet.Parquets.ParquetPack.Empty.get -> Parquet.Parquets.ParquetPack
-static Parquet.Parquets.ParquetPack.operator !=(Parquet.Parquets.ParquetPack inStack1, Parquet.Parquets.ParquetPack inStack2) -> bool
-static Parquet.Parquets.ParquetPack.operator ==(Parquet.Parquets.ParquetPack inStack1, Parquet.Parquets.ParquetPack inStack2) -> bool
-static Parquet.Parquets.ParquetPackArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetPack[,] inSubregion, Parquet.Vector2D inPosition) -> bool
-static Parquet.Parquets.ParquetPackGrid.Empty.get -> Parquet.Parquets.ParquetPackGrid
 static Parquet.Parquets.ParquetPackStatus.operator !=(Parquet.Parquets.ParquetPackStatus inStatus1, Parquet.Parquets.ParquetPackStatus inStatus2) -> bool
 static Parquet.Parquets.ParquetPackStatus.operator ==(Parquet.Parquets.ParquetPackStatus inStatus1, Parquet.Parquets.ParquetPackStatus inStatus2) -> bool
 static Parquet.Parquets.ParquetPackStatus.Unused.get -> Parquet.Parquets.ParquetPackStatus

@@ -4,9 +4,9 @@ namespace Parquet.Parquets
     /// Interface to a simple container for one of each layer of parquet occupying the same position.
     /// </summary>
     /// <remarks>
-    /// Supports injecting <see cref="ParquetPack"/> into game-level methods that performs simple operations, such as rasterization.
+    /// Supports injecting <see cref="ParquetModelPack"/>s into game algorithm routines, such as rasterization.
     /// </remarks>
-    public interface IParquetPack
+    public interface IParquetModelPack
     {
         /// <summary>The floor contained in this pack.</summary>
         ModelID FloorID { get; }
@@ -21,7 +21,7 @@ namespace Parquet.Parquets
         ModelID CollectibleID { get; }
 
         /// <summary>
-        /// Indicates whether this <see cref="ParquetPack"/> is empty.
+        /// Indicates whether this <see cref="ParquetModelPack"/> is empty.
         /// </summary>
         /// <value><c>true</c> if the stack contains no parquet at all; otherwise, <c>false</c>.</value>
         bool IsEmpty { get; }

@@ -41,7 +41,7 @@ namespace Parquet.Maps
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
         [Index(13)]
-        public override ParquetPackGrid ParquetDefinitions { get; }
+        public override ParquetModelPackGrid ParquetDefinitions { get; }
         #endregion
 
         #region Initialization
@@ -62,7 +62,7 @@ namespace Parquet.Maps
         public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment,
                              IEnumerable<ModelTag> inTags = null, bool inIsFilledOut = false, ChunkDetail inDetails = null,
                              // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
-                             ParquetPackGrid inParquetDefinitions = null)
+                             ParquetModelPackGrid inParquetDefinitions = null)
             : base(Bounds, inID, inName, inDescription, inComment, inTags)
         {
             IsFilledOut = inIsFilledOut;
@@ -70,12 +70,12 @@ namespace Parquet.Maps
             if (IsFilledOut)
             {
                 Details = ChunkDetail.None;
-                ParquetDefinitions = inParquetDefinitions ?? new ParquetPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = inParquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
                 Details = inDetails ?? ChunkDetail.None;
-                ParquetDefinitions = ParquetPackGrid.Empty;
+                ParquetDefinitions = ParquetModelPackGrid.Empty;
             }
         }
         #endregion
@@ -100,7 +100,7 @@ namespace Parquet.Maps
             IsFilledOut = true;
 
             // Create a subregion to hold the generated parquets.
-            var newParquetDefinitions = new ParquetPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+            var newParquetDefinitions = new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
             // TODO [MAP EDITOR] Replace this pass-through implementation.
             #region Pass-Through Implementation
