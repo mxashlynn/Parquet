@@ -122,13 +122,12 @@ namespace Parquet
                 return None;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
 
             var elementAmountText = elementSplitText[0];
             var elementTagText = elementSplitText[1];
 
-            var amount = int.TryParse(elementAmountText, numberStyle, CultureInfo.InvariantCulture, out var temp)
+            var amount = int.TryParse(elementAmountText, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? temp
                 : Logger.DefaultWithParseLog(elementAmountText, nameof(ElementAmount), 0);
             var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);

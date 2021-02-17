@@ -152,11 +152,10 @@ namespace Parquet.Items
                 return Logger.DefaultWithConvertLog(inText, nameof(InventorySlot), Empty);
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
             var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var count = int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var temp)
+            var count = int.TryParse(parameterText[1], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? temp
                 : Logger.DefaultWithParseLog(parameterText[1], nameof(InventorySlot), 1);
 

@@ -164,13 +164,12 @@ namespace Parquet
                 return Zero;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.ElementDelimiter);
 
-            var x = int.TryParse(parameterText[0], numberStyle, CultureInfo.InvariantCulture, out var temp1)
+            var x = int.TryParse(parameterText[0], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp1)
                 ? temp1
                 : Logger.DefaultWithParseLog(parameterText[0], nameof(X), Zero.X);
-            var y = int.TryParse(parameterText[1], numberStyle, CultureInfo.InvariantCulture, out var temp2)
+            var y = int.TryParse(parameterText[1], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp2)
                 ? temp2
                 : Logger.DefaultWithParseLog(parameterText[1], nameof(Y), Zero.Y);
 

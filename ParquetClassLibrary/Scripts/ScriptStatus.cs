@@ -121,7 +121,6 @@ namespace Parquet.Scripts
                 return Unstarted;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
 
             var parsedState = Enum.TryParse(typeof(RunState), parameterText[0], out var temp0)

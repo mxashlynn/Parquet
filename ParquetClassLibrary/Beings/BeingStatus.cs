@@ -251,7 +251,6 @@ namespace Parquet.Beings
                 return Logger.DefaultWithConvertLog(inText, nameof(BeingStatus), Unused);
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
 
             var parsedPosition = (Location)Location.ConverterFactory.ConvertFromString(parameterText[0],

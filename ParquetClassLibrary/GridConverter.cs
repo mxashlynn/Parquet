@@ -80,14 +80,12 @@ namespace Parquet
                 return new TGrid();
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-
             var headerAndGridTexts = inText.Split(Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Delimiters.DimensionalDelimiter);
-            var rowCount = int.TryParse(header[0], numberStyle, CultureInfo.InvariantCulture, out var temp1)
+            var rowCount = int.TryParse(header[0], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp1)
                 ? temp1
                 : Logger.DefaultWithParseLog(headerAndGridTexts[0], "rowCount", 1);
-            var columnCount = int.TryParse(header[1], numberStyle, CultureInfo.InvariantCulture, out var temp2)
+            var columnCount = int.TryParse(header[1], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp2)
                 ? temp2
                 : Logger.DefaultWithParseLog(headerAndGridTexts[0], "columnCount", 1);
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });

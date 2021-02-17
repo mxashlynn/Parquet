@@ -234,8 +234,7 @@ namespace Parquet
                 return None;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
-            var id = int.TryParse(inText, numberStyle, CultureInfo.InvariantCulture, out var temp)
+            var id = int.TryParse(inText, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? (ModelID)temp
                 : DefaultWithFatalParseLog(inText, nameof(ModelID), None);
 
