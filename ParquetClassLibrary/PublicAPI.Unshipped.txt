@@ -570,6 +570,8 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
+Parquet.Parquets.ParquetStatus<T>
+Parquet.Parquets.ParquetStatus<T>.ParquetStatus() -> void
 Parquet.Scripts.ScriptStatus
 Parquet.Scripts.ScriptStatus.ProgramCounter.get -> int
 Parquet.Scripts.ScriptStatus.ProgramCounter.set -> void
@@ -677,7 +679,6 @@ Parquet.Parquets.ParquetPackStatusGrid.ParquetPackStatusGrid() -> void
 Parquet.Parquets.ParquetPackStatusGrid.ParquetPackStatusGrid(int inRowCount, int inColumnCount) -> void
 Parquet.Parquets.ParquetPackStatusGrid.Rows.get -> int
 Parquet.Parquets.ParquetPackStatusGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPackStatus
-Parquet.Parquets.ParquetStatusArrayExtensions
 Parquet.Precondition
 Parquet.Range<TElement>
 Parquet.Range<TElement>.ContainsRange(Parquet.Range<TElement> inRange) -> bool
@@ -880,7 +881,6 @@ static Parquet.Parquets.ParquetPackStatus.operator !=(Parquet.Parquets.ParquetPa
 static Parquet.Parquets.ParquetPackStatus.operator ==(Parquet.Parquets.ParquetPackStatus inStatus1, Parquet.Parquets.ParquetPackStatus inStatus2) -> bool
 static Parquet.Parquets.ParquetPackStatus.Unused.get -> Parquet.Parquets.ParquetPackStatus
 static Parquet.Parquets.ParquetPackStatusGrid.Empty.get -> Parquet.Parquets.ParquetPackStatusGrid
-static Parquet.Parquets.ParquetStatusArrayExtensions.IsValidPosition(this Parquet.Parquets.ParquetPackStatus[,] inSubregion, Parquet.Vector2D inPosition) -> bool
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, Parquet.Range<Parquet.ModelID> inBounds, string inArgumentName) -> void
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBoundsCollection, string inArgumentName) -> void
 static Parquet.Precondition.IsInRange(int inInt, Parquet.Range<int> inBounds, string inArgumentName) -> void
