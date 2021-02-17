@@ -22,18 +22,18 @@ namespace Parquet.Parquets
         public bool IsTrench { get; set; }
 
         /// <summary>The <see cref="BlockModel"/>'s native toughness.</summary>
-        private readonly int maxToughness;
+        private readonly int MaxToughness;
 
         /// <summary>The <see cref="BlockModel"/>'s current toughness.</summary>
         private int backingToughness;
 
         /// <summary>
-        /// The <see cref="BlockModel"/>'s current toughness, from <see cref="BlockModel.LowestPossibleToughness"/> to <see cref="BlockModel.MaxToughness"/>.
+        /// The <see cref="BlockModel"/>'s current toughness, from <see cref="BlockModel.MinToughness"/> to <see cref="BlockModel.MaxToughness"/>.
         /// </summary>
         public int Toughness
         {
             get => backingToughness;
-            set => backingToughness = value.Normalize(BlockModel.LowestPossibleToughness, maxToughness);
+            set => backingToughness = value.Normalize(BlockModel.MinToughness, MaxToughness);
         }
         #endregion
 
@@ -57,7 +57,7 @@ namespace Parquet.Parquets
         {
             IsTrench = inIsTrench;
             Toughness = inToughness;
-            maxToughness = inMaxToughness;
+            MaxToughness = inMaxToughness;
         }
         #endregion
 
@@ -69,7 +69,7 @@ namespace Parquet.Parquets
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         public override int GetHashCode()
-            => (IsTrench, Toughness, maxToughness).GetHashCode();
+            => (IsTrench, Toughness, MaxToughness).GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="ParquetPackStatus"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -80,7 +80,7 @@ namespace Parquet.Parquets
             => inStatus is ParquetPackStatus packStatus
             && IsTrench == packStatus.IsTrench
             && Toughness == packStatus.Toughness
-            && maxToughness == packStatus.maxToughness;
+            && MaxToughness == packStatus.MaxToughness;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
@@ -125,7 +125,7 @@ namespace Parquet.Parquets
             => inValue is ParquetPackStatus status
                 ? $"{status.IsTrench}{Delimiters.InternalDelimiter}" +
                   $"{status.Toughness}{Delimiters.InternalDelimiter}" +
-                  $"{status.maxToughness}"
+                  $"{status.MaxToughness}"
                 : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetPackStatus), nameof(Unused));
 
         /// <summary>
@@ -143,7 +143,6 @@ namespace Parquet.Parquets
                 return Unused;
             }
 
-            var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;
             var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
             var parsedIsTrench = bool.TryParse(parameterText[0], out var temp1)
@@ -152,11 +151,11 @@ namespace Parquet.Parquets
             var parsedToughness = int.TryParse(parameterText[1], All.SerializedNumberStyle,
                                                CultureInfo.InvariantCulture, out var temp2)
                 ? temp2
-                : Logger.DefaultWithParseLog(parameterText[1], nameof(Toughness), maxToughness);
+                : Logger.DefaultWithParseLog(parameterText[1], nameof(Toughness), MaxToughness);
             var parsedMaxToughness = int.TryParse(parameterText[2], All.SerializedNumberStyle,
                                                   CultureInfo.InvariantCulture, out var temp3)
                 ? temp3
-                : Logger.DefaultWithParseLog(parameterText[2], nameof(maxToughness), BlockModel.DefaultMaxToughness);
+                : Logger.DefaultWithParseLog(parameterText[2], nameof(MaxToughness), BlockModel.DefaultMaxToughness);
 
             return new ParquetPackStatus(parsedIsTrench, parsedToughness, parsedMaxToughness);
         }
@@ -175,7 +174,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public ParquetPackStatus DeepClone()
-            => new ParquetPackStatus(IsTrench, Toughness, maxToughness);
+            => new ParquetPackStatus(IsTrench, Toughness, MaxToughness);
         #endregion
     }
 }

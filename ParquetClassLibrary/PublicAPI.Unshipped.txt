@@ -24,7 +24,7 @@ const Parquet.Maps.MapChunkModel.ParquetsPerChunkDimension = 16 -> int
 const Parquet.Maps.MapRegionModel.ParquetsPerRegionDimension = 64 -> int
 const Parquet.Maps.MapRegionSketch.ChunksPerRegionDimension = 4 -> int
 const Parquet.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
-const Parquet.Parquets.BlockModel.LowestPossibleToughness = 0 -> int
+const Parquet.Parquets.BlockModel.MinToughness = 0 -> int
 const Parquet.Scripts.Commands.Alert = "A" -> string
 const Parquet.Scripts.Commands.CallCharacter = "C" -> string
 const Parquet.Scripts.Commands.ClearFlag = "!" -> string
@@ -576,6 +576,7 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
+Parquet.Parquets.BlockStatus.BlockStatus(int inToughness = 10, int inMaxToughness = 10) -> void
 Parquet.Parquets.FloorStatus
 Parquet.Parquets.FloorStatus.DeepClone() -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void

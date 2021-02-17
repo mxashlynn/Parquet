@@ -11,13 +11,13 @@ namespace Parquet.Parquets
     public partial class BlockModel : ParquetModel
     {
         #region Class Defaults
-        /// <summary>Minimum toughness value for any Block.</summary>
-        public const int LowestPossibleToughness = 0;
+        /// <summary>Lowest possible toughness for any block.  A block is dislodged when its toughness reaches this.</summary>
+        public const int MinToughness = 0;
 
-        /// <summary>Maximum toughness value to use when none is specified.</summary>
+        /// <summary>Highest possible toughness for any block.  This value is used when none is specified.</summary>
         public const int DefaultMaxToughness = 10;
 
-        /// <summary>The set of values that are allowed for Block IDs.</summary>
+        /// <summary>The set of values that are allowed for block IDs.</summary>
         public static Range<ModelID> Bounds
             => All.BlockIDs;
         #endregion
