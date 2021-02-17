@@ -45,7 +45,7 @@ namespace Parquet.Parquets
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    ParquetStatuses[y, x] = ParquetPackStatus.Unused.Clone();
+                    ParquetStatuses[y, x] = ParquetPackStatus.Unused.DeepClone();
                 }
             }
         }
@@ -86,14 +86,14 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        public IGrid<ParquetPackStatus> Clone()
+        public IGrid<ParquetPackStatus> DeepClone()
         {
             var newInstance = new ParquetPackStatusGrid(Rows, Columns);
             for (var x = 0; x < Columns; x++)
             {
                 for (var y = 0; y < Rows; y++)
                 {
-                    newInstance[y, x] = this[y, x].Clone();
+                    newInstance[y, x] = this[y, x].DeepClone();
                 }
             }
             return newInstance;
@@ -109,8 +109,8 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ParquetPackStatus> IReadOnlyGrid<ParquetPackStatus>.Clone()
-            => (IReadOnlyGrid<ParquetPackStatus>)Clone();
+        IReadOnlyGrid<ParquetPackStatus> IReadOnlyGrid<ParquetPackStatus>.DeepClone()
+            => (IReadOnlyGrid<ParquetPackStatus>)DeepClone();
         #endregion
 
         #region Utilities

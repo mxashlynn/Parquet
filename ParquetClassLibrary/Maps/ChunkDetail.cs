@@ -175,10 +175,10 @@ namespace Parquet.Maps
 
         #region Utilities
         /// <summary>
-        /// Creates a new instance with the same characteristics as the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns></returns>
-        public ChunkDetail Clone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public ChunkDetail DeepClone()
             => new ChunkDetail(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
 
         /// <summary>

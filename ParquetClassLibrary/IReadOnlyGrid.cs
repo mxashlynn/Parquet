@@ -21,9 +21,9 @@ namespace Parquet
         public TElement this[int y, int x] { get; }
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>The new instance.</returns>
-        public IReadOnlyGrid<TElement> Clone();
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public IReadOnlyGrid<TElement> DeepClone();
     }
 }

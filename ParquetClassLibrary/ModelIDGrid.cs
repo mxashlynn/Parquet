@@ -88,7 +88,7 @@ namespace Parquet
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        public IGrid<ModelID> Clone()
+        public IGrid<ModelID> DeepClone()
         {
             var newInstance = new ModelIDGrid(Rows, Columns);
             for (var x = 0; x < Columns; x++)
@@ -111,8 +111,8 @@ namespace Parquet
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ModelID> IReadOnlyGrid<ModelID>.Clone()
-            => (IReadOnlyGrid<ModelID>)Clone();
+        IReadOnlyGrid<ModelID> IReadOnlyGrid<ModelID>.DeepClone()
+            => (IReadOnlyGrid<ModelID>)DeepClone();
         #endregion
 
         #region Utilities

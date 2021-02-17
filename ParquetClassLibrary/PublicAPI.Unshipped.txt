@@ -197,9 +197,9 @@ Parquet.Crafts.CraftingRecipe.PanelPattern.get -> Parquet.IReadOnlyGrid<Parquet.
 Parquet.Crafts.CraftingRecipe.PanelPatternReplace(Parquet.IGrid<Parquet.Crafts.StrikePanel> inReplacement) -> void
 Parquet.Crafts.CraftingRecipe.Products.get -> System.Collections.Generic.IReadOnlyList<Parquet.RecipeElement>
 Parquet.Crafts.StrikePanel
-Parquet.Crafts.StrikePanel.Clone() -> Parquet.Crafts.StrikePanel
 Parquet.Crafts.StrikePanel.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Crafts.StrikePanel.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Crafts.StrikePanel.DeepClone() -> Parquet.Crafts.StrikePanel
 Parquet.Crafts.StrikePanel.Equals(Parquet.Crafts.StrikePanel inStrikePanel) -> bool
 Parquet.Crafts.StrikePanel.IdealRange.get -> Parquet.Range<int>
 Parquet.Crafts.StrikePanel.IdealRange.set -> void
@@ -209,9 +209,9 @@ Parquet.Crafts.StrikePanel.WorkingRange.get -> Parquet.Range<int>
 Parquet.Crafts.StrikePanel.WorkingRange.set -> void
 Parquet.Crafts.StrikePanelArrayExtensions
 Parquet.Crafts.StrikePanelGrid
-Parquet.Crafts.StrikePanelGrid.Clone() -> Parquet.IGrid<Parquet.Crafts.StrikePanel>
 Parquet.Crafts.StrikePanelGrid.Columns.get -> int
 Parquet.Crafts.StrikePanelGrid.Count.get -> int
+Parquet.Crafts.StrikePanelGrid.DeepClone() -> Parquet.IGrid<Parquet.Crafts.StrikePanel>
 Parquet.Crafts.StrikePanelGrid.GetEnumerator() -> System.Collections.IEnumerator
 Parquet.Crafts.StrikePanelGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Crafts.StrikePanelGrid.Rows.get -> int
@@ -384,16 +384,16 @@ Parquet.Games.GameModel.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.GridConverter<TElement, TGrid>
 Parquet.GridConverter<TElement, TGrid>.GridConverter() -> void
 Parquet.IGrid<TElement>
-Parquet.IGrid<TElement>.Clone() -> Parquet.IGrid<TElement>
 Parquet.IGrid<TElement>.Columns.get -> int
 Parquet.IGrid<TElement>.Count.get -> int
+Parquet.IGrid<TElement>.DeepClone() -> Parquet.IGrid<TElement>
 Parquet.IGrid<TElement>.Rows.get -> int
 Parquet.IGrid<TElement>.this[int y, int x].get -> TElement
 Parquet.ILogger
 Parquet.ILogger.Log(Parquet.LogLevel inLogLevel, string inMessage, System.Exception inException) -> void
 Parquet.IReadOnlyGrid<TElement>
-Parquet.IReadOnlyGrid<TElement>.Clone() -> Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Columns.get -> int
+Parquet.IReadOnlyGrid<TElement>.DeepClone() -> Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Rows.get -> int
 Parquet.IReadOnlyGrid<TElement>.this[int y, int x].get -> TElement
 Parquet.Items.GatheringTool
@@ -407,11 +407,11 @@ Parquet.Items.Inventory.Add(Parquet.Items.InventorySlot inSlot) -> void
 Parquet.Items.Inventory.Capacity.get -> int
 Parquet.Items.Inventory.Capacity.set -> void
 Parquet.Items.Inventory.Clear() -> void
-Parquet.Items.Inventory.Clone() -> Parquet.Items.Inventory
 Parquet.Items.Inventory.Contains(Parquet.Items.InventorySlot inSlot) -> bool
 Parquet.Items.Inventory.Contains(Parquet.ModelID inItemID) -> int
 Parquet.Items.Inventory.CopyTo(Parquet.Items.InventorySlot[] inArray, int inArrayIndex) -> void
 Parquet.Items.Inventory.Count.get -> int
+Parquet.Items.Inventory.DeepClone() -> Parquet.Items.Inventory
 Parquet.Items.Inventory.GetEnumerator() -> System.Collections.Generic.IEnumerator<Parquet.Items.InventorySlot>
 Parquet.Items.Inventory.Give(Parquet.Items.InventorySlot inSlot) -> int
 Parquet.Items.Inventory.Give(Parquet.ModelID inItemID, int inHowMany) -> int
@@ -577,7 +577,7 @@ Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
 Parquet.Parquets.FloorStatus
-Parquet.Parquets.FloorStatus.Clone() -> Parquet.Parquets.FloorStatus
+Parquet.Parquets.FloorStatus.DeepClone() -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void
 Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
@@ -645,7 +645,7 @@ Parquet.Parquets.ParquetModel.ParquetModel(Parquet.Range<Parquet.ModelID> inBoun
 Parquet.Parquets.ParquetPack
 Parquet.Parquets.ParquetPack.BlockID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetPack.BlockID.set -> void
-Parquet.Parquets.ParquetPack.Clone() -> Parquet.Parquets.ParquetPack
+Parquet.Parquets.ParquetPack.DeepClone() -> Parquet.Parquets.ParquetPack
 Parquet.Parquets.ParquetPack.CollectibleID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetPack.CollectibleID.set -> void
 Parquet.Parquets.ParquetPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -662,7 +662,7 @@ Parquet.Parquets.ParquetPack.ParquetPack() -> void
 Parquet.Parquets.ParquetPack.ParquetPack(Parquet.ModelID inFloor, Parquet.ModelID inBlock, Parquet.ModelID inFurnishing, Parquet.ModelID inCollectible) -> void
 Parquet.Parquets.ParquetPackArrayExtensions
 Parquet.Parquets.ParquetPackGrid
-Parquet.Parquets.ParquetPackGrid.Clone() -> Parquet.IGrid<Parquet.Parquets.ParquetPack>
+Parquet.Parquets.ParquetPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetPack>
 Parquet.Parquets.ParquetPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetPackGrid.Count.get -> int
 Parquet.Parquets.ParquetPackGrid.GetEnumerator() -> System.Collections.IEnumerator
@@ -673,7 +673,7 @@ Parquet.Parquets.ParquetPackGrid.ParquetPackGrid(Parquet.Parquets.ParquetPack[,]
 Parquet.Parquets.ParquetPackGrid.Rows.get -> int
 Parquet.Parquets.ParquetPackGrid.this[int y, int x].get -> Parquet.Parquets.ParquetPack
 Parquet.Parquets.ParquetPackStatus
-Parquet.Parquets.ParquetPackStatus.Clone() -> Parquet.Parquets.ParquetPackStatus
+Parquet.Parquets.ParquetPackStatus.DeepClone() -> Parquet.Parquets.ParquetPackStatus
 Parquet.Parquets.ParquetPackStatus.IsTrench.get -> bool
 Parquet.Parquets.ParquetPackStatus.IsTrench.set -> void
 Parquet.Parquets.ParquetPackStatus.ParquetPackStatus() -> void
@@ -681,7 +681,7 @@ Parquet.Parquets.ParquetPackStatus.ParquetPackStatus(bool inIsTrench, int inToug
 Parquet.Parquets.ParquetPackStatus.Toughness.get -> int
 Parquet.Parquets.ParquetPackStatus.Toughness.set -> void
 Parquet.Parquets.ParquetPackStatusGrid
-Parquet.Parquets.ParquetPackStatusGrid.Clone() -> Parquet.IGrid<Parquet.Parquets.ParquetPackStatus>
+Parquet.Parquets.ParquetPackStatusGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetPackStatus>
 Parquet.Parquets.ParquetPackStatusGrid.Columns.get -> int
 Parquet.Parquets.ParquetPackStatusGrid.Count.get -> int
 Parquet.Parquets.ParquetPackStatusGrid.GetEnumerator() -> System.Collections.IEnumerator

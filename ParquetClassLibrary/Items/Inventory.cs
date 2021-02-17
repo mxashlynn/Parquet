@@ -347,10 +347,10 @@ namespace Parquet.Items
             => Slots.Select(slot => slot.Count).Sum();
 
         /// <summary>
-        /// Creates a new instance with the same characteristics as the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>That newly allocated instance.</returns>
-        public Inventory Clone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public Inventory DeepClone()
             => new Inventory(Slots, Capacity);
 
         /// <summary>

@@ -171,10 +171,10 @@ namespace Parquet.Parquets
             => $"{Toughness} toughness, {(IsTrench ? "dug out" : "filled in")}";
 
         /// <summary>
-        /// Creates a new instance with the same characteristics as the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns></returns>
-        public ParquetPackStatus Clone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public ParquetPackStatus DeepClone()
             => new ParquetPackStatus(IsTrench, Toughness, maxToughness);
         #endregion
     }

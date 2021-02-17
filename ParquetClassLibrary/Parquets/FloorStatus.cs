@@ -104,7 +104,7 @@ namespace Parquet.Parquets
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Default.Clone();
+                return Default.DeepClone();
             }
 
             var parsedIsTrench = bool.TryParse(inText, out var temp1)
@@ -126,10 +126,10 @@ namespace Parquet.Parquets
                 : "filled in";
 
         /// <summary>
-        /// Creates a new instance with the same characteristics as the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns></returns>
-        public FloorStatus Clone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public FloorStatus DeepClone()
             => new FloorStatus(IsTrench);
         #endregion
     }

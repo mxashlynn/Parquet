@@ -52,7 +52,7 @@ namespace Parquet.Crafts
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    StrikePanels[y, x] = StrikePanel.Unused.Clone();
+                    StrikePanels[y, x] = StrikePanel.Unused.DeepClone();
                 }
             }
         }
@@ -75,8 +75,8 @@ namespace Parquet.Crafts
                     {
                         StrikePanels[y, x] = x < inContent.Columns
                                            && y < inContent.Rows
-                            ? inContent[y, x].Clone()
-                            : StrikePanel.Unused.Clone();
+                            ? inContent[y, x].DeepClone()
+                            : StrikePanel.Unused.DeepClone();
                     }
                 }
             }
@@ -118,17 +118,17 @@ namespace Parquet.Crafts
 
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>The new instance.</returns>
-        public IGrid<StrikePanel> Clone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public IGrid<StrikePanel> DeepClone()
         {
             var newInstance = new StrikePanelGrid(Rows, Columns);
             for (var x = 0; x < Columns; x++)
             {
                 for (var y = 0; y < Rows; y++)
                 {
-                    newInstance[y, x] = this[y, x].Clone();
+                    newInstance[y, x] = this[y, x].DeepClone();
                 }
             }
             return newInstance;
@@ -141,11 +141,11 @@ namespace Parquet.Crafts
             => StrikePanels[y, x];
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>The new instance.</returns>
-        IReadOnlyGrid<StrikePanel> IReadOnlyGrid<StrikePanel>.Clone()
-            => (IReadOnlyGrid<StrikePanel>)Clone();
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        IReadOnlyGrid<StrikePanel> IReadOnlyGrid<StrikePanel>.DeepClone()
+            => (IReadOnlyGrid<StrikePanel>)DeepClone();
         #endregion
 
         #region Utilities

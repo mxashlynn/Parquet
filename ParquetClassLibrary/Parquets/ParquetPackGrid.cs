@@ -110,14 +110,14 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        public IGrid<ParquetPack> Clone()
+        public IGrid<ParquetPack> DeepClone()
         {
             var newInstance = new ParquetPackGrid(Rows, Columns);
             for (var x = 0; x < Columns; x++)
             {
                 for (var y = 0; y < Rows; y++)
                 {
-                    newInstance[y, x] = this[y, x].Clone();
+                    newInstance[y, x] = this[y, x].DeepClone();
                 }
             }
             return newInstance;
@@ -133,8 +133,8 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ParquetPack> IReadOnlyGrid<ParquetPack>.Clone()
-            => (IReadOnlyGrid<ParquetPack>)Clone();
+        IReadOnlyGrid<ParquetPack> IReadOnlyGrid<ParquetPack>.DeepClone()
+            => (IReadOnlyGrid<ParquetPack>)DeepClone();
         #endregion
 
         #region Utilities
