@@ -13,6 +13,7 @@ namespace Parquet.Scripts
     {
         #region Characteristics
         /// <summary>A series of imperative, procedural commands.</summary>
+        // TODO This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
         [Index(5)]
         public IReadOnlyList<ScriptNode> Nodes { get; }
         #endregion

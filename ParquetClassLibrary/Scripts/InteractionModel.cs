@@ -16,6 +16,7 @@ namespace Parquet.Scripts
         public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>Everything this interaction entails.</summary>
+        // TODO This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
         [Index(6)]
         public IReadOnlyList<ModelID> StepsIDs { get; }
 
