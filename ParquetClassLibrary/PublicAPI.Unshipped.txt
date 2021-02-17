@@ -1,5 +1,8 @@
 abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetPackGrid
+abstract Parquet.Pack<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+abstract Parquet.Pack<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+abstract Parquet.Pack<T>.Equals<TDerived>(TDerived inPack) -> bool
 abstract Parquet.Status<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 abstract Parquet.Status<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 abstract Parquet.Status<T>.Equals<TDerived>(TDerived inStatus) -> bool
@@ -40,6 +43,8 @@ const Parquet.Scripts.Commands.SetDialogue = "D" -> string
 const Parquet.Scripts.Commands.SetFlag = "=" -> string
 const Parquet.Scripts.Commands.SetPronoun = "R" -> string
 const Parquet.Scripts.Commands.ShowLocation = "L" -> string
+override abstract Parquet.Pack<T>.Equals(object obj) -> bool
+override abstract Parquet.Pack<T>.GetHashCode() -> int
 override abstract Parquet.Status<T>.Equals(object obj) -> bool
 override abstract Parquet.Status<T>.GetHashCode() -> int
 override Parquet.Beings.BeingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -582,6 +587,10 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
+Parquet.Pack<T>
+Parquet.Pack<T>.Equals(Parquet.Pack<T> inPack) -> bool
+Parquet.Pack<T>.Pack() -> void
+Parquet.PackArrayExtensions
 Parquet.Parquets.BlockStatus
 Parquet.Parquets.BlockStatus.BlockStatus(int inToughness = 10, int inMaxToughness = 10) -> void
 Parquet.Parquets.BlockStatus.DeepClone() -> Parquet.Parquets.BlockStatus
@@ -874,6 +883,7 @@ static Parquet.ModelID.operator ==(Parquet.ModelID inIDentifier1, Parquet.ModelI
 static Parquet.ModelID.operator >(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelID.operator >=(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelIDGrid.Empty.get -> Parquet.ModelIDGrid
+static Parquet.PackArrayExtensions.IsValidPosition<T>(this Parquet.Pack<T>[,] inArray, Parquet.Vector2D inPosition) -> bool
 static Parquet.Parquets.BlockStatus.Default.get -> Parquet.Parquets.BlockStatus
 static Parquet.Parquets.BlockStatus.operator !=(Parquet.Parquets.BlockStatus inStatus1, Parquet.Parquets.BlockStatus inStatus2) -> bool
 static Parquet.Parquets.BlockStatus.operator ==(Parquet.Parquets.BlockStatus inStatus1, Parquet.Parquets.BlockStatus inStatus2) -> bool
