@@ -12,6 +12,7 @@ namespace Parquet.Rooms
     /// </summary>
     public sealed class Room : IEquatable<Room>
     {
+        #region Characteristics
         /// <summary>
         /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.
@@ -48,6 +49,7 @@ namespace Parquet.Rooms
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public ModelID RecipeID
             => FindBestMatch();
+        #endregion
 
         #region Initialization
         /// <summary>
@@ -96,23 +98,6 @@ namespace Parquet.Rooms
         }
         #endregion
 
-        /// <summary>
-        /// Determines whether or not the given position is included in this <see cref="Room"/>.
-        /// </summary>
-        /// <param name="inPosition">The position to check for.</param>
-        /// <returns><c>true</c>, if the <see cref="Room"/> contains the given position, <c>false</c> otherwise.</returns>
-        public bool ContainsPosition(Vector2D inPosition)
-            => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
-
-        /// <summary>
-        /// Finds the <see cref="ModelID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
-        /// </summary>
-        private ModelID FindBestMatch()
-            => All.RoomRecipes
-                  .Where(model => model?.Matches(this) ?? false)
-                  .Select(recipe => recipe.Priority)
-                  .DefaultIfEmpty<int>(ModelID.None).Max();
-
         #region IEquatable Implementation
         /// <summary>
         /// Serves as a hash function for a <see cref="Room"/>.
@@ -159,6 +144,25 @@ namespace Parquet.Rooms
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Room inRoom1, Room inRoom2)
            => !(inRoom1 == inRoom2);
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Determines whether or not the given position is included in this <see cref="Room"/>.
+        /// </summary>
+        /// <param name="inPosition">The position to check for.</param>
+        /// <returns><c>true</c>, if the <see cref="Room"/> contains the given position, <c>false</c> otherwise.</returns>
+        public bool ContainsPosition(Vector2D inPosition)
+            => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
+
+        /// <summary>
+        /// Finds the <see cref="ModelID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.
+        /// </summary>
+        private ModelID FindBestMatch()
+            => All.RoomRecipes
+                  .Where(model => model?.Matches(this) ?? false)
+                  .Select(recipe => recipe.Priority)
+                  .DefaultIfEmpty<int>(ModelID.None).Max();
         #endregion
     }
 }
