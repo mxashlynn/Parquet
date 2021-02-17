@@ -107,13 +107,13 @@ override Parquet.Rooms.MapSpace.GetHashCode() -> int
 override Parquet.Rooms.MapSpace.ToString() -> string
 override Parquet.Rooms.Room.Equals(object obj) -> bool
 override Parquet.Rooms.Room.GetHashCode() -> int
-override Parquet.Scripts.InteractionStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-override Parquet.Scripts.InteractionStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-override Parquet.Scripts.InteractionStatus.Equals(object obj) -> bool
-override Parquet.Scripts.InteractionStatus.Equals<T>(T inStatus) -> bool
-override Parquet.Scripts.InteractionStatus.GetHashCode() -> int
-override Parquet.Scripts.InteractionStatus.ToString() -> string
 override Parquet.Scripts.ScriptNode.ToString() -> string
+override Parquet.Scripts.ScriptStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Scripts.ScriptStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Scripts.ScriptStatus.Equals(object obj) -> bool
+override Parquet.Scripts.ScriptStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Scripts.ScriptStatus.GetHashCode() -> int
+override Parquet.Scripts.ScriptStatus.ToString() -> string
 override Parquet.SeriesConverter<TElement, TCollection>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.SeriesConverter<TElement, TCollection>.ConvertToString(object inCollection, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Vector2D.Equals(object obj) -> bool
@@ -570,7 +570,12 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
-Parquet.Scripts.InteractionStatus.InteractionStatus(Parquet.Scripts.RunState inState = Parquet.Scripts.RunState.Unstarted, int inProgramCounter = 0) -> void
+Parquet.Scripts.ScriptStatus
+Parquet.Scripts.ScriptStatus.ProgramCounter.get -> int
+Parquet.Scripts.ScriptStatus.ProgramCounter.set -> void
+Parquet.Scripts.ScriptStatus.ScriptStatus(Parquet.Scripts.RunState inState = Parquet.Scripts.RunState.Unstarted, int inProgramCounter = 0) -> void
+Parquet.Scripts.ScriptStatus.State.get -> Parquet.Scripts.RunState
+Parquet.Scripts.ScriptStatus.State.set -> void
 Parquet.StatusArrayExtensions
 Parquet.ModelTag
 Parquet.ModelTag.CompareTo(Parquet.ModelTag inTag) -> int
@@ -736,11 +741,6 @@ Parquet.Scripts.InteractionModel.InteractionModel(Parquet.ModelID inID, string i
 Parquet.Scripts.InteractionModel.OutcomesIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Scripts.InteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Scripts.InteractionModel.StepsIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
-Parquet.Scripts.InteractionStatus
-Parquet.Scripts.InteractionStatus.ProgramCounter.get -> int
-Parquet.Scripts.InteractionStatus.ProgramCounter.set -> void
-Parquet.Scripts.InteractionStatus.State.get -> Parquet.Scripts.RunState
-Parquet.Scripts.InteractionStatus.State.set -> void
 Parquet.Scripts.RunState
 Parquet.Scripts.RunState.Completed = 2 -> Parquet.Scripts.RunState
 Parquet.Scripts.RunState.InProgress = 1 -> Parquet.Scripts.RunState
@@ -861,9 +861,9 @@ static Parquet.ModelID.operator ==(Parquet.ModelID inIDentifier1, Parquet.ModelI
 static Parquet.ModelID.operator >(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelID.operator >=(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelIDGrid.Empty.get -> Parquet.ModelIDGrid
-static Parquet.Scripts.InteractionStatus.operator !=(Parquet.Scripts.InteractionStatus inStatus1, Parquet.Scripts.InteractionStatus inStatus2) -> bool
-static Parquet.Scripts.InteractionStatus.operator ==(Parquet.Scripts.InteractionStatus inStatus1, Parquet.Scripts.InteractionStatus inStatus2) -> bool
-static Parquet.Scripts.InteractionStatus.Unstarted.get -> Parquet.Scripts.InteractionStatus
+static Parquet.Scripts.ScriptStatus.operator !=(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
+static Parquet.Scripts.ScriptStatus.operator ==(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
+static Parquet.Scripts.ScriptStatus.Unstarted.get -> Parquet.Scripts.ScriptStatus
 static Parquet.StatusArrayExtensions.IsValidPosition<T>(this Parquet.Status<T>[,] inArray, Parquet.Vector2D inPosition) -> bool
 static Parquet.ModelTag.implicit operator Parquet.ModelTag(string inValue) -> Parquet.ModelTag
 static Parquet.ModelTag.implicit operator string(Parquet.ModelTag inTag) -> string
