@@ -86,6 +86,12 @@ override Parquet.ModelID.Equals(object obj) -> bool
 override Parquet.ModelID.GetHashCode() -> int
 override Parquet.ModelID.ToString() -> string
 override Parquet.ModelTag.ToString() -> string
+override Parquet.Parquets.FloorStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Parquets.FloorStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.FloorStatus.Equals(object obj) -> bool
+override Parquet.Parquets.FloorStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Parquets.FloorStatus.GetHashCode() -> int
+override Parquet.Parquets.FloorStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Parquets.ParquetPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetPack.GetHashCode() -> int
@@ -570,6 +576,11 @@ Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
+Parquet.Parquets.FloorStatus
+Parquet.Parquets.FloorStatus.Clone() -> Parquet.Parquets.FloorStatus
+Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void
+Parquet.Parquets.FloorStatus.IsTrench.get -> bool
+Parquet.Parquets.FloorStatus.IsTrench.set -> void
 Parquet.Parquets.ParquetStatus<T>
 Parquet.Parquets.ParquetStatus<T>.ParquetStatus() -> void
 Parquet.Scripts.ScriptStatus
@@ -862,6 +873,9 @@ static Parquet.ModelID.operator ==(Parquet.ModelID inIDentifier1, Parquet.ModelI
 static Parquet.ModelID.operator >(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelID.operator >=(Parquet.ModelID inIDentifier1, Parquet.ModelID inIDentifier2) -> bool
 static Parquet.ModelIDGrid.Empty.get -> Parquet.ModelIDGrid
+static Parquet.Parquets.FloorStatus.Default.get -> Parquet.Parquets.FloorStatus
+static Parquet.Parquets.FloorStatus.operator !=(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
+static Parquet.Parquets.FloorStatus.operator ==(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
 static Parquet.Scripts.ScriptStatus.operator !=(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
 static Parquet.Scripts.ScriptStatus.operator ==(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool
 static Parquet.Scripts.ScriptStatus.Unstarted.get -> Parquet.Scripts.ScriptStatus
