@@ -46,6 +46,7 @@ namespace Parquet.Crafts
                 workingRangeBackingStruct = value;
 
                 // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
+                // TODO: Update how this works.
 #if DEBUG || !DESIGN
                 if (IdealRange.Maximum > value.Maximum)
                 {
@@ -69,6 +70,7 @@ namespace Parquet.Crafts
             set
             {
                 // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
+                // TODO: Update how this works.
 #if DEBUG || !DESIGN
                 if (value.Maximum > WorkingRange.Maximum)
                 {
