@@ -29,7 +29,10 @@ namespace Parquet
         /// <summary>Separates collections within files.</summary>
         public const string PrimaryDelimiter = ",";
 
-        /// <summary>Separates objects within collections.</summary>
+        /// <summary>Separates objects within collections other than <see cref="Pack{T}"/>s.</summary>
         public const string SecondaryDelimiter = "∟";
+
+        /// <summary>Separates objects within <see cref="Pack{T}"/>s.</summary>
+        public const string PackDelimiter = "⚭";
     }
 }
