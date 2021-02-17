@@ -7,6 +7,7 @@ namespace Parquet.Scripts
 {
     /// <summary>
     /// Tracks the status of a <see cref="ScriptModel"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
     /// This can also be used to tracks the status of an <see cref="InteractionModel"/>

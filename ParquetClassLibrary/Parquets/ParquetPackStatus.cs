@@ -8,6 +8,7 @@ namespace Parquet.Parquets
 {
     /// <summary>
     /// Tracks the status of a <see cref="ParquetPack"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     public sealed class ParquetPackStatus : Status<ParquetPack>
     {
