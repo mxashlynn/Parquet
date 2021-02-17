@@ -34,9 +34,7 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new default instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
-        /// <remarks>
-        /// This is primarily useful for serialization as the default values are featureless.
-        /// </remarks>
+        /// <remarks>This is primarily useful for serialization.</remarks>
         public ParquetModelPack() :
             this(ModelID.None, ModelID.None, ModelID.None, ModelID.None)
         { }
@@ -179,10 +177,10 @@ namespace Parquet.Parquets
         /// <returns>The given instance serialized.</returns>
         public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetModelPack pack
-                ? $"{pack.FloorID}{Delimiters.InternalDelimiter}" +
-                  $"{pack.BlockID}{Delimiters.InternalDelimiter}" +
-                  $"{pack.FurnishingID}{Delimiters.InternalDelimiter}" +
-                  $"{pack.CollectibleID}"
+                ? $"{pack.FloorID.ConvertToString(pack.FloorID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.BlockID.ConvertToString(pack.BlockID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.FurnishingID.ConvertToString(pack.FurnishingID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.CollectibleID.ConvertToString(pack.CollectibleID, inRow, inMemberMapData)}"
                 : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetModelPack), nameof(Empty));
 
         /// <summary>
@@ -200,14 +198,14 @@ namespace Parquet.Parquets
                 return Empty;
             }
 
-            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = inText.Split(Delimiters.PackDelimiter);
 
-            var floor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var block = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-            var furnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
-            var collectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+            var parsedFloor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var parsedBlock = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedFurnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
+            var parsedCollectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
 
-            return new ParquetModelPack(floor, block, furnishing, collectible);
+            return new ParquetModelPack(parsedFloor, parsedBlock, parsedFurnishing, parsedCollectible);
         }
         #endregion
 
