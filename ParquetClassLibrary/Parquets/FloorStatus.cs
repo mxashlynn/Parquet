@@ -1,3 +1,4 @@
+using System;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -101,7 +102,7 @@ namespace Parquet.Parquets
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.CompareOrdinal(inText, nameof(Default)) == 0)
+                || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Default.Clone();
             }

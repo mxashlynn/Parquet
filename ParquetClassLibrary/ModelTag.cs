@@ -86,7 +86,7 @@ namespace Parquet
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => string.Compare(inText, nameof(None), comparisonType: StringComparison.OrdinalIgnoreCase) == 0
+            => string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0
                 ? (ModelTag)""
                 : (ModelTag)inText;
 
@@ -99,7 +99,7 @@ namespace Parquet
         /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ModelTag tag
-                ? string.CompareOrdinal(tag, "") == 0
+                ? string.Compare("", tag, StringComparison.OrdinalIgnoreCase) == 0
                     ? nameof(None)
                     : (string)tag
                 : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ModelTag), "");

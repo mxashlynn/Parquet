@@ -137,9 +137,10 @@ namespace Parquet.Parquets
         /// <returns>The given instance deserialized.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(ParquetPack), Unused);
+                return Unused;
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;

@@ -74,8 +74,8 @@ namespace Parquet
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
-                || string.Compare(inText, nameof(ModelID.None), comparisonType: StringComparison.OrdinalIgnoreCase) == 0
-                || string.Compare(inText, nameof(Enumerable.Empty), comparisonType: StringComparison.OrdinalIgnoreCase) == 0)
+                || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(nameof(Enumerable.Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return new TGrid();
             }

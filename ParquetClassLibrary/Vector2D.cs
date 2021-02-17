@@ -158,9 +158,10 @@ namespace Parquet
         /// <returns>The given instance deserialized.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Zero), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(Vector2D), Zero);
+                return Zero;
             }
 
             var numberStyle = inMemberMapData?.TypeConverterOptions?.NumberStyles ?? All.SerializedNumberStyle;

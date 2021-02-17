@@ -113,7 +113,8 @@ namespace Parquet
         /// <returns>The given instance serialized.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Nowhere), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Nowhere;
             }

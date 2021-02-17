@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -244,7 +245,8 @@ namespace Parquet.Beings
         /// <returns>The given instance deserialized.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Logger.DefaultWithConvertLog(inText, nameof(BeingStatus), Unused);
             }

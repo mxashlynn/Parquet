@@ -145,6 +145,7 @@ namespace Parquet.Items
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0
                 || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Logger.DefaultWithConvertLog(inText, nameof(InventorySlot), Empty);

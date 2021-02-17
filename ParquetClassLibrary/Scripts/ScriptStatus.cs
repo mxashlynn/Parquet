@@ -115,7 +115,8 @@ namespace Parquet.Scripts
         /// <returns>The given instance deserialized.</returns>
         public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Unstarted), inText, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Unstarted;
             }
