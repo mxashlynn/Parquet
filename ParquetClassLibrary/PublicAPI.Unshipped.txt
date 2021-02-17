@@ -60,6 +60,12 @@ override Parquet.Crafts.StrikePanel.GetHashCode() -> int
 override Parquet.Crafts.StrikePanel.ToString() -> string
 override Parquet.EmptyTolerantEnumConverter.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Games.GameModel.ToString() -> string
+override Parquet.Games.GameStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Games.GameStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Games.GameStatus.Equals(object obj) -> bool
+override Parquet.Games.GameStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Games.GameStatus.GetHashCode() -> int
+override Parquet.Games.GameStatus.ToString() -> string
 override Parquet.GridConverter<TElement, TGrid>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.GridConverter<TElement, TGrid>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Items.Inventory.ToString() -> string
@@ -396,6 +402,13 @@ Parquet.Games.GameModel.FirstScriptID.get -> Parquet.ModelID
 Parquet.Games.GameModel.GameModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, bool inIsEpisode = false, string inEpisodeTitle = "", int inEpisodeNumber = 0, Parquet.ModelID? inPlayerCharacterID = null, Parquet.ModelID? inFirstScriptID = null) -> void
 Parquet.Games.GameModel.IsEpisode.get -> bool
 Parquet.Games.GameModel.PlayerCharacterID.get -> Parquet.ModelID
+Parquet.Games.GameStatus
+Parquet.Games.GameStatus.CurrentScriptID.get -> Parquet.ModelID
+Parquet.Games.GameStatus.CurrentScriptID.set -> void
+Parquet.Games.GameStatus.DeepClone() -> Parquet.Games.GameStatus
+Parquet.Games.GameStatus.GameStatus(Parquet.ModelID? inPlayerCharacterID = null, Parquet.ModelID? inFirstScriptID = null) -> void
+Parquet.Games.GameStatus.PlayerCharacterID.get -> Parquet.ModelID
+Parquet.Games.GameStatus.PlayerCharacterID.set -> void
 Parquet.GridConverter<TElement, TGrid>
 Parquet.GridConverter<TElement, TGrid>.GridConverter() -> void
 Parquet.IGrid<TElement>
@@ -860,6 +873,9 @@ static Parquet.Crafts.StrikePanel.operator !=(Parquet.Crafts.StrikePanel inStrik
 static Parquet.Crafts.StrikePanel.operator ==(Parquet.Crafts.StrikePanel inStrikePanel1, Parquet.Crafts.StrikePanel inStrikePanel2) -> bool
 static Parquet.Crafts.StrikePanelArrayExtensions.IsValidPosition(this Parquet.Crafts.StrikePanel[,] inStrikePanels, Parquet.Vector2D inPosition) -> bool
 static Parquet.Crafts.StrikePanelGrid.Empty.get -> Parquet.Crafts.StrikePanelGrid
+static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
+static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
+static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
 static Parquet.Items.Inventory.Empty.get -> Parquet.Items.Inventory
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.set -> void
