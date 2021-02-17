@@ -104,7 +104,10 @@ override Parquet.Parquets.FloorStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.FloorStatus.GetHashCode() -> int
 override Parquet.Parquets.FloorStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
+override Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Parquets.ParquetModelPack.Equals(object obj) -> bool
+override Parquet.Parquets.ParquetModelPack.Equals<T>(T inPack) -> bool
 override Parquet.Parquets.ParquetModelPack.GetHashCode() -> int
 override Parquet.Parquets.ParquetModelPack.ToString() -> string
 override Parquet.Parquets.ParquetPackStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -612,11 +615,8 @@ Parquet.Parquets.ParquetModelPack.BlockID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.BlockID.set -> void
 Parquet.Parquets.ParquetModelPack.CollectibleID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.CollectibleID.set -> void
-Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 Parquet.Parquets.ParquetModelPack.Count.get -> int
 Parquet.Parquets.ParquetModelPack.DeepClone() -> Parquet.Parquets.ParquetModelPack
-Parquet.Parquets.ParquetModelPack.Equals(Parquet.Parquets.ParquetModelPack inStack) -> bool
 Parquet.Parquets.ParquetModelPack.FloorID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.FloorID.set -> void
 Parquet.Parquets.ParquetModelPack.FurnishingID.get -> Parquet.ModelID

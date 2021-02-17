@@ -1,14 +1,14 @@
 using System;
 using CsvHelper;
 using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 
 namespace Parquet.Parquets
 {
     /// <summary>
     /// Simple container for collocated <see cref="ParquetModel"/>s, one of each subtype.
+    /// Instances of this class are mutable during play, although the <see cref="ParquetModel"/>s they contain are not.
     /// </summary>
-    public sealed class ParquetModelPack : IParquetModelPack, IEquatable<ParquetModelPack>, ITypeConverter
+    public sealed class ParquetModelPack : Pack<ParquetModel>, IParquetModelPack
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetModelPack"/>, representing an arbitrary empty pack.</summary>
@@ -131,11 +131,12 @@ namespace Parquet.Parquets
         /// </summary>
         /// <param name="inStack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(ParquetModelPack inStack)
-            => FloorID == inStack?.FloorID
-            && BlockID == inStack.BlockID
-            && FurnishingID == inStack.FurnishingID
-            && CollectibleID == inStack.CollectibleID;
+        public override bool Equals<T>(T inPack)
+            => inPack is ParquetModelPack parquetModelPack
+            && FloorID == parquetModelPack.FloorID
+            && BlockID == parquetModelPack.BlockID
+            && FurnishingID == parquetModelPack.FurnishingID
+            && CollectibleID == parquetModelPack.CollectibleID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetModelPack"/>.
@@ -176,7 +177,7 @@ namespace Parquet.Parquets
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ParquetModelPack pack
                 ? $"{pack.FloorID}{Delimiters.InternalDelimiter}" +
                   $"{pack.BlockID}{Delimiters.InternalDelimiter}" +
@@ -191,7 +192,7 @@ namespace Parquet.Parquets
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
@@ -225,24 +226,5 @@ namespace Parquet.Parquets
         public override string ToString()
             => $"[{FloorID} {BlockID} {FurnishingID} {CollectibleID}]";
         #endregion
-    }
-
-    /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="ParquetModelPack"/>s.
-    /// </summary>
-    public static class ParquetPackArrayExtensions
-    {
-        /// <summary>
-        /// Determines if the given position corresponds to a point within the current array.
-        /// </summary>
-        /// <param name="inSubregion">The <see cref="ParquetModelPack"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
-        /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ParquetModelPack[,] inSubregion, Vector2D inPosition)
-            => inSubregion is not null
-            && inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inSubregion.GetLength(1)
-            && inPosition.Y < inSubregion.GetLength(0);
     }
 }
