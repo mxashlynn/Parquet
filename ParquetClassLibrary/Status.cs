@@ -9,7 +9,7 @@ namespace Parquet
     /// Tracks the status of a game element that varies during play.
     /// As a result, instances of these classes are mutable during play.
     /// </summary>
-    public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter
+    public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter // TODO , IDeepClonable
     {
         #region IEquatable Implementation
         /// <summary>
