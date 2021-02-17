@@ -10,6 +10,7 @@ namespace Parquet.Items
 {
     /// <summary>
     /// Models a set of items carried by a character.
+    /// Instances of this class are mutable during play.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
                                                      Justification = "Inventory implies InventorySlotCollection.")]

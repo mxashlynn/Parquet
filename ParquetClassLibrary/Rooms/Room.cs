@@ -9,6 +9,7 @@ namespace Parquet.Rooms
 {
     /// <summary>
     /// Models a constructed <see cref="Room"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     public sealed class Room : IEquatable<Room>
     {

@@ -6,6 +6,7 @@ namespace Parquet.Parquets
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="ParquetPackStatus"/>es for use in <see cref="Maps.MapModel"/> and derived classes.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
     /// The intent is that this class function much like a read-only array.

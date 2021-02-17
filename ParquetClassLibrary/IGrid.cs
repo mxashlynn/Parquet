@@ -5,6 +5,7 @@ namespace Parquet
 {
     /// <summary>
     /// A two-dimensional collection that functions much like an array.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>

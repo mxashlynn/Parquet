@@ -10,6 +10,7 @@ namespace Parquet.Items
 {
     /// <summary>
     /// Allows multiple copies of a given <see cref="ItemModel"/> to be grouped together in an <see cref="Inventory"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     public class InventorySlot : ITypeConverter
     {

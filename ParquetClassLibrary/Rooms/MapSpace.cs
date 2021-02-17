@@ -6,7 +6,8 @@ using Parquet.Parquets;
 namespace Parquet.Rooms
 {
     /// <summary>
-    /// A <see cref="ParquetPack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
+    /// Represents a <see cref="ParquetPack"/> together with its coordinates within a given <see cref="Maps.MapRegionModel"/>.
+    /// Instances of this class are mutable during play.
     /// </summary>
     public sealed class MapSpace : IEquatable<MapSpace>
     {

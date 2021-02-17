@@ -10,7 +10,9 @@ using CsvHelper.Configuration.Attributes;
 namespace Parquet.Beings
 {
     /// <summary>
-    /// A group of personal pronouns used together to indicate an individual, potentially communicating both their plurality and their gender.
+    /// A group of personal pronouns used together to indicate a <see cref="BeingModel"/>,
+    /// potentially communicating both their plurality and their gender.
+    /// Instances of this class are mutable during play.
     /// </summary>
     public partial class PronounGroup
     {

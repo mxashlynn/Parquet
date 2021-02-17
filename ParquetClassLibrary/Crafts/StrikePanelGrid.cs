@@ -6,6 +6,7 @@ namespace Parquet.Crafts
 {
     /// <summary>
     /// A square, two-dimensional collection of <see cref="StrikePanel"/>s for use in <see cref="CraftingRecipe"/>s.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remark>
     /// The intent is that this class function much like a read-only array.
