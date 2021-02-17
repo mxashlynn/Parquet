@@ -102,7 +102,7 @@ namespace Parquet.Beings
             csv.Configuration.PrepareHeaderForMatch =
                 (string header, int index)
                     => header.StartsWith("in", StringComparison.InvariantCulture)
-                        ? header.Substring(2).ToUpperInvariant()
+                        ? header[2..].ToUpperInvariant()
                         : header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
