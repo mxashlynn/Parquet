@@ -46,7 +46,7 @@ namespace Parquet.Parquets
             {
                 for (var x = 0; x < inColumnCount; x++)
                 {
-                    ParquetStatuses[y, x] = ParquetStatusPack.Unused.DeepClone();
+                    ParquetStatuses[y, x] = ParquetStatusPack.Default.DeepClone();
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace Parquet.Parquets
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
         public bool IsValidPosition(Vector2D inPosition)
-            => ((Status<ParquetModelPack>[,])ParquetStatuses).IsValidPosition(inPosition);
+            => ParquetStatuses.IsValidPosition(inPosition);
         #endregion
     }
 }

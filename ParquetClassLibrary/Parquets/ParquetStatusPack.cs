@@ -1,17 +1,138 @@
 using System;
-using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// Tracks the status of a <see cref="ParquetModelPack"/>.
+    /// Simple container for collocated stateful <see cref="ParquetStatus{ParquetModel}"/>s.
     /// Instances of this class are mutable during play.
     /// </summary>
-    public sealed class ParquetStatusPack
+    public sealed class ParquetStatusPack : Pack<ParquetStatus<ParquetModel>>
     {
+        #region Class Defaults
+        /// <summary>Canonical null <see cref="ParquetStatusPack"/>, representing an arbitrary standard pack.</summary>
+        public static ParquetStatusPack Default
+            => new ParquetStatusPack(FloorStatus.Default, BlockStatus.Default);
+        #endregion
+
+        #region Characteristics
+        /// <summary>The <see cref="FloorStatus"/> contained in this <see cref="ParquetStatusPack"/>.</summary>
+        public FloorStatus CurrentFloorStatus { get; set; }
+
+        /// <summary>The <see cref="BlockStatus"/> contained in this <see cref="ParquetStatusPack"/>.</summary>
+        public BlockStatus CurrentBlockStatus { get; set; }
+        #endregion
+
+        #region Initialization
+        /// <summary>
+        /// Initializes a new default instance of the <see cref="ParquetStatusPack"/> class.
+        /// </summary>
+        /// <remarks>This is primarily useful for serialization.</remarks>
+        public ParquetStatusPack() :
+            this(FloorStatus.Default, BlockStatus.Default)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParquetStatusPack"/> class.
+        /// </summary>
+        /// <param name="inFloorStatus">The status of the tracked floor-layer parquet.</param>
+        /// <param name="inBlockStatus">The status of the tracked block-layer parquet.</param>
+        public ParquetStatusPack(FloorStatus inFloorStatus = null, BlockStatus inBlockStatus = null)
+        {
+            CurrentFloorStatus = inFloorStatus ?? FloorStatus.Default;
+            CurrentBlockStatus = inBlockStatus ?? BlockStatus.Default;
+        }
+        #endregion
+
+        #region IEquatable Implementation
+        /// <summary>
+        /// Serves as a hash function for a <see cref="ParquetStatusPack"/>.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
+        /// </returns>
+        public override int GetHashCode()
+            => (CurrentFloorStatus, CurrentBlockStatus).GetHashCode();
+
+        /// <summary>
+        /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
+        /// </summary>
+        /// <param name="inStack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals<T>(T inPack)
+            => inPack is ParquetStatusPack pack
+            && CurrentFloorStatus == pack.CurrentFloorStatus
+            && CurrentBlockStatus == pack.CurrentBlockStatus;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStatusPack"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetStatusPack"/>.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+            => obj is ParquetStatusPack pack
+            && Equals(pack);
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is equal to another specified instance of <see cref="ParquetStatusPack"/>.
+        /// </summary>
+        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
+            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
+
+        /// <summary>
+        /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is not equal to another specified instance of <see cref="ParquetStatusPack"/>.
+        /// </summary>
+        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
+            => !(inStack1 == inStack2);
+        #endregion
+
+        #region ITypeConverter
+        /// <summary>Allows the converter to construct itself statically.</summary>
+        internal static ParquetStatusPack ConverterFactory { get; } = Default;
+
+        /// <summary>
+        /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
+        /// </summary>
+        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance serialized.</returns>
+        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+            => inValue is ParquetStatusPack pack
+                ? $"{pack.CurrentFloorStatus.ConvertToString(pack.CurrentFloorStatus, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.CurrentBlockStatus.ConvertToString(pack.CurrentBlockStatus, inRow, inMemberMapData)}"
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetStatusPack), nameof(Default));
+
+        /// <summary>
+        /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
+        /// </summary>
+        /// <param name="inText">The text to convert.</param>
+        /// <param name="inRow">The current context and configuration.</param>
+        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <returns>The given instance deserialized.</returns>
+        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        {
+            if (string.IsNullOrEmpty(inText)
+                || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return Default;
+            }
+
+            var parameterText = inText.Split(Delimiters.PackDelimiter);
+
+            var parsedFloorStatus = (FloorStatus)FloorStatus.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var parsedBlockStatus = (BlockStatus)BlockStatus.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+
+            return new ParquetStatusPack(parsedFloorStatus, parsedBlockStatus);
+        }
+        #endregion
 
         #region Utilities
         /// <summary>
@@ -19,7 +140,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
-            => throw new NotImplementedException();
+            => $"[{CurrentFloorStatus} {CurrentBlockStatus}]";
 
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
