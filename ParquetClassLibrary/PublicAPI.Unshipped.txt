@@ -25,6 +25,7 @@ const Parquet.Delimiters.PackDelimiter = "⚭" -> string
 const Parquet.Delimiters.PrimaryDelimiter = "," -> string
 const Parquet.Delimiters.PronounDelimiter = "|" -> string
 const Parquet.Delimiters.SecondaryDelimiter = "∟" -> string
+const Parquet.GameMode.IsDebugMode = true -> bool
 const Parquet.Items.ItemModel.DefaultStackMax = 999 -> int
 const Parquet.Maps.MapChunkModel.ParquetsPerChunkDimension = 16 -> int
 const Parquet.Maps.MapRegionModel.ParquetsPerRegionDimension = 64 -> int
@@ -411,6 +412,7 @@ Parquet.EditorSupport.IMutableScriptModel
 Parquet.EditorSupport.IMutableScriptModel.Nodes.get -> System.Collections.Generic.ICollection<Parquet.Scripts.ScriptNode>
 Parquet.EmptyTolerantEnumConverter
 Parquet.EmptyTolerantEnumConverter.EmptyTolerantEnumConverter(System.Type inType) -> void
+Parquet.GameMode
 Parquet.Games.GameModel
 Parquet.Games.GameModel.EpisodeNumber.get -> int
 Parquet.Games.GameModel.EpisodeTitle.get -> string
@@ -886,6 +888,8 @@ static Parquet.Crafts.StrikePanel.operator !=(Parquet.Crafts.StrikePanel inStrik
 static Parquet.Crafts.StrikePanel.operator ==(Parquet.Crafts.StrikePanel inStrikePanel1, Parquet.Crafts.StrikePanel inStrikePanel2) -> bool
 static Parquet.Crafts.StrikePanelArrayExtensions.IsValidPosition(this Parquet.Crafts.StrikePanel[,] inStrikePanels, Parquet.Vector2D inPosition) -> bool
 static Parquet.Crafts.StrikePanelGrid.Empty.get -> Parquet.Crafts.StrikePanelGrid
+static Parquet.GameMode.IsEditMode.get -> bool
+static Parquet.GameMode.IsEditMode.set -> void
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
