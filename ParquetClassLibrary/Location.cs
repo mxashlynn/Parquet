@@ -128,6 +128,17 @@ namespace Parquet
         }
         #endregion
 
+        #region IDeeplyCloneable Implementation
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            // Note that I believe no additional cloning is needed here as structs have value semantics.
+            => new Location(RegionID, Position) as T;
+        #endregion
+
+
         #region Utilities
         /// <summary>
         /// Describes the <see cref="Location"/> as a <see cref="string"/>.

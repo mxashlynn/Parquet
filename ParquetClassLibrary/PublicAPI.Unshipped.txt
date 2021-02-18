@@ -2,9 +2,11 @@ abstract Parquet.Maps.MapModel.DimensionsInParquets.get -> Parquet.Vector2D
 abstract Parquet.Maps.MapModel.ParquetDefinitions.get -> Parquet.Parquets.ParquetModelPackGrid
 abstract Parquet.Pack<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 abstract Parquet.Pack<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+abstract Parquet.Pack<T>.DeepClone<TDerived>() -> TDerived
 abstract Parquet.Pack<T>.Equals<TDerived>(TDerived inPack) -> bool
 abstract Parquet.Status<T>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 abstract Parquet.Status<T>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+abstract Parquet.Status<T>.DeepClone<TDerived>() -> TDerived
 abstract Parquet.Status<T>.Equals<TDerived>(TDerived inStatus) -> bool
 const Parquet.Beings.PronounGroup.DefaultKey = "they/them" -> string
 const Parquet.Beings.PronounGroup.DeterminerTag = "|their|" -> string
@@ -50,6 +52,7 @@ override abstract Parquet.Status<T>.Equals(object obj) -> bool
 override abstract Parquet.Status<T>.GetHashCode() -> int
 override Parquet.Beings.BeingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Beings.BeingStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Beings.BeingStatus.DeepClone<T>() -> T
 override Parquet.Beings.BeingStatus.Equals(object obj) -> bool
 override Parquet.Beings.BeingStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Beings.BeingStatus.GetHashCode() -> int
@@ -62,6 +65,7 @@ override Parquet.EmptyTolerantEnumConverter.ConvertFromString(string inText, Csv
 override Parquet.Games.GameModel.ToString() -> string
 override Parquet.Games.GameStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Games.GameStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Games.GameStatus.DeepClone<T>() -> T
 override Parquet.Games.GameStatus.Equals(object obj) -> bool
 override Parquet.Games.GameStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Games.GameStatus.GetHashCode() -> int
@@ -69,10 +73,17 @@ override Parquet.Games.GameStatus.ToString() -> string
 override Parquet.GridConverter<TElement, TGrid>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.GridConverter<TElement, TGrid>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Items.Inventory.ToString() -> string
+override Parquet.Items.InventorySlot.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Items.InventorySlot.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Items.InventorySlot.DeepClone<T>() -> T
+override Parquet.Items.InventorySlot.Equals(object obj) -> bool
+override Parquet.Items.InventorySlot.Equals<T>(T inStatus) -> bool
+override Parquet.Items.InventorySlot.GetHashCode() -> int
 override Parquet.Items.InventorySlot.ToString() -> string
 override Parquet.Items.ItemModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Location.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Location.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Location.DeepClone<T>() -> T
 override Parquet.Location.Equals(object obj) -> bool
 override Parquet.Location.Equals<T>(T inLocation) -> bool
 override Parquet.Location.GetHashCode() -> int
@@ -100,12 +111,14 @@ override Parquet.ModelID.ToString() -> string
 override Parquet.ModelTag.ToString() -> string
 override Parquet.Parquets.BlockStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.BlockStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.BlockStatus.DeepClone<T>() -> T
 override Parquet.Parquets.BlockStatus.Equals(object obj) -> bool
 override Parquet.Parquets.BlockStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.BlockStatus.GetHashCode() -> int
 override Parquet.Parquets.BlockStatus.ToString() -> string
 override Parquet.Parquets.FloorStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.FloorStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.FloorStatus.DeepClone<T>() -> T
 override Parquet.Parquets.FloorStatus.Equals(object obj) -> bool
 override Parquet.Parquets.FloorStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.FloorStatus.GetHashCode() -> int
@@ -113,12 +126,14 @@ override Parquet.Parquets.FloorStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.ParquetModelPack.DeepClone<T>() -> T
 override Parquet.Parquets.ParquetModelPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetModelPack.Equals<T>(T inPack) -> bool
 override Parquet.Parquets.ParquetModelPack.GetHashCode() -> int
 override Parquet.Parquets.ParquetModelPack.ToString() -> string
 override Parquet.Parquets.ParquetStatusPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetStatusPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.ParquetStatusPack.DeepClone<T>() -> T
 override Parquet.Parquets.ParquetStatusPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetStatusPack.Equals<T>(T inPack) -> bool
 override Parquet.Parquets.ParquetStatusPack.GetHashCode() -> int
@@ -137,6 +152,7 @@ override Parquet.Rooms.Room.GetHashCode() -> int
 override Parquet.Scripts.ScriptNode.ToString() -> string
 override Parquet.Scripts.ScriptStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Scripts.ScriptStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Scripts.ScriptStatus.DeepClone<T>() -> T
 override Parquet.Scripts.ScriptStatus.Equals(object obj) -> bool
 override Parquet.Scripts.ScriptStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Scripts.ScriptStatus.GetHashCode() -> int
@@ -405,7 +421,6 @@ Parquet.Games.GameModel.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.Games.GameStatus
 Parquet.Games.GameStatus.CurrentScriptID.get -> Parquet.ModelID
 Parquet.Games.GameStatus.CurrentScriptID.set -> void
-Parquet.Games.GameStatus.DeepClone() -> Parquet.Games.GameStatus
 Parquet.Games.GameStatus.GameStatus(Parquet.ModelID? inPlayerCharacterID = null, Parquet.ModelID? inFirstScriptID = null) -> void
 Parquet.Games.GameStatus.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.Games.GameStatus.PlayerCharacterID.set -> void
@@ -459,8 +474,6 @@ Parquet.Items.Inventory.Take(Parquet.Items.InventorySlot inSlot) -> int
 Parquet.Items.Inventory.Take(Parquet.ModelID inItemID, int inHowMany) -> int
 Parquet.Items.InventoryConfiguration
 Parquet.Items.InventorySlot
-Parquet.Items.InventorySlot.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-Parquet.Items.InventorySlot.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 Parquet.Items.InventorySlot.Count.get -> int
 Parquet.Items.InventorySlot.Give(int inHowMany = 1) -> int
 Parquet.Items.InventorySlot.InventorySlot() -> void
@@ -607,16 +620,15 @@ Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
 Parquet.Pack<T>
+Parquet.Pack<T>.DeepClone() -> Parquet.Pack<T>
 Parquet.Pack<T>.Equals(Parquet.Pack<T> inPack) -> bool
 Parquet.Pack<T>.Pack() -> void
 Parquet.PackArrayExtensions
 Parquet.Parquets.BlockStatus
 Parquet.Parquets.BlockStatus.BlockStatus(int inToughness = 10, int inMaxToughness = 10) -> void
-Parquet.Parquets.BlockStatus.DeepClone() -> Parquet.Parquets.BlockStatus
 Parquet.Parquets.BlockStatus.Toughness.get -> int
 Parquet.Parquets.BlockStatus.Toughness.set -> void
 Parquet.Parquets.FloorStatus
-Parquet.Parquets.FloorStatus.DeepClone() -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void
 Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
@@ -632,7 +644,6 @@ Parquet.Parquets.ParquetModelPack.BlockID.set -> void
 Parquet.Parquets.ParquetModelPack.CollectibleID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.CollectibleID.set -> void
 Parquet.Parquets.ParquetModelPack.Count.get -> int
-Parquet.Parquets.ParquetModelPack.DeepClone() -> Parquet.Parquets.ParquetModelPack
 Parquet.Parquets.ParquetModelPack.FloorID.get -> Parquet.ModelID
 Parquet.Parquets.ParquetModelPack.FloorID.set -> void
 Parquet.Parquets.ParquetModelPack.FurnishingID.get -> Parquet.ModelID
@@ -659,7 +670,6 @@ Parquet.Parquets.ParquetStatusPack.CurrentBlockStatus.get -> Parquet.Parquets.Bl
 Parquet.Parquets.ParquetStatusPack.CurrentBlockStatus.set -> void
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.get -> Parquet.Parquets.FloorStatus
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.set -> void
-Parquet.Parquets.ParquetStatusPack.DeepClone() -> Parquet.Parquets.ParquetStatusPack
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack() -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.FloorStatus inFloorStatus = null, Parquet.Parquets.BlockStatus inBlockStatus = null) -> void
 Parquet.Parquets.ParquetStatusPackGrid
@@ -683,6 +693,7 @@ Parquet.Scripts.ScriptStatus.ProgramCounter.set -> void
 Parquet.Scripts.ScriptStatus.ScriptStatus(Parquet.Scripts.RunState inState = Parquet.Scripts.RunState.Unstarted, int inProgramCounter = 0) -> void
 Parquet.Scripts.ScriptStatus.State.get -> Parquet.Scripts.RunState
 Parquet.Scripts.ScriptStatus.State.set -> void
+Parquet.Status<T>.DeepClone() -> Parquet.Status<T>
 Parquet.StatusArrayExtensions
 Parquet.ModelTag
 Parquet.ModelTag.CompareTo(Parquet.ModelTag inTag) -> int
@@ -885,6 +896,8 @@ static Parquet.Items.InventoryConfiguration.FilePath.get -> string
 static Parquet.Items.InventoryConfiguration.GetRecord() -> void
 static Parquet.Items.InventoryConfiguration.PutRecord() -> void
 static Parquet.Items.InventorySlot.Empty.get -> Parquet.Items.InventorySlot
+static Parquet.Items.InventorySlot.operator !=(Parquet.Items.InventorySlot inStatus1, Parquet.Items.InventorySlot inStatus2) -> bool
+static Parquet.Items.InventorySlot.operator ==(Parquet.Items.InventorySlot inStatus1, Parquet.Items.InventorySlot inStatus2) -> bool
 static Parquet.Location.Nowhere.get -> Parquet.Location
 static Parquet.Location.operator !=(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Location.operator ==(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool

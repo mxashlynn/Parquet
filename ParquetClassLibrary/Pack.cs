@@ -9,7 +9,7 @@ namespace Parquet
     /// Simple container for collocated game objects.
     /// Instances of these classes are mutable during play.
     /// </summary>
-    public abstract class Pack<T> :  IEquatable<Pack<T>>, ITypeConverter // TODO , IDeepClonable
+    public abstract class Pack<T> :  IEquatable<Pack<T>>, ITypeConverter, IDeeplyCloneable<Pack<T>>
     {
         #region IEquatable Implementation
         /// <summary>
@@ -65,6 +65,23 @@ namespace Parquet
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
         public abstract string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData);
+        #endregion
+
+        #region IDeeplyCloneable Implementation
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public Pack<T> DeepClone()
+            => DeepClone<Pack<T>>();
+
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <typeparam name="TDerived">The type of the instance that is being cloned.</typeparam>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public abstract TDerived DeepClone<TDerived>()
+            where TDerived : Pack<T>;
         #endregion
     }
 

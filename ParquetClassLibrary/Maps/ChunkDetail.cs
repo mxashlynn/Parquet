@@ -21,7 +21,7 @@ namespace Parquet.Maps
     /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
     /// - Town: Handmade
     /// </remarks>
-    public sealed class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter
+    public sealed class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter, IDeeplyCloneable<ChunkDetail>
     {
         #region Class Defaults
         /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunkModel"/>.</summary>
@@ -173,14 +173,17 @@ namespace Parquet.Maps
         }
         #endregion
 
-        #region Utilities
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public ChunkDetail DeepClone()
+            // Note that I believe no additional cloning is needed here as enums and strings have value semantics.
             => new ChunkDetail(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
+        #endregion
 
+        #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ChunkDetail"/>.
         /// </summary>

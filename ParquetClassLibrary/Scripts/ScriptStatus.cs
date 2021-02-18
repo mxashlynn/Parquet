@@ -135,6 +135,15 @@ namespace Parquet.Scripts
         }
         #endregion
 
+        #region IDeeplyCloneable Interface
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => new ScriptStatus(State, ProgramCounter) as T;
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ScriptStatus"/>.

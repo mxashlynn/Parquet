@@ -115,6 +115,15 @@ namespace Parquet.Parquets
         }
         #endregion
 
+        #region IDeeplyCloneable Interface
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => new FloorStatus(IsTrench) as T;
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="FloorStatus"/>.
@@ -124,13 +133,6 @@ namespace Parquet.Parquets
             => IsTrench
                 ? "dug out"
                 : "filled in";
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public FloorStatus DeepClone()
-            => new FloorStatus(IsTrench);
         #endregion
     }
 }

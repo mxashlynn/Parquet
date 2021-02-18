@@ -14,7 +14,7 @@ namespace Parquet.Crafts
     /// <see cref="System.Collections.Generic.Dictionary{K,V}"/> it must not be mutated.
     /// It is safe to mutate it again once it is removed.
     /// </remarks>
-    public sealed class StrikePanel : IEquatable<StrikePanel>, ITypeConverter
+    public sealed class StrikePanel : IEquatable<StrikePanel>, ITypeConverter, IDeeplyCloneable<StrikePanel>
     {
         #region Class Defaults
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
@@ -206,14 +206,16 @@ namespace Parquet.Crafts
                 : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(StrikePanel), nameof(Unused));
         #endregion
 
-        #region Utilities
+        #region IDeeplyCloneable Interface
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public StrikePanel DeepClone()
             => new StrikePanel(workingRangeBackingStruct, idealRangeBackingStruct);
+        #endregion
 
+        #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="StrikePanel"/>.
         /// </summary>

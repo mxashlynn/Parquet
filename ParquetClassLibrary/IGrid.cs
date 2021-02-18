@@ -9,7 +9,7 @@ namespace Parquet
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
-    public interface IGrid<TElement> : IEnumerable<TElement>
+    public interface IGrid<TElement> : IEnumerable<TElement>, IDeeplyCloneable<IGrid<TElement>>
         where TElement : ITypeConverter
     {
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IGrid{TElement}"/>.</summary>
@@ -23,11 +23,5 @@ namespace Parquet
 
         /// <summary>Access to any object in the grid.</summary>
         public ref TElement this[int y, int x] { get; }
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public IGrid<TElement> DeepClone();
     }
 }

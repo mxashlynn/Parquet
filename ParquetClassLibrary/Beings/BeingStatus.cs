@@ -317,5 +317,29 @@ namespace Parquet.Beings
                                    parsedInventory);
         }
         #endregion
+
+        #region IDeeplyCloneable Interface
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => new BeingStatus((Location)Position.DeepClone(),
+                               (Location)SpawnAt.DeepClone(),
+                               (Location)RoomAssignment.DeepClone(),
+                               CurrentBehaviorID,
+                               BiomeTimeRemaining,
+                               BuildingSpeed,
+                               ModificationSpeed,
+                               GatheringSpeed,
+                               MovementSpeed,
+                               // Note: the following .ToList() perform shallow copies, but this is acceptable as ModelID has value semantics
+                               KnownBeings.ToList(),
+                               KnownParquets.ToList(),
+                               KnownRoomRecipes.ToList(),
+                               KnownCraftingRecipes.ToList(),
+                               Quests.ToList(),
+                               Inventory.ToList()) as T;
+        #endregion
     }
 }

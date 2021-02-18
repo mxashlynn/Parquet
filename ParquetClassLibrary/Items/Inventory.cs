@@ -14,7 +14,7 @@ namespace Parquet.Items
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
                                                      Justification = "Inventory implies InventorySlotCollection.")]
-    public class Inventory : ICollection<InventorySlot>
+    public class Inventory : ICollection<InventorySlot>, IDeeplyCloneable<Inventory>
     {
         #region Class Defaults
         /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
@@ -342,17 +342,19 @@ namespace Parquet.Items
             => Slots.GetEnumerator();
         #endregion
 
+        #region IDeeplyCloneable Implementation
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Inventory DeepClone()
+            => new Inventory(Slots.ConvertAll(slot => (InventorySlot)slot.DeepClone()), Capacity);
+        #endregion
+
         #region Utilities
         /// <summary>How many individual <see cref="ItemModel"/>s are contained.</summary>
         public int ItemCount
             => Slots.Select(slot => slot.Count).Sum();
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public Inventory DeepClone()
-            => new Inventory(Slots, Capacity);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Inventory"/>.

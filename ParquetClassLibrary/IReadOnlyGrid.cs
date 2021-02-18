@@ -8,7 +8,7 @@ namespace Parquet
     /// </summary>
     /// <remarks>For serialization, implementing classes need to guarantee stable iteration order.</remarks>
     /// <typeparam name="TElement">The type collected.</typeparam>
-    public interface IReadOnlyGrid<TElement> : IReadOnlyCollection<TElement>
+    public interface IReadOnlyGrid<TElement> : IReadOnlyCollection<TElement>, IDeeplyCloneable<IReadOnlyGrid<TElement>>
         where TElement : ITypeConverter
     {
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IReadOnlyGrid{TElement}"/>.</summary>
@@ -19,11 +19,5 @@ namespace Parquet
 
         /// <summary>Read-only access to any object in the grid.</summary>
         public TElement this[int y, int x] { get; }
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public IReadOnlyGrid<TElement> DeepClone();
     }
 }

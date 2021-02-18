@@ -134,6 +134,16 @@ namespace Parquet.Parquets
         }
         #endregion
 
+        #region IDeeplyCloneable Interface
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => new ParquetStatusPack((FloorStatus)CurrentFloorStatus.DeepClone(),
+                                     (BlockStatus)CurrentBlockStatus.DeepClone()) as T;
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ParquetStatusPack"/>.
@@ -141,13 +151,6 @@ namespace Parquet.Parquets
         /// <returns>The representation.</returns>
         public override string ToString()
             => $"[{CurrentFloorStatus} {CurrentBlockStatus}]";
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public ParquetStatusPack DeepClone()
-            => throw new NotImplementedException();
         #endregion
     }
 }

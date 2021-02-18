@@ -140,6 +140,15 @@ namespace Parquet.Parquets
         }
         #endregion
 
+        #region IDeeplyCloneable Interface
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => new BlockStatus(Toughness, MaxToughness) as T;
+        #endregion
+
         #region Utilities
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="BlockStatus"/>.
@@ -147,16 +156,6 @@ namespace Parquet.Parquets
         /// <returns>The representation.</returns>
         public override string ToString()
             => $"{nameof(Toughness)}: {Toughness}";
-
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        // TODO, all DeepClone methods in Parquet must be implementations of IDeepClonable and they should use
-        // .DeepClone on their elements whenever applicable, as:
-        //     => new BlockStatus(IsTrench, Toughness.DeepClone(), maxToughness);
-        public BlockStatus DeepClone()
-            => new BlockStatus(Toughness, MaxToughness);
         #endregion
     }
 }
