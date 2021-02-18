@@ -411,6 +411,8 @@ Parquet.Games.GameStatus.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.Games.GameStatus.PlayerCharacterID.set -> void
 Parquet.GridConverter<TElement, TGrid>
 Parquet.GridConverter<TElement, TGrid>.GridConverter() -> void
+Parquet.IDeeplyCloneable<T>
+Parquet.IDeeplyCloneable<T>.DeepClone() -> T
 Parquet.IGrid<TElement>
 Parquet.IGrid<TElement>.Columns.get -> int
 Parquet.IGrid<TElement>.Count.get -> int
