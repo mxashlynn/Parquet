@@ -412,7 +412,6 @@ Parquet.EditorSupport.IMutableScriptModel
 Parquet.EditorSupport.IMutableScriptModel.Nodes.get -> System.Collections.Generic.ICollection<Parquet.Scripts.ScriptNode>
 Parquet.EmptyTolerantEnumConverter
 Parquet.EmptyTolerantEnumConverter.EmptyTolerantEnumConverter(System.Type inType) -> void
-Parquet.GameMode
 Parquet.Games.GameModel
 Parquet.Games.GameModel.EpisodeNumber.get -> int
 Parquet.Games.GameModel.EpisodeTitle.get -> string
@@ -504,6 +503,7 @@ Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.Hammer = 2 -> Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.None = 0 -> Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.Shovel = 1 -> Parquet.Items.ModificationTool
+Parquet.LibraryState
 Parquet.Location
 Parquet.Location.Location(Parquet.ModelID? inRegionID = null, Parquet.Vector2D? inPosition = null) -> void
 Parquet.Location.Position.get -> Parquet.Vector2D
@@ -888,8 +888,6 @@ static Parquet.Crafts.StrikePanel.operator !=(Parquet.Crafts.StrikePanel inStrik
 static Parquet.Crafts.StrikePanel.operator ==(Parquet.Crafts.StrikePanel inStrikePanel1, Parquet.Crafts.StrikePanel inStrikePanel2) -> bool
 static Parquet.Crafts.StrikePanelArrayExtensions.IsValidPosition(this Parquet.Crafts.StrikePanel[,] inStrikePanels, Parquet.Vector2D inPosition) -> bool
 static Parquet.Crafts.StrikePanelGrid.Empty.get -> Parquet.Crafts.StrikePanelGrid
-static Parquet.GameMode.IsEditMode.get -> bool
-static Parquet.GameMode.IsEditMode.set -> void
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
@@ -902,6 +900,8 @@ static Parquet.Items.InventoryConfiguration.PutRecord() -> void
 static Parquet.Items.InventorySlot.Empty.get -> Parquet.Items.InventorySlot
 static Parquet.Items.InventorySlot.operator !=(Parquet.Items.InventorySlot inStatus1, Parquet.Items.InventorySlot inStatus2) -> bool
 static Parquet.Items.InventorySlot.operator ==(Parquet.Items.InventorySlot inStatus1, Parquet.Items.InventorySlot inStatus2) -> bool
+static Parquet.LibraryState.IsPlayMode.get -> bool
+static Parquet.LibraryState.IsPlayMode.set -> void
 static Parquet.Location.Nowhere.get -> Parquet.Location
 static Parquet.Location.operator !=(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
 static Parquet.Location.operator ==(Parquet.Location inLocation1, Parquet.Location inLocation2) -> bool
