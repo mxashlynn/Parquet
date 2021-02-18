@@ -9,9 +9,10 @@ namespace Parquet
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// Could meaningfully apply to any <see cref="Model"/> that has a specific position with in the game world.
+    /// Could meaningfully apply to any object that has a specific position with in the game world.
+    /// In practice, is often used for <see cref="Model"/>s.
     /// </remarks>
-    sealed public class Location : Status<Location>
+    sealed public class Location : Status<object>
     {
         #region Class Defaults
         /// <summary>Provides a throwaway instance of the <see cref="Location"/> class with default values.</summary>
