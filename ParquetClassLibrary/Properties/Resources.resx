@@ -165,10 +165,6 @@
     <value>You must clear the model database before reloading it.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="ErrorEditorSupport" xml:space="preserve">
-    <value>To access this command, please rebuild Parquet with editor support enabled.</value>
-    <comment>Error string.</comment>
-  </data>
   <data name="ErrorEmptyCollection" xml:space="preserve">
     <value>Tried to retrive {0} from {1} but the collection is empty.</value>
     <comment>Error string.</comment>
@@ -256,6 +252,10 @@
   <data name="ErrorUnsupportedSerialization" xml:space="preserve">
     <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
+  </data>
+  <data name="WarningEditModeOnly" xml:space="preserve">
+    <value>{1} is unavailable in play mode.</value>
+    <comment>Warning string.</comment>
   </data>
   <data name="WarningRoomSize" xml:space="preserve">
     <value>A RoomRecipe with {0} minimum walkable spaces exists, but rooms can only have from {1} to {2} walkable spaces.</value>

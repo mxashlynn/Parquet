@@ -44,19 +44,7 @@ namespace Parquet.Crafts
             set
             {
                 workingRangeBackingStruct = value;
-
-                // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
-                // TODO: Update how this works.
-#if DEBUG || !DESIGN
-                if (IdealRange.Maximum > value.Maximum)
-                {
-                    idealRangeBackingStruct = new Range<int>(idealRangeBackingStruct.Minimum, value.Maximum);
-                }
-                if (IdealRange.Minimum < value.Minimum)
-                {
-                    idealRangeBackingStruct = new Range<int>(value.Minimum, idealRangeBackingStruct.Maximum);
-                }
-#endif
+                NormalizeRanges();
             }
         }
 
@@ -69,19 +57,29 @@ namespace Parquet.Crafts
             get => idealRangeBackingStruct;
             set
             {
-                // Note: the code in this IF block should run in Debug mode or Game Release mode, but not in Editor mode.
-                // TODO: Update how this works.
-#if DEBUG || !DESIGN
-                if (value.Maximum > WorkingRange.Maximum)
-                {
-                    value = new Range<int>(value.Minimum, WorkingRange.Maximum);
-                }
-                if (value.Minimum < WorkingRange.Minimum)
-                {
-                    value = new Range<int>(WorkingRange.Minimum, value.Maximum);
-                }
-#endif
                 idealRangeBackingStruct = value;
+                NormalizeRanges();
+            }
+        }
+
+        /// <summary>
+        /// Ensures that <see cref="IdealRange"/> always falls within <see cref="WorkingRange"/>.
+        /// </summary>
+        private void NormalizeRanges()
+        {
+            // Note: These two checks should not be made from within editing tools.
+            if (LibraryState.IsPlayMode)
+            {
+                if (workingRangeBackingStruct.Maximum < idealRangeBackingStruct.Maximum)
+                {
+                    idealRangeBackingStruct = new Range<int>(idealRangeBackingStruct.Minimum,
+                                                             workingRangeBackingStruct.Maximum);
+                }
+                if (workingRangeBackingStruct.Minimum > idealRangeBackingStruct.Minimum)
+                {
+                    idealRangeBackingStruct = new Range<int>(workingRangeBackingStruct.Minimum,
+                                                             idealRangeBackingStruct.Maximum);
+                }
             }
         }
         #endregion

@@ -169,15 +169,6 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To access this command, please rebuild Parquet with editor support enabled..
-        /// </summary>
-        internal static string ErrorEditorSupport {
-            get {
-                return ResourceManager.GetString("ErrorEditorSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tried to retrive {0} from {1} but the collection is empty..
         /// </summary>
         internal static string ErrorEmptyCollection {
@@ -372,6 +363,15 @@ namespace Parquet.Properties {
         internal static string ErrorUnsupportedSerialization {
             get {
                 return ResourceManager.GetString("ErrorUnsupportedSerialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1} is unavailable in play mode..
+        /// </summary>
+        internal static string WarningEditModeOnly {
+            get {
+                return ResourceManager.GetString("WarningEditModeOnly", resourceCulture);
             }
         }
         

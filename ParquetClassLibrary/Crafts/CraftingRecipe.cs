@@ -64,11 +64,24 @@ namespace Parquet.Crafts
             var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
             var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
 
-#if !DESIGN
-            // DESIGN-Time Note: These two checks should not be made from within editing tools.
-            Precondition.IsInRange(nonNullProducts.Count(), CraftConfiguration.ProductCount, $"{nameof(inProducts)}.Count");
-            Precondition.IsInRange(nonNullIngredients.Count(), CraftConfiguration.IngredientCount, $"{nameof(inIngredients)}.Count");
-#endif
+            // Note: These two checks should not be made from within editing tools.
+            if (LibraryState.IsPlayMode)
+            {
+                var count = nonNullProducts.Count();
+                if (!CraftConfiguration.ProductCount.ContainsValue(count))
+                {
+                    Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                               $"{nameof(inProducts)}.Count", count,
+                                                               CraftConfiguration.ProductCount));
+                }
+                count = nonNullIngredients.Count();
+                if (!CraftConfiguration.IngredientCount.ContainsValue(count))
+                {
+                    Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                               $"{nameof(inIngredients)}.Count", count,
+                                                               CraftConfiguration.IngredientCount));
+                }
+            }
 
             if (nonNullPanelPattern.Rows > StrikePanelGrid.PanelsPerPatternHeight
                 || nonNullPanelPattern.Columns > StrikePanelGrid.PanelsPerPatternWidth)

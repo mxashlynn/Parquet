@@ -36,20 +36,21 @@ namespace ParquetUnitTests.Maps
         #endregion
 
         #region Whole Region Characteristics Editing
-        #if DESIGN
         [Fact]
         public void MapRegionModelMayBeEditedTest()
         {
-            var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", 0, testColor);
-            ParquetClassLibrary.EditorSupport.IMapRegionEdit editableRegion = customRegion;
+            if (LibraryState.IsDebugMode)
+            {
+                var customRegion = new MapRegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", 0, testColor);
+                Parquet.EditorSupport.IMutableMapRegion editableRegion = customRegion;
 
-            editableRegion.Name = testName;
-            editableRegion.BackgroundColor = testColor;
+                editableRegion.Name = testName;
+                editableRegion.BackgroundColor = testColor;
 
-            Assert.Equal(testName, customRegion.Name);
-            Assert.Equal(testColor, customRegion.BackgroundColor);
+                Assert.Equal(testName, customRegion.Name);
+                Assert.Equal(testColor, customRegion.BackgroundColor);
+            }
         }
-        #endif
         #endregion
 
         #region Subregions

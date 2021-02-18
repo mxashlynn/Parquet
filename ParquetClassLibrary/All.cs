@@ -420,12 +420,9 @@ namespace Parquet
             #endregion
 
             #region Initialize Serialization Values & Lookup Tables
-            ProjectDirectory =
-#if DEBUG
-                Path.GetFullPath($"{Directory.GetCurrentDirectory()}/../../../../ExampleData");
-#else
-                Path.GetFullPath(Directory.GetCurrentDirectory());
-#endif
+            ProjectDirectory = LibraryState.IsDebugMode
+                ? Path.GetFullPath($"{Directory.GetCurrentDirectory()}/../../../../ExampleData")
+                : Path.GetFullPath(Directory.GetCurrentDirectory());
 
             IdentifierOptions = new TypeConverterOptions
             {
@@ -675,31 +672,33 @@ namespace Parquet
         /// Note that this method is only available when Parquet is built with editor support enabled.
         /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
         /// </remarks>
-#if DESIGN
         public static void Clear()
         {
-            ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
-            ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
-            ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
-            ((EditorSupport.IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
-            ((EditorSupport.IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
-            ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
-            ((EditorSupport.IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
-            ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
-            ((EditorSupport.IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
-            ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
-            ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
-            ((HashSet<PronounGroup>)PronounGroups)?.Clear();
-            CollectionsHaveBeenInitialized = false;
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningEditModeOnly,
+                                                           $"{nameof(All.Clear)}"));
+            }
+            else
+            {
+                ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
+                ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
+                ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
+                ((EditorSupport.IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
+                ((EditorSupport.IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
+                ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
+                ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
+                ((EditorSupport.IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
+                ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
+                ((EditorSupport.IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
+                ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
+                ((EditorSupport.IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
+                ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
+                ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
+                ((HashSet<PronounGroup>)PronounGroups)?.Clear();
+                CollectionsHaveBeenInitialized = false;
+            }
         }
-#else
-        public static void Clear()
-            => Logger.Log(LogLevel.Warning, Resources.ErrorEditorSupport);
-
-#endif
         #endregion
 
         #region ModelID Range Helper Methods
