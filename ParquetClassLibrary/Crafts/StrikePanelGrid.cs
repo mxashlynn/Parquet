@@ -145,7 +145,7 @@ namespace Parquet.Crafts
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        IReadOnlyGrid<StrikePanel> IReadOnlyGrid<StrikePanel>.DeepClone()
+        IReadOnlyGrid<StrikePanel> IDeeplyCloneable<IReadOnlyGrid<StrikePanel>>.DeepClone()
             => (IReadOnlyGrid<StrikePanel>)DeepClone();
         #endregion
 

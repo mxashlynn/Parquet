@@ -110,7 +110,7 @@ namespace Parquet.Parquets
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ParquetStatusPack> IReadOnlyGrid<ParquetStatusPack>.DeepClone()
+        IReadOnlyGrid<ParquetStatusPack> IDeeplyCloneable<IReadOnlyGrid<ParquetStatusPack>>.DeepClone()
             => (IReadOnlyGrid<ParquetStatusPack>)DeepClone();
         #endregion
 

@@ -109,10 +109,10 @@ namespace Parquet
             => IDs[y, x];
 
         /// <summary>
-        /// Creates a new object that is a copy of the current instance.
+        /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>The new instance.</returns>
-        IReadOnlyGrid<ModelID> IReadOnlyGrid<ModelID>.DeepClone()
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        IReadOnlyGrid<ModelID> IDeeplyCloneable<IReadOnlyGrid<ModelID>>.DeepClone()
             => (IReadOnlyGrid<ModelID>)DeepClone();
         #endregion
 

@@ -127,6 +127,7 @@ override Parquet.Parquets.FloorStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.ParquetModelPack.DeepClone() -> Parquet.Parquets.ParquetModelPack
 override Parquet.Parquets.ParquetModelPack.DeepClone<T>() -> T
 override Parquet.Parquets.ParquetModelPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetModelPack.Equals<T>(T inPack) -> bool
@@ -134,6 +135,7 @@ override Parquet.Parquets.ParquetModelPack.GetHashCode() -> int
 override Parquet.Parquets.ParquetModelPack.ToString() -> string
 override Parquet.Parquets.ParquetStatusPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetStatusPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.ParquetStatusPack.DeepClone() -> Parquet.Parquets.ParquetStatusPack
 override Parquet.Parquets.ParquetStatusPack.DeepClone<T>() -> T
 override Parquet.Parquets.ParquetStatusPack.Equals(object obj) -> bool
 override Parquet.Parquets.ParquetStatusPack.Equals<T>(T inPack) -> bool
@@ -625,7 +627,6 @@ Parquet.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, Cs
 Parquet.ModelTag.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 Parquet.ModelTag.ModelTag() -> void
 Parquet.Pack<T>
-Parquet.Pack<T>.DeepClone() -> Parquet.Pack<T>
 Parquet.Pack<T>.Equals(Parquet.Pack<T> inPack) -> bool
 Parquet.Pack<T>.Pack() -> void
 Parquet.PackArrayExtensions
@@ -1033,3 +1034,4 @@ static readonly Parquet.Vector2D.Unit -> Parquet.Vector2D
 static readonly Parquet.Vector2D.West -> Parquet.Vector2D
 static readonly Parquet.Vector2D.Zero -> Parquet.Vector2D
 virtual Parquet.Model.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
+virtual Parquet.Pack<T>.DeepClone() -> Parquet.Pack<T>

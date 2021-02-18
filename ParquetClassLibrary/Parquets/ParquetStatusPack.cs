@@ -139,9 +139,16 @@ namespace Parquet.Parquets
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public override T DeepClone<T>()
+        public override ParquetStatusPack DeepClone()
             => new ParquetStatusPack((FloorStatus)CurrentFloorStatus.DeepClone(),
-                                     (BlockStatus)CurrentBlockStatus.DeepClone()) as T;
+                                     (BlockStatus)CurrentBlockStatus.DeepClone());
+
+        /// <summary>
+        /// Creates a new instance that is a deep copy of the current instance.
+        /// </summary>
+        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        public override T DeepClone<T>()
+            => DeepClone() as T;
         #endregion
 
         #region Utilities
