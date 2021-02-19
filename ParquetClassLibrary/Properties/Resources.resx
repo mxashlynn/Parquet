@@ -253,8 +253,8 @@
     <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
   </data>
-  <data name="WarningEditModeOnly" xml:space="preserve">
-    <value>{1} is unavailable in play mode.</value>
+  <data name="WarningImmutableDuringPlay" xml:space="preserve">
+    <value>{1} cannot be written to in play mode.</value>
     <comment>Warning string.</comment>
   </data>
   <data name="WarningRoomSize" xml:space="preserve">
@@ -267,6 +267,10 @@
   </data>
   <data name="WarningTriedToStoreNothing" xml:space="preserve">
     <value>Tried to store {0} in {1}.</value>
+    <comment>Warning string.</comment>
+  </data>
+  <data name="WarningUnavailableDuringPlay" xml:space="preserve">
+    <value>{1} is unavailable in play mode.</value>
     <comment>Warning string.</comment>
   </data>
 </root>

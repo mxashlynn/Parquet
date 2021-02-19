@@ -367,11 +367,11 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} is unavailable in play mode..
+        ///   Looks up a localized string similar to {1} cannot be written to in play mode..
         /// </summary>
-        internal static string WarningEditModeOnly {
+        internal static string WarningImmutableDuringPlay {
             get {
-                return ResourceManager.GetString("WarningEditModeOnly", resourceCulture);
+                return ResourceManager.GetString("WarningImmutableDuringPlay", resourceCulture);
             }
         }
         
@@ -399,6 +399,15 @@ namespace Parquet.Properties {
         internal static string WarningTriedToStoreNothing {
             get {
                 return ResourceManager.GetString("WarningTriedToStoreNothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1} is unavailable in play mode..
+        /// </summary>
+        internal static string WarningUnavailableDuringPlay {
+            get {
+                return ResourceManager.GetString("WarningUnavailableDuringPlay", resourceCulture);
             }
         }
     }

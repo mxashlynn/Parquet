@@ -49,6 +49,20 @@ namespace Parquet
 
         #region Convenience Routines
         /// <summary>
+        /// Convenience method that logs a <see cref="LibraryState"/> error and returns the given default value.
+        /// </summary>
+        /// <typeparam name="T">The type of value to return.</typeparam>
+        /// <param name="inName">The name of the item that cannot be used during play.</param>
+        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <returns>The default value given.</returns>
+        internal static T DefaultWithImmutableInPlayLog<T>(string inName, T inDefaultValue)
+        {
+            currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningImmutableDuringPlay,
+                                                              inName), null);
+            return inDefaultValue;
+        }
+
+        /// <summary>
         /// Convenience method that logs a conversion error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>

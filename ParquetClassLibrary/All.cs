@@ -676,7 +676,7 @@ namespace Parquet
         {
             if (LibraryState.IsPlayMode)
             {
-                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningEditModeOnly,
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
                                                            $"{nameof(All.Clear)}"));
             }
             else
