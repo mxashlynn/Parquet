@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 
 namespace Parquet.EditorSupport
@@ -39,4 +38,3 @@ namespace Parquet.EditorSupport
         public ICollection<ModelTag> Tags { get; }
     }
 }
-#endif

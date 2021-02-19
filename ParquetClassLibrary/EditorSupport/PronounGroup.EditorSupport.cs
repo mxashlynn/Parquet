@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.EditorSupport;
 using CsvHelper.Configuration.Attributes;
 using System.Diagnostics.CodeAnalysis;
@@ -32,4 +31,3 @@ namespace Parquet.Beings
         #endregion
     }
 }
-#endif

@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.Items;
 
 namespace Parquet.EditorSupport
@@ -40,4 +39,3 @@ namespace Parquet.EditorSupport
         public ModelID ParquetID { get; set; }
     }
 }
-#endif

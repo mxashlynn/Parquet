@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Parquets;
 
@@ -34,4 +33,3 @@ namespace Parquet.EditorSupport
         public ICollection<ModelTag> AddsToRoom { get; }
     }
 }
-#endif

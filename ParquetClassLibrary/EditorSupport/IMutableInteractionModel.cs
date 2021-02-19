@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Scripts;
 
@@ -29,4 +28,3 @@ namespace Parquet.EditorSupport
         public ICollection<ModelID> OutcomesIDs { get; }
     }
 }
-#endif

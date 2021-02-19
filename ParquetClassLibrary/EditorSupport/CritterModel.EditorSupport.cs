@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.EditorSupport;
 
 namespace Parquet.Beings
@@ -13,4 +12,3 @@ namespace Parquet.Beings
         #endregion
     }
 }
-#endif

@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Scripts;
 
@@ -19,4 +18,3 @@ namespace Parquet.EditorSupport
         public ICollection<ScriptNode> Nodes { get; }
     }
 }
-#endif

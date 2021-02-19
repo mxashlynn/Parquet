@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Rooms;
 
@@ -26,4 +25,3 @@ namespace Parquet.EditorSupport
         public ICollection<RecipeElement> OptionallyRequiredPerimeterBlocks { get; }
     }
 }
-#endif

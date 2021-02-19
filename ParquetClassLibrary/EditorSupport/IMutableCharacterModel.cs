@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Beings;
 using Parquet.Items;
@@ -47,4 +46,3 @@ namespace Parquet.EditorSupport
         public Inventory StartingInventory { get; }
     }
 }
-#endif

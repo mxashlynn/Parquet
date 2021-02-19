@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Beings;
 
@@ -22,4 +21,3 @@ namespace Parquet.EditorSupport
         public ICollection<ModelID> SeeksIDs { get; }
     }
 }
-#endif

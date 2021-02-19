@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.Beings;
 
 namespace Parquet.EditorSupport
@@ -24,4 +23,3 @@ namespace Parquet.EditorSupport
         public string Reflexive { get; set; }
     }
 }
-#endif

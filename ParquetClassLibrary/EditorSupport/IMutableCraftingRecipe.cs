@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using Parquet.Crafts;
 
@@ -27,4 +26,3 @@ namespace Parquet.EditorSupport
         public void PanelPatternReplace(IGrid<StrikePanel> inReplacement);
     }
 }
-#endif

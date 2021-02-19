@@ -1,5 +1,4 @@
-#if DESIGN
-using System.Diagnostics.CodeAnalysis;
+#sing System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
 
@@ -52,4 +51,3 @@ namespace Parquet.Parquets
         #endregion
     }
 }
-#endif

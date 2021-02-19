@@ -1,4 +1,3 @@
-#if DESIGN
 namespace Parquet.Maps
 {
     /// <summary>
@@ -15,4 +14,3 @@ namespace Parquet.Maps
         #endregion
     }
 }
-#endif

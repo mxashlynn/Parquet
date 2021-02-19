@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 
 namespace Parquet.EditorSupport
@@ -25,4 +24,3 @@ namespace Parquet.EditorSupport
         public void Replace(TModel inModel);
     }
 }
-#endif

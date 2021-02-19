@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.Parquets;
 
 namespace Parquet.EditorSupport
@@ -28,4 +27,3 @@ namespace Parquet.EditorSupport
         public ModelID SwapID { get; set; }
     }
 }
-#endif

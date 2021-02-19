@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.Maps;
 
 namespace Parquet.EditorSupport
@@ -31,4 +30,3 @@ namespace Parquet.EditorSupport
         ModelID RegionBelowID { get; set; }
     }
 }
-#endif

@@ -1,4 +1,3 @@
-#if DESIGN
 using Parquet.Parquets;
 
 namespace Parquet.EditorSupport
@@ -22,4 +21,3 @@ namespace Parquet.EditorSupport
         public int EffectAmount { get; set; }
     }
 }
-#endif

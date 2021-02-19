@@ -1,4 +1,3 @@
-#if DESIGN
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
@@ -82,4 +81,3 @@ namespace Parquet.Beings
         #endregion
     }
 }
-#endif
