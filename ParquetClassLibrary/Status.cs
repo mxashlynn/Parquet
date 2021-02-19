@@ -6,9 +6,21 @@ using CsvHelper.TypeConversion;
 namespace Parquet
 {
     /// <summary>
-    /// Tracks the status of a game element that varies during play.
-    /// As a result, instances of these classes are mutable during play.
+    /// Represents individual game object instances with elements that vary over time or between instances.
     /// </summary>
+    /// <remarks>
+    /// <see cref="Status{T}"/>es represent the parts of a game object that change while the game
+    /// is played.  For this reason, Statuses are designed to be always mutable.
+    /// <br/><br/>
+    /// Most types derived from Status have a companion type derived from <see cref="Model"/>.
+    /// These companion classes represent the parts of a game object that do not vary by instance
+    /// or with time, and so do not have mutable state during game play.  All such Statuses are
+    /// paired with a <see cref="ModelID"/> by manager classes.
+    /// <br/><br/>
+    /// One Status that does not have a Model companion is <see cref="Location"/>, which can
+    /// be applied to any game object with a definite position within the game world.
+    /// </remarks>
+    /// <seealso cref="LibraryState.IsPlayMode"/>
     public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter, IDeeplyCloneable<Status<T>>
     {
         #region IEquatable Implementation

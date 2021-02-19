@@ -7,30 +7,30 @@ using CsvHelper.Configuration.Attributes;
 namespace Parquet
 {
     /// <summary>
-    /// Models a unique, identifiable type of game object.
+    /// Represents a unique, identifiable type of game object.
     /// </summary>
     /// <remarks>
-    /// All <see cref="Model"/>s are identified with a <see cref="ModelID"/>,
-    /// and are considered equal if and only if their respective ModelIDs are equal.<para />
-    /// <para />
-    /// Model is intended to represent the parts of a game object that do not change
-    /// from one instance to another.  In this sense, it can be thought of as
-    /// analogous to a C# class.<para />
-    /// <para />
-    /// Individual game objects are represented and referenced as instances of <see cref="ModelID"/>
-    /// within <see cref="ModelCollection{T}"/>s in other classes.  Like a class instance,
-    /// the Model for a given ModelID is looked up from a singular definition,
-    /// in this case via <see cref="ModelCollection{T}.GetOrNull{T}(ModelID)"/>.<para />
-    /// <para />
-    /// Collections of the definitions used during play are contained in <see cref="All"/>.<para />
-    /// <para />
-    /// If individual game objects must have mutable state then a separate partner class,
-    /// such as <see cref="Parquets.ParquetStatusPack"/> or <see cref="Beings.BeingStatus"/>,
-    /// represents that state.<para />
-    /// <para />
     /// Model could be considered the fundamental class of the entire Parquet library.
+    /// <br/><br/>
+    /// <see cref="Model"/>s represent the parts of a game object that do not change from
+    /// one instance to another or from one moment to the next.  For this reason, Models
+    /// are designed to be immutable during play but mutable during game editing.
+    /// <br/><br/>
+    /// Most types derived from Model have a companion type derived from <see cref="Status{T}"/>.
+    /// These companion classes represent the parts of a game object that do vary by instance
+    /// or with time, and so always have mutable state.
+    /// <br/><br/>
+    /// All Models are identified by a <see cref="ModelID"/>, and are considered equal
+    /// if and only if their respective ModelIDs are equal.
+    /// <br/><br/>
+    /// Individual entities in-game are implemented as instances of ModelIDs
+    /// within <see cref="ModelIDGrid"/>s.
+    /// <br/><br/>
+    /// Every Model definition used by a given Parquet game is contained in one of
+    /// several <see cref="ModelCollection{T}"/>s within global repository <see cref="All"/>.
     /// </remarks>
     /// <seealso cref="ModelTag"/>
+    /// <seealso cref="LibraryState.IsPlayMode"/>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, Model should never itself use IMutableModel the interface to access its own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public abstract partial class Model : IEquatable<Model>

@@ -20,9 +20,12 @@ namespace Parquet
         /// set it to <c>false</c> if it is being used by an editor or tool.
         /// </summary>
         /// <remarks>
-        /// This is optional.  When set to <c>true</c>, Parquet prevents editing
-        /// the properties of <see cref="Model"/>s, which are not designed to be
-        /// mutated during play, but which must be mutated during game design.
+        /// <see cref="Model"/>s are designed to be immutable during play
+        /// but mutable at design time.
+        /// <br/>
+        /// By preventing model mutation when this is set to <c>true</c>, Parquet
+        /// removes some of the responsibility to respect this distinction from the
+        /// game developer.
         /// </remarks>
         public static bool IsPlayMode { get; set; }
     }

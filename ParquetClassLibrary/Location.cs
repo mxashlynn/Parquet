@@ -10,7 +10,9 @@ namespace Parquet
     /// </summary>
     /// <remarks>
     /// Could meaningfully apply to any object that has a specific position with in the game world.
-    /// In practice, is often used for <see cref="Model"/>s.
+    /// <br/>
+    /// In practice, is often used for <see cref="Model"/>s in addition to that Model's
+    /// <see cref="Status{T}"/> class.
     /// </remarks>
     sealed public class Location : Status<object>
     {
