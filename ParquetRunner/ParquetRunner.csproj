@@ -26,7 +26,7 @@
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-    <Configurations>Debug;Game Release;Editor Release</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
   </PropertyGroup>
 
