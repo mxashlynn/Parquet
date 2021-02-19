@@ -19,6 +19,12 @@ namespace Parquet
         /// <param name="inException">The exception related to this event, if any.</param>
         public void Log(LogLevel inLogLevel, string inMessage = null, Exception inException = null)
         {
+            if (inLogLevel == LogLevel.Debug && !LibraryState.IsDebugMode)
+            {
+                // Ignore debug logs when not running in debug mode.
+                return;
+            }
+
             var destination = inLogLevel == LogLevel.Info
                 ? Console.Out
                 : Console.Error;
