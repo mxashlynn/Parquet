@@ -1,4 +1,4 @@
-#sing System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
 

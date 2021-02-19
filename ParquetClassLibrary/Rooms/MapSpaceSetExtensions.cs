@@ -77,6 +77,7 @@ namespace Parquet.Rooms
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
 
                     // Design-time sanity checks.
+                    // Note: No need to check LibraryState.IsPlayMode as Debug.Assertions are removed in release builds anyway.
                     Debug.Assert(potentialPerimeter.Count <= (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
                                                nameof(potentialPerimeter.Count), potentialPerimeter.Count,
