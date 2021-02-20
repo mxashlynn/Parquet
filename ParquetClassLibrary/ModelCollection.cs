@@ -306,8 +306,8 @@ namespace Parquet
             where TModelInner : TModel
         {
             var maxAssignedID = inModelsWithOldIDs
-                .Aggregate((current, next) =>
-                    next.ID > current.ID
+                .Aggregate((current, next)
+                    => next.ID > current.ID
                         ? next
                         : current).ID;
             foreach (var record in ModelID.RecordsWithMissingIDs)

@@ -34,8 +34,7 @@ namespace Parquet.Rooms
                 .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
                                     && walkableArea.Any(space => space.IsWalkableEntry
                                                               || space.Neighbors()
-                                                                      .Any(neighbor =>
-                                                                           neighbor.IsEnclosingEntry(walkableArea))))
+                                                                      .Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
                 .Select(walkableArea => new Room(walkableArea, perimeter))
                 .ToList();
             return rooms;

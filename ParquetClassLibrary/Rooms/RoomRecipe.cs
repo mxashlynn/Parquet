@@ -92,19 +92,19 @@ namespace Parquet.Rooms
         public bool Matches(Room inRoom)
             => inRoom is not null
             && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
-            && OptionallyRequiredPerimeterBlocks.All(element =>
-                inRoom.Perimeter.Count(space =>
-                    space.Content.BlockID != ModelID.None
+            && OptionallyRequiredPerimeterBlocks.All(element
+                => inRoom.Perimeter.Count(space
+                    => space.Content.BlockID != ModelID.None
                     && (All.Blocks.GetOrNull<BlockModel>(space.Content.BlockID)?.AddsToRoom.Contains(element.ElementTag) ?? false))
                         >= element.ElementAmount)
-            && OptionallyRequiredWalkableFloors.All(element =>
-                inRoom.WalkableArea.Count(space =>
-                    space.Content.FloorID != ModelID.None
+            && OptionallyRequiredWalkableFloors.All(element
+                => inRoom.WalkableArea.Count(space
+                    => space.Content.FloorID != ModelID.None
                     && (All.Floors.GetOrNull<FloorModel>(space.Content.FloorID)?.AddsToRoom.Contains(element.ElementTag) ?? false))
                         >= element.ElementAmount)
-            && OptionallyRequiredFurnishings.All(element =>
-                inRoom.FurnishingTags.Count(tag =>
-                    tag == element.ElementTag) >= element.ElementAmount);
+            && OptionallyRequiredFurnishings.All(element
+                => inRoom.FurnishingTags.Count(tag
+                    => tag == element.ElementTag) >= element.ElementAmount);
         #endregion
     }
 }
