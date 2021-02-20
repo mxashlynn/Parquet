@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -20,7 +21,13 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        int IMutableBiomeRecipe.Tier { get => Tier; set => Tier = value; }
+        int IMutableBiomeRecipe.Tier
+        {
+            get => Tier;
+            set => Tier = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Tier), Tier)
+                : value;
+        }
 
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
         /// <remarks>
@@ -28,7 +35,13 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        bool IMutableBiomeRecipe.IsRoomBased { get => IsRoomBased; set => IsRoomBased = value; }
+        bool IMutableBiomeRecipe.IsRoomBased
+        {
+            get => IsRoomBased;
+            set => IsRoomBased = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsRoomBased), IsRoomBased)
+                : value;
+        }
 
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
         /// <remarks>
@@ -36,7 +49,13 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        bool IMutableBiomeRecipe.IsLiquidBased { get => IsLiquidBased; set => IsLiquidBased = value; }
+        bool IMutableBiomeRecipe.IsLiquidBased
+        {
+            get => IsLiquidBased;
+            set => IsLiquidBased = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsLiquidBased), IsLiquidBased)
+                : value;
+        }
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         /// <remarks>
@@ -44,7 +63,13 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelTag IMutableBiomeRecipe.ParquetCriteria { get => ParquetCriteria; set => ParquetCriteria = value; }
+        ModelTag IMutableBiomeRecipe.ParquetCriteria
+        {
+            get => ParquetCriteria;
+            set => ParquetCriteria = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ParquetCriteria), ParquetCriteria)
+                : value;
+        }
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         /// <remarks>
@@ -52,7 +77,10 @@ namespace Parquet.Biomes
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelTag> IMutableBiomeRecipe.EntryRequirements => (ICollection<ModelTag>)EntryRequirements;
+        ICollection<ModelTag> IMutableBiomeRecipe.EntryRequirements
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EntryRequirements), new Collection<ModelTag>())
+                : (ICollection<ModelTag>)EntryRequirements;
         #endregion
     }
 }

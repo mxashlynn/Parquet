@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Biomes;
@@ -19,7 +20,13 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableParquetModel.ItemID { get => ItemID; set => ItemID = value; }
+        ModelID IMutableParquetModel.ItemID
+        {
+            get => ItemID;
+            set => ItemID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ItemID), ItemID)
+                : value;
+        }
 
         /// <summary>
         /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
@@ -30,7 +37,10 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelTag> IMutableParquetModel.AddsToBiome => (ICollection<ModelTag>)AddsToBiome;
+        ICollection<ModelTag> IMutableParquetModel.AddsToBiome
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(AddsToBiome), new Collection<ModelTag>())
+                : (ICollection<ModelTag>)AddsToBiome;
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -41,7 +51,10 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelTag> IMutableParquetModel.AddsToRoom => (ICollection<ModelTag>)AddsToRoom;
+        ICollection<ModelTag> IMutableParquetModel.AddsToRoom
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(AddsToRoom), new Collection<ModelTag>())
+                : (ICollection<ModelTag>) AddsToRoom;
         #endregion
     }
 }

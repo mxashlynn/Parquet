@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -18,7 +19,13 @@ namespace Parquet
         /// Be especially cautious editing this property.
         /// </remarks>
         [Ignore]
-        ModelID IMutableModel.ID { get => ID; set => ID = value; }
+        ModelID IMutableModel.ID
+        {
+            get => ID;
+            set => ID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ID), ID)
+                : value;
+        }
 
         /// <summary>Player-facing name.</summary>
         /// <remarks>
@@ -26,7 +33,13 @@ namespace Parquet
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        string IMutableModel.Name { get => Name; set => Name = value; }
+        string IMutableModel.Name
+        {
+            get => Name;
+            set => Name = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Name), Name)
+                : value;
+        }
 
         /// <summary>Player-facing description.</summary>
         /// <remarks>
@@ -34,7 +47,13 @@ namespace Parquet
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        string IMutableModel.Description { get => Description; set => Description = value; }
+        string IMutableModel.Description
+        {
+            get => Description;
+            set => Description = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Description), Description)
+                : value;
+        }
 
         /// <summary>Optional comment.</summary>
         /// <remarks>
@@ -42,7 +61,13 @@ namespace Parquet
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        string IMutableModel.Comment { get => Comment; set => Comment = value; }
+        string IMutableModel.Comment
+        {
+            get => Comment;
+            set => Comment = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Comment), Comment)
+                : value;
+        }
 
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         /// <remarks>
@@ -50,7 +75,11 @@ namespace Parquet
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelTag> IMutableModel.Tags => (ICollection<ModelTag>)Tags;
+        ICollection<ModelTag> IMutableModel.Tags
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Tags), new Collection<ModelTag>())
+                : (ICollection<ModelTag>) Tags;
+
         #endregion
     }
 }

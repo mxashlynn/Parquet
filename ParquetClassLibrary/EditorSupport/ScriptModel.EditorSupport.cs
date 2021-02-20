@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -16,7 +17,10 @@ namespace Parquet.Scripts
         /// IScriptModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ScriptNode> IMutableScriptModel.Nodes => (ICollection<ScriptNode>)Nodes;
+        ICollection<ScriptNode> IMutableScriptModel.Nodes
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Nodes), new Collection<ScriptNode>())
+                : (ICollection<ScriptNode>)Nodes;
         #endregion
     }
 }

@@ -16,7 +16,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        GatheringTool IMutableBlockModel.GatherTool { get => GatherTool; set => GatherTool = value; }
+        GatheringTool IMutableBlockModel.GatherTool
+        {
+            get => GatherTool;
+            set => GatherTool = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(GatherTool), GatherTool)
+                : value;
+        }
 
         /// <summary>The effect generated when a character gathers this Block.</summary>
         /// <remarks>
@@ -24,7 +30,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        GatheringEffect IMutableBlockModel.GatherEffect { get => GatherEffect; set => GatherEffect = value; }
+        GatheringEffect IMutableBlockModel.GatherEffect
+        {
+            get => GatherEffect;
+            set => GatherEffect = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(GatherEffect), GatherEffect)
+                : value;
+        }
 
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         /// <remarks>
@@ -32,7 +44,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableBlockModel.CollectibleID { get => CollectibleID; set => CollectibleID = value; }
+        ModelID IMutableBlockModel.CollectibleID
+        {
+            get => CollectibleID;
+            set => CollectibleID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(CollectibleID), CollectibleID)
+                : value;
+        }
 
         /// <summary>Whether or not the block is flammable.</summary>
         /// <remarks>
@@ -40,7 +58,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        bool IMutableBlockModel.IsFlammable { get => IsFlammable; set => IsFlammable = value; }
+        bool IMutableBlockModel.IsFlammable
+        {
+            get => IsFlammable;
+            set => IsFlammable = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsFlammable), IsFlammable)
+                : value;
+        }
 
         /// <summary>Whether or not the block is a liquid.</summary>
         /// <remarks>
@@ -48,7 +72,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        bool IMutableBlockModel.IsLiquid { get => IsLiquid; set => IsLiquid = value; }
+        bool IMutableBlockModel.IsLiquid
+        {
+            get => IsLiquid;
+            set => IsLiquid = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsLiquid), IsLiquid)
+                : value;
+        }
 
         /// <summary>The block's native toughness.</summary>
         /// <remarks>
@@ -56,7 +86,13 @@ namespace Parquet.Parquets
         /// IBlockModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        int IMutableBlockModel.MaxToughness { get => MaxToughness; set => MaxToughness = value; }
+        int IMutableBlockModel.MaxToughness
+        {
+            get => MaxToughness;
+            set => MaxToughness = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(MaxToughness), MaxToughness)
+                : value;
+        }
         #endregion
     }
 }

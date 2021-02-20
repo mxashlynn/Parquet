@@ -15,7 +15,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ItemType IMutableItemModel.Subtype { get => Subtype; set => Subtype = value; }
+        ItemType IMutableItemModel.Subtype
+        {
+            get => Subtype;
+            set => Subtype = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Subtype), Subtype)
+                : value;
+        }
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         /// <remarks>
@@ -23,7 +29,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        int IMutableItemModel.Price { get => Price; set => Price = value; }
+        int IMutableItemModel.Price
+        {
+            get => Price;
+            set => Price = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Price), Price)
+                : value;
+        }
 
         /// <summary>How relatively rare this item is.</summary>
         /// <remarks>
@@ -31,7 +43,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        int IMutableItemModel.Rarity { get => Rarity; set => Rarity = value; }
+        int IMutableItemModel.Rarity
+        {
+            get => Rarity;
+            set => Rarity = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Rarity), Rarity)
+                : value;
+        }
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
         /// <remarks>
@@ -39,7 +57,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        int IMutableItemModel.StackMax { get => StackMax; set => StackMax = value; }
+        int IMutableItemModel.StackMax
+        {
+            get => StackMax;
+            set => StackMax = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StackMax), StackMax)
+                : value;
+        }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
@@ -50,7 +74,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableItemModel.EffectWhileHeldID { get => EffectWhileHeldID; set => EffectWhileHeldID = value; }
+        ModelID IMutableItemModel.EffectWhileHeldID
+        {
+            get => EffectWhileHeldID;
+            set => EffectWhileHeldID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EffectWhileHeldID), EffectWhileHeldID)
+                : value;
+        }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
@@ -61,7 +91,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableItemModel.EffectWhenUsedID { get => EffectWhenUsedID; set => EffectWhenUsedID = value; }
+        ModelID IMutableItemModel.EffectWhenUsedID
+        {
+            get => EffectWhenUsedID;
+            set => EffectWhenUsedID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EffectWhenUsedID), EffectWhenUsedID)
+                : value;
+        }
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         /// <remarks>
@@ -69,7 +105,13 @@ namespace Parquet.Items
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableItemModel.ParquetID { get => ParquetID; set => ParquetID = value; }
+        ModelID IMutableItemModel.ParquetID
+        {
+            get => ParquetID;
+            set => ParquetID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ParquetID), ParquetID)
+                : value;
+        }
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -20,7 +21,9 @@ namespace Parquet.Beings
         string IMutableCharacterModel.PersonalName
         {
             get => PersonalName;
-            set => ((IMutableModel)this).Name = $"{value}{Delimiters.NameDelimiter}{FamilyName}";
+            set => ((IMutableModel)this).Name = ((IMutableModel)this).Name = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PersonalName), Name)
+                : $"{value}{Delimiters.NameDelimiter}{FamilyName}";
         }
 
         /// <summary>Player-facing family name.</summary>
@@ -32,7 +35,9 @@ namespace Parquet.Beings
         string IMutableCharacterModel.FamilyName
         {
             get => FamilyName;
-            set => ((IMutableModel)this).Name = $"{PersonalName}{Delimiters.NameDelimiter}{value}";
+            set => ((IMutableModel)this).Name = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(FamilyName), Name)
+                : $"{PersonalName}{Delimiters.NameDelimiter}{value}";
         }
 
         /// <summary>
@@ -44,7 +49,13 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        string IMutableCharacterModel.PronounKey { get => PronounKey; set => PronounKey = value; }
+        string IMutableCharacterModel.PronounKey
+        {
+            get => PronounKey;
+            set => PronounKey = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PronounKey), PronounKey)
+                : value;
+        }
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
@@ -52,7 +63,13 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        string IMutableCharacterModel.StoryCharacterID { get => StoryCharacterID; set => StoryCharacterID = value; }
+        string IMutableCharacterModel.StoryCharacterID
+        {
+            get => StoryCharacterID;
+            set => StoryCharacterID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StoryCharacterID), StoryCharacterID)
+                : value;
+        }
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
@@ -60,7 +77,10 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs => (ICollection<ModelID>)StartingQuestIDs;
+        ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingQuestIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)StartingQuestIDs;
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
@@ -68,7 +88,13 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableCharacterModel.StartingDialogueID { get => StartingDialogueID; set => StartingDialogueID = value; }
+        ModelID IMutableCharacterModel.StartingDialogueID
+        {
+            get => StartingDialogueID;
+            set => StartingDialogueID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingDialogueID), StartingDialogueID)
+                : value;
+        }
 
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
@@ -77,7 +103,10 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        Inventory IMutableCharacterModel.StartingInventory => StartingInventory;
+        Inventory IMutableCharacterModel.StartingInventory
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), Inventory.Empty)
+                : StartingInventory;
         #endregion
     }
 }

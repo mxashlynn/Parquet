@@ -15,7 +15,13 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        CollectingEffect IMutableCollectibleModel.CollectionEffect { get => CollectionEffect; set => CollectionEffect = value; }
+        CollectingEffect IMutableCollectibleModel.CollectionEffect
+        {
+            get => CollectionEffect;
+            set => CollectionEffect = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(CollectionEffect), CollectionEffect)
+                : value;
+        }
 
         /// <summary>
         /// The scale in points of the effect.
@@ -26,7 +32,13 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        int IMutableCollectibleModel.EffectAmount { get => EffectAmount; set => EffectAmount = value; }
+        int IMutableCollectibleModel.EffectAmount
+        {
+            get => EffectAmount;
+            set => EffectAmount = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EffectAmount), EffectAmount)
+                : value;
+        }
         #endregion
     }
 }

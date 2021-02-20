@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -19,7 +20,10 @@ namespace Parquet.Crafts
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ICollection<RecipeElement> IMutableCraftingRecipe.Products => (ICollection<RecipeElement>)Products;
+        ICollection<RecipeElement> IMutableCraftingRecipe.Products
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Products), new Collection<RecipeElement>())
+                : (ICollection<RecipeElement>)Products;
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         /// <remarks>
@@ -27,7 +31,10 @@ namespace Parquet.Crafts
         /// IModelEdit is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        ICollection<RecipeElement> IMutableCraftingRecipe.Ingredients => (ICollection<RecipeElement>)Ingredients;
+        ICollection<RecipeElement> IMutableCraftingRecipe.Ingredients
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Ingredients), new Collection<RecipeElement>())
+                : (ICollection<RecipeElement>)Ingredients;
 
         /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         /// <remarks>
@@ -40,10 +47,9 @@ namespace Parquet.Crafts
         /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
         /// <param name="inReplacement">The new pattern to use.</param>
         public void PanelPatternReplace(IGrid<StrikePanel> inReplacement)
-        {
-            var nonNullPanelPattern = (StrikePanelGrid)inReplacement ?? StrikePanelGrid.Empty;
-            PanelPattern = nonNullPanelPattern;
-        }
+            => PanelPattern = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PanelPattern), PanelPattern)
+                : inReplacement as StrikePanelGrid ?? StrikePanelGrid.Empty;
         #endregion
     }
 }

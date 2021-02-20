@@ -16,7 +16,13 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModificationTool IMutableFloorModel.ModTool { get => ModTool; set => ModTool = value; }
+        ModificationTool IMutableFloorModel.ModTool
+        {
+            get => ModTool;
+            set => ModTool = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ModTool), ModTool)
+                : value;
+        }
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         /// <remarks>
@@ -24,7 +30,13 @@ namespace Parquet.Parquets
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        string IMutableFloorModel.TrenchName { get => TrenchName; set => TrenchName = value; }
+        string IMutableFloorModel.TrenchName
+        {
+            get => TrenchName;
+            set => TrenchName = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(TrenchName), TrenchName)
+                : value;
+        }
         #endregion
     }
 }

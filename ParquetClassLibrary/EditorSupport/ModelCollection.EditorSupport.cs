@@ -17,7 +17,7 @@ namespace Parquet
         int ICollection<TModel>.Count => Count;
 
         /// <summary><c>true</c> if the <see cref="ModelCollection{TModel}"/> is read-only; otherwise, <c>false</c>.</summary>
-        bool ICollection<TModel>.IsReadOnly => false;
+        bool ICollection<TModel>.IsReadOnly => LibraryState.IsPlayMode;
 
         /// <summary>
         /// Adds the given <typeparamref name="TModel"/> to the collection.
@@ -25,6 +25,13 @@ namespace Parquet
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         void ICollection<TModel>.Add(TModel inModel)
         {
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
+                                                           $"{nameof(IMutableModelCollection<TModel>.Add)}"));
+                return;
+            }
+
             Precondition.IsNotNull(inModel);
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
@@ -53,7 +60,16 @@ namespace Parquet
         /// <param name="inArray">The array to copy to.</param>
         /// <param name="inArrayIndex">The index at which to begin copying.</param>
         void ICollection<TModel>.CopyTo(TModel[] inArray, int inArrayIndex)
-            => EditableModels.Values.CopyTo(inArray, inArrayIndex);
+        {
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
+                                                           $"{nameof(IMutableModelCollection<TModel>.CopyTo)}"));
+                return;
+            }
+
+            EditableModels.Values.CopyTo(inArray, inArrayIndex);
+        }
 
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
@@ -61,6 +77,13 @@ namespace Parquet
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         bool ICollection<TModel>.Remove(TModel inModel)
         {
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
+                                                           $"{nameof(IMutableModelCollection<TModel>.Remove)}"));
+                return false;
+            }
+
             Precondition.IsNotNull(inModel);
 
             return ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ?? ModelID.None);
@@ -75,16 +98,26 @@ namespace Parquet
             Precondition.IsNotNone(inID);
             Precondition.IsInRange(inID, Bounds, nameof(inID));
 
-            return inID == ModelID.None
-                ? false
-                : EditableModels.Remove(inID);
+            return LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IMutableModelCollection<TModel>.Remove), false)
+                : inID != ModelID.None
+                       && EditableModels.Remove(inID);
         }
 
         /// <summary>
         /// Empties the entire collection.
         /// </summary>
         void ICollection<TModel>.Clear()
-            => EditableModels.Clear();
+        {
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
+                                                           $"{nameof(IMutableModelCollection<TModel>.Clear)}"));
+                return;
+            }
+
+            EditableModels.Clear();
+        }
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
@@ -94,6 +127,13 @@ namespace Parquet
         /// <remarks>Facilitates updating elements from design tools while maintaining a read-only facade during play.</remarks>
         void IMutableModelCollection<TModel>.Replace(TModel inModel)
         {
+            if (LibraryState.IsPlayMode)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningUnavailableDuringPlay,
+                                                           $"{nameof(IMutableModelCollection<TModel>.Replace)}"));
+                return;
+            }
+
             Precondition.IsNotNull(inModel);
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));

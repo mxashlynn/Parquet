@@ -11,23 +11,53 @@ namespace Parquet.Beings
         #region IPronounGroupEdit Implementation
         /// <summary>Personal pronoun used as the subject of a verb.</summary>
         [Ignore]
-        string IMutablePronounGroup.Subjective { get => Subjective; set => Subjective = value; }
+        string IMutablePronounGroup.Subjective
+        {
+            get => Subjective;
+            set => Subjective = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Subjective), Subjective)
+                : value;
+        }
 
         /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
         [Ignore]
-        string IMutablePronounGroup.Objective { get => Objective; set => Objective = value; }
+        string IMutablePronounGroup.Objective
+        {
+            get => Objective;
+            set => Objective = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Objective), Objective)
+                : value;
+        }
 
         /// <summary>Personal pronoun used to attribute possession.</summary>
         [Ignore]
-        string IMutablePronounGroup.Determiner { get => Determiner; set => Determiner = value; }
+        string IMutablePronounGroup.Determiner
+        {
+            get => Determiner;
+            set => Determiner = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Determiner), Determiner)
+                : value;
+        }
 
         /// <summary>Personal pronoun used to indicate a relationship.</summary>
         [Ignore]
-        string IMutablePronounGroup.Possessive { get => Possessive; set => Possessive = value; }
+        string IMutablePronounGroup.Possessive
+        {
+            get => Possessive;
+            set => Possessive = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Possessive), Possessive)
+                : value;
+        }
 
         /// <summary>Personal pronoun used to indicate the user.</summary>
         [Ignore]
-        string IMutablePronounGroup.Reflexive { get => Reflexive; set => Reflexive = value; }
+        string IMutablePronounGroup.Reflexive
+        {
+            get => Reflexive;
+            set => Reflexive = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Reflexive), Reflexive)
+                : value;
+        }
         #endregion
     }
 }

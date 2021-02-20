@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -18,7 +19,10 @@ namespace Parquet.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableInteractionModel.PrerequisitesIDs => (ICollection<ModelID>)PrerequisitesIDs;
+        ICollection<ModelID> IMutableInteractionModel.PrerequisitesIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PrerequisitesIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)PrerequisitesIDs;
 
         /// <summary>
         /// Everything this interaction entails.
@@ -28,7 +32,10 @@ namespace Parquet.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableInteractionModel.StepsIDs => (ICollection<ModelID>)StepsIDs;
+        ICollection<ModelID> IMutableInteractionModel.StepsIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StepsIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)StepsIDs;
 
         /// <summary>
         /// Describes the results of finishing this interaction.
@@ -38,7 +45,10 @@ namespace Parquet.Scripts
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableInteractionModel.OutcomesIDs => (ICollection<ModelID>)OutcomesIDs;
+        ICollection<ModelID> IMutableInteractionModel.OutcomesIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(OutcomesIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)OutcomesIDs;
         #endregion
     }
 }

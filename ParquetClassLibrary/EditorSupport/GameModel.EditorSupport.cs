@@ -15,7 +15,13 @@ namespace Parquet.Games
         /// IGameModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        bool IMutableGameModel.IsEpisode { get => IsEpisode; set => IsEpisode = value; }
+        bool IMutableGameModel.IsEpisode
+        {
+            get => IsEpisode;
+            set => IsEpisode = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsEpisode), IsEpisode)
+                : value;
+        }
 
         /// <summary>Subtitle, if any.  This will be used as the title of the episode if <see cref="IsEpisode"/> is <c>true</c>.</summary>
         /// <remarks>
@@ -23,7 +29,13 @@ namespace Parquet.Games
         /// IGameModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        string IMutableGameModel.EpisodeTitle { get => EpisodeTitle; set => EpisodeTitle = value; }
+        string IMutableGameModel.EpisodeTitle
+        {
+            get => EpisodeTitle;
+            set => EpisodeTitle = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EpisodeTitle), EpisodeTitle)
+                : value;
+        }
 
         /// <summary>Number of this episode in its sequence, if any.</summary>
         /// <remarks>
@@ -31,7 +43,13 @@ namespace Parquet.Games
         /// IGameModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        int IMutableGameModel.EpisodeNumber { get => EpisodeNumber; set => EpisodeNumber = value; }
+        int IMutableGameModel.EpisodeNumber
+        {
+            get => EpisodeNumber;
+            set => EpisodeNumber = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EpisodeNumber), EpisodeNumber)
+                : value;
+        }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
         /// <remarks>
@@ -39,7 +57,13 @@ namespace Parquet.Games
         /// IGameModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableGameModel.PlayerCharacterID { get => PlayerCharacterID; set => PlayerCharacterID = value; }
+        ModelID IMutableGameModel.PlayerCharacterID
+        {
+            get => PlayerCharacterID;
+            set => PlayerCharacterID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PlayerCharacterID), PlayerCharacterID)
+                : value;
+        }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</summary>
         /// <remarks>
@@ -47,7 +71,13 @@ namespace Parquet.Games
         /// IGameModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableGameModel.FirstScriptID { get => FirstScriptID; set => FirstScriptID = value; }
+        ModelID IMutableGameModel.FirstScriptID
+        {
+            get => FirstScriptID;
+            set => FirstScriptID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(FirstScriptID), FirstScriptID)
+                : value;
+        }
         #endregion
     }
 }

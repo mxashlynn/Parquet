@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.EditorSupport;
@@ -17,7 +18,13 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableBeingModel.NativeBiomeID { get => NativeBiomeID; set => NativeBiomeID = value; }
+        ModelID IMutableBeingModel.NativeBiomeID
+        {
+            get => NativeBiomeID;
+            set => NativeBiomeID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(NativeBiomeID), NativeBiomeID)
+                : value;
+        }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         /// <remarks>
@@ -25,7 +32,13 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableBeingModel.PrimaryBehaviorID { get => PrimaryBehaviorID; set => PrimaryBehaviorID = value; }
+        ModelID IMutableBeingModel.PrimaryBehaviorID
+        {
+            get => PrimaryBehaviorID;
+            set => PrimaryBehaviorID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PrimaryBehaviorID), PrimaryBehaviorID)
+                : value;
+        }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         /// <remarks>
@@ -33,7 +46,10 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableBeingModel.AvoidsIDs => (ICollection<ModelID>)AvoidsIDs;
+        ICollection<ModelID> IMutableBeingModel.AvoidsIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(AvoidsIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)AvoidsIDs;
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> seeks out, if any.</summary>
         /// <remarks>
@@ -41,7 +57,10 @@ namespace Parquet.Beings
         /// IModelEdit is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ICollection<ModelID> IMutableBeingModel.SeeksIDs => (ICollection<ModelID>)SeeksIDs;
+        ICollection<ModelID> IMutableBeingModel.SeeksIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(SeeksIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)SeeksIDs;
         #endregion
     }
 }
