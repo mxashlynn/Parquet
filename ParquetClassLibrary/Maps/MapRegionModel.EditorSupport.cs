@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
-using Parquet.EditorSupport;
+
 
 namespace Parquet.Maps
 {
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
-    public partial class MapRegionSketch : IMutableMapRegion
+    public partial class MapRegionModel : IMutableMapRegion
     {
         #region IMapRegionEdit Implementation
         /// <summary>What the region is called in-game.</summary>
@@ -45,7 +45,7 @@ namespace Parquet.Maps
         [Ignore]
         ModelID IMutableMapRegion.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
+        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Ignore]
         ModelID IMutableMapRegion.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
         #endregion

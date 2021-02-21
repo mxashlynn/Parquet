@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
-using Parquet.EditorSupport;
 
 namespace Parquet.Games
 {

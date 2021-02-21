@@ -1,6 +1,4 @@
-using Parquet.Maps;
-
-namespace Parquet.EditorSupport
+namespace Parquet.Maps
 {
     /// <summary>
     /// Facilitates editing of <see cref="MapRegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Parquet.EditorSupport
+namespace Parquet
 {
     /// <summary>
     /// Facilitates editing of a <see cref="Model"/> from design tools while maintaining a read-only face for use during play.

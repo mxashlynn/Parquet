@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using Parquet.EditorSupport;
 
 namespace Parquet.Scripts
 {

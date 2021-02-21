@@ -1,6 +1,4 @@
-using Parquet.Beings;
-
-namespace Parquet.EditorSupport
+namespace Parquet.Beings
 {
     /// <summary>
     /// Facilitates editing of a <see cref="PronounGroup"/> from design tools while maintaining a read-only face for use during play.

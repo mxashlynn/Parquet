@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
-using Parquet.EditorSupport;
 using Parquet.Properties;
 
 namespace Parquet.Crafts

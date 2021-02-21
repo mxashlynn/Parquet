@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Parquet.Rooms;
 
-namespace Parquet.EditorSupport
+namespace Parquet.Rooms
 {
     /// <summary>
     /// Facilitates editing of a <see cref="RoomRecipe"/> from design tools while maintaining a read-only face for use during play.

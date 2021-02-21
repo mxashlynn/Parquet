@@ -681,20 +681,20 @@ namespace Parquet
             }
             else
             {
-                ((EditorSupport.IMutableModelCollection<GameModel>)Games)?.Clear();
-                ((EditorSupport.IMutableModelCollection<FloorModel>)Floors)?.Clear();
-                ((EditorSupport.IMutableModelCollection<BlockModel>)Blocks)?.Clear();
-                ((EditorSupport.IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
-                ((EditorSupport.IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
-                ((EditorSupport.IMutableModelCollection<CritterModel>)Critters)?.Clear();
-                ((EditorSupport.IMutableModelCollection<CharacterModel>)Characters)?.Clear();
-                ((EditorSupport.IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
-                ((EditorSupport.IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
-                ((EditorSupport.IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
-                ((EditorSupport.IMutableModelCollection<MapModel>)Maps)?.Clear();
-                ((EditorSupport.IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
-                ((EditorSupport.IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
-                ((EditorSupport.IMutableModelCollection<ItemModel>)Items)?.Clear();
+                ((IMutableModelCollection<GameModel>)Games)?.Clear();
+                ((IMutableModelCollection<FloorModel>)Floors)?.Clear();
+                ((IMutableModelCollection<BlockModel>)Blocks)?.Clear();
+                ((IMutableModelCollection<FurnishingModel>)Furnishings)?.Clear();
+                ((IMutableModelCollection<CollectibleModel>)Collectibles)?.Clear();
+                ((IMutableModelCollection<CritterModel>)Critters)?.Clear();
+                ((IMutableModelCollection<CharacterModel>)Characters)?.Clear();
+                ((IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
+                ((IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
+                ((IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
+                ((IMutableModelCollection<MapModel>)Maps)?.Clear();
+                ((IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
+                ((IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
+                ((IMutableModelCollection<ItemModel>)Items)?.Clear();
                 ((HashSet<PronounGroup>)PronounGroups)?.Clear();
                 CollectionsHaveBeenInitialized = false;
             }

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
-using Parquet.EditorSupport;
 using Parquet.Properties;
 
 namespace Parquet

@@ -1,6 +1,4 @@
-using Parquet.Items;
-
-namespace Parquet.EditorSupport
+namespace Parquet.Items
 {
     /// <summary>
     /// Facilitates editing of a <see cref="ItemModel"/> from design tools while maintaining a read-only face for use during play.

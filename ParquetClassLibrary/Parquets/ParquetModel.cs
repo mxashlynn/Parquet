@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Biomes;
-using Parquet.EditorSupport;
 
 namespace Parquet.Parquets
 {

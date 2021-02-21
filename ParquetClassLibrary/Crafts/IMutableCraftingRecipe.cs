@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Parquet.Crafts;
 
-namespace Parquet.EditorSupport
+namespace Parquet.Crafts
 {
     /// <summary>
     /// Facilitates editing of a <see cref="CraftingRecipe"/> from design tools while maintaining a read-only face for use during play.

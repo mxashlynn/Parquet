@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Parquet.Beings;
 
-namespace Parquet.EditorSupport
+namespace Parquet.Beings
 {
     /// <summary>
     /// Facilitates editing of a <see cref="BeingModel"/> from design tools while maintaining a read-only face for use during play.

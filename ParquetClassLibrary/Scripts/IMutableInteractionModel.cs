@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Parquet.Scripts;
 
-namespace Parquet.EditorSupport
+namespace Parquet.Scripts
 {
     /// <summary>
     /// Facilitates editing of a <see cref="InteractionModel"/> from design tools while maintaining a read-only face for use during play.

@@ -1,6 +1,4 @@
-using Parquet.Parquets;
-
-namespace Parquet.EditorSupport
+namespace Parquet.Parquets
 {
     /// <summary>
     /// Facilitates editing of a <see cref="FurnishingModel"/> from design tools while maintaining a read-only face for use during play.

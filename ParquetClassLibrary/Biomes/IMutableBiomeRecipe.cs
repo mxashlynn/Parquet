@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Parquet.Biomes;
 
-namespace Parquet.EditorSupport
+namespace Parquet.Biomes
 {
     /// <summary>
     /// Facilitates editing of a <see cref="BiomeRecipe"/> from design tools while maintaining a read-only face for use during play.

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Parquet.EditorSupport
+namespace Parquet
 {
     /// <summary>
     /// Facilitates updating elements of a <see cref="ModelCollection"/> from design tools
