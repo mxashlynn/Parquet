@@ -1,41 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AseemblyName>ParquetUnitTests</AseemblyName>
+
+    <PackageId>ParquetUnitTests</PackageId>
+    <PackageId>ParquetUnitTests</PackageId>
+    <Version>0.3.56.0</Version>
+    <AssemblyVersion>0.3.56.0</AssemblyVersion>
+    <FileVersion>0.3.56.0</FileVersion>
+
+    <Authors>Paige Ashlynn</Authors>
+    <Company>Girl Potion</Company>
+    <Description>Unit tests for Parquet.</Description>
+    <Copyright>2018-2021 Paige Ashlynn</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags></PackageTags>
+    <PackageReleaseNotes>This code is not meant for external use.</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+
     <IsPackable>false</IsPackable>
-    <Configurations>Debug;Game Release;Editor Release</Configurations>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Game Release|AnyCPU' ">
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup>
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
-    <Authors>Paige Ashlynn</Authors>
-    <Company>Girl Potion</Company>
-    <PackageId>ParquetUnitTests</PackageId>
-    <Description>Unit tests for ParquetClassLibrary.</Description>
-    <Copyright>2018-2021 Paige Ashlynn</Copyright>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Please see ParquetClassLibrary for details.</PackageReleaseNotes>
-    <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.3.56.0</Version>
   </PropertyGroup>
 
   <Target Name="AfterClean">
@@ -55,11 +63,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParquetClassLibrary\ParquetClassLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Biomes\" />
-    <Folder Include="Interactions\" />
   </ItemGroup>
 
   <ItemGroup>

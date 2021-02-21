@@ -4,17 +4,22 @@
     <AssemblyName>ParquetRunner</AssemblyName>
 
     <Product>Runner</Product>
+    <PackageId>ParquetRunner</PackageId>
     <Version>0.3.56.0</Version>
-    <Company>Girl Potion</Company>
+    <AssemblyVersion>0.3.56.0</AssemblyVersion>
+    <FileVersion>0.3.56.0</FileVersion>
+
     <Authors>Paige Ashlynn</Authors>
+    <Company>Girl Potion</Company>
+    <Description>A simple smoke test routine.</Description>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
-    <Description>A simple test application for use in library development.</Description>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageId>ParquetRunner</PackageId>
     <PackageTags></PackageTags>
     <PackageReleaseNotes>This code is not meant for external use.</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
 
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
@@ -24,10 +29,10 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
 
+    <IsPackable>false</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
-    <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
