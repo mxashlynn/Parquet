@@ -49,7 +49,7 @@ The C# employs the convention whereby every namespace gets its own folder.
     - **Beings**, including player characters and NPCs.
     - **Biomes**.
     - **Crafts**.
-    - **EditorSupport** contains [classes to aid in design-time tools](https://github.com/mxashlynn/Parquet/ParquetClassLibrary/EditorSupport/IModelEdit.cs) such as [Scribe](https://github.com/mxashlynn/Scribe/).
+    - **EditorSupport** contains [interfaces to aid in design-time tools](https://github.com/mxashlynn/Parquet/ParquetClassLibrary/EditorSupport/IModelEdit.cs) such as [Scribe](https://github.com/mxashlynn/Scribe/).
     - **Items**.
     - **Maps**.
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/blob/master/Documentation/3-How_Parquets_Work.md).

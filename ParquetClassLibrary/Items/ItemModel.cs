@@ -1,13 +1,17 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using Parquet.EditorSupport;
 
 namespace Parquet.Items
 {
     /// <summary>
     /// Models an item that characters may carry, use, equip, trade, and/or build with.
     /// </summary>
-    public partial class ItemModel : Model
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    public class ItemModel : Model, IMutableItemModel
     {
         #region Class Defaults
         /// <summary>Stack maximum assumed when none is defined.</summary>
@@ -89,6 +93,112 @@ namespace Parquet.Items
             EffectWhileHeldID = nonNullEffectWhileHeldID;
             EffectWhenUsedID = nonNullEffectWhenUsedID;
             ParquetID = nonNullParquetID;
+        }
+        #endregion
+
+        #region IMutableItemModel Implementation
+        /// <summary>The type of item this is.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ItemType IMutableItemModel.Subtype
+        {
+            get => Subtype;
+            set => Subtype = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Subtype), Subtype)
+                : value;
+        }
+
+        /// <summary>In-game value of the item.  Must be non-negative.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        int IMutableItemModel.Price
+        {
+            get => Price;
+            set => Price = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Price), Price)
+                : value;
+        }
+
+        /// <summary>How relatively rare this item is.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        int IMutableItemModel.Rarity
+        {
+            get => Rarity;
+            set => Rarity = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Rarity), Rarity)
+                : value;
+        }
+
+        /// <summary>How many of the item may share a single inventory slot.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        int IMutableItemModel.StackMax
+        {
+            get => StackMax;
+            set => StackMax = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StackMax), StackMax)
+                : value;
+        }
+
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableItemModel.EffectWhileHeldID
+        {
+            get => EffectWhileHeldID;
+            set => EffectWhileHeldID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EffectWhileHeldID), EffectWhileHeldID)
+                : value;
+        }
+
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
+        /// using (consuming) the item.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableItemModel.EffectWhenUsedID
+        {
+            get => EffectWhenUsedID;
+            set => EffectWhenUsedID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(EffectWhenUsedID), EffectWhenUsedID)
+                : value;
+        }
+
+        /// <summary>The parquet that corresponds to this item, if any.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableItemModel.ParquetID
+        {
+            get => ParquetID;
+            set => ParquetID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ParquetID), ParquetID)
+                : value;
         }
         #endregion
 

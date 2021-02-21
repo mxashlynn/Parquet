@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Parquet.EditorSupport;
 
 namespace Parquet.Beings
 {
     /// <summary>
     /// Models the definition for a simple in-game actor, such as a friendly mob with limited interaction.
     /// </summary>
-    public partial class CritterModel : BeingModel
+    public class CritterModel : BeingModel, IMutableCritterModel
     {
         #region Initialization
         /// <summary>
@@ -30,6 +31,10 @@ namespace Parquet.Beings
             : base(All.CritterIDs, inID, inName, inDescription, inComment, inTags,
                    inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
             => Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));
+        #endregion
+
+        #region IMutableCritterModel Implementation
+        // Currently, everything needed for editing CritterModels is provided by IBeingModelEdit.
         #endregion
     }
 }

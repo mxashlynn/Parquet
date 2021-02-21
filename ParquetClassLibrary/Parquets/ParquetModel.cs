@@ -1,14 +1,20 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Biomes;
+using Parquet.EditorSupport;
 
 namespace Parquet.Parquets
 {
+    // TODO Replace "Models" with "Represents" when used as a verb in documentation?
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>
-    public abstract partial class ParquetModel : Model
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    public abstract class ParquetModel : Model, IMutableParquetModel
     {
         #region Characteristics
         /// <summary>
@@ -72,6 +78,52 @@ namespace Parquet.Parquets
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public override IEnumerable<ModelTag> GetAllTags()
             => base.GetAllTags().Union(AddsToBiome).Union(AddsToRoom);
+        #endregion
+
+        #region IMutableParquetModel Implementation
+        /// <summary>
+        /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableParquetModel.ItemID
+        {
+            get => ItemID;
+            set => ItemID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(ItemID), ItemID)
+                : value;
+        }
+
+        /// <summary>
+        /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ICollection<ModelTag> IMutableParquetModel.AddsToBiome
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(AddsToBiome), new Collection<ModelTag>())
+                : (ICollection<ModelTag>)AddsToBiome;
+
+        /// <summary>
+        /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
+        /// Guaranteed to never be <c>null</c>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ICollection<ModelTag> IMutableParquetModel.AddsToRoom
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(AddsToRoom), new Collection<ModelTag>())
+                : (ICollection<ModelTag>)AddsToRoom;
         #endregion
     }
 }

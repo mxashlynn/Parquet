@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using Parquet.EditorSupport;
 
 namespace Parquet.Scripts
 {
@@ -9,7 +11,7 @@ namespace Parquet.Scripts
     /// Models a series of imperative, procedural commands.
     /// This might be an AI behavior, for example.
     /// </summary>
-    public partial class ScriptModel : Model
+    public class ScriptModel : Model, IMutableScriptModel
     {
         #region Characteristics
         /// <summary>A series of imperative, procedural commands.</summary>
@@ -36,6 +38,20 @@ namespace Parquet.Scripts
             => Nodes = (inNodes ?? Enumerable.Empty<ScriptNode>()).ToList();
         #endregion
 
+        #region IMutableScriptModel Implementation
+        /// <summary>A series of imperative, procedural commands.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="ScriptModel"/> should never themselves use <see cref="IMutableScriptModel"/>.
+        /// IMutableScriptModel is for external types that require read/write access.
+        /// </remarks>
+        [Ignore]
+        ICollection<ScriptNode> IMutableScriptModel.Nodes
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Nodes), new Collection<ScriptNode>())
+                : (ICollection<ScriptNode>)Nodes;
+        #endregion
+
+        #region Utilities
         /// <summary>
         /// Yields an <see cref="Action"/> for each <see cref="ScriptNode"/>, in order.
         /// </summary>
@@ -47,5 +63,6 @@ namespace Parquet.Scripts
                 yield return Nodes[i].GetAction();
             }
         }
+        #endregion
     }
 }

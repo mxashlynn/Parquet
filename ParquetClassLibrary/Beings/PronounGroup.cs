@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
+using Parquet.EditorSupport;
 
 namespace Parquet.Beings
 {
@@ -14,7 +16,9 @@ namespace Parquet.Beings
     /// potentially communicating both their plurality and their gender.
     /// Instances of this class are mutable during play.
     /// </summary>
-    public partial class PronounGroup
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    public class PronounGroup : IMutablePronounGroup
     {
         #region Class Defaults
         /// <summary>A pronoun to use when none is specified.</summary>
@@ -86,6 +90,58 @@ namespace Parquet.Beings
             Determiner = inDeterminer;
             Possessive = inPossessive;
             Reflexive = inReflexive;
+        }
+        #endregion
+
+        #region IMutablePronounGroup Implementation
+        /// <summary>Personal pronoun used as the subject of a verb.</summary>
+        [Ignore]
+        string IMutablePronounGroup.Subjective
+        {
+            get => Subjective;
+            set => Subjective = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Subjective), Subjective)
+                : value;
+        }
+
+        /// <summary>Personal pronoun used as the indirect object of a preposition or verb.</summary>
+        [Ignore]
+        string IMutablePronounGroup.Objective
+        {
+            get => Objective;
+            set => Objective = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Objective), Objective)
+                : value;
+        }
+
+        /// <summary>Personal pronoun used to attribute possession.</summary>
+        [Ignore]
+        string IMutablePronounGroup.Determiner
+        {
+            get => Determiner;
+            set => Determiner = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Determiner), Determiner)
+                : value;
+        }
+
+        /// <summary>Personal pronoun used to indicate a relationship.</summary>
+        [Ignore]
+        string IMutablePronounGroup.Possessive
+        {
+            get => Possessive;
+            set => Possessive = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Possessive), Possessive)
+                : value;
+        }
+
+        /// <summary>Personal pronoun used to indicate the user.</summary>
+        [Ignore]
+        string IMutablePronounGroup.Reflexive
+        {
+            get => Reflexive;
+            set => Reflexive = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Reflexive), Reflexive)
+                : value;
         }
         #endregion
 

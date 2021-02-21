@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
+using Parquet.EditorSupport;
 using Parquet.Items;
 
 namespace Parquet.Beings
@@ -9,7 +12,9 @@ namespace Parquet.Beings
     /// <summary>
     /// Models the definitions of in-game actors that take part in the narrative.
     /// </summary>
-    public partial class CharacterModel : BeingModel
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
+    public class CharacterModel : BeingModel, IMutableCharacterModel
     {
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
@@ -108,6 +113,104 @@ namespace Parquet.Beings
             StartingDialogueID = nonNullDialogueID;
             StartingInventory = nonNullInventory;
         }
+        #endregion
+
+        #region IMutableCharacterModel Implementation
+        /// <summary>Player-facing personal name.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        string IMutableCharacterModel.PersonalName
+        {
+            get => PersonalName;
+            set => ((IMutableModel)this).Name = ((IMutableModel)this).Name = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PersonalName), Name)
+                : $"{value}{Delimiters.NameDelimiter}{FamilyName}";
+        }
+
+        /// <summary>Player-facing family name.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        string IMutableCharacterModel.FamilyName
+        {
+            get => FamilyName;
+            set => ((IMutableModel)this).Name = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(FamilyName), Name)
+                : $"{PersonalName}{Delimiters.NameDelimiter}{value}";
+        }
+
+        /// <summary>
+        /// A key for the <see cref="PronounGroup"/> the <see cref="CharacterModel"/> uses,
+        /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
+        /// </summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        string IMutableCharacterModel.PronounKey
+        {
+            get => PronounKey;
+            set => PronounKey = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(PronounKey), PronounKey)
+                : value;
+        }
+
+        /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        string IMutableCharacterModel.StoryCharacterID
+        {
+            get => StoryCharacterID;
+            set => StoryCharacterID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StoryCharacterID), StoryCharacterID)
+                : value;
+        }
+
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingQuestIDs), new Collection<ModelID>())
+                : (ICollection<ModelID>)StartingQuestIDs;
+
+        /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableCharacterModel.StartingDialogueID
+        {
+            get => StartingDialogueID;
+            set => StartingDialogueID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingDialogueID), StartingDialogueID)
+                : value;
+        }
+
+
+        /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
+        /// IModelEdit is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        Inventory IMutableCharacterModel.StartingInventory
+            => LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), Inventory.Empty)
+                : StartingInventory;
         #endregion
     }
 }
