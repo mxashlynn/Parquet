@@ -12,8 +12,6 @@ namespace Parquet.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
-    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class CraftingRecipe : Model, IMutableCraftingRecipe
     {
         #region Class Defaults
