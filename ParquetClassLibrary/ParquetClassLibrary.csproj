@@ -53,8 +53,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ParquetIcon.ico" />
-    <None Include="Resources\Parquet Logo Large.png">
+    <None Include="Properties\Parquet Logo Large.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -91,7 +90,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="Resources\ParquetIcon.ico">
+    <None Include="Properties\ParquetIcon.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

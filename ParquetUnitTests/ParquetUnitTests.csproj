@@ -72,7 +72,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\ParquetClassLibrary\Resources\Parquet Logo Large.png">
+    <None Include="..\ParquetClassLibrary\Properties\Parquet Logo Large.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
