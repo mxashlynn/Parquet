@@ -1,19 +1,17 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Parquet.Properties;
 
 namespace Parquet.Regions
 {
     /// <summary>
-    /// Provides optional analysis for compatible <see cref="MapModel"/>s.
+    /// Provides optional analysis for compatible <see cref="RegionModel"/>s.
     /// </summary>
-    internal static class MapAnalysis<TMapType>
-        where TMapType : RegionModel, IMapConnections
+    internal static class RegionAnalysis
     {
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
         /// </summary>
-        internal delegate ModelID IDByDirection(TMapType inMap);
+        internal delegate ModelID IDByDirection(IRegionConnections inMap);
 
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
@@ -24,23 +22,23 @@ namespace Parquet.Regions
                                                       string ReturningDirection)>
             Directions = new List<(IDByDirection, string, IDByDirection, string)>
             {
-                { ((TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth,
-                   (TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth) },
-                { ((TMapType map) => map.RegionToTheEast, Resources.DirectionEast,
-                   (TMapType map) => map.RegionToTheWest, Resources.DirectionWest) },
-                { ((TMapType map) => map.RegionToTheSouth, Resources.DirectionSouth,
-                   (TMapType map) => map.RegionToTheNorth, Resources.DirectionNorth) },
-                { ((TMapType map) => map.RegionToTheWest, Resources.DirectionWest,
-                   (TMapType map) => map.RegionToTheEast, Resources.DirectionEast) },
-                { ((TMapType map) => map.RegionAbove, Resources.DirectionAbove,
-                   (TMapType map) => map.RegionBelow, Resources.DirectionBelow) },
-                { ((TMapType map) => map.RegionBelow, Resources.DirectionBelow,
-                   (TMapType map) => map.RegionAbove, Resources.DirectionAbove) },
+                { (map => map.RegionToTheNorth, Resources.DirectionNorth,
+                   map => map.RegionToTheSouth, Resources.DirectionSouth) },
+                { (map => map.RegionToTheEast, Resources.DirectionEast,
+                   map => map.RegionToTheWest, Resources.DirectionWest) },
+                { (map => map.RegionToTheSouth, Resources.DirectionSouth,
+                   map => map.RegionToTheNorth, Resources.DirectionNorth) },
+                { (map => map.RegionToTheWest, Resources.DirectionWest,
+                   map => map.RegionToTheEast, Resources.DirectionEast) },
+                { (map => map.RegionAbove, Resources.DirectionAbove,
+                   map => map.RegionBelow, Resources.DirectionBelow) },
+                { (map => map.RegionBelow, Resources.DirectionBelow,
+                   map => map.RegionAbove, Resources.DirectionAbove) },
             };
     }
 
     /// <summary>
-    /// Provides optional analysis for compatible <see cref="MapModel"/>s.
+    /// Provides optional analysis for compatible <see cref="RegionModel"/>s.
     /// </summary>
     public static class MapAnalysis
     {
@@ -50,13 +48,9 @@ namespace Parquet.Regions
         /// That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
         /// that is considered inconsistent and will be reported.
         /// </summary>
-        /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMutableRegionModel"/>.</typeparam>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
-        [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
-                         Justification = "In this instance deconstruction makes the code harder to read.")]
-        public static ICollection<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
-            where TMapType : RegionModel, IMapConnections
+        public static ICollection<string> CheckExitConsistency(ModelID inRegionID)
         {
             var inconsistentExitDirections = new List<string>();
 
@@ -65,14 +59,14 @@ namespace Parquet.Regions
                 return inconsistentExitDirections;
             }
 
-            var currentRegion = All.RegionModels.GetOrNull<TMapType>(inRegionID);
+            var currentRegion = All.RegionModels.GetOrNull<RegionModel>(inRegionID);
 
             if (currentRegion is null)
             {
                 return inconsistentExitDirections;
             }
 
-            foreach (var directionPair in MapAnalysis<TMapType>.Directions)
+            foreach (var directionPair in RegionAnalysis.Directions)
             {
                 var adjacentRegionID = directionPair.GetLeavingRegionID(currentRegion);
                 if (adjacentRegionID == ModelID.None)
@@ -80,7 +74,7 @@ namespace Parquet.Regions
                     continue;
                 }
 
-                var adjacentRegion = All.RegionModels.GetOrNull<TMapType>(adjacentRegionID);
+                var adjacentRegion = All.RegionModels.GetOrNull<RegionModel>(adjacentRegionID);
                 if (adjacentRegion is not null)
                 {
                     continue;

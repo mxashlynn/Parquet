@@ -1,9 +1,9 @@
 namespace Parquet.Regions
 {
     /// <summary>
-    /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face during play.
     /// </summary>
-    public interface OLD_IMutableRegionModel : IMutableModel
+    interface IMutableRegionModel : IMutableModel
     {
         /// <summary>A color to display in any empty areas of the region.</summary>
         string BackgroundColor { get; set; }

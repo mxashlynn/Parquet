@@ -11,66 +11,22 @@ using Parquet.Rooms;
 
 namespace Parquet.Regions
 {
-    // TODO HERE!!!!!!!!!!!!!!!!!!!!!!!    Rewrite this class so it conforms to the diagram we came up with!
-
-
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.
     /// </summary>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
-    public partial class OLD_RegionModel : Model, IMapConnections, IMutableRegionModel
+    public partial class OLD_RegionModel : Model, IMutableRegionModel
     {
-        #region Class Defaults
-        /// <summary>Used to indicate an empty grid.</summary>
-        public static readonly RegionModel Empty = new RegionModel(ModelID.None, "Empty Region", "", "");
-
+        #region Class Defaults -- FOR REGION STATUS
         /// <summary>The length of each <see cref="RegionModel"/> dimension in parquets.</summary>
         public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunkModel.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
         public Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
-
-        /// <summary>The set of values that are allowed for <see cref="RegionModel"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds
-            => All.MapRegionIDs;
-
-        /// <summary>Default color for new regions.</summary>
-        internal const string DefaultColor = "#FFFFFFFF";
         #endregion
 
-        #region Characteristics
-        #region Whole-Map Characteristics
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        [Index(5)]
-        public string BackgroundColor { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Index(6)]
-        public ModelID RegionToTheNorth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Index(7)]
-        public ModelID RegionToTheEast { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Index(8)]
-        public ModelID RegionToTheSouth { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Index(9)]
-        public ModelID RegionToTheWest { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Index(10)]
-        public ModelID RegionAbove { get; private set; }
-
-        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
-        [Index(11)]
-        public ModelID RegionBelow { get; private set; }
-        #endregion
-
-        #region Map Contents
+        #region Characteristics -- FOR REGION STATUS
         /// <summary>The statuses of parquets in the chunk.</summary>
         [Index(12)]
         // TODO [MAP EDITOR] [API] Should this be an IReadOnlyGrid<ParquetStatus>es instead?
@@ -88,7 +44,6 @@ namespace Parquet.Regions
         /// </summary>
         [Ignore]
         public IReadOnlyCollection<Room> Rooms { get; private set; }
-        #endregion
         #endregion
 
         #region Initialization
@@ -150,7 +105,7 @@ namespace Parquet.Regions
         }
         #endregion
 
-        #region IMapRegionEdit Implementation
+        #region IMutableRegionModel Implementation
         /// <summary>What the region is called in-game.</summary>
         [Ignore]
         string IMutableModel.Name
@@ -162,37 +117,9 @@ namespace Parquet.Regions
                 editableThis.Name = value;
             }
         }
-
-        /// <summary>A color to display in any empty areas of the region.</summary>
-        [Ignore]
-        string IMutableRegionModel.BackgroundColor { get => BackgroundColor; set => BackgroundColor = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the north of this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionToTheNorthID { get => RegionToTheNorth; set => RegionToTheNorth = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the east of this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionToTheEastID { get => RegionToTheEast; set => RegionToTheEast = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the south of this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionToTheSouthID { get => RegionToTheSouth; set => RegionToTheSouth = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region to the west of this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionToTheWestID { get => RegionToTheWest; set => RegionToTheWest = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region above this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionAboveID { get => RegionAbove; set => RegionAbove = value; }
-
-        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
-        [Ignore]
-        ModelID IMutableRegionModel.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
         #endregion
 
-        #region Analysis
+        #region Analysis -- FOR REGION STATUS
         /// <summary>
         /// Determines which <see cref="BiomeRecipe"/> the given <see cref="RegionModel"/> corresponds to.
         /// </summary>
@@ -303,7 +230,7 @@ namespace Parquet.Regions
         }
         #endregion
 
-        #region Utilities
+        #region Utilities -- FOR REGION STATUS
         /// <summary>The total number of parquets in the entire map.</summary>
         [Ignore]
         protected int ParquetsCount
@@ -367,13 +294,6 @@ namespace Parquet.Regions
 
             return new ParquetModelPackGrid();
         }
-
-        /// <summary>
-        /// Describes the <see cref="RegionModel"/>.
-        /// </summary>
-        /// <returns>A <see cref="string"/> that represents the current <see cref="RegionModel"/>.</returns>
-        public override string ToString()
-            => $"Region {Name} ({DimensionsInParquets.X }, {DimensionsInParquets.Y}) contains {ParquetsCount} parquets.";
         #endregion
     }
 }

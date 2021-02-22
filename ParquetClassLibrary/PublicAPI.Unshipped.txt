@@ -958,7 +958,7 @@ static Parquet.RecipeElement.operator !=(Parquet.RecipeElement inElement1, Parqu
 static Parquet.RecipeElement.operator ==(Parquet.RecipeElement inElement1, Parquet.RecipeElement inElement2) -> bool
 static Parquet.Regions.ChunkDetail.operator !=(Parquet.Regions.ChunkDetail inChunkType1, Parquet.Regions.ChunkDetail inChunkType2) -> bool
 static Parquet.Regions.ChunkDetail.operator ==(Parquet.Regions.ChunkDetail inChunkType1, Parquet.Regions.ChunkDetail inChunkType2) -> bool
-static Parquet.Regions.MapAnalysis.CheckExitConsistency<TMapType>(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
+static Parquet.Regions.MapAnalysis.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.MapChunkModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Regions.MapChunkModel.Empty.get -> Parquet.Regions.MapChunkModel
 static Parquet.Regions.MapRegionSketch.Bounds.get -> Parquet.Range<Parquet.ModelID>
