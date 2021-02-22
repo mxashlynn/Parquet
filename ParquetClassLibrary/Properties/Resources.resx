@@ -253,6 +253,10 @@
     <value>Serializing or deserializing {0} is not yet supported.</value>
     <comment>Error string.</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ParquetIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\parqueticon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="WarningImmutableDuringPlay" xml:space="preserve">
     <value>{1} cannot be written to in play mode.</value>
     <comment>Warning string.</comment>

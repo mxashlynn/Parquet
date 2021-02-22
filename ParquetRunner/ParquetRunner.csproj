@@ -22,6 +22,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
 
     <OutputType>Exe</OutputType>
+    <StartupObject>ParquetRunner.RunnerProgram</StartupObject>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -33,6 +34,8 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
+    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
+    <PackageIcon>Parquet Logo Large.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +52,10 @@
 
   <ItemGroup>
     <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\ParquetClassLibrary\Resources\Parquet Logo Large.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

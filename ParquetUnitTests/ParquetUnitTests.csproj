@@ -44,6 +44,8 @@
 
   <PropertyGroup>
     <TestResultsFolderPath>..\.vs\Parquet\v16\TestStore\0</TestResultsFolderPath>
+    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
+    <PackageIcon>Parquet Logo Large.png</PackageIcon>
   </PropertyGroup>
 
   <Target Name="AfterClean">
@@ -67,6 +69,10 @@
 
   <ItemGroup>
     <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\ParquetClassLibrary\Resources\Parquet Logo Large.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

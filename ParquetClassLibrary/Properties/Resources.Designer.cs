@@ -367,6 +367,16 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ParquetIcon {
+            get {
+                object obj = ResourceManager.GetObject("ParquetIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {1} cannot be written to in play mode..
         /// </summary>
         internal static string WarningImmutableDuringPlay {

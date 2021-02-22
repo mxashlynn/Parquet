@@ -48,7 +48,17 @@
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <RootNamespace>Parquet</RootNamespace>
+    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
+    <PackageIcon>Parquet Logo Large.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ParquetIcon.ico" />
+    <None Include="Resources\Parquet Logo Large.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <!--- NOTE: Updating to CSVHelper Version 20 requires major research and adjustment of CSVHelper code. -->
@@ -78,6 +88,10 @@
 
   <ItemGroup>
     <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="Resources\ParquetIcon.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
