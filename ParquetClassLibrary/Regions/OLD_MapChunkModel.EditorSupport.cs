@@ -7,7 +7,7 @@ namespace Parquet.Regions
     /// <remarks>
     /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
     /// </remarks>
-    public partial class MapChunkModel
+    public partial class OLD_MapChunkModel
     {
         #region IMapChunkModelEdit Implementation
         // TODO [MAP EDITOR] We probably need an IMapChunkModelEdit equivalent for this class.

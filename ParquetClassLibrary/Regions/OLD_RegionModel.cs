@@ -19,7 +19,7 @@ namespace Parquet.Regions
     /// </summary>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
-    public partial class RegionModel : Model, IMapConnections, IMutableRegionModel
+    public partial class OLD_RegionModel : Model, IMapConnections, IMutableRegionModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>

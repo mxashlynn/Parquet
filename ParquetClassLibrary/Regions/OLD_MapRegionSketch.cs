@@ -22,7 +22,7 @@ namespace Parquet.Regions
     /// 
     /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
-    public partial class MapRegionSketch : RegionModel, IMapConnections
+    public partial class OLD_MapRegionSketch : RegionModel, IMapConnections
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>
