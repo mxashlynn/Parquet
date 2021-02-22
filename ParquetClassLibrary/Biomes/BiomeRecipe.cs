@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Items;
-using Parquet.Maps;
+using Parquet.Regions;
 
 namespace Parquet.Biomes
 {

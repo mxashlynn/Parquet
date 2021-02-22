@@ -1,4 +1,4 @@
-using Parquet.Maps;
+using Parquet.Regions;
 using Xunit;
 
 namespace ParquetUnitTests.Maps

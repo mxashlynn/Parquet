@@ -6,7 +6,7 @@ using Parquet.Biomes;
 using Parquet.Parquets;
 using Parquet.Rooms;
 
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
     /// A playable region of the gameworld, composed of parquets.

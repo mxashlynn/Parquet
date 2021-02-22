@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Parquet.Properties;
 
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
     /// Provides optional analysis for compatible <see cref="MapModel"/>s.
     /// </summary>
     internal static class MapAnalysis<TMapType>
-        where TMapType : MapModel, IMapConnections
+        where TMapType : RegionModel, IMapConnections
     {
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
@@ -56,7 +56,7 @@ namespace Parquet.Maps
         [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
                          Justification = "In this instance deconstruction makes the code harder to read.")]
         public static ICollection<string> CheckExitConsistency<TMapType>(ModelID inRegionID)
-            where TMapType : MapModel, IMapConnections
+            where TMapType : RegionModel, IMapConnections
         {
             var inconsistentExitDirections = new List<string>();
 
@@ -65,7 +65,7 @@ namespace Parquet.Maps
                 return inconsistentExitDirections;
             }
 
-            var currentRegion = All.Maps.GetOrNull<TMapType>(inRegionID);
+            var currentRegion = All.RegionModels.GetOrNull<TMapType>(inRegionID);
 
             if (currentRegion is null)
             {
@@ -80,7 +80,7 @@ namespace Parquet.Maps
                     continue;
                 }
 
-                var adjacentRegion = All.Maps.GetOrNull<TMapType>(adjacentRegionID);
+                var adjacentRegion = All.RegionModels.GetOrNull<TMapType>(adjacentRegionID);
                 if (adjacentRegion is not null)
                 {
                     continue;

@@ -23,7 +23,7 @@ namespace Parquet.Parquets
         [Index(8)]
         public bool IsWalkable { get; private set; }
 
-        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.MapRegionModel"/>.</summary>
         [Index(9)]
         public EntryType Entry { get; private set; }
 
@@ -91,7 +91,7 @@ namespace Parquet.Parquets
                 : value;
         }
 
-        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Maps.MapRegionModel"/>.</summary>
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.MapRegionModel"/>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
         /// IModelEdit is for external types that require read/write access.

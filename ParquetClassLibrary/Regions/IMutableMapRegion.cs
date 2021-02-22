@@ -1,7 +1,7 @@
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
-    /// Facilitates editing of <see cref="MapRegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
     // TODO [MAP EDITOR] Separate MapModel from MapStatus.
     public interface IMutableMapRegion : IMutableModel

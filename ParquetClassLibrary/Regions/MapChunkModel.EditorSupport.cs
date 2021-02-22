@@ -1,7 +1,7 @@
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
-    /// Models details of a portion of a <see cref="MapRegionModel"/>,
+    /// Models details of a portion of a <see cref="RegionModel"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
     /// <remarks>

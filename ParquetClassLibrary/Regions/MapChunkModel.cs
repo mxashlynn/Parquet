@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
 
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
-    /// Models details of a portion of a <see cref="MapRegionModel"/>,
+    /// Models details of a portion of a <see cref="RegionModel"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
     /// </summary>
     /// <remarks>
     /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
     /// </remarks>
-    public partial class MapChunkModel : MapModel
+    public partial class MapChunkModel : RegionModel
     {
         #region Class Defaults
         /// <summary>Used to indicate an empty grid.</summary>
@@ -83,7 +83,7 @@ namespace Parquet.Maps
         #region Procedural Generation
         /// <summary>
         /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
-        /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="MapRegionModel"/>.
+        /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="RegionModel"/>.
         /// </summary>
         /// <remarks>
         /// If a chunk <see cref="IsFilledOut"/>, it is ready to go.

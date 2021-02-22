@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
-using Parquet.Maps;
+using Parquet.Regions;
 
 namespace Parquet.Biomes
 {

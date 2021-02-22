@@ -5,7 +5,7 @@ using CsvHelper.Configuration;
 namespace Parquet
 {
     /// <summary>
-    /// Tracks a specific position within a specific <see cref="Maps.MapRegionModel"/>.
+    /// Tracks a specific position within a specific <see cref="Regions.MapRegionModel"/>.
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
@@ -22,10 +22,10 @@ namespace Parquet
         #endregion
 
         #region Characteristics
-        /// <summary>The identifier for the <see cref="Maps.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</summary>
+        /// <summary>The identifier for the <see cref="Regions.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</summary>
         public ModelID RegionID { get; }
 
-        /// <summary>The position within the current <see cref="Maps.MapRegionModel"/> of the tracked <see cref="Model"/>.</summary>
+        /// <summary>The position within the current <see cref="Regions.MapRegionModel"/> of the tracked <see cref="Model"/>.</summary>
         public Vector2D Position { get; }
         #endregion
 
@@ -33,8 +33,8 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        /// <param name="inRegionID">The identifier for the <see cref="Maps.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
-        /// <param name="inPosition">The position within the current <see cref="Maps.MapRegionModel"/> of the tracked <see cref="Model"/>.</param>
+        /// <param name="inRegionID">The identifier for the <see cref="Regions.MapRegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
+        /// <param name="inPosition">The position within the current <see cref="Regions.MapRegionModel"/> of the tracked <see cref="Model"/>.</param>
         public Location(ModelID? inRegionID = null, Vector2D? inPosition = null)
         {
             RegionID = inRegionID ?? ModelID.None;

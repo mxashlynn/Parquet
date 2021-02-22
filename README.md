@@ -45,18 +45,18 @@ The C# employs the convention whereby every namespace gets its own folder.
 - **ExampleData**
     - Configuration files used in developing and testing the library.
 - **ParquetClassLibrary**
-    - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/blob/master/Documentation/2-How_Parquet_Handles_Game_Objects.md).
+    - The library itself. The root namespace contains classes for working with [Models](https://github.com/mxashlynn/Parquet/blob/master/Documentation/2-How_Parquet_Handles_Game_Objects.md) and Statuses.
     - **Beings**, including player characters and NPCs.
-    - **Biomes**.
-    - **Crafts**.
-    - **Items**.
-    - **Maps**.
+    - **Biomes**, sets of characteristics that Regions may share.
+    - **Crafts**, recipes and mini-games that produce Items.
+    - **Items**, objects that Beings may carry, including parquets.
     - **Parquets**, [the basic units of play](https://github.com/mxashlynn/Parquet/blob/master/Documentation/3-How_Parquets_Work.md).
-    - **Properties** contains error strings and other static content.
-    - **Rooms**, [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
-    - **Scripts**, used to define Interactions and Item effect.
+    - **Properties** error strings, icons, and other static content.
+    - **Regions**, collections of parquets and Beings which together make up the game world.
+    - **Rooms**, built from parquets and [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
+    - **Scripts**, used to define Being Interactions and Item effect.
 - **ParquetRunner**
-    - A simple smoke test routine.
+    - A simple smoke test.
 - **ParquetUnitTests**
     - Unit tests for ParquetClassLibrary.
 

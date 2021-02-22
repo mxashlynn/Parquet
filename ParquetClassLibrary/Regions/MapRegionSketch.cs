@@ -6,13 +6,13 @@ using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
 using Parquet.Properties;
 
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
-    /// A pattern and metadata to generate a <see cref="MapRegionModel"/>.
+    /// A pattern and metadata to generate a <see cref="RegionModel"/>.
     /// </summary>
     /// <remarks>
-    /// Before play begins, <see cref="MapRegionModel"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
+    /// Before play begins, <see cref="RegionModel"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
     ///
     /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
     /// collection of parquets, but instead as <see cref="MapChunkModel"/>s, instructions to procedural generation routines.  These
@@ -22,7 +22,7 @@ namespace Parquet.Maps
     /// 
     /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
-    public partial class MapRegionSketch : MapModel, IMapConnections
+    public partial class MapRegionSketch : RegionModel, IMapConnections
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>
@@ -35,8 +35,8 @@ namespace Parquet.Maps
         public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(MapRegionModel.ParquetsPerRegionDimension,
-                                                                              MapRegionModel.ParquetsPerRegionDimension);
+        public override Vector2D DimensionsInParquets { get; } = new Vector2D(RegionModel.ParquetsPerRegionDimension,
+                                                                              RegionModel.ParquetsPerRegionDimension);
 
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
@@ -74,15 +74,15 @@ namespace Parquet.Maps
         [Index(10)]
         public ModelID RegionAbove { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="MapRegionModel"/> below this one.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="RegionModel"/> below this one.</summary>
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
 
-        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="MapRegionModel"/>.</summary>
+        /// <summary><see cref="ChunkDetail"/>s that can generate parquets to compose a <see cref="RegionModel"/>.</summary>
         [Index(12)]
         public ModelIDGrid Chunks { get; }
 
-        /// <summary>Do not use.  Generate a <see cref="MapRegionModel"/> before accessing parquets.</summary>
+        /// <summary>Do not use.  Generate a <see cref="RegionModel"/> before accessing parquets.</summary>
         // Index(13)
         [Ignore]
         [Obsolete("Do not use.  Generate a MapRegionModel by calling Stitch, then access the parquet via that instance.")]
@@ -115,7 +115,7 @@ namespace Parquet.Maps
         /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> to the west of this one.</param>
         /// <param name="inRegionAbove">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> above this one.</param>
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the <see cref="MapRegionSketch"/> below this one.</param>
-        /// <param name="inChunks">The patterns of which this <see cref="MapRegionSketch"/> consists, from which a <see cref="MapRegionModel"/> may be generated.</param>
+        /// <param name="inChunks">The patterns of which this <see cref="MapRegionSketch"/> consists, from which a <see cref="RegionModel"/> may be generated.</param>
         public MapRegionSketch(ModelID inID, string inName, string inDescription, string inComment,
                                IEnumerable<ModelTag> inTags = null,
                                string inBackgroundColor = DefaultColor,
@@ -156,24 +156,24 @@ namespace Parquet.Maps
 
         #region Procedural Generation
         /// <summary>
-        /// Combines all constituent <see cref="MapChunkModel"/>s to produce a playable <see cref="MapRegionModel"/>.
+        /// Combines all constituent <see cref="MapChunkModel"/>s to produce a playable <see cref="RegionModel"/>.
         /// </summary>
         /// <remarks>
         /// Invokes procedural generation routines on any <see cref="MapChunkModel"/>s that need it.
         /// </remarks>
-        /// <returns>The new <see cref="MapRegionModel"/>.</returns>
-        public MapRegionModel Stitch()
+        /// <returns>The new <see cref="RegionModel"/>.</returns>
+        public RegionModel Stitch()
         {
             Debug.Assert(Chunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
             Debug.Assert(Chunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
 
-            var parquetDefinitions = new ParquetModelPackGrid(MapRegionModel.ParquetsPerRegionDimension, MapRegionModel.ParquetsPerRegionDimension);
+            var parquetDefinitions = new ParquetModelPackGrid(RegionModel.ParquetsPerRegionDimension, RegionModel.ParquetsPerRegionDimension);
             for (var chunkX = 0; chunkX < Chunks.Columns; chunkX++)
             {
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
                     // Get potentially ungenerated chunk.
-                    var currentChunk = All.Maps.GetOrNull<MapChunkModel>(Chunks[chunkY, chunkX]);
+                    var currentChunk = All.RegionModels.GetOrNull<MapChunkModel>(Chunks[chunkY, chunkX]);
                     if (currentChunk is null)
                     {
                         continue;

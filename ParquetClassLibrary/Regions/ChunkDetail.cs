@@ -3,7 +3,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
     /// Indicates which parquets constitute this <see cref="MapChunkModel"/> and how they are arranged.

@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 using Parquet;
-using Parquet.Maps;
+using Parquet.Regions;
 using Parquet.Parquets;
 using Xunit;
 

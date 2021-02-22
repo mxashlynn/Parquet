@@ -516,7 +516,7 @@ namespace Parquet
         public static string GetFilePath<TModel>()
             where TModel : Model
         {
-            var filename = typeof(TModel) == typeof(Maps.MapRegionSketch)
+            var filename = typeof(TModel) == typeof(Regions.MapRegionSketch)
                 ? $"{typeof(TModel).Name}es.csv"
                 : $"{typeof(TModel).Name}s.csv";
             return $"{All.ProjectDirectory}/{filename}";

@@ -1,4 +1,4 @@
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
     /// Facilitates <see cref="MapRegionAlanisys"/>.

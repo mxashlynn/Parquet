@@ -1,4 +1,4 @@
-namespace Parquet.Maps
+namespace Parquet.Regions
 {
     /// <summary>
     /// Provides methods that are used by all map models.

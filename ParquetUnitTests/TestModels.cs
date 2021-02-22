@@ -5,7 +5,7 @@ using Parquet.Biomes;
 using Parquet.Crafts;
 using Parquet.Games;
 using Parquet.Items;
-using Parquet.Maps;
+using Parquet.Regions;
 using Parquet.Parquets;
 using Parquet.Rooms;
 using Parquet.Scripts;
