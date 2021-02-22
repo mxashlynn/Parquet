@@ -6,19 +6,19 @@ using Parquet.Regions;
 namespace Parquet.Biomes
 {
     /// <summary>
-    /// Provides rules for determining a <see cref="MapRegionModel"/>'s <see cref="BiomeRecipe"/>.
+    /// Provides rules for determining a <see cref="RegionModel"/>'s <see cref="BiomeRecipe"/>.
     /// </summary>
     public static class BiomeConfiguration
     {
         #region Class Defaults
         /// <summary>Used in computing thresholds.</summary>
-        private const int ParquetsPerLayer = MapRegionModel.ParquetsPerRegionDimension * MapRegionModel.ParquetsPerRegionDimension;
+        private const int ParquetsPerLayer = RegionModel.ParquetsPerRegionDimension * RegionModel.ParquetsPerRegionDimension;
         #endregion
 
         #region Characteristics
         /// <summary>
         /// There must be at least this percentage of non-liquid <see cref="Parquets.ParquetModel"/>s in a given
-        /// <see cref="MapRegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
+        /// <see cref="RegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
         /// </summary>
         public static double LandThresholdFactor { get; set; } = 1.25;
 
@@ -28,7 +28,7 @@ namespace Parquet.Biomes
 
         /// <summary>
         /// There must be at least this percentage of liquid <see cref="Parquets.ParquetModel"/>s in a given
-        /// <see cref="MapRegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
+        /// <see cref="RegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
         /// </summary>
         public static double LiquidThresholdFactor { get; set; } = 0.25;
 
@@ -38,7 +38,7 @@ namespace Parquet.Biomes
 
         /// <summary>
         /// There must be at least this percentage of <see cref="Parquets.ParquetModel"/>s included in rooms in a given
-        /// <see cref="MapRegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
+        /// <see cref="RegionModel"/> to generate the <see cref="BiomeRecipe"/> associated with them.
         /// </summary>
         public static double RoomThresholdFactor { get; set; } = 0.67;
 

@@ -50,7 +50,7 @@ namespace Parquet.Regions
         /// That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
         /// that is considered inconsistent and will be reported.
         /// </summary>
-        /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMutableMapRegion"/>.</typeparam>
+        /// <typeparam name="TMapType">A type derived from <see cref="MapModel"/> that implements <see cref="IMutableRegionModel"/>.</typeparam>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
         [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",

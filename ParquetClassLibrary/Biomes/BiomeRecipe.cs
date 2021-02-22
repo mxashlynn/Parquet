@@ -9,14 +9,14 @@ using Parquet.Regions;
 namespace Parquet.Biomes
 {
     /// <summary>
-    /// Models the biome that a <see cref="MapRegionModel"/> embodies.
+    /// Models the biome that a <see cref="RegionModel"/> embodies.
     /// </summary>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class BiomeRecipe : Model, IMutableBiomeRecipe
     {
         #region Class Defaults
-        /// <summary>Represents the lack of a <see cref="BiomeRecipe"/> for <see cref="MapRegionModel"/>s that fail to qualify.</summary>
+        /// <summary>Represents the lack of a <see cref="BiomeRecipe"/> for <see cref="RegionModel"/>s that fail to qualify.</summary>
         public static BiomeRecipe None { get; } = new BiomeRecipe(ModelID.None, "Expanse", "A featureless region.", "The default biome.",
                                                                   null, 0, false, false, null, null);
         #endregion

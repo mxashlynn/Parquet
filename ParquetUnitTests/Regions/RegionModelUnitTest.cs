@@ -42,7 +42,7 @@ namespace ParquetUnitTests.Maps
             if (LibraryState.IsDebugMode)
             {
                 var customRegion = new RegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, testColor);
-                IMutableMapRegion editableRegion = customRegion;
+                IMutableRegionModel editableRegion = customRegion;
 
                 editableRegion.Name = testName;
                 editableRegion.BackgroundColor = testColor;

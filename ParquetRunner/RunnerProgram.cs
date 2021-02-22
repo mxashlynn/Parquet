@@ -59,7 +59,7 @@ namespace ParquetRunner
         public static MapChunkModel TestMapChunkModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static MapRegionModel TestMapRegionModel { get; }
+        public static RegionModel TestMapRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static FloorModel TestFloor { get; }
@@ -116,7 +116,7 @@ namespace ParquetRunner
         public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<MapModel> Maps { get; }
+        public static IReadOnlyList<RegionModel> Regions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<FloorModel> Floors { get; }
@@ -156,7 +156,7 @@ namespace ParquetRunner
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
             TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", null, true);
-            TestMapRegionModel = new MapRegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestMapRegionModel = new RegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: new List<ModelTag> { TestTag });
@@ -206,7 +206,7 @@ namespace ParquetRunner
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
-            Maps = new List<MapModel> { TestMapChunkModel, TestMapRegionModel };
+            Regions = new List<RegionModel> { TestMapChunkModel, TestMapRegionModel };
             Floors = new List<FloorModel> { TestFloor };
             Blocks = new List<BlockModel> { TestBlock, TestLiquid };
             Furnishings = new List<FurnishingModel> { TestFurnishing };
@@ -216,7 +216,7 @@ namespace ParquetRunner
             Scripts = new List<ScriptModel> { TestScript };
 
             All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Maps, Scripts, Interactions, Items);
+                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, Scripts, Interactions, Items);
             #endregion
         }
     }

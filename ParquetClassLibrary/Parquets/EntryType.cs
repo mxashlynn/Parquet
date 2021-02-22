@@ -1,7 +1,7 @@
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// Whether and how a <see cref="FurnishingModel"/> communicates to an adjacent <see cref="Regions.MapRegionModel"/>.
+    /// Whether and how a <see cref="FurnishingModel"/> communicates to an adjacent <see cref="Regions.RegionModel"/>.
     /// </summary>
     public enum EntryType
     {

@@ -124,7 +124,7 @@ namespace Parquet
         public static readonly Range<ModelID> MapChunkIDs;
 
         /// <summary>
-        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="MapRegionModel"/>s.
+        /// A subset of the values of <see cref="ModelID"/> set aside for <see cref="Regions.RegionModel"/>s.
         /// Valid identifiers may be positive or negative.  By convention, negative IDs indicate test Items.
         /// </summary>
         public static readonly Range<ModelID> MapRegionIDs;
@@ -262,7 +262,7 @@ namespace Parquet
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<MapModel> Maps { get; private set; }
+        public static ModelCollection<RegionModel> RegionModels { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="ScriptModel"/>s.
@@ -323,7 +323,7 @@ namespace Parquet
             BiomeRecipes = ModelCollection<BiomeRecipe>.Default;
             CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
-            Maps = ModelCollection<MapModel>.Default;
+            RegionModels = ModelCollection<RegionModel>.Default;
             Scripts = ModelCollection<ScriptModel>.Default;
             Interactions = ModelCollection<InteractionModel>.Default;
             Items = ModelCollection<ItemModel>.Default;
@@ -519,7 +519,7 @@ namespace Parquet
                                                  IEnumerable<BiomeRecipe> inBiomes,
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<MapModel> inMaps,
+                                                 IEnumerable<RegionModel> inMaps,
                                                  IEnumerable<ScriptModel> inScripts,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<ItemModel> inItems)
@@ -562,7 +562,7 @@ namespace Parquet
             BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
-            Maps = new ModelCollection<MapModel>(MapIDs, inMaps);
+            RegionModels = new ModelCollection<RegionModel>(MapIDs, inMaps);
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
@@ -599,7 +599,7 @@ namespace Parquet
                 var biomeRecipes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
                 var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
                 var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
-                var maps = ModelCollection<MapModel>.Default;
+                var regions = ModelCollection<RegionModel>.Default;
                 // TODO: [MAP] Reenable these after refactor.
                 //var maps = ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapChunkModel>(MapIDs)
                 //    .Concat(ModelCollection<MapModel>.ConverterFactory.GetRecordsForType<MapRegionSketch>(MapIDs))
@@ -610,7 +610,7 @@ namespace Parquet
                 #endregion
 
                 InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
-                                      craftingRecipes, roomRecipes, maps, scripts, interactions, items);
+                                      craftingRecipes, roomRecipes, regions, scripts, interactions, items);
                 return true;
             }
             catch (Exception loadException)
@@ -647,9 +647,9 @@ namespace Parquet
                 BiomeRecipes.PutRecordsForType<BiomeRecipe>();
                 CraftingRecipes.PutRecordsForType<CraftingRecipe>();
                 RoomRecipes.PutRecordsForType<RoomRecipe>();
-                Maps.PutRecordsForType<MapChunkModel>();
-                Maps.PutRecordsForType<MapRegionSketch>();
-                Maps.PutRecordsForType<MapRegionModel>();
+                RegionModels.PutRecordsForType<MapChunkModel>();
+                RegionModels.PutRecordsForType<MapRegionSketch>();
+                RegionModels.PutRecordsForType<RegionModel>();
                 Scripts.PutRecordsForType<ScriptModel>();
                 Interactions.PutRecordsForType<InteractionModel>();
                 Items.PutRecordsForType<ItemModel>();
@@ -691,7 +691,7 @@ namespace Parquet
                 ((IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
                 ((IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
                 ((IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
-                ((IMutableModelCollection<MapModel>)Maps)?.Clear();
+                ((IMutableModelCollection<RegionModel>)RegionModels)?.Clear();
                 ((IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
                 ((IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
                 ((IMutableModelCollection<ItemModel>)Items)?.Clear();
@@ -737,9 +737,7 @@ namespace Parquet
                     BiomeRecipe _ => BiomeRecipeIDs,
                     CraftingRecipe _ => CraftingRecipeIDs,
                     RoomRecipe _ => RoomRecipeIDs,
-                    MapChunkModel _ => MapChunkIDs,
-                    MapRegionSketch _ => MapRegionIDs,
-                    MapRegionModel _ => MapRegionIDs,
+                    RegionModel _ => MapRegionIDs,
                     ScriptModel _ => ScriptIDs,
                     InteractionModel _ => InteractionIDs,
                     ItemModel _ => ItemIDs,
@@ -766,7 +764,7 @@ namespace Parquet
             : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
             : inModelType == typeof(RoomRecipe) ? RoomRecipeIDs
             : inModelType == typeof(MapChunkModel) ? MapChunkIDs
-            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(MapRegionModel) ? MapRegionIDs
+            : inModelType == typeof(MapRegionSketch) || inModelType == typeof(RegionModel) ? MapRegionIDs
             : inModelType == typeof(ScriptModel) ? ScriptIDs
             : inModelType == typeof(InteractionModel) ? InteractionIDs
             : inModelType == typeof(ItemModel) ? ItemIDs

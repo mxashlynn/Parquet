@@ -19,7 +19,7 @@ namespace Parquet
     /// game objects.<para />
     /// <para />
     /// For example, multiple identical parquet IDs may be assigned
-    /// to <see cref="Regions.MapChunkModel"/>s or <see cref="Regions.MapRegionModel"/>s,
+    /// to <see cref="Regions.MapChunkModel"/>s or <see cref="Regions.RegionModel"/>s,
     /// and multiple duplicate <see cref="Items.ItemModel"/> IDs may exist in
     /// across various <see cref="Beings.CharacterModel"/> inventories.<para />
     /// <para />

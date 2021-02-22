@@ -12,7 +12,7 @@ namespace Parquet.Parquets
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         public bool IsWalkable { get; set; }
 
-        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.MapRegionModel"/>.</summary>
+        /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.RegionModel"/>.</summary>
         public EntryType Entry { get; set; }
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>

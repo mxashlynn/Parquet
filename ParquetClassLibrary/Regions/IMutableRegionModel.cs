@@ -4,7 +4,7 @@ namespace Parquet.Regions
     /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
     /// </summary>
     // TODO [MAP EDITOR] Separate MapModel from MapStatus.
-    public interface IMutableMapRegion : IMutableModel
+    public interface IMutableRegionModel : IMutableModel
     {
         /// <summary>A color to display in any empty areas of the region.</summary>
         string BackgroundColor { get; set; }
