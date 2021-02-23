@@ -77,20 +77,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
-            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
+        public static bool operator ==(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
+            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is not equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
-            => !(inStack1 == inStack2);
+        public static bool operator !=(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
+            => !(inPack1 == inPack2);
         #endregion
 
         #region ITypeConverter Implementation

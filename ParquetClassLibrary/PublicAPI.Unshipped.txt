@@ -893,12 +893,12 @@ static Parquet.Parquets.FloorStatus.operator !=(Parquet.Parquets.FloorStatus inS
 static Parquet.Parquets.FloorStatus.operator ==(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
 static Parquet.Parquets.FurnishingModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Parquets.ParquetModelPack.Empty.get -> Parquet.Parquets.ParquetModelPack
-static Parquet.Parquets.ParquetModelPack.operator !=(Parquet.Parquets.ParquetModelPack inStack1, Parquet.Parquets.ParquetModelPack inStack2) -> bool
-static Parquet.Parquets.ParquetModelPack.operator ==(Parquet.Parquets.ParquetModelPack inStack1, Parquet.Parquets.ParquetModelPack inStack2) -> bool
+static Parquet.Parquets.ParquetModelPack.operator !=(Parquet.Parquets.ParquetModelPack inPack1, Parquet.Parquets.ParquetModelPack inPack2) -> bool
+static Parquet.Parquets.ParquetModelPack.operator ==(Parquet.Parquets.ParquetModelPack inPack1, Parquet.Parquets.ParquetModelPack inPack2) -> bool
 static Parquet.Parquets.ParquetModelPackGrid.Empty.get -> Parquet.Parquets.ParquetModelPackGrid
 static Parquet.Parquets.ParquetStatusPack.Default.get -> Parquet.Parquets.ParquetStatusPack
-static Parquet.Parquets.ParquetStatusPack.operator !=(Parquet.Parquets.ParquetStatusPack inStack1, Parquet.Parquets.ParquetStatusPack inStack2) -> bool
-static Parquet.Parquets.ParquetStatusPack.operator ==(Parquet.Parquets.ParquetStatusPack inStack1, Parquet.Parquets.ParquetStatusPack inStack2) -> bool
+static Parquet.Parquets.ParquetStatusPack.operator !=(Parquet.Parquets.ParquetStatusPack inPack1, Parquet.Parquets.ParquetStatusPack inPack2) -> bool
+static Parquet.Parquets.ParquetStatusPack.operator ==(Parquet.Parquets.ParquetStatusPack inPack1, Parquet.Parquets.ParquetStatusPack inPack2) -> bool
 static Parquet.Parquets.ParquetStatusPackGrid.Empty.get -> Parquet.Parquets.ParquetStatusPackGrid
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, Parquet.Range<Parquet.ModelID> inBounds, string inArgumentName) -> void
 static Parquet.Precondition.AreInRange(System.Collections.Generic.IEnumerable<Parquet.ModelID> inEnumerable, System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBoundsCollection, string inArgumentName) -> void

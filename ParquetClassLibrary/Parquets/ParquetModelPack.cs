@@ -148,20 +148,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetModelPack inStack1, ParquetModelPack inStack2)
-            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
+        public static bool operator ==(ParquetModelPack inPack1, ParquetModelPack inPack2)
+            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is not equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetModelPack inStack1, ParquetModelPack inStack2)
-            => !(inStack1 == inStack2);
+        public static bool operator !=(ParquetModelPack inPack1, ParquetModelPack inPack2)
+            => !(inPack1 == inPack2);
         #endregion
 
         #region ITypeConverter Implementation
