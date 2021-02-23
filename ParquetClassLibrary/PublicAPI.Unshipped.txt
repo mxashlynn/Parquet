@@ -18,6 +18,7 @@ const Parquet.Delimiters.DimensionalDelimiter = "×" -> string
 const Parquet.Delimiters.DimensionalTerminator = "≡" -> string
 const Parquet.Delimiters.ElementDelimiter = "–" -> string
 const Parquet.Delimiters.InternalDelimiter = "·" -> string
+const Parquet.Delimiters.MapChunkDelimiter = "∟" -> string
 const Parquet.Delimiters.NameDelimiter = "§" -> string
 const Parquet.Delimiters.PackDelimiter = "⚭" -> string
 const Parquet.Delimiters.PrimaryDelimiter = "," -> string
