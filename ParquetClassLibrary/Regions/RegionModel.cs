@@ -143,6 +143,10 @@ namespace Parquet.Regions
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Ignore]
         ModelID IMutableRegionModel.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
+
+        /// <summary>Instructions on how to procedurally generate this region.</summary>
+        [Ignore]
+        MapChunkGrid IMutableRegionModel.MapChunks { get => MapChunks; set => MapChunks = value; }
         #endregion
 
         #region Utilities

@@ -25,5 +25,8 @@ namespace Parquet.Regions
 
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         ModelID RegionBelowID { get; set; }
+
+        /// <summary>Instructions on how to procedurally generate this region.</summary>
+        MapChunkGrid MapChunks { get; set; }
     }
 }
