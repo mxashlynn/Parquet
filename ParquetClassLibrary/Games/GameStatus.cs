@@ -123,7 +123,7 @@ namespace Parquet.Games
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>

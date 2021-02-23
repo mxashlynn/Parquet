@@ -93,7 +93,7 @@ namespace Parquet.Parquets
             => !(inStack1 == inStack2);
         #endregion
 
-        #region ITypeConverter
+        #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static ParquetStatusPack ConverterFactory { get; } = Default;
 
@@ -134,7 +134,7 @@ namespace Parquet.Parquets
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
