@@ -680,6 +680,7 @@ Parquet.Regions.MapChunk.IsFilledOut.get -> bool
 Parquet.Regions.MapChunk.MapChunk(bool inIsFilledOut = false, Parquet.Regions.ChunkDetail inDetails = null, Parquet.Parquets.ParquetModelPackGrid inParquetDefinitions = null) -> void
 Parquet.Regions.MapChunk.ParquetDefinitions.get -> Parquet.Parquets.ParquetModelPackGrid
 Parquet.Regions.MapChunk.ParquetDefinitions.set -> void
+Parquet.Regions.MapChunkArrayExtensions
 Parquet.Regions.RegionModel
 Parquet.Regions.RegionModel.BackgroundColor.get -> string
 Parquet.Regions.RegionModel.ExitCount() -> int
@@ -918,6 +919,7 @@ static Parquet.Regions.ChunkDetail.operator !=(Parquet.Regions.ChunkDetail inChu
 static Parquet.Regions.ChunkDetail.operator ==(Parquet.Regions.ChunkDetail inChunkType1, Parquet.Regions.ChunkDetail inChunkType2) -> bool
 static Parquet.Regions.MapAnalysis.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.MapChunk.Empty.get -> Parquet.Regions.MapChunk
+static Parquet.Regions.MapChunkArrayExtensions.IsValidPosition(this Parquet.Regions.MapChunk[,] inArray, Parquet.Vector2D inPosition) -> bool
 static Parquet.Regions.RegionModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Regions.RegionModel.DimensionsInChunks.get -> Parquet.Vector2D
 static Parquet.Rooms.MapSpace.operator !=(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool

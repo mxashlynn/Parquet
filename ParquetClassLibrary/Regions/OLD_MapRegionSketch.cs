@@ -28,20 +28,6 @@ namespace Parquet.Regions
         /// <summary>Used to indicate a blank sketch.</summary>
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region", "", "");
 
-        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunk"/>s.</summary>
-        public const int ChunksPerRegionDimension = 4;
-
-        /// <summary>The grid's dimensions in chunks.</summary>
-        public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
-
-        /// <summary>The region's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(RegionModel.ParquetsPerRegionDimension,
-                                                                              RegionModel.ParquetsPerRegionDimension);
-
-        /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds
-            => All.RegionIDs;
-
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
         #endregion

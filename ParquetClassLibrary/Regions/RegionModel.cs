@@ -22,6 +22,12 @@ namespace Parquet.Regions
 
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
+
+        /// <summary>The length of each <see cref="RegionModel"/> in <see cref="MapChunk"/>s.</summary>
+        public const int ChunksPerRegionDimension = 4;
+
+        /// <summary>Dimensions in chunks of the <see cref="MapChunkGrid"/> stored by this <see cref="RegionModel"/>.</summary>
+        public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
         #endregion
 
         #region Characteristics
