@@ -86,7 +86,7 @@ namespace Parquet
     }
 
     /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="Pack"/>s.
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="Pack{T}"/>s.
     /// </summary>
     public static class PackArrayExtensions
     {
