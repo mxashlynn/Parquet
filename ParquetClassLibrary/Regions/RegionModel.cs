@@ -59,9 +59,8 @@ namespace Parquet.Regions
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
+        /// <summary>Instructions on how to procedurally generate this region.</summary>
         [Index(12)]
-        // TODO  HERE!!  This class needs to exist, and to implement IReadOnlyGrid<MapChunk> and IGrid<MapChunk> !
         public MapChunkGrid MapChunks { get; private set; }
         #endregion
 
