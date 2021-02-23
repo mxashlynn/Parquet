@@ -331,6 +331,7 @@ Parquet.IDeeplyCloneable<T>.DeepClone() -> T
 Parquet.IGrid<TElement>
 Parquet.IGrid<TElement>.Columns.get -> int
 Parquet.IGrid<TElement>.Count.get -> int
+Parquet.IGrid<TElement>.GridDelimiter.get -> string
 Parquet.IGrid<TElement>.Rows.get -> int
 Parquet.IGrid<TElement>.this[int y, int x].get -> TElement
 Parquet.ILogger
@@ -474,6 +475,7 @@ Parquet.ModelIDGrid.Columns.get -> int
 Parquet.ModelIDGrid.Count.get -> int
 Parquet.ModelIDGrid.DeepClone() -> Parquet.IGrid<Parquet.ModelID>
 Parquet.ModelIDGrid.GetEnumerator() -> System.Collections.IEnumerator
+Parquet.ModelIDGrid.GridDelimiter.get -> string
 Parquet.ModelIDGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.ModelIDGrid.ModelIDGrid() -> void
 Parquet.ModelIDGrid.ModelIDGrid(int inRowCount, int inColumnCount) -> void
@@ -601,6 +603,7 @@ Parquet.Parquets.ParquetModelPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetModelPackGrid.Count.get -> int
 Parquet.Parquets.ParquetModelPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetModelPack>
 Parquet.Parquets.ParquetModelPackGrid.GetEnumerator() -> System.Collections.IEnumerator
+Parquet.Parquets.ParquetModelPackGrid.GridDelimiter.get -> string
 Parquet.Parquets.ParquetModelPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Parquets.ParquetModelPackGrid.ParquetModelPackGrid() -> void
 Parquet.Parquets.ParquetModelPackGrid.ParquetModelPackGrid(int inRowCount, int inColumnCount) -> void
@@ -621,6 +624,7 @@ Parquet.Parquets.ParquetStatusPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetStatusPackGrid.Count.get -> int
 Parquet.Parquets.ParquetStatusPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetStatusPack>
 Parquet.Parquets.ParquetStatusPackGrid.GetEnumerator() -> System.Collections.IEnumerator
+Parquet.Parquets.ParquetStatusPackGrid.GridDelimiter.get -> string
 Parquet.Parquets.ParquetStatusPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Parquets.ParquetStatusPackGrid.ParquetStatusPackGrid() -> void
 Parquet.Parquets.ParquetStatusPackGrid.ParquetStatusPackGrid(int inRowCount, int inColumnCount) -> void

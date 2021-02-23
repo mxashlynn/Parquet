@@ -60,6 +60,10 @@ namespace Parquet.Parquets
         #endregion
 
         #region IGrid Implementation
+        /// <summary>Separates elements within this grid.</summary>
+        public string GridDelimiter
+            => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetModelPackGrid"/>.</summary>
         public int Rows
             => ParquetPacks?.GetLength(0) ?? 0;
