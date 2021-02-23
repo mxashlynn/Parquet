@@ -7,7 +7,6 @@ namespace ParquetUnitTests.Maps
     public class RegionModelUnitTest
     {
         #region Values for Tests
-        private static readonly Vector2D invalidPosition = new Vector2D(-1, -1);
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
         private static readonly RegionModel defaultRegion = new RegionModel(TestModels.TestMapRegionModel.ID - 1,
