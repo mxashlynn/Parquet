@@ -9,7 +9,7 @@ namespace Parquet.Crafts
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remark>
-    /// The intent is that this class function much like a read-only array.
+    /// The intent is that this class function much like an array.
     /// </remark>
     public class StrikePanelGrid : IGrid<StrikePanel>, IReadOnlyGrid<StrikePanel>
     {
