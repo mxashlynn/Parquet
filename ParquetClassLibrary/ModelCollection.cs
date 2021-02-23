@@ -504,7 +504,7 @@ namespace Parquet
     /// Provides the filename and path associated with the definition file for a <see cref="Model"/>-derived type
     /// collected by a <see cref="ModelCollection{TModel}"/>.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix",
+    [SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix",
         Justification = "This class provides a static utility method used by the generic collection of the same name.")]
     public static class ModelCollection
     {
@@ -515,11 +515,6 @@ namespace Parquet
         /// <returns>A full path to the associated file.</returns>
         public static string GetFilePath<TModel>()
             where TModel : Model
-        {
-            var filename = typeof(TModel) == typeof(Regions.MapRegionSketch)
-                ? $"{typeof(TModel).Name}es.csv"
-                : $"{typeof(TModel).Name}s.csv";
-            return $"{All.ProjectDirectory}/{filename}";
-        }
+            => $"{All.ProjectDirectory}/{typeof(TModel).Name}s.csv";
     }
 }
