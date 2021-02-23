@@ -10,7 +10,7 @@ namespace Parquet.Regions
     /// and instructions on how to procedurally generate its contents (via <see cref="RegionModel.MapChunkGrid"/>.
     /// <seealso cref="RegionStatus"/>.
     /// </summary>
-    public class RegionModel : Model, IMutableRegionModel, IReadOnlyGrid<MapChunk>
+    public class RegionModel : Model, IMutableRegionModel
     {
         #region Class Defaults
         /// <summary>Indicates an uninitialized region.</summary>
@@ -52,6 +52,11 @@ namespace Parquet.Regions
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Index(11)]
         public ModelID RegionBelow { get; private set; }
+
+        /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
+        [Index(12)]
+        // TODO  HERE!!  This class needs to exist, and to implement IReadOnlyGrid<MapChunk> and IGrid<MapChunk> !
+        public MapChunkGrid MapChunks { get; private set; }
         #endregion
 
         #region Initialization
@@ -133,19 +138,6 @@ namespace Parquet.Regions
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         [Ignore]
         ModelID IMutableRegionModel.RegionBelowID { get => RegionBelow; set => RegionBelow = value; }
-        #endregion
-
-        #region IReadOnlyGrid Implementation
-        public int Rows => throw new NotImplementedException();
-
-        public int Columns => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
-
-        public MapChunk this[int y, int x] => throw new NotImplementedException();
-        public IEnumerator<MapChunk> GetEnumerator() => throw new NotImplementedException();
-        IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
-        public IReadOnlyGrid<MapChunk> DeepClone() => throw new NotImplementedException();
         #endregion
 
         #region Utilities
