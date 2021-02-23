@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Parquet.Properties;
 
 namespace Parquet.Regions
@@ -50,6 +51,8 @@ namespace Parquet.Regions
         /// </summary>
         /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
+        [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
+            Justification = "In this instance it makes the code less readible.")]
         public static ICollection<string> CheckExitConsistency(ModelID inRegionID)
         {
             var inconsistentExitDirections = new List<string>();
