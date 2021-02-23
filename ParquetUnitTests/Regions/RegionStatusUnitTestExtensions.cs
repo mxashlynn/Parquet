@@ -3,16 +3,16 @@ using Parquet.Regions;
 namespace ParquetUnitTests.Maps
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="RegionModel"/> used in unit testing.
+    /// Provides extension methods for the <see cref="RegionStatus"/> used in unit testing.
     /// </summary>
-    internal static class RegionModelUnitTestExtensions
+    internal static class RegionStatusUnitTestExtensions
     {
         /// <summary>Fills the region with a test pattern.</summary>
         public static RegionModel FillTestPattern(this RegionModel inMapRegionModel)
         {
-            for (var x = 0; x < RegionModel.ParquetsPerRegionDimension; x++)
+            for (var x = 0; x < RegionStatus.ParquetsPerRegionDimension; x++)
             {
-                for (var y = 0; y < RegionModel.ParquetsPerRegionDimension; y++)
+                for (var y = 0; y < RegionStatus.ParquetsPerRegionDimension; y++)
                 {
                     inMapRegionModel.ParquetDefinitions[y, x].FloorID = TestModels.TestFloor.ID;
                 }
@@ -20,7 +20,7 @@ namespace ParquetUnitTests.Maps
                 inMapRegionModel.ParquetDefinitions[0, x].BlockID = TestModels.TestBlock.ID;
                 inMapRegionModel.ParquetDefinitions[RegionModel.ParquetsPerRegionDimension, 1].BlockID = TestModels.TestBlock.ID;
             }
-            for (var y = 0; y < RegionModel.ParquetsPerRegionDimension; y++)
+            for (var y = 0; y < RegionStatus.ParquetsPerRegionDimension; y++)
             {
                 inMapRegionModel.ParquetDefinitions[y, 0].BlockID = TestModels.TestBlock.ID;
                 inMapRegionModel.ParquetDefinitions[y, RegionModel.ParquetsPerRegionDimension - 1].BlockID = TestModels.TestBlock.ID;
