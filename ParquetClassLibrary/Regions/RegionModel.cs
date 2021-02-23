@@ -7,7 +7,7 @@ namespace Parquet.Regions
 {
     /// <summary>
     /// Defines an area within the gameworld, both its metadata (such as <see cref="BackgroundColor"/>)
-    /// and instructions on how to procedurally generate its contents (via <see cref="RegionModel.MapChunkGrid"/>.
+    /// and instructions on how to procedurally generate its contents (via a <see cref="MapChunkGrid"/>.
     /// <seealso cref="RegionStatus"/>.
     /// </summary>
     public class RegionModel : Model, IMutableRegionModel

@@ -11,7 +11,7 @@ namespace Parquet.Regions
         /// <summary>
         /// Models a method that takes a map and returns the <see cref="ModelID" /> for an adjacent map.
         /// </summary>
-        internal delegate ModelID IDByDirection(IRegionConnections inMap);
+        internal delegate ModelID IDByDirection(RegionModel inRegion);
 
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
