@@ -6,6 +6,7 @@ namespace Parquet.Parquets
     /// <remarks>
     /// Supports injecting <see cref="ParquetModelPack"/>s into game algorithm routines, such as rasterization.
     /// </remarks>
+    // TODO [MAP]/[GAME] Is this still needed?
     public interface IParquetModelPack
     {
         /// <summary>The floor contained in this pack.</summary>
