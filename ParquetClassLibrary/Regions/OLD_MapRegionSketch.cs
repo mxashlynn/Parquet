@@ -15,20 +15,20 @@ namespace Parquet.Regions
     /// Before play begins, <see cref="RegionModel"/>s may be stored as <see cref="MapRegionSketch"/>es, for example in an editor tool.
     ///
     /// MapRegionSketches allow additional flexibility, primarily by way of allowing map subsections to be represented not as actual
-    /// collection of parquets, but instead as <see cref="MapChunkModel"/>s, instructions to procedural generation routines.  These
+    /// collection of parquets, but instead as <see cref="MapChunk"/>s, instructions to procedural generation routines.  These
     /// instructions can be used by the library when the MapRegionSketch is loaded for the first time to generate actual parquets
     /// for the map.  In this way portions of the game world will be different every time the game is played, while still corresponding
     /// to some general layout instructions provided by the game's designers.
     /// 
     /// The <see cref="Stitch"/> method accomplishes this, forming a composite whole from generated parts.
     /// </remarks>
-    public partial class OLD_MapRegionSketch : RegionModel, IRegionConnections
+    public partial class OLD_MapRegionSketch : RegionModel
     {
         #region Class Defaults
         /// <summary>Used to indicate a blank sketch.</summary>
         public static readonly MapRegionSketch Empty = new MapRegionSketch(ModelID.None, "Empty Ungenerated Region", "", "");
 
-        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunkModel"/>s.</summary>
+        /// <summary>The length of each <see cref="MapRegionSketch"/> dimension in <see cref="MapChunk"/>s.</summary>
         public const int ChunksPerRegionDimension = 4;
 
         /// <summary>The grid's dimensions in chunks.</summary>
@@ -40,7 +40,7 @@ namespace Parquet.Regions
 
         /// <summary>The set of values that are allowed for <see cref="MapRegionSketch"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
-            => All.MapRegionIDs;
+            => All.RegionIDs;
 
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";
@@ -156,10 +156,10 @@ namespace Parquet.Regions
 
         #region Procedural Generation
         /// <summary>
-        /// Combines all constituent <see cref="MapChunkModel"/>s to produce a playable <see cref="RegionModel"/>.
+        /// Combines all constituent <see cref="MapChunk"/>s to produce a playable <see cref="RegionModel"/>.
         /// </summary>
         /// <remarks>
-        /// Invokes procedural generation routines on any <see cref="MapChunkModel"/>s that need it.
+        /// Invokes procedural generation routines on any <see cref="MapChunk"/>s that need it.
         /// </remarks>
         /// <returns>The new <see cref="RegionModel"/>.</returns>
         public RegionModel Stitch()
@@ -173,7 +173,7 @@ namespace Parquet.Regions
                 for (var chunkY = 0; chunkY < Chunks.Rows; chunkY++)
                 {
                     // Get potentially ungenerated chunk.
-                    var currentChunk = All.RegionModels.GetOrNull<MapChunkModel>(Chunks[chunkY, chunkX]);
+                    var currentChunk = All.RegionModels.GetOrNull<MapChunk>(Chunks[chunkY, chunkX]);
                     if (currentChunk is null)
                     {
                         continue;
@@ -183,8 +183,8 @@ namespace Parquet.Regions
                     currentChunk = currentChunk.Generate();
 
                     // Extract definitions and copy them into a larger subregion.
-                    var offsetY = chunkY * MapChunkModel.ParquetsPerChunkDimension;
-                    var offsetX = chunkX * MapChunkModel.ParquetsPerChunkDimension;
+                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
+                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
                     for (var parquetX = 0; parquetX < ChunksPerRegionDimension; parquetX++)
                     {
                         for (var parquetY = 0; parquetY < ChunksPerRegionDimension; parquetY++)
@@ -196,17 +196,17 @@ namespace Parquet.Regions
             }
 
             // Create a new MapRegionModel with the metadata of this sketch plus the new subregion.
-            var newRegion = new MapRegionModel(ID, Name, Description, Comment, null, BackgroundColor,
-                                               RegionToTheNorth, RegionToTheEast, RegionToTheSouth, RegionToTheWest,
-                                               RegionAbove, RegionBelow, null, parquetDefinitions);
+            var newRegion = new RegionModel(ID, Name, Description, Comment, null, BackgroundColor,
+                                            RegionToTheNorth, RegionToTheEast, RegionToTheSouth, RegionToTheWest,
+                                            RegionAbove, RegionBelow, null, parquetDefinitions);
 
             // TODO [MAP EDITOR] Fix this section:
             /*
             // If the current sketch is contained in the game-wide database, replace it with the newly stitched region.
             if (All.Maps.Contains(ID))
             {
-                // TODO [MAP EDITOR] This bug surfaces a design flaw in MapModels -- we need MapModelStatus classes.
-                IModelCollectionEdit<MapModel> allMaps = All.Maps;
+                // TODO [MAP EDITOR] This bug surfaces a design flaw in RegionModel -- we need MapModelStatus classes.
+                IModelCollectionEdit<RegionModel> allMaps = All.Maps;
                 allMaps.Replace(newRegion);
             }
             */

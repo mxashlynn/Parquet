@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
 
 namespace Parquet.Regions
@@ -8,62 +5,46 @@ namespace Parquet.Regions
     /// <summary>
     /// Models details of a portion of a <see cref="RegionModel"/>,
     /// either directly composed of parquets or generated from <see cref="ChunkDetail"/>s.
+    /// Instances of this class are mutable during play.
     /// </summary>
-    /// <remarks>
-    /// For more information, read the remarks given in <see cref="MapRegionSketch"/>.
-    /// </remarks>
-    public partial class OLD_MapChunkModel : RegionModel
+    public class MapChunk
     {
         #region Class Defaults
-        /// <summary>Used to indicate an empty grid.</summary>
-        public static MapChunkModel Empty { get; } = new MapChunkModel(ModelID.None, "Empty", "", "", null, false);
+        /// <summary>Used to indicate an uninitialized chunk.</summary>
+        public static MapChunk Empty { get; } = new MapChunk(null, false);
 
-        /// <summary>The length of each <see cref="MapChunkModel"/> dimension in parquets.</summary>
+        /// <summary>The length of each <see cref="MapChunk"/> dimension in parquets.</summary>
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public override Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerChunkDimension,
-                                                                              ParquetsPerChunkDimension);
-
-        /// <summary>The set of values that are allowed for <see cref="MapChunkModel"/> <see cref="ModelID"/>s.</summary>
-        public static Range<ModelID> Bounds
-            => All.MapChunkIDs;
+        public Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerChunkDimension,
+                                                                     ParquetsPerChunkDimension);
         #endregion
 
         #region Characteristics
-        /// <summary>If <c>true</c>, the <see cref="MapChunkModel"/> is created at design time instead of procedurally generated.</summary>
-        [Index(5)]
+        /// <summary>If <c>true</c>, the <see cref="MapChunk"/> is created at design time instead of procedurally generated.</summary>
         public bool IsFilledOut { get; private set; }
 
         /// <summary>A description of the type and arrangement of parquets to generate at runtime.</summary>
-        [Index(6)]
-        public ChunkDetail Details { get; private set; }
+        public ChunkDetail Details { get; set; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        [Index(13)]
-        public override ParquetModelPackGrid ParquetDefinitions { get; }
+        public ParquetModelPackGrid ParquetDefinitions { get; set;  }
         #endregion
 
         #region Initialization
         /// <summary>
-        /// Initializes an instance of the <see cref="MapChunkModel"/> class.
+        /// Initializes an instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="MapChunkModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="MapChunkModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="MapChunkModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="MapChunkModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="MapChunkModel"/>.</param>
         /// <param name="inIsFilledOut">
-        /// If <c>true</c>, the <see cref="MapChunkModel"/> was either created at design time or
+        /// If <c>true</c>, the <see cref="MapChunk"/> was either created at design time or
         /// has already been procedurally generated on load in-game.
         /// </param>
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
-        public MapChunkModel(ModelID inID, string inName, string inDescription, string inComment,
-                             IEnumerable<ModelTag> inTags = null, bool inIsFilledOut = false, ChunkDetail inDetails = null,
-                             // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
-                             ParquetModelPackGrid inParquetDefinitions = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags)
+        public MapChunk(bool inIsFilledOut = false, ChunkDetail inDetails = null,
+                        // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
+                        ParquetModelPackGrid inParquetDefinitions = null)
         {
             IsFilledOut = inIsFilledOut;
 
@@ -82,22 +63,21 @@ namespace Parquet.Regions
 
         #region Procedural Generation
         /// <summary>
-        /// Transforms the current <see cref="MapChunkModel"/> so that it is ready to be stitched together
+        /// Transforms the current <see cref="MapChunk"/> so that it is ready to be stitched together
         /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="RegionModel"/>.
         /// </summary>
         /// <remarks>
         /// If a chunk <see cref="IsFilledOut"/>, it is ready to go.
         /// Chunks that are not handmade at design time need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
         /// </remarks>
-        /// <returns>The generated <see cref="MapChunkModel"/>.</returns>
-        public MapChunkModel Generate()
+        /// <returns>The generated <see cref="MapChunk"/>.</returns>
+        public MapChunk Generate()
         {
             // If this chunk has already been generated, no work is needed.
             if (IsFilledOut)
             {
                 return this;
             }
-            IsFilledOut = true;
 
             // Create a subregion to hold the generated parquets.
             var newParquetDefinitions = new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
@@ -124,17 +104,7 @@ namespace Parquet.Regions
             #endregion
 
             // Create a new MapChunkModel with the new subregion.
-            var newChunk = new MapChunkModel(ID, Name, Description, Comment, Tags, true, null, newParquetDefinitions);
-
-            // TODO [MAP EDITOR] Fix this section:
-            /*
-            // If the current chunk is contained in the game-wide database, replace it with the newly generated chunk.
-            if (All.Maps.Contains(ID))
-            {
-                IModelCollectionEdit<MapModel> allMaps = All.Maps;
-                allMaps.Replace(newChunk);
-            }
-            */
+            var newChunk = new MapChunk(true, null, newParquetDefinitions);
 
             return newChunk;
         }
@@ -142,13 +112,13 @@ namespace Parquet.Regions
 
         #region Utilities
         /// <summary>
-        /// Describes the <see cref="MapChunkModel"/> as a <see cref="string"/> containing basic information.
+        /// Describes the <see cref="MapChunk"/> as a <see cref="string"/> containing basic information.
         /// </summary>
-        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunkModel"/>.</returns>
+        /// <returns>A <see cref="string"/> that represents the current <see cref="MapChunk"/>.</returns>
         public override string ToString()
             => IsFilledOut
-                ? $"Chunk {Name} filled out {base.ToString()}"
-                : $"Chunk {Name} sketched as {Details}";
+                ? $"{nameof(MapChunk)}: {ParquetDefinitions.Count}"
+                : $"{nameof(MapChunk)}: {Details}";
         #endregion
     }
 }

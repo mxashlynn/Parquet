@@ -20,7 +20,7 @@ namespace Parquet.Regions
     {
         #region Class Defaults -- FOR REGION STATUS
         /// <summary>The length of each <see cref="RegionModel"/> dimension in parquets.</summary>
-        public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunkModel.ParquetsPerChunkDimension;
+        public const int ParquetsPerRegionDimension = MapRegionSketch.ChunksPerRegionDimension * MapChunk.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
         public Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);

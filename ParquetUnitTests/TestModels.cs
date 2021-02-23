@@ -55,9 +55,6 @@ namespace ParquetUnitTests
         public static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static MapChunkModel TestMapChunkModel { get; }
-
-        /// <summary>Used in test patterns in QA routines.</summary>
         public static RegionModel TestMapRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -115,7 +112,7 @@ namespace ParquetUnitTests
         public static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<MapModel> Maps { get; }
+        public static IReadOnlyList<RegionModel> Regions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<FloorModel> Floors { get; }
@@ -154,8 +151,7 @@ namespace ParquetUnitTests
                                                     null, TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
-            TestMapChunkModel = new MapChunkModel(-All.MapChunkIDs.Minimum, "6 Test Map Chunk", "Test", "Test", null, true);
-            TestMapRegionModel = new RegionModel(-All.MapRegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestMapRegionModel = new RegionModel(-All.RegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: new List<ModelTag> { TestTag });
@@ -175,26 +171,6 @@ namespace ParquetUnitTests
             TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
             TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", null, false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
-
-            #region Initialize TestMapChunkModel
-            for (var y = 0; y < TestMapChunkModel.DimensionsInParquets.Y; y++)
-            {
-                for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
-                {
-                    TestMapChunkModel.ParquetDefinitions[y, x].FloorID = TestFloor.ID;
-                }
-
-                TestMapChunkModel.ParquetDefinitions[y, 0].BlockID = TestBlock.ID;
-                TestMapChunkModel.ParquetDefinitions[y, TestMapChunkModel.DimensionsInParquets.X - 1].BlockID = TestBlock.ID;
-            }
-            for (var x = 0; x < TestMapChunkModel.DimensionsInParquets.X; x++)
-            {
-                TestMapChunkModel.ParquetDefinitions[0, x].BlockID = TestBlock.ID;
-                TestMapChunkModel.ParquetDefinitions[TestMapChunkModel.DimensionsInParquets.Y - 1, x].BlockID = TestBlock.ID;
-            }
-            TestMapChunkModel.ParquetDefinitions[2, 1].FurnishingID = TestFurnishing.ID;
-            TestMapChunkModel.ParquetDefinitions[3, 3].CollectibleID = TestCollectible.ID;
-            #endregion
             #endregion
 
             #region Initialize All
@@ -205,7 +181,8 @@ namespace ParquetUnitTests
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
-            Maps = new List<MapModel> { TestMapChunkModel, TestMapRegionModel };
+            // TODO [MAP] [TESTS] Do we still need the regions list?
+            Regions = new List<RegionModel> { TestMapRegionModel };
             Floors = new List<FloorModel> { TestFloor };
             Blocks = new List<BlockModel> { TestBlock, TestLiquid };
             Furnishings = new List<FurnishingModel> { TestFurnishing };
@@ -215,7 +192,7 @@ namespace ParquetUnitTests
             Scripts = new List<ScriptModel> { TestScript };
 
             All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Maps, Scripts, Interactions, Items);
+                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, Scripts, Interactions, Items);
             #endregion
         }
     }

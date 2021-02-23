@@ -10,7 +10,7 @@ namespace Parquet.Regions
     /// and instructions on how to procedurally generate its contents (via <see cref="RegionModel.MapChunkGrid"/>.
     /// <seealso cref="RegionStatus"/>.
     /// </summary>
-    class RegionModel : Model, IMutableRegionModel, IReadOnlyGrid<MapChunk>
+    public class RegionModel : Model, IMutableRegionModel, IReadOnlyGrid<MapChunk>
     {
         #region Class Defaults
         /// <summary>Indicates an uninitialized region.</summary>
@@ -18,7 +18,7 @@ namespace Parquet.Regions
 
         /// <summary>The set of values that are allowed for <see cref="RegionModel"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds
-            => All.MapRegionIDs;
+            => All.RegionIDs;
 
         /// <summary>Default color for new regions.</summary>
         internal const string DefaultColor = "#FFFFFFFF";

@@ -6,7 +6,8 @@ using CsvHelper.TypeConversion;
 namespace Parquet.Regions
 {
     /// <summary>
-    /// Indicates which parquets constitute this <see cref="MapChunkModel"/> and how they are arranged.
+    /// Indicates which parquets constitute this <see cref="MapChunk"/> and how they are arranged.
+    /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
     /// Every chunk is either handmade at design time or procedurally generated during play.
@@ -16,29 +17,29 @@ namespace Parquet.Regions
     /// <para />
     /// Chunks that are not filled out are instead composed of two layers: a base and a modifier.
     /// The base is the underlying structure of the chunk and the modifier overlays it to
-    /// produce more complex arrangements than would otherwise be possible.  For example:
-    /// - Forest: Base·Grassy Solid · Modifier·Scattered Trees
-    /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy
-    /// - Town: Handmade
+    /// produce more complex arrangements than would otherwise be possible.  For example:<para />
+    /// - Forest:  Base·Grassy Solid · Modifier·Scattered Trees<br />
+    /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy<br />
+    /// - Town:    Handmade<br />
     /// </remarks>
     public sealed class ChunkDetail : IEquatable<ChunkDetail>, ITypeConverter, IDeeplyCloneable<ChunkDetail>
     {
         #region Class Defaults
-        /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunkModel"/>.</summary>
+        /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunk"/>.</summary>
         public static readonly ChunkDetail None = new ChunkDetail();
         #endregion
 
         #region Characteristics
-        /// <summary>Indicates the basic form that the <see cref="MapChunkModel"/> of parquets takes.</summary>
+        /// <summary>Indicates the basic form that the <see cref="MapChunk"/> of parquets takes.</summary>
         public ChunkTopography BaseTopography { get; }
 
-        /// <summary>Indicates the overall type of parquets in the <see cref="MapChunkModel"/>.</summary>
+        /// <summary>Indicates the overall type of parquets in the <see cref="MapChunk"/>.</summary>
         public ModelTag BaseComposition { get; }
 
-        /// <summary>Indicates a modifier on the <see cref="MapChunkModel"/> of parquets.</summary>
+        /// <summary>Indicates a modifier on the <see cref="MapChunk"/> of parquets.</summary>
         public ChunkTopography ModifierTopography { get; }
 
-        /// <summary>Indicates the type of parquets modifying the <see cref="MapChunkModel"/>.</summary>
+        /// <summary>Indicates the type of parquets modifying the <see cref="MapChunk"/>.</summary>
         public ModelTag ModifierComposition { get; }
         #endregion
 
@@ -57,10 +58,10 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkDetail"/> class.
         /// </summary>
-        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunkModel"/> of parquets takes.</param>
-        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunkModel"/>.</param>
-        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunkModel"/> of parquets.</param>
-        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunkModel"/>.</param>
+        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
+        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
+        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
+        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
         public ChunkDetail(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
                                 ChunkTopography inModifierTopography, ModelTag inModifierComposition)
         {

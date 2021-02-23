@@ -5,7 +5,7 @@ using System.Linq;
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="Regions.MapModel"/> and derived classes.
+    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="Regions.RegionModel"/>s.
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
