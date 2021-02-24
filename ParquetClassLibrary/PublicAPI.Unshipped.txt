@@ -31,6 +31,7 @@ const Parquet.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
 const Parquet.Parquets.BlockModel.MinToughness = 0 -> int
 const Parquet.Regions.MapChunk.ParquetsPerChunkDimension = 16 -> int
 const Parquet.Regions.RegionModel.ChunksPerRegionDimension = 4 -> int
+const Parquet.Regions.RegionStatus.ParquetsPerRegionDimension = 64 -> int
 const Parquet.Scripts.Commands.Alert = "A" -> string
 const Parquet.Scripts.Commands.CallCharacter = "C" -> string
 const Parquet.Scripts.Commands.ClearFlag = "!" -> string
@@ -56,6 +57,7 @@ override Parquet.Beings.BeingStatus.DeepClone<T>() -> T
 override Parquet.Beings.BeingStatus.Equals(object obj) -> bool
 override Parquet.Beings.BeingStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Beings.BeingStatus.GetHashCode() -> int
+override Parquet.Beings.BeingStatus.ToString() -> string
 override Parquet.Beings.PronounGroup.ToString() -> string
 override Parquet.Biomes.BiomeRecipe.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Crafts.StrikePanel.Equals(object obj) -> bool
@@ -140,6 +142,13 @@ override Parquet.Regions.MapChunk.Equals(object obj) -> bool
 override Parquet.Regions.MapChunk.GetHashCode() -> int
 override Parquet.Regions.MapChunk.ToString() -> string
 override Parquet.Regions.RegionModel.ToString() -> string
+override Parquet.Regions.RegionStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Regions.RegionStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Regions.RegionStatus.DeepClone<T>() -> T
+override Parquet.Regions.RegionStatus.Equals(object obj) -> bool
+override Parquet.Regions.RegionStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Regions.RegionStatus.GetHashCode() -> int
+override Parquet.Regions.RegionStatus.ToString() -> string
 override Parquet.Rooms.MapSpace.Equals(object obj) -> bool
 override Parquet.Rooms.MapSpace.GetHashCode() -> int
 override Parquet.Rooms.MapSpace.ToString() -> string
@@ -710,6 +719,7 @@ Parquet.Regions.MapChunkGrid.this[int y, int x].get -> Parquet.Regions.MapChunk
 Parquet.Regions.RegionModel
 Parquet.Regions.RegionModel.BackgroundColor.get -> string
 Parquet.Regions.RegionModel.ExitCount() -> int
+Parquet.Regions.RegionModel.Generate() -> Parquet.Regions.RegionStatus
 Parquet.Regions.RegionModel.MapChunks.get -> Parquet.Regions.MapChunkGrid
 Parquet.Regions.RegionModel.RegionAbove.get -> Parquet.ModelID
 Parquet.Regions.RegionModel.RegionBelow.get -> Parquet.ModelID
@@ -718,6 +728,14 @@ Parquet.Regions.RegionModel.RegionToTheEast.get -> Parquet.ModelID
 Parquet.Regions.RegionModel.RegionToTheNorth.get -> Parquet.ModelID
 Parquet.Regions.RegionModel.RegionToTheSouth.get -> Parquet.ModelID
 Parquet.Regions.RegionModel.RegionToTheWest.get -> Parquet.ModelID
+Parquet.Regions.RegionStatus
+Parquet.Regions.RegionStatus.GetBiome() -> Parquet.ModelID
+Parquet.Regions.RegionStatus.IsValidPosition(Parquet.Vector2D inPosition) -> bool
+Parquet.Regions.RegionStatus.ParquetModels.get -> Parquet.Parquets.ParquetModelPackGrid
+Parquet.Regions.RegionStatus.ParquetStatuses.get -> Parquet.Parquets.ParquetStatusPackGrid
+Parquet.Regions.RegionStatus.RegionStatus() -> void
+Parquet.Regions.RegionStatus.RegionStatus(Parquet.Parquets.ParquetModelPackGrid inParquetModels, Parquet.Parquets.ParquetStatusPackGrid inParquetStatuses) -> void
+Parquet.Regions.RegionStatus.Rooms.get -> System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room>
 Parquet.Rooms.IMutableRoomRecipe
 Parquet.Rooms.IMutableRoomRecipe.MinimumWalkableSpaces.get -> int
 Parquet.Rooms.IMutableRoomRecipe.MinimumWalkableSpaces.set -> void
@@ -951,6 +969,11 @@ static Parquet.Regions.MapChunkArrayExtensions.IsValidPosition(this Parquet.Regi
 static Parquet.Regions.MapChunkGrid.Empty.get -> Parquet.Regions.MapChunkGrid
 static Parquet.Regions.RegionModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Regions.RegionModel.DimensionsInChunks.get -> Parquet.Vector2D
+static Parquet.Regions.RegionStatus.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
+static Parquet.Regions.RegionStatus.DimensionsInParquets.get -> Parquet.Vector2D
+static Parquet.Regions.RegionStatus.operator !=(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool
+static Parquet.Regions.RegionStatus.operator ==(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool
+static Parquet.Regions.RegionStatus.Unused.get -> Parquet.Regions.RegionStatus
 static Parquet.Rooms.MapSpace.operator !=(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool
 static Parquet.Rooms.MapSpace.operator ==(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool
 static Parquet.Rooms.ParquetModelPackGridExtensions.CreateRoomCollectionFromSubregion(this Parquet.Parquets.ParquetModelPackGrid inSubregion) -> System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room>
