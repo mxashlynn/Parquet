@@ -11,6 +11,7 @@ namespace Parquet.Rooms
     /// Models a constructed <see cref="Room"/>.
     /// Instances of this class are mutable during play.
     /// </summary>
+    // TODO Would it make sense to derive this from Status (i.e., RoomStatus : Status<Room>) ?
     public sealed class Room : IEquatable<Room>
     {
         #region Characteristics
