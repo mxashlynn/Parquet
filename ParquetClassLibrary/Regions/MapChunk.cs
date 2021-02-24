@@ -83,6 +83,7 @@ namespace Parquet.Regions
         /// Chunks that are not handmade at design time need to undergo procedural generation based on their <see cref="ChunkDetail"/>s.
         /// </remarks>
         /// <returns>The generated <see cref="MapChunk"/>.</returns>
+        // TODO [PROC GEN] Review and update this entire routine.
         public MapChunk Generate()
         {
             // If this chunk has already been generated, no work is needed.

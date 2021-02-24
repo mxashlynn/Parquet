@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper;
@@ -77,11 +78,62 @@ namespace Parquet.Regions
 
             ParquetModels = nonNullParquetModels;
             ParquetStatuses = nonNullParquetStatuses;
+            UpdateRoomCollection();
+        }
+
+        /// <summary>
+        /// Initializes a playable instance of the <see cref="RegionStatus"/> class
+        /// based on a given <see cref="RegionModel"/> instance.
+        /// </summary>
+        /// <remarks>This is the entry point for map procedural generation.</remarks>
+        /// <param name="inRegionModel">The region definition whose status is being tracked.</param>
+        // TODO [PROC GEN] Review and update this entire routine.
+        public RegionStatus(RegionModel inRegionModel)
+        {
+            Precondition.IsNotNull(inRegionModel);
+            var nonNullRegionModel = inRegionModel is null
+                ? RegionModel.Empty
+                : inRegionModel;
+
+            Debug.Assert(nonNullRegionModel.MapChunks.Rows == RegionModel.ChunksPerRegionDimension, "Row size mismatch.");
+            Debug.Assert(nonNullRegionModel.MapChunks.Columns == RegionModel.ChunksPerRegionDimension, "Column size mismatch.");
+
+            var parquetModels = new ParquetModelPackGrid(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+
+            for (var chunkX = 0; chunkX < nonNullRegionModel.MapChunks.Columns; chunkX++)
+            {
+                for (var chunkY = 0; chunkY < nonNullRegionModel.MapChunks.Rows; chunkY++)
+                {
+                    // Get potentially ungenerated chunk.
+                    var currentChunk = nonNullRegionModel.MapChunks[chunkY, chunkX];
+                    if (currentChunk is null)
+                    {
+                        continue;
+                    }
+
+                    // Generate chunk if needed.
+                    currentChunk = currentChunk.Generate();
+
+                    // Extract definitions and copy them into the larger subregion.
+                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
+                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
+                    for (var parquetX = 0; parquetX < RegionModel.ChunksPerRegionDimension; parquetX++)
+                    {
+                        for (var parquetY = 0; parquetY < RegionModel.ChunksPerRegionDimension; parquetY++)
+                        {
+                            parquetModels[offsetY + parquetY, offsetX + parquetX] = currentChunk.ParquetDefinitions[parquetY, parquetX];
+                        }
+                    }
+                }
+            }
+
+            ParquetModels = parquetModels;
+            ParquetStatuses = new ParquetStatusPackGrid(parquetModels);
+            UpdateRoomCollection();
         }
         #endregion
 
-        #region Analysis
-        #region Finding Biomes
+        #region Biomes Analysis
         /// <summary>
         /// Determines which <see cref="BiomeRecipe"/> this <see cref="RegionStatus"/> corresponds to.
         /// </summary>
@@ -192,11 +244,113 @@ namespace Parquet.Regions
         }
         #endregion
 
-        #region Finding Rooms
-        // TODO [API] Currently room-finding routines are extension methods on ParquetStackGrid.  Should we move them here?
+        #region Room Analysis
+        /// <summary>
+        /// Updates <see cref="Rooms"/>, the collection of all <see cref="Room"/>s currently found within this
+        /// <see cref="RegionStatus"/>.
+        /// </summary>
+        public void UpdateRoomCollection()
+            => Rooms = CreateRoomCollectionFromSubregion(ParquetModels);
+
+        /// <summary>
+        /// Analyzes the given <see cref="ParquetModelPackGrid"/> to find all valid <see cref="Room"/>s it contains.
+        /// </summary>
+        /// <remarks>
+        /// For a complete explanation of the algorithm implemented here, see:
+        /// <a href="https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md"/>
+        /// </remarks>
+        /// <param name="inSubregion">The current collection of parquets to search for <see cref="Room"/>s.</param>
+        /// <returns>An initialized collection of rooms.</returns>
+        private static IReadOnlyCollection<Room> CreateRoomCollectionFromSubregion(ParquetModelPackGrid inSubregion)
+        {
+            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
+            if (inSubregion is null)
+            {
+                return new List<Room>();
+            }
+
+            var walkableAreas = GetWalkableAreas(inSubregion);
+            var perimeter = MapSpaceSetExtensions.Empty;
+            var rooms =
+                walkableAreas
+                .Where(walkableArea => walkableArea.TryGetPerimeter(out perimeter)
+                                    && walkableArea.Any(space => space.IsWalkableEntry
+                                                                || space.Neighbors()
+                                                                        .Any(neighbor => neighbor.IsEnclosingEntry(walkableArea))))
+                .Select(walkableArea => new Room(walkableArea, perimeter))
+                .ToList();
+            return rooms;
+        }
+
+        /// <summary>
+        /// Finds all valid Walkable Areas in a given subregion.
+        /// </summary>
+        /// <param name="inSubregion">The <see cref="ParquetModelPackGrid"/>s to search.</param>
+        /// <returns>The list of valid Walkable Areas.</returns>
+        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetModelPackGrid inSubregion)
+        {
+            var PWAs = new List<HashSet<MapSpace>>();
+            var subregionRows = inSubregion.Rows;
+            var subregionCols = inSubregion.Columns;
+
+            for (var y = 0; y < subregionRows; y++)
+            {
+                for (var x = 0; x < subregionCols; x++)
+                {
+                    if (inSubregion[y, x].IsWalkable)
+                    {
+                        var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
+
+                        var northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
+                            ? new MapSpace(x, y - 1, inSubregion[y - 1, x], inSubregion)
+                            : MapSpace.Empty;
+                        var westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
+                            ? new MapSpace(x - 1, y, inSubregion[y, x - 1], inSubregion)
+                            : MapSpace.Empty;
+
+                        if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)
+                        {
+                            var newPWA = new HashSet<MapSpace> { currentSpace };
+                            PWAs.Add(newPWA);
+                        }
+                        else if (MapSpace.Empty != northSpace && MapSpace.Empty != westSpace)
+                        {
+                            var northPWA = PWAs.Find(pwa => pwa.Contains(northSpace));
+                            var westPWA = PWAs.Find(pwa => pwa.Contains(westSpace));
+                            if (northPWA == westPWA)
+                            {
+                                northPWA.Add(currentSpace);
+                            }
+                            else
+                            {
+                                var combinedPWA = new HashSet<MapSpace>(northPWA.Union(westPWA)) { currentSpace };
+                                PWAs.Remove(northPWA);
+                                PWAs.Remove(westPWA);
+                                PWAs.Add(combinedPWA);
+                            }
+                        }
+                        else if (MapSpace.Empty != westSpace)
+                        {
+                            PWAs.Find(pwa => pwa.Contains(westSpace)).Add(currentSpace);
+                        }
+                        else if (MapSpace.Empty != northSpace)
+                        {
+                            PWAs.Find(pwa => pwa.Contains(northSpace)).Add(currentSpace);
+                        }
+                    }
+                }
+            }
+
+            var PWAsTooSmall = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count < RoomConfiguration.MinWalkableSpaces));
+            var PWAsTooLarge = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => pwa.Count > RoomConfiguration.MaxWalkableSpaces));
+            var PWAsDiscontinuous = new HashSet<HashSet<MapSpace>>(PWAs.Where(pwa => !pwa.AllSpacesAreReachable(space => space.Content.IsWalkable)));
+            var results = new List<HashSet<MapSpace>>(PWAs.Except(PWAsTooSmall).Except(PWAsTooLarge).Except(PWAsDiscontinuous));
+
+            return results.Cast<IReadOnlySet<MapSpace>>().ToList();
+        }
         #endregion
 
-        #region Finding Exits
+        #region Exit Analysis
         /// <summary>
         /// Takes a <see cref="RegionModel"/> and returns the <see cref="ModelID" /> of an adjacent RegionModel.
         /// </summary>
@@ -275,7 +429,6 @@ namespace Parquet.Regions
 
             return inconsistentExitDirections;
         }
-        #endregion
         #endregion
 
         #region IEquatable Implementation

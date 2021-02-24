@@ -156,57 +156,6 @@ namespace Parquet.Regions
         MapChunkGrid IMutableRegionModel.MapChunks { get => MapChunks; set => MapChunks = value; }
         #endregion
 
-        #region Procedural Generation
-        /// <summary>
-        /// Combines all constituent <see cref="MapChunk"/>s to produce a playable <see cref="RegionStatus"/>.
-        /// </summary>
-        /// <returns>The new <see cref="RegionStatus"/>.</returns>
-        // TODO [PROC GEN] Review and update this entire routine.
-        public RegionStatus Generate()
-        {
-            Debug.Assert(MapChunks.Rows == ChunksPerRegionDimension, "Row size mismatch.");
-            Debug.Assert(MapChunks.Columns == ChunksPerRegionDimension, "Column size mismatch.");
-
-            var parquetModels = new ParquetModelPackGrid(RegionStatus.ParquetsPerRegionDimension,
-                                                              RegionStatus.ParquetsPerRegionDimension);
-            for (var chunkX = 0; chunkX < MapChunks.Columns; chunkX++)
-            {
-                for (var chunkY = 0; chunkY < MapChunks.Rows; chunkY++)
-                {
-                    // Get potentially ungenerated chunk.
-                    var currentChunk = MapChunks[chunkY, chunkX];
-                    if (currentChunk is null)
-                    {
-                        continue;
-                    }
-
-                    // Generate chunk if needed.
-                    currentChunk = currentChunk.Generate();
-
-                    // Extract definitions and copy them into a larger subregion.
-                    var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
-                    var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
-                    for (var parquetX = 0; parquetX < ChunksPerRegionDimension; parquetX++)
-                    {
-                        for (var parquetY = 0; parquetY < ChunksPerRegionDimension; parquetY++)
-                        {
-                            parquetModels[offsetY + parquetY, offsetX + parquetX] = currentChunk.ParquetDefinitions[parquetY, parquetX];
-                        }
-                    }
-                }
-            }
-
-            // HERE! **************************************************************************************************
-
-            // Create a new MapRegionModel with the metadata of this sketch plus the new subregion.
-            // TODO [PROC GEN] Create method that returns a grid of defaults statuses for a given grid of models.
-            // TODO [PROC GEN] Create method that returns a default status pack for a given model pack.
-            var newStatus = new RegionStatus(parquetModels, ParquetStatusPackGrid.DefaultForModels(parquetModels));
-
-            return newStatus;
-        }
-        #endregion
-
         #region Utilities
         /// <summary>
         /// Determines how many exist lead from this <see cref="RegionModel"/> to other RegionModels.
