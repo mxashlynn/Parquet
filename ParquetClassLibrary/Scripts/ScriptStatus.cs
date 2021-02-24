@@ -12,6 +12,8 @@ namespace Parquet.Scripts
     /// <remarks>
     /// This can also be used to tracks the status of an <see cref="InteractionModel"/>
     /// as only <see cref="InteractionModel.StepsIDs"/> is stateful.
+    /// 
+    /// The narrative gameplay revolves around instances of this class.
     /// </remarks>
     public class ScriptStatus : Status<ScriptModel>
     {

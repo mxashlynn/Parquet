@@ -11,6 +11,9 @@ namespace Parquet.Beings
     /// Tracks the status of a <see cref="BeingModel"/>.
     /// Instances of this class are mutable during play.
     /// </summary>
+    /// <remarks>
+    /// Most of the game interaction is mediated through instances of this class.
+    /// </remarks>
     public class BeingStatus : Status<BeingModel>
     {
         #region Class Defaults

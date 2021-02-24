@@ -12,6 +12,9 @@ namespace Parquet.Crafts
     /// <summary>
     /// Models the ingredients and process needed to produce a new item.
     /// </summary>
+    /// <remarks>
+    /// The crafting gameplay revolves around the data represented by instances of this class.
+    /// </remarks>
     public class CraftingRecipe : Model, IMutableCraftingRecipe
     {
         #region Class Defaults
