@@ -344,5 +344,14 @@ namespace Parquet.Beings
                                Quests.ToList(),
                                Inventory.ToList()) as T;
         #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the current <see cref="BeingStatus"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"[{nameof(CurrentBehaviorID)} {CurrentBehaviorID} @ {nameof(Position)} {Position}]";
+        #endregion
     }
 }
