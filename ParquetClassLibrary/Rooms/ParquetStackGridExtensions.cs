@@ -4,6 +4,8 @@ using Parquet.Parquets;
 
 namespace Parquet.Rooms
 {
+    // TODO [API] Should these routines be moved to RegionStatus?  That is where they are used.
+
     /// <summary>
     /// Extensions to <see cref="ParquetModelPackGrid"/> for analyzing subregions of <see cref="ParquetModelPack"/>s
     /// to find all valid <see cref="Room"/>s within them.

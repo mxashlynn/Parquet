@@ -192,6 +192,10 @@ namespace Parquet.Regions
         }
         #endregion
 
+        #region Finding Rooms
+        // TODO [API] Currently room-finding routines are extension methods on ParquetStackGrid.  Should we move them here?
+        #endregion
+
         #region Finding Exits
         /// <summary>
         /// Takes a <see cref="RegionModel"/> and returns the <see cref="ModelID" /> of an adjacent RegionModel.
