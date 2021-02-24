@@ -59,6 +59,62 @@ namespace Parquet.Parquets
             => ParquetPacks = inParquetPackArray;
         #endregion
 
+        #region Working with Subregions
+        // TODO [API] Do we still need these?
+        /*
+        /// <summary>
+        /// Provides all parquet definitions within the current map.
+        /// </summary>
+        /// <returns>The entire map as a subregion.</returns>
+        public ParquetModelPackGrid GetSubregion()
+            => GetSubregion(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
+
+        /// <summary>
+        /// Provides all parquet definitions within the specified rectangular subsection of the current map.
+        /// </summary>
+        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
+        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
+        /// <returns>A portion of the map as a subregion.</returns>
+        /// <remarks>If the coordinates given are not well-formed, the subregion returned will be invalid.</remarks>
+        // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
+        public ParquetModelPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        {
+            if (!ParquetPacks.IsValidPosition(inUpperLeft))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inUpperLeft), nameof(ParquetPacks)));
+            }
+            else if (!ParquetPacks.IsValidPosition(inLowerRight))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inLowerRight), nameof(ParquetPacks)));
+            }
+            else if (inLowerRight.X < inUpperLeft.X || inLowerRight.Y < inUpperLeft.Y)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                                           nameof(inLowerRight), inLowerRight, inUpperLeft));
+            }
+            else
+            {
+                var subregion = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
+                                                 inLowerRight.Y - inUpperLeft.Y + 1];
+
+                for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
+                {
+                    for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
+                    {
+                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetPacks[y, x];
+                    }
+                }
+
+                return new ParquetModelPackGrid(subregion);
+            }
+
+            return new ParquetModelPackGrid();
+        }
+        */
+        #endregion
+
         #region IGrid Implementation
         /// <summary>Separates elements within this grid.</summary>
         public string GridDelimiter
