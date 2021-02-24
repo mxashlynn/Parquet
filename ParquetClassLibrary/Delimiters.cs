@@ -35,7 +35,7 @@ namespace Parquet
         /// <summary>Separates objects within collections other than <see cref="Pack{T}"/>s.</summary>
         public const string SecondaryDelimiter = "❟";
 
-        /// <summary>Separates objects within nested collections.</summary>
+        /// <summary>Separates objects within nested or paired collections.</summary>
         public const string TertiaryDelimiter = "❠";
 
         /// <summary>Separates objects within <see cref="Pack{T}"/>s.</summary>

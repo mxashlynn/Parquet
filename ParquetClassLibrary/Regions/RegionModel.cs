@@ -5,10 +5,16 @@ using CsvHelper.Configuration.Attributes;
 namespace Parquet.Regions
 {
     /// <summary>
-    /// Defines an area within the gameworld, both its metadata (such as <see cref="BackgroundColor"/>)
-    /// and instructions on how to procedurally generate its contents (via a <see cref="MapChunkGrid"/>.
-    /// <seealso cref="RegionStatus"/>.
+    /// Defines an area within the gameworld, both its metadata and instructions to generate its contents.
     /// </summary>
+    /// <remarks>
+    /// <see cref="RegionModel"/>s allow map subsections, called <see cref="MapChunk"/>s, to be represented
+    /// either as concrete <see cref="ParquetModelPackGrid"/>s or as <see cref="ChunkDetail"/>s --
+    /// sets of procedural generation instructions.  These instructions can be used by the library when the
+    /// RegionModel is loaded to generate parquet maps.<br />
+    /// In this way portions of the game world may vary each run while maintaining a persistent general layout.
+    /// </remarks>
+    /// <seealso cref="RegionStatus"/>.
     public class RegionModel : Model, IMutableRegionModel
     {
         #region Class Defaults
