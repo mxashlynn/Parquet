@@ -1,7 +1,7 @@
 namespace Parquet
 {
     /// <summary>
-    /// Represents how the library was built and the state it is currently running in.
+    /// Represents how the library was built and how it is currently being used.
     /// </summary>
     public static class LibraryState
     {
@@ -21,8 +21,7 @@ namespace Parquet
         /// </summary>
         /// <remarks>
         /// <see cref="Model"/>s are designed to be immutable during play
-        /// but mutable at design time.
-        /// <br/>
+        /// but mutable at design time.<br />
         /// By preventing model mutation when this is set to <c>true</c>, Parquet
         /// removes some of the responsibility to respect this distinction from the
         /// game developer.
