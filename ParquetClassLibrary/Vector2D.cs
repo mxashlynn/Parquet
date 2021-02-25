@@ -9,6 +9,7 @@ namespace Parquet
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
+    // TODO [API] Perhaps this should be renamed Point2D, to follow the standard used by System.Drawing and MonoGame (but not clash with them as they lack the 2D).
     public readonly struct Vector2D : IEquatable<Vector2D>, ITypeConverter
     {
         #region Class Defaults

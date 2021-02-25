@@ -14,6 +14,7 @@ namespace Parquet
     /// <see cref="Status{T}"/> class.
     /// </remarks>
     // TODO [API] Update this class to track only objects that implement ILocatable.  Then give one of the new constructors.
+    // TODO [API] Alternatively, make this a non-Status POCO a la Vector2D and Range.
     sealed public class Location : Status<object>
     {
         #region Class Defaults
