@@ -21,7 +21,6 @@ namespace Parquet
     /// One Status that does not have a Model companion is <see cref="Location"/>, which can
     /// be applied to any game object with a definite position within the game world.
     /// </remarks>
-    /// <seealso cref="LibraryState.IsPlayMode"/>
     public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter, IDeeplyCloneable<Status<T>>
     {
         #region Initialization
