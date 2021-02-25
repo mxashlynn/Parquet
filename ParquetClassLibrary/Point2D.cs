@@ -8,6 +8,7 @@ namespace Parquet
 {
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
+    /// Instances have value semantics.
     /// </summary>
     public readonly struct Point2D : IEquatable<Point2D>, ITypeConverter
     {

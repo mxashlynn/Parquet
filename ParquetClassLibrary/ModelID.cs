@@ -12,6 +12,7 @@ namespace Parquet
 {
     /// <summary>
     /// Uniquely identifies every <see cref="Model"/>.
+    /// Instances have value semantics.
     /// </summary>
     /// <remarks>
     /// <see cref="ModelID"/>s provide a means for the library
