@@ -83,11 +83,7 @@ override Parquet.Items.InventorySlot.Equals<T>(T inStatus) -> bool
 override Parquet.Items.InventorySlot.GetHashCode() -> int
 override Parquet.Items.InventorySlot.ToString() -> string
 override Parquet.Items.ItemModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
-override Parquet.Location.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
-override Parquet.Location.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-override Parquet.Location.DeepClone<T>() -> T
 override Parquet.Location.Equals(object obj) -> bool
-override Parquet.Location.Equals<T>(T inLocation) -> bool
 override Parquet.Location.GetHashCode() -> int
 override Parquet.Location.ToString() -> string
 override Parquet.Model.Equals(object obj) -> bool
@@ -446,6 +442,10 @@ Parquet.Items.ModificationTool.None = 0 -> Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.Shovel = 1 -> Parquet.Items.ModificationTool
 Parquet.LibraryState
 Parquet.Location
+Parquet.Location.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+Parquet.Location.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Location.Equals(Parquet.Location inLocation) -> bool
+Parquet.Location.Location() -> void
 Parquet.Location.Location(Parquet.ModelID? inRegionID = null, Parquet.Point2D? inPosition = null) -> void
 Parquet.Location.Position.get -> Parquet.Point2D
 Parquet.Location.RegionID.get -> Parquet.ModelID
