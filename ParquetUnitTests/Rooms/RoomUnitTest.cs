@@ -118,7 +118,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void UncontainedPositionIsNotFoundTest()
         {
-            var UncontainedPosition = new Vector2D(TestPerimeter.Select(space => space.Position.X).Min() - 1,
+            var UncontainedPosition = new Point2D(TestPerimeter.Select(space => space.Position.X).Min() - 1,
                                                      TestPerimeter.Select(space => space.Position.Y).Min() - 1);
 
             Assert.False(ValidRoom.ContainsPosition(UncontainedPosition));

@@ -96,7 +96,7 @@ namespace Parquet
         /// <param name="inArray">The <see cref="Pack{T}"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition<T>(this Pack<T>[,] inArray, Vector2D inPosition)
+        public static bool IsValidPosition<T>(this Pack<T>[,] inArray, Point2D inPosition)
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1

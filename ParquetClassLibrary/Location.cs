@@ -27,7 +27,7 @@ namespace Parquet
         public ModelID RegionID { get; }
 
         /// <summary>The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</summary>
-        public Vector2D Position { get; }
+        public Point2D Position { get; }
         #endregion
 
         #region Initialization
@@ -36,10 +36,10 @@ namespace Parquet
         /// </summary>
         /// <param name="inRegionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
         /// <param name="inPosition">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
-        public Location(ModelID? inRegionID = null, Vector2D? inPosition = null)
+        public Location(ModelID? inRegionID = null, Point2D? inPosition = null)
         {
             RegionID = inRegionID ?? ModelID.None;
-            Position = inPosition ?? Vector2D.Zero;
+            Position = inPosition ?? Point2D.Origin;
         }
         #endregion
 
@@ -126,7 +126,7 @@ namespace Parquet
             var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
             var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedPosition = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
 
             return new Location(parsedRegionID, parsedPosition);
         }

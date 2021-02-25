@@ -21,7 +21,7 @@ namespace Parquet.Regions
         public const int ParquetsPerChunkDimension = 16;
 
         /// <summary>The chunk's dimensions in parquets.</summary>
-        public Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerChunkDimension,
+        public Point2D DimensionsInParquets { get; } = new Point2D(ParquetsPerChunkDimension,
                                                                      ParquetsPerChunkDimension);
         #endregion
 
@@ -257,7 +257,7 @@ namespace Parquet.Regions
         /// <param name="inArray">The <see cref="Pack{T}"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this MapChunk[,] inArray, Vector2D inPosition)
+        public static bool IsValidPosition(this MapChunk[,] inArray, Point2D inPosition)
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1

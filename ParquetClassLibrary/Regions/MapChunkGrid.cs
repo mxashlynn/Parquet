@@ -141,7 +141,7 @@ namespace Parquet.Regions
         /// </summary>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
+        public bool IsValidPosition(Point2D inPosition)
             => MapChunks.IsValidPosition(inPosition);
         #endregion
     }

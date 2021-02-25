@@ -14,7 +14,7 @@ namespace Parquet.Rooms
         /// <param name="inRooms">The current collection of <see cref="Room"/>s.</param>
         /// <param name="inPosition">An in-bounds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
-        public static Room GetRoomAtOrNull(this IReadOnlyCollection<Room> inRooms, Vector2D inPosition)
+        public static Room GetRoomAtOrNull(this IReadOnlyCollection<Room> inRooms, Point2D inPosition)
             => inRooms?.FirstOrDefault(room => room.ContainsPosition(inPosition)) ?? null;
 
         /// <summary>

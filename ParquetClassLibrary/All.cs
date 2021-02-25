@@ -440,7 +440,7 @@ namespace Parquet
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
                 { typeof(ScriptNode), ScriptNode.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
-                { typeof(Vector2D), Vector2D.ConverterFactory },
+                { typeof(Point2D), Point2D.ConverterFactory },
                 #endregion
 
                 #region Linear Series Types

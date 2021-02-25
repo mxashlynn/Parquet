@@ -45,8 +45,8 @@ namespace Parquet.Rooms
         /// <remarks>
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
-        public Vector2D Position
-            => new Vector2D(WalkableArea.Select(space => space.Position.X).Min(),
+        public Point2D Position
+            => new Point2D(WalkableArea.Select(space => space.Position.X).Min(),
                               WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
@@ -155,7 +155,7 @@ namespace Parquet.Rooms
         /// </summary>
         /// <param name="inPosition">The position to check for.</param>
         /// <returns><c>true</c>, if the <see cref="Room"/> contains the given position, <c>false</c> otherwise.</returns>
-        public bool ContainsPosition(Vector2D inPosition)
+        public bool ContainsPosition(Point2D inPosition)
             => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
 
         /// <summary>
