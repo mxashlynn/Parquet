@@ -140,7 +140,6 @@ namespace Parquet
             => new Location(RegionID, Position) as T;
         #endregion
 
-
         #region Utilities
         /// <summary>
         /// Describes the <see cref="Location"/> as a <see cref="string"/>.
