@@ -4,6 +4,7 @@ namespace Parquet
 {
     /// <summary>
     /// Represents a type used to perform logging.
+    /// Typically this type is provided by the game or tool that uses Parquet.
     /// </summary>
     /// <remarks>
     /// Inspired by <see cref="Microsoft.Extensions.Logging.ILogger"/> but simpler.

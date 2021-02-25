@@ -7,7 +7,6 @@ using Parquet.Biomes;
 
 namespace Parquet.Parquets
 {
-    // TODO Replace "Models" with "Represents" when used as a verb in documentation?
     /// <summary>
     /// Models a sandbox parquet.
     /// </summary>

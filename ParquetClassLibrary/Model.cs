@@ -8,7 +8,7 @@ using CsvHelper.Configuration.Attributes;
 namespace Parquet
 {
     /// <summary>
-    /// Represents a unique, identifiable type of game object.
+    /// Models a unique, identifiable category of game object.
     /// </summary>
     /// <remarks>
     /// Model could be considered the fundamental class of the entire Parquet library.
