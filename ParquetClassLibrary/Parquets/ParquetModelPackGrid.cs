@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Parquet.Properties;
 
 namespace Parquet.Parquets
 {
@@ -60,8 +62,6 @@ namespace Parquet.Parquets
         #endregion
 
         #region Working with Subregions
-        // TODO [API] Do we still need these?
-        /*
         /// <summary>
         /// Provides all parquet definitions within the current map.
         /// </summary>
@@ -70,11 +70,11 @@ namespace Parquet.Parquets
             => GetSubregion(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
 
         /// <summary>
-        /// Provides all parquet definitions within the specified rectangular subsection of the current map.
+        /// Provides all parquet definitions within the specified rectangular subsection of the current grid.
         /// </summary>
         /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
-        /// <returns>A portion of the map as a subregion.</returns>
+        /// <returns>A portion of the grid.</returns>
         /// <remarks>If the coordinates given are not well-formed, the subregion returned will be invalid.</remarks>
         // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
         public ParquetModelPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
@@ -97,7 +97,7 @@ namespace Parquet.Parquets
             else
             {
                 var subregion = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
-                                                 inLowerRight.Y - inUpperLeft.Y + 1];
+                                                     inLowerRight.Y - inUpperLeft.Y + 1];
 
                 for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
                 {
@@ -112,7 +112,6 @@ namespace Parquet.Parquets
 
             return new ParquetModelPackGrid();
         }
-        */
         #endregion
 
         #region IGrid Implementation
