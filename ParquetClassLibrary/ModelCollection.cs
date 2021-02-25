@@ -386,7 +386,7 @@ namespace Parquet
         /// <param name="inHeaderText">The text to modify.</param>
         /// <param name="inHeaderIndex">Ignored.</param>
         /// <returns>The modified text.</returns>
-        // TODO If we remove the "in" prefix, remove this routine, too.
+        // TODO [API] Remove the "in" prefix at v1.0, and remove this routine, too.
         private static string RemoveHeaderPrefix(string inHeaderText, int inHeaderIndex)
             => inHeaderText.StartsWith("in", StringComparison.InvariantCulture)
                 ? inHeaderText[2..].ToUpperInvariant()
