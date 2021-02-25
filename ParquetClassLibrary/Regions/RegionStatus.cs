@@ -114,7 +114,7 @@ namespace Parquet.Regions
                     // Generate chunk if needed.
                     currentChunk = currentChunk.Generate();
 
-                    // Extract definitions and copy them into the larger subregion.
+                    // Extract definitions and copy them into the larger grid.
                     var offsetY = chunkY * MapChunk.ParquetsPerChunkDimension;
                     var offsetX = chunkX * MapChunk.ParquetsPerChunkDimension;
                     for (var parquetX = 0; parquetX < RegionModel.ChunksPerRegionDimension; parquetX++)
@@ -250,7 +250,7 @@ namespace Parquet.Regions
         /// <see cref="RegionStatus"/>.
         /// </summary>
         public void UpdateRoomCollection()
-            => Rooms = CreateRoomCollectionFromSubregion(ParquetModels);
+            => Rooms = FindRoomsInParquetGrid(ParquetModels);
 
         /// <summary>
         /// Analyzes the given <see cref="ParquetModelPackGrid"/> to find all valid <see cref="Room"/>s it contains.
@@ -259,17 +259,17 @@ namespace Parquet.Regions
         /// For a complete explanation of the algorithm implemented here, see:
         /// <a href="https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md"/>
         /// </remarks>
-        /// <param name="inSubregion">The current collection of parquets to search for <see cref="Room"/>s.</param>
+        /// <param name="inGrid">The current collection of parquets to search for <see cref="Room"/>s.</param>
         /// <returns>An initialized collection of rooms.</returns>
-        private static IReadOnlyCollection<Room> CreateRoomCollectionFromSubregion(ParquetModelPackGrid inSubregion)
+        private static IReadOnlyCollection<Room> FindRoomsInParquetGrid(ParquetModelPackGrid inGrid)
         {
-            Precondition.IsNotNull(inSubregion, nameof(inSubregion));
-            if (inSubregion is null)
+            Precondition.IsNotNull(inGrid, nameof(inGrid));
+            if (inGrid is null)
             {
                 return new List<Room>();
             }
 
-            var walkableAreas = GetWalkableAreas(inSubregion);
+            var walkableAreas = GetWalkableAreas(inGrid);
             var perimeter = MapSpaceSetExtensions.Empty;
             var rooms =
                 walkableAreas
@@ -283,29 +283,29 @@ namespace Parquet.Regions
         }
 
         /// <summary>
-        /// Finds all valid Walkable Areas in a given subregion.
+        /// Finds all valid Walkable Areas in a given <see cref="ParquetModelPackGrid"/>.
         /// </summary>
-        /// <param name="inSubregion">The <see cref="ParquetModelPackGrid"/>s to search.</param>
+        /// <param name="inGrid">The grid to search.</param>
         /// <returns>The list of valid Walkable Areas.</returns>
-        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetModelPackGrid inSubregion)
+        private static IReadOnlyList<IReadOnlySet<MapSpace>> GetWalkableAreas(ParquetModelPackGrid inGrid)
         {
             var PWAs = new List<HashSet<MapSpace>>();
-            var subregionRows = inSubregion.Rows;
-            var subregionCols = inSubregion.Columns;
+            var subgridRows = inGrid.Rows;
+            var subgridCols = inGrid.Columns;
 
-            for (var y = 0; y < subregionRows; y++)
+            for (var y = 0; y < subgridRows; y++)
             {
-                for (var x = 0; x < subregionCols; x++)
+                for (var x = 0; x < subgridCols; x++)
                 {
-                    if (inSubregion[y, x].IsWalkable)
+                    if (inGrid[y, x].IsWalkable)
                     {
-                        var currentSpace = new MapSpace(x, y, inSubregion[y, x], inSubregion);
+                        var currentSpace = new MapSpace(x, y, inGrid[y, x], inGrid);
 
-                        var northSpace = y > 0 && inSubregion[y - 1, x].IsWalkable
-                            ? new MapSpace(x, y - 1, inSubregion[y - 1, x], inSubregion)
+                        var northSpace = y > 0 && inGrid[y - 1, x].IsWalkable
+                            ? new MapSpace(x, y - 1, inGrid[y - 1, x], inGrid)
                             : MapSpace.Empty;
-                        var westSpace = x > 0 && inSubregion[y, x - 1].IsWalkable
-                            ? new MapSpace(x - 1, y, inSubregion[y, x - 1], inSubregion)
+                        var westSpace = x > 0 && inGrid[y, x - 1].IsWalkable
+                            ? new MapSpace(x - 1, y, inGrid[y, x - 1], inGrid)
                             : MapSpace.Empty;
 
                         if (MapSpace.Empty == northSpace && MapSpace.Empty == westSpace)

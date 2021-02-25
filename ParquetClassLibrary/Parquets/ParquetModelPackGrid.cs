@@ -56,28 +56,28 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new <see cref="ParquetModelPackGrid"/> from the given 2D <see cref="ParquetModelPack"/> array.
         /// </summary>
-        /// <param name="inParquetPackArray">The array containing the subregion.</param>
+        /// <param name="inParquetPackArray">The array containing the <see cref="ParquetModelPack"/>s.</param>
         public ParquetModelPackGrid(ParquetModelPack[,] inParquetPackArray)
             => ParquetPacks = inParquetPackArray;
         #endregion
 
-        #region Working with Subregions
+        #region Finding Subgrids
         /// <summary>
         /// Provides all parquet definitions within the current map.
         /// </summary>
-        /// <returns>The entire map as a subregion.</returns>
-        public ParquetModelPackGrid GetSubregion()
-            => GetSubregion(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
+        /// <returns>The entire map as a subgrid.</returns>
+        public ParquetModelPackGrid GetSubgrid()
+            => GetSubgrid(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
 
         /// <summary>
         /// Provides all parquet definitions within the specified rectangular subsection of the current grid.
         /// </summary>
-        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subregion.</param>
-        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subregion.</param>
+        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subgrid.</param>
+        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subgrid.</param>
         /// <returns>A portion of the grid.</returns>
-        /// <remarks>If the coordinates given are not well-formed, the subregion returned will be invalid.</remarks>
+        /// <remarks>If the coordinates given are not well-formed, the subgrid returned will be invalid.</remarks>
         // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
-        public ParquetModelPackGrid GetSubregion(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public ParquetModelPackGrid GetSubgrid(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetPacks.IsValidPosition(inUpperLeft))
             {
@@ -96,18 +96,18 @@ namespace Parquet.Parquets
             }
             else
             {
-                var subregion = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
+                var subgrid = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
                                                      inLowerRight.Y - inUpperLeft.Y + 1];
 
                 for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
                 {
                     for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
                     {
-                        subregion[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetPacks[y, x];
+                        subgrid[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetPacks[y, x];
                     }
                 }
 
-                return new ParquetModelPackGrid(subregion);
+                return new ParquetModelPackGrid(subgrid);
             }
 
             return new ParquetModelPackGrid();

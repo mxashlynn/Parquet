@@ -19,16 +19,14 @@ namespace Parquet.Rooms
 
         #region Room Analysis
         /// <summary>
-        /// Finds a walkable area's perimeter in a given subregion.
+        /// Finds a walkable area's perimeter in a given subgrid.
         /// </summary>
         /// <param name="inSpaces">The walkable area under consideration.</param>
         /// <param name="outPerimeter">The walkable area's valid perimeter, if it exists.</param>
         /// <returns><c>true</c> if a valid perimeter was found; otherwise, <c>false</c>.</returns>
         internal static bool TryGetPerimeter(this IReadOnlySet<MapSpace> inSpaces, out IReadOnlySet<MapSpace> outPerimeter)
         {
-            var subregion = inSpaces.First().Subregion;
-            Precondition.IsNotNull(subregion);
-
+            var subgrid = inSpaces.First().Grid;
             var stepCount = 0;
             var potentialPerimeter = Empty;
             outPerimeter = Empty;
@@ -48,11 +46,11 @@ namespace Parquet.Rooms
                               .Min();
             #endregion
 
-            // Only continue if perimeter is within the subregion.
+            // Only continue if perimeter is within the subgrid.
             if (leastXValue > 0
                 && leastYValue > 0
-                && greatestXValue < subregion.Columns
-                && greatestYValue < subregion.Rows)
+                && greatestXValue < subgrid.Columns
+                && greatestYValue < subgrid.Rows)
             {
                 #region Find Positions of Walkable Extrema
                 var northWalkableExtreme = inSpaces.First(space => space.Position.Y == leastYValue).Position;
@@ -74,14 +72,14 @@ namespace Parquet.Rooms
                     perimiterSeeds.Add(westSeed);
 
                     // Find the perimeter.
-                    potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subregion[northSeed.Y, northSeed.X], subregion));
+                    potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subgrid[northSeed.Y, northSeed.X], subgrid));
 
                     // Design-time sanity checks.
                     // Note: No need to check LibraryState.IsPlayMode as Debug.Assertions are removed in release builds anyway.
-                    Debug.Assert(potentialPerimeter.Count <= (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces,
+                    Debug.Assert(potentialPerimeter.Count <= (subgrid.Rows * subgrid.Columns) - RoomConfiguration.MinWalkableSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
                                                nameof(potentialPerimeter.Count), potentialPerimeter.Count,
-                                               (subregion.Rows * subregion.Columns) - RoomConfiguration.MinWalkableSpaces));
+                                               (subgrid.Rows * subgrid.Columns) - RoomConfiguration.MinWalkableSpaces));
                     Debug.Assert(potentialPerimeter.Count >= RoomConfiguration.MinPerimeterSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
                                                nameof(potentialPerimeter.Count),
@@ -107,14 +105,14 @@ namespace Parquet.Rooms
             {
                 var found = false;
                 var position = inStart;
-                var subregion = inSpaces.First().Subregion;
+                var subgrid = inSpaces.First().Grid;
 
-                Precondition.IsNotNull(subregion, nameof(subregion));
+                Precondition.IsNotNull(subgrid, nameof(subgrid));
 
                 while (!found)
                 {
                     position = inAdjust(position);
-                    if (!subregion.IsValidPosition(position))
+                    if (!subgrid.IsValidPosition(position))
                     {
                         break;
                     }
@@ -123,7 +121,7 @@ namespace Parquet.Rooms
                     {
                         break;
                     }
-                    found = subregion[position.Y, position.X].IsEnclosing;
+                    found = subgrid[position.Y, position.X].IsEnclosing;
                 }
 
                 outFinal = found
@@ -133,10 +131,10 @@ namespace Parquet.Rooms
                 return found;
             }
 
-            // Returns the potential perimeter by finding all 4-connected MapSpaces in the given subregion
+            // Returns the potential perimeter by finding all 4-connected MapSpaces in the given subgrid
             // whose Content is Enclosing, beginning at the Position given by inStart.
             IReadOnlySet<MapSpace> GetPotentialPerimeter(MapSpace inStart)
-                => GetSpaces(inSpaces.First().Subregion).Search(inStart,
+                => GetSpaces(inSpaces.First().Grid).Search(inStart,
                                                                 space => space.Content.IsEnclosing,
                                                                 space => false).Visited;
 
@@ -161,7 +159,7 @@ namespace Parquet.Rooms
         }
 
         /// <summary>
-        /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subregion
+        /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subgrid
         /// whose <see cref="MapSpace.Content"/> conforms to the given predicate using only
         /// 4-connected movements, beginning at an arbitrary <see cref="MapSpace"/>.
         /// </summary>
@@ -173,7 +171,7 @@ namespace Parquet.Rooms
                .Visited.Count == inSpaces.Count;
 
         /// <summary>
-        /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subregion
+        /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subgrid
         /// whose <see cref="MapSpace.Content"/> conforms to the given predicate using only 4-connected
         /// movements, beginning at an arbitrary <see cref="MapSpace"/>, while encountering at least one cycle.
         /// </summary>

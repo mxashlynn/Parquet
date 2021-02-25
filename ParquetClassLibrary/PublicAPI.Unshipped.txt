@@ -592,12 +592,6 @@ Parquet.Parquets.IMutableParquetModel.AddsToBiome.get -> System.Collections.Gene
 Parquet.Parquets.IMutableParquetModel.AddsToRoom.get -> System.Collections.Generic.ICollection<Parquet.ModelTag>
 Parquet.Parquets.IMutableParquetModel.ItemID.get -> Parquet.ModelID
 Parquet.Parquets.IMutableParquetModel.ItemID.set -> void
-Parquet.Parquets.IParquetModelPack
-Parquet.Parquets.IParquetModelPack.BlockID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetModelPack.CollectibleID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetModelPack.FloorID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetModelPack.FurnishingID.get -> Parquet.ModelID
-Parquet.Parquets.IParquetModelPack.IsEmpty.get -> bool
 Parquet.Parquets.ParquetModel
 Parquet.Parquets.ParquetModel.AddsToBiome.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Parquets.ParquetModel.AddsToRoom.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
@@ -622,8 +616,8 @@ Parquet.Parquets.ParquetModelPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetModelPackGrid.Count.get -> int
 Parquet.Parquets.ParquetModelPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetModelPack>
 Parquet.Parquets.ParquetModelPackGrid.GetEnumerator() -> System.Collections.IEnumerator
-Parquet.Parquets.ParquetModelPackGrid.GetSubregion() -> Parquet.Parquets.ParquetModelPackGrid
-Parquet.Parquets.ParquetModelPackGrid.GetSubregion(Parquet.Vector2D inUpperLeft, Parquet.Vector2D inLowerRight) -> Parquet.Parquets.ParquetModelPackGrid
+Parquet.Parquets.ParquetModelPackGrid.GetSubgrid() -> Parquet.Parquets.ParquetModelPackGrid
+Parquet.Parquets.ParquetModelPackGrid.GetSubgrid(Parquet.Vector2D inUpperLeft, Parquet.Vector2D inLowerRight) -> Parquet.Parquets.ParquetModelPackGrid
 Parquet.Parquets.ParquetModelPackGrid.GridDelimiter.get -> string
 Parquet.Parquets.ParquetModelPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Parquets.ParquetModelPackGrid.ParquetModelPackGrid() -> void
@@ -699,7 +693,6 @@ Parquet.Regions.ChunkTopography.South = 9 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.SouthEast = 8 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.SouthWest = 10 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.West = 11 -> Parquet.Regions.ChunkTopography
-Parquet.Regions.MapAnalysis
 Parquet.Regions.MapChunk
 Parquet.Regions.MapChunk.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Regions.MapChunk.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -725,13 +718,12 @@ Parquet.Regions.MapChunkGrid.GridDelimiter.get -> string
 Parquet.Regions.MapChunkGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Regions.MapChunkGrid.MapChunkGrid() -> void
 Parquet.Regions.MapChunkGrid.MapChunkGrid(int inRowCount, int inColumnCount) -> void
-Parquet.Regions.MapChunkGrid.MapChunkGrid(Parquet.Regions.MapChunk[,] inParquetPackArray) -> void
+Parquet.Regions.MapChunkGrid.MapChunkGrid(Parquet.Regions.MapChunk[,] inMapChunkArray) -> void
 Parquet.Regions.MapChunkGrid.Rows.get -> int
 Parquet.Regions.MapChunkGrid.this[int y, int x].get -> Parquet.Regions.MapChunk
 Parquet.Regions.RegionModel
 Parquet.Regions.RegionModel.BackgroundColor.get -> string
 Parquet.Regions.RegionModel.ExitCount() -> int
-Parquet.Regions.RegionModel.Generate() -> Parquet.Regions.RegionStatus
 Parquet.Regions.RegionModel.MapChunks.get -> Parquet.Regions.MapChunkGrid
 Parquet.Regions.RegionModel.RegionAbove.get -> Parquet.ModelID
 Parquet.Regions.RegionModel.RegionBelow.get -> Parquet.ModelID
@@ -760,19 +752,18 @@ Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Content.get -> Parquet.Parquets.ParquetModelPack
 Parquet.Rooms.MapSpace.EastNeighbor() -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Equals(Parquet.Rooms.MapSpace inSpace) -> bool
+Parquet.Rooms.MapSpace.Grid.get -> Parquet.Parquets.ParquetModelPackGrid
 Parquet.Rooms.MapSpace.IsEmpty.get -> bool
 Parquet.Rooms.MapSpace.IsEnclosing.get -> bool
-Parquet.Rooms.MapSpace.MapSpace(int inX, int inY, Parquet.Parquets.ParquetModelPack inContent, Parquet.Parquets.ParquetModelPackGrid inSubregion) -> void
-Parquet.Rooms.MapSpace.MapSpace(Parquet.Vector2D inPosition, Parquet.Parquets.ParquetModelPack inContent, Parquet.Parquets.ParquetModelPackGrid inSubregion) -> void
+Parquet.Rooms.MapSpace.MapSpace(int inX, int inY, Parquet.Parquets.ParquetModelPack inContent, Parquet.Parquets.ParquetModelPackGrid inGrid) -> void
+Parquet.Rooms.MapSpace.MapSpace(Parquet.Vector2D inPosition, Parquet.Parquets.ParquetModelPack inContent, Parquet.Parquets.ParquetModelPackGrid inGrid) -> void
 Parquet.Rooms.MapSpace.Neighbor(Parquet.Vector2D inOffset) -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Neighbors() -> System.Collections.Generic.IReadOnlyList<Parquet.Rooms.MapSpace>
 Parquet.Rooms.MapSpace.NorthNeighbor() -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Position.get -> Parquet.Vector2D
 Parquet.Rooms.MapSpace.SouthNeighbor() -> Parquet.Rooms.MapSpace
-Parquet.Rooms.MapSpace.Subregion.get -> Parquet.Parquets.ParquetModelPackGrid
 Parquet.Rooms.MapSpace.WestNeighbor() -> Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpaceSetExtensions
-Parquet.Rooms.ParquetModelPackGridExtensions
 Parquet.Rooms.ReadOnlyRoomCollectionExtensions
 Parquet.Rooms.Room
 Parquet.Rooms.Room.ContainsPosition(Parquet.Vector2D inPosition) -> bool
@@ -870,7 +861,6 @@ static Parquet.All.RegionModels.get -> Parquet.ModelCollection<Parquet.Regions.R
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
 static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
-static Parquet.Beings.BeingModel.Default.get -> Parquet.Beings.BeingModel
 static Parquet.Beings.BeingStatus.operator !=(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
 static Parquet.Beings.BeingStatus.operator ==(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
 static Parquet.Beings.BeingStatus.Unused.get -> Parquet.Beings.BeingStatus
@@ -978,7 +968,6 @@ static Parquet.RecipeElement.operator !=(Parquet.RecipeElement inElement1, Parqu
 static Parquet.RecipeElement.operator ==(Parquet.RecipeElement inElement1, Parquet.RecipeElement inElement2) -> bool
 static Parquet.Regions.ChunkDetail.operator !=(Parquet.Regions.ChunkDetail inChunkType1, Parquet.Regions.ChunkDetail inChunkType2) -> bool
 static Parquet.Regions.ChunkDetail.operator ==(Parquet.Regions.ChunkDetail inChunkType1, Parquet.Regions.ChunkDetail inChunkType2) -> bool
-static Parquet.Regions.MapAnalysis.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.MapChunk.Empty.get -> Parquet.Regions.MapChunk
 static Parquet.Regions.MapChunk.operator !=(Parquet.Regions.MapChunk inChunk1, Parquet.Regions.MapChunk inChunk2) -> bool
 static Parquet.Regions.MapChunk.operator ==(Parquet.Regions.MapChunk inChunk1, Parquet.Regions.MapChunk inChunk2) -> bool
@@ -993,7 +982,6 @@ static Parquet.Regions.RegionStatus.operator ==(Parquet.Regions.RegionStatus inS
 static Parquet.Regions.RegionStatus.Unused.get -> Parquet.Regions.RegionStatus
 static Parquet.Rooms.MapSpace.operator !=(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool
 static Parquet.Rooms.MapSpace.operator ==(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool
-static Parquet.Rooms.ParquetModelPackGridExtensions.CreateRoomCollectionFromSubregion(this Parquet.Parquets.ParquetModelPackGrid inSubregion) -> System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room>
 static Parquet.Rooms.ReadOnlyRoomCollectionExtensions.GetRoomAtOrNull(this System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room> inRooms, Parquet.Vector2D inPosition) -> Parquet.Rooms.Room
 static Parquet.Rooms.ReadOnlyRoomCollectionExtensions.ToString(this System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room> inRooms) -> string
 static Parquet.Rooms.Room.operator !=(Parquet.Rooms.Room inRoom1, Parquet.Rooms.Room inRoom2) -> bool

@@ -48,9 +48,9 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes a new <see cref="MapChunkGrid"/> from the given 2D <see cref="MapChunk"/> array.
         /// </summary>
-        /// <param name="inParquetPackArray">The array containing the subregion.</param>
-        public MapChunkGrid(MapChunk[,] inParquetPackArray)
-            => MapChunks = inParquetPackArray;
+        /// <param name="inMapChunkArray">An existing array of MapChunks.</param>
+        public MapChunkGrid(MapChunk[,] inMapChunkArray)
+            => MapChunks = inMapChunkArray;
         #endregion
 
         #region IGrid Implementation

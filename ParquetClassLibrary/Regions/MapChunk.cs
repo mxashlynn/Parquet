@@ -92,9 +92,10 @@ namespace Parquet.Regions
                 return this;
             }
 
-            // Create a subregion to hold the generated parquets.
+            // Create a grid to hold the generated parquets.
             var newParquetDefinitions = new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
+            // Generates the map for this chunk.
             // TODO [PROC GEN] Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
@@ -116,10 +117,8 @@ namespace Parquet.Regions
             newParquetDefinitions[3, 3].CollectibleID = All.CollectibleIDs.Minimum;
             #endregion
 
-            // Create a new MapChunkModel with the new subregion.
-            var newChunk = new MapChunk(true, null, newParquetDefinitions);
-
-            return newChunk;
+            // Return a new MapChunk with the new contents generated from the current one.
+            return new MapChunk(true, null, newParquetDefinitions);
         }
         #endregion
 

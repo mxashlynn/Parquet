@@ -16,7 +16,7 @@ namespace ParquetUnitTests.Rooms
         private static readonly ParquetModelPack TStep = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
         private static readonly ParquetModelPack TWell = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, ModelID.None, ModelID.None);
 
-        #region Valid Subregions
+        #region Valid Subgrids
         private static readonly ParquetModelPack[,] OneMinimalRoomMap =
         {
             { TWall.DeepClone(), TWall.DeepClone(), TWall.DeepClone(), TWall.DeepClone(), },
@@ -207,7 +207,7 @@ namespace ParquetUnitTests.Rooms
         };
         #endregion
 
-        #region Invalid Subregions
+        #region Invalid Subgrids
         private static readonly ParquetModelPack[,] RoomTooSmallMap =
         {
             { TWall.DeepClone(), TWall.DeepClone(), TWall.DeepClone(), TVoid.DeepClone(), },
