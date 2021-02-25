@@ -185,8 +185,8 @@ namespace Parquet.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is MapSpace vector
-            && Equals(vector);
+            => obj is MapSpace space
+            && Equals(space);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is equal to
