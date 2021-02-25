@@ -8,7 +8,7 @@ namespace Parquet.Parquets
     /// Simple container for collocated <see cref="ParquetModel"/>s, one of each subtype.
     /// Instances of this class are mutable during play, although the <see cref="ParquetModel"/>s they contain are not.
     /// </summary>
-    public sealed class ParquetModelPack : Pack<ParquetModel>, IParquetModelPack
+    public sealed class ParquetModelPack : Pack<ParquetModel>
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetModelPack"/>, representing an arbitrary empty pack.</summary>
