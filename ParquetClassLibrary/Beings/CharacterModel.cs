@@ -135,8 +135,8 @@ namespace Parquet.Beings
         #region IMutableCharacterModel Implementation
         /// <summary>Player-facing personal name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PersonalName
@@ -149,8 +149,8 @@ namespace Parquet.Beings
 
         /// <summary>Player-facing family name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.FamilyName
@@ -166,8 +166,8 @@ namespace Parquet.Beings
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PronounKey
@@ -180,8 +180,8 @@ namespace Parquet.Beings
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.StoryCharacterID
@@ -194,8 +194,8 @@ namespace Parquet.Beings
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs
@@ -205,8 +205,8 @@ namespace Parquet.Beings
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableCharacterModel.StartingDialogueID
@@ -220,8 +220,8 @@ namespace Parquet.Beings
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         Inventory IMutableCharacterModel.StartingInventory
