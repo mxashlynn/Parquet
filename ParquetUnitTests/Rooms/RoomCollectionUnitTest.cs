@@ -912,7 +912,7 @@ namespace ParquetUnitTests.Rooms
         {
             var correctPosition = new Vector2D(1, 1);
 
-            Assert.Equal(ExtantRoom, TestCollection.GetRoomAt(correctPosition));
+            Assert.Equal(ExtantRoom, TestCollection.GetRoomAtOrNull(correctPosition));
         }
 
         [Fact]
@@ -920,7 +920,7 @@ namespace ParquetUnitTests.Rooms
         {
             var incorrectPosition = new Vector2D(0, 4);
 
-            Assert.Null(TestCollection.GetRoomAt(incorrectPosition));
+            Assert.Null(TestCollection.GetRoomAtOrNull(incorrectPosition));
         }
         #endregion
     }
