@@ -585,7 +585,7 @@ namespace Parquet
                 var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
                 var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
                 var regions = ModelCollection<RegionModel>.Default;
-                // TODO: [MAP] Reenable these after refactor.
+                // TODO: [MAP] [SERIALIZATION] Reenable these after refactor.
                 //    ModelCollection<RegionModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs);
                 var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
                 var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);

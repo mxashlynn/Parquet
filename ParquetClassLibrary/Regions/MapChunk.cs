@@ -95,7 +95,7 @@ namespace Parquet.Regions
             // Create a subregion to hold the generated parquets.
             var newParquetDefinitions = new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
 
-            // TODO [MAP EDITOR] Replace this pass-through implementation.
+            // TODO [PROC GEN] Replace this pass-through implementation.
             #region Pass-Through Implementation
             Details = ChunkDetail.None;
             for (var x = 0; x < ParquetsPerChunkDimension; x++)
