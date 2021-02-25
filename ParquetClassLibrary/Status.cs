@@ -11,12 +11,12 @@ namespace Parquet
     /// <remarks>
     /// <see cref="Status{T}"/>es represent the parts of a game object that change while the game
     /// is played.  For this reason, Statuses are designed to be always mutable.
-    /// <br/><br/>
+    /// <para />
     /// Most types derived from Status have a companion type derived from <see cref="Model"/>.
     /// These companion classes represent the parts of a game object that do not vary by instance
     /// or with time, and so do not have mutable state during game play.  All such Statuses are
     /// paired with a <see cref="ModelID"/> by manager classes.
-    /// <br/><br/>
+    /// <para />
     /// One Status that does not have a Model companion is <see cref="Location"/>, which can
     /// be applied to any game object with a definite position within the game world.
     /// </remarks>

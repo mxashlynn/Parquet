@@ -13,11 +13,13 @@ namespace Parquet.Regions
     /// Every chunk is either handmade at design time or procedurally generated during play.
     /// A chunk that is not handmade may have already been procedurally generated; if so, it
     /// is termed "filled out".  If not, it will become filled out once it undergoes generation.
-    /// Handmade chunks are always filled out.<para />
+    /// Handmade chunks are always filled out.
     /// <para />
     /// Chunks that are not filled out are instead composed of two layers: a base and a modifier.
     /// The base is the underlying structure of the chunk and the modifier overlays it to
-    /// produce more complex arrangements than would otherwise be possible.  For example:<para />
+    /// produce more complex arrangements than would otherwise be possible.
+    /// <para />
+    /// For example:<br />
     /// - Forest:  Base·Grassy Solid · Modifier·Scattered Trees<br />
     /// - Seaside: Base·Watery Solid · Modifier·Eastern Sandy<br />
     /// - Town:    Handmade<br />

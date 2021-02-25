@@ -16,12 +16,12 @@ namespace Parquet
     /// <remarks>
     /// <see cref="ModelID"/>s provide a means for the library
     /// to track and rapidly update large numbers of equivalent
-    /// game objects.<para />
+    /// game objects.
     /// <para />
     /// For example, multiple identical parquet IDs may be assigned
     /// to <see cref="Regions.MapChunk"/>s or <see cref="Regions.RegionModel"/>s,
     /// and multiple duplicate <see cref="Items.ItemModel"/> IDs may exist in
-    /// across various <see cref="Beings.CharacterModel"/> inventories.<para />
+    /// across various <see cref="Beings.CharacterModel"/> inventories.
     /// <para />
     /// Using ModelID the library looks up the game object definitions
     /// for each of these when other game elements interact with them,
@@ -31,23 +31,23 @@ namespace Parquet
     /// (<see cref="Parquets.ParquetModel"/>, <see cref="Beings.BeingModel"/>,
     /// etc.), and each of these subtypes has multiple definitions.
     /// The definitions are purely data-driven, read in from file,
-    /// and not type-checked by the compiler.<para />
+    /// and not type-checked by the compiler.
     /// <para />
     /// Although the compiler does not provide type-checking for IDs,
     /// the library defines valid ranges for all ID subtypes (<see cref="All"/>)
-    /// and these are checked by library code.<para />
+    /// and these are checked by library code.
     /// <para />
-    /// A note on implementation as of January 21st, 2021.<para />
+    /// A note on implementation as of January 21st, 2021.
     /// <para />
     /// ModelID is implemented as a mutable struct because, under the hood,
     /// it is simply an <see cref="int"/>.  ModelID is designed to be implicitly
-    /// interoperable with and implicitly castable to and from integer types.<para />
+    /// interoperable with and implicitly castable to and from integer types.
     /// <para />
     /// Since the entire point of this ID system is to provide a way for the
     /// library to rapidly track changes in large arrays of identical game
     /// objects, it must be a light-weight mutable value type.  This is
     /// analogous to the use case for C# 7 tuples, which are also light-weight
-    /// mutable value types.<para />
+    /// mutable value types.
     /// <para />
     /// If the implementation were ever to become more complex, ModelID
     /// would need to become a class.

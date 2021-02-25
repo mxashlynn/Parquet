@@ -9,8 +9,7 @@ namespace Parquet
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// Could meaningfully apply to any object that has a specific position with in the game world.
-    /// <br/>
+    /// Could meaningfully apply to any object that has a specific position with in the game world.<br />
     /// In practice, is often used for <see cref="Model"/>s in addition to that Model's
     /// <see cref="Status{T}"/> class.
     /// </remarks>

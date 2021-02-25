@@ -12,21 +12,21 @@ namespace Parquet
     /// </summary>
     /// <remarks>
     /// Model could be considered the fundamental class of the entire Parquet library.
-    /// <br/><br/>
+    /// <para />
     /// <see cref="Model"/>s represent the parts of a game object that do not change from
     /// one instance to another or from one moment to the next.  For this reason, Models
     /// are designed to be immutable during play but mutable during game editing.
-    /// <br/><br/>
+    /// <para />
     /// Most types derived from Model have a companion type derived from <see cref="Status{T}"/>.
     /// These companion classes represent the parts of a game object that do vary by instance
     /// or with time, and so always have mutable state.
-    /// <br/><br/>
+    /// <para />
     /// All Models are identified by a <see cref="ModelID"/>, and are considered equal
     /// if and only if their respective ModelIDs are equal.
-    /// <br/><br/>
+    /// <para />
     /// Individual entities in-game are implemented as instances of ModelIDs
     /// within <see cref="ModelIDGrid"/>s.
-    /// <br/><br/>
+    /// <para />
     /// Every Model definition used by a given Parquet game is contained in one of
     /// several <see cref="ModelCollection{T}"/>s within global repository <see cref="All"/>.
     /// </remarks>

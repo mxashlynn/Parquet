@@ -23,7 +23,7 @@ namespace Parquet
     /// This generic version is intended to support <see cref="All.Parquets"/> allowing
     /// the collection to store all parquet types but return only the requested subtype.
     /// <para />
-    /// For more details, see remarks on <see cref="Model"/>.<para />
+    /// For more details, see remarks on <see cref="Model"/>.
     /// </remarks>
     /// <seealso cref="ModelID"/>
     /// <seealso cref="ModelTag"/>
