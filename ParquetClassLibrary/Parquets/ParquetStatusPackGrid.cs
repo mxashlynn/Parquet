@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Parquet.Regions;
 
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="Regions.RegionModel"/>s.
+    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="RegionModel"/>s.
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
@@ -47,6 +48,28 @@ namespace Parquet.Parquets
                 for (var x = 0; x < inColumnCount; x++)
                 {
                     ParquetStatuses[y, x] = ParquetStatusPack.Default.DeepClone();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="ParquetStatusPackGrid"/> class
+        /// based on a given <see cref="ParquetModelPackGrid"/> instance.
+        /// </summary>
+        /// <param name="inParquetModelPackGrid">The grid of definitions being tracked.</param>
+        public ParquetStatusPackGrid(ParquetModelPackGrid inParquetModelPackGrid)
+        {
+            Precondition.IsNotNull(inParquetModelPackGrid);
+            var nonNullParquetModelPackGrid = inParquetModelPackGrid is null
+                ? new ParquetModelPackGrid()
+                : inParquetModelPackGrid;
+
+            ParquetStatuses = new ParquetStatusPack[nonNullParquetModelPackGrid.Rows, nonNullParquetModelPackGrid.Columns];
+            for (var y = 0; y < nonNullParquetModelPackGrid.Rows; y++)
+            {
+                for (var x = 0; x < nonNullParquetModelPackGrid.Columns; x++)
+                {
+                    ParquetStatuses[y, x] = new ParquetStatusPack(nonNullParquetModelPackGrid[y, x]);
                 }
             }
         }

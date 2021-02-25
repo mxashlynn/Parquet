@@ -132,6 +132,37 @@ namespace Parquet.Beings
             Quests = nonNullQuests;
             Inventory = nonNullInventory;
         }
+
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="BeingStatus"/> class
+        /// based on a given <see cref="BeingModel"/> instance.
+        /// </summary>
+        /// <param name="inBeingModel">The definitions being tracked.</param>
+        public BeingStatus(BeingModel inBeingModel)
+        {
+            Precondition.IsNotNull(inBeingModel);
+            var nonNullBeingModel = inBeingModel is null
+                // TODO [API] This error shows a flaw in the design.  Split BeingStatus into CritterStatus and CharacterStatus.
+                ? BeingModel.Default
+                : inBeingModel;
+
+            Position = nonNullBeingModel.Position;
+            SpawnAt = nonNullBeingModel.SpawnAt;
+            RoomAssignment = nonNullBeingModel.RoomAssignment;
+            CurrentBehaviorID = nonNullBeingModel.CurrentBehavior;
+            BiomeTimeRemaining = nonNullBeingModel.BiomeTimeRemaining;
+            BuildingSpeed = nonNullBeingModel.BuildingSpeed;
+            ModificationSpeed = nonNullBeingModel.ModificationSpeed;
+            GatheringSpeed = nonNullBeingModel.GatheringSpeed;
+            MovementSpeed = nonNullBeingModel.MovementSpeed;
+            KnownBeings = Enumerable.Empty<ModelID>().ToList();
+            KnownParquets = Enumerable.Empty<ModelID>().ToList();
+            KnownRoomRecipes = Enumerable.Empty<ModelID>().ToList();
+            KnownCraftingRecipes = Enumerable.Empty<ModelID>().ToList();
+            Quests = nonNullBeingModel.Quests;
+            Inventory = nonNullBeingModel.Inventory;
+        }
         #endregion
 
         #region IEquatable Implementation

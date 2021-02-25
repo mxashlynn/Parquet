@@ -43,6 +43,22 @@ namespace Parquet.Parquets
             CurrentFloorStatus = inFloorStatus ?? FloorStatus.Default;
             CurrentBlockStatus = inBlockStatus ?? BlockStatus.Default;
         }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="ParquetStatusPack"/> class
+        /// based on a given <see cref="ParquetModelPack"/> instance.
+        /// </summary>
+        /// <param name="inParquetModelPack">The definitions being tracked.</param>
+        public ParquetStatusPack(ParquetModelPack inParquetModelPack)
+        {
+            Precondition.IsNotNull(inParquetModelPack);
+            var nonNullParquetModelPack = inParquetModelPack is null
+                ? ParquetModelPack.Empty
+                : inParquetModelPack;
+
+            CurrentFloorStatus = new FloorStatus(nonNullParquetModelPack.FloorID);
+            CurrentBlockStatus = new BlockStatus(nonNullParquetModelPack.BlockID);
+        }
         #endregion
 
         #region IEquatable Implementation

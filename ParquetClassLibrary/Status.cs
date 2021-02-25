@@ -23,6 +23,10 @@ namespace Parquet
     /// <seealso cref="LibraryState.IsPlayMode"/>
     public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter, IDeeplyCloneable<Status<T>>
     {
+        #region Initialization
+        // NOTE that derived classes should include public constructor that takes a tracked item of type T.
+        #endregion
+
         #region IEquatable Implementation
         /// <summary>
         /// Serves as a hash function for a <see cref="Status{T}"/>.

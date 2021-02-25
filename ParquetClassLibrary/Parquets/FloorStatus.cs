@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -22,11 +23,33 @@ namespace Parquet.Parquets
 
         #region Initialization
         /// <summary>
+        /// Initializes a new default instance of the <see cref="FloorStatus"/> class.
+        /// </summary>
+        /// <remarks>This is primarily useful for serialization.</remarks>
+        public FloorStatus()
+            : this(false)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FloorStatus"/> class.
         /// </summary>
         /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
-        public FloorStatus(bool inIsTrench = false)
+        public FloorStatus(bool inIsTrench)
             => IsTrench = inIsTrench;
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="FloorStatus"/> class
+        /// based on a given <see cref="FloorModel"/> identifier.
+        /// </summary>
+        /// <param name="inFloorID">The <see cref="ModelID"/> of the definitions being tracked.</param>
+        [SuppressMessage("Usage", "CA1801:Review unused parameters",
+            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter",
+            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
+        public FloorStatus(ModelID inFloorID)
+            // Note: Currently, by design, no Floor starts as a trench.
+            : this(false)
+        { }
         #endregion
 
         #region IEquatable Implementation

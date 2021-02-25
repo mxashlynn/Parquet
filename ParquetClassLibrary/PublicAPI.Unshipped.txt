@@ -321,7 +321,9 @@ Parquet.Games.GameModel.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.Games.GameStatus
 Parquet.Games.GameStatus.CurrentScriptID.get -> Parquet.ModelID
 Parquet.Games.GameStatus.CurrentScriptID.set -> void
-Parquet.Games.GameStatus.GameStatus(Parquet.ModelID? inPlayerCharacterID = null, Parquet.ModelID? inFirstScriptID = null) -> void
+Parquet.Games.GameStatus.GameStatus() -> void
+Parquet.Games.GameStatus.GameStatus(Parquet.Games.GameModel inGameModel) -> void
+Parquet.Games.GameStatus.GameStatus(Parquet.ModelID? inPlayerCharacterID, Parquet.ModelID? inCurrentScriptID) -> void
 Parquet.Games.GameStatus.PlayerCharacterID.get -> Parquet.ModelID
 Parquet.Games.GameStatus.PlayerCharacterID.set -> void
 Parquet.Games.IMutableGameModel
@@ -510,7 +512,9 @@ Parquet.Parquets.BlockModel.IsFlammable.get -> bool
 Parquet.Parquets.BlockModel.IsLiquid.get -> bool
 Parquet.Parquets.BlockModel.MaxToughness.get -> int
 Parquet.Parquets.BlockStatus
-Parquet.Parquets.BlockStatus.BlockStatus(int inToughness = 10, int inMaxToughness = 10) -> void
+Parquet.Parquets.BlockStatus.BlockStatus() -> void
+Parquet.Parquets.BlockStatus.BlockStatus(int inToughness, int inMaxToughness) -> void
+Parquet.Parquets.BlockStatus.BlockStatus(Parquet.ModelID inBlockID) -> void
 Parquet.Parquets.BlockStatus.Toughness.get -> int
 Parquet.Parquets.BlockStatus.Toughness.set -> void
 Parquet.Parquets.CollectibleModel
@@ -531,7 +535,9 @@ Parquet.Parquets.FloorModel.FloorModel(Parquet.ModelID inID, string inName, stri
 Parquet.Parquets.FloorModel.ModTool.get -> Parquet.Items.ModificationTool
 Parquet.Parquets.FloorModel.TrenchName.get -> string
 Parquet.Parquets.FloorStatus
-Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench = false) -> void
+Parquet.Parquets.FloorStatus.FloorStatus() -> void
+Parquet.Parquets.FloorStatus.FloorStatus(bool inIsTrench) -> void
+Parquet.Parquets.FloorStatus.FloorStatus(Parquet.ModelID inFloorID) -> void
 Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
 Parquet.Parquets.FurnishingModel
@@ -630,6 +636,7 @@ Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.get -> Parquet.Parquets.Fl
 Parquet.Parquets.ParquetStatusPack.CurrentFloorStatus.set -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack() -> void
 Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.FloorStatus inFloorStatus = null, Parquet.Parquets.BlockStatus inBlockStatus = null) -> void
+Parquet.Parquets.ParquetStatusPack.ParquetStatusPack(Parquet.Parquets.ParquetModelPack inParquetModelPack) -> void
 Parquet.Parquets.ParquetStatusPackGrid
 Parquet.Parquets.ParquetStatusPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetStatusPackGrid.Count.get -> int
@@ -639,6 +646,7 @@ Parquet.Parquets.ParquetStatusPackGrid.GridDelimiter.get -> string
 Parquet.Parquets.ParquetStatusPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Parquets.ParquetStatusPackGrid.ParquetStatusPackGrid() -> void
 Parquet.Parquets.ParquetStatusPackGrid.ParquetStatusPackGrid(int inRowCount, int inColumnCount) -> void
+Parquet.Parquets.ParquetStatusPackGrid.ParquetStatusPackGrid(Parquet.Parquets.ParquetModelPackGrid inParquetModelPackGrid) -> void
 Parquet.Parquets.ParquetStatusPackGrid.Rows.get -> int
 Parquet.Parquets.ParquetStatusPackGrid.this[int y, int x].get -> Parquet.Parquets.ParquetStatusPack
 Parquet.Precondition
@@ -735,7 +743,9 @@ Parquet.Regions.RegionStatus.ParquetModels.get -> Parquet.Parquets.ParquetModelP
 Parquet.Regions.RegionStatus.ParquetStatuses.get -> Parquet.Parquets.ParquetStatusPackGrid
 Parquet.Regions.RegionStatus.RegionStatus() -> void
 Parquet.Regions.RegionStatus.RegionStatus(Parquet.Parquets.ParquetModelPackGrid inParquetModels, Parquet.Parquets.ParquetStatusPackGrid inParquetStatuses) -> void
+Parquet.Regions.RegionStatus.RegionStatus(Parquet.Regions.RegionModel inRegionModel) -> void
 Parquet.Regions.RegionStatus.Rooms.get -> System.Collections.Generic.IReadOnlyCollection<Parquet.Rooms.Room>
+Parquet.Regions.RegionStatus.UpdateRoomCollection() -> void
 Parquet.Rooms.IMutableRoomRecipe
 Parquet.Rooms.IMutableRoomRecipe.MinimumWalkableSpaces.get -> int
 Parquet.Rooms.IMutableRoomRecipe.MinimumWalkableSpaces.set -> void
@@ -807,7 +817,9 @@ Parquet.Scripts.ScriptNode.ScriptNode() -> void
 Parquet.Scripts.ScriptStatus
 Parquet.Scripts.ScriptStatus.ProgramCounter.get -> int
 Parquet.Scripts.ScriptStatus.ProgramCounter.set -> void
-Parquet.Scripts.ScriptStatus.ScriptStatus(Parquet.Scripts.RunState inState = Parquet.Scripts.RunState.Unstarted, int inProgramCounter = 0) -> void
+Parquet.Scripts.ScriptStatus.ScriptStatus() -> void
+Parquet.Scripts.ScriptStatus.ScriptStatus(Parquet.Scripts.RunState inState, int inProgramCounter) -> void
+Parquet.Scripts.ScriptStatus.ScriptStatus(Parquet.Scripts.ScriptModel inScript) -> void
 Parquet.Scripts.ScriptStatus.State.get -> Parquet.Scripts.RunState
 Parquet.Scripts.ScriptStatus.State.set -> void
 Parquet.SeriesConverter<TElement, TCollection>
@@ -854,6 +866,7 @@ static Parquet.All.RegionModels.get -> Parquet.ModelCollection<Parquet.Regions.R
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
 static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
+static Parquet.Beings.BeingModel.Default.get -> Parquet.Beings.BeingModel
 static Parquet.Beings.BeingStatus.operator !=(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
 static Parquet.Beings.BeingStatus.operator ==(Parquet.Beings.BeingStatus inStatus1, Parquet.Beings.BeingStatus inStatus2) -> bool
 static Parquet.Beings.BeingStatus.Unused.get -> Parquet.Beings.BeingStatus
@@ -1020,6 +1033,7 @@ static readonly Parquet.All.ScriptIDs -> Parquet.Range<Parquet.ModelID>
 static readonly Parquet.AssemblyInfo.LibraryVersion -> string
 static readonly Parquet.Beings.PronounGroup.DefaultGroup -> Parquet.Beings.PronounGroup
 static readonly Parquet.Crafts.StrikePanel.Unused -> Parquet.Crafts.StrikePanel
+static readonly Parquet.Games.GameModel.Empty -> Parquet.Games.GameModel
 static readonly Parquet.ModelCollection<TModel>.Default -> Parquet.ModelCollection<TModel>
 static readonly Parquet.ModelID.None -> Parquet.ModelID
 static readonly Parquet.ModelTag.None -> Parquet.ModelTag

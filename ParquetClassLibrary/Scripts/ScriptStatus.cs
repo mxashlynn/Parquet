@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -32,15 +33,35 @@ namespace Parquet.Scripts
 
         #region Initialization
         /// <summary>
+        /// Initializes an instance of the <see cref="ScriptStatus"/> with default values.
+        /// </summary>
+        public ScriptStatus()
+            : this(RunState.Unstarted, 0)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class.
         /// </summary>
         /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
         /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.StepsIDs"/>.</param>
-        public ScriptStatus(RunState inState = RunState.Unstarted, int inProgramCounter = 0)
+        public ScriptStatus(RunState inState, int inProgramCounter)
         {
             State = inState;
             ProgramCounter = inProgramCounter;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScriptStatus"/> class
+        /// based on a given <see cref="ScriptModel"/> instance.
+        /// </summary>
+        /// <param name="inScript">The script definition whose status is being tracked.</param>
+        [SuppressMessage("Usage", "CA1801:Review unused parameters",
+            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter",
+            Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
+        public ScriptStatus(ScriptModel inScript)
+            : this(RunState.Unstarted, 0)
+        { }
         #endregion
 
         #region IEquatable Implementation
