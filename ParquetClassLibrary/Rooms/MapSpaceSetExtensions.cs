@@ -31,6 +31,12 @@ namespace Parquet.Rooms
             var potentialPerimeter = Empty;
             outPerimeter = Empty;
 
+            Precondition.IsNotNull(subgrid);
+            if (subgrid is null)
+            {
+                return false;
+            }
+
             #region Find Extreme Coordinate of Walkable Extrema
             var greatestXValue = inSpaces
                                  .Select(space => space.Position.X)
