@@ -17,6 +17,7 @@ namespace Parquet
     /// or with time, and so do not have mutable state during game play.  All such Statuses are
     /// paired with a <see cref="ModelID"/> by manager classes.
     /// <para />
+    // TODO [API] Update the following sentence when we update LOCATION.
     /// One Status that does not have a Model companion is <see cref="Location"/>, which can
     /// be applied to any game object with a definite position within the game world.
     /// </remarks>
