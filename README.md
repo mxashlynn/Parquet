@@ -37,8 +37,8 @@ Parquet targets the following features:
 
 # Repository Structure
 
-The solution contains several related project.
-The C# employs the convention whereby every namespace gets its own folder.
+The solution contains several related projects.
+Each C# namespace gets its own folder.
 
 - **Documentation**
     - How to use the library and its tools.
@@ -54,7 +54,7 @@ The C# employs the convention whereby every namespace gets its own folder.
     - **Properties** error strings, icons, and other static content.
     - **Regions**, collections of parquets and Beings which together make up the game world.
     - **Rooms**, built from parquets and [recognized at runtime](https://github.com/mxashlynn/Parquet/blob/master/Documentation/4.-Room_Detection_and_Type_Assignment.md).
-    - **Scripts**, used to define Being Interactions and Item effect.
+    - **Scripts**, used to define Being Interactions and Item effects.
 - **ParquetRunner**
     - A simple smoke test.
 - **ParquetUnitTests**
