@@ -66,7 +66,7 @@ namespace Parquet.Parquets
         /// Provides all parquet definitions within the current map.
         /// </summary>
         /// <returns>The entire map as a subgrid.</returns>
-        public ParquetModelPackGrid GetSubgrid()
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid()
             => GetSubgrid(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
 
         /// <summary>
@@ -76,8 +76,7 @@ namespace Parquet.Parquets
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subgrid.</param>
         /// <returns>A portion of the grid.</returns>
         /// <remarks>If the coordinates given are not well-formed, the subgrid returned will be invalid.</remarks>
-        // TODO [MAP EDITOR] [API] Should this return an IReadOnlyGrid<ParquetPack>s instead?
-        public ParquetModelPackGrid GetSubgrid(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Vector2D inUpperLeft, Vector2D inLowerRight)
         {
             if (!ParquetPacks.IsValidPosition(inUpperLeft))
             {

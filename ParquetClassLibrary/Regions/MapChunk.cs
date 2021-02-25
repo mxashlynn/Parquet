@@ -33,7 +33,7 @@ namespace Parquet.Regions
         public ChunkDetail Details { get; set; }
 
         /// <summary>Floors and walkable terrain in the chunk.</summary>
-        public ParquetModelPackGrid ParquetDefinitions { get; set; }
+        public IReadOnlyGrid<ParquetModelPack> ParquetDefinitions { get; set; }
         #endregion
 
         #region Initialization
@@ -55,8 +55,7 @@ namespace Parquet.Regions
         /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
         /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
         public MapChunk(bool inIsFilledOut, ChunkDetail inDetails = null,
-                        // TODO [MAP EDITOR] [API] Should this accept an IReadOnlyGrid<ParquetPack>s instead?
-                        ParquetModelPackGrid inParquetDefinitions = null)
+                        IReadOnlyGrid<ParquetModelPack> inParquetDefinitions = null)
         {
             IsFilledOut = inIsFilledOut;
 

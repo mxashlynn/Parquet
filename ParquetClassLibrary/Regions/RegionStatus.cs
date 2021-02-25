@@ -35,11 +35,9 @@ namespace Parquet.Regions
         #region Status
         /// <summary>The definitions of parquets that make up the region.</summary>
         /// <remarks>When mutating these, the corresponding element in <see cref="ParquetStatuses"/> should also be mutated.</remarks>
-        // TODO [MAP EDITOR] [API] Should this be an IGrid<ParquetModel>es instead?
         public ParquetModelPackGrid ParquetModels { get; }
 
         /// <summary>The statuses of parquets that make up the region.</summary>
-        // TODO [MAP EDITOR] [API] Should this be an IGrid<ParquetStatus>es instead?
         public ParquetStatusPackGrid ParquetStatuses { get; }
         #endregion
 

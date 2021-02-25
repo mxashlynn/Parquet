@@ -616,8 +616,8 @@ Parquet.Parquets.ParquetModelPackGrid.Columns.get -> int
 Parquet.Parquets.ParquetModelPackGrid.Count.get -> int
 Parquet.Parquets.ParquetModelPackGrid.DeepClone() -> Parquet.IGrid<Parquet.Parquets.ParquetModelPack>
 Parquet.Parquets.ParquetModelPackGrid.GetEnumerator() -> System.Collections.IEnumerator
-Parquet.Parquets.ParquetModelPackGrid.GetSubgrid() -> Parquet.Parquets.ParquetModelPackGrid
-Parquet.Parquets.ParquetModelPackGrid.GetSubgrid(Parquet.Vector2D inUpperLeft, Parquet.Vector2D inLowerRight) -> Parquet.Parquets.ParquetModelPackGrid
+Parquet.Parquets.ParquetModelPackGrid.GetSubgrid() -> Parquet.IReadOnlyGrid<Parquet.Parquets.ParquetModelPack>
+Parquet.Parquets.ParquetModelPackGrid.GetSubgrid(Parquet.Vector2D inUpperLeft, Parquet.Vector2D inLowerRight) -> Parquet.IReadOnlyGrid<Parquet.Parquets.ParquetModelPack>
 Parquet.Parquets.ParquetModelPackGrid.GridDelimiter.get -> string
 Parquet.Parquets.ParquetModelPackGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Parquets.ParquetModelPackGrid.ParquetModelPackGrid() -> void
