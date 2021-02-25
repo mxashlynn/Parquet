@@ -224,9 +224,13 @@ Parquet.Beings.IMutableCharacterModel.PersonalName.get -> string
 Parquet.Beings.IMutableCharacterModel.PersonalName.set -> void
 Parquet.Beings.IMutableCharacterModel.PronounKey.get -> string
 Parquet.Beings.IMutableCharacterModel.PronounKey.set -> void
+Parquet.Beings.IMutableCharacterModel.StartingBehaviorID.get -> Parquet.ModelID
+Parquet.Beings.IMutableCharacterModel.StartingBehaviorID.set -> void
 Parquet.Beings.IMutableCharacterModel.StartingDialogueID.get -> Parquet.ModelID
 Parquet.Beings.IMutableCharacterModel.StartingDialogueID.set -> void
 Parquet.Beings.IMutableCharacterModel.StartingInventory.get -> Parquet.Items.Inventory
+Parquet.Beings.IMutableCharacterModel.StartingLocation.get -> Parquet.Location
+Parquet.Beings.IMutableCharacterModel.StartingLocation.set -> void
 Parquet.Beings.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
 Parquet.Beings.IMutableCharacterModel.StoryCharacterID.get -> string
 Parquet.Beings.IMutableCharacterModel.StoryCharacterID.set -> void
