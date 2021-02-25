@@ -85,6 +85,9 @@ namespace Parquet.Crafts
         #endregion
 
         #region IGrid Implementation
+        /// <summary>Separates <see cref="StrikePanel"/>s within this <see cref="StrikePanelGrid"/>.</summary>
+        public string GridDelimiter => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="StrikePanelGrid"/>.</summary>
         public int Rows
             => StrikePanels?.GetLength(0) ?? 0;

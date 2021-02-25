@@ -177,6 +177,7 @@ Parquet.Beings.BeingModel.NativeBiomeID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.PrimaryBehaviorID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.SeeksIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Beings.BeingStatus
+Parquet.Beings.BeingStatus.BeingStatus(Parquet.Beings.BeingModel inBeingModel) -> void
 Parquet.Beings.BeingStatus.BeingStatus(Parquet.Location inPosition = null, Parquet.Location inSpawnAt = null, Parquet.Location inRoomAssignment = null, Parquet.ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = 0, float inBuildingSpeed = 0, float inModificationSpeed = 0, float inGatheringSpeed = 0, float inMovementSpeed = 0, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, System.Collections.Generic.ICollection<Parquet.ModelID> inInventory = null) -> void
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.get -> int
 Parquet.Beings.BeingStatus.BiomeTimeRemaining.set -> void
@@ -302,6 +303,7 @@ Parquet.Crafts.StrikePanelGrid.Columns.get -> int
 Parquet.Crafts.StrikePanelGrid.Count.get -> int
 Parquet.Crafts.StrikePanelGrid.DeepClone() -> Parquet.IGrid<Parquet.Crafts.StrikePanel>
 Parquet.Crafts.StrikePanelGrid.GetEnumerator() -> System.Collections.IEnumerator
+Parquet.Crafts.StrikePanelGrid.GridDelimiter.get -> string
 Parquet.Crafts.StrikePanelGrid.IsValidPosition(Parquet.Vector2D inPosition) -> bool
 Parquet.Crafts.StrikePanelGrid.Rows.get -> int
 Parquet.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
