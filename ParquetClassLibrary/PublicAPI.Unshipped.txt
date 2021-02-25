@@ -653,10 +653,12 @@ Parquet.Range<TElement>.ContainsRange(Parquet.Range<TElement> inRange) -> bool
 Parquet.Range<TElement>.ContainsValue(TElement inValue) -> bool
 Parquet.Range<TElement>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Range<TElement>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Range<TElement>.Deconstruct(out TElement outMinimum, out TElement outMaximum) -> void
 Parquet.Range<TElement>.Equals(Parquet.Range<TElement> inRange) -> bool
 Parquet.Range<TElement>.IsValid() -> bool
 Parquet.Range<TElement>.Maximum.get -> TElement
 Parquet.Range<TElement>.Minimum.get -> TElement
+Parquet.Range<TElement>.Range((TElement Minimum, TElement Maximum) inExtema) -> void
 Parquet.Range<TElement>.Range() -> void
 Parquet.Range<TElement>.Range(TElement inMinimum, TElement inMaximum) -> void
 Parquet.RangeCollectionExtensions
@@ -828,8 +830,10 @@ Parquet.StatusArrayExtensions
 Parquet.Vector2D
 Parquet.Vector2D.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Vector2D.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+Parquet.Vector2D.Deconstruct(out int outX, out int outY) -> void
 Parquet.Vector2D.Equals(Parquet.Vector2D inVector) -> bool
 Parquet.Vector2D.Magnitude.get -> int
+Parquet.Vector2D.Vector2D((int X, int Y) inCoordinates) -> void
 Parquet.Vector2D.Vector2D() -> void
 Parquet.Vector2D.Vector2D(int inX, int inY) -> void
 Parquet.Vector2D.X.get -> int

@@ -48,6 +48,14 @@ namespace Parquet
                 (Minimum, Maximum) = (Maximum, Minimum);
             }
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Range{TElement}"/> struct.
+        /// </summary>
+        /// <param name="inExtema">The extremes of the Range.</param>
+        public Range((TElement Minimum, TElement Maximum) inExtema)
+            : this(inExtema.Minimum, inExtema.Maximum)
+        { }
         #endregion
 
         #region State Queries
@@ -191,6 +199,14 @@ namespace Parquet
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Deconstructs the current <see cref="Range{TElement}"/> into its constituent extrema.
+        /// </summary>
+        /// <param name="outMinimum">The minimum.</param>
+        /// <param name="outMaximum">The maximum.</param>
+        public void Deconstruct(out TElement outMinimum, out TElement outMaximum)
+            => (outMinimum, outMaximum) = (Minimum, Maximum);
+
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Range{TElement}"/>.
         /// </summary>
