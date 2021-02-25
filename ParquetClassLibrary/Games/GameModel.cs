@@ -13,7 +13,7 @@ namespace Parquet.Games
     {
         #region Class Defaults
         /// <summary>Indicates an uninitialized game.</summary>
-        public static readonly GameModel Empty = new GameModel(ModelID.None, nameof(Empty), "", "");
+        public static GameModel Empty { get; } = new GameModel(ModelID.None, nameof(Empty), "", "");
         #endregion
 
         #region Characteristics
