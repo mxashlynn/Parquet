@@ -5,7 +5,7 @@ namespace Parquet.Items
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
-    /// IItemModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableItemModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableItemModel : IMutableModel
     {

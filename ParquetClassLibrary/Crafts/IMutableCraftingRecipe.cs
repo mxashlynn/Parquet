@@ -7,7 +7,7 @@ namespace Parquet.Crafts
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="IMutableCraftingRecipe"/>.
-    /// ICraftingRecipeEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableCraftingRecipe is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableCraftingRecipe : IMutableModel
     {

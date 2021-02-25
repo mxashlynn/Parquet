@@ -7,7 +7,7 @@ namespace Parquet.Parquets
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="ParquetModel"/> should never themselves use <see cref="IMutableParquetModel"/>.
-    /// IParquetModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableParquetModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableParquetModel : IMutableModel
     {

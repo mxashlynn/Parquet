@@ -79,8 +79,8 @@ namespace Parquet.Parquets
         #region IMutableFurnishingModel Implementation
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
+        /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableFurnishingModel.IsWalkable
@@ -93,8 +93,8 @@ namespace Parquet.Parquets
 
         /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.RegionModel"/>.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
+        /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         EntryType IMutableFurnishingModel.Entry
@@ -107,8 +107,8 @@ namespace Parquet.Parquets
 
         /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
+        /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableFurnishingModel.IsEnclosing
@@ -121,8 +121,8 @@ namespace Parquet.Parquets
 
         /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
+        /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableFurnishingModel.IsFlammable
@@ -135,8 +135,8 @@ namespace Parquet.Parquets
 
         /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
+        /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableFurnishingModel.SwapID

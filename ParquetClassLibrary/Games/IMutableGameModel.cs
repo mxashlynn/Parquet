@@ -5,7 +5,7 @@ namespace Parquet.Games
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-    /// IGameModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableGameModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableGameModel : IMutableModel
     {

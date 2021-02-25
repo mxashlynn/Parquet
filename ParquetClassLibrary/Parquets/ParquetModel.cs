@@ -84,7 +84,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableParquetModel.ItemID
@@ -101,7 +101,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelTag> IMutableParquetModel.AddsToBiome
@@ -115,7 +115,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelTag> IMutableParquetModel.AddsToRoom

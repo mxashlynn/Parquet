@@ -7,7 +7,7 @@ namespace Parquet.Rooms
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IMutableRoomRecipe"/>.
-    /// IRoomRecipeEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableRoomRecipe is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableRoomRecipe : IMutableModel
     {

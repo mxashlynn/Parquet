@@ -88,7 +88,7 @@ namespace Parquet
         /// <summary>Game-wide unique identifier.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         ///
         /// Be especially cautious editing this property.
         /// </remarks>
@@ -104,7 +104,7 @@ namespace Parquet
         /// <summary>Player-facing name.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         string IMutableModel.Name
@@ -118,7 +118,7 @@ namespace Parquet
         /// <summary>Player-facing description.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         string IMutableModel.Description
@@ -132,7 +132,7 @@ namespace Parquet
         /// <summary>Optional comment.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// IMutableModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         string IMutableModel.Comment
@@ -146,7 +146,7 @@ namespace Parquet
         /// <summary>Any additional functionality this item has, e.g. contributing to a <see cref="Crafts.CraftingRecipe"/>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// IMutableModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelTag> IMutableModel.Tags

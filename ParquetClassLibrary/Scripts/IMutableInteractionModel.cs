@@ -7,7 +7,7 @@ namespace Parquet.Scripts
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="InteractionModel"/> should never themselves use <see cref="IMutableInteractionModel"/>.
-    /// IInteractionModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableInteractionModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableInteractionModel : IMutableModel
     {

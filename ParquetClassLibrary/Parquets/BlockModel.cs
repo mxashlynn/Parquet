@@ -96,7 +96,7 @@ namespace Parquet.Parquets
         /// <summary>The tool used to remove the block.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         GatheringTool IMutableBlockModel.GatherTool
@@ -110,7 +110,7 @@ namespace Parquet.Parquets
         /// <summary>The effect generated when a character gathers this Block.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         GatheringEffect IMutableBlockModel.GatherEffect
@@ -124,7 +124,7 @@ namespace Parquet.Parquets
         /// <summary>The Collectible spawned when a character gathers this Block.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableBlockModel.CollectibleID
@@ -138,7 +138,7 @@ namespace Parquet.Parquets
         /// <summary>Whether or not the block is flammable.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableBlockModel.IsFlammable
@@ -152,7 +152,7 @@ namespace Parquet.Parquets
         /// <summary>Whether or not the block is a liquid.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableBlockModel.IsLiquid
@@ -166,7 +166,7 @@ namespace Parquet.Parquets
         /// <summary>The block's native toughness.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-        /// IBlockModelEdit is for external types that require read/write access.
+        /// IMutableBlockModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         int IMutableBlockModel.MaxToughness

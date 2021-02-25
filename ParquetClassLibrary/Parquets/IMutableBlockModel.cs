@@ -7,7 +7,7 @@ namespace Parquet.Parquets
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="BlockModel"/> should never themselves use <see cref="IMutableBlockModel"/>.
-    /// IBlockModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableBlockModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableBlockModel : IMutableParquetModel
     {

@@ -85,8 +85,8 @@ namespace Parquet.Biomes
         /// Must be non-negative.  Higher values indicate later Biomes.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="BiomeRecipe"/> should never themselves use <see cref="IMutableBiomeRecipe"/>.
+        /// IMutableBiomeRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableBiomeRecipe.Tier
@@ -99,8 +99,8 @@ namespace Parquet.Biomes
 
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="BiomeRecipe"/> should never themselves use <see cref="IMutableBiomeRecipe"/>.
+        /// IMutableBiomeRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         bool IMutableBiomeRecipe.IsRoomBased
@@ -113,8 +113,8 @@ namespace Parquet.Biomes
 
         /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="BiomeRecipe"/> should never themselves use <see cref="IMutableBiomeRecipe"/>.
+        /// IMutableBiomeRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         bool IMutableBiomeRecipe.IsLiquidBased
@@ -127,8 +127,8 @@ namespace Parquet.Biomes
 
         /// <summary>Describes the parquets that make up this <see cref="BiomeRecipe"/>.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="BiomeRecipe"/> should never themselves use <see cref="IMutableBiomeRecipe"/>.
+        /// IMutableBiomeRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelTag IMutableBiomeRecipe.ParquetCriteria
@@ -141,8 +141,8 @@ namespace Parquet.Biomes
 
         /// <summary>Describes the <see cref="ItemModel"/>s a <see cref="Beings.CharacterModel"/> needs to safely access this biome.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="BiomeRecipe"/> should never themselves use <see cref="IMutableBiomeRecipe"/>.
+        /// IMutableBiomeRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelTag> IMutableBiomeRecipe.EntryRequirements

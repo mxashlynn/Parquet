@@ -76,7 +76,7 @@ namespace Parquet.Games
         /// <summary>If <c>true</c> this game is part of a sequence of games.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-        /// IGameModelEdit is for external types that require read/write access.
+        /// IMutableGameModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         bool IMutableGameModel.IsEpisode
@@ -90,7 +90,7 @@ namespace Parquet.Games
         /// <summary>Subtitle, if any.  This will be used as the title of the episode if <see cref="IsEpisode"/> is <c>true</c>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-        /// IGameModelEdit is for external types that require read/write access.
+        /// IMutableGameModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         string IMutableGameModel.EpisodeTitle
@@ -104,7 +104,7 @@ namespace Parquet.Games
         /// <summary>Number of this episode in its sequence, if any.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-        /// IGameModelEdit is for external types that require read/write access.
+        /// IMutableGameModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         int IMutableGameModel.EpisodeNumber
@@ -118,7 +118,7 @@ namespace Parquet.Games
         /// <summary>The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-        /// IGameModelEdit is for external types that require read/write access.
+        /// IMutableGameModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableGameModel.PlayerCharacterID
@@ -132,7 +132,7 @@ namespace Parquet.Games
         /// <summary>The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="GameModel"/> should never themselves use <see cref="IMutableGameModel"/>.
-        /// IGameModelEdit is for external types that require read/write access.
+        /// IMutableGameModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableGameModel.FirstScriptID

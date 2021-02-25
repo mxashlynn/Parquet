@@ -59,8 +59,8 @@ namespace Parquet.Parquets
         #region IMutableCollectibleModel Implementation
         /// <summary>The effect generated when a character encounters this Collectible.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="CollectibleModel"/> should never themselves use <see cref="IMutableCollectibleModel"/>.
+        /// IMutableCollectibleModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         CollectingEffect IMutableCollectibleModel.CollectionEffect
@@ -76,8 +76,8 @@ namespace Parquet.Parquets
         /// For example, how much to alter a stat if the <see cref="CollectingEffect"/> is set to alter a stat.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="CollectibleModel"/> should never themselves use <see cref="IMutableCollectibleModel"/>.
+        /// IMutableCollectibleModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         int IMutableCollectibleModel.EffectAmount

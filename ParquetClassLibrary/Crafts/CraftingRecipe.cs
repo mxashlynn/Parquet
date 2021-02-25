@@ -105,8 +105,8 @@ namespace Parquet.Crafts
         #region IMutableCraftingRecipe Implementation
         /// <summary>The types and amounts of <see cref="Items.ItemModel"/>s created by following this recipe.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="IMutableCraftingRecipe"/>.
+        /// IMutableCraftingRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<RecipeElement> IMutableCraftingRecipe.Products
@@ -116,8 +116,8 @@ namespace Parquet.Crafts
 
         /// <summary>All materials and their quantities needed to follow this recipe once.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="IMutableCraftingRecipe"/>.
+        /// IMutableCraftingRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<RecipeElement> IMutableCraftingRecipe.Ingredients
@@ -127,8 +127,8 @@ namespace Parquet.Crafts
 
         /// <summary>The arrangement of panels encompassed by this recipe.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CraftingRecipe"/> should never themselves use <see cref="IMutableCraftingRecipe"/>.
+        /// IMutableCraftingRecipe is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;
