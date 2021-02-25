@@ -41,8 +41,8 @@ namespace Parquet.Regions
         /// Initializes a new default instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
-        public MapChunk() :
-            this(false)
+        public MapChunk()
+            : this(false)
         { }
 
         /// <summary>

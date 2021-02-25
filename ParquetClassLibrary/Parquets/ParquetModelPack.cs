@@ -35,8 +35,8 @@ namespace Parquet.Parquets
         /// Initializes a new default instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
-        public ParquetModelPack() :
-            this(ModelID.None, ModelID.None, ModelID.None, ModelID.None)
+        public ParquetModelPack()
+            : this(ModelID.None, ModelID.None, ModelID.None, ModelID.None)
         { }
 
         /// <summary>

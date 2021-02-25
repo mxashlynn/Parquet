@@ -29,8 +29,8 @@ namespace Parquet.Parquets
         /// Initializes a new default instance of the <see cref="ParquetStatusPack"/> class.
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
-        public ParquetStatusPack() :
-            this(FloorStatus.Default, BlockStatus.Default)
+        public ParquetStatusPack()
+            : this(FloorStatus.Default, BlockStatus.Default)
         { }
 
         /// <summary>

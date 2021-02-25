@@ -93,8 +93,8 @@ namespace Parquet
         /// </summary>
         /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
         /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(Range<ModelID> inBounds, IEnumerable<Model> inModels) :
-            this(new List<Range<ModelID>> { inBounds }, inModels)
+        public ModelCollection(Range<ModelID> inBounds, IEnumerable<Model> inModels)
+            : this(new List<Range<ModelID>> { inBounds }, inModels)
         { }
         #endregion
 
