@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>ParquetUnitTests</AssemblyName>
 
-    <Product>Parquet</PackageId>
+    <Product>Parquet</Product>
     <PackageId>ParquetUnitTests</PackageId>
     <Version>0.4.0.0</Version>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
