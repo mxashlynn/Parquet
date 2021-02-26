@@ -13,6 +13,8 @@
     <Company>Girl Potion</Company>
     <Description>A simple smoke test routine.</Description>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
+    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
+    <PackageIcon>Parquet Logo Large.png</PackageIcon>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
@@ -22,20 +24,20 @@
     <NeutralLanguage>en-US</NeutralLanguage>
 
     <OutputType>Exe</OutputType>
-    <StartupObject>ParquetRunner.RunnerProgram</StartupObject>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <RootNamespace>ParquetRunner</RootNamespace>
+    <StartupObject>ParquetRunner.RunnerProgram</StartupObject>
 
     <IsPackable>false</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
-    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
-    <PackageIcon>Parquet Logo Large.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

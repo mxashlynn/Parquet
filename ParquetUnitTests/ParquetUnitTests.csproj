@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AseemblyName>ParquetUnitTests</AseemblyName>
+    <AssemblyName>ParquetUnitTests</AssemblyName>
 
-    <PackageId>ParquetUnitTests</PackageId>
+    <Product>Parquet</PackageId>
     <PackageId>ParquetUnitTests</PackageId>
     <Version>0.4.0.0</Version>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
@@ -13,6 +13,8 @@
     <Company>Girl Potion</Company>
     <Description>Unit tests for Parquet.</Description>
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
+    <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
+    <PackageIcon>Parquet Logo Large.png</PackageIcon>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
@@ -23,10 +25,12 @@
 
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <NeutralLanguage>en-US</NeutralLanguage>
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <RootNamespace>ParquetUnitTests</RootNamespace>
 
     <IsPackable>false</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
