@@ -1,0 +1,3 @@
+﻿ID,Name,Description,Comment,Tags,BackgroundColor,RegionToTheNorth,RegionToTheEast,RegionToTheSouth,RegionToTheWest,RegionAbove,RegionBelow
+-110000,Map Test,Test,Test,,#000000,-110000,-110000,-110000,-110000,-110000,-110000
+110000,Simple Map,,,,#FFFFFF,None,None,None,None,None,None

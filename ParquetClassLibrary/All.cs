@@ -574,7 +574,6 @@ namespace Parquet
                 #endregion
 
                 #region Read Models
-                // TODO: [MAP] [SERIALIZATION] Serialization data for Regions and Beings needs to be updated
                 var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
                 var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
                 var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
