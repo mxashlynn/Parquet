@@ -209,6 +209,9 @@ namespace ParquetRunner
         /// </summary>
         internal static void Main()
         {
+            Logger.Log(LogLevel.Info, LibraryState.IsDebugMode ? "Debug Mode" : "Release Mode");
+            LibraryState.IsPlayMode = true;
+
             Logger.Log(LogLevel.Info, All.LoadFromCSVs() ? "Loaded." : "Failed to load!");
 
             var game = new GameModel(All.GameIDs.Minimum + 1, "Sample Game", "", "", null, false, "", -1, All.CharacterIDs.Minimum, All.ScriptIDs.Minimum);
