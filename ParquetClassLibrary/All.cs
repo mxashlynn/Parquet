@@ -430,17 +430,18 @@ namespace Parquet
 
                 #region Types Implementing ITypeConverter
                 { typeof(ChunkDetail), ChunkDetail.ConverterFactory },
+                { typeof(InventorySlot), InventorySlot.ConverterFactory },
+                { typeof(Location), Location.ConverterFactory },
                 { typeof(ModelID), ModelID.ConverterFactory },
                 { typeof(ModelTag), ModelTag.ConverterFactory },
-                { typeof(InventorySlot), InventorySlot.ConverterFactory },
                 { typeof(ParquetModelPack), ParquetModelPack.ConverterFactory },
                 { typeof(ParquetStatusPack), ParquetStatusPack.ConverterFactory },
+                { typeof(Point2D), Point2D.ConverterFactory },
                 { typeof(Range<ModelID>), Range<ModelID>.ConverterFactory },
                 { typeof(Range<int>), Range<int>.ConverterFactory },
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
                 { typeof(ScriptNode), ScriptNode.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
-                { typeof(Point2D), Point2D.ConverterFactory },
                 #endregion
 
                 #region Linear Series Types

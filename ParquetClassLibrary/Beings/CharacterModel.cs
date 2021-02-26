@@ -62,14 +62,14 @@ namespace Parquet.Beings
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
-        [Index(13)]
+        [Index(12)]
         public IReadOnlyList<ModelID> StartingQuestIDs { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.InteractionModel"/>that this <see cref="CharacterModel"/>
         /// can say at the outset.
         /// </summary>
-        [Index(14)]
+        [Index(13)]
         public ModelID StartingDialogueID { get; private set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
@@ -77,7 +77,7 @@ namespace Parquet.Beings
         /// Note that, unlike other members, for technical reasons this property is mutable.
         /// Care should be taken not to alter it during play.
         /// </remarks>
-        [Index(13)]
+        [Index(14)]
         public InventoryCollection StartingInventory { get; }
         #endregion
 
