@@ -19,14 +19,14 @@ namespace Parquet.Parquets
         /// The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.
         /// </summary>
         [Index(5)]
-        public ModelID ItemID { get; private set; }
+        public ModelID ItemID { get; protected set; }
 
         /// <summary>
         /// Describes the <see cref="BiomeRecipe"/>(s) that this parquet helps form.
         /// Guaranteed to never be <c>null</c>.
         /// </summary>
         [Index(6)]
-        public IReadOnlyList<ModelTag> AddsToBiome { get; private set; }
+        public IReadOnlyList<ModelTag> AddsToBiome { get; protected set; }
 
         /// <summary>
         /// A property of the parquet that can, for example, be used by <see cref="Rooms.RoomRecipe"/>s.
@@ -36,7 +36,7 @@ namespace Parquet.Parquets
         /// Allows the creation of classes of constructs, for example "wooden", "golden", "rustic", or "fancy" rooms.
         /// </remarks>
         [Index(7)]
-        public IReadOnlyList<ModelTag> AddsToRoom { get; private set; }
+        public IReadOnlyList<ModelTag> AddsToRoom { get; protected set; }
         #endregion
 
         #region Initialization

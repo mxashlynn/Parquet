@@ -17,11 +17,11 @@ namespace Parquet.Beings
         #region Characteristics
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         [Index(5)]
-        public ModelID NativeBiomeID { get; private set; }
+        public ModelID NativeBiomeID { get; protected set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         [Index(6)]
-        public ModelID PrimaryBehaviorID { get; private set; }
+        public ModelID PrimaryBehaviorID { get; protected set; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         [Index(7)]
