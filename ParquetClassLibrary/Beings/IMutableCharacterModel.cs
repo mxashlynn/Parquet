@@ -37,9 +37,6 @@ namespace Parquet.Beings
         /// <summary>The <see cref="Location"/> the <see cref="CharacterModel"/> begins at.</summary>
         public Location StartingLocation { get; set; }
 
-        /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> initially governing the <see cref="CharacterModel"/>.</summary>
-        public ModelID StartingBehaviorID { get; set; }
-
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         public ICollection<ModelID> StartingQuestIDs { get; }

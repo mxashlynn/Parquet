@@ -60,10 +60,6 @@ namespace Parquet.Beings
         [Index(11)]
         public Location StartingLocation { get; private set; }
 
-        /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> initially governing the <see cref="CharacterModel"/>.</summary>
-        [Index(12)]
-        public ModelID StartingBehaviorID { get; private set; }
-
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         [Index(13)]
@@ -108,13 +104,12 @@ namespace Parquet.Beings
                               ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
                               IEnumerable<ModelID> inSeeksIDs = null, string inPronounKey = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", Location? inStartingLocation = null,
-                              ModelID? inStartingBehaviorID = null, IEnumerable<ModelID> inStartingQuestIDs = null,
-                              ModelID? inStartingDialogueID = null, Inventory inStartingInventory = null)
+                              IEnumerable<ModelID> inStartingQuestIDs = null, ModelID? inStartingDialogueID = null,
+                              Inventory inStartingInventory = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment, inTags,
                    inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
         {
             var nonNullStartingLocation = inStartingLocation ?? Location.Nowhere;
-            var nonNullStartingBehaviorID = inStartingBehaviorID ?? ModelID.None;
             var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
             var nonNullDialogueID = inStartingDialogueID ?? ModelID.None;
             var nonNullInventory = inStartingInventory ?? Inventory.Empty;
@@ -125,7 +120,6 @@ namespace Parquet.Beings
             PronounKey = inPronounKey;
             StoryCharacterID = inStoryCharacterID;
             StartingLocation = nonNullStartingLocation;
-            StartingBehaviorID = nonNullStartingBehaviorID;
             StartingQuestIDs = nonNullQuestIDs.ToList();
             StartingDialogueID = nonNullDialogueID;
             StartingInventory = nonNullInventory;
@@ -203,20 +197,6 @@ namespace Parquet.Beings
             get => StartingLocation;
             set => StartingLocation = LibraryState.IsPlayMode
                 ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingLocation), StartingLocation)
-                : value;
-        }
-
-        /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> initially governing the <see cref="CharacterModel"/>.</summary>
-        /// <remarks>
-        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
-        /// IMutableCharacterModel is for external types that require read-write access.
-        /// </remarks>
-        [Ignore]
-        ModelID IMutableCharacterModel.StartingBehaviorID
-        {
-            get => StartingBehaviorID;
-            set => StartingBehaviorID = LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingBehaviorID), StartingBehaviorID)
                 : value;
         }
 

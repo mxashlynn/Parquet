@@ -7,6 +7,11 @@ namespace Parquet.Beings
     /// </summary>
     public class CritterModel : BeingModel, IMutableCritterModel
     {
+        #region Class Defaults
+        /// <summary>Indicates an uninitialized critter.</summary>
+        public static CritterModel Unused { get; } = new CritterModel(ModelID.None, nameof(Unused), "", "");
+        #endregion
+
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="CritterModel"/> class.
