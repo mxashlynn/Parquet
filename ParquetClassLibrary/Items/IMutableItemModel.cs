@@ -23,7 +23,7 @@ namespace Parquet.Items
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
-        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="InventoryCollection"/>.
         /// </summary>
         public ModelID EffectWhileHeldID { get; set; }
 

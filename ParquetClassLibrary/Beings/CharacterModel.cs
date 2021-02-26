@@ -78,7 +78,7 @@ namespace Parquet.Beings
         /// Care should be taken not to alter it during play.
         /// </remarks>
         [Index(13)]
-        public Inventory StartingInventory { get; }
+        public InventoryCollection StartingInventory { get; }
         #endregion
 
         #region Initialization
@@ -105,14 +105,14 @@ namespace Parquet.Beings
                               IEnumerable<ModelID> inSeeksIDs = null, string inPronounKey = PronounGroup.DefaultKey,
                               string inStoryCharacterID = "", Location? inStartingLocation = null,
                               IEnumerable<ModelID> inStartingQuestIDs = null, ModelID? inStartingDialogueID = null,
-                              Inventory inStartingInventory = null)
+                              InventoryCollection inStartingInventory = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment, inTags,
                    inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
         {
             var nonNullStartingLocation = inStartingLocation ?? Location.Nowhere;
             var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
             var nonNullDialogueID = inStartingDialogueID ?? ModelID.None;
-            var nonNullInventory = inStartingInventory ?? Inventory.Empty;
+            var nonNullInventory = inStartingInventory ?? InventoryCollection.Empty;
 
             Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
             Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(inStartingDialogueID));
@@ -232,9 +232,9 @@ namespace Parquet.Beings
         /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        Inventory IMutableCharacterModel.StartingInventory
+        InventoryCollection IMutableCharacterModel.StartingInventory
             => LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), Inventory.Empty)
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), InventoryCollection.Empty)
                 : StartingInventory;
         #endregion
     }

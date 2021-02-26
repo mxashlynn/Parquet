@@ -81,7 +81,7 @@ override Parquet.Games.GameStatus.GetHashCode() -> int
 override Parquet.Games.GameStatus.ToString() -> string
 override Parquet.GridConverter<TElement, TGrid>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.GridConverter<TElement, TGrid>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-override Parquet.Items.Inventory.ToString() -> string
+override Parquet.Items.InventoryCollection.ToString() -> string
 override Parquet.Items.InventorySlot.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Items.InventorySlot.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 override Parquet.Items.InventorySlot.DeepClone<T>() -> T
@@ -160,6 +160,13 @@ override Parquet.Rooms.MapSpace.GetHashCode() -> int
 override Parquet.Rooms.MapSpace.ToString() -> string
 override Parquet.Rooms.Room.Equals(object obj) -> bool
 override Parquet.Rooms.Room.GetHashCode() -> int
+override Parquet.Scripts.InteractionStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Scripts.InteractionStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Scripts.InteractionStatus.DeepClone<T>() -> T
+override Parquet.Scripts.InteractionStatus.Equals(object obj) -> bool
+override Parquet.Scripts.InteractionStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Scripts.InteractionStatus.GetHashCode() -> int
+override Parquet.Scripts.InteractionStatus.ToString() -> string
 override Parquet.Scripts.ScriptNode.ToString() -> string
 override Parquet.Scripts.ScriptStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Scripts.ScriptStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -178,21 +185,18 @@ Parquet.Beings.BeingModel.AvoidsIDs.get -> System.Collections.Generic.IReadOnlyL
 Parquet.Beings.BeingModel.BeingModel(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inNativeBiomeID = null, Parquet.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inSeeksIDs = null) -> void
 Parquet.Beings.BeingModel.NativeBiomeID.get -> Parquet.ModelID
 Parquet.Beings.BeingModel.NativeBiomeID.set -> void
-Parquet.Beings.BeingModel.NativeBiomeID.set -> void
 Parquet.Beings.BeingModel.PrimaryBehaviorID.get -> Parquet.ModelID
-Parquet.Beings.BeingModel.PrimaryBehaviorID.set -> void
 Parquet.Beings.BeingModel.PrimaryBehaviorID.set -> void
 Parquet.Beings.BeingModel.SeeksIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Beings.BeingStatus<T>
 Parquet.Beings.BeingStatus<T>.BeingStatus() -> void
 Parquet.Beings.CharacterModel
-Parquet.Beings.CharacterModel.CharacterModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inNativeBiomeID = null, Parquet.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inSeeksIDs = null, string inPronounKey = "they/them", string inStoryCharacterID = "", Parquet.Location? inStartingLocation = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inStartingQuestIDs = null, Parquet.ModelID? inStartingDialogueID = null, Parquet.Items.Inventory inStartingInventory = null) -> void
-Parquet.Beings.CharacterModel.CharacterModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inNativeBiomeID = null, Parquet.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inSeeksIDs = null, string inPronounKey = "they/them", string inStoryCharacterID = "", Parquet.Location? inStartingLocation = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inStartingQuestIDs = null, Parquet.ModelID? inStartingDialogueID = null, Parquet.Items.Inventory inStartingInventory = null) -> void
+Parquet.Beings.CharacterModel.CharacterModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inNativeBiomeID = null, Parquet.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inSeeksIDs = null, string inPronounKey = "they/them", string inStoryCharacterID = "", Parquet.Location? inStartingLocation = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inStartingQuestIDs = null, Parquet.ModelID? inStartingDialogueID = null, Parquet.Items.InventoryCollection inStartingInventory = null) -> void
 Parquet.Beings.CharacterModel.FamilyName.get -> string
 Parquet.Beings.CharacterModel.PersonalName.get -> string
 Parquet.Beings.CharacterModel.PronounKey.get -> string
 Parquet.Beings.CharacterModel.StartingDialogueID.get -> Parquet.ModelID
-Parquet.Beings.CharacterModel.StartingInventory.get -> Parquet.Items.Inventory
+Parquet.Beings.CharacterModel.StartingInventory.get -> Parquet.Items.InventoryCollection
 Parquet.Beings.CharacterModel.StartingLocation.get -> Parquet.Location
 Parquet.Beings.CharacterModel.StartingQuestIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Beings.CharacterModel.StoryCharacterID.get -> string
@@ -200,10 +204,10 @@ Parquet.Beings.CharacterStatus
 Parquet.Beings.CharacterStatus.BiomeTimeRemaining.get -> int
 Parquet.Beings.CharacterStatus.BiomeTimeRemaining.set -> void
 Parquet.Beings.CharacterStatus.CharacterStatus(Parquet.Beings.CharacterModel inCharacterModel) -> void
-Parquet.Beings.CharacterStatus.CharacterStatus(Parquet.Location? inPosition = null, Parquet.Location? inSpawnAt = null, Parquet.Location? inRoomAssignment = null, Parquet.ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = 2147483647, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, Parquet.Items.Inventory inInventory = null) -> void
+Parquet.Beings.CharacterStatus.CharacterStatus(Parquet.Location? inPosition = null, Parquet.Location? inSpawnAt = null, Parquet.Location? inRoomAssignment = null, Parquet.ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = 2147483647, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownBeings = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownParquets = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownRoomRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inKnownCraftingRecipes = null, System.Collections.Generic.ICollection<Parquet.ModelID> inQuests = null, Parquet.Items.InventoryCollection inInventory = null) -> void
 Parquet.Beings.CharacterStatus.CurrentBehaviorID.get -> Parquet.ModelID
 Parquet.Beings.CharacterStatus.CurrentBehaviorID.set -> void
-Parquet.Beings.CharacterStatus.Inventory.get -> Parquet.Items.Inventory
+Parquet.Beings.CharacterStatus.Inventory.get -> Parquet.Items.InventoryCollection
 Parquet.Beings.CharacterStatus.KnownBeings.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
 Parquet.Beings.CharacterStatus.KnownCraftingRecipes.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
 Parquet.Beings.CharacterStatus.KnownParquets.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
@@ -219,7 +223,6 @@ Parquet.Beings.CritterModel
 Parquet.Beings.CritterModel.CritterModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inNativeBiomeID = null, Parquet.ModelID? inPrimaryBehaviorID = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inAvoidsIDs = null, System.Collections.Generic.IEnumerable<Parquet.ModelID> inSeeksIDs = null) -> void
 Parquet.Beings.CritterStatus
 Parquet.Beings.CritterStatus.CritterStatus(Parquet.Beings.CritterModel inCritterModel) -> void
-Parquet.Beings.CritterStatus.CritterStatus(Parquet.Location? inPosition = null, Parquet.ModelID? inCurrentBehavior = null) -> void
 Parquet.Beings.CritterStatus.CritterStatus(Parquet.Location? inPosition = null, Parquet.ModelID? inCurrentBehavior = null) -> void
 Parquet.Beings.CritterStatus.CurrentBehaviorID.get -> Parquet.ModelID
 Parquet.Beings.CritterStatus.CurrentBehaviorID.set -> void
@@ -241,7 +244,7 @@ Parquet.Beings.IMutableCharacterModel.PronounKey.get -> string
 Parquet.Beings.IMutableCharacterModel.PronounKey.set -> void
 Parquet.Beings.IMutableCharacterModel.StartingDialogueID.get -> Parquet.ModelID
 Parquet.Beings.IMutableCharacterModel.StartingDialogueID.set -> void
-Parquet.Beings.IMutableCharacterModel.StartingInventory.get -> Parquet.Items.Inventory
+Parquet.Beings.IMutableCharacterModel.StartingInventory.get -> Parquet.Items.InventoryCollection
 Parquet.Beings.IMutableCharacterModel.StartingLocation.get -> Parquet.Location
 Parquet.Beings.IMutableCharacterModel.StartingLocation.set -> void
 Parquet.Beings.IMutableCharacterModel.StartingQuestIDs.get -> System.Collections.Generic.ICollection<Parquet.ModelID>
@@ -402,31 +405,31 @@ Parquet.Items.IMutableItemModel.StackMax.get -> int
 Parquet.Items.IMutableItemModel.StackMax.set -> void
 Parquet.Items.IMutableItemModel.Subtype.get -> Parquet.Items.ItemType
 Parquet.Items.IMutableItemModel.Subtype.set -> void
-Parquet.Items.Inventory
-Parquet.Items.Inventory.Add(Parquet.Items.InventorySlot inSlot) -> void
-Parquet.Items.Inventory.Capacity.get -> int
-Parquet.Items.Inventory.Capacity.set -> void
-Parquet.Items.Inventory.Clear() -> void
-Parquet.Items.Inventory.Contains(Parquet.Items.InventorySlot inSlot) -> bool
-Parquet.Items.Inventory.Contains(Parquet.ModelID inItemID) -> int
-Parquet.Items.Inventory.CopyTo(Parquet.Items.InventorySlot[] inArray, int inArrayIndex) -> void
-Parquet.Items.Inventory.Count.get -> int
-Parquet.Items.Inventory.DeepClone() -> Parquet.Items.Inventory
-Parquet.Items.Inventory.GetEnumerator() -> System.Collections.Generic.IEnumerator<Parquet.Items.InventorySlot>
-Parquet.Items.Inventory.Give(Parquet.Items.InventorySlot inSlot) -> int
-Parquet.Items.Inventory.Give(Parquet.ModelID inItemID, int inHowMany) -> int
-Parquet.Items.Inventory.Has(Parquet.Items.InventorySlot inSlot) -> bool
-Parquet.Items.Inventory.Has(Parquet.ModelID inItemID, int inHowMany = 1) -> bool
-Parquet.Items.Inventory.Has(System.Collections.Generic.IEnumerable<(Parquet.ModelID, int)> inItems) -> bool
-Parquet.Items.Inventory.Has(System.Collections.Generic.IEnumerable<Parquet.Items.InventorySlot> inSlots) -> bool
-Parquet.Items.Inventory.Inventory() -> void
-Parquet.Items.Inventory.Inventory(int inCapacity) -> void
-Parquet.Items.Inventory.Inventory(System.Collections.Generic.IEnumerable<Parquet.Items.InventorySlot> inSlots, int inCapacity) -> void
-Parquet.Items.Inventory.IsReadOnly.get -> bool
-Parquet.Items.Inventory.ItemCount.get -> int
-Parquet.Items.Inventory.Remove(Parquet.Items.InventorySlot inSlot) -> bool
-Parquet.Items.Inventory.Take(Parquet.Items.InventorySlot inSlot) -> int
-Parquet.Items.Inventory.Take(Parquet.ModelID inItemID, int inHowMany) -> int
+Parquet.Items.InventoryCollection
+Parquet.Items.InventoryCollection.Add(Parquet.Items.InventorySlot inSlot) -> void
+Parquet.Items.InventoryCollection.Capacity.get -> int
+Parquet.Items.InventoryCollection.Capacity.set -> void
+Parquet.Items.InventoryCollection.Clear() -> void
+Parquet.Items.InventoryCollection.Contains(Parquet.Items.InventorySlot inSlot) -> bool
+Parquet.Items.InventoryCollection.Contains(Parquet.ModelID inItemID) -> int
+Parquet.Items.InventoryCollection.CopyTo(Parquet.Items.InventorySlot[] inArray, int inArrayIndex) -> void
+Parquet.Items.InventoryCollection.Count.get -> int
+Parquet.Items.InventoryCollection.DeepClone() -> Parquet.Items.InventoryCollection
+Parquet.Items.InventoryCollection.GetEnumerator() -> System.Collections.Generic.IEnumerator<Parquet.Items.InventorySlot>
+Parquet.Items.InventoryCollection.Give(Parquet.Items.InventorySlot inSlot) -> int
+Parquet.Items.InventoryCollection.Give(Parquet.ModelID inItemID, int inHowMany) -> int
+Parquet.Items.InventoryCollection.Has(Parquet.Items.InventorySlot inSlot) -> bool
+Parquet.Items.InventoryCollection.Has(Parquet.ModelID inItemID, int inHowMany = 1) -> bool
+Parquet.Items.InventoryCollection.Has(System.Collections.Generic.IEnumerable<(Parquet.ModelID, int)> inItems) -> bool
+Parquet.Items.InventoryCollection.Has(System.Collections.Generic.IEnumerable<Parquet.Items.InventorySlot> inSlots) -> bool
+Parquet.Items.InventoryCollection.InventoryCollection() -> void
+Parquet.Items.InventoryCollection.InventoryCollection(int inCapacity) -> void
+Parquet.Items.InventoryCollection.InventoryCollection(System.Collections.Generic.IEnumerable<Parquet.Items.InventorySlot> inSlots, int inCapacity) -> void
+Parquet.Items.InventoryCollection.IsReadOnly.get -> bool
+Parquet.Items.InventoryCollection.ItemCount.get -> int
+Parquet.Items.InventoryCollection.Remove(Parquet.Items.InventorySlot inSlot) -> bool
+Parquet.Items.InventoryCollection.Take(Parquet.Items.InventorySlot inSlot) -> int
+Parquet.Items.InventoryCollection.Take(Parquet.ModelID inItemID, int inHowMany) -> int
 Parquet.Items.InventoryConfiguration
 Parquet.Items.InventorySlot
 Parquet.Items.InventorySlot.Count.get -> int
@@ -612,12 +615,9 @@ Parquet.Parquets.IMutableParquetModel.ItemID.set -> void
 Parquet.Parquets.ParquetModel
 Parquet.Parquets.ParquetModel.AddsToBiome.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Parquets.ParquetModel.AddsToBiome.set -> void
-Parquet.Parquets.ParquetModel.AddsToBiome.set -> void
 Parquet.Parquets.ParquetModel.AddsToRoom.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
 Parquet.Parquets.ParquetModel.AddsToRoom.set -> void
-Parquet.Parquets.ParquetModel.AddsToRoom.set -> void
 Parquet.Parquets.ParquetModel.ItemID.get -> Parquet.ModelID
-Parquet.Parquets.ParquetModel.ItemID.set -> void
 Parquet.Parquets.ParquetModel.ItemID.set -> void
 Parquet.Parquets.ParquetModel.ParquetModel(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null) -> void
 Parquet.Parquets.ParquetModelPack
@@ -831,6 +831,14 @@ Parquet.Scripts.InteractionModel.InteractionModel(Parquet.ModelID inID, string i
 Parquet.Scripts.InteractionModel.OutcomesIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Scripts.InteractionModel.PrerequisitesIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
 Parquet.Scripts.InteractionModel.StepsIDs.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelID>
+Parquet.Scripts.InteractionStatus
+Parquet.Scripts.InteractionStatus.InteractionStatus() -> void
+Parquet.Scripts.InteractionStatus.InteractionStatus(Parquet.Scripts.InteractionModel inScript) -> void
+Parquet.Scripts.InteractionStatus.InteractionStatus(Parquet.Scripts.RunState inState, int inProgramCounter) -> void
+Parquet.Scripts.InteractionStatus.State.get -> Parquet.Scripts.RunState
+Parquet.Scripts.InteractionStatus.State.set -> void
+Parquet.Scripts.InteractionStatus.StepCounter.get -> int
+Parquet.Scripts.InteractionStatus.StepCounter.set -> void
 Parquet.Scripts.RunState
 Parquet.Scripts.RunState.Completed = 2 -> Parquet.Scripts.RunState
 Parquet.Scripts.RunState.InProgress = 1 -> Parquet.Scripts.RunState
@@ -928,7 +936,7 @@ static Parquet.Games.GameModel.Empty.get -> Parquet.Games.GameModel
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
-static Parquet.Items.Inventory.Empty.get -> Parquet.Items.Inventory
+static Parquet.Items.InventoryCollection.Empty.get -> Parquet.Items.InventoryCollection
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.set -> void
 static Parquet.Items.InventoryConfiguration.FilePath.get -> string
@@ -1032,6 +1040,9 @@ static Parquet.Rooms.RoomConfiguration.MinPerimeterSpaces.get -> int
 static Parquet.Rooms.RoomConfiguration.MinWalkableSpaces.get -> int
 static Parquet.Rooms.RoomConfiguration.MinWalkableSpaces.set -> void
 static Parquet.Rooms.RoomConfiguration.PutRecord() -> void
+static Parquet.Scripts.InteractionStatus.operator !=(Parquet.Scripts.InteractionStatus inStatus1, Parquet.Scripts.InteractionStatus inStatus2) -> bool
+static Parquet.Scripts.InteractionStatus.operator ==(Parquet.Scripts.InteractionStatus inStatus1, Parquet.Scripts.InteractionStatus inStatus2) -> bool
+static Parquet.Scripts.InteractionStatus.Unstarted.get -> Parquet.Scripts.InteractionStatus
 static Parquet.Scripts.ScriptNode.implicit operator Parquet.Scripts.ScriptNode(string inValue) -> Parquet.Scripts.ScriptNode
 static Parquet.Scripts.ScriptNode.implicit operator string(Parquet.Scripts.ScriptNode inNode) -> string
 static Parquet.Scripts.ScriptStatus.operator !=(Parquet.Scripts.ScriptStatus inStatus1, Parquet.Scripts.ScriptStatus inStatus2) -> bool

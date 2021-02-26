@@ -57,7 +57,7 @@ namespace Parquet.Beings
         public ICollection<ModelID> Quests { get; }
 
         /// <summary>This <see cref="CharacterModel"/>'s set of belongings.</summary>
-        public Inventory Inventory { get; }
+        public InventoryCollection Inventory { get; }
         #endregion
 
         #region Initialization
@@ -79,7 +79,7 @@ namespace Parquet.Beings
                                ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = int.MaxValue,
                                ICollection<ModelID> inKnownBeings = null, ICollection<ModelID> inKnownParquets = null,
                                ICollection<ModelID> inKnownRoomRecipes = null, ICollection<ModelID> inKnownCraftingRecipes = null,
-                               ICollection<ModelID> inQuests = null, Inventory inInventory = null)
+                               ICollection<ModelID> inQuests = null, InventoryCollection inInventory = null)
         {
             var nonNullPosition = inPosition ?? Location.Nowhere;
             var nonNullSpawnAt = inSpawnAt ?? Location.Nowhere;
@@ -91,7 +91,7 @@ namespace Parquet.Beings
             var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<ModelID>().ToList();
             var nonNullQuests = inQuests ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullInventory = inInventory ?? Inventory.Empty;
+            var nonNullInventory = inInventory ?? InventoryCollection.Empty;
             Precondition.AreInRange(nonNullBeings, All.CritterIDs, nameof(inKnownBeings));
             Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(inKnownParquets));
             Precondition.AreInRange(nonNullRoomRecipes, All.RoomRecipeIDs, nameof(inKnownRoomRecipes));
@@ -273,8 +273,8 @@ namespace Parquet.Beings
             var parsedQuests = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[13], inRow,
                                                                                            inMemberMapData);
-            var parsedInventory = (Inventory)
-                SeriesConverter<InventorySlot, Inventory>.ConverterFactory.ConvertFromString(parameterText[14], inRow,
+            var parsedInventory = (InventoryCollection)
+                SeriesConverter<InventorySlot, InventoryCollection>.ConverterFactory.ConvertFromString(parameterText[14], inRow,
                                                                                              inMemberMapData);
 
             return new CharacterStatus(parsedPosition,

@@ -36,7 +36,7 @@ namespace Parquet.Items
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
-        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="InventoryCollection"/>.
         /// </summary>
         [Index(9)]
         public ModelID EffectWhileHeldID { get; private set; }
@@ -65,7 +65,7 @@ namespace Parquet.Items
         /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
         /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
         /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
-        /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
+        /// <param name="inStackMax">How many such items may be stacked together in the <see cref="InventoryCollection"/>.  Must be positive.</param>
         /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
         /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
@@ -154,7 +154,7 @@ namespace Parquet.Items
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
-        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="InventoryCollection"/>.
         /// </summary>
         /// <remarks>
         /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.

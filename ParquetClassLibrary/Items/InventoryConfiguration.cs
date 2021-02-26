@@ -4,17 +4,17 @@ using System.Text;
 namespace Parquet.Items
 {
     /// <summary>
-    /// Provides rules for working with an <see cref="Inventory"/>.
+    /// Provides rules for working with an <see cref="InventoryCollection"/>.
     /// </summary>
     public static class InventoryConfiguration
     {
         #region Class Defaults
-        /// <summary>The capacity to use for an <see cref="Inventory"/> when the configuration cannot be read.</summary>
+        /// <summary>The capacity to use for an <see cref="InventoryCollection"/> when the configuration cannot be read.</summary>
         private const int DefaultDefaultCapacity = 16;
         #endregion
 
         #region Characteristics
-        /// <summary>The capacity to use for an <see cref="Inventory"/> when none is specified.</summary>
+        /// <summary>The capacity to use for an <see cref="InventoryCollection"/> when none is specified.</summary>
         public static int DefaultCapacity { get; set; } = DefaultDefaultCapacity;
         #endregion
 

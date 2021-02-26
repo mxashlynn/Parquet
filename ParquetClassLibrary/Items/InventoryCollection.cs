@@ -12,13 +12,11 @@ namespace Parquet.Items
     /// Models a set of items carried by a character.
     /// Instances of this class are mutable during play.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix",
-                                                     Justification = "Inventory implies InventorySlotCollection.")]
-    public class Inventory : ICollection<InventorySlot>, IDeeplyCloneable<Inventory>
+    public class InventoryCollection : ICollection<InventorySlot>, IDeeplyCloneable<InventoryCollection>
     {
         #region Class Defaults
-        /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
-        public static Inventory Empty { get; } = new Inventory();
+        /// <summary>A value to use in place of an uninitialized <see cref="InventoryCollection"/>.</summary>
+        public static InventoryCollection Empty { get; } = new InventoryCollection();
         #endregion
 
         #region Characteristics
@@ -52,21 +50,21 @@ namespace Parquet.Items
 
         #region Initialization
         /// <summary>
-        /// Initializes an empty <see cref="Inventory"/> with unusable capacity.
+        /// Initializes an empty <see cref="InventoryCollection"/> with unusable capacity.
         /// </summary>
         /// <remarks>
         /// This version of the constructor exists to make the generic new() constraint happy
         /// and is used in the library in a context where its limitations are understood.
         /// You probably don't want to use this constructor in your own code.
         ///</remarks>
-        public Inventory()
+        public InventoryCollection()
             : this(InventoryConfiguration.DefaultCapacity) { }
 
         /// <summary>
-        /// Initializes a new empty instance of the <see cref="Inventory"/> class.
+        /// Initializes a new empty instance of the <see cref="InventoryCollection"/> class.
         /// </summary>
         /// <param name="inCapacity">How many inventory slots exist.  Must be positive</param>
-        public Inventory(int inCapacity)
+        public InventoryCollection(int inCapacity)
         {
             Precondition.MustBePositive(inCapacity, nameof(inCapacity));
 
@@ -75,11 +73,11 @@ namespace Parquet.Items
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Inventory"/> class from a collection of <see cref="InventorySlot"/>s.
+        /// Initializes a new instance of the <see cref="InventoryCollection"/> class from a collection of <see cref="InventorySlot"/>s.
         /// </summary>
         /// <param name="inSlots">The <see cref="InventorySlot"/>s to collect.  Cannot be null.</param>
         /// <param name="inCapacity">How many inventory slots exist.  Must be positive</param>
-        public Inventory(IEnumerable<InventorySlot> inSlots, int inCapacity)
+        public InventoryCollection(IEnumerable<InventorySlot> inSlots, int inCapacity)
         {
             Precondition.IsNotNull(inSlots, nameof(inSlots));
             Precondition.MustBePositive(inCapacity, nameof(inCapacity));
@@ -95,7 +93,7 @@ namespace Parquet.Items
 
         #region Slot Access
         /// <summary>
-        /// Determines how many of given type of item is contained in the <see cref="Inventory"/>.
+        /// Determines how many of given type of item is contained in the <see cref="InventoryCollection"/>.
         /// </summary>
         /// <param name="inItemID">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
         /// <returns>The number of items of the given type contained.</returns>
@@ -104,7 +102,7 @@ namespace Parquet.Items
                     .Sum(slot => slot.Count);
 
         /// <summary>
-        /// Determines if the <see cref="Inventory"/> contains the given items in the given quantities.
+        /// Determines if the <see cref="InventoryCollection"/> contains the given items in the given quantities.
         /// </summary>
         /// <param name="inItems">The items to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
@@ -121,7 +119,7 @@ namespace Parquet.Items
         }
 
         /// <summary>
-        /// Determines if the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>s.
+        /// Determines if the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>s.
         /// </summary>
         /// <param name="inSlots">The slots to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
@@ -138,7 +136,7 @@ namespace Parquet.Items
         }
 
         /// <summary>
-        /// Determines if the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
+        /// Determines if the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
         /// <param name="inSlot">The slot to check for.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
@@ -148,7 +146,7 @@ namespace Parquet.Items
             && Has(inSlot.ItemID, inSlot.Count);
 
         /// <summary>
-        /// Determines if the <see cref="Inventory"/> contains the given number of the given item.
+        /// Determines if the <see cref="InventoryCollection"/> contains the given number of the given item.
         /// </summary>
         /// <param name="inItemID">What kind of item to check for.</param>
         /// <param name="inHowMany">How many of the item to check for.  Must be positive.</param>
@@ -165,7 +163,7 @@ namespace Parquet.Items
         /// <param name="inSlot">The slot to give.</param>
         /// <returns>
         /// If everything was stored successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
+        /// otherwise, the number of items that could not be stored because the <see cref="InventoryCollection"/> is full.
         /// </returns>
         public int Give(InventorySlot inSlot)
             => Give(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 0);
@@ -177,7 +175,7 @@ namespace Parquet.Items
         /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
         /// <returns>
         /// If everything was stored successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be stored because the <see cref="Inventory"/> is full.
+        /// otherwise, the number of items that could not be stored because the <see cref="InventoryCollection"/> is full.
         /// </returns>
         public int Give(ModelID inItemID, int inHowMany)
         {
@@ -186,7 +184,7 @@ namespace Parquet.Items
             Debug.Assert(inItemID != ModelID.None,
                          string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
                          nameof(ModelID.None),
-                         nameof(Inventory)));
+                         nameof(InventoryCollection)));
             if (inItemID == ModelID.None)
             {
                 return 0;
@@ -234,7 +232,7 @@ namespace Parquet.Items
         /// <param name="inSlot">The slot to take.</param>
         /// <returns>
         /// If everything was removed successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
+        /// otherwise, the number of items that could not be removed because the <see cref="InventoryCollection"/> did not have any more.
         /// </returns>
         public int Take(InventorySlot inSlot)
             => Take(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 0);
@@ -246,7 +244,7 @@ namespace Parquet.Items
         /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
         /// <returns>
         /// If everything was removed successfully, <c>0</c>;
-        /// otherwise, the number of items that could not be removed because the <see cref="Inventory"/> did not have any more.
+        /// otherwise, the number of items that could not be removed because the <see cref="InventoryCollection"/> did not have any more.
         /// </returns>
         public int Take(ModelID inItemID, int inHowMany)
         {
@@ -277,7 +275,7 @@ namespace Parquet.Items
         #endregion
 
         #region ICollection Implementation
-        /// <summary>If <c>true</c> the <see cref="Inventory"/> is read-only; if false, it may be mutated.</summary>
+        /// <summary>If <c>true</c> the <see cref="InventoryCollection"/> is read-only; if false, it may be mutated.</summary>
         public bool IsReadOnly => false;
 
         /// <summary>How many <see cref="InventorySlot"/>s are currently occupied.</summary>
@@ -285,32 +283,32 @@ namespace Parquet.Items
             => Slots.Count;
 
         /// <summary>
-        /// Determines whether the <see cref="Inventory"/> contains the given <see cref="InventorySlot"/>.
+        /// Determines whether the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
         /// <param name="inSlot">The slot to search for.</param>
         /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
-        [Obsolete("Use Inventory.Has() instead.", true)]
+        [Obsolete("Use InventoryCollection.Has() instead.", true)]
         public bool Contains(InventorySlot inSlot)
             => Has(inSlot);
 
         /// <summary>
-        /// Adds the given <see cref="InventorySlot"/> to the <see cref="Inventory"/>.
+        /// Adds the given <see cref="InventorySlot"/> to the <see cref="InventoryCollection"/>.
         /// </summary>
         /// <remarks>This method should only be used by <see cref="SeriesConverter{TElement, TCollection}"/>.</remarks>
         /// <param name="inSlot">The slot to add.</param>
-        [Obsolete("Use Inventory.Give() instead.")]
+        [Obsolete("Use InventoryCollection.Give() instead.")]
         public void Add(InventorySlot inSlot)
             => Give(inSlot);
 
         /// <summary>
-        /// Removes all <see cref="InventorySlot"/>s from the <see cref="Inventory"/>.
+        /// Removes all <see cref="InventorySlot"/>s from the <see cref="InventoryCollection"/>.
         /// <remarks>This method does not respect gameplay rules, but forcibly empties the collection.</remarks>
         /// </summary>
         public void Clear()
             => Slots.Clear();
 
         /// <summary>
-        /// Copies the elements of the <see cref="Inventory"/> to an <see cref="System.Array"/>, starting at the given index.
+        /// Copies the elements of the <see cref="InventoryCollection"/> to an <see cref="System.Array"/>, starting at the given index.
         /// </summary>
         /// <param name="inArray">The array to copy to.</param>
         /// <param name="inArrayIndex">The index at which to begin copying.</param>
@@ -318,11 +316,11 @@ namespace Parquet.Items
             => Slots.CopyTo(inArray, inArrayIndex);
 
         /// <summary>
-        /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="Inventory"/>.
+        /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="InventoryCollection"/>.
         /// </summary>
         /// <param name="inSlot">The slot to remove.</param>
         /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
-        [Obsolete("Use Inventory.Take() instead.", true)]
+        [Obsolete("Use InventoryCollection.Take() instead.", true)]
         public bool Remove(InventorySlot inSlot)
             => Take(inSlot) == 0;
 
@@ -337,7 +335,7 @@ namespace Parquet.Items
         /// <summary>
         /// Retrieves an enumerator for the <see cref="IEnumerable{InventorySlot}"/>.
         /// </summary>
-        /// <returns>An enumerator that iterates through the inventory.</returns>
+        /// <returns>An enumerator that iterates through the inventory collection.</returns>
         public IEnumerator<InventorySlot> GetEnumerator()
             => Slots.GetEnumerator();
         #endregion
@@ -347,8 +345,8 @@ namespace Parquet.Items
         /// 
         /// </summary>
         /// <returns></returns>
-        public Inventory DeepClone()
-            => new Inventory(Slots.ConvertAll(slot => (InventorySlot)slot.DeepClone()), Capacity);
+        public InventoryCollection DeepClone()
+            => new InventoryCollection(Slots.ConvertAll(slot => (InventorySlot)slot.DeepClone()), Capacity);
         #endregion
 
         #region Utilities
@@ -357,7 +355,7 @@ namespace Parquet.Items
             => Slots.Select(slot => slot.Count).Sum();
 
         /// <summary>
-        /// Returns a <see cref="string"/> that represents the current <see cref="Inventory"/>.
+        /// Returns a <see cref="string"/> that represents the current <see cref="InventoryCollection"/>.
         /// </summary>
         /// <returns>The representation.</returns>
         public override string ToString()
