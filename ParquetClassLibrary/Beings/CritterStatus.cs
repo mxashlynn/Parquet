@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration;
-using Parquet.Items;
 
 namespace Parquet.Beings
 {
