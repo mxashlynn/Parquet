@@ -1,10 +1,9 @@
 namespace Parquet.Regions
 {
     /// <summary>
-    /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face for use during play.
+    /// Facilitates editing of <see cref="RegionModel"/> characteristics from design tools while maintaining a read-only face during play.
     /// </summary>
-    // TODO [MAP EDITOR] Separate MapModel from MapStatus.
-    public interface IMutableRegionModel : IMutableModel
+    interface IMutableRegionModel : IMutableModel
     {
         /// <summary>A color to display in any empty areas of the region.</summary>
         string BackgroundColor { get; set; }
@@ -26,5 +25,8 @@ namespace Parquet.Regions
 
         /// <summary>The <see cref="ModelID"/> of the region below this one.</summary>
         ModelID RegionBelowID { get; set; }
+
+        /// <summary>Instructions on how to procedurally generate this region.</summary>
+        MapChunkGrid MapChunks { get; set; }
     }
 }

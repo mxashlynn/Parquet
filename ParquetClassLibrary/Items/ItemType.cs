@@ -1,8 +1,8 @@
 namespace Parquet.Items
 {
     /// <summary>
-    /// Represents the different types of <see cref="ItemModel"/>s that may be carried and used.
-    /// </summary><para />
+    /// Represents the different categories of <see cref="ItemModel"/>s that may be carried and used.
+    /// </summary>
     /// <remarks>
     /// The <see cref="ItemModel"/> subtypes are hard-coded, but individual items themselves are configured in CSV files.
     /// </remarks>

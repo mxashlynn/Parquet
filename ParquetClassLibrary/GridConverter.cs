@@ -45,6 +45,7 @@ namespace Parquet
                 return "";
             }
 
+            var gridDelimiter = grid.GridDelimiter;
             var result = new StringBuilder();
             result.Append(grid.Rows);
             result.Append(Delimiters.DimensionalDelimiter[0]);
@@ -56,10 +57,10 @@ namespace Parquet
                 for (var x = 0; x < grid.Columns; x++)
                 {
                     result.Append(grid[y, x].ConvertToString(grid[y, x], inRow, inMemberMapData));
-                    result.Append(Delimiters.SecondaryDelimiter[0]);
+                    result.Append(gridDelimiter[0]);
                 }
             }
-            result.Remove(result.Length - Delimiters.SecondaryDelimiter.Length, Delimiters.SecondaryDelimiter.Length);
+            result.Remove(result.Length - gridDelimiter.Length, gridDelimiter.Length);
 
             return result.ToString();
         }
@@ -89,7 +90,8 @@ namespace Parquet
                 ? temp2
                 : Logger.DefaultWithParseLog(headerAndGridTexts[0], "columnCount", 1);
             var grid = (TGrid)Activator.CreateInstance(typeof(TGrid), new object[] { rowCount, columnCount });
-            var gridTexts = headerAndGridTexts[1].Split(Delimiters.SecondaryDelimiter);
+            var gridDelimiter = grid.GridDelimiter;
+            var gridTexts = headerAndGridTexts[1].Split(gridDelimiter);
             var gridTextEnumerator = gridTexts.GetEnumerator();
             for (var y = 0; y < grid.Rows; y++)
             {

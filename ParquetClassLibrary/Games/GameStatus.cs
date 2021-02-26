@@ -25,14 +25,38 @@ namespace Parquet.Games
 
         #region Initialization
         /// <summary>
+        /// Initializes a new default instance of the <see cref="GameStatus"/> class.
+        /// </summary>
+        /// <remarks>This is primarily useful for serialization.</remarks>
+        public GameStatus()
+            : this(null, null)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GameStatus"/> class.
         /// </summary>
         /// <param name="inPlayerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
-        /// <param name="inFirstScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
-        public GameStatus(ModelID? inPlayerCharacterID = null, ModelID? inFirstScriptID = null)
+        /// <param name="inCurrentScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
+        public GameStatus(ModelID? inPlayerCharacterID, ModelID? inCurrentScriptID)
         {
             PlayerCharacterID = inPlayerCharacterID ?? ModelID.None;
-            CurrentScriptID = inFirstScriptID ?? ModelID.None;
+            CurrentScriptID = inCurrentScriptID ?? ModelID.None;
+        }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="GameStatus"/> class
+        /// based on a given <see cref="GameModel"/> instance.
+        /// </summary>
+        /// <param name="inGameModel">The definitions being tracked.</param>
+        public GameStatus(GameModel inGameModel)
+        {
+            Precondition.IsNotNull(inGameModel);
+            var nonNullGameModel = inGameModel is null
+                ? GameModel.Empty
+                : inGameModel;
+
+            PlayerCharacterID = nonNullGameModel.PlayerCharacterID;
+            CurrentScriptID = nonNullGameModel.FirstScriptID;
         }
         #endregion
 
@@ -123,7 +147,7 @@ namespace Parquet.Games
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>

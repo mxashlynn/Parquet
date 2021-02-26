@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Parquet.Regions;
 
 namespace Parquet.Parquets
 {
     /// <summary>
-    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="Regions.MapModel"/> and derived classes.
+    /// A square, two-dimensional collection of <see cref="ParquetStatusPack"/>es for use in <see cref="RegionModel"/>s.
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// The intent is that this class function much like a read-only array.
+    /// The intent is that this class function much like an array.
     /// </remarks>
     public class ParquetStatusPackGrid : IGrid<ParquetStatusPack>, IReadOnlyGrid<ParquetStatusPack>
     {
@@ -50,9 +51,35 @@ namespace Parquet.Parquets
                 }
             }
         }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="ParquetStatusPackGrid"/> class
+        /// based on a given <see cref="ParquetModelPackGrid"/> instance.
+        /// </summary>
+        /// <param name="inParquetModelPackGrid">The grid of definitions being tracked.</param>
+        public ParquetStatusPackGrid(ParquetModelPackGrid inParquetModelPackGrid)
+        {
+            Precondition.IsNotNull(inParquetModelPackGrid);
+            var nonNullParquetModelPackGrid = inParquetModelPackGrid is null
+                ? new ParquetModelPackGrid()
+                : inParquetModelPackGrid;
+
+            ParquetStatuses = new ParquetStatusPack[nonNullParquetModelPackGrid.Rows, nonNullParquetModelPackGrid.Columns];
+            for (var y = 0; y < nonNullParquetModelPackGrid.Rows; y++)
+            {
+                for (var x = 0; x < nonNullParquetModelPackGrid.Columns; x++)
+                {
+                    ParquetStatuses[y, x] = new ParquetStatusPack(nonNullParquetModelPackGrid[y, x]);
+                }
+            }
+        }
         #endregion
 
         #region IGrid Implementation
+        /// <summary>Separates elements within this grid.</summary>
+        public string GridDelimiter
+            => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetStatusPackGrid"/>.</summary>
         public int Rows
             => ParquetStatuses?.GetLength(0) ?? 0;

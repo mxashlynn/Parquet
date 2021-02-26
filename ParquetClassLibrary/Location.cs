@@ -9,11 +9,12 @@ namespace Parquet
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// Could meaningfully apply to any object that has a specific position with in the game world.
-    /// <br/>
+    /// Could meaningfully apply to any object that has a specific position with in the game world.<br />
     /// In practice, is often used for <see cref="Model"/>s in addition to that Model's
     /// <see cref="Status{T}"/> class.
     /// </remarks>
+    // TODO [API] Update this class to track only objects that implement ILocatable.  Then give one of the new constructors.
+    // TODO [API] Alternatively, make this a non-Status POCO a la Vector2D and Range.
     sealed public class Location : Status<object>
     {
         #region Class Defaults
@@ -140,7 +141,6 @@ namespace Parquet
             // Note that I believe no additional cloning is needed here as structs have value semantics.
             => new Location(RegionID, Position) as T;
         #endregion
-
 
         #region Utilities
         /// <summary>

@@ -9,7 +9,7 @@ namespace Parquet.Crafts
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remark>
-    /// The intent is that this class function much like a read-only array.
+    /// The intent is that this class function much like an array.
     /// </remark>
     public class StrikePanelGrid : IGrid<StrikePanel>, IReadOnlyGrid<StrikePanel>
     {
@@ -85,6 +85,9 @@ namespace Parquet.Crafts
         #endregion
 
         #region IGrid Implementation
+        /// <summary>Separates <see cref="StrikePanel"/>s within this <see cref="StrikePanelGrid"/>.</summary>
+        public string GridDelimiter => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="StrikePanelGrid"/>.</summary>
         public int Rows
             => StrikePanels?.GetLength(0) ?? 0;

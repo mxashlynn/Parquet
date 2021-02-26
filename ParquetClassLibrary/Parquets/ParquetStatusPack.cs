@@ -29,8 +29,8 @@ namespace Parquet.Parquets
         /// Initializes a new default instance of the <see cref="ParquetStatusPack"/> class.
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
-        public ParquetStatusPack() :
-            this(FloorStatus.Default, BlockStatus.Default)
+        public ParquetStatusPack()
+            : this(FloorStatus.Default, BlockStatus.Default)
         { }
 
         /// <summary>
@@ -42,6 +42,22 @@ namespace Parquet.Parquets
         {
             CurrentFloorStatus = inFloorStatus ?? FloorStatus.Default;
             CurrentBlockStatus = inBlockStatus ?? BlockStatus.Default;
+        }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="ParquetStatusPack"/> class
+        /// based on a given <see cref="ParquetModelPack"/> instance.
+        /// </summary>
+        /// <param name="inParquetModelPack">The definitions being tracked.</param>
+        public ParquetStatusPack(ParquetModelPack inParquetModelPack)
+        {
+            Precondition.IsNotNull(inParquetModelPack);
+            var nonNullParquetModelPack = inParquetModelPack is null
+                ? ParquetModelPack.Empty
+                : inParquetModelPack;
+
+            CurrentFloorStatus = new FloorStatus(nonNullParquetModelPack.FloorID);
+            CurrentBlockStatus = new BlockStatus(nonNullParquetModelPack.BlockID);
         }
         #endregion
 
@@ -77,23 +93,23 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
-            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
+        public static bool operator ==(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
+            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is not equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetStatusPack inStack1, ParquetStatusPack inStack2)
-            => !(inStack1 == inStack2);
+        public static bool operator !=(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
+            => !(inPack1 == inPack2);
         #endregion
 
-        #region ITypeConverter
+        #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static ParquetStatusPack ConverterFactory { get; } = Default;
 
@@ -134,7 +150,7 @@ namespace Parquet.Parquets
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>

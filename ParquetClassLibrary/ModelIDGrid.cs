@@ -53,6 +53,10 @@ namespace Parquet
         #endregion
 
         #region IGrid Implementation
+        /// <summary>Separates elements within this grid.</summary>
+        public string GridDelimiter
+            => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of an array of <see cref="ModelID"/>.</summary>
         public int Rows
             => IDs?.GetLength(0) ?? 0;

@@ -9,6 +9,7 @@ namespace Parquet
     /// <summary>
     /// A simple representation of two coordinate integers, tailored for Parquet's needs.
     /// </summary>
+    // TODO [API] Perhaps this should be renamed Point2D, to follow the standard used by System.Drawing and MonoGame (but not clash with them as they lack the 2D).
     public readonly struct Vector2D : IEquatable<Vector2D>, ITypeConverter
     {
         #region Class Defaults
@@ -46,14 +47,22 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector2D"/> struct.
         /// </summary>
-        /// <param name="inX">Offset in x.</param>
-        /// <param name="inY">Offset in y.</param>
+        /// <param name="inX">The X coordinate.</param>
+        /// <param name="inY">The Y coordinate.</param>
         public Vector2D(int inX, int inY)
         {
             X = inX;
             Y = inY;
             Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((X * X) + (Y * Y))));
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Vector2D"/> struct.
+        /// </summary>
+        /// <param name="inCoordinates">The coordinates.</param>
+        public Vector2D((int X, int Y) inCoordinates)
+            : this(inCoordinates.X, inCoordinates.Y)
+        { }
         #endregion
 
         #region Vector Math
@@ -178,6 +187,14 @@ namespace Parquet
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Deconstructs the current <see cref="Vector2D"/> into its constituent coordinates.
+        /// </summary>
+        /// <param name="outX">The X coordinate.</param>
+        /// <param name="outY">The Y coordinate.</param>
+        public void Deconstruct(out int outX, out int outY)
+            => (outX, outY) = (X, Y);
+
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Vector2D"/>.
         /// </summary>

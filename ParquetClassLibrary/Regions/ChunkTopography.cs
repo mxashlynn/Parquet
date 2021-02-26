@@ -1,6 +1,6 @@
 namespace Parquet.Regions
 {
-    /// <summary>Indicates the basic form that the parquets in a <see cref="MapChunkModel"/> take.</summary>
+    /// <summary>Indicates the basic form that the parquets in a <see cref="MapChunk"/> take.</summary>
     public enum ChunkTopography
     {
         /// <summary>Indicates there are no parquets in this topography.</summary>

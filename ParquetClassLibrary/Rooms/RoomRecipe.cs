@@ -13,6 +13,9 @@ namespace Parquet.Rooms
     /// <summary>
     /// Models the minimum requirements for a <see cref="Room"/> to be recognizable and useful.
     /// </summary>
+    /// <remarks>
+    /// Runtime room detection is an important feature in the design of Parquet.
+    /// </remarks>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class RoomRecipe : Model, IMutableRoomRecipe

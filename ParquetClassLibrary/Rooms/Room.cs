@@ -13,7 +13,9 @@ namespace Parquet.Rooms
     /// </summary>
     public sealed class Room : IEquatable<Room>
     {
-        #region Characteristics
+        // Note: I considered deriving this class from Status<RoomRecipe>, but at present it doesn't seem to make sense
+        // to serialize Rooms.  If this changes, we should indeed make this a status class.
+        #region Status
         /// <summary>
         /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.

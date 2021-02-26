@@ -11,6 +11,9 @@ namespace Parquet.Beings
     /// Tracks the status of a <see cref="BeingModel"/>.
     /// Instances of this class are mutable during play.
     /// </summary>
+    /// <remarks>
+    /// Most of the game interaction is mediated through instances of this class.
+    /// </remarks>
     public class BeingStatus : Status<BeingModel>
     {
         #region Class Defaults
@@ -128,6 +131,37 @@ namespace Parquet.Beings
             KnownCraftingRecipes = nonNullCraftingRecipes;
             Quests = nonNullQuests;
             Inventory = nonNullInventory;
+        }
+
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="BeingStatus"/> class
+        /// based on a given <see cref="BeingModel"/> instance.
+        /// </summary>
+        /// <param name="inBeingModel">The definitions being tracked.</param>
+        public BeingStatus(BeingModel inBeingModel)
+        {
+            Precondition.IsNotNull(inBeingModel);
+            var nonNullBeingModel = inBeingModel is null
+                // TODO [API] This error shows a flaw in the design.  Split BeingStatus into CritterStatus and CharacterStatus.
+                ? BeingModel.Default
+                : inBeingModel;
+
+            Position = nonNullBeingModel.Position;
+            SpawnAt = nonNullBeingModel.SpawnAt;
+            RoomAssignment = nonNullBeingModel.RoomAssignment;
+            CurrentBehaviorID = nonNullBeingModel.CurrentBehavior;
+            BiomeTimeRemaining = nonNullBeingModel.BiomeTimeRemaining;
+            BuildingSpeed = nonNullBeingModel.BuildingSpeed;
+            ModificationSpeed = nonNullBeingModel.ModificationSpeed;
+            GatheringSpeed = nonNullBeingModel.GatheringSpeed;
+            MovementSpeed = nonNullBeingModel.MovementSpeed;
+            KnownBeings = Enumerable.Empty<ModelID>().ToList();
+            KnownParquets = Enumerable.Empty<ModelID>().ToList();
+            KnownRoomRecipes = Enumerable.Empty<ModelID>().ToList();
+            KnownCraftingRecipes = Enumerable.Empty<ModelID>().ToList();
+            Quests = nonNullBeingModel.Quests;
+            Inventory = nonNullBeingModel.Inventory;
         }
         #endregion
 
@@ -318,7 +352,7 @@ namespace Parquet.Beings
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
@@ -340,6 +374,15 @@ namespace Parquet.Beings
                                KnownCraftingRecipes.ToList(),
                                Quests.ToList(),
                                Inventory.ToList()) as T;
+        #endregion
+
+        #region Utilities
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the current <see cref="BeingStatus"/>.
+        /// </summary>
+        /// <returns>The representation.</returns>
+        public override string ToString()
+            => $"[{nameof(CurrentBehaviorID)} {CurrentBehaviorID} @ {nameof(Position)} {Position}]";
         #endregion
     }
 }

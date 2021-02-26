@@ -14,7 +14,7 @@ namespace Parquet.Scripts
     {
         #region Characteristics
         /// <summary>A series of imperative, procedural commands.</summary>
-        // TODO This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
+        // TODO [SCRIPTING] This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
         // ANSWER: The closest thing I can find is SortedList<TV,TK> which only implements ISortedCollection
         // and ISortedDictionary.  See for more: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedlist-2?view=net-5.0
         [Index(5)]

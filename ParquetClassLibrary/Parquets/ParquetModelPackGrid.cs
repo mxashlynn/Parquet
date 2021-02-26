@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Parquet.Properties;
 
 namespace Parquet.Parquets
 {
@@ -9,7 +11,7 @@ namespace Parquet.Parquets
     /// Instances of this class are mutable during play.
     /// </summary>
     /// <remarks>
-    /// The intent is that this class function much like a read-only array.
+    /// The intent is that this class function much like an array.
     /// </remarks>
     public class ParquetModelPackGrid : IGrid<ParquetModelPack>, IReadOnlyGrid<ParquetModelPack>
     {
@@ -54,12 +56,68 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new <see cref="ParquetModelPackGrid"/> from the given 2D <see cref="ParquetModelPack"/> array.
         /// </summary>
-        /// <param name="inParquetPackArray">The array containing the subregion.</param>
+        /// <param name="inParquetPackArray">The array containing the <see cref="ParquetModelPack"/>s.</param>
         public ParquetModelPackGrid(ParquetModelPack[,] inParquetPackArray)
             => ParquetPacks = inParquetPackArray;
         #endregion
 
+        #region Finding Subgrids
+        /// <summary>
+        /// Provides all parquet definitions within the current map.
+        /// </summary>
+        /// <returns>The entire map as a subgrid.</returns>
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid()
+            => GetSubgrid(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
+
+        /// <summary>
+        /// Provides all parquet definitions within the specified rectangular subsection of the current grid.
+        /// </summary>
+        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subgrid.</param>
+        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subgrid.</param>
+        /// <returns>A portion of the grid.</returns>
+        /// <remarks>If the coordinates given are not well-formed, the subgrid returned will be invalid.</remarks>
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Vector2D inUpperLeft, Vector2D inLowerRight)
+        {
+            if (!ParquetPacks.IsValidPosition(inUpperLeft))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inUpperLeft), nameof(ParquetPacks)));
+            }
+            else if (!ParquetPacks.IsValidPosition(inLowerRight))
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
+                                                           nameof(inLowerRight), nameof(ParquetPacks)));
+            }
+            else if (inLowerRight.X < inUpperLeft.X || inLowerRight.Y < inUpperLeft.Y)
+            {
+                Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
+                                                           nameof(inLowerRight), inLowerRight, inUpperLeft));
+            }
+            else
+            {
+                var subgrid = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
+                                                     inLowerRight.Y - inUpperLeft.Y + 1];
+
+                for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
+                {
+                    for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
+                    {
+                        subgrid[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetPacks[y, x];
+                    }
+                }
+
+                return new ParquetModelPackGrid(subgrid);
+            }
+
+            return new ParquetModelPackGrid();
+        }
+        #endregion
+
         #region IGrid Implementation
+        /// <summary>Separates elements within this grid.</summary>
+        public string GridDelimiter
+            => Delimiters.SecondaryDelimiter;
+
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="ParquetModelPackGrid"/>.</summary>
         public int Rows
             => ParquetPacks?.GetLength(0) ?? 0;

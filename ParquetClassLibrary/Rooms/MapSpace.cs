@@ -17,8 +17,8 @@ namespace Parquet.Rooms
         #endregion
 
         #region Characteristics
-        /// <summary>The subregion containing this <see cref="MapSpace"/>.</summary>
-        public ParquetModelPackGrid Subregion { get; }
+        /// <summary>The grid containing this <see cref="MapSpace"/>.</summary>
+        public ParquetModelPackGrid Grid { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
         public Vector2D Position { get; }
@@ -33,12 +33,12 @@ namespace Parquet.Rooms
         /// </summary>
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        /// <param name="inSubregion">The <see cref="ParquetModelPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
-        public MapSpace(Vector2D inPosition, ParquetModelPack inContent, ParquetModelPackGrid inSubregion)
+        /// <param name="inGrid">The <see cref="ParquetModelPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
+        public MapSpace(Vector2D inPosition, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
         {
             Position = inPosition;
             Content = inContent;
-            Subregion = inSubregion;
+            Grid = inGrid;
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace Parquet.Rooms
         /// <param name="inX">X-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        /// <param name="inSubregion">The subregion in which this <see cref="MapSpace"/> occurs. </param>
-        public MapSpace(int inX, int inY, ParquetModelPack inContent, ParquetModelPackGrid inSubregion)
-            : this(new Vector2D(inX, inY), inContent, inSubregion) { }
+        /// <param name="inGrid">The grid in which this <see cref="MapSpace"/> occurs. </param>
+        public MapSpace(int inX, int inY, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
+            : this(new Vector2D(inX, inY), inContent, inGrid) { }
         #endregion
 
         #region Position Offsets
@@ -57,11 +57,11 @@ namespace Parquet.Rooms
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace Neighbor(Vector2D inOffset)
         {
-            Precondition.IsNotNull(Subregion, nameof(Subregion));
+            Precondition.IsNotNull(Grid, nameof(Grid));
 
             var offsetPosition = Position + inOffset;
-            return Subregion.IsValidPosition(offsetPosition)
-                ? new MapSpace(offsetPosition, Subregion[offsetPosition.Y, offsetPosition.X], Subregion)
+            return Grid.IsValidPosition(offsetPosition)
+                ? new MapSpace(offsetPosition, Grid[offsetPosition.Y, offsetPosition.X], Grid)
                 : Empty;
         }
 

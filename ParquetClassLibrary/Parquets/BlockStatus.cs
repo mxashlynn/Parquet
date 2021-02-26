@@ -35,16 +35,32 @@ namespace Parquet.Parquets
 
         #region Initialization
         /// <summary>
+        /// Initializes a new default instance of the <see cref="BlockStatus"/> class.
+        /// </summary>
+        /// <remarks>This is primarily useful for serialization.</remarks>
+        public BlockStatus()
+            : this(BlockModel.DefaultMaxToughness, BlockModel.DefaultMaxToughness)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BlockStatus"/> class.
         /// </summary>
-        /// <param name="inIsTrench">Whether or not the <see cref="FloorModel"/> associated with this status has been dug out.</param>
         /// <param name="inToughness">The toughness of the <see cref="BlockModel"/> associated with this status.</param>
         /// <param name="inMaxToughness">The native toughness of the <see cref="BlockModel"/> associated with this status.</param>
-        public BlockStatus(int inToughness = BlockModel.DefaultMaxToughness, int inMaxToughness = BlockModel.DefaultMaxToughness)
+        public BlockStatus(int inToughness, int inMaxToughness)
         {
             Toughness = inToughness;
             MaxToughness = inMaxToughness;
         }
+
+        /// <summary>
+        /// Initializes an instance of the <see cref="BlockStatus"/> class
+        /// based on a given <see cref="BlockModel"/> identifier.
+        /// </summary>
+        /// <param name="inBlockID">The <see cref="ModelID"/> of the definitions being tracked.</param>
+        public BlockStatus(ModelID inBlockID)
+            => Toughness =
+               MaxToughness = All.Blocks.GetOrNull<BlockModel>(inBlockID)?.MaxToughness ?? BlockModel.DefaultMaxToughness;
         #endregion
 
         #region IEquatable Implementation

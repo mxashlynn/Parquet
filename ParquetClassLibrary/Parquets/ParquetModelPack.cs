@@ -8,7 +8,7 @@ namespace Parquet.Parquets
     /// Simple container for collocated <see cref="ParquetModel"/>s, one of each subtype.
     /// Instances of this class are mutable during play, although the <see cref="ParquetModel"/>s they contain are not.
     /// </summary>
-    public sealed class ParquetModelPack : Pack<ParquetModel>, IParquetModelPack
+    public sealed class ParquetModelPack : Pack<ParquetModel>
     {
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetModelPack"/>, representing an arbitrary empty pack.</summary>
@@ -35,8 +35,8 @@ namespace Parquet.Parquets
         /// Initializes a new default instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
         /// <remarks>This is primarily useful for serialization.</remarks>
-        public ParquetModelPack() :
-            this(ModelID.None, ModelID.None, ModelID.None, ModelID.None)
+        public ParquetModelPack()
+            : this(ModelID.None, ModelID.None, ModelID.None, ModelID.None)
         { }
 
         /// <summary>
@@ -148,23 +148,23 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetModelPack inStack1, ParquetModelPack inStack2)
-            => inStack1?.Equals(inStack2) ?? inStack2?.Equals(inStack1) ?? true;
+        public static bool operator ==(ParquetModelPack inPack1, ParquetModelPack inPack2)
+            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is not equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inStack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inStack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetModelPack inStack1, ParquetModelPack inStack2)
-            => !(inStack1 == inStack2);
+        public static bool operator !=(ParquetModelPack inPack1, ParquetModelPack inPack2)
+            => !(inPack1 == inPack2);
         #endregion
 
-        #region ITypeConverter
+        #region ITypeConverter Implementation
         /// <summary>Allows the converter to construct itself statically.</summary>
         internal static ParquetModelPack ConverterFactory { get; } = Empty;
 
@@ -209,7 +209,7 @@ namespace Parquet.Parquets
         }
         #endregion
 
-        #region IDeeplyCloneable Interface
+        #region IDeeplyCloneable Implementation
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>

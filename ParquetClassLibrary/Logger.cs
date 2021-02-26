@@ -17,7 +17,7 @@ namespace Parquet
 
         #region Initialization
         /// <summary>
-        /// Represents a type used to perform logging.
+        /// Sets up the logging system to use the provided instance when logging.
         /// </summary>
         /// <remarks>
         /// Inspired by <see cref="Microsoft.Extensions.Logging.ILogger"/> but simpler.

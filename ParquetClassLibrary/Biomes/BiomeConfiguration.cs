@@ -12,7 +12,7 @@ namespace Parquet.Biomes
     {
         #region Class Defaults
         /// <summary>Used in computing thresholds.</summary>
-        private const int ParquetsPerLayer = RegionModel.ParquetsPerRegionDimension * RegionModel.ParquetsPerRegionDimension;
+        private const int ParquetsPerLayer = RegionStatus.ParquetsPerRegionDimension * RegionStatus.ParquetsPerRegionDimension;
         #endregion
 
         #region Characteristics

@@ -11,6 +11,9 @@ namespace Parquet.Biomes
     /// <summary>
     /// Models the biome that a <see cref="RegionModel"/> embodies.
     /// </summary>
+    /// <remarks>
+    /// Runtime biome detection is an important feature in the design of Parquet.
+    /// </remarks>
     [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class BiomeRecipe : Model, IMutableBiomeRecipe

@@ -20,6 +20,9 @@ namespace Parquet
         /// <summary>Separates properties within a class when in serialization.</summary>
         public const string InternalDelimiter = "·";
 
+        /// <summary>Separates metadata within serialized <see cref="MapChunk"/>s.</summary>
+        public const string MapChunkDelimiter = "∟";
+
         /// <summary>Separates family and personal names within serialized <see cref="Beings.CharacterModel"/>s.</summary>
         public const string NameDelimiter = "§";
 
@@ -29,8 +32,11 @@ namespace Parquet
         /// <summary>Separates collections within files.</summary>
         public const string PrimaryDelimiter = ",";
 
-        /// <summary>Separates objects within collections other than <see cref="Pack{T}"/>s.</summary>
-        public const string SecondaryDelimiter = "∟";
+        /// <summary>Separates objects within unnested, non-<see cref="Pack{T}"/> collections.</summary>
+        public const string SecondaryDelimiter = "❟";
+
+        /// <summary>Separates objects within nested or paired collections.</summary>
+        public const string TertiaryDelimiter = "❠";
 
         /// <summary>Separates objects within <see cref="Pack{T}"/>s.</summary>
         public const string PackDelimiter = "⚭";

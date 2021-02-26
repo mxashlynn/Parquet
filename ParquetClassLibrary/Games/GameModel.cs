@@ -11,6 +11,11 @@ namespace Parquet.Games
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class GameModel : Model, IMutableGameModel
     {
+        #region Class Defaults
+        /// <summary>Indicates an uninitialized game.</summary>
+        public static readonly GameModel Empty = new GameModel(ModelID.None, nameof(Empty), "", "");
+        #endregion
+
         #region Characteristics
         /// <summary>If <c>true</c> this game is part of a sequence of games.</summary>
         [Index(5)]
@@ -35,7 +40,7 @@ namespace Parquet.Games
 
         #region Initialization
         /// <summary>
-        /// Represents a full game or an episode in a serial game.
+        /// Models a full game or an episode in a serial game.
         /// Contains metadata and starting conditions.
         /// </summary>
         /// <param name="inID">Unique identifier for the <see cref="GameModel"/>.  Cannot be null.</param>

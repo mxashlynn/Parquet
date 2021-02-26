@@ -18,7 +18,7 @@ namespace Parquet.Scripts
         public IReadOnlyList<ModelID> PrerequisitesIDs { get; }
 
         /// <summary>Everything this interaction entails.</summary>
-        // TODO This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
+        // TODO [SCRIPTING] This likely needs to be a sorted list.  Is there an IReadOnlySortedList?
         // ANSWER: The closest thing I can find is SortedList<TV,TK> which only implements ISortedCollection
         // and ISortedDictionary.  See for more: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedlist-2?view=net-5.0
         [Index(6)]

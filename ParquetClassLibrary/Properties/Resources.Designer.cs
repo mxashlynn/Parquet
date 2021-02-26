@@ -169,6 +169,15 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The grids given did not have equal dimensions..
+        /// </summary>
+        internal static string ErrorDimensionsMustMatch {
+            get {
+                return ResourceManager.GetString("ErrorDimensionsMustMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tried to retrive {0} from {1} but the collection is empty..
         /// </summary>
         internal static string ErrorEmptyCollection {
