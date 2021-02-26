@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Scripts;
@@ -10,18 +9,16 @@ namespace Parquet.Beings
     /// <summary>
     /// Models the basic definitions shared by any in-game actor.
     /// </summary>
-    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
-                     Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public abstract class BeingModel : Model, IMutableBeingModel
     {
         #region Characteristics
         /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
         [Index(5)]
-        public ModelID NativeBiomeID { get; private set; }
+        public ModelID NativeBiomeID { get; protected set; }
 
         /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
         [Index(6)]
-        public ModelID PrimaryBehaviorID { get; private set; }
+        public ModelID PrimaryBehaviorID { get; protected set; }
 
         /// <summary>Types of parquets this <see cref="BeingModel"/> avoids, if any.</summary>
         [Index(7)]

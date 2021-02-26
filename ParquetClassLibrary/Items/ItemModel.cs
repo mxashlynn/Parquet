@@ -36,7 +36,7 @@ namespace Parquet.Items
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
-        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="InventoryCollection"/>.
         /// </summary>
         [Index(9)]
         public ModelID EffectWhileHeldID { get; private set; }
@@ -65,7 +65,7 @@ namespace Parquet.Items
         /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
         /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
         /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
-        /// <param name="inStackMax">How many such items may be stacked together in the <see cref="Inventory"/>.  Must be positive.</param>
+        /// <param name="inStackMax">How many such items may be stacked together in the <see cref="InventoryCollection"/>.  Must be positive.</param>
         /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
         /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
         /// <param name="inParquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
@@ -98,8 +98,8 @@ namespace Parquet.Items
         #region IMutableItemModel Implementation
         /// <summary>The type of item this is.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ItemType IMutableItemModel.Subtype
@@ -112,8 +112,8 @@ namespace Parquet.Items
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.Price
@@ -126,8 +126,8 @@ namespace Parquet.Items
 
         /// <summary>How relatively rare this item is.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.Rarity
@@ -140,8 +140,8 @@ namespace Parquet.Items
 
         /// <summary>How many of the item may share a single inventory slot.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         int IMutableItemModel.StackMax
@@ -154,11 +154,11 @@ namespace Parquet.Items
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> generating the in-game effect caused by
-        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="Inventory"/>.
+        /// keeping the item in a <see cref="Beings.CharacterModel"/>'s <see cref="InventoryCollection"/>.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.EffectWhileHeldID
@@ -174,8 +174,8 @@ namespace Parquet.Items
         /// using (consuming) the item.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.EffectWhenUsedID
@@ -188,8 +188,8 @@ namespace Parquet.Items
 
         /// <summary>The parquet that corresponds to this item, if any.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="ItemModel"/> should never themselves use <see cref="IMutableItemModel"/>.
+        /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableItemModel.ParquetID

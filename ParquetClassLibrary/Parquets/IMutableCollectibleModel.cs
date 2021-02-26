@@ -5,7 +5,7 @@ namespace Parquet.Parquets
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="CollectibleModel"/> should never themselves use <see cref="IMutableCollectibleModel"/>.
-    /// ICollectibleModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableCollectibleModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableCollectibleModel : IMutableParquetModel
     {

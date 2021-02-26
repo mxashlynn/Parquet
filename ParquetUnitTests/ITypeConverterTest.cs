@@ -16,7 +16,7 @@ namespace ParquetUnitTests
         public void AllTypeConvertersProvideFactoriesTest()
         {
             // This discarded value is here to ensure that ParquetClassLibrary is loaded.
-            var _ = new Vector2D(1, 2);
+            var _ = new Point2D(1, 2);
             var converterProviders = AppDomain.CurrentDomain
                                               .GetAssemblies()
                                               .Where(assembly => assembly.GetName().Name == "ParquetClassLibrary")

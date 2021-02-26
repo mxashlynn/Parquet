@@ -5,7 +5,7 @@ namespace Parquet.Parquets
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="FurnishingModel"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
-    /// IFurnishingModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableFurnishingModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableFurnishingModel : IMutableParquetModel
     {

@@ -8,13 +8,13 @@ using Parquet.Properties;
 namespace Parquet.Items
 {
     /// <summary>
-    /// Allows multiple copies of a given <see cref="ItemModel"/> to be grouped together in an <see cref="Inventory"/>.
+    /// Allows multiple copies of a given <see cref="ItemModel"/> to be grouped together in an <see cref="InventoryCollection"/>.
     /// Instances of this class are mutable during play.
     /// </summary>
     public class InventorySlot : Status<ItemModel>
     {
         #region Class Defaults
-        /// <summary>A value to use in place of an uninitialized <see cref="Inventory"/>.</summary>
+        /// <summary>A value to use in place of an uninitialized <see cref="InventoryCollection"/>.</summary>
         public static InventorySlot Empty { get; } = new InventorySlot();
         #endregion
 

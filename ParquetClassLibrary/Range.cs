@@ -11,6 +11,7 @@ namespace Parquet
 {
     /// <summary>
     /// Stores the endpoints for a set of values specifying an inclusive range over the given type.
+    /// Instances have value semantics.
     /// </summary>
     /// <typeparam name="TElement">The type over which the range is spread.</typeparam>
     public readonly struct Range<TElement> : IEquatable<Range<TElement>>, ITypeConverter

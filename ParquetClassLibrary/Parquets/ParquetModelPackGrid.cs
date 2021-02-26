@@ -67,7 +67,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>The entire map as a subgrid.</returns>
         public IReadOnlyGrid<ParquetModelPack> GetSubgrid()
-            => GetSubgrid(Vector2D.Zero, new Vector2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
+            => GetSubgrid(Point2D.Origin, new Point2D(ParquetPacks.GetLength(1) - 1, ParquetPacks.GetLength(0) - 1));
 
         /// <summary>
         /// Provides all parquet definitions within the specified rectangular subsection of the current grid.
@@ -76,7 +76,7 @@ namespace Parquet.Parquets
         /// <param name="inLowerRight">The position of the lower-rightmost corner of the subgrid.</param>
         /// <returns>A portion of the grid.</returns>
         /// <remarks>If the coordinates given are not well-formed, the subgrid returned will be invalid.</remarks>
-        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Vector2D inUpperLeft, Vector2D inLowerRight)
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Point2D inUpperLeft, Point2D inLowerRight)
         {
             if (!ParquetPacks.IsValidPosition(inUpperLeft))
             {
@@ -202,7 +202,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
+        public bool IsValidPosition(Point2D inPosition)
             => ParquetPacks.IsValidPosition(inPosition);
         #endregion
     }

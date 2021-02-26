@@ -160,7 +160,7 @@ namespace Parquet.Parquets
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        /// <returns>A new instance with the same status as the current instance.</returns>
         public override T DeepClone<T>()
             => new BlockStatus(Toughness, MaxToughness) as T;
         #endregion

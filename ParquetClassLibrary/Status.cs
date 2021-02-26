@@ -16,12 +16,7 @@ namespace Parquet
     /// These companion classes represent the parts of a game object that do not vary by instance
     /// or with time, and so do not have mutable state during game play.  All such Statuses are
     /// paired with a <see cref="ModelID"/> by manager classes.
-    /// <para />
-    // TODO [API] Update the following sentence when we update LOCATION.
-    /// One Status that does not have a Model companion is <see cref="Location"/>, which can
-    /// be applied to any game object with a definite position within the game world.
     /// </remarks>
-    /// <seealso cref="LibraryState.IsPlayMode"/>
     public abstract class Status<T> : IEquatable<Status<T>>, ITypeConverter, IDeeplyCloneable<Status<T>>
     {
         #region Initialization
@@ -115,7 +110,7 @@ namespace Parquet
         /// <param name="inArray">The array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition<T>(this Status<T>[,] inArray, Vector2D inPosition)
+        public static bool IsValidPosition<T>(this Status<T>[,] inArray, Point2D inPosition)
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1

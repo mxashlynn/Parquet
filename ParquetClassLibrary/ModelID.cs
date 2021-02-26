@@ -12,6 +12,7 @@ namespace Parquet
 {
     /// <summary>
     /// Uniquely identifies every <see cref="Model"/>.
+    /// Instances have value semantics.
     /// </summary>
     /// <remarks>
     /// <see cref="ModelID"/>s provide a means for the library
@@ -330,7 +331,7 @@ namespace Parquet
         /// <param name="inIDArray">The <see cref="ModelID"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ModelID[,] inIDArray, Vector2D inPosition)
+        public static bool IsValidPosition(this ModelID[,] inIDArray, Point2D inPosition)
             => inPosition.X > -1
             && inPosition.Y > -1
             && inPosition.X < inIDArray.GetLength(1)

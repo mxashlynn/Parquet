@@ -1,25 +1,19 @@
 using System;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace Parquet
 {
     /// <summary>
-    /// Tracks a specific position within a specific <see cref="Regions.RegionModel"/>.
-    /// Instances of this class are mutable during play.
+    /// Represents a specific <see cref="Point2D"/> within a specific <see cref="Regions.RegionModel"/>.
+    /// Instances have value semantics.
     /// </summary>
-    /// <remarks>
-    /// Could meaningfully apply to any object that has a specific position with in the game world.<br />
-    /// In practice, is often used for <see cref="Model"/>s in addition to that Model's
-    /// <see cref="Status{T}"/> class.
-    /// </remarks>
-    // TODO [API] Update this class to track only objects that implement ILocatable.  Then give one of the new constructors.
-    // TODO [API] Alternatively, make this a non-Status POCO a la Vector2D and Range.
-    sealed public class Location : Status<object>
+    public readonly struct Location : IEquatable<Location>, ITypeConverter
     {
         #region Class Defaults
-        /// <summary>Provides a throwaway instance of the <see cref="Location"/> class with default values.</summary>
-        public static Location Nowhere { get; } = new Location();
+        /// <summary>Provides an instance of the <see cref="Location"/> class with default values.</summary>
+        public static Location Nowhere { get; }
         #endregion
 
         #region Characteristics
@@ -27,7 +21,7 @@ namespace Parquet
         public ModelID RegionID { get; }
 
         /// <summary>The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</summary>
-        public Vector2D Position { get; }
+        public Point2D Position { get; }
         #endregion
 
         #region Initialization
@@ -36,10 +30,10 @@ namespace Parquet
         /// </summary>
         /// <param name="inRegionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
         /// <param name="inPosition">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
-        public Location(ModelID? inRegionID = null, Vector2D? inPosition = null)
+        public Location(ModelID? inRegionID = null, Point2D? inPosition = null)
         {
             RegionID = inRegionID ?? ModelID.None;
-            Position = inPosition ?? Vector2D.Zero;
+            Position = inPosition ?? Point2D.Origin;
         }
         #endregion
 
@@ -58,10 +52,9 @@ namespace Parquet
         /// </summary>
         /// <param name="inLocation">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inLocation)
-            => inLocation is Location location
-            && RegionID == location.RegionID
-            && Position == location.Position;
+        public bool Equals(Location inLocation)
+            => RegionID == inLocation.RegionID
+            && Position == inLocation.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Location"/>.
@@ -79,7 +72,7 @@ namespace Parquet
         /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Location inLocation1, Location inLocation2)
-            => inLocation1?.Equals(inLocation2) ?? inLocation2?.Equals(inLocation1) ?? true;
+            => inLocation1.Equals(inLocation2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is not equal to another specified instance of <see cref="Location"/>.
@@ -102,7 +95,7 @@ namespace Parquet
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is Location location
                 ? $"{location.RegionID.ConvertToString(location.RegionID, inRow, inMemberMapData)}{Delimiters.InternalDelimiter}" +
                   $"{location.Position.ConvertToString(location.Position, inRow, inMemberMapData)}"
@@ -115,7 +108,7 @@ namespace Parquet
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
         {
             if (string.IsNullOrEmpty(inText)
                 || string.Compare(nameof(Nowhere), inText, StringComparison.OrdinalIgnoreCase) == 0)
@@ -126,20 +119,10 @@ namespace Parquet
             var parameterText = inText.Split(Delimiters.InternalDelimiter);
 
             var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedPosition = (Vector2D)Vector2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
 
             return new Location(parsedRegionID, parsedPosition);
         }
-        #endregion
-
-        #region IDeeplyCloneable Implementation
-        /// <summary>
-        /// Creates a new instance that is a deep copy of the current instance.
-        /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
-        public override T DeepClone<T>()
-            // Note that I believe no additional cloning is needed here as structs have value semantics.
-            => new Location(RegionID, Position) as T;
         #endregion
 
         #region Utilities

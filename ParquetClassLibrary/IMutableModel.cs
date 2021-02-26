@@ -15,7 +15,7 @@ namespace Parquet
     /// make changes to the properties of their corresponding models.
     /// 
     /// By design, subtypes of <see cref="Model"/> should never themselves use their <see cref="IMutableModel"/> interface.
-    /// IModelEdit is for use only by external types (such as those in a design-time tool) that require read/write access to model
+    /// IMutableModel is for use only by external types (such as those in a design-time tool) that require read/write access to model
     /// properties.
     /// </remarks>
     public interface IMutableModel

@@ -33,7 +33,7 @@ namespace Parquet.Regions
         public const int ChunksPerRegionDimension = 4;
 
         /// <summary>Dimensions in chunks of the <see cref="MapChunkGrid"/> stored by this <see cref="RegionModel"/>.</summary>
-        public static Vector2D DimensionsInChunks { get; } = new Vector2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
+        public static Point2D DimensionsInChunks { get; } = new Point2D(ChunksPerRegionDimension, ChunksPerRegionDimension);
         #endregion
 
         #region Characteristics

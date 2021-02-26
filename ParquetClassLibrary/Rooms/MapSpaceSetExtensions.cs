@@ -66,11 +66,11 @@ namespace Parquet.Rooms
                 #endregion
 
                 // Only continue if all four seeds are found.
-                var perimiterSeeds = new List<Vector2D>();
-                if (TryGetSeed(northWalkableExtreme, position => position + Vector2D.North, out var northSeed)
-                    && TryGetSeed(southWalkableExtreme, position => position + Vector2D.South, out var southSeed)
-                    && TryGetSeed(eastWalkableExtreme, position => position + Vector2D.East, out var eastSeed)
-                    && TryGetSeed(westWalkableExtreme, position => position + Vector2D.West, out var westSeed))
+                var perimiterSeeds = new List<Point2D>();
+                if (TryGetSeed(northWalkableExtreme, position => position + Point2D.North, out var northSeed)
+                    && TryGetSeed(southWalkableExtreme, position => position + Point2D.South, out var southSeed)
+                    && TryGetSeed(eastWalkableExtreme, position => position + Point2D.East, out var eastSeed)
+                    && TryGetSeed(westWalkableExtreme, position => position + Point2D.West, out var westSeed))
                 {
                     perimiterSeeds.Add(northSeed);
                     perimiterSeeds.Add(southSeed);
@@ -107,7 +107,7 @@ namespace Parquet.Rooms
             //     inAdjust indicates how to adjust the position at each step if a perimeter seed has not been found.
             //     outFinal indicates the position of the perimeter seed, if one was found.
             // If it cannot find such a MapSpace, returns false.
-            bool TryGetSeed(Vector2D inStart, Func<Vector2D, Vector2D> inAdjust, out Vector2D outFinal)
+            bool TryGetSeed(Point2D inStart, Func<Point2D, Point2D> inAdjust, out Point2D outFinal)
             {
                 var found = false;
                 var position = inStart;
@@ -132,7 +132,7 @@ namespace Parquet.Rooms
 
                 outFinal = found
                     ? position
-                    : Vector2D.Zero;
+                    : Point2D.Origin;
 
                 return found;
             }

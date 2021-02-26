@@ -528,8 +528,8 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = new ParquetModelPackGrid(TwoSimpleRoomsMap).CreateRoomCollectionFromSubregion();
 
-            var walkableArea1 = collection.GetRoomAt(new Vector2D(2, 2)).WalkableArea;
-            var walkableArea2 = collection.GetRoomAt(new Vector2D(8, 2)).WalkableArea;
+            var walkableArea1 = collection.GetRoomAt(new Point2D(2, 2)).WalkableArea;
+            var walkableArea2 = collection.GetRoomAt(new Point2D(8, 2)).WalkableArea;
 
             Assert.False(walkableArea1.SetEquals(walkableArea2));
         }
@@ -539,8 +539,8 @@ namespace ParquetUnitTests.Rooms
         {
             var collection = new ParquetModelPackGrid(TwoSimpleRoomsMap).CreateRoomCollectionFromSubregion();
 
-            var perimeter1 = collection.GetRoomAt(new Vector2D(2, 2)).Perimeter;
-            var perimeter2 = collection.GetRoomAt(new Vector2D(8, 2)).Perimeter;
+            var perimeter1 = collection.GetRoomAt(new Point2D(2, 2)).Perimeter;
+            var perimeter2 = collection.GetRoomAt(new Point2D(8, 2)).Perimeter;
 
             Assert.False(perimeter1.SetEquals(perimeter2));
         }
@@ -910,7 +910,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void GetRoomAtSucceedsOnCorrectPositionTest()
         {
-            var correctPosition = new Vector2D(1, 1);
+            var correctPosition = new Point2D(1, 1);
 
             Assert.Equal(ExtantRoom, TestCollection.GetRoomAtOrNull(correctPosition));
         }
@@ -918,7 +918,7 @@ namespace ParquetUnitTests.Rooms
         [Fact]
         internal void GetRoomAtFailsOnIncorrectPositionTest()
         {
-            var incorrectPosition = new Vector2D(0, 4);
+            var incorrectPosition = new Point2D(0, 4);
 
             Assert.Null(TestCollection.GetRoomAtOrNull(incorrectPosition));
         }

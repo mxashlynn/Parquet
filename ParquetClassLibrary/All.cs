@@ -440,7 +440,7 @@ namespace Parquet
                 { typeof(RecipeElement), RecipeElement.ConverterFactory },
                 { typeof(ScriptNode), ScriptNode.ConverterFactory },
                 { typeof(StrikePanel), StrikePanel.ConverterFactory },
-                { typeof(Vector2D), Vector2D.ConverterFactory },
+                { typeof(Point2D), Point2D.ConverterFactory },
                 #endregion
 
                 #region Linear Series Types
@@ -448,7 +448,7 @@ namespace Parquet
                 { typeof(IEnumerable<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IEnumerable<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
                 { typeof(IEnumerable<ScriptNode>), SeriesConverter<ScriptNode, List<ScriptNode>>.ConverterFactory },
-                { typeof(Inventory), SeriesConverter<InventorySlot, Inventory>.ConverterFactory },
+                { typeof(InventoryCollection), SeriesConverter<InventorySlot, InventoryCollection>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelID>), SeriesConverter<ModelID, List<ModelID>>.ConverterFactory },
                 { typeof(IReadOnlyList<ModelTag>), SeriesConverter<ModelTag, List<ModelTag>>.ConverterFactory },
                 { typeof(IReadOnlyList<RecipeElement>), SeriesConverter<RecipeElement, List<RecipeElement>>.ConverterFactory },
@@ -574,6 +574,7 @@ namespace Parquet
                 #endregion
 
                 #region Read Models
+                // TODO: [MAP] [SERIALIZATION] Serialization data for Regions and Beings needs to be updated
                 var games = ModelCollection<GameModel>.ConverterFactory.GetRecordsForType<GameModel>(GameIDs);
                 var floors = ModelCollection<FloorModel>.ConverterFactory.GetRecordsForType<FloorModel>(ParquetIDs);
                 var blocks = ModelCollection<BlockModel>.ConverterFactory.GetRecordsForType<BlockModel>(ParquetIDs);
@@ -584,9 +585,7 @@ namespace Parquet
                 var biomeRecipes = ModelCollection<BiomeRecipe>.ConverterFactory.GetRecordsForType<BiomeRecipe>(BiomeRecipeIDs);
                 var craftingRecipes = ModelCollection<CraftingRecipe>.ConverterFactory.GetRecordsForType<CraftingRecipe>(CraftingRecipeIDs);
                 var roomRecipes = ModelCollection<RoomRecipe>.ConverterFactory.GetRecordsForType<RoomRecipe>(RoomRecipeIDs);
-                var regions = ModelCollection<RegionModel>.Default;
-                // TODO: [MAP] [SERIALIZATION] Reenable these after refactor.
-                //    ModelCollection<RegionModel>.ConverterFactory.GetRecordsForType<MapRegionModel>(MapIDs);
+                var regions = ModelCollection<RegionModel>.ConverterFactory.GetRecordsForType<RegionModel>(RegionIDs);
                 var scripts = ModelCollection<ScriptModel>.ConverterFactory.GetRecordsForType<ScriptModel>(ScriptIDs);
                 var interactions = ModelCollection<InteractionModel>.ConverterFactory.GetRecordsForType<InteractionModel>(InteractionIDs);
                 var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);

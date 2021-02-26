@@ -29,7 +29,7 @@ namespace Parquet.Regions
         public const int ParquetsPerRegionDimension = RegionModel.ChunksPerRegionDimension * MapChunk.ParquetsPerChunkDimension;
 
         /// <summary>The region's dimensions in parquets.</summary>
-        public static Vector2D DimensionsInParquets { get; } = new Vector2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
+        public static Point2D DimensionsInParquets { get; } = new Point2D(ParquetsPerRegionDimension, ParquetsPerRegionDimension);
         #endregion
 
         #region Status
@@ -185,7 +185,7 @@ namespace Parquet.Regions
                 {
                     for (var x = 0; x < inRegion.ParquetModels.Columns; x++)
                     {
-                        if (inRegion.Rooms.Any(room => room.ContainsPosition(new Vector2D(x, y))))
+                        if (inRegion.Rooms.Any(room => room.ContainsPosition(new Point2D(x, y))))
                         {
                             // Note that we are counting every parquet, including collectibles.
                             parquetsInRoom += inRegion.ParquetModels[y, x].Count;
@@ -537,7 +537,7 @@ namespace Parquet.Regions
         /// </summary>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Vector2D inPosition)
+        public bool IsValidPosition(Point2D inPosition)
             => ParquetModels.IsValidPosition(inPosition)
             && ParquetStatuses.IsValidPosition(inPosition);
 

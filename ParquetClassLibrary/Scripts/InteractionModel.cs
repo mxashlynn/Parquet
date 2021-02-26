@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CsvHelper.Configuration.Attributes;
 
@@ -65,8 +64,8 @@ namespace Parquet.Scripts
         /// Describes the criteria for beginning this interaction.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="InteractionModel"/> should never themselves use <see cref="IMutableInteractionModel"/>.
+        /// IMutableInteractionModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelID> IMutableInteractionModel.PrerequisitesIDs
@@ -78,8 +77,8 @@ namespace Parquet.Scripts
         /// Everything this interaction entails.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="InteractionModel"/> should never themselves use <see cref="IMutableInteractionModel"/>.
+        /// IMutableInteractionModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelID> IMutableInteractionModel.StepsIDs
@@ -91,8 +90,8 @@ namespace Parquet.Scripts
         /// Describes the results of finishing this interaction.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="InteractionModel"/> should never themselves use <see cref="IMutableInteractionModel"/>.
+        /// IMutableInteractionModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelID> IMutableInteractionModel.OutcomesIDs

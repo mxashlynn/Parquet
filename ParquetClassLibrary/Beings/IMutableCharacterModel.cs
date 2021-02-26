@@ -8,7 +8,7 @@ namespace Parquet.Beings
     /// </summary>
     /// <remarks>
     /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
-    /// ICharacterModelEdit is for use only by external types that require read/write access to model properties.
+    /// IMutableCharacterModel is for use only by external types that require read/write access to model properties.
     /// </remarks>
     public interface IMutableCharacterModel : IMutableBeingModel
     {
@@ -34,6 +34,9 @@ namespace Parquet.Beings
         /// </remarks>
         public string StoryCharacterID { get; set; }
 
+        /// <summary>The <see cref="Location"/> the <see cref="CharacterModel"/> begins at.</summary>
+        public Location StartingLocation { get; set; }
+
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
         public ICollection<ModelID> StartingQuestIDs { get; }
@@ -42,6 +45,6 @@ namespace Parquet.Beings
         public ModelID StartingDialogueID { get; set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
-        public Inventory StartingInventory { get; }
+        public InventoryCollection StartingInventory { get; }
     }
 }

@@ -15,6 +15,11 @@ namespace Parquet.Beings
                      Justification = "By design, subtypes of Model should never themselves use IMutableModel or derived interfaces to access their own members.  The IMutableModel family of interfaces is for external types that require read/write access.")]
     public class CharacterModel : BeingModel, IMutableCharacterModel
     {
+        #region Class Defaults
+        /// <summary>Indicates an uninitialized character.</summary>
+        public static CharacterModel Unused { get; } = new CharacterModel(ModelID.None, nameof(Unused), "", "");
+        #endregion
+
         #region Characteristics
         /// <summary>Player-facing personal name.</summary>
         [Ignore]
@@ -51,16 +56,20 @@ namespace Parquet.Beings
         [Index(10)]
         public string StoryCharacterID { get; private set; }
 
+        /// <summary>The <see cref="Location"/> the <see cref="CharacterModel"/> begins at.</summary>
+        [Index(11)]
+        public Location StartingLocation { get; private set; }
+
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>Typically, NPCs offer quests, player characters undertake them.</remarks>
-        [Index(11)]
-        public IReadOnlyList<ModelID> StartingQuestIDs { get; }
+        [Index(13)]
+        public IReadOnlyList<ModelID> StartingQuestIDs { get; private set; }
 
         /// <summary>
         /// The <see cref="ModelID"/> of the <see cref="Scripts.InteractionModel"/>that this <see cref="CharacterModel"/>
         /// can say at the outset.
         /// </summary>
-        [Index(12)]
+        [Index(14)]
         public ModelID StartingDialogueID { get; private set; }
 
         /// <summary>The set of belongings that this <see cref="CharacterModel"/> begins with.</summary>
@@ -69,7 +78,7 @@ namespace Parquet.Beings
         /// Care should be taken not to alter it during play.
         /// </remarks>
         [Index(13)]
-        public Inventory StartingInventory { get; }
+        public InventoryCollection StartingInventory { get; }
         #endregion
 
         #region Initialization
@@ -94,20 +103,23 @@ namespace Parquet.Beings
                               IEnumerable<ModelTag> inTags = null, ModelID? inNativeBiomeID = null,
                               ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
                               IEnumerable<ModelID> inSeeksIDs = null, string inPronounKey = PronounGroup.DefaultKey,
-                              string inStoryCharacterID = "", IEnumerable<ModelID> inStartingQuestIDs = null,
-                              ModelID? inStartingDialogueID = null, Inventory inStartingInventory = null)
+                              string inStoryCharacterID = "", Location? inStartingLocation = null,
+                              IEnumerable<ModelID> inStartingQuestIDs = null, ModelID? inStartingDialogueID = null,
+                              InventoryCollection inStartingInventory = null)
             : base(All.CharacterIDs, inID, inName, inDescription, inComment, inTags,
                    inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
         {
+            var nonNullStartingLocation = inStartingLocation ?? Location.Nowhere;
             var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
             var nonNullDialogueID = inStartingDialogueID ?? ModelID.None;
-            var nonNullInventory = inStartingInventory ?? Inventory.Empty;
+            var nonNullInventory = inStartingInventory ?? InventoryCollection.Empty;
 
             Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
             Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(inStartingDialogueID));
 
             PronounKey = inPronounKey;
             StoryCharacterID = inStoryCharacterID;
+            StartingLocation = nonNullStartingLocation;
             StartingQuestIDs = nonNullQuestIDs.ToList();
             StartingDialogueID = nonNullDialogueID;
             StartingInventory = nonNullInventory;
@@ -117,8 +129,8 @@ namespace Parquet.Beings
         #region IMutableCharacterModel Implementation
         /// <summary>Player-facing personal name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PersonalName
@@ -131,8 +143,8 @@ namespace Parquet.Beings
 
         /// <summary>Player-facing family name.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.FamilyName
@@ -148,8 +160,8 @@ namespace Parquet.Beings
         /// stored as "<see cref="PronounGroup.Objective"/>/<see cref="PronounGroup.Subjective"/>.
         /// </summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.PronounKey
@@ -162,8 +174,8 @@ namespace Parquet.Beings
 
         /// <summary>The story character that this <see cref="CharacterModel"/> represents.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         string IMutableCharacterModel.StoryCharacterID
@@ -174,10 +186,24 @@ namespace Parquet.Beings
                 : value;
         }
 
+        /// <summary>The <see cref="Location"/> the <see cref="CharacterModel"/> begins at.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        Location IMutableCharacterModel.StartingLocation
+        {
+            get => StartingLocation;
+            set => StartingLocation = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingLocation), StartingLocation)
+                : value;
+        }
+
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ICollection<ModelID> IMutableCharacterModel.StartingQuestIDs
@@ -187,8 +213,8 @@ namespace Parquet.Beings
 
         /// <summary>Dialogue lines this <see cref="CharacterModel"/> can say.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
         ModelID IMutableCharacterModel.StartingDialogueID
@@ -202,13 +228,13 @@ namespace Parquet.Beings
 
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read-write access.
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        Inventory IMutableCharacterModel.StartingInventory
+        InventoryCollection IMutableCharacterModel.StartingInventory
             => LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), Inventory.Empty)
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingInventory), InventoryCollection.Empty)
                 : StartingInventory;
         #endregion
     }

@@ -60,8 +60,8 @@ namespace Parquet.Parquets
         #region IMutableFloorModel Implementation
         /// <summary>The tool used to dig out or fill in the floor.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="FloorModel"/> should never themselves use <see cref="IMutableFloorModel"/>.
+        /// IMutableFloorModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ModificationTool IMutableFloorModel.ModTool
@@ -74,8 +74,8 @@ namespace Parquet.Parquets
 
         /// <summary>Player-facing name of the parquet, used when it has been dug out.</summary>
         /// <remarks>
-        /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableModel"/>.
-        /// IModelEdit is for external types that require read/write access.
+        /// By design, subtypes of <see cref="FloorModel"/> should never themselves use <see cref="IMutableFloorModel"/>.
+        /// IMutableFloorModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         string IMutableFloorModel.TrenchName

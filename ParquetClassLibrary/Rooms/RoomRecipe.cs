@@ -82,7 +82,7 @@ namespace Parquet.Rooms
         /// <summary>Minimum number of open spaces needed for this <see cref="RoomRecipe"/> to register.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IMutableRoomRecipe"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// IMutableRoomRecipe is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         int IMutableRoomRecipe.MinimumWalkableSpaces
@@ -96,7 +96,7 @@ namespace Parquet.Rooms
         /// <summary>A list of <see cref="Parquets.FurnishingModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IMutableRoomRecipe"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// IMutableRoomRecipe is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredFurnishings
@@ -107,7 +107,7 @@ namespace Parquet.Rooms
         /// <summary>An optional list of <see cref="Parquets.FloorModel"/> categories this <see cref="RoomRecipe"/> requires.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IMutableRoomRecipe"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// IMutableRoomRecipe is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredWalkableFloors
@@ -118,7 +118,7 @@ namespace Parquet.Rooms
         /// <summary>An optional list of <see cref="Parquets.BlockModel"/> categories this <see cref="RoomRecipe"/> requires as walls.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="RoomRecipe"/> should never themselves use <see cref="IMutableRoomRecipe"/>.
-        /// IRoomRecipeEdit is for external types that require read/write access.
+        /// IMutableRoomRecipe is for external types that require read/write access.
         /// </remarks>
         [Ignore]
         ICollection<RecipeElement> IMutableRoomRecipe.OptionallyRequiredPerimeterBlocks

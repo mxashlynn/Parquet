@@ -13,7 +13,7 @@ namespace Parquet.Rooms
     {
         #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        public static readonly MapSpace Empty = new MapSpace(Vector2D.Zero, ParquetModelPack.Empty, ParquetModelPackGrid.Empty);
+        public static readonly MapSpace Empty = new MapSpace(Point2D.Origin, ParquetModelPack.Empty, ParquetModelPackGrid.Empty);
         #endregion
 
         #region Characteristics
@@ -21,7 +21,7 @@ namespace Parquet.Rooms
         public ParquetModelPackGrid Grid { get; }
 
         /// <summary>Location of this <see cref="MapSpace"/>.</summary>
-        public Vector2D Position { get; }
+        public Point2D Position { get; }
 
         /// <summary>All parquets occupying this <see cref="MapSpace"/>.</summary>
         public ParquetModelPack Content { get; }
@@ -34,7 +34,7 @@ namespace Parquet.Rooms
         /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
         /// <param name="inGrid">The <see cref="ParquetModelPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
-        public MapSpace(Vector2D inPosition, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
+        public MapSpace(Point2D inPosition, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
         {
             Position = inPosition;
             Content = inContent;
@@ -49,13 +49,13 @@ namespace Parquet.Rooms
         /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
         /// <param name="inGrid">The grid in which this <see cref="MapSpace"/> occurs. </param>
         public MapSpace(int inX, int inY, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
-            : this(new Vector2D(inX, inY), inContent, inGrid) { }
+            : this(new Point2D(inX, inY), inContent, inGrid) { }
         #endregion
 
         #region Position Offsets
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
-        public MapSpace Neighbor(Vector2D inOffset)
+        public MapSpace Neighbor(Point2D inOffset)
         {
             Precondition.IsNotNull(Grid, nameof(Grid));
 
@@ -68,22 +68,22 @@ namespace Parquet.Rooms
         /// <summary>Finds the <see cref="MapSpace"/> to the north of the given space, if any.</summary>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace NorthNeighbor()
-            => Neighbor(Vector2D.North);
+            => Neighbor(Point2D.North);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the south of the given space, if any.</summary>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace SouthNeighbor()
-            => Neighbor(Vector2D.South);
+            => Neighbor(Point2D.South);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the east of the given space, if any.</summary>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace EastNeighbor()
-            => Neighbor(Vector2D.East);
+            => Neighbor(Point2D.East);
 
         /// <summary>Finds the <see cref="MapSpace"/> to the west of the given space, if any.</summary>
         /// <returns>A <see cref="MapSpace"/> if it exists, or <see cref="Empty"/> otherwise.</returns>
         public MapSpace WestNeighbor()
-            => Neighbor(Vector2D.West);
+            => Neighbor(Point2D.West);
 
         /// <summary>Finds the <see cref="MapSpace"/> related to the given space by the given offset, if any.</summary>
         /// <returns>A list of four <see cref="MapSpace"/>s, some or all of which may be <see cref="Empty"/>.</returns>
@@ -185,8 +185,8 @@ namespace Parquet.Rooms
         /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
-            => obj is MapSpace vector
-            && Equals(vector);
+            => obj is MapSpace space
+            && Equals(space);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is equal to

@@ -71,7 +71,7 @@ namespace Parquet
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        /// <returns>A new instance with the same status as the current instance.</returns>
         public virtual Pack<T> DeepClone()
             => DeepClone<Pack<T>>();
 
@@ -79,7 +79,7 @@ namespace Parquet
         /// Creates a new instance that is a deep copy of the current instance.
         /// </summary>
         /// <typeparam name="TDerived">The type of the instance that is being cloned.</typeparam>
-        /// <returns>A new instance with the same characteristics as the current instance.</returns>
+        /// <returns>A new instance with the same status as the current instance.</returns>
         public abstract TDerived DeepClone<TDerived>()
             where TDerived : Pack<T>;
         #endregion
@@ -96,7 +96,7 @@ namespace Parquet
         /// <param name="inArray">The <see cref="Pack{T}"/> array to validate against.</param>
         /// <param name="inPosition">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition<T>(this Pack<T>[,] inArray, Vector2D inPosition)
+        public static bool IsValidPosition<T>(this Pack<T>[,] inArray, Point2D inPosition)
             => inArray is not null
             && inPosition.X > -1
             && inPosition.Y > -1

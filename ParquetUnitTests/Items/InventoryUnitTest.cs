@@ -12,7 +12,7 @@ namespace ParquetUnitTests.Items
         [Fact]
         public void NewInventoryHasGivenCapacityTest()
         {
-            var inventory = new Inventory(TestCapacity);
+            var inventory = new InventoryCollection(TestCapacity);
 
             Assert.Equal(TestCapacity, inventory.Capacity);
         }
