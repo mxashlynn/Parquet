@@ -192,6 +192,34 @@ namespace Parquet.Beings
                 : value;
         }
 
+        /// <summary>The <see cref="Location"/> the <see cref="CharacterModel"/> begins at.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        Location IMutableCharacterModel.StartingLocation
+        {
+            get => StartingLocation;
+            set => StartingLocation = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingLocation), StartingLocation)
+                : value;
+        }
+
+        /// <summary>The <see cref="ModelID"/> for the <see cref="Scripts.ScriptModel"/> initially governing the <see cref="CharacterModel"/>.</summary>
+        /// <remarks>
+        /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
+        /// IMutableCharacterModel is for external types that require read-write access.
+        /// </remarks>
+        [Ignore]
+        ModelID IMutableCharacterModel.StartingBehaviorID
+        {
+            get => StartingBehaviorID;
+            set => StartingBehaviorID = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(StartingBehaviorID), StartingBehaviorID)
+                : value;
+        }
+
         /// <summary>The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> either offers or has undertaken.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="CharacterModel"/> should never themselves use <see cref="IMutableCharacterModel"/>.
