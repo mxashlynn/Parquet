@@ -157,7 +157,7 @@ namespace Parquet.Regions
 
         #region Utilities
         /// <summary>
-        /// Determines how many exist lead from this <see cref="RegionModel"/> to other RegionModels.
+        /// Determines how many exits lead from this <see cref="RegionModel"/> to other RegionModels.
         /// </summary>
         /// <returns>The number of exit IDs that are not <see cref="ModelID.None"/>.</returns>
         public int ExitCount()
