@@ -86,6 +86,7 @@ Icons?
 # ====== #
 *.apk
 *.app
+*.dll
 *.exe
 *.iap
 *.unitypackage
