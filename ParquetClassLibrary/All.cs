@@ -250,7 +250,7 @@ namespace Parquet
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
-        public static ModelCollection<RegionModel> RegionModels { get; private set; }
+        public static ModelCollection<RegionModel> Regions { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="ScriptModel"/>s.
@@ -311,7 +311,7 @@ namespace Parquet
             BiomeRecipes = ModelCollection<BiomeRecipe>.Default;
             CraftingRecipes = ModelCollection<CraftingRecipe>.Default;
             RoomRecipes = ModelCollection<RoomRecipe>.Default;
-            RegionModels = ModelCollection<RegionModel>.Default;
+            Regions = ModelCollection<RegionModel>.Default;
             Scripts = ModelCollection<ScriptModel>.Default;
             Interactions = ModelCollection<InteractionModel>.Default;
             Items = ModelCollection<ItemModel>.Default;
@@ -548,7 +548,7 @@ namespace Parquet
             BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
             CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
             RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
-            RegionModels = new ModelCollection<RegionModel>(RegionIDs, inRegions);
+            Regions = new ModelCollection<RegionModel>(RegionIDs, inRegions);
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
@@ -629,7 +629,7 @@ namespace Parquet
                 BiomeRecipes.PutRecordsForType<BiomeRecipe>();
                 CraftingRecipes.PutRecordsForType<CraftingRecipe>();
                 RoomRecipes.PutRecordsForType<RoomRecipe>();
-                RegionModels.PutRecordsForType<RegionModel>();
+                Regions.PutRecordsForType<RegionModel>();
                 Scripts.PutRecordsForType<ScriptModel>();
                 Interactions.PutRecordsForType<InteractionModel>();
                 Items.PutRecordsForType<ItemModel>();
@@ -671,7 +671,7 @@ namespace Parquet
                 ((IMutableModelCollection<BiomeRecipe>)BiomeRecipes)?.Clear();
                 ((IMutableModelCollection<CraftingRecipe>)CraftingRecipes)?.Clear();
                 ((IMutableModelCollection<RoomRecipe>)RoomRecipes)?.Clear();
-                ((IMutableModelCollection<RegionModel>)RegionModels)?.Clear();
+                ((IMutableModelCollection<RegionModel>)Regions)?.Clear();
                 ((IMutableModelCollection<ScriptModel>)Scripts)?.Clear();
                 ((IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
                 ((IMutableModelCollection<ItemModel>)Items)?.Clear();
@@ -730,7 +730,7 @@ namespace Parquet
         /// <param name="inModelType">The model type whose ID range is sought.</param>
         /// <returns>
         /// The range within which this model type's <see cref="ModelID"/> would be defined,
-        /// or <see cref="Range{ModelID}.None"/> if there is none exists.
+        /// or <see cref="Range{ModelID}.None"/> if none exists.
         /// </returns>
         public static Range<ModelID> GetIDRangeForType(Type inModelType)
             => inModelType == typeof(GameModel) ? GameIDs

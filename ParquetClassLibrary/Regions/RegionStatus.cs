@@ -396,7 +396,7 @@ namespace Parquet.Regions
                 return inconsistentExitDirections;
             }
 
-            var currentRegion = All.RegionModels.GetOrNull<RegionModel>(inRegionID);
+            var currentRegion = All.Regions.GetOrNull<RegionModel>(inRegionID);
 
             if (currentRegion is null)
             {
@@ -411,7 +411,7 @@ namespace Parquet.Regions
                     continue;
                 }
 
-                var adjacentRegion = All.RegionModels.GetOrNull<RegionModel>(adjacentRegionID);
+                var adjacentRegion = All.Regions.GetOrNull<RegionModel>(adjacentRegionID);
                 if (adjacentRegion is not null)
                 {
                     continue;

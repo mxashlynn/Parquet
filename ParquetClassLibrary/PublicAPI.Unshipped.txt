@@ -892,7 +892,7 @@ static Parquet.All.Parquets.get -> Parquet.ModelCollection<Parquet.Parquets.Parq
 static Parquet.All.ProjectDirectory.get -> string
 static Parquet.All.ProjectDirectory.set -> void
 static Parquet.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyCollection<Parquet.Beings.PronounGroup>
-static Parquet.All.RegionModels.get -> Parquet.ModelCollection<Parquet.Regions.RegionModel>
+static Parquet.All.Regions.get -> Parquet.ModelCollection<Parquet.Regions.RegionModel>
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
 static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
