@@ -107,6 +107,14 @@ namespace Parquet
 
         #region Utilities
         /// <summary>
+        /// Determines whether the beginning of this <see cref="ModelTag"/> instance matches the given ModelTag.
+        /// </summary>
+        /// <param name="inPrefix">The <see cref="ModelTag"/> check against the beginning of the current ModelTag.</param>
+        /// <returns><c>true</c> if this instance begins with the given prefix; otherwise, <c>false</c>.</returns>
+        public bool StartsWithOrdinalIgnoreCase(ModelTag inPrefix)
+            => tagContent.StartsWith(inPrefix, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ModelTag"/>.
         /// </summary>
         /// <returns>The representation.</returns>

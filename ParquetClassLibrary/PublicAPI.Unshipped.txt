@@ -521,6 +521,7 @@ Parquet.ModelTag.CompareTo(Parquet.ModelTag inTag) -> int
 Parquet.ModelTag.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.ModelTag.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
 Parquet.ModelTag.ModelTag() -> void
+Parquet.ModelTag.StartsWithOrdinalIgnoreCase(Parquet.ModelTag inPrefix) -> bool
 Parquet.Pack<T>
 Parquet.Pack<T>.Equals(Parquet.Pack<T> inPack) -> bool
 Parquet.Pack<T>.Pack() -> void
