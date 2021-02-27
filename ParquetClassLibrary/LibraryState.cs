@@ -5,6 +5,7 @@ namespace Parquet
     /// </summary>
     public static class LibraryState
     {
+#pragma warning disable RS0016 // Add public types and members to the declared API -- conditional compilation.
         /// <summary>
         /// <c>true</c> if the library was built with the symbol DEBUG defined; <c>false</c> otherwise.
         /// </summary>
@@ -14,6 +15,7 @@ namespace Parquet
 #else
             false;
 #endif
+#pragma warning restore RS0016 // Add public types and members to the declared API -- conditional compilation.
 
         /// <summary>
         /// Set this to <c>true</c> if the library is being used by a game;

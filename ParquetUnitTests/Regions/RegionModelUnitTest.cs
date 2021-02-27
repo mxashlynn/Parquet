@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Parquet;
 using Parquet.Regions;
 using Xunit;
@@ -32,6 +33,8 @@ namespace ParquetUnitTests.Maps
         #endregion
 
         #region Whole Region Characteristics Editing
+#pragma warning disable CS0162 // Unreachable code detected -- conditional compilation.
+#pragma warning disable IDE0035 // Unreachable code detected -- conditional compilation.
         [Fact]
         public void MapRegionModelMayBeEditedTest()
         {
@@ -47,6 +50,8 @@ namespace ParquetUnitTests.Maps
                 Assert.Equal(testColor, customRegion.BackgroundColor);
             }
         }
+#pragma warning restore IDE0035 // Unreachable code detected -- conditional compilation.
+#pragma warning restore CS0162 // Unreachable code detected -- conditional compilation.
         #endregion
     }
 }
