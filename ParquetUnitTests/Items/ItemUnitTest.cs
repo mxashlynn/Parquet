@@ -16,7 +16,7 @@ namespace ParquetUnitTests.Items
         private const int goodStackMax = 99;
 
         /// <summary></summary>
-        private static readonly List<ModelTag> TestTagList = new List<ModelTag>() { "Test-Tag" };
+        private static readonly IList<ModelTag> TestTagList = new List<ModelTag>() { "Test-Tag" };
         #endregion
 
         [Fact]

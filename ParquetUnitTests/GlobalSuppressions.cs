@@ -12,3 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Style", "IDE0017:Simplify object initialization",
                            Justification = "Prefer keeping unit tests in Arrange-Act-Assert form.",
                            Scope = "namespaceanddescendants", Target = "~N:ParquetUnitTests")]
+
+[assembly: SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional",
+                           Justification = "Parquet requires multidimensional arrays.",
+                           Scope = "namespaceanddescendants", Target = "~N:ParquetUnitTests")]

@@ -1,5 +1,13 @@
+using System;
+using System.Runtime.InteropServices;
 using Parquet;
 using Xunit;
+
+// Make no promises to maintain public services.
+[assembly: ComVisible(false)]
+
+// ParquetUnitTests are API consumers, not API providers.
+[assembly: CLSCompliant(false)]
 
 namespace ParquetUnitTests
 {

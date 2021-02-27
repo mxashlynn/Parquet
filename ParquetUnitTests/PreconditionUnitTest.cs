@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Parquet;
 using Xunit;
 
@@ -8,8 +9,13 @@ namespace ParquetUnitTests
     public class PreconditionUnitTest
     {
         #region Test Values
-        public class BaseType { };
-        public class DerivedType : BaseType { };
+        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)."/></summary>
+        internal class BaseType { };
+
+        [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes",
+            Justification = "The type itself is used in the test.")]
+        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)."/></summary>
+        internal class DerivedType : BaseType { };
         #endregion
 
         [Fact]
