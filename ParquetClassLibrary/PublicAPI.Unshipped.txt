@@ -477,6 +477,7 @@ Parquet.LogLevel.Fatal = 4 -> Parquet.LogLevel
 Parquet.LogLevel.Info = 1 -> Parquet.LogLevel
 Parquet.LogLevel.Warning = 2 -> Parquet.LogLevel
 Parquet.Model
+Parquet.Model.AttributeTag(Parquet.ModelTag inPrefix) -> Parquet.ModelTag
 Parquet.Model.Comment.get -> string
 Parquet.Model.Description.get -> string
 Parquet.Model.Equals(Parquet.Model inModel) -> bool

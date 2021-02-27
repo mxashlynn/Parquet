@@ -216,6 +216,24 @@ namespace Parquet
         /// <returns>List of all <see cref="ModelTag"/>s.</returns>
         public virtual IEnumerable<ModelTag> GetAllTags()
             => Tags;
+
+        /// <summary>
+        /// A tag assigned to this <see cref="Model"/> that begins with the given attribute prefix,
+        /// or <see cref="string.Empty"/> if no such tag has been assigned.
+        /// </summary>
+        /// <param name="inPrefix">
+        /// A <see cref="ModelTag"/> substring indicating the sought attribute.
+        /// No particular format is required for the prefix:suffix pair,
+        /// although no library-wide <see cref="Delimiters"/> may be used.
+        /// </param>
+        /// <returns>
+        /// The attribute sought including the given prefix,
+        /// or <see cref="ModelTag.None"/> if no such tag has been assigned.</returns>
+        /// <remarks>
+        /// This is a convenience for client code and not used by the library itself.
+        /// </remarks>
+        public ModelTag AttributeTag(ModelTag inPrefix)
+            => Tags.FirstOrDefault(tag => tag.StartsWithOrdinalIgnoreCase(inPrefix)) ?? "";
         #endregion
     }
 }
