@@ -3,6 +3,11 @@ namespace Parquet
     /// <summary>
     /// Provides a unified source of serialization separators for the library.
     /// </summary>
+    /// <remarks>
+    /// Every string listed here is reserved by Parquet and cannot be stored in any
+    /// <see cref="ModelTag"/> or other library type.<br />
+    /// Doing so will cause deserialization to fail.
+    /// </remarks>
     public static class Delimiters
     {
         // NOTE:  Currently delimiters are not stored as chars because PronounGroup requires compile-time
