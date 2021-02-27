@@ -32,6 +32,7 @@ namespace ParquetUnitTests.Maps
         #endregion
 
         #region Whole Region Characteristics Editing
+#pragma warning disable IDE0079 // Remove unnecessary suppression -- conditional compilation.
 #pragma warning disable CS0162 // Unreachable code detected -- conditional compilation.
         [Fact]
         public void MapRegionModelMayBeEditedTest()
@@ -49,6 +50,7 @@ namespace ParquetUnitTests.Maps
             }
         }
 #pragma warning restore CS0162 // Unreachable code detected -- conditional compilation.
+#pragma warning restore IDE0079 // Remove unnecessary suppression -- conditional compilation.
         #endregion
     }
 }
