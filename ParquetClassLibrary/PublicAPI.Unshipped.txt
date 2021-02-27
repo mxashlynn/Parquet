@@ -1020,8 +1020,8 @@ static Parquet.Regions.MapChunk.operator ==(Parquet.Regions.MapChunk inChunk1, P
 static Parquet.Regions.MapChunkArrayExtensions.IsValidPosition(this Parquet.Regions.MapChunk[,] inArray, Parquet.Point2D inPosition) -> bool
 static Parquet.Regions.MapChunkGrid.Empty.get -> Parquet.Regions.MapChunkGrid
 static Parquet.Regions.RegionModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
+static Parquet.Regions.RegionModel.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.RegionModel.DimensionsInChunks.get -> Parquet.Point2D
-static Parquet.Regions.RegionStatus.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.RegionStatus.DimensionsInParquets.get -> Parquet.Point2D
 static Parquet.Regions.RegionStatus.operator !=(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool
 static Parquet.Regions.RegionStatus.operator ==(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool

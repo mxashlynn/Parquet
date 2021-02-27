@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Parquets;
+using Parquet.Properties;
 
 namespace Parquet.Regions
 {
@@ -153,6 +155,87 @@ namespace Parquet.Regions
         /// <summary>Instructions on how to procedurally generate this region.</summary>
         [Ignore]
         MapChunkGrid IMutableRegionModel.MapChunks { get => MapChunks; set => MapChunks = value; }
+        #endregion
+
+        #region Exit Analysis
+        /// <summary>
+        /// Takes a <see cref="RegionModel"/> and returns the <see cref="ModelID" /> of an adjacent RegionModel.
+        /// </summary>
+        private delegate ModelID IDByDirection(RegionModel inRegion);
+
+        /// <summary>
+        /// A database of directions and their opposites, together with the properties needed to inspect both.
+        /// </summary>
+        private static readonly IReadOnlyCollection<(IDByDirection GetLeavingRegionID,
+                                                      string LeavingDirection,
+                                                      IDByDirection GetReturningRegionID,
+                                                      string ReturningDirection)>
+            Directions = new List<(IDByDirection, string, IDByDirection, string)>
+            {
+                { (region => region.RegionToTheNorth, Resources.DirectionNorth,
+                   region => region.RegionToTheSouth, Resources.DirectionSouth) },
+                { (region => region.RegionToTheEast, Resources.DirectionEast,
+                   region => region.RegionToTheWest, Resources.DirectionWest) },
+                { (region => region.RegionToTheSouth, Resources.DirectionSouth,
+                   region => region.RegionToTheNorth, Resources.DirectionNorth) },
+                { (region => region.RegionToTheWest, Resources.DirectionWest,
+                   region => region.RegionToTheEast, Resources.DirectionEast) },
+                { (region => region.RegionAbove, Resources.DirectionAbove,
+                   region => region.RegionBelow, Resources.DirectionBelow) },
+                { (region => region.RegionBelow, Resources.DirectionBelow,
+                   region => region.RegionAbove, Resources.DirectionAbove) },
+            };
+
+        /// <summary>
+        /// Finds adjacent maps from which the given map is not adjacent in the expected direction.
+        ///
+        /// That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
+        /// that is considered inconsistent and will be reported.
+        /// </summary>
+        /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
+        /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
+        [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
+            Justification = "In this instance it makes the code less readable.")]
+        public static ICollection<string> CheckExitConsistency(ModelID inRegionID)
+        {
+            var inconsistentExitDirections = new List<string>();
+
+            if (inRegionID == ModelID.None)
+            {
+                return inconsistentExitDirections;
+            }
+
+            var currentRegion = All.Regions.GetOrNull<RegionModel>(inRegionID);
+
+            if (currentRegion is null)
+            {
+                return inconsistentExitDirections;
+            }
+
+            foreach (var directionPair in Directions)
+            {
+                var adjacentRegionID = directionPair.GetLeavingRegionID(currentRegion);
+                if (adjacentRegionID == ModelID.None)
+                {
+                    continue;
+                }
+
+                var adjacentRegion = All.Regions.GetOrNull<RegionModel>(adjacentRegionID);
+                if (adjacentRegion is not null)
+                {
+                    continue;
+                }
+
+                if (directionPair.GetReturningRegionID(adjacentRegion) != inRegionID)
+                {
+                    inconsistentExitDirections.Add(
+                        $"{adjacentRegion.Name} is {directionPair.LeavingDirection} of {currentRegion.Name} but " +
+                        $"{currentRegion.Name} is not {directionPair.ReturningDirection} of {adjacentRegion.Name}.\n");
+                }
+            }
+
+            return inconsistentExitDirections;
+        }
         #endregion
 
         #region Utilities
