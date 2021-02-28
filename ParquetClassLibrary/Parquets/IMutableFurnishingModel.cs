@@ -9,19 +9,19 @@ namespace Parquet.Parquets
     /// </remarks>
     public interface IMutableFurnishingModel : IMutableParquetModel
     {
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</summary>
         public bool IsWalkable { get; set; }
 
         /// <summary>Indicates if and how this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/> or <see cref="Regions.RegionModel"/>.</summary>
         public EntryType Entry { get; set; }
 
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         public bool IsEnclosing { get; set; }
 
-        /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        /// <summary>If <c>true</c> the <see cref="FurnishingModel"/> may catch fire.</summary>
         public bool IsFlammable { get; set; }
 
-        /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
-        public ModelID SwapID { get; set; }
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be opened and closed.</summary>
+        public bool IsOpenable { get; set; }
     }
 }

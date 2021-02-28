@@ -573,11 +573,11 @@ Parquet.Parquets.FloorStatus.IsTrench.get -> bool
 Parquet.Parquets.FloorStatus.IsTrench.set -> void
 Parquet.Parquets.FurnishingModel
 Parquet.Parquets.FurnishingModel.Entry.get -> Parquet.Parquets.EntryType
-Parquet.Parquets.FurnishingModel.FurnishingModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null, bool inIsWalkable = false, Parquet.Parquets.EntryType inEntry = Parquet.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, Parquet.ModelID? inSwapID = null) -> void
+Parquet.Parquets.FurnishingModel.FurnishingModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null, bool inIsWalkable = false, Parquet.Parquets.EntryType inEntry = Parquet.Parquets.EntryType.None, bool inIsEnclosing = false, bool inIsFlammable = false, bool inIsOpenable = false) -> void
 Parquet.Parquets.FurnishingModel.IsEnclosing.get -> bool
 Parquet.Parquets.FurnishingModel.IsFlammable.get -> bool
+Parquet.Parquets.FurnishingModel.IsOpenable.get -> bool
 Parquet.Parquets.FurnishingModel.IsWalkable.get -> bool
-Parquet.Parquets.FurnishingModel.SwapID.get -> Parquet.ModelID
 Parquet.Parquets.FurnishingStatus
 Parquet.Parquets.FurnishingStatus.FurnishingStatus() -> void
 Parquet.Parquets.FurnishingStatus.FurnishingStatus(bool inIsOpen) -> void
@@ -618,10 +618,10 @@ Parquet.Parquets.IMutableFurnishingModel.IsEnclosing.get -> bool
 Parquet.Parquets.IMutableFurnishingModel.IsEnclosing.set -> void
 Parquet.Parquets.IMutableFurnishingModel.IsFlammable.get -> bool
 Parquet.Parquets.IMutableFurnishingModel.IsFlammable.set -> void
+Parquet.Parquets.IMutableFurnishingModel.IsOpenable.get -> bool
+Parquet.Parquets.IMutableFurnishingModel.IsOpenable.set -> void
 Parquet.Parquets.IMutableFurnishingModel.IsWalkable.get -> bool
 Parquet.Parquets.IMutableFurnishingModel.IsWalkable.set -> void
-Parquet.Parquets.IMutableFurnishingModel.SwapID.get -> Parquet.ModelID
-Parquet.Parquets.IMutableFurnishingModel.SwapID.set -> void
 Parquet.Parquets.IMutableParquetModel
 Parquet.Parquets.IMutableParquetModel.AddsToBiome.get -> System.Collections.Generic.ICollection<Parquet.ModelTag>
 Parquet.Parquets.IMutableParquetModel.AddsToRoom.get -> System.Collections.Generic.ICollection<Parquet.ModelTag>

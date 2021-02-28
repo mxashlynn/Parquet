@@ -19,7 +19,7 @@ namespace Parquet.Parquets
         #endregion
 
         #region Characteristics
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</summary>
         [Index(8)]
         public bool IsWalkable { get; private set; }
 
@@ -27,17 +27,17 @@ namespace Parquet.Parquets
         [Index(9)]
         public EntryType Entry { get; private set; }
 
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         [Index(10)]
         public bool IsEnclosing { get; private set; }
 
-        /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        /// <summary>If <c>true</c> the <see cref="FurnishingModel"/> may catch fire.</summary>
         [Index(11)]
         public bool IsFlammable { get; private set; }
 
-        /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be opened and closed.</summary>
         [Index(12)]
-        public ModelID SwapID { get; private set; }
+        public bool IsOpenable { get; private set; }
         #endregion
 
         #region Initialization
@@ -56,28 +56,24 @@ namespace Parquet.Parquets
         /// <param name="inEntry">If <c>true</c> this <see cref="FurnishingModel"/> serves as an entry to a <see cref="Rooms.Room"/>.</param>
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</param>
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
-        /// <param name="inSwapID">A <see cref="FurnishingModel"/> to swap with this furnishing on open/close actions.</param>
+        /// <param name="inIsOpenable">If <c>true</c> this <see cref="FurnishingModel"/> may be opened and closed.</param>
         public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
                                IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
                                IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
                                bool inIsWalkable = false, EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
-                               bool inIsFlammable = false, ModelID? inSwapID = null)
+                               bool inIsFlammable = false, bool inIsOpenable = false)
             : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
         {
-            var nonNullSwapID = inSwapID ?? ModelID.None;
-
-            Precondition.IsInRange(nonNullSwapID, Bounds, nameof(inSwapID));
-
             IsWalkable = inIsWalkable;
             Entry = inEntry;
             IsEnclosing = inIsEnclosing;
             IsFlammable = inIsFlammable;
-            SwapID = nonNullSwapID;
+            IsOpenable = inIsOpenable;
         }
         #endregion
 
         #region IMutableFurnishingModel Implementation
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> may be walked on.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be walked on.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
         /// IMutableFurnishingModel is for external types that require read/write access.
@@ -105,7 +101,7 @@ namespace Parquet.Parquets
                 : value;
         }
 
-        /// <summary>Indicates whether this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
         /// IMutableFurnishingModel is for external types that require read/write access.
@@ -119,7 +115,7 @@ namespace Parquet.Parquets
                 : value;
         }
 
-        /// <summary>Whether or not the <see cref="FurnishingModel"/> is flammable.</summary>
+        /// <summary>If <c>true</c> the <see cref="FurnishingModel"/> may catch fire.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
         /// IMutableFurnishingModel is for external types that require read/write access.
@@ -133,17 +129,17 @@ namespace Parquet.Parquets
                 : value;
         }
 
-        /// <summary>The <see cref="FurnishingModel"/> to swap with this Furnishing on an open/close action.</summary>
+        /// <summary>If <c>true</c> this <see cref="FurnishingModel"/> may be opened and closed.</summary>
         /// <remarks>
         /// By design, subtypes of <see cref="Model"/> should never themselves use <see cref="IMutableFurnishingModel"/>.
         /// IMutableFurnishingModel is for external types that require read/write access.
         /// </remarks>
         [Ignore]
-        ModelID IMutableFurnishingModel.SwapID
+        bool IMutableFurnishingModel.IsOpenable
         {
-            get => SwapID;
-            set => SwapID = LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(SwapID), SwapID)
+            get => IsOpenable;
+            set => IsOpenable = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(IsOpenable), IsOpenable)
                 : value;
         }
         #endregion
