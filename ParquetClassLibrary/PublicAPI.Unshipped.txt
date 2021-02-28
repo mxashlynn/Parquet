@@ -115,6 +115,13 @@ override Parquet.Parquets.FloorStatus.Equals(object obj) -> bool
 override Parquet.Parquets.FloorStatus.Equals<T>(T inStatus) -> bool
 override Parquet.Parquets.FloorStatus.GetHashCode() -> int
 override Parquet.Parquets.FloorStatus.ToString() -> string
+override Parquet.Parquets.FurnishingStatus.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
+override Parquet.Parquets.FurnishingStatus.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
+override Parquet.Parquets.FurnishingStatus.DeepClone<T>() -> T
+override Parquet.Parquets.FurnishingStatus.Equals(object obj) -> bool
+override Parquet.Parquets.FurnishingStatus.Equals<T>(T inStatus) -> bool
+override Parquet.Parquets.FurnishingStatus.GetHashCode() -> int
+override Parquet.Parquets.FurnishingStatus.ToString() -> string
 override Parquet.Parquets.ParquetModel.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 override Parquet.Parquets.ParquetModelPack.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 override Parquet.Parquets.ParquetModelPack.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
@@ -571,6 +578,12 @@ Parquet.Parquets.FurnishingModel.IsEnclosing.get -> bool
 Parquet.Parquets.FurnishingModel.IsFlammable.get -> bool
 Parquet.Parquets.FurnishingModel.IsWalkable.get -> bool
 Parquet.Parquets.FurnishingModel.SwapID.get -> Parquet.ModelID
+Parquet.Parquets.FurnishingStatus
+Parquet.Parquets.FurnishingStatus.FurnishingStatus() -> void
+Parquet.Parquets.FurnishingStatus.FurnishingStatus(bool inIsOpen) -> void
+Parquet.Parquets.FurnishingStatus.FurnishingStatus(Parquet.ModelID inFloorID) -> void
+Parquet.Parquets.FurnishingStatus.IsOpen.get -> bool
+Parquet.Parquets.FurnishingStatus.IsOpen.set -> void
 Parquet.Parquets.GatheringEffect
 Parquet.Parquets.GatheringEffect.Collectible = 2 -> Parquet.Parquets.GatheringEffect
 Parquet.Parquets.GatheringEffect.Item = 1 -> Parquet.Parquets.GatheringEffect
@@ -980,6 +993,9 @@ static Parquet.Parquets.FloorStatus.Default.get -> Parquet.Parquets.FloorStatus
 static Parquet.Parquets.FloorStatus.operator !=(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
 static Parquet.Parquets.FloorStatus.operator ==(Parquet.Parquets.FloorStatus inStatus1, Parquet.Parquets.FloorStatus inStatus2) -> bool
 static Parquet.Parquets.FurnishingModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
+static Parquet.Parquets.FurnishingStatus.Default.get -> Parquet.Parquets.FurnishingStatus
+static Parquet.Parquets.FurnishingStatus.operator !=(Parquet.Parquets.FurnishingStatus inStatus1, Parquet.Parquets.FurnishingStatus inStatus2) -> bool
+static Parquet.Parquets.FurnishingStatus.operator ==(Parquet.Parquets.FurnishingStatus inStatus1, Parquet.Parquets.FurnishingStatus inStatus2) -> bool
 static Parquet.Parquets.ParquetModelPack.Empty.get -> Parquet.Parquets.ParquetModelPack
 static Parquet.Parquets.ParquetModelPack.operator !=(Parquet.Parquets.ParquetModelPack inPack1, Parquet.Parquets.ParquetModelPack inPack2) -> bool
 static Parquet.Parquets.ParquetModelPack.operator ==(Parquet.Parquets.ParquetModelPack inPack1, Parquet.Parquets.ParquetModelPack inPack2) -> bool
