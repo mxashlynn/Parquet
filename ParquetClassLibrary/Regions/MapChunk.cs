@@ -75,7 +75,7 @@ namespace Parquet.Regions
         #region Procedural Generation
         /// <summary>
         /// Transforms the current <see cref="MapChunk"/> so that it is ready to be stitched together
-        /// with others in its <see cref="MapRegionSketch"/> into a playable <see cref="RegionModel"/>.
+        /// with others in its <see cref="MapChunkGrid"/> into a playable <see cref="RegionModel"/>.
         /// </summary>
         /// <remarks>
         /// If a chunk <see cref="IsFilledOut"/>, it is ready to go.
@@ -134,7 +134,7 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="MapChunk"/> is equal to the current <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inStack">The <see cref="MapChunk"/> to compare with the current.</param>
+        /// <param name="inChunk">The <see cref="MapChunk"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public bool Equals(MapChunk inChunk)
             => inChunk is MapChunk chunk

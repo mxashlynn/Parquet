@@ -12,7 +12,7 @@ namespace Parquet
     public interface IGrid<TElement> : IEnumerable<TElement>, IDeeplyCloneable<IGrid<TElement>>
         where TElement : ITypeConverter
     {
-        /// <summary>Separates <see cref="TElement"/>s within this <see cref="IGrid{TElement}"/>.</summary>
+        /// <summary>Separates <see typeparamref ="TElement"/>s within this <see cref="IGrid{TElement}"/>.</summary>
         public string GridDelimiter { get; }
 
         /// <summary>Gets the number of elements in the Y dimension of the <see cref="IGrid{TElement}"/>.</summary>

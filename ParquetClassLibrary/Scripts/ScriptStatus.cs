@@ -37,7 +37,7 @@ namespace Parquet.Scripts
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class.
         /// </summary>
         /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
-        /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.StepsIDs"/>.</param>
+        /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.Nodes"/>.</param>
         public ScriptStatus(RunState inState, int inProgramCounter)
         {
             State = inState;
@@ -60,7 +60,7 @@ namespace Parquet.Scripts
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="BeingStatus"/>.
+        /// Serves as a hash function for a <see cref="ScriptStatus"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.

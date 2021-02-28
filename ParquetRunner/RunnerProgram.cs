@@ -200,12 +200,12 @@ namespace ParquetRunner
     #endregion
 
     /// <summary>
-    /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
+    /// A simple program used to run some basic features of the <see cref="Parquet"/>.
     /// </summary>
     internal static class RunnerProgram
     {
         /// <summary>
-        /// A simple program used to run some basic features of the <see cref="ParquetClassLibrary"/>.
+        /// A simple program used to run some basic features of the <see cref="Parquet"/>.
         /// </summary>
         internal static void Main()
         {

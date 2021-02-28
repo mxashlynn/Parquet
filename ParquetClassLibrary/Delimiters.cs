@@ -25,7 +25,7 @@ namespace Parquet
         /// <summary>Separates properties within a class when in serialization.</summary>
         public const string InternalDelimiter = "·";
 
-        /// <summary>Separates metadata within serialized <see cref="MapChunk"/>s.</summary>
+        /// <summary>Separates metadata within serialized <see cref="Regions.MapChunk"/>s.</summary>
         public const string MapChunkDelimiter = "∟";
 
         /// <summary>Separates family and personal names within serialized <see cref="Beings.CharacterModel"/>s.</summary>

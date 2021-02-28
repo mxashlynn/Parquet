@@ -149,8 +149,8 @@ namespace Parquet
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.
         /// </returns>
         /// <remarks>
-        /// If a <see cref="ModelID"/> is stored in a <see cref="HashSet{T}"/>, <see cref="Hashtable"/>, or used
-        /// as a key in a <see cref="Dictionary{K,V}"/> it must not be mutated.  It is safe to mutate it again
+        /// If a <see cref="ModelID"/> is stored in a <see cref="HashSet{T}"/> or used as a key in
+        /// a <see cref="Dictionary{K,V}"/> it must not be mutated.  It is safe to mutate it again
         /// once it is removed from all such collections.
         /// </remarks>
         public override readonly int GetHashCode()

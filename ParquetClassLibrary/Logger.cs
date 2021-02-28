@@ -20,7 +20,7 @@ namespace Parquet
         /// Sets up the logging system to use the provided instance when logging.
         /// </summary>
         /// <remarks>
-        /// Inspired by <see cref="Microsoft.Extensions.Logging.ILogger"/> but simpler.
+        /// Inspired by Microsoft.Extensions.Logging.ILogger but simpler.
         /// </remarks>
         public static void SetLogger(ILogger inLoggerToUse)
             => currentLogger = inLoggerToUse is not null

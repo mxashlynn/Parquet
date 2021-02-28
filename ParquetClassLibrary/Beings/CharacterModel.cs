@@ -96,6 +96,7 @@ namespace Parquet.Beings
         /// <param name="inSeeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>
         /// <param name="inPronounKey">How to refer to this <see cref="CharacterModel"/>.</param>
         /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
+        /// <param name="inStartingLocation">The <see cref="Location"/> where this <see cref="CharacterModel"/> begins.</param>
         /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
         /// <param name="inStartingDialogueID">All dialogue this <see cref="CharacterModel"/> may say.</param>
         /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>

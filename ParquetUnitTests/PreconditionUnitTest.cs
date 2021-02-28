@@ -9,12 +9,12 @@ namespace ParquetUnitTests
     public class PreconditionUnitTest
     {
         #region Test Values
-        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)."/></summary>
+        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)"/>.</summary>
         internal class BaseType { };
 
+        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)"/>.</summary>
         [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes",
             Justification = "The type itself is used in the test.")]
-        /// <summary>Used when testing <see cref="Precondition.IsOfType{TToCheck, TTarget}(string)."/></summary>
         internal class DerivedType : BaseType { };
         #endregion
 

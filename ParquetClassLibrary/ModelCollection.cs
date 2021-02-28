@@ -43,7 +43,7 @@ namespace Parquet
 
         #region Characteristics
         /// <summary>An editable facade onto the internal collection mechanism.</summary>
-        /// <remarks>Should only be accessed from constructor and <see cref="IModelCollectionEdit{TModel}"/>.</remarks>
+        /// <remarks>Should only be accessed from constructor and <see cref="IMutableModelCollection{TModel}"/>.</remarks>
         private Dictionary<ModelID, Model> EditableModels { get; }
 
         /// <summary>The internal collection mechanism.</summary>
@@ -99,7 +99,7 @@ namespace Parquet
         #endregion
 
         #region IMutableModelCollection Implementation
-        /// <summary>The number of <see cref="TModel"/>s in the <see cref="ModelCollection{TModel}"/>.</summary>
+        /// <summary>The number of <see paramref="TModel"/>s in the <see cref="ModelCollection{TModel}"/>.</summary>
         int ICollection<TModel>.Count => Count;
 
         /// <summary><c>true</c> if the <see cref="ModelCollection{TModel}"/> is read-only; otherwise, <c>false</c>.</summary>
@@ -134,11 +134,11 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <see cref="TModel"/>.
+        /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <typeparamref name="TModel"/>.
         /// </summary>
-        /// <param name="inModel">The <see cref="TModel"/> to find.</param>
-        /// <returns><c>true</c> if the <see cref="TModel"/> was found; <c>false</c> otherwise.</returns>
-        bool ICollection<TModel>.Contains(TModel item) => Contains(item);
+        /// <param name="inModel">The <typeparamref name="TModel"/> to find.</param>
+        /// <returns><c>true</c> if the <typeparamref namef="TModel"/> was found; <c>false</c> otherwise.</returns>
+        bool ICollection<TModel>.Contains(TModel inModel) => Contains(inModel);
 
         /// <summary>
         /// Copies the elements of the <see cref="ModelCollection{TModel}"/> to an <see cref="Array"/>, starting at the given index.
@@ -498,7 +498,6 @@ namespace Parquet
         }
         #endregion
     }
-
 
     /// <summary>
     /// Provides the filename and path associated with the definition file for a <see cref="Model"/>-derived type

@@ -151,7 +151,7 @@ namespace Parquet.Rooms
         /// third, has one walkable neighbor that is within the given <see cref="IReadOnlySet{MapSpace}"/>; and
         /// fourth, has one walkable neighbor that is NOT within the given <see cref="IReadOnlySet{MapSpace}"/>.
         /// </summary>
-        /// <param name="inWalkableArea">The <see cref="ISIReadOnlySetet{MapSpace}"/> used to define this <see cref="MapSpace"/>.</param>
+        /// <param name="inWalkableArea">The <see cref="IReadOnlySet{MapSpace}"/> used to define this <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
         internal bool IsEnclosingEntry(IReadOnlySet<MapSpace> inWalkableArea)
             => ModelID.None != Content.FurnishingID

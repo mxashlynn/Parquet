@@ -63,7 +63,7 @@ namespace Parquet.Scripts
 
         #region IEquatable Implementation
         /// <summary>
-        /// Serves as a hash function for a <see cref="BeingStatus"/>.
+        /// Serves as a hash function for a <see cref="InteractionStatus"/>.
         /// </summary>
         /// <returns>
         /// A hash code for this instance that is suitable for use in hashing algorithms and data structures.

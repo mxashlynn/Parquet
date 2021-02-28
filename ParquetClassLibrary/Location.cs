@@ -91,7 +91,7 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
@@ -104,7 +104,7 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inText">The text to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>

@@ -49,9 +49,9 @@ namespace Parquet
             => Equals<Status<T>>(inStatus);
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetPackStatus"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Status{T}"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="ParquetPackStatus"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Status{T}"/>.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public abstract override bool Equals(object obj);
 
@@ -65,7 +65,7 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
+        /// <param name="inText">The text to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
@@ -74,7 +74,7 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
+        /// <param name="inValue">The instance to convert.</param>
         /// <param name="inRow">The current context and configuration.</param>
         /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
@@ -100,7 +100,7 @@ namespace Parquet
     }
 
     /// <summary>
-    /// Provides extension methods useful when dealing with 2D arrays of <see cref="Status"/>es.
+    /// Provides extension methods useful when dealing with 2D arrays of <see cref="Status{T}"/>es.
     /// </summary>
     public static class StatusArrayExtensions
     {

@@ -74,7 +74,7 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inStack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
+        /// <param name="inPack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public override bool Equals<T>(T inPack)
             => inPack is ParquetStatusPack pack

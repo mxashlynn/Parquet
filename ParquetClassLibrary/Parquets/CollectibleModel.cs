@@ -44,7 +44,7 @@ namespace Parquet.Parquets
         /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
         /// <param name="inCollectionEffect">Effect of this <see cref="CollectibleModel"/>.</param>
-        /// <param name="inEffectAmount">The scale in points of the effect. For example, how much to alter a stat if <see cref="inCollectionEffect"/> is set to alter a stat.</param>
+        /// <param name="inEffectAmount">The scale in points of the effect. For example, how much to alter a stat if <paramref name="inCollectionEffect"/> is set to alter a stat.</param>
         public CollectibleModel(ModelID inID, string inName, string inDescription, string inComment,
                                 IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
                                 IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
