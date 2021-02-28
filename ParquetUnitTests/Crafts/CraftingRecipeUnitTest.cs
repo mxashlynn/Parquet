@@ -6,6 +6,9 @@ using Xunit;
 
 namespace ParquetUnitTests.Crafts
 {
+    /// <summary>
+    /// Unit tests <see cref="CraftingRecipe"/>.
+    /// </summary>
     public class CraftingRecipeUnitTest
     {
         #region Test Values
@@ -30,7 +33,7 @@ namespace ParquetUnitTests.Crafts
         #endregion
 
         [Fact]
-        public void ValidCraftingRecipeIDsArePermittedTest()
+        internal void ValidCraftingRecipeIDsArePermittedTest()
         {
             var newCraftingRecipe = new CraftingRecipe(newCraftingRecipeID, "will be created", "", "", null,
                                                        productList, ingredientList, emptyPanelPattern);
@@ -39,7 +42,7 @@ namespace ParquetUnitTests.Crafts
         }
 
         [Fact]
-        public void InvalidCraftingRecipeIDsThrowTest()
+        internal void InvalidCraftingRecipeIDsThrowTest()
         {
             var badCraftingRecipeID = TestModels.TestBlock.ID - 1;
 
@@ -53,7 +56,7 @@ namespace ParquetUnitTests.Crafts
         }
 
         [Fact]
-        public void PanelTooHighPatternsThrowTest()
+        internal void PanelTooHighPatternsThrowTest()
         {
             var patternTooHigh = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight + 1,
                                                      StrikePanelGrid.PanelsPerPatternWidth);
@@ -68,7 +71,7 @@ namespace ParquetUnitTests.Crafts
         }
 
         [Fact]
-        public void PanelTooWidePatternsThrowTest()
+        internal void PanelTooWidePatternsThrowTest()
         {
             var patternTooWide = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
                                                      StrikePanelGrid.PanelsPerPatternWidth + 1);

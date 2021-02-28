@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
-    public class CollectibleUnitTest
+    /// <summary>
+    /// Unit tests <see cref="CollectibleModel"/>.
+    /// </summary>
+    public class CollectibleModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new collectible.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Parquets
         #endregion
 
         [Fact]
-        public void ValidCollectibleIDsArePermittedTest()
+        internal void ValidCollectibleIDsArePermittedTest()
         {
             var testCollectible = new CollectibleModel(newCollectibleID, "will be created", "", "");
 
@@ -21,7 +24,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidCollectibleIDsRaiseExceptionTest()
+        internal void InvalidCollectibleIDsRaiseExceptionTest()
         {
             var badCollectibleID = TestModels.TestBlock.ID;
 
@@ -34,7 +37,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void ValidItemIDsArePermittedTest()
+        internal void ValidItemIDsArePermittedTest()
         {
             ModelID goodItemID = -All.ItemIDs.Minimum;
 
@@ -44,7 +47,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidItemIDsRaiseExceptionTest()
+        internal void InvalidItemIDsRaiseExceptionTest()
         {
             var badItemID = TestModels.TestBlock.ID;
 

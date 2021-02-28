@@ -4,6 +4,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="Point2D"/>.
+    /// </summary>
     public class Point2DUnitTest
     {
         #region Test Values
@@ -12,7 +15,7 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void ZeroPointTest()
+        internal void ZeroPointTest()
         {
             Assert.Equal(0, Point2D.Origin.X);
             Assert.Equal(0, Point2D.Origin.Y);
@@ -20,7 +23,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void UnitPointTest()
+        internal void UnitPointTest()
         {
             Assert.Equal(1, Point2D.Unit.X);
             Assert.Equal(1, Point2D.Unit.Y);
@@ -33,7 +36,7 @@ namespace ParquetUnitTests
         [InlineData(0, 0)]
         [InlineData(1, -1)]
         [InlineData(4096, 4096)]
-        public void NewPointTest(int inX, int inY)
+        internal void NewPointTest(int inX, int inY)
         {
             var testPoint = new Point2D(inX, inY);
             var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((inX * inX) + (inY * inY))));
@@ -44,21 +47,21 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void PointSumTest()
+        internal void PointSumTest()
         {
             Assert.Equal(PointTwoTwo, Point2D.Unit + Point2D.Unit);
             Assert.Equal(Point2D.Origin, Point2D.Unit + PointNegativeUnit);
         }
 
         [Fact]
-        public void PointDifferenceTest()
+        internal void PointDifferenceTest()
         {
             Assert.Equal(Point2D.Origin, Point2D.Unit - Point2D.Unit);
             Assert.Equal(Point2D.Origin, PointNegativeUnit - PointNegativeUnit);
         }
 
         [Fact]
-        public void ScalarMultiplicationTest()
+        internal void ScalarMultiplicationTest()
         {
             Assert.Equal(PointTwoTwo, 2 * Point2D.Unit);
             Assert.Equal(Point2D.Unit, -1 * PointNegativeUnit);

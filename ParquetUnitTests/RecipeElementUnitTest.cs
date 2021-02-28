@@ -4,10 +4,13 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="RecipeElement"/>.
+    /// </summary>
     public class RecipeElementUnitTest
     {
         [Fact]
-        public void ZeroAmountsFailTest()
+        internal void ZeroAmountsFailTest()
         {
             static void TestCodeZero()
             {
@@ -18,7 +21,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void NegativeeAountsFailTest()
+        internal void NegativeeAountsFailTest()
         {
             static void TestCodeNegative()
             {

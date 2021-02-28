@@ -3,14 +3,17 @@ using Xunit;
 
 namespace ParquetUnitTests.Items
 {
-    public class InventoryUnitTest
+    /// <summary>
+    /// Unit tests <see cref="InventoryCollection"/>.
+    /// </summary>
+    public class InventoryCollectionUnitTest
     {
         #region Test Values
         private const int TestCapacity = 30;
         #endregion
 
         [Fact]
-        public void NewInventoryHasGivenCapacityTest()
+        internal void NewInventoryHasGivenCapacityTest()
         {
             var inventory = new InventoryCollection(TestCapacity);
 
@@ -19,7 +22,7 @@ namespace ParquetUnitTests.Items
 
         /* TODO [TESTING] Introduce mutable unit tests!
         [Fact]
-        public void NewInventoryContainsOneSlotsForEachItemTest()
+        internal void NewInventoryContainsOneSlotsForEachItemTest()
         {
             var inventory = new Inventory(TestCapacity);
             inventory.Give(TestModels.TestItem1.ID);
@@ -32,7 +35,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InventoryContainsGivenNumbersOfItemsTest()
+        internal void InventoryContainsGivenNumbersOfItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
             var numberOfItems = 6;
@@ -42,7 +45,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InventoryHasGivenItemsTest()
+        internal void InventoryHasGivenItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
             var slots = new List<InventorySlot>
@@ -60,7 +63,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InventoryReturnsCorrectRemainderAfterTakingItemsTest()
+        internal void InventoryReturnsCorrectRemainderAfterTakingItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
             var slots = new List<InventorySlot>
@@ -82,7 +85,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InventoryMergesItemsTest()
+        internal void InventoryMergesItemsTest()
         {
             var inventory = new Inventory(TestCapacity);
             var slots = new List<InventorySlot>
@@ -101,7 +104,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InventoryDoesNotContainItemsNotGivenTest()
+        internal void InventoryDoesNotContainItemsNotGivenTest()
         {
             var inventory = new Inventory(TestCapacity);
             inventory.Give(TestModels.TestItem1.ID, 4);

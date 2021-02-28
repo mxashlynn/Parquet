@@ -4,6 +4,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="ModelID"/>.
+    /// </summary>
     public class ModelIDUnitTest
     {
         #region Values for Tests
@@ -18,7 +21,7 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void NoneIsValidTest()
+        internal void NoneIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
 
@@ -28,7 +31,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MinimumIsValidTest()
+        internal void MinimumIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var id = range.Minimum;
@@ -38,7 +41,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void AverageIsValidTest()
+        internal void AverageIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var id = range.Minimum;
@@ -48,7 +51,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MaximumIsValidTest()
+        internal void MaximumIsValidTest()
         {
             var range = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var id = range.Minimum;
@@ -58,7 +61,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ValidSubrangeValuesAreValidInDiscreteRangeCollectionTest()
+        internal void ValidSubrangeValuesAreValidInDiscreteRangeCollectionTest()
         {
             var firstRange = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var secondRange = new Range<ModelID>(secondLowerBound, secondUpperBound);
@@ -80,7 +83,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ValidSubrangeValuesAreValidInOverlappingRangeCollectionTest()
+        internal void ValidSubrangeValuesAreValidInOverlappingRangeCollectionTest()
         {
             var firstRange = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var overlappingRange = new Range<ModelID>(overlapLowerBound, overlapUpperBound);
@@ -102,7 +105,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void InvalidSubrangeValuesAreInvalidInDiscreteRangeCollectionTest()
+        internal void InvalidSubrangeValuesAreInvalidInDiscreteRangeCollectionTest()
         {
             var firstRange = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var secondRange = new Range<ModelID>(secondLowerBound, secondUpperBound);
@@ -120,7 +123,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void OnlySubrangeValuesOutsideOverlappedRangesAreInvalidInOverlappingRangeCollectionTest()
+        internal void OnlySubrangeValuesOutsideOverlappedRangesAreInvalidInOverlappingRangeCollectionTest()
         {
             var firstRange = new Range<ModelID>(firstLowerBound, firstUpperBound);
             var overlappingRange = new Range<ModelID>(overlapLowerBound, overlapUpperBound);

@@ -6,7 +6,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Items
 {
-    public class ItemUnitTest
+    /// <summary>
+    /// Unit tests <see cref="ItemModel"/>.
+    /// </summary>
+    public class ItemModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
@@ -20,7 +23,7 @@ namespace ParquetUnitTests.Items
         #endregion
 
         [Fact]
-        public void ValidItemIDsArePermittedTest()
+        internal void ValidItemIDsArePermittedTest()
         {
             var newItem = new ItemModel(newItemID, "will be created", "", "", TestTagList, ItemType.Consumable,
                                    1, 1, goodStackMax, 0, 0, TestModels.TestBlock.ID);
@@ -29,7 +32,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void InvalidItemIDsRaiseExceptionTest()
+        internal void InvalidItemIDsRaiseExceptionTest()
         {
             var badItemID = TestModels.TestBlock.ID - 1;
 
@@ -43,7 +46,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void StackMaxMustBePositiveTest()
+        internal void StackMaxMustBePositiveTest()
         {
             var badStackMaxZero = 0;
             var badStackMaxNegativeOne = -1;

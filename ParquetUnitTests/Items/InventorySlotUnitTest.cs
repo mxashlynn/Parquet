@@ -5,6 +5,9 @@ using Xunit;
 
 namespace ParquetUnitTests.Items
 {
+    /// <summary>
+    /// Unit tests <see cref="InventorySlot"/>.
+    /// </summary>
     public class InventorySlotUnitTest
     {
         #region Test Values
@@ -14,7 +17,7 @@ namespace ParquetUnitTests.Items
         #endregion
 
         [Fact]
-        public void CannotStoreSomeOfNothingTest()
+        internal void CannotStoreSomeOfNothingTest()
         {
             static void TestCode()
             {
@@ -25,7 +28,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void CannotStoreNoneOfSomethingTest()
+        internal void CannotStoreNoneOfSomethingTest()
         {
             static void TestCode()
             {
@@ -36,7 +39,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void CannotStoreNonItemTest()
+        internal void CannotStoreNonItemTest()
         {
             static void TestCode()
             {
@@ -48,7 +51,7 @@ namespace ParquetUnitTests.Items
 
 
         [Fact]
-        public void CountMatchesItemsStoredTest()
+        internal void CountMatchesItemsStoredTest()
         {
             var slot = new InventorySlot(TestModels.TestItem1.ID, Some);
 
@@ -56,7 +59,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void SlotAddTest()
+        internal void SlotAddTest()
         {
             var slot = new InventorySlot(TestModels.TestItem1.ID, One);
             var remainder1 = 0;
@@ -67,7 +70,7 @@ namespace ParquetUnitTests.Items
         }
 
         [Fact]
-        public void SlotRemoveTest()
+        internal void SlotRemoveTest()
         {
             var slot = new InventorySlot(TestModels.TestItem1.ID, Some);
             var remainder1 = 0;

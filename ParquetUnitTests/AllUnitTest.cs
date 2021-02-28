@@ -4,6 +4,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="All"/>.
+    /// </summary>
     public class AllUnitTest
     {
         #region Values for Tests
@@ -11,7 +14,7 @@ namespace ParquetUnitTests
         /// The highest <see cref="Range{ModelID}.Maximum"/> defined in <see cref="All"/>
         /// except for <see cref="All.ItemIDs"/>.Maximum.
         /// </summary>
-        public static readonly ModelID MaximumIDRangeUpperLimit = typeof(All).GetFields()
+        internal static readonly ModelID MaximumIDRangeUpperLimit = typeof(All).GetFields()
             .Where(fieldInfo => fieldInfo.FieldType.IsGenericType
                 && fieldInfo.FieldType == typeof(Range<ModelID>)
                 && fieldInfo.Name != nameof(All.ItemIDs))
@@ -22,7 +25,7 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void ItemIDMinimumIsGreaterThanMaximumDefinedRangeUpperBoundTest()
+        internal void ItemIDMinimumIsGreaterThanMaximumDefinedRangeUpperBoundTest()
         {
             Assert.True(All.ItemIDs.Minimum > MaximumIDRangeUpperLimit);
         }

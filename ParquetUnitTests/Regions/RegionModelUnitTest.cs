@@ -4,6 +4,9 @@ using Xunit;
 
 namespace ParquetUnitTests.Maps
 {
+    /// <summary>
+    /// Unit tests <see cref="RegionModel"/>.
+    /// </summary>
     public class RegionModelUnitTest
     {
         #region Values for Tests
@@ -16,13 +19,13 @@ namespace ParquetUnitTests.Maps
 
         #region Region Map Initialization
         [Fact]
-        public void NewDefaultMapRegionModelTest()
+        internal void NewDefaultMapRegionModelTest()
         {
             Assert.Equal(RegionModel.DefaultColor, defaultRegion.BackgroundColor);
         }
 
         [Fact]
-        public void NewCustomMapRegionModelTest()
+        internal void NewCustomMapRegionModelTest()
         {
             var customRegion = new RegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, testColor);
 
@@ -35,7 +38,7 @@ namespace ParquetUnitTests.Maps
 #pragma warning disable IDE0079 // Remove unnecessary suppression -- conditional compilation.
 #pragma warning disable CS0162 // Unreachable code detected -- conditional compilation.
         [Fact]
-        public void MapRegionModelMayBeEditedTest()
+        internal void MapRegionModelMayBeEditedTest()
         {
             if (LibraryState.IsDebugMode)
             {

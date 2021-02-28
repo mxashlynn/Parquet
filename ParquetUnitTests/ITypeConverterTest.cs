@@ -7,13 +7,16 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Tests that classes implementing <see cref="ITypeConverter"/> also provide a ConverterFactory static property.
+    /// </summary>
     public class ITypeConverterTest
     {
         /// <summary>
         /// Ensures that all concrete classes implementing the ITypeConverter interface also implement the ConverterFactory static property.
         /// </summary>
         [Fact]
-        public void AllTypeConvertersProvideFactoriesTest()
+        internal void AllTypeConvertersProvideFactoriesTest()
         {
             // This discarded value is here to ensure that ParquetClassLibrary is loaded.
             var _ = new Point2D(1, 2);

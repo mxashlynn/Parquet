@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Beings
 {
-    public class CritterUnitTest
+    /// <summary>
+    /// Unit tests <see cref="CritterModel"/>.
+    /// </summary>
+    public class CritterModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Beings
         #endregion
 
         [Fact]
-        public void ValidCritterIDsArePermittedTest()
+        internal void ValidCritterIDsArePermittedTest()
         {
             var newCritter = new CritterModel(newCritterID, "will be created", "", "", null,
                                          All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
@@ -22,7 +25,7 @@ namespace ParquetUnitTests.Beings
         }
 
         [Fact]
-        public void InvalidCritterIDsRaiseExceptionTest()
+        internal void InvalidCritterIDsRaiseExceptionTest()
         {
             var badCritterID = TestModels.TestBlock.ID - 1;
 

@@ -5,6 +5,9 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
+    /// <summary>
+    /// Unit tests <see cref="MapSpace"/>.
+    /// </summary>
     public class MapSpaceUnitTest
     {
         #region Test Values

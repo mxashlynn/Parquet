@@ -6,6 +6,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="Precondition"/>.
+    /// </summary>
     public class PreconditionUnitTest
     {
         #region Test Values
@@ -19,7 +22,7 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void ModelIsInRangeTest()
+        internal void ModelIsInRangeTest()
         {
             var testID = (ModelID)6;
             var testRange = new Range<ModelID>(0, 10);
@@ -30,7 +33,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void RangeIsInRangeTest()
+        internal void RangeIsInRangeTest()
         {
             var innerRange = new Range<ModelID>(1, 9);
             var outterRange = new Range<ModelID>(0, 10);
@@ -41,7 +44,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ModelIsInRangeCollectionTest()
+        internal void ModelIsInRangeCollectionTest()
         {
             var testID = (ModelID)7;
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
@@ -52,7 +55,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void RangeIsInRangeCollectionTest()
+        internal void RangeIsInRangeCollectionTest()
         {
             var innerRange = new Range<ModelID>(1, 4);
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
@@ -63,7 +66,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ModelIsInRangeThrowsOnOutOfRangeTest()
+        internal void ModelIsInRangeThrowsOnOutOfRangeTest()
         {
             var testID = (ModelID)12;
             var testRange = new Range<ModelID>(0, 10);
@@ -72,7 +75,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void RangeIsInRangeThrowsOnOutOfRangeTest()
+        internal void RangeIsInRangeThrowsOnOutOfRangeTest()
         {
             var innerRange = new Range<ModelID>(0, 10);
             var outterRange = new Range<ModelID>(1, 9);
@@ -81,7 +84,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void ModelIsInRangeCollectionThrowsOnOutOfRangeTest()
+        internal void ModelIsInRangeCollectionThrowsOnOutOfRangeTest()
         {
             var testID = (ModelID)12;
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
@@ -90,7 +93,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void RangeIsInRangeCollectionThrowsOnOutOfRangeTest()
+        internal void RangeIsInRangeCollectionThrowsOnOutOfRangeTest()
         {
             var innerRange = new Range<ModelID>(0, 10);
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(1, 5), new Range<ModelID>(6, 9) };
@@ -99,7 +102,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsOfTypeTest()
+        internal void IsOfTypeTest()
         {
             var exception = Record.Exception(() => Precondition.IsOfType<DerivedType, BaseType>());
 
@@ -107,13 +110,13 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsOfTypeThrowsOnNotSubtypeTest()
+        internal void IsOfTypeThrowsOnNotSubtypeTest()
         {
             Assert.Throws<InvalidCastException>(() => Precondition.IsOfType<BaseType, DerivedType>());
         }
 
         [Fact]
-        public void IsOfTypeSystemTest()
+        internal void IsOfTypeSystemTest()
         {
             var exception = Record.Exception(() => Precondition.IsOfType<string, object>());
 
@@ -121,19 +124,19 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsOfTypeThrowsOnNotSubtypeSystemTest()
+        internal void IsOfTypeThrowsOnNotSubtypeSystemTest()
         {
             Assert.Throws<InvalidCastException>(() => Precondition.IsOfType<object, string>());
         }
 
         [Fact]
-        public void IsOfTypeThrowsOnNotSubtypeValueTypeTest()
+        internal void IsOfTypeThrowsOnNotSubtypeValueTypeTest()
         {
             Assert.Throws<InvalidCastException>(() => Precondition.IsOfType<float, int>());
         }
 
         [Fact]
-        public void AreInRangeTest()
+        internal void AreInRangeTest()
         {
             var testIDCollection = new List<ModelID> { 0, 1, 5, 6, 9, 10 };
             var testRange = new Range<ModelID>(0, 10);
@@ -144,7 +147,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void AreInRangeCollectionTest()
+        internal void AreInRangeCollectionTest()
         {
             var testIDCollection = new List<ModelID> { 0, 1, 2, 7, 8, 10 };
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
@@ -155,7 +158,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void AreInRangeThrowsOnSingleOutOfRangeTest()
+        internal void AreInRangeThrowsOnSingleOutOfRangeTest()
         {
             var testIDCollection = new List<ModelID> { 0, 1, 5, 9, 10, 20 };
             var testRange = new Range<ModelID>(0, 10);
@@ -164,7 +167,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void AreInRangeThrowsOnSingleOutOfRangeCollectionTest()
+        internal void AreInRangeThrowsOnSingleOutOfRangeCollectionTest()
         {
             var testIDCollection = new List<ModelID> { 0, 1, 3, 8, 10, 20 };
             var testCollection = new List<Range<ModelID>> { new Range<ModelID>(0, 5), new Range<ModelID>(6, 10) };
@@ -173,7 +176,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNotNoneTest()
+        internal void IsNotNoneTest()
         {
             var testValue0 = int.MaxValue;
             var testValue1 = int.MinValue;
@@ -189,7 +192,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNotNoneThrowsOnNoneTest()
+        internal void IsNotNoneThrowsOnNoneTest()
         {
             var testValue = ModelID.None;
 
@@ -197,7 +200,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MustBeNonNegativeTest()
+        internal void MustBeNonNegativeTest()
         {
             var testValue0 = 0;
             var testValue1 = 1;
@@ -210,7 +213,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MustBeNonNegativeThrowsOnNegativeTest()
+        internal void MustBeNonNegativeThrowsOnNegativeTest()
         {
             var testValue = -1;
 
@@ -219,7 +222,7 @@ namespace ParquetUnitTests
 
 
         [Fact]
-        public void MustBePositiveTest()
+        internal void MustBePositiveTest()
         {
             var testValue = 1;
 
@@ -229,7 +232,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MustBePositiveThrowsOnZeroTest()
+        internal void MustBePositiveThrowsOnZeroTest()
         {
             var testValue = 0;
 
@@ -237,7 +240,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MustBePositiveThrowsOnNegativeTest()
+        internal void MustBePositiveThrowsOnNegativeTest()
         {
             var testValue = -1;
 
@@ -245,7 +248,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNotEmptyTest()
+        internal void IsNotEmptyTest()
         {
             var testValue = new List<ModelID> { 0, 1, 2 };
 
@@ -256,7 +259,7 @@ namespace ParquetUnitTests
 
 
         [Fact]
-        public void IsNotEmptyStringTest()
+        internal void IsNotEmptyStringTest()
         {
             var testValue = "will pass";
 
@@ -266,7 +269,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNotEmptyThrowsOnEmptyTest()
+        internal void IsNotEmptyThrowsOnEmptyTest()
         {
             var testValue = new List<ModelID>();
 
@@ -274,7 +277,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNotEmptyStringThrowsOnEmptyStringTest()
+        internal void IsNotEmptyStringThrowsOnEmptyStringTest()
         {
             var testValue = "";
 
@@ -282,7 +285,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNullTest()
+        internal void IsNullTest()
         {
             var testValue = "will pass";
 
@@ -292,7 +295,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void IsNullThrowsOnNullTest()
+        internal void IsNullThrowsOnNullTest()
         {
             object testValue = null;
 

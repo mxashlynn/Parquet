@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
-    public class FloorUnitTest
+    /// <summary>
+    /// Unit tests <see cref="FloorModel"/>.
+    /// </summary>
+    public class FloorModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new floor.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Parquets
         #endregion
 
         [Fact]
-        public void ValidFloorIDsArePermittedTest()
+        internal void ValidFloorIDsArePermittedTest()
         {
             var testFloor = new FloorModel(newFloorID, "will be created", "", "");
 
@@ -21,7 +24,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidFloorIDsRaiseExceptionTest()
+        internal void InvalidFloorIDsRaiseExceptionTest()
         {
             var badFloorID = TestModels.TestBlock.ID;
 

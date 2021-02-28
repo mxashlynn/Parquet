@@ -15,125 +15,125 @@ namespace ParquetUnitTests
     /// <summary>
     /// Stores <see cref="Model"/>s for use in unit testing.
     /// </summary>
-    public static class TestModels
+    internal static class TestModels
     {
         #region Test Value Components
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly ModelTag TestTag = "Test Tag";
+        internal static readonly ModelTag TestTag = "Test Tag";
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly ScriptNode TestNode = $"A{Delimiters.InternalDelimiter}{Delimiters.InternalDelimiter}Test Alert";
+        internal static readonly ScriptNode TestNode = $"A{Delimiters.InternalDelimiter}{Delimiters.InternalDelimiter}Test Alert";
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
+        internal static readonly IReadOnlyList<RecipeElement> TestRecipeElementList = new List<RecipeElement> { new RecipeElement(1, TestTag) };
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly IReadOnlyList<ModelTag> TestTagList = new List<ModelTag> { TestTag };
+        internal static readonly IReadOnlyList<ModelTag> TestTagList = new List<ModelTag> { TestTag };
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
+        internal static readonly IReadOnlyList<ModelTag> TestQuestRequirementsList = new List<ModelTag> { TestTag };
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
+        internal static readonly IReadOnlyList<ScriptNode> TestNodeList = new List<ScriptNode> { TestNode };
         #endregion
 
         #region Test Values
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static PronounGroup TestPronounGroup { get; }
+        internal static PronounGroup TestPronounGroup { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static CharacterModel TestCharacter { get; }
+        internal static CharacterModel TestCharacter { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static CritterModel TestCritter { get; }
+        internal static CritterModel TestCritter { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static BiomeRecipe TestBiome { get; }
+        internal static BiomeRecipe TestBiome { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static CraftingRecipe TestCraftingRecipe { get; }
+        internal static CraftingRecipe TestCraftingRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static GameModel TestGame { get; }
+        internal static GameModel TestGame { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static InteractionModel TestInteraction { get; }
+        internal static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static RegionModel TestMapRegionModel { get; }
+        internal static RegionModel TestMapRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static FloorModel TestFloor { get; }
+        internal static FloorModel TestFloor { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static BlockModel TestBlock { get; }
+        internal static BlockModel TestBlock { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static BlockModel TestLiquid { get; }
+        internal static BlockModel TestLiquid { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static FurnishingModel TestFurnishing { get; }
+        internal static FurnishingModel TestFurnishing { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static CollectibleModel TestCollectible { get; }
+        internal static CollectibleModel TestCollectible { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static RoomRecipe TestRoomRecipe { get; }
+        internal static RoomRecipe TestRoomRecipe { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ScriptModel TestScript { get; }
+        internal static ScriptModel TestScript { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ItemModel TestItem1 { get; }
+        internal static ItemModel TestItem1 { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ItemModel TestItem2 { get; }
+        internal static ItemModel TestItem2 { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ItemModel TestItem3 { get; }
+        internal static ItemModel TestItem3 { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static ItemModel TestItem4 { get; }
+        internal static ItemModel TestItem4 { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<PronounGroup> PronounGroups { get; }
+        internal static IReadOnlyList<PronounGroup> PronounGroups { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<CharacterModel> Characters { get; }
+        internal static IReadOnlyList<CharacterModel> Characters { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<CritterModel> Critters { get; }
+        internal static IReadOnlyList<CritterModel> Critters { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BiomeRecipe> BiomeRecipes { get; }
+        internal static IReadOnlyList<BiomeRecipe> BiomeRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
+        internal static IReadOnlyList<CraftingRecipe> CraftingRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<GameModel> Games { get; }
+        internal static IReadOnlyList<GameModel> Games { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<InteractionModel> Interactions { get; }
+        internal static IReadOnlyList<InteractionModel> Interactions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<RegionModel> Regions { get; }
+        internal static IReadOnlyList<RegionModel> Regions { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<FloorModel> Floors { get; }
+        internal static IReadOnlyList<FloorModel> Floors { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<BlockModel> Blocks { get; }
+        internal static IReadOnlyList<BlockModel> Blocks { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<FurnishingModel> Furnishings { get; }
+        internal static IReadOnlyList<FurnishingModel> Furnishings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<CollectibleModel> Collectibles{ get; }
+        internal static IReadOnlyList<CollectibleModel> Collectibles{ get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
+        internal static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<ScriptModel> Scripts { get; }
+        internal static IReadOnlyList<ScriptModel> Scripts { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        public static IReadOnlyList<ItemModel> Items { get; }
+        internal static IReadOnlyList<ItemModel> Items { get; }
         #endregion
 
         /// <summary>

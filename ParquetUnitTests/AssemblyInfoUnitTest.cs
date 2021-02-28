@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Parquet;
 using Xunit;
 
-// Make no promises to maintain public services.
+// Make no promises to maintain internal services.
 [assembly: ComVisible(false)]
 
 // ParquetUnitTests are API consumers, not API providers.
@@ -11,6 +11,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="AssemblyInfo"/>.
+    /// </summary>
     public class AssemblyInfoUnitTest
     {
         #region Values for Tests
@@ -19,13 +22,13 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void SupportedLibraryVersionIsDefinedTest()
+        internal void SupportedLibraryVersionIsDefinedTest()
         {
             Assert.False(string.IsNullOrEmpty(AssemblyInfo.LibraryVersion));
         }
 
         [Fact]
-        public void SupportedLibraryVersionIsNotInvalidTest()
+        internal void SupportedLibraryVersionIsNotInvalidTest()
         {
             Assert.NotEqual(invalidLibVersion, AssemblyInfo.LibraryVersion);
         }

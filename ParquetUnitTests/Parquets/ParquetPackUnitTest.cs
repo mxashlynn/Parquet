@@ -3,6 +3,9 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
+    /// <summary>
+    /// Unit tests <see cref="ParquetModelPack"/>.
+    /// </summary>
     public class ParquetPackUnitTest
     {
         [Fact]

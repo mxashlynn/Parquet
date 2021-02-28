@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
-    public class BlockUnitTest
+    /// <summary>
+    /// Unit tests <see cref="BlockModel"/>.
+    /// </summary>
+    public class BlockModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Parquets
         #endregion
 
         [Fact]
-        public void ValidBlockIDsArePermittedTest()
+        internal void ValidBlockIDsArePermittedTest()
         {
             var testBlock = new BlockModel(newBlockID, "will be created", "", "");
 
@@ -21,7 +24,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidBlockIDsRaiseExceptionTest()
+        internal void InvalidBlockIDsRaiseExceptionTest()
         {
             var badBlockID = TestModels.TestFloor.ID;
 
@@ -34,7 +37,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void ValidItemIDsArePermittedTest()
+        internal void ValidItemIDsArePermittedTest()
         {
             ModelID goodItemID = -All.ItemIDs.Minimum;
 
@@ -44,7 +47,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidItemIDsRaiseExceptionTest()
+        internal void InvalidItemIDsRaiseExceptionTest()
         {
             var badItemID = TestModels.TestBlock.ID;
 
@@ -57,7 +60,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void ValidCollectibleIDsArePermittedTest()
+        internal void ValidCollectibleIDsArePermittedTest()
         {
             var goodCollectibleID = TestModels.TestCollectible.ID;
 
@@ -67,7 +70,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidCollectibleIDsRaiseExceptionTest()
+        internal void InvalidCollectibleIDsRaiseExceptionTest()
         {
             var badCollectibleID = TestModels.TestBlock.ID;
 

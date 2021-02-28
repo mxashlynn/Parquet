@@ -8,7 +8,7 @@ namespace ParquetUnitTests.Maps
     internal static class RegionStatusUnitTestExtensions
     {
         /// <summary>Fills the region with a test pattern.</summary>
-        public static RegionModel FillTestPattern(this RegionModel inRegionModel)
+        internal static RegionModel FillTestPattern(this RegionModel inRegionModel)
         {
             for (var x = 0; x < RegionStatus.ParquetsPerRegionDimension; x++)
             {

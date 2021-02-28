@@ -5,6 +5,9 @@ using Xunit;
 
 namespace ParquetUnitTests
 {
+    /// <summary>
+    /// Unit tests <see cref="Range{TElement}"/>.
+    /// </summary>
     public class RangeUnitTest
     {
         #region Values for Tests
@@ -13,13 +16,13 @@ namespace ParquetUnitTests
         #endregion
 
         [Fact]
-        public void RangeMustBeWillDefinedTest()
+        internal void RangeMustBeWillDefinedTest()
         {
             Assert.Throws<InvalidOperationException>(() => { var _ = new Range<int>(upperBound, lowerBound); });
         }
 
         [Fact]
-        public void WellDefinedRangeIsValidTest()
+        internal void WellDefinedRangeIsValidTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
 
@@ -27,7 +30,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void WellDefinedRangeContainsItselfTest()
+        internal void WellDefinedRangeContainsItselfTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
 
@@ -35,7 +38,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void RangeContainsStrictlySmallerRangeTest()
+        internal void RangeContainsStrictlySmallerRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var smallerRange = new Range<int>(lowerBound + 1, upperBound - 1);
@@ -44,7 +47,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void AverageIsWithinRangeTest()
+        internal void AverageIsWithinRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var average = (lowerBound + upperBound) / 2;
@@ -53,7 +56,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MinimumIsWithinRangeTest()
+        internal void MinimumIsWithinRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
 
@@ -61,7 +64,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void MaximumIsWithinRangeTest()
+        internal void MaximumIsWithinRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
 
@@ -69,7 +72,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void GreaterThanMaximumIsNotWithinRangeTest()
+        internal void GreaterThanMaximumIsNotWithinRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var greater = upperBound + 1;
@@ -78,7 +81,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void LessThanMinimumIsNotWithinRangeTest()
+        internal void LessThanMinimumIsNotWithinRangeTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var lesser = lowerBound - 1;
@@ -87,7 +90,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void EmptyRangeCollectionContainsNothingTest()
+        internal void EmptyRangeCollectionContainsNothingTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var emptyCollection = new List<Range<int>>();
@@ -97,7 +100,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void KnownRangeCanBeFoundInRangeCollectionTest()
+        internal void KnownRangeCanBeFoundInRangeCollectionTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var collection = new List<Range<int>> { range };
@@ -106,7 +109,7 @@ namespace ParquetUnitTests
         }
 
         [Fact]
-        public void KnownValueCanBeFoundInRangeCollectionTest()
+        internal void KnownValueCanBeFoundInRangeCollectionTest()
         {
             var range = new Range<int>(lowerBound, upperBound);
             var collection = new List<Range<int>> { range };

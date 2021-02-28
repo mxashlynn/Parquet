@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Parquets
 {
-    public class FurnishingUnitTest
+    /// <summary>
+    /// Unit tests <see cref="FurnishingModel"/>.
+    /// </summary>
+    public class FurnishingModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new furnishing.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Parquets
         #endregion
 
         [Fact]
-        public void ValidCollectibleIDsArePermittedTest()
+        internal void ValidCollectibleIDsArePermittedTest()
         {
             var testFurnishing = new FurnishingModel(newFurnishingID, "will be created", "", "");
 
@@ -21,7 +24,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidCollectibleIDsRaiseExceptionTest()
+        internal void InvalidCollectibleIDsRaiseExceptionTest()
         {
             var badFurnishingID = TestModels.TestBlock.ID;
 
@@ -34,7 +37,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void ValidItemIDsArePermittedTest()
+        internal void ValidItemIDsArePermittedTest()
         {
             ModelID goodItemID = -All.ItemIDs.Minimum;
 
@@ -44,7 +47,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidItemIDsRaiseExceptionTest()
+        internal void InvalidItemIDsRaiseExceptionTest()
         {
             var badItemID = TestModels.TestBlock.ID;
 
@@ -57,7 +60,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void ValidSwapIDsArePermittedTest()
+        internal void ValidSwapIDsArePermittedTest()
         {
             var goodSwapID = newFurnishingID - 1;
 
@@ -67,7 +70,7 @@ namespace ParquetUnitTests.Parquets
         }
 
         [Fact]
-        public void InvalidSwapIDsRaiseExceptionTest()
+        internal void InvalidSwapIDsRaiseExceptionTest()
         {
             var badSwapID = TestModels.TestBlock.ID;
 

@@ -5,7 +5,10 @@ using Xunit;
 
 namespace ParquetUnitTests.Beings
 {
-    public class CharacterUnitTest
+    /// <summary>
+    /// Unit tests <see cref="CharacterModel"/>.
+    /// </summary>
+    public class CharacterModelUnitTest
     {
         #region Test Values
         /// <summary>Identifier used when creating a new block.</summary>
@@ -13,7 +16,7 @@ namespace ParquetUnitTests.Beings
         #endregion
 
         [Fact]
-        public void ValidCharacterIDsArePermittedTest()
+        internal void ValidCharacterIDsArePermittedTest()
         {
             var newCharacter = new CharacterModel(newCharacterID, "Character", "will be created", "", null, All.BiomeRecipeIDs.Minimum, All.ScriptIDs.Minimum);
 
@@ -21,7 +24,7 @@ namespace ParquetUnitTests.Beings
         }
 
         [Fact]
-        public void InvalidCharacterIDsRaiseExceptionTest()
+        internal void InvalidCharacterIDsRaiseExceptionTest()
         {
             var badCharacterID = TestModels.TestBlock.ID - 1;
 
