@@ -219,7 +219,7 @@ namespace Parquet
 
         /// <summary>
         /// A tag assigned to this <see cref="Model"/> that begins with the given attribute prefix,
-        /// or <see cref="string.Empty"/> if no such tag has been assigned.
+        /// or <see cref="ModelTag.None"/> if no such tag has been assigned.
         /// </summary>
         /// <param name="inPrefix">
         /// A <see cref="ModelTag"/> substring indicating the sought attribute.
