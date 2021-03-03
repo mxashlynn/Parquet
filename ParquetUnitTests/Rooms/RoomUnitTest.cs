@@ -11,11 +11,11 @@ namespace ParquetUnitTests.Rooms
     public class RoomUnitTest
     {
         #region Test Values
-        private static readonly ParquetModelPack TestWall = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TestWall = new(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
 
-        private static readonly ParquetModelPack TestWalk = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TestWalk = new(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
 
-        private static readonly ParquetModelPack TestEntry = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetModelPack TestEntry = new(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
 
         private static readonly IReadOnlySet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
@@ -41,7 +41,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(2, 2, TestEntry, null),
         };
 
-        private static readonly Room ValidRoom = new Room(TestWalkableArea, TestPerimeter);
+        private static readonly Room ValidRoom = new(TestWalkableArea, TestPerimeter);
         #endregion
 
         [Fact]

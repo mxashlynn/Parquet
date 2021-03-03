@@ -28,8 +28,8 @@ namespace ParquetUnitTests.Crafts
         };
 
         /// <summary>A trivial panel pattern.</summary>
-        private static readonly StrikePanelGrid emptyPanelPattern = new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight,
-                                                                                        StrikePanelGrid.PanelsPerPatternWidth);
+        private static readonly StrikePanelGrid emptyPanelPattern = new(StrikePanelGrid.PanelsPerPatternHeight,
+                                                                        StrikePanelGrid.PanelsPerPatternWidth);
         #endregion
 
         [Fact]

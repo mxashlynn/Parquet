@@ -46,7 +46,7 @@ namespace Parquet
         /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
         public static implicit operator ModelTag(string inValue)
-            => new ModelTag { tagContent = inValue };
+            => new() { tagContent = inValue };
 
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.

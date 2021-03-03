@@ -10,11 +10,11 @@ namespace ParquetUnitTests.Rooms
     public class RoomRecipeUnitTest
     {
         #region Test Values
-        private static readonly ParquetModelPack TestWall = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TestWall = new(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
 
-        private static readonly ParquetModelPack TestWalk = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TestWalk = new(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
 
-        private static readonly ParquetModelPack TestEntry = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetModelPack TestEntry = new(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
 
         private static readonly IReadOnlySet<MapSpace> TestPerimeter = new HashSet<MapSpace>
         {
@@ -43,9 +43,9 @@ namespace ParquetUnitTests.Rooms
         private static readonly IReadOnlyList<RecipeElement> TestRequiredFurnishings = TestModels.TestRecipeElementList;
 
         private static readonly RoomRecipe MinimalRecipe =
-            new RoomRecipe(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", null, RoomConfiguration.MinWalkableSpaces, TestRequiredFurnishings);
+            new(-All.RoomRecipeIDs.Minimum, "Minimal Room Recipe", "", "", null, RoomConfiguration.MinWalkableSpaces, TestRequiredFurnishings);
 
-        private static readonly Room MinimalRoom = new Room(TestWalkableArea, TestPerimeter);
+        private static readonly Room MinimalRoom = new(TestWalkableArea, TestPerimeter);
         #endregion
 
         [Fact]

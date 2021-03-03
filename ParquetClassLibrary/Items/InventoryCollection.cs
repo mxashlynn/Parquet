@@ -346,7 +346,7 @@ namespace Parquet.Items
         /// </summary>
         /// <returns></returns>
         public InventoryCollection DeepClone()
-            => new InventoryCollection(Slots.ConvertAll(slot => (InventorySlot)slot.DeepClone()), Capacity);
+            => new(Slots.ConvertAll(slot => (InventorySlot)slot.DeepClone()), Capacity);
         #endregion
 
         #region Utilities

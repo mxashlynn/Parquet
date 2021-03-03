@@ -15,7 +15,7 @@ namespace Parquet.Crafts
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="StrikePanelGrid"/>s.</summary>
-        public static StrikePanelGrid Empty => new StrikePanelGrid(0, 0);
+        public static StrikePanelGrid Empty => new(0, 0);
 
         /// <summary>Width of the <see cref="StrikePanel"/> pattern in <see cref="CraftingRecipe"/>.</summary>
         public const int PanelsPerPatternWidth = 4;

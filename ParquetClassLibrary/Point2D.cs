@@ -14,22 +14,22 @@ namespace Parquet
     {
         #region Class Defaults
         /// <summary>The zero point.</summary>
-        public static readonly Point2D Origin = new Point2D(0, 0);
+        public static readonly Point2D Origin = new(0, 0);
 
         /// <summary>The point equivalent to the unit vector.</summary>
-        public static readonly Point2D Unit = new Point2D(1, 1);
+        public static readonly Point2D Unit = new(1, 1);
 
         /// <summary>The point offset to the North.</summary>
-        public static readonly Point2D North = new Point2D(0, -1);
+        public static readonly Point2D North = new(0, -1);
 
         /// <summary>The point offset to the South.</summary>
-        public static readonly Point2D South = new Point2D(0, 1);
+        public static readonly Point2D South = new(0, 1);
 
         /// <summary>The point offset to the East.</summary>
-        public static readonly Point2D East = new Point2D(1, 0);
+        public static readonly Point2D East = new(1, 0);
 
         /// <summary>The point offset to the West.</summary>
-        public static readonly Point2D West = new Point2D(-1, 0);
+        public static readonly Point2D West = new(-1, 0);
         #endregion
 
         #region Characteristics
@@ -73,7 +73,7 @@ namespace Parquet
         /// <param name="inPoint2">Second operand.</param>
         /// <returns>A point representing the sum of the given points.</returns>
         public static Point2D operator +(Point2D inPoint1, Point2D inPoint2)
-            => new Point2D(inPoint1.X + inPoint2.X, inPoint1.Y + inPoint2.Y);
+            => new(inPoint1.X + inPoint2.X, inPoint1.Y + inPoint2.Y);
 
         /// <summary>
         /// Finds the difference between the given points as if they were points.
@@ -82,7 +82,7 @@ namespace Parquet
         /// <param name="inPoint2">Second operand.</param>
         /// <returns>A point representing the difference of the given points.</returns>
         public static Point2D operator -(Point2D inPoint1, Point2D inPoint2)
-            => new Point2D(inPoint1.X - inPoint2.X, inPoint1.Y - inPoint2.Y);
+            => new(inPoint1.X - inPoint2.X, inPoint1.Y - inPoint2.Y);
 
         /// <summary>
         /// Scales a the point.
@@ -91,7 +91,7 @@ namespace Parquet
         /// <param name="inPoint">The point.</param>
         /// <returns>A point representing the scaled point.</returns>
         public static Point2D operator *(int inScalar, Point2D inPoint)
-            => new Point2D(inScalar * inPoint.X, inScalar * inPoint.Y);
+            => new(inScalar * inPoint.X, inScalar * inPoint.Y);
         #endregion
 
         #region IEquatable Implementation

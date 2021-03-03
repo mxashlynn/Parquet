@@ -46,8 +46,8 @@ namespace Parquet.Rooms
         /// This location could server as a the upper, left point of a bounding rectangle entirely containing the room.
         /// </remarks>
         public Point2D Position
-            => new Point2D(WalkableArea.Select(space => space.Position.X).Min(),
-                              WalkableArea.Select(space => space.Position.Y).Min());
+            => new(WalkableArea.Select(space => space.Position.X).Min(),
+                   WalkableArea.Select(space => space.Position.Y).Min());
 
         /// <summary>The <see cref="RoomRecipe"/> that this <see cref="Room"/> matches.</summary>
         public ModelID RecipeID

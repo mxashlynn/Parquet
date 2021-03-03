@@ -18,13 +18,13 @@ namespace Parquet.Crafts
     {
         #region Class Defaults
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
-        private static readonly Range<int> defaultWorkingRange = new Range<int>(0, 3);
+        private static readonly Range<int> defaultWorkingRange = new(0, 3);
 
         /// <summary>Part of the definition for an <see cref="Unused"/> panel.</summary>
-        private static readonly Range<int> defaultIdealRange = new Range<int>(0, 3);
+        private static readonly Range<int> defaultIdealRange = new(0, 3);
 
         /// <summary>Indicates an open space in a <see cref="StrikePanelGrid"/>.</summary>
-        public static readonly StrikePanel Unused = new StrikePanel(defaultWorkingRange, defaultIdealRange);
+        public static readonly StrikePanel Unused = new(defaultWorkingRange, defaultIdealRange);
         #endregion
 
         #region Characteristics
@@ -210,7 +210,7 @@ namespace Parquet.Crafts
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public StrikePanel DeepClone()
-            => new StrikePanel(workingRangeBackingStruct, idealRangeBackingStruct);
+            => new(workingRangeBackingStruct, idealRangeBackingStruct);
         #endregion
 
         #region Utilities

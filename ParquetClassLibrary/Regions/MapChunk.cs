@@ -222,7 +222,7 @@ namespace Parquet.Regions
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public MapChunk DeepClone()
-            => new MapChunk(IsFilledOut, Details, ParquetDefinitions);
+            => new(IsFilledOut, Details, ParquetDefinitions);
         #endregion
 
         #region Utilities

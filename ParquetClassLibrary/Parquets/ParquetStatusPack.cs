@@ -13,7 +13,7 @@ namespace Parquet.Parquets
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetStatusPack"/>, representing an arbitrary standard pack.</summary>
         public static ParquetStatusPack Default
-            => new ParquetStatusPack(FloorStatus.Default, BlockStatus.Default);
+            => new(FloorStatus.Default, BlockStatus.Default);
         #endregion
 
         #region Characteristics
@@ -156,8 +156,8 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>A new instance with the same status as the current instance.</returns>
         public override ParquetStatusPack DeepClone()
-            => new ParquetStatusPack((FloorStatus)CurrentFloorStatus.DeepClone(),
-                                     (BlockStatus)CurrentBlockStatus.DeepClone());
+            => new((FloorStatus)CurrentFloorStatus.DeepClone(),
+                   (BlockStatus)CurrentBlockStatus.DeepClone());
 
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.

@@ -19,7 +19,7 @@ namespace Parquet
     {
         #region Class Defaults
         /// <summary>Represents the empty range.</summary>
-        public static readonly Range<TElement> None = new Range<TElement>(default, default);
+        public static readonly Range<TElement> None = new(default, default);
         #endregion
 
         #region Characteristics

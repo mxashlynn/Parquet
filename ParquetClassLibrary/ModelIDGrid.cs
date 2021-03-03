@@ -15,7 +15,7 @@ namespace Parquet
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="ModelIDGrid"/>s.</summary>
-        public static ModelIDGrid Empty => new ModelIDGrid();
+        public static ModelIDGrid Empty => new();
         #endregion
 
         /// <summary>The backing collection of <see cref="ModelID"/>es.</summary>

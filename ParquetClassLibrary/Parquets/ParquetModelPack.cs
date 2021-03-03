@@ -13,7 +13,7 @@ namespace Parquet.Parquets
         #region Class Defaults
         /// <summary>Canonical null <see cref="ParquetModelPack"/>, representing an arbitrary empty pack.</summary>
         public static ParquetModelPack Empty
-            => new ParquetModelPack(ModelID.None, ModelID.None, ModelID.None, ModelID.None);
+            => new(ModelID.None, ModelID.None, ModelID.None, ModelID.None);
         #endregion
 
         #region Characteristics
@@ -215,7 +215,7 @@ namespace Parquet.Parquets
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public override ParquetModelPack DeepClone()
-            => new ParquetModelPack(FloorID, BlockID, FurnishingID, CollectibleID);
+            => new(FloorID, BlockID, FurnishingID, CollectibleID);
 
         /// <summary>
         /// Creates a new instance that is a deep copy of the current instance.

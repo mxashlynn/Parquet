@@ -10,8 +10,8 @@ namespace ParquetUnitTests
     public class Point2DUnitTest
     {
         #region Test Values
-        private readonly Point2D PointTwoTwo = new Point2D(2, 2);
-        private readonly Point2D PointNegativeUnit = new Point2D(-1, -1);
+        private readonly Point2D PointTwoTwo = new(2, 2);
+        private readonly Point2D PointNegativeUnit = new(-1, -1);
         #endregion
 
         [Fact]

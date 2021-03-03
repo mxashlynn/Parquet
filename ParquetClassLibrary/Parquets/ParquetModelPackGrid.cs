@@ -17,7 +17,7 @@ namespace Parquet.Parquets
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="ParquetModelPackGrid"/>s.</summary>
-        public static ParquetModelPackGrid Empty => new ParquetModelPackGrid();
+        public static ParquetModelPackGrid Empty => new();
         #endregion
 
         /// <summary>The backing collection of <see cref="ParquetModelPack"/>s.</summary>

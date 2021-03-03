@@ -15,7 +15,7 @@ namespace Parquet.Regions
     {
         #region Class Defaults
         /// <summary>A value to use in place of uninitialized <see cref="MapChunkGrid"/>s.</summary>
-        public static MapChunkGrid Empty => new MapChunkGrid();
+        public static MapChunkGrid Empty => new();
         #endregion
 
         /// <summary>The backing collection of <see cref="MapChunk"/>s.</summary>

@@ -22,7 +22,7 @@ namespace Parquet.Regions
     {
         #region Class Defaults
         /// <summary>Indicates an uninitialized region.</summary>
-        public static readonly RegionModel Empty = new RegionModel(ModelID.None, nameof(Empty), "", "");
+        public static readonly RegionModel Empty = new(ModelID.None, nameof(Empty), "", "");
 
         /// <summary>The set of values that are allowed for <see cref="RegionModel"/> <see cref="ModelID"/>s.</summary>
         public static Range<ModelID> Bounds

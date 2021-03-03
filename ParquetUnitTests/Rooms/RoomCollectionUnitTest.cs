@@ -10,11 +10,11 @@ namespace ParquetUnitTests.Rooms
     {
         #region Test Values
         private static readonly ParquetModelPack TVoid = ParquetModelPack.Empty;
-        private static readonly ParquetModelPack TWall = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
-        private static readonly ParquetModelPack TDoor = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
-        private static readonly ParquetModelPack TTile = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
-        private static readonly ParquetModelPack TStep = new ParquetModelPack(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
-        private static readonly ParquetModelPack TWell = new ParquetModelPack(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TWall = new(TestModels.TestFloor.ID, TestModels.TestBlock.ID, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TDoor = new(TestModels.TestFloor.ID, TestModels.TestBlock.ID, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetModelPack TTile = new(TestModels.TestFloor.ID, ModelID.None, ModelID.None, ModelID.None);
+        private static readonly ParquetModelPack TStep = new(TestModels.TestFloor.ID, ModelID.None, TestModels.TestFurnishing.ID, ModelID.None);
+        private static readonly ParquetModelPack TWell = new(TestModels.TestFloor.ID, TestModels.TestLiquid.ID, ModelID.None, ModelID.None);
 
         #region Valid Subgrids
         private static readonly ParquetModelPack[,] OneMinimalRoomMap =
@@ -495,7 +495,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(1, 2, TTile, null),
             new MapSpace(2, 2, TTile, null),
         };
-        private static readonly Room ExtantRoom = new Room(ExtantWalkableArea, ExtantPerimeter);
+        private static readonly Room ExtantRoom = new(ExtantWalkableArea, ExtantPerimeter);
 
         private static readonly IReadOnlySet<MapSpace> NonextantPerimeter = new HashSet<MapSpace>
         {
@@ -519,7 +519,7 @@ namespace ParquetUnitTests.Rooms
             new MapSpace(11, 12, TTile, null),
             new MapSpace(12, 12, TTile, null),
         };
-        private static readonly Room NonextantRoom = new Room(NonextantWalkableArea, NonextantPerimeter);
+        private static readonly Room NonextantRoom = new(NonextantWalkableArea, NonextantPerimeter);
         #endregion
 
         #region Correctly Constructing Rooms

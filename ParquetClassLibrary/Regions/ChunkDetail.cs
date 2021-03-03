@@ -28,7 +28,7 @@ namespace Parquet.Regions
     {
         #region Class Defaults
         /// <summary>The null <see cref="ChunkDetail"/>, which generates an empty <see cref="MapChunk"/>.</summary>
-        public static readonly ChunkDetail None = new ChunkDetail();
+        public static readonly ChunkDetail None = new();
         #endregion
 
         #region Characteristics
@@ -183,7 +183,7 @@ namespace Parquet.Regions
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public ChunkDetail DeepClone()
             // Note that I believe no additional cloning is needed here as enums and strings have value semantics.
-            => new ChunkDetail(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
+            => new(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
         #endregion
 
         #region Utilities

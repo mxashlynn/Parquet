@@ -21,7 +21,7 @@ namespace Parquet
     {
         #region Class Defaults
         /// <summary>Indicates the lack of any <see cref="RecipeElement"/>s.</summary>
-        public static readonly RecipeElement None = new RecipeElement();
+        public static readonly RecipeElement None = new();
         #endregion
 
         #region Characteristics

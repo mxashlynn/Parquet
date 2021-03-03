@@ -76,7 +76,7 @@ namespace Parquet
         /// <param name="inValue">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
         public static implicit operator ModelID(int inValue)
-            => new ModelID { id = inValue };
+            => new() { id = inValue };
 
         /// <summary>
         /// Enables <see cref="ModelID"/> to be treated as their backing type.

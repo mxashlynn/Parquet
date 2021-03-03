@@ -13,7 +13,7 @@ namespace Parquet.Rooms
     {
         #region Class Defaults
         /// <summary>The null <see cref="MapSpace"/>, which exists nowhere and contains nothing.</summary>
-        public static readonly MapSpace Empty = new MapSpace(Point2D.Origin, ParquetModelPack.Empty, ParquetModelPackGrid.Empty);
+        public static readonly MapSpace Empty = new(Point2D.Origin, ParquetModelPack.Empty, ParquetModelPackGrid.Empty);
         #endregion
 
         #region Characteristics

@@ -22,7 +22,7 @@ namespace Parquet
             new SeriesConverter<TElement, TCollection>();
 
         /// <summary>Allows the converter to construct its contents.</summary>
-        internal static readonly TElement ElementFactory = new TElement();
+        internal static readonly TElement ElementFactory = new();
 
         /// <summary>
         /// Converts the given 1D collection into a record column.
