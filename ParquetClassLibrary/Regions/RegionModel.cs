@@ -18,6 +18,8 @@ namespace Parquet.Regions
     /// In this way portions of the game world may vary each run while maintaining a persistent general layout.
     /// </remarks>
     /// <seealso cref="RegionStatus"/>.
+    [SuppressMessage("Design", "CA1033:Interface methods should be callable by subtypes",
+                     Justification = "By design, subtypes of RegionModel should never themselves use IMutableRegionModel or derived interfaces to access their own members.  IMutableRegionModel is for external types that require read/write access.")]
     public class RegionModel : Model, IMutableRegionModel
     {
         #region Class Defaults

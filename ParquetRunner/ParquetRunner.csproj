@@ -6,9 +6,9 @@
 
     <Product>Runner</Product>
     <PackageId>ParquetRunner</PackageId>
-    <Version>0.4.2.0</Version>
-    <AssemblyVersion>0.4.2.0</AssemblyVersion>
-    <FileVersion>0.4.2.0</FileVersion>
+    <Version>0.4.3.0</Version>
+    <AssemblyVersion>0.4.3.0</AssemblyVersion>
+    <FileVersion>0.4.3.0</FileVersion>
 
     <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>

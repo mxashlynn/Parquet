@@ -744,6 +744,23 @@ Parquet.Regions.ChunkTopography.South = 9 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.SouthEast = 8 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.SouthWest = 10 -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography.West = 11 -> Parquet.Regions.ChunkTopography
+Parquet.Regions.IMutableRegionModel
+Parquet.Regions.IMutableRegionModel.BackgroundColor.get -> string
+Parquet.Regions.IMutableRegionModel.BackgroundColor.set -> void
+Parquet.Regions.IMutableRegionModel.MapChunks.get -> Parquet.Regions.MapChunkGrid
+Parquet.Regions.IMutableRegionModel.MapChunks.set -> void
+Parquet.Regions.IMutableRegionModel.RegionAboveID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionAboveID.set -> void
+Parquet.Regions.IMutableRegionModel.RegionBelowID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionBelowID.set -> void
+Parquet.Regions.IMutableRegionModel.RegionToTheEastID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionToTheEastID.set -> void
+Parquet.Regions.IMutableRegionModel.RegionToTheNorthID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionToTheNorthID.set -> void
+Parquet.Regions.IMutableRegionModel.RegionToTheSouthID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionToTheSouthID.set -> void
+Parquet.Regions.IMutableRegionModel.RegionToTheWestID.get -> Parquet.ModelID
+Parquet.Regions.IMutableRegionModel.RegionToTheWestID.set -> void
 Parquet.Regions.MapChunk
 Parquet.Regions.MapChunk.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Regions.MapChunk.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
