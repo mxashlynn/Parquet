@@ -31,7 +31,7 @@ namespace Parquet.Regions
             => All.RegionIDs;
 
         /// <summary>Default color for new regions.</summary>
-        internal const string DefaultColor = "#FFFFFFFF";
+        public const string DefaultColor = "#FFFFFFFF";
 
         /// <summary>The length of each <see cref="RegionModel"/> in <see cref="MapChunk"/>s.</summary>
         public const int ChunksPerRegionDimension = 4;
