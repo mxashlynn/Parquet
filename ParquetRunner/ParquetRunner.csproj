@@ -30,6 +30,7 @@
     <NoWarn>CS1701;CS1702</NoWarn>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <RootNamespace>ParquetRunner</RootNamespace>
