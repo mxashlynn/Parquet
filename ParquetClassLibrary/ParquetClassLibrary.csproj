@@ -6,9 +6,9 @@
 
     <Product>Parquet</Product>
     <PackageId>Parquet</PackageId>
-    <Version>0.4.4.0</Version>
-    <AssemblyVersion>0.4.4.0</AssemblyVersion>
-    <FileVersion>0.4.4.0</FileVersion>
+    <Version>0.4.4.1</Version>
+    <AssemblyVersion>0.4.4.1</AssemblyVersion>
+    <FileVersion>0.4.4.1</FileVersion>
 
     <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>

@@ -392,6 +392,7 @@ Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Columns.get -> int
 Parquet.IReadOnlyGrid<TElement>.Rows.get -> int
 Parquet.IReadOnlyGrid<TElement>.this[int y, int x].get -> TElement
+Parquet.IReadOnlyListOfTagsExtensions
 Parquet.Items.GatheringTool
 Parquet.Items.GatheringTool.Axe = 2 -> Parquet.Items.GatheringTool
 Parquet.Items.GatheringTool.Bucket = 4 -> Parquet.Items.GatheringTool
@@ -970,6 +971,8 @@ static Parquet.Games.GameModel.Empty.get -> Parquet.Games.GameModel
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus inStatus1, Parquet.Games.GameStatus inStatus2) -> bool
+static Parquet.IReadOnlyListOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> inList, Parquet.ModelTag inTag) -> bool
+static Parquet.IReadOnlyListOfTagsExtensions.ContainsPrefixOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> inList, Parquet.ModelTag inPrefix) -> bool
 static Parquet.Items.InventoryCollection.Empty.get -> Parquet.Items.InventoryCollection
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.set -> void
