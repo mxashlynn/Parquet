@@ -31,6 +31,7 @@ const Parquet.Parquets.BlockModel.DefaultMaxToughness = 10 -> int
 const Parquet.Parquets.BlockModel.MinToughness = 0 -> int
 const Parquet.Regions.MapChunk.ParquetsPerChunkDimension = 16 -> int
 const Parquet.Regions.RegionModel.ChunksPerRegionDimension = 4 -> int
+const Parquet.Regions.RegionModel.DefaultColor = "#FFFFFFFF" -> string
 const Parquet.Regions.RegionStatus.ParquetsPerRegionDimension = 64 -> int
 const Parquet.Scripts.Commands.Alert = "A" -> string
 const Parquet.Scripts.Commands.CallCharacter = "C" -> string
