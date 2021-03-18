@@ -3,6 +3,7 @@ namespace Parquet.Scripts
     /// <summary>
     /// IDs for commands used in <see cref="ScriptNode"/>s.
     /// </summary>
+    /// <remarks>Note that these commands are encoded in upper case, but the library ignores case when reading or comparing them.</remarks>
     public static class Commands
     {
         /// <summary>Indicates non-command.  NOP.</summary>

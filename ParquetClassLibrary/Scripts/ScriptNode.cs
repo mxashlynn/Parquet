@@ -95,8 +95,9 @@ namespace Parquet.Scripts
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ScriptNode"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="ScriptNode"/> in the sort order.
         /// </returns>
+        /// <remarks>This comparison is case insensitive.</remarks>
         public int CompareTo(ScriptNode inTag)
-            => string.Compare(nodeContent, inTag?.nodeContent ?? "", StringComparison.Ordinal);
+            => string.Compare(nodeContent, inTag?.nodeContent ?? "", StringComparison.OrdinalIgnoreCase);
         #endregion
 
         #region ITypeConverter Implementation
@@ -112,7 +113,7 @@ namespace Parquet.Scripts
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ScriptNode"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ScriptNode)inText;
+            => (ScriptNode)inText?.ToUpperInvariant() ?? None;
 
         /// <summary>
         /// Converts the given <see cref="ScriptNode"/> to a record column.
@@ -124,7 +125,7 @@ namespace Parquet.Scripts
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
                 ? (string)node
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
+                : Logger.DefaultWithConvertLog(inValue?.ToString().ToUpperInvariant() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities
