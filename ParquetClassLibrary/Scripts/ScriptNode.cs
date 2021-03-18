@@ -113,7 +113,9 @@ namespace Parquet.Scripts
         /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ScriptNode"/> created from the <see cref="string"/>.</returns>
         public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => (ScriptNode)inText?.ToUpperInvariant() ?? None;
+            => string.IsNullOrEmpty(inText)
+                ? None
+                : (ScriptNode)$"{char.ToUpperInvariant(inText[0])}{inText[1..]}";
 
         /// <summary>
         /// Converts the given <see cref="ScriptNode"/> to a record column.
@@ -125,7 +127,7 @@ namespace Parquet.Scripts
         public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
             => inValue is ScriptNode node
                 ? (string)node
-                : Logger.DefaultWithConvertLog(inValue?.ToString().ToUpperInvariant() ?? "null", nameof(RecipeElement), nameof(None));
+                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities
