@@ -223,7 +223,7 @@ namespace Parquet.Regions
                 }
 
                 var adjacentRegion = All.Regions.GetOrNull<RegionModel>(adjacentRegionID);
-                if (adjacentRegion is not null)
+                if (adjacentRegion is null)
                 {
                     continue;
                 }

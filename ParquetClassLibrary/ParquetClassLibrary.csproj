@@ -6,9 +6,9 @@
 
     <Product>Parquet</Product>
     <PackageId>Parquet</PackageId>
-    <Version>0.4.5.0</Version>
-    <AssemblyVersion>0.4.5.0</AssemblyVersion>
-    <FileVersion>0.4.5.0</FileVersion>
+    <Version>0.4.6.0</Version>
+    <AssemblyVersion>0.4.6.0</AssemblyVersion>
+    <FileVersion>0.4.6.0</FileVersion>
 
     <Authors>Paige Ashlynn</Authors>
     <Company>Girl Potion</Company>
@@ -37,6 +37,7 @@
 
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
