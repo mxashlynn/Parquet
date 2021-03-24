@@ -28,10 +28,10 @@ namespace Parquet.Crafts
         #endregion
 
         #region Characteristics
-        /// <summary>Backing value for <see cref="WorkingRange"/>.</summary>
+        /// <summary>Backing field for <see cref="WorkingRange"/>.</summary>
         private Range<int> workingRangeBackingStruct;
 
-        /// <summary>Backing value for <see cref="IdealRange"/>.</summary>
+        /// <summary>Backing field for <see cref="IdealRange"/>.</summary>
         private Range<int> idealRangeBackingStruct;
 
         /// <summary>

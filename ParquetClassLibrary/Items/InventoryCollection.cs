@@ -25,7 +25,7 @@ namespace Parquet.Items
                                                          Justification = "Slots is not exposed; I suspect this is a bug in .Net 5.")]
         private List<InventorySlot> Slots { get; set; }
 
-        /// <summary>Backing value for <see cref="Capacity"/>.</summary>
+        /// <summary>Backing field for <see cref="Capacity"/>.</summary>
         private int backingCapacity;
 
         /// <summary>How many <see cref="InventorySlot"/>s can be stored.</summary>
