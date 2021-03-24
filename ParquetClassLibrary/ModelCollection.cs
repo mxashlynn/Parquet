@@ -224,7 +224,7 @@ namespace Parquet
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
 
-            if (Contains(inModel.ID))
+            if (!Contains(inModel.ID))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
                                                            typeof(TModel).Name, inModel.Name));
