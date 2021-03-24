@@ -20,9 +20,6 @@ namespace Parquet
     /// <remarks>
     /// All <see cref="ModelCollection{ModelID}"/>s implicitly contain <see cref="ModelID.None"/>.
     /// <para />
-    /// This generic version is intended to support <see cref="All.Parquets"/> allowing
-    /// the collection to store all parquet types but return only the requested subtype.
-    /// <para />
     /// For more details, see remarks on <see cref="Model"/>.
     /// </remarks>
     /// <seealso cref="ModelID"/>
