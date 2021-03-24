@@ -18,7 +18,7 @@ namespace Parquet
     /// IMutableModel is for use only by external types (such as those in a design-time tool) that require read/write access to model
     /// properties.
     /// </remarks>
-    public interface IMutableModel
+    public interface IMutableModel : IVisibleData
     {
         /// <summary>Game-wide unique identifier.</summary>
         /// <remarks>Be cautious editing this.</remarks>

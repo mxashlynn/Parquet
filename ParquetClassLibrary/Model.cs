@@ -110,9 +110,13 @@ namespace Parquet
         string IMutableModel.Name
         {
             get => Name;
-            set => Name = LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(Name), Name)
-                : value;
+            set
+            {
+                Name = LibraryState.IsPlayMode
+                    ? Logger.DefaultWithImmutableInPlayLog(nameof(Name), Name)
+                    : value;
+                OnVisibleDataChanged();
+            }
         }
 
         /// <summary>Player-facing description.</summary>
@@ -154,6 +158,28 @@ namespace Parquet
                 ? Logger.DefaultWithImmutableInPlayLog(nameof(Tags), new Collection<ModelTag>())
                 : (ICollection<ModelTag>)Tags;
 
+        /// <summary>
+        /// Backing field for the <see cref="VisibleDataChanged"/> property.
+        /// </summary>
+        private event EventHandler<EventArgs> backingVisibleDataChanged;
+
+        /// <summary>
+        /// Raised when an external view onto associated data should be updated.
+        /// </summary>
+        public event EventHandler<EventArgs> VisibleDataChanged
+        {
+            add => backingVisibleDataChanged += value;
+            remove => backingVisibleDataChanged -= value;
+        }
+
+        /// <summary>
+        /// Indicates an external view onto associated data should be updated.
+        /// </summary>
+        /// <remarks>
+        /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
+        /// </remarks>
+        protected virtual void OnVisibleDataChanged()
+            => backingVisibleDataChanged?.Invoke(this, null);
         #endregion
 
         #region IEquatable Implementation

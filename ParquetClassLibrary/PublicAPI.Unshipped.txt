@@ -496,6 +496,7 @@ Parquet.Model.ID.get -> Parquet.ModelID
 Parquet.Model.Model(Parquet.Range<Parquet.ModelID> inBounds, Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags) -> void
 Parquet.Model.Name.get -> string
 Parquet.Model.Tags.get -> System.Collections.Generic.IReadOnlyList<Parquet.ModelTag>
+Parquet.Model.VisibleDataChanged -> System.EventHandler<System.EventArgs>
 Parquet.ModelCollection
 Parquet.ModelCollection<TModel>
 Parquet.ModelCollection<TModel>.Bounds.get -> System.Collections.Generic.IReadOnlyList<Parquet.Range<Parquet.ModelID>>
@@ -1127,4 +1128,5 @@ static readonly Parquet.Regions.RegionModel.Empty -> Parquet.Regions.RegionModel
 static readonly Parquet.Rooms.MapSpace.Empty -> Parquet.Rooms.MapSpace
 static readonly Parquet.Scripts.ScriptNode.None -> Parquet.Scripts.ScriptNode
 virtual Parquet.Model.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
+virtual Parquet.Model.OnVisibleDataChanged() -> void
 virtual Parquet.Pack<T>.DeepClone() -> Parquet.Pack<T>
