@@ -510,6 +510,7 @@ Parquet.ModelCollection<TModel>.GetRecordsForType<TModelInner>(System.Collection
 Parquet.ModelCollection<TModel>.ModelCollection(Parquet.Range<Parquet.ModelID> inBounds, System.Collections.Generic.IEnumerable<Parquet.Model> inModels) -> void
 Parquet.ModelCollection<TModel>.ModelCollection(System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> inBounds, System.Collections.Generic.IEnumerable<Parquet.Model> inModels) -> void
 Parquet.ModelCollection<TModel>.PutRecordsForType<TModelInner>() -> void
+Parquet.ModelCollection<TModel>.VisibleDataChanged -> System.EventHandler<System.EventArgs>
 Parquet.ModelID
 Parquet.ModelID.CompareTo(Parquet.ModelID inIDentifier) -> int
 Parquet.ModelID.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
@@ -1129,4 +1130,5 @@ static readonly Parquet.Rooms.MapSpace.Empty -> Parquet.Rooms.MapSpace
 static readonly Parquet.Scripts.ScriptNode.None -> Parquet.Scripts.ScriptNode
 virtual Parquet.Model.GetAllTags() -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 virtual Parquet.Model.OnVisibleDataChanged() -> void
+virtual Parquet.ModelCollection<TModel>.OnVisibleDataChanged(object inSender = null) -> bool
 virtual Parquet.Pack<T>.DeepClone() -> Parquet.Pack<T>

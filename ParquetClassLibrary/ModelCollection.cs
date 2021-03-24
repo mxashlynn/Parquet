@@ -125,6 +125,7 @@ namespace Parquet
             if (!Contains(inModel.ID))
             {
                 EditableModels[inModel.ID] = inModel;
+                OnVisibleDataChanged();
             }
             else
             {
@@ -172,7 +173,8 @@ namespace Parquet
 
             Precondition.IsNotNull(inModel);
 
-            return ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ?? ModelID.None);
+            return ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ?? ModelID.None)
+                   && OnVisibleDataChanged();
         }
 
         /// <summary>
@@ -187,7 +189,8 @@ namespace Parquet
             return LibraryState.IsPlayMode
                 ? Logger.DefaultWithImmutableInPlayLog(nameof(IMutableModelCollection<TModel>.Remove), false)
                 : inID != ModelID.None
-                       && EditableModels.Remove(inID);
+                       && EditableModels.Remove(inID)
+                       && OnVisibleDataChanged();
         }
 
         /// <summary>
@@ -203,6 +206,7 @@ namespace Parquet
             }
 
             EditableModels.Clear();
+            OnVisibleDataChanged();
         }
 
         /// <summary>
@@ -232,7 +236,35 @@ namespace Parquet
             else
             {
                 EditableModels[inModel.ID] = inModel;
+                OnVisibleDataChanged();
             }
+        }
+
+        /// <summary>
+        /// Backing field for the <see cref="VisibleDataChanged"/> property.
+        /// </summary>
+        private event EventHandler<EventArgs> backingVisibleDataChanged;
+
+        /// <summary>
+        /// Raised when an external view onto associated data should be updated.
+        /// </summary>
+        public event EventHandler<EventArgs> VisibleDataChanged
+        {
+            add => backingVisibleDataChanged += value;
+            remove => backingVisibleDataChanged -= value;
+        }
+
+        /// <summary>
+        /// Indicates an external view onto associated data should be updated.
+        /// </summary>
+        /// <returns><c>true</c> if the operation succeded; otherwise, <c>false</c>.</returns>
+        /// <remarks>
+        /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
+        /// </remarks>
+        protected virtual bool OnVisibleDataChanged(object inSender = null)
+        {
+            backingVisibleDataChanged?.Invoke(inSender ?? this, null);
+            return true;
         }
         #endregion
 

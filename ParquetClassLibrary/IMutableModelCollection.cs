@@ -7,7 +7,7 @@ namespace Parquet
     /// while maintaining a read-only facade during play.
     /// </summary>
     /// <typeparam name="TModel">The type collected, typically a concrete descendant of <see cref="Model"/>.</typeparam>
-    public interface IMutableModelCollection<TModel> : ICollection<TModel>
+    public interface IMutableModelCollection<TModel> : ICollection<TModel>, IVisibleData
         where TModel : Model
     {
         /// <summary>
