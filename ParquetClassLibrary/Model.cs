@@ -161,12 +161,12 @@ namespace Parquet
         /// <summary>
         /// Backing field for the <see cref="VisibleDataChanged"/> property.
         /// </summary>
-        private event EventHandler<EventArgs> backingVisibleDataChanged;
+        private event DataChangedEventHandler backingVisibleDataChanged;
 
         /// <summary>
         /// Raised when an external view onto associated data should be updated.
         /// </summary>
-        public event EventHandler<EventArgs> VisibleDataChanged
+        public event DataChangedEventHandler VisibleDataChanged
         {
             add => backingVisibleDataChanged += value;
             remove => backingVisibleDataChanged -= value;
@@ -175,11 +175,8 @@ namespace Parquet
         /// <summary>
         /// Indicates an external view onto associated data should be updated.
         /// </summary>
-        /// <remarks>
-        /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
-        /// </remarks>
-        protected virtual void OnVisibleDataChanged()
-            => backingVisibleDataChanged?.Invoke(this, null);
+        protected virtual bool OnVisibleDataChanged()
+            => backingVisibleDataChanged?.Invoke(this, null) ?? true;
         #endregion
 
         #region IEquatable Implementation

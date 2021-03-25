@@ -71,6 +71,7 @@ namespace Parquet
                 }
                 if (!baseDictionary.ContainsKey(model.ID))
                 {
+                    model.VisibleDataChanged += OnVisibleDataChanged;
                     baseDictionary[model.ID] = model;
                 }
                 else
@@ -122,6 +123,7 @@ namespace Parquet
             if (!Contains(inModel.ID))
             {
                 EditableModels[inModel.ID] = inModel;
+                inModel.VisibleDataChanged += OnVisibleDataChanged;
                 OnVisibleDataChanged();
             }
             else
@@ -159,7 +161,7 @@ namespace Parquet
         /// Removes the given <typeparamref name="TModel"/> from the collection.
         /// </summary>
         /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        bool ICollection<TModel>.Remove(TModel inModel)
+        private bool Remove(TModel inModel)
         {
             if (LibraryState.IsPlayMode)
             {
@@ -168,27 +170,36 @@ namespace Parquet
                 return false;
             }
 
+            // In a debug build we want to log attempts to remove null/None from the collection, which Precondition does.
             Precondition.IsNotNull(inModel);
+            Precondition.IsNotNone(inModel.ID);
+            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+            // In a release build, however, we want to silently abort such attempts without signalling a failure, which we do here.
+            if (inModel is null
+                || inModel.ID == ModelID.None)
+            {
+                return true;
+            }
 
-            return ((IMutableModelCollection<TModel>)this).Remove(inModel?.ID ?? ModelID.None)
+            inModel.VisibleDataChanged -= OnVisibleDataChanged;
+            return EditableModels.Remove(inModel.ID)
                    && OnVisibleDataChanged();
         }
+
+        /// <summary>
+        /// Removes the given <typeparamref name="TModel"/> from the collection.
+        /// </summary>
+        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        bool ICollection<TModel>.Remove(TModel inModel)
+            => Remove(inModel);
 
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
         /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         bool IMutableModelCollection<TModel>.Remove(ModelID inID)
-        {
-            Precondition.IsNotNone(inID);
-            Precondition.IsInRange(inID, Bounds, nameof(inID));
-
-            return LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(IMutableModelCollection<TModel>.Remove), false)
-                : inID != ModelID.None
-                       && EditableModels.Remove(inID)
-                       && OnVisibleDataChanged();
-        }
+            => Models.ContainsKey(inID)
+            && Remove((TModel)Models[inID]);
 
         /// <summary>
         /// Empties the entire collection.
@@ -202,6 +213,10 @@ namespace Parquet
                 return;
             }
 
+            foreach(var kvp in EditableModels)
+            {
+                kvp.Value.VisibleDataChanged -= OnVisibleDataChanged;
+            }
             EditableModels.Clear();
             OnVisibleDataChanged();
         }
@@ -232,6 +247,8 @@ namespace Parquet
             }
             else
             {
+                EditableModels[inModel.ID].VisibleDataChanged -= OnVisibleDataChanged;
+                inModel.VisibleDataChanged += OnVisibleDataChanged;
                 EditableModels[inModel.ID] = inModel;
                 OnVisibleDataChanged();
             }
@@ -240,12 +257,12 @@ namespace Parquet
         /// <summary>
         /// Backing field for the <see cref="VisibleDataChanged"/> property.
         /// </summary>
-        private event EventHandler<EventArgs> backingVisibleDataChanged;
+        private event DataChangedEventHandler backingVisibleDataChanged;
 
         /// <summary>
         /// Raised when an external view onto associated data should be updated.
         /// </summary>
-        public event EventHandler<EventArgs> VisibleDataChanged
+        public event DataChangedEventHandler VisibleDataChanged
         {
             add => backingVisibleDataChanged += value;
             remove => backingVisibleDataChanged -= value;
@@ -254,15 +271,15 @@ namespace Parquet
         /// <summary>
         /// Indicates an external view onto associated data should be updated.
         /// </summary>
+        /// <param name="inSender">The instance that raised the event.</param>
+        /// <param name="inEventData">Additional information about the event.</param>
         /// <returns><c>true</c> if the operation succeded; otherwise, <c>false</c>.</returns>
         /// <remarks>
         /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
         /// </remarks>
-        protected virtual bool OnVisibleDataChanged(object inSender = null)
-        {
-            backingVisibleDataChanged?.Invoke(inSender ?? this, null);
-            return true;
-        }
+        protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
+            // NOTE: If sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
+            => backingVisibleDataChanged?.Invoke(inSender ?? this, inEventData) ?? true;
         #endregion
 
         #region IReadOnlyCollection Implementation
