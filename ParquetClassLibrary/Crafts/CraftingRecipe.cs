@@ -68,7 +68,7 @@ namespace Parquet.Crafts
             var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
             var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
 
-            // Note: These two checks should not be made from within editing tools.
+            // NOTE that these two checks should not be made from within editing tools.
             if (LibraryState.IsPlayMode)
             {
                 var count = nonNullProducts.Count();

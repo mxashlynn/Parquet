@@ -302,7 +302,7 @@ namespace Parquet.Beings
                                    RoomAssignment,
                                    CurrentBehaviorID,
                                    BiomeTimeRemaining,
-                                   // Note: The following .ToList() perform shallow copies, but this is acceptable as ModelID has value semantics
+                                   // NOTE the following .ToList()s perform shallow copies, but ModelID has value semantics so no problem.
                                    KnownBeings.ToList(),
                                    KnownParquets.ToList(),
                                    KnownRoomRecipes.ToList(),

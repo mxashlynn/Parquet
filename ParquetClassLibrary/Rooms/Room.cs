@@ -13,7 +13,7 @@ namespace Parquet.Rooms
     /// </summary>
     public sealed class Room : IEquatable<Room>
     {
-        // Note: I considered deriving this class from Status<RoomRecipe>, but at present it doesn't seem to make sense
+        // NTOE that I considered deriving this class from Status<RoomRecipe>, but at present it doesn't seem to make sense
         // to serialize Rooms.  If this changes, we should indeed make this a status class.
         #region Status
         /// <summary>

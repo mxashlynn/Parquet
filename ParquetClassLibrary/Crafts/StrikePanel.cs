@@ -67,7 +67,7 @@ namespace Parquet.Crafts
         /// </summary>
         private void NormalizeRanges()
         {
-            // Note: These two checks should not be made from within editing tools.
+            // NOTE that these two checks should not be made from within editing tools.
             if (LibraryState.IsPlayMode)
             {
                 if (workingRangeBackingStruct.Maximum < idealRangeBackingStruct.Maximum)
@@ -98,7 +98,7 @@ namespace Parquet.Crafts
         /// <param name="inIdealRange">The range of values this panel targets for a completed craft.</param>
         public StrikePanel(Range<int> inWorkingRange, Range<int> inIdealRange)
         {
-            // Note the use of the backing struct to avoid preinitialized range-checking.
+            // NOTE the use of the backing struct to avoid preinitialized range-checking.
             workingRangeBackingStruct = inWorkingRange;
             IdealRange = inIdealRange;
         }

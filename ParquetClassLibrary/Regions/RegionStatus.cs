@@ -187,7 +187,7 @@ namespace Parquet.Regions
                     {
                         if (inRegion.Rooms.Any(room => room.ContainsPosition(new Point2D(x, y))))
                         {
-                            // Note that we are counting every parquet, including collectibles.
+                            // NOTE that we are counting every parquet, including collectibles.
                             parquetsInRoom += inRegion.ParquetModels[y, x].Count;
                         }
                     }

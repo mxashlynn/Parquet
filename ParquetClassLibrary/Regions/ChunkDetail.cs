@@ -182,7 +182,7 @@ namespace Parquet.Regions
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public ChunkDetail DeepClone()
-            // Note that I believe no additional cloning is needed here as enums and strings have value semantics.
+            // NOTE that I believe no additional cloning is needed here as enums and strings have value semantics.
             => new(BaseTopography, BaseComposition, ModifierTopography, ModifierComposition);
         #endregion
 

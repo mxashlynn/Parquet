@@ -81,7 +81,7 @@ namespace Parquet.Rooms
                     potentialPerimeter = GetPotentialPerimeter(new MapSpace(northSeed, subgrid[northSeed.Y, northSeed.X], subgrid));
 
                     // Design-time sanity checks.
-                    // Note: No need to check LibraryState.IsPlayMode as Debug.Assertions are removed in release builds anyway.
+                    // NOTE that there is no need to check LibraryState.IsPlayMode as Debug.Assertions are removed in release builds.
                     Debug.Assert(potentialPerimeter.Count <= (subgrid.Rows * subgrid.Columns) - RoomConfiguration.MinWalkableSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
                                                nameof(potentialPerimeter.Count), potentialPerimeter.Count,

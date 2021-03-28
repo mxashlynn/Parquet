@@ -10,7 +10,7 @@ namespace Parquet
     /// </remarks>
     public static class Delimiters
     {
-        // NOTE:  Currently delimiters are not stored as chars because PronounGroup requires compile-time
+        // NOTE that currently delimiters are not stored as chars because PronounGroup requires compile-time
         // delimiter concatenation, which is currently only possible with strings.
 
         /// <summary>Separator for encoding the dimensions of <see cref="IGrid{TElement}"/> implementations.</summary>

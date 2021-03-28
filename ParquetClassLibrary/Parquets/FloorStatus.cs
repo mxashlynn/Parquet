@@ -47,7 +47,7 @@ namespace Parquet.Parquets
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         public FloorStatus(ModelID inFloorID)
-            // Note: Currently, by design, no Floor starts as a trench.
+            // NOTE Currently, by design, no Floor starts as a trench.
             : this(false)
         { }
         #endregion

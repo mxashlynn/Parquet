@@ -176,7 +176,7 @@ namespace Parquet
         /// Indicates an external view onto associated data should be updated.
         /// </summary>
         protected virtual bool OnVisibleDataChanged()
-            => backingVisibleDataChanged?.Invoke(this, null) ?? true;
+            => backingVisibleDataChanged?.Invoke(this, EventArgs.Empty) ?? true;
         #endregion
 
         #region IEquatable Implementation

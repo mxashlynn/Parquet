@@ -323,7 +323,7 @@ namespace Parquet
             // By convention, the first ModelID in each Range is a multiple of this number.
             const int TargetMultiple = 10000;
 
-            // Note: The order of the definitions and computations in the following regions is important.
+            // NOTE that the order of the definitions and computations in the following regions are important.
 
             #region Define Most Ranges
             GameIDs = new Range<ModelID>(1, 9000);

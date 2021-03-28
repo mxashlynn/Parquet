@@ -279,7 +279,7 @@ namespace Parquet
         /// </remarks>
         protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
             // NOTE: If sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
-            => backingVisibleDataChanged?.Invoke(inSender ?? this, inEventData) ?? true;
+            => backingVisibleDataChanged?.Invoke(inSender ?? this, inEventData ?? EventArgs.Empty) ?? true;
         #endregion
 
         #region IReadOnlyCollection Implementation
