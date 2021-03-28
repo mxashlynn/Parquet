@@ -334,6 +334,7 @@ Parquet.Crafts.StrikePanelGrid.StrikePanelGrid() -> void
 Parquet.Crafts.StrikePanelGrid.StrikePanelGrid(int inRowCount, int inColumnCount) -> void
 Parquet.Crafts.StrikePanelGrid.StrikePanelGrid(Parquet.IGrid<Parquet.Crafts.StrikePanel> inContent, int inRowCount, int inColumnCount) -> void
 Parquet.Crafts.StrikePanelGrid.this[int y, int x].get -> Parquet.Crafts.StrikePanel
+Parquet.DataChangedEventHandler
 Parquet.Delimiters
 Parquet.EmptyTolerantEnumConverter
 Parquet.EmptyTolerantEnumConverter.EmptyTolerantEnumConverter(System.Type inType) -> void
@@ -470,8 +471,7 @@ Parquet.Items.ModificationTool.Hammer = 2 -> Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.None = 0 -> Parquet.Items.ModificationTool
 Parquet.Items.ModificationTool.Shovel = 1 -> Parquet.Items.ModificationTool
 Parquet.IVisibleData
-Parquet.IVisibleData.DataChangedEventHandler
-Parquet.IVisibleData.VisibleDataChanged -> Parquet.IVisibleData.DataChangedEventHandler
+Parquet.IVisibleData.VisibleDataChanged -> Parquet.DataChangedEventHandler
 Parquet.LibraryState
 Parquet.Location
 Parquet.Location.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
