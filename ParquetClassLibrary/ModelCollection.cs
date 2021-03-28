@@ -278,7 +278,7 @@ namespace Parquet
         /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
         /// </remarks>
         protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
-            // NOTE: If sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
+            // NOTE that if sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
             => backingVisibleDataChanged?.Invoke(inSender ?? this, inEventData ?? EventArgs.Empty) ?? true;
         #endregion
 
