@@ -649,8 +649,8 @@ namespace Parquet
         /// </summary>
         /// <remarks>
         /// This method must be called between calls to the initialization routines.
-        /// Note that this method is only available when Parquet is built with editor support enabled.
-        /// This means that when games that do not support live editing of models must initialize <see cref="All"/> only once per run.
+        /// This method is only available when <see cref="LibraryState.IsPlayMode"/> is <c>true</c>.
+        /// Typically, games should initialize <see cref="All"/> only once per run whereas tools may reinitialize any number of times.
         /// </remarks>
         public static void Clear()
         {
