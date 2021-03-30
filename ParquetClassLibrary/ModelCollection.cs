@@ -255,18 +255,9 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Backing field for the <see cref="VisibleDataChanged"/> property.
-        /// </summary>
-        private event DataChangedEventHandler backingVisibleDataChanged;
-
-        /// <summary>
         /// Raised when an external view onto associated data should be updated.
         /// </summary>
-        public event DataChangedEventHandler VisibleDataChanged
-        {
-            add => backingVisibleDataChanged += value;
-            remove => backingVisibleDataChanged -= value;
-        }
+        public event DataChangedEventHandler VisibleDataChanged;
 
         /// <summary>
         /// Indicates an external view onto associated data should be updated.
@@ -279,7 +270,7 @@ namespace Parquet
         /// </remarks>
         protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
             // NOTE that if sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
-            => backingVisibleDataChanged?.Invoke(inSender ?? this, inEventData ?? EventArgs.Empty) ?? true;
+            => VisibleDataChanged?.Invoke(inSender ?? this, inEventData ?? EventArgs.Empty) ?? true;
         #endregion
 
         #region IReadOnlyCollection Implementation

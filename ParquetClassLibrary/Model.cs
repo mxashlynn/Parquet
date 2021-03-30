@@ -159,24 +159,15 @@ namespace Parquet
                 : (ICollection<ModelTag>)Tags;
 
         /// <summary>
-        /// Backing field for the <see cref="VisibleDataChanged"/> property.
-        /// </summary>
-        private event DataChangedEventHandler backingVisibleDataChanged;
-
-        /// <summary>
         /// Raised when an external view onto associated data should be updated.
         /// </summary>
-        public event DataChangedEventHandler VisibleDataChanged
-        {
-            add => backingVisibleDataChanged += value;
-            remove => backingVisibleDataChanged -= value;
-        }
+        public event DataChangedEventHandler VisibleDataChanged;
 
         /// <summary>
         /// Indicates an external view onto associated data should be updated.
         /// </summary>
         protected virtual bool OnVisibleDataChanged()
-            => backingVisibleDataChanged?.Invoke(this, EventArgs.Empty) ?? true;
+            => VisibleDataChanged?.Invoke(this, EventArgs.Empty) ?? true;
         #endregion
 
         #region IEquatable Implementation
