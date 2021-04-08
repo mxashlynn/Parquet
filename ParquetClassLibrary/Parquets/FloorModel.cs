@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using CsvHelper.Configuration.Attributes;
 using Parquet.Biomes;
 using Parquet.Items;
+using Parquet.Properties;
 
 namespace Parquet.Parquets
 {
@@ -15,7 +16,7 @@ namespace Parquet.Parquets
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
-        private const string defaultTrenchName = "dark hole";
+        public string DefaultTrenchName { get; } = Resources.PlayerFacingDefaultTrenchName;
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
         public static Range<ModelID> Bounds
@@ -49,11 +50,15 @@ namespace Parquet.Parquets
         public FloorModel(ModelID inID, string inName, string inDescription, string inComment,
                           IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
                           IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
-                          ModificationTool inModTool = ModificationTool.None, string inTrenchName = defaultTrenchName)
+                          ModificationTool inModTool = ModificationTool.None, string inTrenchName = null)
             : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
         {
             ModTool = inModTool;
-            TrenchName = inTrenchName;
+            TrenchName =
+                // TODO [Robustness] Are there places we use IsNullOrEmpty where IsNullOrWhiteSpace would be more appropriate?
+                string.IsNullOrWhiteSpace(inTrenchName)
+                    ? DefaultTrenchName
+                    : inTrenchName;
         }
         #endregion
 

@@ -570,7 +570,8 @@ Parquet.Parquets.EntryType.None = 0 -> Parquet.Parquets.EntryType
 Parquet.Parquets.EntryType.Room = 1 -> Parquet.Parquets.EntryType
 Parquet.Parquets.EntryType.Up = 2 -> Parquet.Parquets.EntryType
 Parquet.Parquets.FloorModel
-Parquet.Parquets.FloorModel.FloorModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null, Parquet.Items.ModificationTool inModTool = Parquet.Items.ModificationTool.None, string inTrenchName = "dark hole") -> void
+Parquet.Parquets.FloorModel.DefaultTrenchName.get -> string
+Parquet.Parquets.FloorModel.FloorModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.ModelID? inItemID = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToBiome = null, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inAddsToRoom = null, Parquet.Items.ModificationTool inModTool = Parquet.Items.ModificationTool.None, string inTrenchName = null) -> void
 Parquet.Parquets.FloorModel.ModTool.get -> Parquet.Items.ModificationTool
 Parquet.Parquets.FloorModel.TrenchName.get -> string
 Parquet.Parquets.FloorStatus

@@ -386,6 +386,15 @@ namespace Parquet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hole.
+        /// </summary>
+        internal static string PlayerFacingDefaultTrenchName {
+            get {
+                return ResourceManager.GetString("PlayerFacingDefaultTrenchName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {1} cannot be written to in play mode..
         /// </summary>
         internal static string WarningImmutableDuringPlay {

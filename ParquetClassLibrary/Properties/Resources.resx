@@ -261,6 +261,10 @@
   <data name="ParquetIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\properties\parqueticon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="PlayerFacingDefaultTrenchName" xml:space="preserve">
+    <value>hole</value>
+    <comment>Default value.</comment>
+  </data>
   <data name="WarningImmutableDuringPlay" xml:space="preserve">
     <value>{1} cannot be written to in play mode.</value>
     <comment>Warning string.</comment>
