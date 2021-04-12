@@ -150,15 +150,14 @@ namespace Parquet
         #region ModelCollections
         /// <summary>
         /// A collection of all defined <see cref="GameModel"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
-        /// something like a color palette that other classes can paint with.
+        /// This collection is the source of truth about game and episode metadata for the rest of the library.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
         public static ModelCollection<GameModel> Games { get; private set; }
 
         /// <summary>
         /// A collection of all defined <see cref="FloorModel"/>s.
-        /// This collection is the source of truth about parquets for the rest of the library,
+        /// This collection is the source of truth about floor parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -166,7 +165,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="BlockModel"/>s.
-        /// This collection is the source of truth about parquets for the rest of the library,
+        /// This collection is the source of truth about block parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -174,7 +173,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="FurnishingModel"/>s.
-        /// This collection is the source of truth about parquets for the rest of the library,
+        /// This collection is the source of truth about furnishing parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -182,7 +181,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="CollectibleModel"/>s.
-        /// This collection is the source of truth about parquets for the rest of the library,
+        /// This collection is the source of truth about collectible parquets for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -198,7 +197,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="CritterModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// This collection is the source of truth about critters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -206,7 +205,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="CharacterModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// This collection is the source of truth about characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -214,7 +213,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="BeingModel"/>s.
-        /// This collection is the source of truth about mobs and characters for the rest of the library,
+        /// This collection is the source of truth about critters and characters for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -222,7 +221,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="BiomeRecipe"/>s.
-        /// This collection is the source of truth about biome for the rest of the library,
+        /// This collection is the source of truth about biomes for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -238,7 +237,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="RoomRecipe"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
+        /// This collection is the source of truth about rooms for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -246,7 +245,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="RegionModel"/>s.
-        /// This collection is the source of truth about biome for the rest of the library,
+        /// This collection is the source of truth about regions for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -254,7 +253,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="ScriptModel"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
+        /// This collection is the source of truth about scripts for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -262,7 +261,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="InteractionModel"/>s.
-        /// This collection is the source of truth about crafting for the rest of the library,
+        /// This collection is the source of truth about interactions for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
