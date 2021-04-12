@@ -3,6 +3,8 @@ Design/* linguist-documentation
 
 # Normalize Line Endings to LineFeed
 *.cs text=auto
+*.htm text=auto
+*.html text=auto
 *.md text=auto
 *.text text=auto
 *.txt text=auto
