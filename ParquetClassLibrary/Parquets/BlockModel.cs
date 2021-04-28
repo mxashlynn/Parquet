@@ -26,7 +26,7 @@ namespace Parquet.Parquets
         #endregion
 
         #region Characteristics
-        /// <summary>The tool used to remove the block.</summary>
+        /// <summary>The tool used to remove the Block.</summary>
         [Index(8)]
         public GatheringTool GatherTool { get; private set; }
 
