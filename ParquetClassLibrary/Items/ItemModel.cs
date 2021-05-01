@@ -24,7 +24,7 @@ namespace Parquet.Items
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
         [Index(6)]
-        public int Price { get; private set; }
+        public int Worth { get; private set; }
 
         /// <summary>How relatively rare this item is.</summary>
         [Index(7)]
@@ -63,7 +63,7 @@ namespace Parquet.Items
         /// <param name="inComment">Comment of, on, or by the <see cref="ItemModel"/>.</param>
         /// <param name="inTags">Any additional functionality this <see cref="ItemModel"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
         /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
-        /// <param name="inPrice"><see cref="ItemModel"/> cost.</param>
+        /// <param name="inWorth"><see cref="ItemModel"/> cost.</param>
         /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
         /// <param name="inStackMax">How many such items may be stacked together in the <see cref="InventoryCollection"/>.  Must be positive.</param>
         /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
@@ -71,7 +71,7 @@ namespace Parquet.Items
         /// <param name="inParquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
         public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
                          IEnumerable<ModelTag> inTags = null, ItemType inSubtype = ItemType.Other,
-                         int inPrice = 0, int inRarity = 0, int inStackMax = DefaultStackMax,
+                         int inWorth = 0, int inRarity = 0, int inStackMax = DefaultStackMax,
                          ModelID? inEffectWhileHeldID = null, ModelID? inEffectWhenUsedID = null,
                          ModelID? inParquetID = null)
             : base(All.ItemIDs, inID, inName, inDescription, inComment, inTags)
@@ -86,7 +86,7 @@ namespace Parquet.Items
             Precondition.MustBePositive(inStackMax, nameof(inStackMax));
 
             Subtype = inSubtype;
-            Price = inPrice;
+            Worth = inWorth;
             Rarity = inRarity;
             StackMax = inStackMax;
             EffectWhileHeldID = nonNullEffectWhileHeldID;
@@ -116,11 +116,11 @@ namespace Parquet.Items
         /// IMutableItemModel is for external types that require read-write access.
         /// </remarks>
         [Ignore]
-        int IMutableItemModel.Price
+        int IMutableItemModel.Worth
         {
-            get => Price;
-            set => Price = LibraryState.IsPlayMode
-                ? Logger.DefaultWithImmutableInPlayLog(nameof(Price), Price)
+            get => Worth;
+            set => Worth = LibraryState.IsPlayMode
+                ? Logger.DefaultWithImmutableInPlayLog(nameof(Worth), Worth)
                 : value;
         }
 

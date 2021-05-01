@@ -13,7 +13,7 @@ namespace Parquet.Items
         public ItemType Subtype { get; set; }
 
         /// <summary>In-game value of the item.  Must be non-negative.</summary>
-        public int Price { get; set; }
+        public int Worth { get; set; }
 
         /// <summary>How relatively rare this item is.</summary>
         public int Rarity { get; set; }

@@ -407,14 +407,14 @@ Parquet.Items.IMutableItemModel.EffectWhileHeldID.get -> Parquet.ModelID
 Parquet.Items.IMutableItemModel.EffectWhileHeldID.set -> void
 Parquet.Items.IMutableItemModel.ParquetID.get -> Parquet.ModelID
 Parquet.Items.IMutableItemModel.ParquetID.set -> void
-Parquet.Items.IMutableItemModel.Price.get -> int
-Parquet.Items.IMutableItemModel.Price.set -> void
 Parquet.Items.IMutableItemModel.Rarity.get -> int
 Parquet.Items.IMutableItemModel.Rarity.set -> void
 Parquet.Items.IMutableItemModel.StackMax.get -> int
 Parquet.Items.IMutableItemModel.StackMax.set -> void
 Parquet.Items.IMutableItemModel.Subtype.get -> Parquet.Items.ItemType
 Parquet.Items.IMutableItemModel.Subtype.set -> void
+Parquet.Items.IMutableItemModel.Worth.get -> int
+Parquet.Items.IMutableItemModel.Worth.set -> void
 Parquet.Items.InventoryCollection
 Parquet.Items.InventoryCollection.Add(Parquet.Items.InventorySlot inSlot) -> void
 Parquet.Items.InventoryCollection.Capacity.get -> int
@@ -451,12 +451,12 @@ Parquet.Items.InventorySlot.Take(int inHowMany = 1) -> int
 Parquet.Items.ItemModel
 Parquet.Items.ItemModel.EffectWhenUsedID.get -> Parquet.ModelID
 Parquet.Items.ItemModel.EffectWhileHeldID.get -> Parquet.ModelID
-Parquet.Items.ItemModel.ItemModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.Items.ItemType inSubtype = Parquet.Items.ItemType.Other, int inPrice = 0, int inRarity = 0, int inStackMax = 999, Parquet.ModelID? inEffectWhileHeldID = null, Parquet.ModelID? inEffectWhenUsedID = null, Parquet.ModelID? inParquetID = null) -> void
+Parquet.Items.ItemModel.ItemModel(Parquet.ModelID inID, string inName, string inDescription, string inComment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> inTags = null, Parquet.Items.ItemType inSubtype = Parquet.Items.ItemType.Other, int inWorth = 0, int inRarity = 0, int inStackMax = 999, Parquet.ModelID? inEffectWhileHeldID = null, Parquet.ModelID? inEffectWhenUsedID = null, Parquet.ModelID? inParquetID = null) -> void
 Parquet.Items.ItemModel.ParquetID.get -> Parquet.ModelID
-Parquet.Items.ItemModel.Price.get -> int
 Parquet.Items.ItemModel.Rarity.get -> int
 Parquet.Items.ItemModel.StackMax.get -> int
 Parquet.Items.ItemModel.Subtype.get -> Parquet.Items.ItemType
+Parquet.Items.ItemModel.Worth.get -> int
 Parquet.Items.ItemType
 Parquet.Items.ItemType.Consumable = 1 -> Parquet.Items.ItemType
 Parquet.Items.ItemType.Equipment = 2 -> Parquet.Items.ItemType
