@@ -12,11 +12,11 @@ namespace Parquet.Beings
     public abstract class BeingModel : Model, IMutableBeingModel
     {
         #region Characteristics
-        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this character is at home.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="BeingModel"/> is at home.</summary>
         [Index(5)]
         public ModelID NativeBiomeID { get; protected set; }
 
-        /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this being acts.</summary>
+        /// <summary>The <see cref="ModelID"/> of the <see cref="ScriptModel"/> governing the way this <see cref="BeingModel"/> acts.</summary>
         [Index(6)]
         public ModelID PrimaryBehaviorID { get; protected set; }
 

@@ -32,11 +32,11 @@ namespace Parquet.Biomes
         [Index(5)]
         public int Tier { get; private set; }
 
-        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
+        /// <summary>When <c>true</c> this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</summary>
         [Index(6)]
         public bool IsRoomBased { get; private set; }
 
-        /// <summary>Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
+        /// <summary>When <c>true</c> this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</summary>
         [Index(7)]
         public bool IsLiquidBased { get; private set; }
 
