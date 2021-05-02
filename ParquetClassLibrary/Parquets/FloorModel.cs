@@ -16,6 +16,7 @@ namespace Parquet.Parquets
     {
         #region Class Defaults
         /// <summary>A name to employ for parquets when IsTrench is set, if none is provided.</summary>
+        [Ignore]
         public string DefaultTrenchName { get; } = Resources.PlayerFacingDefaultTrenchName;
 
         /// <summary>The set of values that are allowed for Floor IDs.</summary>
