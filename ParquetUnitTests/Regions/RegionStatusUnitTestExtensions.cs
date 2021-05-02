@@ -1,5 +1,7 @@
 using Parquet.Regions;
 
+// TODO [TESTING] This needs to use RegionStatus instead of RegionModel.
+/*
 namespace ParquetUnitTests.Maps
 {
     /// <summary>
@@ -32,3 +34,4 @@ namespace ParquetUnitTests.Maps
         }
     }
 }
+*/

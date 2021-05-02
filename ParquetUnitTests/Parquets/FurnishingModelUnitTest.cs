@@ -62,9 +62,9 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         internal void ValidSwapIDsArePermittedTest()
         {
-            var goodSwapID = newFurnishingID - 1;
+            var goodItemID = newFurnishingID - 1;
 
-            var testBlock = new FurnishingModel(newFurnishingID, "will be created", "", "", inSwapID: goodSwapID);
+            var testBlock = new FurnishingModel(newFurnishingID, "will be created", "", "", inItemID: goodItemID);
 
             Assert.NotNull(testBlock);
         }
@@ -72,11 +72,11 @@ namespace ParquetUnitTests.Parquets
         [Fact]
         internal void InvalidSwapIDsRaiseExceptionTest()
         {
-            var badSwapID = TestModels.TestBlock.ID;
+            var badItemID = TestModels.TestBlock.ID;
 
             void TestCode()
             {
-                var _ = new FurnishingModel(newFurnishingID, "will fail", "", "", inSwapID: badSwapID);
+                var _ = new FurnishingModel(newFurnishingID, "will fail", "", "", inItemID: badItemID);
             }
 
             Assert.Throws<ArgumentOutOfRangeException>(TestCode);
