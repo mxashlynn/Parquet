@@ -168,7 +168,7 @@ namespace Parquet.Beings
         }
 
         /// <summary>
-        /// Writes all <see cref="PronounGroup"/> records to the appropriate file.
+        /// Writes the given <see cref="PronounGroup"/> records to the appropriate file.
         /// </summary>
         public static void PutRecords(IEnumerable<PronounGroup> inGroups)
         {
