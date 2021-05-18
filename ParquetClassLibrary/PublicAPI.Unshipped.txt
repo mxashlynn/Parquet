@@ -925,7 +925,7 @@ static Parquet.All.Games.get -> Parquet.ModelCollection<Parquet.Games.GameModel>
 static Parquet.All.GetIDRangeForType(Parquet.Model inModel) -> Parquet.Range<Parquet.ModelID>
 static Parquet.All.GetIDRangeForType(Parquet.ModelID inID) -> Parquet.Range<Parquet.ModelID>
 static Parquet.All.GetIDRangeForType(System.Type inModelType) -> Parquet.Range<Parquet.ModelID>
-static Parquet.All.InitializeCollections(System.Collections.Generic.IEnumerable<Parquet.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<Parquet.Games.GameModel> inGames, System.Collections.Generic.IEnumerable<Parquet.Parquets.FloorModel> inFloors, System.Collections.Generic.IEnumerable<Parquet.Parquets.BlockModel> inBlocks, System.Collections.Generic.IEnumerable<Parquet.Parquets.FurnishingModel> inFurnishings, System.Collections.Generic.IEnumerable<Parquet.Parquets.CollectibleModel> inCollectibles, System.Collections.Generic.IEnumerable<Parquet.Beings.CritterModel> inCritters, System.Collections.Generic.IEnumerable<Parquet.Beings.CharacterModel> inCharacters, System.Collections.Generic.IEnumerable<Parquet.Biomes.BiomeRecipe> inBiomes, System.Collections.Generic.IEnumerable<Parquet.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<Parquet.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<Parquet.Regions.RegionModel> inRegions, System.Collections.Generic.IEnumerable<Parquet.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<Parquet.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<Parquet.Items.ItemModel> inItems) -> void
+static Parquet.All.InitializeCollections(System.Collections.Generic.IEnumerable<Parquet.Beings.PronounGroup> inPronouns, System.Collections.Generic.IEnumerable<Parquet.Games.GameModel> inGames, System.Collections.Generic.IEnumerable<Parquet.Parquets.FloorModel> inFloors, System.Collections.Generic.IEnumerable<Parquet.Parquets.BlockModel> inBlocks, System.Collections.Generic.IEnumerable<Parquet.Parquets.FurnishingModel> inFurnishings, System.Collections.Generic.IEnumerable<Parquet.Parquets.CollectibleModel> inCollectibles, System.Collections.Generic.IEnumerable<Parquet.Beings.CritterModel> inCritters, System.Collections.Generic.IEnumerable<Parquet.Beings.CharacterModel> inCharacters, System.Collections.Generic.IEnumerable<Parquet.Biomes.BiomeRecipe> inBiomes, System.Collections.Generic.IEnumerable<Parquet.Crafts.CraftingRecipe> inCraftingRecipes, System.Collections.Generic.IEnumerable<Parquet.Rooms.RoomRecipe> inRoomRecipes, System.Collections.Generic.IEnumerable<Parquet.Regions.RegionModel> inRegions, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Regions.RegionStatus>> inRegionStatuses, System.Collections.Generic.IEnumerable<Parquet.Scripts.ScriptModel> inScripts, System.Collections.Generic.IEnumerable<Parquet.Scripts.InteractionModel> inInteractions, System.Collections.Generic.IEnumerable<Parquet.Items.ItemModel> inItems) -> void
 static Parquet.All.Interactions.get -> Parquet.ModelCollection<Parquet.Scripts.InteractionModel>
 static Parquet.All.Items.get -> Parquet.ModelCollection<Parquet.Items.ItemModel>
 static Parquet.All.LoadFromCSVs() -> bool
@@ -934,6 +934,7 @@ static Parquet.All.ProjectDirectory.get -> string
 static Parquet.All.ProjectDirectory.set -> void
 static Parquet.All.PronounGroups.get -> System.Collections.Generic.IReadOnlyCollection<Parquet.Beings.PronounGroup>
 static Parquet.All.Regions.get -> Parquet.ModelCollection<Parquet.Regions.RegionModel>
+static Parquet.All.RegionStatuses.get -> System.Collections.Generic.IDictionary<Parquet.ModelID, Parquet.Regions.RegionStatus>
 static Parquet.All.RoomRecipes.get -> Parquet.ModelCollection<Parquet.Rooms.RoomRecipe>
 static Parquet.All.SaveToCSVs() -> bool
 static Parquet.All.Scripts.get -> Parquet.ModelCollection<Parquet.Scripts.ScriptModel>
@@ -1069,8 +1070,11 @@ static Parquet.Regions.RegionModel.Bounds.get -> Parquet.Range<Parquet.ModelID>
 static Parquet.Regions.RegionModel.CheckExitConsistency(Parquet.ModelID inRegionID) -> System.Collections.Generic.ICollection<string>
 static Parquet.Regions.RegionModel.DimensionsInChunks.get -> Parquet.Point2D
 static Parquet.Regions.RegionStatus.DimensionsInParquets.get -> Parquet.Point2D
+static Parquet.Regions.RegionStatus.FilePath.get -> string
+static Parquet.Regions.RegionStatus.GetRecords() -> System.Collections.Generic.Dictionary<Parquet.ModelID, Parquet.Regions.RegionStatus>
 static Parquet.Regions.RegionStatus.operator !=(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool
 static Parquet.Regions.RegionStatus.operator ==(Parquet.Regions.RegionStatus inStatus1, Parquet.Regions.RegionStatus inStatus2) -> bool
+static Parquet.Regions.RegionStatus.PutRecords(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Parquet.ModelID, Parquet.Regions.RegionStatus>> inRegionStatuses) -> void
 static Parquet.Regions.RegionStatus.Unused.get -> Parquet.Regions.RegionStatus
 static Parquet.Rooms.MapSpace.operator !=(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool
 static Parquet.Rooms.MapSpace.operator ==(Parquet.Rooms.MapSpace inSpace1, Parquet.Rooms.MapSpace inSpace2) -> bool

@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using Parquet.Biomes;
@@ -450,7 +453,59 @@ namespace Parquet.Regions
             => new RegionStatus(ParquetModels, ParquetStatuses) as T;
         #endregion
 
+        #region Self Serialization
+        /// <summary>
+        /// Reads all <see cref="RegionStatus"/> records from the appropriate file.
+        /// </summary>
+        /// <returns>The instances read.</returns>
+        public static Dictionary<ModelID, RegionStatus> GetRecords()
+        {
+            using var reader = new StreamReader(FilePath);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            csv.Configuration.PrepareHeaderForMatch =
+                (string header, int index)
+                    => header.StartsWith("in", StringComparison.InvariantCulture)
+                        ? header[2..].ToUpperInvariant()
+                        : header.ToUpperInvariant();
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            return new Dictionary<ModelID, RegionStatus>(csv.GetRecords<KeyValuePair<ModelID, RegionStatus>>());
+        }
+
+        /// <summary>
+        /// Writes the given <see cref="RegionStatus"/> records to the appropriate file.
+        /// </summary>
+        public static void PutRecords(IEnumerable<KeyValuePair<ModelID, RegionStatus>> inRegionStatuses)
+        {
+            Precondition.IsNotNull(inRegionStatuses);
+
+            using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
+            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csv.Configuration.NewLine = NewLine.LF;
+            csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            foreach (var kvp in All.ConversionConverters)
+            {
+                csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
+            }
+
+            csv.WriteHeader<RegionStatus>();
+            csv.NextRecord();
+            csv.WriteRecords(inRegionStatuses);
+        }
+        #endregion
+
         #region Utilities
+        /// <summary>
+        /// Returns the filename and path associated with <see cref="RegionStatus"/>'s definition file.
+        /// </summary>
+        /// <returns>A full path to the associated file.</returns>
+        public static string FilePath
+            => $"{All.ProjectDirectory}/{nameof(RegionStatus)}es.csv";
+
         /// <summary>
         /// Determines if the given position corresponds to a point in the region.
         /// </summary>

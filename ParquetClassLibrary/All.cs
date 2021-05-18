@@ -245,7 +245,7 @@ namespace Parquet
 
         /// <summary>
         /// A collection of all defined <see cref="RegionModel"/>s.
-        /// This collection is the source of truth about regions for the rest of the library,
+        /// This collection is the source of truth about non-map region data for the rest of the library,
         /// something like a color palette that other classes can paint with.
         /// </summary>
         /// <remarks>All <see cref="ModelID"/>s must be unique.</remarks>
@@ -282,6 +282,13 @@ namespace Parquet
         /// This collection is the source of truth about pronouns for the rest of the library.
         /// </summary>
         public static IReadOnlyCollection<PronounGroup> PronounGroups { get; private set; }
+
+        /// <summary>
+        /// An optional collection of all <see cref="RegionStatus"/>es currently generated.
+        /// These are the actual maps in play, and each corresponds to a <see cref="RegionModel"/> in <see cref="Regions"/>.
+        /// This collection is mutable during play.
+        /// </summary>
+        public static IDictionary<ModelID, RegionStatus> RegionStatuses { get; private set; }
         #endregion
 
         #region Initialization
@@ -316,6 +323,7 @@ namespace Parquet
             Items = ModelCollection<ItemModel>.Default;
 
             PronounGroups = new HashSet<PronounGroup>();
+            RegionStatuses = new Dictionary<ModelID, RegionStatus>();
             #endregion
 
             #region Initialize Ranges
@@ -483,7 +491,8 @@ namespace Parquet
         /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
         /// <param name="inGames">All games or episodes to be used in the game.</param>
         /// <param name="inInteractions">All interactions to be used in the game.</param>
-        /// <param name="inRegions">All maps to be used in the game.</param>
+        /// <param name="inRegions">All region metadata to be used in the game.</param>
+        /// <param name="inRegionStatuses">All maps that have already been generated in the game.</param>
         /// <param name="inFloors">All floors to be used in the game.</param>
         /// <param name="inBlocks">All blocks to be used in the game.</param>
         /// <param name="inFurnishings">All furnishings to be used in the game.</param>
@@ -505,6 +514,7 @@ namespace Parquet
                                                  IEnumerable<CraftingRecipe> inCraftingRecipes,
                                                  IEnumerable<RoomRecipe> inRoomRecipes,
                                                  IEnumerable<RegionModel> inRegions,
+                                                 IEnumerable<KeyValuePair<ModelID, RegionStatus>> inRegionStatuses,
                                                  IEnumerable<ScriptModel> inScripts,
                                                  IEnumerable<InteractionModel> inInteractions,
                                                  IEnumerable<ItemModel> inItems)
@@ -551,7 +561,10 @@ namespace Parquet
             Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
             Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
             Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
+
             PronounGroups = new HashSet<PronounGroup>(inPronouns);
+            RegionStatuses = new Dictionary<ModelID, RegionStatus>(inRegionStatuses);
+
             CollectionsHaveBeenInitialized = true;
         }
         #endregion
@@ -590,8 +603,12 @@ namespace Parquet
                 var items = ModelCollection<ItemModel>.ConverterFactory.GetRecordsForType<ItemModel>(ItemIDs);
                 #endregion
 
-                InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters, biomeRecipes,
-                                      craftingRecipes, roomRecipes, regions, scripts, interactions, items);
+                #region Read Maps
+                var maps = RegionStatus.GetRecords();
+                #endregion
+
+                InitializeCollections(pronounGroups, games, floors, blocks, furnishings, collectibles, critters, characters,
+                                      biomeRecipes, craftingRecipes, roomRecipes, regions, maps, scripts, interactions, items);
                 return true;
             }
             catch (Exception loadException)
@@ -610,7 +627,6 @@ namespace Parquet
             try
             {
                 #region Write Configuration
-                PronounGroup.PutRecords(PronounGroups);
                 BiomeConfiguration.PutRecord();
                 CraftConfiguration.PutRecord();
                 InventoryConfiguration.PutRecord();
@@ -632,6 +648,11 @@ namespace Parquet
                 Scripts.PutRecordsForType<ScriptModel>();
                 Interactions.PutRecordsForType<InteractionModel>();
                 Items.PutRecordsForType<ItemModel>();
+                #endregion
+
+                #region Write Other Collections
+                PronounGroup.PutRecords(PronounGroups);
+                RegionStatus.PutRecords(RegionStatuses);
                 #endregion
 
                 return true;
@@ -675,6 +696,7 @@ namespace Parquet
                 ((IMutableModelCollection<InteractionModel>)Interactions)?.Clear();
                 ((IMutableModelCollection<ItemModel>)Items)?.Clear();
                 ((HashSet<PronounGroup>)PronounGroups)?.Clear();
+                RegionStatuses?.Clear();
                 CollectionsHaveBeenInitialized = false;
             }
         }
