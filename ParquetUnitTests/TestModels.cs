@@ -19,7 +19,7 @@ namespace ParquetUnitTests
     {
         #region Test Value Components
         /// <summary>Used in test patterns in QA routines.</summary>
-        internal static readonly ModelTag TestTag = "Test Tag";
+        internal static readonly ModelTag TestTag = "Test-Tag";
         /// <summary>Used in test patterns in QA routines.</summary>
         internal static readonly ScriptNode TestNode = $"A{Delimiters.InternalDelimiter}{Delimiters.InternalDelimiter}Test Alert";
         /// <summary>Used in test patterns in QA routines.</summary>
@@ -133,7 +133,7 @@ namespace ParquetUnitTests
         internal static IReadOnlyList<FurnishingModel> Furnishings { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
-        internal static IReadOnlyList<CollectibleModel> Collectibles{ get; }
+        internal static IReadOnlyList<CollectibleModel> Collectibles { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         internal static IReadOnlyList<RoomRecipe> RoomRecipes { get; }
