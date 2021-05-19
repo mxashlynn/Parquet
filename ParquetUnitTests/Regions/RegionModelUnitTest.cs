@@ -12,9 +12,9 @@ namespace ParquetUnitTests.Maps
         #region Values for Tests
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
-        private static readonly RegionModel defaultRegion = new(TestModels.TestMapRegionModel.ID - 1,
-                                                                                  nameof(RegionModelUnitTest.defaultRegion),
-                                                                                  "", "");
+        private static readonly RegionModel defaultRegion = new(TestModels.TestRegionModel.ID - 1,
+                                                                nameof(defaultRegion),
+                                                                "", "");
         #endregion
 
         #region Region Map Initialization
@@ -27,7 +27,7 @@ namespace ParquetUnitTests.Maps
         [Fact]
         internal void NewCustomMapRegionModelTest()
         {
-            var customRegion = new RegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, testColor);
+            var customRegion = new RegionModel(TestModels.TestRegionModel.ID - 1, testName, "", "", null, testColor);
 
             Assert.Equal(testName, customRegion.Name);
             Assert.Equal(testColor, customRegion.BackgroundColor);
@@ -42,7 +42,7 @@ namespace ParquetUnitTests.Maps
         {
             if (LibraryState.IsDebugMode)
             {
-                var customRegion = new RegionModel(TestModels.TestMapRegionModel.ID - 1, testName, "", "", null, testColor);
+                var customRegion = new RegionModel(TestModels.TestRegionModel.ID - 1, testName, "", "", null, testColor);
                 IMutableRegionModel editableRegion = customRegion;
 
                 editableRegion.Name = testName;
