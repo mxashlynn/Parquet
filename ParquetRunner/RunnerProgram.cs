@@ -56,7 +56,7 @@ namespace ParquetRunner
         public static InteractionModel TestInteraction { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
-        public static RegionModel TestMapRegionModel { get; }
+        public static RegionModel TestRegionModel { get; }
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static FloorModel TestFloor { get; }
@@ -90,6 +90,15 @@ namespace ParquetRunner
 
         /// <summary>Used in test patterns in QA routines.</summary>
         public static ItemModel TestItem4 { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static ParquetModelPackGrid TestParquetModelPackGrid { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static ParquetStatusPackGrid TestParquetStatusPackGrid { get; }
+
+        /// <summary>Used in test patterns in QA routines.</summary>
+        public static RegionStatus TestRegionStatus { get; }
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<PronounGroup> PronounGroups { get; }
@@ -135,6 +144,10 @@ namespace ParquetRunner
 
         /// <summary>Used in initializing <see cref="All"/>.</summary>
         public static IReadOnlyList<ItemModel> Items { get; }
+
+        /// <summary>Used in initializing <see cref="All"/>.</summary>
+        public static IReadOnlyDictionary<ModelID, RegionStatus> RegionStatuses { get; }
+
         #endregion
 
         /// <summary>
@@ -152,7 +165,7 @@ namespace ParquetRunner
                                                     null, TestRecipeElementList, TestRecipeElementList,
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
-            TestMapRegionModel = new RegionModel(-All.RegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
+            TestRegionModel = new RegionModel(-All.RegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
             TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: new List<ModelTag> { TestTag });
@@ -171,6 +184,11 @@ namespace ParquetRunner
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 2);
             TestItem4 = new ItemModel(-All.ItemIDs.Minimum - 3, "14 Test Item 4", "Test", "Test", TestTagList, ItemType.Other,
                                       1, 0, 999, All.ScriptIDs.Minimum, All.ScriptIDs.Minimum, -All.BlockIDs.Minimum - 3);
+            // TODO [MAPS] Fill this in.
+            TestParquetModelPackGrid = null;
+            // TODO [MAPS] Fill this in.
+            TestParquetStatusPackGrid = null;
+            TestRegionStatus = new RegionStatus(TestParquetModelPackGrid, TestParquetStatusPackGrid);
             TestGame = new GameModel(-All.GameIDs.Minimum, "4.5 Test Game", "Test", "Test", null, false, "Not an episode", -1, TestCharacter.ID, TestScript.ID);
             #endregion
 
@@ -182,8 +200,8 @@ namespace ParquetRunner
             CraftingRecipes = new List<CraftingRecipe> { TestCraftingRecipe };
             Games = new List<GameModel> { TestGame };
             Interactions = new List<InteractionModel> { TestInteraction };
-            // TODO [MAP] [TESTS] Do we still need the regions list?
-            Regions = new List<RegionModel> { TestMapRegionModel };
+            Regions = new List<RegionModel> { TestRegionModel };
+            RegionStatuses = new Dictionary<ModelID, RegionStatus> { { TestRegionModel.ID, TestRegionStatus } };
             Floors = new List<FloorModel> { TestFloor };
             Blocks = new List<BlockModel> { TestBlock, TestLiquid };
             Furnishings = new List<FurnishingModel> { TestFurnishing };
@@ -193,7 +211,8 @@ namespace ParquetRunner
             Scripts = new List<ScriptModel> { TestScript };
 
             All.InitializeCollections(PronounGroups, Games, Floors, Blocks, Furnishings, Collectibles, Critters, Characters,
-                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, Scripts, Interactions, Items);
+                                      BiomeRecipes, CraftingRecipes, RoomRecipes, Regions, RegionStatuses, Scripts, Interactions,
+                                      Items);
             #endregion
         }
     }
