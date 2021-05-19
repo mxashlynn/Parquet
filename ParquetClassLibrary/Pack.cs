@@ -9,7 +9,7 @@ namespace Parquet
     /// Simple container for collocated game objects.
     /// Instances of these classes are mutable during play.
     /// </summary>
-    public abstract class Pack<T> :  IEquatable<Pack<T>>, ITypeConverter, IDeeplyCloneable<Pack<T>>
+    public abstract class Pack<T> : IEquatable<Pack<T>>, ITypeConverter, IDeeplyCloneable<Pack<T>>
     {
         #region IEquatable Implementation
         /// <summary>

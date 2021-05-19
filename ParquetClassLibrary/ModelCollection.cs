@@ -213,7 +213,7 @@ namespace Parquet
                 return;
             }
 
-            foreach(var kvp in EditableModels)
+            foreach (var kvp in EditableModels)
             {
                 kvp.Value.VisibleDataChanged -= OnVisibleDataChanged;
             }

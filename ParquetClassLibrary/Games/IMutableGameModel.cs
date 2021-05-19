@@ -10,10 +10,10 @@ namespace Parquet.Games
     public interface IMutableGameModel : IMutableModel
     {
         /// <summary>If <c>true</c> this game is part of a longer sequence of games.</summary>
-        public bool IsEpisode { get; set;  }
+        public bool IsEpisode { get; set; }
 
         /// <summary>Subtitle, if any.  This will be used as the title of the episode if <see cref="IsEpisode"/> is <c>true</c>.</summary>
-        public string EpisodeTitle { get; set;  }
+        public string EpisodeTitle { get; set; }
 
         /// <summary>Number of this episode in its sequence, if any.</summary>
         public int EpisodeNumber { get; set; }

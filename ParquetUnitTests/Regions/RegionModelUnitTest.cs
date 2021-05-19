@@ -12,9 +12,7 @@ namespace ParquetUnitTests.Maps
         #region Values for Tests
         private const string testColor = "#FF8822EE";
         private const string testName = "Test Region";
-        private static readonly RegionModel defaultRegion = new(TestModels.TestRegionModel.ID - 1,
-                                                                nameof(defaultRegion),
-                                                                "", "");
+        private static readonly RegionModel defaultRegion = new(TestModels.TestRegionModel.ID - 1, nameof(defaultRegion), "", "");
         #endregion
 
         #region Region Map Initialization

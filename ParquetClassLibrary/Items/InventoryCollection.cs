@@ -128,7 +128,7 @@ namespace Parquet.Items
             Precondition.IsNotNullOrEmpty(inSlots, nameof(inSlots));
 
             var result = true;
-            foreach (var slot in inSlots ?? Enumerable.Empty< InventorySlot>())
+            foreach (var slot in inSlots ?? Enumerable.Empty<InventorySlot>())
             {
                 result &= Has(slot.ItemID, slot.Count);
             }

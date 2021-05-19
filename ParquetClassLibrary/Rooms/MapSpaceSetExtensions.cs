@@ -90,7 +90,7 @@ namespace Parquet.Rooms
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
                                                nameof(potentialPerimeter.Count),
                                                potentialPerimeter.Count, RoomConfiguration.MinPerimeterSpaces));
-                    
+
                     // Validate the perimeter.
                     outPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
                                    && perimiterSeeds.All(position => potentialPerimeter.Any(space => space.Position == position))
