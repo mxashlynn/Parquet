@@ -449,7 +449,8 @@ namespace Parquet.Regions
         /// </summary>
         /// <returns>A new instance with the same characteristics as the current instance.</returns>
         public override T DeepClone<T>()
-            => new RegionStatus(ParquetModels, ParquetStatuses) as T;
+            => new RegionStatus((ParquetModelPackGrid)ParquetModels.DeepClone(),
+                                (ParquetStatusPackGrid)ParquetStatuses.DeepClone()) as T;
         #endregion
 
         #region Self Serialization
