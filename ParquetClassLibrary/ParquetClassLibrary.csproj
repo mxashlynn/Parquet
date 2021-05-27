@@ -17,6 +17,7 @@
     <Copyright>2018-2021 Paige Ashlynn</Copyright>
     <ApplicationIcon>ParquetIcon.ico</ApplicationIcon>
     <PackageIcon>Parquet Logo Large.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageProjectUrl>http://parquet.gay/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mxashlynn/Parquet</RepositoryUrl>
@@ -59,14 +60,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Properties\Parquet Logo Large.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <!--- NOTE: Updating to CSVHelper Version 20 requires major research and adjustment of CSVHelper code. -->
+    <!--- NOTE: Updating to CSVHelper Version 20+ requires major research and adjustment of CSVHelper code. -->
     <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2">
       <PrivateAssets>all</PrivateAssets>
@@ -92,13 +86,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Properties\Parquet Logo Large.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="Properties\ParquetIcon.ico">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
