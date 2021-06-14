@@ -110,19 +110,19 @@ namespace Parquet
         /// <summary>
         /// Converts the given record column to <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="inText">The record column to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The record column to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the record column.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return None;
             }
 
-            var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
+            var elementSplitText = text.Split(Delimiters.InternalDelimiter);
 
             var elementAmountText = elementSplitText[0];
             var elementTagText = elementSplitText[1];
@@ -130,7 +130,7 @@ namespace Parquet
             var amount = int.TryParse(elementAmountText, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? temp
                 : Logger.DefaultWithParseLog(elementAmountText, nameof(ElementAmount), 0);
-            var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
+            var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, row, memberMapData);
 
             return new RecipeElement(amount, tag);
         }
@@ -138,17 +138,17 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="RecipeElement"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is RecipeElement recipeElement
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is RecipeElement recipeElement
                 ? recipeElement == None
                     ? nameof(None)
                     : $"{recipeElement.ElementAmount}{Delimiters.InternalDelimiter}" +
                       $"{recipeElement.ElementTag}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities

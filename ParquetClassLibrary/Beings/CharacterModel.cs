@@ -85,41 +85,41 @@ namespace Parquet.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="CharacterModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="CharacterModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="CharacterModel"/>.</param>
-        /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="CharacterModel"/> is most comfortable.</param>
-        /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
-        /// <param name="inAvoidsIDs">Any parquets this <see cref="CharacterModel"/> avoids.</param>
-        /// <param name="inSeeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>
-        /// <param name="inPronounKey">How to refer to this <see cref="CharacterModel"/>.</param>
-        /// <param name="inStoryCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
-        /// <param name="inStartingLocation">The <see cref="Location"/> where this <see cref="CharacterModel"/> begins.</param>
-        /// <param name="inStartingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
-        /// <param name="inStartingDialogueID">All dialogue this <see cref="CharacterModel"/> may say.</param>
-        /// <param name="inStartingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
-        public CharacterModel(ModelID inID, string inName, string inDescription, string inComment,
-                              IEnumerable<ModelTag> inTags = null, ModelID? inNativeBiomeID = null,
-                              ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
-                              IEnumerable<ModelID> inSeeksIDs = null, string inPronounKey = PronounGroup.DefaultKey,
-                              string inStoryCharacterID = "", Location? inStartingLocation = null,
-                              IEnumerable<ModelID> inStartingQuestIDs = null, ModelID? inStartingDialogueID = null,
-                              InventoryCollection inStartingInventory = null)
-            : base(All.CharacterIDs, inID, inName, inDescription, inComment, inTags,
-                   inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
+        /// <param name="id">Unique identifier for the <see cref="CharacterModel"/>.  Cannot be null.</param>
+        /// <param name="name">Personal and family names of the <see cref="CharacterModel"/>, separated by a space.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="CharacterModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="CharacterModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="CharacterModel"/>.</param>
+        /// <param name="nativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this <see cref="CharacterModel"/> is most comfortable.</param>
+        /// <param name="primaryBehaviorID">The rules that govern how this <see cref="CharacterModel"/> acts.  Cannot be null.</param>
+        /// <param name="avoidsIDs">Any parquets this <see cref="CharacterModel"/> avoids.</param>
+        /// <param name="seeksIDs">Any parquets this <see cref="CharacterModel"/> seeks.</param>
+        /// <param name="pronounKey">How to refer to this <see cref="CharacterModel"/>.</param>
+        /// <param name="storyCharacterID">A means of identifying this <see cref="CharacterModel"/> across multiple shipped game titles.</param>
+        /// <param name="startingLocation">The <see cref="Location"/> where this <see cref="CharacterModel"/> begins.</param>
+        /// <param name="startingQuestIDs">Any quests this <see cref="CharacterModel"/> has to offer or has undertaken.</param>
+        /// <param name="startingDialogueID">All dialogue this <see cref="CharacterModel"/> may say.</param>
+        /// <param name="startingInventory">Any items this <see cref="CharacterModel"/> possesses at the outset.</param>
+        public CharacterModel(ModelID id, string name, string description, string comment,
+                              IEnumerable<ModelTag> tags = null, ModelID? nativeBiomeID = null,
+                              ModelID? primaryBehaviorID = null, IEnumerable<ModelID> avoidsIDs = null,
+                              IEnumerable<ModelID> seeksIDs = null, string pronounKey = PronounGroup.DefaultKey,
+                              string storyCharacterID = "", Location? startingLocation = null,
+                              IEnumerable<ModelID> startingQuestIDs = null, ModelID? startingDialogueID = null,
+                              InventoryCollection startingInventory = null)
+            : base(All.CharacterIDs, id, name, description, comment, tags,
+                   nativeBiomeID, primaryBehaviorID, avoidsIDs, seeksIDs)
         {
-            var nonNullStartingLocation = inStartingLocation ?? Location.Nowhere;
-            var nonNullQuestIDs = inStartingQuestIDs ?? Enumerable.Empty<ModelID>();
-            var nonNullDialogueID = inStartingDialogueID ?? ModelID.None;
-            var nonNullInventory = inStartingInventory ?? InventoryCollection.Empty;
+            var nonNullStartingLocation = startingLocation ?? Location.Nowhere;
+            var nonNullQuestIDs = startingQuestIDs ?? Enumerable.Empty<ModelID>();
+            var nonNullDialogueID = startingDialogueID ?? ModelID.None;
+            var nonNullInventory = startingInventory ?? InventoryCollection.Empty;
 
-            Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(inStartingQuestIDs));
-            Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(inStartingDialogueID));
+            Precondition.AreInRange(nonNullQuestIDs, All.InteractionIDs, nameof(startingQuestIDs));
+            Precondition.IsInRange(nonNullDialogueID, All.InteractionIDs, nameof(startingDialogueID));
 
-            PronounKey = inPronounKey;
-            StoryCharacterID = inStoryCharacterID;
+            PronounKey = pronounKey;
+            StoryCharacterID = storyCharacterID;
             StartingLocation = nonNullStartingLocation;
             StartingQuestIDs = nonNullQuestIDs.ToList();
             StartingDialogueID = nonNullDialogueID;

@@ -39,20 +39,20 @@ namespace Parquet
         /// <summary>
         /// Checks if the given <see cref="ModelID"/> falls within the given <see cref="Range{ModelID}"/>, inclusive.
         /// </summary>
-        /// <param name="inID">The identifier to test.</param>
+        /// <param name="id">The identifier to test.</param>
         /// <param name="inBounds">The range it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         [Conditional("DEBUG")]
-        public static void IsInRange(ModelID inID, Range<ModelID> inBounds, string inArgumentName)
+        public static void IsInRange(ModelID id, Range<ModelID> inBounds, string inArgumentName)
         {
-            if (!inID.IsValidForRange(inBounds))
+            if (!id.IsValidForRange(inBounds))
             {
                 if (string.IsNullOrEmpty(inArgumentName))
                 {
                     inArgumentName = DefaultArgumentName;
                 }
                 Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                         inArgumentName, inID, inBounds));
+                                                         inArgumentName, id, inBounds));
             }
         }
 
@@ -80,15 +80,15 @@ namespace Parquet
         /// Checks if the first given <see cref="ModelID"/> falls within at least one of the
         /// given collection of <see cref="Range{ModelID}"/>s, inclusive.
         /// </summary>
-        /// <param name="inID">The identifier to test.</param>
+        /// <param name="id">The identifier to test.</param>
         /// <param name="inBoundsCollection">The collection of ranges it must fall within.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         [Conditional("DEBUG")]
-        public static void IsInRange(ModelID inID, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
+        public static void IsInRange(ModelID id, IEnumerable<Range<ModelID>> inBoundsCollection, string inArgumentName)
         {
             IsNotNull(inBoundsCollection, nameof(inBoundsCollection));
 
-            if (!inID.IsValidForRange(inBoundsCollection))
+            if (!id.IsValidForRange(inBoundsCollection))
             {
                 var allBounds = new System.Text.StringBuilder();
                 foreach (var range in inBoundsCollection)
@@ -101,7 +101,7 @@ namespace Parquet
                     inArgumentName = DefaultArgumentName;
                 }
                 Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                         inArgumentName, inID, allBounds));
+                                                         inArgumentName, id, allBounds));
             }
         }
 
@@ -195,12 +195,12 @@ namespace Parquet
         /// <summary>
         /// Verifies that the given <see cref="ModelID"/> is not <see cref="ModelID.None"/>.
         /// </summary>
-        /// <param name="inID">The number to test.</param>
+        /// <param name="id">The number to test.</param>
         /// <param name="inArgumentName">The name of the argument to use in error reporting.</param>
         [Conditional("DEBUG")]
-        public static void IsNotNone(ModelID inID, string inArgumentName = DefaultArgumentName)
+        public static void IsNotNone(ModelID id, string inArgumentName = DefaultArgumentName)
         {
-            if (inID == ModelID.None)
+            if (id == ModelID.None)
             {
                 Logger.Log(LogLevel.Debug, string.Format(CultureInfo.CurrentCulture, Resources.ErrorMustNotBeNone,
                                                          inArgumentName));

@@ -44,11 +44,11 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="FurnishingModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="FurnishingModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="FurnishingModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="FurnishingModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="FurnishingModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="FurnishingModel"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="FurnishingModel"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="FurnishingModel"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="FurnishingModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="FurnishingModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="FurnishingModel"/>.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> that represents this <see cref="FurnishingModel"/> in the <see cref="Items.InventoryCollection"/>.</param>
         /// <param name="inAddsToBiome">Indicates which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
@@ -57,12 +57,12 @@ namespace Parquet.Parquets
         /// <param name="inIsEnclosing">If <c>true</c> this <see cref="FurnishingModel"/> serves as part of a perimeter of a <see cref="Rooms.Room"/>.</param>
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="FurnishingModel"/> may catch fire.</param>
         /// <param name="inIsOpenable">If <c>true</c> this <see cref="FurnishingModel"/> may be opened and closed.</param>
-        public FurnishingModel(ModelID inID, string inName, string inDescription, string inComment,
-                               IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
+        public FurnishingModel(ModelID id, string name, string description, string comment,
+                               IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
                                IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
                                bool inIsWalkable = false, EntryType inEntry = EntryType.None, bool inIsEnclosing = false,
                                bool inIsFlammable = false, bool inIsOpenable = false)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, id, name, description, comment, tags, inItemID, inAddsToBiome, inAddsToRoom)
         {
             IsWalkable = inIsWalkable;
             Entry = inEntry;

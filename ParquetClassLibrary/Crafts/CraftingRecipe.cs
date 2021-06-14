@@ -47,26 +47,26 @@ namespace Parquet.Crafts
         /// <summary>
         /// Initializes a new instance of the <see cref="CraftingRecipe"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
-        /// <param name="inTags">Any additional functionality this <see cref="CraftingRecipe"/> has.</param>
-        /// <param name="inProducts">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
-        /// <param name="inIngredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
-        /// <param name="inPanelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="CraftingRecipe"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="CraftingRecipe"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="CraftingRecipe"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="CraftingRecipe"/>.</param>
+        /// <param name="tags">Any additional functionality this <see cref="CraftingRecipe"/> has.</param>
+        /// <param name="products">The types and quantities of <see cref="Items.ItemModel"/>s created by following this recipe once.</param>
+        /// <param name="ingredients">All items needed to follow this <see cref="CraftingRecipe"/> once.</param>
+        /// <param name="panelPattern">The arrangement of panels encompassed by this <see cref="CraftingRecipe"/>.</param>
         /// <remarks>
-        /// <paramref name="inPanelPattern"/> must have dimensions between <c>1</c> and those given by
+        /// <paramref name="panelPattern"/> must have dimensions between <c>1</c> and those given by
         /// <see cref="StrikePanelGrid.PanelsPerPatternWidth"/> and <see cref="StrikePanelGrid.PanelsPerPatternHeight"/>.
         /// </remarks>
-        public CraftingRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                              IEnumerable<ModelTag> inTags = null, IEnumerable<RecipeElement> inProducts = null,
-                              IEnumerable<RecipeElement> inIngredients = null, IReadOnlyGrid<StrikePanel> inPanelPattern = null)
-            : base(All.CraftingRecipeIDs, inID, inName, inDescription, inComment, inTags)
+        public CraftingRecipe(ModelID id, string name, string description, string comment,
+                              IEnumerable<ModelTag> tags = null, IEnumerable<RecipeElement> products = null,
+                              IEnumerable<RecipeElement> ingredients = null, IReadOnlyGrid<StrikePanel> panelPattern = null)
+            : base(All.CraftingRecipeIDs, id, name, description, comment, tags)
         {
-            var nonNullProducts = inProducts ?? Enumerable.Empty<RecipeElement>();
-            var nonNullIngredients = inIngredients ?? Enumerable.Empty<RecipeElement>();
-            var nonNullPanelPattern = inPanelPattern ?? StrikePanelGrid.Empty;
+            var nonNullProducts = products ?? Enumerable.Empty<RecipeElement>();
+            var nonNullIngredients = ingredients ?? Enumerable.Empty<RecipeElement>();
+            var nonNullPanelPattern = panelPattern ?? StrikePanelGrid.Empty;
 
             // NOTE that these two checks should not be made from within editing tools.
             if (LibraryState.IsPlayMode)
@@ -75,14 +75,14 @@ namespace Parquet.Crafts
                 if (!CraftConfiguration.ProductCount.ContainsValue(count))
                 {
                     Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                               $"{nameof(inProducts)}.Count", count,
+                                                               $"{nameof(products)}.Count", count,
                                                                CraftConfiguration.ProductCount));
                 }
                 count = nonNullIngredients.Count();
                 if (!CraftConfiguration.IngredientCount.ContainsValue(count))
                 {
                     Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                               $"{nameof(inIngredients)}.Count", count,
+                                                               $"{nameof(ingredients)}.Count", count,
                                                                CraftConfiguration.IngredientCount));
                 }
             }
@@ -92,7 +92,7 @@ namespace Parquet.Crafts
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
                                                            Resources.ErrorUnsupportedDimension,
-                                                           nameof(inPanelPattern)));
+                                                           nameof(panelPattern)));
             }
 
             Products = nonNullProducts.ToList();
@@ -133,11 +133,11 @@ namespace Parquet.Crafts
         IGrid<StrikePanel> IMutableCraftingRecipe.PanelPattern => (IGrid<StrikePanel>)PanelPattern;
 
         /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
-        /// <param name="inReplacement">The new pattern to use.</param>
-        public void PanelPatternReplace(IGrid<StrikePanel> inReplacement)
+        /// <param name="replacement">The new pattern to use.</param>
+        public void PanelPatternReplace(IGrid<StrikePanel> replacement)
             => PanelPattern = LibraryState.IsPlayMode
                 ? Logger.DefaultWithImmutableInPlayLog(nameof(PanelPattern), PanelPattern)
-                : inReplacement as StrikePanelGrid ?? StrikePanelGrid.Empty;
+                : replacement as StrikePanelGrid ?? StrikePanelGrid.Empty;
         #endregion
     }
 }

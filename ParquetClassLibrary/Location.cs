@@ -91,35 +91,35 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Location location
-                ? $"{location.RegionID.ConvertToString(location.RegionID, inRow, inMemberMapData)}{Delimiters.InternalDelimiter}" +
-                  $"{location.Position.ConvertToString(location.Position, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Location), nameof(Nowhere));
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is Location location
+                ? $"{location.RegionID.ConvertToString(location.RegionID, row, memberMapData)}{Delimiters.InternalDelimiter}" +
+                  $"{location.Position.ConvertToString(location.Position, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(Location), nameof(Nowhere));
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Nowhere), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Nowhere), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Nowhere;
             }
 
-            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = text.Split(Delimiters.InternalDelimiter);
 
-            var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
+            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
 
             return new Location(parsedRegionID, parsedPosition);
         }

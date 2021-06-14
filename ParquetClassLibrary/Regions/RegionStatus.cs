@@ -363,10 +363,10 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="RegionStatus"/> is equal to the current <see cref="RegionStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="RegionStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="RegionStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is RegionStatus regionStatus
+        public override bool Equals<T>(T status)
+            => status is RegionStatus regionStatus
             && ParquetModels == regionStatus.ParquetModels
             && ParquetStatuses == regionStatus.ParquetStatuses;
 
@@ -382,20 +382,20 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether a specified instance of <see cref="RegionStatus"/> is equal to another specified instance of <see cref="RegionStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="RegionStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="RegionStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="RegionStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="RegionStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(RegionStatus inStatus1, RegionStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(RegionStatus status1, RegionStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RegionStatus"/> is not equal to another specified instance of <see cref="RegionStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="RegionStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="RegionStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="RegionStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="RegionStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(RegionStatus inStatus1, RegionStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(RegionStatus status1, RegionStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -405,39 +405,39 @@ namespace Parquet.Regions
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is RegionStatus status
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is RegionStatus status
                 // NOTE Tertiary delimiter is used here to separate ParquetModelPackGrid from ParquetStatusPackGrid.
-                ? $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetModels, inRow, inMemberMapData)}{Delimiters.TertiaryDelimiter}" +
-                  $"{GridConverter<ParquetStatusPack, ParquetStatusPackGrid>.ConverterFactory.ConvertToString(ParquetStatuses, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(MapChunk), nameof(Unused));
+                ? $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetModels, row, memberMapData)}{Delimiters.TertiaryDelimiter}" +
+                  $"{GridConverter<ParquetStatusPack, ParquetStatusPackGrid>.ConverterFactory.ConvertToString(ParquetStatuses, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(MapChunk), nameof(Unused));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Unused), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Unused.DeepClone();
             }
 
-            var parameterText = inText.Split(Delimiters.TertiaryDelimiter);
+            var parameterText = text.Split(Delimiters.TertiaryDelimiter);
             var parsedParquetModels = (ParquetModelPackGrid)GridConverter<ParquetModelPack, ParquetModelPackGrid>
                 .ConverterFactory
-                .ConvertFromString(parameterText[0], inRow, inMemberMapData);
+                .ConvertFromString(parameterText[0], row, memberMapData);
             var parsedParquetStatuses = (ParquetStatusPackGrid)GridConverter<ParquetStatusPack, ParquetStatusPackGrid>
                 .ConverterFactory
-                .ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                .ConvertFromString(parameterText[1], row, memberMapData);
 
             return new RegionStatus(parsedParquetModels, parsedParquetStatuses);
         }

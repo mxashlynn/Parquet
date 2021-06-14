@@ -69,10 +69,10 @@ namespace Parquet.Scripts
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
+        /// <param name="value">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
-        public static implicit operator ScriptNode(string inValue)
-            => new() { nodeContent = inValue };
+        public static implicit operator ScriptNode(string value)
+            => new() { nodeContent = value };
 
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
@@ -87,7 +87,7 @@ namespace Parquet.Scripts
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be compared one another.
         /// </summary>
-        /// <param name="inTag">Any valid <see cref="ScriptNode"/>.</param>
+        /// <param name="tag">Any valid <see cref="ScriptNode"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ScriptNode"/>s being compared.
         /// The return value has these meanings:
@@ -96,8 +96,8 @@ namespace Parquet.Scripts
         ///     Greater than zero indicates that the current instance follows the given <see cref="ScriptNode"/> in the sort order.
         /// </returns>
         /// <remarks>This comparison is case insensitive.</remarks>
-        public int CompareTo(ScriptNode inTag)
-            => string.Compare(nodeContent, inTag?.nodeContent ?? "", StringComparison.OrdinalIgnoreCase);
+        public int CompareTo(ScriptNode tag)
+            => string.Compare(nodeContent, tag?.nodeContent ?? "", StringComparison.OrdinalIgnoreCase);
         #endregion
 
         #region ITypeConverter Implementation
@@ -108,26 +108,26 @@ namespace Parquet.Scripts
         /// <summary>
         /// Converts the given <see cref="string"/> to a <see cref="ScriptNode"/>.
         /// </summary>
-        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The <see cref="string"/> to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ScriptNode"/> created from the <see cref="string"/>.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => string.IsNullOrEmpty(inText)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => string.IsNullOrEmpty(text)
                 ? None
-                : (ScriptNode)$"{char.ToUpperInvariant(inText[0])}{inText[1..]}";
+                : (ScriptNode)$"{char.ToUpperInvariant(text[0])}{text[1..]}";
 
         /// <summary>
         /// Converts the given <see cref="ScriptNode"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="ScriptNode"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ScriptNode node
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ScriptNode node
                 ? (string)node
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities

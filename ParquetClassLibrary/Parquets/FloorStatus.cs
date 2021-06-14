@@ -65,10 +65,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="FloorStatus"/> is equal to the current <see cref="FloorStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="FloorStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="FloorStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is FloorStatus floorStatus
+        public override bool Equals<T>(T status)
+            => status is FloorStatus floorStatus
             && IsTrench == floorStatus.IsTrench;
 
         /// <summary>
@@ -83,20 +83,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="FloorStatus"/> is equal to another specified instance of <see cref="FloorStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="FloorStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="FloorStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="FloorStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="FloorStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(FloorStatus inStatus1, FloorStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(FloorStatus status1, FloorStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="FloorStatus"/> is not equal to another specified instance of <see cref="FloorStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="FloorStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="FloorStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="FloorStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="FloorStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(FloorStatus inStatus1, FloorStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(FloorStatus status1, FloorStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -106,33 +106,33 @@ namespace Parquet.Parquets
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is FloorStatus status
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is FloorStatus status
                 ? $"{status.IsTrench}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(FloorStatus), nameof(Default));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(FloorStatus), nameof(Default));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Default), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Default.DeepClone();
             }
 
-            var parsedIsTrench = bool.TryParse(inText, out var temp1)
+            var parsedIsTrench = bool.TryParse(text, out var temp1)
                 ? temp1
-                : Logger.DefaultWithParseLog(inText, nameof(IsTrench), false);
+                : Logger.DefaultWithParseLog(text, nameof(IsTrench), false);
 
             return new FloorStatus(parsedIsTrench);
         }

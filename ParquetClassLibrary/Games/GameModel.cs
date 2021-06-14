@@ -43,30 +43,30 @@ namespace Parquet.Games
         /// Models a full game or an episode in a serial game.
         /// Contains metadata and starting conditions.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="GameModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-facing title of the <see cref="GameModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-facing description of the <see cref="GameModel"/>.</param>
-        /// <param name="inComment">A private comment on the nature of the game or episode.</param>
-        /// <param name="inTags">Any additional information about this <see cref="GameModel"/>.</param>
-        /// <param name="inIsEpisode">If <c>true</c> this game is part of a longer sequence of games.</param>
-        /// <param name="inEpisodeTitle">Title of this episode, if any.</param>
-        /// <param name="inEpisodeNumber">Number of this episode in its sequence, if any.</param>
-        /// <param name="inPlayerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
-        /// <param name="inFirstScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
-        public GameModel(ModelID inID, string inName, string inDescription, string inComment,
-                         IEnumerable<ModelTag> inTags = null, bool inIsEpisode = false, string inEpisodeTitle = "",
-                         int inEpisodeNumber = 0, ModelID? inPlayerCharacterID = null, ModelID? inFirstScriptID = null)
-            : base(All.GameIDs, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the <see cref="GameModel"/>.  Cannot be null.</param>
+        /// <param name="name">Player-facing title of the <see cref="GameModel"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-facing description of the <see cref="GameModel"/>.</param>
+        /// <param name="comment">A private comment on the nature of the game or episode.</param>
+        /// <param name="tags">Any additional information about this <see cref="GameModel"/>.</param>
+        /// <param name="isEpisode">If <c>true</c> this game is part of a longer sequence of games.</param>
+        /// <param name="episodeTitle">Title of this episode, if any.</param>
+        /// <param name="episodeNumber">Number of this episode in its sequence, if any.</param>
+        /// <param name="playerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
+        /// <param name="firstScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
+        public GameModel(ModelID id, string name, string description, string comment,
+                         IEnumerable<ModelTag> tags = null, bool isEpisode = false, string episodeTitle = "",
+                         int episodeNumber = 0, ModelID? playerCharacterID = null, ModelID? firstScriptID = null)
+            : base(All.GameIDs, id, name, description, comment, tags)
         {
-            var nonNullPlayerCharacterID = inPlayerCharacterID ?? ModelID.None;
-            var nonNullFirstScriptID = inFirstScriptID ?? ModelID.None;
+            var nonNullPlayerCharacterID = playerCharacterID ?? ModelID.None;
+            var nonNullFirstScriptID = firstScriptID ?? ModelID.None;
 
-            Precondition.IsInRange(nonNullPlayerCharacterID, All.CharacterIDs, nameof(inPlayerCharacterID));
-            Precondition.IsInRange(nonNullFirstScriptID, All.ScriptIDs, nameof(inFirstScriptID));
+            Precondition.IsInRange(nonNullPlayerCharacterID, All.CharacterIDs, nameof(playerCharacterID));
+            Precondition.IsInRange(nonNullFirstScriptID, All.ScriptIDs, nameof(firstScriptID));
 
-            IsEpisode = inIsEpisode;
-            EpisodeTitle = IsEpisode ? inEpisodeTitle : "";
-            EpisodeNumber = IsEpisode ? inEpisodeNumber : 0;
+            IsEpisode = isEpisode;
+            EpisodeTitle = IsEpisode ? episodeTitle : "";
+            EpisodeNumber = IsEpisode ? episodeNumber : 0;
             PlayerCharacterID = nonNullPlayerCharacterID;
             FirstScriptID = nonNullFirstScriptID;
         }

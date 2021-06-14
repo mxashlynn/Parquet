@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
                            Justification = "Parquet logs errors and returns results; it does not throw exceptions.",
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]
 
+// TODO: Try removing this after refactoring for in prefix.
 [assembly: SuppressMessage("Naming", "CA1725:Parameter names should match base declaration",
                            Justification = "This rule inhibits clarity as it prefers general terms to specific terms.  (For example, calling a Model an Object.)",
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]

@@ -35,18 +35,18 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified status is equal to the current status.
         /// </summary>
-        /// <param name="inStatus">The status to compare with the current.</param>
+        /// <param name="status">The status to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public abstract bool Equals<TDerived>(TDerived inStatus)
+        public abstract bool Equals<TDerived>(TDerived status)
             where TDerived : Status<T>;
 
         /// <summary>
         /// Determines whether the specified <see cref="Status{T}"/> is equal to the current <see cref="Status{T}"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="Status{T}"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="Status{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Status<T> inStatus)
-            => Equals<Status<T>>(inStatus);
+        public bool Equals(Status<T> status)
+            => Equals<Status<T>>(status);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Status{T}"/>.
@@ -55,8 +55,8 @@ namespace Parquet
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
         public abstract override bool Equals(object obj);
 
-        // NOTE that derived classes should also declare static bool operator ==(Status<T> inStatus1, Status<T> inStatus2)
-        // NOTE that derived classes should also declare static bool operator !=(Status<T> inStatus1, Status<T> inStatus2)
+        // NOTE that derived classes should also declare static bool operator ==(Status<T> status1, Status<T> status2)
+        // NOTE that derived classes should also declare static bool operator !=(Status<T> status1, Status<T> status2)
         #endregion
 
         #region ITypeConverter Implementation
@@ -65,20 +65,20 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public abstract object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData);
+        public abstract object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData);
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public abstract string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData);
+        public abstract string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData);
         #endregion
 
         #region IDeeplyCloneable Implementation

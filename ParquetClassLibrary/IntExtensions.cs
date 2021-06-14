@@ -6,22 +6,22 @@ namespace Parquet
     internal static class IntExtensions
     {
         /// <summary>Ensures an integer falls within the given range.</summary>
-        /// <param name="inInt">Integer to normalize.</param>
-        /// <param name="inLowerBound">The lowest valid value for the integer.</param>
-        /// <param name="inUpperBound">The highest valid value for the integer.</param>
+        /// <param name="value">Integer to normalize.</param>
+        /// <param name="lowerBound">The lowest valid value for the integer.</param>
+        /// <param name="upperBound">The highest valid value for the integer.</param>
         /// <returns>The integer, normalized.</returns>
-        public static int Normalize(this int inInt, int inLowerBound, int inUpperBound)
+        public static int Normalize(this int value, int lowerBound, int upperBound)
         {
-            if (inInt < inLowerBound)
+            if (value < lowerBound)
             {
-                inInt = inLowerBound;
+                value = lowerBound;
             }
-            else if (inInt > inUpperBound)
+            else if (value > upperBound)
             {
-                inInt = inUpperBound;
+                value = upperBound;
             }
 
-            return inInt;
+            return value;
         }
     }
 }

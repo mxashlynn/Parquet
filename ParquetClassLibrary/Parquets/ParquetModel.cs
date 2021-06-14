@@ -41,18 +41,18 @@ namespace Parquet.Parquets
         /// Used by subtypes of the <see cref="ParquetModel"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived parquet type's ModelID is defined.</param>
-        /// <param name="inID">Unique identifier for the parquet.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the parquet.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the parquet.</param>
-        /// <param name="inComment">Comment of, on, or by the parquet.</param>
-        /// <param name="inTags">Any additional information about this parquet.</param>
+        /// <param name="id">Unique identifier for the parquet.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the parquet.</param>
+        /// <param name="comment">Comment of, on, or by the parquet.</param>
+        /// <param name="tags">Any additional information about this parquet.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
         /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
-        protected ParquetModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment,
-                               IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
+        protected ParquetModel(Range<ModelID> inBounds, ModelID id, string name, string description, string comment,
+                               IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
                                IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null)
-            : base(inBounds, inID, inName, inDescription, inComment, inTags)
+            : base(inBounds, id, name, description, comment, tags)
         {
             var nonNullItemID = inItemID ?? ModelID.None;
             var nonNullAddsToBiome = (inAddsToBiome ?? Enumerable.Empty<ModelTag>()).ToList();

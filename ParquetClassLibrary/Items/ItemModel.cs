@@ -57,38 +57,38 @@ namespace Parquet.Items
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="ItemModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="ItemModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="ItemModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="ItemModel"/>.</param>
-        /// <param name="inTags">Any additional functionality this <see cref="ItemModel"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
-        /// <param name="inSubtype">The type of <see cref="ItemModel"/>.</param>
-        /// <param name="inWorth"><see cref="ItemModel"/> cost.</param>
-        /// <param name="inRarity"><see cref="ItemModel"/> rarity.</param>
-        /// <param name="inStackMax">How many such items may be stacked together in the <see cref="InventoryCollection"/>.  Must be positive.</param>
-        /// <param name="inEffectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
-        /// <param name="inEffectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
-        /// <param name="inParquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
-        public ItemModel(ModelID inID, string inName, string inDescription, string inComment,
-                         IEnumerable<ModelTag> inTags = null, ItemType inSubtype = ItemType.Other,
-                         int inWorth = 0, int inRarity = 0, int inStackMax = DefaultStackMax,
-                         ModelID? inEffectWhileHeldID = null, ModelID? inEffectWhenUsedID = null,
-                         ModelID? inParquetID = null)
-            : base(All.ItemIDs, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the <see cref="ItemModel"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="ItemModel"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="ItemModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="ItemModel"/>.</param>
+        /// <param name="tags">Any additional functionality this <see cref="ItemModel"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
+        /// <param name="subtype">The type of <see cref="ItemModel"/>.</param>
+        /// <param name="worth"><see cref="ItemModel"/> cost.</param>
+        /// <param name="rarity"><see cref="ItemModel"/> rarity.</param>
+        /// <param name="stackMax">How many such items may be stacked together in the <see cref="InventoryCollection"/>.  Must be positive.</param>
+        /// <param name="effectWhileHeldID"><see cref="ItemModel"/>'s passive effect.</param>
+        /// <param name="effectWhenUsedID"><see cref="ItemModel"/>'s active effect.</param>
+        /// <param name="parquetID">The parquet represented by this <see cref="ItemModel"/>, if any.</param>
+        public ItemModel(ModelID id, string name, string description, string comment,
+                         IEnumerable<ModelTag> tags = null, ItemType subtype = ItemType.Other,
+                         int worth = 0, int rarity = 0, int stackMax = DefaultStackMax,
+                         ModelID? effectWhileHeldID = null, ModelID? effectWhenUsedID = null,
+                         ModelID? parquetID = null)
+            : base(All.ItemIDs, id, name, description, comment, tags)
         {
-            var nonNullEffectWhileHeldID = inEffectWhileHeldID ?? ModelID.None;
-            var nonNullEffectWhenUsedID = inEffectWhenUsedID ?? ModelID.None;
-            var nonNullParquetID = inParquetID ?? ModelID.None;
+            var nonNullEffectWhileHeldID = effectWhileHeldID ?? ModelID.None;
+            var nonNullEffectWhenUsedID = effectWhenUsedID ?? ModelID.None;
+            var nonNullParquetID = parquetID ?? ModelID.None;
 
-            Precondition.IsInRange(nonNullEffectWhileHeldID, All.ScriptIDs, nameof(inEffectWhileHeldID));
-            Precondition.IsInRange(nonNullEffectWhenUsedID, All.ScriptIDs, nameof(inEffectWhenUsedID));
-            Precondition.IsInRange(nonNullParquetID, All.ParquetIDs, nameof(inParquetID));
-            Precondition.MustBePositive(inStackMax, nameof(inStackMax));
+            Precondition.IsInRange(nonNullEffectWhileHeldID, All.ScriptIDs, nameof(effectWhileHeldID));
+            Precondition.IsInRange(nonNullEffectWhenUsedID, All.ScriptIDs, nameof(effectWhenUsedID));
+            Precondition.IsInRange(nonNullParquetID, All.ParquetIDs, nameof(parquetID));
+            Precondition.MustBePositive(stackMax, nameof(stackMax));
 
-            Subtype = inSubtype;
-            Worth = inWorth;
-            Rarity = inRarity;
-            StackMax = inStackMax;
+            Subtype = subtype;
+            Worth = worth;
+            Rarity = rarity;
+            StackMax = stackMax;
             EffectWhileHeldID = nonNullEffectWhileHeldID;
             EffectWhenUsedID = nonNullEffectWhenUsedID;
             ParquetID = nonNullParquetID;

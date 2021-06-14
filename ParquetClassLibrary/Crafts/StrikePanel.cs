@@ -94,13 +94,13 @@ namespace Parquet.Crafts
         /// <summary>
         /// Initializes a new instance of the <see cref="StrikePanel"/> class.
         /// </summary>
-        /// <param name="inWorkingRange">The range of values this panel can take on while being worked.</param>
-        /// <param name="inIdealRange">The range of values this panel targets for a completed craft.</param>
-        public StrikePanel(Range<int> inWorkingRange, Range<int> inIdealRange)
+        /// <param name="workingRange">The range of values this panel can take on while being worked.</param>
+        /// <param name="idealRange">The range of values this panel targets for a completed craft.</param>
+        public StrikePanel(Range<int> workingRange, Range<int> idealRange)
         {
             // NOTE the use of the backing struct to avoid preinitialized range-checking.
-            workingRangeBackingStruct = inWorkingRange;
-            IdealRange = inIdealRange;
+            workingRangeBackingStruct = workingRange;
+            IdealRange = idealRange;
         }
         #endregion
 
@@ -126,11 +126,11 @@ namespace Parquet.Crafts
         /// <summary>
         /// Determines whether the specified <see cref="StrikePanel"/> is equal to the current <see cref="StrikePanel"/>.
         /// </summary>
-        /// <param name="inStrikePanel">The <see cref="StrikePanel"/> to compare with the current.</param>
+        /// <param name="strikePanel">The <see cref="StrikePanel"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(StrikePanel inStrikePanel)
-            => workingRangeBackingStruct == inStrikePanel?.workingRangeBackingStruct
-            && idealRangeBackingStruct == inStrikePanel.idealRangeBackingStruct;
+        public bool Equals(StrikePanel strikePanel)
+            => workingRangeBackingStruct == strikePanel?.workingRangeBackingStruct
+            && idealRangeBackingStruct == strikePanel.idealRangeBackingStruct;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="StrikePanel"/>.
@@ -144,20 +144,20 @@ namespace Parquet.Crafts
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is equal to another specified instance of <see cref="StrikePanel"/>.
         /// </summary>
-        /// <param name="inStrikePanel1">The first <see cref="StrikePanel"/> to compare.</param>
-        /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
+        /// <param name="strikePanel1">The first <see cref="StrikePanel"/> to compare.</param>
+        /// <param name="strikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-            => inStrikePanel1?.Equals(inStrikePanel2) ?? inStrikePanel2?.Equals(inStrikePanel1) ?? true;
+        public static bool operator ==(StrikePanel strikePanel1, StrikePanel strikePanel2)
+            => strikePanel1?.Equals(strikePanel2) ?? strikePanel2?.Equals(strikePanel1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="StrikePanel"/> is not equal to another specified instance of <see cref="StrikePanel"/>.
         /// </summary>
-        /// <param name="inStrikePanel1">The first <see cref="StrikePanel"/> to compare.</param>
-        /// <param name="inStrikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
+        /// <param name="strikePanel1">The first <see cref="StrikePanel"/> to compare.</param>
+        /// <param name="strikePanel2">The second <see cref="StrikePanel"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(StrikePanel inStrikePanel1, StrikePanel inStrikePanel2)
-            => !(inStrikePanel1 == inStrikePanel2);
+        public static bool operator !=(StrikePanel strikePanel1, StrikePanel strikePanel2)
+            => !(strikePanel1 == strikePanel2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -167,21 +167,21 @@ namespace Parquet.Crafts
         /// <summary>
         /// Converts the given <see cref="string"/> to a <see cref="StrikePanel"/>.
         /// </summary>
-        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The <see cref="string"/> to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="StrikePanel"/> created from the <see cref="string"/>.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Unused), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Unused;
             }
 
-            var panelSplitText = inText.Split(Delimiters.InternalDelimiter);
-            var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], inRow, inMemberMapData);
-            var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], inRow, inMemberMapData);
+            var panelSplitText = text.Split(Delimiters.InternalDelimiter);
+            var workingRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[0], row, memberMapData);
+            var idealRangeDeserialized = (Range<int>)Range<int>.ConverterFactory.ConvertFromString(panelSplitText[1], row, memberMapData);
 
             return new StrikePanel(workingRangeDeserialized, idealRangeDeserialized);
         }
@@ -189,19 +189,19 @@ namespace Parquet.Crafts
         /// <summary>
         /// Converts the given <see cref="StrikePanel"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="StrikePanel"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is StrikePanel panel
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is StrikePanel panel
                 ? Unused == panel
                     ? nameof(Unused)
                     : $"{panel.WorkingRange.Minimum}{Delimiters.ElementDelimiter}" +
                       $"{panel.WorkingRange.Maximum}{Delimiters.InternalDelimiter}" +
                       $"{panel.IdealRange.Minimum}{Delimiters.ElementDelimiter}" +
                       $"{panel.IdealRange.Maximum}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(StrikePanel), nameof(Unused));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(StrikePanel), nameof(Unused));
         #endregion
 
         #region IDeeplyCloneable Implementation

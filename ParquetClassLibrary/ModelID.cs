@@ -73,10 +73,10 @@ namespace Parquet
         /// <summary>
         /// Enables <see cref="ModelID"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">Any valid identifier value.</param>
+        /// <param name="value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
-        public static implicit operator ModelID(int inValue)
-            => new() { id = inValue };
+        public static implicit operator ModelID(int value)
+            => new() { id = value };
 
         /// <summary>
         /// Enables <see cref="ModelID"/> to be treated as their backing type.
@@ -219,34 +219,34 @@ namespace Parquet
         /// <summary>
         /// Converts the given record column to <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inText">The record column to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The record column to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelID"/> created from the record column.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                if (inRow?.Context.CurrentIndex == 0)
+                if (row?.Context.CurrentIndex == 0)
                 {
-                    RegisterMissingID(inRow.Context.RawRecord);
+                    RegisterMissingID(row.Context.RawRecord);
                 }
                 return None;
             }
 
-            var id = int.TryParse(inText, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
+            var id = int.TryParse(text, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? (ModelID)temp
-                : DefaultWithFatalParseLog(inText, nameof(ModelID), None);
+                : DefaultWithFatalParseLog(text, nameof(ModelID), None);
 
             return id;
 
             // Convenience method that logs a fatal parsing error and returns the given default value.
             // This is a fatal error as the library is unlikely to be able to accommodate a corrupted ModelID.
-            static ModelID DefaultWithFatalParseLog(string inValue, string inName, ModelID inDefaultValue)
+            static ModelID DefaultWithFatalParseLog(string value, string name, ModelID inDefaultValue)
             {
                 Logger.Log(LogLevel.Fatal, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                         inValue, inName), null);
+                                                         value, name), null);
                 return inDefaultValue;
             }
         }
@@ -254,16 +254,16 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="ModelID"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="ModelID"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ModelID id
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ModelID id
                 ? None != id
                     ? id.ToString()
                     : nameof(None)
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ModelID), nameof(None));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ModelID), nameof(None));
         #endregion
 
         #region Utilities

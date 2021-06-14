@@ -45,22 +45,22 @@ namespace Parquet.Items
         /// <summary>
         /// Creates a new slot to store the given item type.
         /// </summary>
-        /// <param name="inItemToStore">
+        /// <param name="itemToStore">
         /// The <see cref="ModelID"/> corresponding to the item being stored here.
         /// Must be in-range and not <see cref="ModelID.None"/>.
         /// </param>
-        /// <param name="inHowMany">How many of the item to store initially.  Must be positive.</param>
-        public InventorySlot(ModelID inItemToStore, int inHowMany = 1)
+        /// <param name="howMany">How many of the item to store initially.  Must be positive.</param>
+        public InventorySlot(ModelID itemToStore, int howMany = 1)
         {
-            Precondition.IsNotNone(inItemToStore, nameof(inItemToStore));
-            Precondition.IsInRange(inItemToStore, All.ItemIDs, nameof(inItemToStore));
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-            Debug.Assert(inItemToStore != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToStoreNothing,
-                                                                      nameof(inItemToStore), nameof(InventorySlot)));
+            Precondition.IsNotNone(itemToStore, nameof(itemToStore));
+            Precondition.IsInRange(itemToStore, All.ItemIDs, nameof(itemToStore));
+            Precondition.MustBePositive(howMany, nameof(howMany));
+            Debug.Assert(itemToStore != ModelID.None, string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToStoreNothing,
+                                                                      nameof(itemToStore), nameof(InventorySlot)));
 
 
-            ItemID = inItemToStore;
-            Count = inHowMany;
+            ItemID = itemToStore;
+            Count = howMany;
         }
         #endregion
 
@@ -68,14 +68,14 @@ namespace Parquet.Items
         /// <summary>
         /// Increases the number of items stored by the given amount.
         /// </summary>
-        /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
+        /// <param name="howMany">How many of the item to give.  Must be positive.</param>
         /// <returns>The number of items still needing to be stored if this stack is full.</returns>
-        public int Give(int inHowMany = 1)
+        public int Give(int howMany = 1)
         {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Precondition.MustBePositive(howMany, nameof(howMany));
 
             var remainder = 0;
-            var total = Count + inHowMany;
+            var total = Count + howMany;
             if (total > StackMax)
             {
                 Count = StackMax;
@@ -83,7 +83,7 @@ namespace Parquet.Items
             }
             else
             {
-                Count += inHowMany;
+                Count += howMany;
             }
 
             return remainder;
@@ -92,17 +92,17 @@ namespace Parquet.Items
         /// <summary>
         /// Decreases the number of items stored by the given amount.
         /// </summary>
-        /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
+        /// <param name="howMany">How many of the item to take.  Must be positive.</param>
         /// <returns>
         /// The number of items still needing to be removed from another
         /// <see cref="InventorySlot"/> once this one is emptied.
         /// </returns>
-        public int Take(int inHowMany = 1)
+        public int Take(int howMany = 1)
         {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Precondition.MustBePositive(howMany, nameof(howMany));
 
             var remainder = 0;
-            var needed = Count - inHowMany;
+            var needed = Count - howMany;
             if (needed < 0)
             {
                 Count = 0;
@@ -111,7 +111,7 @@ namespace Parquet.Items
             }
             else
             {
-                Count -= inHowMany;
+                Count -= howMany;
             }
 
             return remainder;
@@ -131,10 +131,10 @@ namespace Parquet.Items
         /// <summary>
         /// Determines whether the specified status is equal to the current status.
         /// </summary>
-        /// <param name="inStatus">The status to compare with the current.</param>
+        /// <param name="status">The status to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is InventorySlot slot
+        public override bool Equals<T>(T status)
+            => status is InventorySlot slot
             && ItemID == slot.ItemID
             && Count == slot.Count;
 
@@ -150,20 +150,20 @@ namespace Parquet.Items
         /// <summary>
         /// Determines whether a specified instance of <see cref="InventorySlot"/> is equal to another specified instance of <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="InventorySlot"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="InventorySlot"/> to compare.</param>
+        /// <param name="status1">The first <see cref="InventorySlot"/> to compare.</param>
+        /// <param name="status2">The second <see cref="InventorySlot"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(InventorySlot inStatus1, InventorySlot inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(InventorySlot status1, InventorySlot status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="InventorySlot"/> is not equal to another specified instance of <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="InventorySlot"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="InventorySlot"/> to compare.</param>
+        /// <param name="status1">The first <see cref="InventorySlot"/> to compare.</param>
+        /// <param name="status2">The second <see cref="InventorySlot"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(InventorySlot inStatus1, InventorySlot inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(InventorySlot status1, InventorySlot status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -173,35 +173,35 @@ namespace Parquet.Items
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is InventorySlot slot
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is InventorySlot slot
                 ? $"{slot.ItemID}{Delimiters.InternalDelimiter}" +
                   $"{slot.Count}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(InventorySlot), nameof(Empty));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(InventorySlot), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0
-                || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(InventorySlot), Empty);
+                return Logger.DefaultWithConvertLog(text, nameof(InventorySlot), Empty);
             }
 
-            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = text.Split(Delimiters.InternalDelimiter);
 
-            var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
+            var id = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
             var count = int.TryParse(parameterText[1], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? temp
                 : Logger.DefaultWithParseLog(parameterText[1], nameof(InventorySlot), 1);

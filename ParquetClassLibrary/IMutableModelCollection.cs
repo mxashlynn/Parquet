@@ -13,14 +13,14 @@ namespace Parquet
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
-        /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        public bool Remove(ModelID inID);
+        /// <param name="id">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        public bool Remove(ModelID id);
 
         /// <summary>
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
         /// <see cref="ModelID"/> is identical to that of the model being replaced.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        public void Replace(TModel inModel);
+        /// <param name="model">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        public void Replace(TModel model);
     }
 }

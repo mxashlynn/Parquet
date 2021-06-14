@@ -196,10 +196,10 @@ namespace Parquet
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
         /// </summary>
-        /// <param name="inID">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        bool IMutableModelCollection<TModel>.Remove(ModelID inID)
-            => Models.ContainsKey(inID)
-            && Remove((TModel)Models[inID]);
+        /// <param name="id">The ID for a valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        bool IMutableModelCollection<TModel>.Remove(ModelID id)
+            => Models.ContainsKey(id)
+            && Remove((TModel)Models[id]);
 
         /// <summary>
         /// Empties the entire collection.
@@ -262,15 +262,15 @@ namespace Parquet
         /// <summary>
         /// Indicates an external view onto associated data should be updated.
         /// </summary>
-        /// <param name="inSender">The instance that raised the event.</param>
-        /// <param name="inEventData">Additional information about the event.</param>
+        /// <param name="sender">The instance that raised the event.</param>
+        /// <param name="eventData">Additional information about the event.</param>
         /// <returns><c>true</c> if the operation succeeded; otherwise, <c>false</c>.</returns>
         /// <remarks>
         /// This event is provided for the convenience of client code, particularly tools, and is not used by the library itself.
         /// </remarks>
-        protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
+        protected virtual bool OnVisibleDataChanged(object sender = null, EventArgs eventData = null)
             // NOTE that if sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
-            => VisibleDataChanged?.Invoke(inSender ?? this, inEventData ?? EventArgs.Empty) ?? true;
+            => VisibleDataChanged?.Invoke(sender ?? this, eventData ?? EventArgs.Empty) ?? true;
         #endregion
 
         #region IReadOnlyCollection Implementation
@@ -292,47 +292,47 @@ namespace Parquet
         /// Determines whether the <see cref="ModelCollection{TModel}"/> contains a <see cref="Model"/>
         /// with the specified <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inID">The <see cref="ModelID"/> of the <see cref="Model"/> to find.</param>
+        /// <param name="id">The <see cref="ModelID"/> of the <see cref="Model"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="ModelID"/> was found; <c>false</c> otherwise.</returns>
-        public bool Contains(ModelID inID)
+        public bool Contains(ModelID id)
         {
-            Debug.Assert(inID.IsValidForRange(Bounds), string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                                     nameof(ModelCollection), inID, Bounds));
-            return inID == ModelID.None
-                || Models.ContainsKey(inID);
+            Debug.Assert(id.IsValidForRange(Bounds), string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
+                                                                     nameof(ModelCollection), id, Bounds));
+            return id == ModelID.None
+                || Models.ContainsKey(id);
         }
 
         /// <summary>
         /// Retrieves a specified <typeparamref name="TModel"/>.
         /// </summary>
-        /// <param name="inID">A valid, defined <typeparamref name="TModel"/> identifier.</param>
+        /// <param name="id">A valid, defined <typeparamref name="TModel"/> identifier.</param>
         /// <typeparam name="TTarget">
-        /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="inID"/>.
+        /// The type of <typeparamref name="TModel"/> sought.  Must correspond to the given <paramref name="id"/>.
         /// </typeparam>
         /// <returns>The specified <typeparamref name="TTarget"/>, or null if no such model exists in this collection.</returns>
         /// <remarks>
         /// This method will return null in the following cases:
-        /// 1, if <paramref name="inID"/> is out of range or undefined;
-        /// 2, if <paramref name="inID"/> is <see cref="ModelID.None"/>;
+        /// 1, if <paramref name="id"/> is out of range or undefined;
+        /// 2, if <paramref name="id"/> is <see cref="ModelID.None"/>;
         /// 3, if this collection is empty.
         /// </remarks>
-        public TTarget GetOrNull<TTarget>(ModelID inID)
+        public TTarget GetOrNull<TTarget>(ModelID id)
             where TTarget : TModel
         {
             if (Models.Count < 1)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorEmptyCollection,
-                                                           $"{typeof(TTarget).Name} {inID}", nameof(ModelCollection<TModel>)));
+                                                           $"{typeof(TTarget).Name} {id}", nameof(ModelCollection<TModel>)));
                 return null;
             }
-            else if (!inID.IsValidForRange(Bounds))
+            else if (!id.IsValidForRange(Bounds))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfBounds,
-                                                           nameof(ModelCollection<TModel>), inID, Bounds));
+                                                           nameof(ModelCollection<TModel>), id, Bounds));
                 return null;
             }
-            else if (inID == ModelID.None
-                     || !Models.ContainsKey(inID))
+            else if (id == ModelID.None
+                     || !Models.ContainsKey(id))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorModelNotFound,
                                                            typeof(TTarget).Name, nameof(ModelID.None)));
@@ -340,7 +340,7 @@ namespace Parquet
             }
             else
             {
-                return (TTarget)Models[inID];
+                return (TTarget)Models[id];
             }
         }
 

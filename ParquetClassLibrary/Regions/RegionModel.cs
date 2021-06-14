@@ -78,11 +78,11 @@ namespace Parquet.Regions
         /// <summary>
         /// Constructs a new instance of the <see cref="RegionModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="RegionModel"/>.  Cannot be null.</param>
-        /// <param name="inName">The player-facing name of the <see cref="RegionModel"/>.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="RegionModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="RegionModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="RegionModel"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="RegionModel"/>.  Cannot be null.</param>
+        /// <param name="name">The player-facing name of the <see cref="RegionModel"/>.</param>
+        /// <param name="description">Player-friendly description of the <see cref="RegionModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="RegionModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="RegionModel"/>.</param>
         /// <param name="inBackgroundColor">A color to show in the <see cref="RegionModel"/> when no parquets are present at a location.</param>
         /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the north of this one.</param>
         /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the east of this one.</param>
@@ -90,8 +90,8 @@ namespace Parquet.Regions
         /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the west of this one.</param>
         /// <param name="inRegionAbove">The <see cref="ModelID"/> of the <see cref="RegionModel"/> above this one.</param>
         /// <param name="inRegionBelow">The <see cref="ModelID"/> of the <see cref="RegionModel"/> below this one.</param>
-        public RegionModel(ModelID inID, string inName, string inDescription, string inComment,
-                           IEnumerable<ModelTag> inTags = null,
+        public RegionModel(ModelID id, string name, string description, string comment,
+                           IEnumerable<ModelTag> tags = null,
                            string inBackgroundColor = DefaultColor,
                            ModelID? inRegionToTheNorth = null,
                            ModelID? inRegionToTheEast = null,
@@ -99,7 +99,7 @@ namespace Parquet.Regions
                            ModelID? inRegionToTheWest = null,
                            ModelID? inRegionAbove = null,
                            ModelID? inRegionBelow = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags)
+            : base(Bounds, id, name, description, comment, tags)
         {
             var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
             var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;

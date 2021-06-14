@@ -171,39 +171,39 @@ namespace Parquet.Parquets
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ParquetModelPack pack
-                ? $"{pack.FloorID.ConvertToString(pack.FloorID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.BlockID.ConvertToString(pack.BlockID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.FurnishingID.ConvertToString(pack.FurnishingID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.CollectibleID.ConvertToString(pack.CollectibleID, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetModelPack), nameof(Empty));
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ParquetModelPack pack
+                ? $"{pack.FloorID.ConvertToString(pack.FloorID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.BlockID.ConvertToString(pack.BlockID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.FurnishingID.ConvertToString(pack.FurnishingID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.CollectibleID.ConvertToString(pack.CollectibleID, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ParquetModelPack), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Empty;
             }
 
-            var parameterText = inText.Split(Delimiters.PackDelimiter);
+            var parameterText = text.Split(Delimiters.PackDelimiter);
 
-            var parsedFloor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedBlock = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-            var parsedFurnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
-            var parsedCollectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+            var parsedFloor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
+            var parsedBlock = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
+            var parsedFurnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], row, memberMapData);
+            var parsedCollectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], row, memberMapData);
 
             return new ParquetModelPack(parsedFloor, parsedBlock, parsedFurnishing, parsedCollectible);
         }

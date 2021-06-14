@@ -52,13 +52,13 @@ namespace Parquet
         /// Convenience method that logs a <see cref="LibraryState"/> error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inName">The name of the item that cannot be used during play.</param>
+        /// <param name="name">The name of the item that cannot be used during play.</param>
         /// <param name="inDefaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithImmutableInPlayLog<T>(string inName, T inDefaultValue)
+        internal static T DefaultWithImmutableInPlayLog<T>(string name, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningImmutableDuringPlay,
-                                                              inName), null);
+                                                              name), null);
             return inDefaultValue;
         }
 
@@ -66,14 +66,14 @@ namespace Parquet
         /// Convenience method that logs a conversion error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inValue">The value of the item that failed to convert.</param>
-        /// <param name="inName">The name of the item that failed to convert.</param>
+        /// <param name="value">The value of the item that failed to convert.</param>
+        /// <param name="name">The name of the item that failed to convert.</param>
         /// <param name="inDefaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithConvertLog<T>(string inValue, string inName, T inDefaultValue)
+        internal static T DefaultWithConvertLog<T>(string value, string name, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
-                                                            inValue, inName), null);
+                                                            value, name), null);
             return inDefaultValue;
         }
 
@@ -81,14 +81,14 @@ namespace Parquet
         /// Convenience method that logs a parsing error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inValue">The value of the item that failed to parse.</param>
-        /// <param name="inName">The name of the item that failed to parse.</param>
+        /// <param name="value">The value of the item that failed to parse.</param>
+        /// <param name="name">The name of the item that failed to parse.</param>
         /// <param name="inDefaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithParseLog<T>(string inValue, string inName, T inDefaultValue)
+        internal static T DefaultWithParseLog<T>(string value, string name, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
-                                                            inValue, inName), null);
+                                                            value, name), null);
             return inDefaultValue;
         }
 
@@ -96,15 +96,15 @@ namespace Parquet
         /// Convenience method that logs an unsupported command error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inName">The name of the command type.</param>
+        /// <param name="name">The name of the command type.</param>
         /// <param name="inCommandText">The text version of the unsupported command.</param>
         /// <param name="inDefaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithUnsupportedNodeLog<T>(string inName, string inCommandText, T inDefaultValue)
+        internal static T DefaultWithUnsupportedNodeLog<T>(string name, string inCommandText, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
                                                               Resources.ErrorUnsupportedNode,
-                                                              inName, inCommandText), null);
+                                                              name, inCommandText), null);
             return inDefaultValue;
         }
 
@@ -112,13 +112,13 @@ namespace Parquet
         /// Convenience method that logs a serialization error and returns the given default value.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inName">The name of the item that failed to serialize.</param>
+        /// <param name="name">The name of the item that failed to serialize.</param>
         /// <param name="inDefaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithUnsupportedSerializationLog<T>(string inName, T inDefaultValue)
+        internal static T DefaultWithUnsupportedSerializationLog<T>(string name, T inDefaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedSerialization,
-                                                            inName), null);
+                                                            name), null);
             return inDefaultValue;
         }
         #endregion

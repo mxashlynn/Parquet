@@ -64,45 +64,45 @@ namespace Parquet.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="CharacterStatus"/> class.
         /// </summary>
-        /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="CharacterModel"/> occupies.</param>
-        /// <param name="inSpawnAt">The <see cref="Location"/> the tracked <see cref="CharacterModel"/> will next spawn at.</param>
-        /// <param name="inRoomAssignment">The <see cref="Location"/> of the <see cref="Rooms.Room"/> to which the tracked <see cref="CharacterModel"/> is assigned.</param>
-        /// <param name="inCurrentBehavior">The behavior currently governing the tracked <see cref="CharacterModel"/>.</param>
-        /// <param name="inBiomeTimeRemaining">How long [TODO in what units?] before the <see cref="CharacterModel"/> must leave the <see cref="Biomes.BiomeRecipe"/>.</param>
-        /// <param name="inKnownBeings">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
-        /// <param name="inKnownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
-        /// <param name="inKnownRoomRecipes">The <see cref="Rooms.RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
-        /// <param name="inKnownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
-        /// <param name="inQuests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
-        /// <param name="inInventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
-        public CharacterStatus(Location? inPosition = null, Location? inSpawnAt = null, Location? inRoomAssignment = null,
-                               ModelID? inCurrentBehavior = null, int inBiomeTimeRemaining = int.MaxValue,
-                               ICollection<ModelID> inKnownBeings = null, ICollection<ModelID> inKnownParquets = null,
-                               ICollection<ModelID> inKnownRoomRecipes = null, ICollection<ModelID> inKnownCraftingRecipes = null,
-                               ICollection<ModelID> inQuests = null, InventoryCollection inInventory = null)
+        /// <param name="position">The <see cref="Location"/> the tracked <see cref="CharacterModel"/> occupies.</param>
+        /// <param name="spawnAt">The <see cref="Location"/> the tracked <see cref="CharacterModel"/> will next spawn at.</param>
+        /// <param name="roomAssignment">The <see cref="Location"/> of the <see cref="Rooms.Room"/> to which the tracked <see cref="CharacterModel"/> is assigned.</param>
+        /// <param name="currentBehavior">The behavior currently governing the tracked <see cref="CharacterModel"/>.</param>
+        /// <param name="biomeTimeRemaining">How long [TODO in what units?] before the <see cref="CharacterModel"/> must leave the <see cref="Biomes.BiomeRecipe"/>.</param>
+        /// <param name="knownBeings">The <see cref="CritterModel"/>s that this <see cref="CharacterModel"/> has encountered.</param>
+        /// <param name="knownParquets">The parquets that this <see cref="CharacterModel"/> has encountered.</param>
+        /// <param name="knownRoomRecipes">The <see cref="Rooms.RoomRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
+        /// <param name="knownCraftingRecipes">The <see cref="Crafts.CraftingRecipe"/>s that this <see cref="CharacterModel"/> knows.</param>
+        /// <param name="quests">The <see cref="Scripts.InteractionModel"/>s that this <see cref="CharacterModel"/> offers or has undertaken.</param>
+        /// <param name="inventory">This <see cref="CharacterModel"/>'s set of belongings.</param>
+        public CharacterStatus(Location? position = null, Location? spawnAt = null, Location? roomAssignment = null,
+                               ModelID? currentBehavior = null, int biomeTimeRemaining = int.MaxValue,
+                               ICollection<ModelID> knownBeings = null, ICollection<ModelID> knownParquets = null,
+                               ICollection<ModelID> knownRoomRecipes = null, ICollection<ModelID> knownCraftingRecipes = null,
+                               ICollection<ModelID> quests = null, InventoryCollection inventory = null)
         {
-            var nonNullPosition = inPosition ?? Location.Nowhere;
-            var nonNullSpawnAt = inSpawnAt ?? Location.Nowhere;
-            var nonNullRoomAssignment = inRoomAssignment ?? Location.Nowhere;
-            var nonNullCurrentBehavior = inCurrentBehavior ?? ModelID.None;
-            Precondition.IsInRange(nonNullCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));
-            var nonNullBeings = inKnownBeings ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullParquets = inKnownParquets ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullRoomRecipes = inKnownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullCraftingRecipes = inKnownCraftingRecipes ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullQuests = inQuests ?? Enumerable.Empty<ModelID>().ToList();
-            var nonNullInventory = inInventory ?? InventoryCollection.Empty;
-            Precondition.AreInRange(nonNullBeings, All.CritterIDs, nameof(inKnownBeings));
-            Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(inKnownParquets));
-            Precondition.AreInRange(nonNullRoomRecipes, All.RoomRecipeIDs, nameof(inKnownRoomRecipes));
-            Precondition.AreInRange(nonNullCraftingRecipes, All.CraftingRecipeIDs, nameof(inKnownCraftingRecipes));
-            Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(inQuests));
+            var nonNullPosition = position ?? Location.Nowhere;
+            var nonNullSpawnAt = spawnAt ?? Location.Nowhere;
+            var nonNullRoomAssignment = roomAssignment ?? Location.Nowhere;
+            var nonNullCurrentBehavior = currentBehavior ?? ModelID.None;
+            Precondition.IsInRange(nonNullCurrentBehavior, All.ScriptIDs, nameof(currentBehavior));
+            var nonNullBeings = knownBeings ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullParquets = knownParquets ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullRoomRecipes = knownRoomRecipes ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullCraftingRecipes = knownCraftingRecipes ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullQuests = quests ?? Enumerable.Empty<ModelID>().ToList();
+            var nonNullInventory = inventory ?? InventoryCollection.Empty;
+            Precondition.AreInRange(nonNullBeings, All.CritterIDs, nameof(knownBeings));
+            Precondition.AreInRange(nonNullParquets, All.ParquetIDs, nameof(knownParquets));
+            Precondition.AreInRange(nonNullRoomRecipes, All.RoomRecipeIDs, nameof(knownRoomRecipes));
+            Precondition.AreInRange(nonNullCraftingRecipes, All.CraftingRecipeIDs, nameof(knownCraftingRecipes));
+            Precondition.AreInRange(nonNullQuests, All.InteractionIDs, nameof(quests));
 
             Position = nonNullPosition;
             SpawnAt = nonNullSpawnAt;
             RoomAssignment = nonNullRoomAssignment;
             CurrentBehaviorID = nonNullCurrentBehavior;
-            BiomeTimeRemaining = inBiomeTimeRemaining;
+            BiomeTimeRemaining = biomeTimeRemaining;
             KnownBeings = nonNullBeings;
             KnownParquets = nonNullParquets;
             KnownRoomRecipes = nonNullRoomRecipes;
@@ -116,11 +116,11 @@ namespace Parquet.Beings
         /// Initializes an instance of the <see cref="CharacterStatus"/> class
         /// based on a given <see cref="CharacterModel"/> instance.
         /// </summary>
-        /// <param name="inCharacterModel">The definitions being tracked.</param>
-        public CharacterStatus(CharacterModel inCharacterModel)
+        /// <param name="characterModel">The definitions being tracked.</param>
+        public CharacterStatus(CharacterModel characterModel)
         {
-            Precondition.IsNotNull(inCharacterModel);
-            var nonNullCharacterModel = inCharacterModel ?? CharacterModel.Unused;
+            Precondition.IsNotNull(characterModel);
+            var nonNullCharacterModel = characterModel ?? CharacterModel.Unused;
 
             Position = Location.Nowhere;
             SpawnAt = nonNullCharacterModel.StartingLocation;
@@ -159,10 +159,10 @@ namespace Parquet.Beings
         /// <summary>
         /// Determines whether the specified <see cref="CharacterStatus"/> is equal to the current <see cref="CharacterStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="CharacterStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="CharacterStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is CharacterStatus characterStatus
+        public override bool Equals<T>(T status)
+            => status is CharacterStatus characterStatus
             && CurrentBehaviorID == characterStatus.CurrentBehaviorID
             && Position == characterStatus.Position
             && SpawnAt == characterStatus.SpawnAt
@@ -187,20 +187,20 @@ namespace Parquet.Beings
         /// <summary>
         /// Determines whether a specified instance of <see cref="CharacterStatus"/> is equal to another specified instance of <see cref="CharacterStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="CharacterStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="CharacterStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="CharacterStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="CharacterStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(CharacterStatus inStatus1, CharacterStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(CharacterStatus status1, CharacterStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="CharacterStatus"/> is not equal to another specified instance of <see cref="CharacterStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="CharacterStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="CharacterStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="CharacterStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="CharacterStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(CharacterStatus inStatus1, CharacterStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(CharacterStatus status1, CharacterStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -210,72 +210,72 @@ namespace Parquet.Beings
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is CharacterStatus status
-                ? $"{status.CurrentBehaviorID.ConvertToString(status.CurrentBehaviorID, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.Position.ConvertToString(status.Position, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.SpawnAt.ConvertToString(status.SpawnAt, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.RoomAssignment.ConvertToString(status.RoomAssignment, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is CharacterStatus status
+                ? $"{status.CurrentBehaviorID.ConvertToString(status.CurrentBehaviorID, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.Position.ConvertToString(status.Position, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.SpawnAt.ConvertToString(status.SpawnAt, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.RoomAssignment.ConvertToString(status.RoomAssignment, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
                   $"{status.BiomeTimeRemaining}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownBeings, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownParquets, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownRoomRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownCraftingRecipes, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Quests, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Inventory, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(CharacterStatus), nameof(Unused));
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownBeings, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownParquets, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownRoomRecipes, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.KnownCraftingRecipes, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Quests, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertToString(status.Inventory, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(CharacterStatus), nameof(Unused));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Unused), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(CharacterStatus), Unused);
+                return Logger.DefaultWithConvertLog(text, nameof(CharacterStatus), Unused);
             }
 
-            var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
+            var parameterText = text.Split(Delimiters.SecondaryDelimiter);
 
             var parsedPosition = (Location)Location.ConverterFactory.ConvertFromString(parameterText[0],
-                                                                                       inRow, inMemberMapData);
+                                                                                       row, memberMapData);
             var parsedSpawnAt = (Location)Location.ConverterFactory.ConvertFromString(parameterText[1],
-                                                                                      inRow, inMemberMapData);
+                                                                                      row, memberMapData);
             var parsedRoomAssignment = (Location)Location.ConverterFactory.ConvertFromString(parameterText[2],
-                                                                                             inRow, inMemberMapData);
+                                                                                             row, memberMapData);
             var parsedCurrentBehaviorID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3],
-                                                                                              inRow, inMemberMapData);
+                                                                                              row, memberMapData);
             var parsedBiomeTimeRemaining = int.TryParse(parameterText[4], All.SerializedNumberStyle,
                                                         CultureInfo.InvariantCulture, out var temp4)
                 ? temp4
                 : Logger.DefaultWithParseLog(parameterText[4], nameof(BiomeTimeRemaining), int.MaxValue);
             var parsedKnownBeings = (ICollection<ModelID>)
-                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[9], inRow,
-                                                                                           inMemberMapData);
+                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[9], row,
+                                                                                           memberMapData);
             var parsedKnownParquets = (ICollection<ModelID>)
                 SeriesConverter<ModelID, List<ModelID>>.ConverterFactory
-                                                       .ConvertFromString(parameterText[10], inRow, inMemberMapData);
+                                                       .ConvertFromString(parameterText[10], row, memberMapData);
             var parsedKnownRoomRecipes = (ICollection<ModelID>)
-                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[11], inRow,
-                                                                                           inMemberMapData);
+                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[11], row,
+                                                                                           memberMapData);
             var parsedKnownCraftingRecipes = (ICollection<ModelID>)
-                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[12], inRow,
-                                                                                           inMemberMapData);
+                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[12], row,
+                                                                                           memberMapData);
             var parsedQuests = (ICollection<ModelID>)
-                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[13], inRow,
-                                                                                           inMemberMapData);
+                SeriesConverter<ModelID, List<ModelID>>.ConverterFactory.ConvertFromString(parameterText[13], row,
+                                                                                           memberMapData);
             var parsedInventory = (InventoryCollection)
-                SeriesConverter<InventorySlot, InventoryCollection>.ConverterFactory.ConvertFromString(parameterText[14], inRow,
-                                                                                             inMemberMapData);
+                SeriesConverter<InventorySlot, InventoryCollection>.ConverterFactory.ConvertFromString(parameterText[14], row,
+                                                                                             memberMapData);
 
             return new CharacterStatus(parsedPosition,
                                        parsedSpawnAt,

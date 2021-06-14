@@ -23,10 +23,10 @@ namespace Parquet
         /// Determines whether this <see cref="IReadOnlyCollection{ModelTag}"/> contains the given <see cref="ModelTag"/>.
         /// </summary>
         /// <param name="inList">The <see cref="IReadOnlyCollection{ModelTag}"/> to search.</param>
-        /// <param name="inTag">The <see cref="ModelTag"/> to search for.</param>
+        /// <param name="tag">The <see cref="ModelTag"/> to search for.</param>
         /// <returns><c>true</c> if this and the given instance are identical, ignoring case; otherwise, <c>false</c>.</returns>
         /// <remarks>This is a convenience for client code and not used by the library itself.</remarks>
-        public static bool ContainsOrdinalIgnoreCase(this IReadOnlyList<ModelTag> inList, ModelTag inTag)
-            => inList.Any(tag => tag.EqualsOrdinalIgnoreCase(inTag));
+        public static bool ContainsOrdinalIgnoreCase(this IReadOnlyList<ModelTag> inList, ModelTag tag)
+            => inList.Any(aTag => aTag.EqualsOrdinalIgnoreCase(tag));
     }
 }

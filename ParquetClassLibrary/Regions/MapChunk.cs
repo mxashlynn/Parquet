@@ -177,40 +177,40 @@ namespace Parquet.Regions
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is MapChunk chunk
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is MapChunk chunk
                 ? $"{IsFilledOut}{Delimiters.MapChunkDelimiter}" +
-                  $"{chunk.Details.ConvertToString(Details, inRow, inMemberMapData)}{Delimiters.MapChunkDelimiter}" +
-                  $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetDefinitions, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(MapChunk), nameof(Empty));
+                  $"{chunk.Details.ConvertToString(Details, row, memberMapData)}{Delimiters.MapChunkDelimiter}" +
+                  $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetDefinitions, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(MapChunk), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Empty;
             }
 
-            var parameterText = inText.Split(Delimiters.MapChunkDelimiter);
+            var parameterText = text.Split(Delimiters.MapChunkDelimiter);
             var parsedIsFilledOut = bool.TryParse(parameterText[0], out var tempIsFilledOut)
                 ? tempIsFilledOut
                 : Logger.DefaultWithParseLog(parameterText[0], nameof(IsFilledOut), false);
-            var parsedDetails = (ChunkDetail)ChunkDetail.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedDetails = (ChunkDetail)ChunkDetail.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
             var parsedParquetDefinitions = (ParquetModelPackGrid)GridConverter<ParquetModelPack, ParquetModelPackGrid>
                 .ConverterFactory
-                .ConvertFromString(parameterText[2], inRow, inMemberMapData);
+                .ConvertFromString(parameterText[2], row, memberMapData);
 
             return new MapChunk(parsedIsFilledOut, parsedDetails, parsedParquetDefinitions);
         }

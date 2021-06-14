@@ -43,25 +43,25 @@ namespace Parquet
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inValue">Any valid tag value.  Invalid values will be sanitized.</param>
+        /// <param name="value">Any valid tag value.  Invalid values will be sanitized.</param>
         /// <returns>The given value as a tag.</returns>
-        public static implicit operator ModelTag(string inValue)
-            => new() { tagContent = inValue };
+        public static implicit operator ModelTag(string value)
+            => new() { tagContent = value };
 
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inTag">Any tag.</param>
+        /// <param name="tag">Any tag.</param>
         /// <returns>The tag's value.</returns>
-        public static implicit operator string(ModelTag inTag)
-            => inTag?.tagContent ?? "";
+        public static implicit operator string(ModelTag tag)
+            => tag?.tagContent ?? "";
         #endregion
 
         #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be compared one another.
         /// </summary>
-        /// <param name="inTag">Any valid <see cref="ModelTag"/>.</param>
+        /// <param name="tag">Any valid <see cref="ModelTag"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ModelTag"/>s being compared.
         /// The return value has these meanings:
@@ -69,8 +69,8 @@ namespace Parquet
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ModelTag"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="ModelTag"/> in the sort order.
         /// </returns>
-        public int CompareTo(ModelTag inTag)
-            => string.Compare(tagContent, inTag?.tagContent ?? "", StringComparison.Ordinal);
+        public int CompareTo(ModelTag tag)
+            => string.Compare(tagContent, tag?.tagContent ?? "", StringComparison.Ordinal);
         #endregion
 
         #region ITypeConverter Implementation
@@ -81,28 +81,28 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="string"/> to a <see cref="ModelTag"/>.
         /// </summary>
-        /// <param name="inText">The <see cref="string"/> to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The <see cref="string"/> to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the <see cref="string"/>.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0
                 ? (ModelTag)""
-                : (ModelTag)inText;
+                : (ModelTag)text;
 
         /// <summary>
         /// Converts the given <see cref="ModelTag"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="ModelTag"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ModelTag tag
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ModelTag tag
                 ? string.Compare("", tag, StringComparison.OrdinalIgnoreCase) == 0
                     ? nameof(None)
                     : (string)tag
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ModelTag), "");
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ModelTag), "");
         #endregion
 
         #region Utilities
@@ -117,10 +117,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the this <see cref="ModelTag"/> instance matches the given ModelTag.
         /// </summary>
-        /// <param name="inTag">The <see cref="ModelTag"/> to check against the current ModelTag.</param>
+        /// <param name="tag">The <see cref="ModelTag"/> to check against the current ModelTag.</param>
         /// <returns><c>true</c> if this and the given instance are identical, ignoring case; otherwise, <c>false</c>.</returns>
-        public bool EqualsOrdinalIgnoreCase(ModelTag inTag)
-            => string.Compare(tagContent, inTag?.tagContent ?? "", StringComparison.OrdinalIgnoreCase) == 0;
+        public bool EqualsOrdinalIgnoreCase(ModelTag tag)
+            => string.Compare(tagContent, tag?.tagContent ?? "", StringComparison.OrdinalIgnoreCase) == 0;
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="ModelTag"/>.

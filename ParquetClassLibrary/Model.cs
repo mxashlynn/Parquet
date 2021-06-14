@@ -64,22 +64,22 @@ namespace Parquet
         /// Initializes a new instance of concrete implementations of the <see cref="Model"/> class.
         /// </summary>
         /// <param name="inBounds">The bounds within which the derived type's <see cref="ModelID"/> is defined.</param>
-        /// <param name="inID">Unique identifier for the <see cref="Model"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="Model"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="Model"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="Model"/>.</param>
-        /// <param name="inTags">Any additional functionality this <see cref="Model"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
-        protected Model(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ModelTag> inTags)
+        /// <param name="id">Unique identifier for the <see cref="Model"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="Model"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="Model"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="Model"/>.</param>
+        /// <param name="tags">Any additional functionality this <see cref="Model"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
+        protected Model(Range<ModelID> inBounds, ModelID id, string name, string description, string comment, IEnumerable<ModelTag> tags)
         {
-            Precondition.IsInRange(inID, inBounds, nameof(inID));
-            Precondition.IsNotNullOrEmpty(inName, nameof(inName));
+            Precondition.IsInRange(id, inBounds, nameof(id));
+            Precondition.IsNotNullOrEmpty(name, nameof(name));
 
-            var nonNullTags = (inTags ?? Enumerable.Empty<ModelTag>());
+            var nonNullTags = (tags ?? Enumerable.Empty<ModelTag>());
 
-            ID = inID;
-            Name = inName;
-            Description = inDescription ?? "";
-            Comment = inComment ?? "";
+            ID = id;
+            Name = name;
+            Description = description ?? "";
+            Comment = comment ?? "";
             Tags = nonNullTags.ToList();
         }
         #endregion

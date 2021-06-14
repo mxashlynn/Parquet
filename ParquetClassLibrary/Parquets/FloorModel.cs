@@ -38,21 +38,21 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="FloorModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="FloorModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="FloorModel"/>.  Cannot be null.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="FloorModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="FloorModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="FloorModel"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="FloorModel"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="FloorModel"/>.  Cannot be null.</param>
+        /// <param name="description">Player-friendly description of the <see cref="FloorModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="FloorModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="FloorModel"/>.</param>
         /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="ItemModel"/> awarded to the player when a character gathers this <see cref="FloorModel"/>.</param>
         /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeRecipe"/> this <see cref="FloorModel"/> helps to generate.</param>
         /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this <see cref="FloorModel"/> helps form.</param>
         /// <param name="inModTool">The tool used to modify this <see cref="FloorModel"/>.</param>
         /// <param name="inTrenchName">The name to use for this <see cref="FloorModel"/> when it has been dug out.</param>
-        public FloorModel(ModelID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<ModelTag> inTags = null, ModelID? inItemID = null,
+        public FloorModel(ModelID id, string name, string description, string comment,
+                          IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
                           IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
                           ModificationTool inModTool = ModificationTool.None, string inTrenchName = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, id, name, description, comment, tags, inItemID, inAddsToBiome, inAddsToRoom)
         {
             ModTool = inModTool;
             TrenchName =

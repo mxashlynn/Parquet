@@ -53,29 +53,29 @@ namespace Parquet.Biomes
         /// <summary>
         /// Initializes a new instance of the <see cref="BiomeRecipe"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="BiomeRecipe"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="BiomeRecipe"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="BiomeRecipe"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="BiomeRecipe"/>.</param>
-        /// <param name="inTags">Any additional functionality this <see cref="BiomeRecipe"/> has.</param>
-        /// <param name="inTier">A rating indicating where in the progression this <see cref="BiomeRecipe"/> falls.</param>
-        /// <param name="inIsRoomBased">Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</param>
-        /// <param name="inIsLiquidBased">Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</param>
-        /// <param name="inParquetCriteria">Describes the parquets that make up this <see cref="BiomeRecipe"/>.</param>
-        /// <param name="inEntryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeRecipe"/>.</param>
-        public BiomeRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                           IEnumerable<ModelTag> inTags = null, int inTier = 0, bool inIsRoomBased = false,
-                           bool inIsLiquidBased = false, ModelTag inParquetCriteria = null,
-                           IEnumerable<ModelTag> inEntryRequirements = null)
-            : base(All.BiomeRecipeIDs, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the <see cref="BiomeRecipe"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="BiomeRecipe"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="BiomeRecipe"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="BiomeRecipe"/>.</param>
+        /// <param name="tags">Any additional functionality this <see cref="BiomeRecipe"/> has.</param>
+        /// <param name="tier">A rating indicating where in the progression this <see cref="BiomeRecipe"/> falls.</param>
+        /// <param name="isRoomBased">Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of <see cref="Rooms.Room"/>s.</param>
+        /// <param name="isLiquidBased">Determines whether or not this <see cref="BiomeRecipe"/> is defined in terms of liquid parquets.</param>
+        /// <param name="parquetCriteria">Describes the parquets that make up this <see cref="BiomeRecipe"/>.</param>
+        /// <param name="entryRequirements">Describes the <see cref="ItemModel"/>s needed to access this <see cref="BiomeRecipe"/>.</param>
+        public BiomeRecipe(ModelID id, string name, string description, string comment,
+                           IEnumerable<ModelTag> tags = null, int tier = 0, bool isRoomBased = false,
+                           bool isLiquidBased = false, ModelTag parquetCriteria = null,
+                           IEnumerable<ModelTag> entryRequirements = null)
+            : base(All.BiomeRecipeIDs, id, name, description, comment, tags)
         {
-            Precondition.MustBeNonNegative(inTier, nameof(inTier));
+            Precondition.MustBeNonNegative(tier, nameof(tier));
 
-            Tier = inTier;
-            IsRoomBased = inIsRoomBased;
-            IsLiquidBased = inIsLiquidBased;
-            ParquetCriteria = inParquetCriteria ?? ModelTag.None;
-            EntryRequirements = (inEntryRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
+            Tier = tier;
+            IsRoomBased = isRoomBased;
+            IsLiquidBased = isLiquidBased;
+            ParquetCriteria = parquetCriteria ?? ModelTag.None;
+            EntryRequirements = (entryRequirements ?? Enumerable.Empty<ModelTag>()).ToList();
         }
         #endregion
 

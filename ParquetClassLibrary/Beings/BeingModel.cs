@@ -33,35 +33,35 @@ namespace Parquet.Beings
         /// <summary>
         /// Used by <see cref="BeingModel"/> subtypes.
         /// </summary>
-        /// <param name="inBounds">
+        /// <param name="bounds">
         /// The bounds within which the being's <see cref="ModelID"/> is defined.
         /// Must be one of <see cref="All.BeingIDs"/>.
         /// </param>
-        /// <param name="inID">Unique identifier for the being.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the being.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the being.</param>
-        /// <param name="inComment">Comment of, on, or by the being.</param>
-        /// <param name="inTags">Any additional functionality this being has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
-        /// <param name="inNativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this being is most comfortable.</param>
-        /// <param name="inPrimaryBehaviorID">The rules that govern how this being acts.  Cannot be null.</param>
-        /// <param name="inAvoidsIDs">Any parquets this being avoids.</param>
-        /// <param name="inSeeksIDs">Any parquets this being seeks.</param>
-        protected BeingModel(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription,
-                             string inComment, IEnumerable<ModelTag> inTags = null, ModelID? inNativeBiomeID = null,
-                             ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
-                             IEnumerable<ModelID> inSeeksIDs = null)
-            : base(inBounds, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the being.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the being.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the being.</param>
+        /// <param name="comment">Comment of, on, or by the being.</param>
+        /// <param name="tags">Any additional functionality this being has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
+        /// <param name="nativeBiomeID">The <see cref="ModelID"/> for the <see cref="Biomes.BiomeRecipe"/> in which this being is most comfortable.</param>
+        /// <param name="primaryBehaviorID">The rules that govern how this being acts.  Cannot be null.</param>
+        /// <param name="avoidsIDs">Any parquets this being avoids.</param>
+        /// <param name="seeksIDs">Any parquets this being seeks.</param>
+        protected BeingModel(Range<ModelID> bounds, ModelID id, string name, string description,
+                             string comment, IEnumerable<ModelTag> tags = null, ModelID? nativeBiomeID = null,
+                             ModelID? primaryBehaviorID = null, IEnumerable<ModelID> avoidsIDs = null,
+                             IEnumerable<ModelID> seeksIDs = null)
+            : base(bounds, id, name, description, comment, tags)
         {
-            var nonNullNativeBiomeID = inNativeBiomeID ?? ModelID.None;
-            var nonNullPrimaryBehaviorID = inPrimaryBehaviorID ?? ModelID.None;
-            var nonNullAvoidsIDs = (inAvoidsIDs ?? Enumerable.Empty<ModelID>()).ToList();
-            var nonNullSeeksIDs = (inSeeksIDs ?? Enumerable.Empty<ModelID>()).ToList();
+            var nonNullNativeBiomeID = nativeBiomeID ?? ModelID.None;
+            var nonNullPrimaryBehaviorID = primaryBehaviorID ?? ModelID.None;
+            var nonNullAvoidsIDs = (avoidsIDs ?? Enumerable.Empty<ModelID>()).ToList();
+            var nonNullSeeksIDs = (seeksIDs ?? Enumerable.Empty<ModelID>()).ToList();
 
-            Precondition.IsInRange(inBounds, All.BeingIDs, nameof(inBounds));
-            Precondition.IsInRange(nonNullNativeBiomeID, All.BiomeRecipeIDs, nameof(inNativeBiomeID));
-            Precondition.IsInRange(nonNullPrimaryBehaviorID, All.ScriptIDs, nameof(inPrimaryBehaviorID));
-            Precondition.AreInRange(nonNullAvoidsIDs, All.ParquetIDs, nameof(inAvoidsIDs));
-            Precondition.AreInRange(nonNullSeeksIDs, All.ParquetIDs, nameof(inSeeksIDs));
+            Precondition.IsInRange(bounds, All.BeingIDs, nameof(bounds));
+            Precondition.IsInRange(nonNullNativeBiomeID, All.BiomeRecipeIDs, nameof(nativeBiomeID));
+            Precondition.IsInRange(nonNullPrimaryBehaviorID, All.ScriptIDs, nameof(primaryBehaviorID));
+            Precondition.AreInRange(nonNullAvoidsIDs, All.ParquetIDs, nameof(avoidsIDs));
+            Precondition.AreInRange(nonNullSeeksIDs, All.ParquetIDs, nameof(seeksIDs));
 
             NativeBiomeID = nonNullNativeBiomeID;
             PrimaryBehaviorID = nonNullPrimaryBehaviorID;

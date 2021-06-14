@@ -55,11 +55,11 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="BlockModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="BlockModel"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="BlockModel"/>.  Cannot be null.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="BlockModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="BlockModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="BlockModel"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="BlockModel"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="BlockModel"/>.  Cannot be null.</param>
+        /// <param name="description">Player-friendly description of the <see cref="BlockModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="BlockModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="BlockModel"/>.</param>
         /// <param name="inItemID">The item that this <see cref="BlockModel"/> corresponds to, if any.</param>
         /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this <see cref="BlockModel"/> helps to generate.</param>
         /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this <see cref="BlockModel"/> helps to generate.</param>
@@ -69,15 +69,15 @@ namespace Parquet.Parquets
         /// <param name="inIsFlammable">If <c>true</c> this <see cref="BlockModel"/> may burn.</param>
         /// <param name="inIsLiquid">If <c>true</c> this <see cref="BlockModel"/> will flow.</param>
         /// <param name="inMaxToughness">Representation of the difficulty involved in gathering this <see cref="BlockModel"/>.</param>
-        public BlockModel(ModelID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<ModelTag> inTags = null,
+        public BlockModel(ModelID id, string name, string description, string comment,
+                          IEnumerable<ModelTag> tags = null,
                           ModelID? inItemID = null, IEnumerable<ModelTag> inAddsToBiome = null,
                           IEnumerable<ModelTag> inAddsToRoom = null,
                           GatheringTool inGatherTool = GatheringTool.None,
                           GatheringEffect inGatherEffect = GatheringEffect.None,
                           ModelID? inCollectibleID = null, bool inIsFlammable = false,
                           bool inIsLiquid = false, int inMaxToughness = DefaultMaxToughness)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags, inItemID, inAddsToBiome, inAddsToRoom)
+            : base(Bounds, id, name, description, comment, tags, inItemID, inAddsToBiome, inAddsToRoom)
         {
             var nonNullCollectibleID = inCollectibleID ?? ModelID.None;
 

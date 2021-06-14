@@ -42,21 +42,21 @@ namespace Parquet.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomRecipe"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inTags">Any additional information about this <see cref="RoomRecipe"/>.</param>
+        /// <param name="id">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="description">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
+        /// <param name="tags">Any additional information about this <see cref="RoomRecipe"/>.</param>
         /// <param name="inMinimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
         /// <param name="inOptionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
         /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
-        public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<ModelTag> inTags = null, int? inMinimumWalkableSpaces = null,
+        public RoomRecipe(ModelID id, string name, string description, string comment,
+                          IEnumerable<ModelTag> tags = null, int? inMinimumWalkableSpaces = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
                           IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
-            : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment, inTags)
+            : base(All.RoomRecipeIDs, id, name, description, comment, tags)
         {
             var nonNullMinimumWalkableSpaces = inMinimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
             var nonNullOptionallyRequiredFurnishings = (inOptionallyRequiredFurnishings ?? Enumerable.Empty<RecipeElement>()).ToList();

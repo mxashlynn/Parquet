@@ -74,10 +74,10 @@ namespace Parquet
             => ContainsValue(inRange.Minimum) && ContainsValue(inRange.Maximum);
 
         /// <summary>Determines if the given value is within the range, inclusive.</summary>
-        /// <param name="inValue">The value to test.</param>
+        /// <param name="value">The value to test.</param>
         /// <returns><c>true</c>, if the value is in range, <c>false</c> otherwise.</returns>
-        public bool ContainsValue(TElement inValue)
-            => Minimum.CompareTo(inValue) <= 0 && Maximum.CompareTo(inValue) >= 0;
+        public bool ContainsValue(TElement value)
+            => Minimum.CompareTo(value) <= 0 && Maximum.CompareTo(value) >= 0;
         #endregion
 
         #region ITypeConverter Implementation
@@ -93,39 +93,39 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Range<TElement> range
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is Range<TElement> range
                 ? $"{range.Minimum}{Delimiters.ElementDelimiter}" +
                   $"{range.Maximum}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Range<TElement>),
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(Range<TElement>),
                                                $"{default(TElement)}{Delimiters.ElementDelimiter}{default(TElement)}");
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText))
+            if (string.IsNullOrEmpty(text))
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(Range<TElement>), None);
+                return Logger.DefaultWithConvertLog(text, nameof(Range<TElement>), None);
             }
 
-            var parameterText = inText.Split(Delimiters.ElementDelimiter);
+            var parameterText = text.Split(Delimiters.ElementDelimiter);
 
             return IsIntConvertible(default)
-                ? new Range<TElement>((TElement)Int32ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
-                                      (TElement)Int32ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData))
+                ? new Range<TElement>((TElement)Int32ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData),
+                                      (TElement)Int32ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData))
                 : IsSingleConvertible(default)
-                    ? new Range<TElement>((TElement)SingleConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData),
-                                          (TElement)SingleConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData))
+                    ? new Range<TElement>((TElement)SingleConverterFactory.ConvertFromString(parameterText[0], row, memberMapData),
+                                          (TElement)SingleConverterFactory.ConvertFromString(parameterText[1], row, memberMapData))
                     : Logger.DefaultWithUnsupportedSerializationLog(nameof(Range<TElement>), None);
 
             // Determines if the given variable may be deserialized as an integer.
@@ -241,17 +241,17 @@ namespace Parquet
         }
 
         /// <summary>
-        /// Determines if the given <paramref name="inValue"/> is contained by any of the <see cref="Range{TElement}"/>s
+        /// Determines if the given <paramref name="value"/> is contained by any of the <see cref="Range{TElement}"/>s
         /// in the current <see cref="IEnumerable{Range}"/>.
         /// </summary>
         /// <param name="inRangeCollection">The range collection in which to search.</param>
-        /// <param name="inValue">The value to search for.</param>
+        /// <param name="value">The value to search for.</param>
         /// <typeparam name="TElement">The type over which the Ranges are defined.</typeparam>
         /// <returns>
-        /// <c>true</c>, if <paramref name="inRangeCollection"/> contains the <paramref name="inValue"/>,
+        /// <c>true</c>, if <paramref name="inRangeCollection"/> contains the <paramref name="value"/>,
         /// <c>false</c> otherwise.
         /// </returns>
-        public static bool ContainsValue<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, TElement inValue)
+        public static bool ContainsValue<TElement>(this IEnumerable<Range<TElement>> inRangeCollection, TElement value)
             where TElement : IComparable<TElement>, IEquatable<TElement>
         {
             Precondition.IsNotNull(inRangeCollection, nameof(inRangeCollection));
@@ -259,7 +259,7 @@ namespace Parquet
             var foundRange = false;
             foreach (var range in inRangeCollection ?? Enumerable.Empty<Range<TElement>>())
             {
-                if (range.ContainsValue(inValue))
+                if (range.ContainsValue(value))
                 {
                     foundRange = true;
                     break;

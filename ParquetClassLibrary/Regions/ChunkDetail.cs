@@ -130,46 +130,46 @@ namespace Parquet.Regions
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ChunkDetail chunk
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ChunkDetail chunk
                 ? chunk == None
                     ? nameof(None)
                     : $"{chunk.BaseTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.BaseComposition}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierTopography}{Delimiters.InternalDelimiter}" +
                       $"{chunk.ModifierComposition}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ChunkDetail), nameof(None));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ChunkDetail), nameof(None));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return None;
             }
             else
             {
-                var parameterText = inText.Split(Delimiters.InternalDelimiter);
+                var parameterText = text.Split(Delimiters.InternalDelimiter);
 
                 var baseTopography = Enum.TryParse(typeof(ChunkTopography), parameterText[0], true, out var temp1)
                     ? (ChunkTopography)temp1
                     : Logger.DefaultWithParseLog(parameterText[0], nameof(BaseTopography), ChunkTopography.Empty);
-                var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+                var baseComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
                 var modifierTopography = Enum.TryParse(typeof(ChunkTopography), parameterText[2], true, out var temp2)
                     ? (ChunkTopography)temp2
                     : Logger.DefaultWithParseLog(parameterText[2], nameof(ModifierTopography), ChunkTopography.Empty);
-                var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+                var modifierComposition = (ModelTag)ModelTag.ConverterFactory.ConvertFromString(parameterText[3], row, memberMapData);
 
                 return new ChunkDetail(baseTopography, baseComposition, modifierTopography, modifierComposition);
             }

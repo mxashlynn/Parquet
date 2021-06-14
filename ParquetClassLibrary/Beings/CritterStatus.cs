@@ -27,13 +27,13 @@ namespace Parquet.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="CritterStatus"/> class.
         /// </summary>
-        /// <param name="inPosition">The <see cref="Location"/> the tracked <see cref="CritterModel"/> occupies.</param>
-        /// <param name="inCurrentBehavior">The behavior currently governing the tracked <see cref="CritterModel"/>.</param>
-        public CritterStatus(Location? inPosition = null, ModelID? inCurrentBehavior = null)
+        /// <param name="position">The <see cref="Location"/> the tracked <see cref="CritterModel"/> occupies.</param>
+        /// <param name="currentBehavior">The behavior currently governing the tracked <see cref="CritterModel"/>.</param>
+        public CritterStatus(Location? position = null, ModelID? currentBehavior = null)
         {
-            var nonNullPosition = inPosition ?? Location.Nowhere;
-            var nonNullCurrentBehavior = inCurrentBehavior ?? ModelID.None;
-            Precondition.IsInRange(nonNullCurrentBehavior, All.ScriptIDs, nameof(inCurrentBehavior));
+            var nonNullPosition = position ?? Location.Nowhere;
+            var nonNullCurrentBehavior = currentBehavior ?? ModelID.None;
+            Precondition.IsInRange(nonNullCurrentBehavior, All.ScriptIDs, nameof(currentBehavior));
 
             Position = nonNullPosition;
             CurrentBehaviorID = nonNullCurrentBehavior;
@@ -44,11 +44,11 @@ namespace Parquet.Beings
         /// Initializes an instance of the <see cref="CritterStatus"/> class
         /// based on a given <see cref="CritterModel"/> instance.
         /// </summary>
-        /// <param name="inCritterModel">The definitions being tracked.</param>
-        public CritterStatus(CritterModel inCritterModel)
+        /// <param name="critterModel">The definitions being tracked.</param>
+        public CritterStatus(CritterModel critterModel)
         {
-            Precondition.IsNotNull(inCritterModel);
-            var nonNullCritterModel = inCritterModel ?? CritterModel.Unused;
+            Precondition.IsNotNull(critterModel);
+            var nonNullCritterModel = critterModel ?? CritterModel.Unused;
 
             Position = Location.Nowhere;
             CurrentBehaviorID = nonNullCritterModel.PrimaryBehaviorID;
@@ -68,10 +68,10 @@ namespace Parquet.Beings
         /// <summary>
         /// Determines whether the specified <see cref="CritterStatus"/> is equal to the current <see cref="CritterStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="CritterStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="CritterStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is CritterStatus critterStatus
+        public override bool Equals<T>(T status)
+            => status is CritterStatus critterStatus
             && Position == critterStatus.Position
             && CurrentBehaviorID == critterStatus.CurrentBehaviorID;
 
@@ -87,20 +87,20 @@ namespace Parquet.Beings
         /// <summary>
         /// Determines whether a specified instance of <see cref="CritterStatus"/> is equal to another specified instance of <see cref="CritterStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="CritterStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="CritterStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="CritterStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="CritterStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(CritterStatus inStatus1, CritterStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(CritterStatus status1, CritterStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="CritterStatus"/> is not equal to another specified instance of <see cref="CritterStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="CritterStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="CritterStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="CritterStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="CritterStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(CritterStatus inStatus1, CritterStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(CritterStatus status1, CritterStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -110,37 +110,37 @@ namespace Parquet.Beings
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is CritterStatus status
-                ? $"{status.Position.ConvertToString(status.Position, inRow, inMemberMapData)}{Delimiters.SecondaryDelimiter}" +
-                  $"{status.CurrentBehaviorID.ConvertToString(status.CurrentBehaviorID, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(CritterStatus), nameof(Unused));
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is CritterStatus status
+                ? $"{status.Position.ConvertToString(status.Position, row, memberMapData)}{Delimiters.SecondaryDelimiter}" +
+                  $"{status.CurrentBehaviorID.ConvertToString(status.CurrentBehaviorID, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(CritterStatus), nameof(Unused));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unused), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Unused), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return Logger.DefaultWithConvertLog(inText, nameof(CritterStatus), Unused);
+                return Logger.DefaultWithConvertLog(text, nameof(CritterStatus), Unused);
             }
 
-            var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
+            var parameterText = text.Split(Delimiters.SecondaryDelimiter);
 
             var parsedPosition = (Location)Location.ConverterFactory.ConvertFromString(parameterText[0],
-                                                                                       inRow, inMemberMapData);
+                                                                                       row, memberMapData);
             var parsedCurrentBehaviorID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3],
-                                                                                              inRow, inMemberMapData);
+                                                                                              row, memberMapData);
 
             return new CritterStatus(parsedPosition, parsedCurrentBehaviorID);
         }
