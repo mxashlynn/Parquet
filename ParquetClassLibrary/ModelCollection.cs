@@ -408,7 +408,6 @@ namespace Parquet
         {
             var csvReader = new CsvReader(inReader, CultureInfo.InvariantCulture);
             csvReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            csvReader.Configuration.PrepareHeaderForMatch = RemoveHeaderPrefix;
             foreach (var kvp in All.ConversionConverters)
             {
                 csvReader.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
@@ -416,18 +415,6 @@ namespace Parquet
 
             return csvReader;
         }
-
-        /// <summary>
-        /// Removes the "in" element used in the Parquet C# style from appearing in CSV file headers.
-        /// </summary>
-        /// <param name="inHeaderText">The text to modify.</param>
-        /// <param name="inHeaderIndex">Ignored.</param>
-        /// <returns>The modified text.</returns>
-        // TODO [API] Remove the "in" prefix at v1.0, and remove this routine, too.
-        private static string RemoveHeaderPrefix(string inHeaderText, int inHeaderIndex)
-            => inHeaderText.StartsWith("in", StringComparison.InvariantCulture)
-                ? inHeaderText[2..].ToUpperInvariant()
-                : inHeaderText.ToUpperInvariant();
 
         /// <summary>
         /// Assigns <see cref="ModelID"/>s to any models that need them.
