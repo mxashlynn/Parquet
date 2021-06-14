@@ -219,7 +219,7 @@ namespace ParquetRunner
     #endregion
 
     /// <summary>
-    /// A simple program used to run some basic features of the <see cref="Parquet"/>.
+    /// A simple program used to run some basic features of <see cref="Parquet"/>.
     /// </summary>
     internal static class RunnerProgram
     {
