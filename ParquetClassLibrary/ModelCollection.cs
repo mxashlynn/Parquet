@@ -174,7 +174,7 @@ namespace Parquet
             Precondition.IsNotNull(inModel);
             Precondition.IsNotNone(inModel.ID);
             Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
-            // In a release build, however, we want to silently abort such attempts without signalling a failure, which we do here.
+            // In a release build, however, we want to silently abort such attempts without signaling a failure, which we do here.
             if (inModel is null
                 || inModel.ID == ModelID.None)
             {
@@ -264,9 +264,9 @@ namespace Parquet
         /// </summary>
         /// <param name="inSender">The instance that raised the event.</param>
         /// <param name="inEventData">Additional information about the event.</param>
-        /// <returns><c>true</c> if the operation succeded; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if the operation succeeded; otherwise, <c>false</c>.</returns>
         /// <remarks>
-        /// This event is provided for the convinience of clinet code, particularly tools, and is not used by the library itself.
+        /// This event is provided for the convenience of client code, particularly tools, and is not used by the library itself.
         /// </remarks>
         protected virtual bool OnVisibleDataChanged(object inSender = null, EventArgs inEventData = null)
             // NOTE that if sender is non-null, this event was raised by a collected object; otherwise, this instance raised the event.
