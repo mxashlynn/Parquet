@@ -697,7 +697,7 @@ Parquet.Parquets.ParquetStatusPackGrid.this[int y, int x].get -> Parquet.Parquet
 Parquet.Point2D
 Parquet.Point2D.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Point2D.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-Parquet.Point2D.Deconstruct(out int outX, out int outY) -> void
+Parquet.Point2D.Deconstruct(out int x, out int y) -> void
 Parquet.Point2D.Equals(Parquet.Point2D inPoint) -> bool
 Parquet.Point2D.Magnitude.get -> int
 Parquet.Point2D.Point2D((int X, int Y) inCoordinates) -> void
@@ -711,7 +711,7 @@ Parquet.Range<TElement>.ContainsRange(Parquet.Range<TElement> inRange) -> bool
 Parquet.Range<TElement>.ContainsValue(TElement inValue) -> bool
 Parquet.Range<TElement>.ConvertFromString(string inText, CsvHelper.IReaderRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> object
 Parquet.Range<TElement>.ConvertToString(object inValue, CsvHelper.IWriterRow inRow, CsvHelper.Configuration.MemberMapData inMemberMapData) -> string
-Parquet.Range<TElement>.Deconstruct(out TElement outMinimum, out TElement outMaximum) -> void
+Parquet.Range<TElement>.Deconstruct(out TElement minimum, out TElement maximum) -> void
 Parquet.Range<TElement>.Equals(Parquet.Range<TElement> inRange) -> bool
 Parquet.Range<TElement>.IsValid() -> bool
 Parquet.Range<TElement>.Maximum.get -> TElement

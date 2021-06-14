@@ -190,10 +190,10 @@ namespace Parquet
         /// <summary>
         /// Deconstructs the current <see cref="Point2D"/> into its constituent coordinates.
         /// </summary>
-        /// <param name="outX">The X coordinate.</param>
-        /// <param name="outY">The Y coordinate.</param>
-        public void Deconstruct(out int outX, out int outY)
-            => (outX, outY) = (X, Y);
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        public void Deconstruct(out int x, out int y)
+            => (x, y) = (X, Y);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Point2D"/>.

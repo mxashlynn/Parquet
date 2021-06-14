@@ -203,10 +203,10 @@ namespace Parquet
         /// <summary>
         /// Deconstructs the current <see cref="Range{TElement}"/> into its constituent extrema.
         /// </summary>
-        /// <param name="outMinimum">The minimum.</param>
-        /// <param name="outMaximum">The maximum.</param>
-        public void Deconstruct(out TElement outMinimum, out TElement outMaximum)
-            => (outMinimum, outMaximum) = (Minimum, Maximum);
+        /// <param name="minimum">The minimum.</param>
+        /// <param name="maximum">The maximum.</param>
+        public void Deconstruct(out TElement minimum, out TElement maximum)
+            => (minimum, maximum) = (Minimum, Maximum);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Range{TElement}"/>.

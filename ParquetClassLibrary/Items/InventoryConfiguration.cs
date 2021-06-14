@@ -34,8 +34,8 @@ namespace Parquet.Items
             var value = reader.ReadLine();
 
             // Parse.
-            DefaultCapacity = int.TryParse(value, out var outInt)
-                ? outInt
+            DefaultCapacity = int.TryParse(value, out var parsedCapacity)
+                ? parsedCapacity
                 : Logger.DefaultWithParseLog(value, nameof(DefaultCapacity), FallbackCapacity);
         }
 
