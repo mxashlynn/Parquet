@@ -69,11 +69,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="RecipeElement"/> is equal to the current <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="element">The <see cref="RecipeElement"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="RecipeElement"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(RecipeElement element)
-            => element?.ElementTag == ElementTag
-            && element?.ElementAmount == ElementAmount;
+        public bool Equals(RecipeElement other)
+            => other?.ElementTag == ElementTag
+            && other?.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.

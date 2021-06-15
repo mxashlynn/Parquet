@@ -87,7 +87,7 @@ namespace Parquet.Scripts
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be compared one another.
         /// </summary>
-        /// <param name="tag">Any valid <see cref="ScriptNode"/>.</param>
+        /// <param name="other">Any valid <see cref="ScriptNode"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ScriptNode"/>s being compared.
         /// The return value has these meanings:
@@ -96,8 +96,8 @@ namespace Parquet.Scripts
         ///     Greater than zero indicates that the current instance follows the given <see cref="ScriptNode"/> in the sort order.
         /// </returns>
         /// <remarks>This comparison is case insensitive.</remarks>
-        public int CompareTo(ScriptNode tag)
-            => string.Compare(nodeContent, tag?.nodeContent ?? "", StringComparison.OrdinalIgnoreCase);
+        public int CompareTo(ScriptNode other)
+            => string.Compare(nodeContent, other?.nodeContent ?? "", StringComparison.OrdinalIgnoreCase);
         #endregion
 
         #region ITypeConverter Implementation

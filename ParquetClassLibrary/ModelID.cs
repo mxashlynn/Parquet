@@ -91,7 +91,7 @@ namespace Parquet
         /// <summary>
         /// Enables <see cref="ModelID"/> to be compared to one another.
         /// </summary>
-        /// <param name="id">Any <see cref="ModelID"/>.</param>
+        /// <param name="other">Any <see cref="ModelID"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ModelID"/>s being compared.
         /// The return value has these meanings:
@@ -99,8 +99,8 @@ namespace Parquet
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ModelID"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="ModelID"/> in the sort order.
         /// </returns>
-        public readonly int CompareTo(ModelID id)
-            => InternalID.CompareTo(id.InternalID);
+        public readonly int CompareTo(ModelID other)
+            => InternalID.CompareTo(other.InternalID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> strictly precedes another specified instance of <see cref="ModelID"/>.
@@ -166,10 +166,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="ModelID"/> is equal to the current <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="id">The <see cref="ModelID"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="ModelID"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public readonly bool Equals(ModelID id)
-            => InternalID == id.InternalID;
+        public readonly bool Equals(ModelID other)
+            => InternalID == other.InternalID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ModelID"/>.

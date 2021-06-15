@@ -85,13 +85,13 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="ChunkDetail"/> is equal to the current <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="chunkType">The <see cref="ChunkDetail"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="ChunkDetail"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="ChunkDetail"/>s are equal.</returns>
-        public bool Equals(ChunkDetail chunkType)
-            => BaseTopography == chunkType?.BaseTopography
-            && BaseComposition == chunkType.BaseComposition
-            && ModifierTopography == chunkType.ModifierTopography
-            && ModifierComposition == chunkType.ModifierComposition;
+        public bool Equals(ChunkDetail other)
+            => BaseTopography == other?.BaseTopography
+            && BaseComposition == other.BaseComposition
+            && ModifierTopography == other.ModifierTopography
+            && ModifierComposition == other.ModifierComposition;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkDetail"/>.

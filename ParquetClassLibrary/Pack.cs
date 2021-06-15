@@ -29,10 +29,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Pack{T}"/> is equal to the current <see cref="Pack{T}"/>.
         /// </summary>
-        /// <param name="pack">The <see cref="Pack{T}"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Pack{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Pack<T> pack)
-            => Equals<Pack<T>>(pack);
+        public bool Equals(Pack<T> other)
+            => Equals<Pack<T>>(other);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Pack{T}"/>.

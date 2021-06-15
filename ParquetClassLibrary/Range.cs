@@ -164,11 +164,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Range{TElement}"/> is equal to the current <see cref="Range{TElement}"/>.
         /// </summary>
-        /// <param name="range">The <see cref="Range{TElement}"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Range{TElement}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Range<TElement> range)
-            => Minimum.Equals(range.Minimum)
-            && Maximum.Equals(range.Maximum);
+        public bool Equals(Range<TElement> other)
+            => Minimum.Equals(other.Minimum)
+            && Maximum.Equals(other.Maximum);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Range{TElement}"/>.

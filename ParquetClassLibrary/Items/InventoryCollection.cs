@@ -285,11 +285,11 @@ namespace Parquet.Items
         /// <summary>
         /// Determines whether the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="slot">The slot to search for.</param>
+        /// <param name="other">The slot to search for.</param>
         /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
         [Obsolete("Use InventoryCollection.Has() instead.", true)]
-        public bool Contains(InventorySlot slot)
-            => Has(slot);
+        public bool Contains(InventorySlot other)
+            => Has(other);
 
         /// <summary>
         /// Adds the given <see cref="InventorySlot"/> to the <see cref="InventoryCollection"/>.

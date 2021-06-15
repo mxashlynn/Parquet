@@ -133,13 +133,13 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="MapChunk"/> is equal to the current <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="chunk">The <see cref="MapChunk"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="MapChunk"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(MapChunk chunk)
-            => chunk is MapChunk mapChunk
-            && IsFilledOut == mapChunk.IsFilledOut
-            && Details == mapChunk.Details
-            && ParquetDefinitions == mapChunk.ParquetDefinitions;
+        public bool Equals(MapChunk other)
+            => other is MapChunk chunk
+            && IsFilledOut == chunk.IsFilledOut
+            && Details == chunk.Details
+            && ParquetDefinitions == chunk.ParquetDefinitions;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="MapChunk"/>.

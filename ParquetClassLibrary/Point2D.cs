@@ -105,11 +105,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Point2D"/> is equal to the current <see cref="Point2D"/>.
         /// </summary>
-        /// <param name="point">The <see cref="Point2D"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Point2D"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="Point2D"/>s are equal.</returns>
-        public bool Equals(Point2D point)
-            => X == point.X
-            && Y == point.Y;
+        public bool Equals(Point2D other)
+            => X == other.X
+            && Y == other.Y;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Point2D"/>.

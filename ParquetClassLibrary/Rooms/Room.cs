@@ -114,12 +114,12 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines whether the specified <see cref="Room"/> is equal to the current <see cref="Room"/>.
         /// </summary>
-        /// <param name="room">The <see cref="Room"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Room"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Room room)
-            => room is not null
-            && WalkableArea.SetEquals(room.WalkableArea)
-            && Perimeter.SetEquals(room.Perimeter);
+        public bool Equals(Room other)
+            => other is not null
+            && WalkableArea.SetEquals(other.WalkableArea)
+            && Perimeter.SetEquals(other.Perimeter);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Room"/>.

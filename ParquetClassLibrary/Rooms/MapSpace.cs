@@ -173,11 +173,11 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines whether the specified <see cref="MapSpace"/> is equal to the current <see cref="MapSpace"/>.
         /// </summary>
-        /// <param name="space">The <see cref="MapSpace"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="MapSpace"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="MapSpace"/>s are equal.</returns>
-        public bool Equals(MapSpace space)
-            => Position == space?.Position
-            && Content == space.Content;
+        public bool Equals(MapSpace other)
+            => Position == other?.Position
+            && Content == other.Content;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>.

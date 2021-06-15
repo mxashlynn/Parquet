@@ -43,10 +43,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Status{T}"/> is equal to the current <see cref="Status{T}"/>.
         /// </summary>
-        /// <param name="status">The <see cref="Status{T}"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Status{T}"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Status<T> status)
-            => Equals<Status<T>>(status);
+        public bool Equals(Status<T> other)
+            => Equals<Status<T>>(other);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Status{T}"/>.

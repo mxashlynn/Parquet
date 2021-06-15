@@ -421,7 +421,7 @@ Parquet.Items.InventoryCollection.Add(Parquet.Items.InventorySlot slot) -> void
 Parquet.Items.InventoryCollection.Capacity.get -> int
 Parquet.Items.InventoryCollection.Capacity.set -> void
 Parquet.Items.InventoryCollection.Clear() -> void
-Parquet.Items.InventoryCollection.Contains(Parquet.Items.InventorySlot slot) -> bool
+Parquet.Items.InventoryCollection.Contains(Parquet.Items.InventorySlot other) -> bool
 Parquet.Items.InventoryCollection.Contains(Parquet.ModelID itemID) -> int
 Parquet.Items.InventoryCollection.CopyTo(Parquet.Items.InventorySlot[] array, int arrayIndex) -> void
 Parquet.Items.InventoryCollection.Count.get -> int
@@ -477,7 +477,7 @@ Parquet.LibraryState
 Parquet.Location
 Parquet.Location.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.Location.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
-Parquet.Location.Equals(Parquet.Location location) -> bool
+Parquet.Location.Equals(Parquet.Location other) -> bool
 Parquet.Location.Location() -> void
 Parquet.Location.Location(Parquet.ModelID? regionID = null, Parquet.Point2D? position = null) -> void
 Parquet.Location.Position.get -> Parquet.Point2D
@@ -493,7 +493,7 @@ Parquet.Model
 Parquet.Model.AttributeTag(Parquet.ModelTag prefix) -> Parquet.ModelTag
 Parquet.Model.Comment.get -> string
 Parquet.Model.Description.get -> string
-Parquet.Model.Equals(Parquet.Model model) -> bool
+Parquet.Model.Equals(Parquet.Model other) -> bool
 Parquet.Model.ID.get -> Parquet.ModelID
 Parquet.Model.Model(Parquet.Range<Parquet.ModelID> bounds, Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags) -> void
 Parquet.Model.Name.get -> string
@@ -514,10 +514,10 @@ Parquet.ModelCollection<TModel>.ModelCollection(System.Collections.Generic.IEnum
 Parquet.ModelCollection<TModel>.PutRecordsForType<TModelInner>() -> void
 Parquet.ModelCollection<TModel>.VisibleDataChanged -> Parquet.DataChangedEventHandler
 Parquet.ModelID
-Parquet.ModelID.CompareTo(Parquet.ModelID id) -> int
+Parquet.ModelID.CompareTo(Parquet.ModelID other) -> int
 Parquet.ModelID.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.ModelID.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
-Parquet.ModelID.Equals(Parquet.ModelID id) -> bool
+Parquet.ModelID.Equals(Parquet.ModelID other) -> bool
 Parquet.ModelID.IsValidForRange(Parquet.Range<Parquet.ModelID> range) -> bool
 Parquet.ModelID.IsValidForRange(System.Collections.Generic.IEnumerable<Parquet.Range<Parquet.ModelID>> ranges) -> bool
 Parquet.ModelID.ModelID() -> void
@@ -533,14 +533,14 @@ Parquet.ModelIDGrid.ModelIDGrid(int rowCount, int columnCount) -> void
 Parquet.ModelIDGrid.Rows.get -> int
 Parquet.ModelIDGrid.this[int y, int x].get -> Parquet.ModelID
 Parquet.ModelTag
-Parquet.ModelTag.CompareTo(Parquet.ModelTag tag) -> int
+Parquet.ModelTag.CompareTo(Parquet.ModelTag other) -> int
 Parquet.ModelTag.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.ModelTag.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.ModelTag.EqualsOrdinalIgnoreCase(Parquet.ModelTag tag) -> bool
 Parquet.ModelTag.ModelTag() -> void
 Parquet.ModelTag.StartsWithOrdinalIgnoreCase(Parquet.ModelTag prefix) -> bool
 Parquet.Pack<T>
-Parquet.Pack<T>.Equals(Parquet.Pack<T> pack) -> bool
+Parquet.Pack<T>.Equals(Parquet.Pack<T> other) -> bool
 Parquet.Pack<T>.Pack() -> void
 Parquet.PackArrayExtensions
 Parquet.Parquets.BlockModel
@@ -699,7 +699,7 @@ Parquet.Point2D
 Parquet.Point2D.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.Point2D.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.Point2D.Deconstruct(out int x, out int y) -> void
-Parquet.Point2D.Equals(Parquet.Point2D point) -> bool
+Parquet.Point2D.Equals(Parquet.Point2D other) -> bool
 Parquet.Point2D.Magnitude.get -> int
 Parquet.Point2D.Point2D((int X, int Y) coordinates) -> void
 Parquet.Point2D.Point2D() -> void
@@ -713,7 +713,7 @@ Parquet.Range<TElement>.ContainsValue(TElement value) -> bool
 Parquet.Range<TElement>.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.Range<TElement>.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.Range<TElement>.Deconstruct(out TElement minimum, out TElement maximum) -> void
-Parquet.Range<TElement>.Equals(Parquet.Range<TElement> range) -> bool
+Parquet.Range<TElement>.Equals(Parquet.Range<TElement> other) -> bool
 Parquet.Range<TElement>.IsValid() -> bool
 Parquet.Range<TElement>.Maximum.get -> TElement
 Parquet.Range<TElement>.Minimum.get -> TElement
@@ -726,7 +726,7 @@ Parquet.RecipeElement.ConvertFromString(string text, CsvHelper.IReaderRow row, C
 Parquet.RecipeElement.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.RecipeElement.ElementAmount.get -> int
 Parquet.RecipeElement.ElementTag.get -> Parquet.ModelTag
-Parquet.RecipeElement.Equals(Parquet.RecipeElement element) -> bool
+Parquet.RecipeElement.Equals(Parquet.RecipeElement other) -> bool
 Parquet.RecipeElement.RecipeElement() -> void
 Parquet.RecipeElement.RecipeElement(int elementAmount, Parquet.ModelTag elementTag) -> void
 Parquet.Regions.ChunkDetail
@@ -737,7 +737,7 @@ Parquet.Regions.ChunkDetail.ChunkDetail(Parquet.Regions.ChunkTopography baseTopo
 Parquet.Regions.ChunkDetail.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.Regions.ChunkDetail.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.Regions.ChunkDetail.DeepClone() -> Parquet.Regions.ChunkDetail
-Parquet.Regions.ChunkDetail.Equals(Parquet.Regions.ChunkDetail chunkType) -> bool
+Parquet.Regions.ChunkDetail.Equals(Parquet.Regions.ChunkDetail other) -> bool
 Parquet.Regions.ChunkDetail.ModifierComposition.get -> Parquet.ModelTag
 Parquet.Regions.ChunkDetail.ModifierTopography.get -> Parquet.Regions.ChunkTopography
 Parquet.Regions.ChunkTopography
@@ -779,7 +779,7 @@ Parquet.Regions.MapChunk.DeepClone() -> Parquet.Regions.MapChunk
 Parquet.Regions.MapChunk.Details.get -> Parquet.Regions.ChunkDetail
 Parquet.Regions.MapChunk.Details.set -> void
 Parquet.Regions.MapChunk.DimensionsInParquets.get -> Parquet.Point2D
-Parquet.Regions.MapChunk.Equals(Parquet.Regions.MapChunk chunk) -> bool
+Parquet.Regions.MapChunk.Equals(Parquet.Regions.MapChunk other) -> bool
 Parquet.Regions.MapChunk.Generate() -> Parquet.Regions.MapChunk
 Parquet.Regions.MapChunk.IsFilledOut.get -> bool
 Parquet.Regions.MapChunk.MapChunk() -> void
@@ -829,7 +829,7 @@ Parquet.Rooms.IMutableRoomRecipe.OptionallyRequiredWalkableFloors.get -> System.
 Parquet.Rooms.MapSpace
 Parquet.Rooms.MapSpace.Content.get -> Parquet.Parquets.ParquetModelPack
 Parquet.Rooms.MapSpace.EastNeighbor() -> Parquet.Rooms.MapSpace
-Parquet.Rooms.MapSpace.Equals(Parquet.Rooms.MapSpace space) -> bool
+Parquet.Rooms.MapSpace.Equals(Parquet.Rooms.MapSpace other) -> bool
 Parquet.Rooms.MapSpace.Grid.get -> Parquet.Parquets.ParquetModelPackGrid
 Parquet.Rooms.MapSpace.IsEmpty.get -> bool
 Parquet.Rooms.MapSpace.IsEnclosing.get -> bool
@@ -845,7 +845,7 @@ Parquet.Rooms.MapSpaceSetExtensions
 Parquet.Rooms.ReadOnlyRoomCollectionExtensions
 Parquet.Rooms.Room
 Parquet.Rooms.Room.ContainsPosition(Parquet.Point2D position) -> bool
-Parquet.Rooms.Room.Equals(Parquet.Rooms.Room room) -> bool
+Parquet.Rooms.Room.Equals(Parquet.Rooms.Room other) -> bool
 Parquet.Rooms.Room.FurnishingTags.get -> System.Collections.Generic.IEnumerable<Parquet.ModelTag>
 Parquet.Rooms.Room.Perimeter.get -> System.Collections.Generic.IReadOnlySet<Parquet.Rooms.MapSpace>
 Parquet.Rooms.Room.Position.get -> Parquet.Point2D
@@ -890,7 +890,7 @@ Parquet.Scripts.ScriptModel.GetActions() -> System.Collections.Generic.IEnumerab
 Parquet.Scripts.ScriptModel.Nodes.get -> System.Collections.Generic.IReadOnlyList<Parquet.Scripts.ScriptNode>
 Parquet.Scripts.ScriptModel.ScriptModel(Parquet.ModelID id, string name, string description, string comment, System.Collections.Generic.IEnumerable<Parquet.ModelTag> tags = null, System.Collections.Generic.IEnumerable<Parquet.Scripts.ScriptNode> nodes = null) -> void
 Parquet.Scripts.ScriptNode
-Parquet.Scripts.ScriptNode.CompareTo(Parquet.Scripts.ScriptNode tag) -> int
+Parquet.Scripts.ScriptNode.CompareTo(Parquet.Scripts.ScriptNode other) -> int
 Parquet.Scripts.ScriptNode.ConvertFromString(string text, CsvHelper.IReaderRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> object
 Parquet.Scripts.ScriptNode.ConvertToString(object value, CsvHelper.IWriterRow row, CsvHelper.Configuration.MemberMapData memberMapData) -> string
 Parquet.Scripts.ScriptNode.GetAction() -> System.Action
@@ -908,7 +908,7 @@ Parquet.SeriesConverter<TElement, TCollection>.ConvertFromString(string text, Cs
 Parquet.SeriesConverter<TElement, TCollection>.SeriesConverter() -> void
 Parquet.Status<T>
 Parquet.Status<T>.DeepClone() -> Parquet.Status<T>
-Parquet.Status<T>.Equals(Parquet.Status<T> status) -> bool
+Parquet.Status<T>.Equals(Parquet.Status<T> other) -> bool
 Parquet.Status<T>.Status() -> void
 Parquet.StatusArrayExtensions
 static Parquet.All.Beings.get -> Parquet.ModelCollection<Parquet.Beings.BeingModel>

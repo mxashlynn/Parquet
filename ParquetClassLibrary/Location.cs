@@ -50,11 +50,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Location"/> is equal to the current <see cref="Location"/>.
         /// </summary>
-        /// <param name="location">The <see cref="Location"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Location location)
-            => RegionID == location.RegionID
-            && Position == location.Position;
+        public bool Equals(Location other)
+            => RegionID == other.RegionID
+            && Position == other.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Location"/>.

@@ -183,10 +183,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Model"/> is equal to the current <see cref="Model"/>.
         /// </summary>
-        /// <param name="model">The <see cref="Model"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Model"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Model model)
-            => model?.ID == ID;
+        public bool Equals(Model other)
+            => other?.ID == ID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Model"/>.

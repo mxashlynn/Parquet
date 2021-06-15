@@ -61,7 +61,7 @@ namespace Parquet
         /// <summary>
         /// Enables <see cref="ModelTag"/>s to be compared one another.
         /// </summary>
-        /// <param name="tag">Any valid <see cref="ModelTag"/>.</param>
+        /// <param name="other">Any valid <see cref="ModelTag"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ModelTag"/>s being compared.
         /// The return value has these meanings:
@@ -69,8 +69,8 @@ namespace Parquet
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ModelTag"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="ModelTag"/> in the sort order.
         /// </returns>
-        public int CompareTo(ModelTag tag)
-            => string.Compare(tagContent, tag?.tagContent ?? "", StringComparison.Ordinal);
+        public int CompareTo(ModelTag other)
+            => string.Compare(tagContent, other?.tagContent ?? "", StringComparison.Ordinal);
         #endregion
 
         #region ITypeConverter Implementation
