@@ -389,6 +389,7 @@ Parquet.IMutableModel.Tags.get -> System.Collections.Generic.ICollection<Parquet
 Parquet.IMutableModelCollection<TModel>
 Parquet.IMutableModelCollection<TModel>.Remove(Parquet.ModelID id) -> bool
 Parquet.IMutableModelCollection<TModel>.Replace(TModel model) -> void
+Parquet.IReadOnlyCollectionOfTagsExtensions
 Parquet.IReadOnlyGrid<TElement>
 Parquet.IReadOnlyGrid<TElement>.Columns.get -> int
 Parquet.IReadOnlyGrid<TElement>.Rows.get -> int
@@ -978,8 +979,10 @@ static Parquet.Games.GameModel.Empty.get -> Parquet.Games.GameModel
 static Parquet.Games.GameStatus.Default.get -> Parquet.Games.GameStatus
 static Parquet.Games.GameStatus.operator !=(Parquet.Games.GameStatus status1, Parquet.Games.GameStatus status2) -> bool
 static Parquet.Games.GameStatus.operator ==(Parquet.Games.GameStatus status1, Parquet.Games.GameStatus status2) -> bool
-static Parquet.IReadOnlyListOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> inList, Parquet.ModelTag tag) -> bool
-static Parquet.IReadOnlyListOfTagsExtensions.ContainsPrefixOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> inList, Parquet.ModelTag inPrefix) -> bool
+static Parquet.IReadOnlyCollectionOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyCollection<Parquet.ModelTag> collection, Parquet.ModelTag tag) -> bool
+static Parquet.IReadOnlyCollectionOfTagsExtensions.ContainsPrefixOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyCollection<Parquet.ModelTag> collection, Parquet.ModelTag prefix) -> bool
+static Parquet.IReadOnlyListOfTagsExtensions.ContainsOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> collection, Parquet.ModelTag tag) -> bool
+static Parquet.IReadOnlyListOfTagsExtensions.ContainsPrefixOrdinalIgnoreCase(this System.Collections.Generic.IReadOnlyList<Parquet.ModelTag> collection, Parquet.ModelTag prefix) -> bool
 static Parquet.Items.InventoryCollection.Empty.get -> Parquet.Items.InventoryCollection
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.get -> int
 static Parquet.Items.InventoryConfiguration.DefaultCapacity.set -> void
