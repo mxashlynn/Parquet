@@ -170,7 +170,7 @@ namespace ParquetRunner
             TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
             TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", isLiquid: true, addsToRoom: new List<ModelTag> { TestTag });
             TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "10 Test Furnishing", "Test", "Test",
-                                                 isEntry: EntryType.Room, addsToRoom: new List<ModelTag> { TestTag });
+                                                 entry: EntryType.Room, addsToRoom: new List<ModelTag> { TestTag });
             TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test", null,
                                             RoomConfiguration.MinWalkableSpaces + 1, TestRecipeElementList,
