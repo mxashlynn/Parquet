@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/).
 
 
+## [0.5.0] - 2021-??-??
+### Alpha
+- This update makes Parquet method calls more C# idiomatic.
+#### Adds
+- ...
+#### Removes
+- ...
+#### Changes
+- ...
+
 ## [0.4.0] - 2021-02-23
 ### Pre-Alpha 3 API Revision
 - This update changes the API in far-reaching ways in order to separate design-time and play-time concerns in map-related types.
