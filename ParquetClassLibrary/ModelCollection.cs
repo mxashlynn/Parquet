@@ -408,6 +408,7 @@ namespace Parquet
         {
             var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
             csvReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
+            csvReader.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
                 csvReader.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
