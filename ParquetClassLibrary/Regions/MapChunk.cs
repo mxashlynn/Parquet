@@ -48,25 +48,24 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes an instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="inIsFilledOut">
+        /// <param name="isFilledOut">
         /// If <c>true</c>, the <see cref="MapChunk"/> was either created at design time or
         /// has already been procedurally generated on load in-game.
         /// </param>
-        /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
-        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
-        public MapChunk(bool inIsFilledOut, ChunkDetail inDetails = null,
-                        IReadOnlyGrid<ParquetModelPack> inParquetDefinitions = null)
+        /// <param name="details">Cues to the generation routines if generated at runtime.</param>
+        /// <param name="parquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
+        public MapChunk(bool isFilledOut, ChunkDetail details = null, IReadOnlyGrid<ParquetModelPack> parquetDefinitions = null)
         {
-            IsFilledOut = inIsFilledOut;
+            IsFilledOut = isFilledOut;
 
             if (IsFilledOut)
             {
                 Details = ChunkDetail.None;
-                ParquetDefinitions = inParquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = parquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
-                Details = inDetails ?? ChunkDetail.None;
+                Details = details ?? ChunkDetail.None;
                 ParquetDefinitions = ParquetModelPackGrid.Empty;
             }
         }
@@ -134,13 +133,13 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="MapChunk"/> is equal to the current <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk">The <see cref="MapChunk"/> to compare with the current.</param>
+        /// <param name="chunk">The <see cref="MapChunk"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(MapChunk inChunk)
-            => inChunk is MapChunk chunk
-            && IsFilledOut == chunk.IsFilledOut
-            && Details == chunk.Details
-            && ParquetDefinitions == chunk.ParquetDefinitions;
+        public bool Equals(MapChunk chunk)
+            => chunk is MapChunk mapChunk
+            && IsFilledOut == mapChunk.IsFilledOut
+            && Details == mapChunk.Details
+            && ParquetDefinitions == mapChunk.ParquetDefinitions;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="MapChunk"/>.
@@ -154,20 +153,20 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapChunk"/> is equal to another specified instance of <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk1">The first <see cref="MapChunk"/> to compare.</param>
-        /// <param name="inChunk2">The second <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk1">The first <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk2">The second <see cref="MapChunk"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(MapChunk inChunk1, MapChunk inChunk2)
-            => inChunk1?.Equals(inChunk2) ?? inChunk2?.Equals(inChunk1) ?? true;
+        public static bool operator ==(MapChunk chunk1, MapChunk chunk2)
+            => chunk1?.Equals(chunk2) ?? chunk2?.Equals(chunk1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapChunk"/> is not equal to another specified instance of <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk1">The first <see cref="MapChunk"/> to compare.</param>
-        /// <param name="inChunk2">The second <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk1">The first <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk2">The second <see cref="MapChunk"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(MapChunk inChunk1, MapChunk inChunk2)
-            => !(inChunk1 == inChunk2);
+        public static bool operator !=(MapChunk chunk1, MapChunk chunk2)
+            => !(chunk1 == chunk2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -254,14 +253,14 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="inArray">The <see cref="Pack{T}"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="array">The <see cref="Pack{T}"/> array to validate against.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this MapChunk[,] inArray, Point2D inPosition)
-            => inArray is not null
-            && inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inArray.GetLength(1)
-            && inPosition.Y < inArray.GetLength(0);
+        public static bool IsValidPosition(this MapChunk[,] array, Point2D position)
+            => array is not null
+            && position.X > -1
+            && position.Y > -1
+            && position.X < array.GetLength(1)
+            && position.Y < array.GetLength(0);
     }
 }

@@ -38,14 +38,14 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new <see cref="ParquetStatusPackGrid"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public ParquetStatusPackGrid(int inRowCount, int inColumnCount)
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
+        public ParquetStatusPackGrid(int rowCount, int columnCount)
         {
-            ParquetStatuses = new ParquetStatusPack[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            ParquetStatuses = new ParquetStatusPack[rowCount, columnCount];
+            for (var y = 0; y < rowCount; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < columnCount; x++)
                 {
                     ParquetStatuses[y, x] = ParquetStatusPack.Default.DeepClone();
                 }
@@ -56,13 +56,13 @@ namespace Parquet.Parquets
         /// Initializes an instance of the <see cref="ParquetStatusPackGrid"/> class
         /// based on a given <see cref="ParquetModelPackGrid"/> instance.
         /// </summary>
-        /// <param name="inParquetModelPackGrid">The grid of definitions being tracked.</param>
-        public ParquetStatusPackGrid(ParquetModelPackGrid inParquetModelPackGrid)
+        /// <param name="parquetModelPackGrid">The grid of definitions being tracked.</param>
+        public ParquetStatusPackGrid(ParquetModelPackGrid parquetModelPackGrid)
         {
-            Precondition.IsNotNull(inParquetModelPackGrid);
-            var nonNullParquetModelPackGrid = inParquetModelPackGrid is null
+            Precondition.IsNotNull(parquetModelPackGrid);
+            var nonNullParquetModelPackGrid = parquetModelPackGrid is null
                 ? new ParquetModelPackGrid()
-                : inParquetModelPackGrid;
+                : parquetModelPackGrid;
 
             ParquetStatuses = new ParquetStatusPack[nonNullParquetModelPackGrid.Rows, nonNullParquetModelPackGrid.Columns];
             for (var y = 0; y < nonNullParquetModelPackGrid.Rows; y++)
@@ -145,10 +145,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Point2D inPosition)
-            => ParquetStatuses.IsValidPosition(inPosition);
+        public bool IsValidPosition(Point2D position)
+            => ParquetStatuses.IsValidPosition(position);
         #endregion
     }
 }

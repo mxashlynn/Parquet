@@ -40,19 +40,19 @@ namespace Parquet.Parquets
         /// <param name="description">Player-friendly description of the <see cref="CollectibleModel"/>.</param>
         /// <param name="comment">Comment of, on, or by the <see cref="CollectibleModel"/>.</param>
         /// <param name="tags">Any additional information about the <see cref="CollectibleModel"/>.</param>
-        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> that this <see cref="CollectibleModel"/> corresponds to, if any.</param>
-        /// <param name="inAddsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inAddsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
-        /// <param name="inCollectionEffect">Effect of this <see cref="CollectibleModel"/>.</param>
-        /// <param name="inEffectAmount">The scale in points of the effect. For example, how much to alter a stat if <paramref name="inCollectionEffect"/> is set to alter a stat.</param>
+        /// <param name="itemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> that this <see cref="CollectibleModel"/> corresponds to, if any.</param>
+        /// <param name="addsToBiome">A set of flags indicating which, if any, <see cref="BiomeRecipe"/> this parquet helps to generate.</param>
+        /// <param name="addsToRoom">A set of flags indicating which, if any, <see cref="Rooms.RoomRecipe"/> this parquet helps to generate.</param>
+        /// <param name="collectionEffect">Effect of this <see cref="CollectibleModel"/>.</param>
+        /// <param name="effectAmount">The scale in points of the effect. For example, how much to alter a stat if <paramref name="collectionEffect"/> is set to alter a stat.</param>
         public CollectibleModel(ModelID id, string name, string description, string comment,
-                                IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
-                                IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
-                                CollectingEffect inCollectionEffect = CollectingEffect.None, int inEffectAmount = 0)
-            : base(Bounds, id, name, description, comment, tags, inItemID, inAddsToBiome, inAddsToRoom)
+                                IEnumerable<ModelTag> tags = null, ModelID? itemID = null,
+                                IEnumerable<ModelTag> addsToBiome = null, IEnumerable<ModelTag> addsToRoom = null,
+                                CollectingEffect collectionEffect = CollectingEffect.None, int effectAmount = 0)
+            : base(Bounds, id, name, description, comment, tags, itemID, addsToBiome, addsToRoom)
         {
-            CollectionEffect = inCollectionEffect;
-            EffectAmount = inEffectAmount;
+            CollectionEffect = collectionEffect;
+            EffectAmount = effectAmount;
         }
         #endregion
 

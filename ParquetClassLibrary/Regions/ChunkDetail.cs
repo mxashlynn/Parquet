@@ -60,17 +60,17 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes a new instance of the <see cref="ChunkDetail"/> class.
         /// </summary>
-        /// <param name="inBaseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
-        /// <param name="inBaseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
-        /// <param name="inModifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
-        /// <param name="inModifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
-        public ChunkDetail(ChunkTopography inBaseTopography, ModelTag inBaseComposition,
-                                ChunkTopography inModifierTopography, ModelTag inModifierComposition)
+        /// <param name="baseTopography">The basic form that the <see cref="MapChunk"/> of parquets takes.</param>
+        /// <param name="baseComposition">Indicates the overall type of parquets in the <see cref="MapChunk"/>.</param>
+        /// <param name="modifierTopography">Indicates a modifier on the <see cref="MapChunk"/> of parquets.</param>
+        /// <param name="modifierComposition">Indicates the type of parquets modifying the <see cref="MapChunk"/>.</param>
+        public ChunkDetail(ChunkTopography baseTopography, ModelTag baseComposition,
+                                ChunkTopography modifierTopography, ModelTag modifierComposition)
         {
-            BaseTopography = inBaseTopography;
-            BaseComposition = inBaseComposition ?? ModelTag.None;
-            ModifierTopography = inModifierTopography;
-            ModifierComposition = inModifierComposition ?? ModelTag.None;
+            BaseTopography = baseTopography;
+            BaseComposition = baseComposition ?? ModelTag.None;
+            ModifierTopography = modifierTopography;
+            ModifierComposition = modifierComposition ?? ModelTag.None;
         }
         #endregion
 
@@ -85,13 +85,13 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="ChunkDetail"/> is equal to the current <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType">The <see cref="ChunkDetail"/> to compare with the current.</param>
+        /// <param name="chunkType">The <see cref="ChunkDetail"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="ChunkDetail"/>s are equal.</returns>
-        public bool Equals(ChunkDetail inChunkType)
-            => BaseTopography == inChunkType?.BaseTopography
-            && BaseComposition == inChunkType.BaseComposition
-            && ModifierTopography == inChunkType.ModifierTopography
-            && ModifierComposition == inChunkType.ModifierComposition;
+        public bool Equals(ChunkDetail chunkType)
+            => BaseTopography == chunkType?.BaseTopography
+            && BaseComposition == chunkType.BaseComposition
+            && ModifierTopography == chunkType.ModifierTopography
+            && ModifierComposition == chunkType.ModifierComposition;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ChunkDetail"/>.
@@ -106,21 +106,21 @@ namespace Parquet.Regions
         /// Determines whether a specified instance of <see cref="ChunkDetail"/> is equal to
         /// another specified instance of <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
-        /// <param name="inChunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="chunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="chunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkDetail"/>s are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ChunkDetail inChunkType1, ChunkDetail inChunkType2)
-            => inChunkType1?.Equals(inChunkType2) ?? inChunkType2?.Equals(inChunkType1) ?? true;
+        public static bool operator ==(ChunkDetail chunkType1, ChunkDetail chunkType2)
+            => chunkType1?.Equals(chunkType2) ?? chunkType2?.Equals(chunkType1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ChunkDetail"/> is unequal to
         /// another specified instance of <see cref="ChunkDetail"/>.
         /// </summary>
-        /// <param name="inChunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
-        /// <param name="inChunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="chunkType1">The first <see cref="ChunkDetail"/> to compare.</param>
+        /// <param name="chunkType2">The second <see cref="ChunkDetail"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="ChunkDetail"/>s are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ChunkDetail inChunkType1, ChunkDetail inChunkType2)
-            => !(inChunkType1 == inChunkType2);
+        public static bool operator !=(ChunkDetail chunkType1, ChunkDetail chunkType2)
+            => !(chunkType1 == chunkType2);
         #endregion
 
         #region ITypeConverter Implementation

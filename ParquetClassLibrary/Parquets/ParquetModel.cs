@@ -40,25 +40,25 @@ namespace Parquet.Parquets
         /// <summary>
         /// Used by subtypes of the <see cref="ParquetModel"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the derived parquet type's ModelID is defined.</param>
+        /// <param name="bounds">The bounds within which the derived parquet type's ModelID is defined.</param>
         /// <param name="id">Unique identifier for the parquet.  Cannot be null.</param>
         /// <param name="name">Player-friendly name of the parquet.  Cannot be null or empty.</param>
         /// <param name="description">Player-friendly description of the parquet.</param>
         /// <param name="comment">Comment of, on, or by the parquet.</param>
         /// <param name="tags">Any additional information about this parquet.</param>
-        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
-        /// <param name="inAddsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
-        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
-        protected ParquetModel(Range<ModelID> inBounds, ModelID id, string name, string description, string comment,
-                               IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
-                               IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null)
-            : base(inBounds, id, name, description, comment, tags)
+        /// <param name="itemID">The <see cref="ModelID"/> of the <see cref="Items.ItemModel"/> awarded to the player when a character gathers or collects this parquet.</param>
+        /// <param name="addsToBiome">Describes which, if any, <see cref="BiomeRecipe"/>(s) this parquet helps form.</param>
+        /// <param name="addsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this parquet helps form.</param>
+        protected ParquetModel(Range<ModelID> bounds, ModelID id, string name, string description, string comment,
+                               IEnumerable<ModelTag> tags = null, ModelID? itemID = null,
+                               IEnumerable<ModelTag> addsToBiome = null, IEnumerable<ModelTag> addsToRoom = null)
+            : base(bounds, id, name, description, comment, tags)
         {
-            var nonNullItemID = inItemID ?? ModelID.None;
-            var nonNullAddsToBiome = (inAddsToBiome ?? Enumerable.Empty<ModelTag>()).ToList();
-            var nonNullAddsToRoom = (inAddsToRoom ?? Enumerable.Empty<ModelTag>()).ToList();
+            var nonNullItemID = itemID ?? ModelID.None;
+            var nonNullAddsToBiome = (addsToBiome ?? Enumerable.Empty<ModelTag>()).ToList();
+            var nonNullAddsToRoom = (addsToRoom ?? Enumerable.Empty<ModelTag>()).ToList();
 
-            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(inItemID));
+            Precondition.IsInRange(nonNullItemID, All.ItemIDs, nameof(itemID));
 
             ItemID = nonNullItemID;
             AddsToBiome = nonNullAddsToBiome;

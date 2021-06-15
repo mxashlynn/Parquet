@@ -54,16 +54,16 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(IEnumerable<Range<ModelID>> inBounds, IEnumerable<Model> inModels)
+        /// <param name="bounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
+        /// <param name="models">The <see cref="Model"/>s to collect.  Cannot be null.</param>
+        public ModelCollection(IEnumerable<Range<ModelID>> bounds, IEnumerable<Model> models)
         {
-            Precondition.IsNotNull(inModels, nameof(inModels));
+            Precondition.IsNotNull(models, nameof(models));
 
             var baseDictionary = new Dictionary<ModelID, Model>();
-            foreach (var model in inModels ?? Enumerable.Empty<Model>())
+            foreach (var model in models ?? Enumerable.Empty<Model>())
             {
-                Precondition.IsInRange(model.ID, inBounds, nameof(inModels));
+                Precondition.IsInRange(model.ID, bounds, nameof(models));
 
                 if (model.ID == ModelID.None)
                 {
@@ -81,7 +81,7 @@ namespace Parquet
                 }
             }
 
-            Bounds = inBounds.ToList();
+            Bounds = bounds.ToList();
             Models = baseDictionary;
             EditableModels = baseDictionary;
         }
@@ -89,10 +89,10 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelCollection{TModel}"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
-        /// <param name="inModels">The <see cref="Model"/>s to collect.  Cannot be null.</param>
-        public ModelCollection(Range<ModelID> inBounds, IEnumerable<Model> inModels)
-            : this(new List<Range<ModelID>> { inBounds }, inModels)
+        /// <param name="bounds">The bounds within which the collected <see cref="ModelID"/>s are defined.</param>
+        /// <param name="models">The <see cref="Model"/>s to collect.  Cannot be null.</param>
+        public ModelCollection(Range<ModelID> bounds, IEnumerable<Model> models)
+            : this(new List<Range<ModelID>> { bounds }, models)
         { }
         #endregion
 
@@ -106,8 +106,8 @@ namespace Parquet
         /// <summary>
         /// Adds the given <typeparamref name="TModel"/> to the collection.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        void ICollection<TModel>.Add(TModel inModel)
+        /// <param name="model">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        void ICollection<TModel>.Add(TModel model)
         {
             if (LibraryState.IsPlayMode)
             {
@@ -116,36 +116,36 @@ namespace Parquet
                 return;
             }
 
-            Precondition.IsNotNull(inModel);
-            Precondition.IsNotNone(inModel.ID);
-            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+            Precondition.IsNotNull(model);
+            Precondition.IsNotNone(model.ID);
+            Precondition.IsInRange(model.ID, Bounds, nameof(model.ID));
 
-            if (!Contains(inModel.ID))
+            if (!Contains(model.ID))
             {
-                EditableModels[inModel.ID] = inModel;
-                inModel.VisibleDataChanged += OnVisibleDataChanged;
+                EditableModels[model.ID] = model;
+                model.VisibleDataChanged += OnVisibleDataChanged;
                 OnVisibleDataChanged();
             }
             else
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotAdd,
-                                                           typeof(TModel).Name, inModel.Name));
+                                                           typeof(TModel).Name, model.Name));
             }
         }
 
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <typeparamref name="TModel"/>.
         /// </summary>
-        /// <param name="inModel">The <typeparamref name="TModel"/> to find.</param>
+        /// <param name="model">The <typeparamref name="TModel"/> to find.</param>
         /// <returns><c>true</c> if the <typeparamref namef="TModel"/> was found; <c>false</c> otherwise.</returns>
-        bool ICollection<TModel>.Contains(TModel inModel) => Contains(inModel);
+        bool ICollection<TModel>.Contains(TModel model) => Contains(model);
 
         /// <summary>
         /// Copies the elements of the <see cref="ModelCollection{TModel}"/> to an <see cref="Array"/>, starting at the given index.
         /// </summary>
-        /// <param name="inArray">The array to copy to.</param>
-        /// <param name="inArrayIndex">The index at which to begin copying.</param>
-        void ICollection<TModel>.CopyTo(TModel[] inArray, int inArrayIndex)
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The index at which to begin copying.</param>
+        void ICollection<TModel>.CopyTo(TModel[] array, int arrayIndex)
         {
             if (LibraryState.IsPlayMode)
             {
@@ -154,14 +154,14 @@ namespace Parquet
                 return;
             }
 
-            EditableModels.Values.CopyTo(inArray, inArrayIndex);
+            EditableModels.Values.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        private bool Remove(TModel inModel)
+        /// <param name="model">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        private bool Remove(TModel model)
         {
             if (LibraryState.IsPlayMode)
             {
@@ -171,27 +171,27 @@ namespace Parquet
             }
 
             // In a debug build we want to log attempts to remove null/None from the collection, which Precondition does.
-            Precondition.IsNotNull(inModel);
-            Precondition.IsNotNone(inModel.ID);
-            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+            Precondition.IsNotNull(model);
+            Precondition.IsNotNone(model.ID);
+            Precondition.IsInRange(model.ID, Bounds, nameof(model.ID));
             // In a release build, however, we want to silently abort such attempts without signaling a failure, which we do here.
-            if (inModel is null
-                || inModel.ID == ModelID.None)
+            if (model is null
+                || model.ID == ModelID.None)
             {
                 return true;
             }
 
-            inModel.VisibleDataChanged -= OnVisibleDataChanged;
-            return EditableModels.Remove(inModel.ID)
+            model.VisibleDataChanged -= OnVisibleDataChanged;
+            return EditableModels.Remove(model.ID)
                    && OnVisibleDataChanged();
         }
 
         /// <summary>
         /// Removes the given <typeparamref name="TModel"/> from the collection.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
-        bool ICollection<TModel>.Remove(TModel inModel)
-            => Remove(inModel);
+        /// <param name="model">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        bool ICollection<TModel>.Remove(TModel model)
+            => Remove(model);
 
         /// <summary>
         /// Removes the <typeparamref name="TModel"/> associated with the given <see cref="ModelID"/> from the collection.
@@ -225,9 +225,9 @@ namespace Parquet
         /// Replaces a contained <typeparamref name="TModel"/> with the given <typeparamref name="TModel"/> whose
         /// <see cref="ModelID"/> is identical to that of the model being replaced.
         /// </summary>
-        /// <param name="inModel">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
+        /// <param name="model">A valid, defined <typeparamref name="TModel"/> contained in this collection.</param>
         /// <remarks>Facilitates updating elements from design tools while maintaining a read-only facade during play.</remarks>
-        void IMutableModelCollection<TModel>.Replace(TModel inModel)
+        void IMutableModelCollection<TModel>.Replace(TModel model)
         {
             if (LibraryState.IsPlayMode)
             {
@@ -236,20 +236,20 @@ namespace Parquet
                 return;
             }
 
-            Precondition.IsNotNull(inModel);
-            Precondition.IsNotNone(inModel.ID);
-            Precondition.IsInRange(inModel.ID, Bounds, nameof(inModel.ID));
+            Precondition.IsNotNull(model);
+            Precondition.IsNotNone(model.ID);
+            Precondition.IsInRange(model.ID, Bounds, nameof(model.ID));
 
-            if (!Contains(inModel.ID))
+            if (!Contains(model.ID))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotReplace,
-                                                           typeof(TModel).Name, inModel.Name));
+                                                           typeof(TModel).Name, model.Name));
             }
             else
             {
-                EditableModels[inModel.ID].VisibleDataChanged -= OnVisibleDataChanged;
-                inModel.VisibleDataChanged += OnVisibleDataChanged;
-                EditableModels[inModel.ID] = inModel;
+                EditableModels[model.ID].VisibleDataChanged -= OnVisibleDataChanged;
+                model.VisibleDataChanged += OnVisibleDataChanged;
+                EditableModels[model.ID] = model;
                 OnVisibleDataChanged();
             }
         }
@@ -281,12 +281,12 @@ namespace Parquet
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModel}"/> contains the specified <see cref="Model"/>.
         /// </summary>
-        /// <param name="inModel">The <see cref="Model"/> to find.</param>
+        /// <param name="model">The <see cref="Model"/> to find.</param>
         /// <returns><c>true</c> if the <see cref="Model"/> was found; <c>false</c> otherwise.</returns>
         /// <remarks>A <c>null</c> model is never found and will result in a return value of <c>false</c>.</remarks>
-        public bool Contains(Model inModel)
-            => inModel is not null
-            && Contains(inModel.ID);
+        public bool Contains(Model model)
+            => model is not null
+            && Contains(model.ID);
 
         /// <summary>
         /// Determines whether the <see cref="ModelCollection{TModel}"/> contains a <see cref="Model"/>
@@ -376,37 +376,37 @@ namespace Parquet
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
         /// <typeparam name="TModelInner">The type to deserialize.</typeparam>
-        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <param name="bounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
-        public ModelCollection<TModel> GetRecordsForType<TModelInner>(Range<ModelID> inBounds)
+        public ModelCollection<TModel> GetRecordsForType<TModelInner>(Range<ModelID> bounds)
             where TModelInner : TModel
-            => GetRecordsForType<TModelInner>(new List<Range<ModelID>> { inBounds });
+            => GetRecordsForType<TModelInner>(new List<Range<ModelID>> { bounds });
 
         /// <summary>
         /// Reads all records of the given type from the appropriate file.
         /// </summary>
         /// <typeparam name="TModelInner">The type to deserialize.</typeparam>
-        /// <param name="inBounds">The range in which the records are defined.</param>
+        /// <param name="bounds">The range in which the records are defined.</param>
         /// <returns>The instances read.</returns>
-        public ModelCollection<TModel> GetRecordsForType<TModelInner>(IEnumerable<Range<ModelID>> inBounds)
+        public ModelCollection<TModel> GetRecordsForType<TModelInner>(IEnumerable<Range<ModelID>> bounds)
             where TModelInner : TModel
         {
             using var reader = new StreamReader(ModelCollection.GetFilePath<TModelInner>());
             using var csv = ConfigureCSVReader(reader);
             var models = csv.GetRecords<TModelInner>().ToList();
             HandleUnassignedIDs(csv.Context.HeaderRecord, models);
-            return new ModelCollection<TModel>(inBounds, models);
+            return new ModelCollection<TModel>(bounds, models);
         }
 
         #region GetRecordsForType Helper Methods
         /// <summary>
         /// Sets up a <see cref="TextReader"/> to work with Parquet's CSV files.
         /// </summary>
-        /// <param name="inReader">The reader to configure.</param>
+        /// <param name="reader">The reader to configure.</param>
         /// <returns>A new, configured reader that will need to be disposed.</returns>
-        private static CsvReader ConfigureCSVReader(TextReader inReader)
+        private static CsvReader ConfigureCSVReader(TextReader reader)
         {
-            var csvReader = new CsvReader(inReader, CultureInfo.InvariantCulture);
+            var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
             csvReader.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
             foreach (var kvp in All.ConversionConverters)
             {
@@ -424,24 +424,24 @@ namespace Parquet
         /// This detects such records and assigns an ID to all models created from them.
         /// </remarks>
         /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
-        /// <param name="inColumnHeaders">Text indicating which value corresponds to which model member.</param>
-        /// <param name="inModels">Models created by the most recent call to CsvReader.GetRecords.</param>
-        private static void HandleUnassignedIDs<TModelInner>(string[] inColumnHeaders, ICollection<TModelInner> inModels)
+        /// <param name="columnHeaders">Text indicating which value corresponds to which model member.</param>
+        /// <param name="models">Models created by the most recent call to CsvReader.GetRecords.</param>
+        private static void HandleUnassignedIDs<TModelInner>(string[] columnHeaders, ICollection<TModelInner> models)
             where TModelInner : TModel
         {
             if (ModelID.RecordsWithMissingIDs.Count > 0)
             {
-                var models = inModels.ToList();
+                var modelList = models.ToList();
 
                 var recordsWithNewIDs = new StringBuilder();
-                ReconstructHeader(inColumnHeaders, recordsWithNewIDs);
-                AssignMissingIDs(models, recordsWithNewIDs);
+                ReconstructHeader(columnHeaders, recordsWithNewIDs);
+                AssignMissingIDs(modelList, recordsWithNewIDs);
 
                 using var stringReader = new StringReader(recordsWithNewIDs.ToString());
                 using var stringCSVReader = ConfigureCSVReader(stringReader);
 
                 var modelsWithNewIDs = stringCSVReader.GetRecords<TModelInner>().ToList();
-                models.AddRange(modelsWithNewIDs);
+                modelList.AddRange(modelsWithNewIDs);
                 ModelID.RecordsWithMissingIDs.Clear();
             }
         }
@@ -449,28 +449,28 @@ namespace Parquet
         /// <summary>
         /// Reconstructs the header that would be used by <see cref="CsvReader"/> to deserialize models from the given records.
         /// </summary>
-        /// <param name="inColumnHeaders">Individual header elements.</param>
-        /// <param name="inRecordsWithNewIDs">Data laid out in CSV-fashion in need of a header.</param>
-        private static void ReconstructHeader(string[] inColumnHeaders, StringBuilder inRecordsWithNewIDs)
+        /// <param name="columnHeaders">Individual header elements.</param>
+        /// <param name="recordsWithNewIDs">Data laid out in CSV-fashion in need of a header.</param>
+        private static void ReconstructHeader(string[] columnHeaders, StringBuilder recordsWithNewIDs)
         {
-            foreach (var columnName in inColumnHeaders)
+            foreach (var columnName in columnHeaders)
             {
-                inRecordsWithNewIDs.Append($"{columnName},");
+                recordsWithNewIDs.Append($"{columnName},");
             }
-            inRecordsWithNewIDs.Remove(inRecordsWithNewIDs.Length - 1, 1);
+            recordsWithNewIDs.Remove(recordsWithNewIDs.Length - 1, 1);
         }
 
         /// <summary>
         /// Assigns <see cref="ModelID"/>s to the given <see cref="Model"/>s and adds them to the given <see cref="List{T}"/>.
         /// </summary>
         /// <typeparam name="TModelInner">The type to assign IDs to.</typeparam>
-        /// <param name="inModelsWithOldIDs">Models that already had IDs.</param>
-        /// <param name="inRecordsNeedingIDs">Records of models that have not yet had their IDs assigned.</param>
-        private static void AssignMissingIDs<TModelInner>(ICollection<TModelInner> inModelsWithOldIDs,
-                                                          StringBuilder inRecordsNeedingIDs)
+        /// <param name="modelsWithOldIDs">Models that already had IDs.</param>
+        /// <param name="recordsNeedingIDs">Records of models that have not yet had their IDs assigned.</param>
+        private static void AssignMissingIDs<TModelInner>(ICollection<TModelInner> modelsWithOldIDs,
+                                                          StringBuilder recordsNeedingIDs)
             where TModelInner : TModel
         {
-            var maxAssignedID = inModelsWithOldIDs
+            var maxAssignedID = modelsWithOldIDs
                 .Aggregate((current, next)
                     => next.ID > current.ID
                         ? next
@@ -478,7 +478,7 @@ namespace Parquet
             foreach (var record in ModelID.RecordsWithMissingIDs)
             {
                 maxAssignedID++;
-                inRecordsNeedingIDs.Append($"\n{maxAssignedID}{record}");
+                recordsNeedingIDs.Append($"\n{maxAssignedID}{record}");
             }
         }
         #endregion

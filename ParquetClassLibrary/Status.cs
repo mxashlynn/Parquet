@@ -107,14 +107,14 @@ namespace Parquet
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="inArray">The array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="array">The array to validate against.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition<T>(this Status<T>[,] inArray, Point2D inPosition)
-            => inArray is not null
-            && inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inArray.GetLength(1)
-            && inPosition.Y < inArray.GetLength(0);
+        public static bool IsValidPosition<T>(this Status<T>[,] array, Point2D position)
+            => array is not null
+            && position.X > -1
+            && position.Y > -1
+            && position.X < array.GetLength(1)
+            && position.Y < array.GetLength(0);
     }
 }

@@ -31,25 +31,25 @@ namespace Parquet.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="MapSpace"/> class.
         /// </summary>
-        /// <param name="inPosition">Where this <see cref="MapSpace"/> is.</param>
-        /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        /// <param name="inGrid">The <see cref="ParquetModelPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
-        public MapSpace(Point2D inPosition, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
+        /// <param name="position">Where this <see cref="MapSpace"/> is.</param>
+        /// <param name="content">All parquets occupying this <see cref="MapSpace"/>.</param>
+        /// <param name="grid">The <see cref="ParquetModelPackGrid"/> within which this <see cref="MapSpace"/> occurs.</param>
+        public MapSpace(Point2D position, ParquetModelPack content, ParquetModelPackGrid grid)
         {
-            Position = inPosition;
-            Content = inContent;
-            Grid = inGrid;
+            Position = position;
+            Content = content;
+            Grid = grid;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapSpace"/> class.
         /// </summary>
-        /// <param name="inX">X-coordinate of this <see cref="MapSpace"/>.</param>
-        /// <param name="inY">Y-coordinate of this <see cref="MapSpace"/>.</param>
-        /// <param name="inContent">All parquets occupying this <see cref="MapSpace"/>.</param>
-        /// <param name="inGrid">The grid in which this <see cref="MapSpace"/> occurs. </param>
-        public MapSpace(int inX, int inY, ParquetModelPack inContent, ParquetModelPackGrid inGrid)
-            : this(new Point2D(inX, inY), inContent, inGrid) { }
+        /// <param name="x">X-coordinate of this <see cref="MapSpace"/>.</param>
+        /// <param name="y">Y-coordinate of this <see cref="MapSpace"/>.</param>
+        /// <param name="content">All parquets occupying this <see cref="MapSpace"/>.</param>
+        /// <param name="grid">The grid in which this <see cref="MapSpace"/> occurs. </param>
+        public MapSpace(int x, int y, ParquetModelPack content, ParquetModelPackGrid grid)
+            : this(new Point2D(x, y), content, grid) { }
         #endregion
 
         #region Position Offsets
@@ -151,14 +151,14 @@ namespace Parquet.Rooms
         /// third, has one walkable neighbor that is within the given <see cref="IReadOnlySet{MapSpace}"/>; and
         /// fourth, has one walkable neighbor that is NOT within the given <see cref="IReadOnlySet{MapSpace}"/>.
         /// </summary>
-        /// <param name="inWalkableArea">The <see cref="IReadOnlySet{MapSpace}"/> used to define this <see cref="MapSpace"/>.</param>
+        /// <param name="walkableArea">The <see cref="IReadOnlySet{MapSpace}"/> used to define this <see cref="MapSpace"/>.</param>
         /// <returns><c>true</c>, if this <see cref="MapSpace"/> may be used as an enclosing entry by a <see cref="Room"/>, <c>false</c> otherwise.</returns>
-        internal bool IsEnclosingEntry(IReadOnlySet<MapSpace> inWalkableArea)
+        internal bool IsEnclosingEntry(IReadOnlySet<MapSpace> walkableArea)
             => ModelID.None != Content.FurnishingID
             && (All.Furnishings.GetOrNull<FurnishingModel>(Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None
             && Content.IsEnclosing
-            && Neighbors().Any(neighbor1 => inWalkableArea.Contains(neighbor1))
-            && Neighbors().Any(neighbor2 => !inWalkableArea.Contains(neighbor2)
+            && Neighbors().Any(neighbor1 => walkableArea.Contains(neighbor1))
+            && Neighbors().Any(neighbor2 => !walkableArea.Contains(neighbor2)
                                          && neighbor2.Content.IsWalkable);
         #endregion
 
@@ -173,11 +173,11 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines whether the specified <see cref="MapSpace"/> is equal to the current <see cref="MapSpace"/>.
         /// </summary>
-        /// <param name="inSpace">The <see cref="MapSpace"/> to compare with the current.</param>
+        /// <param name="space">The <see cref="MapSpace"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="MapSpace"/>s are equal.</returns>
-        public bool Equals(MapSpace inSpace)
-            => Position == inSpace?.Position
-            && Content == inSpace.Content;
+        public bool Equals(MapSpace space)
+            => Position == space?.Position
+            && Content == space.Content;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="MapSpace"/>.
@@ -192,21 +192,21 @@ namespace Parquet.Rooms
         /// Determines whether a specified instance of <see cref="MapSpace"/> is equal to
         /// another specified instance of <see cref="MapSpace"/>.
         /// </summary>
-        /// <param name="inSpace1">The first <see cref="MapSpace"/> to compare.</param>
-        /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
+        /// <param name="space1">The first <see cref="MapSpace"/> to compare.</param>
+        /// <param name="space2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(MapSpace inSpace1, MapSpace inSpace2)
-            => inSpace1?.Equals(inSpace2) ?? inSpace2?.Equals(inSpace1) ?? true;
+        public static bool operator ==(MapSpace space1, MapSpace space2)
+            => space1?.Equals(space2) ?? space2?.Equals(space1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapSpace"/> is unequal to
         /// another specified instance of <see cref="MapSpace"/>.
         /// </summary>
-        /// <param name="inSpace1">The first <see cref="MapSpace"/> to compare.</param>
-        /// <param name="inSpace2">The second <see cref="MapSpace"/> to compare.</param>
+        /// <param name="space1">The first <see cref="MapSpace"/> to compare.</param>
+        /// <param name="space2">The second <see cref="MapSpace"/> to compare.</param>
         /// <returns><c>true</c> if the two <see cref="MapSpace"/>s are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(MapSpace inSpace1, MapSpace inSpace2)
-            => !(inSpace1 == inSpace2);
+        public static bool operator !=(MapSpace space1, MapSpace space2)
+            => !(space1 == space2);
         #endregion
 
         #region Utilities

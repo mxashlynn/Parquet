@@ -37,14 +37,14 @@ namespace Parquet
         /// <summary>
         /// Initializes a new <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public ModelIDGrid(int inRowCount, int inColumnCount)
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
+        public ModelIDGrid(int rowCount, int columnCount)
         {
-            IDs = new ModelID[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            IDs = new ModelID[rowCount, columnCount];
+            for (var y = 0; y < rowCount; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < columnCount; x++)
                 {
                     IDs[y, x] = ModelID.None;
                 }
@@ -124,10 +124,10 @@ namespace Parquet
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Point2D inPosition)
-            => IDs.IsValidPosition(inPosition);
+        public bool IsValidPosition(Point2D position)
+            => IDs.IsValidPosition(position);
         #endregion
     }
 }

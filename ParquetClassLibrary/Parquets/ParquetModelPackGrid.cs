@@ -39,14 +39,14 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new empty <see cref="ParquetModelPackGrid"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public ParquetModelPackGrid(int inRowCount, int inColumnCount)
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
+        public ParquetModelPackGrid(int rowCount, int columnCount)
         {
-            ParquetPacks = new ParquetModelPack[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            ParquetPacks = new ParquetModelPack[rowCount, columnCount];
+            for (var y = 0; y < rowCount; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < columnCount; x++)
                 {
                     ParquetPacks[y, x] = new ParquetModelPack();
                 }
@@ -56,9 +56,9 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new <see cref="ParquetModelPackGrid"/> from the given 2D <see cref="ParquetModelPack"/> array.
         /// </summary>
-        /// <param name="inParquetPackArray">The array containing the <see cref="ParquetModelPack"/>s.</param>
-        public ParquetModelPackGrid(ParquetModelPack[,] inParquetPackArray)
-            => ParquetPacks = inParquetPackArray;
+        /// <param name="parquetPackArray">The array containing the <see cref="ParquetModelPack"/>s.</param>
+        public ParquetModelPackGrid(ParquetModelPack[,] parquetPackArray)
+            => ParquetPacks = parquetPackArray;
         #endregion
 
         #region Finding Subgrids
@@ -72,37 +72,37 @@ namespace Parquet.Parquets
         /// <summary>
         /// Provides all parquet definitions within the specified rectangular subsection of the current grid.
         /// </summary>
-        /// <param name="inUpperLeft">The position of the upper-leftmost corner of the subgrid.</param>
-        /// <param name="inLowerRight">The position of the lower-rightmost corner of the subgrid.</param>
+        /// <param name="upperLeft">The position of the upper-leftmost corner of the subgrid.</param>
+        /// <param name="lowerRight">The position of the lower-rightmost corner of the subgrid.</param>
         /// <returns>A portion of the grid.</returns>
         /// <remarks>If the coordinates given are not well-formed, the subgrid returned will be invalid.</remarks>
-        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Point2D inUpperLeft, Point2D inLowerRight)
+        public IReadOnlyGrid<ParquetModelPack> GetSubgrid(Point2D upperLeft, Point2D lowerRight)
         {
-            if (!ParquetPacks.IsValidPosition(inUpperLeft))
+            if (!ParquetPacks.IsValidPosition(upperLeft))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                           nameof(inUpperLeft), nameof(ParquetPacks)));
+                                                           nameof(upperLeft), nameof(ParquetPacks)));
             }
-            else if (!ParquetPacks.IsValidPosition(inLowerRight))
+            else if (!ParquetPacks.IsValidPosition(lowerRight))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidPosition,
-                                                           nameof(inLowerRight), nameof(ParquetPacks)));
+                                                           nameof(lowerRight), nameof(ParquetPacks)));
             }
-            else if (inLowerRight.X < inUpperLeft.X || inLowerRight.Y < inUpperLeft.Y)
+            else if (lowerRight.X < upperLeft.X || lowerRight.Y < upperLeft.Y)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
-                                                           nameof(inLowerRight), inLowerRight, inUpperLeft));
+                                                           nameof(lowerRight), lowerRight, upperLeft));
             }
             else
             {
-                var subgrid = new ParquetModelPack[inLowerRight.X - inUpperLeft.X + 1,
-                                                     inLowerRight.Y - inUpperLeft.Y + 1];
+                var subgrid = new ParquetModelPack[lowerRight.X - upperLeft.X + 1,
+                                                     lowerRight.Y - upperLeft.Y + 1];
 
-                for (var x = inUpperLeft.X; x <= inLowerRight.X; x++)
+                for (var x = upperLeft.X; x <= lowerRight.X; x++)
                 {
-                    for (var y = inUpperLeft.Y; y <= inLowerRight.Y; y++)
+                    for (var y = upperLeft.Y; y <= lowerRight.Y; y++)
                     {
-                        subgrid[y - inUpperLeft.Y, x - inUpperLeft.X] = ParquetPacks[y, x];
+                        subgrid[y - upperLeft.Y, x - upperLeft.X] = ParquetPacks[y, x];
                     }
                 }
 
@@ -200,10 +200,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Point2D inPosition)
-            => ParquetPacks.IsValidPosition(inPosition);
+        public bool IsValidPosition(Point2D position)
+            => ParquetPacks.IsValidPosition(position);
         #endregion
     }
 }

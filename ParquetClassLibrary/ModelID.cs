@@ -66,7 +66,7 @@ namespace Parquet
         /// This is implemented as an <see cref="int"/> rather than a <see cref="Guid"/>
         /// to support human-readable design documents and <see cref="Range{ModelID}"/> validation.
         /// </remarks>
-        private int id;
+        private int InternalID;
         #endregion
 
         #region Implicit Conversion To/From Underlying Type
@@ -76,22 +76,22 @@ namespace Parquet
         /// <param name="value">Any valid identifier value.</param>
         /// <returns>The given identifier value.</returns>
         public static implicit operator ModelID(int value)
-            => new() { id = value };
+            => new() { InternalID = value };
 
         /// <summary>
         /// Enables <see cref="ModelID"/> to be treated as their backing type.
         /// </summary>
-        /// <param name="inIDentifier">Any identifier.</param>
+        /// <param name="id">Any identifier.</param>
         /// <returns>The identifier's value.</returns>
-        public static implicit operator int(ModelID inIDentifier)
-            => inIDentifier.id;
+        public static implicit operator int(ModelID id)
+            => id.InternalID;
         #endregion
 
         #region IComparable Implementation
         /// <summary>
         /// Enables <see cref="ModelID"/> to be compared to one another.
         /// </summary>
-        /// <param name="inIDentifier">Any <see cref="ModelID"/>.</param>
+        /// <param name="id">Any <see cref="ModelID"/>.</param>
         /// <returns>
         /// A value indicating the relative ordering of the <see cref="ModelID"/>s being compared.
         /// The return value has these meanings:
@@ -99,46 +99,46 @@ namespace Parquet
         ///     Zero indicates that the current instance occurs in the same position in the sort order as the given <see cref="ModelID"/>.
         ///     Greater than zero indicates that the current instance follows the given <see cref="ModelID"/> in the sort order.
         /// </returns>
-        public readonly int CompareTo(ModelID inIDentifier)
-            => id.CompareTo(inIDentifier.id);
+        public readonly int CompareTo(ModelID id)
+            => InternalID.CompareTo(id.InternalID);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> strictly precedes another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier strictly precedes the second; otherwise, <c>false</c>.</returns>
-        public static bool operator <(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id < inIDentifier2.id;
+        public static bool operator <(ModelID id1, ModelID id2)
+            => id1.InternalID < id2.InternalID;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> precedes or is ordinally equivalent with
         /// another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier precedes or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
-        public static bool operator <=(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id <= inIDentifier2.id;
+        public static bool operator <=(ModelID id1, ModelID id2)
+            => id1.InternalID <= id2.InternalID;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> strictly follows another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier strictly follows the second; otherwise, <c>false</c>.</returns>
-        public static bool operator >(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id > inIDentifier2.id;
+        public static bool operator >(ModelID id1, ModelID id2)
+            => id1.InternalID > id2.InternalID;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> follows or is ordinally equivalent with
         /// another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if the first identifier follows or is ordinally equivalent with the second; otherwise, <c>false</c>.</returns>
-        public static bool operator >=(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id >= inIDentifier2.id;
+        public static bool operator >=(ModelID id1, ModelID id2)
+            => id1.InternalID >= id2.InternalID;
         #endregion
 
         #region IEquatable Implementation
@@ -161,15 +161,15 @@ namespace Parquet
             // See:
             // https://github.com/dotnet/coreclr/blob/master/src/System.Private.CoreLib/shared/System/ValueTuple.cs
             // https://ericlippert.com/2011/02/28/guidelines-and-rules-for-gethashcode/
-            => id.GetHashCode();
+            => InternalID.GetHashCode();
 
         /// <summary>
         /// Determines whether the specified <see cref="ModelID"/> is equal to the current <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier">The <see cref="ModelID"/> to compare with the current.</param>
+        /// <param name="id">The <see cref="ModelID"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public readonly bool Equals(ModelID inIDentifier)
-            => id == inIDentifier.id;
+        public readonly bool Equals(ModelID id)
+            => InternalID == id.InternalID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ModelID"/>.
@@ -183,20 +183,20 @@ namespace Parquet
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> is equal to another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id == inIDentifier2.id;
+        public static bool operator ==(ModelID id1, ModelID id2)
+            => id1.InternalID == id2.InternalID;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ModelID"/> is not equal to another specified instance of <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inIDentifier1">The first <see cref="ModelID"/> to compare.</param>
-        /// <param name="inIDentifier2">The second <see cref="ModelID"/> to compare.</param>
+        /// <param name="id1">The first <see cref="ModelID"/> to compare.</param>
+        /// <param name="id2">The second <see cref="ModelID"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ModelID inIDentifier1, ModelID inIDentifier2)
-            => inIDentifier1.id != inIDentifier2.id;
+        public static bool operator !=(ModelID id1, ModelID id2)
+            => id1.InternalID != id2.InternalID;
         #endregion
 
         #region ITypeConverter Implementation
@@ -211,10 +211,10 @@ namespace Parquet
         /// <summary>
         /// Registers the given record as a <see cref="Model"/> in need of a <see cref="ModelID"/>.
         /// </summary>
-        /// <param name="inRawRecord">The record to register.</param>
+        /// <param name="rawRecord">The record to register.</param>
         /// <remarks>Used during deserialization to allow the library to generate appropriate IDs.</remarks>
-        private static void RegisterMissingID(string inRawRecord)
-            => RecordsWithMissingIDs.Add(inRawRecord);
+        private static void RegisterMissingID(string rawRecord)
+            => RecordsWithMissingIDs.Add(rawRecord);
 
         /// <summary>
         /// Converts the given record column to <see cref="ModelID"/>.
@@ -243,11 +243,11 @@ namespace Parquet
 
             // Convenience method that logs a fatal parsing error and returns the given default value.
             // This is a fatal error as the library is unlikely to be able to accommodate a corrupted ModelID.
-            static ModelID DefaultWithFatalParseLog(string value, string name, ModelID inDefaultValue)
+            static ModelID DefaultWithFatalParseLog(string value, string name, ModelID defaultValue)
             {
                 Logger.Log(LogLevel.Fatal, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                          value, name), null);
-                return inDefaultValue;
+                return defaultValue;
             }
         }
 
@@ -272,14 +272,14 @@ namespace Parquet
         /// 1. It is <see cref="None"/>.
         /// 2. It is defined within the given <see cref="Range{ModelID}"/>, inclusive, regardless of sign.
         /// </summary>
-        /// <param name="inRange">The <see cref="Range{ModelID}"/> within which the absolute value of the <see cref="ModelID"/> must fall.</param>
+        /// <param name="range">The <see cref="Range{ModelID}"/> within which the absolute value of the <see cref="ModelID"/> must fall.</param>
         /// <returns>
         /// <c>true</c>, if the <see cref="ModelID"/> is valid given the <see cref="Range{ModelID}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public readonly bool IsValidForRange(Range<ModelID> inRange)
-            => id == None
-            || inRange.ContainsValue(Math.Abs(id));
+        public readonly bool IsValidForRange(Range<ModelID> range)
+            => InternalID == None
+            || range.ContainsValue(Math.Abs(InternalID));
 
         /// <summary>
         /// Validates the current <see cref="ModelID"/> over a <see cref="IEnumerable{T}"/>.
@@ -287,19 +287,19 @@ namespace Parquet
         /// 1. It is <see cref="None"/>.
         /// 2. It is defined within any of the <see cref="Range{ModelID}"/>a in the given <see cref="IEnumerable{ModelID}"/>, inclusive, regardless of sign.
         /// </summary>
-        /// <param name="inRanges">
+        /// <param name="ranges">
         /// The <see cref="IEnumerable{T}"/> within which the <see cref="ModelID"/> must fall.
         /// </param>
         /// <returns>
         /// <c>true</c>, if the <see cref="ModelID"/> is valid given the <see cref="IEnumerable{T}"/>, <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        public readonly bool IsValidForRange(IEnumerable<Range<ModelID>> inRanges)
+        public readonly bool IsValidForRange(IEnumerable<Range<ModelID>> ranges)
         {
-            Precondition.IsNotNull(inRanges, nameof(inRanges));
+            Precondition.IsNotNull(ranges, nameof(ranges));
             var result = false;
 
-            foreach (var idRange in inRanges ?? Enumerable.Empty<Range<ModelID>>())
+            foreach (var idRange in ranges ?? Enumerable.Empty<Range<ModelID>>())
             {
                 if (IsValidForRange(idRange))
                 {
@@ -316,7 +316,7 @@ namespace Parquet
         /// </summary>
         /// <returns>The representation.</returns>
         public override readonly string ToString()
-            => id.ToString(CultureInfo.InvariantCulture);
+            => InternalID.ToString(CultureInfo.InvariantCulture);
         #endregion
     }
 
@@ -328,13 +328,13 @@ namespace Parquet
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="inIDArray">The <see cref="ModelID"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="idArray">The <see cref="ModelID"/> array to validate against.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this ModelID[,] inIDArray, Point2D inPosition)
-            => inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inIDArray.GetLength(1)
-            && inPosition.Y < inIDArray.GetLength(0);
+        public static bool IsValidPosition(this ModelID[,] idArray, Point2D position)
+            => position.X > -1
+            && position.Y > -1
+            && position.X < idArray.GetLength(1)
+            && position.Y < idArray.GetLength(0);
     }
 }

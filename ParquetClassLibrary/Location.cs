@@ -28,12 +28,12 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        /// <param name="inRegionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
-        /// <param name="inPosition">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
-        public Location(ModelID? inRegionID = null, Point2D? inPosition = null)
+        /// <param name="regionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
+        /// <param name="position">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
+        public Location(ModelID? regionID = null, Point2D? position = null)
         {
-            RegionID = inRegionID ?? ModelID.None;
-            Position = inPosition ?? Point2D.Origin;
+            RegionID = regionID ?? ModelID.None;
+            Position = position ?? Point2D.Origin;
         }
         #endregion
 
@@ -50,11 +50,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Location"/> is equal to the current <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation">The <see cref="Location"/> to compare with the current.</param>
+        /// <param name="location">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Location inLocation)
-            => RegionID == inLocation.RegionID
-            && Position == inLocation.Position;
+        public bool Equals(Location location)
+            => RegionID == location.RegionID
+            && Position == location.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Location"/>.
@@ -68,20 +68,20 @@ namespace Parquet
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is equal to another specified instance of <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation1">The first <see cref="Location"/> to compare.</param>
-        /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
+        /// <param name="location1">The first <see cref="Location"/> to compare.</param>
+        /// <param name="location2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Location inLocation1, Location inLocation2)
-            => inLocation1.Equals(inLocation2);
+        public static bool operator ==(Location location1, Location location2)
+            => location1.Equals(location2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is not equal to another specified instance of <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation1">The first <see cref="Location"/> to compare.</param>
-        /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
+        /// <param name="location1">The first <see cref="Location"/> to compare.</param>
+        /// <param name="location2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Location inLocation1, Location inLocation2)
-            => !(inLocation1 == inLocation2);
+        public static bool operator !=(Location location1, Location location2)
+            => !(location1 == location2);
         #endregion
 
         #region ITypeConverter Implementation

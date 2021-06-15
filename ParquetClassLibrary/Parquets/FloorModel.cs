@@ -43,23 +43,23 @@ namespace Parquet.Parquets
         /// <param name="description">Player-friendly description of the <see cref="FloorModel"/>.</param>
         /// <param name="comment">Comment of, on, or by the <see cref="FloorModel"/>.</param>
         /// <param name="tags">Any additional information about the <see cref="FloorModel"/>.</param>
-        /// <param name="inItemID">The <see cref="ModelID"/> of the <see cref="ItemModel"/> awarded to the player when a character gathers this <see cref="FloorModel"/>.</param>
-        /// <param name="inAddsToBiome">Which, if any, <see cref="BiomeRecipe"/> this <see cref="FloorModel"/> helps to generate.</param>
-        /// <param name="inAddsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this <see cref="FloorModel"/> helps form.</param>
-        /// <param name="inModTool">The tool used to modify this <see cref="FloorModel"/>.</param>
-        /// <param name="inTrenchName">The name to use for this <see cref="FloorModel"/> when it has been dug out.</param>
+        /// <param name="itemID">The <see cref="ModelID"/> of the <see cref="ItemModel"/> awarded to the player when a character gathers this <see cref="FloorModel"/>.</param>
+        /// <param name="addsToBiome">Which, if any, <see cref="BiomeRecipe"/> this <see cref="FloorModel"/> helps to generate.</param>
+        /// <param name="addsToRoom">Describes which, if any, <see cref="Rooms.RoomRecipe"/>(s) this <see cref="FloorModel"/> helps form.</param>
+        /// <param name="modTool">The tool used to modify this <see cref="FloorModel"/>.</param>
+        /// <param name="trenchName">The name to use for this <see cref="FloorModel"/> when it has been dug out.</param>
         public FloorModel(ModelID id, string name, string description, string comment,
-                          IEnumerable<ModelTag> tags = null, ModelID? inItemID = null,
-                          IEnumerable<ModelTag> inAddsToBiome = null, IEnumerable<ModelTag> inAddsToRoom = null,
-                          ModificationTool inModTool = ModificationTool.None, string inTrenchName = null)
-            : base(Bounds, id, name, description, comment, tags, inItemID, inAddsToBiome, inAddsToRoom)
+                          IEnumerable<ModelTag> tags = null, ModelID? itemID = null,
+                          IEnumerable<ModelTag> addsToBiome = null, IEnumerable<ModelTag> addsToRoom = null,
+                          ModificationTool modTool = ModificationTool.None, string trenchName = null)
+            : base(Bounds, id, name, description, comment, tags, itemID, addsToBiome, addsToRoom)
         {
-            ModTool = inModTool;
+            ModTool = modTool;
             TrenchName =
                 // TODO [Robustness] Are there places we use IsNullOrEmpty where IsNullOrWhiteSpace would be more appropriate?
-                string.IsNullOrWhiteSpace(inTrenchName)
+                string.IsNullOrWhiteSpace(trenchName)
                     ? DefaultTrenchName
-                    : inTrenchName;
+                    : trenchName;
         }
         #endregion
 

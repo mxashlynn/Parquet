@@ -36,24 +36,24 @@ namespace Parquet.Scripts
         /// <summary>
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class.
         /// </summary>
-        /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
-        /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.Nodes"/>.</param>
-        public ScriptStatus(RunState inState, int inProgramCounter)
+        /// <param name="state">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
+        /// <param name="programCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.Nodes"/>.</param>
+        public ScriptStatus(RunState state, int programCounter)
         {
-            State = inState;
-            ProgramCounter = inProgramCounter;
+            State = state;
+            ProgramCounter = programCounter;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class
         /// based on a given <see cref="ScriptModel"/> instance.
         /// </summary>
-        /// <param name="inScript">The script definition whose status is being tracked.</param>
+        /// <param name="script">The script definition whose status is being tracked.</param>
         [SuppressMessage("Usage", "CA1801:Review unused parameters",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
-        public ScriptStatus(ScriptModel inScript)
+        public ScriptStatus(ScriptModel script)
             : this(RunState.Unstarted, 0)
         { }
         #endregion

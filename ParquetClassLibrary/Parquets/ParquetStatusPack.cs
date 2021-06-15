@@ -36,25 +36,25 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetStatusPack"/> class.
         /// </summary>
-        /// <param name="inFloorStatus">The status of the tracked floor-layer parquet.</param>
-        /// <param name="inBlockStatus">The status of the tracked block-layer parquet.</param>
-        public ParquetStatusPack(FloorStatus inFloorStatus = null, BlockStatus inBlockStatus = null)
+        /// <param name="floorStatus">The status of the tracked floor-layer parquet.</param>
+        /// <param name="blockStatus">The status of the tracked block-layer parquet.</param>
+        public ParquetStatusPack(FloorStatus floorStatus = null, BlockStatus blockStatus = null)
         {
-            CurrentFloorStatus = inFloorStatus ?? FloorStatus.Default;
-            CurrentBlockStatus = inBlockStatus ?? BlockStatus.Default;
+            CurrentFloorStatus = floorStatus ?? FloorStatus.Default;
+            CurrentBlockStatus = blockStatus ?? BlockStatus.Default;
         }
 
         /// <summary>
         /// Initializes an instance of the <see cref="ParquetStatusPack"/> class
         /// based on a given <see cref="ParquetModelPack"/> instance.
         /// </summary>
-        /// <param name="inParquetModelPack">The definitions being tracked.</param>
-        public ParquetStatusPack(ParquetModelPack inParquetModelPack)
+        /// <param name="parquetModelPack">The definitions being tracked.</param>
+        public ParquetStatusPack(ParquetModelPack parquetModelPack)
         {
-            Precondition.IsNotNull(inParquetModelPack);
-            var nonNullParquetModelPack = inParquetModelPack is null
+            Precondition.IsNotNull(parquetModelPack);
+            var nonNullParquetModelPack = parquetModelPack is null
                 ? ParquetModelPack.Empty
-                : inParquetModelPack;
+                : parquetModelPack;
 
             CurrentFloorStatus = new FloorStatus(nonNullParquetModelPack.FloorID);
             CurrentBlockStatus = new BlockStatus(nonNullParquetModelPack.BlockID);
@@ -74,12 +74,12 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetStatusPack"/> is equal to the current <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inPack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
+        /// <param name="pack">The <see cref="ParquetStatusPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inPack)
-            => inPack is ParquetStatusPack pack
-            && CurrentFloorStatus == pack.CurrentFloorStatus
-            && CurrentBlockStatus == pack.CurrentBlockStatus;
+        public override bool Equals<T>(T pack)
+            => pack is ParquetStatusPack statusPack
+            && CurrentFloorStatus == statusPack.CurrentFloorStatus
+            && CurrentBlockStatus == statusPack.CurrentBlockStatus;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="ParquetStatusPack"/>.
@@ -93,20 +93,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
-            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
+        public static bool operator ==(ParquetStatusPack pack1, ParquetStatusPack pack2)
+            => pack1?.Equals(pack2) ?? pack2?.Equals(pack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetStatusPack"/> is not equal to another specified instance of <see cref="ParquetStatusPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetStatusPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetStatusPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetStatusPack inPack1, ParquetStatusPack inPack2)
-            => !(inPack1 == inPack2);
+        public static bool operator !=(ParquetStatusPack pack1, ParquetStatusPack pack2)
+            => !(pack1 == pack2);
         #endregion
 
         #region ITypeConverter Implementation

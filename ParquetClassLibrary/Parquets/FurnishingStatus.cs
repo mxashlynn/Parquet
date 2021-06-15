@@ -33,20 +33,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="FurnishingStatus"/> class.
         /// </summary>
-        /// <param name="inIsOpen">When <c>true</c>, the <see cref="FurnishingModel"/> associated with this status is open.</param>
-        public FurnishingStatus(bool inIsOpen)
-            => IsOpen = inIsOpen;
+        /// <param name="isOpen">When <c>true</c>, the <see cref="FurnishingModel"/> associated with this status is open.</param>
+        public FurnishingStatus(bool isOpen)
+            => IsOpen = isOpen;
 
         /// <summary>
         /// Initializes an instance of the <see cref="FurnishingStatus"/> class
         /// based on a given <see cref="FurnishingModel"/> identifier.
         /// </summary>
-        /// <param name="inFloorID">The <see cref="ModelID"/> of the definitions being tracked.</param>
+        /// <param name="furnishingID">The <see cref="ModelID"/> of the definitions being tracked.</param>
         [SuppressMessage("Usage", "CA1801:Review unused parameters",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
-        public FurnishingStatus(ModelID inFloorID)
+        public FurnishingStatus(ModelID furnishingID)
             // NOTE Currently, by design, no Furnishing starts open.
             : this(false)
         { }

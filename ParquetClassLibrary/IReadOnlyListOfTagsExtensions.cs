@@ -27,6 +27,6 @@ namespace Parquet
         /// <returns><c>true</c> if this and the given instance are identical, ignoring case; otherwise, <c>false</c>.</returns>
         /// <remarks>This is a convenience for client code and not used by the library itself.</remarks>
         public static bool ContainsOrdinalIgnoreCase(this IReadOnlyList<ModelTag> collection, ModelTag tag)
-            => collection.Any(tag => tag.EqualsOrdinalIgnoreCase(tag));
+            => collection.Any(aTag => aTag.EqualsOrdinalIgnoreCase(tag));
     }
 }

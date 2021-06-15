@@ -19,12 +19,13 @@ namespace Parquet
         /// <summary>
         /// Sets up the logging system to use the provided instance when logging.
         /// </summary>
+        /// <param name="loggerToUse">The logger being provided to the logging system.</param>
         /// <remarks>
         /// Inspired by Microsoft.Extensions.Logging.ILogger but simpler.
         /// </remarks>
-        public static void SetLogger(ILogger inLoggerToUse)
-            => currentLogger = inLoggerToUse is not null
-                ? inLoggerToUse
+        public static void SetLogger(ILogger loggerToUse)
+            => currentLogger = loggerToUse is not null
+                ? loggerToUse
                 : currentLogger;
         #endregion
 
@@ -32,19 +33,19 @@ namespace Parquet
         /// <summary>
         /// Writes a log entry.
         /// </summary>
-        /// <param name="inLogLevel">The severity of the event being logged.</param>
-        /// <param name="inMessage">A message summarizing the event being logged.</param>
-        /// <param name="inException">The exception related to this event, if any.</param>
-        public static void Log(LogLevel inLogLevel, string inMessage = null, Exception inException = null)
-            => currentLogger.Log(inLogLevel, inMessage, inException);
+        /// <param name="logLevel">The severity of the event being logged.</param>
+        /// <param name="message">A message summarizing the event being logged.</param>
+        /// <param name="exception">The exception related to this event, if any.</param>
+        public static void Log(LogLevel logLevel, string message = null, Exception exception = null)
+            => currentLogger.Log(logLevel, message, exception);
 
         /// <summary>
         /// Writes a log entry.
         /// </summary>
-        /// <param name="inLogLevel">The severity of the event being logged.</param>
-        /// <param name="inObject">An object related to the event being logged.  This will be converted to a string.</param>
-        public static void Log(LogLevel inLogLevel, object inObject)
-            => currentLogger.Log(inLogLevel, inObject?.ToString() ?? "", null);
+        /// <param name="logLevel">The severity of the event being logged.</param>
+        /// <param name="objectToLog">An object related to the event being logged.  This will be converted to a string.</param>
+        public static void Log(LogLevel logLevel, object objectToLog)
+            => currentLogger.Log(logLevel, objectToLog?.ToString() ?? "", null);
         #endregion
 
         #region Convenience Routines
@@ -53,13 +54,13 @@ namespace Parquet
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="name">The name of the item that cannot be used during play.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithImmutableInPlayLog<T>(string name, T inDefaultValue)
+        internal static T DefaultWithImmutableInPlayLog<T>(string name, T defaultValue)
         {
             currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningImmutableDuringPlay,
                                                               name), null);
-            return inDefaultValue;
+            return defaultValue;
         }
 
         /// <summary>
@@ -68,13 +69,13 @@ namespace Parquet
         /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="value">The value of the item that failed to convert.</param>
         /// <param name="name">The name of the item that failed to convert.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithConvertLog<T>(string value, string name, T inDefaultValue)
+        internal static T DefaultWithConvertLog<T>(string value, string name, T defaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotConvert,
                                                             value, name), null);
-            return inDefaultValue;
+            return defaultValue;
         }
 
         /// <summary>
@@ -83,13 +84,13 @@ namespace Parquet
         /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="value">The value of the item that failed to parse.</param>
         /// <param name="name">The name of the item that failed to parse.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithParseLog<T>(string value, string name, T inDefaultValue)
+        internal static T DefaultWithParseLog<T>(string value, string name, T defaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorCannotParse,
                                                             value, name), null);
-            return inDefaultValue;
+            return defaultValue;
         }
 
         /// <summary>
@@ -97,15 +98,15 @@ namespace Parquet
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="name">The name of the command type.</param>
-        /// <param name="inCommandText">The text version of the unsupported command.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="commandText">The text version of the unsupported command.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithUnsupportedNodeLog<T>(string name, string inCommandText, T inDefaultValue)
+        internal static T DefaultWithUnsupportedNodeLog<T>(string name, string commandText, T defaultValue)
         {
             currentLogger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture,
                                                               Resources.ErrorUnsupportedNode,
-                                                              name, inCommandText), null);
-            return inDefaultValue;
+                                                              name, commandText), null);
+            return defaultValue;
         }
 
         /// <summary>
@@ -113,13 +114,13 @@ namespace Parquet
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="name">The name of the item that failed to serialize.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        internal static T DefaultWithUnsupportedSerializationLog<T>(string name, T inDefaultValue)
+        internal static T DefaultWithUnsupportedSerializationLog<T>(string name, T defaultValue)
         {
             currentLogger.Log(LogLevel.Error, string.Format(CultureInfo.CurrentCulture, Resources.ErrorUnsupportedSerialization,
                                                             name), null);
-            return inDefaultValue;
+            return defaultValue;
         }
         #endregion
     }

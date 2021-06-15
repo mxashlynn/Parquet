@@ -30,11 +30,11 @@ namespace Parquet.Scripts
         /// <param name="description">Player-friendly description of the <see cref="ScriptModel"/>.</param>
         /// <param name="comment">Comment of, on, or by the <see cref="ScriptModel"/>.</param>
         /// <param name="tags">Any additional information about this <see cref="ScriptModel"/>.</param>
-        /// <param name="inNodes">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
+        /// <param name="nodes">Describes the criteria for completing this <see cref="InteractionModel"/>.</param>
         public ScriptModel(ModelID id, string name, string description, string comment,
-                           IEnumerable<ModelTag> tags = null, IEnumerable<ScriptNode> inNodes = null)
+                           IEnumerable<ModelTag> tags = null, IEnumerable<ScriptNode> nodes = null)
             : base(All.ScriptIDs, id, name, description, comment, tags)
-            => Nodes = (inNodes ?? Enumerable.Empty<ScriptNode>()).ToList();
+            => Nodes = (nodes ?? Enumerable.Empty<ScriptNode>()).ToList();
         #endregion
 
         #region IMutableScriptModel Implementation

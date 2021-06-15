@@ -86,10 +86,10 @@ namespace Parquet.Rooms
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
                                                nameof(potentialPerimeter.Count), potentialPerimeter.Count,
                                                (subgrid.Rows * subgrid.Columns) - RoomConfiguration.MinWalkableSpaces));
-                    Debug.Assert(potentialPerimeter.Count >= RoomConfiguration.MinPerimeterSpaces,
+                    Debug.Assert(potentialPerimeter.Count >= RoomConfiguration.MperimeterSpaces,
                                  string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
                                                nameof(potentialPerimeter.Count),
-                                               potentialPerimeter.Count, RoomConfiguration.MinPerimeterSpaces));
+                                               potentialPerimeter.Count, RoomConfiguration.MperimeterSpaces));
 
                     // Validate the perimeter.
                     resultPerimeter = potentialPerimeter.AllSpacesAreReachableAndCycleExists(space => space.Content.IsEnclosing)
@@ -99,7 +99,7 @@ namespace Parquet.Rooms
                 }
             }
 
-            return resultPerimeter.Count >= RoomConfiguration.MinPerimeterSpaces;
+            return resultPerimeter.Count >= RoomConfiguration.MperimeterSpaces;
 
             #region Algorithm Helper Methods
             // Returns true if it finds a MapSpace that can be used to search for the perimeter.
@@ -169,26 +169,26 @@ namespace Parquet.Rooms
         /// whose <see cref="MapSpace.Content"/> conforms to the given predicate using only
         /// 4-connected movements, beginning at an arbitrary <see cref="MapSpace"/>.
         /// </summary>
-        /// <param name="inSpaces">The group of spaces under consideration.</param>
-        /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
+        /// <param name="spaces">The group of spaces under consideration.</param>
+        /// <param name="isApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool AllSpacesAreReachable(this HashSet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
-            => ((IReadOnlySet<MapSpace>)inSpaces).Search(inSpaces.First(), inIsApplicable, space => false)
-               .Visited.Count == inSpaces.Count;
+        internal static bool AllSpacesAreReachable(this HashSet<MapSpace> spaces, Predicate<MapSpace> isApplicable)
+            => ((IReadOnlySet<MapSpace>)spaces).Search(spaces.First(), isApplicable, space => false)
+               .Visited.Count == spaces.Count;
 
         /// <summary>
         /// Determines if it is possible to reach every <see cref="MapSpace"/> in the given subgrid
         /// whose <see cref="MapSpace.Content"/> conforms to the given predicate using only 4-connected
         /// movements, beginning at an arbitrary <see cref="MapSpace"/>, while encountering at least one cycle.
         /// </summary>
-        /// <param name="inSpaces">The group of spaces under consideration.</param>
-        /// <param name="inIsApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
+        /// <param name="spaces">The group of spaces under consideration.</param>
+        /// <param name="isApplicable">Determines if a <see cref="MapSpace"/> is a target MapSpace.</param>
         /// <returns><c>true</c> if all members of the given set are reachable from all other members of the given set.</returns>
-        internal static bool AllSpacesAreReachableAndCycleExists(this IReadOnlySet<MapSpace> inSpaces, Predicate<MapSpace> inIsApplicable)
+        internal static bool AllSpacesAreReachableAndCycleExists(this IReadOnlySet<MapSpace> spaces, Predicate<MapSpace> isApplicable)
         {
-            var results = inSpaces.Search(inSpaces.First(), inIsApplicable, space => false);
+            var results = spaces.Search(spaces.First(), isApplicable, space => false);
             return results.CycleFound
-                && results.Visited.Count == inSpaces.Count;
+                && results.Visited.Count == spaces.Count;
         }
 
         /// <summary>
@@ -199,47 +199,47 @@ namespace Parquet.Rooms
         /// <remarks>
         /// Searches in a preorder, depth-first fashion.
         /// </remarks>
-        /// <param name="inSpaces">The group of spaces under consideration.</param>
-        /// <param name="inStart">The <see cref="MapSpace"/> to begin searching from.</param>
-        /// <param name="inIsApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
-        /// <param name="inIsGoal"><c>true</c> if a the search goal has been satisfied.</param>
+        /// <param name="spaces">The group of spaces under consideration.</param>
+        /// <param name="start">The <see cref="MapSpace"/> to begin searching from.</param>
+        /// <param name="isApplicable"><c>true</c> if a <see cref="MapSpace"/> ought to be considered.</param>
+        /// <param name="isGoal"><c>true</c> if a the search goal has been satisfied.</param>
         /// <returns>Information about the results of the search procedure.</returns>
-        private static SearchResults Search(this IReadOnlySet<MapSpace> inSpaces, MapSpace inStart, Predicate<MapSpace> inIsApplicable, Predicate<MapSpace> inIsGoal)
+        private static SearchResults Search(this IReadOnlySet<MapSpace> spaces, MapSpace start, Predicate<MapSpace> isApplicable, Predicate<MapSpace> isGoal)
         {
-            Precondition.IsNotNullOrEmpty(inSpaces, nameof(inSpaces));
+            Precondition.IsNotNullOrEmpty(spaces, nameof(spaces));
             var visited = new HashSet<MapSpace>();
             var cycleFound = false;
 
-            return new SearchResults(DepthFirstSearch(inStart), cycleFound, new HashSet<MapSpace>(visited));
+            return new SearchResults(DepthFirstSearch(start), cycleFound, new HashSet<MapSpace>(visited));
 
             // Traverses the given 4-connected grid in a preorder, depth-first fashion.
-            // inSpace indicates the MapSpace under consideration this stack frame.
+            // space indicates the MapSpace under consideration this stack frame.
             // Returns true is the goal was found, false otherwise.
-            bool DepthFirstSearch(MapSpace inSpace)
+            bool DepthFirstSearch(MapSpace space)
             {
                 var goalFound = false;
 
-                if (inIsApplicable(inSpace))
+                if (isApplicable(space))
                 {
-                    if (visited.Contains(inSpace))
+                    if (visited.Contains(space))
                     {
                         cycleFound = true;
                     }
                     else
                     {
-                        visited.Add(inSpace);
+                        visited.Add(space);
 
-                        if (inIsGoal(inSpace))
+                        if (isGoal(space))
                         {
                             goalFound = true;
                         }
                         else
                         {
                             // Continue, examining all neighbors in order.
-                            goalFound = DepthFirstSearch(inSpace.NorthNeighbor())
-                                || DepthFirstSearch(inSpace.SouthNeighbor())
-                                || DepthFirstSearch(inSpace.EastNeighbor())
-                                || DepthFirstSearch(inSpace.WestNeighbor());
+                            goalFound = DepthFirstSearch(space.NorthNeighbor())
+                                || DepthFirstSearch(space.SouthNeighbor())
+                                || DepthFirstSearch(space.EastNeighbor())
+                                || DepthFirstSearch(space.WestNeighbor());
                         }
                     }
                 }
@@ -275,10 +275,10 @@ namespace Parquet.Rooms
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="IReadOnlySet{MapSpace}"/>.
         /// </summary>
-        /// <param name="inSpaces">The group of spaces under consideration.</param>
+        /// <param name="spaces">The group of spaces under consideration.</param>
         /// <returns>The representation.</returns>
-        internal static string ToString(this IReadOnlySet<MapSpace> inSpaces)
-            => $"{inSpaces?.Count ?? 0} spaces";
+        internal static string ToString(this IReadOnlySet<MapSpace> spaces)
+            => $"{spaces?.Count ?? 0} spaces";
         #endregion
     }
 }

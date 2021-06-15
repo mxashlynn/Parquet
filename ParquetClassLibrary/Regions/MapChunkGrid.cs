@@ -31,14 +31,14 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes a new empty <see cref="MapChunkGrid"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
-        public MapChunkGrid(int inRowCount, int inColumnCount)
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
+        public MapChunkGrid(int rowCount, int columnCount)
         {
-            MapChunks = new MapChunk[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            MapChunks = new MapChunk[rowCount, columnCount];
+            for (var y = 0; y < rowCount; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < columnCount; x++)
                 {
                     MapChunks[y, x] = new MapChunk();
                 }
@@ -48,9 +48,9 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes a new <see cref="MapChunkGrid"/> from the given 2D <see cref="MapChunk"/> array.
         /// </summary>
-        /// <param name="inMapChunkArray">An existing array of MapChunks.</param>
-        public MapChunkGrid(MapChunk[,] inMapChunkArray)
-            => MapChunks = inMapChunkArray;
+        /// <param name="mapChunkArray">An existing array of MapChunks.</param>
+        public MapChunkGrid(MapChunk[,] mapChunkArray)
+            => MapChunks = mapChunkArray;
         #endregion
 
         #region IGrid Implementation
@@ -139,10 +139,10 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Point2D inPosition)
-            => MapChunks.IsValidPosition(inPosition);
+        public bool IsValidPosition(Point2D position)
+            => MapChunks.IsValidPosition(position);
         #endregion
     }
 }

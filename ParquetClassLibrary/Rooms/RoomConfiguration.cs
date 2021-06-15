@@ -25,7 +25,7 @@ namespace Parquet.Rooms
         public static int MaxWalkableSpaces { get; set; } = DefaultMaxWalkableSpaces;
 
         /// <summary>Minimum number of enclosing spaces needed for any room to register.</summary>
-        public static int MinPerimeterSpaces => MinWalkableSpaces * 3;
+        public static int MperimeterSpaces => MinWalkableSpaces * 3;
         #endregion
 
         #region Self Serialization

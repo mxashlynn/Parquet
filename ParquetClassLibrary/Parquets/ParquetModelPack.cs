@@ -42,21 +42,21 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
-        /// <param name="inFloor">The floor-layer parquet.</param>
-        /// <param name="inBlock">The block-layer parquet.</param>
-        /// <param name="inFurnishing">The furnishing-layer parquet.</param>
-        /// <param name="inCollectible">The collectible-layer parquet.</param>
-        public ParquetModelPack(ModelID inFloor, ModelID inBlock, ModelID inFurnishing, ModelID inCollectible)
+        /// <param name="floor">The floor-layer parquet.</param>
+        /// <param name="block">The block-layer parquet.</param>
+        /// <param name="furnishing">The furnishing-layer parquet.</param>
+        /// <param name="collectible">The collectible-layer parquet.</param>
+        public ParquetModelPack(ModelID floor, ModelID block, ModelID furnishing, ModelID collectible)
         {
-            Precondition.IsInRange(inFloor, All.FloorIDs, nameof(inFloor));
-            Precondition.IsInRange(inBlock, All.BlockIDs, nameof(inBlock));
-            Precondition.IsInRange(inFurnishing, All.FurnishingIDs, nameof(inFurnishing));
-            Precondition.IsInRange(inCollectible, All.CollectibleIDs, nameof(inCollectible));
+            Precondition.IsInRange(floor, All.FloorIDs, nameof(floor));
+            Precondition.IsInRange(block, All.BlockIDs, nameof(block));
+            Precondition.IsInRange(furnishing, All.FurnishingIDs, nameof(furnishing));
+            Precondition.IsInRange(collectible, All.CollectibleIDs, nameof(collectible));
 
-            FloorID = inFloor;
-            BlockID = inBlock;
-            FurnishingID = inFurnishing;
-            CollectibleID = inCollectible;
+            FloorID = floor;
+            BlockID = block;
+            FurnishingID = furnishing;
+            CollectibleID = collectible;
         }
         #endregion
 
@@ -127,10 +127,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetModelPack"/> is equal to the current <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
+        /// <param name="pack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inPack)
-            => inPack is ParquetModelPack parquetModelPack
+        public override bool Equals<T>(T pack)
+            => pack is ParquetModelPack parquetModelPack
             && FloorID == parquetModelPack.FloorID
             && BlockID == parquetModelPack.BlockID
             && FurnishingID == parquetModelPack.FurnishingID
@@ -148,20 +148,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetModelPack inPack1, ParquetModelPack inPack2)
-            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
+        public static bool operator ==(ParquetModelPack pack1, ParquetModelPack pack2)
+            => pack1?.Equals(pack2) ?? pack2?.Equals(pack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is not equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetModelPack inPack1, ParquetModelPack inPack2)
-            => !(inPack1 == inPack2);
+        public static bool operator !=(ParquetModelPack pack1, ParquetModelPack pack2)
+            => !(pack1 == pack2);
         #endregion
 
         #region ITypeConverter Implementation

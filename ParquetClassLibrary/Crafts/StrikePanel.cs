@@ -233,14 +233,14 @@ namespace Parquet.Crafts
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="inStrikePanels">The <see cref="StrikePanel"/> to check against.</param>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="strikePanels">The <see cref="StrikePanel"/> to check against.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this StrikePanel[,] inStrikePanels, Point2D inPosition)
-            => inStrikePanels is not null
-                && inPosition.X > -1
-                && inPosition.Y > -1
-                && inPosition.X < inStrikePanels.GetLength(1)
-                && inPosition.Y < inStrikePanels.GetLength(0);
+        public static bool IsValidPosition(this StrikePanel[,] strikePanels, Point2D position)
+            => strikePanels is not null
+                && position.X > -1
+                && position.Y > -1
+                && position.X < strikePanels.GetLength(1)
+                && position.Y < strikePanels.GetLength(0);
     }
 }

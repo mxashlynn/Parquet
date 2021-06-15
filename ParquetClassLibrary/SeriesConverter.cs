@@ -27,16 +27,16 @@ namespace Parquet
         /// <summary>
         /// Converts the given 1D collection into a record column.
         /// </summary>
-        /// <param name="inCollection">The collection to convert.</param>
+        /// <param name="collection">The collection to convert.</param>
         /// <param name="row">The current context and configuration.</param>
         /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given collection serialized.</returns>
-        public override string ConvertToString(object inCollection, IWriterRow row, MemberMapData memberMapData)
+        public override string ConvertToString(object collection, IWriterRow row, MemberMapData memberMapData)
         {
-            Precondition.IsNotNull(inCollection, nameof(inCollection));
-            if (inCollection is not TCollection series)
+            Precondition.IsNotNull(collection, nameof(collection));
+            if (collection is not TCollection series)
             {
-                return Logger.DefaultWithConvertLog(inCollection?.ToString() ?? "null", nameof(TCollection), "");
+                return Logger.DefaultWithConvertLog(collection?.ToString() ?? "null", nameof(TCollection), "");
             }
 
             if (series.Count < 1
@@ -73,9 +73,9 @@ namespace Parquet
         /// <param name="text">The record column to convert to an object.</param>
         /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
         /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
-        /// <param name="inDelimiter">The string used to separate elements in the series.</param>
+        /// <param name="delimiter">The string used to separate elements in the series.</param>
         /// <returns>The <see cref="ICollection{TElement}"/> created from the record column.</returns>
-        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData, string inDelimiter)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData, string delimiter)
         {
             var collection = new TCollection();
             if (string.IsNullOrEmpty(text)
@@ -85,7 +85,7 @@ namespace Parquet
                 return collection;
             }
 
-            var textCollection = text.Split(inDelimiter);
+            var textCollection = text.Split(delimiter);
             foreach (var currentText in textCollection)
             {
                 collection.Add((TElement)ElementFactory.ConvertFromString(currentText, row, memberMapData));

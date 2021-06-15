@@ -39,29 +39,29 @@ namespace Parquet.Scripts
         /// <summary>
         /// Transforms the given texts into an <see cref="Action"/> to be invoked.
         /// </summary>
-        /// <param name="inCommandText">The name of the command.</param>
-        /// <param name="inSourceText">The source or subject of the command.</param>
-        /// <param name="inTargetText">The target or object of the command.</param>
+        /// <param name="commandText">The name of the command.</param>
+        /// <param name="sourceText">The source or subject of the command.</param>
+        /// <param name="targetText">The target or object of the command.</param>
         /// <returns>The action to perform.</returns>
-        private static Action ParseCommand(string inCommandText, string inSourceText, string inTargetText)
-            => inCommandText.ToUpperInvariant() switch
+        private static Action ParseCommand(string commandText, string sourceText, string targetText)
+            => commandText.ToUpperInvariant() switch
             {
                 Commands.None => () => { },
-                Commands.Alert => () => Logger.Log(LogLevel.Info, $"UI: [{inTargetText}]"),
-                Commands.CallCharacter => () => Logger.Log(LogLevel.Info, $"The character {inSourceText} stands near the character {inTargetText}."),
-                Commands.ClearFlag => () => Logger.Log(LogLevel.Info, $"The flag {inTargetText} is cleared."),
-                Commands.GiveItem => () => Logger.Log(LogLevel.Info, $"{inTargetText} is awarded the {inSourceText}"),
-                Commands.GiveQuest => () => Logger.Log(LogLevel.Info, $"{inTargetText} is tasked with {inSourceText}"),
-                Commands.Jump => () => Logger.Log(LogLevel.Info, $"Load the script {inTargetText}."),
-                Commands.JumpIf => () => Logger.Log(LogLevel.Info, $"If {inSourceText}, then Load the script {inTargetText}."),
-                Commands.Put => () => Logger.Log(LogLevel.Info, $"Place {inSourceText} at {inTargetText}"),
-                Commands.Say => () => Logger.Log(LogLevel.Info, $"{inSourceText}: {inTargetText}"),
-                Commands.SetBehavior => () => Logger.Log(LogLevel.Info, $"{inTargetText} begins behaving {inSourceText}"),
-                Commands.SetDialogue => () => Logger.Log(LogLevel.Info, $"{inTargetText} can now say {inSourceText}"),
-                Commands.SetPronoun => () => Logger.Log(LogLevel.Info, $"{inTargetText} uses the pronouns {inSourceText}"),
-                Commands.SetFlag => () => Logger.Log(LogLevel.Info, $"The flag {inTargetText} is raised."),
-                Commands.ShowLocation => () => Logger.Log(LogLevel.Info, $"Highlight {inTargetText}"),
-                _ => Logger.DefaultWithUnsupportedNodeLog<Action>(nameof(ScriptNode), inCommandText, () => { }),
+                Commands.Alert => () => Logger.Log(LogLevel.Info, $"UI: [{targetText}]"),
+                Commands.CallCharacter => () => Logger.Log(LogLevel.Info, $"The character {sourceText} stands near the character {targetText}."),
+                Commands.ClearFlag => () => Logger.Log(LogLevel.Info, $"The flag {targetText} is cleared."),
+                Commands.GiveItem => () => Logger.Log(LogLevel.Info, $"{targetText} is awarded the {sourceText}"),
+                Commands.GiveQuest => () => Logger.Log(LogLevel.Info, $"{targetText} is tasked with {sourceText}"),
+                Commands.Jump => () => Logger.Log(LogLevel.Info, $"Load the script {targetText}."),
+                Commands.JumpIf => () => Logger.Log(LogLevel.Info, $"If {sourceText}, then Load the script {targetText}."),
+                Commands.Put => () => Logger.Log(LogLevel.Info, $"Place {sourceText} at {targetText}"),
+                Commands.Say => () => Logger.Log(LogLevel.Info, $"{sourceText}: {targetText}"),
+                Commands.SetBehavior => () => Logger.Log(LogLevel.Info, $"{targetText} begins behaving {sourceText}"),
+                Commands.SetDialogue => () => Logger.Log(LogLevel.Info, $"{targetText} can now say {sourceText}"),
+                Commands.SetPronoun => () => Logger.Log(LogLevel.Info, $"{targetText} uses the pronouns {sourceText}"),
+                Commands.SetFlag => () => Logger.Log(LogLevel.Info, $"The flag {targetText} is raised."),
+                Commands.ShowLocation => () => Logger.Log(LogLevel.Info, $"Highlight {targetText}"),
+                _ => Logger.DefaultWithUnsupportedNodeLog<Action>(nameof(ScriptNode), commandText, () => { }),
             };
         #endregion
 
@@ -77,10 +77,10 @@ namespace Parquet.Scripts
         /// <summary>
         /// Enables <see cref="ScriptNode"/>s to be treated as their backing type.
         /// </summary>
-        /// <param name="inNode">Any tag.</param>
+        /// <param name="node">Any tag.</param>
         /// <returns>The tag's value.</returns>
-        public static implicit operator string(ScriptNode inNode)
-            => inNode?.nodeContent ?? "";
+        public static implicit operator string(ScriptNode node)
+            => node?.nodeContent ?? "";
         #endregion
 
         #region IComparable Implementation
