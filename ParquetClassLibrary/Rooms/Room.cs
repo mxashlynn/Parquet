@@ -58,46 +58,46 @@ namespace Parquet.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="Room"/> class.
         /// </summary>
-        /// <param name="inWalkableArea">
+        /// <param name="walkableArea">
         /// The <see cref="MapSpace"/>s on which a <see cref="Beings.BeingModel"/>
         /// may walk within this <see cref="Room"/>.
         /// </param>
-        /// <param name="inPerimeter">
+        /// <param name="perimeter">
         /// The <see cref="MapSpace"/>s whose <see cref="BlockModel"/>s and <see cref="FurnishingModel"/>s
         /// define the limits of this <see cref="Room"/>.
         /// </param>
-        public Room(IReadOnlySet<MapSpace> inWalkableArea, IReadOnlySet<MapSpace> inPerimeter)
+        public Room(IReadOnlySet<MapSpace> walkableArea, IReadOnlySet<MapSpace> perimeter)
         {
-            Precondition.IsNotNullOrEmpty(inWalkableArea, nameof(inWalkableArea));
-            Precondition.IsNotNullOrEmpty(inPerimeter, nameof(inPerimeter));
-            if (inWalkableArea is null
-                || inPerimeter is null)
+            Precondition.IsNotNullOrEmpty(walkableArea, nameof(walkableArea));
+            Precondition.IsNotNullOrEmpty(perimeter, nameof(perimeter));
+            if (walkableArea is null
+                || perimeter is null)
             {
                 return;
             }
 
-            if (inWalkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
+            if (walkableArea.Count > RoomConfiguration.MaxWalkableSpaces)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderLTE,
-                                                           nameof(inWalkableArea), inWalkableArea,
+                                                           nameof(walkableArea), walkableArea,
                                                            RoomConfiguration.MaxWalkableSpaces));
             }
-            else if (inWalkableArea.Count < RoomConfiguration.MinWalkableSpaces)
+            else if (walkableArea.Count < RoomConfiguration.MinWalkableSpaces)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorOutOfOrderGTE,
-                                                           nameof(inWalkableArea.Count),
-                                                           inWalkableArea.Count, RoomConfiguration.MinWalkableSpaces));
+                                                           nameof(walkableArea.Count),
+                                                           walkableArea.Count, RoomConfiguration.MinWalkableSpaces));
             }
-            if (!inWalkableArea.Concat(inPerimeter).Any(space
+            if (!walkableArea.Concat(perimeter).Any(space
                 => space.Content.FurnishingID != ModelID.None
                 && (All.Furnishings.GetOrNull<FurnishingModel>(space.Content.FurnishingID)?.Entry ?? EntryType.None) != EntryType.None))
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.ErrorNoExitFound,
-                                                           nameof(inWalkableArea), nameof(inPerimeter)));
+                                                           nameof(walkableArea), nameof(perimeter)));
             }
 
-            WalkableArea = inWalkableArea;
-            Perimeter = inPerimeter;
+            WalkableArea = walkableArea;
+            Perimeter = perimeter;
         }
         #endregion
 
@@ -114,12 +114,12 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines whether the specified <see cref="Room"/> is equal to the current <see cref="Room"/>.
         /// </summary>
-        /// <param name="inRoom">The <see cref="Room"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Room"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Room inRoom)
-            => inRoom is not null
-            && WalkableArea.SetEquals(inRoom.WalkableArea)
-            && Perimeter.SetEquals(inRoom.Perimeter);
+        public bool Equals(Room other)
+            => other is not null
+            && WalkableArea.SetEquals(other.WalkableArea)
+            && Perimeter.SetEquals(other.Perimeter);
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Room"/>.
@@ -133,30 +133,30 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is equal to another specified instance of <see cref="Room"/>.
         /// </summary>
-        /// <param name="inRoom1">The first <see cref="Room"/> to compare.</param>
-        /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
+        /// <param name="room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="room2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Room inRoom1, Room inRoom2)
-           => inRoom1?.Equals(inRoom2) ?? inRoom2?.Equals(inRoom1) ?? true;
+        public static bool operator ==(Room room1, Room room2)
+           => room1?.Equals(room2) ?? room2?.Equals(room1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Room"/> is not equal to another specified instance of <see cref="Room"/>.
         /// </summary>
-        /// <param name="inRoom1">The first <see cref="Room"/> to compare.</param>
-        /// <param name="inRoom2">The second <see cref="Room"/> to compare.</param>
+        /// <param name="room1">The first <see cref="Room"/> to compare.</param>
+        /// <param name="room2">The second <see cref="Room"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Room inRoom1, Room inRoom2)
-           => !(inRoom1 == inRoom2);
+        public static bool operator !=(Room room1, Room room2)
+           => !(room1 == room2);
         #endregion
 
         #region Utilities
         /// <summary>
         /// Determines whether or not the given position is included in this <see cref="Room"/>.
         /// </summary>
-        /// <param name="inPosition">The position to check for.</param>
+        /// <param name="position">The position to check for.</param>
         /// <returns><c>true</c>, if the <see cref="Room"/> contains the given position, <c>false</c> otherwise.</returns>
-        public bool ContainsPosition(Point2D inPosition)
-            => WalkableArea.Concat(Perimeter).Any(space => space.Position == inPosition);
+        public bool ContainsPosition(Point2D position)
+            => WalkableArea.Concat(Perimeter).Any(space => space.Position == position);
 
         /// <summary>
         /// Finds the <see cref="ModelID"/> of the <see cref="RoomRecipe"/> that best matches this <see cref="Room"/>.

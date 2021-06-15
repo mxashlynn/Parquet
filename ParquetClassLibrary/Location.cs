@@ -28,12 +28,12 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        /// <param name="inRegionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
-        /// <param name="inPosition">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
-        public Location(ModelID? inRegionID = null, Point2D? inPosition = null)
+        /// <param name="regionID">The identifier for the <see cref="Regions.RegionModel"/> in which the tracked <see cref="Model"/> is located.</param>
+        /// <param name="position">The position within the current <see cref="Regions.RegionModel"/> of the tracked <see cref="Model"/>.</param>
+        public Location(ModelID? regionID = null, Point2D? position = null)
         {
-            RegionID = inRegionID ?? ModelID.None;
-            Position = inPosition ?? Point2D.Origin;
+            RegionID = regionID ?? ModelID.None;
+            Position = position ?? Point2D.Origin;
         }
         #endregion
 
@@ -50,11 +50,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Location"/> is equal to the current <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation">The <see cref="Location"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Location"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Location inLocation)
-            => RegionID == inLocation.RegionID
-            && Position == inLocation.Position;
+        public bool Equals(Location other)
+            => RegionID == other.RegionID
+            && Position == other.Position;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Location"/>.
@@ -68,20 +68,20 @@ namespace Parquet
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is equal to another specified instance of <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation1">The first <see cref="Location"/> to compare.</param>
-        /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
+        /// <param name="location1">The first <see cref="Location"/> to compare.</param>
+        /// <param name="location2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Location inLocation1, Location inLocation2)
-            => inLocation1.Equals(inLocation2);
+        public static bool operator ==(Location location1, Location location2)
+            => location1.Equals(location2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Location"/> is not equal to another specified instance of <see cref="Location"/>.
         /// </summary>
-        /// <param name="inLocation1">The first <see cref="Location"/> to compare.</param>
-        /// <param name="inLocation2">The second <see cref="Location"/> to compare.</param>
+        /// <param name="location1">The first <see cref="Location"/> to compare.</param>
+        /// <param name="location2">The second <see cref="Location"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Location inLocation1, Location inLocation2)
-            => !(inLocation1 == inLocation2);
+        public static bool operator !=(Location location1, Location location2)
+            => !(location1 == location2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -91,35 +91,35 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Location location
-                ? $"{location.RegionID.ConvertToString(location.RegionID, inRow, inMemberMapData)}{Delimiters.InternalDelimiter}" +
-                  $"{location.Position.ConvertToString(location.Position, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Location), nameof(Nowhere));
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is Location location
+                ? $"{location.RegionID.ConvertToString(location.RegionID, row, memberMapData)}{Delimiters.InternalDelimiter}" +
+                  $"{location.Position.ConvertToString(location.Position, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(Location), nameof(Nowhere));
 
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Nowhere), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Nowhere), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Nowhere;
             }
 
-            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = text.Split(Delimiters.InternalDelimiter);
 
-            var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedRegionID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
+            var parsedPosition = (Point2D)Point2D.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
 
             return new Location(parsedRegionID, parsedPosition);
         }

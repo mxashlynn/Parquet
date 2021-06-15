@@ -484,40 +484,40 @@ namespace Parquet
         /// <summary>
         /// Initializes the <see cref="ModelCollection{T}"/>s from the given collections.
         /// </summary>
-        /// <param name="inPronouns">The pronouns that the game knows by default.</param>
-        /// <param name="inCharacters">All characters to be used in the game.</param>
-        /// <param name="inCritters">All critters to be used in the game.</param>
-        /// <param name="inBiomes">All biomes to be used in the game.</param>
-        /// <param name="inCraftingRecipes">All crafting recipes to be used in the game.</param>
-        /// <param name="inGames">All games or episodes to be used in the game.</param>
-        /// <param name="inInteractions">All interactions to be used in the game.</param>
-        /// <param name="inRegions">All region metadata to be used in the game.</param>
-        /// <param name="inRegionStatuses">All maps that have already been generated in the game.</param>
-        /// <param name="inFloors">All floors to be used in the game.</param>
-        /// <param name="inBlocks">All blocks to be used in the game.</param>
-        /// <param name="inFurnishings">All furnishings to be used in the game.</param>
-        /// <param name="inCollectibles">All collectibles to be used in the game.</param>
-        /// <param name="inRoomRecipes">All room recipes to be used in the game.</param>
-        /// <param name="inScripts">All scripts to be used in the game.</param>
-        /// <param name="inItems">All items to be used in the game.</param>
+        /// <param name="pronouns">The pronouns that the game knows by default.</param>
+        /// <param name="characters">All characters to be used in the game.</param>
+        /// <param name="critters">All critters to be used in the game.</param>
+        /// <param name="biomes">All biomes to be used in the game.</param>
+        /// <param name="craftingRecipes">All crafting recipes to be used in the game.</param>
+        /// <param name="games">All games or episodes to be used in the game.</param>
+        /// <param name="interactions">All interactions to be used in the game.</param>
+        /// <param name="regions">All region metadata to be used in the game.</param>
+        /// <param name="regionStatuses">All maps that have already been generated in the game.</param>
+        /// <param name="floors">All floors to be used in the game.</param>
+        /// <param name="blocks">All blocks to be used in the game.</param>
+        /// <param name="furnishings">All furnishings to be used in the game.</param>
+        /// <param name="collectibles">All collectibles to be used in the game.</param>
+        /// <param name="roomRecipes">All room recipes to be used in the game.</param>
+        /// <param name="scripts">All scripts to be used in the game.</param>
+        /// <param name="items">All items to be used in the game.</param>
         /// <remarks>The collections of models must be separately cleared between calls to this initialization routine.</remarks>
         /// <seealso cref="Clear"/>
-        public static void InitializeCollections(IEnumerable<PronounGroup> inPronouns,
-                                                 IEnumerable<GameModel> inGames,
-                                                 IEnumerable<FloorModel> inFloors,
-                                                 IEnumerable<BlockModel> inBlocks,
-                                                 IEnumerable<FurnishingModel> inFurnishings,
-                                                 IEnumerable<CollectibleModel> inCollectibles,
-                                                 IEnumerable<CritterModel> inCritters,
-                                                 IEnumerable<CharacterModel> inCharacters,
-                                                 IEnumerable<BiomeRecipe> inBiomes,
-                                                 IEnumerable<CraftingRecipe> inCraftingRecipes,
-                                                 IEnumerable<RoomRecipe> inRoomRecipes,
-                                                 IEnumerable<RegionModel> inRegions,
-                                                 IEnumerable<KeyValuePair<ModelID, RegionStatus>> inRegionStatuses,
-                                                 IEnumerable<ScriptModel> inScripts,
-                                                 IEnumerable<InteractionModel> inInteractions,
-                                                 IEnumerable<ItemModel> inItems)
+        public static void InitializeCollections(IEnumerable<PronounGroup> pronouns,
+                                                 IEnumerable<GameModel> games,
+                                                 IEnumerable<FloorModel> floors,
+                                                 IEnumerable<BlockModel> blocks,
+                                                 IEnumerable<FurnishingModel> furnishings,
+                                                 IEnumerable<CollectibleModel> collectibles,
+                                                 IEnumerable<CritterModel> critters,
+                                                 IEnumerable<CharacterModel> characters,
+                                                 IEnumerable<BiomeRecipe> biomes,
+                                                 IEnumerable<CraftingRecipe> craftingRecipes,
+                                                 IEnumerable<RoomRecipe> roomRecipes,
+                                                 IEnumerable<RegionModel> regions,
+                                                 IEnumerable<KeyValuePair<ModelID, RegionStatus>> regionStatuses,
+                                                 IEnumerable<ScriptModel> scripts,
+                                                 IEnumerable<InteractionModel> interactions,
+                                                 IEnumerable<ItemModel> items)
         {
             if (CollectionsHaveBeenInitialized)
             {
@@ -525,45 +525,45 @@ namespace Parquet
                                                            nameof(All), "initialization"));
                 return;
             }
-            Precondition.IsNotNull(inPronouns, nameof(inPronouns));
-            Precondition.IsNotNull(inGames, nameof(inGames));
-            Precondition.IsNotNull(inFloors, nameof(inFloors));
-            Precondition.IsNotNull(inBlocks, nameof(inBlocks));
-            Precondition.IsNotNull(inFurnishings, nameof(inFurnishings));
-            Precondition.IsNotNull(inCollectibles, nameof(inCollectibles));
-            Precondition.IsNotNull(inCritters, nameof(inCritters));
-            Precondition.IsNotNull(inCharacters, nameof(inCharacters));
-            Precondition.IsNotNull(inBiomes, nameof(inBiomes));
-            Precondition.IsNotNull(inCraftingRecipes, nameof(inCraftingRecipes));
-            Precondition.IsNotNull(inRoomRecipes, nameof(inRoomRecipes));
-            Precondition.IsNotNull(inRegions, nameof(inRegions));
-            Precondition.IsNotNull(inScripts, nameof(inScripts));
-            Precondition.IsNotNull(inInteractions, nameof(inInteractions));
-            Precondition.IsNotNull(inItems, nameof(inItems));
+            Precondition.IsNotNull(pronouns, nameof(pronouns));
+            Precondition.IsNotNull(games, nameof(games));
+            Precondition.IsNotNull(floors, nameof(floors));
+            Precondition.IsNotNull(blocks, nameof(blocks));
+            Precondition.IsNotNull(furnishings, nameof(furnishings));
+            Precondition.IsNotNull(collectibles, nameof(collectibles));
+            Precondition.IsNotNull(critters, nameof(critters));
+            Precondition.IsNotNull(characters, nameof(characters));
+            Precondition.IsNotNull(biomes, nameof(biomes));
+            Precondition.IsNotNull(craftingRecipes, nameof(craftingRecipes));
+            Precondition.IsNotNull(roomRecipes, nameof(roomRecipes));
+            Precondition.IsNotNull(regions, nameof(regions));
+            Precondition.IsNotNull(scripts, nameof(scripts));
+            Precondition.IsNotNull(interactions, nameof(interactions));
+            Precondition.IsNotNull(items, nameof(items));
 
-            Games = new ModelCollection<GameModel>(GameIDs, inGames);
-            Floors = new ModelCollection<FloorModel>(FloorIDs, inFloors);
-            Blocks = new ModelCollection<BlockModel>(BlockIDs, inBlocks);
-            Furnishings = new ModelCollection<FurnishingModel>(FurnishingIDs, inFurnishings);
-            Collectibles = new ModelCollection<CollectibleModel>(CollectibleIDs, inCollectibles);
+            Games = new ModelCollection<GameModel>(GameIDs, games);
+            Floors = new ModelCollection<FloorModel>(FloorIDs, floors);
+            Blocks = new ModelCollection<BlockModel>(BlockIDs, blocks);
+            Furnishings = new ModelCollection<FurnishingModel>(FurnishingIDs, furnishings);
+            Collectibles = new ModelCollection<CollectibleModel>(CollectibleIDs, collectibles);
             Parquets = new ModelCollection<ParquetModel>(ParquetIDs, ((IEnumerable<ParquetModel>)Floors)
                 .Concat(Blocks)
                 .Concat(Furnishings)
                 .Concat(Collectibles));
-            Critters = new ModelCollection<CritterModel>(CritterIDs, inCritters);
-            Characters = new ModelCollection<CharacterModel>(CharacterIDs, inCharacters);
+            Critters = new ModelCollection<CritterModel>(CritterIDs, critters);
+            Characters = new ModelCollection<CharacterModel>(CharacterIDs, characters);
             Beings = new ModelCollection<BeingModel>(BeingIDs, ((IEnumerable<BeingModel>)Characters)
                 .Concat(Critters));
-            BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, inBiomes);
-            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, inCraftingRecipes);
-            RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, inRoomRecipes);
-            Regions = new ModelCollection<RegionModel>(RegionIDs, inRegions);
-            Scripts = new ModelCollection<ScriptModel>(ScriptIDs, inScripts);
-            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, inInteractions);
-            Items = new ModelCollection<ItemModel>(ItemIDs, inItems);
+            BiomeRecipes = new ModelCollection<BiomeRecipe>(BiomeRecipeIDs, biomes);
+            CraftingRecipes = new ModelCollection<CraftingRecipe>(CraftingRecipeIDs, craftingRecipes);
+            RoomRecipes = new ModelCollection<RoomRecipe>(RoomRecipeIDs, roomRecipes);
+            Regions = new ModelCollection<RegionModel>(RegionIDs, regions);
+            Scripts = new ModelCollection<ScriptModel>(ScriptIDs, scripts);
+            Interactions = new ModelCollection<InteractionModel>(InteractionIDs, interactions);
+            Items = new ModelCollection<ItemModel>(ItemIDs, items);
 
-            PronounGroups = new HashSet<PronounGroup>(inPronouns);
-            RegionStatuses = new Dictionary<ModelID, RegionStatus>(inRegionStatuses);
+            PronounGroups = new HashSet<PronounGroup>(pronouns);
+            RegionStatuses = new Dictionary<ModelID, RegionStatus>(regionStatuses);
 
             CollectionsHaveBeenInitialized = true;
         }
@@ -706,27 +706,27 @@ namespace Parquet
         /// <summary>
         /// Given a <see cref="ModelID"/>, return the <see cref="Range{ModelID}"/> within which it is defined.
         /// </summary>
-        /// <param name="inID">The ID whose <see cref="Range{ModelID}"/> is sought.</param>
+        /// <param name="id">The ID whose <see cref="Range{ModelID}"/> is sought.</param>
         /// <returns>
         /// The range within which this <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
         /// </returns>
-        public static Range<ModelID> GetIDRangeForType(ModelID inID)
-            => inID == ModelID.None
+        public static Range<ModelID> GetIDRangeForType(ModelID id)
+            => id == ModelID.None
                 ? Range<ModelID>.None
-                : AllDefinedIDs.Where(range => range.ContainsValue(inID)).DefaultIfEmpty(Range<ModelID>.None).First();
+                : AllDefinedIDs.Where(range => range.ContainsValue(id)).DefaultIfEmpty(Range<ModelID>.None).First();
 
         /// <summary>
         /// Given an instance of <see cref="Model"/>, return the appropriate <see cref="Range{ModelID}"/>.
         /// </summary>
-        /// <param name="inModel">The model whose <see cref="Range{ModelID}"/> is sought.</param>
+        /// <param name="model">The model whose <see cref="Range{ModelID}"/> is sought.</param>
         /// <returns>
         /// The range within which this model's <see cref="ModelID"/> is defined, or <see cref="Range{ModelID}.None"/> if there is none.
         /// </returns>
-        public static Range<ModelID> GetIDRangeForType(Model inModel)
-            => inModel is null
-            || inModel.ID == ModelID.None
+        public static Range<ModelID> GetIDRangeForType(Model model)
+            => model is null
+            || model.ID == ModelID.None
                 ? Range<ModelID>.None
-                : inModel switch
+                : model switch
                 {
                     GameModel _ => GameIDs,
                     FloorModel _ => FloorIDs,
@@ -748,26 +748,26 @@ namespace Parquet
         /// <summary>
         /// Given a <see cref="Type"/> derived from a <see cref="Model"/>, return the appropriate <see cref="Range{ModelID}"/>.
         /// </summary>
-        /// <param name="inModelType">The model type whose ID range is sought.</param>
+        /// <param name="modelType">The model type whose ID range is sought.</param>
         /// <returns>
         /// The range within which this model type's <see cref="ModelID"/> would be defined,
         /// or <see cref="Range{ModelID}.None"/> if none exists.
         /// </returns>
-        public static Range<ModelID> GetIDRangeForType(Type inModelType)
-            => inModelType == typeof(GameModel) ? GameIDs
-            : inModelType == typeof(BlockModel) ? BlockIDs
-            : inModelType == typeof(FloorModel) ? FloorIDs
-            : inModelType == typeof(FurnishingModel) ? FurnishingIDs
-            : inModelType == typeof(CollectibleModel) ? CollectibleIDs
-            : inModelType == typeof(CritterModel) ? CritterIDs
-            : inModelType == typeof(CharacterModel) ? CharacterIDs
-            : inModelType == typeof(BiomeRecipe) ? BiomeRecipeIDs
-            : inModelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
-            : inModelType == typeof(RoomRecipe) ? RoomRecipeIDs
-            : inModelType == typeof(RegionModel) ? RegionIDs
-            : inModelType == typeof(ScriptModel) ? ScriptIDs
-            : inModelType == typeof(InteractionModel) ? InteractionIDs
-            : inModelType == typeof(ItemModel) ? ItemIDs
+        public static Range<ModelID> GetIDRangeForType(Type modelType)
+            => modelType == typeof(GameModel) ? GameIDs
+            : modelType == typeof(BlockModel) ? BlockIDs
+            : modelType == typeof(FloorModel) ? FloorIDs
+            : modelType == typeof(FurnishingModel) ? FurnishingIDs
+            : modelType == typeof(CollectibleModel) ? CollectibleIDs
+            : modelType == typeof(CritterModel) ? CritterIDs
+            : modelType == typeof(CharacterModel) ? CharacterIDs
+            : modelType == typeof(BiomeRecipe) ? BiomeRecipeIDs
+            : modelType == typeof(CraftingRecipe) ? CraftingRecipeIDs
+            : modelType == typeof(RoomRecipe) ? RoomRecipeIDs
+            : modelType == typeof(RegionModel) ? RegionIDs
+            : modelType == typeof(ScriptModel) ? ScriptIDs
+            : modelType == typeof(InteractionModel) ? InteractionIDs
+            : modelType == typeof(ItemModel) ? ItemIDs
             : Range<ModelID>.None;
         #endregion
     }

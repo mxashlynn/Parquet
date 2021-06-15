@@ -42,21 +42,21 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="ParquetModelPack"/> class.
         /// </summary>
-        /// <param name="inFloor">The floor-layer parquet.</param>
-        /// <param name="inBlock">The block-layer parquet.</param>
-        /// <param name="inFurnishing">The furnishing-layer parquet.</param>
-        /// <param name="inCollectible">The collectible-layer parquet.</param>
-        public ParquetModelPack(ModelID inFloor, ModelID inBlock, ModelID inFurnishing, ModelID inCollectible)
+        /// <param name="floor">The floor-layer parquet.</param>
+        /// <param name="block">The block-layer parquet.</param>
+        /// <param name="furnishing">The furnishing-layer parquet.</param>
+        /// <param name="collectible">The collectible-layer parquet.</param>
+        public ParquetModelPack(ModelID floor, ModelID block, ModelID furnishing, ModelID collectible)
         {
-            Precondition.IsInRange(inFloor, All.FloorIDs, nameof(inFloor));
-            Precondition.IsInRange(inBlock, All.BlockIDs, nameof(inBlock));
-            Precondition.IsInRange(inFurnishing, All.FurnishingIDs, nameof(inFurnishing));
-            Precondition.IsInRange(inCollectible, All.CollectibleIDs, nameof(inCollectible));
+            Precondition.IsInRange(floor, All.FloorIDs, nameof(floor));
+            Precondition.IsInRange(block, All.BlockIDs, nameof(block));
+            Precondition.IsInRange(furnishing, All.FurnishingIDs, nameof(furnishing));
+            Precondition.IsInRange(collectible, All.CollectibleIDs, nameof(collectible));
 
-            FloorID = inFloor;
-            BlockID = inBlock;
-            FurnishingID = inFurnishing;
-            CollectibleID = inCollectible;
+            FloorID = floor;
+            BlockID = block;
+            FurnishingID = furnishing;
+            CollectibleID = collectible;
         }
         #endregion
 
@@ -127,10 +127,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="ParquetModelPack"/> is equal to the current <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
+        /// <param name="pack">The <see cref="ParquetModelPack"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inPack)
-            => inPack is ParquetModelPack parquetModelPack
+        public override bool Equals<T>(T pack)
+            => pack is ParquetModelPack parquetModelPack
             && FloorID == parquetModelPack.FloorID
             && BlockID == parquetModelPack.BlockID
             && FurnishingID == parquetModelPack.FurnishingID
@@ -148,20 +148,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ParquetModelPack inPack1, ParquetModelPack inPack2)
-            => inPack1?.Equals(inPack2) ?? inPack2?.Equals(inPack1) ?? true;
+        public static bool operator ==(ParquetModelPack pack1, ParquetModelPack pack2)
+            => pack1?.Equals(pack2) ?? pack2?.Equals(pack1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ParquetModelPack"/> is not equal to another specified instance of <see cref="ParquetModelPack"/>.
         /// </summary>
-        /// <param name="inPack1">The first <see cref="ParquetModelPack"/> to compare.</param>
-        /// <param name="inPack2">The second <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack1">The first <see cref="ParquetModelPack"/> to compare.</param>
+        /// <param name="pack2">The second <see cref="ParquetModelPack"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ParquetModelPack inPack1, ParquetModelPack inPack2)
-            => !(inPack1 == inPack2);
+        public static bool operator !=(ParquetModelPack pack1, ParquetModelPack pack2)
+            => !(pack1 == pack2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -171,39 +171,39 @@ namespace Parquet.Parquets
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ParquetModelPack pack
-                ? $"{pack.FloorID.ConvertToString(pack.FloorID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.BlockID.ConvertToString(pack.BlockID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.FurnishingID.ConvertToString(pack.FurnishingID, inRow, inMemberMapData)}{Delimiters.PackDelimiter}" +
-                  $"{pack.CollectibleID.ConvertToString(pack.CollectibleID, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ParquetModelPack), nameof(Empty));
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ParquetModelPack pack
+                ? $"{pack.FloorID.ConvertToString(pack.FloorID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.BlockID.ConvertToString(pack.BlockID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.FurnishingID.ConvertToString(pack.FurnishingID, row, memberMapData)}{Delimiters.PackDelimiter}" +
+                  $"{pack.CollectibleID.ConvertToString(pack.CollectibleID, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ParquetModelPack), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Empty;
             }
 
-            var parameterText = inText.Split(Delimiters.PackDelimiter);
+            var parameterText = text.Split(Delimiters.PackDelimiter);
 
-            var parsedFloor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedBlock = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
-            var parsedFurnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], inRow, inMemberMapData);
-            var parsedCollectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], inRow, inMemberMapData);
+            var parsedFloor = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
+            var parsedBlock = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
+            var parsedFurnishing = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[2], row, memberMapData);
+            var parsedCollectible = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[3], row, memberMapData);
 
             return new ParquetModelPack(parsedFloor, parsedBlock, parsedFurnishing, parsedCollectible);
         }

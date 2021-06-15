@@ -63,23 +63,23 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of concrete implementations of the <see cref="Model"/> class.
         /// </summary>
-        /// <param name="inBounds">The bounds within which the derived type's <see cref="ModelID"/> is defined.</param>
-        /// <param name="inID">Unique identifier for the <see cref="Model"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="Model"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="Model"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="Model"/>.</param>
-        /// <param name="inTags">Any additional functionality this <see cref="Model"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
-        protected Model(Range<ModelID> inBounds, ModelID inID, string inName, string inDescription, string inComment, IEnumerable<ModelTag> inTags)
+        /// <param name="bounds">The bounds within which the derived type's <see cref="ModelID"/> is defined.</param>
+        /// <param name="id">Unique identifier for the <see cref="Model"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="Model"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="Model"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="Model"/>.</param>
+        /// <param name="tags">Any additional functionality this <see cref="Model"/> has, e.g. contributing to a <see cref="Biomes.BiomeRecipe"/>.</param>
+        protected Model(Range<ModelID> bounds, ModelID id, string name, string description, string comment, IEnumerable<ModelTag> tags)
         {
-            Precondition.IsInRange(inID, inBounds, nameof(inID));
-            Precondition.IsNotNullOrEmpty(inName, nameof(inName));
+            Precondition.IsInRange(id, bounds, nameof(id));
+            Precondition.IsNotNullOrEmpty(name, nameof(name));
 
-            var nonNullTags = (inTags ?? Enumerable.Empty<ModelTag>());
+            var nonNullTags = (tags ?? Enumerable.Empty<ModelTag>());
 
-            ID = inID;
-            Name = inName;
-            Description = inDescription ?? "";
-            Comment = inComment ?? "";
+            ID = id;
+            Name = name;
+            Description = description ?? "";
+            Comment = comment ?? "";
             Tags = nonNullTags.ToList();
         }
         #endregion
@@ -183,10 +183,10 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Model"/> is equal to the current <see cref="Model"/>.
         /// </summary>
-        /// <param name="inModel">The <see cref="Model"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Model"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(Model inModel)
-            => inModel?.ID == ID;
+        public bool Equals(Model other)
+            => other?.ID == ID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Model"/>.
@@ -200,20 +200,20 @@ namespace Parquet
         /// <summary>
         /// Determines whether a specified instance of <see cref="Model"/> is equal to another specified instance of <see cref="Model"/>.
         /// </summary>
-        /// <param name="inModel1">The first <see cref="Model"/> to compare.</param>
-        /// <param name="inModel2">The second <see cref="Model"/> to compare.</param>
+        /// <param name="model1">The first <see cref="Model"/> to compare.</param>
+        /// <param name="model2">The second <see cref="Model"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Model inModel1, Model inModel2)
-            => inModel1?.Equals(inModel2) ?? inModel2?.Equals(inModel1) ?? true;
+        public static bool operator ==(Model model1, Model model2)
+            => model1?.Equals(model2) ?? model2?.Equals(model1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Model"/> is not equal to another specified instance of <see cref="Model"/>.
         /// </summary>
-        /// <param name="inModel1">The first <see cref="Model"/> to compare.</param>
-        /// <param name="inModel2">The second <see cref="Model"/> to compare.</param>
+        /// <param name="model1">The first <see cref="Model"/> to compare.</param>
+        /// <param name="model2">The second <see cref="Model"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Model inModel1, Model inModel2)
-            => !(inModel1 == inModel2);
+        public static bool operator !=(Model model1, Model model2)
+            => !(model1 == model2);
         #endregion
 
         #region Utilities
@@ -235,7 +235,7 @@ namespace Parquet
         /// A tag assigned to this <see cref="Model"/> that begins with the given attribute prefix,
         /// or <see cref="ModelTag.None"/> if no such tag has been assigned.
         /// </summary>
-        /// <param name="inPrefix">
+        /// <param name="prefix">
         /// A <see cref="ModelTag"/> substring indicating the sought attribute.
         /// No particular format is required for the prefix:suffix pair,
         /// although no library-wide <see cref="Delimiters"/> may be used.
@@ -246,8 +246,8 @@ namespace Parquet
         /// <remarks>
         /// This is a convenience for client code and not used by the library itself.
         /// </remarks>
-        public ModelTag AttributeTag(ModelTag inPrefix)
-            => Tags.FirstOrDefault(tag => tag.StartsWithOrdinalIgnoreCase(inPrefix)) ?? "";
+        public ModelTag AttributeTag(ModelTag prefix)
+            => Tags.FirstOrDefault(tag => tag.StartsWithOrdinalIgnoreCase(prefix)) ?? "";
         #endregion
     }
 }

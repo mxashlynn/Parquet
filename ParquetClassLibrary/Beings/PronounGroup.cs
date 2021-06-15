@@ -70,25 +70,25 @@ namespace Parquet.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="PronounGroup"/> class.
         /// </summary>
-        /// <param name="inSubjective">Personal pronoun used as the subject of a verb.  Cannot be null or empty.</param>
-        /// <param name="inObjective">Personal pronoun used as the indirect object of a preposition or verb.  Cannot be null or empty.</param>
-        /// <param name="inDeterminer">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
-        /// <param name="inPossessive">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
-        /// <param name="inReflexive">Personal pronoun used as a coreferential to indicate the user.  Cannot be null or empty.</param>
-        public PronounGroup(string inSubjective, string inObjective, string inDeterminer,
-                            string inPossessive, string inReflexive)
+        /// <param name="subjective">Personal pronoun used as the subject of a verb.  Cannot be null or empty.</param>
+        /// <param name="objective">Personal pronoun used as the indirect object of a preposition or verb.  Cannot be null or empty.</param>
+        /// <param name="determiner">Personal pronoun used to modify a noun attributing possession.  Cannot be null or empty.</param>
+        /// <param name="possessive">Personal pronoun used to indicate a relationship in a broad sense.  Cannot be null or empty.</param>
+        /// <param name="reflexive">Personal pronoun used as a coreferential to indicate the user.  Cannot be null or empty.</param>
+        public PronounGroup(string subjective, string objective, string determiner,
+                            string possessive, string reflexive)
         {
-            Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
-            Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
-            Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
-            Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
-            Precondition.IsNotNullOrEmpty(inSubjective, nameof(inSubjective));
+            Precondition.IsNotNullOrEmpty(subjective, nameof(subjective));
+            Precondition.IsNotNullOrEmpty(subjective, nameof(subjective));
+            Precondition.IsNotNullOrEmpty(subjective, nameof(subjective));
+            Precondition.IsNotNullOrEmpty(subjective, nameof(subjective));
+            Precondition.IsNotNullOrEmpty(subjective, nameof(subjective));
 
-            Subjective = inSubjective;
-            Objective = inObjective;
-            Determiner = inDeterminer;
-            Possessive = inPossessive;
-            Reflexive = inReflexive;
+            Subjective = subjective;
+            Objective = objective;
+            Determiner = determiner;
+            Possessive = possessive;
+            Reflexive = reflexive;
         }
         #endregion
 
@@ -154,11 +154,7 @@ namespace Parquet.Beings
             using var reader = new StreamReader(FilePath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.TypeConverterOptionsCache.AddOptions(typeof(ModelID), All.IdentifierOptions);
-            csv.Configuration.PrepareHeaderForMatch =
-                (string header, int index)
-                    => header.StartsWith("in", StringComparison.InvariantCulture)
-                        ? header[2..].ToUpperInvariant()
-                        : header.ToUpperInvariant();
+            csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToUpperInvariant();
             foreach (var kvp in All.ConversionConverters)
             {
                 csv.Configuration.TypeConverterCache.AddConverter(kvp.Key, kvp.Value);
@@ -170,9 +166,9 @@ namespace Parquet.Beings
         /// <summary>
         /// Writes the given <see cref="PronounGroup"/> records to the appropriate file.
         /// </summary>
-        public static void PutRecords(IEnumerable<PronounGroup> inGroups)
+        public static void PutRecords(IEnumerable<PronounGroup> groups)
         {
-            Precondition.IsNotNull(inGroups);
+            Precondition.IsNotNull(groups);
 
             using var writer = new StreamWriter(FilePath, false, new UTF8Encoding(true, true));
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
@@ -185,7 +181,7 @@ namespace Parquet.Beings
 
             csv.WriteHeader<PronounGroup>();
             csv.NextRecord();
-            csv.WriteRecords(inGroups);
+            csv.WriteRecords(groups);
         }
         #endregion
 
@@ -200,10 +196,10 @@ namespace Parquet.Beings
         /// <summary>
         /// Replaces pronoun tags with the appropriate pronoun from the given <see cref="PronounGroup"/>.
         /// </summary>
-        /// <param name="inText">The text to transform.</param>
+        /// <param name="text">The text to transform.</param>
         /// <returns>The updated text.</returns>
-        public StringBuilder FillInPronouns(StringBuilder inText)
-            => inText?
+        public StringBuilder FillInPronouns(StringBuilder text)
+            => text?
                 .Replace(SubjectiveTag, Subjective)
                 .Replace(ObjectiveTag, Objective)
                 .Replace(DeterminerTag, Determiner)
@@ -213,10 +209,10 @@ namespace Parquet.Beings
         /// <summary>
         /// Replaces pronoun tags with the appropriate pronoun from the given <see cref="PronounGroup"/>.
         /// </summary>
-        /// <param name="inText">The text to transform.</param>
+        /// <param name="text">The text to transform.</param>
         /// <returns>The updated text.</returns>
-        public StringBuilder FillInPronouns(string inText)
-            => new StringBuilder(inText)
+        public StringBuilder FillInPronouns(string text)
+            => new StringBuilder(text)
                 .Replace(SubjectiveTag, Subjective)
                 .Replace(ObjectiveTag, Objective)
                 .Replace(DeterminerTag, Determiner)

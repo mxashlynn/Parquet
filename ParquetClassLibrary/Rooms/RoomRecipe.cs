@@ -42,32 +42,32 @@ namespace Parquet.Rooms
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomRecipe"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>
-        /// <param name="inName">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
-        /// <param name="inTags">Any additional information about this <see cref="RoomRecipe"/>.</param>
-        /// <param name="inMinimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
-        /// <param name="inOptionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
-        /// <param name="inOptionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
-        /// <param name="inOptionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
-        public RoomRecipe(ModelID inID, string inName, string inDescription, string inComment,
-                          IEnumerable<ModelTag> inTags = null, int? inMinimumWalkableSpaces = null,
-                          IEnumerable<RecipeElement> inOptionallyRequiredFurnishings = null,
-                          IEnumerable<RecipeElement> inOptionallyRequiredWalkableFloors = null,
-                          IEnumerable<RecipeElement> inOptionallyRequiredPerimeterBlocks = null)
-            : base(All.RoomRecipeIDs, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the <see cref="RoomRecipe"/>.  Cannot be null.</param>
+        /// <param name="name">Player-friendly name of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="description">Player-friendly description of the <see cref="RoomRecipe"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="RoomRecipe"/>.</param>
+        /// <param name="tags">Any additional information about this <see cref="RoomRecipe"/>.</param>
+        /// <param name="minimumWalkableSpaces">The minimum number of walkable <see cref="MapSpace"/>s required by this <see cref="RoomRecipe"/>.</param>
+        /// <param name="optionallyRequiredFurnishings">An optional list of furnishing categories this <see cref="RoomRecipe"/> requires.</param>
+        /// <param name="optionallyRequiredWalkableFloors">An optional list of floor categories this <see cref="RoomRecipe"/> requires.</param>
+        /// <param name="optionallyRequiredPerimeterBlocks">An optional list of block categories this <see cref="RoomRecipe"/> requires as walls.</param>
+        public RoomRecipe(ModelID id, string name, string description, string comment,
+                          IEnumerable<ModelTag> tags = null, int? minimumWalkableSpaces = null,
+                          IEnumerable<RecipeElement> optionallyRequiredFurnishings = null,
+                          IEnumerable<RecipeElement> optionallyRequiredWalkableFloors = null,
+                          IEnumerable<RecipeElement> optionallyRequiredPerimeterBlocks = null)
+            : base(All.RoomRecipeIDs, id, name, description, comment, tags)
         {
-            var nonNullMinimumWalkableSpaces = inMinimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
-            var nonNullOptionallyRequiredFurnishings = (inOptionallyRequiredFurnishings ?? Enumerable.Empty<RecipeElement>()).ToList();
-            var nonNullOptionallyRequiredWalkableFloors = (inOptionallyRequiredWalkableFloors ?? Enumerable.Empty<RecipeElement>()).ToList();
-            var nonNullOptionallyRequiredPerimeterBlocks = (inOptionallyRequiredPerimeterBlocks ?? Enumerable.Empty<RecipeElement>()).ToList();
+            var nonNullMinimumWalkableSpaces = minimumWalkableSpaces ?? RoomConfiguration.MinWalkableSpaces;
+            var nonNullOptionallyRequiredFurnishings = (optionallyRequiredFurnishings ?? Enumerable.Empty<RecipeElement>()).ToList();
+            var nonNullOptionallyRequiredWalkableFloors = (optionallyRequiredWalkableFloors ?? Enumerable.Empty<RecipeElement>()).ToList();
+            var nonNullOptionallyRequiredPerimeterBlocks = (optionallyRequiredPerimeterBlocks ?? Enumerable.Empty<RecipeElement>()).ToList();
 
             if (nonNullMinimumWalkableSpaces < RoomConfiguration.MinWalkableSpaces
                 || nonNullMinimumWalkableSpaces > RoomConfiguration.MaxWalkableSpaces)
             {
                 Logger.Log(LogLevel.Warning, string.Format(CultureInfo.CurrentCulture, Resources.WarningRoomSize,
-                                                           inMinimumWalkableSpaces, RoomConfiguration.MinWalkableSpaces,
+                                                           minimumWalkableSpaces, RoomConfiguration.MinWalkableSpaces,
                                                            RoomConfiguration.MaxWalkableSpaces));
             }
 
@@ -140,26 +140,26 @@ namespace Parquet.Rooms
         /// <summary>
         /// Determines if the given <see cref="Room"/> conforms to this <see cref="RoomRecipe"/>.
         /// </summary>
-        /// <param name="inRoom">The <see cref="Room"/> to check.</param>
+        /// <param name="room">The <see cref="Room"/> to check.</param>
         /// <returns>
-        /// <c>ture</c> if <paramref name="inRoom"/> is an instance of this <see cref="RoomRecipe"/>;
+        /// <c>ture</c> if <paramref name="room"/> is an instance of this <see cref="RoomRecipe"/>;
         /// <c>false</c> otherwise.
         /// </returns>
-        public bool Matches(Room inRoom)
-            => inRoom is not null
-            && inRoom.WalkableArea.Count >= MinimumWalkableSpaces
+        public bool Matches(Room room)
+            => room is not null
+            && room.WalkableArea.Count >= MinimumWalkableSpaces
             && OptionallyRequiredPerimeterBlocks.All(element
-                => inRoom.Perimeter.Count(space
+                => room.Perimeter.Count(space
                     => space.Content.BlockID != ModelID.None
                     && (All.Blocks.GetOrNull<BlockModel>(space.Content.BlockID)?.AddsToRoom.Contains(element.ElementTag) ?? false))
                         >= element.ElementAmount)
             && OptionallyRequiredWalkableFloors.All(element
-                => inRoom.WalkableArea.Count(space
+                => room.WalkableArea.Count(space
                     => space.Content.FloorID != ModelID.None
                     && (All.Floors.GetOrNull<FloorModel>(space.Content.FloorID)?.AddsToRoom.Contains(element.ElementTag) ?? false))
                         >= element.ElementAmount)
             && OptionallyRequiredFurnishings.All(element
-                => inRoom.FurnishingTags.Count(tag
+                => room.FurnishingTags.Count(tag
                     => tag == element.ElementTag) >= element.ElementAmount);
         #endregion
     }

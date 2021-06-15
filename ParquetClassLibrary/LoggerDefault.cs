@@ -14,27 +14,27 @@ namespace Parquet
         /// <summary>
         /// Writes a log entry.
         /// </summary>
-        /// <param name="inLogLevel">The severity of the event being logged.</param>
-        /// <param name="inMessage">A message summarizing the event being logged.</param>
-        /// <param name="inException">The exception related to this event, if any.</param>
-        public void Log(LogLevel inLogLevel, string inMessage = null, Exception inException = null)
+        /// <param name="logLevel">The severity of the event being logged.</param>
+        /// <param name="message">A message summarizing the event being logged.</param>
+        /// <param name="exception">The exception related to this event, if any.</param>
+        public void Log(LogLevel logLevel, string message = null, Exception exception = null)
         {
-            if (inLogLevel == LogLevel.Debug && !LibraryState.IsDebugMode)
+            if (logLevel == LogLevel.Debug && !LibraryState.IsDebugMode)
             {
                 // Ignore debug logs when not running in debug mode.
                 return;
             }
 
-            var destination = inLogLevel == LogLevel.Info
+            var destination = logLevel == LogLevel.Info
                 ? Console.Out
                 : Console.Error;
-            var message = !string.IsNullOrEmpty(inMessage)
-                ? inMessage
-                : inException is not null
-                    ? inException.Message
+            var nonNullMessage = !string.IsNullOrEmpty(message)
+                ? message
+                : exception is not null
+                    ? exception.Message
                     : $"Parquet {nameof(LoggerDefault)} Trace at {DateTime.Now}.";
 
-            destination.WriteLine(message);
+            destination.WriteLine(nonNullMessage);
         }
     }
 }

@@ -43,15 +43,15 @@ namespace Parquet.Crafts
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/>.
         /// </summary>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
         /// <remarks>This constructor supports instance creation via reflection from the <see cref="GridConverter{TElement, TGrid}"/> class.</remarks>
-        public StrikePanelGrid(int inRowCount, int inColumnCount)
+        public StrikePanelGrid(int rowCount, int columnCount)
         {
-            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
-            for (var y = 0; y < inRowCount; y++)
+            StrikePanels = new StrikePanel[rowCount, columnCount];
+            for (var y = 0; y < rowCount; y++)
             {
-                for (var x = 0; x < inColumnCount; x++)
+                for (var x = 0; x < columnCount; x++)
                 {
                     StrikePanels[y, x] = StrikePanel.Unused.DeepClone();
                 }
@@ -61,22 +61,22 @@ namespace Parquet.Crafts
         /// <summary>
         /// Initializes a new <see cref="StrikePanelGrid"/> similar to the one provided but with the given dimensions.
         /// </summary>
-        /// <param name="inContent">An existing <see cref="StrikePanelGrid"/>.</param>
-        /// <param name="inRowCount">The length of the Y dimension of the collection.</param>
-        /// <param name="inColumnCount">The length of the X dimension of the collection.</param>
+        /// <param name="content">An existing <see cref="StrikePanelGrid"/>.</param>
+        /// <param name="rowCount">The length of the Y dimension of the collection.</param>
+        /// <param name="columnCount">The length of the X dimension of the collection.</param>
         /// <remarks>This constructor supports instance creation via reflection from the <see cref="GridConverter{TElement, TGrid}"/> class.</remarks>
-        public StrikePanelGrid(IGrid<StrikePanel> inContent, int inRowCount, int inColumnCount)
+        public StrikePanelGrid(IGrid<StrikePanel> content, int rowCount, int columnCount)
         {
-            StrikePanels = new StrikePanel[inRowCount, inColumnCount];
-            if (inContent is not null)
+            StrikePanels = new StrikePanel[rowCount, columnCount];
+            if (content is not null)
             {
-                for (var y = 0; y < inRowCount; y++)
+                for (var y = 0; y < rowCount; y++)
                 {
-                    for (var x = 0; x < inColumnCount; x++)
+                    for (var x = 0; x < columnCount; x++)
                     {
-                        StrikePanels[y, x] = x < inContent.Columns
-                                           && y < inContent.Rows
-                            ? inContent[y, x].DeepClone()
+                        StrikePanels[y, x] = x < content.Columns
+                                           && y < content.Rows
+                            ? content[y, x].DeepClone()
                             : StrikePanel.Unused.DeepClone();
                     }
                 }
@@ -156,10 +156,10 @@ namespace Parquet.Crafts
         /// <summary>
         /// Determines if the given position corresponds to a point within the collection.
         /// </summary>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public bool IsValidPosition(Point2D inPosition)
-            => StrikePanels.IsValidPosition(inPosition);
+        public bool IsValidPosition(Point2D position)
+            => StrikePanels.IsValidPosition(position);
         #endregion
     }
 }

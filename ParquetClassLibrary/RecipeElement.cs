@@ -45,14 +45,14 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeElement"/> class.
         /// </summary>
-        /// <param name="inElementAmount">The amount of the element.  Must be positive.</param>
-        /// <param name="inElementTag">A <see cref="ModelTag"/> describing the element.</param>
-        public RecipeElement(int inElementAmount, ModelTag inElementTag)
+        /// <param name="elementAmount">The amount of the element.  Must be positive.</param>
+        /// <param name="elementTag">A <see cref="ModelTag"/> describing the element.</param>
+        public RecipeElement(int elementAmount, ModelTag elementTag)
         {
-            Precondition.MustBePositive(inElementAmount, nameof(inElementAmount));
+            Precondition.MustBePositive(elementAmount, nameof(elementAmount));
 
-            ElementAmount = inElementAmount;
-            ElementTag = inElementTag;
+            ElementAmount = elementAmount;
+            ElementTag = elementTag;
         }
         #endregion
 
@@ -69,11 +69,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="RecipeElement"/> is equal to the current <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="inElement">The <see cref="RecipeElement"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="RecipeElement"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(RecipeElement inElement)
-            => inElement?.ElementTag == ElementTag
-            && inElement?.ElementAmount == ElementAmount;
+        public bool Equals(RecipeElement other)
+            => other?.ElementTag == ElementTag
+            && other?.ElementAmount == ElementAmount;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="RecipeElement"/>.
@@ -87,20 +87,20 @@ namespace Parquet
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is equal to another specified instance of <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="inElement1">The first <see cref="RecipeElement"/> to compare.</param>
-        /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
+        /// <param name="element1">The first <see cref="RecipeElement"/> to compare.</param>
+        /// <param name="element2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(RecipeElement inElement1, RecipeElement inElement2)
-            => inElement1?.Equals(inElement2) ?? inElement2?.Equals(inElement1) ?? true;
+        public static bool operator ==(RecipeElement element1, RecipeElement element2)
+            => element1?.Equals(element2) ?? element2?.Equals(element1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="RecipeElement"/> is not equal to another specified instance of <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="inElement1">The first <see cref="RecipeElement"/> to compare.</param>
-        /// <param name="inElement2">The second <see cref="RecipeElement"/> to compare.</param>
+        /// <param name="element1">The first <see cref="RecipeElement"/> to compare.</param>
+        /// <param name="element2">The second <see cref="RecipeElement"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(RecipeElement inElement1, RecipeElement inElement2)
-            => !(inElement1 == inElement2);
+        public static bool operator !=(RecipeElement element1, RecipeElement element2)
+            => !(element1 == element2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -110,19 +110,19 @@ namespace Parquet
         /// <summary>
         /// Converts the given record column to <see cref="RecipeElement"/>.
         /// </summary>
-        /// <param name="inText">The record column to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The record column to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="ModelTag"/> created from the record column.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(None), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(None), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return None;
             }
 
-            var elementSplitText = inText.Split(Delimiters.InternalDelimiter);
+            var elementSplitText = text.Split(Delimiters.InternalDelimiter);
 
             var elementAmountText = elementSplitText[0];
             var elementTagText = elementSplitText[1];
@@ -130,7 +130,7 @@ namespace Parquet
             var amount = int.TryParse(elementAmountText, All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp)
                 ? temp
                 : Logger.DefaultWithParseLog(elementAmountText, nameof(ElementAmount), 0);
-            var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, inRow, inMemberMapData);
+            var tag = (ModelTag)ModelTag.None.ConvertFromString(elementTagText, row, memberMapData);
 
             return new RecipeElement(amount, tag);
         }
@@ -138,17 +138,17 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="RecipeElement"/> to a record column.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being serialized.</param>
         /// <returns>The <see cref="RecipeElement"/> as a CSV record.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is RecipeElement recipeElement
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is RecipeElement recipeElement
                 ? recipeElement == None
                     ? nameof(None)
                     : $"{recipeElement.ElementAmount}{Delimiters.InternalDelimiter}" +
                       $"{recipeElement.ElementTag}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(RecipeElement), nameof(None));
         #endregion
 
         #region Utilities

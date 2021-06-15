@@ -14,9 +14,9 @@ namespace Parquet
         /// <summary>
         /// Writes a log entry.
         /// </summary>
-        /// <param name="inLogLevel">The severity of the event being logged.</param>
-        /// <param name="inMessage">A message summarizing the event being logged.</param>
-        /// <param name="inException">The exception related to this event, if any.</param>
-        void Log(LogLevel inLogLevel, string inMessage, Exception inException);
+        /// <param name="logLevel">The severity of the event being logged.</param>
+        /// <param name="message">A message summarizing the event being logged.</param>
+        /// <param name="exception">The exception related to this event, if any.</param>
+        void Log(LogLevel logLevel, string message, Exception exception);
     }
 }

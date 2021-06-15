@@ -35,25 +35,25 @@ namespace Parquet.Games
         /// <summary>
         /// Initializes a new instance of the <see cref="GameStatus"/> class.
         /// </summary>
-        /// <param name="inPlayerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
-        /// <param name="inCurrentScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
-        public GameStatus(ModelID? inPlayerCharacterID, ModelID? inCurrentScriptID)
+        /// <param name="playerCharacterID">The <see cref="ModelID"/> of the <see cref="Beings.CharacterModel"/> that the player controls at the outset.</param>
+        /// <param name="currentScriptID">The <see cref="ModelID"/> of the <see cref="Scripts.ScriptModel"/> to run when play begins.</param>
+        public GameStatus(ModelID? playerCharacterID, ModelID? currentScriptID)
         {
-            PlayerCharacterID = inPlayerCharacterID ?? ModelID.None;
-            CurrentScriptID = inCurrentScriptID ?? ModelID.None;
+            PlayerCharacterID = playerCharacterID ?? ModelID.None;
+            CurrentScriptID = currentScriptID ?? ModelID.None;
         }
 
         /// <summary>
         /// Initializes an instance of the <see cref="GameStatus"/> class
         /// based on a given <see cref="GameModel"/> instance.
         /// </summary>
-        /// <param name="inGameModel">The definitions being tracked.</param>
-        public GameStatus(GameModel inGameModel)
+        /// <param name="gameModel">The definitions being tracked.</param>
+        public GameStatus(GameModel gameModel)
         {
-            Precondition.IsNotNull(inGameModel);
-            var nonNullGameModel = inGameModel is null
+            Precondition.IsNotNull(gameModel);
+            var nonNullGameModel = gameModel is null
                 ? GameModel.Empty
-                : inGameModel;
+                : gameModel;
 
             PlayerCharacterID = nonNullGameModel.PlayerCharacterID;
             CurrentScriptID = nonNullGameModel.FirstScriptID;
@@ -71,12 +71,12 @@ namespace Parquet.Games
         /// <summary>
         /// Determines whether the specified <see cref="GameStatus"/> is equal to the current <see cref="GameStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="GameStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="GameStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is GameStatus status
-            && PlayerCharacterID == status.PlayerCharacterID
-            && CurrentScriptID == status.CurrentScriptID;
+        public override bool Equals<T>(T status)
+            => status is GameStatus gameStatus
+            && PlayerCharacterID == gameStatus.PlayerCharacterID
+            && CurrentScriptID == gameStatus.CurrentScriptID;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="GameStatus"/>.
@@ -90,20 +90,20 @@ namespace Parquet.Games
         /// <summary>
         /// Determines whether a specified instance of <see cref="GameStatus"/> is equal to another specified instance of <see cref="GameStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="GameStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="GameStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="GameStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="GameStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(GameStatus inStatus1, GameStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(GameStatus status1, GameStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="GameStatus"/> is not equal to another specified instance of <see cref="GameStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="GameStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="GameStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="GameStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="GameStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(GameStatus inStatus1, GameStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(GameStatus status1, GameStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -113,35 +113,35 @@ namespace Parquet.Games
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is GameStatus status
-                ? $"{ModelID.ConverterFactory.ConvertToString(status.PlayerCharacterID, inRow, inMemberMapData)}{Delimiters.InternalDelimiter}" +
-                  $"{ModelID.ConverterFactory.ConvertToString(status.CurrentScriptID, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(GameStatus), nameof(Default));
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is GameStatus status
+                ? $"{ModelID.ConverterFactory.ConvertToString(status.PlayerCharacterID, row, memberMapData)}{Delimiters.InternalDelimiter}" +
+                  $"{ModelID.ConverterFactory.ConvertToString(status.CurrentScriptID, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(GameStatus), nameof(Default));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Default), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Default.DeepClone();
             }
 
-            var parameterText = inText.Split(Delimiters.InternalDelimiter);
+            var parameterText = text.Split(Delimiters.InternalDelimiter);
 
-            var parsedPlayerCharacterID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], inRow, inMemberMapData);
-            var parsedCurrentScriptID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedPlayerCharacterID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[0], row, memberMapData);
+            var parsedCurrentScriptID = (ModelID)ModelID.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
 
             return new GameStatus(parsedPlayerCharacterID, parsedCurrentScriptID);
         }

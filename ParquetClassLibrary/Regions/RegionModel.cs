@@ -78,44 +78,44 @@ namespace Parquet.Regions
         /// <summary>
         /// Constructs a new instance of the <see cref="RegionModel"/> class.
         /// </summary>
-        /// <param name="inID">Unique identifier for the <see cref="RegionModel"/>.  Cannot be null.</param>
-        /// <param name="inName">The player-facing name of the <see cref="RegionModel"/>.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="RegionModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="RegionModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="RegionModel"/>.</param>
-        /// <param name="inBackgroundColor">A color to show in the <see cref="RegionModel"/> when no parquets are present at a location.</param>
-        /// <param name="inRegionToTheNorth">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the north of this one.</param>
-        /// <param name="inRegionToTheEast">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the east of this one.</param>
-        /// <param name="inRegionToTheSouth">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the south of this one.</param>
-        /// <param name="inRegionToTheWest">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the west of this one.</param>
-        /// <param name="inRegionAbove">The <see cref="ModelID"/> of the <see cref="RegionModel"/> above this one.</param>
-        /// <param name="inRegionBelow">The <see cref="ModelID"/> of the <see cref="RegionModel"/> below this one.</param>
-        public RegionModel(ModelID inID, string inName, string inDescription, string inComment,
-                           IEnumerable<ModelTag> inTags = null,
-                           string inBackgroundColor = DefaultColor,
-                           ModelID? inRegionToTheNorth = null,
-                           ModelID? inRegionToTheEast = null,
-                           ModelID? inRegionToTheSouth = null,
-                           ModelID? inRegionToTheWest = null,
-                           ModelID? inRegionAbove = null,
-                           ModelID? inRegionBelow = null)
-            : base(Bounds, inID, inName, inDescription, inComment, inTags)
+        /// <param name="id">Unique identifier for the <see cref="RegionModel"/>.  Cannot be null.</param>
+        /// <param name="name">The player-facing name of the <see cref="RegionModel"/>.</param>
+        /// <param name="description">Player-friendly description of the <see cref="RegionModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="RegionModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="RegionModel"/>.</param>
+        /// <param name="backgroundColor">A color to show in the <see cref="RegionModel"/> when no parquets are present at a location.</param>
+        /// <param name="regionToTheNorth">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the north of this one.</param>
+        /// <param name="regionToTheEast">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the east of this one.</param>
+        /// <param name="regionToTheSouth">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the south of this one.</param>
+        /// <param name="regionToTheWest">The <see cref="ModelID"/> of the <see cref="RegionModel"/> to the west of this one.</param>
+        /// <param name="regionAbove">The <see cref="ModelID"/> of the <see cref="RegionModel"/> above this one.</param>
+        /// <param name="regionBelow">The <see cref="ModelID"/> of the <see cref="RegionModel"/> below this one.</param>
+        public RegionModel(ModelID id, string name, string description, string comment,
+                           IEnumerable<ModelTag> tags = null,
+                           string backgroundColor = DefaultColor,
+                           ModelID? regionToTheNorth = null,
+                           ModelID? regionToTheEast = null,
+                           ModelID? regionToTheSouth = null,
+                           ModelID? regionToTheWest = null,
+                           ModelID? regionAbove = null,
+                           ModelID? regionBelow = null)
+            : base(Bounds, id, name, description, comment, tags)
         {
-            var nonNullRegionToTheNorth = inRegionToTheNorth ?? ModelID.None;
-            var nonNullRegionToTheEast = inRegionToTheEast ?? ModelID.None;
-            var nonNullRegionToTheSouth = inRegionToTheSouth ?? ModelID.None;
-            var nonNullRegionToTheWest = inRegionToTheWest ?? ModelID.None;
-            var nonNullRegionAbove = inRegionAbove ?? ModelID.None;
-            var nonNullRegionBelow = inRegionBelow ?? ModelID.None;
+            var nonNullRegionToTheNorth = regionToTheNorth ?? ModelID.None;
+            var nonNullRegionToTheEast = regionToTheEast ?? ModelID.None;
+            var nonNullRegionToTheSouth = regionToTheSouth ?? ModelID.None;
+            var nonNullRegionToTheWest = regionToTheWest ?? ModelID.None;
+            var nonNullRegionAbove = regionAbove ?? ModelID.None;
+            var nonNullRegionBelow = regionBelow ?? ModelID.None;
 
-            Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(inRegionToTheNorth));
-            Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(inRegionToTheEast));
-            Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(inRegionToTheSouth));
-            Precondition.IsInRange(nonNullRegionToTheWest, Bounds, nameof(inRegionToTheWest));
-            Precondition.IsInRange(nonNullRegionAbove, Bounds, nameof(inRegionAbove));
-            Precondition.IsInRange(nonNullRegionBelow, Bounds, nameof(inRegionBelow));
+            Precondition.IsInRange(nonNullRegionToTheNorth, Bounds, nameof(regionToTheNorth));
+            Precondition.IsInRange(nonNullRegionToTheEast, Bounds, nameof(regionToTheEast));
+            Precondition.IsInRange(nonNullRegionToTheSouth, Bounds, nameof(regionToTheSouth));
+            Precondition.IsInRange(nonNullRegionToTheWest, Bounds, nameof(regionToTheWest));
+            Precondition.IsInRange(nonNullRegionAbove, Bounds, nameof(regionAbove));
+            Precondition.IsInRange(nonNullRegionBelow, Bounds, nameof(regionBelow));
 
-            BackgroundColor = inBackgroundColor;
+            BackgroundColor = backgroundColor;
             RegionToTheNorth = nonNullRegionToTheNorth;
             RegionToTheEast = nonNullRegionToTheEast;
             RegionToTheSouth = nonNullRegionToTheSouth;
@@ -163,7 +163,7 @@ namespace Parquet.Regions
         /// <summary>
         /// Takes a <see cref="RegionModel"/> and returns the <see cref="ModelID" /> of an adjacent RegionModel.
         /// </summary>
-        private delegate ModelID IDByDirection(RegionModel inRegion);
+        private delegate ModelID IDByDirection(RegionModel region);
 
         /// <summary>
         /// A database of directions and their opposites, together with the properties needed to inspect both.
@@ -194,20 +194,20 @@ namespace Parquet.Regions
         /// That is, if the player leaves Region 1 by going North and cannot then return to Region 1 by going south,
         /// that is considered inconsistent and will be reported.
         /// </summary>
-        /// <param name="inRegionID">The <see cref="ModelID"/> of the origination and destination map.</param>
+        /// <param name="regionID">The <see cref="ModelID"/> of the origination and destination map.</param>
         /// <returns>A report of all exit directions leading to regions whose own exits are inconsistent.</returns>
         [SuppressMessage("Style", "IDE0042:Deconstruct variable declaration",
             Justification = "In this instance it makes the code less readable.")]
-        public static ICollection<string> CheckExitConsistency(ModelID inRegionID)
+        public static ICollection<string> CheckExitConsistency(ModelID regionID)
         {
             var inconsistentExitDirections = new List<string>();
 
-            if (inRegionID == ModelID.None)
+            if (regionID == ModelID.None)
             {
                 return inconsistentExitDirections;
             }
 
-            var currentRegion = All.Regions.GetOrNull<RegionModel>(inRegionID);
+            var currentRegion = All.Regions.GetOrNull<RegionModel>(regionID);
 
             if (currentRegion is null)
             {
@@ -228,7 +228,7 @@ namespace Parquet.Regions
                     continue;
                 }
 
-                if (directionPair.GetReturningRegionID(adjacentRegion) != inRegionID)
+                if (directionPair.GetReturningRegionID(adjacentRegion) != regionID)
                 {
                     inconsistentExitDirections.Add(
                         $"{adjacentRegion.Name} is {directionPair.LeavingDirection} of {currentRegion.Name} but " +

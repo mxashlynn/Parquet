@@ -36,24 +36,24 @@ namespace Parquet.Scripts
         /// <summary>
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class.
         /// </summary>
-        /// <param name="inState">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
-        /// <param name="inProgramCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.Nodes"/>.</param>
-        public ScriptStatus(RunState inState, int inProgramCounter)
+        /// <param name="state">The <see cref="RunState"/> of the tracked <see cref="ScriptModel"/>.</param>
+        /// <param name="programCounter">Index to the current <see cref="ScriptNode"/> in the tracked <see cref="ScriptModel.Nodes"/>.</param>
+        public ScriptStatus(RunState state, int programCounter)
         {
-            State = inState;
-            ProgramCounter = inProgramCounter;
+            State = state;
+            ProgramCounter = programCounter;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ScriptStatus"/> class
         /// based on a given <see cref="ScriptModel"/> instance.
         /// </summary>
-        /// <param name="inScript">The script definition whose status is being tracked.</param>
+        /// <param name="script">The script definition whose status is being tracked.</param>
         [SuppressMessage("Usage", "CA1801:Review unused parameters",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
-        public ScriptStatus(ScriptModel inScript)
+        public ScriptStatus(ScriptModel script)
             : this(RunState.Unstarted, 0)
         { }
         #endregion
@@ -71,10 +71,10 @@ namespace Parquet.Scripts
         /// <summary>
         /// Determines whether the specified <see cref="ScriptStatus"/> is equal to the current <see cref="ScriptStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="ScriptStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="ScriptStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is ScriptStatus ScriptStatus
+        public override bool Equals<T>(T status)
+            => status is ScriptStatus ScriptStatus
             && State == ScriptStatus.State
             && ProgramCounter == ScriptStatus.ProgramCounter;
 
@@ -90,20 +90,20 @@ namespace Parquet.Scripts
         /// <summary>
         /// Determines whether a specified instance of <see cref="ScriptStatus"/> is equal to another specified instance of <see cref="ScriptStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="ScriptStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="ScriptStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="ScriptStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="ScriptStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(ScriptStatus inStatus1, ScriptStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(ScriptStatus status1, ScriptStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="ScriptStatus"/> is not equal to another specified instance of <see cref="ScriptStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="ScriptStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="ScriptStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="ScriptStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="ScriptStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(ScriptStatus inStatus1, ScriptStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(ScriptStatus status1, ScriptStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -113,32 +113,32 @@ namespace Parquet.Scripts
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is ScriptStatus status
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is ScriptStatus status
                 ? $"{status.State}{Delimiters.InternalDelimiter}" +
                   $"{status.ProgramCounter}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(ScriptStatus), nameof(Unstarted));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(ScriptStatus), nameof(Unstarted));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Unstarted), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Unstarted), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Unstarted;
             }
 
-            var parameterText = inText.Split(Delimiters.SecondaryDelimiter);
+            var parameterText = text.Split(Delimiters.SecondaryDelimiter);
 
             var parsedState = Enum.TryParse(typeof(RunState), parameterText[0], out var temp0)
                 ? (RunState)temp0

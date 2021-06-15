@@ -5,12 +5,12 @@ namespace Parquet
     /// <summary>
     /// Indicates an external view onto associated data should be updated.
     /// </summary>
-    /// <param name="inSender">The instance that raised the event.</param>
-    /// <param name="inEventData">Additional event data.</param>
+    /// <param name="sender">The instance that raised the event.</param>
+    /// <param name="eventData">Additional event data.</param>
     /// <returns><c>true</c> if the operation succeeded; otherwise, <c>false</c>.</returns>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix",
         Justification = "False positive.")]
-    public delegate bool DataChangedEventHandler(object inSender, EventArgs inEventData);
+    public delegate bool DataChangedEventHandler(object sender, EventArgs eventData);
 
     /// <summary>
     /// Raises events when an external view onto associated data should be updated.

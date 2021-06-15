@@ -36,13 +36,13 @@ namespace ParquetUnitTests
         [InlineData(0, 0)]
         [InlineData(1, -1)]
         [InlineData(4096, 4096)]
-        internal void NewPointTest(int inX, int inY)
+        internal void NewPointTest(int x, int y)
         {
-            var testPoint = new Point2D(inX, inY);
-            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((inX * inX) + (inY * inY))));
+            var testPoint = new Point2D(x, y);
+            var magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((x * x) + (y * y))));
 
-            Assert.Equal(inX, testPoint.X);
-            Assert.Equal(inY, testPoint.Y);
+            Assert.Equal(x, testPoint.X);
+            Assert.Equal(y, testPoint.Y);
             Assert.Equal(magnitude, testPoint.Magnitude);
         }
 

@@ -21,7 +21,7 @@ namespace Parquet.Crafts
         public IGrid<StrikePanel> PanelPattern { get; }
 
         /// <summary>Replaces the content of <see cref="PanelPattern"/> with the given pattern.</summary>
-        /// <param name="inReplacement">The new pattern to use.</param>
-        public void PanelPatternReplace(IGrid<StrikePanel> inReplacement);
+        /// <param name="replacement">The new pattern to use.</param>
+        public void PanelPatternReplace(IGrid<StrikePanel> replacement);
     }
 }

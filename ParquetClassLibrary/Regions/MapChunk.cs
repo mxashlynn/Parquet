@@ -48,25 +48,24 @@ namespace Parquet.Regions
         /// <summary>
         /// Initializes an instance of the <see cref="MapChunk"/> class.
         /// </summary>
-        /// <param name="inIsFilledOut">
+        /// <param name="isFilledOut">
         /// If <c>true</c>, the <see cref="MapChunk"/> was either created at design time or
         /// has already been procedurally generated on load in-game.
         /// </param>
-        /// <param name="inDetails">Cues to the generation routines if generated at runtime.</param>
-        /// <param name="inParquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
-        public MapChunk(bool inIsFilledOut, ChunkDetail inDetails = null,
-                        IReadOnlyGrid<ParquetModelPack> inParquetDefinitions = null)
+        /// <param name="details">Cues to the generation routines if generated at runtime.</param>
+        /// <param name="parquetDefinitions">The definitions of the collected parquets if designed by hand.</param>        
+        public MapChunk(bool isFilledOut, ChunkDetail details = null, IReadOnlyGrid<ParquetModelPack> parquetDefinitions = null)
         {
-            IsFilledOut = inIsFilledOut;
+            IsFilledOut = isFilledOut;
 
             if (IsFilledOut)
             {
                 Details = ChunkDetail.None;
-                ParquetDefinitions = inParquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
+                ParquetDefinitions = parquetDefinitions ?? new ParquetModelPackGrid(ParquetsPerChunkDimension, ParquetsPerChunkDimension);
             }
             else
             {
-                Details = inDetails ?? ChunkDetail.None;
+                Details = details ?? ChunkDetail.None;
                 ParquetDefinitions = ParquetModelPackGrid.Empty;
             }
         }
@@ -134,10 +133,10 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether the specified <see cref="MapChunk"/> is equal to the current <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk">The <see cref="MapChunk"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="MapChunk"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public bool Equals(MapChunk inChunk)
-            => inChunk is MapChunk chunk
+        public bool Equals(MapChunk other)
+            => other is MapChunk chunk
             && IsFilledOut == chunk.IsFilledOut
             && Details == chunk.Details
             && ParquetDefinitions == chunk.ParquetDefinitions;
@@ -154,20 +153,20 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapChunk"/> is equal to another specified instance of <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk1">The first <see cref="MapChunk"/> to compare.</param>
-        /// <param name="inChunk2">The second <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk1">The first <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk2">The second <see cref="MapChunk"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(MapChunk inChunk1, MapChunk inChunk2)
-            => inChunk1?.Equals(inChunk2) ?? inChunk2?.Equals(inChunk1) ?? true;
+        public static bool operator ==(MapChunk chunk1, MapChunk chunk2)
+            => chunk1?.Equals(chunk2) ?? chunk2?.Equals(chunk1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="MapChunk"/> is not equal to another specified instance of <see cref="MapChunk"/>.
         /// </summary>
-        /// <param name="inChunk1">The first <see cref="MapChunk"/> to compare.</param>
-        /// <param name="inChunk2">The second <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk1">The first <see cref="MapChunk"/> to compare.</param>
+        /// <param name="chunk2">The second <see cref="MapChunk"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(MapChunk inChunk1, MapChunk inChunk2)
-            => !(inChunk1 == inChunk2);
+        public static bool operator !=(MapChunk chunk1, MapChunk chunk2)
+            => !(chunk1 == chunk2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -177,40 +176,40 @@ namespace Parquet.Regions
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is MapChunk chunk
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is MapChunk chunk
                 ? $"{IsFilledOut}{Delimiters.MapChunkDelimiter}" +
-                  $"{chunk.Details.ConvertToString(Details, inRow, inMemberMapData)}{Delimiters.MapChunkDelimiter}" +
-                  $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetDefinitions, inRow, inMemberMapData)}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(MapChunk), nameof(Empty));
+                  $"{chunk.Details.ConvertToString(Details, row, memberMapData)}{Delimiters.MapChunkDelimiter}" +
+                  $"{GridConverter<ParquetModelPack, ParquetModelPackGrid>.ConverterFactory.ConvertToString(ParquetDefinitions, row, memberMapData)}"
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(MapChunk), nameof(Empty));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Empty;
             }
 
-            var parameterText = inText.Split(Delimiters.MapChunkDelimiter);
+            var parameterText = text.Split(Delimiters.MapChunkDelimiter);
             var parsedIsFilledOut = bool.TryParse(parameterText[0], out var tempIsFilledOut)
                 ? tempIsFilledOut
                 : Logger.DefaultWithParseLog(parameterText[0], nameof(IsFilledOut), false);
-            var parsedDetails = (ChunkDetail)ChunkDetail.ConverterFactory.ConvertFromString(parameterText[1], inRow, inMemberMapData);
+            var parsedDetails = (ChunkDetail)ChunkDetail.ConverterFactory.ConvertFromString(parameterText[1], row, memberMapData);
             var parsedParquetDefinitions = (ParquetModelPackGrid)GridConverter<ParquetModelPack, ParquetModelPackGrid>
                 .ConverterFactory
-                .ConvertFromString(parameterText[2], inRow, inMemberMapData);
+                .ConvertFromString(parameterText[2], row, memberMapData);
 
             return new MapChunk(parsedIsFilledOut, parsedDetails, parsedParquetDefinitions);
         }
@@ -254,14 +253,14 @@ namespace Parquet.Regions
         /// <summary>
         /// Determines if the given position corresponds to a point within the current array.
         /// </summary>
-        /// <param name="inArray">The <see cref="Pack{T}"/> array to validate against.</param>
-        /// <param name="inPosition">The position to validate.</param>
+        /// <param name="array">The <see cref="Pack{T}"/> array to validate against.</param>
+        /// <param name="position">The position to validate.</param>
         /// <returns><c>true</c>, if the position is valid, <c>false</c> otherwise.</returns>
-        public static bool IsValidPosition(this MapChunk[,] inArray, Point2D inPosition)
-            => inArray is not null
-            && inPosition.X > -1
-            && inPosition.Y > -1
-            && inPosition.X < inArray.GetLength(1)
-            && inPosition.Y < inArray.GetLength(0);
+        public static bool IsValidPosition(this MapChunk[,] array, Point2D position)
+            => array is not null
+            && position.X > -1
+            && position.Y > -1
+            && position.X < array.GetLength(1)
+            && position.Y < array.GetLength(0);
     }
 }

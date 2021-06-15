@@ -11,17 +11,17 @@ namespace Parquet.Rooms
         /// <summary>
         /// Returns the <see cref="Room"/> at the given position, if there is one.
         /// </summary>
-        /// <param name="inRooms">The current collection of <see cref="Room"/>s.</param>
-        /// <param name="inPosition">An in-bounds position to search for a <see cref="Room"/>.</param>
+        /// <param name="rooms">The current collection of <see cref="Room"/>s.</param>
+        /// <param name="position">An in-bounds position to search for a <see cref="Room"/>.</param>
         /// <returns>The specified <see cref="Room"/> if found; otherwise, null.</returns>
-        public static Room GetRoomAtOrNull(this IReadOnlyCollection<Room> inRooms, Point2D inPosition)
-            => inRooms?.FirstOrDefault(room => room.ContainsPosition(inPosition)) ?? null;
+        public static Room GetRoomAtOrNull(this IReadOnlyCollection<Room> rooms, Point2D position)
+            => rooms?.FirstOrDefault(room => room.ContainsPosition(position)) ?? null;
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="IReadOnlyCollection{Room}"/>.
         /// </summary>
         /// <returns>The representation.</returns>
-        public static string ToString(this IReadOnlyCollection<Room> inRooms)
-            => $"{inRooms?.Count ?? 0} {nameof(Rooms)}";
+        public static string ToString(this IReadOnlyCollection<Room> rooms)
+            => $"{rooms?.Count ?? 0} {nameof(Rooms)}";
     }
 }

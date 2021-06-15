@@ -19,41 +19,41 @@ namespace Parquet
         /// <summary>
         /// Creates a new <see cref="EmptyTolerantEnumConverter"/> for the given <see cref="Enum"/> <see cref="Type"/>.
         /// </summary>
-        /// <param name="inType">The type of the enumeration.</param>
-        public EmptyTolerantEnumConverter(Type inType)
-            : base(inType)
-            => EnumType = (inType?.IsEnum ?? false)
-                ? inType
-                : DefaultWithCastLog(nameof(inType), inType?.Name ?? "null", nameof(Enum), default(Type));
+        /// <param name="type">The type of the enumeration.</param>
+        public EmptyTolerantEnumConverter(Type type)
+            : base(type)
+            => EnumType = (type?.IsEnum ?? false)
+                ? type
+                : DefaultWithCastLog(nameof(type), type?.Name ?? "null", nameof(Enum), default(Type));
 
         /// <summary>
         /// Convenience method that logs a casting error and returns the given default value.
         /// This is a fatal error as the library will be unable to handle a default type in place of an enumeration.
         /// </summary>
         /// <typeparam name="T">The type of value to return.</typeparam>
-        /// <param name="inValue">The value that could not be case.</param>
-        /// <param name="inActualTypeName">The name of type received.</param>
-        /// <param name="inExpectedTypeName">The name of type expected.</param>
-        /// <param name="inDefaultValue">The default value to return.</param>
+        /// <param name="value">The value that could not be case.</param>
+        /// <param name="actualTypeName">The name of type received.</param>
+        /// <param name="expectedTypeName">The name of type expected.</param>
+        /// <param name="defaultValue">The default value to return.</param>
         /// <returns>The default value given.</returns>
-        private static T DefaultWithCastLog<T>(string inValue, string inActualTypeName, string inExpectedTypeName, T inDefaultValue)
+        private static T DefaultWithCastLog<T>(string value, string actualTypeName, string expectedTypeName, T defaultValue)
         {
             Logger.Log(LogLevel.Fatal, string.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCast,
-                                                     inValue, inActualTypeName, inExpectedTypeName), null);
+                                                     value, actualTypeName, expectedTypeName), null);
 
-            return inDefaultValue;
+            return defaultValue;
         }
 
         /// <summary>
         /// Converts the <c>string</c> to an <c>object</c>.
         /// </summary>
-        /// <param name="inText">The string to convert.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The string to convert.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The object created from the string.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
-            => string.IsNullOrEmpty(inText)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+            => string.IsNullOrEmpty(text)
                 ? Activator.CreateInstance(EnumType)
-                : base.ConvertFromString(inText, inRow, inMemberMapData);
+                : base.ConvertFromString(text, row, memberMapData);
     }
 }

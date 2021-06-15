@@ -165,12 +165,12 @@ namespace ParquetUnitTests
                                                     new StrikePanelGrid(StrikePanelGrid.PanelsPerPatternHeight, StrikePanelGrid.PanelsPerPatternWidth));
             TestInteraction = new InteractionModel(-All.InteractionIDs.Minimum, "5 Test Interaction", "Test", "Test", null, null, null, null);
             TestRegionModel = new RegionModel(-All.RegionIDs.Minimum, "7 Test Map Region", "Test", "Test");
-            TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
-            TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
-            TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", inIsLiquid: true, inAddsToRoom: new List<ModelTag> { TestTag });
+            TestFloor = new FloorModel(-All.FloorIDs.Minimum, "8 Test Floor", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
+            TestBlock = new BlockModel(-All.BlockIDs.Minimum, "9 Test Block", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
+            TestLiquid = new BlockModel(-All.BlockIDs.Minimum - 1, "L Test Liquid Block", "Test", "Test", isLiquid: true, addsToRoom: new List<ModelTag> { TestTag });
             TestFurnishing = new FurnishingModel(-All.FurnishingIDs.Minimum, "10 Test Furnishing", "Test", "Test",
-                                                 inEntry: EntryType.Room, inAddsToRoom: new List<ModelTag> { TestTag });
-            TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", inAddsToRoom: new List<ModelTag> { TestTag });
+                                                 entry: EntryType.Room, addsToRoom: new List<ModelTag> { TestTag });
+            TestCollectible = new CollectibleModel(-All.CollectibleIDs.Minimum, "11 Test Collectible", "Test", "Test", addsToRoom: new List<ModelTag> { TestTag });
             TestRoomRecipe = new RoomRecipe(-All.RoomRecipeIDs.Minimum - 1, "12 Test Room Recipe", "Test", "Test", null,
                                             RoomConfiguration.MinWalkableSpaces + 1, TestRecipeElementList,
                                             TestRecipeElementList, TestRecipeElementList);

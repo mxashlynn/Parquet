@@ -28,15 +28,15 @@ namespace Parquet
         /// <summary>
         /// Converts the given 2D collection into a record column.
         /// </summary>
-        /// <param name="inValue">The collection to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The collection to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given collection serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
         {
-            if (inValue is not IGrid<TElement> grid)
+            if (value is not IGrid<TElement> grid)
             {
-                return Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(IGrid<TElement>), "");
+                return Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(IGrid<TElement>), "");
             }
 
             if (grid.Count < 1
@@ -56,7 +56,7 @@ namespace Parquet
             {
                 for (var x = 0; x < grid.Columns; x++)
                 {
-                    result.Append(grid[y, x].ConvertToString(grid[y, x], inRow, inMemberMapData));
+                    result.Append(grid[y, x].ConvertToString(grid[y, x], row, memberMapData));
                     result.Append(gridDelimiter[0]);
                 }
             }
@@ -68,20 +68,20 @@ namespace Parquet
         /// <summary>
         /// Converts the given record column to a 2D collection.
         /// </summary>
-        /// <param name="inText">The record column to convert to an object.</param>
-        /// <param name="inRow">The <see cref="IReaderRow"/> for the current record.</param>
-        /// <param name="inMemberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
+        /// <param name="text">The record column to convert to an object.</param>
+        /// <param name="row">The <see cref="IReaderRow"/> for the current record.</param>
+        /// <param name="memberMapData">The <see cref="MemberMapData"/> for the member being created.</param>
         /// <returns>The <see cref="IGrid{TElement}"/> created from the record column.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(ModelID.None), inText, StringComparison.OrdinalIgnoreCase) == 0
-                || string.Compare(nameof(Enumerable.Empty), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(ModelID.None), text, StringComparison.OrdinalIgnoreCase) == 0
+                || string.Compare(nameof(Enumerable.Empty), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return new TGrid();
             }
 
-            var headerAndGridTexts = inText.Split(Delimiters.DimensionalTerminator);
+            var headerAndGridTexts = text.Split(Delimiters.DimensionalTerminator);
             var header = headerAndGridTexts[0].Split(Delimiters.DimensionalDelimiter);
             var rowCount = int.TryParse(header[0], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp1)
                 ? temp1
@@ -103,7 +103,7 @@ namespace Parquet
                     }
 
                     var currentText = (string)gridTextEnumerator.Current;
-                    grid[y, x] = (TElement)ElementFactory.ConvertFromString(currentText, inRow, inMemberMapData);
+                    grid[y, x] = (TElement)ElementFactory.ConvertFromString(currentText, row, memberMapData);
                 }
             }
             return grid;

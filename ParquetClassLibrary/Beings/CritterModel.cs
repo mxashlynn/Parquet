@@ -16,25 +16,25 @@ namespace Parquet.Beings
         /// <summary>
         /// Initializes a new instance of the <see cref="CritterModel"/> class.
         /// </summary>
-        /// <param name="inID">
+        /// <param name="id">
         /// Unique identifier for the <see cref="CritterModel"/>.  Cannot be null.
         /// Must be a <see cref="All.CritterIDs"/>.
         /// </param>
-        /// <param name="inName">Player-friendly name of the <see cref="CritterModel"/>.  Cannot be null or empty.</param>
-        /// <param name="inDescription">Player-friendly description of the <see cref="CritterModel"/>.</param>
-        /// <param name="inComment">Comment of, on, or by the <see cref="CritterModel"/>.</param>
-        /// <param name="inTags">Any additional information about the <see cref="CritterModel"/>.</param>
-        /// <param name="inNativeBiomeID">The <see cref="Biomes.BiomeRecipe"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
-        /// <param name="inPrimaryBehaviorID">The rules that govern how this <see cref="CritterModel"/> acts.  Cannot be null.</param>
-        /// <param name="inAvoidsIDs">Any parquets this <see cref="CritterModel"/> avoids.</param>
-        /// <param name="inSeeksIDs">Any parquets this <see cref="CritterModel"/> seeks.</param>
-        public CritterModel(ModelID inID, string inName, string inDescription, string inComment,
-                            IEnumerable<ModelTag> inTags = null, ModelID? inNativeBiomeID = null,
-                            ModelID? inPrimaryBehaviorID = null, IEnumerable<ModelID> inAvoidsIDs = null,
-                            IEnumerable<ModelID> inSeeksIDs = null)
-            : base(All.CritterIDs, inID, inName, inDescription, inComment, inTags,
-                   inNativeBiomeID, inPrimaryBehaviorID, inAvoidsIDs, inSeeksIDs)
-            => Precondition.IsInRange(inID, All.CritterIDs, nameof(inID));
+        /// <param name="name">Player-friendly name of the <see cref="CritterModel"/>.  Cannot be null or empty.</param>
+        /// <param name="description">Player-friendly description of the <see cref="CritterModel"/>.</param>
+        /// <param name="comment">Comment of, on, or by the <see cref="CritterModel"/>.</param>
+        /// <param name="tags">Any additional information about the <see cref="CritterModel"/>.</param>
+        /// <param name="nativeBiomeID">The <see cref="Biomes.BiomeRecipe"/> in which this <see cref="CritterModel"/> is most comfortable.</param>
+        /// <param name="primaryBehaviorID">The rules that govern how this <see cref="CritterModel"/> acts.  Cannot be null.</param>
+        /// <param name="avoidsIDs">Any parquets this <see cref="CritterModel"/> avoids.</param>
+        /// <param name="seeksIDs">Any parquets this <see cref="CritterModel"/> seeks.</param>
+        public CritterModel(ModelID id, string name, string description, string comment,
+                            IEnumerable<ModelTag> tags = null, ModelID? nativeBiomeID = null,
+                            ModelID? primaryBehaviorID = null, IEnumerable<ModelID> avoidsIDs = null,
+                            IEnumerable<ModelID> seeksIDs = null)
+            : base(All.CritterIDs, id, name, description, comment, tags,
+                   nativeBiomeID, primaryBehaviorID, avoidsIDs, seeksIDs)
+            => Precondition.IsInRange(id, All.CritterIDs, nameof(id));
         #endregion
 
         #region IMutableCritterModel Implementation

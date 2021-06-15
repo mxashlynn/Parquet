@@ -33,20 +33,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Initializes a new instance of the <see cref="FurnishingStatus"/> class.
         /// </summary>
-        /// <param name="inIsOpen">When <c>true</c>, the <see cref="FurnishingModel"/> associated with this status is open.</param>
-        public FurnishingStatus(bool inIsOpen)
-            => IsOpen = inIsOpen;
+        /// <param name="isOpen">When <c>true</c>, the <see cref="FurnishingModel"/> associated with this status is open.</param>
+        public FurnishingStatus(bool isOpen)
+            => IsOpen = isOpen;
 
         /// <summary>
         /// Initializes an instance of the <see cref="FurnishingStatus"/> class
         /// based on a given <see cref="FurnishingModel"/> identifier.
         /// </summary>
-        /// <param name="inFloorID">The <see cref="ModelID"/> of the definitions being tracked.</param>
+        /// <param name="furnishingID">The <see cref="ModelID"/> of the definitions being tracked.</param>
         [SuppressMessage("Usage", "CA1801:Review unused parameters",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "This constructor is provided for consistency.  The parameter is currently ignored, but may not be in the future.")]
-        public FurnishingStatus(ModelID inFloorID)
+        public FurnishingStatus(ModelID furnishingID)
             // NOTE Currently, by design, no Furnishing starts open.
             : this(false)
         { }
@@ -65,10 +65,10 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether the specified <see cref="FurnishingStatus"/> is equal to the current <see cref="FurnishingStatus"/>.
         /// </summary>
-        /// <param name="inStatus">The <see cref="FurnishingStatus"/> to compare with the current.</param>
+        /// <param name="status">The <see cref="FurnishingStatus"/> to compare with the current.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public override bool Equals<T>(T inStatus)
-            => inStatus is FurnishingStatus FurnishingStatus
+        public override bool Equals<T>(T status)
+            => status is FurnishingStatus FurnishingStatus
             && IsOpen == FurnishingStatus.IsOpen;
 
         /// <summary>
@@ -83,20 +83,20 @@ namespace Parquet.Parquets
         /// <summary>
         /// Determines whether a specified instance of <see cref="FurnishingStatus"/> is equal to another specified instance of <see cref="FurnishingStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="FurnishingStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="FurnishingStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="FurnishingStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="FurnishingStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(FurnishingStatus inStatus1, FurnishingStatus inStatus2)
-            => inStatus1?.Equals(inStatus2) ?? inStatus2?.Equals(inStatus1) ?? true;
+        public static bool operator ==(FurnishingStatus status1, FurnishingStatus status2)
+            => status1?.Equals(status2) ?? status2?.Equals(status1) ?? true;
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="FurnishingStatus"/> is not equal to another specified instance of <see cref="FurnishingStatus"/>.
         /// </summary>
-        /// <param name="inStatus1">The first <see cref="FurnishingStatus"/> to compare.</param>
-        /// <param name="inStatus2">The second <see cref="FurnishingStatus"/> to compare.</param>
+        /// <param name="status1">The first <see cref="FurnishingStatus"/> to compare.</param>
+        /// <param name="status2">The second <see cref="FurnishingStatus"/> to compare.</param>
         /// <returns><c>true</c> if they are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(FurnishingStatus inStatus1, FurnishingStatus inStatus2)
-            => !(inStatus1 == inStatus2);
+        public static bool operator !=(FurnishingStatus status1, FurnishingStatus status2)
+            => !(status1 == status2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -106,33 +106,33 @@ namespace Parquet.Parquets
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public override string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is FurnishingStatus status
+        public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is FurnishingStatus status
                 ? $"{status.IsOpen}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(FurnishingStatus), nameof(Default));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(FurnishingStatus), nameof(Default));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public override object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Default), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Default), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Default.DeepClone();
             }
 
-            var parsedIsTrench = bool.TryParse(inText, out var temp1)
+            var parsedIsTrench = bool.TryParse(text, out var temp1)
                 ? temp1
-                : Logger.DefaultWithParseLog(inText, nameof(IsOpen), false);
+                : Logger.DefaultWithParseLog(text, nameof(IsOpen), false);
 
             return new FurnishingStatus(parsedIsTrench);
         }

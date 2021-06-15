@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]
 
 [assembly: SuppressMessage("Naming", "CA1725:Parameter names should match base declaration",
-                           Justification = "This rule inhibits clarity as it prefers general terms to specific terms.  (For example, calling a Model an Object.)",
+                           Justification = "This rule inhibits clarity as it prefers general terms to specific terms.  Also, it creates confusion by forcing non-ItemModels to be called 'item' (for example, when implementing IEnumerableConverter).",
                            Scope = "namespaceanddescendants", Target = "~N:Parquet")]
 
 [assembly: SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional",

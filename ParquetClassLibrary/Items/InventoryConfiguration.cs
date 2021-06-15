@@ -10,12 +10,12 @@ namespace Parquet.Items
     {
         #region Class Defaults
         /// <summary>The capacity to use for an <see cref="InventoryCollection"/> when the configuration cannot be read.</summary>
-        private const int DefaultDefaultCapacity = 16;
+        private const int FallbackCapacity = 16;
         #endregion
 
         #region Characteristics
         /// <summary>The capacity to use for an <see cref="InventoryCollection"/> when none is specified.</summary>
-        public static int DefaultCapacity { get; set; } = DefaultDefaultCapacity;
+        public static int DefaultCapacity { get; set; } = FallbackCapacity;
         #endregion
 
         #region Self Serialization
@@ -34,9 +34,9 @@ namespace Parquet.Items
             var value = reader.ReadLine();
 
             // Parse.
-            DefaultCapacity = int.TryParse(value, out var outInt)
-                ? outInt
-                : Logger.DefaultWithParseLog(value, nameof(DefaultCapacity), DefaultDefaultCapacity);
+            DefaultCapacity = int.TryParse(value, out var parsedCapacity)
+                ? parsedCapacity
+                : Logger.DefaultWithParseLog(value, nameof(DefaultCapacity), FallbackCapacity);
         }
 
         /// <summary>

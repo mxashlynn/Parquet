@@ -63,28 +63,28 @@ namespace Parquet.Items
         /// <summary>
         /// Initializes a new empty instance of the <see cref="InventoryCollection"/> class.
         /// </summary>
-        /// <param name="inCapacity">How many inventory slots exist.  Must be positive</param>
-        public InventoryCollection(int inCapacity)
+        /// <param name="capacity">How many inventory slots exist.  Must be positive</param>
+        public InventoryCollection(int capacity)
         {
-            Precondition.MustBePositive(inCapacity, nameof(inCapacity));
+            Precondition.MustBePositive(capacity, nameof(capacity));
 
-            Capacity = inCapacity;
+            Capacity = capacity;
             Slots = new List<InventorySlot>();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InventoryCollection"/> class from a collection of <see cref="InventorySlot"/>s.
         /// </summary>
-        /// <param name="inSlots">The <see cref="InventorySlot"/>s to collect.  Cannot be null.</param>
-        /// <param name="inCapacity">How many inventory slots exist.  Must be positive</param>
-        public InventoryCollection(IEnumerable<InventorySlot> inSlots, int inCapacity)
+        /// <param name="slots">The <see cref="InventorySlot"/>s to collect.  Cannot be null.</param>
+        /// <param name="capacity">How many inventory slots exist.  Must be positive</param>
+        public InventoryCollection(IEnumerable<InventorySlot> slots, int capacity)
         {
-            Precondition.IsNotNull(inSlots, nameof(inSlots));
-            Precondition.MustBePositive(inCapacity, nameof(inCapacity));
+            Precondition.IsNotNull(slots, nameof(slots));
+            Precondition.MustBePositive(capacity, nameof(capacity));
 
-            Capacity = inCapacity;
+            Capacity = capacity;
             Slots = new List<InventorySlot>();
-            foreach (var slot in inSlots ?? Enumerable.Empty<InventorySlot>())
+            foreach (var slot in slots ?? Enumerable.Empty<InventorySlot>())
             {
                 Give(slot.ItemID, slot.Count);
             }
@@ -95,23 +95,23 @@ namespace Parquet.Items
         /// <summary>
         /// Determines how many of given type of item is contained in the <see cref="InventoryCollection"/>.
         /// </summary>
-        /// <param name="inItemID">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
+        /// <param name="itemID">The item type to check for.  Cannot be <see cref="ModelID.None"/>.</param>
         /// <returns>The number of items of the given type contained.</returns>
-        public int Contains(ModelID inItemID)
-            => Slots.Where(slot => slot.ItemID == inItemID)
+        public int Contains(ModelID itemID)
+            => Slots.Where(slot => slot.ItemID == itemID)
                     .Sum(slot => slot.Count);
 
         /// <summary>
         /// Determines if the <see cref="InventoryCollection"/> contains the given items in the given quantities.
         /// </summary>
-        /// <param name="inItems">The items to check for.  Cannot be null or empty.</param>
+        /// <param name="items">The items to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
-        public bool Has(IEnumerable<(ModelID, int)> inItems)
+        public bool Has(IEnumerable<(ModelID, int)> items)
         {
-            Precondition.IsNotNullOrEmpty(inItems, nameof(inItems));
+            Precondition.IsNotNullOrEmpty(items, nameof(items));
 
             var result = true;
-            foreach (var slot in inItems ?? Enumerable.Empty<(ModelID, int)>())
+            foreach (var slot in items ?? Enumerable.Empty<(ModelID, int)>())
             {
                 result &= Has(slot.Item1, slot.Item2);
             }
@@ -121,14 +121,14 @@ namespace Parquet.Items
         /// <summary>
         /// Determines if the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>s.
         /// </summary>
-        /// <param name="inSlots">The slots to check for.  Cannot be null or empty.</param>
+        /// <param name="slots">The slots to check for.  Cannot be null or empty.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
-        public bool Has(IEnumerable<InventorySlot> inSlots)
+        public bool Has(IEnumerable<InventorySlot> slots)
         {
-            Precondition.IsNotNullOrEmpty(inSlots, nameof(inSlots));
+            Precondition.IsNotNullOrEmpty(slots, nameof(slots));
 
             var result = true;
-            foreach (var slot in inSlots ?? Enumerable.Empty<InventorySlot>())
+            foreach (var slot in slots ?? Enumerable.Empty<InventorySlot>())
             {
                 result &= Has(slot.ItemID, slot.Count);
             }
@@ -138,68 +138,68 @@ namespace Parquet.Items
         /// <summary>
         /// Determines if the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inSlot">The slot to check for.</param>
+        /// <param name="slot">The slot to check for.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
         /// <remarks>A <c>null</c> slot is never found and will result in a return value of <c>false</c>.</remarks>
-        public bool Has(InventorySlot inSlot)
-            => inSlot is not null
-            && Has(inSlot.ItemID, inSlot.Count);
+        public bool Has(InventorySlot slot)
+            => slot is not null
+            && Has(slot.ItemID, slot.Count);
 
         /// <summary>
         /// Determines if the <see cref="InventoryCollection"/> contains the given number of the given item.
         /// </summary>
-        /// <param name="inItemID">What kind of item to check for.</param>
-        /// <param name="inHowMany">How many of the item to check for.  Must be positive.</param>
+        /// <param name="itemID">What kind of item to check for.</param>
+        /// <param name="howMany">How many of the item to check for.  Must be positive.</param>
         /// <returns><c>true</c> if everything was found; otherwise, <c>false</c>.</returns>
-        public bool Has(ModelID inItemID, int inHowMany = 1)
+        public bool Has(ModelID itemID, int howMany = 1)
         {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
-            return Contains(inItemID) >= inHowMany;
+            Precondition.MustBePositive(howMany, nameof(howMany));
+            return Contains(itemID) >= howMany;
         }
 
         /// <summary>
         /// Stores the given <see cref="InventorySlot"/> if possible.
         /// </summary>
-        /// <param name="inSlot">The slot to give.</param>
+        /// <param name="slot">The slot to give.</param>
         /// <returns>
         /// If everything was stored successfully, <c>0</c>;
         /// otherwise, the number of items that could not be stored because the <see cref="InventoryCollection"/> is full.
         /// </returns>
-        public int Give(InventorySlot inSlot)
-            => Give(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 0);
+        public int Give(InventorySlot slot)
+            => Give(slot?.ItemID ?? ModelID.None, slot?.Count ?? 0);
 
         /// <summary>
         /// Stores the given number of the given item, if possible.
         /// </summary>
-        /// <param name="inItemID">What kind of item to give.</param>
-        /// <param name="inHowMany">How many of the item to give.  Must be positive.</param>
+        /// <param name="itemID">What kind of item to give.</param>
+        /// <param name="howMany">How many of the item to give.  Must be positive.</param>
         /// <returns>
         /// If everything was stored successfully, <c>0</c>;
         /// otherwise, the number of items that could not be stored because the <see cref="InventoryCollection"/> is full.
         /// </returns>
-        public int Give(ModelID inItemID, int inHowMany)
+        public int Give(ModelID itemID, int howMany)
         {
             // In testing we want to alert the developer if they try to give "nothing",
             // but in production this should probably just silently succeed.
-            Debug.Assert(inItemID != ModelID.None,
+            Debug.Assert(itemID != ModelID.None,
                          string.Format(CultureInfo.CurrentCulture, Resources.WarningTriedToGiveNothing,
                          nameof(ModelID.None),
                          nameof(InventoryCollection)));
-            if (inItemID == ModelID.None)
+            if (itemID == ModelID.None)
             {
                 return 0;
             }
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Precondition.MustBePositive(howMany, nameof(howMany));
 
-            var remainder = inHowMany;
+            var remainder = howMany;
             // If this is happening during deserialization, assume the stack max was respected during serialization.
             var stackMax = All.CollectionsHaveBeenInitialized
-                ? All.Items?.GetOrNull<ItemModel>(inItemID)?.StackMax ?? ItemModel.DefaultStackMax
+                ? All.Items?.GetOrNull<ItemModel>(itemID)?.StackMax ?? ItemModel.DefaultStackMax
                 : ItemModel.DefaultStackMax;
 
             while (remainder > 0)
             {
-                var slotToAddTo = Slots.Find(slot => slot.ItemID == inItemID
+                var slotToAddTo = Slots.Find(slot => slot.ItemID == itemID
                                                   && slot.Count < stackMax);
                 if (slotToAddTo is null)
                 {
@@ -207,7 +207,7 @@ namespace Parquet.Items
                     if (Slots.Count < Capacity)
                     {
                         // If there is room for another slot, make one and add it.
-                        slotToAddTo = new InventorySlot(inItemID, 1);
+                        slotToAddTo = new InventorySlot(itemID, 1);
                         Slots.Add(slotToAddTo);
                         remainder--;
                     }
@@ -229,32 +229,32 @@ namespace Parquet.Items
         /// <summary>
         /// Removes the given <see cref="InventorySlot"/>, if possible.
         /// </summary>
-        /// <param name="inSlot">The slot to take.</param>
+        /// <param name="slot">The slot to take.</param>
         /// <returns>
         /// If everything was removed successfully, <c>0</c>;
         /// otherwise, the number of items that could not be removed because the <see cref="InventoryCollection"/> did not have any more.
         /// </returns>
-        public int Take(InventorySlot inSlot)
-            => Take(inSlot?.ItemID ?? ModelID.None, inSlot?.Count ?? 0);
+        public int Take(InventorySlot slot)
+            => Take(slot?.ItemID ?? ModelID.None, slot?.Count ?? 0);
 
         /// <summary>
         /// Removes the given number of the given item, if possible.
         /// </summary>
-        /// <param name="inItemID">What kind of item to take.</param>
-        /// <param name="inHowMany">How many of the item to take.  Must be positive.</param>
+        /// <param name="itemID">What kind of item to take.</param>
+        /// <param name="howMany">How many of the item to take.  Must be positive.</param>
         /// <returns>
         /// If everything was removed successfully, <c>0</c>;
         /// otherwise, the number of items that could not be removed because the <see cref="InventoryCollection"/> did not have any more.
         /// </returns>
-        public int Take(ModelID inItemID, int inHowMany)
+        public int Take(ModelID itemID, int howMany)
         {
-            Precondition.MustBePositive(inHowMany, nameof(inHowMany));
+            Precondition.MustBePositive(howMany, nameof(howMany));
 
-            var remainder = inHowMany;
+            var remainder = howMany;
 
             while (remainder > 0)
             {
-                var slotToTakeFrom = Slots.Find(slot => slot.ItemID == inItemID);
+                var slotToTakeFrom = Slots.Find(slot => slot.ItemID == itemID);
                 if (slotToTakeFrom is not null)
                 {
                     remainder = slotToTakeFrom.Take(remainder);
@@ -285,20 +285,20 @@ namespace Parquet.Items
         /// <summary>
         /// Determines whether the <see cref="InventoryCollection"/> contains the given <see cref="InventorySlot"/>.
         /// </summary>
-        /// <param name="inSlot">The slot to search for.</param>
+        /// <param name="other">The slot to search for.</param>
         /// <returns><c>true</c> if the slot is found; otherwise, <c>false</c>.</returns>
         [Obsolete("Use InventoryCollection.Has() instead.", true)]
-        public bool Contains(InventorySlot inSlot)
-            => Has(inSlot);
+        public bool Contains(InventorySlot other)
+            => Has(other);
 
         /// <summary>
         /// Adds the given <see cref="InventorySlot"/> to the <see cref="InventoryCollection"/>.
         /// </summary>
         /// <remarks>This method should only be used by <see cref="SeriesConverter{TElement, TCollection}"/>.</remarks>
-        /// <param name="inSlot">The slot to add.</param>
+        /// <param name="slot">The slot to add.</param>
         [Obsolete("Use InventoryCollection.Give() instead.")]
-        public void Add(InventorySlot inSlot)
-            => Give(inSlot);
+        public void Add(InventorySlot slot)
+            => Give(slot);
 
         /// <summary>
         /// Removes all <see cref="InventorySlot"/>s from the <see cref="InventoryCollection"/>.
@@ -310,19 +310,19 @@ namespace Parquet.Items
         /// <summary>
         /// Copies the elements of the <see cref="InventoryCollection"/> to an <see cref="System.Array"/>, starting at the given index.
         /// </summary>
-        /// <param name="inArray">The array to copy to.</param>
-        /// <param name="inArrayIndex">The index at which to begin copying.</param>
-        public void CopyTo(InventorySlot[] inArray, int inArrayIndex)
-            => Slots.CopyTo(inArray, inArrayIndex);
+        /// <param name="array">The array to copy to.</param>
+        /// <param name="arrayIndex">The index at which to begin copying.</param>
+        public void CopyTo(InventorySlot[] array, int arrayIndex)
+            => Slots.CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Removes the first occurrence of the given <see cref="InventorySlot"/> from the <see cref="InventoryCollection"/>.
         /// </summary>
-        /// <param name="inSlot">The slot to remove.</param>
+        /// <param name="slot">The slot to remove.</param>
         /// <returns><c>False</c> if slot was found but could not be removed; otherwise, <c>true</c>.</returns>
         [Obsolete("Use InventoryCollection.Take() instead.", true)]
-        public bool Remove(InventorySlot inSlot)
-            => Take(inSlot) == 0;
+        public bool Remove(InventorySlot slot)
+            => Take(slot) == 0;
 
         /// <summary>
         /// Exposes an <see cref="IEnumerator"/> to support simple iteration.

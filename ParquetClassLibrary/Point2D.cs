@@ -47,21 +47,21 @@ namespace Parquet
         /// <summary>
         /// Initializes a new instance of the <see cref="Point2D"/> struct.
         /// </summary>
-        /// <param name="inX">The X coordinate.</param>
-        /// <param name="inY">The Y coordinate.</param>
-        public Point2D(int inX, int inY)
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        public Point2D(int x, int y)
         {
-            X = inX;
-            Y = inY;
+            X = x;
+            Y = y;
             Magnitude = Convert.ToInt32(Math.Floor(Math.Sqrt((X * X) + (Y * Y))));
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Point2D"/> struct.
         /// </summary>
-        /// <param name="inCoordinates">The coordinates.</param>
-        public Point2D((int X, int Y) inCoordinates)
-            : this(inCoordinates.X, inCoordinates.Y)
+        /// <param name="coordinates">The coordinates.</param>
+        public Point2D((int X, int Y) coordinates)
+            : this(coordinates.X, coordinates.Y)
         { }
         #endregion
 
@@ -69,29 +69,29 @@ namespace Parquet
         /// <summary>
         /// Sums the given points as if they were vectors.
         /// </summary>
-        /// <param name="inPoint1">First operand.</param>
-        /// <param name="inPoint2">Second operand.</param>
+        /// <param name="point1">First operand.</param>
+        /// <param name="point2">Second operand.</param>
         /// <returns>A point representing the sum of the given points.</returns>
-        public static Point2D operator +(Point2D inPoint1, Point2D inPoint2)
-            => new(inPoint1.X + inPoint2.X, inPoint1.Y + inPoint2.Y);
+        public static Point2D operator +(Point2D point1, Point2D point2)
+            => new(point1.X + point2.X, point1.Y + point2.Y);
 
         /// <summary>
         /// Finds the difference between the given points as if they were points.
         /// </summary>
-        /// <param name="inPoint1">First operand.</param>
-        /// <param name="inPoint2">Second operand.</param>
+        /// <param name="point1">First operand.</param>
+        /// <param name="point2">Second operand.</param>
         /// <returns>A point representing the difference of the given points.</returns>
-        public static Point2D operator -(Point2D inPoint1, Point2D inPoint2)
-            => new(inPoint1.X - inPoint2.X, inPoint1.Y - inPoint2.Y);
+        public static Point2D operator -(Point2D point1, Point2D point2)
+            => new(point1.X - point2.X, point1.Y - point2.Y);
 
         /// <summary>
         /// Scales a the point.
         /// </summary>
-        /// <param name="inScalar">The scale factor.</param>
-        /// <param name="inPoint">The point.</param>
+        /// <param name="scalar">The scale factor.</param>
+        /// <param name="point">The point.</param>
         /// <returns>A point representing the scaled point.</returns>
-        public static Point2D operator *(int inScalar, Point2D inPoint)
-            => new(inScalar * inPoint.X, inScalar * inPoint.Y);
+        public static Point2D operator *(int scalar, Point2D point)
+            => new(scalar * point.X, scalar * point.Y);
         #endregion
 
         #region IEquatable Implementation
@@ -105,11 +105,11 @@ namespace Parquet
         /// <summary>
         /// Determines whether the specified <see cref="Point2D"/> is equal to the current <see cref="Point2D"/>.
         /// </summary>
-        /// <param name="inPoint">The <see cref="Point2D"/> to compare with the current.</param>
+        /// <param name="other">The <see cref="Point2D"/> to compare with the current.</param>
         /// <returns><c>true</c> if the <see cref="Point2D"/>s are equal.</returns>
-        public bool Equals(Point2D inPoint)
-            => X == inPoint.X
-            && Y == inPoint.Y;
+        public bool Equals(Point2D other)
+            => X == other.X
+            && Y == other.Y;
 
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Point2D"/>.
@@ -124,21 +124,21 @@ namespace Parquet
         /// Determines whether a specified instance of <see cref="Point2D"/> is equal to
         /// another specified instance of <see cref="Point2D"/>.
         /// </summary>
-        /// <param name="inPoint1">The first <see cref="Point2D"/> to compare.</param>
-        /// <param name="inPoint2">The second <see cref="Point2D"/> to compare.</param>
+        /// <param name="point1">The first <see cref="Point2D"/> to compare.</param>
+        /// <param name="point2">The second <see cref="Point2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are equal; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(Point2D inPoint1, Point2D inPoint2)
-            => inPoint1.Equals(inPoint2);
+        public static bool operator ==(Point2D point1, Point2D point2)
+            => point1.Equals(point2);
 
         /// <summary>
         /// Determines whether a specified instance of <see cref="Point2D"/> is not equal
         /// to another specified instance of <see cref="Point2D"/>.
         /// </summary>
-        /// <param name="inPoint1">The first <see cref="Point2D"/> to compare.</param>
-        /// <param name="inPoint2">The second <see cref="Point2D"/> to compare.</param>
+        /// <param name="point1">The first <see cref="Point2D"/> to compare.</param>
+        /// <param name="point2">The second <see cref="Point2D"/> to compare.</param>
         /// <returns><c>true</c> if the two operands are NOT equal; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(Point2D inPoint1, Point2D inPoint2)
-            => !inPoint1.Equals(inPoint2);
+        public static bool operator !=(Point2D point1, Point2D point2)
+            => !point1.Equals(point2);
         #endregion
 
         #region ITypeConverter Implementation
@@ -148,32 +148,32 @@ namespace Parquet
         /// <summary>
         /// Converts the given <see cref="object"/> to a <see cref="string"/> for serialization.
         /// </summary>
-        /// <param name="inValue">The instance to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="value">The instance to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance serialized.</returns>
-        public string ConvertToString(object inValue, IWriterRow inRow, MemberMapData inMemberMapData)
-            => inValue is Point2D point
+        public string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+            => value is Point2D point
                 ? $"{point.X}{Delimiters.ElementDelimiter}" +
                   $"{point.Y}"
-                : Logger.DefaultWithConvertLog(inValue?.ToString() ?? "null", nameof(Point2D), nameof(Origin));
+                : Logger.DefaultWithConvertLog(value?.ToString() ?? "null", nameof(Point2D), nameof(Origin));
 
         /// <summary>
         /// Converts the given <see cref="string"/> to an <see cref="object"/> as deserialization.
         /// </summary>
-        /// <param name="inText">The text to convert.</param>
-        /// <param name="inRow">The current context and configuration.</param>
-        /// <param name="inMemberMapData">Mapping info for a member to a CSV field or property.</param>
+        /// <param name="text">The text to convert.</param>
+        /// <param name="row">The current context and configuration.</param>
+        /// <param name="memberMapData">Mapping info for a member to a CSV field or property.</param>
         /// <returns>The given instance deserialized.</returns>
-        public object ConvertFromString(string inText, IReaderRow inRow, MemberMapData inMemberMapData)
+        public object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-            if (string.IsNullOrEmpty(inText)
-                || string.Compare(nameof(Origin), inText, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.IsNullOrEmpty(text)
+                || string.Compare(nameof(Origin), text, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return Origin;
             }
 
-            var parameterText = inText.Split(Delimiters.ElementDelimiter);
+            var parameterText = text.Split(Delimiters.ElementDelimiter);
 
             var x = int.TryParse(parameterText[0], All.SerializedNumberStyle, CultureInfo.InvariantCulture, out var temp1)
                 ? temp1
@@ -190,10 +190,10 @@ namespace Parquet
         /// <summary>
         /// Deconstructs the current <see cref="Point2D"/> into its constituent coordinates.
         /// </summary>
-        /// <param name="outX">The X coordinate.</param>
-        /// <param name="outY">The Y coordinate.</param>
-        public void Deconstruct(out int outX, out int outY)
-            => (outX, outY) = (X, Y);
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        public void Deconstruct(out int x, out int y)
+            => (x, y) = (X, Y);
 
         /// <summary>
         /// Returns a <see cref="string"/> that represents the current <see cref="Point2D"/>.
