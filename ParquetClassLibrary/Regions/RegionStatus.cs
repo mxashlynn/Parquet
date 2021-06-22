@@ -431,6 +431,7 @@ namespace Parquet.Regions
                 return Unused.DeepClone();
             }
 
+            // NOTE Tertiary delimiter is used here to separate ParquetModelPackGrid from ParquetStatusPackGrid.
             var parameterText = text.Split(Delimiters.TertiaryDelimiter);
             var parsedParquetModels = (ParquetModelPackGrid)GridConverter<ParquetModelPack, ParquetModelPackGrid>
                 .ConverterFactory
